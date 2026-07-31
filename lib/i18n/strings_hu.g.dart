@@ -69,7 +69,6 @@ class TranslationsHu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$hu licenses = _Translations$licenses$hu._(_root);
 	@override late final _Translations$navigation$hu navigation = _Translations$navigation$hu._(_root);
 	@override late final _Translations$explore$hu explore = _Translations$explore$hu._(_root);
-	@override late final _Translations$liveTv$hu liveTv = _Translations$liveTv$hu._(_root);
 	@override late final _Translations$collections$hu collections = _Translations$collections$hu._(_root);
 	@override late final _Translations$playlists$hu playlists = _Translations$playlists$hu._(_root);
 	@override late final _Translations$music$hu music = _Translations$music$hu._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Navigációs sáv címkéinek megjelenítése';
 	@override String get showNavBarLabelsDescription => 'Szöveges címkék megjelenítése a navigációs sáv ikonjai alatt';
 	@override String get startupSection => 'Indítási oldal';
-	@override String get liveTvDefaultFavorites => 'Kedvenc csatornák alapértelmezés szerint';
-	@override String get liveTvDefaultFavoritesDescription => 'Csak a kedvenc csatornák megjelenítése az Élő TV megnyitásakor';
 	@override String get display => 'Kijelző';
 	@override String get homeScreen => 'Kezdőképernyő';
 	@override String get navigation => 'Navigáció';
@@ -705,7 +702,6 @@ class _Translations$messages$hu extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Eltávolítva a folytatásból';
 	@override String errorLoading({required Object error}) => 'Hiba: ${error}';
 	@override String get streamInterrupted => 'Az adatfolyam megszakadt. Az újrapróbálkozáshoz indítsd el a lejátszást, vagy tekerj másik pozícióra.';
-	@override String get liveStreamInterrupted => 'Az élő adás megszakadt. Nyomd meg a lejátszást az újrapróbálkozáshoz.';
 	@override String get fileInfoNotAvailable => 'A fájlinformáció nem érhető el';
 	@override String get playbackAuthenticationRequired => 'Az elem lejátszásához jelentkezz be újra a médiaszerverre.';
 	@override String get playbackServerUnavailable => 'A médiaszerver nem érhető el. Próbáld újra később.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$hu extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Könyvtárak';
 	@override String get downloads => 'Letöltések';
-	@override String get liveTv => 'Élő TV';
 	@override String get explore => 'Böngészés';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$hu extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Nincs találat a következőre: "${query}"';
 	@override String searchPrompt({required Object source}) => 'Filmek és sorozatok keresése a következőn: ${source}.';
 	@override String get searchFailed => 'A keresés nem sikerült. Ellenőrizd a kapcsolatot és próbáld újra.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$hu extends Translations$liveTv$en {
-	_Translations$liveTv$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Élő TV';
-	@override String get guide => 'Műsorújság';
-	@override String get noChannels => 'Nincsenek elérhető csatornák';
-	@override String get noDvr => 'Egyik szerveren sincs beállítva DVR';
-	@override String get serverUnavailable => 'Az Élő TV szerver nem érhető el.';
-	@override String get serverNotConnected => 'Az Élő TV szerver nincs csatlakoztatva.';
-	@override String get noPrograms => 'Nincsenek elérhető műsoradatok';
-	@override String get liveStreamFailed => 'Nem sikerült elindítani az élő adást';
-	@override String get unknownProgram => 'Ismeretlen műsor';
-	@override String get unknownHub => 'Ismeretlen';
-	@override String get unknownError => 'Ismeretlen hiba';
-	@override String channelNumber({required Object number}) => '${number}. csatorna';
-	@override String get unknownChannel => 'Ismeretlen csatorna';
-	@override String get live => 'ÉLŐ';
-	@override String get reloadGuide => 'Műsorújság újratöltése';
-	@override String get now => 'Most';
-	@override String get today => 'Ma';
-	@override String get tomorrow => 'Holnap';
-	@override String get midnight => 'Éjfél';
-	@override String get overnight => 'Késő éjszaka';
-	@override String get morning => 'Reggel';
-	@override String get daytime => 'Napközben';
-	@override String get evening => 'Este';
-	@override String get lateNight => 'Éjszaka';
-	@override String get whatsOn => 'Mi megy most?';
-	@override String get watchChannel => 'Csatorna nézése';
-	@override String get favorites => 'Kedvencek';
-	@override String get reorderFavorites => 'Kedvencek rendezése';
-	@override String get favoritesLoadFailed => 'Nem sikerült a kedvencek betöltése. Ellenőrizd a kapcsolatot és próbáld újra.';
-	@override String get favoritesUpdateFailed => 'Nem sikerült frissíteni a kedvenceket. Ellenőrizd a kapcsolatot, majd próbáld újra.';
-	@override String get joinSession => 'Csatlakozás a folyamatban lévő adáshoz';
-	@override String watchFromStart({required Object minutes}) => 'Nézés az elejétől (${minutes} perce megy)';
-	@override String get watchLive => 'Élő adás nézése';
-	@override String get goToLive => 'Ugrás az élő adásra';
-	@override String get record => 'Felvétel';
-	@override String get recordEpisode => 'Epizód rögzítése';
-	@override String get recordSeries => 'Sorozat rögzítése';
-	@override String get recordOptions => 'Felvételi beállítások';
-	@override String get saveTo => 'Mentés ide';
-	@override String get recordings => 'Felvételek';
-	@override String get scheduledRecordings => 'Ütemezve';
-	@override String get recordingRules => 'Felvételi szabályok';
-	@override String get noScheduledRecordings => 'Nincs semmi felvételre ütemezve';
-	@override String get manageRecording => 'Felvétel kezelése';
-	@override String get cancelRecording => 'Felvétel megszakítása';
-	@override String get cancelRecordingTitle => 'Megszakítod ezt a felvételt?';
-	@override String cancelRecordingMessage({required Object title}) => 'A(z) ${title} nem kerül rögzítésre.';
-	@override String get deleteRule => 'Szabály törlése';
-	@override String get deleteRuleTitle => 'Törlöd a felvételi szabályt?';
-	@override String deleteRuleMessage({required Object title}) => 'A(z) ${title} jövőbeli epizódjai nem kerülnek rögzítésre.';
-	@override String get recordingScheduled => 'Felvétel ütemezve';
-	@override String get alreadyScheduled => 'Ez a műsor már ütemezve van';
-	@override String get dvrAdminRequired => 'A DVR beállításokhoz adminisztrátori fiók szükséges';
-	@override String get recordingFailed => 'Nem sikerült a felvétel ütemezése';
-	@override String get recordingTargetMissing => 'Nem sikerült meghatározni a felvételi könyvtárat';
-	@override String get recordNotAvailable => 'A felvétel nem érhető el ehhez a műsorhoz';
-	@override String get recordingCancelled => 'Felvétel megszakítva';
-	@override String get recordingRuleDeleted => 'Felvételi szabály törölve';
-	@override String get processRecordingRules => 'Szabályok újraértékelése';
-	@override String get recordingInProgress => 'Rögzítés folyamatban';
-	@override String recordingsCount({required Object count}) => '${count} ütemezve';
-	@override String get editRule => 'Szabály szerkesztése';
-	@override String get editRuleAction => 'Szerkesztés';
-	@override String get recordingRuleUpdated => 'Felvételi szabály frissítve';
-	@override String get guideReloadRequested => 'Műsorújság frissítése kérve';
-	@override String get rulesProcessRequested => 'Szabályok újraértékelése kérve';
-	@override String get recordShow => 'Műsor rögzítése';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsHu {
 			'settings.showNavBarLabels' => 'Navigációs sáv címkéinek megjelenítése',
 			'settings.showNavBarLabelsDescription' => 'Szöveges címkék megjelenítése a navigációs sáv ikonjai alatt',
 			'settings.startupSection' => 'Indítási oldal',
-			'settings.liveTvDefaultFavorites' => 'Kedvenc csatornák alapértelmezés szerint',
-			'settings.liveTvDefaultFavoritesDescription' => 'Csak a kedvenc csatornák megjelenítése az Élő TV megnyitásakor',
 			'settings.display' => 'Kijelző',
 			'settings.homeScreen' => 'Kezdőképernyő',
 			'settings.navigation' => 'Navigáció',
@@ -2449,7 +2366,6 @@ extension on TranslationsHu {
 			'messages.removedFromContinueWatching' => 'Eltávolítva a folytatásból',
 			'messages.errorLoading' => ({required Object error}) => 'Hiba: ${error}',
 			'messages.streamInterrupted' => 'Az adatfolyam megszakadt. Az újrapróbálkozáshoz indítsd el a lejátszást, vagy tekerj másik pozícióra.',
-			'messages.liveStreamInterrupted' => 'Az élő adás megszakadt. Nyomd meg a lejátszást az újrapróbálkozáshoz.',
 			'messages.fileInfoNotAvailable' => 'A fájlinformáció nem érhető el',
 			'messages.playbackAuthenticationRequired' => 'Az elem lejátszásához jelentkezz be újra a médiaszerverre.',
 			'messages.playbackServerUnavailable' => 'A médiaszerver nem érhető el. Próbáld újra később.',
@@ -2457,11 +2373,11 @@ extension on TranslationsHu {
 			'messages.playbackCancelled' => 'A lejátszás megszakítva.',
 			'messages.playbackFailed' => 'Nem sikerült elindítani a lejátszást.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Hiba a fájlinformációk betöltésekor: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Hiba a sorozat betöltésekor',
 			'messages.musicNotSupported' => 'A zenelejátszás még nem támogatott',
 			'messages.noDescriptionAvailable' => 'Nincs elérhető leírás',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Nincsenek elérhető profilok',
 			'messages.contactAdminForProfiles' => 'Lépj kapcsolatba a szerver adminisztrátorával profilok hozzáadásához',
 			'messages.unableToDetermineLibrarySection' => 'Nem sikerült meghatározni az elem könyvtári részlegét',
@@ -2728,7 +2644,6 @@ extension on TranslationsHu {
 			'licenses.licensesCount' => ({required Object count}) => '${count} licenc',
 			'navigation.libraries' => 'Könyvtárak',
 			'navigation.downloads' => 'Letöltések',
-			'navigation.liveTv' => 'Élő TV',
 			'navigation.explore' => 'Böngészés',
 			'explore.title' => 'Böngészés',
 			'explore.selectSource' => 'Forrás kiválasztása',
@@ -2765,73 +2680,6 @@ extension on TranslationsHu {
 			'explore.searchEmpty' => ({required Object query}) => 'Nincs találat a következőre: "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Filmek és sorozatok keresése a következőn: ${source}.',
 			'explore.searchFailed' => 'A keresés nem sikerült. Ellenőrizd a kapcsolatot és próbáld újra.',
-			'liveTv.title' => 'Élő TV',
-			'liveTv.guide' => 'Műsorújság',
-			'liveTv.noChannels' => 'Nincsenek elérhető csatornák',
-			'liveTv.noDvr' => 'Egyik szerveren sincs beállítva DVR',
-			'liveTv.serverUnavailable' => 'Az Élő TV szerver nem érhető el.',
-			'liveTv.serverNotConnected' => 'Az Élő TV szerver nincs csatlakoztatva.',
-			'liveTv.noPrograms' => 'Nincsenek elérhető műsoradatok',
-			'liveTv.liveStreamFailed' => 'Nem sikerült elindítani az élő adást',
-			'liveTv.unknownProgram' => 'Ismeretlen műsor',
-			'liveTv.unknownHub' => 'Ismeretlen',
-			'liveTv.unknownError' => 'Ismeretlen hiba',
-			'liveTv.channelNumber' => ({required Object number}) => '${number}. csatorna',
-			'liveTv.unknownChannel' => 'Ismeretlen csatorna',
-			'liveTv.live' => 'ÉLŐ',
-			'liveTv.reloadGuide' => 'Műsorújság újratöltése',
-			'liveTv.now' => 'Most',
-			'liveTv.today' => 'Ma',
-			'liveTv.tomorrow' => 'Holnap',
-			'liveTv.midnight' => 'Éjfél',
-			'liveTv.overnight' => 'Késő éjszaka',
-			'liveTv.morning' => 'Reggel',
-			'liveTv.daytime' => 'Napközben',
-			'liveTv.evening' => 'Este',
-			'liveTv.lateNight' => 'Éjszaka',
-			'liveTv.whatsOn' => 'Mi megy most?',
-			'liveTv.watchChannel' => 'Csatorna nézése',
-			'liveTv.favorites' => 'Kedvencek',
-			'liveTv.reorderFavorites' => 'Kedvencek rendezése',
-			'liveTv.favoritesLoadFailed' => 'Nem sikerült a kedvencek betöltése. Ellenőrizd a kapcsolatot és próbáld újra.',
-			'liveTv.favoritesUpdateFailed' => 'Nem sikerült frissíteni a kedvenceket. Ellenőrizd a kapcsolatot, majd próbáld újra.',
-			'liveTv.joinSession' => 'Csatlakozás a folyamatban lévő adáshoz',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Nézés az elejétől (${minutes} perce megy)',
-			'liveTv.watchLive' => 'Élő adás nézése',
-			'liveTv.goToLive' => 'Ugrás az élő adásra',
-			'liveTv.record' => 'Felvétel',
-			'liveTv.recordEpisode' => 'Epizód rögzítése',
-			'liveTv.recordSeries' => 'Sorozat rögzítése',
-			'liveTv.recordOptions' => 'Felvételi beállítások',
-			'liveTv.saveTo' => 'Mentés ide',
-			'liveTv.recordings' => 'Felvételek',
-			'liveTv.scheduledRecordings' => 'Ütemezve',
-			'liveTv.recordingRules' => 'Felvételi szabályok',
-			'liveTv.noScheduledRecordings' => 'Nincs semmi felvételre ütemezve',
-			'liveTv.manageRecording' => 'Felvétel kezelése',
-			'liveTv.cancelRecording' => 'Felvétel megszakítása',
-			'liveTv.cancelRecordingTitle' => 'Megszakítod ezt a felvételt?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => 'A(z) ${title} nem kerül rögzítésre.',
-			'liveTv.deleteRule' => 'Szabály törlése',
-			'liveTv.deleteRuleTitle' => 'Törlöd a felvételi szabályt?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'A(z) ${title} jövőbeli epizódjai nem kerülnek rögzítésre.',
-			'liveTv.recordingScheduled' => 'Felvétel ütemezve',
-			'liveTv.alreadyScheduled' => 'Ez a műsor már ütemezve van',
-			'liveTv.dvrAdminRequired' => 'A DVR beállításokhoz adminisztrátori fiók szükséges',
-			'liveTv.recordingFailed' => 'Nem sikerült a felvétel ütemezése',
-			'liveTv.recordingTargetMissing' => 'Nem sikerült meghatározni a felvételi könyvtárat',
-			'liveTv.recordNotAvailable' => 'A felvétel nem érhető el ehhez a műsorhoz',
-			'liveTv.recordingCancelled' => 'Felvétel megszakítva',
-			'liveTv.recordingRuleDeleted' => 'Felvételi szabály törölve',
-			'liveTv.processRecordingRules' => 'Szabályok újraértékelése',
-			'liveTv.recordingInProgress' => 'Rögzítés folyamatban',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} ütemezve',
-			'liveTv.editRule' => 'Szabály szerkesztése',
-			'liveTv.editRuleAction' => 'Szerkesztés',
-			'liveTv.recordingRuleUpdated' => 'Felvételi szabály frissítve',
-			'liveTv.guideReloadRequested' => 'Műsorújság frissítése kérve',
-			'liveTv.rulesProcessRequested' => 'Szabályok újraértékelése kérve',
-			'liveTv.recordShow' => 'Műsor rögzítése',
 			'collections.title' => 'Gyűjtemények',
 			'collections.collection' => 'Gyűjtemény',
 			'collections.empty' => 'A gyűjtemény üres',
@@ -2971,8 +2819,6 @@ extension on TranslationsHu {
 			'downloads.backgroundWarning.bannerBlocked' => 'A letöltések leállnak, ha kilépsz az alkalmazásból',
 			'downloads.backgroundWarning.bannerDegraded' => 'A háttérbeli letöltések korlátozottak lehetnek',
 			'downloads.backgroundWarning.bannerAction' => 'Részletek',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'A háttérbeli letöltések le vannak tiltva',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'A háttérbeli letöltések korlátozottak lehetnek',
 			'downloads.backgroundWarning.sheetIntro' => 'Az Android megakadályozza, hogy a Plezy megbízhatóan töltsön le a háttérben.',
@@ -3044,6 +2890,8 @@ extension on TranslationsHu {
 			'performanceOverlay.sampleRate' => 'Mintavételezési frekvencia',
 			'performanceOverlay.pixelFormat' => 'Képpontformátum',
 			'performanceOverlay.hwFormat' => 'Hardverformátum',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Mátrix',
 			'performanceOverlay.primaries' => 'Elsődleges színek',
 			'performanceOverlay.transfer' => 'Átvitel',

@@ -69,7 +69,6 @@ class TranslationsKk extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$kk licenses = _Translations$licenses$kk._(_root);
 	@override late final _Translations$navigation$kk navigation = _Translations$navigation$kk._(_root);
 	@override late final _Translations$explore$kk explore = _Translations$explore$kk._(_root);
-	@override late final _Translations$liveTv$kk liveTv = _Translations$liveTv$kk._(_root);
 	@override late final _Translations$collections$kk collections = _Translations$collections$kk._(_root);
 	@override late final _Translations$playlists$kk playlists = _Translations$playlists$kk._(_root);
 	@override late final _Translations$music$kk music = _Translations$music$kk._(_root);
@@ -442,8 +441,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Навигация панелінің мәтіндерін көрсету';
 	@override String get showNavBarLabelsDescription => 'Навигация белгішелерінің астында мәтінді көрсету';
 	@override String get startupSection => 'Бастапқы бөлім';
-	@override String get liveTvDefaultFavorites => 'Тікелей TV-де таңдаулы арналарды әдепкі ету';
-	@override String get liveTvDefaultFavoritesDescription => 'Тікелей TV ашылғанда тек таңдаулы арналарды көрсету';
 	@override String get display => 'Дисплей';
 	@override String get homeScreen => 'Басты экран';
 	@override String get navigation => 'Навигация';
@@ -709,7 +706,6 @@ class _Translations$messages$kk extends Translations$messages$en {
 	@override String errorLoading({required Object error}) => 'Қате: ${error}';
 	@override String get searchPartialResults => 'Кейбір медиа серверлерінде іздеу орындалмады. Қолжетімді нәтижелер көрсетілуде.';
 	@override String get streamInterrupted => 'Ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.';
-	@override String get liveStreamInterrupted => 'Тікелей ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.';
 	@override String get fileInfoNotAvailable => 'Файл туралы ақпарат қолжетімсіз';
 	@override String get playbackAuthenticationRequired => 'Осы элементті ойнату үшін серверге қайтадан кіріңіз.';
 	@override String get playbackServerUnavailable => 'Медиа сервері қолжетімсіз. Кейінірек қайталаңыз.';
@@ -1067,7 +1063,6 @@ class _Translations$navigation$kk extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Кітапханалар';
 	@override String get downloads => 'Жүктеулер';
-	@override String get liveTv => 'Тікелей TV';
 	@override String get explore => 'Шолу';
 }
 
@@ -1100,82 +1095,6 @@ class _Translations$explore$kk extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '"${query}" бойынша нәтиже табылмады';
 	@override String searchPrompt({required Object source}) => '${source} арқылы фильмдер мен сериалдарды іздеңіз.';
 	@override String get searchFailed => 'Іздеу қатесі. Қосылымды тексеріңіз.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$kk extends Translations$liveTv$en {
-	_Translations$liveTv$kk._(TranslationsKk root) : this._root = root, super.internal(root);
-
-	final TranslationsKk _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Тікелей TV';
-	@override String get guide => 'Телебағдарлама';
-	@override String get noChannels => 'Қолжетімді арналар жоқ';
-	@override String get noDvr => 'Серверде DVR бапталмаған';
-	@override String get serverUnavailable => 'Тікелей TV сервері қолжетімсіз.';
-	@override String get serverNotConnected => 'Тікелей TV серверіне қосылмаған.';
-	@override String get noPrograms => 'Бағдарлама ақпараты жоқ';
-	@override String get liveStreamFailed => 'Тікелей ағын қатесі';
-	@override String get unknownProgram => 'Белгісіз бағдарлама';
-	@override String get unknownHub => 'Белгісіз';
-	@override String get unknownError => 'Белгісіз қате';
-	@override String channelNumber({required Object number}) => '${number}-арна';
-	@override String get unknownChannel => 'Белгісіз арна';
-	@override String get live => 'ТІКЕЛЕЙ ЭФИР';
-	@override String get reloadGuide => 'Бағдарламаны жаңарту';
-	@override String get now => 'Қазір';
-	@override String get today => 'Бүгін';
-	@override String get tomorrow => 'Ертең';
-	@override String get midnight => 'Түн ортасы';
-	@override String get overnight => 'Түнде';
-	@override String get morning => 'Таңертең';
-	@override String get daytime => 'Күндіз';
-	@override String get evening => 'Кешке';
-	@override String get lateNight => 'Түнде';
-	@override String get whatsOn => 'Қазір не болып жатыр?';
-	@override String get watchChannel => 'Арнаны көру';
-	@override String get favorites => 'Таңдаулылар';
-	@override String get reorderFavorites => 'Таңдаулыларды қайта реттеу';
-	@override String get favoritesLoadFailed => 'Таңдаулыларды жүктеу мүмкін болмады.';
-	@override String get favoritesUpdateFailed => 'Таңдаулыларды жаңарту мүмкін болмады.';
-	@override String get joinSession => 'Сеансқа қосылу';
-	@override String watchFromStart({required Object minutes}) => 'Басынан бастап көру (${minutes} мин бұрын)';
-	@override String get watchLive => 'Тікелей эфирді көру';
-	@override String get goToLive => 'Тікелей эфирге өту';
-	@override String get record => 'Жазу';
-	@override String get recordEpisode => 'Бөлімді жазу';
-	@override String get recordSeries => 'Сериалды жазу';
-	@override String get recordOptions => 'Жазу параметрлері';
-	@override String get saveTo => 'Мұнда сақтау';
-	@override String get recordings => 'Жазылғандар';
-	@override String get scheduledRecordings => 'Жоспарланғандар';
-	@override String get recordingRules => 'Жазу ережелері';
-	@override String get noScheduledRecordings => 'Жоспарланған жазбалар жоқ';
-	@override String get manageRecording => 'Жазбаны басқару';
-	@override String get cancelRecording => 'Жазудан бас тарту';
-	@override String get cancelRecordingTitle => 'Жазу тоқтатылсын ба?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} енді жазылмайды.';
-	@override String get deleteRule => 'Ережені өшіру';
-	@override String get deleteRuleTitle => 'Жазу ережесі өшірілсін бе?';
-	@override String deleteRuleMessage({required Object title}) => '${title} сериалының келесі бөлімдері жазылмайды.';
-	@override String get recordingScheduled => 'Жазу жоспарланды';
-	@override String get alreadyScheduled => 'Бұл бағдарлама бұрыннан жоспарланған';
-	@override String get dvrAdminRequired => 'DVR баптаулары администратор құқығын талап етеді';
-	@override String get recordingFailed => 'Жазуды жоспарлау мүмкін болмады';
-	@override String get recordingTargetMissing => 'Жазатын кітапхана анықталмады';
-	@override String get recordNotAvailable => 'Бұл бағдарламаны жазу мүмкін емес';
-	@override String get recordingCancelled => 'Жазу тоқтатылды';
-	@override String get recordingRuleDeleted => 'Жазу ережесі өшірілді';
-	@override String get processRecordingRules => 'Ережелерді қайта бағалау';
-	@override String get recordingInProgress => 'Қазір жазылуда';
-	@override String recordingsCount({required Object count}) => '${count} жоспарланған';
-	@override String get editRule => 'Ережені өңдеу';
-	@override String get editRuleAction => 'Өңдеу';
-	@override String get recordingRuleUpdated => 'Жазу ережесі жаңартылды';
-	@override String get guideReloadRequested => 'Бағдарламаны жаңарту сұралды';
-	@override String get rulesProcessRequested => 'Ережелерді қайта бағалау сұралды';
-	@override String get recordShow => 'Шоуды жазу';
 }
 
 // Path: collections
@@ -2260,8 +2179,6 @@ extension on TranslationsKk {
 			'settings.showNavBarLabels' => 'Навигация панелінің мәтіндерін көрсету',
 			'settings.showNavBarLabelsDescription' => 'Навигация белгішелерінің астында мәтінді көрсету',
 			'settings.startupSection' => 'Бастапқы бөлім',
-			'settings.liveTvDefaultFavorites' => 'Тікелей TV-де таңдаулы арналарды әдепкі ету',
-			'settings.liveTvDefaultFavoritesDescription' => 'Тікелей TV ашылғанда тек таңдаулы арналарды көрсету',
 			'settings.display' => 'Дисплей',
 			'settings.homeScreen' => 'Басты экран',
 			'settings.navigation' => 'Навигация',
@@ -2464,15 +2381,14 @@ extension on TranslationsKk {
 			'messages.errorLoading' => ({required Object error}) => 'Қате: ${error}',
 			'messages.searchPartialResults' => 'Кейбір медиа серверлерінде іздеу орындалмады. Қолжетімді нәтижелер көрсетілуде.',
 			'messages.streamInterrupted' => 'Ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.',
-			'messages.liveStreamInterrupted' => 'Тікелей ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.',
 			'messages.fileInfoNotAvailable' => 'Файл туралы ақпарат қолжетімсіз',
 			'messages.playbackAuthenticationRequired' => 'Осы элементті ойнату үшін серверге қайтадан кіріңіз.',
 			'messages.playbackServerUnavailable' => 'Медиа сервері қолжетімсіз. Кейінірек қайталаңыз.',
-			_ => null,
-		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Сервер қате ойнату мәліметтерін қайтарды.',
 			'messages.playbackCancelled' => 'Ойнатудан бас тартылды.',
 			'messages.playbackFailed' => 'Ойнатуды іске қосу қатесі.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Файл ақпаратын жүктеу қатесі: ${error}',
 			'messages.errorLoadingSeries' => 'Сериалды жүктеу қатесі',
 			'messages.musicNotSupported' => 'Музыка ойнату әлі қолдау таппайды',
@@ -2744,7 +2660,6 @@ extension on TranslationsKk {
 			'licenses.licensesCount' => ({required Object count}) => '${count} лицензия',
 			'navigation.libraries' => 'Кітапханалар',
 			'navigation.downloads' => 'Жүктеулер',
-			'navigation.liveTv' => 'Тікелей TV',
 			'navigation.explore' => 'Шолу',
 			'explore.title' => 'Шолу',
 			'explore.selectSource' => 'Дереккөзді таңдаңыз',
@@ -2781,73 +2696,6 @@ extension on TranslationsKk {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" бойынша нәтиже табылмады',
 			'explore.searchPrompt' => ({required Object source}) => '${source} арқылы фильмдер мен сериалдарды іздеңіз.',
 			'explore.searchFailed' => 'Іздеу қатесі. Қосылымды тексеріңіз.',
-			'liveTv.title' => 'Тікелей TV',
-			'liveTv.guide' => 'Телебағдарлама',
-			'liveTv.noChannels' => 'Қолжетімді арналар жоқ',
-			'liveTv.noDvr' => 'Серверде DVR бапталмаған',
-			'liveTv.serverUnavailable' => 'Тікелей TV сервері қолжетімсіз.',
-			'liveTv.serverNotConnected' => 'Тікелей TV серверіне қосылмаған.',
-			'liveTv.noPrograms' => 'Бағдарлама ақпараты жоқ',
-			'liveTv.liveStreamFailed' => 'Тікелей ағын қатесі',
-			'liveTv.unknownProgram' => 'Белгісіз бағдарлама',
-			'liveTv.unknownHub' => 'Белгісіз',
-			'liveTv.unknownError' => 'Белгісіз қате',
-			'liveTv.channelNumber' => ({required Object number}) => '${number}-арна',
-			'liveTv.unknownChannel' => 'Белгісіз арна',
-			'liveTv.live' => 'ТІКЕЛЕЙ ЭФИР',
-			'liveTv.reloadGuide' => 'Бағдарламаны жаңарту',
-			'liveTv.now' => 'Қазір',
-			'liveTv.today' => 'Бүгін',
-			'liveTv.tomorrow' => 'Ертең',
-			'liveTv.midnight' => 'Түн ортасы',
-			'liveTv.overnight' => 'Түнде',
-			'liveTv.morning' => 'Таңертең',
-			'liveTv.daytime' => 'Күндіз',
-			'liveTv.evening' => 'Кешке',
-			'liveTv.lateNight' => 'Түнде',
-			'liveTv.whatsOn' => 'Қазір не болып жатыр?',
-			'liveTv.watchChannel' => 'Арнаны көру',
-			'liveTv.favorites' => 'Таңдаулылар',
-			'liveTv.reorderFavorites' => 'Таңдаулыларды қайта реттеу',
-			'liveTv.favoritesLoadFailed' => 'Таңдаулыларды жүктеу мүмкін болмады.',
-			'liveTv.favoritesUpdateFailed' => 'Таңдаулыларды жаңарту мүмкін болмады.',
-			'liveTv.joinSession' => 'Сеансқа қосылу',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Басынан бастап көру (${minutes} мин бұрын)',
-			'liveTv.watchLive' => 'Тікелей эфирді көру',
-			'liveTv.goToLive' => 'Тікелей эфирге өту',
-			'liveTv.record' => 'Жазу',
-			'liveTv.recordEpisode' => 'Бөлімді жазу',
-			'liveTv.recordSeries' => 'Сериалды жазу',
-			'liveTv.recordOptions' => 'Жазу параметрлері',
-			'liveTv.saveTo' => 'Мұнда сақтау',
-			'liveTv.recordings' => 'Жазылғандар',
-			'liveTv.scheduledRecordings' => 'Жоспарланғандар',
-			'liveTv.recordingRules' => 'Жазу ережелері',
-			'liveTv.noScheduledRecordings' => 'Жоспарланған жазбалар жоқ',
-			'liveTv.manageRecording' => 'Жазбаны басқару',
-			'liveTv.cancelRecording' => 'Жазудан бас тарту',
-			'liveTv.cancelRecordingTitle' => 'Жазу тоқтатылсын ба?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} енді жазылмайды.',
-			'liveTv.deleteRule' => 'Ережені өшіру',
-			'liveTv.deleteRuleTitle' => 'Жазу ережесі өшірілсін бе?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title} сериалының келесі бөлімдері жазылмайды.',
-			'liveTv.recordingScheduled' => 'Жазу жоспарланды',
-			'liveTv.alreadyScheduled' => 'Бұл бағдарлама бұрыннан жоспарланған',
-			'liveTv.dvrAdminRequired' => 'DVR баптаулары администратор құқығын талап етеді',
-			'liveTv.recordingFailed' => 'Жазуды жоспарлау мүмкін болмады',
-			'liveTv.recordingTargetMissing' => 'Жазатын кітапхана анықталмады',
-			'liveTv.recordNotAvailable' => 'Бұл бағдарламаны жазу мүмкін емес',
-			'liveTv.recordingCancelled' => 'Жазу тоқтатылды',
-			'liveTv.recordingRuleDeleted' => 'Жазу ережесі өшірілді',
-			'liveTv.processRecordingRules' => 'Ережелерді қайта бағалау',
-			'liveTv.recordingInProgress' => 'Қазір жазылуда',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} жоспарланған',
-			'liveTv.editRule' => 'Ережені өңдеу',
-			'liveTv.editRuleAction' => 'Өңдеу',
-			'liveTv.recordingRuleUpdated' => 'Жазу ережесі жаңартылды',
-			'liveTv.guideReloadRequested' => 'Бағдарламаны жаңарту сұралды',
-			'liveTv.rulesProcessRequested' => 'Ережелерді қайта бағалау сұралды',
-			'liveTv.recordShow' => 'Шоуды жазу',
 			'collections.title' => 'Топтамалар',
 			'collections.collection' => 'Топтама',
 			'collections.empty' => 'Топтама бос',
@@ -2982,8 +2830,6 @@ extension on TranslationsKk {
 			'downloads.editEpisodeCount' => 'Бөлімдер саны',
 			'downloads.editSyncFilter' => 'Синхрондау фильтрі',
 			'downloads.syncAllItems' => 'Барлық элементтер синхрондалады',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'Көрілмеген элементтер синхрондалады',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Сервер: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Қолжетімді',
@@ -3055,6 +2901,8 @@ extension on TranslationsKk {
 			'performanceOverlay.performance' => 'Өнімділік',
 			'performanceOverlay.buffer' => 'Буфер',
 			'performanceOverlay.app' => 'Қолданба',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Декодер',
 			'performanceOverlay.rawDecoder' => 'Өңделмеген декодер',
 			'performanceOverlay.tunneling' => 'Туннельдеу',

@@ -69,7 +69,6 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$ru licenses = _Translations$licenses$ru._(_root);
 	@override late final _Translations$navigation$ru navigation = _Translations$navigation$ru._(_root);
 	@override late final _Translations$explore$ru explore = _Translations$explore$ru._(_root);
-	@override late final _Translations$liveTv$ru liveTv = _Translations$liveTv$ru._(_root);
 	@override late final _Translations$collections$ru collections = _Translations$collections$ru._(_root);
 	@override late final _Translations$playlists$ru playlists = _Translations$playlists$ru._(_root);
 	@override late final _Translations$music$ru music = _Translations$music$ru._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Показывать подписи панели навигации';
 	@override String get showNavBarLabelsDescription => 'Отображать текстовые подписи под иконками панели навигации';
 	@override String get startupSection => 'Начальный раздел';
-	@override String get liveTvDefaultFavorites => 'Избранные каналы по умолчанию';
-	@override String get liveTvDefaultFavoritesDescription => 'Показывать только избранные каналы при открытии ТВ';
 	@override String get display => 'Экран';
 	@override String get homeScreen => 'Главный экран';
 	@override String get navigation => 'Навигация';
@@ -707,7 +704,6 @@ class _Translations$messages$ru extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Удалено из «Продолжить просмотр»';
 	@override String errorLoading({required Object error}) => 'Ошибка: ${error}';
 	@override String get streamInterrupted => 'Поток прервался. Нажмите «Воспроизвести» или перемотайте, чтобы повторить попытку.';
-	@override String get liveStreamInterrupted => 'Прямая трансляция прервалась. Нажмите «Воспроизвести», чтобы повторить попытку.';
 	@override String get fileInfoNotAvailable => 'Информация о файле недоступна';
 	@override String get playbackAuthenticationRequired => 'Чтобы воспроизвести этот материал, снова войдите на медиасервер.';
 	@override String get playbackServerUnavailable => 'Медиасервер недоступен. Попробуйте позже.';
@@ -1064,7 +1060,6 @@ class _Translations$navigation$ru extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Библиотеки';
 	@override String get downloads => 'Загрузки';
-	@override String get liveTv => 'ТВ в прямом эфире';
 	@override String get explore => 'Обзор';
 }
 
@@ -1099,82 +1094,6 @@ class _Translations$explore$ru extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Нет результатов по запросу "${query}"';
 	@override String searchPrompt({required Object source}) => 'Ищите фильмы и сериалы в ${source}.';
 	@override String get searchFailed => 'Ошибка поиска. Проверьте подключение и повторите попытку.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$ru extends Translations$liveTv$en {
-	_Translations$liveTv$ru._(TranslationsRu root) : this._root = root, super.internal(root);
-
-	final TranslationsRu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'ТВ в прямом эфире';
-	@override String get guide => 'Программа';
-	@override String get noChannels => 'Нет доступных каналов';
-	@override String get noDvr => 'DVR не настроен ни на одном сервере';
-	@override String get serverUnavailable => 'Сервер прямого эфира недоступен.';
-	@override String get serverNotConnected => 'Сервер прямого эфира не подключён.';
-	@override String get noPrograms => 'Нет данных о программах';
-	@override String get liveStreamFailed => 'Не удалось запустить прямой эфир';
-	@override String get unknownProgram => 'Неизвестная программа';
-	@override String get unknownHub => 'Неизвестно';
-	@override String get unknownError => 'Неизвестная ошибка';
-	@override String channelNumber({required Object number}) => 'Канал ${number}';
-	@override String get unknownChannel => 'Неизвестный канал';
-	@override String get live => 'ЭФИР';
-	@override String get reloadGuide => 'Перезагрузить программу';
-	@override String get now => 'Сейчас';
-	@override String get today => 'Сегодня';
-	@override String get tomorrow => 'Завтра';
-	@override String get midnight => 'Полночь';
-	@override String get overnight => 'Ночь';
-	@override String get morning => 'Утро';
-	@override String get daytime => 'День';
-	@override String get evening => 'Вечер';
-	@override String get lateNight => 'Поздний вечер';
-	@override String get whatsOn => 'Что идёт';
-	@override String get watchChannel => 'Смотреть канал';
-	@override String get favorites => 'Избранное';
-	@override String get reorderFavorites => 'Изменить порядок избранного';
-	@override String get favoritesLoadFailed => 'Не удалось загрузить избранное. Проверьте подключение и повторите попытку.';
-	@override String get favoritesUpdateFailed => 'Не удалось обновить избранное. Проверьте подключение и повторите попытку.';
-	@override String get joinSession => 'Присоединиться к текущему сеансу';
-	@override String watchFromStart({required Object minutes}) => 'Смотреть сначала (${minutes} мин. назад)';
-	@override String get watchLive => 'Смотреть в прямом эфире';
-	@override String get goToLive => 'К прямому эфиру';
-	@override String get record => 'Запись';
-	@override String get recordEpisode => 'Записать эпизод';
-	@override String get recordSeries => 'Записать сериал';
-	@override String get recordOptions => 'Параметры записи';
-	@override String get saveTo => 'Сохранить в';
-	@override String get recordings => 'Записи';
-	@override String get scheduledRecordings => 'Запланировано';
-	@override String get recordingRules => 'Правила записи';
-	@override String get noScheduledRecordings => 'Нет запланированных записей';
-	@override String get manageRecording => 'Управление записью';
-	@override String get cancelRecording => 'Отменить запись';
-	@override String get cancelRecordingTitle => 'Отменить эту запись?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} больше не будет записываться.';
-	@override String get deleteRule => 'Удалить правило';
-	@override String get deleteRuleTitle => 'Удалить правило записи?';
-	@override String deleteRuleMessage({required Object title}) => 'Будущие эпизоды ${title} не будут записаны.';
-	@override String get recordingScheduled => 'Запись запланирована';
-	@override String get alreadyScheduled => 'Эта передача уже запланирована';
-	@override String get dvrAdminRequired => 'Настройки DVR требуют учётной записи администратора';
-	@override String get recordingFailed => 'Не удалось запланировать запись';
-	@override String get recordingTargetMissing => 'Не удалось определить библиотеку записи';
-	@override String get recordNotAvailable => 'Запись недоступна для этой передачи';
-	@override String get recordingCancelled => 'Запись отменена';
-	@override String get recordingRuleDeleted => 'Правило записи удалено';
-	@override String get processRecordingRules => 'Пересчитать правила';
-	@override String get recordingInProgress => 'Идёт запись';
-	@override String recordingsCount({required Object count}) => 'Запланировано: ${count}';
-	@override String get editRule => 'Изменить правило';
-	@override String get editRuleAction => 'Изменить';
-	@override String get recordingRuleUpdated => 'Правило записи обновлено';
-	@override String get guideReloadRequested => 'Запрошено обновление гайда';
-	@override String get rulesProcessRequested => 'Запрошен пересчёт правил';
-	@override String get recordShow => 'Записать передачу';
 }
 
 // Path: collections
@@ -2252,8 +2171,6 @@ extension on TranslationsRu {
 			'settings.showNavBarLabels' => 'Показывать подписи панели навигации',
 			'settings.showNavBarLabelsDescription' => 'Отображать текстовые подписи под иконками панели навигации',
 			'settings.startupSection' => 'Начальный раздел',
-			'settings.liveTvDefaultFavorites' => 'Избранные каналы по умолчанию',
-			'settings.liveTvDefaultFavoritesDescription' => 'Показывать только избранные каналы при открытии ТВ',
 			'settings.display' => 'Экран',
 			'settings.homeScreen' => 'Главный экран',
 			'settings.navigation' => 'Навигация',
@@ -2455,7 +2372,6 @@ extension on TranslationsRu {
 			'messages.removedFromContinueWatching' => 'Удалено из «Продолжить просмотр»',
 			'messages.errorLoading' => ({required Object error}) => 'Ошибка: ${error}',
 			'messages.streamInterrupted' => 'Поток прервался. Нажмите «Воспроизвести» или перемотайте, чтобы повторить попытку.',
-			'messages.liveStreamInterrupted' => 'Прямая трансляция прервалась. Нажмите «Воспроизвести», чтобы повторить попытку.',
 			'messages.fileInfoNotAvailable' => 'Информация о файле недоступна',
 			'messages.playbackAuthenticationRequired' => 'Чтобы воспроизвести этот материал, снова войдите на медиасервер.',
 			'messages.playbackServerUnavailable' => 'Медиасервер недоступен. Попробуйте позже.',
@@ -2463,11 +2379,11 @@ extension on TranslationsRu {
 			'messages.playbackCancelled' => 'Воспроизведение отменено.',
 			'messages.playbackFailed' => 'Не удалось начать воспроизведение.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Ошибка загрузки информации о файле: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Ошибка загрузки сериала',
 			'messages.musicNotSupported' => 'Воспроизведение музыки пока не поддерживается',
 			'messages.noDescriptionAvailable' => 'Описание недоступно',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Профили недоступны',
 			'messages.contactAdminForProfiles' => 'Обратитесь к администратору сервера для добавления профилей',
 			'messages.unableToDetermineLibrarySection' => 'Не удаётся определить раздел библиотеки для этого элемента',
@@ -2734,7 +2650,6 @@ extension on TranslationsRu {
 			'licenses.licensesCount' => ({required Object count}) => '${count} лицензий',
 			'navigation.libraries' => 'Библиотеки',
 			'navigation.downloads' => 'Загрузки',
-			'navigation.liveTv' => 'ТВ в прямом эфире',
 			'navigation.explore' => 'Обзор',
 			'explore.title' => 'Обзор',
 			'explore.selectSource' => 'Выбрать источник',
@@ -2771,73 +2686,6 @@ extension on TranslationsRu {
 			'explore.searchEmpty' => ({required Object query}) => 'Нет результатов по запросу "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Ищите фильмы и сериалы в ${source}.',
 			'explore.searchFailed' => 'Ошибка поиска. Проверьте подключение и повторите попытку.',
-			'liveTv.title' => 'ТВ в прямом эфире',
-			'liveTv.guide' => 'Программа',
-			'liveTv.noChannels' => 'Нет доступных каналов',
-			'liveTv.noDvr' => 'DVR не настроен ни на одном сервере',
-			'liveTv.serverUnavailable' => 'Сервер прямого эфира недоступен.',
-			'liveTv.serverNotConnected' => 'Сервер прямого эфира не подключён.',
-			'liveTv.noPrograms' => 'Нет данных о программах',
-			'liveTv.liveStreamFailed' => 'Не удалось запустить прямой эфир',
-			'liveTv.unknownProgram' => 'Неизвестная программа',
-			'liveTv.unknownHub' => 'Неизвестно',
-			'liveTv.unknownError' => 'Неизвестная ошибка',
-			'liveTv.channelNumber' => ({required Object number}) => 'Канал ${number}',
-			'liveTv.unknownChannel' => 'Неизвестный канал',
-			'liveTv.live' => 'ЭФИР',
-			'liveTv.reloadGuide' => 'Перезагрузить программу',
-			'liveTv.now' => 'Сейчас',
-			'liveTv.today' => 'Сегодня',
-			'liveTv.tomorrow' => 'Завтра',
-			'liveTv.midnight' => 'Полночь',
-			'liveTv.overnight' => 'Ночь',
-			'liveTv.morning' => 'Утро',
-			'liveTv.daytime' => 'День',
-			'liveTv.evening' => 'Вечер',
-			'liveTv.lateNight' => 'Поздний вечер',
-			'liveTv.whatsOn' => 'Что идёт',
-			'liveTv.watchChannel' => 'Смотреть канал',
-			'liveTv.favorites' => 'Избранное',
-			'liveTv.reorderFavorites' => 'Изменить порядок избранного',
-			'liveTv.favoritesLoadFailed' => 'Не удалось загрузить избранное. Проверьте подключение и повторите попытку.',
-			'liveTv.favoritesUpdateFailed' => 'Не удалось обновить избранное. Проверьте подключение и повторите попытку.',
-			'liveTv.joinSession' => 'Присоединиться к текущему сеансу',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Смотреть сначала (${minutes} мин. назад)',
-			'liveTv.watchLive' => 'Смотреть в прямом эфире',
-			'liveTv.goToLive' => 'К прямому эфиру',
-			'liveTv.record' => 'Запись',
-			'liveTv.recordEpisode' => 'Записать эпизод',
-			'liveTv.recordSeries' => 'Записать сериал',
-			'liveTv.recordOptions' => 'Параметры записи',
-			'liveTv.saveTo' => 'Сохранить в',
-			'liveTv.recordings' => 'Записи',
-			'liveTv.scheduledRecordings' => 'Запланировано',
-			'liveTv.recordingRules' => 'Правила записи',
-			'liveTv.noScheduledRecordings' => 'Нет запланированных записей',
-			'liveTv.manageRecording' => 'Управление записью',
-			'liveTv.cancelRecording' => 'Отменить запись',
-			'liveTv.cancelRecordingTitle' => 'Отменить эту запись?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} больше не будет записываться.',
-			'liveTv.deleteRule' => 'Удалить правило',
-			'liveTv.deleteRuleTitle' => 'Удалить правило записи?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Будущие эпизоды ${title} не будут записаны.',
-			'liveTv.recordingScheduled' => 'Запись запланирована',
-			'liveTv.alreadyScheduled' => 'Эта передача уже запланирована',
-			'liveTv.dvrAdminRequired' => 'Настройки DVR требуют учётной записи администратора',
-			'liveTv.recordingFailed' => 'Не удалось запланировать запись',
-			'liveTv.recordingTargetMissing' => 'Не удалось определить библиотеку записи',
-			'liveTv.recordNotAvailable' => 'Запись недоступна для этой передачи',
-			'liveTv.recordingCancelled' => 'Запись отменена',
-			'liveTv.recordingRuleDeleted' => 'Правило записи удалено',
-			'liveTv.processRecordingRules' => 'Пересчитать правила',
-			'liveTv.recordingInProgress' => 'Идёт запись',
-			'liveTv.recordingsCount' => ({required Object count}) => 'Запланировано: ${count}',
-			'liveTv.editRule' => 'Изменить правило',
-			'liveTv.editRuleAction' => 'Изменить',
-			'liveTv.recordingRuleUpdated' => 'Правило записи обновлено',
-			'liveTv.guideReloadRequested' => 'Запрошено обновление гайда',
-			'liveTv.rulesProcessRequested' => 'Запрошен пересчёт правил',
-			'liveTv.recordShow' => 'Записать передачу',
 			'collections.title' => 'Коллекции',
 			'collections.collection' => 'Коллекция',
 			'collections.empty' => 'Коллекция пуста',
@@ -2977,8 +2825,6 @@ extension on TranslationsRu {
 			'downloads.backgroundWarning.bannerBlocked' => 'Загрузки остановятся, когда вы выйдете из приложения',
 			'downloads.backgroundWarning.bannerDegraded' => 'Фоновые загрузки могут быть ограничены',
 			'downloads.backgroundWarning.bannerAction' => 'Подробнее',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Фоновые загрузки заблокированы',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Фоновые загрузки могут быть ограничены',
 			'downloads.backgroundWarning.sheetIntro' => 'Android не позволяет Plezy стабильно выполнять загрузки в фоновом режиме.',
@@ -3050,6 +2896,8 @@ extension on TranslationsRu {
 			'performanceOverlay.sampleRate' => 'Частота дискр.',
 			'performanceOverlay.pixelFormat' => 'Формат пикселей',
 			'performanceOverlay.hwFormat' => 'Формат HW',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Матрица',
 			'performanceOverlay.primaries' => 'Основные цвета',
 			'performanceOverlay.transfer' => 'Передача',

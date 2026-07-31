@@ -70,7 +70,6 @@ class TranslationsZhHant extends TranslationsZh with BaseTranslations<AppLocale,
 	@override late final _Translations$licenses$zh_Hant licenses = _Translations$licenses$zh_Hant._(_root);
 	@override late final _Translations$navigation$zh_Hant navigation = _Translations$navigation$zh_Hant._(_root);
 	@override late final _Translations$explore$zh_Hant explore = _Translations$explore$zh_Hant._(_root);
-	@override late final _Translations$liveTv$zh_Hant liveTv = _Translations$liveTv$zh_Hant._(_root);
 	@override late final _Translations$collections$zh_Hant collections = _Translations$collections$zh_Hant._(_root);
 	@override late final _Translations$playlists$zh_Hant playlists = _Translations$playlists$zh_Hant._(_root);
 	@override late final _Translations$music$zh_Hant music = _Translations$music$zh_Hant._(_root);
@@ -440,8 +439,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get showNavBarLabels => '顯示導覽列標籤';
 	@override String get showNavBarLabelsDescription => '在導覽列圖示下方顯示文字標籤';
 	@override String get startupSection => '啟動頁面';
-	@override String get liveTvDefaultFavorites => '預設顯示最愛頻道';
-	@override String get liveTvDefaultFavoritesDescription => '開啟直播電視時僅顯示最愛頻道';
 	@override String get display => '顯示器';
 	@override String get homeScreen => '主畫面';
 	@override String get navigation => '導覽';
@@ -705,7 +702,6 @@ class _Translations$messages$zh_Hant extends Translations$messages$zh {
 	@override String get removedFromContinueWatching => '已從「繼續觀看」中移除';
 	@override String errorLoading({required Object error}) => '錯誤：${error}';
 	@override String get streamInterrupted => '影片串流中斷。請按播放鍵或拖動進度條重試。';
-	@override String get liveStreamInterrupted => '直播串流中斷。請按播放鍵重試。';
 	@override String get fileInfoNotAvailable => '無法取得檔案資訊';
 	@override String get playbackAuthenticationRequired => '若要播放此項目，請重新登入媒體伺服器。';
 	@override String get playbackServerUnavailable => '媒體伺服器目前無法使用。請稍後再試。';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$zh_Hant extends Translations$navigation$zh {
 	// Translations
 	@override String get libraries => '媒體庫';
 	@override String get downloads => '下載';
-	@override String get liveTv => '直播電視';
 	@override String get explore => '探索';
 }
 
@@ -1094,82 +1089,6 @@ class _Translations$explore$zh_Hant extends Translations$explore$zh {
 	@override String searchEmpty({required Object query}) => '沒有「${query}」的結果';
 	@override String searchPrompt({required Object source}) => '在 ${source} 搜尋電影與影集。';
 	@override String get searchFailed => '搜尋失敗。請檢查網路連線後重試。';
-}
-
-// Path: liveTv
-class _Translations$liveTv$zh_Hant extends Translations$liveTv$zh {
-	_Translations$liveTv$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '直播電視';
-	@override String get guide => '節目表指南';
-	@override String get noChannels => '沒有可用的頻道';
-	@override String get noDvr => '沒有伺服器設定 DVR 錄影機';
-	@override String get serverUnavailable => '直播電視伺服器無法使用。';
-	@override String get serverNotConnected => '直播電視伺服器未連線。';
-	@override String get noPrograms => '沒有可用的節目資料';
-	@override String get liveStreamFailed => '即時串流失敗';
-	@override String get unknownProgram => '未知節目';
-	@override String get unknownHub => '未知';
-	@override String get unknownError => '未知錯誤';
-	@override String channelNumber({required Object number}) => '頻道 ${number}';
-	@override String get unknownChannel => '未知頻道';
-	@override String get live => '直播';
-	@override String get reloadGuide => '重新載入節目表指南';
-	@override String get now => '現在';
-	@override String get today => '今天';
-	@override String get tomorrow => '明天';
-	@override String get midnight => '午夜';
-	@override String get overnight => '凌晨';
-	@override String get morning => '上午';
-	@override String get daytime => '白天';
-	@override String get evening => '晚上';
-	@override String get lateNight => '深夜';
-	@override String get whatsOn => '正在播出';
-	@override String get watchChannel => '觀看頻道';
-	@override String get favorites => '最愛';
-	@override String get reorderFavorites => '重新排序最愛頻道';
-	@override String get favoritesLoadFailed => '無法載入最愛頻道。請檢查網路連線後重試。';
-	@override String get favoritesUpdateFailed => '無法更新最愛頻道。請檢查網路連線後重試。';
-	@override String get joinSession => '加入進行中的「一起看」';
-	@override String watchFromStart({required Object minutes}) => '從頭觀看（自 ${minutes} 分鐘前開始）';
-	@override String get watchLive => '觀看直播';
-	@override String get goToLive => '跳至直播點';
-	@override String get record => '錄製';
-	@override String get recordEpisode => '錄製單集';
-	@override String get recordSeries => '錄製整部影集';
-	@override String get recordOptions => '錄製選項';
-	@override String get saveTo => '儲存至';
-	@override String get recordings => '已錄製內容';
-	@override String get scheduledRecordings => '已排程錄製';
-	@override String get recordingRules => '錄製規則';
-	@override String get noScheduledRecordings => '沒有排程的錄製任務';
-	@override String get manageRecording => '管理錄製';
-	@override String get cancelRecording => '取消錄製';
-	@override String get cancelRecordingTitle => '取消此次錄製？';
-	@override String cancelRecordingMessage({required Object title}) => '將不再錄製 ${title}。';
-	@override String get deleteRule => '刪除規則';
-	@override String get deleteRuleTitle => '刪除錄製規則？';
-	@override String deleteRuleMessage({required Object title}) => '將不再錄製 ${title} 的後續單集。';
-	@override String get recordingScheduled => '錄製已排程';
-	@override String get alreadyScheduled => '此節目已安排排程錄製';
-	@override String get dvrAdminRequired => 'DVR 設定需要管理員帳戶';
-	@override String get recordingFailed => '無法安排錄製任務';
-	@override String get recordingTargetMissing => '無法確定錄製媒體庫';
-	@override String get recordNotAvailable => '此節目無法錄製';
-	@override String get recordingCancelled => '錄製已取消';
-	@override String get recordingRuleDeleted => '錄製規則已刪除';
-	@override String get processRecordingRules => '重新評估規則';
-	@override String get recordingInProgress => '正在錄製';
-	@override String recordingsCount({required Object count}) => '已排程 ${count} 個';
-	@override String get editRule => '編輯規則';
-	@override String get editRuleAction => '編輯';
-	@override String get recordingRuleUpdated => '錄製規則已更新';
-	@override String get guideReloadRequested => '已要求更新節目表指南';
-	@override String get rulesProcessRequested => '已要求重新評估規則';
-	@override String get recordShow => '錄製節目';
 }
 
 // Path: collections
@@ -2244,8 +2163,6 @@ extension on TranslationsZhHant {
 			'settings.showNavBarLabels' => '顯示導覽列標籤',
 			'settings.showNavBarLabelsDescription' => '在導覽列圖示下方顯示文字標籤',
 			'settings.startupSection' => '啟動頁面',
-			'settings.liveTvDefaultFavorites' => '預設顯示最愛頻道',
-			'settings.liveTvDefaultFavoritesDescription' => '開啟直播電視時僅顯示最愛頻道',
 			'settings.display' => '顯示器',
 			'settings.homeScreen' => '主畫面',
 			'settings.navigation' => '導覽',
@@ -2447,7 +2364,6 @@ extension on TranslationsZhHant {
 			'messages.removedFromContinueWatching' => '已從「繼續觀看」中移除',
 			'messages.errorLoading' => ({required Object error}) => '錯誤：${error}',
 			'messages.streamInterrupted' => '影片串流中斷。請按播放鍵或拖動進度條重試。',
-			'messages.liveStreamInterrupted' => '直播串流中斷。請按播放鍵重試。',
 			'messages.fileInfoNotAvailable' => '無法取得檔案資訊',
 			'messages.playbackAuthenticationRequired' => '若要播放此項目，請重新登入媒體伺服器。',
 			'messages.playbackServerUnavailable' => '媒體伺服器目前無法使用。請稍後再試。',
@@ -2455,11 +2371,11 @@ extension on TranslationsZhHant {
 			'messages.playbackCancelled' => '播放已取消。',
 			'messages.playbackFailed' => '無法開始播放。',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => '載入檔案資訊時發生錯誤：${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => '載入影集時發生錯誤',
 			'messages.musicNotSupported' => '目前不支援播放音樂',
 			'messages.noDescriptionAvailable' => '目前沒有描述',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => '沒有可用的使用者設定檔',
 			'messages.contactAdminForProfiles' => '請聯絡伺服器管理員新增使用者設定檔',
 			'messages.unableToDetermineLibrarySection' => '無法確定此項目的媒體庫分區',
@@ -2726,7 +2642,6 @@ extension on TranslationsZhHant {
 			'licenses.licensesCount' => ({required Object count}) => '${count} 個授權條款',
 			'navigation.libraries' => '媒體庫',
 			'navigation.downloads' => '下載',
-			'navigation.liveTv' => '直播電視',
 			'navigation.explore' => '探索',
 			'explore.title' => '探索',
 			'explore.selectSource' => '選擇來源',
@@ -2763,73 +2678,6 @@ extension on TranslationsZhHant {
 			'explore.searchEmpty' => ({required Object query}) => '沒有「${query}」的結果',
 			'explore.searchPrompt' => ({required Object source}) => '在 ${source} 搜尋電影與影集。',
 			'explore.searchFailed' => '搜尋失敗。請檢查網路連線後重試。',
-			'liveTv.title' => '直播電視',
-			'liveTv.guide' => '節目表指南',
-			'liveTv.noChannels' => '沒有可用的頻道',
-			'liveTv.noDvr' => '沒有伺服器設定 DVR 錄影機',
-			'liveTv.serverUnavailable' => '直播電視伺服器無法使用。',
-			'liveTv.serverNotConnected' => '直播電視伺服器未連線。',
-			'liveTv.noPrograms' => '沒有可用的節目資料',
-			'liveTv.liveStreamFailed' => '即時串流失敗',
-			'liveTv.unknownProgram' => '未知節目',
-			'liveTv.unknownHub' => '未知',
-			'liveTv.unknownError' => '未知錯誤',
-			'liveTv.channelNumber' => ({required Object number}) => '頻道 ${number}',
-			'liveTv.unknownChannel' => '未知頻道',
-			'liveTv.live' => '直播',
-			'liveTv.reloadGuide' => '重新載入節目表指南',
-			'liveTv.now' => '現在',
-			'liveTv.today' => '今天',
-			'liveTv.tomorrow' => '明天',
-			'liveTv.midnight' => '午夜',
-			'liveTv.overnight' => '凌晨',
-			'liveTv.morning' => '上午',
-			'liveTv.daytime' => '白天',
-			'liveTv.evening' => '晚上',
-			'liveTv.lateNight' => '深夜',
-			'liveTv.whatsOn' => '正在播出',
-			'liveTv.watchChannel' => '觀看頻道',
-			'liveTv.favorites' => '最愛',
-			'liveTv.reorderFavorites' => '重新排序最愛頻道',
-			'liveTv.favoritesLoadFailed' => '無法載入最愛頻道。請檢查網路連線後重試。',
-			'liveTv.favoritesUpdateFailed' => '無法更新最愛頻道。請檢查網路連線後重試。',
-			'liveTv.joinSession' => '加入進行中的「一起看」',
-			'liveTv.watchFromStart' => ({required Object minutes}) => '從頭觀看（自 ${minutes} 分鐘前開始）',
-			'liveTv.watchLive' => '觀看直播',
-			'liveTv.goToLive' => '跳至直播點',
-			'liveTv.record' => '錄製',
-			'liveTv.recordEpisode' => '錄製單集',
-			'liveTv.recordSeries' => '錄製整部影集',
-			'liveTv.recordOptions' => '錄製選項',
-			'liveTv.saveTo' => '儲存至',
-			'liveTv.recordings' => '已錄製內容',
-			'liveTv.scheduledRecordings' => '已排程錄製',
-			'liveTv.recordingRules' => '錄製規則',
-			'liveTv.noScheduledRecordings' => '沒有排程的錄製任務',
-			'liveTv.manageRecording' => '管理錄製',
-			'liveTv.cancelRecording' => '取消錄製',
-			'liveTv.cancelRecordingTitle' => '取消此次錄製？',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '將不再錄製 ${title}。',
-			'liveTv.deleteRule' => '刪除規則',
-			'liveTv.deleteRuleTitle' => '刪除錄製規則？',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '將不再錄製 ${title} 的後續單集。',
-			'liveTv.recordingScheduled' => '錄製已排程',
-			'liveTv.alreadyScheduled' => '此節目已安排排程錄製',
-			'liveTv.dvrAdminRequired' => 'DVR 設定需要管理員帳戶',
-			'liveTv.recordingFailed' => '無法安排錄製任務',
-			'liveTv.recordingTargetMissing' => '無法確定錄製媒體庫',
-			'liveTv.recordNotAvailable' => '此節目無法錄製',
-			'liveTv.recordingCancelled' => '錄製已取消',
-			'liveTv.recordingRuleDeleted' => '錄製規則已刪除',
-			'liveTv.processRecordingRules' => '重新評估規則',
-			'liveTv.recordingInProgress' => '正在錄製',
-			'liveTv.recordingsCount' => ({required Object count}) => '已排程 ${count} 個',
-			'liveTv.editRule' => '編輯規則',
-			'liveTv.editRuleAction' => '編輯',
-			'liveTv.recordingRuleUpdated' => '錄製規則已更新',
-			'liveTv.guideReloadRequested' => '已要求更新節目表指南',
-			'liveTv.rulesProcessRequested' => '已要求重新評估規則',
-			'liveTv.recordShow' => '錄製節目',
 			'collections.title' => '收藏集',
 			'collections.collection' => '收藏集',
 			'collections.empty' => '收藏集為空',
@@ -2969,8 +2817,6 @@ extension on TranslationsZhHant {
 			'downloads.backgroundWarning.bannerBlocked' => '離開應用程式後，下載將會停止',
 			'downloads.backgroundWarning.bannerDegraded' => '背景下載可能受限',
 			'downloads.backgroundWarning.bannerAction' => '詳細資料',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => '背景下載遭到封鎖',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '背景下載可能受限',
 			'downloads.backgroundWarning.sheetIntro' => 'Android 正在阻止 Plezy 在背景穩定下載。',
@@ -3042,6 +2888,8 @@ extension on TranslationsZhHant {
 			'performanceOverlay.sampleRate' => '取樣率',
 			'performanceOverlay.pixelFormat' => '像素格式',
 			'performanceOverlay.hwFormat' => '硬體格式',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => '矩陣',
 			'performanceOverlay.primaries' => '基色',
 			'performanceOverlay.transfer' => '傳輸特性',

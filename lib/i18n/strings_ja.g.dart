@@ -69,7 +69,6 @@ class TranslationsJa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$ja licenses = _Translations$licenses$ja._(_root);
 	@override late final _Translations$navigation$ja navigation = _Translations$navigation$ja._(_root);
 	@override late final _Translations$explore$ja explore = _Translations$explore$ja._(_root);
-	@override late final _Translations$liveTv$ja liveTv = _Translations$liveTv$ja._(_root);
 	@override late final _Translations$collections$ja collections = _Translations$collections$ja._(_root);
 	@override late final _Translations$playlists$ja playlists = _Translations$playlists$ja._(_root);
 	@override late final _Translations$music$ja music = _Translations$music$ja._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get showNavBarLabels => 'ナビゲーションバーのラベルを表示';
 	@override String get showNavBarLabelsDescription => 'ナビゲーションバーのアイコンの下にテキストラベルを表示';
 	@override String get startupSection => '起動時のセクション';
-	@override String get liveTvDefaultFavorites => 'お気に入りチャンネルをデフォルトに';
-	@override String get liveTvDefaultFavoritesDescription => 'ライブTVを開いたときにお気に入りチャンネルのみ表示';
 	@override String get display => 'ディスプレイ';
 	@override String get homeScreen => 'ホーム画面';
 	@override String get navigation => 'ナビゲーション';
@@ -704,7 +701,6 @@ class _Translations$messages$ja extends Translations$messages$en {
 	@override String get removedFromContinueWatching => '視聴中から削除しました';
 	@override String errorLoading({required Object error}) => 'エラー: ${error}';
 	@override String get streamInterrupted => 'ストリームが中断されました。再生を押すかシークして再試行してください。';
-	@override String get liveStreamInterrupted => 'ライブストリームが中断されました。再生を押して再試行してください。';
 	@override String get fileInfoNotAvailable => 'ファイル情報が利用できません';
 	@override String get playbackAuthenticationRequired => 'このアイテムを再生するには、メディアサーバーにもう一度サインインしてください。';
 	@override String get playbackServerUnavailable => 'メディアサーバーを利用できません。しばらくしてからもう一度お試しください。';
@@ -1061,7 +1057,6 @@ class _Translations$navigation$ja extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'ライブラリ';
 	@override String get downloads => 'ダウンロード';
-	@override String get liveTv => 'ライブTV';
 	@override String get explore => '見つける';
 }
 
@@ -1093,82 +1088,6 @@ class _Translations$explore$ja extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '「${query}」の結果が見つかりません';
 	@override String searchPrompt({required Object source}) => '${source}で映画やテレビ番組を検索します。';
 	@override String get searchFailed => '検索に失敗しました。接続を確認してもう一度お試しください。';
-}
-
-// Path: liveTv
-class _Translations$liveTv$ja extends Translations$liveTv$en {
-	_Translations$liveTv$ja._(TranslationsJa root) : this._root = root, super.internal(root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'ライブTV';
-	@override String get guide => '番組表';
-	@override String get noChannels => 'チャンネルがありません';
-	@override String get noDvr => 'どのサーバーにもDVRが設定されていません';
-	@override String get serverUnavailable => 'ライブTVサーバーを利用できません。';
-	@override String get serverNotConnected => 'ライブTVサーバーに接続されていません。';
-	@override String get noPrograms => '番組データがありません';
-	@override String get liveStreamFailed => 'ライブストリームに失敗しました';
-	@override String get unknownProgram => '不明な番組';
-	@override String get unknownHub => '不明';
-	@override String get unknownError => '不明なエラー';
-	@override String channelNumber({required Object number}) => 'チャンネル ${number}';
-	@override String get unknownChannel => '不明なチャンネル';
-	@override String get live => 'ライブ';
-	@override String get reloadGuide => '番組表を再読み込み';
-	@override String get now => '現在';
-	@override String get today => '今日';
-	@override String get tomorrow => '明日';
-	@override String get midnight => '午前0時';
-	@override String get overnight => '深夜';
-	@override String get morning => '朝';
-	@override String get daytime => '日中';
-	@override String get evening => '夕方';
-	@override String get lateNight => '夜更け';
-	@override String get whatsOn => '放送中';
-	@override String get watchChannel => 'チャンネルを視聴';
-	@override String get favorites => 'お気に入り';
-	@override String get reorderFavorites => 'お気に入りを並べ替え';
-	@override String get favoritesLoadFailed => 'お気に入りを読み込めませんでした。接続を確認してもう一度お試しください。';
-	@override String get favoritesUpdateFailed => 'お気に入りを更新できませんでした。接続を確認してもう一度お試しください。';
-	@override String get joinSession => '進行中のセッションに参加';
-	@override String watchFromStart({required Object minutes}) => '最初から視聴（${minutes}分前に開始）';
-	@override String get watchLive => 'ライブで視聴';
-	@override String get goToLive => 'ライブに移動';
-	@override String get record => '録画';
-	@override String get recordEpisode => 'このエピソードを録画';
-	@override String get recordSeries => 'シリーズを録画';
-	@override String get recordOptions => '録画オプション';
-	@override String get saveTo => '保存先';
-	@override String get recordings => '録画';
-	@override String get scheduledRecordings => '予約';
-	@override String get recordingRules => '録画ルール';
-	@override String get noScheduledRecordings => '予約された録画はありません';
-	@override String get manageRecording => '録画を管理';
-	@override String get cancelRecording => '録画をキャンセル';
-	@override String get cancelRecordingTitle => 'この録画をキャンセルしますか？';
-	@override String cancelRecordingMessage({required Object title}) => '${title}は録画されなくなります。';
-	@override String get deleteRule => 'ルールを削除';
-	@override String get deleteRuleTitle => '録画ルールを削除しますか？';
-	@override String deleteRuleMessage({required Object title}) => '${title}の今後のエピソードは録画されません。';
-	@override String get recordingScheduled => '録画を予約しました';
-	@override String get alreadyScheduled => 'この番組はすでに予約されています';
-	@override String get dvrAdminRequired => 'DVR設定には管理者アカウントが必要です';
-	@override String get recordingFailed => '録画を予約できませんでした';
-	@override String get recordingTargetMissing => '録画ライブラリを特定できませんでした';
-	@override String get recordNotAvailable => 'この番組は録画できません';
-	@override String get recordingCancelled => '録画をキャンセルしました';
-	@override String get recordingRuleDeleted => '録画ルールを削除しました';
-	@override String get processRecordingRules => 'ルールを再評価';
-	@override String get recordingInProgress => '録画中';
-	@override String recordingsCount({required Object count}) => '${count}件予約済み';
-	@override String get editRule => 'ルールを編集';
-	@override String get editRuleAction => '編集';
-	@override String get recordingRuleUpdated => '録画ルールを更新しました';
-	@override String get guideReloadRequested => '番組表の更新をリクエストしました';
-	@override String get rulesProcessRequested => '録画ルールの再評価をリクエストしました';
-	@override String get recordShow => '番組を録画';
 }
 
 // Path: collections
@@ -2243,8 +2162,6 @@ extension on TranslationsJa {
 			'settings.showNavBarLabels' => 'ナビゲーションバーのラベルを表示',
 			'settings.showNavBarLabelsDescription' => 'ナビゲーションバーのアイコンの下にテキストラベルを表示',
 			'settings.startupSection' => '起動時のセクション',
-			'settings.liveTvDefaultFavorites' => 'お気に入りチャンネルをデフォルトに',
-			'settings.liveTvDefaultFavoritesDescription' => 'ライブTVを開いたときにお気に入りチャンネルのみ表示',
 			'settings.display' => 'ディスプレイ',
 			'settings.homeScreen' => 'ホーム画面',
 			'settings.navigation' => 'ナビゲーション',
@@ -2446,7 +2363,6 @@ extension on TranslationsJa {
 			'messages.removedFromContinueWatching' => '視聴中から削除しました',
 			'messages.errorLoading' => ({required Object error}) => 'エラー: ${error}',
 			'messages.streamInterrupted' => 'ストリームが中断されました。再生を押すかシークして再試行してください。',
-			'messages.liveStreamInterrupted' => 'ライブストリームが中断されました。再生を押して再試行してください。',
 			'messages.fileInfoNotAvailable' => 'ファイル情報が利用できません',
 			'messages.playbackAuthenticationRequired' => 'このアイテムを再生するには、メディアサーバーにもう一度サインインしてください。',
 			'messages.playbackServerUnavailable' => 'メディアサーバーを利用できません。しばらくしてからもう一度お試しください。',
@@ -2454,11 +2370,11 @@ extension on TranslationsJa {
 			'messages.playbackCancelled' => '再生がキャンセルされました。',
 			'messages.playbackFailed' => '再生を開始できませんでした。',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'ファイル情報の読み込みエラー: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'シリーズの読み込みエラー',
 			'messages.musicNotSupported' => '音楽の再生はまだサポートされていません',
 			'messages.noDescriptionAvailable' => '説明はありません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => '利用可能なプロフィールがありません',
 			'messages.contactAdminForProfiles' => 'プロフィールを追加するには、サーバー管理者に連絡してください',
 			'messages.unableToDetermineLibrarySection' => 'このアイテムのライブラリセクションを判別できません',
@@ -2725,7 +2641,6 @@ extension on TranslationsJa {
 			'licenses.licensesCount' => ({required Object count}) => '${count}件のライセンス',
 			'navigation.libraries' => 'ライブラリ',
 			'navigation.downloads' => 'ダウンロード',
-			'navigation.liveTv' => 'ライブTV',
 			'navigation.explore' => '見つける',
 			'explore.title' => '見つける',
 			'explore.selectSource' => 'ソースを選択',
@@ -2762,73 +2677,6 @@ extension on TranslationsJa {
 			'explore.searchEmpty' => ({required Object query}) => '「${query}」の結果が見つかりません',
 			'explore.searchPrompt' => ({required Object source}) => '${source}で映画やテレビ番組を検索します。',
 			'explore.searchFailed' => '検索に失敗しました。接続を確認してもう一度お試しください。',
-			'liveTv.title' => 'ライブTV',
-			'liveTv.guide' => '番組表',
-			'liveTv.noChannels' => 'チャンネルがありません',
-			'liveTv.noDvr' => 'どのサーバーにもDVRが設定されていません',
-			'liveTv.serverUnavailable' => 'ライブTVサーバーを利用できません。',
-			'liveTv.serverNotConnected' => 'ライブTVサーバーに接続されていません。',
-			'liveTv.noPrograms' => '番組データがありません',
-			'liveTv.liveStreamFailed' => 'ライブストリームに失敗しました',
-			'liveTv.unknownProgram' => '不明な番組',
-			'liveTv.unknownHub' => '不明',
-			'liveTv.unknownError' => '不明なエラー',
-			'liveTv.channelNumber' => ({required Object number}) => 'チャンネル ${number}',
-			'liveTv.unknownChannel' => '不明なチャンネル',
-			'liveTv.live' => 'ライブ',
-			'liveTv.reloadGuide' => '番組表を再読み込み',
-			'liveTv.now' => '現在',
-			'liveTv.today' => '今日',
-			'liveTv.tomorrow' => '明日',
-			'liveTv.midnight' => '午前0時',
-			'liveTv.overnight' => '深夜',
-			'liveTv.morning' => '朝',
-			'liveTv.daytime' => '日中',
-			'liveTv.evening' => '夕方',
-			'liveTv.lateNight' => '夜更け',
-			'liveTv.whatsOn' => '放送中',
-			'liveTv.watchChannel' => 'チャンネルを視聴',
-			'liveTv.favorites' => 'お気に入り',
-			'liveTv.reorderFavorites' => 'お気に入りを並べ替え',
-			'liveTv.favoritesLoadFailed' => 'お気に入りを読み込めませんでした。接続を確認してもう一度お試しください。',
-			'liveTv.favoritesUpdateFailed' => 'お気に入りを更新できませんでした。接続を確認してもう一度お試しください。',
-			'liveTv.joinSession' => '進行中のセッションに参加',
-			'liveTv.watchFromStart' => ({required Object minutes}) => '最初から視聴（${minutes}分前に開始）',
-			'liveTv.watchLive' => 'ライブで視聴',
-			'liveTv.goToLive' => 'ライブに移動',
-			'liveTv.record' => '録画',
-			'liveTv.recordEpisode' => 'このエピソードを録画',
-			'liveTv.recordSeries' => 'シリーズを録画',
-			'liveTv.recordOptions' => '録画オプション',
-			'liveTv.saveTo' => '保存先',
-			'liveTv.recordings' => '録画',
-			'liveTv.scheduledRecordings' => '予約',
-			'liveTv.recordingRules' => '録画ルール',
-			'liveTv.noScheduledRecordings' => '予約された録画はありません',
-			'liveTv.manageRecording' => '録画を管理',
-			'liveTv.cancelRecording' => '録画をキャンセル',
-			'liveTv.cancelRecordingTitle' => 'この録画をキャンセルしますか？',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title}は録画されなくなります。',
-			'liveTv.deleteRule' => 'ルールを削除',
-			'liveTv.deleteRuleTitle' => '録画ルールを削除しますか？',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title}の今後のエピソードは録画されません。',
-			'liveTv.recordingScheduled' => '録画を予約しました',
-			'liveTv.alreadyScheduled' => 'この番組はすでに予約されています',
-			'liveTv.dvrAdminRequired' => 'DVR設定には管理者アカウントが必要です',
-			'liveTv.recordingFailed' => '録画を予約できませんでした',
-			'liveTv.recordingTargetMissing' => '録画ライブラリを特定できませんでした',
-			'liveTv.recordNotAvailable' => 'この番組は録画できません',
-			'liveTv.recordingCancelled' => '録画をキャンセルしました',
-			'liveTv.recordingRuleDeleted' => '録画ルールを削除しました',
-			'liveTv.processRecordingRules' => 'ルールを再評価',
-			'liveTv.recordingInProgress' => '録画中',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count}件予約済み',
-			'liveTv.editRule' => 'ルールを編集',
-			'liveTv.editRuleAction' => '編集',
-			'liveTv.recordingRuleUpdated' => '録画ルールを更新しました',
-			'liveTv.guideReloadRequested' => '番組表の更新をリクエストしました',
-			'liveTv.rulesProcessRequested' => '録画ルールの再評価をリクエストしました',
-			'liveTv.recordShow' => '番組を録画',
 			'collections.title' => 'コレクション',
 			'collections.collection' => 'コレクション',
 			'collections.empty' => 'コレクションは空です',
@@ -2968,8 +2816,6 @@ extension on TranslationsJa {
 			'downloads.backgroundWarning.bannerBlocked' => 'アプリの画面を離れると、ダウンロードが停止します',
 			'downloads.backgroundWarning.bannerDegraded' => 'バックグラウンドダウンロードが制限される場合があります',
 			'downloads.backgroundWarning.bannerAction' => '詳細',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'バックグラウンドダウンロードはブロックされています',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'バックグラウンドダウンロードが制限される場合があります',
 			'downloads.backgroundWarning.sheetIntro' => 'Androidにより、Plezyはバックグラウンドで安定してダウンロードできません。',
@@ -3041,6 +2887,8 @@ extension on TranslationsJa {
 			'performanceOverlay.sampleRate' => 'サンプルレート',
 			'performanceOverlay.pixelFormat' => 'ピクセル形式',
 			'performanceOverlay.hwFormat' => 'HW 形式',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'マトリクス',
 			'performanceOverlay.primaries' => 'プライマリ',
 			'performanceOverlay.transfer' => '伝達特性',

@@ -69,7 +69,6 @@ class TranslationsPl extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$pl licenses = _Translations$licenses$pl._(_root);
 	@override late final _Translations$navigation$pl navigation = _Translations$navigation$pl._(_root);
 	@override late final _Translations$explore$pl explore = _Translations$explore$pl._(_root);
-	@override late final _Translations$liveTv$pl liveTv = _Translations$liveTv$pl._(_root);
 	@override late final _Translations$collections$pl collections = _Translations$collections$pl._(_root);
 	@override late final _Translations$playlists$pl playlists = _Translations$playlists$pl._(_root);
 	@override late final _Translations$music$pl music = _Translations$music$pl._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$pl extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Pokaż etykiety paska nawigacji';
 	@override String get showNavBarLabelsDescription => 'Wyświetl tekstowe etykiety pod ikonami paska nawigacji';
 	@override String get startupSection => 'Sekcja startowa';
-	@override String get liveTvDefaultFavorites => 'Domyślnie ulubione kanały';
-	@override String get liveTvDefaultFavoritesDescription => 'Pokaż tylko ulubione kanały po otwarciu telewizji na żywo';
 	@override String get display => 'Ekran';
 	@override String get homeScreen => 'Ekran główny';
 	@override String get navigation => 'Nawigacja';
@@ -707,7 +704,6 @@ class _Translations$messages$pl extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Usunięto z kontynuowania oglądania';
 	@override String errorLoading({required Object error}) => 'Błąd: ${error}';
 	@override String get streamInterrupted => 'Strumień został przerwany. Naciśnij odtwarzanie lub przewiń, aby spróbować ponownie.';
-	@override String get liveStreamInterrupted => 'Transmisja na żywo została przerwana. Naciśnij odtwarzanie, aby spróbować ponownie.';
 	@override String get fileInfoNotAvailable => 'Informacje o pliku niedostępne';
 	@override String get playbackAuthenticationRequired => 'Zaloguj się ponownie na serwerze multimediów, aby odtworzyć ten element.';
 	@override String get playbackServerUnavailable => 'Serwer multimediów jest niedostępny. Spróbuj ponownie później.';
@@ -1064,7 +1060,6 @@ class _Translations$navigation$pl extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Biblioteki';
 	@override String get downloads => 'Pobrania';
-	@override String get liveTv => 'TV na żywo';
 	@override String get explore => 'Przeglądaj';
 }
 
@@ -1099,82 +1094,6 @@ class _Translations$explore$pl extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Brak wyników dla "${query}"';
 	@override String searchPrompt({required Object source}) => 'Szukaj filmów i seriali w ${source}.';
 	@override String get searchFailed => 'Wyszukiwanie nie powiodło się. Sprawdź połączenie i spróbuj ponownie.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$pl extends Translations$liveTv$en {
-	_Translations$liveTv$pl._(TranslationsPl root) : this._root = root, super.internal(root);
-
-	final TranslationsPl _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'TV na żywo';
-	@override String get guide => 'Przewodnik';
-	@override String get noChannels => 'Brak dostępnych kanałów';
-	@override String get noDvr => 'Brak skonfigurowanego DVR na żadnym serwerze';
-	@override String get serverUnavailable => 'Serwer telewizji na żywo jest niedostępny.';
-	@override String get serverNotConnected => 'Serwer telewizji na żywo nie jest połączony.';
-	@override String get noPrograms => 'Brak danych o programach';
-	@override String get liveStreamFailed => 'Transmisja na żywo nie powiodła się';
-	@override String get unknownProgram => 'Nieznany program';
-	@override String get unknownHub => 'Nieznane';
-	@override String get unknownError => 'Nieznany błąd';
-	@override String channelNumber({required Object number}) => 'Kanał ${number}';
-	@override String get unknownChannel => 'Nieznany kanał';
-	@override String get live => 'NA ŻYWO';
-	@override String get reloadGuide => 'Odśwież przewodnik';
-	@override String get now => 'Teraz';
-	@override String get today => 'Dzisiaj';
-	@override String get tomorrow => 'Jutro';
-	@override String get midnight => 'Północ';
-	@override String get overnight => 'Nocą';
-	@override String get morning => 'Rano';
-	@override String get daytime => 'W ciągu dnia';
-	@override String get evening => 'Wieczorem';
-	@override String get lateNight => 'Późna noc';
-	@override String get whatsOn => 'Co leci';
-	@override String get watchChannel => 'Oglądaj kanał';
-	@override String get favorites => 'Ulubione';
-	@override String get reorderFavorites => 'Zmień kolejność ulubionych';
-	@override String get favoritesLoadFailed => 'Nie udało się wczytać ulubionych. Sprawdź połączenie i spróbuj ponownie.';
-	@override String get favoritesUpdateFailed => 'Nie udało się zaktualizować ulubionych. Sprawdź połączenie i spróbuj ponownie.';
-	@override String get joinSession => 'Dołącz do trwającej sesji';
-	@override String watchFromStart({required Object minutes}) => 'Oglądaj od początku (${minutes} min temu)';
-	@override String get watchLive => 'Oglądaj na żywo';
-	@override String get goToLive => 'Przejdź do transmisji na żywo';
-	@override String get record => 'Nagraj';
-	@override String get recordEpisode => 'Nagraj odcinek';
-	@override String get recordSeries => 'Nagraj serial';
-	@override String get recordOptions => 'Opcje nagrywania';
-	@override String get saveTo => 'Zapisz w';
-	@override String get recordings => 'Nagrania';
-	@override String get scheduledRecordings => 'Zaplanowane';
-	@override String get recordingRules => 'Reguły nagrywania';
-	@override String get noScheduledRecordings => 'Brak zaplanowanych nagrań';
-	@override String get manageRecording => 'Zarządzaj nagraniem';
-	@override String get cancelRecording => 'Anuluj nagrywanie';
-	@override String get cancelRecordingTitle => 'Anulować to nagrywanie?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} nie będzie już nagrywane.';
-	@override String get deleteRule => 'Usuń regułę';
-	@override String get deleteRuleTitle => 'Usunąć regułę nagrywania?';
-	@override String deleteRuleMessage({required Object title}) => 'Przyszłe odcinki ${title} nie będą nagrywane.';
-	@override String get recordingScheduled => 'Nagrywanie zaplanowane';
-	@override String get alreadyScheduled => 'Ten program jest już zaplanowany';
-	@override String get dvrAdminRequired => 'Ustawienia DVR wymagają konta administratora';
-	@override String get recordingFailed => 'Nie można zaplanować nagrywania';
-	@override String get recordingTargetMissing => 'Nie można określić biblioteki nagrań';
-	@override String get recordNotAvailable => 'Nagrywanie niedostępne dla tego programu';
-	@override String get recordingCancelled => 'Nagrywanie anulowane';
-	@override String get recordingRuleDeleted => 'Reguła nagrywania usunięta';
-	@override String get processRecordingRules => 'Ponów ocenę reguł';
-	@override String get recordingInProgress => 'Trwa nagrywanie';
-	@override String recordingsCount({required Object count}) => '${count} zaplanowanych';
-	@override String get editRule => 'Edytuj regułę';
-	@override String get editRuleAction => 'Edytuj';
-	@override String get recordingRuleUpdated => 'Reguła nagrywania zaktualizowana';
-	@override String get guideReloadRequested => 'Zażądano odświeżenia przewodnika';
-	@override String get rulesProcessRequested => 'Zażądano ponownej oceny reguł';
-	@override String get recordShow => 'Nagraj program';
 }
 
 // Path: collections
@@ -2252,8 +2171,6 @@ extension on TranslationsPl {
 			'settings.showNavBarLabels' => 'Pokaż etykiety paska nawigacji',
 			'settings.showNavBarLabelsDescription' => 'Wyświetl tekstowe etykiety pod ikonami paska nawigacji',
 			'settings.startupSection' => 'Sekcja startowa',
-			'settings.liveTvDefaultFavorites' => 'Domyślnie ulubione kanały',
-			'settings.liveTvDefaultFavoritesDescription' => 'Pokaż tylko ulubione kanały po otwarciu telewizji na żywo',
 			'settings.display' => 'Ekran',
 			'settings.homeScreen' => 'Ekran główny',
 			'settings.navigation' => 'Nawigacja',
@@ -2455,7 +2372,6 @@ extension on TranslationsPl {
 			'messages.removedFromContinueWatching' => 'Usunięto z kontynuowania oglądania',
 			'messages.errorLoading' => ({required Object error}) => 'Błąd: ${error}',
 			'messages.streamInterrupted' => 'Strumień został przerwany. Naciśnij odtwarzanie lub przewiń, aby spróbować ponownie.',
-			'messages.liveStreamInterrupted' => 'Transmisja na żywo została przerwana. Naciśnij odtwarzanie, aby spróbować ponownie.',
 			'messages.fileInfoNotAvailable' => 'Informacje o pliku niedostępne',
 			'messages.playbackAuthenticationRequired' => 'Zaloguj się ponownie na serwerze multimediów, aby odtworzyć ten element.',
 			'messages.playbackServerUnavailable' => 'Serwer multimediów jest niedostępny. Spróbuj ponownie później.',
@@ -2463,11 +2379,11 @@ extension on TranslationsPl {
 			'messages.playbackCancelled' => 'Odtwarzanie zostało anulowane.',
 			'messages.playbackFailed' => 'Nie udało się rozpocząć odtwarzania.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Błąd ładowania informacji o pliku: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Błąd ładowania serialu',
 			'messages.musicNotSupported' => 'Odtwarzanie muzyki nie jest jeszcze obsługiwane',
 			'messages.noDescriptionAvailable' => 'Brak dostępnego opisu',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Brak dostępnych profili',
 			'messages.contactAdminForProfiles' => 'Skontaktuj się z administratorem serwera, aby dodać profile',
 			'messages.unableToDetermineLibrarySection' => 'Nie można określić sekcji biblioteki dla tego elementu',
@@ -2734,7 +2650,6 @@ extension on TranslationsPl {
 			'licenses.licensesCount' => ({required Object count}) => 'Liczba licencji: ${count}',
 			'navigation.libraries' => 'Biblioteki',
 			'navigation.downloads' => 'Pobrania',
-			'navigation.liveTv' => 'TV na żywo',
 			'navigation.explore' => 'Przeglądaj',
 			'explore.title' => 'Przeglądaj',
 			'explore.selectSource' => 'Wybierz źródło',
@@ -2771,73 +2686,6 @@ extension on TranslationsPl {
 			'explore.searchEmpty' => ({required Object query}) => 'Brak wyników dla "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Szukaj filmów i seriali w ${source}.',
 			'explore.searchFailed' => 'Wyszukiwanie nie powiodło się. Sprawdź połączenie i spróbuj ponownie.',
-			'liveTv.title' => 'TV na żywo',
-			'liveTv.guide' => 'Przewodnik',
-			'liveTv.noChannels' => 'Brak dostępnych kanałów',
-			'liveTv.noDvr' => 'Brak skonfigurowanego DVR na żadnym serwerze',
-			'liveTv.serverUnavailable' => 'Serwer telewizji na żywo jest niedostępny.',
-			'liveTv.serverNotConnected' => 'Serwer telewizji na żywo nie jest połączony.',
-			'liveTv.noPrograms' => 'Brak danych o programach',
-			'liveTv.liveStreamFailed' => 'Transmisja na żywo nie powiodła się',
-			'liveTv.unknownProgram' => 'Nieznany program',
-			'liveTv.unknownHub' => 'Nieznane',
-			'liveTv.unknownError' => 'Nieznany błąd',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanał ${number}',
-			'liveTv.unknownChannel' => 'Nieznany kanał',
-			'liveTv.live' => 'NA ŻYWO',
-			'liveTv.reloadGuide' => 'Odśwież przewodnik',
-			'liveTv.now' => 'Teraz',
-			'liveTv.today' => 'Dzisiaj',
-			'liveTv.tomorrow' => 'Jutro',
-			'liveTv.midnight' => 'Północ',
-			'liveTv.overnight' => 'Nocą',
-			'liveTv.morning' => 'Rano',
-			'liveTv.daytime' => 'W ciągu dnia',
-			'liveTv.evening' => 'Wieczorem',
-			'liveTv.lateNight' => 'Późna noc',
-			'liveTv.whatsOn' => 'Co leci',
-			'liveTv.watchChannel' => 'Oglądaj kanał',
-			'liveTv.favorites' => 'Ulubione',
-			'liveTv.reorderFavorites' => 'Zmień kolejność ulubionych',
-			'liveTv.favoritesLoadFailed' => 'Nie udało się wczytać ulubionych. Sprawdź połączenie i spróbuj ponownie.',
-			'liveTv.favoritesUpdateFailed' => 'Nie udało się zaktualizować ulubionych. Sprawdź połączenie i spróbuj ponownie.',
-			'liveTv.joinSession' => 'Dołącz do trwającej sesji',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Oglądaj od początku (${minutes} min temu)',
-			'liveTv.watchLive' => 'Oglądaj na żywo',
-			'liveTv.goToLive' => 'Przejdź do transmisji na żywo',
-			'liveTv.record' => 'Nagraj',
-			'liveTv.recordEpisode' => 'Nagraj odcinek',
-			'liveTv.recordSeries' => 'Nagraj serial',
-			'liveTv.recordOptions' => 'Opcje nagrywania',
-			'liveTv.saveTo' => 'Zapisz w',
-			'liveTv.recordings' => 'Nagrania',
-			'liveTv.scheduledRecordings' => 'Zaplanowane',
-			'liveTv.recordingRules' => 'Reguły nagrywania',
-			'liveTv.noScheduledRecordings' => 'Brak zaplanowanych nagrań',
-			'liveTv.manageRecording' => 'Zarządzaj nagraniem',
-			'liveTv.cancelRecording' => 'Anuluj nagrywanie',
-			'liveTv.cancelRecordingTitle' => 'Anulować to nagrywanie?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} nie będzie już nagrywane.',
-			'liveTv.deleteRule' => 'Usuń regułę',
-			'liveTv.deleteRuleTitle' => 'Usunąć regułę nagrywania?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Przyszłe odcinki ${title} nie będą nagrywane.',
-			'liveTv.recordingScheduled' => 'Nagrywanie zaplanowane',
-			'liveTv.alreadyScheduled' => 'Ten program jest już zaplanowany',
-			'liveTv.dvrAdminRequired' => 'Ustawienia DVR wymagają konta administratora',
-			'liveTv.recordingFailed' => 'Nie można zaplanować nagrywania',
-			'liveTv.recordingTargetMissing' => 'Nie można określić biblioteki nagrań',
-			'liveTv.recordNotAvailable' => 'Nagrywanie niedostępne dla tego programu',
-			'liveTv.recordingCancelled' => 'Nagrywanie anulowane',
-			'liveTv.recordingRuleDeleted' => 'Reguła nagrywania usunięta',
-			'liveTv.processRecordingRules' => 'Ponów ocenę reguł',
-			'liveTv.recordingInProgress' => 'Trwa nagrywanie',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} zaplanowanych',
-			'liveTv.editRule' => 'Edytuj regułę',
-			'liveTv.editRuleAction' => 'Edytuj',
-			'liveTv.recordingRuleUpdated' => 'Reguła nagrywania zaktualizowana',
-			'liveTv.guideReloadRequested' => 'Zażądano odświeżenia przewodnika',
-			'liveTv.rulesProcessRequested' => 'Zażądano ponownej oceny reguł',
-			'liveTv.recordShow' => 'Nagraj program',
 			'collections.title' => 'Kolekcje',
 			'collections.collection' => 'Kolekcja',
 			'collections.empty' => 'Kolekcja jest pusta',
@@ -2977,8 +2825,6 @@ extension on TranslationsPl {
 			'downloads.backgroundWarning.bannerBlocked' => 'Po opuszczeniu aplikacji pobieranie zostanie zatrzymane',
 			'downloads.backgroundWarning.bannerDegraded' => 'Pobieranie w tle może być ograniczone',
 			'downloads.backgroundWarning.bannerAction' => 'Szczegóły',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Pobieranie w tle jest zablokowane',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Pobieranie w tle może być ograniczone',
 			'downloads.backgroundWarning.sheetIntro' => 'Android uniemożliwia Plezy niezawodne pobieranie plików w tle.',
@@ -3050,6 +2896,8 @@ extension on TranslationsPl {
 			'performanceOverlay.sampleRate' => 'Częstotliwość próbkowania',
 			'performanceOverlay.pixelFormat' => 'Format pikseli',
 			'performanceOverlay.hwFormat' => 'Format HW',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Macierz',
 			'performanceOverlay.primaries' => 'Barwy podstawowe',
 			'performanceOverlay.transfer' => 'Charakterystyka przenoszenia',

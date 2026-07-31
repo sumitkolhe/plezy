@@ -69,7 +69,6 @@ class TranslationsDe extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$de licenses = _Translations$licenses$de._(_root);
 	@override late final _Translations$navigation$de navigation = _Translations$navigation$de._(_root);
 	@override late final _Translations$explore$de explore = _Translations$explore$de._(_root);
-	@override late final _Translations$liveTv$de liveTv = _Translations$liveTv$de._(_root);
 	@override late final _Translations$collections$de collections = _Translations$collections$de._(_root);
 	@override late final _Translations$playlists$de playlists = _Translations$playlists$de._(_root);
 	@override late final _Translations$music$de music = _Translations$music$de._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Navigationsleisten-Beschriftungen anzeigen';
 	@override String get showNavBarLabelsDescription => 'Textbeschriftungen unter den Symbolen der Navigationsleiste anzeigen';
 	@override String get startupSection => 'Startbereich';
-	@override String get liveTvDefaultFavorites => 'Standardmäßig Favoritenkanäle';
-	@override String get liveTvDefaultFavoritesDescription => 'Beim Öffnen von Live TV nur Favoritenkanäle anzeigen';
 	@override String get display => 'Anzeige';
 	@override String get homeScreen => 'Startseite';
 	@override String get navigation => 'Navigation';
@@ -705,7 +702,6 @@ class _Translations$messages$de extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Aus „Weiterschauen“ entfernt';
 	@override String errorLoading({required Object error}) => 'Fehler: ${error}';
 	@override String get streamInterrupted => 'Der Stream wurde unterbrochen. Drücke auf Wiedergabe oder spule, um es erneut zu versuchen.';
-	@override String get liveStreamInterrupted => 'Der Livestream wurde unterbrochen. Drücke auf Wiedergabe, um es erneut zu versuchen.';
 	@override String get fileInfoNotAvailable => 'Dateiinfo nicht verfügbar';
 	@override String get playbackAuthenticationRequired => 'Melde dich erneut beim Medienserver an, um dieses Element abzuspielen.';
 	@override String get playbackServerUnavailable => 'Der Medienserver ist nicht verfügbar. Versuche es später erneut.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$de extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Mediatheken';
 	@override String get downloads => 'Downloads';
-	@override String get liveTv => 'Live-TV';
 	@override String get explore => 'Erkunden';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$de extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Keine Ergebnisse für „${query}“';
 	@override String searchPrompt({required Object source}) => 'Suche nach Filmen und Serien auf ${source}.';
 	@override String get searchFailed => 'Suche fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$de extends Translations$liveTv$en {
-	_Translations$liveTv$de._(TranslationsDe root) : this._root = root, super.internal(root);
-
-	final TranslationsDe _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Live-TV';
-	@override String get guide => 'TV-Programm';
-	@override String get noChannels => 'Keine Kanäle verfügbar';
-	@override String get noDvr => 'Auf keinem Server ist ein DVR konfiguriert';
-	@override String get serverUnavailable => 'Der Live-TV-Server ist nicht verfügbar.';
-	@override String get serverNotConnected => 'Der Live-TV-Server ist nicht verbunden.';
-	@override String get noPrograms => 'Keine Programmdaten verfügbar';
-	@override String get liveStreamFailed => 'Livestream fehlgeschlagen';
-	@override String get unknownProgram => 'Unbekannte Sendung';
-	@override String get unknownHub => 'Unbekannt';
-	@override String get unknownError => 'Unbekannter Fehler';
-	@override String channelNumber({required Object number}) => 'Kanal ${number}';
-	@override String get unknownChannel => 'Unbekannter Kanal';
-	@override String get live => 'LIVE';
-	@override String get reloadGuide => 'TV-Programm neu laden';
-	@override String get now => 'Jetzt';
-	@override String get today => 'Heute';
-	@override String get tomorrow => 'Morgen';
-	@override String get midnight => 'Mitternacht';
-	@override String get overnight => 'Nacht';
-	@override String get morning => 'Morgen';
-	@override String get daytime => 'Tagsüber';
-	@override String get evening => 'Abend';
-	@override String get lateNight => 'Spätnacht';
-	@override String get whatsOn => 'Jetzt im TV';
-	@override String get watchChannel => 'Kanal ansehen';
-	@override String get favorites => 'Favoriten';
-	@override String get reorderFavorites => 'Favoriten sortieren';
-	@override String get favoritesLoadFailed => 'Favoriten konnten nicht geladen werden. Überprüfe deine Verbindung und versuche es erneut.';
-	@override String get favoritesUpdateFailed => 'Favoriten konnten nicht aktualisiert werden. Prüfe deine Verbindung und versuche es erneut.';
-	@override String get joinSession => 'Aktueller Sitzung beitreten';
-	@override String watchFromStart({required Object minutes}) => 'Von Anfang an ansehen (vor ${minutes} Min.)';
-	@override String get watchLive => 'Live ansehen';
-	@override String get goToLive => 'Zum Live-Bild';
-	@override String get record => 'Aufnehmen';
-	@override String get recordEpisode => 'Episode aufnehmen';
-	@override String get recordSeries => 'Serie aufnehmen';
-	@override String get recordOptions => 'Aufnahmeoptionen';
-	@override String get saveTo => 'Speichern in';
-	@override String get recordings => 'Aufnahmen';
-	@override String get scheduledRecordings => 'Geplant';
-	@override String get recordingRules => 'Aufnahmeregeln';
-	@override String get noScheduledRecordings => 'Keine geplanten Aufnahmen';
-	@override String get manageRecording => 'Aufnahme verwalten';
-	@override String get cancelRecording => 'Aufnahme abbrechen';
-	@override String get cancelRecordingTitle => 'Diese Aufnahme abbrechen?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} wird nicht mehr aufgenommen.';
-	@override String get deleteRule => 'Regel löschen';
-	@override String get deleteRuleTitle => 'Aufnahmeregel löschen?';
-	@override String deleteRuleMessage({required Object title}) => 'Zukünftige Episoden von ${title} werden nicht aufgenommen.';
-	@override String get recordingScheduled => 'Aufnahme geplant';
-	@override String get alreadyScheduled => 'Dieses Programm ist bereits geplant';
-	@override String get dvrAdminRequired => 'DVR-Einstellungen erfordern ein Administratorkonto';
-	@override String get recordingFailed => 'Aufnahme konnte nicht geplant werden';
-	@override String get recordingTargetMissing => 'Aufnahmebibliothek konnte nicht ermittelt werden';
-	@override String get recordNotAvailable => 'Aufnahme für dieses Programm nicht verfügbar';
-	@override String get recordingCancelled => 'Aufnahme abgebrochen';
-	@override String get recordingRuleDeleted => 'Aufnahmeregel gelöscht';
-	@override String get processRecordingRules => 'Regeln neu bewerten';
-	@override String get recordingInProgress => 'Wird jetzt aufgenommen';
-	@override String recordingsCount({required Object count}) => '${count} geplant';
-	@override String get editRule => 'Regel bearbeiten';
-	@override String get editRuleAction => 'Bearbeiten';
-	@override String get recordingRuleUpdated => 'Aufnahmeregel aktualisiert';
-	@override String get guideReloadRequested => 'Aktualisierung des TV-Programms angefordert';
-	@override String get rulesProcessRequested => 'Regelauswertung angefordert';
-	@override String get recordShow => 'Sendung aufnehmen';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsDe {
 			'settings.showNavBarLabels' => 'Navigationsleisten-Beschriftungen anzeigen',
 			'settings.showNavBarLabelsDescription' => 'Textbeschriftungen unter den Symbolen der Navigationsleiste anzeigen',
 			'settings.startupSection' => 'Startbereich',
-			'settings.liveTvDefaultFavorites' => 'Standardmäßig Favoritenkanäle',
-			'settings.liveTvDefaultFavoritesDescription' => 'Beim Öffnen von Live TV nur Favoritenkanäle anzeigen',
 			'settings.display' => 'Anzeige',
 			'settings.homeScreen' => 'Startseite',
 			'settings.navigation' => 'Navigation',
@@ -2449,7 +2366,6 @@ extension on TranslationsDe {
 			'messages.removedFromContinueWatching' => 'Aus „Weiterschauen“ entfernt',
 			'messages.errorLoading' => ({required Object error}) => 'Fehler: ${error}',
 			'messages.streamInterrupted' => 'Der Stream wurde unterbrochen. Drücke auf Wiedergabe oder spule, um es erneut zu versuchen.',
-			'messages.liveStreamInterrupted' => 'Der Livestream wurde unterbrochen. Drücke auf Wiedergabe, um es erneut zu versuchen.',
 			'messages.fileInfoNotAvailable' => 'Dateiinfo nicht verfügbar',
 			'messages.playbackAuthenticationRequired' => 'Melde dich erneut beim Medienserver an, um dieses Element abzuspielen.',
 			'messages.playbackServerUnavailable' => 'Der Medienserver ist nicht verfügbar. Versuche es später erneut.',
@@ -2457,11 +2373,11 @@ extension on TranslationsDe {
 			'messages.playbackCancelled' => 'Die Wiedergabe wurde abgebrochen.',
 			'messages.playbackFailed' => 'Die Wiedergabe konnte nicht gestartet werden.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fehler beim Laden der Dateiinfo: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Fehler beim Laden der Serie',
 			'messages.musicNotSupported' => 'Musikwiedergabe wird noch nicht unterstützt',
 			'messages.noDescriptionAvailable' => 'Keine Beschreibung verfügbar',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Keine Profile verfügbar',
 			'messages.contactAdminForProfiles' => 'Wende dich an deinen Serveradministrator, um Profile hinzuzufügen',
 			'messages.unableToDetermineLibrarySection' => 'Der Mediatheksbereich für dieses Element konnte nicht ermittelt werden',
@@ -2728,7 +2644,6 @@ extension on TranslationsDe {
 			'licenses.licensesCount' => ({required Object count}) => '${count} Lizenzen',
 			'navigation.libraries' => 'Mediatheken',
 			'navigation.downloads' => 'Downloads',
-			'navigation.liveTv' => 'Live-TV',
 			'navigation.explore' => 'Erkunden',
 			'explore.title' => 'Erkunden',
 			'explore.selectSource' => 'Quelle auswählen',
@@ -2765,73 +2680,6 @@ extension on TranslationsDe {
 			'explore.searchEmpty' => ({required Object query}) => 'Keine Ergebnisse für „${query}“',
 			'explore.searchPrompt' => ({required Object source}) => 'Suche nach Filmen und Serien auf ${source}.',
 			'explore.searchFailed' => 'Suche fehlgeschlagen. Prüfe deine Verbindung und versuche es erneut.',
-			'liveTv.title' => 'Live-TV',
-			'liveTv.guide' => 'TV-Programm',
-			'liveTv.noChannels' => 'Keine Kanäle verfügbar',
-			'liveTv.noDvr' => 'Auf keinem Server ist ein DVR konfiguriert',
-			'liveTv.serverUnavailable' => 'Der Live-TV-Server ist nicht verfügbar.',
-			'liveTv.serverNotConnected' => 'Der Live-TV-Server ist nicht verbunden.',
-			'liveTv.noPrograms' => 'Keine Programmdaten verfügbar',
-			'liveTv.liveStreamFailed' => 'Livestream fehlgeschlagen',
-			'liveTv.unknownProgram' => 'Unbekannte Sendung',
-			'liveTv.unknownHub' => 'Unbekannt',
-			'liveTv.unknownError' => 'Unbekannter Fehler',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanal ${number}',
-			'liveTv.unknownChannel' => 'Unbekannter Kanal',
-			'liveTv.live' => 'LIVE',
-			'liveTv.reloadGuide' => 'TV-Programm neu laden',
-			'liveTv.now' => 'Jetzt',
-			'liveTv.today' => 'Heute',
-			'liveTv.tomorrow' => 'Morgen',
-			'liveTv.midnight' => 'Mitternacht',
-			'liveTv.overnight' => 'Nacht',
-			'liveTv.morning' => 'Morgen',
-			'liveTv.daytime' => 'Tagsüber',
-			'liveTv.evening' => 'Abend',
-			'liveTv.lateNight' => 'Spätnacht',
-			'liveTv.whatsOn' => 'Jetzt im TV',
-			'liveTv.watchChannel' => 'Kanal ansehen',
-			'liveTv.favorites' => 'Favoriten',
-			'liveTv.reorderFavorites' => 'Favoriten sortieren',
-			'liveTv.favoritesLoadFailed' => 'Favoriten konnten nicht geladen werden. Überprüfe deine Verbindung und versuche es erneut.',
-			'liveTv.favoritesUpdateFailed' => 'Favoriten konnten nicht aktualisiert werden. Prüfe deine Verbindung und versuche es erneut.',
-			'liveTv.joinSession' => 'Aktueller Sitzung beitreten',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Von Anfang an ansehen (vor ${minutes} Min.)',
-			'liveTv.watchLive' => 'Live ansehen',
-			'liveTv.goToLive' => 'Zum Live-Bild',
-			'liveTv.record' => 'Aufnehmen',
-			'liveTv.recordEpisode' => 'Episode aufnehmen',
-			'liveTv.recordSeries' => 'Serie aufnehmen',
-			'liveTv.recordOptions' => 'Aufnahmeoptionen',
-			'liveTv.saveTo' => 'Speichern in',
-			'liveTv.recordings' => 'Aufnahmen',
-			'liveTv.scheduledRecordings' => 'Geplant',
-			'liveTv.recordingRules' => 'Aufnahmeregeln',
-			'liveTv.noScheduledRecordings' => 'Keine geplanten Aufnahmen',
-			'liveTv.manageRecording' => 'Aufnahme verwalten',
-			'liveTv.cancelRecording' => 'Aufnahme abbrechen',
-			'liveTv.cancelRecordingTitle' => 'Diese Aufnahme abbrechen?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} wird nicht mehr aufgenommen.',
-			'liveTv.deleteRule' => 'Regel löschen',
-			'liveTv.deleteRuleTitle' => 'Aufnahmeregel löschen?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Zukünftige Episoden von ${title} werden nicht aufgenommen.',
-			'liveTv.recordingScheduled' => 'Aufnahme geplant',
-			'liveTv.alreadyScheduled' => 'Dieses Programm ist bereits geplant',
-			'liveTv.dvrAdminRequired' => 'DVR-Einstellungen erfordern ein Administratorkonto',
-			'liveTv.recordingFailed' => 'Aufnahme konnte nicht geplant werden',
-			'liveTv.recordingTargetMissing' => 'Aufnahmebibliothek konnte nicht ermittelt werden',
-			'liveTv.recordNotAvailable' => 'Aufnahme für dieses Programm nicht verfügbar',
-			'liveTv.recordingCancelled' => 'Aufnahme abgebrochen',
-			'liveTv.recordingRuleDeleted' => 'Aufnahmeregel gelöscht',
-			'liveTv.processRecordingRules' => 'Regeln neu bewerten',
-			'liveTv.recordingInProgress' => 'Wird jetzt aufgenommen',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} geplant',
-			'liveTv.editRule' => 'Regel bearbeiten',
-			'liveTv.editRuleAction' => 'Bearbeiten',
-			'liveTv.recordingRuleUpdated' => 'Aufnahmeregel aktualisiert',
-			'liveTv.guideReloadRequested' => 'Aktualisierung des TV-Programms angefordert',
-			'liveTv.rulesProcessRequested' => 'Regelauswertung angefordert',
-			'liveTv.recordShow' => 'Sendung aufnehmen',
 			'collections.title' => 'Sammlungen',
 			'collections.collection' => 'Sammlung',
 			'collections.empty' => 'Sammlung ist leer',
@@ -2971,8 +2819,6 @@ extension on TranslationsDe {
 			'downloads.backgroundWarning.bannerBlocked' => 'Downloads werden gestoppt, wenn du die App verlässt',
 			'downloads.backgroundWarning.bannerDegraded' => 'Downloads im Hintergrund sind möglicherweise eingeschränkt',
 			'downloads.backgroundWarning.bannerAction' => 'Details',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Downloads im Hintergrund sind blockiert',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Downloads im Hintergrund sind möglicherweise eingeschränkt',
 			'downloads.backgroundWarning.sheetIntro' => 'Android verhindert, dass Plezy zuverlässig im Hintergrund herunterlädt.',
@@ -3044,6 +2890,8 @@ extension on TranslationsDe {
 			'performanceOverlay.sampleRate' => 'Abtastrate',
 			'performanceOverlay.pixelFormat' => 'Pixelformat',
 			'performanceOverlay.hwFormat' => 'HW-Format',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primärfarben',
 			'performanceOverlay.transfer' => 'Transfer',

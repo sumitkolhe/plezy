@@ -69,7 +69,6 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$tr licenses = _Translations$licenses$tr._(_root);
 	@override late final _Translations$navigation$tr navigation = _Translations$navigation$tr._(_root);
 	@override late final _Translations$explore$tr explore = _Translations$explore$tr._(_root);
-	@override late final _Translations$liveTv$tr liveTv = _Translations$liveTv$tr._(_root);
 	@override late final _Translations$collections$tr collections = _Translations$collections$tr._(_root);
 	@override late final _Translations$playlists$tr playlists = _Translations$playlists$tr._(_root);
 	@override late final _Translations$music$tr music = _Translations$music$tr._(_root);
@@ -442,8 +441,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Gezinme Çubuğu Etiketlerini Göster';
 	@override String get showNavBarLabelsDescription => 'Gezinme çubuğu simgelerinin altında metin etiketlerini göster';
 	@override String get startupSection => 'Başlangıç Bölümü';
-	@override String get liveTvDefaultFavorites => 'Canlı TV\'de Favorileri Varsayılan Yap';
-	@override String get liveTvDefaultFavoritesDescription => 'Canlı TV açıldığında yalnızca favori kanalları göster';
 	@override String get display => 'Ekran';
 	@override String get homeScreen => 'Ana Ekran';
 	@override String get navigation => 'Gezinme';
@@ -709,7 +706,6 @@ class _Translations$messages$tr extends Translations$messages$en {
 	@override String errorLoading({required Object error}) => 'Hata: ${error}';
 	@override String get searchPartialResults => 'Bazı medya sunucularında arama yapılamadı. Kullanılabilir sonuçlar gösteriliyor.';
 	@override String get streamInterrupted => 'Akış kesintiye uğradı. Tekrar denemek için oynatın veya sarın.';
-	@override String get liveStreamInterrupted => 'Canlı akış kesintiye uğradı. Tekrar denemek için oynatın.';
 	@override String get fileInfoNotAvailable => 'Dosya bilgisi mevcut değil';
 	@override String get playbackAuthenticationRequired => 'Bu ögeyi oynatmak için medya sunucusuna tekrar giriş yapın.';
 	@override String get playbackServerUnavailable => 'Medya sunucusu kullanılabilir değil. Daha sonra tekrar deneyin.';
@@ -1067,7 +1063,6 @@ class _Translations$navigation$tr extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Kitaplıklar';
 	@override String get downloads => 'İndirmeler';
-	@override String get liveTv => 'Canlı TV';
 	@override String get explore => 'Keşfet';
 }
 
@@ -1100,82 +1095,6 @@ class _Translations$explore$tr extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '"${query}" için sonuç bulunamadı';
 	@override String searchPrompt({required Object source}) => '${source} üzerinde film ve dizileri arayın.';
 	@override String get searchFailed => 'Arama başarısız. Bağlantınızı kontrol edip tekrar deneyin.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$tr extends Translations$liveTv$en {
-	_Translations$liveTv$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Canlı TV';
-	@override String get guide => 'Rehber';
-	@override String get noChannels => 'Kullanılabilir kanal yok';
-	@override String get noDvr => 'Hiçbir sunucuda DVR yapılandırılmadı';
-	@override String get serverUnavailable => 'Canlı TV sunucusu kullanılabilir değil.';
-	@override String get serverNotConnected => 'Canlı TV sunucusu bağlı değil.';
-	@override String get noPrograms => 'Program verisi bulunmuyor';
-	@override String get liveStreamFailed => 'Canlı akış başarısız oldu';
-	@override String get unknownProgram => 'Bilinmeyen Program';
-	@override String get unknownHub => 'Bilinmiyor';
-	@override String get unknownError => 'Bilinmeyen hata';
-	@override String channelNumber({required Object number}) => 'Kanal ${number}';
-	@override String get unknownChannel => 'Bilinmeyen kanal';
-	@override String get live => 'CANLI';
-	@override String get reloadGuide => 'Rehberi Yeniden Yükle';
-	@override String get now => 'Şimdi';
-	@override String get today => 'Bugün';
-	@override String get tomorrow => 'Yarın';
-	@override String get midnight => 'Gece Yarısı';
-	@override String get overnight => 'Gece Boyunca';
-	@override String get morning => 'Sabah';
-	@override String get daytime => 'Gündüz';
-	@override String get evening => 'Akşam';
-	@override String get lateNight => 'Gece Geç Saatler';
-	@override String get whatsOn => 'Şimdi Ne Var?';
-	@override String get watchChannel => 'Kanalı İzle';
-	@override String get favorites => 'Favoriler';
-	@override String get reorderFavorites => 'Favorileri Yeniden Sırala';
-	@override String get favoritesLoadFailed => 'Favoriler yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.';
-	@override String get favoritesUpdateFailed => 'Favoriler güncellenemedi. Bağlantınızı kontrol edip tekrar deneyin.';
-	@override String get joinSession => 'Devam Eden Oturuma Katıl';
-	@override String watchFromStart({required Object minutes}) => 'Baştan izle (${minutes} dk önce)';
-	@override String get watchLive => 'Canlı İzle';
-	@override String get goToLive => 'Canlıya Git';
-	@override String get record => 'Kaydet';
-	@override String get recordEpisode => 'Bölümü Kaydet';
-	@override String get recordSeries => 'Diziyi Kaydet';
-	@override String get recordOptions => 'Kayıt Seçenekleri';
-	@override String get saveTo => 'Şuraya kaydet';
-	@override String get recordings => 'Kayıtlar';
-	@override String get scheduledRecordings => 'Planlananlar';
-	@override String get recordingRules => 'Kayıt Kuralları';
-	@override String get noScheduledRecordings => 'Kaydedilecek planlanmış bir şey yok';
-	@override String get manageRecording => 'Kaydı yönet';
-	@override String get cancelRecording => 'Kaydı iptal et';
-	@override String get cancelRecordingTitle => 'Bu kayıt iptal edilsin mi?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} artık kaydedilmeyecek.';
-	@override String get deleteRule => 'Kuralı sil';
-	@override String get deleteRuleTitle => 'Kayıt kuralı silinsin mi?';
-	@override String deleteRuleMessage({required Object title}) => '${title} dizisinin gelecek bölümleri kaydedilmeyecek.';
-	@override String get recordingScheduled => 'Kayıt planlandı';
-	@override String get alreadyScheduled => 'Bu program zaten planlanmış';
-	@override String get dvrAdminRequired => 'DVR ayarları bir yönetici hesabı gerektirir';
-	@override String get recordingFailed => 'Kayıt planlanamadı';
-	@override String get recordingTargetMissing => 'Kayıt kitaplığı belirlenemedi';
-	@override String get recordNotAvailable => 'Bu program için kayıt kullanılamıyor';
-	@override String get recordingCancelled => 'Kayıt iptal edildi';
-	@override String get recordingRuleDeleted => 'Kayıt kuralı silindi';
-	@override String get processRecordingRules => 'Kuralları yeniden değerlendir';
-	@override String get recordingInProgress => 'Şimdi kaydediliyor';
-	@override String recordingsCount({required Object count}) => '${count} planlandı';
-	@override String get editRule => 'Kuralı düzenle';
-	@override String get editRuleAction => 'Düzenle';
-	@override String get recordingRuleUpdated => 'Kayıt kuralı güncellendi';
-	@override String get guideReloadRequested => 'Rehber yenilemesi istendi';
-	@override String get rulesProcessRequested => 'Kuralın yeniden değerlendirilmesi istendi';
-	@override String get recordShow => 'Programı kaydet';
 }
 
 // Path: collections
@@ -2260,8 +2179,6 @@ extension on TranslationsTr {
 			'settings.showNavBarLabels' => 'Gezinme Çubuğu Etiketlerini Göster',
 			'settings.showNavBarLabelsDescription' => 'Gezinme çubuğu simgelerinin altında metin etiketlerini göster',
 			'settings.startupSection' => 'Başlangıç Bölümü',
-			'settings.liveTvDefaultFavorites' => 'Canlı TV\'de Favorileri Varsayılan Yap',
-			'settings.liveTvDefaultFavoritesDescription' => 'Canlı TV açıldığında yalnızca favori kanalları göster',
 			'settings.display' => 'Ekran',
 			'settings.homeScreen' => 'Ana Ekran',
 			'settings.navigation' => 'Gezinme',
@@ -2464,15 +2381,14 @@ extension on TranslationsTr {
 			'messages.errorLoading' => ({required Object error}) => 'Hata: ${error}',
 			'messages.searchPartialResults' => 'Bazı medya sunucularında arama yapılamadı. Kullanılabilir sonuçlar gösteriliyor.',
 			'messages.streamInterrupted' => 'Akış kesintiye uğradı. Tekrar denemek için oynatın veya sarın.',
-			'messages.liveStreamInterrupted' => 'Canlı akış kesintiye uğradı. Tekrar denemek için oynatın.',
 			'messages.fileInfoNotAvailable' => 'Dosya bilgisi mevcut değil',
 			'messages.playbackAuthenticationRequired' => 'Bu ögeyi oynatmak için medya sunucusuna tekrar giriş yapın.',
 			'messages.playbackServerUnavailable' => 'Medya sunucusu kullanılabilir değil. Daha sonra tekrar deneyin.',
-			_ => null,
-		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Sunucu geçersiz oynatma bilgisi döndürdü.',
 			'messages.playbackCancelled' => 'Oynatma iptal edildi.',
 			'messages.playbackFailed' => 'Oynatma başlatılamadı.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Dosya bilgisi yüklenirken hata: ${error}',
 			'messages.errorLoadingSeries' => 'Dizi yüklenirken hata',
 			'messages.musicNotSupported' => 'Müzik oynatma henüz desteklenmiyor',
@@ -2744,7 +2660,6 @@ extension on TranslationsTr {
 			'licenses.licensesCount' => ({required Object count}) => '${count} lisans',
 			'navigation.libraries' => 'Kitaplıklar',
 			'navigation.downloads' => 'İndirmeler',
-			'navigation.liveTv' => 'Canlı TV',
 			'navigation.explore' => 'Keşfet',
 			'explore.title' => 'Keşfet',
 			'explore.selectSource' => 'Kaynak seçin',
@@ -2781,73 +2696,6 @@ extension on TranslationsTr {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" için sonuç bulunamadı',
 			'explore.searchPrompt' => ({required Object source}) => '${source} üzerinde film ve dizileri arayın.',
 			'explore.searchFailed' => 'Arama başarısız. Bağlantınızı kontrol edip tekrar deneyin.',
-			'liveTv.title' => 'Canlı TV',
-			'liveTv.guide' => 'Rehber',
-			'liveTv.noChannels' => 'Kullanılabilir kanal yok',
-			'liveTv.noDvr' => 'Hiçbir sunucuda DVR yapılandırılmadı',
-			'liveTv.serverUnavailable' => 'Canlı TV sunucusu kullanılabilir değil.',
-			'liveTv.serverNotConnected' => 'Canlı TV sunucusu bağlı değil.',
-			'liveTv.noPrograms' => 'Program verisi bulunmuyor',
-			'liveTv.liveStreamFailed' => 'Canlı akış başarısız oldu',
-			'liveTv.unknownProgram' => 'Bilinmeyen Program',
-			'liveTv.unknownHub' => 'Bilinmiyor',
-			'liveTv.unknownError' => 'Bilinmeyen hata',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanal ${number}',
-			'liveTv.unknownChannel' => 'Bilinmeyen kanal',
-			'liveTv.live' => 'CANLI',
-			'liveTv.reloadGuide' => 'Rehberi Yeniden Yükle',
-			'liveTv.now' => 'Şimdi',
-			'liveTv.today' => 'Bugün',
-			'liveTv.tomorrow' => 'Yarın',
-			'liveTv.midnight' => 'Gece Yarısı',
-			'liveTv.overnight' => 'Gece Boyunca',
-			'liveTv.morning' => 'Sabah',
-			'liveTv.daytime' => 'Gündüz',
-			'liveTv.evening' => 'Akşam',
-			'liveTv.lateNight' => 'Gece Geç Saatler',
-			'liveTv.whatsOn' => 'Şimdi Ne Var?',
-			'liveTv.watchChannel' => 'Kanalı İzle',
-			'liveTv.favorites' => 'Favoriler',
-			'liveTv.reorderFavorites' => 'Favorileri Yeniden Sırala',
-			'liveTv.favoritesLoadFailed' => 'Favoriler yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.',
-			'liveTv.favoritesUpdateFailed' => 'Favoriler güncellenemedi. Bağlantınızı kontrol edip tekrar deneyin.',
-			'liveTv.joinSession' => 'Devam Eden Oturuma Katıl',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Baştan izle (${minutes} dk önce)',
-			'liveTv.watchLive' => 'Canlı İzle',
-			'liveTv.goToLive' => 'Canlıya Git',
-			'liveTv.record' => 'Kaydet',
-			'liveTv.recordEpisode' => 'Bölümü Kaydet',
-			'liveTv.recordSeries' => 'Diziyi Kaydet',
-			'liveTv.recordOptions' => 'Kayıt Seçenekleri',
-			'liveTv.saveTo' => 'Şuraya kaydet',
-			'liveTv.recordings' => 'Kayıtlar',
-			'liveTv.scheduledRecordings' => 'Planlananlar',
-			'liveTv.recordingRules' => 'Kayıt Kuralları',
-			'liveTv.noScheduledRecordings' => 'Kaydedilecek planlanmış bir şey yok',
-			'liveTv.manageRecording' => 'Kaydı yönet',
-			'liveTv.cancelRecording' => 'Kaydı iptal et',
-			'liveTv.cancelRecordingTitle' => 'Bu kayıt iptal edilsin mi?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} artık kaydedilmeyecek.',
-			'liveTv.deleteRule' => 'Kuralı sil',
-			'liveTv.deleteRuleTitle' => 'Kayıt kuralı silinsin mi?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title} dizisinin gelecek bölümleri kaydedilmeyecek.',
-			'liveTv.recordingScheduled' => 'Kayıt planlandı',
-			'liveTv.alreadyScheduled' => 'Bu program zaten planlanmış',
-			'liveTv.dvrAdminRequired' => 'DVR ayarları bir yönetici hesabı gerektirir',
-			'liveTv.recordingFailed' => 'Kayıt planlanamadı',
-			'liveTv.recordingTargetMissing' => 'Kayıt kitaplığı belirlenemedi',
-			'liveTv.recordNotAvailable' => 'Bu program için kayıt kullanılamıyor',
-			'liveTv.recordingCancelled' => 'Kayıt iptal edildi',
-			'liveTv.recordingRuleDeleted' => 'Kayıt kuralı silindi',
-			'liveTv.processRecordingRules' => 'Kuralları yeniden değerlendir',
-			'liveTv.recordingInProgress' => 'Şimdi kaydediliyor',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} planlandı',
-			'liveTv.editRule' => 'Kuralı düzenle',
-			'liveTv.editRuleAction' => 'Düzenle',
-			'liveTv.recordingRuleUpdated' => 'Kayıt kuralı güncellendi',
-			'liveTv.guideReloadRequested' => 'Rehber yenilemesi istendi',
-			'liveTv.rulesProcessRequested' => 'Kuralın yeniden değerlendirilmesi istendi',
-			'liveTv.recordShow' => 'Programı kaydet',
 			'collections.title' => 'Koleksiyonlar',
 			'collections.collection' => 'Koleksiyon',
 			'collections.empty' => 'Koleksiyon boş',
@@ -2982,8 +2830,6 @@ extension on TranslationsTr {
 			'downloads.editEpisodeCount' => 'Bölüm sayısı',
 			'downloads.editSyncFilter' => 'Eşitleme filtresi',
 			'downloads.syncAllItems' => 'Tüm ögeler eşitleniyor',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'İzlenmeyen ögeler eşitleniyor',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Sunucu: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Kullanılabilir',
@@ -3055,6 +2901,8 @@ extension on TranslationsTr {
 			'performanceOverlay.performance' => 'Performans',
 			'performanceOverlay.buffer' => 'Arabellek',
 			'performanceOverlay.app' => 'Uygulama',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Ham Çözücü',
 			'performanceOverlay.tunneling' => 'Tünelleme',

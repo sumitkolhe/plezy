@@ -69,7 +69,6 @@ class TranslationsBg extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$bg licenses = _Translations$licenses$bg._(_root);
 	@override late final _Translations$navigation$bg navigation = _Translations$navigation$bg._(_root);
 	@override late final _Translations$explore$bg explore = _Translations$explore$bg._(_root);
-	@override late final _Translations$liveTv$bg liveTv = _Translations$liveTv$bg._(_root);
 	@override late final _Translations$collections$bg collections = _Translations$collections$bg._(_root);
 	@override late final _Translations$playlists$bg playlists = _Translations$playlists$bg._(_root);
 	@override late final _Translations$music$bg music = _Translations$music$bg._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Показвай етикети в навигационната лента';
 	@override String get showNavBarLabelsDescription => 'Показвай текстови етикети под иконите в навигационната лента';
 	@override String get startupSection => 'Начален раздел';
-	@override String get liveTvDefaultFavorites => 'По подразбиране към любими канали';
-	@override String get liveTvDefaultFavoritesDescription => 'Показвай само любими канали при отваряне на телевизия на живо';
 	@override String get display => 'Дисплей';
 	@override String get homeScreen => 'Начален екран';
 	@override String get navigation => 'Навигация';
@@ -705,7 +702,6 @@ class _Translations$messages$bg extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Премахнато от продължаване на гледането';
 	@override String errorLoading({required Object error}) => 'Грешка: ${error}';
 	@override String get streamInterrupted => 'Потокът прекъсна. Натиснете „Пусни“ или превъртете, за да опитате отново.';
-	@override String get liveStreamInterrupted => 'Потокът на живо прекъсна. Натиснете „Пусни“, за да опитате отново.';
 	@override String get fileInfoNotAvailable => 'Информацията за файла не е налична';
 	@override String get playbackAuthenticationRequired => 'Влезте отново в медийния сървър, за да възпроизведете този елемент.';
 	@override String get playbackServerUnavailable => 'Медийният сървър не е достъпен. Опитайте отново по-късно.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$bg extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Библиотеки';
 	@override String get downloads => 'Изтегляния';
-	@override String get liveTv => 'Телевизия на живо';
 	@override String get explore => 'Разгледай';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$bg extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Няма резултати за "${query}"';
 	@override String searchPrompt({required Object source}) => 'Търси филми и сериали в ${source}.';
 	@override String get searchFailed => 'Търсенето се провали. Провери връзката си и опитай отново.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$bg extends Translations$liveTv$en {
-	_Translations$liveTv$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Телевизия на живо';
-	@override String get guide => 'ТВ програма';
-	@override String get noChannels => 'Няма налични канали';
-	@override String get noDvr => 'Няма конфигуриран DVR на нито един сървър';
-	@override String get serverUnavailable => 'Сървърът за телевизия на живо не е наличен.';
-	@override String get serverNotConnected => 'Сървърът за телевизия на живо не е свързан.';
-	@override String get noPrograms => 'Няма налични програмни данни';
-	@override String get liveStreamFailed => 'Потокът на живо не можа да бъде пуснат';
-	@override String get unknownProgram => 'Неизвестна програма';
-	@override String get unknownHub => 'Неизвестно';
-	@override String get unknownError => 'Неизвестна грешка';
-	@override String channelNumber({required Object number}) => 'Канал ${number}';
-	@override String get unknownChannel => 'Неизвестен канал';
-	@override String get live => 'НА ЖИВО';
-	@override String get reloadGuide => 'Презареди ТВ програмата';
-	@override String get now => 'Сега';
-	@override String get today => 'Днес';
-	@override String get tomorrow => 'Утре';
-	@override String get midnight => 'Полунощ';
-	@override String get overnight => 'През нощта';
-	@override String get morning => 'Сутрин';
-	@override String get daytime => 'През деня';
-	@override String get evening => 'Вечер';
-	@override String get lateNight => 'Късно вечер';
-	@override String get whatsOn => 'Какво дават';
-	@override String get watchChannel => 'Гледай канал';
-	@override String get favorites => 'Любими';
-	@override String get reorderFavorites => 'Пренареди любимите';
-	@override String get favoritesLoadFailed => 'Любимите не можаха да се заредят. Проверете връзката си и опитайте отново.';
-	@override String get favoritesUpdateFailed => 'Любимите не можаха да бъдат обновени. Проверете връзката си и опитайте отново.';
-	@override String get joinSession => 'Присъедини се към текуща сесия';
-	@override String watchFromStart({required Object minutes}) => 'Гледай от началото (преди ${minutes} мин)';
-	@override String get watchLive => 'Гледай на живо';
-	@override String get goToLive => 'Към живото предаване';
-	@override String get record => 'Запис';
-	@override String get recordEpisode => 'Запиши епизод';
-	@override String get recordSeries => 'Запиши сериал';
-	@override String get recordOptions => 'Опции за запис';
-	@override String get saveTo => 'Запази в';
-	@override String get recordings => 'Записи';
-	@override String get scheduledRecordings => 'Планирани';
-	@override String get recordingRules => 'Правила за запис';
-	@override String get noScheduledRecordings => 'Няма планирани записи';
-	@override String get manageRecording => 'Управление на запис';
-	@override String get cancelRecording => 'Отмени запис';
-	@override String get cancelRecordingTitle => 'Да се отмени ли този запис?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} вече няма да се записва.';
-	@override String get deleteRule => 'Изтрий правило';
-	@override String get deleteRuleTitle => 'Да се изтрие ли правилото за запис?';
-	@override String deleteRuleMessage({required Object title}) => 'Бъдещи епизоди на ${title} няма да се записват.';
-	@override String get recordingScheduled => 'Записът е планиран';
-	@override String get alreadyScheduled => 'Тази програма вече е планирана';
-	@override String get dvrAdminRequired => 'DVR настройките изискват администраторски акаунт';
-	@override String get recordingFailed => 'Записът не можа да бъде планиран';
-	@override String get recordingTargetMissing => 'Не може да се определи библиотеката за запис';
-	@override String get recordNotAvailable => 'Записът не е наличен за тази програма';
-	@override String get recordingCancelled => 'Записът е отменен';
-	@override String get recordingRuleDeleted => 'Правилото за запис е изтрито';
-	@override String get processRecordingRules => 'Преоцени правилата';
-	@override String get recordingInProgress => 'Записва се сега';
-	@override String recordingsCount({required Object count}) => '${count} планирани';
-	@override String get editRule => 'Редактирай правило';
-	@override String get editRuleAction => 'Редактирай';
-	@override String get recordingRuleUpdated => 'Правилото за запис е обновено';
-	@override String get guideReloadRequested => 'Заявено е опресняване на ТВ програмата';
-	@override String get rulesProcessRequested => 'Заявена е преоценка на правилата';
-	@override String get recordShow => 'Запиши предаването';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsBg {
 			'settings.showNavBarLabels' => 'Показвай етикети в навигационната лента',
 			'settings.showNavBarLabelsDescription' => 'Показвай текстови етикети под иконите в навигационната лента',
 			'settings.startupSection' => 'Начален раздел',
-			'settings.liveTvDefaultFavorites' => 'По подразбиране към любими канали',
-			'settings.liveTvDefaultFavoritesDescription' => 'Показвай само любими канали при отваряне на телевизия на живо',
 			'settings.display' => 'Дисплей',
 			'settings.homeScreen' => 'Начален екран',
 			'settings.navigation' => 'Навигация',
@@ -2449,7 +2366,6 @@ extension on TranslationsBg {
 			'messages.removedFromContinueWatching' => 'Премахнато от продължаване на гледането',
 			'messages.errorLoading' => ({required Object error}) => 'Грешка: ${error}',
 			'messages.streamInterrupted' => 'Потокът прекъсна. Натиснете „Пусни“ или превъртете, за да опитате отново.',
-			'messages.liveStreamInterrupted' => 'Потокът на живо прекъсна. Натиснете „Пусни“, за да опитате отново.',
 			'messages.fileInfoNotAvailable' => 'Информацията за файла не е налична',
 			'messages.playbackAuthenticationRequired' => 'Влезте отново в медийния сървър, за да възпроизведете този елемент.',
 			'messages.playbackServerUnavailable' => 'Медийният сървър не е достъпен. Опитайте отново по-късно.',
@@ -2457,11 +2373,11 @@ extension on TranslationsBg {
 			'messages.playbackCancelled' => 'Възпроизвеждането беше отменено.',
 			'messages.playbackFailed' => 'Възпроизвеждането не можа да бъде стартирано.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Грешка при зареждане на информация за файла: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Грешка при зареждане на сериала',
 			'messages.musicNotSupported' => 'Възпроизвеждането на музика все още не се поддържа',
 			'messages.noDescriptionAvailable' => 'Няма налично описание',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Няма налични профили',
 			'messages.contactAdminForProfiles' => 'Свържете се с администратора на сървъра, за да добави профили',
 			'messages.unableToDetermineLibrarySection' => 'Не може да се определи секцията на библиотеката за този елемент',
@@ -2728,7 +2644,6 @@ extension on TranslationsBg {
 			'licenses.licensesCount' => ({required Object count}) => '${count} лиценза',
 			'navigation.libraries' => 'Библиотеки',
 			'navigation.downloads' => 'Изтегляния',
-			'navigation.liveTv' => 'Телевизия на живо',
 			'navigation.explore' => 'Разгледай',
 			'explore.title' => 'Разгледай',
 			'explore.selectSource' => 'Избери източник',
@@ -2765,73 +2680,6 @@ extension on TranslationsBg {
 			'explore.searchEmpty' => ({required Object query}) => 'Няма резултати за "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Търси филми и сериали в ${source}.',
 			'explore.searchFailed' => 'Търсенето се провали. Провери връзката си и опитай отново.',
-			'liveTv.title' => 'Телевизия на живо',
-			'liveTv.guide' => 'ТВ програма',
-			'liveTv.noChannels' => 'Няма налични канали',
-			'liveTv.noDvr' => 'Няма конфигуриран DVR на нито един сървър',
-			'liveTv.serverUnavailable' => 'Сървърът за телевизия на живо не е наличен.',
-			'liveTv.serverNotConnected' => 'Сървърът за телевизия на живо не е свързан.',
-			'liveTv.noPrograms' => 'Няма налични програмни данни',
-			'liveTv.liveStreamFailed' => 'Потокът на живо не можа да бъде пуснат',
-			'liveTv.unknownProgram' => 'Неизвестна програма',
-			'liveTv.unknownHub' => 'Неизвестно',
-			'liveTv.unknownError' => 'Неизвестна грешка',
-			'liveTv.channelNumber' => ({required Object number}) => 'Канал ${number}',
-			'liveTv.unknownChannel' => 'Неизвестен канал',
-			'liveTv.live' => 'НА ЖИВО',
-			'liveTv.reloadGuide' => 'Презареди ТВ програмата',
-			'liveTv.now' => 'Сега',
-			'liveTv.today' => 'Днес',
-			'liveTv.tomorrow' => 'Утре',
-			'liveTv.midnight' => 'Полунощ',
-			'liveTv.overnight' => 'През нощта',
-			'liveTv.morning' => 'Сутрин',
-			'liveTv.daytime' => 'През деня',
-			'liveTv.evening' => 'Вечер',
-			'liveTv.lateNight' => 'Късно вечер',
-			'liveTv.whatsOn' => 'Какво дават',
-			'liveTv.watchChannel' => 'Гледай канал',
-			'liveTv.favorites' => 'Любими',
-			'liveTv.reorderFavorites' => 'Пренареди любимите',
-			'liveTv.favoritesLoadFailed' => 'Любимите не можаха да се заредят. Проверете връзката си и опитайте отново.',
-			'liveTv.favoritesUpdateFailed' => 'Любимите не можаха да бъдат обновени. Проверете връзката си и опитайте отново.',
-			'liveTv.joinSession' => 'Присъедини се към текуща сесия',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Гледай от началото (преди ${minutes} мин)',
-			'liveTv.watchLive' => 'Гледай на живо',
-			'liveTv.goToLive' => 'Към живото предаване',
-			'liveTv.record' => 'Запис',
-			'liveTv.recordEpisode' => 'Запиши епизод',
-			'liveTv.recordSeries' => 'Запиши сериал',
-			'liveTv.recordOptions' => 'Опции за запис',
-			'liveTv.saveTo' => 'Запази в',
-			'liveTv.recordings' => 'Записи',
-			'liveTv.scheduledRecordings' => 'Планирани',
-			'liveTv.recordingRules' => 'Правила за запис',
-			'liveTv.noScheduledRecordings' => 'Няма планирани записи',
-			'liveTv.manageRecording' => 'Управление на запис',
-			'liveTv.cancelRecording' => 'Отмени запис',
-			'liveTv.cancelRecordingTitle' => 'Да се отмени ли този запис?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} вече няма да се записва.',
-			'liveTv.deleteRule' => 'Изтрий правило',
-			'liveTv.deleteRuleTitle' => 'Да се изтрие ли правилото за запис?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Бъдещи епизоди на ${title} няма да се записват.',
-			'liveTv.recordingScheduled' => 'Записът е планиран',
-			'liveTv.alreadyScheduled' => 'Тази програма вече е планирана',
-			'liveTv.dvrAdminRequired' => 'DVR настройките изискват администраторски акаунт',
-			'liveTv.recordingFailed' => 'Записът не можа да бъде планиран',
-			'liveTv.recordingTargetMissing' => 'Не може да се определи библиотеката за запис',
-			'liveTv.recordNotAvailable' => 'Записът не е наличен за тази програма',
-			'liveTv.recordingCancelled' => 'Записът е отменен',
-			'liveTv.recordingRuleDeleted' => 'Правилото за запис е изтрито',
-			'liveTv.processRecordingRules' => 'Преоцени правилата',
-			'liveTv.recordingInProgress' => 'Записва се сега',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} планирани',
-			'liveTv.editRule' => 'Редактирай правило',
-			'liveTv.editRuleAction' => 'Редактирай',
-			'liveTv.recordingRuleUpdated' => 'Правилото за запис е обновено',
-			'liveTv.guideReloadRequested' => 'Заявено е опресняване на ТВ програмата',
-			'liveTv.rulesProcessRequested' => 'Заявена е преоценка на правилата',
-			'liveTv.recordShow' => 'Запиши предаването',
 			'collections.title' => 'Колекции',
 			'collections.collection' => 'Колекция',
 			'collections.empty' => 'Колекцията е празна',
@@ -2971,8 +2819,6 @@ extension on TranslationsBg {
 			'downloads.backgroundWarning.bannerBlocked' => 'Изтеглянията ще спрат, когато излезете от приложението',
 			'downloads.backgroundWarning.bannerDegraded' => 'Изтеглянията във фонов режим може да бъдат ограничени',
 			'downloads.backgroundWarning.bannerAction' => 'Подробности',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Изтеглянията във фонов режим са блокирани',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Изтеглянията във фонов режим може да бъдат ограничени',
 			'downloads.backgroundWarning.sheetIntro' => 'Android не позволява на Plezy да изтегля надеждно във фонов режим.',
@@ -3044,6 +2890,8 @@ extension on TranslationsBg {
 			'performanceOverlay.sampleRate' => 'Честота',
 			'performanceOverlay.pixelFormat' => 'Пикселен формат',
 			'performanceOverlay.hwFormat' => 'HW формат',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Матрица',
 			'performanceOverlay.primaries' => 'Основни цветове',
 			'performanceOverlay.transfer' => 'Трансфер',

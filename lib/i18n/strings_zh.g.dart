@@ -69,7 +69,6 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final Translations$licenses$zh licenses = Translations$licenses$zh.internal(_root);
 	@override late final Translations$navigation$zh navigation = Translations$navigation$zh.internal(_root);
 	@override late final Translations$explore$zh explore = Translations$explore$zh.internal(_root);
-	@override late final Translations$liveTv$zh liveTv = Translations$liveTv$zh.internal(_root);
 	@override late final Translations$collections$zh collections = Translations$collections$zh.internal(_root);
 	@override late final Translations$playlists$zh playlists = Translations$playlists$zh.internal(_root);
 	@override late final Translations$music$zh music = Translations$music$zh.internal(_root);
@@ -439,8 +438,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get showNavBarLabels => '显示导航栏标签';
 	@override String get showNavBarLabelsDescription => '在导航栏图标下方显示文字标签';
 	@override String get startupSection => '启动页面';
-	@override String get liveTvDefaultFavorites => '默认显示收藏频道';
-	@override String get liveTvDefaultFavoritesDescription => '打开直播电视时仅显示收藏频道';
 	@override String get display => '显示';
 	@override String get homeScreen => '主屏幕';
 	@override String get navigation => '导航';
@@ -704,7 +701,6 @@ class Translations$messages$zh extends Translations$messages$en {
 	@override String get removedFromContinueWatching => '已从继续观看中移除';
 	@override String errorLoading({required Object error}) => '出错：${error}';
 	@override String get streamInterrupted => '视频流已中断。按播放键或拖动进度条重试。';
-	@override String get liveStreamInterrupted => '直播流已中断。按播放键重试。';
 	@override String get fileInfoNotAvailable => '文件信息不可用';
 	@override String get playbackAuthenticationRequired => '请重新登录媒体服务器以播放此项目。';
 	@override String get playbackServerUnavailable => '媒体服务器不可用。请稍后重试。';
@@ -1061,7 +1057,6 @@ class Translations$navigation$zh extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => '媒体库';
 	@override String get downloads => '下载';
-	@override String get liveTv => '直播电视';
 	@override String get explore => '探索';
 }
 
@@ -1093,82 +1088,6 @@ class Translations$explore$zh extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '没有“${query}”的结果';
 	@override String searchPrompt({required Object source}) => '在 ${source} 上搜索电影和剧集。';
 	@override String get searchFailed => '搜索失败。请检查网络连接后重试。';
-}
-
-// Path: liveTv
-class Translations$liveTv$zh extends Translations$liveTv$en {
-	Translations$liveTv$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '直播电视';
-	@override String get guide => '节目指南';
-	@override String get noChannels => '没有可用的频道';
-	@override String get noDvr => '没有服务器配置 DVR';
-	@override String get serverUnavailable => '直播电视服务器不可用。';
-	@override String get serverNotConnected => '直播电视服务器未连接。';
-	@override String get noPrograms => '没有可用的节目数据';
-	@override String get liveStreamFailed => '直播流失败';
-	@override String get unknownProgram => '未知节目';
-	@override String get unknownHub => '未知';
-	@override String get unknownError => '未知错误';
-	@override String channelNumber({required Object number}) => '频道 ${number}';
-	@override String get unknownChannel => '未知频道';
-	@override String get live => '直播';
-	@override String get reloadGuide => '重新加载节目指南';
-	@override String get now => '现在';
-	@override String get today => '今天';
-	@override String get tomorrow => '明天';
-	@override String get midnight => '午夜';
-	@override String get overnight => '凌晨';
-	@override String get morning => '上午';
-	@override String get daytime => '白天';
-	@override String get evening => '晚上';
-	@override String get lateNight => '深夜';
-	@override String get whatsOn => '正在播出';
-	@override String get watchChannel => '观看频道';
-	@override String get favorites => '收藏';
-	@override String get reorderFavorites => '重新排序收藏';
-	@override String get favoritesLoadFailed => '无法加载收藏。请检查网络连接后重试。';
-	@override String get favoritesUpdateFailed => '无法更新收藏。请检查网络连接后重试。';
-	@override String get joinSession => '加入正在进行的会话';
-	@override String watchFromStart({required Object minutes}) => '从头观看（${minutes}分钟前开始）';
-	@override String get watchLive => '观看直播';
-	@override String get goToLive => '跳至直播';
-	@override String get record => '录制';
-	@override String get recordEpisode => '录制单集';
-	@override String get recordSeries => '录制系列节目';
-	@override String get recordOptions => '录制选项';
-	@override String get saveTo => '保存到';
-	@override String get recordings => '录制内容';
-	@override String get scheduledRecordings => '计划录制';
-	@override String get recordingRules => '录制规则';
-	@override String get noScheduledRecordings => '没有安排的录制';
-	@override String get manageRecording => '管理录制';
-	@override String get cancelRecording => '取消录制';
-	@override String get cancelRecordingTitle => '取消此次录制？';
-	@override String cancelRecordingMessage({required Object title}) => '将不再录制 ${title}。';
-	@override String get deleteRule => '删除规则';
-	@override String get deleteRuleTitle => '删除录制规则？';
-	@override String deleteRuleMessage({required Object title}) => '今后将不再录制 ${title} 的剧集。';
-	@override String get recordingScheduled => '录制已安排';
-	@override String get alreadyScheduled => '此节目已安排录制';
-	@override String get dvrAdminRequired => 'DVR 设置需要管理员账户';
-	@override String get recordingFailed => '无法安排录制';
-	@override String get recordingTargetMissing => '无法确定录制库';
-	@override String get recordNotAvailable => '此节目无法录制';
-	@override String get recordingCancelled => '录制已取消';
-	@override String get recordingRuleDeleted => '录制规则已删除';
-	@override String get processRecordingRules => '重新评估规则';
-	@override String get recordingInProgress => '正在录制';
-	@override String recordingsCount({required Object count}) => '已安排 ${count} 项录制';
-	@override String get editRule => '编辑规则';
-	@override String get editRuleAction => '编辑';
-	@override String get recordingRuleUpdated => '录制规则已更新';
-	@override String get guideReloadRequested => '已请求更新节目指南';
-	@override String get rulesProcessRequested => '已请求重新评估规则';
-	@override String get recordShow => '录制节目';
 }
 
 // Path: collections
@@ -2243,8 +2162,6 @@ extension on TranslationsZh {
 			'settings.showNavBarLabels' => '显示导航栏标签',
 			'settings.showNavBarLabelsDescription' => '在导航栏图标下方显示文字标签',
 			'settings.startupSection' => '启动页面',
-			'settings.liveTvDefaultFavorites' => '默认显示收藏频道',
-			'settings.liveTvDefaultFavoritesDescription' => '打开直播电视时仅显示收藏频道',
 			'settings.display' => '显示',
 			'settings.homeScreen' => '主屏幕',
 			'settings.navigation' => '导航',
@@ -2446,7 +2363,6 @@ extension on TranslationsZh {
 			'messages.removedFromContinueWatching' => '已从继续观看中移除',
 			'messages.errorLoading' => ({required Object error}) => '出错：${error}',
 			'messages.streamInterrupted' => '视频流已中断。按播放键或拖动进度条重试。',
-			'messages.liveStreamInterrupted' => '直播流已中断。按播放键重试。',
 			'messages.fileInfoNotAvailable' => '文件信息不可用',
 			'messages.playbackAuthenticationRequired' => '请重新登录媒体服务器以播放此项目。',
 			'messages.playbackServerUnavailable' => '媒体服务器不可用。请稍后重试。',
@@ -2454,11 +2370,11 @@ extension on TranslationsZh {
 			'messages.playbackCancelled' => '播放已取消。',
 			'messages.playbackFailed' => '无法开始播放。',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => '加载文件信息时出错：${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => '加载剧集时出错',
 			'messages.musicNotSupported' => '尚不支持播放音乐',
 			'messages.noDescriptionAvailable' => '暂无描述',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => '没有可用的用户资料',
 			'messages.contactAdminForProfiles' => '请联系服务器管理员添加用户资料',
 			'messages.unableToDetermineLibrarySection' => '无法确定此项目所属的媒体库',
@@ -2725,7 +2641,6 @@ extension on TranslationsZh {
 			'licenses.licensesCount' => ({required Object count}) => '${count} 个许可证',
 			'navigation.libraries' => '媒体库',
 			'navigation.downloads' => '下载',
-			'navigation.liveTv' => '直播电视',
 			'navigation.explore' => '探索',
 			'explore.title' => '探索',
 			'explore.selectSource' => '选择来源',
@@ -2762,73 +2677,6 @@ extension on TranslationsZh {
 			'explore.searchEmpty' => ({required Object query}) => '没有“${query}”的结果',
 			'explore.searchPrompt' => ({required Object source}) => '在 ${source} 上搜索电影和剧集。',
 			'explore.searchFailed' => '搜索失败。请检查网络连接后重试。',
-			'liveTv.title' => '直播电视',
-			'liveTv.guide' => '节目指南',
-			'liveTv.noChannels' => '没有可用的频道',
-			'liveTv.noDvr' => '没有服务器配置 DVR',
-			'liveTv.serverUnavailable' => '直播电视服务器不可用。',
-			'liveTv.serverNotConnected' => '直播电视服务器未连接。',
-			'liveTv.noPrograms' => '没有可用的节目数据',
-			'liveTv.liveStreamFailed' => '直播流失败',
-			'liveTv.unknownProgram' => '未知节目',
-			'liveTv.unknownHub' => '未知',
-			'liveTv.unknownError' => '未知错误',
-			'liveTv.channelNumber' => ({required Object number}) => '频道 ${number}',
-			'liveTv.unknownChannel' => '未知频道',
-			'liveTv.live' => '直播',
-			'liveTv.reloadGuide' => '重新加载节目指南',
-			'liveTv.now' => '现在',
-			'liveTv.today' => '今天',
-			'liveTv.tomorrow' => '明天',
-			'liveTv.midnight' => '午夜',
-			'liveTv.overnight' => '凌晨',
-			'liveTv.morning' => '上午',
-			'liveTv.daytime' => '白天',
-			'liveTv.evening' => '晚上',
-			'liveTv.lateNight' => '深夜',
-			'liveTv.whatsOn' => '正在播出',
-			'liveTv.watchChannel' => '观看频道',
-			'liveTv.favorites' => '收藏',
-			'liveTv.reorderFavorites' => '重新排序收藏',
-			'liveTv.favoritesLoadFailed' => '无法加载收藏。请检查网络连接后重试。',
-			'liveTv.favoritesUpdateFailed' => '无法更新收藏。请检查网络连接后重试。',
-			'liveTv.joinSession' => '加入正在进行的会话',
-			'liveTv.watchFromStart' => ({required Object minutes}) => '从头观看（${minutes}分钟前开始）',
-			'liveTv.watchLive' => '观看直播',
-			'liveTv.goToLive' => '跳至直播',
-			'liveTv.record' => '录制',
-			'liveTv.recordEpisode' => '录制单集',
-			'liveTv.recordSeries' => '录制系列节目',
-			'liveTv.recordOptions' => '录制选项',
-			'liveTv.saveTo' => '保存到',
-			'liveTv.recordings' => '录制内容',
-			'liveTv.scheduledRecordings' => '计划录制',
-			'liveTv.recordingRules' => '录制规则',
-			'liveTv.noScheduledRecordings' => '没有安排的录制',
-			'liveTv.manageRecording' => '管理录制',
-			'liveTv.cancelRecording' => '取消录制',
-			'liveTv.cancelRecordingTitle' => '取消此次录制？',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '将不再录制 ${title}。',
-			'liveTv.deleteRule' => '删除规则',
-			'liveTv.deleteRuleTitle' => '删除录制规则？',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '今后将不再录制 ${title} 的剧集。',
-			'liveTv.recordingScheduled' => '录制已安排',
-			'liveTv.alreadyScheduled' => '此节目已安排录制',
-			'liveTv.dvrAdminRequired' => 'DVR 设置需要管理员账户',
-			'liveTv.recordingFailed' => '无法安排录制',
-			'liveTv.recordingTargetMissing' => '无法确定录制库',
-			'liveTv.recordNotAvailable' => '此节目无法录制',
-			'liveTv.recordingCancelled' => '录制已取消',
-			'liveTv.recordingRuleDeleted' => '录制规则已删除',
-			'liveTv.processRecordingRules' => '重新评估规则',
-			'liveTv.recordingInProgress' => '正在录制',
-			'liveTv.recordingsCount' => ({required Object count}) => '已安排 ${count} 项录制',
-			'liveTv.editRule' => '编辑规则',
-			'liveTv.editRuleAction' => '编辑',
-			'liveTv.recordingRuleUpdated' => '录制规则已更新',
-			'liveTv.guideReloadRequested' => '已请求更新节目指南',
-			'liveTv.rulesProcessRequested' => '已请求重新评估规则',
-			'liveTv.recordShow' => '录制节目',
 			'collections.title' => '合集',
 			'collections.collection' => '合集',
 			'collections.empty' => '合集为空',
@@ -2968,8 +2816,6 @@ extension on TranslationsZh {
 			'downloads.backgroundWarning.bannerBlocked' => '离开应用后，下载将停止',
 			'downloads.backgroundWarning.bannerDegraded' => '后台下载可能受限',
 			'downloads.backgroundWarning.bannerAction' => '详情',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => '后台下载已被阻止',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '后台下载可能受限',
 			'downloads.backgroundWarning.sheetIntro' => 'Android 正在阻止 Plezy 在后台稳定下载。',
@@ -3041,6 +2887,8 @@ extension on TranslationsZh {
 			'performanceOverlay.sampleRate' => '采样率',
 			'performanceOverlay.pixelFormat' => '像素格式',
 			'performanceOverlay.hwFormat' => '硬件格式',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => '矩阵',
 			'performanceOverlay.primaries' => '基色',
 			'performanceOverlay.transfer' => '传递特性',

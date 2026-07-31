@@ -69,7 +69,6 @@ class TranslationsKo extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$ko licenses = _Translations$licenses$ko._(_root);
 	@override late final _Translations$navigation$ko navigation = _Translations$navigation$ko._(_root);
 	@override late final _Translations$explore$ko explore = _Translations$explore$ko._(_root);
-	@override late final _Translations$liveTv$ko liveTv = _Translations$liveTv$ko._(_root);
 	@override late final _Translations$collections$ko collections = _Translations$collections$ko._(_root);
 	@override late final _Translations$playlists$ko playlists = _Translations$playlists$ko._(_root);
 	@override late final _Translations$music$ko music = _Translations$music$ko._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get showNavBarLabels => '내비게이션 바 라벨 표시';
 	@override String get showNavBarLabelsDescription => '내비게이션 바 아이콘 아래에 텍스트 라벨을 표시합니다';
 	@override String get startupSection => '시작 섹션';
-	@override String get liveTvDefaultFavorites => '즐겨찾기 채널 기본 설정';
-	@override String get liveTvDefaultFavoritesDescription => '라이브 TV를 열 때 즐겨찾기 채널만 표시';
 	@override String get display => '디스플레이';
 	@override String get homeScreen => '홈 화면';
 	@override String get navigation => '탐색';
@@ -704,7 +701,6 @@ class _Translations$messages$ko extends Translations$messages$en {
 	@override String get removedFromContinueWatching => '계속 시청 목록에서 제거됨';
 	@override String errorLoading({required Object error}) => '오류: ${error}';
 	@override String get streamInterrupted => '스트림이 중단되었습니다. 재생을 누르거나 탐색하여 다시 시도하세요.';
-	@override String get liveStreamInterrupted => '라이브 스트림이 중단되었습니다. 재생을 눌러 다시 시도하세요.';
 	@override String get fileInfoNotAvailable => '파일 정보가 없습니다';
 	@override String get playbackAuthenticationRequired => '이 항목을 재생하려면 미디어 서버에 다시 로그인하세요.';
 	@override String get playbackServerUnavailable => '미디어 서버를 사용할 수 없습니다. 나중에 다시 시도하세요.';
@@ -1061,7 +1057,6 @@ class _Translations$navigation$ko extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => '미디어 라이브러리';
 	@override String get downloads => '다운로드';
-	@override String get liveTv => '실시간 TV';
 	@override String get explore => '탐색';
 }
 
@@ -1093,82 +1088,6 @@ class _Translations$explore$ko extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '「${query}」에 대한 결과가 없습니다';
 	@override String searchPrompt({required Object source}) => '${source}에서 영화와 TV 프로그램을 검색하세요.';
 	@override String get searchFailed => '검색에 실패했습니다. 연결을 확인하고 다시 시도하세요.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$ko extends Translations$liveTv$en {
-	_Translations$liveTv$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '실시간 TV';
-	@override String get guide => '편성표';
-	@override String get noChannels => '사용 가능한 채널이 없습니다';
-	@override String get noDvr => '서버에 DVR이 구성되어 있지 않습니다';
-	@override String get serverUnavailable => '라이브 TV 서버를 사용할 수 없습니다.';
-	@override String get serverNotConnected => '라이브 TV 서버에 연결되어 있지 않습니다.';
-	@override String get noPrograms => '프로그램 데이터가 없습니다';
-	@override String get liveStreamFailed => '라이브 스트림 실패';
-	@override String get unknownProgram => '알 수 없는 프로그램';
-	@override String get unknownHub => '알 수 없음';
-	@override String get unknownError => '알 수 없는 오류';
-	@override String channelNumber({required Object number}) => '채널 ${number}';
-	@override String get unknownChannel => '알 수 없는 채널';
-	@override String get live => '실시간';
-	@override String get reloadGuide => '편성표 새로고침';
-	@override String get now => '지금';
-	@override String get today => '오늘';
-	@override String get tomorrow => '내일';
-	@override String get midnight => '자정';
-	@override String get overnight => '심야';
-	@override String get morning => '아침';
-	@override String get daytime => '낮';
-	@override String get evening => '저녁';
-	@override String get lateNight => '심야 방송';
-	@override String get whatsOn => '지금 방송 중';
-	@override String get watchChannel => '채널 시청';
-	@override String get favorites => '즐겨찾기';
-	@override String get reorderFavorites => '즐겨찾기 순서 변경';
-	@override String get favoritesLoadFailed => '즐겨찾기를 불러올 수 없습니다. 연결을 확인하고 다시 시도하세요.';
-	@override String get favoritesUpdateFailed => '즐겨찾기를 업데이트할 수 없습니다. 연결을 확인하고 다시 시도하세요.';
-	@override String get joinSession => '진행 중인 세션 참여';
-	@override String watchFromStart({required Object minutes}) => '처음부터 시청 (${minutes}분 전 시작)';
-	@override String get watchLive => '실시간 시청';
-	@override String get goToLive => '실시간으로 이동';
-	@override String get record => '녹화';
-	@override String get recordEpisode => '에피소드 녹화';
-	@override String get recordSeries => '시리즈 녹화';
-	@override String get recordOptions => '녹화 옵션';
-	@override String get saveTo => '저장 위치';
-	@override String get recordings => '녹화';
-	@override String get scheduledRecordings => '예약됨';
-	@override String get recordingRules => '녹화 규칙';
-	@override String get noScheduledRecordings => '예약된 녹화 없음';
-	@override String get manageRecording => '녹화 관리';
-	@override String get cancelRecording => '녹화 취소';
-	@override String get cancelRecordingTitle => '이 녹화를 취소할까요?';
-	@override String cancelRecordingMessage({required Object title}) => '${title}이(가) 더 이상 녹화되지 않습니다.';
-	@override String get deleteRule => '규칙 삭제';
-	@override String get deleteRuleTitle => '녹화 규칙을 삭제할까요?';
-	@override String deleteRuleMessage({required Object title}) => '${title}의 향후 에피소드는 녹화되지 않습니다.';
-	@override String get recordingScheduled => '녹화 예약됨';
-	@override String get alreadyScheduled => '이 프로그램은 이미 예약되어 있습니다';
-	@override String get dvrAdminRequired => 'DVR 설정은 관리자 계정이 필요합니다';
-	@override String get recordingFailed => '녹화를 예약할 수 없습니다';
-	@override String get recordingTargetMissing => '녹화 라이브러리를 확인할 수 없습니다';
-	@override String get recordNotAvailable => '이 프로그램은 녹화할 수 없습니다';
-	@override String get recordingCancelled => '녹화 취소됨';
-	@override String get recordingRuleDeleted => '녹화 규칙 삭제됨';
-	@override String get processRecordingRules => '규칙 재평가';
-	@override String get recordingInProgress => '녹화 중';
-	@override String recordingsCount({required Object count}) => '${count}개 예약됨';
-	@override String get editRule => '규칙 편집';
-	@override String get editRuleAction => '편집';
-	@override String get recordingRuleUpdated => '녹화 규칙 업데이트됨';
-	@override String get guideReloadRequested => '가이드 새로고침 요청됨';
-	@override String get rulesProcessRequested => '규칙 재평가 요청됨';
-	@override String get recordShow => '프로그램 녹화';
 }
 
 // Path: collections
@@ -2243,8 +2162,6 @@ extension on TranslationsKo {
 			'settings.showNavBarLabels' => '내비게이션 바 라벨 표시',
 			'settings.showNavBarLabelsDescription' => '내비게이션 바 아이콘 아래에 텍스트 라벨을 표시합니다',
 			'settings.startupSection' => '시작 섹션',
-			'settings.liveTvDefaultFavorites' => '즐겨찾기 채널 기본 설정',
-			'settings.liveTvDefaultFavoritesDescription' => '라이브 TV를 열 때 즐겨찾기 채널만 표시',
 			'settings.display' => '디스플레이',
 			'settings.homeScreen' => '홈 화면',
 			'settings.navigation' => '탐색',
@@ -2446,7 +2363,6 @@ extension on TranslationsKo {
 			'messages.removedFromContinueWatching' => '계속 시청 목록에서 제거됨',
 			'messages.errorLoading' => ({required Object error}) => '오류: ${error}',
 			'messages.streamInterrupted' => '스트림이 중단되었습니다. 재생을 누르거나 탐색하여 다시 시도하세요.',
-			'messages.liveStreamInterrupted' => '라이브 스트림이 중단되었습니다. 재생을 눌러 다시 시도하세요.',
 			'messages.fileInfoNotAvailable' => '파일 정보가 없습니다',
 			'messages.playbackAuthenticationRequired' => '이 항목을 재생하려면 미디어 서버에 다시 로그인하세요.',
 			'messages.playbackServerUnavailable' => '미디어 서버를 사용할 수 없습니다. 나중에 다시 시도하세요.',
@@ -2454,11 +2370,11 @@ extension on TranslationsKo {
 			'messages.playbackCancelled' => '재생이 취소되었습니다.',
 			'messages.playbackFailed' => '재생을 시작할 수 없습니다.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => '파일 정보 로딩 중 오류: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => '시리즈 로딩 중 오류',
 			'messages.musicNotSupported' => '음악 재생 미지원',
 			'messages.noDescriptionAvailable' => '설명이 없습니다',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => '사용 가능한 프로필이 없습니다',
 			'messages.contactAdminForProfiles' => '프로필을 추가하려면 서버 관리자에게 문의하세요',
 			'messages.unableToDetermineLibrarySection' => '이 항목의 라이브러리 섹션을 확인할 수 없습니다',
@@ -2725,7 +2641,6 @@ extension on TranslationsKo {
 			'licenses.licensesCount' => ({required Object count}) => '${count}개의 라이선스',
 			'navigation.libraries' => '미디어 라이브러리',
 			'navigation.downloads' => '다운로드',
-			'navigation.liveTv' => '실시간 TV',
 			'navigation.explore' => '탐색',
 			'explore.title' => '탐색',
 			'explore.selectSource' => '소스 선택',
@@ -2762,73 +2677,6 @@ extension on TranslationsKo {
 			'explore.searchEmpty' => ({required Object query}) => '「${query}」에 대한 결과가 없습니다',
 			'explore.searchPrompt' => ({required Object source}) => '${source}에서 영화와 TV 프로그램을 검색하세요.',
 			'explore.searchFailed' => '검색에 실패했습니다. 연결을 확인하고 다시 시도하세요.',
-			'liveTv.title' => '실시간 TV',
-			'liveTv.guide' => '편성표',
-			'liveTv.noChannels' => '사용 가능한 채널이 없습니다',
-			'liveTv.noDvr' => '서버에 DVR이 구성되어 있지 않습니다',
-			'liveTv.serverUnavailable' => '라이브 TV 서버를 사용할 수 없습니다.',
-			'liveTv.serverNotConnected' => '라이브 TV 서버에 연결되어 있지 않습니다.',
-			'liveTv.noPrograms' => '프로그램 데이터가 없습니다',
-			'liveTv.liveStreamFailed' => '라이브 스트림 실패',
-			'liveTv.unknownProgram' => '알 수 없는 프로그램',
-			'liveTv.unknownHub' => '알 수 없음',
-			'liveTv.unknownError' => '알 수 없는 오류',
-			'liveTv.channelNumber' => ({required Object number}) => '채널 ${number}',
-			'liveTv.unknownChannel' => '알 수 없는 채널',
-			'liveTv.live' => '실시간',
-			'liveTv.reloadGuide' => '편성표 새로고침',
-			'liveTv.now' => '지금',
-			'liveTv.today' => '오늘',
-			'liveTv.tomorrow' => '내일',
-			'liveTv.midnight' => '자정',
-			'liveTv.overnight' => '심야',
-			'liveTv.morning' => '아침',
-			'liveTv.daytime' => '낮',
-			'liveTv.evening' => '저녁',
-			'liveTv.lateNight' => '심야 방송',
-			'liveTv.whatsOn' => '지금 방송 중',
-			'liveTv.watchChannel' => '채널 시청',
-			'liveTv.favorites' => '즐겨찾기',
-			'liveTv.reorderFavorites' => '즐겨찾기 순서 변경',
-			'liveTv.favoritesLoadFailed' => '즐겨찾기를 불러올 수 없습니다. 연결을 확인하고 다시 시도하세요.',
-			'liveTv.favoritesUpdateFailed' => '즐겨찾기를 업데이트할 수 없습니다. 연결을 확인하고 다시 시도하세요.',
-			'liveTv.joinSession' => '진행 중인 세션 참여',
-			'liveTv.watchFromStart' => ({required Object minutes}) => '처음부터 시청 (${minutes}분 전 시작)',
-			'liveTv.watchLive' => '실시간 시청',
-			'liveTv.goToLive' => '실시간으로 이동',
-			'liveTv.record' => '녹화',
-			'liveTv.recordEpisode' => '에피소드 녹화',
-			'liveTv.recordSeries' => '시리즈 녹화',
-			'liveTv.recordOptions' => '녹화 옵션',
-			'liveTv.saveTo' => '저장 위치',
-			'liveTv.recordings' => '녹화',
-			'liveTv.scheduledRecordings' => '예약됨',
-			'liveTv.recordingRules' => '녹화 규칙',
-			'liveTv.noScheduledRecordings' => '예약된 녹화 없음',
-			'liveTv.manageRecording' => '녹화 관리',
-			'liveTv.cancelRecording' => '녹화 취소',
-			'liveTv.cancelRecordingTitle' => '이 녹화를 취소할까요?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title}이(가) 더 이상 녹화되지 않습니다.',
-			'liveTv.deleteRule' => '규칙 삭제',
-			'liveTv.deleteRuleTitle' => '녹화 규칙을 삭제할까요?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title}의 향후 에피소드는 녹화되지 않습니다.',
-			'liveTv.recordingScheduled' => '녹화 예약됨',
-			'liveTv.alreadyScheduled' => '이 프로그램은 이미 예약되어 있습니다',
-			'liveTv.dvrAdminRequired' => 'DVR 설정은 관리자 계정이 필요합니다',
-			'liveTv.recordingFailed' => '녹화를 예약할 수 없습니다',
-			'liveTv.recordingTargetMissing' => '녹화 라이브러리를 확인할 수 없습니다',
-			'liveTv.recordNotAvailable' => '이 프로그램은 녹화할 수 없습니다',
-			'liveTv.recordingCancelled' => '녹화 취소됨',
-			'liveTv.recordingRuleDeleted' => '녹화 규칙 삭제됨',
-			'liveTv.processRecordingRules' => '규칙 재평가',
-			'liveTv.recordingInProgress' => '녹화 중',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count}개 예약됨',
-			'liveTv.editRule' => '규칙 편집',
-			'liveTv.editRuleAction' => '편집',
-			'liveTv.recordingRuleUpdated' => '녹화 규칙 업데이트됨',
-			'liveTv.guideReloadRequested' => '가이드 새로고침 요청됨',
-			'liveTv.rulesProcessRequested' => '규칙 재평가 요청됨',
-			'liveTv.recordShow' => '프로그램 녹화',
 			'collections.title' => '컬렉션',
 			'collections.collection' => '컬렉션',
 			'collections.empty' => '컬렉션이 비어 있습니다',
@@ -2968,8 +2816,6 @@ extension on TranslationsKo {
 			'downloads.backgroundWarning.bannerBlocked' => '앱에서 나가면 다운로드가 중지됩니다',
 			'downloads.backgroundWarning.bannerDegraded' => '백그라운드 다운로드가 제한될 수 있습니다',
 			'downloads.backgroundWarning.bannerAction' => '세부정보',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => '백그라운드 다운로드가 차단됨',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '백그라운드 다운로드가 제한될 수 있음',
 			'downloads.backgroundWarning.sheetIntro' => 'Android가 Plezy의 안정적인 백그라운드 다운로드를 차단하고 있습니다.',
@@ -3041,6 +2887,8 @@ extension on TranslationsKo {
 			'performanceOverlay.sampleRate' => '샘플 레이트',
 			'performanceOverlay.pixelFormat' => '픽셀 형식',
 			'performanceOverlay.hwFormat' => 'HW 형식',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => '매트릭스',
 			'performanceOverlay.primaries' => '원색',
 			'performanceOverlay.transfer' => '전송',

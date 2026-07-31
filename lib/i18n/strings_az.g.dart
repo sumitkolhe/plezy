@@ -69,7 +69,6 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$az licenses = _Translations$licenses$az._(_root);
 	@override late final _Translations$navigation$az navigation = _Translations$navigation$az._(_root);
 	@override late final _Translations$explore$az explore = _Translations$explore$az._(_root);
-	@override late final _Translations$liveTv$az liveTv = _Translations$liveTv$az._(_root);
 	@override late final _Translations$collections$az collections = _Translations$collections$az._(_root);
 	@override late final _Translations$playlists$az playlists = _Translations$playlists$az._(_root);
 	@override late final _Translations$music$az music = _Translations$music$az._(_root);
@@ -442,8 +441,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Naviqasiya paneli yazılarını göstər';
 	@override String get showNavBarLabelsDescription => 'Naviqasiya paneli ikonlarının altında mətni göstər';
 	@override String get startupSection => 'Başlanğıc bölməsi';
-	@override String get liveTvDefaultFavorites => 'Canlı TV-də sevimli kanalları defolt et';
-	@override String get liveTvDefaultFavoritesDescription => 'Canlı TV açıldıqda yalnız sevimli kanalları göstər';
 	@override String get display => 'Ekran';
 	@override String get homeScreen => 'Ana ekran';
 	@override String get navigation => 'Naviqasiya';
@@ -709,7 +706,6 @@ class _Translations$messages$az extends Translations$messages$en {
 	@override String errorLoading({required Object error}) => 'Xəta: ${error}';
 	@override String get searchPartialResults => 'Bəzi media serverlərində axtarış aparıla bilmədi. Mövcud nəticələr göstərilir.';
 	@override String get streamInterrupted => 'Yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.';
-	@override String get liveStreamInterrupted => 'Canlı yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.';
 	@override String get fileInfoNotAvailable => 'Fayl məlumatı əlçatan deyil';
 	@override String get playbackAuthenticationRequired => 'Bu elementi oynatmaq üçün media serverinə yenidən daxil olun.';
 	@override String get playbackServerUnavailable => 'Media serveri əlçatan deyil. Sonra təzədən cəhd edin.';
@@ -1067,7 +1063,6 @@ class _Translations$navigation$az extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Kitabxanalar';
 	@override String get downloads => 'Yükləmələr';
-	@override String get liveTv => 'Canlı TV';
 	@override String get explore => 'Kəşf et';
 }
 
@@ -1100,82 +1095,6 @@ class _Translations$explore$az extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '"${query}" üçün nəticə tapılmadı';
 	@override String searchPrompt({required Object source}) => '${source} vasitəsilə kino və seriallar axtarın.';
 	@override String get searchFailed => 'Axtarış uğursuz oldu. Bağlantınızı yoxlayın.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$az extends Translations$liveTv$en {
-	_Translations$liveTv$az._(TranslationsAz root) : this._root = root, super.internal(root);
-
-	final TranslationsAz _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Canlı TV';
-	@override String get guide => 'Bələdçi';
-	@override String get noChannels => 'Əlçatan kanal yoxdur';
-	@override String get noDvr => 'Serverdə DVR tənzimlənməyib';
-	@override String get serverUnavailable => 'Canlı TV serveri əlçatan deyil.';
-	@override String get serverNotConnected => 'Canlı TV serverinə qoşulmayıb.';
-	@override String get noPrograms => 'Proqram məlumatı yoxdur';
-	@override String get liveStreamFailed => 'Canlı yayım uğursuz oldu';
-	@override String get unknownProgram => 'Bilinməyən proqram';
-	@override String get unknownHub => 'Məlum deyil';
-	@override String get unknownError => 'Bilinməyən xəta';
-	@override String channelNumber({required Object number}) => 'Kanal ${number}';
-	@override String get unknownChannel => 'Bilinməyən kanal';
-	@override String get live => 'CANLI';
-	@override String get reloadGuide => 'Bələdçini yenilə';
-	@override String get now => 'İndi';
-	@override String get today => 'Bu gün';
-	@override String get tomorrow => 'Sabah';
-	@override String get midnight => 'Gecə yarısı';
-	@override String get overnight => 'Gecə boyu';
-	@override String get morning => 'Səhər';
-	@override String get daytime => 'Gündüz';
-	@override String get evening => 'Axşam';
-	@override String get lateNight => 'Gecə vaxtı';
-	@override String get whatsOn => 'İndi nə var?';
-	@override String get watchChannel => 'Kanala bax';
-	@override String get favorites => 'Sevimlilər';
-	@override String get reorderFavorites => 'Sevimliləri yenidən sırala';
-	@override String get favoritesLoadFailed => 'Sevimlilər yüklənə bilmədi.';
-	@override String get favoritesUpdateFailed => 'Sevimlilər yenilənə bilmədi.';
-	@override String get joinSession => 'Davam edən seansa qoşul';
-	@override String watchFromStart({required Object minutes}) => 'Əvvəldən bax (${minutes} dəq əvvəl)';
-	@override String get watchLive => 'Canlı bax';
-	@override String get goToLive => 'Canlı yayıma keç';
-	@override String get record => 'Yaz';
-	@override String get recordEpisode => 'Seriyanı yaz';
-	@override String get recordSeries => 'Serialı yaz';
-	@override String get recordOptions => 'Yazma seçimləri';
-	@override String get saveTo => 'Buraya saxla';
-	@override String get recordings => 'Yazılmışlar';
-	@override String get scheduledRecordings => 'Planlaşdırılmışlar';
-	@override String get recordingRules => 'Yazma qaydaları';
-	@override String get noScheduledRecordings => 'Yazılacaq heç nə planlaşdırılmayıb';
-	@override String get manageRecording => 'Yazmanı idarə et';
-	@override String get cancelRecording => 'Yazmanı ləğv et';
-	@override String get cancelRecordingTitle => 'Bu yazma ləğv edilsin?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} artıq yazılmayacaq.';
-	@override String get deleteRule => 'Qaydanı sil';
-	@override String get deleteRuleTitle => 'Yazma qaydası silinsin?';
-	@override String deleteRuleMessage({required Object title}) => '${title} serialının gələcək seriyaları yazılmayacaq.';
-	@override String get recordingScheduled => 'Yazma planlaşdırıldı';
-	@override String get alreadyScheduled => 'Bu proqram artıq planlaşdırılıb';
-	@override String get dvrAdminRequired => 'DVR tənzimləmələri inzibatçı hesabı tələb edir';
-	@override String get recordingFailed => 'Yazma planlaşdırıla bilmədi';
-	@override String get recordingTargetMissing => 'Yazma kitabxanası müəyyən edilə bilmədi';
-	@override String get recordNotAvailable => 'Bu proqram üçün yazma əlçatan deyil';
-	@override String get recordingCancelled => 'Yazma ləğv edildi';
-	@override String get recordingRuleDeleted => 'Yazma qaydası silindi';
-	@override String get processRecordingRules => 'Qaydaları yenidən qiymətləndir';
-	@override String get recordingInProgress => 'İndi yazılır';
-	@override String recordingsCount({required Object count}) => '${count} planlaşdırılıb';
-	@override String get editRule => 'Qaydanı dəyişdir';
-	@override String get editRuleAction => 'Düzəliş et';
-	@override String get recordingRuleUpdated => 'Yazma qaydası yeniləndi';
-	@override String get guideReloadRequested => 'Bələdçi yenilənməsi tələb olundu';
-	@override String get rulesProcessRequested => 'Qaydaların yenidən qiymətləndirilməsi tələb olundu';
-	@override String get recordShow => 'Şounu yaz';
 }
 
 // Path: collections
@@ -2260,8 +2179,6 @@ extension on TranslationsAz {
 			'settings.showNavBarLabels' => 'Naviqasiya paneli yazılarını göstər',
 			'settings.showNavBarLabelsDescription' => 'Naviqasiya paneli ikonlarının altında mətni göstər',
 			'settings.startupSection' => 'Başlanğıc bölməsi',
-			'settings.liveTvDefaultFavorites' => 'Canlı TV-də sevimli kanalları defolt et',
-			'settings.liveTvDefaultFavoritesDescription' => 'Canlı TV açıldıqda yalnız sevimli kanalları göstər',
 			'settings.display' => 'Ekran',
 			'settings.homeScreen' => 'Ana ekran',
 			'settings.navigation' => 'Naviqasiya',
@@ -2464,15 +2381,14 @@ extension on TranslationsAz {
 			'messages.errorLoading' => ({required Object error}) => 'Xəta: ${error}',
 			'messages.searchPartialResults' => 'Bəzi media serverlərində axtarış aparıla bilmədi. Mövcud nəticələr göstərilir.',
 			'messages.streamInterrupted' => 'Yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.',
-			'messages.liveStreamInterrupted' => 'Canlı yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.',
 			'messages.fileInfoNotAvailable' => 'Fayl məlumatı əlçatan deyil',
 			'messages.playbackAuthenticationRequired' => 'Bu elementi oynatmaq üçün media serverinə yenidən daxil olun.',
 			'messages.playbackServerUnavailable' => 'Media serveri əlçatan deyil. Sonra təzədən cəhd edin.',
-			_ => null,
-		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Server yanlış oynatma məlumatı qaytardı.',
 			'messages.playbackCancelled' => 'Oynatma ləğv edildi.',
 			'messages.playbackFailed' => 'Oynatma başladılarkən xəta.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl məlumatı yüklənərkən xəta: ${error}',
 			'messages.errorLoadingSeries' => 'Serial yüklənərkən xəta',
 			'messages.musicNotSupported' => 'Musiqi oynatması hələ dəstəklənmir',
@@ -2744,7 +2660,6 @@ extension on TranslationsAz {
 			'licenses.licensesCount' => ({required Object count}) => '${count} lisenziya',
 			'navigation.libraries' => 'Kitabxanalar',
 			'navigation.downloads' => 'Yükləmələr',
-			'navigation.liveTv' => 'Canlı TV',
 			'navigation.explore' => 'Kəşf et',
 			'explore.title' => 'Kəşf et',
 			'explore.selectSource' => 'Mənbə seçin',
@@ -2781,73 +2696,6 @@ extension on TranslationsAz {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" üçün nəticə tapılmadı',
 			'explore.searchPrompt' => ({required Object source}) => '${source} vasitəsilə kino və seriallar axtarın.',
 			'explore.searchFailed' => 'Axtarış uğursuz oldu. Bağlantınızı yoxlayın.',
-			'liveTv.title' => 'Canlı TV',
-			'liveTv.guide' => 'Bələdçi',
-			'liveTv.noChannels' => 'Əlçatan kanal yoxdur',
-			'liveTv.noDvr' => 'Serverdə DVR tənzimlənməyib',
-			'liveTv.serverUnavailable' => 'Canlı TV serveri əlçatan deyil.',
-			'liveTv.serverNotConnected' => 'Canlı TV serverinə qoşulmayıb.',
-			'liveTv.noPrograms' => 'Proqram məlumatı yoxdur',
-			'liveTv.liveStreamFailed' => 'Canlı yayım uğursuz oldu',
-			'liveTv.unknownProgram' => 'Bilinməyən proqram',
-			'liveTv.unknownHub' => 'Məlum deyil',
-			'liveTv.unknownError' => 'Bilinməyən xəta',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanal ${number}',
-			'liveTv.unknownChannel' => 'Bilinməyən kanal',
-			'liveTv.live' => 'CANLI',
-			'liveTv.reloadGuide' => 'Bələdçini yenilə',
-			'liveTv.now' => 'İndi',
-			'liveTv.today' => 'Bu gün',
-			'liveTv.tomorrow' => 'Sabah',
-			'liveTv.midnight' => 'Gecə yarısı',
-			'liveTv.overnight' => 'Gecə boyu',
-			'liveTv.morning' => 'Səhər',
-			'liveTv.daytime' => 'Gündüz',
-			'liveTv.evening' => 'Axşam',
-			'liveTv.lateNight' => 'Gecə vaxtı',
-			'liveTv.whatsOn' => 'İndi nə var?',
-			'liveTv.watchChannel' => 'Kanala bax',
-			'liveTv.favorites' => 'Sevimlilər',
-			'liveTv.reorderFavorites' => 'Sevimliləri yenidən sırala',
-			'liveTv.favoritesLoadFailed' => 'Sevimlilər yüklənə bilmədi.',
-			'liveTv.favoritesUpdateFailed' => 'Sevimlilər yenilənə bilmədi.',
-			'liveTv.joinSession' => 'Davam edən seansa qoşul',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Əvvəldən bax (${minutes} dəq əvvəl)',
-			'liveTv.watchLive' => 'Canlı bax',
-			'liveTv.goToLive' => 'Canlı yayıma keç',
-			'liveTv.record' => 'Yaz',
-			'liveTv.recordEpisode' => 'Seriyanı yaz',
-			'liveTv.recordSeries' => 'Serialı yaz',
-			'liveTv.recordOptions' => 'Yazma seçimləri',
-			'liveTv.saveTo' => 'Buraya saxla',
-			'liveTv.recordings' => 'Yazılmışlar',
-			'liveTv.scheduledRecordings' => 'Planlaşdırılmışlar',
-			'liveTv.recordingRules' => 'Yazma qaydaları',
-			'liveTv.noScheduledRecordings' => 'Yazılacaq heç nə planlaşdırılmayıb',
-			'liveTv.manageRecording' => 'Yazmanı idarə et',
-			'liveTv.cancelRecording' => 'Yazmanı ləğv et',
-			'liveTv.cancelRecordingTitle' => 'Bu yazma ləğv edilsin?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} artıq yazılmayacaq.',
-			'liveTv.deleteRule' => 'Qaydanı sil',
-			'liveTv.deleteRuleTitle' => 'Yazma qaydası silinsin?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title} serialının gələcək seriyaları yazılmayacaq.',
-			'liveTv.recordingScheduled' => 'Yazma planlaşdırıldı',
-			'liveTv.alreadyScheduled' => 'Bu proqram artıq planlaşdırılıb',
-			'liveTv.dvrAdminRequired' => 'DVR tənzimləmələri inzibatçı hesabı tələb edir',
-			'liveTv.recordingFailed' => 'Yazma planlaşdırıla bilmədi',
-			'liveTv.recordingTargetMissing' => 'Yazma kitabxanası müəyyən edilə bilmədi',
-			'liveTv.recordNotAvailable' => 'Bu proqram üçün yazma əlçatan deyil',
-			'liveTv.recordingCancelled' => 'Yazma ləğv edildi',
-			'liveTv.recordingRuleDeleted' => 'Yazma qaydası silindi',
-			'liveTv.processRecordingRules' => 'Qaydaları yenidən qiymətləndir',
-			'liveTv.recordingInProgress' => 'İndi yazılır',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} planlaşdırılıb',
-			'liveTv.editRule' => 'Qaydanı dəyişdir',
-			'liveTv.editRuleAction' => 'Düzəliş et',
-			'liveTv.recordingRuleUpdated' => 'Yazma qaydası yeniləndi',
-			'liveTv.guideReloadRequested' => 'Bələdçi yenilənməsi tələb olundu',
-			'liveTv.rulesProcessRequested' => 'Qaydaların yenidən qiymətləndirilməsi tələb olundu',
-			'liveTv.recordShow' => 'Şounu yaz',
 			'collections.title' => 'Kolleksiyalar',
 			'collections.collection' => 'Kolleksiya',
 			'collections.empty' => 'Kolleksiya boşdur',
@@ -2982,8 +2830,6 @@ extension on TranslationsAz {
 			'downloads.editEpisodeCount' => 'Seriya sayı',
 			'downloads.editSyncFilter' => 'Eyniləşdirmə filtri',
 			'downloads.syncAllItems' => 'Bütün elementlər eyniləşdirilir',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'Baxılmayan elementlər eyniləşdirilir',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Server: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Əlçatandır',
@@ -3055,6 +2901,8 @@ extension on TranslationsAz {
 			'performanceOverlay.performance' => 'Məhsuldarlıq',
 			'performanceOverlay.buffer' => 'Bufer',
 			'performanceOverlay.app' => 'Tətbiq',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Xam çözücü',
 			'performanceOverlay.tunneling' => 'Tünelləmə',

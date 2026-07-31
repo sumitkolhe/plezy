@@ -69,7 +69,6 @@ class TranslationsUz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$uz licenses = _Translations$licenses$uz._(_root);
 	@override late final _Translations$navigation$uz navigation = _Translations$navigation$uz._(_root);
 	@override late final _Translations$explore$uz explore = _Translations$explore$uz._(_root);
-	@override late final _Translations$liveTv$uz liveTv = _Translations$liveTv$uz._(_root);
 	@override late final _Translations$collections$uz collections = _Translations$collections$uz._(_root);
 	@override late final _Translations$playlists$uz playlists = _Translations$playlists$uz._(_root);
 	@override late final _Translations$music$uz music = _Translations$music$uz._(_root);
@@ -442,8 +441,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Navigatsiya paneli matnlarini koʻrsatish';
 	@override String get showNavBarLabelsDescription => 'Navigatsiya belgilarining ostida matnni koʻrsatish';
 	@override String get startupSection => 'Boshlangʻich boʻlim';
-	@override String get liveTvDefaultFavorites => 'Jonli TV-da tanlangan kanallarni standart qilish';
-	@override String get liveTvDefaultFavoritesDescription => 'Jonli TV ochilganda faqat tanlangan kanallarni koʻrsatish';
 	@override String get display => 'Displey';
 	@override String get homeScreen => 'Bosh ekran';
 	@override String get navigation => 'Navigatsiya';
@@ -709,7 +706,6 @@ class _Translations$messages$uz extends Translations$messages$en {
 	@override String errorLoading({required Object error}) => 'Xatolik: ${error}';
 	@override String get searchPartialResults => 'Baʼzi media serverlarda qidiruv amalga oshmadi. Mavjud natijalar koʻrsatilmoqda.';
 	@override String get streamInterrupted => 'Oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.';
-	@override String get liveStreamInterrupted => 'Jonli oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.';
 	@override String get fileInfoNotAvailable => 'Fayl haqida maʼlumot mavjud emas';
 	@override String get playbackAuthenticationRequired => 'Ushbu elementni ijro etish uchun serverga qaytadan kiring.';
 	@override String get playbackServerUnavailable => 'Media serveri mavjud emas. Keyinroq qaytadan urinib koʻring.';
@@ -1067,7 +1063,6 @@ class _Translations$navigation$uz extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Kutubxonalar';
 	@override String get downloads => 'Yuklamalar';
-	@override String get liveTv => 'Jonli TV';
 	@override String get explore => 'Kashf qilish';
 }
 
@@ -1100,82 +1095,6 @@ class _Translations$explore$uz extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => '"${query}" boʻyicha natija topilmadi';
 	@override String searchPrompt({required Object source}) => '${source} orqali filmlar va seriallarni qidiring.';
 	@override String get searchFailed => 'Qidiruv xatoligi. Ulanishni tekshiring.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$uz extends Translations$liveTv$en {
-	_Translations$liveTv$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Jonli TV';
-	@override String get guide => 'Dasturlar jadvali';
-	@override String get noChannels => 'Mavjud kanallar yoʻq';
-	@override String get noDvr => 'Serverda DVR sozlanmagan';
-	@override String get serverUnavailable => 'Jonli TV serveri mavjud emas.';
-	@override String get serverNotConnected => 'Jonli TV serveriga ulanmagan.';
-	@override String get noPrograms => 'Dastur haqida maʼlumot yoʻq';
-	@override String get liveStreamFailed => 'Jonli oqim xatoligi';
-	@override String get unknownProgram => 'Nomaʼlum dastur';
-	@override String get unknownHub => 'Nomaʼlum';
-	@override String get unknownError => 'Nomaʼlum xatolik';
-	@override String channelNumber({required Object number}) => '${number}-kanal';
-	@override String get unknownChannel => 'Nomaʼlum kanal';
-	@override String get live => 'JONLI EFIR';
-	@override String get reloadGuide => 'Jadvalni yangilash';
-	@override String get now => 'Hozir';
-	@override String get today => 'Bugun';
-	@override String get tomorrow => 'Ertaga';
-	@override String get midnight => 'Yarim tun';
-	@override String get overnight => 'Tunda';
-	@override String get morning => 'Ertalab';
-	@override String get daytime => 'Kunduzi';
-	@override String get evening => 'Kechqurun';
-	@override String get lateNight => 'Tunda';
-	@override String get whatsOn => 'Hozir nima efirda?';
-	@override String get watchChannel => 'Kanalni tomosha qilish';
-	@override String get favorites => 'Tanlanganlar';
-	@override String get reorderFavorites => 'Tanlanganlarni tartiblash';
-	@override String get favoritesLoadFailed => 'Tanlanganlarni yuklab boʻlmadi.';
-	@override String get favoritesUpdateFailed => 'Tanlanganlarni yangilab boʻlmadi.';
-	@override String get joinSession => 'Seansga qoʻshilish';
-	@override String watchFromStart({required Object minutes}) => 'Boshidan tomosha qilish (${minutes} daq ilgari)';
-	@override String get watchLive => 'Jonli efirni tomosha qilish';
-	@override String get goToLive => 'Jonli efirga oʻtish';
-	@override String get record => 'Yozib olish';
-	@override String get recordEpisode => 'Qismni yozib olish';
-	@override String get recordSeries => 'Serialni yozib olish';
-	@override String get recordOptions => 'Yozib olish parametrlari';
-	@override String get saveTo => 'Shu yerga saqlash';
-	@override String get recordings => 'Yozib olinganlar';
-	@override String get scheduledRecordings => 'Rejalashtirilganlar';
-	@override String get recordingRules => 'Yozib olish qoidalari';
-	@override String get noScheduledRecordings => 'Rejalashtirilgan yozuvlar yoʻq';
-	@override String get manageRecording => 'Yozuvni boshqarish';
-	@override String get cancelRecording => 'Yozishni bekor qilish';
-	@override String get cancelRecordingTitle => 'Yozish toʻxtatilsinmi?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} endi yozib olinmaydi.';
-	@override String get deleteRule => 'Qoidani oʻchirish';
-	@override String get deleteRuleTitle => 'Yozib olish qoidasi oʻchirilsinmi?';
-	@override String deleteRuleMessage({required Object title}) => '${title} serialining keyingi qismlari yozib olinmaydi.';
-	@override String get recordingScheduled => 'Yozib olish rejalashtirildi';
-	@override String get alreadyScheduled => 'Ushbu dastur avvaldan rejalashtirilgan';
-	@override String get dvrAdminRequired => 'DVR sozlamalari administrator huquqini talab qiladi';
-	@override String get recordingFailed => 'Yozib olishni rejalashtirib boʻlmadi';
-	@override String get recordingTargetMissing => 'Yozib olinadigan kutubxona aniqlanmadi';
-	@override String get recordNotAvailable => 'Ushbu dasturni yozib olib boʻlmaydi';
-	@override String get recordingCancelled => 'Yozib olish bekor qilindi';
-	@override String get recordingRuleDeleted => 'Yozib olish qoidasi oʻchirildi';
-	@override String get processRecordingRules => 'Qoidalarni qayta baholash';
-	@override String get recordingInProgress => 'Hozir yozib olinmoqda';
-	@override String recordingsCount({required Object count}) => '${count} rejalashtirilgan';
-	@override String get editRule => 'Qoidani tahrirlash';
-	@override String get editRuleAction => 'Tahrirlash';
-	@override String get recordingRuleUpdated => 'Yozib olish qoidasi yangilandi';
-	@override String get guideReloadRequested => 'Jadvalni yangilash soʻraldi';
-	@override String get rulesProcessRequested => 'Qoidalarni qayta baholash soʻraldi';
-	@override String get recordShow => 'Shouni yozib olish';
 }
 
 // Path: collections
@@ -2260,8 +2179,6 @@ extension on TranslationsUz {
 			'settings.showNavBarLabels' => 'Navigatsiya paneli matnlarini koʻrsatish',
 			'settings.showNavBarLabelsDescription' => 'Navigatsiya belgilarining ostida matnni koʻrsatish',
 			'settings.startupSection' => 'Boshlangʻich boʻlim',
-			'settings.liveTvDefaultFavorites' => 'Jonli TV-da tanlangan kanallarni standart qilish',
-			'settings.liveTvDefaultFavoritesDescription' => 'Jonli TV ochilganda faqat tanlangan kanallarni koʻrsatish',
 			'settings.display' => 'Displey',
 			'settings.homeScreen' => 'Bosh ekran',
 			'settings.navigation' => 'Navigatsiya',
@@ -2464,15 +2381,14 @@ extension on TranslationsUz {
 			'messages.errorLoading' => ({required Object error}) => 'Xatolik: ${error}',
 			'messages.searchPartialResults' => 'Baʼzi media serverlarda qidiruv amalga oshmadi. Mavjud natijalar koʻrsatilmoqda.',
 			'messages.streamInterrupted' => 'Oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.',
-			'messages.liveStreamInterrupted' => 'Jonli oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.',
 			'messages.fileInfoNotAvailable' => 'Fayl haqida maʼlumot mavjud emas',
 			'messages.playbackAuthenticationRequired' => 'Ushbu elementni ijro etish uchun serverga qaytadan kiring.',
 			'messages.playbackServerUnavailable' => 'Media serveri mavjud emas. Keyinroq qaytadan urinib koʻring.',
-			_ => null,
-		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Server notoʻgʻri ijro maʼlumotlarini qaytardi.',
 			'messages.playbackCancelled' => 'Ijro bekor qilindi.',
 			'messages.playbackFailed' => 'Ijroni ishga tushirishda xatolik.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl maʼlumotlarini yuklashda xatolik: ${error}',
 			'messages.errorLoadingSeries' => 'Serialni yuklashda xatolik',
 			'messages.musicNotSupported' => 'Musiqa ijrosi hali qoʻllab-quvvatlanmaydi',
@@ -2744,7 +2660,6 @@ extension on TranslationsUz {
 			'licenses.licensesCount' => ({required Object count}) => '${count} litsenziya',
 			'navigation.libraries' => 'Kutubxonalar',
 			'navigation.downloads' => 'Yuklamalar',
-			'navigation.liveTv' => 'Jonli TV',
 			'navigation.explore' => 'Kashf qilish',
 			'explore.title' => 'Kashf qilish',
 			'explore.selectSource' => 'Manbani tanlang',
@@ -2781,73 +2696,6 @@ extension on TranslationsUz {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" boʻyicha natija topilmadi',
 			'explore.searchPrompt' => ({required Object source}) => '${source} orqali filmlar va seriallarni qidiring.',
 			'explore.searchFailed' => 'Qidiruv xatoligi. Ulanishni tekshiring.',
-			'liveTv.title' => 'Jonli TV',
-			'liveTv.guide' => 'Dasturlar jadvali',
-			'liveTv.noChannels' => 'Mavjud kanallar yoʻq',
-			'liveTv.noDvr' => 'Serverda DVR sozlanmagan',
-			'liveTv.serverUnavailable' => 'Jonli TV serveri mavjud emas.',
-			'liveTv.serverNotConnected' => 'Jonli TV serveriga ulanmagan.',
-			'liveTv.noPrograms' => 'Dastur haqida maʼlumot yoʻq',
-			'liveTv.liveStreamFailed' => 'Jonli oqim xatoligi',
-			'liveTv.unknownProgram' => 'Nomaʼlum dastur',
-			'liveTv.unknownHub' => 'Nomaʼlum',
-			'liveTv.unknownError' => 'Nomaʼlum xatolik',
-			'liveTv.channelNumber' => ({required Object number}) => '${number}-kanal',
-			'liveTv.unknownChannel' => 'Nomaʼlum kanal',
-			'liveTv.live' => 'JONLI EFIR',
-			'liveTv.reloadGuide' => 'Jadvalni yangilash',
-			'liveTv.now' => 'Hozir',
-			'liveTv.today' => 'Bugun',
-			'liveTv.tomorrow' => 'Ertaga',
-			'liveTv.midnight' => 'Yarim tun',
-			'liveTv.overnight' => 'Tunda',
-			'liveTv.morning' => 'Ertalab',
-			'liveTv.daytime' => 'Kunduzi',
-			'liveTv.evening' => 'Kechqurun',
-			'liveTv.lateNight' => 'Tunda',
-			'liveTv.whatsOn' => 'Hozir nima efirda?',
-			'liveTv.watchChannel' => 'Kanalni tomosha qilish',
-			'liveTv.favorites' => 'Tanlanganlar',
-			'liveTv.reorderFavorites' => 'Tanlanganlarni tartiblash',
-			'liveTv.favoritesLoadFailed' => 'Tanlanganlarni yuklab boʻlmadi.',
-			'liveTv.favoritesUpdateFailed' => 'Tanlanganlarni yangilab boʻlmadi.',
-			'liveTv.joinSession' => 'Seansga qoʻshilish',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Boshidan tomosha qilish (${minutes} daq ilgari)',
-			'liveTv.watchLive' => 'Jonli efirni tomosha qilish',
-			'liveTv.goToLive' => 'Jonli efirga oʻtish',
-			'liveTv.record' => 'Yozib olish',
-			'liveTv.recordEpisode' => 'Qismni yozib olish',
-			'liveTv.recordSeries' => 'Serialni yozib olish',
-			'liveTv.recordOptions' => 'Yozib olish parametrlari',
-			'liveTv.saveTo' => 'Shu yerga saqlash',
-			'liveTv.recordings' => 'Yozib olinganlar',
-			'liveTv.scheduledRecordings' => 'Rejalashtirilganlar',
-			'liveTv.recordingRules' => 'Yozib olish qoidalari',
-			'liveTv.noScheduledRecordings' => 'Rejalashtirilgan yozuvlar yoʻq',
-			'liveTv.manageRecording' => 'Yozuvni boshqarish',
-			'liveTv.cancelRecording' => 'Yozishni bekor qilish',
-			'liveTv.cancelRecordingTitle' => 'Yozish toʻxtatilsinmi?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} endi yozib olinmaydi.',
-			'liveTv.deleteRule' => 'Qoidani oʻchirish',
-			'liveTv.deleteRuleTitle' => 'Yozib olish qoidasi oʻchirilsinmi?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => '${title} serialining keyingi qismlari yozib olinmaydi.',
-			'liveTv.recordingScheduled' => 'Yozib olish rejalashtirildi',
-			'liveTv.alreadyScheduled' => 'Ushbu dastur avvaldan rejalashtirilgan',
-			'liveTv.dvrAdminRequired' => 'DVR sozlamalari administrator huquqini talab qiladi',
-			'liveTv.recordingFailed' => 'Yozib olishni rejalashtirib boʻlmadi',
-			'liveTv.recordingTargetMissing' => 'Yozib olinadigan kutubxona aniqlanmadi',
-			'liveTv.recordNotAvailable' => 'Ushbu dasturni yozib olib boʻlmaydi',
-			'liveTv.recordingCancelled' => 'Yozib olish bekor qilindi',
-			'liveTv.recordingRuleDeleted' => 'Yozib olish qoidasi oʻchirildi',
-			'liveTv.processRecordingRules' => 'Qoidalarni qayta baholash',
-			'liveTv.recordingInProgress' => 'Hozir yozib olinmoqda',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} rejalashtirilgan',
-			'liveTv.editRule' => 'Qoidani tahrirlash',
-			'liveTv.editRuleAction' => 'Tahrirlash',
-			'liveTv.recordingRuleUpdated' => 'Yozib olish qoidasi yangilandi',
-			'liveTv.guideReloadRequested' => 'Jadvalni yangilash soʻraldi',
-			'liveTv.rulesProcessRequested' => 'Qoidalarni qayta baholash soʻraldi',
-			'liveTv.recordShow' => 'Shouni yozib olish',
 			'collections.title' => 'Toʻplamlar',
 			'collections.collection' => 'Toʻplam',
 			'collections.empty' => 'Toʻplam boʻsh',
@@ -2982,8 +2830,6 @@ extension on TranslationsUz {
 			'downloads.editEpisodeCount' => 'Qismlar soni',
 			'downloads.editSyncFilter' => 'Sinxronlash filtri',
 			'downloads.syncAllItems' => 'Barcha elementlar sinxronlanadi',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'Koʻrilmagan elementlar sinxronlanadi',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Server: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Mavjud',
@@ -3055,6 +2901,8 @@ extension on TranslationsUz {
 			'performanceOverlay.performance' => 'Unumdorlik',
 			'performanceOverlay.buffer' => 'Bufer',
 			'performanceOverlay.app' => 'Ilova',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Dekoder',
 			'performanceOverlay.rawDecoder' => 'Ishlov berilmagan dekoder',
 			'performanceOverlay.tunneling' => 'Tunnellash',

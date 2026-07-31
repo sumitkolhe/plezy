@@ -70,7 +70,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$licenses$en licenses = Translations$licenses$en.internal(_root);
 	late final Translations$navigation$en navigation = Translations$navigation$en.internal(_root);
 	late final Translations$explore$en explore = Translations$explore$en.internal(_root);
-	late final Translations$liveTv$en liveTv = Translations$liveTv$en.internal(_root);
 	late final Translations$collections$en collections = Translations$collections$en.internal(_root);
 	late final Translations$playlists$en playlists = Translations$playlists$en.internal(_root);
 	late final Translations$music$en music = Translations$music$en.internal(_root);
@@ -1052,12 +1051,6 @@ class Translations$settings$en {
 	/// en: 'Startup Section'
 	String get startupSection => 'Startup Section';
 
-	/// en: 'Default to Favorite Channels'
-	String get liveTvDefaultFavorites => 'Default to Favorite Channels';
-
-	/// en: 'Show only favorite channels when opening Live TV'
-	String get liveTvDefaultFavoritesDescription => 'Show only favorite channels when opening Live TV';
-
 	/// en: 'Display'
 	String get display => 'Display';
 
@@ -1938,9 +1931,6 @@ class Translations$messages$en {
 	/// en: 'The stream was interrupted. Press play or seek to retry.'
 	String get streamInterrupted => 'The stream was interrupted. Press play or seek to retry.';
 
-	/// en: 'The live stream was interrupted. Press play to retry.'
-	String get liveStreamInterrupted => 'The live stream was interrupted. Press play to retry.';
-
 	/// en: 'File information not available'
 	String get fileInfoNotAvailable => 'File information not available';
 
@@ -2771,9 +2761,6 @@ class Translations$navigation$en {
 	/// en: 'Downloads'
 	String get downloads => 'Downloads';
 
-	/// en: 'Live TV'
-	String get liveTv => 'Live TV';
-
 	/// en: 'Explore'
 	String get explore => 'Explore';
 }
@@ -2866,216 +2853,6 @@ class Translations$explore$en {
 	);
 
 	late final Translations$explore$relation$en relation = Translations$explore$relation$en.internal(_root);
-}
-
-// Path: liveTv
-class Translations$liveTv$en {
-	Translations$liveTv$en.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'Live TV'
-	String get title => 'Live TV';
-
-	/// en: 'Guide'
-	String get guide => 'Guide';
-
-	/// en: 'No channels available'
-	String get noChannels => 'No channels available';
-
-	/// en: 'No DVR configured on any server'
-	String get noDvr => 'No DVR configured on any server';
-
-	/// en: 'Live TV server is not available.'
-	String get serverUnavailable => 'Live TV server is not available.';
-
-	/// en: 'Live TV server is not connected.'
-	String get serverNotConnected => 'Live TV server is not connected.';
-
-	/// en: 'No program data available'
-	String get noPrograms => 'No program data available';
-
-	/// en: 'Live stream failed'
-	String get liveStreamFailed => 'Live stream failed';
-
-	/// en: 'Unknown Program'
-	String get unknownProgram => 'Unknown Program';
-
-	/// en: 'Unknown'
-	String get unknownHub => 'Unknown';
-
-	/// en: 'Unknown error'
-	String get unknownError => 'Unknown error';
-
-	/// en: 'Channel ${number}'
-	String channelNumber({required Object number}) => 'Channel ${number}';
-
-	/// en: 'Unknown channel'
-	String get unknownChannel => 'Unknown channel';
-
-	/// en: 'LIVE'
-	String get live => 'LIVE';
-
-	/// en: 'Reload Guide'
-	String get reloadGuide => 'Reload Guide';
-
-	/// en: 'Now'
-	String get now => 'Now';
-
-	/// en: 'Today'
-	String get today => 'Today';
-
-	/// en: 'Tomorrow'
-	String get tomorrow => 'Tomorrow';
-
-	/// en: 'Midnight'
-	String get midnight => 'Midnight';
-
-	/// en: 'Overnight'
-	String get overnight => 'Overnight';
-
-	/// en: 'Morning'
-	String get morning => 'Morning';
-
-	/// en: 'Daytime'
-	String get daytime => 'Daytime';
-
-	/// en: 'Evening'
-	String get evening => 'Evening';
-
-	/// en: 'Late Night'
-	String get lateNight => 'Late Night';
-
-	/// en: 'What's On'
-	String get whatsOn => 'What\'s On';
-
-	/// en: 'Watch Channel'
-	String get watchChannel => 'Watch Channel';
-
-	/// en: 'Favorites'
-	String get favorites => 'Favorites';
-
-	/// en: 'Reorder Favorites'
-	String get reorderFavorites => 'Reorder Favorites';
-
-	/// en: 'Could not load favorites. Check your connection and try again.'
-	String get favoritesLoadFailed => 'Could not load favorites. Check your connection and try again.';
-
-	/// en: 'Could not update favorites. Check your connection and try again.'
-	String get favoritesUpdateFailed => 'Could not update favorites. Check your connection and try again.';
-
-	/// en: 'Join Session in Progress'
-	String get joinSession => 'Join Session in Progress';
-
-	/// en: 'Watch from start (${minutes} min ago)'
-	String watchFromStart({required Object minutes}) => 'Watch from start (${minutes} min ago)';
-
-	/// en: 'Watch Live'
-	String get watchLive => 'Watch Live';
-
-	/// en: 'Go to Live'
-	String get goToLive => 'Go to Live';
-
-	/// en: 'Record'
-	String get record => 'Record';
-
-	/// en: 'Record Episode'
-	String get recordEpisode => 'Record Episode';
-
-	/// en: 'Record Series'
-	String get recordSeries => 'Record Series';
-
-	/// en: 'Record Options'
-	String get recordOptions => 'Record Options';
-
-	/// en: 'Save to'
-	String get saveTo => 'Save to';
-
-	/// en: 'Recordings'
-	String get recordings => 'Recordings';
-
-	/// en: 'Scheduled'
-	String get scheduledRecordings => 'Scheduled';
-
-	/// en: 'Recording Rules'
-	String get recordingRules => 'Recording Rules';
-
-	/// en: 'Nothing scheduled to record'
-	String get noScheduledRecordings => 'Nothing scheduled to record';
-
-	/// en: 'Manage recording'
-	String get manageRecording => 'Manage recording';
-
-	/// en: 'Cancel recording'
-	String get cancelRecording => 'Cancel recording';
-
-	/// en: 'Cancel this recording?'
-	String get cancelRecordingTitle => 'Cancel this recording?';
-
-	/// en: '${title} will no longer be recorded.'
-	String cancelRecordingMessage({required Object title}) => '${title} will no longer be recorded.';
-
-	/// en: 'Delete rule'
-	String get deleteRule => 'Delete rule';
-
-	/// en: 'Delete recording rule?'
-	String get deleteRuleTitle => 'Delete recording rule?';
-
-	/// en: 'Future episodes of ${title} will not be recorded.'
-	String deleteRuleMessage({required Object title}) => 'Future episodes of ${title} will not be recorded.';
-
-	/// en: 'Recording scheduled'
-	String get recordingScheduled => 'Recording scheduled';
-
-	/// en: 'This program is already scheduled'
-	String get alreadyScheduled => 'This program is already scheduled';
-
-	/// en: 'DVR settings require an admin account'
-	String get dvrAdminRequired => 'DVR settings require an admin account';
-
-	/// en: 'Couldn't schedule recording'
-	String get recordingFailed => 'Couldn\'t schedule recording';
-
-	/// en: 'Couldn't determine recording library'
-	String get recordingTargetMissing => 'Couldn\'t determine recording library';
-
-	/// en: 'Recording not available for this program'
-	String get recordNotAvailable => 'Recording not available for this program';
-
-	/// en: 'Recording canceled'
-	String get recordingCancelled => 'Recording canceled';
-
-	/// en: 'Recording rule deleted'
-	String get recordingRuleDeleted => 'Recording rule deleted';
-
-	/// en: 'Re-evaluate rules'
-	String get processRecordingRules => 'Re-evaluate rules';
-
-	/// en: 'Recording now'
-	String get recordingInProgress => 'Recording now';
-
-	/// en: '${count} scheduled'
-	String recordingsCount({required Object count}) => '${count} scheduled';
-
-	/// en: 'Edit rule'
-	String get editRule => 'Edit rule';
-
-	/// en: 'Edit'
-	String get editRuleAction => 'Edit';
-
-	/// en: 'Recording rule updated'
-	String get recordingRuleUpdated => 'Recording rule updated';
-
-	/// en: 'Guide refresh requested'
-	String get guideReloadRequested => 'Guide refresh requested';
-
-	/// en: 'Rule re-evaluation requested'
-	String get rulesProcessRequested => 'Rule re-evaluation requested';
-
-	/// en: 'Record show'
-	String get recordShow => 'Record show';
 }
 
 // Path: collections
@@ -5626,8 +5403,6 @@ extension on Translations {
 			'settings.showNavBarLabels' => 'Show Navigation Bar Labels',
 			'settings.showNavBarLabelsDescription' => 'Display text labels under navigation bar icons',
 			'settings.startupSection' => 'Startup Section',
-			'settings.liveTvDefaultFavorites' => 'Default to Favorite Channels',
-			'settings.liveTvDefaultFavoritesDescription' => 'Show only favorite channels when opening Live TV',
 			'settings.display' => 'Display',
 			'settings.homeScreen' => 'Home Screen',
 			'settings.navigation' => 'Navigation',
@@ -5834,10 +5609,10 @@ extension on Translations {
 			'tooltips.playTrailer' => 'Play trailer',
 			'tooltips.markAsWatched' => 'Mark as watched',
 			'tooltips.markAsUnwatched' => 'Mark as unwatched',
-			_ => null,
-		} ?? switch (path) {
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.subtitlesLabel' => 'Subtitles',
 			'videoControls.resetToZero' => 'Reset to 0ms',
 			'videoControls.addTime' => ({required Object amount, required Object unit}) => '+${amount}${unit}',
@@ -5923,7 +5698,6 @@ extension on Translations {
 			'messages.errorLoading' => ({required Object error}) => 'Error: ${error}',
 			'messages.searchPartialResults' => 'Some media servers could not be searched. Showing available results.',
 			'messages.streamInterrupted' => 'The stream was interrupted. Press play or seek to retry.',
-			'messages.liveStreamInterrupted' => 'The live stream was interrupted. Press play to retry.',
 			'messages.fileInfoNotAvailable' => 'File information not available',
 			'messages.playbackAuthenticationRequired' => 'Sign in to the media server again to play this item.',
 			'messages.playbackServerUnavailable' => 'The media server is unavailable. Try again later.',
@@ -6201,7 +5975,6 @@ extension on Translations {
 			'licenses.licensesCount' => ({required Object count}) => '${count} licenses',
 			'navigation.libraries' => 'Libraries',
 			'navigation.downloads' => 'Downloads',
-			'navigation.liveTv' => 'Live TV',
 			'navigation.explore' => 'Explore',
 			'explore.title' => 'Explore',
 			'explore.selectSource' => 'Select source',
@@ -6348,81 +6121,14 @@ extension on Translations {
 			'explore.relation.prequel' => 'Prequel',
 			'explore.relation.sequel' => 'Sequel',
 			'explore.relation.sideStory' => 'Side story',
-			_ => null,
-		} ?? switch (path) {
 			'explore.relation.spinOff' => 'Spin-off',
 			'explore.relation.alternativeVersion' => 'Alternative version',
 			'explore.relation.summary' => 'Summary',
 			'explore.relation.parentStory' => 'Parent story',
+			_ => null,
+		} ?? switch (path) {
 			'explore.relation.adaptation' => 'Adaptation',
 			'explore.relation.other' => 'Related',
-			'liveTv.title' => 'Live TV',
-			'liveTv.guide' => 'Guide',
-			'liveTv.noChannels' => 'No channels available',
-			'liveTv.noDvr' => 'No DVR configured on any server',
-			'liveTv.serverUnavailable' => 'Live TV server is not available.',
-			'liveTv.serverNotConnected' => 'Live TV server is not connected.',
-			'liveTv.noPrograms' => 'No program data available',
-			'liveTv.liveStreamFailed' => 'Live stream failed',
-			'liveTv.unknownProgram' => 'Unknown Program',
-			'liveTv.unknownHub' => 'Unknown',
-			'liveTv.unknownError' => 'Unknown error',
-			'liveTv.channelNumber' => ({required Object number}) => 'Channel ${number}',
-			'liveTv.unknownChannel' => 'Unknown channel',
-			'liveTv.live' => 'LIVE',
-			'liveTv.reloadGuide' => 'Reload Guide',
-			'liveTv.now' => 'Now',
-			'liveTv.today' => 'Today',
-			'liveTv.tomorrow' => 'Tomorrow',
-			'liveTv.midnight' => 'Midnight',
-			'liveTv.overnight' => 'Overnight',
-			'liveTv.morning' => 'Morning',
-			'liveTv.daytime' => 'Daytime',
-			'liveTv.evening' => 'Evening',
-			'liveTv.lateNight' => 'Late Night',
-			'liveTv.whatsOn' => 'What\'s On',
-			'liveTv.watchChannel' => 'Watch Channel',
-			'liveTv.favorites' => 'Favorites',
-			'liveTv.reorderFavorites' => 'Reorder Favorites',
-			'liveTv.favoritesLoadFailed' => 'Could not load favorites. Check your connection and try again.',
-			'liveTv.favoritesUpdateFailed' => 'Could not update favorites. Check your connection and try again.',
-			'liveTv.joinSession' => 'Join Session in Progress',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Watch from start (${minutes} min ago)',
-			'liveTv.watchLive' => 'Watch Live',
-			'liveTv.goToLive' => 'Go to Live',
-			'liveTv.record' => 'Record',
-			'liveTv.recordEpisode' => 'Record Episode',
-			'liveTv.recordSeries' => 'Record Series',
-			'liveTv.recordOptions' => 'Record Options',
-			'liveTv.saveTo' => 'Save to',
-			'liveTv.recordings' => 'Recordings',
-			'liveTv.scheduledRecordings' => 'Scheduled',
-			'liveTv.recordingRules' => 'Recording Rules',
-			'liveTv.noScheduledRecordings' => 'Nothing scheduled to record',
-			'liveTv.manageRecording' => 'Manage recording',
-			'liveTv.cancelRecording' => 'Cancel recording',
-			'liveTv.cancelRecordingTitle' => 'Cancel this recording?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} will no longer be recorded.',
-			'liveTv.deleteRule' => 'Delete rule',
-			'liveTv.deleteRuleTitle' => 'Delete recording rule?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Future episodes of ${title} will not be recorded.',
-			'liveTv.recordingScheduled' => 'Recording scheduled',
-			'liveTv.alreadyScheduled' => 'This program is already scheduled',
-			'liveTv.dvrAdminRequired' => 'DVR settings require an admin account',
-			'liveTv.recordingFailed' => 'Couldn\'t schedule recording',
-			'liveTv.recordingTargetMissing' => 'Couldn\'t determine recording library',
-			'liveTv.recordNotAvailable' => 'Recording not available for this program',
-			'liveTv.recordingCancelled' => 'Recording canceled',
-			'liveTv.recordingRuleDeleted' => 'Recording rule deleted',
-			'liveTv.processRecordingRules' => 'Re-evaluate rules',
-			'liveTv.recordingInProgress' => 'Recording now',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} scheduled',
-			'liveTv.editRule' => 'Edit rule',
-			'liveTv.editRuleAction' => 'Edit',
-			'liveTv.recordingRuleUpdated' => 'Recording rule updated',
-			'liveTv.guideReloadRequested' => 'Guide refresh requested',
-			'liveTv.rulesProcessRequested' => 'Rule re-evaluation requested',
-			'liveTv.recordShow' => 'Record show',
 			'collections.title' => 'Collections',
 			'collections.collection' => 'Collection',
 			'collections.empty' => 'Collection is empty',

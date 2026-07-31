@@ -69,7 +69,6 @@ class TranslationsNb extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$nb licenses = _Translations$licenses$nb._(_root);
 	@override late final _Translations$navigation$nb navigation = _Translations$navigation$nb._(_root);
 	@override late final _Translations$explore$nb explore = _Translations$explore$nb._(_root);
-	@override late final _Translations$liveTv$nb liveTv = _Translations$liveTv$nb._(_root);
 	@override late final _Translations$collections$nb collections = _Translations$collections$nb._(_root);
 	@override late final _Translations$playlists$nb playlists = _Translations$playlists$nb._(_root);
 	@override late final _Translations$music$nb music = _Translations$music$nb._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$nb extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Vis etiketter i navigasjonsfeltet';
 	@override String get showNavBarLabelsDescription => 'Vis tekstetiketter under ikonene i navigasjonsfeltet';
 	@override String get startupSection => 'Startseksjon';
-	@override String get liveTvDefaultFavorites => 'Vis favorittkanaler som standard';
-	@override String get liveTvDefaultFavoritesDescription => 'Vis bare favorittkanaler når du åpner Direkte-TV';
 	@override String get display => 'Skjerm';
 	@override String get homeScreen => 'Hjemmeskjerm';
 	@override String get navigation => 'Navigering';
@@ -705,7 +702,6 @@ class _Translations$messages$nb extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Fjernet fra Fortsett å se';
 	@override String errorLoading({required Object error}) => 'Feil: ${error}';
 	@override String get streamInterrupted => 'Avspillingen ble avbrutt. Trykk på Spill av eller spol for å prøve på nytt.';
-	@override String get liveStreamInterrupted => 'Direktesendingen ble avbrutt. Trykk på Spill av for å prøve på nytt.';
 	@override String get fileInfoNotAvailable => 'Filinformasjon ikke tilgjengelig';
 	@override String get playbackAuthenticationRequired => 'Logg inn på medieserveren på nytt for å spille av dette elementet.';
 	@override String get playbackServerUnavailable => 'Medieserveren er utilgjengelig. Prøv igjen senere.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$nb extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Biblioteker';
 	@override String get downloads => 'Nedlastinger';
-	@override String get liveTv => 'Direkte-TV';
 	@override String get explore => 'Utforsk';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$nb extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Ingen treff for "${query}"';
 	@override String searchPrompt({required Object source}) => 'Søk etter filmer og serier på ${source}.';
 	@override String get searchFailed => 'Søk mislyktes. Sjekk tilkoblingen og prøv igjen.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$nb extends Translations$liveTv$en {
-	_Translations$liveTv$nb._(TranslationsNb root) : this._root = root, super.internal(root);
-
-	final TranslationsNb _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Direkte-TV';
-	@override String get guide => 'Programguide';
-	@override String get noChannels => 'Ingen kanaler tilgjengelig';
-	@override String get noDvr => 'Ingen DVR konfigurert på noen server';
-	@override String get serverUnavailable => 'Direkte-TV-serveren er ikke tilgjengelig.';
-	@override String get serverNotConnected => 'Direkte-TV-serveren er ikke tilkoblet.';
-	@override String get noPrograms => 'Ingen programdata tilgjengelig';
-	@override String get liveStreamFailed => 'Direktesending mislyktes';
-	@override String get unknownProgram => 'Ukjent program';
-	@override String get unknownHub => 'Ukjent';
-	@override String get unknownError => 'Ukjent feil';
-	@override String channelNumber({required Object number}) => 'Kanal ${number}';
-	@override String get unknownChannel => 'Ukjent kanal';
-	@override String get live => 'DIREKTE';
-	@override String get reloadGuide => 'Last inn programguide på nytt';
-	@override String get now => 'Nå';
-	@override String get today => 'I dag';
-	@override String get tomorrow => 'I morgen';
-	@override String get midnight => 'Midnatt';
-	@override String get overnight => 'Natt';
-	@override String get morning => 'Morgen';
-	@override String get daytime => 'Dagtid';
-	@override String get evening => 'Kveld';
-	@override String get lateNight => 'Sen kveld';
-	@override String get whatsOn => 'På TV nå';
-	@override String get watchChannel => 'Se kanal';
-	@override String get favorites => 'Favoritter';
-	@override String get reorderFavorites => 'Endre rekkefølge på favoritter';
-	@override String get favoritesLoadFailed => 'Kunne ikke laste inn favoritter. Kontroller tilkoblingen og prøv på nytt.';
-	@override String get favoritesUpdateFailed => 'Kunne ikke oppdatere favorittene. Kontroller tilkoblingen og prøv på nytt.';
-	@override String get joinSession => 'Bli med i pågående økt';
-	@override String watchFromStart({required Object minutes}) => 'Se fra starten (${minutes} min siden)';
-	@override String get watchLive => 'Se direkte';
-	@override String get goToLive => 'Gå til direkte';
-	@override String get record => 'Ta opp';
-	@override String get recordEpisode => 'Ta opp episode';
-	@override String get recordSeries => 'Ta opp serie';
-	@override String get recordOptions => 'Opptaksvalg';
-	@override String get saveTo => 'Lagre i';
-	@override String get recordings => 'Opptak';
-	@override String get scheduledRecordings => 'Planlagt';
-	@override String get recordingRules => 'Opptaksregler';
-	@override String get noScheduledRecordings => 'Ingen planlagte opptak';
-	@override String get manageRecording => 'Administrer opptak';
-	@override String get cancelRecording => 'Avbryt opptak';
-	@override String get cancelRecordingTitle => 'Avbryte dette opptaket?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} blir ikke lenger tatt opp.';
-	@override String get deleteRule => 'Slett regel';
-	@override String get deleteRuleTitle => 'Slette opptaksregel?';
-	@override String deleteRuleMessage({required Object title}) => 'Fremtidige episoder av ${title} blir ikke tatt opp.';
-	@override String get recordingScheduled => 'Opptak planlagt';
-	@override String get alreadyScheduled => 'Dette programmet er allerede planlagt';
-	@override String get dvrAdminRequired => 'DVR-innstillinger krever en administratorkonto';
-	@override String get recordingFailed => 'Kunne ikke planlegge opptak';
-	@override String get recordingTargetMissing => 'Kunne ikke finne opptaksbibliotek';
-	@override String get recordNotAvailable => 'Opptak er ikke tilgjengelig for dette programmet';
-	@override String get recordingCancelled => 'Opptak avbrutt';
-	@override String get recordingRuleDeleted => 'Opptaksregel slettet';
-	@override String get processRecordingRules => 'Vurder regler på nytt';
-	@override String get recordingInProgress => 'Tar opp nå';
-	@override String recordingsCount({required Object count}) => '${count} planlagt';
-	@override String get editRule => 'Rediger regel';
-	@override String get editRuleAction => 'Rediger';
-	@override String get recordingRuleUpdated => 'Opptaksregel oppdatert';
-	@override String get guideReloadRequested => 'Oppdatering av programguiden er forespurt';
-	@override String get rulesProcessRequested => 'Ny vurdering av reglene er forespurt';
-	@override String get recordShow => 'Ta opp program';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsNb {
 			'settings.showNavBarLabels' => 'Vis etiketter i navigasjonsfeltet',
 			'settings.showNavBarLabelsDescription' => 'Vis tekstetiketter under ikonene i navigasjonsfeltet',
 			'settings.startupSection' => 'Startseksjon',
-			'settings.liveTvDefaultFavorites' => 'Vis favorittkanaler som standard',
-			'settings.liveTvDefaultFavoritesDescription' => 'Vis bare favorittkanaler når du åpner Direkte-TV',
 			'settings.display' => 'Skjerm',
 			'settings.homeScreen' => 'Hjemmeskjerm',
 			'settings.navigation' => 'Navigering',
@@ -2449,7 +2366,6 @@ extension on TranslationsNb {
 			'messages.removedFromContinueWatching' => 'Fjernet fra Fortsett å se',
 			'messages.errorLoading' => ({required Object error}) => 'Feil: ${error}',
 			'messages.streamInterrupted' => 'Avspillingen ble avbrutt. Trykk på Spill av eller spol for å prøve på nytt.',
-			'messages.liveStreamInterrupted' => 'Direktesendingen ble avbrutt. Trykk på Spill av for å prøve på nytt.',
 			'messages.fileInfoNotAvailable' => 'Filinformasjon ikke tilgjengelig',
 			'messages.playbackAuthenticationRequired' => 'Logg inn på medieserveren på nytt for å spille av dette elementet.',
 			'messages.playbackServerUnavailable' => 'Medieserveren er utilgjengelig. Prøv igjen senere.',
@@ -2457,11 +2373,11 @@ extension on TranslationsNb {
 			'messages.playbackCancelled' => 'Avspillingen ble avbrutt.',
 			'messages.playbackFailed' => 'Kunne ikke starte avspillingen.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Feil ved lasting av filinformasjon: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Feil ved lasting av serie',
 			'messages.musicNotSupported' => 'Musikkavspilling støttes ikke ennå',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivelse tilgjengelig',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Ingen profiler tilgjengelige',
 			'messages.contactAdminForProfiles' => 'Kontakt serveradministratoren din for å legge til profiler',
 			'messages.unableToDetermineLibrarySection' => 'Kan ikke fastslå bibliotekseksjonen for dette elementet',
@@ -2728,7 +2644,6 @@ extension on TranslationsNb {
 			'licenses.licensesCount' => ({required Object count}) => '${count} lisenser',
 			'navigation.libraries' => 'Biblioteker',
 			'navigation.downloads' => 'Nedlastinger',
-			'navigation.liveTv' => 'Direkte-TV',
 			'navigation.explore' => 'Utforsk',
 			'explore.title' => 'Utforsk',
 			'explore.selectSource' => 'Velg kilde',
@@ -2765,73 +2680,6 @@ extension on TranslationsNb {
 			'explore.searchEmpty' => ({required Object query}) => 'Ingen treff for "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Søk etter filmer og serier på ${source}.',
 			'explore.searchFailed' => 'Søk mislyktes. Sjekk tilkoblingen og prøv igjen.',
-			'liveTv.title' => 'Direkte-TV',
-			'liveTv.guide' => 'Programguide',
-			'liveTv.noChannels' => 'Ingen kanaler tilgjengelig',
-			'liveTv.noDvr' => 'Ingen DVR konfigurert på noen server',
-			'liveTv.serverUnavailable' => 'Direkte-TV-serveren er ikke tilgjengelig.',
-			'liveTv.serverNotConnected' => 'Direkte-TV-serveren er ikke tilkoblet.',
-			'liveTv.noPrograms' => 'Ingen programdata tilgjengelig',
-			'liveTv.liveStreamFailed' => 'Direktesending mislyktes',
-			'liveTv.unknownProgram' => 'Ukjent program',
-			'liveTv.unknownHub' => 'Ukjent',
-			'liveTv.unknownError' => 'Ukjent feil',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanal ${number}',
-			'liveTv.unknownChannel' => 'Ukjent kanal',
-			'liveTv.live' => 'DIREKTE',
-			'liveTv.reloadGuide' => 'Last inn programguide på nytt',
-			'liveTv.now' => 'Nå',
-			'liveTv.today' => 'I dag',
-			'liveTv.tomorrow' => 'I morgen',
-			'liveTv.midnight' => 'Midnatt',
-			'liveTv.overnight' => 'Natt',
-			'liveTv.morning' => 'Morgen',
-			'liveTv.daytime' => 'Dagtid',
-			'liveTv.evening' => 'Kveld',
-			'liveTv.lateNight' => 'Sen kveld',
-			'liveTv.whatsOn' => 'På TV nå',
-			'liveTv.watchChannel' => 'Se kanal',
-			'liveTv.favorites' => 'Favoritter',
-			'liveTv.reorderFavorites' => 'Endre rekkefølge på favoritter',
-			'liveTv.favoritesLoadFailed' => 'Kunne ikke laste inn favoritter. Kontroller tilkoblingen og prøv på nytt.',
-			'liveTv.favoritesUpdateFailed' => 'Kunne ikke oppdatere favorittene. Kontroller tilkoblingen og prøv på nytt.',
-			'liveTv.joinSession' => 'Bli med i pågående økt',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Se fra starten (${minutes} min siden)',
-			'liveTv.watchLive' => 'Se direkte',
-			'liveTv.goToLive' => 'Gå til direkte',
-			'liveTv.record' => 'Ta opp',
-			'liveTv.recordEpisode' => 'Ta opp episode',
-			'liveTv.recordSeries' => 'Ta opp serie',
-			'liveTv.recordOptions' => 'Opptaksvalg',
-			'liveTv.saveTo' => 'Lagre i',
-			'liveTv.recordings' => 'Opptak',
-			'liveTv.scheduledRecordings' => 'Planlagt',
-			'liveTv.recordingRules' => 'Opptaksregler',
-			'liveTv.noScheduledRecordings' => 'Ingen planlagte opptak',
-			'liveTv.manageRecording' => 'Administrer opptak',
-			'liveTv.cancelRecording' => 'Avbryt opptak',
-			'liveTv.cancelRecordingTitle' => 'Avbryte dette opptaket?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} blir ikke lenger tatt opp.',
-			'liveTv.deleteRule' => 'Slett regel',
-			'liveTv.deleteRuleTitle' => 'Slette opptaksregel?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Fremtidige episoder av ${title} blir ikke tatt opp.',
-			'liveTv.recordingScheduled' => 'Opptak planlagt',
-			'liveTv.alreadyScheduled' => 'Dette programmet er allerede planlagt',
-			'liveTv.dvrAdminRequired' => 'DVR-innstillinger krever en administratorkonto',
-			'liveTv.recordingFailed' => 'Kunne ikke planlegge opptak',
-			'liveTv.recordingTargetMissing' => 'Kunne ikke finne opptaksbibliotek',
-			'liveTv.recordNotAvailable' => 'Opptak er ikke tilgjengelig for dette programmet',
-			'liveTv.recordingCancelled' => 'Opptak avbrutt',
-			'liveTv.recordingRuleDeleted' => 'Opptaksregel slettet',
-			'liveTv.processRecordingRules' => 'Vurder regler på nytt',
-			'liveTv.recordingInProgress' => 'Tar opp nå',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} planlagt',
-			'liveTv.editRule' => 'Rediger regel',
-			'liveTv.editRuleAction' => 'Rediger',
-			'liveTv.recordingRuleUpdated' => 'Opptaksregel oppdatert',
-			'liveTv.guideReloadRequested' => 'Oppdatering av programguiden er forespurt',
-			'liveTv.rulesProcessRequested' => 'Ny vurdering av reglene er forespurt',
-			'liveTv.recordShow' => 'Ta opp program',
 			'collections.title' => 'Samlinger',
 			'collections.collection' => 'Samling',
 			'collections.empty' => 'Samlingen er tom',
@@ -2971,8 +2819,6 @@ extension on TranslationsNb {
 			'downloads.backgroundWarning.bannerBlocked' => 'Nedlastinger stopper når du forlater appen',
 			'downloads.backgroundWarning.bannerDegraded' => 'Bakgrunnsnedlastinger kan være begrenset',
 			'downloads.backgroundWarning.bannerAction' => 'Detaljer',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Bakgrunnsnedlastinger er blokkert',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Bakgrunnsnedlastinger kan være begrenset',
 			'downloads.backgroundWarning.sheetIntro' => 'Android hindrer Plezy i å laste ned pålitelig i bakgrunnen.',
@@ -3044,6 +2890,8 @@ extension on TranslationsNb {
 			'performanceOverlay.sampleRate' => 'Samplingsrate',
 			'performanceOverlay.pixelFormat' => 'Pikselformat',
 			'performanceOverlay.hwFormat' => 'HW-format',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matrise',
 			'performanceOverlay.primaries' => 'Primærfarger',
 			'performanceOverlay.transfer' => 'Overføring',

@@ -69,7 +69,6 @@ class TranslationsSv extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$sv licenses = _Translations$licenses$sv._(_root);
 	@override late final _Translations$navigation$sv navigation = _Translations$navigation$sv._(_root);
 	@override late final _Translations$explore$sv explore = _Translations$explore$sv._(_root);
-	@override late final _Translations$liveTv$sv liveTv = _Translations$liveTv$sv._(_root);
 	@override late final _Translations$collections$sv collections = _Translations$collections$sv._(_root);
 	@override late final _Translations$playlists$sv playlists = _Translations$playlists$sv._(_root);
 	@override late final _Translations$music$sv music = _Translations$music$sv._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Visa navigeringsfältets etiketter';
 	@override String get showNavBarLabelsDescription => 'Visa textetiketter under navigeringsfältets ikoner';
 	@override String get startupSection => 'Startsida';
-	@override String get liveTvDefaultFavorites => 'Öppna med favoriter';
-	@override String get liveTvDefaultFavoritesDescription => 'Visa endast favoritkanaler när Live-TV öppnas';
 	@override String get display => 'Skärm';
 	@override String get homeScreen => 'Hemskärm';
 	@override String get navigation => 'Navigering';
@@ -705,7 +702,6 @@ class _Translations$messages$sv extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Borttagen från Fortsätt titta';
 	@override String errorLoading({required Object error}) => 'Fel: ${error}';
 	@override String get streamInterrupted => 'Strömmen avbröts. Tryck på uppspelning eller spola för att försöka igen.';
-	@override String get liveStreamInterrupted => 'Liveströmmen avbröts. Tryck på uppspelning för att försöka igen.';
 	@override String get fileInfoNotAvailable => 'Filinformation är inte tillgänglig';
 	@override String get playbackAuthenticationRequired => 'Logga in på medieservern igen för att spela upp objektet.';
 	@override String get playbackServerUnavailable => 'Medieservern är inte tillgänglig. Försök igen senare.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$sv extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Bibliotek';
 	@override String get downloads => 'Nedladdningar';
-	@override String get liveTv => 'Live-TV';
 	@override String get explore => 'Utforska';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$sv extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Inga resultat för "${query}"';
 	@override String searchPrompt({required Object source}) => 'Sök efter filmer och serier på ${source}.';
 	@override String get searchFailed => 'Sökningen misslyckades. Kontrollera din anslutning och försök igen.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$sv extends Translations$liveTv$en {
-	_Translations$liveTv$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Live-TV';
-	@override String get guide => 'Programguide';
-	@override String get noChannels => 'Inga kanaler tillgängliga';
-	@override String get noDvr => 'Ingen DVR har konfigurerats på någon server';
-	@override String get serverUnavailable => 'Live-TV-servern är inte tillgänglig.';
-	@override String get serverNotConnected => 'Live-TV-servern är inte ansluten.';
-	@override String get noPrograms => 'Ingen programinformation är tillgänglig';
-	@override String get liveStreamFailed => 'Liveströmmen kunde inte startas';
-	@override String get unknownProgram => 'Okänt program';
-	@override String get unknownHub => 'Okänt';
-	@override String get unknownError => 'Okänt fel';
-	@override String channelNumber({required Object number}) => 'Kanal ${number}';
-	@override String get unknownChannel => 'Okänd kanal';
-	@override String get live => 'LIVE';
-	@override String get reloadGuide => 'Ladda om programguide';
-	@override String get now => 'Nu';
-	@override String get today => 'Idag';
-	@override String get tomorrow => 'I morgon';
-	@override String get midnight => 'Midnatt';
-	@override String get overnight => 'Natt';
-	@override String get morning => 'Morgon';
-	@override String get daytime => 'Dagtid';
-	@override String get evening => 'Kväll';
-	@override String get lateNight => 'Sen kväll';
-	@override String get whatsOn => 'På TV nu';
-	@override String get watchChannel => 'Titta på kanal';
-	@override String get favorites => 'Favoriter';
-	@override String get reorderFavorites => 'Ordna om favoriter';
-	@override String get favoritesLoadFailed => 'Det gick inte att läsa in favoriter. Kontrollera anslutningen och försök igen.';
-	@override String get favoritesUpdateFailed => 'Det gick inte att uppdatera favoriterna. Kontrollera anslutningen och försök igen.';
-	@override String get joinSession => 'Gå med i pågående session';
-	@override String watchFromStart({required Object minutes}) => 'Titta från början (${minutes} min sedan)';
-	@override String get watchLive => 'Titta live';
-	@override String get goToLive => 'Gå till live';
-	@override String get record => 'Spela in';
-	@override String get recordEpisode => 'Spela in avsnitt';
-	@override String get recordSeries => 'Spela in serie';
-	@override String get recordOptions => 'Inspelningsalternativ';
-	@override String get saveTo => 'Spara till';
-	@override String get recordings => 'Inspelningar';
-	@override String get scheduledRecordings => 'Schemalagda';
-	@override String get recordingRules => 'Inspelningsregler';
-	@override String get noScheduledRecordings => 'Inga schemalagda inspelningar';
-	@override String get manageRecording => 'Hantera inspelning';
-	@override String get cancelRecording => 'Avbryt inspelning';
-	@override String get cancelRecordingTitle => 'Avbryt denna inspelning?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} kommer inte längre att spelas in.';
-	@override String get deleteRule => 'Ta bort regel';
-	@override String get deleteRuleTitle => 'Ta bort inspelningsregel?';
-	@override String deleteRuleMessage({required Object title}) => 'Kommande avsnitt av ${title} kommer inte att spelas in.';
-	@override String get recordingScheduled => 'Inspelning schemalagd';
-	@override String get alreadyScheduled => 'Detta program är redan schemalagt';
-	@override String get dvrAdminRequired => 'DVR-inställningar kräver ett administratörskonto';
-	@override String get recordingFailed => 'Det gick inte att schemalägga inspelning';
-	@override String get recordingTargetMissing => 'Det gick inte att hitta inspelningsbibliotek';
-	@override String get recordNotAvailable => 'Inspelning är inte tillgänglig för detta program';
-	@override String get recordingCancelled => 'Inspelningen har avbrutits';
-	@override String get recordingRuleDeleted => 'Inspelningsregeln har tagits bort';
-	@override String get processRecordingRules => 'Utvärdera regler igen';
-	@override String get recordingInProgress => 'Spelar in nu';
-	@override String recordingsCount({required Object count}) => '${count} schemalagda';
-	@override String get editRule => 'Redigera regel';
-	@override String get editRuleAction => 'Redigera';
-	@override String get recordingRuleUpdated => 'Inspelningsregel uppdaterad';
-	@override String get guideReloadRequested => 'Uppdatering av programguiden har begärts';
-	@override String get rulesProcessRequested => 'Ny regelutvärdering har begärts';
-	@override String get recordShow => 'Spela in program';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsSv {
 			'settings.showNavBarLabels' => 'Visa navigeringsfältets etiketter',
 			'settings.showNavBarLabelsDescription' => 'Visa textetiketter under navigeringsfältets ikoner',
 			'settings.startupSection' => 'Startsida',
-			'settings.liveTvDefaultFavorites' => 'Öppna med favoriter',
-			'settings.liveTvDefaultFavoritesDescription' => 'Visa endast favoritkanaler när Live-TV öppnas',
 			'settings.display' => 'Skärm',
 			'settings.homeScreen' => 'Hemskärm',
 			'settings.navigation' => 'Navigering',
@@ -2449,7 +2366,6 @@ extension on TranslationsSv {
 			'messages.removedFromContinueWatching' => 'Borttagen från Fortsätt titta',
 			'messages.errorLoading' => ({required Object error}) => 'Fel: ${error}',
 			'messages.streamInterrupted' => 'Strömmen avbröts. Tryck på uppspelning eller spola för att försöka igen.',
-			'messages.liveStreamInterrupted' => 'Liveströmmen avbröts. Tryck på uppspelning för att försöka igen.',
 			'messages.fileInfoNotAvailable' => 'Filinformation är inte tillgänglig',
 			'messages.playbackAuthenticationRequired' => 'Logga in på medieservern igen för att spela upp objektet.',
 			'messages.playbackServerUnavailable' => 'Medieservern är inte tillgänglig. Försök igen senare.',
@@ -2457,11 +2373,11 @@ extension on TranslationsSv {
 			'messages.playbackCancelled' => 'Uppspelningen avbröts.',
 			'messages.playbackFailed' => 'Det gick inte att starta uppspelningen.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fel vid laddning av filinformation: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Fel vid laddning av serie',
 			'messages.musicNotSupported' => 'Musikuppspelning stöds inte ännu',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivning tillgänglig',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Inga profiler tillgängliga',
 			'messages.contactAdminForProfiles' => 'Kontakta din serveradministratör för att lägga till profiler',
 			'messages.unableToDetermineLibrarySection' => 'Kan inte avgöra biblioteksavdelningen för detta objekt',
@@ -2728,7 +2644,6 @@ extension on TranslationsSv {
 			'licenses.licensesCount' => ({required Object count}) => '${count} licenser',
 			'navigation.libraries' => 'Bibliotek',
 			'navigation.downloads' => 'Nedladdningar',
-			'navigation.liveTv' => 'Live-TV',
 			'navigation.explore' => 'Utforska',
 			'explore.title' => 'Utforska',
 			'explore.selectSource' => 'Välj källa',
@@ -2765,73 +2680,6 @@ extension on TranslationsSv {
 			'explore.searchEmpty' => ({required Object query}) => 'Inga resultat för "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Sök efter filmer och serier på ${source}.',
 			'explore.searchFailed' => 'Sökningen misslyckades. Kontrollera din anslutning och försök igen.',
-			'liveTv.title' => 'Live-TV',
-			'liveTv.guide' => 'Programguide',
-			'liveTv.noChannels' => 'Inga kanaler tillgängliga',
-			'liveTv.noDvr' => 'Ingen DVR har konfigurerats på någon server',
-			'liveTv.serverUnavailable' => 'Live-TV-servern är inte tillgänglig.',
-			'liveTv.serverNotConnected' => 'Live-TV-servern är inte ansluten.',
-			'liveTv.noPrograms' => 'Ingen programinformation är tillgänglig',
-			'liveTv.liveStreamFailed' => 'Liveströmmen kunde inte startas',
-			'liveTv.unknownProgram' => 'Okänt program',
-			'liveTv.unknownHub' => 'Okänt',
-			'liveTv.unknownError' => 'Okänt fel',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanal ${number}',
-			'liveTv.unknownChannel' => 'Okänd kanal',
-			'liveTv.live' => 'LIVE',
-			'liveTv.reloadGuide' => 'Ladda om programguide',
-			'liveTv.now' => 'Nu',
-			'liveTv.today' => 'Idag',
-			'liveTv.tomorrow' => 'I morgon',
-			'liveTv.midnight' => 'Midnatt',
-			'liveTv.overnight' => 'Natt',
-			'liveTv.morning' => 'Morgon',
-			'liveTv.daytime' => 'Dagtid',
-			'liveTv.evening' => 'Kväll',
-			'liveTv.lateNight' => 'Sen kväll',
-			'liveTv.whatsOn' => 'På TV nu',
-			'liveTv.watchChannel' => 'Titta på kanal',
-			'liveTv.favorites' => 'Favoriter',
-			'liveTv.reorderFavorites' => 'Ordna om favoriter',
-			'liveTv.favoritesLoadFailed' => 'Det gick inte att läsa in favoriter. Kontrollera anslutningen och försök igen.',
-			'liveTv.favoritesUpdateFailed' => 'Det gick inte att uppdatera favoriterna. Kontrollera anslutningen och försök igen.',
-			'liveTv.joinSession' => 'Gå med i pågående session',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Titta från början (${minutes} min sedan)',
-			'liveTv.watchLive' => 'Titta live',
-			'liveTv.goToLive' => 'Gå till live',
-			'liveTv.record' => 'Spela in',
-			'liveTv.recordEpisode' => 'Spela in avsnitt',
-			'liveTv.recordSeries' => 'Spela in serie',
-			'liveTv.recordOptions' => 'Inspelningsalternativ',
-			'liveTv.saveTo' => 'Spara till',
-			'liveTv.recordings' => 'Inspelningar',
-			'liveTv.scheduledRecordings' => 'Schemalagda',
-			'liveTv.recordingRules' => 'Inspelningsregler',
-			'liveTv.noScheduledRecordings' => 'Inga schemalagda inspelningar',
-			'liveTv.manageRecording' => 'Hantera inspelning',
-			'liveTv.cancelRecording' => 'Avbryt inspelning',
-			'liveTv.cancelRecordingTitle' => 'Avbryt denna inspelning?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} kommer inte längre att spelas in.',
-			'liveTv.deleteRule' => 'Ta bort regel',
-			'liveTv.deleteRuleTitle' => 'Ta bort inspelningsregel?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Kommande avsnitt av ${title} kommer inte att spelas in.',
-			'liveTv.recordingScheduled' => 'Inspelning schemalagd',
-			'liveTv.alreadyScheduled' => 'Detta program är redan schemalagt',
-			'liveTv.dvrAdminRequired' => 'DVR-inställningar kräver ett administratörskonto',
-			'liveTv.recordingFailed' => 'Det gick inte att schemalägga inspelning',
-			'liveTv.recordingTargetMissing' => 'Det gick inte att hitta inspelningsbibliotek',
-			'liveTv.recordNotAvailable' => 'Inspelning är inte tillgänglig för detta program',
-			'liveTv.recordingCancelled' => 'Inspelningen har avbrutits',
-			'liveTv.recordingRuleDeleted' => 'Inspelningsregeln har tagits bort',
-			'liveTv.processRecordingRules' => 'Utvärdera regler igen',
-			'liveTv.recordingInProgress' => 'Spelar in nu',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} schemalagda',
-			'liveTv.editRule' => 'Redigera regel',
-			'liveTv.editRuleAction' => 'Redigera',
-			'liveTv.recordingRuleUpdated' => 'Inspelningsregel uppdaterad',
-			'liveTv.guideReloadRequested' => 'Uppdatering av programguiden har begärts',
-			'liveTv.rulesProcessRequested' => 'Ny regelutvärdering har begärts',
-			'liveTv.recordShow' => 'Spela in program',
 			'collections.title' => 'Samlingar',
 			'collections.collection' => 'Samling',
 			'collections.empty' => 'Samlingen är tom',
@@ -2971,8 +2819,6 @@ extension on TranslationsSv {
 			'downloads.backgroundWarning.bannerBlocked' => 'Nedladdningar stoppas när du lämnar appen',
 			'downloads.backgroundWarning.bannerDegraded' => 'Bakgrundsnedladdningar kan begränsas',
 			'downloads.backgroundWarning.bannerAction' => 'Detaljer',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Bakgrundsnedladdningar är blockerade',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Bakgrundsnedladdningar kan begränsas',
 			'downloads.backgroundWarning.sheetIntro' => 'Android hindrar Plezy från att ladda ned tillförlitligt i bakgrunden.',
@@ -3044,6 +2890,8 @@ extension on TranslationsSv {
 			'performanceOverlay.sampleRate' => 'Samplingsfrekvens',
 			'performanceOverlay.pixelFormat' => 'Pixelformat',
 			'performanceOverlay.hwFormat' => 'HW-format',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matris',
 			'performanceOverlay.primaries' => 'Primärfärger',
 			'performanceOverlay.transfer' => 'Överföring',

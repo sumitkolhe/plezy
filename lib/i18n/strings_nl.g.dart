@@ -69,7 +69,6 @@ class TranslationsNl extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$licenses$nl licenses = _Translations$licenses$nl._(_root);
 	@override late final _Translations$navigation$nl navigation = _Translations$navigation$nl._(_root);
 	@override late final _Translations$explore$nl explore = _Translations$explore$nl._(_root);
-	@override late final _Translations$liveTv$nl liveTv = _Translations$liveTv$nl._(_root);
 	@override late final _Translations$collections$nl collections = _Translations$collections$nl._(_root);
 	@override late final _Translations$playlists$nl playlists = _Translations$playlists$nl._(_root);
 	@override late final _Translations$music$nl music = _Translations$music$nl._(_root);
@@ -439,8 +438,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get showNavBarLabels => 'Labels op navigatiebalk tonen';
 	@override String get showNavBarLabelsDescription => 'Tekstlabels onder de pictogrammen op de navigatiebalk weergeven';
 	@override String get startupSection => 'Opstartsectie';
-	@override String get liveTvDefaultFavorites => 'Standaard favoriete zenders';
-	@override String get liveTvDefaultFavoritesDescription => 'Toon alleen favoriete zenders bij het openen van Live TV';
 	@override String get display => 'Weergave';
 	@override String get homeScreen => 'Startscherm';
 	@override String get navigation => 'Navigatie';
@@ -705,7 +702,6 @@ class _Translations$messages$nl extends Translations$messages$en {
 	@override String get removedFromContinueWatching => 'Verwijderd uit \'Doorgaan met kijken\'';
 	@override String errorLoading({required Object error}) => 'Fout: ${error}';
 	@override String get streamInterrupted => 'De stream is onderbroken. Druk op afspelen of spoel om het opnieuw te proberen.';
-	@override String get liveStreamInterrupted => 'De livestream is onderbroken. Druk op afspelen om het opnieuw te proberen.';
 	@override String get fileInfoNotAvailable => 'Bestandsinformatie niet beschikbaar';
 	@override String get playbackAuthenticationRequired => 'Meld je opnieuw aan bij de mediaserver om dit item af te spelen.';
 	@override String get playbackServerUnavailable => 'De mediaserver is niet beschikbaar. Probeer het later opnieuw.';
@@ -1062,7 +1058,6 @@ class _Translations$navigation$nl extends Translations$navigation$en {
 	// Translations
 	@override String get libraries => 'Media';
 	@override String get downloads => 'Downloads';
-	@override String get liveTv => 'Live-tv';
 	@override String get explore => 'Verkennen';
 }
 
@@ -1095,82 +1090,6 @@ class _Translations$explore$nl extends Translations$explore$en {
 	@override String searchEmpty({required Object query}) => 'Geen resultaten voor "${query}"';
 	@override String searchPrompt({required Object source}) => 'Zoek naar films en series op ${source}.';
 	@override String get searchFailed => 'Zoeken mislukt. Controleer je verbinding en probeer opnieuw.';
-}
-
-// Path: liveTv
-class _Translations$liveTv$nl extends Translations$liveTv$en {
-	_Translations$liveTv$nl._(TranslationsNl root) : this._root = root, super.internal(root);
-
-	final TranslationsNl _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Live-tv';
-	@override String get guide => 'Gids';
-	@override String get noChannels => 'Geen zenders beschikbaar';
-	@override String get noDvr => 'Geen DVR geconfigureerd op een server';
-	@override String get serverUnavailable => 'De live-tv-server is niet beschikbaar.';
-	@override String get serverNotConnected => 'De live-tv-server is niet verbonden.';
-	@override String get noPrograms => 'Geen programmagegevens beschikbaar';
-	@override String get liveStreamFailed => 'Livestream mislukt';
-	@override String get unknownProgram => 'Onbekend programma';
-	@override String get unknownHub => 'Onbekend';
-	@override String get unknownError => 'Onbekende fout';
-	@override String channelNumber({required Object number}) => 'Kanaal ${number}';
-	@override String get unknownChannel => 'Onbekend kanaal';
-	@override String get live => 'LIVE';
-	@override String get reloadGuide => 'Gids herladen';
-	@override String get now => 'Nu';
-	@override String get today => 'Vandaag';
-	@override String get tomorrow => 'Morgen';
-	@override String get midnight => 'Middernacht';
-	@override String get overnight => 'Nacht';
-	@override String get morning => 'Ochtend';
-	@override String get daytime => 'Overdag';
-	@override String get evening => 'Avond';
-	@override String get lateNight => 'Late avond';
-	@override String get whatsOn => 'Nu op tv';
-	@override String get watchChannel => 'Kanaal bekijken';
-	@override String get favorites => 'Favorieten';
-	@override String get reorderFavorites => 'Favorieten herordenen';
-	@override String get favoritesLoadFailed => 'Favorieten konden niet worden geladen. Controleer je verbinding en probeer het opnieuw.';
-	@override String get favoritesUpdateFailed => 'Favorieten konden niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.';
-	@override String get joinSession => 'Deelnemen aan lopende sessie';
-	@override String watchFromStart({required Object minutes}) => 'Vanaf het begin kijken (${minutes} min geleden)';
-	@override String get watchLive => 'Live kijken';
-	@override String get goToLive => 'Naar live-uitzending';
-	@override String get record => 'Opnemen';
-	@override String get recordEpisode => 'Aflevering opnemen';
-	@override String get recordSeries => 'Serie opnemen';
-	@override String get recordOptions => 'Opnameopties';
-	@override String get saveTo => 'Opslaan in';
-	@override String get recordings => 'Opnames';
-	@override String get scheduledRecordings => 'Gepland';
-	@override String get recordingRules => 'Opnameregels';
-	@override String get noScheduledRecordings => 'Geen geplande opnames';
-	@override String get manageRecording => 'Opname beheren';
-	@override String get cancelRecording => 'Opname annuleren';
-	@override String get cancelRecordingTitle => 'Deze opname annuleren?';
-	@override String cancelRecordingMessage({required Object title}) => '${title} wordt niet meer opgenomen.';
-	@override String get deleteRule => 'Regel verwijderen';
-	@override String get deleteRuleTitle => 'Opnameregel verwijderen?';
-	@override String deleteRuleMessage({required Object title}) => 'Toekomstige afleveringen van ${title} worden niet opgenomen.';
-	@override String get recordingScheduled => 'Opname gepland';
-	@override String get alreadyScheduled => 'Dit programma is al gepland';
-	@override String get dvrAdminRequired => 'DVR-instellingen vereisen een beheerdersaccount';
-	@override String get recordingFailed => 'Kon opname niet plannen';
-	@override String get recordingTargetMissing => 'Kon opnamebibliotheek niet bepalen';
-	@override String get recordNotAvailable => 'Opname niet beschikbaar voor dit programma';
-	@override String get recordingCancelled => 'Opname geannuleerd';
-	@override String get recordingRuleDeleted => 'Opnameregel verwijderd';
-	@override String get processRecordingRules => 'Regels opnieuw evalueren';
-	@override String get recordingInProgress => 'Nu aan het opnemen';
-	@override String recordingsCount({required Object count}) => '${count} gepland';
-	@override String get editRule => 'Regel bewerken';
-	@override String get editRuleAction => 'Bewerken';
-	@override String get recordingRuleUpdated => 'Opnameregel bijgewerkt';
-	@override String get guideReloadRequested => 'Vernieuwing van de gids aangevraagd';
-	@override String get rulesProcessRequested => 'Nieuwe evaluatie van regels aangevraagd';
-	@override String get recordShow => 'Programma opnemen';
 }
 
 // Path: collections
@@ -2246,8 +2165,6 @@ extension on TranslationsNl {
 			'settings.showNavBarLabels' => 'Labels op navigatiebalk tonen',
 			'settings.showNavBarLabelsDescription' => 'Tekstlabels onder de pictogrammen op de navigatiebalk weergeven',
 			'settings.startupSection' => 'Opstartsectie',
-			'settings.liveTvDefaultFavorites' => 'Standaard favoriete zenders',
-			'settings.liveTvDefaultFavoritesDescription' => 'Toon alleen favoriete zenders bij het openen van Live TV',
 			'settings.display' => 'Weergave',
 			'settings.homeScreen' => 'Startscherm',
 			'settings.navigation' => 'Navigatie',
@@ -2449,7 +2366,6 @@ extension on TranslationsNl {
 			'messages.removedFromContinueWatching' => 'Verwijderd uit \'Doorgaan met kijken\'',
 			'messages.errorLoading' => ({required Object error}) => 'Fout: ${error}',
 			'messages.streamInterrupted' => 'De stream is onderbroken. Druk op afspelen of spoel om het opnieuw te proberen.',
-			'messages.liveStreamInterrupted' => 'De livestream is onderbroken. Druk op afspelen om het opnieuw te proberen.',
 			'messages.fileInfoNotAvailable' => 'Bestandsinformatie niet beschikbaar',
 			'messages.playbackAuthenticationRequired' => 'Meld je opnieuw aan bij de mediaserver om dit item af te spelen.',
 			'messages.playbackServerUnavailable' => 'De mediaserver is niet beschikbaar. Probeer het later opnieuw.',
@@ -2457,11 +2373,11 @@ extension on TranslationsNl {
 			'messages.playbackCancelled' => 'Het afspelen is geannuleerd.',
 			'messages.playbackFailed' => 'Het afspelen kon niet worden gestart.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fout bij laden van bestandsinformatie: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Fout bij laden van serie',
 			'messages.musicNotSupported' => 'Muziek afspelen wordt nog niet ondersteund',
 			'messages.noDescriptionAvailable' => 'Geen beschrijving beschikbaar',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noProfilesAvailable' => 'Geen profielen beschikbaar',
 			'messages.contactAdminForProfiles' => 'Neem contact op met je serverbeheerder om profielen toe te voegen',
 			'messages.unableToDetermineLibrarySection' => 'Kan bibliotheeksectie voor dit item niet bepalen',
@@ -2728,7 +2644,6 @@ extension on TranslationsNl {
 			'licenses.licensesCount' => ({required Object count}) => '${count} licenties',
 			'navigation.libraries' => 'Media',
 			'navigation.downloads' => 'Downloads',
-			'navigation.liveTv' => 'Live-tv',
 			'navigation.explore' => 'Verkennen',
 			'explore.title' => 'Verkennen',
 			'explore.selectSource' => 'Bron kiezen',
@@ -2765,73 +2680,6 @@ extension on TranslationsNl {
 			'explore.searchEmpty' => ({required Object query}) => 'Geen resultaten voor "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Zoek naar films en series op ${source}.',
 			'explore.searchFailed' => 'Zoeken mislukt. Controleer je verbinding en probeer opnieuw.',
-			'liveTv.title' => 'Live-tv',
-			'liveTv.guide' => 'Gids',
-			'liveTv.noChannels' => 'Geen zenders beschikbaar',
-			'liveTv.noDvr' => 'Geen DVR geconfigureerd op een server',
-			'liveTv.serverUnavailable' => 'De live-tv-server is niet beschikbaar.',
-			'liveTv.serverNotConnected' => 'De live-tv-server is niet verbonden.',
-			'liveTv.noPrograms' => 'Geen programmagegevens beschikbaar',
-			'liveTv.liveStreamFailed' => 'Livestream mislukt',
-			'liveTv.unknownProgram' => 'Onbekend programma',
-			'liveTv.unknownHub' => 'Onbekend',
-			'liveTv.unknownError' => 'Onbekende fout',
-			'liveTv.channelNumber' => ({required Object number}) => 'Kanaal ${number}',
-			'liveTv.unknownChannel' => 'Onbekend kanaal',
-			'liveTv.live' => 'LIVE',
-			'liveTv.reloadGuide' => 'Gids herladen',
-			'liveTv.now' => 'Nu',
-			'liveTv.today' => 'Vandaag',
-			'liveTv.tomorrow' => 'Morgen',
-			'liveTv.midnight' => 'Middernacht',
-			'liveTv.overnight' => 'Nacht',
-			'liveTv.morning' => 'Ochtend',
-			'liveTv.daytime' => 'Overdag',
-			'liveTv.evening' => 'Avond',
-			'liveTv.lateNight' => 'Late avond',
-			'liveTv.whatsOn' => 'Nu op tv',
-			'liveTv.watchChannel' => 'Kanaal bekijken',
-			'liveTv.favorites' => 'Favorieten',
-			'liveTv.reorderFavorites' => 'Favorieten herordenen',
-			'liveTv.favoritesLoadFailed' => 'Favorieten konden niet worden geladen. Controleer je verbinding en probeer het opnieuw.',
-			'liveTv.favoritesUpdateFailed' => 'Favorieten konden niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.',
-			'liveTv.joinSession' => 'Deelnemen aan lopende sessie',
-			'liveTv.watchFromStart' => ({required Object minutes}) => 'Vanaf het begin kijken (${minutes} min geleden)',
-			'liveTv.watchLive' => 'Live kijken',
-			'liveTv.goToLive' => 'Naar live-uitzending',
-			'liveTv.record' => 'Opnemen',
-			'liveTv.recordEpisode' => 'Aflevering opnemen',
-			'liveTv.recordSeries' => 'Serie opnemen',
-			'liveTv.recordOptions' => 'Opnameopties',
-			'liveTv.saveTo' => 'Opslaan in',
-			'liveTv.recordings' => 'Opnames',
-			'liveTv.scheduledRecordings' => 'Gepland',
-			'liveTv.recordingRules' => 'Opnameregels',
-			'liveTv.noScheduledRecordings' => 'Geen geplande opnames',
-			'liveTv.manageRecording' => 'Opname beheren',
-			'liveTv.cancelRecording' => 'Opname annuleren',
-			'liveTv.cancelRecordingTitle' => 'Deze opname annuleren?',
-			'liveTv.cancelRecordingMessage' => ({required Object title}) => '${title} wordt niet meer opgenomen.',
-			'liveTv.deleteRule' => 'Regel verwijderen',
-			'liveTv.deleteRuleTitle' => 'Opnameregel verwijderen?',
-			'liveTv.deleteRuleMessage' => ({required Object title}) => 'Toekomstige afleveringen van ${title} worden niet opgenomen.',
-			'liveTv.recordingScheduled' => 'Opname gepland',
-			'liveTv.alreadyScheduled' => 'Dit programma is al gepland',
-			'liveTv.dvrAdminRequired' => 'DVR-instellingen vereisen een beheerdersaccount',
-			'liveTv.recordingFailed' => 'Kon opname niet plannen',
-			'liveTv.recordingTargetMissing' => 'Kon opnamebibliotheek niet bepalen',
-			'liveTv.recordNotAvailable' => 'Opname niet beschikbaar voor dit programma',
-			'liveTv.recordingCancelled' => 'Opname geannuleerd',
-			'liveTv.recordingRuleDeleted' => 'Opnameregel verwijderd',
-			'liveTv.processRecordingRules' => 'Regels opnieuw evalueren',
-			'liveTv.recordingInProgress' => 'Nu aan het opnemen',
-			'liveTv.recordingsCount' => ({required Object count}) => '${count} gepland',
-			'liveTv.editRule' => 'Regel bewerken',
-			'liveTv.editRuleAction' => 'Bewerken',
-			'liveTv.recordingRuleUpdated' => 'Opnameregel bijgewerkt',
-			'liveTv.guideReloadRequested' => 'Vernieuwing van de gids aangevraagd',
-			'liveTv.rulesProcessRequested' => 'Nieuwe evaluatie van regels aangevraagd',
-			'liveTv.recordShow' => 'Programma opnemen',
 			'collections.title' => 'Collecties',
 			'collections.collection' => 'Collectie',
 			'collections.empty' => 'Collectie is leeg',
@@ -2971,8 +2819,6 @@ extension on TranslationsNl {
 			'downloads.backgroundWarning.bannerBlocked' => 'Downloads stoppen zodra je de app verlaat',
 			'downloads.backgroundWarning.bannerDegraded' => 'Downloads op de achtergrond kunnen beperkt zijn',
 			'downloads.backgroundWarning.bannerAction' => 'Details',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Downloads op de achtergrond zijn geblokkeerd',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Downloads op de achtergrond kunnen beperkt zijn',
 			'downloads.backgroundWarning.sheetIntro' => 'Android verhindert dat Plezy betrouwbaar op de achtergrond downloadt.',
@@ -3044,6 +2890,8 @@ extension on TranslationsNl {
 			'performanceOverlay.sampleRate' => 'Samplefrequentie',
 			'performanceOverlay.pixelFormat' => 'Pixelformaat',
 			'performanceOverlay.hwFormat' => 'HW-formaat',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primaire kleuren',
 			'performanceOverlay.transfer' => 'Overdracht',
