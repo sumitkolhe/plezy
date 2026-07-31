@@ -216,18 +216,18 @@ class _SearchScreenState extends State<SearchScreen>
   Widget _buildResultsList(BuildContext context) {
     final multiServer = context.watch<MultiServerProvider>();
     final showServerName = multiServer.totalServerCount > 1;
-    return buildResultsSliver((context, index) {
+    return buildResultsSliver((context, position) {
+      final index = position.index;
       final item = searchResults[index];
       return FocusableMediaCard(
         key: Key(item.globalKey),
         item: item,
-        forceListMode: true,
-        disableScale: true,
+        disableScale: position.disableScale,
         focusNode: index == 0 ? firstResultFocusNode : null,
         onRefresh: updateItem,
         onListRefresh: refresh,
         onNavigateLeft: _navigateToSidebar,
-        onNavigateUp: index == 0 ? focusSearchInput : null,
+        onNavigateUp: position.isFirstRow ? focusSearchInput : null,
         showServerName: showServerName,
       );
     });

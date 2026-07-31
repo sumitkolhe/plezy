@@ -4,7 +4,10 @@ import 'package:flutter/widgets.dart';
 import '../exceptions/media_server_exceptions.dart';
 
 import '../media/media_item.dart';
+import '../services/settings_service.dart';
 import '../utils/app_logger.dart';
+import '../widgets/media_card_sliver_layout.dart';
+import '../widgets/settings_builder.dart';
 
 /// Debounced free-text media search shared by the main search screen and the
 /// catalog (Explore) search screen: text controller + focus nodes, a 500ms
@@ -173,17 +176,21 @@ mixin DebouncedMediaSearch<T extends StatefulWidget> on State<T> {
 
   /// The results list both screens render: padded, without keep-alives or
   /// semantic indexes, one child per entry of [searchResults].
-  Widget buildResultsSliver(NullableIndexedWidgetBuilder itemBuilder) {
-    return SliverPadding(
-      padding: const EdgeInsets.all(16),
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          itemBuilder,
-          childCount: searchResults.length,
-          addAutomaticKeepAlives: false,
-          addSemanticIndexes: false,
-        ),
-      ),
+  /// Search results honour the global list/grid setting, like every other
+  /// vertical card surface. They used to be hard-wired to list.
+  Widget buildResultsSliver(MediaCardSliverItemBuilder itemBuilder) {
+    return SettingsBuilder(
+      prefs: const [SettingsService.viewMode, SettingsService.libraryDensity],
+      builder: (context) {
+        final settings = SettingsService.instance;
+        return MediaCardSliverLayout(
+          viewMode: settings.read(SettingsService.viewMode),
+          itemCount: searchResults.length,
+          density: settings.read(SettingsService.libraryDensity),
+          padding: const EdgeInsets.all(16),
+          itemBuilder: itemBuilder,
+        );
+      },
     );
   }
 

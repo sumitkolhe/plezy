@@ -427,16 +427,16 @@ class ExploreScreenState extends State<ExploreScreen>
         ),
       );
     }
-    return buildResultsSliver((context, index) {
+    return buildResultsSliver((context, position) {
+      final index = position.index;
       final item = searchResults[index];
       return FocusableMediaCard(
         key: Key(item.globalKey),
         item: item,
-        forceListMode: true,
-        disableScale: true,
+        disableScale: position.disableScale,
         focusNode: index == 0 ? firstResultFocusNode : null,
         onNavigateLeft: _navigateToSidebar,
-        onNavigateUp: index == 0 ? searchFocusNode.requestFocus : null,
+        onNavigateUp: position.isFirstRow ? searchFocusNode.requestFocus : null,
       );
     });
   }
