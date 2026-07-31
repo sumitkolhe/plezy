@@ -15,7 +15,14 @@ class LoadingIndicatorBox extends StatelessWidget {
   /// Full-screen centered spinner sized to fill the remaining space inside a
   /// [CustomScrollView]. Replaces inline
   /// `SliverFillRemaining(child: Center(child: CircularProgressIndicator()))`.
-  static const Widget sliver = SliverFillRemaining(child: Center(child: CircularProgressIndicator()));
+  /// `hasScrollBody: false` so the spinner reports its own extent. The default
+  /// reports the whole viewport (sliver_fill.dart:153) regardless of preceding
+  /// slivers, which leaves an app bar's worth of phantom scroll on a
+  /// non-scrolling screen.
+  static const Widget sliver = SliverFillRemaining(
+    hasScrollBody: false,
+    child: Center(child: CircularProgressIndicator()),
+  );
 
   @override
   Widget build(BuildContext context) =>

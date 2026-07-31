@@ -264,6 +264,7 @@ class _SearchScreenState extends State<SearchScreen>
               LoadingIndicatorBox.sliver
             else if (!hasSearched)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: StateMessageWidget(
                   message: t.search.searchYourMedia,
                   subtitle: t.search.enterTitleActorOrKeyword,
@@ -273,10 +274,12 @@ class _SearchScreenState extends State<SearchScreen>
               )
             else if (lastSearchFailed)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: StateMessageWidget(message: t.explore.searchFailed, icon: Symbols.error_rounded, iconSize: 80),
               )
             else if (searchResults.isEmpty)
               SliverFillRemaining(
+                hasScrollBody: false,
                 child: StateMessageWidget(
                   message: t.messages.noResultsFound,
                   subtitle: t.search.tryDifferentTerm,
