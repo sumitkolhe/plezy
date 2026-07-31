@@ -202,6 +202,9 @@ class SideNavigationRail extends StatefulWidget {
   final bool alwaysExpanded;
   final bool isReconnecting;
   final ValueChanged<NavigationTabId> onDestinationSelected;
+
+  /// Search is a route rather than a tab, so it gets its own callback.
+  final VoidCallback onOpenSearch;
   final ValueChanged<String> onLibrarySelected;
 
   /// Called when RIGHT arrow is pressed to navigate to content without selecting.
@@ -222,6 +225,7 @@ class SideNavigationRail extends StatefulWidget {
     this.alwaysExpanded = false,
     this.isReconnecting = false,
     required this.onDestinationSelected,
+    required this.onOpenSearch,
     required this.onLibrarySelected,
     this.onNavigateToContent,
     this.onInteractionExpandedChanged,
@@ -414,8 +418,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
           }
         }
         return _kLibraries;
-      case NavigationTabId.search:
-        return _kSearch;
       case NavigationTabId.downloads:
         return _showDownloads ? _kDownloads : null;
       case NavigationTabId.settings:
@@ -804,8 +806,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                       icon: Symbols.search_rounded,
                                       selectedIcon: Symbols.search_rounded,
                                       label: Translations.of(context).common.search,
-                                      isSelected: widget.selectedTab == NavigationTabId.search,
-                                      onTap: () => widget.onDestinationSelected(NavigationTabId.search),
+                                      isSelected: false,
+                                      onTap: widget.onOpenSearch,
                                       focusNode: _focusTracker.get(_kSearch),
                                       isCollapsed: isCollapsed,
                                     ),

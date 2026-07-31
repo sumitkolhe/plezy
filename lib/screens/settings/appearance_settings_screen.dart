@@ -334,12 +334,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   // Sections offered as a startup destination, in display order. Live TV is
   // always listed; if no server provides it, startup falls back to Home.
-  static const _startupSectionOptions = [
-    NavigationTabId.discover,
-    NavigationTabId.libraries,
-    NavigationTabId.liveTv,
-    NavigationTabId.search,
-  ];
+  static const _startupSectionOptions = [NavigationTabId.discover, NavigationTabId.libraries, NavigationTabId.liveTv];
 
   String _startupSectionLabel(NavigationTabId id) => allNavigationTabs.firstWhere((t) => t.id == id).getLabel();
 

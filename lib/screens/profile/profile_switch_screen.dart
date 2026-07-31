@@ -29,6 +29,7 @@ import '../../widgets/focused_scroll_scaffold.dart';
 import '../../widgets/profile_switching_overlay.dart';
 import '../libraries/state_messages.dart';
 import 'add_local_profile_screen.dart';
+import '../../utils/dialogs.dart';
 import 'profile_teardown.dart';
 import 'profile_detail_screen.dart';
 
@@ -151,6 +152,24 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                           onPressed: _switching ? null : _addLocalProfile,
                           icon: const AppIcon(Symbols.person_add_rounded, fill: 1),
                           label: Text(t.profiles.addPlezyProfile),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+                    sliver: SliverToBoxAdapter(
+                      child: FocusableWrapper(
+                        disableScale: true,
+                        borderRadius: 100,
+                        useBackgroundFocus: true,
+                        descendantsAreFocusable: false,
+                        onSelect: _switching ? null : _logout,
+                        child: OutlinedButton.icon(
+                          onPressed: _switching ? null : _logout,
+                          style: OutlinedButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+                          icon: const AppIcon(Symbols.logout_rounded, fill: 1),
+                          label: Text(t.common.logout),
                         ),
                       ),
                     ),
@@ -331,6 +350,18 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
       if (conn != null) chips.add(_ChipData(backend: conn.backend, label: conn.displayLabel));
     }
     return chips;
+  }
+
+  Future<void> _logout() async {
+    final confirm = await showConfirmDialog(
+      context,
+      title: t.common.logout,
+      message: t.messages.logoutConfirm,
+      confirmText: t.common.logout,
+      isDestructive: true,
+    );
+    if (!confirm || !mounted) return;
+    await logoutAllProfiles(context);
   }
 
   Future<void> _addLocalProfile() async {

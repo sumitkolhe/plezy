@@ -26,15 +26,11 @@ import '../providers/discover_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/watch_state_store.dart';
 import '../widgets/hub_section.dart';
-import '../widgets/app_menu.dart';
 import '../widgets/clickable_cursor.dart';
 import '../widgets/loading_indicator_box.dart';
-import '../widgets/profile_switching_overlay.dart';
 import 'profile/profile_switch_screen.dart';
-import 'profile/profile_teardown.dart';
 import '../profiles/active_profile_provider.dart';
 import '../profiles/profile.dart';
-import '../profiles/profile_activation.dart';
 import '../profiles/profile_avatar.dart';
 import '../services/settings_service.dart';
 import '../widgets/settings_builder.dart';
@@ -45,7 +41,6 @@ import '../mixins/refreshable.dart';
 import '../mixins/tab_visibility_aware.dart';
 import '../i18n/strings.g.dart';
 import '../utils/app_logger.dart';
-import '../utils/dialogs.dart';
 import '../utils/formatters.dart';
 import '../utils/hub_icons.dart';
 import '../utils/media_navigation_helper.dart';
@@ -57,7 +52,7 @@ import '../theme/mono_tokens.dart';
 import 'libraries/content_state_builder.dart';
 import 'libraries/state_messages.dart';
 import 'main_screen.dart';
-import 'settings/settings_screen.dart';
+import 'search_screen.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -84,7 +79,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   bool get _areHubsLoading => _discover.areHubsLoading;
   String? get _errorMessage => _discover.errorMessage == null ? null : t.errors.unableToLoad(context: t.discover.title);
 
-  bool _switchingProfile = false;
   final PageController _heroController = PageController();
   final ScrollController _scrollController = ScrollController();
   int _currentHeroIndex = 0;
@@ -112,7 +106,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   late FocusNode _heroFocusNode;
   final _actionBarKey = GlobalKey<FocusableActionBarState>();
   final _serverActivitiesButtonKey = GlobalKey<ServerActivitiesButtonState>();
-  final _userMenuKey = GlobalKey<AppMenuButtonState<String>>();
 
   /// Backend-neutral hero client lookup. Returns the actual
   /// [MediaServerClient] for the item's server (Plex or Jellyfin) so
@@ -602,120 +595,31 @@ class _DiscoverScreenState extends State<DiscoverScreen>
     return serverIds.length > 1;
   }
 
-  Future<void> _handleLogout() async {
-    final confirm = await showConfirmDialog(
-      context,
-      title: t.common.logout,
-      message: t.messages.logoutConfirm,
-      confirmText: t.common.logout,
-      isDestructive: true,
-    );
-
-    if (confirm && mounted) {
-      await logoutAllProfiles(context);
-    }
-  }
-
-  void _handleSwitchProfile(BuildContext context) {
+  void _openProfiles(BuildContext context) {
     Navigator.of(
       context,
       rootNavigator: true,
     ).push(MaterialPageRoute(builder: (context) => const ProfileSwitchScreen()));
   }
 
-  void _handleOpenSettings(BuildContext context) {
-    final mainScope = MainScreenFocusScope.of(context, listen: false);
-    if (mainScope != null) {
-      mainScope.openSettings?.call();
-      return;
-    }
-
-    Navigator.push(context, MaterialPageRoute(builder: (_) => const SettingsScreen()));
-  }
-
-  /// Build the [FocusableAction] wrapping the user menu.
+  /// Build the [FocusableAction] wrapping the profile avatar.
   /// Pulls live state from [ActiveProfileProvider]; the menu reuses
   /// [_userMenuItems] for the menu contents so d-pad and tap paths
   /// stay in sync.
   FocusableAction _buildUserMenuAction(BuildContext context) {
-    final activeProvider = context.watch<ActiveProfileProvider>();
-    final active = activeProvider.active;
-    final profiles = activeProvider.profiles;
+    final active = context.select<ActiveProfileProvider, Profile?>((p) => p.active);
+    void open() => _openProfiles(context);
 
     return FocusableAction(
-      onPressed: _switchingProfile ? null : () => _userMenuKey.currentState?.showButtonMenu(focusFirstItem: true),
-      child: AppMenuButton<String>(
-        key: _userMenuKey,
-        enabled: !_switchingProfile,
+      onPressed: open,
+      child: IconButton(
+        onPressed: open,
+        tooltip: t.profiles.sectionTitle,
         icon: active != null
             ? ProfileAvatar(profile: active, size: 32)
             : const AppIcon(Symbols.account_circle_rounded, fill: 1, size: 32, color: Colors.white),
-        tooltip: t.profiles.sectionTitle,
-        anchorAlignment: AppMenuAnchorAlignment.end,
-        onSelected: (value) => unawaited(_handleUserMenuAction(context, value)),
-        entriesBuilder: (context) => _userMenuItems(context, activeProfile: active, profiles: profiles),
       ),
     );
-  }
-
-  List<AppMenuEntry<String>> _userMenuItems(
-    BuildContext context, {
-    required Profile? activeProfile,
-    required List<Profile> profiles,
-  }) {
-    final theme = Theme.of(context);
-    final switchable = profiles.where((p) => p.id != activeProfile?.id).toList();
-
-    return [
-      for (final p in switchable)
-        AppMenuItem<String>(
-          value: 'profile:${p.id}',
-          leading: ProfileAvatar(profile: p, size: 24),
-          label: p.displayName,
-          trailing: p.isPinProtected
-              ? AppIcon(Symbols.lock_rounded, fill: 1, size: 14, color: theme.colorScheme.onSurfaceVariant)
-              : null,
-        ),
-      if (switchable.isNotEmpty) const AppMenuDivider(),
-      AppMenuItem<String>(value: 'manage_profiles', icon: Symbols.group_rounded, label: t.profiles.sectionTitle),
-      AppMenuItem<String>(value: 'settings', icon: Symbols.settings_rounded, label: t.common.settings),
-      AppMenuItem<String>(value: 'logout', icon: Symbols.logout_rounded, label: t.common.logout),
-    ];
-  }
-
-  Future<void> _handleUserMenuAction(BuildContext context, String value) async {
-    if (_switchingProfile) return;
-    if (value == 'logout') {
-      unawaited(_handleLogout());
-      return;
-    }
-    if (value == 'manage_profiles') {
-      _handleSwitchProfile(context);
-      return;
-    }
-    if (value == 'settings') {
-      _handleOpenSettings(context);
-      return;
-    }
-    if (value.startsWith('profile:')) {
-      final id = value.substring('profile:'.length);
-      final active = context.read<ActiveProfileProvider>();
-      final target = active.profiles.where((p) => p.id == id).firstOrNull;
-      if (target == null) return;
-      await _switchProfileFromMenu(target);
-    }
-  }
-
-  Future<void> _switchProfileFromMenu(Profile profile) async {
-    if (_switchingProfile) return;
-    setState(() => _switchingProfile = true);
-    try {
-      await switchProfileFromUi(context, profile);
-    } finally {
-      if (mounted) {
-        setState(() => _switchingProfile = false);
-      }
-    }
   }
 
   Widget _buildOverlaidAppBar() {
@@ -746,6 +650,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     onPressed: () => _serverActivitiesButtonKey.currentState?.togglePanel(),
                     child: ServerActivitiesButton(key: _serverActivitiesButtonKey),
                   ),
+                FocusableAction(
+                  icon: Symbols.search_rounded,
+                  iconColor: foregroundColor,
+                  onPressed: () => unawaited(openSearchScreen(context)),
+                ),
                 // User menu — profiles + sign out
                 _buildUserMenuAction(context),
               ],
@@ -896,7 +805,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           // initial/tab-switch focus lands on content (hero/hubs), not the toolbar.
           // Toolbar buttons are still reachable via explicit UP from hero section.
           Positioned(top: 0, left: 0, right: 0, child: ExcludeFocusTraversal(child: _buildOverlaidAppBar())),
-          if (_switchingProfile) const ProfileSwitchingOverlay(),
         ],
       ),
     );
@@ -972,7 +880,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               child: _cachedTvBrowseRail(browseHubs, showServerName: showServerNameOnHubs || hubsSpanMultipleServers),
             ),
           TvToolbarOverlay(child: _buildOverlaidAppBar()),
-          if (_switchingProfile) const ProfileSwitchingOverlay(),
         ],
       ),
     );

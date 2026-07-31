@@ -90,51 +90,16 @@ void main() {
   });
 
   group('main screen bottom navigation tabs', () {
-    test('mobile online hides Settings when another tab is active', () {
-      final tabs = mainScreenBottomNavigationTabs(
-        visibleTabs: allNavigationTabs,
-        isMobile: true,
-        isOffline: false,
-        currentTab: NavigationTabId.discover,
-      );
-
-      expect(_ids(tabs), isNot(contains(NavigationTabId.settings)));
-    });
-
-    test('mobile offline includes Downloads and Settings', () {
-      final offlineTabs = allNavigationTabs
-          .where((tab) => tab.id == NavigationTabId.downloads || tab.id == NavigationTabId.settings)
-          .toList();
-      final tabs = mainScreenBottomNavigationTabs(
-        visibleTabs: offlineTabs,
-        isMobile: true,
-        isOffline: true,
-        currentTab: NavigationTabId.downloads,
-      );
-
-      expect(_ids(tabs), [NavigationTabId.downloads, NavigationTabId.settings]);
-    });
-
-    test('mobile online keeps Settings visible when it is selected', () {
-      final tabs = mainScreenBottomNavigationTabs(
-        visibleTabs: allNavigationTabs,
-        isMobile: true,
-        isOffline: false,
-        currentTab: NavigationTabId.settings,
-      );
+    test('Settings is an ordinary tab, not a popup entry', () {
+      final tabs = NavigationTab.getVisibleTabs(isOffline: false);
 
       expect(_ids(tabs), contains(NavigationTabId.settings));
     });
 
-    test('non-mobile returns all visible tabs unchanged', () {
-      final tabs = mainScreenBottomNavigationTabs(
-        visibleTabs: allNavigationTabs,
-        isMobile: false,
-        isOffline: false,
-        currentTab: NavigationTabId.discover,
-      );
+    test('Settings stays available offline', () {
+      final tabs = NavigationTab.getVisibleTabs(isOffline: true);
 
-      expect(tabs, same(allNavigationTabs));
+      expect(_ids(tabs), contains(NavigationTabId.settings));
     });
   });
 }

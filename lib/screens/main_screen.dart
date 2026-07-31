@@ -115,20 +115,6 @@ bool shouldRenderMainScreenOffline({
 }
 
 @visibleForTesting
-List<NavigationTab> mainScreenBottomNavigationTabs({
-  required List<NavigationTab> visibleTabs,
-  required bool isMobile,
-  required bool isOffline,
-  required NavigationTabId currentTab,
-}) {
-  if (!isMobile) return visibleTabs;
-  return visibleTabs.where((tab) {
-    if (tab.id != NavigationTabId.settings) return true;
-    return isOffline || currentTab == NavigationTabId.settings;
-  }).toList();
-}
-
-@visibleForTesting
 bool shouldPassTvosMenuToSystem({
   required bool isAppleTV,
   required bool isShowingProfileSelection,
@@ -867,7 +853,6 @@ class _MainScreenState extends State<MainScreen>
             onLibrarySelected: _handleLibrariesScreenSelected,
           ),
           NavigationTabId.liveTv => LiveTvScreen(key: _screenKeys[tab.id]),
-          NavigationTabId.search => SearchScreen(key: _screenKeys[tab.id]),
           NavigationTabId.downloads => DownloadsScreen(key: _screenKeys[tab.id]),
           NavigationTabId.settings => SettingsScreen(key: _screenKeys[tab.id]),
         },
@@ -1248,12 +1233,7 @@ class _MainScreenState extends State<MainScreen>
     if (!isMacShortcut && !isOtherShortcut) return KeyEventResult.ignored;
     if (_isOffline) return KeyEventResult.handled;
 
-    _selectTab(NavigationTabId.search);
-    if (_isSidebarFocused) _focusContent();
-    // Schedule focus after the frame so the search screen is visible in the IndexedStack
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _onScreen<SearchInputFocusable>(NavigationTabId.search, (screen) => screen.focusSearchInput());
-    });
+    unawaited(openSearchScreen(context));
     return KeyEventResult.handled;
   }
 
@@ -1353,7 +1333,7 @@ class _MainScreenState extends State<MainScreen>
     }
   }
 
-  void _selectTab(NavigationTabId tab, {bool focusSearchInput = true}) {
+  void _selectTab(NavigationTabId tab) {
     // Guard: ignore if tab isn't available in current mode
     if (!_getVisibleTabs(_isOffline).any((t) => t.id == tab)) return;
 
@@ -1379,10 +1359,7 @@ class _MainScreenState extends State<MainScreen>
       // Back-to-home keeps the sidebar focused (chain: content → sidebar →
       // home → exit); stealing focus here left _isSidebarFocused stuck true
       // while real focus sat on a content card (#1411).
-      // A companion-remote search (focusSearchInput: false) must NOT focus the
-      // search input, since focusing it auto-opens the on-screen keyboard; the
-      // query submit focuses results instead.
-      if (!_isSidebarFocused && (tab != NavigationTabId.search || focusSearchInput)) {
+      if (!_isSidebarFocused) {
         _onScreen<FocusableTab>(tab, (screen) => screen.focusActiveTabIfReady());
       }
     }
@@ -1390,15 +1367,6 @@ class _MainScreenState extends State<MainScreen>
     // Discover: always refresh content (even on re-selection)
     if (!_isOffline && tab == NavigationTabId.discover) {
       _onDiscoverBecameVisible();
-    }
-
-    // Focus search input after rebuild so IndexedStack has made it visible.
-    // Skipped for a companion-remote search (focusSearchInput: false), whose
-    // submit runs the search and focuses results without opening the keyboard.
-    if (tab == NavigationTabId.search && focusSearchInput) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _onScreen<SearchInputFocusable>(NavigationTabId.search, (screen) => screen.focusSearchInput());
-      });
     }
   }
 
@@ -1490,14 +1458,7 @@ class _MainScreenState extends State<MainScreen>
     return NavigationTab.getVisibleTabs(isOffline: isOffline, hasLiveTv: _hasLiveTv, hasExplore: _lastHasExplore);
   }
 
-  List<NavigationTab> _getBottomNavigationTabs(BuildContext context) {
-    return mainScreenBottomNavigationTabs(
-      visibleTabs: _getVisibleTabs(_isOffline),
-      isMobile: PlatformDetector.isMobile(context),
-      isOffline: _isOffline,
-      currentTab: _currentTab,
-    );
-  }
+  List<NavigationTab> _getBottomNavigationTabs(BuildContext context) => _getVisibleTabs(_isOffline);
 
   /// Invoke [fn] on the tab's current [State] when it exists and implements
   /// the capability [T]. Screens are only built for visible tabs and mount a
@@ -1510,7 +1471,7 @@ class _MainScreenState extends State<MainScreen>
   /// ([_primeOnlineServices]) and the profile-switch invalidation
   /// ([_invalidateAllScreens]), which refresh the same set.
   void _fullRefreshContentTabs() {
-    for (final tab in const [NavigationTabId.discover, NavigationTabId.libraries, NavigationTabId.search]) {
+    for (final tab in const [NavigationTabId.discover, NavigationTabId.libraries]) {
       _onScreen<FullRefreshable>(tab, (screen) => screen.fullRefresh());
     }
   }
@@ -1679,6 +1640,7 @@ class _MainScreenState extends State<MainScreen>
                                     isSidebarFocused: _isSidebarFocused,
                                     alwaysExpanded: alwaysExpanded,
                                     isReconnecting: _isReconnecting,
+                                    onOpenSearch: () => unawaited(openSearchScreen(context)),
                                     onInteractionExpandedChanged: _handleSidebarInteractionExpandedChanged,
                                     onDestinationSelected: (tab) {
                                       _runNavigationTransaction(() {
