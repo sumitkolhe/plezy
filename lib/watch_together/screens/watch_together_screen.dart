@@ -29,6 +29,7 @@ import '../services/recent_rooms_service.dart';
 import '../services/watch_together_relay_endpoint.dart';
 import '../widgets/join_session_dialog.dart';
 import '../../widgets/loading_indicator_box.dart';
+import '../../theme/mono_tokens.dart';
 
 class WatchTogetherScreen extends StatelessWidget {
   const WatchTogetherScreen({super.key});
@@ -465,7 +466,7 @@ class _RecentRoomTile extends StatelessWidget {
             subtitle: room.name != null
                 ? Text(
                     room.code,
-                    style: TextStyle(fontFamily: 'monospace', color: theme.colorScheme.onSurfaceVariant),
+                    style: TextStyle(fontFamily: MonoFonts.mono, color: theme.colorScheme.onSurfaceVariant),
                   )
                 : null,
             trailing: IconButton(
@@ -801,7 +802,7 @@ class _SessionCodeRow extends StatelessWidget {
               Text(
                 '${t.watchTogether.sessionCode}: $sessionId',
                 style: theme.textTheme.bodySmall?.copyWith(
-                  fontFamily: 'monospace',
+                  fontFamily: MonoFonts.mono,
                   color: theme.colorScheme.onSurfaceVariant,
                 ),
               ),

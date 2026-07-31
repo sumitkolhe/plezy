@@ -3,6 +3,22 @@ import 'package:flutter/material.dart';
 
 MonoTokens tokens(BuildContext context) => Theme.of(context).extension<MonoTokens>()!;
 
+/// App-wide typefaces. Switching families means changing these three values and
+/// the matching `fonts:` block in pubspec.yaml — nothing else references a
+/// family name directly.
+class MonoFonts {
+  static const String sans = 'GoogleSans';
+
+  /// For figures that must not reflow as they tick, and for verbatim technical
+  /// text: timecodes, bitrates, logs, mpv config.
+  static const String mono = 'GoogleSansCode';
+
+  /// Bundled license text, surfaced on the Licenses screen.
+  static const String licenseAsset = 'assets/fonts/GOOGLE-SANS-OFL.txt';
+
+  static const List<String> licenseePackages = ['Google Sans', 'Google Sans Code'];
+}
+
 /// M3E connected-group geometry for item [index] of a [count]-item group:
 /// large radii on the group's outer corners, small radii between adjacent
 /// items. Pair with `MonoTokens.groupGap` spacing for the hairline gaps.

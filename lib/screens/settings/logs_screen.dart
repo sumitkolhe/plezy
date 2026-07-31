@@ -25,6 +25,7 @@ import '../../utils/platform_detector.dart';
 import '../../utils/snackbar_helper.dart';
 import '../../widgets/desktop_app_bar.dart';
 import '../../widgets/ios_status_bar_tap_scroll_to_top.dart';
+import '../../theme/mono_tokens.dart';
 
 /// Relay `/logs` accepts 1 MiB. The in-memory buffer intentionally remains
 /// larger for local viewing and copying; uploads retain the device header and
@@ -223,7 +224,7 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                     Expanded(
                       child: SelectableText(
                         id,
-                        style: const TextStyle(fontWeight: .bold, fontFamily: 'monospace', fontSize: 18),
+                        style: const TextStyle(fontWeight: .bold, fontFamily: MonoFonts.mono, fontSize: 18),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -394,7 +395,7 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                       child: SelectableText.rich(
                         TextSpan(
                           style: theme.textTheme.bodySmall?.copyWith(
-                            fontFamily: 'monospace',
+                            fontFamily: MonoFonts.mono,
                             fontSize: 12,
                             height: 1.5,
                           ),

@@ -548,7 +548,7 @@ class _TvPinInputState extends State<_TvPinInput> with ControllerDisposerMixin {
       child: Text(
         key.label,
         maxLines: 1,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: foreground, fontWeight: .w800),
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(color: foreground, fontWeight: .w700),
       ),
     );
   }

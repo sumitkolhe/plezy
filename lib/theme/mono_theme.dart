@@ -47,6 +47,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
 
   final base = ThemeData(
     useMaterial3: true,
+    fontFamily: MonoFonts.sans,
     brightness: isDark ? Brightness.dark : Brightness.light,
     colorScheme: ColorScheme(
       brightness: isDark ? Brightness.dark : Brightness.light,
@@ -90,10 +91,16 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
       scrolledUnderElevation: 0,
       centerTitle: false,
       foregroundColor: c.text,
-      titleTextStyle: TextStyle(color: c.text, fontSize: 18, fontWeight: .w700, letterSpacing: -0.2),
+      titleTextStyle: TextStyle(
+        color: c.text,
+        fontFamily: MonoFonts.sans,
+        fontSize: 18,
+        fontWeight: .w700,
+        letterSpacing: -0.2,
+      ),
     ),
     textTheme: Typography.englishLike2021
-        .apply(bodyColor: c.text, displayColor: c.text)
+        .apply(bodyColor: c.text, displayColor: c.text, fontFamily: MonoFonts.sans)
         .copyWith(
           displayLarge: const TextStyle(fontWeight: .w700, letterSpacing: -0.5),
           titleMedium: const TextStyle(fontWeight: .w600),
@@ -137,7 +144,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
       backgroundColor: c.bg,
       elevation: 0,
       indicatorColor: Colors.transparent,
-      labelTextStyle: WidgetStatePropertyAll(TextStyle(color: c.textMuted, fontSize: 11)),
+      labelTextStyle: WidgetStatePropertyAll(TextStyle(color: c.textMuted, fontFamily: MonoFonts.sans, fontSize: 11)),
       iconTheme: WidgetStateProperty.resolveWith((states) {
         final active = states.contains(WidgetState.selected);
         return IconThemeData(opacity: active ? 1 : 0.6, size: 22, color: c.text);
@@ -149,7 +156,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
     snackBarTheme: SnackBarThemeData(
       behavior: SnackBarBehavior.floating,
       backgroundColor: c.surface,
-      contentTextStyle: TextStyle(color: c.text),
+      contentTextStyle: TextStyle(color: c.text, fontFamily: MonoFonts.sans),
       actionTextColor: c.text,
       elevation: 6,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
@@ -196,6 +203,6 @@ InputDecorationTheme _inputDecorationTheme(Color text, Color textMuted) {
     border: border,
     enabledBorder: border,
     focusedBorder: border,
-    hintStyle: TextStyle(color: textMuted),
+    hintStyle: TextStyle(color: textMuted, fontFamily: MonoFonts.sans),
   );
 }

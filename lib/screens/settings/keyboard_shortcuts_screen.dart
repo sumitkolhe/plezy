@@ -59,7 +59,7 @@ class KeyboardShortcutsScreen extends StatelessWidget {
                           ),
                           child: Text(
                             keyboardService.formatHotkey(hotkeys[action]),
-                            style: const TextStyle(fontFamily: 'monospace'),
+                            style: const TextStyle(fontFamily: MonoFonts.mono),
                           ),
                         ),
                         onTap: () => _editHotkey(context, action, hotkeys[action]),

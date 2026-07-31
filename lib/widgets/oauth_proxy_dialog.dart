@@ -6,6 +6,7 @@ import '../i18n/strings.g.dart';
 import '../services/trackers/oauth_proxy_client.dart';
 import '../utils/snackbar_helper.dart';
 import 'pending_auth_dialog.dart';
+import '../theme/mono_tokens.dart';
 
 /// Sign-in dialog for OAuth-proxy flows (MAL, AniList).
 ///
@@ -56,7 +57,7 @@ class OAuthProxyDialog extends StatelessWidget {
             child: Text(
               start.url,
               style: theme.textTheme.bodySmall?.copyWith(
-                fontFamily: 'monospace',
+                fontFamily: MonoFonts.mono,
                 color: theme.colorScheme.onSurfaceVariant,
               ),
               textAlign: TextAlign.center,

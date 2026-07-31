@@ -716,7 +716,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
               child: Text(
                 code,
                 style: theme.textTheme.displayLarge?.copyWith(
-                  fontFamily: 'monospace',
+                  fontFamily: MonoFonts.mono,
                   fontWeight: .bold,
                   letterSpacing: 12,
                 ),

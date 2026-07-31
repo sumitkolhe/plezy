@@ -1319,7 +1319,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                           color: titleColor,
                           fontSize: 18 * scale,
                           height: 1,
-                          fontWeight: isActive ? FontWeight.w800 : FontWeight.w700,
+                          fontWeight: isActive ? FontWeight.w700 : FontWeight.w500,
                         ),
                       ),
                     ),
@@ -1591,7 +1591,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                         item.displayTitle,
                         maxLines: 1,
                         overflow: .ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 13 * scale, height: 1.1, fontWeight: .w800),
+                        style: TextStyle(color: Colors.white, fontSize: 13 * scale, height: 1.1, fontWeight: .w700),
                       ),
                       if (characterName != null && characterName.isNotEmpty) ...[
                         SizedBox(height: 2 * scale),
@@ -1801,7 +1801,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                     style: TextStyle(
                       color: foreground,
                       fontSize: (13 * scale).clamp(12, 16).toDouble(),
-                      fontWeight: .w800,
+                      fontWeight: .w700,
                       letterSpacing: 0.1,
                     ),
                   ),

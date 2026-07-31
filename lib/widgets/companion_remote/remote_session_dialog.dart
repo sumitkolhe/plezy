@@ -117,7 +117,7 @@ class _RemoteSessionDialogState extends State<RemoteSessionDialog> with MountedS
           if (_errorMessage != null) {
             return AlertDialog(
               title: Text(t.common.error),
-              content: Text(_errorMessage!, style: const TextStyle(fontFamily: 'monospace')),
+              content: Text(_errorMessage!, style: const TextStyle(fontFamily: MonoFonts.mono)),
               actions: [
                 DialogActionButton(
                   autofocus: true,

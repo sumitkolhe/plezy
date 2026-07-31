@@ -23,6 +23,7 @@ import '../../widgets/focusable_popup_menu_button.dart';
 import '../../widgets/focusable_list_tile.dart';
 import '../../widgets/settings_builder.dart';
 import '../../widgets/settings_section.dart';
+import '../../theme/mono_tokens.dart';
 
 class MpvConfigScreen extends StatefulWidget {
   const MpvConfigScreen({super.key});
@@ -320,7 +321,7 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
           border: const OutlineInputBorder(),
           contentPadding: const EdgeInsets.all(12),
         ),
-        style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
+        style: const TextStyle(fontFamily: MonoFonts.mono, fontSize: 13),
         onChanged: _queueTextSave,
       ),
     );

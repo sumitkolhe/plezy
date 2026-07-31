@@ -17,6 +17,7 @@ import '../../widgets/focusable_list_tile.dart';
 import '../../widgets/overlay_sheet.dart';
 import '../models/watch_session.dart';
 import '../providers/watch_together_provider.dart';
+import '../../theme/mono_tokens.dart';
 
 class WatchTogetherSessionIndicator extends StatelessWidget {
   final VoidCallback? onLeaveSession;
@@ -203,7 +204,7 @@ class _SessionMenuSheet extends StatelessWidget {
                           ),
                           Text(
                             provider.sessionId!,
-                            style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'monospace', fontWeight: .bold),
+                            style: theme.textTheme.bodySmall?.copyWith(fontFamily: MonoFonts.mono, fontWeight: .bold),
                           ),
                           const SizedBox(width: 8),
                           AppIcon(Symbols.content_copy_rounded, size: 16, color: theme.colorScheme.onSurfaceVariant),

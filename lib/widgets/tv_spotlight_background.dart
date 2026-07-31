@@ -290,7 +290,7 @@ class TvSpotlightBackground extends StatelessWidget {
       style: Theme.of(context).textTheme.displaySmall?.copyWith(
         color: colorScheme.onSurface,
         fontSize: _titleFontSize(scale),
-        fontWeight: .w800,
+        fontWeight: .w700,
         shadows: [Shadow(color: colorScheme.surface.withValues(alpha: 0.8), blurRadius: 12)],
       ),
     );
@@ -390,7 +390,7 @@ class TvSpotlightBackground extends StatelessWidget {
             SizedBox(width: (compact ? 10 : 12) * scale),
             Text(
               hasProgress ? t.discover.minutesLeft(minutes: minutesLeft) : t.common.play,
-              style: TextStyle(color: Colors.black, fontSize: (compact ? 16 : 18) * scale, fontWeight: .w800),
+              style: TextStyle(color: Colors.black, fontSize: (compact ? 16 : 18) * scale, fontWeight: .w700),
             ),
           ],
         ),

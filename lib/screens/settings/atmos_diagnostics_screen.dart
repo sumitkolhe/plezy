@@ -12,6 +12,7 @@ import '../../widgets/setting_tile.dart';
 import '../../widgets/settings_builder.dart';
 import '../../widgets/settings_page.dart';
 import '../../widgets/settings_section.dart';
+import '../../theme/mono_tokens.dart';
 
 /// #1300 diagnostics: plays known test signals through a bare AVPlayer (via
 /// the native AtmosProbe plugin) so a tester can read the receiver's format
@@ -217,7 +218,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
                 width: double.infinity,
                 child: Text(
                   statusText.isEmpty ? '—' : statusText,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(fontFamily: 'monospace'),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(fontFamily: MonoFonts.mono),
                 ),
               ),
             ),

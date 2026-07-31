@@ -8,6 +8,7 @@ import '../../../../mpv/mpv.dart';
 import '../../../../widgets/app_icon.dart';
 import 'performance_stats.dart';
 import 'performance_stats_service.dart';
+import '../../../../theme/mono_tokens.dart';
 
 /// A toggleable overlay displaying real-time video player performance statistics.
 ///
@@ -178,7 +179,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
           Flexible(
             child: Text(
               metric.value,
-              style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .w500, fontFamily: 'monospace'),
+              style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: .w500, fontFamily: MonoFonts.mono),
               overflow: .ellipsis,
             ),
           ),

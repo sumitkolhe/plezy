@@ -5,6 +5,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
 import '../../widgets/loading_indicator_box.dart';
 import '../../i18n/strings.g.dart';
+import '../../theme/mono_tokens.dart';
 
 class MergedLicenseEntry {
   final String packageName;
@@ -158,7 +159,10 @@ class _LicenseDetailScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(bottom: 16),
                                 child: SelectableText(
                                   paragraph.text,
-                                  style: TextStyle(fontFamily: paragraph.indent > 0 ? 'monospace' : null, fontSize: 14),
+                                  style: TextStyle(
+                                    fontFamily: paragraph.indent > 0 ? MonoFonts.mono : null,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               );
                             }),

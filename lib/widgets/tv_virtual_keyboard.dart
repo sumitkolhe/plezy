@@ -24,9 +24,9 @@ bool _keyboardTextWarmedUp = false;
 void warmUpTvVirtualKeyboardText(BuildContext context) {
   if (_keyboardTextWarmedUp || !PlatformDetector.isTV()) return;
   _keyboardTextWarmedUp = true;
-  // Matches the key cap style (titleLarge w800, see _buildKey) at the sizes
+  // Matches the key cap style (titleLarge w700, see _buildKey) at the sizes
   // the metrics clamp to; shaping caches are per font/size.
-  final baseStyle = Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800);
+  final baseStyle = Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700);
   const samples = [
     'abcdefghijklmnopqrstuvwxyz',
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -812,7 +812,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
         maxLines: 1,
         style: Theme.of(
           context,
-        ).textTheme.titleLarge?.copyWith(color: foreground, fontSize: metrics.keyFontSize, fontWeight: .w800),
+        ).textTheme.titleLarge?.copyWith(color: foreground, fontSize: metrics.keyFontSize, fontWeight: .w700),
       ),
     );
   }

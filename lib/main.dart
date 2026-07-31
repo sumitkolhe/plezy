@@ -28,6 +28,7 @@ import 'profiles/profile_selection_policy.dart';
 import 'models/external_player_models.dart';
 import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
+import 'theme/mono_tokens.dart';
 import 'profiles/plex_home_service.dart';
 import 'screens/auth_screen.dart';
 import 'screens/profile/pin_entry_dialog.dart';
@@ -496,6 +497,7 @@ void _startNonessentialInitialization(SettingsService settings) {
   }
 
   bestEffort('Shader licenses', _registerShaderLicenses);
+  bestEffort('Font licenses', _registerFontLicenses);
   // The startup-gate application can precede the engine's first metrics
   // report, which reads as a 1.0 display budget; re-derive it now that the
   // tree is mounted and the display is known.
@@ -615,6 +617,13 @@ FutureOr<SentryEvent?> _beforeSend(SentryEvent event, Hint _) {
   }
 
   return event;
+}
+
+void _registerFontLicenses() {
+  LicenseRegistry.addLicense(() async* {
+    final ofl = await rootBundle.loadString(MonoFonts.licenseAsset);
+    yield LicenseEntryWithLineBreaks(MonoFonts.licenseePackages, ofl);
+  });
 }
 
 void _registerShaderLicenses() {

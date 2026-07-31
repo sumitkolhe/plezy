@@ -391,7 +391,7 @@ class _PathRow extends StatelessWidget {
                       style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                     ),
                     const SizedBox(height: 2),
-                    Text(path, style: theme.textTheme.bodySmall?.copyWith(fontFamily: 'monospace', height: 1.35)),
+                    Text(path, style: theme.textTheme.bodySmall?.copyWith(fontFamily: MonoFonts.mono, height: 1.35)),
                   ],
                 ),
               ),
@@ -730,7 +730,7 @@ class _FocusableFieldState extends State<_FocusableField> {
             Text(
               field.value,
               style: field.monospace
-                  ? theme.textTheme.bodySmall?.copyWith(fontFamily: 'monospace')
+                  ? theme.textTheme.bodySmall?.copyWith(fontFamily: MonoFonts.mono)
                   : theme.textTheme.bodyMedium,
             ),
           ],

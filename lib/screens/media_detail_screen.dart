@@ -3503,7 +3503,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   context,
                                   title,
                                   fontSize: 56 * scale,
-                                  fontWeight: .w800,
+                                  fontWeight: .w700,
                                   shadowBlur: 12,
                                   color: foregroundColor,
                                   shadowColor: _tvDetailTitleShadowColor(context),
