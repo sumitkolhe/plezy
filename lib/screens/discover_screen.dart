@@ -18,7 +18,6 @@ import '../media/media_item_types.dart';
 import '../media/media_server_client.dart';
 import '../media/media_hub.dart';
 import '../utils/media_image_helper.dart';
-import '../utils/content_utils.dart';
 import '../widgets/cycling_media_backdrop.dart';
 import '../widgets/optimized_media_image.dart' show ClearLogoImage, blurArtwork;
 import '../widgets/toolbar_scrim.dart';
@@ -41,12 +40,12 @@ import '../mixins/refreshable.dart';
 import '../mixins/tab_visibility_aware.dart';
 import '../i18n/strings.g.dart';
 import '../utils/app_logger.dart';
-import '../utils/formatters.dart';
 import '../utils/hub_icons.dart';
 import '../utils/media_navigation_helper.dart';
 import '../utils/provider_extensions.dart';
 import '../utils/video_player_navigation.dart';
 import '../utils/layout_constants.dart';
+import '../utils/rating_spans.dart';
 import '../utils/platform_detector.dart';
 import '../theme/mono_tokens.dart';
 import 'libraries/content_state_builder.dart';
@@ -1185,13 +1184,16 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                           // Metadata as dot-separated text with content type
                           if (heroItem.year != null || heroItem.contentRating != null || heroItem.rating != null) ...[
                             const SizedBox(height: 16),
-                            Text(
-                              [
-                                contentTypeLabel,
-                                if (heroItem.rating != null) '★ ${formatRating(heroItem.rating!)}',
-                                if (heroItem.contentRating != null) formatContentRating(heroItem.contentRating!),
-                                if (heroItem.year != null) heroItem.year.toString(),
-                              ].join(' • '),
+                            Text.rich(
+                              TextSpan(
+                                children: heroMetadataSpans(
+                                  contentTypeLabel: contentTypeLabel,
+                                  rating: heroItem.rating,
+                                  contentRating: heroItem.contentRating,
+                                  year: heroItem.year,
+                                  iconSize: isTv ? 18 : 14,
+                                ),
+                              ),
                               style: TextStyle(
                                 color: colorScheme.onSurface,
                                 fontSize: isTv ? 18 : 14,
