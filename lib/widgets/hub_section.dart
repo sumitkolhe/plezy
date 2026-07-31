@@ -417,7 +417,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
     final isTv = PlatformDetector.isTV();
     final leadingPadding = _leadingPaddingFor(isTv);
     final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-      fontSize: isTv ? 26 : 17,
+      fontSize: isTv ? 26 : 15,
       fontWeight: isTv ? FontWeight.w700 : FontWeight.w700,
       letterSpacing: isTv ? null : -0.2,
     );
@@ -453,8 +453,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                   child: Row(
                     mainAxisSize: .min,
                     children: [
-                      AppIcon(widget.icon, fill: 1, size: isTv ? 28 : 18),
-                      SizedBox(width: isTv ? 12 : 7),
+                      AppIcon(widget.icon, fill: 1, size: isTv ? 28 : 16),
+                      SizedBox(width: isTv ? 12 : 6),
                       Flexible(
                         child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
                       ),
@@ -531,9 +531,14 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                         !isSquareHub &&
                         (hasEpisodes || isTopLevelShelf);
 
-                    // Card dimensions based on hub type
+                    // TV keeps the shelf multiplier; touch layouts target a
+                    // card count so the density slider spans evenly.
                     const wideCardMultiplier = 1.5;
-                    final cardWidth = useWideLayout ? baseCardWidth * wideCardMultiplier : baseCardWidth;
+                    final cardWidth = !useWideLayout
+                        ? baseCardWidth
+                        : isTv
+                        ? baseCardWidth * wideCardMultiplier
+                        : GridSizeCalculator.getWideCellWidth(constraints.maxWidth, context, density);
                     final posterWidth = MediaCardGridLayout.posterWidth(cardWidth);
                     final posterHeight = useWideLayout
                         ? posterWidth *

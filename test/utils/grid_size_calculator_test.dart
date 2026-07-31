@@ -212,4 +212,38 @@ void main() {
       expect(width, lessThanOrEqualTo(150));
     });
   });
+
+  group('wide rail cards', () {
+    // The old portraitCell * 1.5 path quantised through an integer column
+    // count, so densities 1-2 and 3-4 landed on the same width and density 5
+    // bottomed out near 1.3 cards per row.
+    testWidgets('phone density spans evenly and never drops below two cards', (tester) async {
+      final widths = <int, double>{};
+      await tester.pumpWidget(
+        MediaQuery(
+          data: const MediaQueryData(size: Size(384, 832)),
+          child: Builder(
+            builder: (context) {
+              for (var d = LibraryDensity.min; d <= LibraryDensity.max; d++) {
+                widths[d] = GridSizeCalculator.getWideCellWidth(384, context, d);
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
+      );
+
+      final cardsPerRow = {for (final e in widths.entries) e.key: 384 / e.value};
+      // Strictly increasing card width, so no two densities collapse together.
+      for (var d = LibraryDensity.min; d < LibraryDensity.max; d++) {
+        expect(widths[d + 1]!, greaterThan(widths[d]!), reason: 'density ${d + 1} must be wider than $d');
+      }
+      expect(cardsPerRow[LibraryDensity.max]!, greaterThan(1.6));
+      expect(cardsPerRow[LibraryDensity.min]!, lessThan(3.6));
+      // A fractional count keeps a partial card visible as a scroll affordance.
+      for (final count in cardsPerRow.values) {
+        expect(count % 1, greaterThan(0.05), reason: 'card count $count should not land on a whole number');
+      }
+    });
+  });
 }

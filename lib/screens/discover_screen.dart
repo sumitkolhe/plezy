@@ -712,6 +712,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                   );
                 },
               ),
+              // Separate the hero's page indicator from the first rail header.
+              // Only with the hero present: without it the branch above already
+              // supplies the top inset.
+              if (_onDeck.isNotEmpty && showHeroSection)
+                const SliverToBoxAdapter(child: SizedBox(height: HubLayoutConstants.heroToRailGap)),
               if (_isLoading) LoadingIndicatorBox.sliver,
               if (_errorMessage != null) SliverErrorState(message: _errorMessage!, onRetry: _discover.load),
               if (!_isLoading && _errorMessage == null) ...[

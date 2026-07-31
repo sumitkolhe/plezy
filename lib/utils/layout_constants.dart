@@ -63,6 +63,9 @@ class GridLayoutConstants {
 class HubLayoutConstants {
   static const double shelfVerticalGap = 20;
   static const double headerGap = 6;
+
+  /// Between the hero's page indicator and the first rail header.
+  static const double heroToRailGap = 16;
 }
 
 class TvLayoutConstants {

@@ -18,6 +18,28 @@ class GridSizeCalculator {
     return _lerp(100, 200, f);
   }
 
+  /// Width of a 16:9 rail card at [density].
+  ///
+  /// Wide cards target a card count directly instead of scaling the poster
+  /// cell by a fixed multiplier. That multiplier compounded with density and
+  /// inherited the poster grid's integer column count, so the touch range came
+  /// out lumpy (densities 1-2 and 3-4 were identical) and bottomed out near
+  /// 1.3 cards per row. The bounds stay fractional so a partial card always
+  /// signals the row scrolls.
+  static double getWideCellWidth(double availableWidth, BuildContext context, int density) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final f = LibraryDensity.factor(density);
+    final double targetCards;
+    if (ScreenBreakpoints.isDesktopOrLarger(screenWidth)) {
+      targetCards = _lerp(6.3, 3.4, f);
+    } else if (ScreenBreakpoints.isTablet(screenWidth)) {
+      targetCards = _lerp(4.4, 2.6, f);
+    } else {
+      targetCards = _lerp(3.2, 1.8, f);
+    }
+    return availableWidth / targetCards;
+  }
+
   /// Calculates the max cross-axis extent accounting for outer padding.
   /// [density] is an int 1–5.
   static double getMaxCrossAxisExtentWithPadding(BuildContext context, int density, double horizontalPadding) {
