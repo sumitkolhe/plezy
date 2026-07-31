@@ -64,7 +64,6 @@ class TranslationsHu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$hu errors = _Translations$errors$hu._(_root);
 	@override late final _Translations$libraries$hu libraries = _Translations$libraries$hu._(_root);
 	@override late final _Translations$about$hu about = _Translations$about$hu._(_root);
-	@override late final _Translations$serverSelection$hu serverSelection = _Translations$serverSelection$hu._(_root);
 	@override late final _Translations$hubDetail$hu hubDetail = _Translations$hubDetail$hu._(_root);
 	@override late final _Translations$logs$hu logs = _Translations$logs$hu._(_root);
 	@override late final _Translations$licenses$hu licenses = _Translations$licenses$hu._(_root);
@@ -74,15 +73,12 @@ class TranslationsHu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$hu collections = _Translations$collections$hu._(_root);
 	@override late final _Translations$playlists$hu playlists = _Translations$playlists$hu._(_root);
 	@override late final _Translations$music$hu music = _Translations$music$hu._(_root);
-	@override late final _Translations$watchTogether$hu watchTogether = _Translations$watchTogether$hu._(_root);
 	@override late final _Translations$downloads$hu downloads = _Translations$downloads$hu._(_root);
 	@override late final _Translations$shaders$hu shaders = _Translations$shaders$hu._(_root);
-	@override late final _Translations$companionRemote$hu companionRemote = _Translations$companionRemote$hu._(_root);
 	@override late final _Translations$videoSettings$hu videoSettings = _Translations$videoSettings$hu._(_root);
 	@override late final _Translations$performanceOverlay$hu performanceOverlay = _Translations$performanceOverlay$hu._(_root);
 	@override late final _Translations$externalPlayer$hu externalPlayer = _Translations$externalPlayer$hu._(_root);
 	@override late final _Translations$metadataEdit$hu metadataEdit = _Translations$metadataEdit$hu._(_root);
-	@override late final _Translations$matchScreen$hu matchScreen = _Translations$matchScreen$hu._(_root);
 	@override late final _Translations$serverTasks$hu serverTasks = _Translations$serverTasks$hu._(_root);
 	@override late final _Translations$trakt$hu trakt = _Translations$trakt$hu._(_root);
 	@override late final _Translations$seerr$hu seerr = _Translations$seerr$hu._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$hu extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Bejelentkezés Plexszel';
-	@override String get showQRCode => 'QR-kód megjelenítése';
-	@override String get authenticate => 'Hitelesítés';
-	@override String get authenticationTimeout => 'A hitelesítés időtúllépés miatt megszakadt. Próbáld újra.';
-	@override String get scanQRToSignIn => 'Olvasd be ezt a QR-kódot a bejelentkezéshez';
-	@override String get waitingForAuth => 'Várakozás a hitelesítésre...\nJelentkezz be a böngésződben.';
-	@override String get useBrowser => 'Böngésző használata';
-	@override String get or => 'vagy';
 	@override String get connectToJellyfin => 'Csatlakozás Jellyfinhez';
 	@override String get useQuickConnect => 'Quick Connect használata';
 	@override String get quickConnectInstructions => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.';
@@ -150,7 +139,6 @@ class _Translations$common$hu extends Translations$common$en {
 	@override String get shuffle => 'Véletlenszerű lejátszás';
 	@override String get addTo => 'Hozzáadás...';
 	@override String get createNew => 'Új létrehozása';
-	@override String get connect => 'Csatlakozás';
 	@override String get disconnect => 'Kapcsolat bontása';
 	@override String get play => 'Lejátszás';
 	@override String get pause => 'Szünet';
@@ -160,7 +148,6 @@ class _Translations$common$hu extends Translations$common$en {
 	@override String get home => 'Kezdőlap';
 	@override String get back => 'Vissza';
 	@override String get settings => 'Beállítások';
-	@override String get mute => 'Némítás';
 	@override String get ok => 'OK';
 	@override String get off => 'Ki';
 	@override String seasonNumber({required Object number}) => '${number}. évad';
@@ -176,6 +163,7 @@ class _Translations$common$hu extends Translations$common$en {
 	@override String get fullscreen => 'Teljes képernyő';
 	@override String get exitFullscreen => 'Kilépés a teljes képernyőből';
 	@override String get pressBackAgainToExit => 'A kilépéshez nyomd meg újra a Vissza gombot';
+	@override String get next => 'Következő';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Billentyűparancsok testreszabása';
 	@override String get videoPlayerNavigation => 'Videólejátszó-navigáció';
 	@override String get videoPlayerNavigationDescription => 'A nyílbillentyűk használata a videólejátszó vezérlői közötti navigáláshoz';
-	@override String get watchTogetherRelay => 'Watch Together-relé';
-	@override String get watchTogetherRelayDescription => 'Egyéni relé beállítása. Mindenkinek ugyanazt a szervert kell használnia.';
-	@override String get watchTogetherRelayHint => 'https://my-relay.example.com';
-	@override String get watchTogetherRelayInvalid => 'Adj meg egy érvényes HTTP- vagy HTTPS-alapú relészerver-URL-t.';
 	@override String get crashReporting => 'Összeomlási jelentések';
 	@override String get crashReportingDescription => 'Összeomlási jelentések küldése az alkalmazás fejlesztésének elősegítéséhez';
 	@override String get debugLogging => 'Hibakeresési naplózás';
@@ -386,8 +370,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get services => 'Szolgáltatások';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr és egyéb szolgáltatások csatlakoztatása';
 	@override String get manageLibrariesDescription => 'Könyvtárak sorrendjének módosítása és elrejtése';
-	@override String get companionRemoteServer => 'Kísérőtávirányító szervere';
-	@override String get companionRemoteServerDescription => 'Lehetővé teszi, hogy a hálózaton lévő mobileszközökről vezéreld az alkalmazást';
 	@override String get autoPip => 'Automatikus kép a képben (PiP)';
 	@override String get autoPipDescription => 'Lejátszás közben az alkalmazás elhagyásakor automatikusan kép a képben módra vált';
 	@override String get matchContentFrameRate => 'Képkockasebesség illesztése a tartalomhoz';
@@ -702,13 +684,6 @@ class _Translations$videoControls$hu extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Nincsenek elérhető fejezetek';
 	@override String get queue => 'Lejátszási sor';
 	@override String get noQueueItems => 'Nincsenek elemek a sorban';
-	@override String get searchSubtitles => 'Feliratok keresése';
-	@override String get language => 'Nyelv';
-	@override String get noSubtitlesFound => 'Nem találhatók feliratok';
-	@override String get subtitleDownloaded => 'Felirat letöltve';
-	@override String get subtitleDownloadedNotApplied => 'Felirat letöltve, de nem sikerült kiválasztani';
-	@override String get subtitleDownloadFailed => 'Nem sikerült a felirat letöltése';
-	@override String get searchLanguages => 'Nyelvek keresése...';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String get incorrectPin => 'Helytelen PIN-kód.';
 	@override String get incorrectPinTryAgain => 'Helytelen PIN-kód. Próbáld újra.';
 	@override String get sourceProfileMissingParentAccount => 'A forrásprofilból hiányzik a szülőfiók.';
-	@override String get failedToLoadHomeUsers => 'Nem sikerült betölteni a Plex Home-felhasználókat. Ellenőrizd a kapcsolatot, majd próbáld újra.';
 	@override String get failedToVerifyPin => 'Nem sikerült a PIN-kód ellenőrzése.';
 	@override String get newProfile => 'Új profil';
 	@override String get profileNameHint => 'pl. Vendégek, Gyerekek, Nappali';
@@ -967,9 +941,6 @@ class _Translations$errors$hu extends Translations$errors$en {
 	@override String get connectionFailed => 'Nem sikerült csatlakozni a médiaszerverhez';
 	@override String unableToLoad({required Object context}) => 'Nem sikerült betölteni a következőt: ${context}. Próbáld újra.';
 	@override String get noClientAvailable => 'Nincs elérhető kliens';
-	@override String get pleaseEnterToken => 'Adj meg egy tokent';
-	@override String get invalidToken => 'Érvénytelen token';
-	@override String failedToVerifyToken({required Object error}) => 'Nem sikerült a token ellenőrzése: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => 'Nem sikerült átváltani a következő profilra: ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => 'Nem sikerült törölni a következőt: ${displayName}';
 	@override String get failedToRate => 'Nem sikerült frissíteni az értékelést';
@@ -1041,17 +1012,6 @@ class _Translations$about$hu extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Verzió: ${version}';
 	@override String get appDescription => 'Gyönyörű Flutter-kliens a Plexhez és a Jellyfinhez';
 	@override String get viewLicensesDescription => 'Külső fejlesztésű programkönyvtárak licenceinek megtekintése';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$hu extends Translations$serverSelection$en {
-	_Translations$serverSelection$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => 'Nem találhatók szerverek ehhez a fiókhoz: ${username} (${email})';
-	@override String failedToLoadServers({required Object error}) => 'Nem sikerült a szerverek betöltése: ${error}';
 }
 
 // Path: hubDetail
@@ -1311,80 +1271,6 @@ class _Translations$music$hu extends Translations$music$en {
 	@override String get repeatOne => 'Egy szám ismétlése';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$hu extends Translations$watchTogether$en {
-	_Translations$watchTogether$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Watch Together (Közös nézés)';
-	@override String get description => 'Nézz tartalmat szinkronban barátaiddal és családoddal';
-	@override String get createSession => 'Munkamenet létrehozása';
-	@override String get creating => 'Létrehozás...';
-	@override String get joinSession => 'Csatlakozás munkamenethez';
-	@override String get joining => 'Csatlakozás...';
-	@override String get controlMode => 'Vezérlési mód';
-	@override String get controlModeQuestion => 'Ki vezérelheti a lejátszást?';
-	@override String get hostOnly => 'Csak a házigazda';
-	@override String get anyone => 'Bárki';
-	@override String get hostingSession => 'Munkamenet indítása';
-	@override String get inSession => 'Munkamenetben';
-	@override String get sessionCode => 'Munkamenet kódja';
-	@override String get openSessionControls => 'Watch Together munkamenet-vezérlők megnyitása';
-	@override String get copySessionCode => 'Munkamenet-kód másolása';
-	@override String get hostControlsPlayback => 'A házigazda vezérli a lejátszást';
-	@override String get anyoneCanControl => 'Bárki vezérelheti a lejátszást';
-	@override String get hostControls => 'A házigazda vezérel';
-	@override String get anyoneControls => 'Bárki vezérelheti';
-	@override String get participants => 'Résztvevők';
-	@override String get host => 'Házigazda';
-	@override String get hostBadge => 'HÁZIGAZDA';
-	@override String get youAreHost => 'Te vagy a házigazda';
-	@override String get watchingWithOthers => 'Nézés másokkal';
-	@override String get endSession => 'Munkamenet befejezése';
-	@override String get leaveSession => 'Munkamenet elhagyása';
-	@override String get endSessionQuestion => 'Befejezed a munkamenetet?';
-	@override String get leaveSessionQuestion => 'Elhagyod a munkamenetet?';
-	@override String get endSessionConfirm => 'Ezzel minden résztvevő számára véget ér a munkamenet.';
-	@override String get leaveSessionConfirm => 'Eltávolításra kerülsz a munkamenetből.';
-	@override String get endSessionConfirmOverlay => 'Ezzel minden résztvevő számára véget ér a közös nézés.';
-	@override String get leaveSessionConfirmOverlay => 'Kilépsz a közös nézésből.';
-	@override String get end => 'Befejezés';
-	@override String get leave => 'Kilépés';
-	@override String get syncing => 'Szinkronizálás...';
-	@override String get joinWatchSession => 'Csatlakozás közös nézéshez';
-	@override String get enterCodeHint => 'Add meg az 5 karakteres kódot';
-	@override String get pasteFromClipboard => 'Beillesztés a vágólapról';
-	@override String get pleaseEnterCode => 'Adj meg egy munkamenetkódot';
-	@override String get codeMustBe5Chars => 'A munkamenetkódnak 5 karakterből kell állnia';
-	@override String get joinInstructions => 'Add meg a házigazda kódját a csatlakozáshoz.';
-	@override String get failedToCreate => 'Nem sikerült a munkamenet létrehozása';
-	@override String get failedToJoin => 'Nem sikerült csatlakozni a munkamenethez';
-	@override String get sessionCodeCopied => 'A munkamenetkód a vágólapra másolva';
-	@override String get relayUnreachable => 'A relészerver nem érhető el. Az internetszolgáltató blokkolása megakadályozhatja a közös nézést.';
-	@override String get reconnectingToHost => 'Újracsatlakozás a házigazdához...';
-	@override String get currentPlayback => 'Jelenlegi lejátszás';
-	@override String get joinCurrentPlayback => 'Csatlakozás a jelenlegi lejátszáshoz';
-	@override String get joinCurrentPlaybackDescription => 'Visszatérés ahhoz, amit a házigazda éppen néz';
-	@override String get failedToOpenCurrentPlayback => 'Nem sikerült megnyitni a jelenlegi lejátszást';
-	@override String participantJoined({required Object name}) => '${name} csatlakozott';
-	@override String participantLeft({required Object name}) => '${name} kilépett';
-	@override String participantPaused({required Object name}) => '${name} szüneteltette a lejátszást';
-	@override String participantResumed({required Object name}) => '${name} folytatta a lejátszást';
-	@override String participantSeeked({required Object name}) => '${name} módosította a lejátszási pozíciót';
-	@override String participantBuffering({required Object name}) => '${name} pufferel';
-	@override String participantNeedsUpdate({required Object name}) => '${name} régebbi alkalmazásverziót használ — a szinkronizálás nem érhető el';
-	@override String resumingWithout({required Object name}) => 'Folytatás a következő nélkül: ${name}';
-	@override String get waitingForParticipants => 'Várakozás, amíg a többieknél betöltődik a tartalom...';
-	@override String waitingForName({required Object name}) => 'Várakozás: ${name}...';
-	@override String get recentRooms => 'Legutóbbi szobák';
-	@override String get renameRoom => 'Szoba átnevezése';
-	@override String get removeRoom => 'Eltávolítás';
-	@override String get guestSwitchUnavailable => 'Nem sikerült a váltás — a szerver nem érhető el szinkronizáláshoz';
-	@override String get guestSwitchFailed => 'Nem sikerült a váltás — a tartalom nem található ezen a szerveren';
-}
-
 // Path: downloads
 class _Translations$downloads$hu extends Translations$downloads$en {
 	_Translations$downloads$hu._(TranslationsHu root) : this._root = root, super.internal(root);
@@ -1485,22 +1371,6 @@ class _Translations$shaders$hu extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Nem sikerült a shader importálása';
 	@override String get deleteShader => 'Shader törlése';
 	@override String deleteShaderConfirm({required Object name}) => 'Törlöd a következőt: "${name}"?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$hu extends Translations$companionRemote$en {
-	_Translations$companionRemote$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Kísérőtávirányító';
-	@override String connectedTo({required Object name}) => 'Csatlakoztatva a következőhöz: ${name}';
-	@override String get unknownDevice => 'Ismeretlen eszköz';
-	@override late final _Translations$companionRemote$session$hu session = _Translations$companionRemote$session$hu._(_root);
-	@override late final _Translations$companionRemote$pairing$hu pairing = _Translations$companionRemote$pairing$hu._(_root);
-	@override late final _Translations$companionRemote$remote$hu remote = _Translations$companionRemote$remote$hu._(_root);
-	@override late final _Translations$companionRemote$errors$hu errors = _Translations$companionRemote$errors$hu._(_root);
 }
 
 // Path: videoSettings
@@ -1684,27 +1554,6 @@ class _Translations$metadataEdit$hu extends Translations$metadataEdit$en {
 	@override String get mood => 'Hangulat';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$hu extends Translations$matchScreen$en {
-	_Translations$matchScreen$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Párosítás...';
-	@override String get fixMatch => 'Párosítás javítása...';
-	@override String get unmatch => 'Párosítás megszüntetése';
-	@override String get unmatchConfirm => 'Törlöd ezt a párosítást? A Plex párosítatlanként kezeli az újrapárosításig.';
-	@override String get unmatchSuccess => 'Párosítás megszüntetve';
-	@override String get unmatchFailed => 'Nem sikerült a párosítás megszüntetése';
-	@override String get matchApplied => 'Párosítás alkalmazva';
-	@override String get matchFailed => 'Nem sikerült a párosítás alkalmazása';
-	@override String get titleHint => 'Cím';
-	@override String get yearHint => 'Év';
-	@override String get search => 'Keresés';
-	@override String get noMatchesFound => 'Nincsenek egyezések';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$hu extends Translations$serverTasks$en {
 	_Translations$serverTasks$hu._(TranslationsHu root) : this._root = root, super.internal(root);
@@ -1817,15 +1666,9 @@ class _Translations$addServer$hu extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Nem sikerült elérni a szervert: ${error}';
 	@override String signInFailed({required Object error}) => 'A bejelentkezés nem sikerült: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'A Quick Connect használata nem sikerült: ${error}';
-	@override String get addPlexTitle => 'Bejelentkezés Plexszel';
-	@override String get pinExpired => 'A PIN-kód a bejelentkezés előtt lejárt. Próbáld újra.';
-	@override String failedToRegisterAccount({required Object error}) => 'Nem sikerült a fiók regisztrálása: ${error}';
 	@override String get enterJellyfinUrlError => 'Add meg a Jellyfin szervered URL-jét';
 	@override String get addConnectionTitle => 'Kapcsolat hozzáadása';
 	@override String addConnectionTitleScoped({required Object name}) => 'Hozzáadás a következőhöz: ${name}';
-	@override String get signInWithPlexCard => 'Bejelentkezés Plexszel';
-	@override String get signInWithPlexCardSubtitle => 'Eszköz engedélyezése. A megosztott szerverek hozzáadásra kerülnek.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Plex-fiók engedélyezése. A Plex Home-felhasználókból profilok lesznek.';
 	@override String get connectToJellyfinCard => 'Csatlakozás Jellyfinhez';
 	@override String get connectToJellyfinCardSubtitle => 'Add meg a szerver URL-jét, felhasználónevedet és jelszavadat.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Bejelentkezés egy Jellyfin-szerverre. Hozzárendelés ehhez: ${name}.';
@@ -2031,103 +1874,6 @@ class _Translations$downloads$backgroundWarning$hu extends Translations$download
 	@override String get linkUnavailable => 'Ezen az eszközön nem sikerült megnyitni a dontkillmyapp.com webhelyet';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$hu extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Távirányító-szerver indítása...';
-	@override String get hostAddress => 'Gazdagép címe';
-	@override String get connected => 'Csatlakoztatva';
-	@override String get serverRunning => 'A távirányító-szerver aktív';
-	@override String get serverStopped => 'A távirányító-szerver leállítva';
-	@override String get serverRunningDescription => 'A hálózaton lévő mobileszközök csatlakozhatnak ehhez az alkalmazáshoz';
-	@override String get serverStoppedDescription => 'Indítsd el a szervert, hogy a mobileszközök csatlakozhassanak';
-	@override String get usePhoneToControl => 'Használd a mobileszközödet az alkalmazás vezérléséhez';
-	@override String get startServer => 'Szerver indítása';
-	@override String get stopServer => 'Szerver leállítása';
-	@override String get minimize => 'Kis méret';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$hu extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Az azonos Plex-fiókot használó Plezy-eszközök itt jelennek meg';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Csatlakozás...';
-	@override String get searchingForDevices => 'Eszközök keresése...';
-	@override String get noDevicesFound => 'Nem találhatók eszközök a hálózaton';
-	@override String get noDevicesHint => 'Nyisd meg a Plezyt asztali gépen, és használd ugyanazt a Wi-Fi-hálózatot';
-	@override String get availableDevices => 'Elérhető eszközök';
-	@override String get manualConnection => 'Kézi csatlakozás';
-	@override String get cryptoInitFailed => 'Nem sikerült elindítani a biztonságos kapcsolatot. Először jelentkezz be a Plexbe.';
-	@override String get validationHostRequired => 'Add meg a gazdagép címét';
-	@override String get validationHostFormat => 'A formátumnak IP:port kell lennie (pl. 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'A csatlakozás túllépte az időkorlátot. Használd ugyanazt a hálózatot mindkét eszközön.';
-	@override String get sessionNotFound => 'Az eszköz nem található. Győződj meg arról, hogy a Plezy fut a gazdagépen.';
-	@override String get authFailed => 'A hitelesítés nem sikerült. Mindkét eszközön ugyanazt a Plex-fiókot kell használni.';
-	@override String failedToConnect({required Object error}) => 'Nem sikerült a csatlakozás: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$hu extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Bontod a kapcsolatot a távoli munkamenettel?';
-	@override String get reconnecting => 'Újracsatlakozás...';
-	@override String attemptOf({required Object current}) => '${current} / 5 próbálkozás';
-	@override String get retryNow => 'Újrapróbálkozás most';
-	@override String get tabRemote => 'Távirányító';
-	@override String get tabPlay => 'Lejátszás';
-	@override String get tabMore => 'Egyebek';
-	@override String get menu => 'Menü';
-	@override String get tabNavigation => 'Navigációs lap';
-	@override String get tabDiscover => 'Felfedezés';
-	@override String get tabLibraries => 'Könyvtárak';
-	@override String get tabSearch => 'Keresés';
-	@override String get tabDownloads => 'Letöltések';
-	@override String get tabSettings => 'Beállítások';
-	@override String get previous => 'Előző';
-	@override String get playPause => 'Lejátszás/Szünet';
-	@override String get next => 'Következő';
-	@override String get seekBack => 'Visszatekerés';
-	@override String get stop => 'Leállítás';
-	@override String get seekForward => 'Előretekerés';
-	@override String get volume => 'Hangerő';
-	@override String get volumeDown => 'Hangerő le';
-	@override String get volumeUp => 'Hangerő fel';
-	@override String get fullscreen => 'Teljes képernyő';
-	@override String get subtitles => 'Feliratok';
-	@override String get audio => 'Hang';
-	@override String get searchHint => 'Keresés az asztali gépen...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$hu extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Nem található hálózati csatoló';
-	@override String get authenticationFailed => 'A hitelesítés nem sikerült';
-	@override String serverStartFailed({required Object error}) => 'Nem sikerült elindítani a távirányító-szervert: ${error}';
-	@override String commandFailed({required Object error}) => 'Nem sikerült elküldeni a távoli parancsot: ${error}';
-	@override String get joinTimedOut => 'Időtúllépés a munkamenethez való csatlakozáskor';
-	@override String get failedToConnectAnyAddress => 'Egyetlen címhez sem sikerült csatlakozni';
-	@override String connectionLostAfterAttempts({required Object attempts}) => 'A kapcsolat megszakadt ${attempts} próbálkozás után';
-	@override String get connectionLost => 'A kapcsolat megszakadt';
-}
-
 // Path: services.names
 class _Translations$services$names$hu extends Translations$services$names$en {
 	_Translations$services$names$hu._(TranslationsHu root) : this._root = root, super.internal(root);
@@ -2201,13 +1947,6 @@ extension on TranslationsHu {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Bejelentkezés Plexszel',
-			'auth.showQRCode' => 'QR-kód megjelenítése',
-			'auth.authenticate' => 'Hitelesítés',
-			'auth.authenticationTimeout' => 'A hitelesítés időtúllépés miatt megszakadt. Próbáld újra.',
-			'auth.scanQRToSignIn' => 'Olvasd be ezt a QR-kódot a bejelentkezéshez',
-			'auth.waitingForAuth' => 'Várakozás a hitelesítésre...\nJelentkezz be a böngésződben.',
-			'auth.useBrowser' => 'Böngésző használata',
-			'auth.or' => 'vagy',
 			'auth.connectToJellyfin' => 'Csatlakozás Jellyfinhez',
 			'auth.useQuickConnect' => 'Quick Connect használata',
 			'auth.quickConnectInstructions' => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.',
@@ -2234,7 +1973,6 @@ extension on TranslationsHu {
 			'common.shuffle' => 'Véletlenszerű lejátszás',
 			'common.addTo' => 'Hozzáadás...',
 			'common.createNew' => 'Új létrehozása',
-			'common.connect' => 'Csatlakozás',
 			'common.disconnect' => 'Kapcsolat bontása',
 			'common.play' => 'Lejátszás',
 			'common.pause' => 'Szünet',
@@ -2244,7 +1982,6 @@ extension on TranslationsHu {
 			'common.home' => 'Kezdőlap',
 			'common.back' => 'Vissza',
 			'common.settings' => 'Beállítások',
-			'common.mute' => 'Némítás',
 			'common.ok' => 'OK',
 			'common.off' => 'Ki',
 			'common.seasonNumber' => ({required Object number}) => '${number}. évad',
@@ -2260,6 +1997,7 @@ extension on TranslationsHu {
 			'common.fullscreen' => 'Teljes képernyő',
 			'common.exitFullscreen' => 'Kilépés a teljes képernyőből',
 			'common.pressBackAgainToExit' => 'A kilépéshez nyomd meg újra a Vissza gombot',
+			'common.next' => 'Következő',
 			'screens.licenses' => 'Licencek',
 			'screens.switchProfile' => 'Profilváltás',
 			'screens.subtitleStyling' => 'Feliratok stílusa',
@@ -2368,10 +2106,6 @@ extension on TranslationsHu {
 			'settings.keyboardShortcutsDescription' => 'Billentyűparancsok testreszabása',
 			'settings.videoPlayerNavigation' => 'Videólejátszó-navigáció',
 			'settings.videoPlayerNavigationDescription' => 'A nyílbillentyűk használata a videólejátszó vezérlői közötti navigáláshoz',
-			'settings.watchTogetherRelay' => 'Watch Together-relé',
-			'settings.watchTogetherRelayDescription' => 'Egyéni relé beállítása. Mindenkinek ugyanazt a szervert kell használnia.',
-			'settings.watchTogetherRelayHint' => 'https://my-relay.example.com',
-			'settings.watchTogetherRelayInvalid' => 'Adj meg egy érvényes HTTP- vagy HTTPS-alapú relészerver-URL-t.',
 			'settings.crashReporting' => 'Összeomlási jelentések',
 			'settings.crashReportingDescription' => 'Összeomlási jelentések küldése az alkalmazás fejlesztésének elősegítéséhez',
 			'settings.debugLogging' => 'Hibakeresési naplózás',
@@ -2443,8 +2177,6 @@ extension on TranslationsHu {
 			'settings.services' => 'Szolgáltatások',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr és egyéb szolgáltatások csatlakoztatása',
 			'settings.manageLibrariesDescription' => 'Könyvtárak sorrendjének módosítása és elrejtése',
-			'settings.companionRemoteServer' => 'Kísérőtávirányító szervere',
-			'settings.companionRemoteServerDescription' => 'Lehetővé teszi, hogy a hálózaton lévő mobileszközökről vezéreld az alkalmazást',
 			'settings.autoPip' => 'Automatikus kép a képben (PiP)',
 			'settings.autoPipDescription' => 'Lejátszás közben az alkalmazás elhagyásakor automatikusan kép a képben módra vált',
 			'settings.matchContentFrameRate' => 'Képkockasebesség illesztése a tartalomhoz',
@@ -2708,15 +2440,6 @@ extension on TranslationsHu {
 			'videoControls.noChaptersAvailable' => 'Nincsenek elérhető fejezetek',
 			'videoControls.queue' => 'Lejátszási sor',
 			'videoControls.noQueueItems' => 'Nincsenek elemek a sorban',
-			'videoControls.searchSubtitles' => 'Feliratok keresése',
-			'videoControls.language' => 'Nyelv',
-			'videoControls.noSubtitlesFound' => 'Nem találhatók feliratok',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => 'Felirat letöltve',
-			'videoControls.subtitleDownloadedNotApplied' => 'Felirat letöltve, de nem sikerült kiválasztani',
-			'videoControls.subtitleDownloadFailed' => 'Nem sikerült a felirat letöltése',
-			'videoControls.searchLanguages' => 'Nyelvek keresése...',
 			'messages.markedAsWatched' => 'Megjelölve megtekintettként',
 			'messages.markedAsUnwatched' => 'Megjelölve nem megtekintettként',
 			'messages.markedAsWatchedOffline' => 'Megjelölve megtekintettként (szinkronizálás online állapotban)',
@@ -2734,6 +2457,8 @@ extension on TranslationsHu {
 			'messages.playbackCancelled' => 'A lejátszás megszakítva.',
 			'messages.playbackFailed' => 'Nem sikerült elindítani a lejátszást.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Hiba a fájlinformációk betöltésekor: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Hiba a sorozat betöltésekor',
 			'messages.musicNotSupported' => 'A zenelejátszás még nem támogatott',
 			'messages.noDescriptionAvailable' => 'Nincs elérhető leírás',
@@ -2854,7 +2579,6 @@ extension on TranslationsHu {
 			'profiles.incorrectPin' => 'Helytelen PIN-kód.',
 			'profiles.incorrectPinTryAgain' => 'Helytelen PIN-kód. Próbáld újra.',
 			'profiles.sourceProfileMissingParentAccount' => 'A forrásprofilból hiányzik a szülőfiók.',
-			'profiles.failedToLoadHomeUsers' => 'Nem sikerült betölteni a Plex Home-felhasználókat. Ellenőrizd a kapcsolatot, majd próbáld újra.',
 			'profiles.failedToVerifyPin' => 'Nem sikerült a PIN-kód ellenőrzése.',
 			'profiles.newProfile' => 'Új profil',
 			'profiles.profileNameHint' => 'pl. Vendégek, Gyerekek, Nappali',
@@ -2900,9 +2624,6 @@ extension on TranslationsHu {
 			'errors.connectionFailed' => 'Nem sikerült csatlakozni a médiaszerverhez',
 			'errors.unableToLoad' => ({required Object context}) => 'Nem sikerült betölteni a következőt: ${context}. Próbáld újra.',
 			'errors.noClientAvailable' => 'Nincs elérhető kliens',
-			'errors.pleaseEnterToken' => 'Adj meg egy tokent',
-			'errors.invalidToken' => 'Érvénytelen token',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Nem sikerült a token ellenőrzése: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => 'Nem sikerült átváltani a következő profilra: ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => 'Nem sikerült törölni a következőt: ${displayName}',
 			'errors.failedToRate' => 'Nem sikerült frissíteni az értékelést',
@@ -2993,8 +2714,6 @@ extension on TranslationsHu {
 			'about.versionLabel' => ({required Object version}) => 'Verzió: ${version}',
 			'about.appDescription' => 'Gyönyörű Flutter-kliens a Plexhez és a Jellyfinhez',
 			'about.viewLicensesDescription' => 'Külső fejlesztésű programkönyvtárak licenceinek megtekintése',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => 'Nem találhatók szerverek ehhez a fiókhoz: ${username} (${email})',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Nem sikerült a szerverek betöltése: ${error}',
 			'hubDetail.title' => 'Cím',
 			'hubDetail.releaseYear' => 'Kiadási év',
 			'hubDetail.dateAdded' => 'Hozzáadás dátuma',
@@ -3181,73 +2900,6 @@ extension on TranslationsHu {
 			'music.repeat' => 'Ismétlés',
 			'music.repeatAll' => 'Összes ismétlése',
 			'music.repeatOne' => 'Egy szám ismétlése',
-			'watchTogether.title' => 'Watch Together (Közös nézés)',
-			'watchTogether.description' => 'Nézz tartalmat szinkronban barátaiddal és családoddal',
-			'watchTogether.createSession' => 'Munkamenet létrehozása',
-			'watchTogether.creating' => 'Létrehozás...',
-			'watchTogether.joinSession' => 'Csatlakozás munkamenethez',
-			'watchTogether.joining' => 'Csatlakozás...',
-			'watchTogether.controlMode' => 'Vezérlési mód',
-			'watchTogether.controlModeQuestion' => 'Ki vezérelheti a lejátszást?',
-			'watchTogether.hostOnly' => 'Csak a házigazda',
-			'watchTogether.anyone' => 'Bárki',
-			'watchTogether.hostingSession' => 'Munkamenet indítása',
-			'watchTogether.inSession' => 'Munkamenetben',
-			'watchTogether.sessionCode' => 'Munkamenet kódja',
-			'watchTogether.openSessionControls' => 'Watch Together munkamenet-vezérlők megnyitása',
-			'watchTogether.copySessionCode' => 'Munkamenet-kód másolása',
-			'watchTogether.hostControlsPlayback' => 'A házigazda vezérli a lejátszást',
-			'watchTogether.anyoneCanControl' => 'Bárki vezérelheti a lejátszást',
-			'watchTogether.hostControls' => 'A házigazda vezérel',
-			'watchTogether.anyoneControls' => 'Bárki vezérelheti',
-			'watchTogether.participants' => 'Résztvevők',
-			'watchTogether.host' => 'Házigazda',
-			'watchTogether.hostBadge' => 'HÁZIGAZDA',
-			'watchTogether.youAreHost' => 'Te vagy a házigazda',
-			'watchTogether.watchingWithOthers' => 'Nézés másokkal',
-			'watchTogether.endSession' => 'Munkamenet befejezése',
-			'watchTogether.leaveSession' => 'Munkamenet elhagyása',
-			'watchTogether.endSessionQuestion' => 'Befejezed a munkamenetet?',
-			'watchTogether.leaveSessionQuestion' => 'Elhagyod a munkamenetet?',
-			'watchTogether.endSessionConfirm' => 'Ezzel minden résztvevő számára véget ér a munkamenet.',
-			'watchTogether.leaveSessionConfirm' => 'Eltávolításra kerülsz a munkamenetből.',
-			'watchTogether.endSessionConfirmOverlay' => 'Ezzel minden résztvevő számára véget ér a közös nézés.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Kilépsz a közös nézésből.',
-			'watchTogether.end' => 'Befejezés',
-			'watchTogether.leave' => 'Kilépés',
-			'watchTogether.syncing' => 'Szinkronizálás...',
-			'watchTogether.joinWatchSession' => 'Csatlakozás közös nézéshez',
-			'watchTogether.enterCodeHint' => 'Add meg az 5 karakteres kódot',
-			'watchTogether.pasteFromClipboard' => 'Beillesztés a vágólapról',
-			'watchTogether.pleaseEnterCode' => 'Adj meg egy munkamenetkódot',
-			'watchTogether.codeMustBe5Chars' => 'A munkamenetkódnak 5 karakterből kell állnia',
-			'watchTogether.joinInstructions' => 'Add meg a házigazda kódját a csatlakozáshoz.',
-			'watchTogether.failedToCreate' => 'Nem sikerült a munkamenet létrehozása',
-			'watchTogether.failedToJoin' => 'Nem sikerült csatlakozni a munkamenethez',
-			'watchTogether.sessionCodeCopied' => 'A munkamenetkód a vágólapra másolva',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => 'A relészerver nem érhető el. Az internetszolgáltató blokkolása megakadályozhatja a közös nézést.',
-			'watchTogether.reconnectingToHost' => 'Újracsatlakozás a házigazdához...',
-			'watchTogether.currentPlayback' => 'Jelenlegi lejátszás',
-			'watchTogether.joinCurrentPlayback' => 'Csatlakozás a jelenlegi lejátszáshoz',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Visszatérés ahhoz, amit a házigazda éppen néz',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Nem sikerült megnyitni a jelenlegi lejátszást',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} csatlakozott',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} kilépett',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} szüneteltette a lejátszást',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} folytatta a lejátszást',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} módosította a lejátszási pozíciót',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} pufferel',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} régebbi alkalmazásverziót használ — a szinkronizálás nem érhető el',
-			'watchTogether.resumingWithout' => ({required Object name}) => 'Folytatás a következő nélkül: ${name}',
-			'watchTogether.waitingForParticipants' => 'Várakozás, amíg a többieknél betöltődik a tartalom...',
-			'watchTogether.waitingForName' => ({required Object name}) => 'Várakozás: ${name}...',
-			'watchTogether.recentRooms' => 'Legutóbbi szobák',
-			'watchTogether.renameRoom' => 'Szoba átnevezése',
-			'watchTogether.removeRoom' => 'Eltávolítás',
-			'watchTogether.guestSwitchUnavailable' => 'Nem sikerült a váltás — a szerver nem érhető el szinkronizáláshoz',
-			'watchTogether.guestSwitchFailed' => 'Nem sikerült a váltás — a tartalom nem található ezen a szerveren',
 			'downloads.title' => 'Letöltések',
 			'downloads.manage' => 'Kezelés',
 			'downloads.tvShows' => 'TV-sorozatok',
@@ -3319,6 +2971,8 @@ extension on TranslationsHu {
 			'downloads.backgroundWarning.bannerBlocked' => 'A letöltések leállnak, ha kilépsz az alkalmazásból',
 			'downloads.backgroundWarning.bannerDegraded' => 'A háttérbeli letöltések korlátozottak lehetnek',
 			'downloads.backgroundWarning.bannerAction' => 'Részletek',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'A háttérbeli letöltések le vannak tiltva',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'A háttérbeli letöltések korlátozottak lehetnek',
 			'downloads.backgroundWarning.sheetIntro' => 'Az Android megakadályozza, hogy a Plezy megbízhatóan töltsön le a háttérben.',
@@ -3357,70 +3011,6 @@ extension on TranslationsHu {
 			'shaders.shaderImportFailed' => 'Nem sikerült a shader importálása',
 			'shaders.deleteShader' => 'Shader törlése',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => 'Törlöd a következőt: "${name}"?',
-			'companionRemote.title' => 'Kísérőtávirányító',
-			'companionRemote.connectedTo' => ({required Object name}) => 'Csatlakoztatva a következőhöz: ${name}',
-			'companionRemote.unknownDevice' => 'Ismeretlen eszköz',
-			'companionRemote.session.startingServer' => 'Távirányító-szerver indítása...',
-			'companionRemote.session.hostAddress' => 'Gazdagép címe',
-			'companionRemote.session.connected' => 'Csatlakoztatva',
-			'companionRemote.session.serverRunning' => 'A távirányító-szerver aktív',
-			'companionRemote.session.serverStopped' => 'A távirányító-szerver leállítva',
-			'companionRemote.session.serverRunningDescription' => 'A hálózaton lévő mobileszközök csatlakozhatnak ehhez az alkalmazáshoz',
-			'companionRemote.session.serverStoppedDescription' => 'Indítsd el a szervert, hogy a mobileszközök csatlakozhassanak',
-			'companionRemote.session.usePhoneToControl' => 'Használd a mobileszközödet az alkalmazás vezérléséhez',
-			'companionRemote.session.startServer' => 'Szerver indítása',
-			'companionRemote.session.stopServer' => 'Szerver leállítása',
-			'companionRemote.session.minimize' => 'Kis méret',
-			'companionRemote.pairing.discoveryDescription' => 'Az azonos Plex-fiókot használó Plezy-eszközök itt jelennek meg',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Csatlakozás...',
-			'companionRemote.pairing.searchingForDevices' => 'Eszközök keresése...',
-			'companionRemote.pairing.noDevicesFound' => 'Nem találhatók eszközök a hálózaton',
-			'companionRemote.pairing.noDevicesHint' => 'Nyisd meg a Plezyt asztali gépen, és használd ugyanazt a Wi-Fi-hálózatot',
-			'companionRemote.pairing.availableDevices' => 'Elérhető eszközök',
-			'companionRemote.pairing.manualConnection' => 'Kézi csatlakozás',
-			'companionRemote.pairing.cryptoInitFailed' => 'Nem sikerült elindítani a biztonságos kapcsolatot. Először jelentkezz be a Plexbe.',
-			'companionRemote.pairing.validationHostRequired' => 'Add meg a gazdagép címét',
-			'companionRemote.pairing.validationHostFormat' => 'A formátumnak IP:port kell lennie (pl. 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'A csatlakozás túllépte az időkorlátot. Használd ugyanazt a hálózatot mindkét eszközön.',
-			'companionRemote.pairing.sessionNotFound' => 'Az eszköz nem található. Győződj meg arról, hogy a Plezy fut a gazdagépen.',
-			'companionRemote.pairing.authFailed' => 'A hitelesítés nem sikerült. Mindkét eszközön ugyanazt a Plex-fiókot kell használni.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Nem sikerült a csatlakozás: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Bontod a kapcsolatot a távoli munkamenettel?',
-			'companionRemote.remote.reconnecting' => 'Újracsatlakozás...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => '${current} / 5 próbálkozás',
-			'companionRemote.remote.retryNow' => 'Újrapróbálkozás most',
-			'companionRemote.remote.tabRemote' => 'Távirányító',
-			'companionRemote.remote.tabPlay' => 'Lejátszás',
-			'companionRemote.remote.tabMore' => 'Egyebek',
-			'companionRemote.remote.menu' => 'Menü',
-			'companionRemote.remote.tabNavigation' => 'Navigációs lap',
-			'companionRemote.remote.tabDiscover' => 'Felfedezés',
-			'companionRemote.remote.tabLibraries' => 'Könyvtárak',
-			'companionRemote.remote.tabSearch' => 'Keresés',
-			'companionRemote.remote.tabDownloads' => 'Letöltések',
-			'companionRemote.remote.tabSettings' => 'Beállítások',
-			'companionRemote.remote.previous' => 'Előző',
-			'companionRemote.remote.playPause' => 'Lejátszás/Szünet',
-			'companionRemote.remote.next' => 'Következő',
-			'companionRemote.remote.seekBack' => 'Visszatekerés',
-			'companionRemote.remote.stop' => 'Leállítás',
-			'companionRemote.remote.seekForward' => 'Előretekerés',
-			'companionRemote.remote.volume' => 'Hangerő',
-			'companionRemote.remote.volumeDown' => 'Hangerő le',
-			'companionRemote.remote.volumeUp' => 'Hangerő fel',
-			'companionRemote.remote.fullscreen' => 'Teljes képernyő',
-			'companionRemote.remote.subtitles' => 'Feliratok',
-			'companionRemote.remote.audio' => 'Hang',
-			'companionRemote.remote.searchHint' => 'Keresés az asztali gépen...',
-			'companionRemote.errors.noNetworkInterface' => 'Nem található hálózati csatoló',
-			'companionRemote.errors.authenticationFailed' => 'A hitelesítés nem sikerült',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Nem sikerült elindítani a távirányító-szervert: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Nem sikerült elküldeni a távoli parancsot: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Időtúllépés a munkamenethez való csatlakozáskor',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Egyetlen címhez sem sikerült csatlakozni',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => 'A kapcsolat megszakadt ${attempts} próbálkozás után',
-			'companionRemote.errors.connectionLost' => 'A kapcsolat megszakadt',
 			'videoSettings.playbackSpeed' => 'Lejátszási sebesség',
 			'videoSettings.normalSpeed' => 'Normál',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Aktív (${duration})',
@@ -3566,18 +3156,6 @@ extension on TranslationsHu {
 			'metadataEdit.label' => 'Kiadó',
 			'metadataEdit.style' => 'Stílus',
 			'metadataEdit.mood' => 'Hangulat',
-			'matchScreen.match' => 'Párosítás...',
-			'matchScreen.fixMatch' => 'Párosítás javítása...',
-			'matchScreen.unmatch' => 'Párosítás megszüntetése',
-			'matchScreen.unmatchConfirm' => 'Törlöd ezt a párosítást? A Plex párosítatlanként kezeli az újrapárosításig.',
-			'matchScreen.unmatchSuccess' => 'Párosítás megszüntetve',
-			'matchScreen.unmatchFailed' => 'Nem sikerült a párosítás megszüntetése',
-			'matchScreen.matchApplied' => 'Párosítás alkalmazva',
-			'matchScreen.matchFailed' => 'Nem sikerült a párosítás alkalmazása',
-			'matchScreen.titleHint' => 'Cím',
-			'matchScreen.yearHint' => 'Év',
-			'matchScreen.search' => 'Keresés',
-			'matchScreen.noMatchesFound' => 'Nincsenek egyezések',
 			'serverTasks.title' => 'Szerverfeladatok',
 			'serverTasks.failedToLoad' => 'Nem sikerült a feladatok betöltése',
 			'serverTasks.noTasks' => 'Nincsenek futó feladatok',
@@ -3670,15 +3248,9 @@ extension on TranslationsHu {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Nem sikerült elérni a szervert: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'A bejelentkezés nem sikerült: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'A Quick Connect használata nem sikerült: ${error}',
-			'addServer.addPlexTitle' => 'Bejelentkezés Plexszel',
-			'addServer.pinExpired' => 'A PIN-kód a bejelentkezés előtt lejárt. Próbáld újra.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Nem sikerült a fiók regisztrálása: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Add meg a Jellyfin szervered URL-jét',
 			'addServer.addConnectionTitle' => 'Kapcsolat hozzáadása',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => 'Hozzáadás a következőhöz: ${name}',
-			'addServer.signInWithPlexCard' => 'Bejelentkezés Plexszel',
-			'addServer.signInWithPlexCardSubtitle' => 'Eszköz engedélyezése. A megosztott szerverek hozzáadásra kerülnek.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Plex-fiók engedélyezése. A Plex Home-felhasználókból profilok lesznek.',
 			'addServer.connectToJellyfinCard' => 'Csatlakozás Jellyfinhez',
 			'addServer.connectToJellyfinCardSubtitle' => 'Add meg a szerver URL-jét, felhasználónevedet és jelszavadat.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Bejelentkezés egy Jellyfin-szerverre. Hozzárendelés ehhez: ${name}.',

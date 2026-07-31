@@ -64,7 +64,6 @@ class TranslationsBg extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$bg errors = _Translations$errors$bg._(_root);
 	@override late final _Translations$libraries$bg libraries = _Translations$libraries$bg._(_root);
 	@override late final _Translations$about$bg about = _Translations$about$bg._(_root);
-	@override late final _Translations$serverSelection$bg serverSelection = _Translations$serverSelection$bg._(_root);
 	@override late final _Translations$hubDetail$bg hubDetail = _Translations$hubDetail$bg._(_root);
 	@override late final _Translations$logs$bg logs = _Translations$logs$bg._(_root);
 	@override late final _Translations$licenses$bg licenses = _Translations$licenses$bg._(_root);
@@ -74,15 +73,12 @@ class TranslationsBg extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$bg collections = _Translations$collections$bg._(_root);
 	@override late final _Translations$playlists$bg playlists = _Translations$playlists$bg._(_root);
 	@override late final _Translations$music$bg music = _Translations$music$bg._(_root);
-	@override late final _Translations$watchTogether$bg watchTogether = _Translations$watchTogether$bg._(_root);
 	@override late final _Translations$downloads$bg downloads = _Translations$downloads$bg._(_root);
 	@override late final _Translations$shaders$bg shaders = _Translations$shaders$bg._(_root);
-	@override late final _Translations$companionRemote$bg companionRemote = _Translations$companionRemote$bg._(_root);
 	@override late final _Translations$videoSettings$bg videoSettings = _Translations$videoSettings$bg._(_root);
 	@override late final _Translations$performanceOverlay$bg performanceOverlay = _Translations$performanceOverlay$bg._(_root);
 	@override late final _Translations$externalPlayer$bg externalPlayer = _Translations$externalPlayer$bg._(_root);
 	@override late final _Translations$metadataEdit$bg metadataEdit = _Translations$metadataEdit$bg._(_root);
-	@override late final _Translations$matchScreen$bg matchScreen = _Translations$matchScreen$bg._(_root);
 	@override late final _Translations$serverTasks$bg serverTasks = _Translations$serverTasks$bg._(_root);
 	@override late final _Translations$trakt$bg trakt = _Translations$trakt$bg._(_root);
 	@override late final _Translations$seerr$bg seerr = _Translations$seerr$bg._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$bg extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Вход с Plex';
-	@override String get showQRCode => 'Покажи QR код';
-	@override String get authenticate => 'Удостовери се';
-	@override String get authenticationTimeout => 'Времето за удостоверяване изтече. Моля, опитайте отново.';
-	@override String get scanQRToSignIn => 'Сканирайте този QR код, за да влезете';
-	@override String get waitingForAuth => 'Изчакване на удостоверяване...\nВлезте от браузъра си.';
-	@override String get useBrowser => 'Използвай браузър';
-	@override String get or => 'или';
 	@override String get connectToJellyfin => 'Свържи се с Jellyfin';
 	@override String get useQuickConnect => 'Използвай Quick Connect';
 	@override String get quickConnectInstructions => 'Отворете Quick Connect в Jellyfin и въведете този код.';
@@ -150,7 +139,6 @@ class _Translations$common$bg extends Translations$common$en {
 	@override String get shuffle => 'Разбъркай';
 	@override String get addTo => 'Добави към...';
 	@override String get createNew => 'Създай нов';
-	@override String get connect => 'Свържи';
 	@override String get disconnect => 'Прекъсни връзката';
 	@override String get play => 'Пусни';
 	@override String get pause => 'Пауза';
@@ -160,7 +148,6 @@ class _Translations$common$bg extends Translations$common$en {
 	@override String get home => 'Начало';
 	@override String get back => 'Назад';
 	@override String get settings => 'Настройки';
-	@override String get mute => 'Заглуши';
 	@override String get ok => 'OK';
 	@override String get off => 'Изкл.';
 	@override String seasonNumber({required Object number}) => 'Сезон ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$bg extends Translations$common$en {
 	@override String get fullscreen => 'На цял екран';
 	@override String get exitFullscreen => 'Изход от цял екран';
 	@override String get pressBackAgainToExit => 'Натиснете Назад отново, за да излезете';
+	@override String get next => 'Следващ';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Настройване на клавишните комбинации';
 	@override String get videoPlayerNavigation => 'Навигация във видео плейъра';
 	@override String get videoPlayerNavigationDescription => 'Използвай стрелките за навигация в контролите на видео плейъра';
-	@override String get watchTogetherRelay => 'Релеен сървър за гледане заедно';
-	@override String get watchTogetherRelayDescription => 'Задай собствен релеен сървър. Всички трябва да използват един и същ сървър.';
-	@override String get watchTogetherRelayHint => 'https://my-relay.example.com';
-	@override String get watchTogetherRelayInvalid => 'Въведете валиден основен HTTP или HTTPS URL адрес на релейния сървър.';
 	@override String get crashReporting => 'Докладване на сривове';
 	@override String get crashReportingDescription => 'Изпращай доклади за сривове, за да помогнеш за подобряване на приложението';
 	@override String get debugLogging => 'Логове за отстраняване на грешки';
@@ -386,8 +370,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get services => 'Услуги';
 	@override String get servicesDescription => 'Свържи Trakt, MyAnimeList, Seerr и още';
 	@override String get manageLibrariesDescription => 'Пренареждай и скривай библиотеки';
-	@override String get companionRemoteServer => 'Сървър за дистанционно управление';
-	@override String get companionRemoteServerDescription => 'Позволи на мобилни устройства във вашата мрежа да управляват това приложение';
 	@override String get autoPip => 'Автоматичен режим картина в картината';
 	@override String get autoPipDescription => 'Автоматично включвай режима картина в картината при излизане от приложението по време на възпроизвеждане';
 	@override String get matchContentFrameRate => 'Напасване към кадровата честота на съдържанието';
@@ -702,13 +684,6 @@ class _Translations$videoControls$bg extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Няма налични глави';
 	@override String get queue => 'Опашка';
 	@override String get noQueueItems => 'Няма елементи в опашката';
-	@override String get searchSubtitles => 'Търсене на субтитри';
-	@override String get language => 'Език';
-	@override String get noSubtitlesFound => 'Не са намерени субтитри';
-	@override String get subtitleDownloaded => 'Субтитърът е изтеглен';
-	@override String get subtitleDownloadedNotApplied => 'Субтитрите са изтеглени, но не можаха да бъдат избрани';
-	@override String get subtitleDownloadFailed => 'Неуспешно изтегляне на субтитър';
-	@override String get searchLanguages => 'Търсене на езици...';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String get incorrectPin => 'Неправилен PIN.';
 	@override String get incorrectPinTryAgain => 'Неправилен PIN. Опитайте отново.';
 	@override String get sourceProfileMissingParentAccount => 'Изходният профил няма родителски акаунт.';
-	@override String get failedToLoadHomeUsers => 'Потребителите на Plex Home не можаха да бъдат заредени. Проверете връзката си и опитайте отново.';
 	@override String get failedToVerifyPin => 'Неуспешна проверка на PIN.';
 	@override String get newProfile => 'Нов профил';
 	@override String get profileNameHint => 'напр. Гости, Деца, Семейна стая';
@@ -967,9 +941,6 @@ class _Translations$errors$bg extends Translations$errors$en {
 	@override String get connectionFailed => 'Не може да се осъществи връзка с медиен сървър';
 	@override String unableToLoad({required Object context}) => 'Не може да се зареди ${context}. Опитайте отново.';
 	@override String get noClientAvailable => 'Няма наличен клиент';
-	@override String get pleaseEnterToken => 'Моля, въведете токен';
-	@override String get invalidToken => 'Невалиден токен';
-	@override String failedToVerifyToken({required Object error}) => 'Неуспешна проверка на токена: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => 'Неуспешна смяна към ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => 'Неуспешно изтриване на ${displayName}';
 	@override String get failedToRate => 'Оценката не можа да бъде обновена';
@@ -1041,17 +1012,6 @@ class _Translations$about$bg extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Версия ${version}';
 	@override String get appDescription => 'Красив клиент за Plex и Jellyfin, създаден с Flutter';
 	@override String get viewLicensesDescription => 'Виж лицензите на библиотеки на трети страни';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$bg extends Translations$serverSelection$en {
-	_Translations$serverSelection$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => 'Не са намерени сървъри за ${username} (${email})';
-	@override String failedToLoadServers({required Object error}) => 'Неуспешно зареждане на сървъри: ${error}';
 }
 
 // Path: hubDetail
@@ -1311,80 +1271,6 @@ class _Translations$music$bg extends Translations$music$en {
 	@override String get repeatOne => 'Повтаряне на една';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$bg extends Translations$watchTogether$en {
-	_Translations$watchTogether$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Гледане заедно';
-	@override String get description => 'Гледайте съдържание синхронизирано с приятели и семейство';
-	@override String get createSession => 'Създай сесия';
-	@override String get creating => 'Създаване...';
-	@override String get joinSession => 'Присъедини се към сесия';
-	@override String get joining => 'Присъединяване...';
-	@override String get controlMode => 'Режим на управление';
-	@override String get controlModeQuestion => 'Кой може да управлява възпроизвеждането?';
-	@override String get hostOnly => 'Само организаторът';
-	@override String get anyone => 'Всеки';
-	@override String get hostingSession => 'Организирана сесия';
-	@override String get inSession => 'В сесия';
-	@override String get sessionCode => 'Код на сесията';
-	@override String get openSessionControls => 'Отвори контролите за сесията „Гледане заедно“';
-	@override String get copySessionCode => 'Копирай кода на сесията';
-	@override String get hostControlsPlayback => 'Организаторът управлява възпроизвеждането';
-	@override String get anyoneCanControl => 'Всеки може да управлява възпроизвеждането';
-	@override String get hostControls => 'Контроли на организатора';
-	@override String get anyoneControls => 'Всеки управлява';
-	@override String get participants => 'Участници';
-	@override String get host => 'Организатор';
-	@override String get hostBadge => 'ОРГАНИЗАТОР';
-	@override String get youAreHost => 'Вие сте организаторът';
-	@override String get watchingWithOthers => 'Гледате с други';
-	@override String get endSession => 'Край на сесията';
-	@override String get leaveSession => 'Напусни сесията';
-	@override String get endSessionQuestion => 'Край на сесията?';
-	@override String get leaveSessionQuestion => 'Напускане на сесията?';
-	@override String get endSessionConfirm => 'Това ще прекрати сесията за всички участници.';
-	@override String get leaveSessionConfirm => 'Ще бъдете премахнати от сесията.';
-	@override String get endSessionConfirmOverlay => 'Това ще прекрати сесията за гледане за всички участници.';
-	@override String get leaveSessionConfirmOverlay => 'Ще бъдете изключени от сесията за гледане.';
-	@override String get end => 'Край';
-	@override String get leave => 'Напусни';
-	@override String get syncing => 'Синхронизиране...';
-	@override String get joinWatchSession => 'Присъедини се към сесия за гледане';
-	@override String get enterCodeHint => 'Въведете 5-символен код';
-	@override String get pasteFromClipboard => 'Постави от клипборда';
-	@override String get pleaseEnterCode => 'Моля, въведете код на сесия';
-	@override String get codeMustBe5Chars => 'Кодът на сесията трябва да е 5 символа';
-	@override String get joinInstructions => 'Въведете кода на сесията от организатора, за да се присъедините.';
-	@override String get failedToCreate => 'Неуспешно създаване на сесия';
-	@override String get failedToJoin => 'Неуспешно присъединяване към сесия';
-	@override String get sessionCodeCopied => 'Кодът на сесията е копиран в клипборда';
-	@override String get relayUnreachable => 'Релейният сървър е недостъпен. Възможно е интернет доставчикът да блокира гледането заедно.';
-	@override String get reconnectingToHost => 'Повторно свързване с организатора...';
-	@override String get currentPlayback => 'Текущо възпроизвеждане';
-	@override String get joinCurrentPlayback => 'Присъедини се към текущото възпроизвеждане';
-	@override String get joinCurrentPlaybackDescription => 'Върнете се към това, което организаторът гледа в момента';
-	@override String get failedToOpenCurrentPlayback => 'Неуспешно отваряне на текущото възпроизвеждане';
-	@override String participantJoined({required Object name}) => '${name} се присъедини';
-	@override String participantLeft({required Object name}) => '${name} напусна';
-	@override String participantPaused({required Object name}) => '${name} постави на пауза';
-	@override String participantResumed({required Object name}) => '${name} продължи';
-	@override String participantSeeked({required Object name}) => '${name} промени позицията на възпроизвеждане';
-	@override String participantBuffering({required Object name}) => '${name} буферира';
-	@override String participantNeedsUpdate({required Object name}) => '${name} е с по-стара версия на приложението — синхронизирането не е налично';
-	@override String resumingWithout({required Object name}) => 'Продължаване без ${name}';
-	@override String get waitingForParticipants => 'Изчакване другите да заредят...';
-	@override String waitingForName({required Object name}) => 'Изчакване на ${name}...';
-	@override String get recentRooms => 'Скорошни стаи';
-	@override String get renameRoom => 'Преименувай стая';
-	@override String get removeRoom => 'Премахни';
-	@override String get guestSwitchUnavailable => 'Превключването не е възможно — сървърът е недостъпен за синхронизация';
-	@override String get guestSwitchFailed => 'Превключването не е възможно — съдържанието не е намерено на този сървър';
-}
-
 // Path: downloads
 class _Translations$downloads$bg extends Translations$downloads$en {
 	_Translations$downloads$bg._(TranslationsBg root) : this._root = root, super.internal(root);
@@ -1485,22 +1371,6 @@ class _Translations$shaders$bg extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Неуспешно импортиране на шейдър';
 	@override String get deleteShader => 'Изтрий шейдър';
 	@override String deleteShaderConfirm({required Object name}) => 'Да се изтрие ли "${name}"?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$bg extends Translations$companionRemote$en {
-	_Translations$companionRemote$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Дистанционно управление';
-	@override String connectedTo({required Object name}) => 'Връзка с ${name}';
-	@override String get unknownDevice => 'Непознато устройство';
-	@override late final _Translations$companionRemote$session$bg session = _Translations$companionRemote$session$bg._(_root);
-	@override late final _Translations$companionRemote$pairing$bg pairing = _Translations$companionRemote$pairing$bg._(_root);
-	@override late final _Translations$companionRemote$remote$bg remote = _Translations$companionRemote$remote$bg._(_root);
-	@override late final _Translations$companionRemote$errors$bg errors = _Translations$companionRemote$errors$bg._(_root);
 }
 
 // Path: videoSettings
@@ -1684,27 +1554,6 @@ class _Translations$metadataEdit$bg extends Translations$metadataEdit$en {
 	@override String get mood => 'Настроение';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$bg extends Translations$matchScreen$en {
-	_Translations$matchScreen$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Съпостави...';
-	@override String get fixMatch => 'Поправи съвпадение...';
-	@override String get unmatch => 'Премахни съвпадение';
-	@override String get unmatchConfirm => 'Да се изчисти ли това съвпадение? Plex ще го третира като несъпоставено, докато не бъде съпоставено отново.';
-	@override String get unmatchSuccess => 'Съвпадението на елемента е премахнато';
-	@override String get unmatchFailed => 'Неуспешно премахване на съвпадението на елемента';
-	@override String get matchApplied => 'Съвпадението е приложено';
-	@override String get matchFailed => 'Неуспешно прилагане на съвпадение';
-	@override String get titleHint => 'Заглавие';
-	@override String get yearHint => 'Година';
-	@override String get search => 'Търсене';
-	@override String get noMatchesFound => 'Няма намерени съвпадения';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$bg extends Translations$serverTasks$en {
 	_Translations$serverTasks$bg._(TranslationsBg root) : this._root = root, super.internal(root);
@@ -1817,15 +1666,9 @@ class _Translations$addServer$bg extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Сървърът не може да бъде достигнат: ${error}';
 	@override String signInFailed({required Object error}) => 'Входът е неуспешен: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Quick Connect не бе успешно: ${error}';
-	@override String get addPlexTitle => 'Вход с Plex';
-	@override String get pinExpired => 'PIN-ът изтече преди вход. Моля, опитайте отново.';
-	@override String failedToRegisterAccount({required Object error}) => 'Неуспешна регистрация на акаунт: ${error}';
 	@override String get enterJellyfinUrlError => 'Въведете URL адреса на вашия Jellyfin сървър';
 	@override String get addConnectionTitle => 'Добави връзка';
 	@override String addConnectionTitleScoped({required Object name}) => 'Добави към ${name}';
-	@override String get signInWithPlexCard => 'Вход с Plex';
-	@override String get signInWithPlexCardSubtitle => 'Удостоверете това устройство. Споделените сървъри се добавят.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Удостоверете Plex акаунт. Домашните потребители стават профили.';
 	@override String get connectToJellyfinCard => 'Свързване с Jellyfin';
 	@override String get connectToJellyfinCardSubtitle => 'Въведете URL адрес на сървъра, потребителско име и парола.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Вход в Jellyfin сървър. Свързва се с ${name}.';
@@ -2031,103 +1874,6 @@ class _Translations$downloads$backgroundWarning$bg extends Translations$download
 	@override String get linkUnavailable => 'dontkillmyapp.com не можа да се отвори на това устройство';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$bg extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Стартиране на сървър за дистанционно управление...';
-	@override String get hostAddress => 'Адрес на хоста';
-	@override String get connected => 'Свързан';
-	@override String get serverRunning => 'Сървърът за дистанционно управление е активен';
-	@override String get serverStopped => 'Сървърът за дистанционно управление е спрян';
-	@override String get serverRunningDescription => 'Мобилни устройства във вашата мрежа могат да се свързват с това приложение';
-	@override String get serverStoppedDescription => 'Стартирайте сървъра, за да позволите на мобилни устройства да се свързват';
-	@override String get usePhoneToControl => 'Използвайте мобилното си устройство, за да управлявате това приложение';
-	@override String get startServer => 'Стартирай сървър';
-	@override String get stopServer => 'Спри сървър';
-	@override String get minimize => 'Минимизирай';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$bg extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Plezy устройства със същия Plex акаунт се показват тук';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Свързване...';
-	@override String get searchingForDevices => 'Търсене на устройства...';
-	@override String get noDevicesFound => 'Не са намерени устройства във вашата мрежа';
-	@override String get noDevicesHint => 'Отворете Plezy на настолен компютър и използвайте същата Wi-Fi мрежа';
-	@override String get availableDevices => 'Налични устройства';
-	@override String get manualConnection => 'Ръчно свързване';
-	@override String get cryptoInitFailed => 'Не може да се стартира защитена връзка. Първо влезте в Plex.';
-	@override String get validationHostRequired => 'Моля, въведете адрес на хоста';
-	@override String get validationHostFormat => 'Форматът трябва да е IP:port (напр. 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'Връзката изтече. Използвайте една и съща мрежа на двете устройства.';
-	@override String get sessionNotFound => 'Устройството не е намерено. Уверете се, че Plezy работи на хоста.';
-	@override String get authFailed => 'Удостоверяването е неуспешно. Двете устройства трябва да използват същия Plex акаунт.';
-	@override String failedToConnect({required Object error}) => 'Неуспешно свързване: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$bg extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Искате ли да прекъснете връзката с дистанционната сесия?';
-	@override String get reconnecting => 'Повторно свързване...';
-	@override String attemptOf({required Object current}) => 'Опит ${current} от 5';
-	@override String get retryNow => 'Опитай сега';
-	@override String get tabRemote => 'Дистанционно';
-	@override String get tabPlay => 'Пускане';
-	@override String get tabMore => 'Още';
-	@override String get menu => 'Меню';
-	@override String get tabNavigation => 'Навигация с Tab';
-	@override String get tabDiscover => 'Открий';
-	@override String get tabLibraries => 'Библиотеки';
-	@override String get tabSearch => 'Търсене';
-	@override String get tabDownloads => 'Изтегляния';
-	@override String get tabSettings => 'Настройки';
-	@override String get previous => 'Предишен';
-	@override String get playPause => 'Пускане/пауза';
-	@override String get next => 'Следващ';
-	@override String get seekBack => 'Назад';
-	@override String get stop => 'Стоп';
-	@override String get seekForward => 'Напред';
-	@override String get volume => 'Звук';
-	@override String get volumeDown => 'Надолу';
-	@override String get volumeUp => 'Нагоре';
-	@override String get fullscreen => 'Цял екран';
-	@override String get subtitles => 'Субтитри';
-	@override String get audio => 'Аудио';
-	@override String get searchHint => 'Търсене на настолен компютър...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$bg extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Не е намерен мрежов интерфейс';
-	@override String get authenticationFailed => 'Неуспешно удостоверяване';
-	@override String serverStartFailed({required Object error}) => 'Неуспешно стартиране на сървъра за дистанционно управление: ${error}';
-	@override String commandFailed({required Object error}) => 'Неуспешно изпращане на команда за дистанционно управление: ${error}';
-	@override String get joinTimedOut => 'Времето за присъединяване към сесията изтече';
-	@override String get failedToConnectAnyAddress => 'Неуспешно свързване към който и да е адрес';
-	@override String connectionLostAfterAttempts({required Object attempts}) => 'Връзката е загубена след ${attempts} опита';
-	@override String get connectionLost => 'Връзката е загубена';
-}
-
 // Path: services.names
 class _Translations$services$names$bg extends Translations$services$names$en {
 	_Translations$services$names$bg._(TranslationsBg root) : this._root = root, super.internal(root);
@@ -2201,13 +1947,6 @@ extension on TranslationsBg {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Вход с Plex',
-			'auth.showQRCode' => 'Покажи QR код',
-			'auth.authenticate' => 'Удостовери се',
-			'auth.authenticationTimeout' => 'Времето за удостоверяване изтече. Моля, опитайте отново.',
-			'auth.scanQRToSignIn' => 'Сканирайте този QR код, за да влезете',
-			'auth.waitingForAuth' => 'Изчакване на удостоверяване...\nВлезте от браузъра си.',
-			'auth.useBrowser' => 'Използвай браузър',
-			'auth.or' => 'или',
 			'auth.connectToJellyfin' => 'Свържи се с Jellyfin',
 			'auth.useQuickConnect' => 'Използвай Quick Connect',
 			'auth.quickConnectInstructions' => 'Отворете Quick Connect в Jellyfin и въведете този код.',
@@ -2234,7 +1973,6 @@ extension on TranslationsBg {
 			'common.shuffle' => 'Разбъркай',
 			'common.addTo' => 'Добави към...',
 			'common.createNew' => 'Създай нов',
-			'common.connect' => 'Свържи',
 			'common.disconnect' => 'Прекъсни връзката',
 			'common.play' => 'Пусни',
 			'common.pause' => 'Пауза',
@@ -2244,7 +1982,6 @@ extension on TranslationsBg {
 			'common.home' => 'Начало',
 			'common.back' => 'Назад',
 			'common.settings' => 'Настройки',
-			'common.mute' => 'Заглуши',
 			'common.ok' => 'OK',
 			'common.off' => 'Изкл.',
 			'common.seasonNumber' => ({required Object number}) => 'Сезон ${number}',
@@ -2260,6 +1997,7 @@ extension on TranslationsBg {
 			'common.fullscreen' => 'На цял екран',
 			'common.exitFullscreen' => 'Изход от цял екран',
 			'common.pressBackAgainToExit' => 'Натиснете Назад отново, за да излезете',
+			'common.next' => 'Следващ',
 			'screens.licenses' => 'Лицензи',
 			'screens.switchProfile' => 'Смяна на профил',
 			'screens.subtitleStyling' => 'Стил на субтитрите',
@@ -2368,10 +2106,6 @@ extension on TranslationsBg {
 			'settings.keyboardShortcutsDescription' => 'Настройване на клавишните комбинации',
 			'settings.videoPlayerNavigation' => 'Навигация във видео плейъра',
 			'settings.videoPlayerNavigationDescription' => 'Използвай стрелките за навигация в контролите на видео плейъра',
-			'settings.watchTogetherRelay' => 'Релеен сървър за гледане заедно',
-			'settings.watchTogetherRelayDescription' => 'Задай собствен релеен сървър. Всички трябва да използват един и същ сървър.',
-			'settings.watchTogetherRelayHint' => 'https://my-relay.example.com',
-			'settings.watchTogetherRelayInvalid' => 'Въведете валиден основен HTTP или HTTPS URL адрес на релейния сървър.',
 			'settings.crashReporting' => 'Докладване на сривове',
 			'settings.crashReportingDescription' => 'Изпращай доклади за сривове, за да помогнеш за подобряване на приложението',
 			'settings.debugLogging' => 'Логове за отстраняване на грешки',
@@ -2443,8 +2177,6 @@ extension on TranslationsBg {
 			'settings.services' => 'Услуги',
 			'settings.servicesDescription' => 'Свържи Trakt, MyAnimeList, Seerr и още',
 			'settings.manageLibrariesDescription' => 'Пренареждай и скривай библиотеки',
-			'settings.companionRemoteServer' => 'Сървър за дистанционно управление',
-			'settings.companionRemoteServerDescription' => 'Позволи на мобилни устройства във вашата мрежа да управляват това приложение',
 			'settings.autoPip' => 'Автоматичен режим картина в картината',
 			'settings.autoPipDescription' => 'Автоматично включвай режима картина в картината при излизане от приложението по време на възпроизвеждане',
 			'settings.matchContentFrameRate' => 'Напасване към кадровата честота на съдържанието',
@@ -2708,15 +2440,6 @@ extension on TranslationsBg {
 			'videoControls.noChaptersAvailable' => 'Няма налични глави',
 			'videoControls.queue' => 'Опашка',
 			'videoControls.noQueueItems' => 'Няма елементи в опашката',
-			'videoControls.searchSubtitles' => 'Търсене на субтитри',
-			'videoControls.language' => 'Език',
-			'videoControls.noSubtitlesFound' => 'Не са намерени субтитри',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => 'Субтитърът е изтеглен',
-			'videoControls.subtitleDownloadedNotApplied' => 'Субтитрите са изтеглени, но не можаха да бъдат избрани',
-			'videoControls.subtitleDownloadFailed' => 'Неуспешно изтегляне на субтитър',
-			'videoControls.searchLanguages' => 'Търсене на езици...',
 			'messages.markedAsWatched' => 'Маркирано като гледано',
 			'messages.markedAsUnwatched' => 'Маркирано като негледано',
 			'messages.markedAsWatchedOffline' => 'Маркирано като гледано (ще се синхронизира, когато сте онлайн)',
@@ -2734,6 +2457,8 @@ extension on TranslationsBg {
 			'messages.playbackCancelled' => 'Възпроизвеждането беше отменено.',
 			'messages.playbackFailed' => 'Възпроизвеждането не можа да бъде стартирано.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Грешка при зареждане на информация за файла: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Грешка при зареждане на сериала',
 			'messages.musicNotSupported' => 'Възпроизвеждането на музика все още не се поддържа',
 			'messages.noDescriptionAvailable' => 'Няма налично описание',
@@ -2854,7 +2579,6 @@ extension on TranslationsBg {
 			'profiles.incorrectPin' => 'Неправилен PIN.',
 			'profiles.incorrectPinTryAgain' => 'Неправилен PIN. Опитайте отново.',
 			'profiles.sourceProfileMissingParentAccount' => 'Изходният профил няма родителски акаунт.',
-			'profiles.failedToLoadHomeUsers' => 'Потребителите на Plex Home не можаха да бъдат заредени. Проверете връзката си и опитайте отново.',
 			'profiles.failedToVerifyPin' => 'Неуспешна проверка на PIN.',
 			'profiles.newProfile' => 'Нов профил',
 			'profiles.profileNameHint' => 'напр. Гости, Деца, Семейна стая',
@@ -2900,9 +2624,6 @@ extension on TranslationsBg {
 			'errors.connectionFailed' => 'Не може да се осъществи връзка с медиен сървър',
 			'errors.unableToLoad' => ({required Object context}) => 'Не може да се зареди ${context}. Опитайте отново.',
 			'errors.noClientAvailable' => 'Няма наличен клиент',
-			'errors.pleaseEnterToken' => 'Моля, въведете токен',
-			'errors.invalidToken' => 'Невалиден токен',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Неуспешна проверка на токена: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => 'Неуспешна смяна към ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => 'Неуспешно изтриване на ${displayName}',
 			'errors.failedToRate' => 'Оценката не можа да бъде обновена',
@@ -2993,8 +2714,6 @@ extension on TranslationsBg {
 			'about.versionLabel' => ({required Object version}) => 'Версия ${version}',
 			'about.appDescription' => 'Красив клиент за Plex и Jellyfin, създаден с Flutter',
 			'about.viewLicensesDescription' => 'Виж лицензите на библиотеки на трети страни',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => 'Не са намерени сървъри за ${username} (${email})',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Неуспешно зареждане на сървъри: ${error}',
 			'hubDetail.title' => 'Заглавие',
 			'hubDetail.releaseYear' => 'Година на излизане',
 			'hubDetail.dateAdded' => 'Дата на добавяне',
@@ -3181,73 +2900,6 @@ extension on TranslationsBg {
 			'music.repeat' => 'Повтаряне',
 			'music.repeatAll' => 'Повтаряне на всички',
 			'music.repeatOne' => 'Повтаряне на една',
-			'watchTogether.title' => 'Гледане заедно',
-			'watchTogether.description' => 'Гледайте съдържание синхронизирано с приятели и семейство',
-			'watchTogether.createSession' => 'Създай сесия',
-			'watchTogether.creating' => 'Създаване...',
-			'watchTogether.joinSession' => 'Присъедини се към сесия',
-			'watchTogether.joining' => 'Присъединяване...',
-			'watchTogether.controlMode' => 'Режим на управление',
-			'watchTogether.controlModeQuestion' => 'Кой може да управлява възпроизвеждането?',
-			'watchTogether.hostOnly' => 'Само организаторът',
-			'watchTogether.anyone' => 'Всеки',
-			'watchTogether.hostingSession' => 'Организирана сесия',
-			'watchTogether.inSession' => 'В сесия',
-			'watchTogether.sessionCode' => 'Код на сесията',
-			'watchTogether.openSessionControls' => 'Отвори контролите за сесията „Гледане заедно“',
-			'watchTogether.copySessionCode' => 'Копирай кода на сесията',
-			'watchTogether.hostControlsPlayback' => 'Организаторът управлява възпроизвеждането',
-			'watchTogether.anyoneCanControl' => 'Всеки може да управлява възпроизвеждането',
-			'watchTogether.hostControls' => 'Контроли на организатора',
-			'watchTogether.anyoneControls' => 'Всеки управлява',
-			'watchTogether.participants' => 'Участници',
-			'watchTogether.host' => 'Организатор',
-			'watchTogether.hostBadge' => 'ОРГАНИЗАТОР',
-			'watchTogether.youAreHost' => 'Вие сте организаторът',
-			'watchTogether.watchingWithOthers' => 'Гледате с други',
-			'watchTogether.endSession' => 'Край на сесията',
-			'watchTogether.leaveSession' => 'Напусни сесията',
-			'watchTogether.endSessionQuestion' => 'Край на сесията?',
-			'watchTogether.leaveSessionQuestion' => 'Напускане на сесията?',
-			'watchTogether.endSessionConfirm' => 'Това ще прекрати сесията за всички участници.',
-			'watchTogether.leaveSessionConfirm' => 'Ще бъдете премахнати от сесията.',
-			'watchTogether.endSessionConfirmOverlay' => 'Това ще прекрати сесията за гледане за всички участници.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Ще бъдете изключени от сесията за гледане.',
-			'watchTogether.end' => 'Край',
-			'watchTogether.leave' => 'Напусни',
-			'watchTogether.syncing' => 'Синхронизиране...',
-			'watchTogether.joinWatchSession' => 'Присъедини се към сесия за гледане',
-			'watchTogether.enterCodeHint' => 'Въведете 5-символен код',
-			'watchTogether.pasteFromClipboard' => 'Постави от клипборда',
-			'watchTogether.pleaseEnterCode' => 'Моля, въведете код на сесия',
-			'watchTogether.codeMustBe5Chars' => 'Кодът на сесията трябва да е 5 символа',
-			'watchTogether.joinInstructions' => 'Въведете кода на сесията от организатора, за да се присъедините.',
-			'watchTogether.failedToCreate' => 'Неуспешно създаване на сесия',
-			'watchTogether.failedToJoin' => 'Неуспешно присъединяване към сесия',
-			'watchTogether.sessionCodeCopied' => 'Кодът на сесията е копиран в клипборда',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => 'Релейният сървър е недостъпен. Възможно е интернет доставчикът да блокира гледането заедно.',
-			'watchTogether.reconnectingToHost' => 'Повторно свързване с организатора...',
-			'watchTogether.currentPlayback' => 'Текущо възпроизвеждане',
-			'watchTogether.joinCurrentPlayback' => 'Присъедини се към текущото възпроизвеждане',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Върнете се към това, което организаторът гледа в момента',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Неуспешно отваряне на текущото възпроизвеждане',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} се присъедини',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} напусна',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} постави на пауза',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} продължи',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} промени позицията на възпроизвеждане',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} буферира',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} е с по-стара версия на приложението — синхронизирането не е налично',
-			'watchTogether.resumingWithout' => ({required Object name}) => 'Продължаване без ${name}',
-			'watchTogether.waitingForParticipants' => 'Изчакване другите да заредят...',
-			'watchTogether.waitingForName' => ({required Object name}) => 'Изчакване на ${name}...',
-			'watchTogether.recentRooms' => 'Скорошни стаи',
-			'watchTogether.renameRoom' => 'Преименувай стая',
-			'watchTogether.removeRoom' => 'Премахни',
-			'watchTogether.guestSwitchUnavailable' => 'Превключването не е възможно — сървърът е недостъпен за синхронизация',
-			'watchTogether.guestSwitchFailed' => 'Превключването не е възможно — съдържанието не е намерено на този сървър',
 			'downloads.title' => 'Изтегляния',
 			'downloads.manage' => 'Управление',
 			'downloads.tvShows' => 'ТВ сериали',
@@ -3319,6 +2971,8 @@ extension on TranslationsBg {
 			'downloads.backgroundWarning.bannerBlocked' => 'Изтеглянията ще спрат, когато излезете от приложението',
 			'downloads.backgroundWarning.bannerDegraded' => 'Изтеглянията във фонов режим може да бъдат ограничени',
 			'downloads.backgroundWarning.bannerAction' => 'Подробности',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Изтеглянията във фонов режим са блокирани',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Изтеглянията във фонов режим може да бъдат ограничени',
 			'downloads.backgroundWarning.sheetIntro' => 'Android не позволява на Plezy да изтегля надеждно във фонов режим.',
@@ -3357,70 +3011,6 @@ extension on TranslationsBg {
 			'shaders.shaderImportFailed' => 'Неуспешно импортиране на шейдър',
 			'shaders.deleteShader' => 'Изтрий шейдър',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => 'Да се изтрие ли "${name}"?',
-			'companionRemote.title' => 'Дистанционно управление',
-			'companionRemote.connectedTo' => ({required Object name}) => 'Връзка с ${name}',
-			'companionRemote.unknownDevice' => 'Непознато устройство',
-			'companionRemote.session.startingServer' => 'Стартиране на сървър за дистанционно управление...',
-			'companionRemote.session.hostAddress' => 'Адрес на хоста',
-			'companionRemote.session.connected' => 'Свързан',
-			'companionRemote.session.serverRunning' => 'Сървърът за дистанционно управление е активен',
-			'companionRemote.session.serverStopped' => 'Сървърът за дистанционно управление е спрян',
-			'companionRemote.session.serverRunningDescription' => 'Мобилни устройства във вашата мрежа могат да се свързват с това приложение',
-			'companionRemote.session.serverStoppedDescription' => 'Стартирайте сървъра, за да позволите на мобилни устройства да се свързват',
-			'companionRemote.session.usePhoneToControl' => 'Използвайте мобилното си устройство, за да управлявате това приложение',
-			'companionRemote.session.startServer' => 'Стартирай сървър',
-			'companionRemote.session.stopServer' => 'Спри сървър',
-			'companionRemote.session.minimize' => 'Минимизирай',
-			'companionRemote.pairing.discoveryDescription' => 'Plezy устройства със същия Plex акаунт се показват тук',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Свързване...',
-			'companionRemote.pairing.searchingForDevices' => 'Търсене на устройства...',
-			'companionRemote.pairing.noDevicesFound' => 'Не са намерени устройства във вашата мрежа',
-			'companionRemote.pairing.noDevicesHint' => 'Отворете Plezy на настолен компютър и използвайте същата Wi-Fi мрежа',
-			'companionRemote.pairing.availableDevices' => 'Налични устройства',
-			'companionRemote.pairing.manualConnection' => 'Ръчно свързване',
-			'companionRemote.pairing.cryptoInitFailed' => 'Не може да се стартира защитена връзка. Първо влезте в Plex.',
-			'companionRemote.pairing.validationHostRequired' => 'Моля, въведете адрес на хоста',
-			'companionRemote.pairing.validationHostFormat' => 'Форматът трябва да е IP:port (напр. 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'Връзката изтече. Използвайте една и съща мрежа на двете устройства.',
-			'companionRemote.pairing.sessionNotFound' => 'Устройството не е намерено. Уверете се, че Plezy работи на хоста.',
-			'companionRemote.pairing.authFailed' => 'Удостоверяването е неуспешно. Двете устройства трябва да използват същия Plex акаунт.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Неуспешно свързване: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Искате ли да прекъснете връзката с дистанционната сесия?',
-			'companionRemote.remote.reconnecting' => 'Повторно свързване...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Опит ${current} от 5',
-			'companionRemote.remote.retryNow' => 'Опитай сега',
-			'companionRemote.remote.tabRemote' => 'Дистанционно',
-			'companionRemote.remote.tabPlay' => 'Пускане',
-			'companionRemote.remote.tabMore' => 'Още',
-			'companionRemote.remote.menu' => 'Меню',
-			'companionRemote.remote.tabNavigation' => 'Навигация с Tab',
-			'companionRemote.remote.tabDiscover' => 'Открий',
-			'companionRemote.remote.tabLibraries' => 'Библиотеки',
-			'companionRemote.remote.tabSearch' => 'Търсене',
-			'companionRemote.remote.tabDownloads' => 'Изтегляния',
-			'companionRemote.remote.tabSettings' => 'Настройки',
-			'companionRemote.remote.previous' => 'Предишен',
-			'companionRemote.remote.playPause' => 'Пускане/пауза',
-			'companionRemote.remote.next' => 'Следващ',
-			'companionRemote.remote.seekBack' => 'Назад',
-			'companionRemote.remote.stop' => 'Стоп',
-			'companionRemote.remote.seekForward' => 'Напред',
-			'companionRemote.remote.volume' => 'Звук',
-			'companionRemote.remote.volumeDown' => 'Надолу',
-			'companionRemote.remote.volumeUp' => 'Нагоре',
-			'companionRemote.remote.fullscreen' => 'Цял екран',
-			'companionRemote.remote.subtitles' => 'Субтитри',
-			'companionRemote.remote.audio' => 'Аудио',
-			'companionRemote.remote.searchHint' => 'Търсене на настолен компютър...',
-			'companionRemote.errors.noNetworkInterface' => 'Не е намерен мрежов интерфейс',
-			'companionRemote.errors.authenticationFailed' => 'Неуспешно удостоверяване',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Неуспешно стартиране на сървъра за дистанционно управление: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Неуспешно изпращане на команда за дистанционно управление: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Времето за присъединяване към сесията изтече',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Неуспешно свързване към който и да е адрес',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => 'Връзката е загубена след ${attempts} опита',
-			'companionRemote.errors.connectionLost' => 'Връзката е загубена',
 			'videoSettings.playbackSpeed' => 'Скорост на възпроизвеждане',
 			'videoSettings.normalSpeed' => 'Нормална',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Активен (${duration})',
@@ -3566,18 +3156,6 @@ extension on TranslationsBg {
 			'metadataEdit.label' => 'Етикет',
 			'metadataEdit.style' => 'Стил',
 			'metadataEdit.mood' => 'Настроение',
-			'matchScreen.match' => 'Съпостави...',
-			'matchScreen.fixMatch' => 'Поправи съвпадение...',
-			'matchScreen.unmatch' => 'Премахни съвпадение',
-			'matchScreen.unmatchConfirm' => 'Да се изчисти ли това съвпадение? Plex ще го третира като несъпоставено, докато не бъде съпоставено отново.',
-			'matchScreen.unmatchSuccess' => 'Съвпадението на елемента е премахнато',
-			'matchScreen.unmatchFailed' => 'Неуспешно премахване на съвпадението на елемента',
-			'matchScreen.matchApplied' => 'Съвпадението е приложено',
-			'matchScreen.matchFailed' => 'Неуспешно прилагане на съвпадение',
-			'matchScreen.titleHint' => 'Заглавие',
-			'matchScreen.yearHint' => 'Година',
-			'matchScreen.search' => 'Търсене',
-			'matchScreen.noMatchesFound' => 'Няма намерени съвпадения',
 			'serverTasks.title' => 'Задачи на сървъра',
 			'serverTasks.failedToLoad' => 'Неуспешно зареждане на задачи',
 			'serverTasks.noTasks' => 'Няма изпълняващи се задачи',
@@ -3670,15 +3248,9 @@ extension on TranslationsBg {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Сървърът не може да бъде достигнат: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Входът е неуспешен: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Quick Connect не бе успешно: ${error}',
-			'addServer.addPlexTitle' => 'Вход с Plex',
-			'addServer.pinExpired' => 'PIN-ът изтече преди вход. Моля, опитайте отново.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Неуспешна регистрация на акаунт: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Въведете URL адреса на вашия Jellyfin сървър',
 			'addServer.addConnectionTitle' => 'Добави връзка',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => 'Добави към ${name}',
-			'addServer.signInWithPlexCard' => 'Вход с Plex',
-			'addServer.signInWithPlexCardSubtitle' => 'Удостоверете това устройство. Споделените сървъри се добавят.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Удостоверете Plex акаунт. Домашните потребители стават профили.',
 			'addServer.connectToJellyfinCard' => 'Свързване с Jellyfin',
 			'addServer.connectToJellyfinCardSubtitle' => 'Въведете URL адрес на сървъра, потребителско име и парола.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Вход в Jellyfin сървър. Свързва се с ${name}.',

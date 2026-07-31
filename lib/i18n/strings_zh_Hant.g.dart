@@ -65,7 +65,6 @@ class TranslationsZhHant extends TranslationsZh with BaseTranslations<AppLocale,
 	@override late final _Translations$errors$zh_Hant errors = _Translations$errors$zh_Hant._(_root);
 	@override late final _Translations$libraries$zh_Hant libraries = _Translations$libraries$zh_Hant._(_root);
 	@override late final _Translations$about$zh_Hant about = _Translations$about$zh_Hant._(_root);
-	@override late final _Translations$serverSelection$zh_Hant serverSelection = _Translations$serverSelection$zh_Hant._(_root);
 	@override late final _Translations$hubDetail$zh_Hant hubDetail = _Translations$hubDetail$zh_Hant._(_root);
 	@override late final _Translations$logs$zh_Hant logs = _Translations$logs$zh_Hant._(_root);
 	@override late final _Translations$licenses$zh_Hant licenses = _Translations$licenses$zh_Hant._(_root);
@@ -75,15 +74,12 @@ class TranslationsZhHant extends TranslationsZh with BaseTranslations<AppLocale,
 	@override late final _Translations$collections$zh_Hant collections = _Translations$collections$zh_Hant._(_root);
 	@override late final _Translations$playlists$zh_Hant playlists = _Translations$playlists$zh_Hant._(_root);
 	@override late final _Translations$music$zh_Hant music = _Translations$music$zh_Hant._(_root);
-	@override late final _Translations$watchTogether$zh_Hant watchTogether = _Translations$watchTogether$zh_Hant._(_root);
 	@override late final _Translations$downloads$zh_Hant downloads = _Translations$downloads$zh_Hant._(_root);
 	@override late final _Translations$shaders$zh_Hant shaders = _Translations$shaders$zh_Hant._(_root);
-	@override late final _Translations$companionRemote$zh_Hant companionRemote = _Translations$companionRemote$zh_Hant._(_root);
 	@override late final _Translations$videoSettings$zh_Hant videoSettings = _Translations$videoSettings$zh_Hant._(_root);
 	@override late final _Translations$performanceOverlay$zh_Hant performanceOverlay = _Translations$performanceOverlay$zh_Hant._(_root);
 	@override late final _Translations$externalPlayer$zh_Hant externalPlayer = _Translations$externalPlayer$zh_Hant._(_root);
 	@override late final _Translations$metadataEdit$zh_Hant metadataEdit = _Translations$metadataEdit$zh_Hant._(_root);
-	@override late final _Translations$matchScreen$zh_Hant matchScreen = _Translations$matchScreen$zh_Hant._(_root);
 	@override late final _Translations$serverTasks$zh_Hant serverTasks = _Translations$serverTasks$zh_Hant._(_root);
 	@override late final _Translations$trakt$zh_Hant trakt = _Translations$trakt$zh_Hant._(_root);
 	@override late final _Translations$seerr$zh_Hant seerr = _Translations$seerr$zh_Hant._(_root);
@@ -109,13 +105,6 @@ class _Translations$auth$zh_Hant extends Translations$auth$zh {
 
 	// Translations
 	@override String get signInWithPlex => '使用 Plex 登入';
-	@override String get showQRCode => '顯示 QR 碼';
-	@override String get authenticate => '驗證';
-	@override String get authenticationTimeout => '驗證逾時。請重試。';
-	@override String get scanQRToSignIn => '掃描此 QR 碼以登入';
-	@override String get waitingForAuth => '正在等待驗證…\n請在瀏覽器中登入。';
-	@override String get useBrowser => '使用瀏覽器';
-	@override String get or => '或';
 	@override String get connectToJellyfin => '連線至 Jellyfin';
 	@override String get useQuickConnect => '使用快速連線（Quick Connect）';
 	@override String get quickConnectInstructions => '在 Jellyfin 中開啟快速連線並輸入此代碼。';
@@ -151,7 +140,6 @@ class _Translations$common$zh_Hant extends Translations$common$zh {
 	@override String get shuffle => '隨機播放';
 	@override String get addTo => '新增至…';
 	@override String get createNew => '新增';
-	@override String get connect => '連線';
 	@override String get disconnect => '中斷連線';
 	@override String get play => '播放';
 	@override String get pause => '暫停';
@@ -161,7 +149,6 @@ class _Translations$common$zh_Hant extends Translations$common$zh {
 	@override String get home => '首頁';
 	@override String get back => '返回';
 	@override String get settings => '設定';
-	@override String get mute => '靜音';
 	@override String get ok => '確定';
 	@override String get off => '關閉';
 	@override String seasonNumber({required Object number}) => '第 ${number} 季';
@@ -177,6 +164,7 @@ class _Translations$common$zh_Hant extends Translations$common$zh {
 	@override String get fullscreen => '全螢幕';
 	@override String get exitFullscreen => '退出全螢幕';
 	@override String get pressBackAgainToExit => '再按一次返回以退出';
+	@override String get next => '下一個';
 }
 
 // Path: screens
@@ -312,10 +300,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get keyboardShortcutsDescription => '自訂鍵盤快速鍵';
 	@override String get videoPlayerNavigation => '影片播放器導覽';
 	@override String get videoPlayerNavigationDescription => '使用方向鍵導覽影片播放器控制項';
-	@override String get watchTogetherRelay => '一起看中繼伺服器';
-	@override String get watchTogetherRelayDescription => '設定自訂中繼。所有人必須使用相同的伺服器。';
-	@override String get watchTogetherRelayHint => 'https://my-relay.example.com';
-	@override String get watchTogetherRelayInvalid => '請輸入有效的 HTTP 或 HTTPS 中繼伺服器根網址。';
 	@override String get crashReporting => '當機報告';
 	@override String get crashReportingDescription => '傳送當機報告以協助改善應用程式';
 	@override String get debugLogging => '偵錯日誌';
@@ -387,8 +371,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get services => '外部服務';
 	@override String get servicesDescription => '連結 Trakt、MyAnimeList、Seerr 等服務';
 	@override String get manageLibrariesDescription => '重新排序與隱藏媒體庫';
-	@override String get companionRemoteServer => '隨身遙控器伺服器';
-	@override String get companionRemoteServerDescription => '允許區域網路中的行動裝置控制此應用程式';
 	@override String get autoPip => '自動進入子母畫面';
 	@override String get autoPipDescription => '播放影片時離開應用程式將自動進入子母畫面模式';
 	@override String get matchContentFrameRate => '符合影片影格率';
@@ -703,13 +685,6 @@ class _Translations$videoControls$zh_Hant extends Translations$videoControls$zh 
 	@override String get noChaptersAvailable => '沒有可用的章節';
 	@override String get queue => '播放佇列';
 	@override String get noQueueItems => '佇列中沒有項目';
-	@override String get searchSubtitles => '搜尋字幕';
-	@override String get language => '語言';
-	@override String get noSubtitlesFound => '找不到字幕';
-	@override String get subtitleDownloaded => '字幕下載成功';
-	@override String get subtitleDownloadedNotApplied => '字幕已下載，但無法套用';
-	@override String get subtitleDownloadFailed => '字幕下載失敗';
-	@override String get searchLanguages => '搜尋語言…';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String get incorrectPin => 'PIN 碼不正確。';
 	@override String get incorrectPinTryAgain => 'PIN 碼不正確。請重試。';
 	@override String get sourceProfileMissingParentAccount => '來源使用者設定檔缺少其父帳戶資訊。';
-	@override String get failedToLoadHomeUsers => '無法載入您的 Plex Home 使用者。請檢查網路連線後重試。';
 	@override String get failedToVerifyPin => '無法驗證 PIN 碼。';
 	@override String get newProfile => '建立使用者設定檔';
 	@override String get profileNameHint => '例如：訪客、兒童、客廳';
@@ -967,9 +941,6 @@ class _Translations$errors$zh_Hant extends Translations$errors$zh {
 	@override String get connectionFailed => '無法連線至媒體伺服器';
 	@override String unableToLoad({required Object context}) => '無法載入 ${context}。請重試。';
 	@override String get noClientAvailable => '沒有可用用戶端';
-	@override String get pleaseEnterToken => '請輸入 Token';
-	@override String get invalidToken => 'Token 無效';
-	@override String failedToVerifyToken({required Object error}) => '無法驗證 Token：${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => '無法切換至 ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => '無法刪除 ${displayName}';
 	@override String get failedToRate => '無法更新評分';
@@ -1041,17 +1012,6 @@ class _Translations$about$zh_Hant extends Translations$about$zh {
 	@override String versionLabel({required Object version}) => '版本 ${version}';
 	@override String get appDescription => '一款精美的 Plex 與 Jellyfin Flutter 用戶端';
 	@override String get viewLicensesDescription => '查看第三方套件的授權條款';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$zh_Hant extends Translations$serverSelection$zh {
-	_Translations$serverSelection$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => '找不到 ${username}（${email}） 的伺服器';
-	@override String failedToLoadServers({required Object error}) => '無法載入伺服器：${error}';
 }
 
 // Path: hubDetail
@@ -1309,80 +1269,6 @@ class _Translations$music$zh_Hant extends Translations$music$zh {
 	@override String get repeatOne => '單曲重複播放';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$zh_Hant extends Translations$watchTogether$zh {
-	_Translations$watchTogether$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '一起看';
-	@override String get description => '與親友同步觀看內容';
-	@override String get createSession => '建立「一起看」工作階段';
-	@override String get creating => '正在建立…';
-	@override String get joinSession => '加入工作階段';
-	@override String get joining => '正在加入…';
-	@override String get controlMode => '控制模式';
-	@override String get controlModeQuestion => '誰可以控制播放？';
-	@override String get hostOnly => '僅限主持人';
-	@override String get anyone => '任何人';
-	@override String get hostingSession => '主持「一起看」';
-	@override String get inSession => '在工作階段中';
-	@override String get sessionCode => '工作階段代碼';
-	@override String get openSessionControls => '開啟「一起看」工作階段控制面板';
-	@override String get copySessionCode => '複製工作階段代碼';
-	@override String get hostControlsPlayback => '主持人控制播放';
-	@override String get anyoneCanControl => '任何人都能控制播放';
-	@override String get hostControls => '主持人控制';
-	@override String get anyoneControls => '任何人控制';
-	@override String get participants => '參與者';
-	@override String get host => '主持人';
-	@override String get hostBadge => '主持人';
-	@override String get youAreHost => '您是主持人';
-	@override String get watchingWithOthers => '與他人一起觀看';
-	@override String get endSession => '結束工作階段';
-	@override String get leaveSession => '離開工作階段';
-	@override String get endSessionQuestion => '結束工作階段？';
-	@override String get leaveSessionQuestion => '離開工作階段？';
-	@override String get endSessionConfirm => '這將為所有參與者結束此「一起看」工作階段。';
-	@override String get leaveSessionConfirm => '您將退出此「一起看」工作階段。';
-	@override String get endSessionConfirmOverlay => '這將為所有參與者結束觀看工作階段。';
-	@override String get leaveSessionConfirmOverlay => '您將中斷與「一起看」工作階段的連線。';
-	@override String get end => '結束';
-	@override String get leave => '離開';
-	@override String get syncing => '同步中…';
-	@override String get joinWatchSession => '加入「一起看」工作階段';
-	@override String get enterCodeHint => '輸入 5 個英數字元的代碼';
-	@override String get pasteFromClipboard => '從剪貼簿貼上';
-	@override String get pleaseEnterCode => '請輸入工作階段代碼';
-	@override String get codeMustBe5Chars => '工作階段代碼必須為 5 個字元';
-	@override String get joinInstructions => '輸入主持人的工作階段代碼以加入「一起看」。';
-	@override String get failedToCreate => '建立工作階段失敗';
-	@override String get failedToJoin => '加入工作階段失敗';
-	@override String get sessionCodeCopied => '工作階段代碼已複製到剪貼簿';
-	@override String get relayUnreachable => '無法連線至中繼伺服器。ISP 封鎖可能會導致「一起看」無法使用。';
-	@override String get reconnectingToHost => '正在重新連線至主持人…';
-	@override String get currentPlayback => '目前播放內容';
-	@override String get joinCurrentPlayback => '加入目前播放點';
-	@override String get joinCurrentPlaybackDescription => '同步至主持人目前的觀看進度';
-	@override String get failedToOpenCurrentPlayback => '無法開啟目前播放點';
-	@override String participantJoined({required Object name}) => '${name} 已加入';
-	@override String participantLeft({required Object name}) => '${name} 已離開';
-	@override String participantPaused({required Object name}) => '${name} 暫停了播放';
-	@override String participantResumed({required Object name}) => '${name} 恢復了播放';
-	@override String participantSeeked({required Object name}) => '${name} 變更了播放位置';
-	@override String participantBuffering({required Object name}) => '${name} 正在緩衝';
-	@override String participantNeedsUpdate({required Object name}) => '${name} 正在使用舊版應用程式，無法進行同步';
-	@override String resumingWithout({required Object name}) => '不等待 ${name}，繼續播放';
-	@override String get waitingForParticipants => '正在等待其他人載入…';
-	@override String waitingForName({required Object name}) => '正在等待 ${name}…';
-	@override String get recentRooms => '最近的房間';
-	@override String get renameRoom => '重新命名房間';
-	@override String get removeRoom => '移除';
-	@override String get guestSwitchUnavailable => '無法切換 — 伺服器無法進行同步';
-	@override String get guestSwitchFailed => '無法切換 — 在此伺服器上找不到內容';
-}
-
 // Path: downloads
 class _Translations$downloads$zh_Hant extends Translations$downloads$zh {
 	_Translations$downloads$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
@@ -1483,22 +1369,6 @@ class _Translations$shaders$zh_Hant extends Translations$shaders$zh {
 	@override String get shaderImportFailed => '匯入著色器失敗';
 	@override String get deleteShader => '刪除著色器';
 	@override String deleteShaderConfirm({required Object name}) => '刪除「${name}」？';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$zh_Hant extends Translations$companionRemote$zh {
-	_Translations$companionRemote$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '隨身遙控器';
-	@override String connectedTo({required Object name}) => '已連線至 ${name}';
-	@override String get unknownDevice => '未知裝置';
-	@override late final _Translations$companionRemote$session$zh_Hant session = _Translations$companionRemote$session$zh_Hant._(_root);
-	@override late final _Translations$companionRemote$pairing$zh_Hant pairing = _Translations$companionRemote$pairing$zh_Hant._(_root);
-	@override late final _Translations$companionRemote$remote$zh_Hant remote = _Translations$companionRemote$remote$zh_Hant._(_root);
-	@override late final _Translations$companionRemote$errors$zh_Hant errors = _Translations$companionRemote$errors$zh_Hant._(_root);
 }
 
 // Path: videoSettings
@@ -1682,27 +1552,6 @@ class _Translations$metadataEdit$zh_Hant extends Translations$metadataEdit$zh {
 	@override String get mood => '氛圍';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$zh_Hant extends Translations$matchScreen$zh {
-	_Translations$matchScreen$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => '配對…';
-	@override String get fixMatch => '修正配對…';
-	@override String get unmatch => '取消配對';
-	@override String get unmatchConfirm => '清除此配對資訊？在重新配對前，Plex 會將其視為未配對媒體。';
-	@override String get unmatchSuccess => '已取消配對';
-	@override String get unmatchFailed => '無法取消配對';
-	@override String get matchApplied => '配對已套用';
-	@override String get matchFailed => '套用配對失敗';
-	@override String get titleHint => '標題';
-	@override String get yearHint => '年份';
-	@override String get search => '搜尋';
-	@override String get noMatchesFound => '找不到符合的配對';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$zh_Hant extends Translations$serverTasks$zh {
 	_Translations$serverTasks$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
@@ -1815,15 +1664,9 @@ class _Translations$addServer$zh_Hant extends Translations$addServer$zh {
 	@override String couldNotReachServer({required Object error}) => '無法連線至伺服器：${error}';
 	@override String signInFailed({required Object error}) => '登入失敗：${error}';
 	@override String quickConnectFailed({required Object error}) => '快速連線失敗：${error}';
-	@override String get addPlexTitle => '使用 Plex 登入';
-	@override String get pinExpired => 'PIN 碼在登入前已過期。請重試。';
-	@override String failedToRegisterAccount({required Object error}) => '註冊帳戶失敗：${error}';
 	@override String get enterJellyfinUrlError => '請輸入您的 Jellyfin 伺服器 URL';
 	@override String get addConnectionTitle => '新增連線';
 	@override String addConnectionTitleScoped({required Object name}) => '新增連線至 ${name}';
-	@override String get signInWithPlexCard => '使用 Plex 登入';
-	@override String get signInWithPlexCardSubtitle => '授權此裝置。將會新增共享的伺服器連線。';
-	@override String get signInWithPlexCardSubtitleScoped => '授權 Plex 帳戶。Home 使用者會建立為個別的使用者設定檔。';
 	@override String get connectToJellyfinCard => '連線至 Jellyfin';
 	@override String get connectToJellyfinCardSubtitle => '輸入伺服器 URL、使用者名稱與密碼。';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => '登入 Jellyfin 伺服器，並綁定至 ${name} 使用者設定檔。';
@@ -2029,103 +1872,6 @@ class _Translations$downloads$backgroundWarning$zh_Hant extends Translations$dow
 	@override String get linkUnavailable => '無法在這部裝置上開啟 dontkillmyapp.com';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$zh_Hant extends Translations$companionRemote$session$zh {
-	_Translations$companionRemote$session$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => '正在啟動遠端伺服器…';
-	@override String get hostAddress => '主機位址';
-	@override String get connected => '已連線';
-	@override String get serverRunning => '遠端伺服器已啟動';
-	@override String get serverStopped => '遠端伺服器已停止';
-	@override String get serverRunningDescription => '區域網路中的行動裝置可以連線至此應用程式';
-	@override String get serverStoppedDescription => '啟動伺服器以允許行動裝置連線';
-	@override String get usePhoneToControl => '使用行動裝置控制此應用程式';
-	@override String get startServer => '啟動伺服器';
-	@override String get stopServer => '停止伺服器';
-	@override String get minimize => '最小化';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$zh_Hant extends Translations$companionRemote$pairing$zh {
-	_Translations$companionRemote$pairing$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => '使用相同 Plex 帳戶的 Plezy 裝置會顯示在此處';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => '正在連線…';
-	@override String get searchingForDevices => '正在搜尋裝置…';
-	@override String get noDevicesFound => '在區域網路上找不到裝置';
-	@override String get noDevicesHint => '請在電腦上開啟 Plezy，並確認兩台裝置使用相同的 Wi-Fi 網路';
-	@override String get availableDevices => '可用裝置';
-	@override String get manualConnection => '手動連線';
-	@override String get cryptoInitFailed => '無法啟動安全連線。請先登入 Plex。';
-	@override String get validationHostRequired => '請輸入主機位址';
-	@override String get validationHostFormat => '格式必須為 IP 位址:連接埠（例如 192.168.1.100:48632）';
-	@override String get connectionTimedOut => '連線逾時。請確認兩台裝置都使用相同網路。';
-	@override String get sessionNotFound => '找不到裝置。請確認主機上已啟動 Plezy。';
-	@override String get authFailed => '驗證失敗。兩台裝置需要登入相同的 Plex 帳戶。';
-	@override String failedToConnect({required Object error}) => '連線失敗：${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$zh_Hant extends Translations$companionRemote$remote$zh {
-	_Translations$companionRemote$remote$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => '是否要中斷遠端連線工作階段？';
-	@override String get reconnecting => '重新連線中…';
-	@override String attemptOf({required Object current}) => '第 ${current} 次嘗試，共 5 次';
-	@override String get retryNow => '立即重試';
-	@override String get tabRemote => '遙控';
-	@override String get tabPlay => '播放';
-	@override String get tabMore => '更多';
-	@override String get menu => '選單';
-	@override String get tabNavigation => '分頁導覽';
-	@override String get tabDiscover => '發現';
-	@override String get tabLibraries => '媒體庫';
-	@override String get tabSearch => '搜尋';
-	@override String get tabDownloads => '下載';
-	@override String get tabSettings => '設定';
-	@override String get previous => '上一個';
-	@override String get playPause => '播放/暫停';
-	@override String get next => '下一個';
-	@override String get seekBack => '後退';
-	@override String get stop => '停止';
-	@override String get seekForward => '前進';
-	@override String get volume => '音量';
-	@override String get volumeDown => '調小';
-	@override String get volumeUp => '調大';
-	@override String get fullscreen => '全螢幕';
-	@override String get subtitles => '字幕';
-	@override String get audio => '音訊';
-	@override String get searchHint => '在電腦版上搜尋…';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$zh_Hant extends Translations$companionRemote$errors$zh {
-	_Translations$companionRemote$errors$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => '找不到網路介面';
-	@override String get authenticationFailed => '身分驗證失敗';
-	@override String serverStartFailed({required Object error}) => '無法啟動遠端伺服器：${error}';
-	@override String commandFailed({required Object error}) => '無法傳送遠端指令：${error}';
-	@override String get joinTimedOut => '加入工作階段逾時';
-	@override String get failedToConnectAnyAddress => '無法連線至任何位址';
-	@override String connectionLostAfterAttempts({required Object attempts}) => '嘗試 ${attempts} 次後連線中斷';
-	@override String get connectionLost => '連線已中斷';
-}
-
 // Path: services.names
 class _Translations$services$names$zh_Hant extends Translations$services$names$zh {
 	_Translations$services$names$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
@@ -2199,13 +1945,6 @@ extension on TranslationsZhHant {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => '使用 Plex 登入',
-			'auth.showQRCode' => '顯示 QR 碼',
-			'auth.authenticate' => '驗證',
-			'auth.authenticationTimeout' => '驗證逾時。請重試。',
-			'auth.scanQRToSignIn' => '掃描此 QR 碼以登入',
-			'auth.waitingForAuth' => '正在等待驗證…\n請在瀏覽器中登入。',
-			'auth.useBrowser' => '使用瀏覽器',
-			'auth.or' => '或',
 			'auth.connectToJellyfin' => '連線至 Jellyfin',
 			'auth.useQuickConnect' => '使用快速連線（Quick Connect）',
 			'auth.quickConnectInstructions' => '在 Jellyfin 中開啟快速連線並輸入此代碼。',
@@ -2232,7 +1971,6 @@ extension on TranslationsZhHant {
 			'common.shuffle' => '隨機播放',
 			'common.addTo' => '新增至…',
 			'common.createNew' => '新增',
-			'common.connect' => '連線',
 			'common.disconnect' => '中斷連線',
 			'common.play' => '播放',
 			'common.pause' => '暫停',
@@ -2242,7 +1980,6 @@ extension on TranslationsZhHant {
 			'common.home' => '首頁',
 			'common.back' => '返回',
 			'common.settings' => '設定',
-			'common.mute' => '靜音',
 			'common.ok' => '確定',
 			'common.off' => '關閉',
 			'common.seasonNumber' => ({required Object number}) => '第 ${number} 季',
@@ -2258,6 +1995,7 @@ extension on TranslationsZhHant {
 			'common.fullscreen' => '全螢幕',
 			'common.exitFullscreen' => '退出全螢幕',
 			'common.pressBackAgainToExit' => '再按一次返回以退出',
+			'common.next' => '下一個',
 			'screens.licenses' => '授權條款',
 			'screens.switchProfile' => '切換使用者',
 			'screens.subtitleStyling' => '字幕樣式',
@@ -2366,10 +2104,6 @@ extension on TranslationsZhHant {
 			'settings.keyboardShortcutsDescription' => '自訂鍵盤快速鍵',
 			'settings.videoPlayerNavigation' => '影片播放器導覽',
 			'settings.videoPlayerNavigationDescription' => '使用方向鍵導覽影片播放器控制項',
-			'settings.watchTogetherRelay' => '一起看中繼伺服器',
-			'settings.watchTogetherRelayDescription' => '設定自訂中繼。所有人必須使用相同的伺服器。',
-			'settings.watchTogetherRelayHint' => 'https://my-relay.example.com',
-			'settings.watchTogetherRelayInvalid' => '請輸入有效的 HTTP 或 HTTPS 中繼伺服器根網址。',
 			'settings.crashReporting' => '當機報告',
 			'settings.crashReportingDescription' => '傳送當機報告以協助改善應用程式',
 			'settings.debugLogging' => '偵錯日誌',
@@ -2441,8 +2175,6 @@ extension on TranslationsZhHant {
 			'settings.services' => '外部服務',
 			'settings.servicesDescription' => '連結 Trakt、MyAnimeList、Seerr 等服務',
 			'settings.manageLibrariesDescription' => '重新排序與隱藏媒體庫',
-			'settings.companionRemoteServer' => '隨身遙控器伺服器',
-			'settings.companionRemoteServerDescription' => '允許區域網路中的行動裝置控制此應用程式',
 			'settings.autoPip' => '自動進入子母畫面',
 			'settings.autoPipDescription' => '播放影片時離開應用程式將自動進入子母畫面模式',
 			'settings.matchContentFrameRate' => '符合影片影格率',
@@ -2706,15 +2438,6 @@ extension on TranslationsZhHant {
 			'videoControls.noChaptersAvailable' => '沒有可用的章節',
 			'videoControls.queue' => '播放佇列',
 			'videoControls.noQueueItems' => '佇列中沒有項目',
-			'videoControls.searchSubtitles' => '搜尋字幕',
-			'videoControls.language' => '語言',
-			'videoControls.noSubtitlesFound' => '找不到字幕',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => '字幕下載成功',
-			'videoControls.subtitleDownloadedNotApplied' => '字幕已下載，但無法套用',
-			'videoControls.subtitleDownloadFailed' => '字幕下載失敗',
-			'videoControls.searchLanguages' => '搜尋語言…',
 			'messages.markedAsWatched' => '已標記為已觀看',
 			'messages.markedAsUnwatched' => '已標記為未觀看',
 			'messages.markedAsWatchedOffline' => '已標記為已觀看（將在連線時同步）',
@@ -2732,6 +2455,8 @@ extension on TranslationsZhHant {
 			'messages.playbackCancelled' => '播放已取消。',
 			'messages.playbackFailed' => '無法開始播放。',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => '載入檔案資訊時發生錯誤：${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => '載入影集時發生錯誤',
 			'messages.musicNotSupported' => '目前不支援播放音樂',
 			'messages.noDescriptionAvailable' => '目前沒有描述',
@@ -2852,7 +2577,6 @@ extension on TranslationsZhHant {
 			'profiles.incorrectPin' => 'PIN 碼不正確。',
 			'profiles.incorrectPinTryAgain' => 'PIN 碼不正確。請重試。',
 			'profiles.sourceProfileMissingParentAccount' => '來源使用者設定檔缺少其父帳戶資訊。',
-			'profiles.failedToLoadHomeUsers' => '無法載入您的 Plex Home 使用者。請檢查網路連線後重試。',
 			'profiles.failedToVerifyPin' => '無法驗證 PIN 碼。',
 			'profiles.newProfile' => '建立使用者設定檔',
 			'profiles.profileNameHint' => '例如：訪客、兒童、客廳',
@@ -2898,9 +2622,6 @@ extension on TranslationsZhHant {
 			'errors.connectionFailed' => '無法連線至媒體伺服器',
 			'errors.unableToLoad' => ({required Object context}) => '無法載入 ${context}。請重試。',
 			'errors.noClientAvailable' => '沒有可用用戶端',
-			'errors.pleaseEnterToken' => '請輸入 Token',
-			'errors.invalidToken' => 'Token 無效',
-			'errors.failedToVerifyToken' => ({required Object error}) => '無法驗證 Token：${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => '無法切換至 ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => '無法刪除 ${displayName}',
 			'errors.failedToRate' => '無法更新評分',
@@ -2991,8 +2712,6 @@ extension on TranslationsZhHant {
 			'about.versionLabel' => ({required Object version}) => '版本 ${version}',
 			'about.appDescription' => '一款精美的 Plex 與 Jellyfin Flutter 用戶端',
 			'about.viewLicensesDescription' => '查看第三方套件的授權條款',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => '找不到 ${username}（${email}） 的伺服器',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => '無法載入伺服器：${error}',
 			'hubDetail.title' => '標題',
 			'hubDetail.releaseYear' => '發行年份',
 			'hubDetail.dateAdded' => '新增日期',
@@ -3179,73 +2898,6 @@ extension on TranslationsZhHant {
 			'music.repeat' => '重複播放',
 			'music.repeatAll' => '全部重複播放',
 			'music.repeatOne' => '單曲重複播放',
-			'watchTogether.title' => '一起看',
-			'watchTogether.description' => '與親友同步觀看內容',
-			'watchTogether.createSession' => '建立「一起看」工作階段',
-			'watchTogether.creating' => '正在建立…',
-			'watchTogether.joinSession' => '加入工作階段',
-			'watchTogether.joining' => '正在加入…',
-			'watchTogether.controlMode' => '控制模式',
-			'watchTogether.controlModeQuestion' => '誰可以控制播放？',
-			'watchTogether.hostOnly' => '僅限主持人',
-			'watchTogether.anyone' => '任何人',
-			'watchTogether.hostingSession' => '主持「一起看」',
-			'watchTogether.inSession' => '在工作階段中',
-			'watchTogether.sessionCode' => '工作階段代碼',
-			'watchTogether.openSessionControls' => '開啟「一起看」工作階段控制面板',
-			'watchTogether.copySessionCode' => '複製工作階段代碼',
-			'watchTogether.hostControlsPlayback' => '主持人控制播放',
-			'watchTogether.anyoneCanControl' => '任何人都能控制播放',
-			'watchTogether.hostControls' => '主持人控制',
-			'watchTogether.anyoneControls' => '任何人控制',
-			'watchTogether.participants' => '參與者',
-			'watchTogether.host' => '主持人',
-			'watchTogether.hostBadge' => '主持人',
-			'watchTogether.youAreHost' => '您是主持人',
-			'watchTogether.watchingWithOthers' => '與他人一起觀看',
-			'watchTogether.endSession' => '結束工作階段',
-			'watchTogether.leaveSession' => '離開工作階段',
-			'watchTogether.endSessionQuestion' => '結束工作階段？',
-			'watchTogether.leaveSessionQuestion' => '離開工作階段？',
-			'watchTogether.endSessionConfirm' => '這將為所有參與者結束此「一起看」工作階段。',
-			'watchTogether.leaveSessionConfirm' => '您將退出此「一起看」工作階段。',
-			'watchTogether.endSessionConfirmOverlay' => '這將為所有參與者結束觀看工作階段。',
-			'watchTogether.leaveSessionConfirmOverlay' => '您將中斷與「一起看」工作階段的連線。',
-			'watchTogether.end' => '結束',
-			'watchTogether.leave' => '離開',
-			'watchTogether.syncing' => '同步中…',
-			'watchTogether.joinWatchSession' => '加入「一起看」工作階段',
-			'watchTogether.enterCodeHint' => '輸入 5 個英數字元的代碼',
-			'watchTogether.pasteFromClipboard' => '從剪貼簿貼上',
-			'watchTogether.pleaseEnterCode' => '請輸入工作階段代碼',
-			'watchTogether.codeMustBe5Chars' => '工作階段代碼必須為 5 個字元',
-			'watchTogether.joinInstructions' => '輸入主持人的工作階段代碼以加入「一起看」。',
-			'watchTogether.failedToCreate' => '建立工作階段失敗',
-			'watchTogether.failedToJoin' => '加入工作階段失敗',
-			'watchTogether.sessionCodeCopied' => '工作階段代碼已複製到剪貼簿',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => '無法連線至中繼伺服器。ISP 封鎖可能會導致「一起看」無法使用。',
-			'watchTogether.reconnectingToHost' => '正在重新連線至主持人…',
-			'watchTogether.currentPlayback' => '目前播放內容',
-			'watchTogether.joinCurrentPlayback' => '加入目前播放點',
-			'watchTogether.joinCurrentPlaybackDescription' => '同步至主持人目前的觀看進度',
-			'watchTogether.failedToOpenCurrentPlayback' => '無法開啟目前播放點',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} 已加入',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} 已離開',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} 暫停了播放',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} 恢復了播放',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} 變更了播放位置',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} 正在緩衝',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} 正在使用舊版應用程式，無法進行同步',
-			'watchTogether.resumingWithout' => ({required Object name}) => '不等待 ${name}，繼續播放',
-			'watchTogether.waitingForParticipants' => '正在等待其他人載入…',
-			'watchTogether.waitingForName' => ({required Object name}) => '正在等待 ${name}…',
-			'watchTogether.recentRooms' => '最近的房間',
-			'watchTogether.renameRoom' => '重新命名房間',
-			'watchTogether.removeRoom' => '移除',
-			'watchTogether.guestSwitchUnavailable' => '無法切換 — 伺服器無法進行同步',
-			'watchTogether.guestSwitchFailed' => '無法切換 — 在此伺服器上找不到內容',
 			'downloads.title' => '下載',
 			'downloads.manage' => '管理',
 			'downloads.tvShows' => '影集',
@@ -3317,6 +2969,8 @@ extension on TranslationsZhHant {
 			'downloads.backgroundWarning.bannerBlocked' => '離開應用程式後，下載將會停止',
 			'downloads.backgroundWarning.bannerDegraded' => '背景下載可能受限',
 			'downloads.backgroundWarning.bannerAction' => '詳細資料',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => '背景下載遭到封鎖',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '背景下載可能受限',
 			'downloads.backgroundWarning.sheetIntro' => 'Android 正在阻止 Plezy 在背景穩定下載。',
@@ -3355,70 +3009,6 @@ extension on TranslationsZhHant {
 			'shaders.shaderImportFailed' => '匯入著色器失敗',
 			'shaders.deleteShader' => '刪除著色器',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => '刪除「${name}」？',
-			'companionRemote.title' => '隨身遙控器',
-			'companionRemote.connectedTo' => ({required Object name}) => '已連線至 ${name}',
-			'companionRemote.unknownDevice' => '未知裝置',
-			'companionRemote.session.startingServer' => '正在啟動遠端伺服器…',
-			'companionRemote.session.hostAddress' => '主機位址',
-			'companionRemote.session.connected' => '已連線',
-			'companionRemote.session.serverRunning' => '遠端伺服器已啟動',
-			'companionRemote.session.serverStopped' => '遠端伺服器已停止',
-			'companionRemote.session.serverRunningDescription' => '區域網路中的行動裝置可以連線至此應用程式',
-			'companionRemote.session.serverStoppedDescription' => '啟動伺服器以允許行動裝置連線',
-			'companionRemote.session.usePhoneToControl' => '使用行動裝置控制此應用程式',
-			'companionRemote.session.startServer' => '啟動伺服器',
-			'companionRemote.session.stopServer' => '停止伺服器',
-			'companionRemote.session.minimize' => '最小化',
-			'companionRemote.pairing.discoveryDescription' => '使用相同 Plex 帳戶的 Plezy 裝置會顯示在此處',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => '正在連線…',
-			'companionRemote.pairing.searchingForDevices' => '正在搜尋裝置…',
-			'companionRemote.pairing.noDevicesFound' => '在區域網路上找不到裝置',
-			'companionRemote.pairing.noDevicesHint' => '請在電腦上開啟 Plezy，並確認兩台裝置使用相同的 Wi-Fi 網路',
-			'companionRemote.pairing.availableDevices' => '可用裝置',
-			'companionRemote.pairing.manualConnection' => '手動連線',
-			'companionRemote.pairing.cryptoInitFailed' => '無法啟動安全連線。請先登入 Plex。',
-			'companionRemote.pairing.validationHostRequired' => '請輸入主機位址',
-			'companionRemote.pairing.validationHostFormat' => '格式必須為 IP 位址:連接埠（例如 192.168.1.100:48632）',
-			'companionRemote.pairing.connectionTimedOut' => '連線逾時。請確認兩台裝置都使用相同網路。',
-			'companionRemote.pairing.sessionNotFound' => '找不到裝置。請確認主機上已啟動 Plezy。',
-			'companionRemote.pairing.authFailed' => '驗證失敗。兩台裝置需要登入相同的 Plex 帳戶。',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => '連線失敗：${error}',
-			'companionRemote.remote.disconnectConfirm' => '是否要中斷遠端連線工作階段？',
-			'companionRemote.remote.reconnecting' => '重新連線中…',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => '第 ${current} 次嘗試，共 5 次',
-			'companionRemote.remote.retryNow' => '立即重試',
-			'companionRemote.remote.tabRemote' => '遙控',
-			'companionRemote.remote.tabPlay' => '播放',
-			'companionRemote.remote.tabMore' => '更多',
-			'companionRemote.remote.menu' => '選單',
-			'companionRemote.remote.tabNavigation' => '分頁導覽',
-			'companionRemote.remote.tabDiscover' => '發現',
-			'companionRemote.remote.tabLibraries' => '媒體庫',
-			'companionRemote.remote.tabSearch' => '搜尋',
-			'companionRemote.remote.tabDownloads' => '下載',
-			'companionRemote.remote.tabSettings' => '設定',
-			'companionRemote.remote.previous' => '上一個',
-			'companionRemote.remote.playPause' => '播放/暫停',
-			'companionRemote.remote.next' => '下一個',
-			'companionRemote.remote.seekBack' => '後退',
-			'companionRemote.remote.stop' => '停止',
-			'companionRemote.remote.seekForward' => '前進',
-			'companionRemote.remote.volume' => '音量',
-			'companionRemote.remote.volumeDown' => '調小',
-			'companionRemote.remote.volumeUp' => '調大',
-			'companionRemote.remote.fullscreen' => '全螢幕',
-			'companionRemote.remote.subtitles' => '字幕',
-			'companionRemote.remote.audio' => '音訊',
-			'companionRemote.remote.searchHint' => '在電腦版上搜尋…',
-			'companionRemote.errors.noNetworkInterface' => '找不到網路介面',
-			'companionRemote.errors.authenticationFailed' => '身分驗證失敗',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => '無法啟動遠端伺服器：${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => '無法傳送遠端指令：${error}',
-			'companionRemote.errors.joinTimedOut' => '加入工作階段逾時',
-			'companionRemote.errors.failedToConnectAnyAddress' => '無法連線至任何位址',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => '嘗試 ${attempts} 次後連線中斷',
-			'companionRemote.errors.connectionLost' => '連線已中斷',
 			'videoSettings.playbackSpeed' => '播放速度',
 			'videoSettings.normalSpeed' => '正常速度',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => '執行中（${duration}）',
@@ -3564,18 +3154,6 @@ extension on TranslationsZhHant {
 			'metadataEdit.label' => '標記',
 			'metadataEdit.style' => '風格',
 			'metadataEdit.mood' => '氛圍',
-			'matchScreen.match' => '配對…',
-			'matchScreen.fixMatch' => '修正配對…',
-			'matchScreen.unmatch' => '取消配對',
-			'matchScreen.unmatchConfirm' => '清除此配對資訊？在重新配對前，Plex 會將其視為未配對媒體。',
-			'matchScreen.unmatchSuccess' => '已取消配對',
-			'matchScreen.unmatchFailed' => '無法取消配對',
-			'matchScreen.matchApplied' => '配對已套用',
-			'matchScreen.matchFailed' => '套用配對失敗',
-			'matchScreen.titleHint' => '標題',
-			'matchScreen.yearHint' => '年份',
-			'matchScreen.search' => '搜尋',
-			'matchScreen.noMatchesFound' => '找不到符合的配對',
 			'serverTasks.title' => '伺服器工作',
 			'serverTasks.failedToLoad' => '載入工作失敗',
 			'serverTasks.noTasks' => '目前沒有執行中的工作',
@@ -3668,15 +3246,9 @@ extension on TranslationsZhHant {
 			'addServer.couldNotReachServer' => ({required Object error}) => '無法連線至伺服器：${error}',
 			'addServer.signInFailed' => ({required Object error}) => '登入失敗：${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => '快速連線失敗：${error}',
-			'addServer.addPlexTitle' => '使用 Plex 登入',
-			'addServer.pinExpired' => 'PIN 碼在登入前已過期。請重試。',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => '註冊帳戶失敗：${error}',
 			'addServer.enterJellyfinUrlError' => '請輸入您的 Jellyfin 伺服器 URL',
 			'addServer.addConnectionTitle' => '新增連線',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => '新增連線至 ${name}',
-			'addServer.signInWithPlexCard' => '使用 Plex 登入',
-			'addServer.signInWithPlexCardSubtitle' => '授權此裝置。將會新增共享的伺服器連線。',
-			'addServer.signInWithPlexCardSubtitleScoped' => '授權 Plex 帳戶。Home 使用者會建立為個別的使用者設定檔。',
 			'addServer.connectToJellyfinCard' => '連線至 Jellyfin',
 			'addServer.connectToJellyfinCardSubtitle' => '輸入伺服器 URL、使用者名稱與密碼。',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => '登入 Jellyfin 伺服器，並綁定至 ${name} 使用者設定檔。',

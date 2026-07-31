@@ -64,7 +64,6 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$tr errors = _Translations$errors$tr._(_root);
 	@override late final _Translations$libraries$tr libraries = _Translations$libraries$tr._(_root);
 	@override late final _Translations$about$tr about = _Translations$about$tr._(_root);
-	@override late final _Translations$serverSelection$tr serverSelection = _Translations$serverSelection$tr._(_root);
 	@override late final _Translations$hubDetail$tr hubDetail = _Translations$hubDetail$tr._(_root);
 	@override late final _Translations$logs$tr logs = _Translations$logs$tr._(_root);
 	@override late final _Translations$licenses$tr licenses = _Translations$licenses$tr._(_root);
@@ -74,15 +73,12 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$tr collections = _Translations$collections$tr._(_root);
 	@override late final _Translations$playlists$tr playlists = _Translations$playlists$tr._(_root);
 	@override late final _Translations$music$tr music = _Translations$music$tr._(_root);
-	@override late final _Translations$watchTogether$tr watchTogether = _Translations$watchTogether$tr._(_root);
 	@override late final _Translations$downloads$tr downloads = _Translations$downloads$tr._(_root);
 	@override late final _Translations$shaders$tr shaders = _Translations$shaders$tr._(_root);
-	@override late final _Translations$companionRemote$tr companionRemote = _Translations$companionRemote$tr._(_root);
 	@override late final _Translations$videoSettings$tr videoSettings = _Translations$videoSettings$tr._(_root);
 	@override late final _Translations$performanceOverlay$tr performanceOverlay = _Translations$performanceOverlay$tr._(_root);
 	@override late final _Translations$externalPlayer$tr externalPlayer = _Translations$externalPlayer$tr._(_root);
 	@override late final _Translations$metadataEdit$tr metadataEdit = _Translations$metadataEdit$tr._(_root);
-	@override late final _Translations$matchScreen$tr matchScreen = _Translations$matchScreen$tr._(_root);
 	@override late final _Translations$serverTasks$tr serverTasks = _Translations$serverTasks$tr._(_root);
 	@override late final _Translations$trakt$tr trakt = _Translations$trakt$tr._(_root);
 	@override late final _Translations$seerr$tr seerr = _Translations$seerr$tr._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Plex ile Giriş Yap';
-	@override String get showQRCode => 'QR Kodunu Göster';
-	@override String get authenticate => 'Doğrula';
-	@override String get authenticationTimeout => 'Doğrulama zaman aşımına uğradı. Lütfen tekrar deneyin.';
-	@override String get scanQRToSignIn => 'Giriş yapmak için bu QR kodunu tarayın';
-	@override String get waitingForAuth => 'Doğrulama bekleniyor...\nTarayıcınızdan giriş yapın.';
-	@override String get useBrowser => 'Tarayıcı kullan';
-	@override String get or => 'veya';
 	@override String get connectToJellyfin => 'Jellyfin\'e Bağlan';
 	@override String get useQuickConnect => 'Hızlı Bağlantıyı Kullan';
 	@override String get quickConnectInstructions => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.';
@@ -150,7 +139,6 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get shuffle => 'Karıştır';
 	@override String get addTo => 'Ekle...';
 	@override String get createNew => 'Yeni Oluştur';
-	@override String get connect => 'Bağlan';
 	@override String get disconnect => 'Bağlantıyı Kes';
 	@override String get play => 'Oynat';
 	@override String get pause => 'Duraklat';
@@ -160,7 +148,6 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get home => 'Ana Sayfa';
 	@override String get back => 'Geri';
 	@override String get settings => 'Ayarlar';
-	@override String get mute => 'Sesi Kapat';
 	@override String get ok => 'Tamam';
 	@override String get off => 'Kapalı';
 	@override String seasonNumber({required Object number}) => 'Sezon ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get fullscreen => 'Tam Ekran';
 	@override String get exitFullscreen => 'Tam Ekrandan Çık';
 	@override String get pressBackAgainToExit => 'Çıkmak için tekrar geri tuşuna basın';
+	@override String get next => 'Sonraki';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Klavye kısayollarını özelleştirin';
 	@override String get videoPlayerNavigation => 'Video Oynatıcı Gezinmesi';
 	@override String get videoPlayerNavigationDescription => 'Video oynatıcı kontrollerinde gezinmek için yön tuşlarını kullanın';
-	@override String get watchTogetherRelay => 'Birlikte İzle Aktarıcısı (Relay)';
-	@override String get watchTogetherRelayDescription => 'Özel bir aktarıcı ayarlayın. Herkes aynı sunucuyu kullanmalıdır.';
-	@override String get watchTogetherRelayHint => 'https://ornek-aktarici.com';
-	@override String get watchTogetherRelayInvalid => 'Geçerli bir HTTP veya HTTPS aktarıcı adresi girin.';
 	@override String get crashReporting => 'Çökme Bildirimi';
 	@override String get crashReportingDescription => 'Uygulamanın geliştirilmesine yardımcı olmak için çökme raporları gönder';
 	@override String get debugLogging => 'Hata Ayıklama Günlüğü';
@@ -389,8 +373,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get services => 'Servisler';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr ve daha fazlasını bağlayın';
 	@override String get manageLibrariesDescription => 'Kitaplıkları yeniden sıralayın ve gizleyin';
-	@override String get companionRemoteServer => 'Yardımcı Uzaktan Kumanda Sunucusu';
-	@override String get companionRemoteServerDescription => 'Ağınızdaki mobil cihazların bu uygulamayı kontrol etmesine izin verin';
 	@override String get autoPip => 'Otomatik Pencere İçinde Pencere (PiP)';
 	@override String get autoPipDescription => 'Oynatma sırasında uygulamadan çıktığınızda otomatik olarak pencere içinde pencere moduna geç';
 	@override String get matchContentFrameRate => 'İçerik Kare Hızını Eşitle';
@@ -705,13 +687,6 @@ class _Translations$videoControls$tr extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Kısım bulunmuyor';
 	@override String get queue => 'Kuyruk';
 	@override String get noQueueItems => 'Kuyrukta öge yok';
-	@override String get searchSubtitles => 'Altyazı Ara';
-	@override String get language => 'Dil';
-	@override String get noSubtitlesFound => 'Altyazı bulunamadı';
-	@override String get subtitleDownloaded => 'Altyazı indirildi';
-	@override String get subtitleDownloadedNotApplied => 'Altyazı indirildi ancak seçilemedi';
-	@override String get subtitleDownloadFailed => 'Altyazı indirilemedi';
-	@override String get searchLanguages => 'Dillerde ara...';
 }
 
 // Path: messages
@@ -898,7 +873,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String get incorrectPin => 'Yanlış PIN.';
 	@override String get incorrectPinTryAgain => 'Yanlış PIN. Lütfen tekrar deneyin.';
 	@override String get sourceProfileMissingParentAccount => 'Kaynak profilin üst hesabı eksik.';
-	@override String get failedToLoadHomeUsers => 'Plex Ev kullanıcılarınız yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.';
 	@override String get failedToVerifyPin => 'PIN doğrulanamadı.';
 	@override String get newProfile => 'Yeni profil';
 	@override String get profileNameHint => 'ör. Misafirler, Çocuklar, Oturma Odası';
@@ -972,9 +946,6 @@ class _Translations$errors$tr extends Translations$errors$en {
 	@override String get connectionFailed => 'Medya sunucusuna bağlanılamıyor';
 	@override String unableToLoad({required Object context}) => '${context} yüklenemedi. Lütfen tekrar deneyin.';
 	@override String get noClientAvailable => 'Kullanılabilir istemci yok';
-	@override String get pleaseEnterToken => 'Lütfen bir belirteç (token) girin';
-	@override String get invalidToken => 'Geçersiz belirteç';
-	@override String failedToVerifyToken({required Object error}) => 'Belirteç doğrulanamadı: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => '${displayName} profiline geçilemedi';
 	@override String failedToDeleteProfile({required Object displayName}) => '${displayName} profili silinemedi';
 	@override String get failedToRate => 'Puan güncellenemedi';
@@ -1046,17 +1017,6 @@ class _Translations$about$tr extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Sürüm ${version}';
 	@override String get appDescription => 'Flutter için şık bir Plex ve Jellyfin istemcisi';
 	@override String get viewLicensesDescription => 'Üçüncü taraf kütüphanelerin lisanslarını görüntüleyin';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$tr extends Translations$serverSelection$en {
-	_Translations$serverSelection$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => '${username} (${email}) için sunucu bulunamadı';
-	@override String failedToLoadServers({required Object error}) => 'Sunucular yüklenemedi: ${error}';
 }
 
 // Path: hubDetail
@@ -1316,80 +1276,6 @@ class _Translations$music$tr extends Translations$music$en {
 	@override String get repeatOne => 'Tekini tekrarla';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$tr extends Translations$watchTogether$en {
-	_Translations$watchTogether$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Birlikte İzle';
-	@override String get description => 'Arkadaşlarınızla ve ailenizle eş zamanlı içerik izleyin';
-	@override String get createSession => 'Oturum Oluştur';
-	@override String get creating => 'Oluşturuluyor...';
-	@override String get joinSession => 'Oturuma Katıl';
-	@override String get joining => 'Katılınıyor...';
-	@override String get controlMode => 'Kontrol Modu';
-	@override String get controlModeQuestion => 'Oynatmayı kimler kontrol edebilir?';
-	@override String get hostOnly => 'Yalnızca Kurucu';
-	@override String get anyone => 'Herkes';
-	@override String get hostingSession => 'Oturum Sunuluyor';
-	@override String get inSession => 'Oturumda';
-	@override String get sessionCode => 'Oturum Kodu';
-	@override String get openSessionControls => 'Birlikte İzle oturum kontrollerini aç';
-	@override String get copySessionCode => 'Oturum kodunu kopyala';
-	@override String get hostControlsPlayback => 'Oynatmayı kurucu kontrol eder';
-	@override String get anyoneCanControl => 'Oynatmayı herkes kontrol edebilir';
-	@override String get hostControls => 'Kurucu kontrol eder';
-	@override String get anyoneControls => 'Herkes kontrol eder';
-	@override String get participants => 'Katılımcılar';
-	@override String get host => 'Kurucu';
-	@override String get hostBadge => 'KURUCU';
-	@override String get youAreHost => 'Kurucu sizsiniz';
-	@override String get watchingWithOthers => 'Başkalarıyla birlikte izleniyor';
-	@override String get endSession => 'Oturumu Bitir';
-	@override String get leaveSession => 'Oturumdan Ayrıl';
-	@override String get endSessionQuestion => 'Oturum Bitirilsin mi?';
-	@override String get leaveSessionQuestion => 'Oturumdan Ayrılınsın mı?';
-	@override String get endSessionConfirm => 'Bu işlem tüm katılımcılar için oturumu bitirecektir.';
-	@override String get leaveSessionConfirm => 'Oturumdan çıkarılacaksınız.';
-	@override String get endSessionConfirmOverlay => 'Bu işlem tüm katılımcılar için izleme oturumunu bitirecektir.';
-	@override String get leaveSessionConfirmOverlay => 'İzleme oturumuyla bağlantınız kesilecek.';
-	@override String get end => 'Bitir';
-	@override String get leave => 'Ayrıl';
-	@override String get syncing => 'Eşitleniyor...';
-	@override String get joinWatchSession => 'İzleme Oturumuna Katıl';
-	@override String get enterCodeHint => '5 karakterlik kodu girin';
-	@override String get pasteFromClipboard => 'Panodan yapıştır';
-	@override String get pleaseEnterCode => 'Lütfen bir oturum kodu girin';
-	@override String get codeMustBe5Chars => 'Oturum kodu 5 karakter olmalıdır';
-	@override String get joinInstructions => 'Katılmak için kurucunun oturum kodunu girin.';
-	@override String get failedToCreate => 'Oturum oluşturulamadı';
-	@override String get failedToJoin => 'Oturuma katılınamadı';
-	@override String get sessionCodeCopied => 'Oturum kodu panoya kopyalandı';
-	@override String get relayUnreachable => 'Aktarıcı sunucusuna ulaşılamıyor. İSS engellemesi Birlikte İzle\'yi önleyebilir.';
-	@override String get reconnectingToHost => 'Kurucuya yeniden bağlanılıyor...';
-	@override String get currentPlayback => 'Mevcut Oynatma';
-	@override String get joinCurrentPlayback => 'Mevcut Oynatmaya Katıl';
-	@override String get joinCurrentPlaybackDescription => 'Kurucunun şu anda izlediği şeye doğrudan atlayın';
-	@override String get failedToOpenCurrentPlayback => 'Mevcut oynatma açılamadı';
-	@override String participantJoined({required Object name}) => '${name} katıldı';
-	@override String participantLeft({required Object name}) => '${name} ayrıldı';
-	@override String participantPaused({required Object name}) => '${name} duraklattı';
-	@override String participantResumed({required Object name}) => '${name} devam ettirdi';
-	@override String participantSeeked({required Object name}) => '${name} oynatma konumunu değiştirdi';
-	@override String participantBuffering({required Object name}) => '${name} arabelleğe alıyor';
-	@override String participantNeedsUpdate({required Object name}) => '${name} eski bir uygulama sürümünde — eşitleme kullanılamıyor';
-	@override String resumingWithout({required Object name}) => '${name} olmadan devam ediliyor';
-	@override String get waitingForParticipants => 'Diğerlerinin yüklemesi bekleniyor...';
-	@override String waitingForName({required Object name}) => '${name} bekleniyor...';
-	@override String get recentRooms => 'Son Odalar';
-	@override String get renameRoom => 'Odayı Yeniden Adlandır';
-	@override String get removeRoom => 'Kaldır';
-	@override String get guestSwitchUnavailable => 'Geçiş yapılamadı — eşitleme için sunucu mevcut değil';
-	@override String get guestSwitchFailed => 'Geçiş yapılamadı — içerik bu sunucuda bulunamadı';
-}
-
 // Path: downloads
 class _Translations$downloads$tr extends Translations$downloads$en {
 	_Translations$downloads$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1496,22 +1382,6 @@ class _Translations$shaders$tr extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Gölgelendirici içe aktarılamadı';
 	@override String get deleteShader => 'Gölgelendiriciyi Sil';
 	@override String deleteShaderConfirm({required Object name}) => '"${name}" silinsin mi?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$tr extends Translations$companionRemote$en {
-	_Translations$companionRemote$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Yardımcı Kumanda';
-	@override String connectedTo({required Object name}) => '${name} cihazına bağlandı';
-	@override String get unknownDevice => 'Bilinmeyen Cihaz';
-	@override late final _Translations$companionRemote$session$tr session = _Translations$companionRemote$session$tr._(_root);
-	@override late final _Translations$companionRemote$pairing$tr pairing = _Translations$companionRemote$pairing$tr._(_root);
-	@override late final _Translations$companionRemote$remote$tr remote = _Translations$companionRemote$remote$tr._(_root);
-	@override late final _Translations$companionRemote$errors$tr errors = _Translations$companionRemote$errors$tr._(_root);
 }
 
 // Path: videoSettings
@@ -1695,27 +1565,6 @@ class _Translations$metadataEdit$tr extends Translations$metadataEdit$en {
 	@override String get mood => 'Ruh Hali';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$tr extends Translations$matchScreen$en {
-	_Translations$matchScreen$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Eşleştir...';
-	@override String get fixMatch => 'Eşleşmeyi Düzelt...';
-	@override String get unmatch => 'Eşleşmeyi Kaldır';
-	@override String get unmatchConfirm => 'Bu eşleşme temizlensin mi? Plex, tekrar eşleştirilene kadar bunu eşleşmemiş sayacaktır.';
-	@override String get unmatchSuccess => 'Öge eşleşmesi kaldırıldı';
-	@override String get unmatchFailed => 'Eşleşme kaldırılamadı';
-	@override String get matchApplied => 'Eşleşme uygulandı';
-	@override String get matchFailed => 'Eşleşme uygulanamadı';
-	@override String get titleHint => 'Başlık';
-	@override String get yearHint => 'Yıl';
-	@override String get search => 'Ara';
-	@override String get noMatchesFound => 'Eşleşme bulunamadı';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$tr extends Translations$serverTasks$en {
 	_Translations$serverTasks$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -1828,15 +1677,9 @@ class _Translations$addServer$tr extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Sunucuya ulaşılamadı: ${error}';
 	@override String signInFailed({required Object error}) => 'Giriş başarısız: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Hızlı Bağlantı başarısız: ${error}';
-	@override String get addPlexTitle => 'Plex ile Giriş Yap';
-	@override String get pinExpired => 'Giriş yapmadan önce PIN süresi doldu. Lütfen tekrar deneyin.';
-	@override String failedToRegisterAccount({required Object error}) => 'Hesap kaydı başarısız oldu: ${error}';
 	@override String get enterJellyfinUrlError => 'Jellyfin sunucu URL\'nizi girin';
 	@override String get addConnectionTitle => 'Bağlantı ekle';
 	@override String addConnectionTitleScoped({required Object name}) => '${name} profiline ekle';
-	@override String get signInWithPlexCard => 'Plex ile Giriş Yap';
-	@override String get signInWithPlexCardSubtitle => 'Bu cihazı yetkilendirin. Paylaşılan sunucular eklenir.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Bir Plex hesabını yetkilendirin. Ev kullanıcıları profile dönüşür.';
 	@override String get connectToJellyfinCard => 'Jellyfin\'e Bağlan';
 	@override String get connectToJellyfinCardSubtitle => 'Sunucu URL\'nizi, kullanıcı adınızı ve şifrenizi girin.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Bir Jellyfin sunucusuna giriş yapın. ${name} profiline bağlanır.';
@@ -2042,103 +1885,6 @@ class _Translations$downloads$backgroundWarning$tr extends Translations$download
 	@override String get linkUnavailable => 'Bu cihazda dontkillmyapp.com açılamadı';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$tr extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Uzaktan kumanda sunucusu başlatılıyor...';
-	@override String get hostAddress => 'Ana Bilgisayar Adresi';
-	@override String get connected => 'Bağlandı';
-	@override String get serverRunning => 'Uzaktan kumanda sunucusu aktif';
-	@override String get serverStopped => 'Uzaktan kumanda sunucusu durduruldu';
-	@override String get serverRunningDescription => 'Ağınızdaki mobil cihazlar bu uygulamaya bağlanabilir';
-	@override String get serverStoppedDescription => 'Mobil cihazların bağlanmasına izin vermek için sunucuyu başlatın';
-	@override String get usePhoneToControl => 'Bu uygulamayı kontrol etmek için mobil cihazınızı kullanın';
-	@override String get startServer => 'Sunucuyu Başlat';
-	@override String get stopServer => 'Sunucuyu Durdur';
-	@override String get minimize => 'Küçült';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$tr extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Aynı Plex hesabına sahip Plezy cihazları burada görünür';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Bağlanılıyor...';
-	@override String get searchingForDevices => 'Cihazlar aranıyor...';
-	@override String get noDevicesFound => 'Ağınızda cihaz bulunamadı';
-	@override String get noDevicesHint => 'Masaüstünde Plezy\'yi açın ve aynı Wi-Fi ağını kullanın';
-	@override String get availableDevices => 'Kullanılabilir Cihazlar';
-	@override String get manualConnection => 'Manuel Bağlantı';
-	@override String get cryptoInitFailed => 'Güvenli bağlantı başlatılamadı. Önce Plex\'e giriş yapın.';
-	@override String get validationHostRequired => 'Lütfen ana bilgisayar adresini girin';
-	@override String get validationHostFormat => 'Biçim IP:port şeklinde olmalıdır (ör. 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'Bağlantı zaman aşımına uğradı. Her iki cihazda da aynı ağı kullanın.';
-	@override String get sessionNotFound => 'Cihaz bulunamadı. Plezy\'nin ana bilgisayarda çalıştığından emin olun.';
-	@override String get authFailed => 'Kimlik doğrulama başarısız oldu. Her iki cihazın da aynı Plex hesabına ihtiyacı var.';
-	@override String failedToConnect({required Object error}) => 'Bağlantı başarısız: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$tr extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Uzaktan kumanda oturumundan ayrılmak istiyor musunuz?';
-	@override String get reconnecting => 'Yeniden bağlanılıyor...';
-	@override String attemptOf({required Object current}) => 'Deneme ${current} / 5';
-	@override String get retryNow => 'Şimdi Tekrar Dene';
-	@override String get tabRemote => 'Kumanda';
-	@override String get tabPlay => 'Oynat';
-	@override String get tabMore => 'Daha Fazla';
-	@override String get menu => 'Menü';
-	@override String get tabNavigation => 'Sekme Gezinmesi';
-	@override String get tabDiscover => 'Keşfet';
-	@override String get tabLibraries => 'Kitaplıklar';
-	@override String get tabSearch => 'Ara';
-	@override String get tabDownloads => 'İndirmeler';
-	@override String get tabSettings => 'Ayarlar';
-	@override String get previous => 'Önceki';
-	@override String get playPause => 'Oynat/Duraklat';
-	@override String get next => 'Sonraki';
-	@override String get seekBack => 'Geri Sar';
-	@override String get stop => 'Durdur';
-	@override String get seekForward => 'İleri Sar';
-	@override String get volume => 'Ses';
-	@override String get volumeDown => 'Kıs';
-	@override String get volumeUp => 'Aç';
-	@override String get fullscreen => 'Tam Ekran';
-	@override String get subtitles => 'Altyazılar';
-	@override String get audio => 'Ses';
-	@override String get searchHint => 'Masaüstünde ara...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$tr extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Ağ arabirimi bulunamadı';
-	@override String get authenticationFailed => 'Kimlik doğrulama başarısız oldu';
-	@override String serverStartFailed({required Object error}) => 'Uzaktan kumanda sunucusu başlatılamadı: ${error}';
-	@override String commandFailed({required Object error}) => 'Uzaktan komut gönderilemedi: ${error}';
-	@override String get joinTimedOut => 'Oturuma katılma zaman aşımına uğradı';
-	@override String get failedToConnectAnyAddress => 'Hiçbir adrese bağlanılamadı';
-	@override String connectionLostAfterAttempts({required Object attempts}) => '${attempts} denemeden sonra bağlantı kesildi';
-	@override String get connectionLost => 'Bağlantı kesildi';
-}
-
 // Path: services.names
 class _Translations$services$names$tr extends Translations$services$names$en {
 	_Translations$services$names$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -2212,13 +1958,6 @@ extension on TranslationsTr {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Plex ile Giriş Yap',
-			'auth.showQRCode' => 'QR Kodunu Göster',
-			'auth.authenticate' => 'Doğrula',
-			'auth.authenticationTimeout' => 'Doğrulama zaman aşımına uğradı. Lütfen tekrar deneyin.',
-			'auth.scanQRToSignIn' => 'Giriş yapmak için bu QR kodunu tarayın',
-			'auth.waitingForAuth' => 'Doğrulama bekleniyor...\nTarayıcınızdan giriş yapın.',
-			'auth.useBrowser' => 'Tarayıcı kullan',
-			'auth.or' => 'veya',
 			'auth.connectToJellyfin' => 'Jellyfin\'e Bağlan',
 			'auth.useQuickConnect' => 'Hızlı Bağlantıyı Kullan',
 			'auth.quickConnectInstructions' => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.',
@@ -2245,7 +1984,6 @@ extension on TranslationsTr {
 			'common.shuffle' => 'Karıştır',
 			'common.addTo' => 'Ekle...',
 			'common.createNew' => 'Yeni Oluştur',
-			'common.connect' => 'Bağlan',
 			'common.disconnect' => 'Bağlantıyı Kes',
 			'common.play' => 'Oynat',
 			'common.pause' => 'Duraklat',
@@ -2255,7 +1993,6 @@ extension on TranslationsTr {
 			'common.home' => 'Ana Sayfa',
 			'common.back' => 'Geri',
 			'common.settings' => 'Ayarlar',
-			'common.mute' => 'Sesi Kapat',
 			'common.ok' => 'Tamam',
 			'common.off' => 'Kapalı',
 			'common.seasonNumber' => ({required Object number}) => 'Sezon ${number}',
@@ -2271,6 +2008,7 @@ extension on TranslationsTr {
 			'common.fullscreen' => 'Tam Ekran',
 			'common.exitFullscreen' => 'Tam Ekrandan Çık',
 			'common.pressBackAgainToExit' => 'Çıkmak için tekrar geri tuşuna basın',
+			'common.next' => 'Sonraki',
 			'screens.licenses' => 'Lisanslar',
 			'screens.switchProfile' => 'Profil Değiştir',
 			'screens.subtitleStyling' => 'Altyazı Biçimlendirmesi',
@@ -2379,10 +2117,6 @@ extension on TranslationsTr {
 			'settings.keyboardShortcutsDescription' => 'Klavye kısayollarını özelleştirin',
 			'settings.videoPlayerNavigation' => 'Video Oynatıcı Gezinmesi',
 			'settings.videoPlayerNavigationDescription' => 'Video oynatıcı kontrollerinde gezinmek için yön tuşlarını kullanın',
-			'settings.watchTogetherRelay' => 'Birlikte İzle Aktarıcısı (Relay)',
-			'settings.watchTogetherRelayDescription' => 'Özel bir aktarıcı ayarlayın. Herkes aynı sunucuyu kullanmalıdır.',
-			'settings.watchTogetherRelayHint' => 'https://ornek-aktarici.com',
-			'settings.watchTogetherRelayInvalid' => 'Geçerli bir HTTP veya HTTPS aktarıcı adresi girin.',
 			'settings.crashReporting' => 'Çökme Bildirimi',
 			'settings.crashReportingDescription' => 'Uygulamanın geliştirilmesine yardımcı olmak için çökme raporları gönder',
 			'settings.debugLogging' => 'Hata Ayıklama Günlüğü',
@@ -2457,8 +2191,6 @@ extension on TranslationsTr {
 			'settings.services' => 'Servisler',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr ve daha fazlasını bağlayın',
 			'settings.manageLibrariesDescription' => 'Kitaplıkları yeniden sıralayın ve gizleyin',
-			'settings.companionRemoteServer' => 'Yardımcı Uzaktan Kumanda Sunucusu',
-			'settings.companionRemoteServerDescription' => 'Ağınızdaki mobil cihazların bu uygulamayı kontrol etmesine izin verin',
 			'settings.autoPip' => 'Otomatik Pencere İçinde Pencere (PiP)',
 			'settings.autoPipDescription' => 'Oynatma sırasında uygulamadan çıktığınızda otomatik olarak pencere içinde pencere moduna geç',
 			'settings.matchContentFrameRate' => 'İçerik Kare Hızını Eşitle',
@@ -2722,15 +2454,6 @@ extension on TranslationsTr {
 			'videoControls.noChaptersAvailable' => 'Kısım bulunmuyor',
 			'videoControls.queue' => 'Kuyruk',
 			'videoControls.noQueueItems' => 'Kuyrukta öge yok',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.searchSubtitles' => 'Altyazı Ara',
-			'videoControls.language' => 'Dil',
-			'videoControls.noSubtitlesFound' => 'Altyazı bulunamadı',
-			'videoControls.subtitleDownloaded' => 'Altyazı indirildi',
-			'videoControls.subtitleDownloadedNotApplied' => 'Altyazı indirildi ancak seçilemedi',
-			'videoControls.subtitleDownloadFailed' => 'Altyazı indirilemedi',
-			'videoControls.searchLanguages' => 'Dillerde ara...',
 			'messages.markedAsWatched' => 'İzlendi olarak işaretlendi',
 			'messages.markedAsUnwatched' => 'İzlenmedi olarak işaretlendi',
 			'messages.markedAsWatchedOffline' => 'İzlendi olarak işaretlendi (çevrimiçi olunca senkronize edilecek)',
@@ -2745,6 +2468,8 @@ extension on TranslationsTr {
 			'messages.fileInfoNotAvailable' => 'Dosya bilgisi mevcut değil',
 			'messages.playbackAuthenticationRequired' => 'Bu ögeyi oynatmak için medya sunucusuna tekrar giriş yapın.',
 			'messages.playbackServerUnavailable' => 'Medya sunucusu kullanılabilir değil. Daha sonra tekrar deneyin.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Sunucu geçersiz oynatma bilgisi döndürdü.',
 			'messages.playbackCancelled' => 'Oynatma iptal edildi.',
 			'messages.playbackFailed' => 'Oynatma başlatılamadı.',
@@ -2869,7 +2594,6 @@ extension on TranslationsTr {
 			'profiles.incorrectPin' => 'Yanlış PIN.',
 			'profiles.incorrectPinTryAgain' => 'Yanlış PIN. Lütfen tekrar deneyin.',
 			'profiles.sourceProfileMissingParentAccount' => 'Kaynak profilin üst hesabı eksik.',
-			'profiles.failedToLoadHomeUsers' => 'Plex Ev kullanıcılarınız yüklenemedi. Bağlantınızı kontrol edip tekrar deneyin.',
 			'profiles.failedToVerifyPin' => 'PIN doğrulanamadı.',
 			'profiles.newProfile' => 'Yeni profil',
 			'profiles.profileNameHint' => 'ör. Misafirler, Çocuklar, Oturma Odası',
@@ -2916,9 +2640,6 @@ extension on TranslationsTr {
 			'errors.connectionFailed' => 'Medya sunucusuna bağlanılamıyor',
 			'errors.unableToLoad' => ({required Object context}) => '${context} yüklenemedi. Lütfen tekrar deneyin.',
 			'errors.noClientAvailable' => 'Kullanılabilir istemci yok',
-			'errors.pleaseEnterToken' => 'Lütfen bir belirteç (token) girin',
-			'errors.invalidToken' => 'Geçersiz belirteç',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Belirteç doğrulanamadı: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => '${displayName} profiline geçilemedi',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => '${displayName} profili silinemedi',
 			'errors.failedToRate' => 'Puan güncellenemedi',
@@ -3009,8 +2730,6 @@ extension on TranslationsTr {
 			'about.versionLabel' => ({required Object version}) => 'Sürüm ${version}',
 			'about.appDescription' => 'Flutter için şık bir Plex ve Jellyfin istemcisi',
 			'about.viewLicensesDescription' => 'Üçüncü taraf kütüphanelerin lisanslarını görüntüleyin',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => '${username} (${email}) için sunucu bulunamadı',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Sunucular yüklenemedi: ${error}',
 			'hubDetail.title' => 'Başlık',
 			'hubDetail.releaseYear' => 'Yayın Yılı',
 			'hubDetail.dateAdded' => 'Ekleme Tarihi',
@@ -3197,73 +2916,6 @@ extension on TranslationsTr {
 			'music.repeat' => 'Tekrarla',
 			'music.repeatAll' => 'Tümünü tekrarla',
 			'music.repeatOne' => 'Tekini tekrarla',
-			'watchTogether.title' => 'Birlikte İzle',
-			'watchTogether.description' => 'Arkadaşlarınızla ve ailenizle eş zamanlı içerik izleyin',
-			'watchTogether.createSession' => 'Oturum Oluştur',
-			'watchTogether.creating' => 'Oluşturuluyor...',
-			'watchTogether.joinSession' => 'Oturuma Katıl',
-			'watchTogether.joining' => 'Katılınıyor...',
-			'watchTogether.controlMode' => 'Kontrol Modu',
-			'watchTogether.controlModeQuestion' => 'Oynatmayı kimler kontrol edebilir?',
-			'watchTogether.hostOnly' => 'Yalnızca Kurucu',
-			'watchTogether.anyone' => 'Herkes',
-			'watchTogether.hostingSession' => 'Oturum Sunuluyor',
-			'watchTogether.inSession' => 'Oturumda',
-			'watchTogether.sessionCode' => 'Oturum Kodu',
-			'watchTogether.openSessionControls' => 'Birlikte İzle oturum kontrollerini aç',
-			'watchTogether.copySessionCode' => 'Oturum kodunu kopyala',
-			'watchTogether.hostControlsPlayback' => 'Oynatmayı kurucu kontrol eder',
-			'watchTogether.anyoneCanControl' => 'Oynatmayı herkes kontrol edebilir',
-			'watchTogether.hostControls' => 'Kurucu kontrol eder',
-			'watchTogether.anyoneControls' => 'Herkes kontrol eder',
-			'watchTogether.participants' => 'Katılımcılar',
-			'watchTogether.host' => 'Kurucu',
-			'watchTogether.hostBadge' => 'KURUCU',
-			'watchTogether.youAreHost' => 'Kurucu sizsiniz',
-			'watchTogether.watchingWithOthers' => 'Başkalarıyla birlikte izleniyor',
-			'watchTogether.endSession' => 'Oturumu Bitir',
-			'watchTogether.leaveSession' => 'Oturumdan Ayrıl',
-			'watchTogether.endSessionQuestion' => 'Oturum Bitirilsin mi?',
-			'watchTogether.leaveSessionQuestion' => 'Oturumdan Ayrılınsın mı?',
-			'watchTogether.endSessionConfirm' => 'Bu işlem tüm katılımcılar için oturumu bitirecektir.',
-			'watchTogether.leaveSessionConfirm' => 'Oturumdan çıkarılacaksınız.',
-			'watchTogether.endSessionConfirmOverlay' => 'Bu işlem tüm katılımcılar için izleme oturumunu bitirecektir.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'İzleme oturumuyla bağlantınız kesilecek.',
-			'watchTogether.end' => 'Bitir',
-			'watchTogether.leave' => 'Ayrıl',
-			'watchTogether.syncing' => 'Eşitleniyor...',
-			'watchTogether.joinWatchSession' => 'İzleme Oturumuna Katıl',
-			'watchTogether.enterCodeHint' => '5 karakterlik kodu girin',
-			'watchTogether.pasteFromClipboard' => 'Panodan yapıştır',
-			'watchTogether.pleaseEnterCode' => 'Lütfen bir oturum kodu girin',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.codeMustBe5Chars' => 'Oturum kodu 5 karakter olmalıdır',
-			'watchTogether.joinInstructions' => 'Katılmak için kurucunun oturum kodunu girin.',
-			'watchTogether.failedToCreate' => 'Oturum oluşturulamadı',
-			'watchTogether.failedToJoin' => 'Oturuma katılınamadı',
-			'watchTogether.sessionCodeCopied' => 'Oturum kodu panoya kopyalandı',
-			'watchTogether.relayUnreachable' => 'Aktarıcı sunucusuna ulaşılamıyor. İSS engellemesi Birlikte İzle\'yi önleyebilir.',
-			'watchTogether.reconnectingToHost' => 'Kurucuya yeniden bağlanılıyor...',
-			'watchTogether.currentPlayback' => 'Mevcut Oynatma',
-			'watchTogether.joinCurrentPlayback' => 'Mevcut Oynatmaya Katıl',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Kurucunun şu anda izlediği şeye doğrudan atlayın',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Mevcut oynatma açılamadı',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} katıldı',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} ayrıldı',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} duraklattı',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} devam ettirdi',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} oynatma konumunu değiştirdi',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} arabelleğe alıyor',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} eski bir uygulama sürümünde — eşitleme kullanılamıyor',
-			'watchTogether.resumingWithout' => ({required Object name}) => '${name} olmadan devam ediliyor',
-			'watchTogether.waitingForParticipants' => 'Diğerlerinin yüklemesi bekleniyor...',
-			'watchTogether.waitingForName' => ({required Object name}) => '${name} bekleniyor...',
-			'watchTogether.recentRooms' => 'Son Odalar',
-			'watchTogether.renameRoom' => 'Odayı Yeniden Adlandır',
-			'watchTogether.removeRoom' => 'Kaldır',
-			'watchTogether.guestSwitchUnavailable' => 'Geçiş yapılamadı — eşitleme için sunucu mevcut değil',
-			'watchTogether.guestSwitchFailed' => 'Geçiş yapılamadı — içerik bu sunucuda bulunamadı',
 			'downloads.title' => 'İndirmeler',
 			'downloads.manage' => 'Yönet',
 			'downloads.tvShows' => 'TV Dizileri',
@@ -3330,6 +2982,8 @@ extension on TranslationsTr {
 			'downloads.editEpisodeCount' => 'Bölüm sayısı',
 			'downloads.editSyncFilter' => 'Eşitleme filtresi',
 			'downloads.syncAllItems' => 'Tüm ögeler eşitleniyor',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'İzlenmeyen ögeler eşitleniyor',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Sunucu: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Kullanılabilir',
@@ -3379,70 +3033,6 @@ extension on TranslationsTr {
 			'shaders.shaderImportFailed' => 'Gölgelendirici içe aktarılamadı',
 			'shaders.deleteShader' => 'Gölgelendiriciyi Sil',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => '"${name}" silinsin mi?',
-			'companionRemote.title' => 'Yardımcı Kumanda',
-			'companionRemote.connectedTo' => ({required Object name}) => '${name} cihazına bağlandı',
-			'companionRemote.unknownDevice' => 'Bilinmeyen Cihaz',
-			'companionRemote.session.startingServer' => 'Uzaktan kumanda sunucusu başlatılıyor...',
-			'companionRemote.session.hostAddress' => 'Ana Bilgisayar Adresi',
-			'companionRemote.session.connected' => 'Bağlandı',
-			'companionRemote.session.serverRunning' => 'Uzaktan kumanda sunucusu aktif',
-			'companionRemote.session.serverStopped' => 'Uzaktan kumanda sunucusu durduruldu',
-			'companionRemote.session.serverRunningDescription' => 'Ağınızdaki mobil cihazlar bu uygulamaya bağlanabilir',
-			'companionRemote.session.serverStoppedDescription' => 'Mobil cihazların bağlanmasına izin vermek için sunucuyu başlatın',
-			'companionRemote.session.usePhoneToControl' => 'Bu uygulamayı kontrol etmek için mobil cihazınızı kullanın',
-			'companionRemote.session.startServer' => 'Sunucuyu Başlat',
-			'companionRemote.session.stopServer' => 'Sunucuyu Durdur',
-			'companionRemote.session.minimize' => 'Küçült',
-			'companionRemote.pairing.discoveryDescription' => 'Aynı Plex hesabına sahip Plezy cihazları burada görünür',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Bağlanılıyor...',
-			'companionRemote.pairing.searchingForDevices' => 'Cihazlar aranıyor...',
-			'companionRemote.pairing.noDevicesFound' => 'Ağınızda cihaz bulunamadı',
-			'companionRemote.pairing.noDevicesHint' => 'Masaüstünde Plezy\'yi açın ve aynı Wi-Fi ağını kullanın',
-			'companionRemote.pairing.availableDevices' => 'Kullanılabilir Cihazlar',
-			'companionRemote.pairing.manualConnection' => 'Manuel Bağlantı',
-			'companionRemote.pairing.cryptoInitFailed' => 'Güvenli bağlantı başlatılamadı. Önce Plex\'e giriş yapın.',
-			'companionRemote.pairing.validationHostRequired' => 'Lütfen ana bilgisayar adresini girin',
-			'companionRemote.pairing.validationHostFormat' => 'Biçim IP:port şeklinde olmalıdır (ör. 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'Bağlantı zaman aşımına uğradı. Her iki cihazda da aynı ağı kullanın.',
-			'companionRemote.pairing.sessionNotFound' => 'Cihaz bulunamadı. Plezy\'nin ana bilgisayarda çalıştığından emin olun.',
-			'companionRemote.pairing.authFailed' => 'Kimlik doğrulama başarısız oldu. Her iki cihazın da aynı Plex hesabına ihtiyacı var.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Bağlantı başarısız: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Uzaktan kumanda oturumundan ayrılmak istiyor musunuz?',
-			'companionRemote.remote.reconnecting' => 'Yeniden bağlanılıyor...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Deneme ${current} / 5',
-			'companionRemote.remote.retryNow' => 'Şimdi Tekrar Dene',
-			'companionRemote.remote.tabRemote' => 'Kumanda',
-			'companionRemote.remote.tabPlay' => 'Oynat',
-			'companionRemote.remote.tabMore' => 'Daha Fazla',
-			'companionRemote.remote.menu' => 'Menü',
-			'companionRemote.remote.tabNavigation' => 'Sekme Gezinmesi',
-			'companionRemote.remote.tabDiscover' => 'Keşfet',
-			'companionRemote.remote.tabLibraries' => 'Kitaplıklar',
-			'companionRemote.remote.tabSearch' => 'Ara',
-			'companionRemote.remote.tabDownloads' => 'İndirmeler',
-			'companionRemote.remote.tabSettings' => 'Ayarlar',
-			'companionRemote.remote.previous' => 'Önceki',
-			'companionRemote.remote.playPause' => 'Oynat/Duraklat',
-			'companionRemote.remote.next' => 'Sonraki',
-			'companionRemote.remote.seekBack' => 'Geri Sar',
-			'companionRemote.remote.stop' => 'Durdur',
-			'companionRemote.remote.seekForward' => 'İleri Sar',
-			'companionRemote.remote.volume' => 'Ses',
-			'companionRemote.remote.volumeDown' => 'Kıs',
-			'companionRemote.remote.volumeUp' => 'Aç',
-			'companionRemote.remote.fullscreen' => 'Tam Ekran',
-			'companionRemote.remote.subtitles' => 'Altyazılar',
-			'companionRemote.remote.audio' => 'Ses',
-			'companionRemote.remote.searchHint' => 'Masaüstünde ara...',
-			'companionRemote.errors.noNetworkInterface' => 'Ağ arabirimi bulunamadı',
-			'companionRemote.errors.authenticationFailed' => 'Kimlik doğrulama başarısız oldu',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Uzaktan kumanda sunucusu başlatılamadı: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Uzaktan komut gönderilemedi: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Oturuma katılma zaman aşımına uğradı',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Hiçbir adrese bağlanılamadı',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => '${attempts} denemeden sonra bağlantı kesildi',
-			'companionRemote.errors.connectionLost' => 'Bağlantı kesildi',
 			'videoSettings.playbackSpeed' => 'Oynatma Hızı',
 			'videoSettings.normalSpeed' => 'Normal',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Aktif (${duration})',
@@ -3588,18 +3178,6 @@ extension on TranslationsTr {
 			'metadataEdit.label' => 'Etiket',
 			'metadataEdit.style' => 'Tarz',
 			'metadataEdit.mood' => 'Ruh Hali',
-			'matchScreen.match' => 'Eşleştir...',
-			'matchScreen.fixMatch' => 'Eşleşmeyi Düzelt...',
-			'matchScreen.unmatch' => 'Eşleşmeyi Kaldır',
-			'matchScreen.unmatchConfirm' => 'Bu eşleşme temizlensin mi? Plex, tekrar eşleştirilene kadar bunu eşleşmemiş sayacaktır.',
-			'matchScreen.unmatchSuccess' => 'Öge eşleşmesi kaldırıldı',
-			'matchScreen.unmatchFailed' => 'Eşleşme kaldırılamadı',
-			'matchScreen.matchApplied' => 'Eşleşme uygulandı',
-			'matchScreen.matchFailed' => 'Eşleşme uygulanamadı',
-			'matchScreen.titleHint' => 'Başlık',
-			'matchScreen.yearHint' => 'Yıl',
-			'matchScreen.search' => 'Ara',
-			'matchScreen.noMatchesFound' => 'Eşleşme bulunamadı',
 			'serverTasks.title' => 'Sunucu Görevleri',
 			'serverTasks.failedToLoad' => 'Görevler yüklenemedi',
 			'serverTasks.noTasks' => 'Çalışan görev yok',
@@ -3692,15 +3270,9 @@ extension on TranslationsTr {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Sunucuya ulaşılamadı: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Giriş başarısız: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Hızlı Bağlantı başarısız: ${error}',
-			'addServer.addPlexTitle' => 'Plex ile Giriş Yap',
-			'addServer.pinExpired' => 'Giriş yapmadan önce PIN süresi doldu. Lütfen tekrar deneyin.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Hesap kaydı başarısız oldu: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Jellyfin sunucu URL\'nizi girin',
 			'addServer.addConnectionTitle' => 'Bağlantı ekle',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => '${name} profiline ekle',
-			'addServer.signInWithPlexCard' => 'Plex ile Giriş Yap',
-			'addServer.signInWithPlexCardSubtitle' => 'Bu cihazı yetkilendirin. Paylaşılan sunucular eklenir.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Bir Plex hesabını yetkilendirin. Ev kullanıcıları profile dönüşür.',
 			'addServer.connectToJellyfinCard' => 'Jellyfin\'e Bağlan',
 			'addServer.connectToJellyfinCardSubtitle' => 'Sunucu URL\'nizi, kullanıcı adınızı ve şifrenizi girin.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Bir Jellyfin sunucusuna giriş yapın. ${name} profiline bağlanır.',

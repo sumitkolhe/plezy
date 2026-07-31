@@ -321,7 +321,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       case TextInputAction.search:
         return t.common.search;
       case TextInputAction.next:
-        return t.companionRemote.remote.next;
+        return t.common.next;
       case TextInputAction.go:
         return t.common.submit;
       default:

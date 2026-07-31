@@ -64,7 +64,6 @@ class TranslationsDa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$da errors = _Translations$errors$da._(_root);
 	@override late final _Translations$libraries$da libraries = _Translations$libraries$da._(_root);
 	@override late final _Translations$about$da about = _Translations$about$da._(_root);
-	@override late final _Translations$serverSelection$da serverSelection = _Translations$serverSelection$da._(_root);
 	@override late final _Translations$hubDetail$da hubDetail = _Translations$hubDetail$da._(_root);
 	@override late final _Translations$logs$da logs = _Translations$logs$da._(_root);
 	@override late final _Translations$licenses$da licenses = _Translations$licenses$da._(_root);
@@ -74,15 +73,12 @@ class TranslationsDa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$da collections = _Translations$collections$da._(_root);
 	@override late final _Translations$playlists$da playlists = _Translations$playlists$da._(_root);
 	@override late final _Translations$music$da music = _Translations$music$da._(_root);
-	@override late final _Translations$watchTogether$da watchTogether = _Translations$watchTogether$da._(_root);
 	@override late final _Translations$downloads$da downloads = _Translations$downloads$da._(_root);
 	@override late final _Translations$shaders$da shaders = _Translations$shaders$da._(_root);
-	@override late final _Translations$companionRemote$da companionRemote = _Translations$companionRemote$da._(_root);
 	@override late final _Translations$videoSettings$da videoSettings = _Translations$videoSettings$da._(_root);
 	@override late final _Translations$performanceOverlay$da performanceOverlay = _Translations$performanceOverlay$da._(_root);
 	@override late final _Translations$externalPlayer$da externalPlayer = _Translations$externalPlayer$da._(_root);
 	@override late final _Translations$metadataEdit$da metadataEdit = _Translations$metadataEdit$da._(_root);
-	@override late final _Translations$matchScreen$da matchScreen = _Translations$matchScreen$da._(_root);
 	@override late final _Translations$serverTasks$da serverTasks = _Translations$serverTasks$da._(_root);
 	@override late final _Translations$trakt$da trakt = _Translations$trakt$da._(_root);
 	@override late final _Translations$seerr$da seerr = _Translations$seerr$da._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$da extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Log ind med Plex';
-	@override String get showQRCode => 'Vis QR-kode';
-	@override String get authenticate => 'Godkend';
-	@override String get authenticationTimeout => 'Godkendelsen tog for lang tid. Prøv igen.';
-	@override String get scanQRToSignIn => 'Scan denne QR-kode for at logge ind';
-	@override String get waitingForAuth => 'Venter på godkendelse...\nLog ind fra din browser.';
-	@override String get useBrowser => 'Brug browseren';
-	@override String get or => 'eller';
 	@override String get connectToJellyfin => 'Forbind til Jellyfin';
 	@override String get useQuickConnect => 'Brug Quick Connect';
 	@override String get quickConnectInstructions => 'Åbn Quick Connect i Jellyfin, og indtast denne kode.';
@@ -150,7 +139,6 @@ class _Translations$common$da extends Translations$common$en {
 	@override String get shuffle => 'Bland';
 	@override String get addTo => 'Tilføj til...';
 	@override String get createNew => 'Opret ny';
-	@override String get connect => 'Forbind';
 	@override String get disconnect => 'Afbryd';
 	@override String get play => 'Afspil';
 	@override String get pause => 'Pause';
@@ -160,7 +148,6 @@ class _Translations$common$da extends Translations$common$en {
 	@override String get home => 'Hjem';
 	@override String get back => 'Tilbage';
 	@override String get settings => 'Indstillinger';
-	@override String get mute => 'Lydløs';
 	@override String get ok => 'OK';
 	@override String get off => 'Fra';
 	@override String seasonNumber({required Object number}) => 'Sæson ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$da extends Translations$common$en {
 	@override String get fullscreen => 'Fuldskærm';
 	@override String get exitFullscreen => 'Forlad fuldskærm';
 	@override String get pressBackAgainToExit => 'Tryk på tilbage igen for at afslutte';
+	@override String get next => 'Næste';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Tilpas tastaturgenveje';
 	@override String get videoPlayerNavigation => 'Videoafspillernavigation';
 	@override String get videoPlayerNavigationDescription => 'Brug piletaster til at navigere videoafspillerkontroller';
-	@override String get watchTogetherRelay => 'Relayserver til Se sammen';
-	@override String get watchTogetherRelayDescription => 'Angiv en brugerdefineret relayserver. Alle skal bruge den samme server.';
-	@override String get watchTogetherRelayHint => 'https://min-relay.eksempel.dk';
-	@override String get watchTogetherRelayInvalid => 'Angiv en gyldig basis-URL til en HTTP- eller HTTPS-relayserver.';
 	@override String get crashReporting => 'Fejlrapportering';
 	@override String get crashReportingDescription => 'Send fejlrapporter for at hjælpe med at forbedre appen';
 	@override String get debugLogging => 'Fejlfindingslogning';
@@ -386,8 +370,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get services => 'Tjenester';
 	@override String get servicesDescription => 'Forbind Trakt, MyAnimeList, Seerr og mere';
 	@override String get manageLibrariesDescription => 'Omarranger og skjul biblioteker';
-	@override String get companionRemoteServer => 'Fjernbetjeningsserver';
-	@override String get companionRemoteServerDescription => 'Tillad mobilenheder på dit netværk at styre denne app';
 	@override String get autoPip => 'Automatisk billede-i-billede';
 	@override String get autoPipDescription => 'Skift automatisk til billede-i-billede, når du forlader appen under afspilning';
 	@override String get matchContentFrameRate => 'Tilpas billedhastigheden til indholdet';
@@ -702,13 +684,6 @@ class _Translations$videoControls$da extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Ingen kapitler tilgængelige';
 	@override String get queue => 'Kø';
 	@override String get noQueueItems => 'Ingen elementer i køen';
-	@override String get searchSubtitles => 'Søg undertekster';
-	@override String get language => 'Sprog';
-	@override String get noSubtitlesFound => 'Ingen undertekster fundet';
-	@override String get subtitleDownloaded => 'Undertekst downloadet';
-	@override String get subtitleDownloadedNotApplied => 'Underteksten blev downloadet, men kunne ikke vælges';
-	@override String get subtitleDownloadFailed => 'Kunne ikke downloade undertekst';
-	@override String get searchLanguages => 'Søg sprog...';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	@override String get incorrectPin => 'Forkert PIN.';
 	@override String get incorrectPinTryAgain => 'Forkert PIN. Prøv igen.';
 	@override String get sourceProfileMissingParentAccount => 'Kildeprofilen mangler sin overordnede konto.';
-	@override String get failedToLoadHomeUsers => 'Kunne ikke indlæse dine Plex Home-brugere. Tjek din forbindelse, og prøv igen.';
 	@override String get failedToVerifyPin => 'Kunne ikke bekræfte PIN.';
 	@override String get newProfile => 'Ny profil';
 	@override String get profileNameHint => 'f.eks. Gæster, Børn, Familiens stue';
@@ -967,9 +941,6 @@ class _Translations$errors$da extends Translations$errors$en {
 	@override String get connectionFailed => 'Kan ikke oprette forbindelse til medieserver';
 	@override String unableToLoad({required Object context}) => 'Kunne ikke indlæse ${context}. Prøv igen.';
 	@override String get noClientAvailable => 'Ingen klient tilgængelig';
-	@override String get pleaseEnterToken => 'Indtast et token';
-	@override String get invalidToken => 'Ugyldigt token';
-	@override String failedToVerifyToken({required Object error}) => 'Kunne ikke verificere token: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => 'Kunne ikke skifte til ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => 'Kunne ikke slette ${displayName}';
 	@override String get failedToRate => 'Kunne ikke opdatere bedømmelsen';
@@ -1041,17 +1012,6 @@ class _Translations$about$da extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Version ${version}';
 	@override String get appDescription => 'En smuk Plex- og Jellyfin-klient bygget med Flutter';
 	@override String get viewLicensesDescription => 'Se licenser for tredjepartsbiblioteker';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$da extends Translations$serverSelection$en {
-	_Translations$serverSelection$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => 'Ingen servere fundet for ${username} (${email})';
-	@override String failedToLoadServers({required Object error}) => 'Kunne ikke indlæse servere: ${error}';
 }
 
 // Path: hubDetail
@@ -1311,80 +1271,6 @@ class _Translations$music$da extends Translations$music$en {
 	@override String get repeatOne => 'Gentag ét nummer';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$da extends Translations$watchTogether$en {
-	_Translations$watchTogether$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Se sammen';
-	@override String get description => 'Se indhold synkroniseret med venner og familie';
-	@override String get createSession => 'Opret session';
-	@override String get creating => 'Opretter...';
-	@override String get joinSession => 'Deltag i session';
-	@override String get joining => 'Deltager...';
-	@override String get controlMode => 'Kontroltilstand';
-	@override String get controlModeQuestion => 'Hvem kan styre afspilning?';
-	@override String get hostOnly => 'Kun vært';
-	@override String get anyone => 'Alle';
-	@override String get hostingSession => 'Er vært for sessionen';
-	@override String get inSession => 'Deltager i en session';
-	@override String get sessionCode => 'Sessionskode';
-	@override String get openSessionControls => 'Åbn sessionsstyring for Se sammen';
-	@override String get copySessionCode => 'Kopiér sessionskode';
-	@override String get hostControlsPlayback => 'Værten styrer afspilningen';
-	@override String get anyoneCanControl => 'Alle kan styre afspilningen';
-	@override String get hostControls => 'Værten styrer';
-	@override String get anyoneControls => 'Alle styrer';
-	@override String get participants => 'Deltagere';
-	@override String get host => 'Vært';
-	@override String get hostBadge => 'VÆRT';
-	@override String get youAreHost => 'Du er vært';
-	@override String get watchingWithOthers => 'Ser med andre';
-	@override String get endSession => 'Afslut session';
-	@override String get leaveSession => 'Forlad session';
-	@override String get endSessionQuestion => 'Afslut session?';
-	@override String get leaveSessionQuestion => 'Forlad session?';
-	@override String get endSessionConfirm => 'Dette afslutter sessionen for alle deltagere.';
-	@override String get leaveSessionConfirm => 'Du vil blive fjernet fra sessionen.';
-	@override String get endSessionConfirmOverlay => 'Dette afslutter fællesafspilningen for alle deltagere.';
-	@override String get leaveSessionConfirmOverlay => 'Din forbindelse til fællesafspilningen afbrydes.';
-	@override String get end => 'Afslut';
-	@override String get leave => 'Forlad';
-	@override String get syncing => 'Synkroniserer...';
-	@override String get joinWatchSession => 'Deltag i fællesafspilning';
-	@override String get enterCodeHint => 'Indtast 5-tegns kode';
-	@override String get pasteFromClipboard => 'Indsæt fra udklipsholder';
-	@override String get pleaseEnterCode => 'Indtast en sessionskode';
-	@override String get codeMustBe5Chars => 'Sessionskode skal være 5 tegn';
-	@override String get joinInstructions => 'Indtast værtens sessionskode for at deltage.';
-	@override String get failedToCreate => 'Kunne ikke oprette session';
-	@override String get failedToJoin => 'Kunne ikke deltage i session';
-	@override String get sessionCodeCopied => 'Sessionskode kopieret til udklipsholder';
-	@override String get relayUnreachable => 'Relayserveren kan ikke nås. Blokering hos internetudbyderen kan forhindre Se sammen.';
-	@override String get reconnectingToHost => 'Genopretter forbindelse til vært...';
-	@override String get currentPlayback => 'Nuværende afspilning';
-	@override String get joinCurrentPlayback => 'Deltag i nuværende afspilning';
-	@override String get joinCurrentPlaybackDescription => 'Hop tilbage til det værten ser nu';
-	@override String get failedToOpenCurrentPlayback => 'Kunne ikke åbne nuværende afspilning';
-	@override String participantJoined({required Object name}) => '${name} deltog';
-	@override String participantLeft({required Object name}) => '${name} forlod';
-	@override String participantPaused({required Object name}) => '${name} satte på pause';
-	@override String participantResumed({required Object name}) => '${name} genoptog';
-	@override String participantSeeked({required Object name}) => '${name} ændrede afspilningspositionen';
-	@override String participantBuffering({required Object name}) => '${name} bufferer';
-	@override String participantNeedsUpdate({required Object name}) => '${name} bruger en ældre appversion — synkronisering er ikke tilgængelig';
-	@override String resumingWithout({required Object name}) => 'Fortsætter uden ${name}';
-	@override String get waitingForParticipants => 'Venter på, at de andre bliver klar...';
-	@override String waitingForName({required Object name}) => 'Venter på ${name}...';
-	@override String get recentRooms => 'Seneste rum';
-	@override String get renameRoom => 'Omdøb rum';
-	@override String get removeRoom => 'Fjern';
-	@override String get guestSwitchUnavailable => 'Kunne ikke skifte — server ikke tilgængelig for synkronisering';
-	@override String get guestSwitchFailed => 'Kunne ikke skifte — indhold blev ikke fundet på denne server';
-}
-
 // Path: downloads
 class _Translations$downloads$da extends Translations$downloads$en {
 	_Translations$downloads$da._(TranslationsDa root) : this._root = root, super.internal(root);
@@ -1485,22 +1371,6 @@ class _Translations$shaders$da extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Kunne ikke importere shader';
 	@override String get deleteShader => 'Slet shader';
 	@override String deleteShaderConfirm({required Object name}) => 'Slet "${name}"?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$da extends Translations$companionRemote$en {
-	_Translations$companionRemote$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Fjernbetjening';
-	@override String connectedTo({required Object name}) => 'Forbundet til ${name}';
-	@override String get unknownDevice => 'Ukendt enhed';
-	@override late final _Translations$companionRemote$session$da session = _Translations$companionRemote$session$da._(_root);
-	@override late final _Translations$companionRemote$pairing$da pairing = _Translations$companionRemote$pairing$da._(_root);
-	@override late final _Translations$companionRemote$remote$da remote = _Translations$companionRemote$remote$da._(_root);
-	@override late final _Translations$companionRemote$errors$da errors = _Translations$companionRemote$errors$da._(_root);
 }
 
 // Path: videoSettings
@@ -1684,27 +1554,6 @@ class _Translations$metadataEdit$da extends Translations$metadataEdit$en {
 	@override String get mood => 'Stemning';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$da extends Translations$matchScreen$en {
-	_Translations$matchScreen$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Match...';
-	@override String get fixMatch => 'Ret match...';
-	@override String get unmatch => 'Fjern match';
-	@override String get unmatchConfirm => 'Ryd dette match? Plex behandler det som umatchet, indtil det matches igen.';
-	@override String get unmatchSuccess => 'Match fjernet';
-	@override String get unmatchFailed => 'Kunne ikke fjerne match';
-	@override String get matchApplied => 'Match anvendt';
-	@override String get matchFailed => 'Kunne ikke anvende match';
-	@override String get titleHint => 'Titel';
-	@override String get yearHint => 'År';
-	@override String get search => 'Søg';
-	@override String get noMatchesFound => 'Ingen match fundet';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$da extends Translations$serverTasks$en {
 	_Translations$serverTasks$da._(TranslationsDa root) : this._root = root, super.internal(root);
@@ -1817,15 +1666,9 @@ class _Translations$addServer$da extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Kunne ikke nå serveren: ${error}';
 	@override String signInFailed({required Object error}) => 'Kunne ikke logge ind: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Quick Connect mislykkedes: ${error}';
-	@override String get addPlexTitle => 'Log ind med Plex';
-	@override String get pinExpired => 'PIN-koden udløb før login. Prøv igen.';
-	@override String failedToRegisterAccount({required Object error}) => 'Kunne ikke registrere kontoen: ${error}';
 	@override String get enterJellyfinUrlError => 'Angiv URL\'en til din Jellyfin-server';
 	@override String get addConnectionTitle => 'Tilføj forbindelse';
 	@override String addConnectionTitleScoped({required Object name}) => 'Tilføj til ${name}';
-	@override String get signInWithPlexCard => 'Log ind med Plex';
-	@override String get signInWithPlexCardSubtitle => 'Godkend denne enhed. Delte servere tilføjes.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Godkend en Plex-konto. Plex Home-brugere bliver til profiler.';
 	@override String get connectToJellyfinCard => 'Forbind til Jellyfin';
 	@override String get connectToJellyfinCardSubtitle => 'Indtast din server-URL, dit brugernavn og din adgangskode.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Log ind på en Jellyfin-server. Serveren knyttes til ${name}.';
@@ -2031,103 +1874,6 @@ class _Translations$downloads$backgroundWarning$da extends Translations$download
 	@override String get linkUnavailable => 'Kunne ikke åbne dontkillmyapp.com på denne enhed';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$da extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Starter fjernbetjeningsserver...';
-	@override String get hostAddress => 'Værtsadresse';
-	@override String get connected => 'Forbundet';
-	@override String get serverRunning => 'Fjernbetjeningsserver aktiv';
-	@override String get serverStopped => 'Fjernbetjeningsserver stoppet';
-	@override String get serverRunningDescription => 'Mobile enheder på dit netværk kan oprette forbindelse til denne app';
-	@override String get serverStoppedDescription => 'Start serveren for at tillade mobilenheder at oprette forbindelse';
-	@override String get usePhoneToControl => 'Brug din mobilenhed til at styre denne app';
-	@override String get startServer => 'Start serveren';
-	@override String get stopServer => 'Stop serveren';
-	@override String get minimize => 'Minimér';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$da extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Plezy-enheder med samme Plex-konto vises her';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Opretter forbindelse...';
-	@override String get searchingForDevices => 'Søger efter enheder...';
-	@override String get noDevicesFound => 'Ingen enheder fundet på dit netværk';
-	@override String get noDevicesHint => 'Åbn Plezy på din computer, og brug det samme Wi-Fi-netværk';
-	@override String get availableDevices => 'Tilgængelige enheder';
-	@override String get manualConnection => 'Manuel forbindelse';
-	@override String get cryptoInitFailed => 'Kunne ikke starte sikker forbindelse. Log ind på Plex først.';
-	@override String get validationHostRequired => 'Angiv en værtsadresse';
-	@override String get validationHostFormat => 'Format skal være IP:port (f.eks. 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'Forbindelsen fik timeout. Brug samme netværk på begge enheder.';
-	@override String get sessionNotFound => 'Enhed ikke fundet. Sørg for, at Plezy kører på værten.';
-	@override String get authFailed => 'Godkendelse mislykkedes. Begge enheder skal bruge samme Plex-konto.';
-	@override String failedToConnect({required Object error}) => 'Kunne ikke oprette forbindelse: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$da extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Vil du afbryde forbindelsen til fjernsessionen?';
-	@override String get reconnecting => 'Genopretter forbindelse...';
-	@override String attemptOf({required Object current}) => 'Forsøg ${current} af 5';
-	@override String get retryNow => 'Prøv igen nu';
-	@override String get tabRemote => 'Fjernbetjening';
-	@override String get tabPlay => 'Afspil';
-	@override String get tabMore => 'Mere';
-	@override String get menu => 'Menu';
-	@override String get tabNavigation => 'Fanenavigation';
-	@override String get tabDiscover => 'Opdag';
-	@override String get tabLibraries => 'Biblioteker';
-	@override String get tabSearch => 'Søg';
-	@override String get tabDownloads => 'Downloads';
-	@override String get tabSettings => 'Indstillinger';
-	@override String get previous => 'Forrige';
-	@override String get playPause => 'Afspil/Pause';
-	@override String get next => 'Næste';
-	@override String get seekBack => 'Spol tilbage';
-	@override String get stop => 'Stop';
-	@override String get seekForward => 'Spol frem';
-	@override String get volume => 'Lydstyrke';
-	@override String get volumeDown => 'Ned';
-	@override String get volumeUp => 'Op';
-	@override String get fullscreen => 'Fuldskærm';
-	@override String get subtitles => 'Undertekster';
-	@override String get audio => 'Lyd';
-	@override String get searchHint => 'Søg på desktop...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$da extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Ingen netværksgrænseflade fundet';
-	@override String get authenticationFailed => 'Godkendelse mislykkedes';
-	@override String serverStartFailed({required Object error}) => 'Fjernbetjeningsserveren kunne ikke startes: ${error}';
-	@override String commandFailed({required Object error}) => 'Kunne ikke sende fjernkommando: ${error}';
-	@override String get joinTimedOut => 'Tidsgrænse for deltagelse i session overskredet';
-	@override String get failedToConnectAnyAddress => 'Kunne ikke oprette forbindelse til nogen adresse';
-	@override String connectionLostAfterAttempts({required Object attempts}) => 'Forbindelse mistet efter ${attempts} forsøg';
-	@override String get connectionLost => 'Forbindelse mistet';
-}
-
 // Path: services.names
 class _Translations$services$names$da extends Translations$services$names$en {
 	_Translations$services$names$da._(TranslationsDa root) : this._root = root, super.internal(root);
@@ -2201,13 +1947,6 @@ extension on TranslationsDa {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Log ind med Plex',
-			'auth.showQRCode' => 'Vis QR-kode',
-			'auth.authenticate' => 'Godkend',
-			'auth.authenticationTimeout' => 'Godkendelsen tog for lang tid. Prøv igen.',
-			'auth.scanQRToSignIn' => 'Scan denne QR-kode for at logge ind',
-			'auth.waitingForAuth' => 'Venter på godkendelse...\nLog ind fra din browser.',
-			'auth.useBrowser' => 'Brug browseren',
-			'auth.or' => 'eller',
 			'auth.connectToJellyfin' => 'Forbind til Jellyfin',
 			'auth.useQuickConnect' => 'Brug Quick Connect',
 			'auth.quickConnectInstructions' => 'Åbn Quick Connect i Jellyfin, og indtast denne kode.',
@@ -2234,7 +1973,6 @@ extension on TranslationsDa {
 			'common.shuffle' => 'Bland',
 			'common.addTo' => 'Tilføj til...',
 			'common.createNew' => 'Opret ny',
-			'common.connect' => 'Forbind',
 			'common.disconnect' => 'Afbryd',
 			'common.play' => 'Afspil',
 			'common.pause' => 'Pause',
@@ -2244,7 +1982,6 @@ extension on TranslationsDa {
 			'common.home' => 'Hjem',
 			'common.back' => 'Tilbage',
 			'common.settings' => 'Indstillinger',
-			'common.mute' => 'Lydløs',
 			'common.ok' => 'OK',
 			'common.off' => 'Fra',
 			'common.seasonNumber' => ({required Object number}) => 'Sæson ${number}',
@@ -2260,6 +1997,7 @@ extension on TranslationsDa {
 			'common.fullscreen' => 'Fuldskærm',
 			'common.exitFullscreen' => 'Forlad fuldskærm',
 			'common.pressBackAgainToExit' => 'Tryk på tilbage igen for at afslutte',
+			'common.next' => 'Næste',
 			'screens.licenses' => 'Licenser',
 			'screens.switchProfile' => 'Skift profil',
 			'screens.subtitleStyling' => 'Undertekststil',
@@ -2368,10 +2106,6 @@ extension on TranslationsDa {
 			'settings.keyboardShortcutsDescription' => 'Tilpas tastaturgenveje',
 			'settings.videoPlayerNavigation' => 'Videoafspillernavigation',
 			'settings.videoPlayerNavigationDescription' => 'Brug piletaster til at navigere videoafspillerkontroller',
-			'settings.watchTogetherRelay' => 'Relayserver til Se sammen',
-			'settings.watchTogetherRelayDescription' => 'Angiv en brugerdefineret relayserver. Alle skal bruge den samme server.',
-			'settings.watchTogetherRelayHint' => 'https://min-relay.eksempel.dk',
-			'settings.watchTogetherRelayInvalid' => 'Angiv en gyldig basis-URL til en HTTP- eller HTTPS-relayserver.',
 			'settings.crashReporting' => 'Fejlrapportering',
 			'settings.crashReportingDescription' => 'Send fejlrapporter for at hjælpe med at forbedre appen',
 			'settings.debugLogging' => 'Fejlfindingslogning',
@@ -2443,8 +2177,6 @@ extension on TranslationsDa {
 			'settings.services' => 'Tjenester',
 			'settings.servicesDescription' => 'Forbind Trakt, MyAnimeList, Seerr og mere',
 			'settings.manageLibrariesDescription' => 'Omarranger og skjul biblioteker',
-			'settings.companionRemoteServer' => 'Fjernbetjeningsserver',
-			'settings.companionRemoteServerDescription' => 'Tillad mobilenheder på dit netværk at styre denne app',
 			'settings.autoPip' => 'Automatisk billede-i-billede',
 			'settings.autoPipDescription' => 'Skift automatisk til billede-i-billede, når du forlader appen under afspilning',
 			'settings.matchContentFrameRate' => 'Tilpas billedhastigheden til indholdet',
@@ -2708,15 +2440,6 @@ extension on TranslationsDa {
 			'videoControls.noChaptersAvailable' => 'Ingen kapitler tilgængelige',
 			'videoControls.queue' => 'Kø',
 			'videoControls.noQueueItems' => 'Ingen elementer i køen',
-			'videoControls.searchSubtitles' => 'Søg undertekster',
-			'videoControls.language' => 'Sprog',
-			'videoControls.noSubtitlesFound' => 'Ingen undertekster fundet',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => 'Undertekst downloadet',
-			'videoControls.subtitleDownloadedNotApplied' => 'Underteksten blev downloadet, men kunne ikke vælges',
-			'videoControls.subtitleDownloadFailed' => 'Kunne ikke downloade undertekst',
-			'videoControls.searchLanguages' => 'Søg sprog...',
 			'messages.markedAsWatched' => 'Markeret som set',
 			'messages.markedAsUnwatched' => 'Markeret som uset',
 			'messages.markedAsWatchedOffline' => 'Markeret som set (synkroniseres online)',
@@ -2734,6 +2457,8 @@ extension on TranslationsDa {
 			'messages.playbackCancelled' => 'Afspilningen blev annulleret.',
 			'messages.playbackFailed' => 'Afspilningen kunne ikke startes.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fejl ved indlæsning af filinfo: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Fejl ved indlæsning af serie',
 			'messages.musicNotSupported' => 'Musikafspilning understøttes endnu ikke',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivelse tilgængelig',
@@ -2854,7 +2579,6 @@ extension on TranslationsDa {
 			'profiles.incorrectPin' => 'Forkert PIN.',
 			'profiles.incorrectPinTryAgain' => 'Forkert PIN. Prøv igen.',
 			'profiles.sourceProfileMissingParentAccount' => 'Kildeprofilen mangler sin overordnede konto.',
-			'profiles.failedToLoadHomeUsers' => 'Kunne ikke indlæse dine Plex Home-brugere. Tjek din forbindelse, og prøv igen.',
 			'profiles.failedToVerifyPin' => 'Kunne ikke bekræfte PIN.',
 			'profiles.newProfile' => 'Ny profil',
 			'profiles.profileNameHint' => 'f.eks. Gæster, Børn, Familiens stue',
@@ -2900,9 +2624,6 @@ extension on TranslationsDa {
 			'errors.connectionFailed' => 'Kan ikke oprette forbindelse til medieserver',
 			'errors.unableToLoad' => ({required Object context}) => 'Kunne ikke indlæse ${context}. Prøv igen.',
 			'errors.noClientAvailable' => 'Ingen klient tilgængelig',
-			'errors.pleaseEnterToken' => 'Indtast et token',
-			'errors.invalidToken' => 'Ugyldigt token',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Kunne ikke verificere token: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => 'Kunne ikke skifte til ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => 'Kunne ikke slette ${displayName}',
 			'errors.failedToRate' => 'Kunne ikke opdatere bedømmelsen',
@@ -2993,8 +2714,6 @@ extension on TranslationsDa {
 			'about.versionLabel' => ({required Object version}) => 'Version ${version}',
 			'about.appDescription' => 'En smuk Plex- og Jellyfin-klient bygget med Flutter',
 			'about.viewLicensesDescription' => 'Se licenser for tredjepartsbiblioteker',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => 'Ingen servere fundet for ${username} (${email})',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Kunne ikke indlæse servere: ${error}',
 			'hubDetail.title' => 'Titel',
 			'hubDetail.releaseYear' => 'Udgivelsesår',
 			'hubDetail.dateAdded' => 'Tilføjelsesdato',
@@ -3181,73 +2900,6 @@ extension on TranslationsDa {
 			'music.repeat' => 'Gentag',
 			'music.repeatAll' => 'Gentag alle',
 			'music.repeatOne' => 'Gentag ét nummer',
-			'watchTogether.title' => 'Se sammen',
-			'watchTogether.description' => 'Se indhold synkroniseret med venner og familie',
-			'watchTogether.createSession' => 'Opret session',
-			'watchTogether.creating' => 'Opretter...',
-			'watchTogether.joinSession' => 'Deltag i session',
-			'watchTogether.joining' => 'Deltager...',
-			'watchTogether.controlMode' => 'Kontroltilstand',
-			'watchTogether.controlModeQuestion' => 'Hvem kan styre afspilning?',
-			'watchTogether.hostOnly' => 'Kun vært',
-			'watchTogether.anyone' => 'Alle',
-			'watchTogether.hostingSession' => 'Er vært for sessionen',
-			'watchTogether.inSession' => 'Deltager i en session',
-			'watchTogether.sessionCode' => 'Sessionskode',
-			'watchTogether.openSessionControls' => 'Åbn sessionsstyring for Se sammen',
-			'watchTogether.copySessionCode' => 'Kopiér sessionskode',
-			'watchTogether.hostControlsPlayback' => 'Værten styrer afspilningen',
-			'watchTogether.anyoneCanControl' => 'Alle kan styre afspilningen',
-			'watchTogether.hostControls' => 'Værten styrer',
-			'watchTogether.anyoneControls' => 'Alle styrer',
-			'watchTogether.participants' => 'Deltagere',
-			'watchTogether.host' => 'Vært',
-			'watchTogether.hostBadge' => 'VÆRT',
-			'watchTogether.youAreHost' => 'Du er vært',
-			'watchTogether.watchingWithOthers' => 'Ser med andre',
-			'watchTogether.endSession' => 'Afslut session',
-			'watchTogether.leaveSession' => 'Forlad session',
-			'watchTogether.endSessionQuestion' => 'Afslut session?',
-			'watchTogether.leaveSessionQuestion' => 'Forlad session?',
-			'watchTogether.endSessionConfirm' => 'Dette afslutter sessionen for alle deltagere.',
-			'watchTogether.leaveSessionConfirm' => 'Du vil blive fjernet fra sessionen.',
-			'watchTogether.endSessionConfirmOverlay' => 'Dette afslutter fællesafspilningen for alle deltagere.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Din forbindelse til fællesafspilningen afbrydes.',
-			'watchTogether.end' => 'Afslut',
-			'watchTogether.leave' => 'Forlad',
-			'watchTogether.syncing' => 'Synkroniserer...',
-			'watchTogether.joinWatchSession' => 'Deltag i fællesafspilning',
-			'watchTogether.enterCodeHint' => 'Indtast 5-tegns kode',
-			'watchTogether.pasteFromClipboard' => 'Indsæt fra udklipsholder',
-			'watchTogether.pleaseEnterCode' => 'Indtast en sessionskode',
-			'watchTogether.codeMustBe5Chars' => 'Sessionskode skal være 5 tegn',
-			'watchTogether.joinInstructions' => 'Indtast værtens sessionskode for at deltage.',
-			'watchTogether.failedToCreate' => 'Kunne ikke oprette session',
-			'watchTogether.failedToJoin' => 'Kunne ikke deltage i session',
-			'watchTogether.sessionCodeCopied' => 'Sessionskode kopieret til udklipsholder',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => 'Relayserveren kan ikke nås. Blokering hos internetudbyderen kan forhindre Se sammen.',
-			'watchTogether.reconnectingToHost' => 'Genopretter forbindelse til vært...',
-			'watchTogether.currentPlayback' => 'Nuværende afspilning',
-			'watchTogether.joinCurrentPlayback' => 'Deltag i nuværende afspilning',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Hop tilbage til det værten ser nu',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Kunne ikke åbne nuværende afspilning',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} deltog',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} forlod',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} satte på pause',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} genoptog',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} ændrede afspilningspositionen',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} bufferer',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} bruger en ældre appversion — synkronisering er ikke tilgængelig',
-			'watchTogether.resumingWithout' => ({required Object name}) => 'Fortsætter uden ${name}',
-			'watchTogether.waitingForParticipants' => 'Venter på, at de andre bliver klar...',
-			'watchTogether.waitingForName' => ({required Object name}) => 'Venter på ${name}...',
-			'watchTogether.recentRooms' => 'Seneste rum',
-			'watchTogether.renameRoom' => 'Omdøb rum',
-			'watchTogether.removeRoom' => 'Fjern',
-			'watchTogether.guestSwitchUnavailable' => 'Kunne ikke skifte — server ikke tilgængelig for synkronisering',
-			'watchTogether.guestSwitchFailed' => 'Kunne ikke skifte — indhold blev ikke fundet på denne server',
 			'downloads.title' => 'Downloads',
 			'downloads.manage' => 'Administrer',
 			'downloads.tvShows' => 'TV-serier',
@@ -3319,6 +2971,8 @@ extension on TranslationsDa {
 			'downloads.backgroundWarning.bannerBlocked' => 'Downloads stopper, når du forlader appen',
 			'downloads.backgroundWarning.bannerDegraded' => 'Downloads i baggrunden kan være begrænsede',
 			'downloads.backgroundWarning.bannerAction' => 'Detaljer',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Downloads i baggrunden er blokeret',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Downloads i baggrunden kan være begrænsede',
 			'downloads.backgroundWarning.sheetIntro' => 'Android forhindrer Plezy i at downloade stabilt i baggrunden.',
@@ -3357,70 +3011,6 @@ extension on TranslationsDa {
 			'shaders.shaderImportFailed' => 'Kunne ikke importere shader',
 			'shaders.deleteShader' => 'Slet shader',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => 'Slet "${name}"?',
-			'companionRemote.title' => 'Fjernbetjening',
-			'companionRemote.connectedTo' => ({required Object name}) => 'Forbundet til ${name}',
-			'companionRemote.unknownDevice' => 'Ukendt enhed',
-			'companionRemote.session.startingServer' => 'Starter fjernbetjeningsserver...',
-			'companionRemote.session.hostAddress' => 'Værtsadresse',
-			'companionRemote.session.connected' => 'Forbundet',
-			'companionRemote.session.serverRunning' => 'Fjernbetjeningsserver aktiv',
-			'companionRemote.session.serverStopped' => 'Fjernbetjeningsserver stoppet',
-			'companionRemote.session.serverRunningDescription' => 'Mobile enheder på dit netværk kan oprette forbindelse til denne app',
-			'companionRemote.session.serverStoppedDescription' => 'Start serveren for at tillade mobilenheder at oprette forbindelse',
-			'companionRemote.session.usePhoneToControl' => 'Brug din mobilenhed til at styre denne app',
-			'companionRemote.session.startServer' => 'Start serveren',
-			'companionRemote.session.stopServer' => 'Stop serveren',
-			'companionRemote.session.minimize' => 'Minimér',
-			'companionRemote.pairing.discoveryDescription' => 'Plezy-enheder med samme Plex-konto vises her',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Opretter forbindelse...',
-			'companionRemote.pairing.searchingForDevices' => 'Søger efter enheder...',
-			'companionRemote.pairing.noDevicesFound' => 'Ingen enheder fundet på dit netværk',
-			'companionRemote.pairing.noDevicesHint' => 'Åbn Plezy på din computer, og brug det samme Wi-Fi-netværk',
-			'companionRemote.pairing.availableDevices' => 'Tilgængelige enheder',
-			'companionRemote.pairing.manualConnection' => 'Manuel forbindelse',
-			'companionRemote.pairing.cryptoInitFailed' => 'Kunne ikke starte sikker forbindelse. Log ind på Plex først.',
-			'companionRemote.pairing.validationHostRequired' => 'Angiv en værtsadresse',
-			'companionRemote.pairing.validationHostFormat' => 'Format skal være IP:port (f.eks. 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'Forbindelsen fik timeout. Brug samme netværk på begge enheder.',
-			'companionRemote.pairing.sessionNotFound' => 'Enhed ikke fundet. Sørg for, at Plezy kører på værten.',
-			'companionRemote.pairing.authFailed' => 'Godkendelse mislykkedes. Begge enheder skal bruge samme Plex-konto.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Kunne ikke oprette forbindelse: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Vil du afbryde forbindelsen til fjernsessionen?',
-			'companionRemote.remote.reconnecting' => 'Genopretter forbindelse...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Forsøg ${current} af 5',
-			'companionRemote.remote.retryNow' => 'Prøv igen nu',
-			'companionRemote.remote.tabRemote' => 'Fjernbetjening',
-			'companionRemote.remote.tabPlay' => 'Afspil',
-			'companionRemote.remote.tabMore' => 'Mere',
-			'companionRemote.remote.menu' => 'Menu',
-			'companionRemote.remote.tabNavigation' => 'Fanenavigation',
-			'companionRemote.remote.tabDiscover' => 'Opdag',
-			'companionRemote.remote.tabLibraries' => 'Biblioteker',
-			'companionRemote.remote.tabSearch' => 'Søg',
-			'companionRemote.remote.tabDownloads' => 'Downloads',
-			'companionRemote.remote.tabSettings' => 'Indstillinger',
-			'companionRemote.remote.previous' => 'Forrige',
-			'companionRemote.remote.playPause' => 'Afspil/Pause',
-			'companionRemote.remote.next' => 'Næste',
-			'companionRemote.remote.seekBack' => 'Spol tilbage',
-			'companionRemote.remote.stop' => 'Stop',
-			'companionRemote.remote.seekForward' => 'Spol frem',
-			'companionRemote.remote.volume' => 'Lydstyrke',
-			'companionRemote.remote.volumeDown' => 'Ned',
-			'companionRemote.remote.volumeUp' => 'Op',
-			'companionRemote.remote.fullscreen' => 'Fuldskærm',
-			'companionRemote.remote.subtitles' => 'Undertekster',
-			'companionRemote.remote.audio' => 'Lyd',
-			'companionRemote.remote.searchHint' => 'Søg på desktop...',
-			'companionRemote.errors.noNetworkInterface' => 'Ingen netværksgrænseflade fundet',
-			'companionRemote.errors.authenticationFailed' => 'Godkendelse mislykkedes',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Fjernbetjeningsserveren kunne ikke startes: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Kunne ikke sende fjernkommando: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Tidsgrænse for deltagelse i session overskredet',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Kunne ikke oprette forbindelse til nogen adresse',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => 'Forbindelse mistet efter ${attempts} forsøg',
-			'companionRemote.errors.connectionLost' => 'Forbindelse mistet',
 			'videoSettings.playbackSpeed' => 'Afspilningshastighed',
 			'videoSettings.normalSpeed' => 'Normal',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Aktiv (${duration})',
@@ -3566,18 +3156,6 @@ extension on TranslationsDa {
 			'metadataEdit.label' => 'Etiket',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Stemning',
-			'matchScreen.match' => 'Match...',
-			'matchScreen.fixMatch' => 'Ret match...',
-			'matchScreen.unmatch' => 'Fjern match',
-			'matchScreen.unmatchConfirm' => 'Ryd dette match? Plex behandler det som umatchet, indtil det matches igen.',
-			'matchScreen.unmatchSuccess' => 'Match fjernet',
-			'matchScreen.unmatchFailed' => 'Kunne ikke fjerne match',
-			'matchScreen.matchApplied' => 'Match anvendt',
-			'matchScreen.matchFailed' => 'Kunne ikke anvende match',
-			'matchScreen.titleHint' => 'Titel',
-			'matchScreen.yearHint' => 'År',
-			'matchScreen.search' => 'Søg',
-			'matchScreen.noMatchesFound' => 'Ingen match fundet',
 			'serverTasks.title' => 'Serveropgaver',
 			'serverTasks.failedToLoad' => 'Kunne ikke indlæse opgaver',
 			'serverTasks.noTasks' => 'Ingen opgaver kører',
@@ -3670,15 +3248,9 @@ extension on TranslationsDa {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Kunne ikke nå serveren: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Kunne ikke logge ind: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Quick Connect mislykkedes: ${error}',
-			'addServer.addPlexTitle' => 'Log ind med Plex',
-			'addServer.pinExpired' => 'PIN-koden udløb før login. Prøv igen.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Kunne ikke registrere kontoen: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Angiv URL\'en til din Jellyfin-server',
 			'addServer.addConnectionTitle' => 'Tilføj forbindelse',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => 'Tilføj til ${name}',
-			'addServer.signInWithPlexCard' => 'Log ind med Plex',
-			'addServer.signInWithPlexCardSubtitle' => 'Godkend denne enhed. Delte servere tilføjes.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Godkend en Plex-konto. Plex Home-brugere bliver til profiler.',
 			'addServer.connectToJellyfinCard' => 'Forbind til Jellyfin',
 			'addServer.connectToJellyfinCardSubtitle' => 'Indtast din server-URL, dit brugernavn og din adgangskode.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Log ind på en Jellyfin-server. Serveren knyttes til ${name}.',

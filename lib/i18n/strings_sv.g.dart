@@ -64,7 +64,6 @@ class TranslationsSv extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$sv errors = _Translations$errors$sv._(_root);
 	@override late final _Translations$libraries$sv libraries = _Translations$libraries$sv._(_root);
 	@override late final _Translations$about$sv about = _Translations$about$sv._(_root);
-	@override late final _Translations$serverSelection$sv serverSelection = _Translations$serverSelection$sv._(_root);
 	@override late final _Translations$hubDetail$sv hubDetail = _Translations$hubDetail$sv._(_root);
 	@override late final _Translations$logs$sv logs = _Translations$logs$sv._(_root);
 	@override late final _Translations$licenses$sv licenses = _Translations$licenses$sv._(_root);
@@ -74,15 +73,12 @@ class TranslationsSv extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$sv collections = _Translations$collections$sv._(_root);
 	@override late final _Translations$playlists$sv playlists = _Translations$playlists$sv._(_root);
 	@override late final _Translations$music$sv music = _Translations$music$sv._(_root);
-	@override late final _Translations$watchTogether$sv watchTogether = _Translations$watchTogether$sv._(_root);
 	@override late final _Translations$downloads$sv downloads = _Translations$downloads$sv._(_root);
 	@override late final _Translations$shaders$sv shaders = _Translations$shaders$sv._(_root);
-	@override late final _Translations$companionRemote$sv companionRemote = _Translations$companionRemote$sv._(_root);
 	@override late final _Translations$videoSettings$sv videoSettings = _Translations$videoSettings$sv._(_root);
 	@override late final _Translations$performanceOverlay$sv performanceOverlay = _Translations$performanceOverlay$sv._(_root);
 	@override late final _Translations$externalPlayer$sv externalPlayer = _Translations$externalPlayer$sv._(_root);
 	@override late final _Translations$metadataEdit$sv metadataEdit = _Translations$metadataEdit$sv._(_root);
-	@override late final _Translations$matchScreen$sv matchScreen = _Translations$matchScreen$sv._(_root);
 	@override late final _Translations$serverTasks$sv serverTasks = _Translations$serverTasks$sv._(_root);
 	@override late final _Translations$trakt$sv trakt = _Translations$trakt$sv._(_root);
 	@override late final _Translations$seerr$sv seerr = _Translations$seerr$sv._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$sv extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Logga in med Plex';
-	@override String get showQRCode => 'Visa QR-kod';
-	@override String get authenticate => 'Verifiera';
-	@override String get authenticationTimeout => 'Autentiseringen tog för lång tid. Försök igen.';
-	@override String get scanQRToSignIn => 'Skanna QR-koden för att logga in';
-	@override String get waitingForAuth => 'Väntar på autentisering...\nLogga in från din webbläsare.';
-	@override String get useBrowser => 'Använd webbläsare';
-	@override String get or => 'eller';
 	@override String get connectToJellyfin => 'Anslut till Jellyfin';
 	@override String get useQuickConnect => 'Använd Quick Connect';
 	@override String get quickConnectInstructions => 'Öppna Quick Connect i Jellyfin och ange den här koden.';
@@ -150,7 +139,6 @@ class _Translations$common$sv extends Translations$common$en {
 	@override String get shuffle => 'Blanda';
 	@override String get addTo => 'Lägg till i...';
 	@override String get createNew => 'Skapa ny';
-	@override String get connect => 'Anslut';
 	@override String get disconnect => 'Koppla från';
 	@override String get play => 'Spela';
 	@override String get pause => 'Pausa';
@@ -160,7 +148,6 @@ class _Translations$common$sv extends Translations$common$en {
 	@override String get home => 'Hem';
 	@override String get back => 'Tillbaka';
 	@override String get settings => 'Inställningar';
-	@override String get mute => 'Stäng av ljudet';
 	@override String get ok => 'OK';
 	@override String get off => 'Av';
 	@override String seasonNumber({required Object number}) => 'Säsong ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$sv extends Translations$common$en {
 	@override String get fullscreen => 'Helskärm';
 	@override String get exitFullscreen => 'Avsluta helskärm';
 	@override String get pressBackAgainToExit => 'Tryck bakåt igen för att avsluta';
+	@override String get next => 'Nästa';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Anpassa tangentbordsgenvägar';
 	@override String get videoPlayerNavigation => 'Navigering i videospelaren';
 	@override String get videoPlayerNavigationDescription => 'Använd piltangenter för att navigera videospelarens kontroller';
-	@override String get watchTogetherRelay => 'Reläserver för Titta tillsammans';
-	@override String get watchTogetherRelayDescription => 'Ange en egen reläserver. Alla måste använda samma server.';
-	@override String get watchTogetherRelayHint => 'https://mitt-rela.exempel.se';
-	@override String get watchTogetherRelayInvalid => 'Ange en giltig HTTP- eller HTTPS-bas-URL för reläservern.';
 	@override String get crashReporting => 'Kraschrapportering';
 	@override String get crashReportingDescription => 'Skicka kraschrapporter för att förbättra appen';
 	@override String get debugLogging => 'Felsökningsloggning';
@@ -386,8 +370,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get services => 'Tjänster';
 	@override String get servicesDescription => 'Anslut Trakt, MyAnimeList, Seerr med mera';
 	@override String get manageLibrariesDescription => 'Ordna om och dölj bibliotek';
-	@override String get companionRemoteServer => 'Server för fjärrkontroll';
-	@override String get companionRemoteServerDescription => 'Tillåt att mobila enheter i nätverket styr appen';
 	@override String get autoPip => 'Automatisk bild-i-bild';
 	@override String get autoPipDescription => 'Aktivera bild-i-bild om du lämnar appen under uppspelning';
 	@override String get matchContentFrameRate => 'Matcha innehållets bildfrekvens';
@@ -702,13 +684,6 @@ class _Translations$videoControls$sv extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Inga kapitel tillgängliga';
 	@override String get queue => 'Kö';
 	@override String get noQueueItems => 'Inga objekt i kön';
-	@override String get searchSubtitles => 'Sök undertexter';
-	@override String get language => 'Språk';
-	@override String get noSubtitlesFound => 'Inga undertexter hittades';
-	@override String get subtitleDownloaded => 'Undertexten har laddats ned';
-	@override String get subtitleDownloadedNotApplied => 'Undertexten laddades ned men kunde inte väljas';
-	@override String get subtitleDownloadFailed => 'Det gick inte att ladda ned undertexten';
-	@override String get searchLanguages => 'Sök språk...';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String get incorrectPin => 'Fel PIN.';
 	@override String get incorrectPinTryAgain => 'Fel PIN. Försök igen.';
 	@override String get sourceProfileMissingParentAccount => 'Källprofilen saknar sitt överordnade konto.';
-	@override String get failedToLoadHomeUsers => 'Kunde inte läsa in dina Plex Home-användare. Kontrollera anslutningen och försök igen.';
 	@override String get failedToVerifyPin => 'Kunde inte verifiera PIN.';
 	@override String get newProfile => 'Ny profil';
 	@override String get profileNameHint => 't.ex. Gäster, Barn eller Familjerum';
@@ -967,9 +941,6 @@ class _Translations$errors$sv extends Translations$errors$en {
 	@override String get connectionFailed => 'Det gick inte att ansluta till medieservern';
 	@override String unableToLoad({required Object context}) => 'Det gick inte att läsa in ${context}. Försök igen.';
 	@override String get noClientAvailable => 'Ingen klient är tillgänglig';
-	@override String get pleaseEnterToken => 'Ange en token';
-	@override String get invalidToken => 'Ogiltig token';
-	@override String failedToVerifyToken({required Object error}) => 'Det gick inte att verifiera token: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => 'Det gick inte att byta till ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => 'Det gick inte att ta bort ${displayName}';
 	@override String get failedToRate => 'Det gick inte att uppdatera betyget';
@@ -1041,17 +1012,6 @@ class _Translations$about$sv extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Version ${version}';
 	@override String get appDescription => 'En vacker Plex- och Jellyfin-klient för Flutter';
 	@override String get viewLicensesDescription => 'Visa licenser för tredjepartsbibliotek';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$sv extends Translations$serverSelection$en {
-	_Translations$serverSelection$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => 'Inga servrar hittades för ${username} (${email})';
-	@override String failedToLoadServers({required Object error}) => 'Det gick inte att läsa in servrar: ${error}';
 }
 
 // Path: hubDetail
@@ -1311,80 +1271,6 @@ class _Translations$music$sv extends Translations$music$en {
 	@override String get repeatOne => 'Upprepa en låt';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$sv extends Translations$watchTogether$en {
-	_Translations$watchTogether$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Titta tillsammans';
-	@override String get description => 'Titta på innehåll synkroniserat med vänner och familj';
-	@override String get createSession => 'Skapa session';
-	@override String get creating => 'Skapar...';
-	@override String get joinSession => 'Gå med i session';
-	@override String get joining => 'Ansluter...';
-	@override String get controlMode => 'Kontrolläge';
-	@override String get controlModeQuestion => 'Vem kan styra uppspelningen?';
-	@override String get hostOnly => 'Endast värden';
-	@override String get anyone => 'Alla';
-	@override String get hostingSession => 'Värd för sessionen';
-	@override String get inSession => 'I en session';
-	@override String get sessionCode => 'Sessionskod';
-	@override String get openSessionControls => 'Öppna sessionskontroller för Titta tillsammans';
-	@override String get copySessionCode => 'Kopiera sessionskoden';
-	@override String get hostControlsPlayback => 'Värden styr uppspelningen';
-	@override String get anyoneCanControl => 'Alla kan styra uppspelningen';
-	@override String get hostControls => 'Värd styr';
-	@override String get anyoneControls => 'Alla styr';
-	@override String get participants => 'Deltagare';
-	@override String get host => 'Värd';
-	@override String get hostBadge => 'VÄRD';
-	@override String get youAreHost => 'Du är värden';
-	@override String get watchingWithOthers => 'Tittar med andra';
-	@override String get endSession => 'Avsluta session';
-	@override String get leaveSession => 'Lämna session';
-	@override String get endSessionQuestion => 'Avsluta sessionen?';
-	@override String get leaveSessionQuestion => 'Lämna sessionen?';
-	@override String get endSessionConfirm => 'Detta avslutar sessionen för alla deltagare.';
-	@override String get leaveSessionConfirm => 'Du kommer att tas bort från sessionen.';
-	@override String get endSessionConfirmOverlay => 'Detta avslutar tittarsessionen för alla deltagare.';
-	@override String get leaveSessionConfirmOverlay => 'Du kommer att kopplas bort från tittarsessionen.';
-	@override String get end => 'Avsluta';
-	@override String get leave => 'Lämna';
-	@override String get syncing => 'Synkroniserar...';
-	@override String get joinWatchSession => 'Gå med i tittarsession';
-	@override String get enterCodeHint => 'Ange en kod med 5 tecken';
-	@override String get pasteFromClipboard => 'Klistra in från urklipp';
-	@override String get pleaseEnterCode => 'Ange en sessionskod';
-	@override String get codeMustBe5Chars => 'Sessionskoden måste bestå av 5 tecken';
-	@override String get joinInstructions => 'Ange värdens sessionskod för att gå med.';
-	@override String get failedToCreate => 'Det gick inte att skapa sessionen';
-	@override String get failedToJoin => 'Det gick inte att gå med i sessionen';
-	@override String get sessionCodeCopied => 'Sessionskoden har kopierats till urklipp';
-	@override String get relayUnreachable => 'Reläservern kan inte nås. Din internetleverantör kan blockera Titta tillsammans.';
-	@override String get reconnectingToHost => 'Återansluter till värden...';
-	@override String get currentPlayback => 'Aktuell uppspelning';
-	@override String get joinCurrentPlayback => 'Gå med i aktuell uppspelning';
-	@override String get joinCurrentPlaybackDescription => 'Hoppa tillbaka till det värden tittar på just nu';
-	@override String get failedToOpenCurrentPlayback => 'Kunde inte öppna aktuell uppspelning';
-	@override String participantJoined({required Object name}) => '${name} gick med';
-	@override String participantLeft({required Object name}) => '${name} lämnade';
-	@override String participantPaused({required Object name}) => '${name} pausade';
-	@override String participantResumed({required Object name}) => '${name} återupptog';
-	@override String participantSeeked({required Object name}) => '${name} ändrade uppspelningspositionen';
-	@override String participantBuffering({required Object name}) => '${name} buffrar';
-	@override String participantNeedsUpdate({required Object name}) => '${name} använder en äldre appversion — synkronisering är inte tillgänglig';
-	@override String resumingWithout({required Object name}) => 'Återupptar utan ${name}';
-	@override String get waitingForParticipants => 'Väntar på att de andra ska ladda klart...';
-	@override String waitingForName({required Object name}) => 'Väntar på ${name}...';
-	@override String get recentRooms => 'Senaste rummen';
-	@override String get renameRoom => 'Byt namn på rummet';
-	@override String get removeRoom => 'Ta bort';
-	@override String get guestSwitchUnavailable => 'Kunde inte byta — server inte tillgänglig för synkronisering';
-	@override String get guestSwitchFailed => 'Kunde inte byta — innehåll hittades inte på denna server';
-}
-
 // Path: downloads
 class _Translations$downloads$sv extends Translations$downloads$en {
 	_Translations$downloads$sv._(TranslationsSv root) : this._root = root, super.internal(root);
@@ -1485,22 +1371,6 @@ class _Translations$shaders$sv extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Det gick inte att importera shadern';
 	@override String get deleteShader => 'Ta bort shader';
 	@override String deleteShaderConfirm({required Object name}) => 'Ta bort "${name}"?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$sv extends Translations$companionRemote$en {
-	_Translations$companionRemote$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Fjärrkontroll';
-	@override String connectedTo({required Object name}) => 'Ansluten till ${name}';
-	@override String get unknownDevice => 'Okänd enhet';
-	@override late final _Translations$companionRemote$session$sv session = _Translations$companionRemote$session$sv._(_root);
-	@override late final _Translations$companionRemote$pairing$sv pairing = _Translations$companionRemote$pairing$sv._(_root);
-	@override late final _Translations$companionRemote$remote$sv remote = _Translations$companionRemote$remote$sv._(_root);
-	@override late final _Translations$companionRemote$errors$sv errors = _Translations$companionRemote$errors$sv._(_root);
 }
 
 // Path: videoSettings
@@ -1684,27 +1554,6 @@ class _Translations$metadataEdit$sv extends Translations$metadataEdit$en {
 	@override String get mood => 'Stämning';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$sv extends Translations$matchScreen$en {
-	_Translations$matchScreen$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Matcha...';
-	@override String get fixMatch => 'Rätta matchning...';
-	@override String get unmatch => 'Ta bort matchning';
-	@override String get unmatchConfirm => 'Rensa denna matchning? Plex behandlar den som omatchad tills den matchas igen.';
-	@override String get unmatchSuccess => 'Matchning borttagen';
-	@override String get unmatchFailed => 'Det gick inte att ta bort matchningen';
-	@override String get matchApplied => 'Matchning tillämpad';
-	@override String get matchFailed => 'Det gick inte att tillämpa matchningen';
-	@override String get titleHint => 'Titel';
-	@override String get yearHint => 'År';
-	@override String get search => 'Sök';
-	@override String get noMatchesFound => 'Inga matchningar hittades';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$sv extends Translations$serverTasks$en {
 	_Translations$serverTasks$sv._(TranslationsSv root) : this._root = root, super.internal(root);
@@ -1817,15 +1666,9 @@ class _Translations$addServer$sv extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Kunde inte nå servern: ${error}';
 	@override String signInFailed({required Object error}) => 'Det gick inte att logga in: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Quick Connect misslyckades: ${error}';
-	@override String get addPlexTitle => 'Logga in med Plex';
-	@override String get pinExpired => 'PIN-koden gick ut innan inloggning. Försök igen.';
-	@override String failedToRegisterAccount({required Object error}) => 'Kunde inte registrera kontot: ${error}';
 	@override String get enterJellyfinUrlError => 'Ange URL till din Jellyfin-server';
 	@override String get addConnectionTitle => 'Lägg till anslutning';
 	@override String addConnectionTitleScoped({required Object name}) => 'Lägg till i ${name}';
-	@override String get signInWithPlexCard => 'Logga in med Plex';
-	@override String get signInWithPlexCardSubtitle => 'Auktorisera den här enheten. Delade servrar läggs till.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Auktorisera ett Plex-konto. Home-användare blir profiler.';
 	@override String get connectToJellyfinCard => 'Anslut till Jellyfin';
 	@override String get connectToJellyfinCardSubtitle => 'Ange server-URL, användarnamn och lösenord.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Logga in på en Jellyfin-server. Kopplas till ${name}.';
@@ -2031,103 +1874,6 @@ class _Translations$downloads$backgroundWarning$sv extends Translations$download
 	@override String get linkUnavailable => 'Det gick inte att öppna dontkillmyapp.com på den här enheten';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$sv extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Startar fjärrserver...';
-	@override String get hostAddress => 'Värdadress';
-	@override String get connected => 'Ansluten';
-	@override String get serverRunning => 'Fjärrserver aktiv';
-	@override String get serverStopped => 'Fjärrserver stoppad';
-	@override String get serverRunningDescription => 'Mobila enheter i nätverket kan ansluta till appen';
-	@override String get serverStoppedDescription => 'Starta servern så att mobila enheter kan ansluta';
-	@override String get usePhoneToControl => 'Använd din mobila enhet för att styra appen';
-	@override String get startServer => 'Starta server';
-	@override String get stopServer => 'Stoppa server';
-	@override String get minimize => 'Minimera';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$sv extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Plezy-enheter med samma Plex-konto visas här';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Ansluter...';
-	@override String get searchingForDevices => 'Söker efter enheter...';
-	@override String get noDevicesFound => 'Inga enheter hittades i ditt nätverk';
-	@override String get noDevicesHint => 'Öppna Plezy på datorn och använd samma wifi';
-	@override String get availableDevices => 'Tillgängliga enheter';
-	@override String get manualConnection => 'Manuell anslutning';
-	@override String get cryptoInitFailed => 'Kunde inte starta säker anslutning. Logga in på Plex först.';
-	@override String get validationHostRequired => 'Ange värdadress';
-	@override String get validationHostFormat => 'Formatet måste vara IP:port (t.ex. 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'Anslutningen tog för lång tid. Använd samma nätverk på båda enheterna.';
-	@override String get sessionNotFound => 'Enheten hittades inte. Kontrollera att Plezy körs på värden.';
-	@override String get authFailed => 'Autentiseringen misslyckades. Båda enheterna måste använda samma Plex-konto.';
-	@override String failedToConnect({required Object error}) => 'Kunde inte ansluta: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$sv extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Vill du koppla från fjärrsessionen?';
-	@override String get reconnecting => 'Återansluter...';
-	@override String attemptOf({required Object current}) => 'Försök ${current} av 5';
-	@override String get retryNow => 'Försök nu';
-	@override String get tabRemote => 'Fjärrkontroll';
-	@override String get tabPlay => 'Spela';
-	@override String get tabMore => 'Mer';
-	@override String get menu => 'Meny';
-	@override String get tabNavigation => 'Fliknavigering';
-	@override String get tabDiscover => 'Upptäck';
-	@override String get tabLibraries => 'Bibliotek';
-	@override String get tabSearch => 'Sök';
-	@override String get tabDownloads => 'Nedladdningar';
-	@override String get tabSettings => 'Inställningar';
-	@override String get previous => 'Föregående';
-	@override String get playPause => 'Spela/Pausa';
-	@override String get next => 'Nästa';
-	@override String get seekBack => 'Spola bakåt';
-	@override String get stop => 'Stopp';
-	@override String get seekForward => 'Spola framåt';
-	@override String get volume => 'Volym';
-	@override String get volumeDown => 'Ner';
-	@override String get volumeUp => 'Upp';
-	@override String get fullscreen => 'Helskärm';
-	@override String get subtitles => 'Undertexter';
-	@override String get audio => 'Ljud';
-	@override String get searchHint => 'Sök på datorn...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$sv extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Inget nätverksgränssnitt hittades';
-	@override String get authenticationFailed => 'Autentiseringen misslyckades';
-	@override String serverStartFailed({required Object error}) => 'Det gick inte att starta fjärrservern: ${error}';
-	@override String commandFailed({required Object error}) => 'Det gick inte att skicka fjärrkommandot: ${error}';
-	@override String get joinTimedOut => 'Det tog för lång tid att ansluta till sessionen';
-	@override String get failedToConnectAnyAddress => 'Det gick inte att ansluta till någon adress';
-	@override String connectionLostAfterAttempts({required Object attempts}) => 'Anslutningen bröts efter ${attempts} försök';
-	@override String get connectionLost => 'Anslutningen bröts';
-}
-
 // Path: services.names
 class _Translations$services$names$sv extends Translations$services$names$en {
 	_Translations$services$names$sv._(TranslationsSv root) : this._root = root, super.internal(root);
@@ -2201,13 +1947,6 @@ extension on TranslationsSv {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Logga in med Plex',
-			'auth.showQRCode' => 'Visa QR-kod',
-			'auth.authenticate' => 'Verifiera',
-			'auth.authenticationTimeout' => 'Autentiseringen tog för lång tid. Försök igen.',
-			'auth.scanQRToSignIn' => 'Skanna QR-koden för att logga in',
-			'auth.waitingForAuth' => 'Väntar på autentisering...\nLogga in från din webbläsare.',
-			'auth.useBrowser' => 'Använd webbläsare',
-			'auth.or' => 'eller',
 			'auth.connectToJellyfin' => 'Anslut till Jellyfin',
 			'auth.useQuickConnect' => 'Använd Quick Connect',
 			'auth.quickConnectInstructions' => 'Öppna Quick Connect i Jellyfin och ange den här koden.',
@@ -2234,7 +1973,6 @@ extension on TranslationsSv {
 			'common.shuffle' => 'Blanda',
 			'common.addTo' => 'Lägg till i...',
 			'common.createNew' => 'Skapa ny',
-			'common.connect' => 'Anslut',
 			'common.disconnect' => 'Koppla från',
 			'common.play' => 'Spela',
 			'common.pause' => 'Pausa',
@@ -2244,7 +1982,6 @@ extension on TranslationsSv {
 			'common.home' => 'Hem',
 			'common.back' => 'Tillbaka',
 			'common.settings' => 'Inställningar',
-			'common.mute' => 'Stäng av ljudet',
 			'common.ok' => 'OK',
 			'common.off' => 'Av',
 			'common.seasonNumber' => ({required Object number}) => 'Säsong ${number}',
@@ -2260,6 +1997,7 @@ extension on TranslationsSv {
 			'common.fullscreen' => 'Helskärm',
 			'common.exitFullscreen' => 'Avsluta helskärm',
 			'common.pressBackAgainToExit' => 'Tryck bakåt igen för att avsluta',
+			'common.next' => 'Nästa',
 			'screens.licenses' => 'Licenser',
 			'screens.switchProfile' => 'Byt profil',
 			'screens.subtitleStyling' => 'Utseende för undertexter',
@@ -2368,10 +2106,6 @@ extension on TranslationsSv {
 			'settings.keyboardShortcutsDescription' => 'Anpassa tangentbordsgenvägar',
 			'settings.videoPlayerNavigation' => 'Navigering i videospelaren',
 			'settings.videoPlayerNavigationDescription' => 'Använd piltangenter för att navigera videospelarens kontroller',
-			'settings.watchTogetherRelay' => 'Reläserver för Titta tillsammans',
-			'settings.watchTogetherRelayDescription' => 'Ange en egen reläserver. Alla måste använda samma server.',
-			'settings.watchTogetherRelayHint' => 'https://mitt-rela.exempel.se',
-			'settings.watchTogetherRelayInvalid' => 'Ange en giltig HTTP- eller HTTPS-bas-URL för reläservern.',
 			'settings.crashReporting' => 'Kraschrapportering',
 			'settings.crashReportingDescription' => 'Skicka kraschrapporter för att förbättra appen',
 			'settings.debugLogging' => 'Felsökningsloggning',
@@ -2443,8 +2177,6 @@ extension on TranslationsSv {
 			'settings.services' => 'Tjänster',
 			'settings.servicesDescription' => 'Anslut Trakt, MyAnimeList, Seerr med mera',
 			'settings.manageLibrariesDescription' => 'Ordna om och dölj bibliotek',
-			'settings.companionRemoteServer' => 'Server för fjärrkontroll',
-			'settings.companionRemoteServerDescription' => 'Tillåt att mobila enheter i nätverket styr appen',
 			'settings.autoPip' => 'Automatisk bild-i-bild',
 			'settings.autoPipDescription' => 'Aktivera bild-i-bild om du lämnar appen under uppspelning',
 			'settings.matchContentFrameRate' => 'Matcha innehållets bildfrekvens',
@@ -2708,15 +2440,6 @@ extension on TranslationsSv {
 			'videoControls.noChaptersAvailable' => 'Inga kapitel tillgängliga',
 			'videoControls.queue' => 'Kö',
 			'videoControls.noQueueItems' => 'Inga objekt i kön',
-			'videoControls.searchSubtitles' => 'Sök undertexter',
-			'videoControls.language' => 'Språk',
-			'videoControls.noSubtitlesFound' => 'Inga undertexter hittades',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => 'Undertexten har laddats ned',
-			'videoControls.subtitleDownloadedNotApplied' => 'Undertexten laddades ned men kunde inte väljas',
-			'videoControls.subtitleDownloadFailed' => 'Det gick inte att ladda ned undertexten',
-			'videoControls.searchLanguages' => 'Sök språk...',
 			'messages.markedAsWatched' => 'Markerad som sedd',
 			'messages.markedAsUnwatched' => 'Markerad som osedd',
 			'messages.markedAsWatchedOffline' => 'Markerad som sedd (synkroniseras när online)',
@@ -2734,6 +2457,8 @@ extension on TranslationsSv {
 			'messages.playbackCancelled' => 'Uppspelningen avbröts.',
 			'messages.playbackFailed' => 'Det gick inte att starta uppspelningen.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fel vid laddning av filinformation: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Fel vid laddning av serie',
 			'messages.musicNotSupported' => 'Musikuppspelning stöds inte ännu',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivning tillgänglig',
@@ -2854,7 +2579,6 @@ extension on TranslationsSv {
 			'profiles.incorrectPin' => 'Fel PIN.',
 			'profiles.incorrectPinTryAgain' => 'Fel PIN. Försök igen.',
 			'profiles.sourceProfileMissingParentAccount' => 'Källprofilen saknar sitt överordnade konto.',
-			'profiles.failedToLoadHomeUsers' => 'Kunde inte läsa in dina Plex Home-användare. Kontrollera anslutningen och försök igen.',
 			'profiles.failedToVerifyPin' => 'Kunde inte verifiera PIN.',
 			'profiles.newProfile' => 'Ny profil',
 			'profiles.profileNameHint' => 't.ex. Gäster, Barn eller Familjerum',
@@ -2900,9 +2624,6 @@ extension on TranslationsSv {
 			'errors.connectionFailed' => 'Det gick inte att ansluta till medieservern',
 			'errors.unableToLoad' => ({required Object context}) => 'Det gick inte att läsa in ${context}. Försök igen.',
 			'errors.noClientAvailable' => 'Ingen klient är tillgänglig',
-			'errors.pleaseEnterToken' => 'Ange en token',
-			'errors.invalidToken' => 'Ogiltig token',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Det gick inte att verifiera token: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => 'Det gick inte att byta till ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => 'Det gick inte att ta bort ${displayName}',
 			'errors.failedToRate' => 'Det gick inte att uppdatera betyget',
@@ -2993,8 +2714,6 @@ extension on TranslationsSv {
 			'about.versionLabel' => ({required Object version}) => 'Version ${version}',
 			'about.appDescription' => 'En vacker Plex- och Jellyfin-klient för Flutter',
 			'about.viewLicensesDescription' => 'Visa licenser för tredjepartsbibliotek',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => 'Inga servrar hittades för ${username} (${email})',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Det gick inte att läsa in servrar: ${error}',
 			'hubDetail.title' => 'Titel',
 			'hubDetail.releaseYear' => 'Utgivningsår',
 			'hubDetail.dateAdded' => 'Tilläggsdatum',
@@ -3181,73 +2900,6 @@ extension on TranslationsSv {
 			'music.repeat' => 'Upprepa',
 			'music.repeatAll' => 'Upprepa alla',
 			'music.repeatOne' => 'Upprepa en låt',
-			'watchTogether.title' => 'Titta tillsammans',
-			'watchTogether.description' => 'Titta på innehåll synkroniserat med vänner och familj',
-			'watchTogether.createSession' => 'Skapa session',
-			'watchTogether.creating' => 'Skapar...',
-			'watchTogether.joinSession' => 'Gå med i session',
-			'watchTogether.joining' => 'Ansluter...',
-			'watchTogether.controlMode' => 'Kontrolläge',
-			'watchTogether.controlModeQuestion' => 'Vem kan styra uppspelningen?',
-			'watchTogether.hostOnly' => 'Endast värden',
-			'watchTogether.anyone' => 'Alla',
-			'watchTogether.hostingSession' => 'Värd för sessionen',
-			'watchTogether.inSession' => 'I en session',
-			'watchTogether.sessionCode' => 'Sessionskod',
-			'watchTogether.openSessionControls' => 'Öppna sessionskontroller för Titta tillsammans',
-			'watchTogether.copySessionCode' => 'Kopiera sessionskoden',
-			'watchTogether.hostControlsPlayback' => 'Värden styr uppspelningen',
-			'watchTogether.anyoneCanControl' => 'Alla kan styra uppspelningen',
-			'watchTogether.hostControls' => 'Värd styr',
-			'watchTogether.anyoneControls' => 'Alla styr',
-			'watchTogether.participants' => 'Deltagare',
-			'watchTogether.host' => 'Värd',
-			'watchTogether.hostBadge' => 'VÄRD',
-			'watchTogether.youAreHost' => 'Du är värden',
-			'watchTogether.watchingWithOthers' => 'Tittar med andra',
-			'watchTogether.endSession' => 'Avsluta session',
-			'watchTogether.leaveSession' => 'Lämna session',
-			'watchTogether.endSessionQuestion' => 'Avsluta sessionen?',
-			'watchTogether.leaveSessionQuestion' => 'Lämna sessionen?',
-			'watchTogether.endSessionConfirm' => 'Detta avslutar sessionen för alla deltagare.',
-			'watchTogether.leaveSessionConfirm' => 'Du kommer att tas bort från sessionen.',
-			'watchTogether.endSessionConfirmOverlay' => 'Detta avslutar tittarsessionen för alla deltagare.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Du kommer att kopplas bort från tittarsessionen.',
-			'watchTogether.end' => 'Avsluta',
-			'watchTogether.leave' => 'Lämna',
-			'watchTogether.syncing' => 'Synkroniserar...',
-			'watchTogether.joinWatchSession' => 'Gå med i tittarsession',
-			'watchTogether.enterCodeHint' => 'Ange en kod med 5 tecken',
-			'watchTogether.pasteFromClipboard' => 'Klistra in från urklipp',
-			'watchTogether.pleaseEnterCode' => 'Ange en sessionskod',
-			'watchTogether.codeMustBe5Chars' => 'Sessionskoden måste bestå av 5 tecken',
-			'watchTogether.joinInstructions' => 'Ange värdens sessionskod för att gå med.',
-			'watchTogether.failedToCreate' => 'Det gick inte att skapa sessionen',
-			'watchTogether.failedToJoin' => 'Det gick inte att gå med i sessionen',
-			'watchTogether.sessionCodeCopied' => 'Sessionskoden har kopierats till urklipp',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => 'Reläservern kan inte nås. Din internetleverantör kan blockera Titta tillsammans.',
-			'watchTogether.reconnectingToHost' => 'Återansluter till värden...',
-			'watchTogether.currentPlayback' => 'Aktuell uppspelning',
-			'watchTogether.joinCurrentPlayback' => 'Gå med i aktuell uppspelning',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Hoppa tillbaka till det värden tittar på just nu',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Kunde inte öppna aktuell uppspelning',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} gick med',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} lämnade',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} pausade',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} återupptog',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} ändrade uppspelningspositionen',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} buffrar',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} använder en äldre appversion — synkronisering är inte tillgänglig',
-			'watchTogether.resumingWithout' => ({required Object name}) => 'Återupptar utan ${name}',
-			'watchTogether.waitingForParticipants' => 'Väntar på att de andra ska ladda klart...',
-			'watchTogether.waitingForName' => ({required Object name}) => 'Väntar på ${name}...',
-			'watchTogether.recentRooms' => 'Senaste rummen',
-			'watchTogether.renameRoom' => 'Byt namn på rummet',
-			'watchTogether.removeRoom' => 'Ta bort',
-			'watchTogether.guestSwitchUnavailable' => 'Kunde inte byta — server inte tillgänglig för synkronisering',
-			'watchTogether.guestSwitchFailed' => 'Kunde inte byta — innehåll hittades inte på denna server',
 			'downloads.title' => 'Nedladdningar',
 			'downloads.manage' => 'Hantera',
 			'downloads.tvShows' => 'TV-serier',
@@ -3319,6 +2971,8 @@ extension on TranslationsSv {
 			'downloads.backgroundWarning.bannerBlocked' => 'Nedladdningar stoppas när du lämnar appen',
 			'downloads.backgroundWarning.bannerDegraded' => 'Bakgrundsnedladdningar kan begränsas',
 			'downloads.backgroundWarning.bannerAction' => 'Detaljer',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Bakgrundsnedladdningar är blockerade',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Bakgrundsnedladdningar kan begränsas',
 			'downloads.backgroundWarning.sheetIntro' => 'Android hindrar Plezy från att ladda ned tillförlitligt i bakgrunden.',
@@ -3357,70 +3011,6 @@ extension on TranslationsSv {
 			'shaders.shaderImportFailed' => 'Det gick inte att importera shadern',
 			'shaders.deleteShader' => 'Ta bort shader',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => 'Ta bort "${name}"?',
-			'companionRemote.title' => 'Fjärrkontroll',
-			'companionRemote.connectedTo' => ({required Object name}) => 'Ansluten till ${name}',
-			'companionRemote.unknownDevice' => 'Okänd enhet',
-			'companionRemote.session.startingServer' => 'Startar fjärrserver...',
-			'companionRemote.session.hostAddress' => 'Värdadress',
-			'companionRemote.session.connected' => 'Ansluten',
-			'companionRemote.session.serverRunning' => 'Fjärrserver aktiv',
-			'companionRemote.session.serverStopped' => 'Fjärrserver stoppad',
-			'companionRemote.session.serverRunningDescription' => 'Mobila enheter i nätverket kan ansluta till appen',
-			'companionRemote.session.serverStoppedDescription' => 'Starta servern så att mobila enheter kan ansluta',
-			'companionRemote.session.usePhoneToControl' => 'Använd din mobila enhet för att styra appen',
-			'companionRemote.session.startServer' => 'Starta server',
-			'companionRemote.session.stopServer' => 'Stoppa server',
-			'companionRemote.session.minimize' => 'Minimera',
-			'companionRemote.pairing.discoveryDescription' => 'Plezy-enheter med samma Plex-konto visas här',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Ansluter...',
-			'companionRemote.pairing.searchingForDevices' => 'Söker efter enheter...',
-			'companionRemote.pairing.noDevicesFound' => 'Inga enheter hittades i ditt nätverk',
-			'companionRemote.pairing.noDevicesHint' => 'Öppna Plezy på datorn och använd samma wifi',
-			'companionRemote.pairing.availableDevices' => 'Tillgängliga enheter',
-			'companionRemote.pairing.manualConnection' => 'Manuell anslutning',
-			'companionRemote.pairing.cryptoInitFailed' => 'Kunde inte starta säker anslutning. Logga in på Plex först.',
-			'companionRemote.pairing.validationHostRequired' => 'Ange värdadress',
-			'companionRemote.pairing.validationHostFormat' => 'Formatet måste vara IP:port (t.ex. 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'Anslutningen tog för lång tid. Använd samma nätverk på båda enheterna.',
-			'companionRemote.pairing.sessionNotFound' => 'Enheten hittades inte. Kontrollera att Plezy körs på värden.',
-			'companionRemote.pairing.authFailed' => 'Autentiseringen misslyckades. Båda enheterna måste använda samma Plex-konto.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Kunde inte ansluta: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Vill du koppla från fjärrsessionen?',
-			'companionRemote.remote.reconnecting' => 'Återansluter...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Försök ${current} av 5',
-			'companionRemote.remote.retryNow' => 'Försök nu',
-			'companionRemote.remote.tabRemote' => 'Fjärrkontroll',
-			'companionRemote.remote.tabPlay' => 'Spela',
-			'companionRemote.remote.tabMore' => 'Mer',
-			'companionRemote.remote.menu' => 'Meny',
-			'companionRemote.remote.tabNavigation' => 'Fliknavigering',
-			'companionRemote.remote.tabDiscover' => 'Upptäck',
-			'companionRemote.remote.tabLibraries' => 'Bibliotek',
-			'companionRemote.remote.tabSearch' => 'Sök',
-			'companionRemote.remote.tabDownloads' => 'Nedladdningar',
-			'companionRemote.remote.tabSettings' => 'Inställningar',
-			'companionRemote.remote.previous' => 'Föregående',
-			'companionRemote.remote.playPause' => 'Spela/Pausa',
-			'companionRemote.remote.next' => 'Nästa',
-			'companionRemote.remote.seekBack' => 'Spola bakåt',
-			'companionRemote.remote.stop' => 'Stopp',
-			'companionRemote.remote.seekForward' => 'Spola framåt',
-			'companionRemote.remote.volume' => 'Volym',
-			'companionRemote.remote.volumeDown' => 'Ner',
-			'companionRemote.remote.volumeUp' => 'Upp',
-			'companionRemote.remote.fullscreen' => 'Helskärm',
-			'companionRemote.remote.subtitles' => 'Undertexter',
-			'companionRemote.remote.audio' => 'Ljud',
-			'companionRemote.remote.searchHint' => 'Sök på datorn...',
-			'companionRemote.errors.noNetworkInterface' => 'Inget nätverksgränssnitt hittades',
-			'companionRemote.errors.authenticationFailed' => 'Autentiseringen misslyckades',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Det gick inte att starta fjärrservern: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Det gick inte att skicka fjärrkommandot: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Det tog för lång tid att ansluta till sessionen',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Det gick inte att ansluta till någon adress',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => 'Anslutningen bröts efter ${attempts} försök',
-			'companionRemote.errors.connectionLost' => 'Anslutningen bröts',
 			'videoSettings.playbackSpeed' => 'Uppspelningshastighet',
 			'videoSettings.normalSpeed' => 'Normal',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Aktiv (${duration})',
@@ -3566,18 +3156,6 @@ extension on TranslationsSv {
 			'metadataEdit.label' => 'Etikett',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Stämning',
-			'matchScreen.match' => 'Matcha...',
-			'matchScreen.fixMatch' => 'Rätta matchning...',
-			'matchScreen.unmatch' => 'Ta bort matchning',
-			'matchScreen.unmatchConfirm' => 'Rensa denna matchning? Plex behandlar den som omatchad tills den matchas igen.',
-			'matchScreen.unmatchSuccess' => 'Matchning borttagen',
-			'matchScreen.unmatchFailed' => 'Det gick inte att ta bort matchningen',
-			'matchScreen.matchApplied' => 'Matchning tillämpad',
-			'matchScreen.matchFailed' => 'Det gick inte att tillämpa matchningen',
-			'matchScreen.titleHint' => 'Titel',
-			'matchScreen.yearHint' => 'År',
-			'matchScreen.search' => 'Sök',
-			'matchScreen.noMatchesFound' => 'Inga matchningar hittades',
 			'serverTasks.title' => 'Serveruppgifter',
 			'serverTasks.failedToLoad' => 'Kunde inte ladda uppgifter',
 			'serverTasks.noTasks' => 'Inga pågående uppgifter',
@@ -3670,15 +3248,9 @@ extension on TranslationsSv {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Kunde inte nå servern: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Det gick inte att logga in: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Quick Connect misslyckades: ${error}',
-			'addServer.addPlexTitle' => 'Logga in med Plex',
-			'addServer.pinExpired' => 'PIN-koden gick ut innan inloggning. Försök igen.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Kunde inte registrera kontot: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Ange URL till din Jellyfin-server',
 			'addServer.addConnectionTitle' => 'Lägg till anslutning',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => 'Lägg till i ${name}',
-			'addServer.signInWithPlexCard' => 'Logga in med Plex',
-			'addServer.signInWithPlexCardSubtitle' => 'Auktorisera den här enheten. Delade servrar läggs till.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Auktorisera ett Plex-konto. Home-användare blir profiler.',
 			'addServer.connectToJellyfinCard' => 'Anslut till Jellyfin',
 			'addServer.connectToJellyfinCardSubtitle' => 'Ange server-URL, användarnamn och lösenord.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Logga in på en Jellyfin-server. Kopplas till ${name}.',

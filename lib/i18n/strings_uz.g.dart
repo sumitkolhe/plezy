@@ -64,7 +64,6 @@ class TranslationsUz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$uz errors = _Translations$errors$uz._(_root);
 	@override late final _Translations$libraries$uz libraries = _Translations$libraries$uz._(_root);
 	@override late final _Translations$about$uz about = _Translations$about$uz._(_root);
-	@override late final _Translations$serverSelection$uz serverSelection = _Translations$serverSelection$uz._(_root);
 	@override late final _Translations$hubDetail$uz hubDetail = _Translations$hubDetail$uz._(_root);
 	@override late final _Translations$logs$uz logs = _Translations$logs$uz._(_root);
 	@override late final _Translations$licenses$uz licenses = _Translations$licenses$uz._(_root);
@@ -74,15 +73,12 @@ class TranslationsUz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$uz collections = _Translations$collections$uz._(_root);
 	@override late final _Translations$playlists$uz playlists = _Translations$playlists$uz._(_root);
 	@override late final _Translations$music$uz music = _Translations$music$uz._(_root);
-	@override late final _Translations$watchTogether$uz watchTogether = _Translations$watchTogether$uz._(_root);
 	@override late final _Translations$downloads$uz downloads = _Translations$downloads$uz._(_root);
 	@override late final _Translations$shaders$uz shaders = _Translations$shaders$uz._(_root);
-	@override late final _Translations$companionRemote$uz companionRemote = _Translations$companionRemote$uz._(_root);
 	@override late final _Translations$videoSettings$uz videoSettings = _Translations$videoSettings$uz._(_root);
 	@override late final _Translations$performanceOverlay$uz performanceOverlay = _Translations$performanceOverlay$uz._(_root);
 	@override late final _Translations$externalPlayer$uz externalPlayer = _Translations$externalPlayer$uz._(_root);
 	@override late final _Translations$metadataEdit$uz metadataEdit = _Translations$metadataEdit$uz._(_root);
-	@override late final _Translations$matchScreen$uz matchScreen = _Translations$matchScreen$uz._(_root);
 	@override late final _Translations$serverTasks$uz serverTasks = _Translations$serverTasks$uz._(_root);
 	@override late final _Translations$trakt$uz trakt = _Translations$trakt$uz._(_root);
 	@override late final _Translations$seerr$uz seerr = _Translations$seerr$uz._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$uz extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Plex orqali kirish';
-	@override String get showQRCode => 'QR kodni koʻrsatish';
-	@override String get authenticate => 'Tasdiqlash';
-	@override String get authenticationTimeout => 'Tasdiqlash vaqti tugadi. Iltimos, qaytadan urinib koʻring.';
-	@override String get scanQRToSignIn => 'Kirish uchun ushbu QR kodni skanerlang';
-	@override String get waitingForAuth => 'Tasdiqlanish kutilmoqda...\nBrauzeringizdan kiring.';
-	@override String get useBrowser => 'Brauzerdan foydalanish';
-	@override String get or => 'yoki';
 	@override String get connectToJellyfin => 'Jellyfin-ga ulanish';
 	@override String get useQuickConnect => 'Tezkor ulanishdan foydalanish';
 	@override String get quickConnectInstructions => 'Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.';
@@ -150,7 +139,6 @@ class _Translations$common$uz extends Translations$common$en {
 	@override String get shuffle => 'Aralashtirish';
 	@override String get addTo => 'Qoʻshish...';
 	@override String get createNew => 'Yangi yaratish';
-	@override String get connect => 'Ulanish';
 	@override String get disconnect => 'Uzilish';
 	@override String get play => 'Ijro etish';
 	@override String get pause => 'Pauza';
@@ -160,7 +148,6 @@ class _Translations$common$uz extends Translations$common$en {
 	@override String get home => 'Bosh sahifa';
 	@override String get back => 'Orqaga';
 	@override String get settings => 'Sozlamalar';
-	@override String get mute => 'Ovozni oʻchirish';
 	@override String get ok => 'Tushunarli';
 	@override String get off => 'Oʻchirilgan';
 	@override String seasonNumber({required Object number}) => '${number}-mavsum';
@@ -176,6 +163,7 @@ class _Translations$common$uz extends Translations$common$en {
 	@override String get fullscreen => 'Toʻliq ekran';
 	@override String get exitFullscreen => 'Toʻliq ekrandan chiqish';
 	@override String get pressBackAgainToExit => 'Chiqish uchun orqaga tugmasini yana bir bor bosing';
+	@override String get next => 'Keyingi';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Klaviatura tugmalarini moslashtiring';
 	@override String get videoPlayerNavigation => 'Video pleyer navigatsiyasi';
 	@override String get videoPlayerNavigationDescription => 'Pleyerni boshqarish uchun yoʻnalish tugmalaridan foydalaning';
-	@override String get watchTogetherRelay => 'Birgalikda tomosha relesi';
-	@override String get watchTogetherRelayDescription => 'Xususiy rele oʻrnating. Barcha bir xil serverdan foydalanishi kerak.';
-	@override String get watchTogetherRelayHint => 'https://my-relay.example.com';
-	@override String get watchTogetherRelayInvalid => 'Toʻgʻri HTTP yoki HTTPS rele manzilini kiriting.';
 	@override String get crashReporting => 'Xatoliklar haqida hisobot';
 	@override String get crashReportingDescription => 'Ilovani takomillashtirishga yordam berish uchun xatoliklar hisobotini yuboring';
 	@override String get debugLogging => 'Nosozliklarni aniqlash jurnali';
@@ -389,8 +373,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get services => 'Xizmatlar';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr va boshqalarni ulang';
 	@override String get manageLibrariesDescription => 'Kutubxonalarni tartiblash va yashirish';
-	@override String get companionRemoteServer => 'Yordamchi pult serveri';
-	@override String get companionRemoteServerDescription => 'Tarmoqdagi mobil qurilmalarga ushbu ilovani boshqarishga ruxsat berish';
 	@override String get autoPip => 'Avtomatik Rasm ichida rasm (PiP)';
 	@override String get autoPipDescription => 'Video ijro etilayotganda ilovadan chiqilganda avto-PiP rejimiga oʻtish';
 	@override String get matchContentFrameRate => 'Kadrlar chastotasini moslashtirish';
@@ -705,13 +687,6 @@ class _Translations$videoControls$uz extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Boʻlimlar mavjud emas';
 	@override String get queue => 'Navbat';
 	@override String get noQueueItems => 'Navbatda elementlar yoʻq';
-	@override String get searchSubtitles => 'Subtitr qidirish';
-	@override String get language => 'Til';
-	@override String get noSubtitlesFound => 'Subtitr topilmadi';
-	@override String get subtitleDownloaded => 'Subtitr yuklab olindi';
-	@override String get subtitleDownloadedNotApplied => 'Subtitr yuklab olindi, lekin qoʻllanilmadi';
-	@override String get subtitleDownloadFailed => 'Subtitrni yuklab boʻlmadi';
-	@override String get searchLanguages => 'Tillardan qidirish...';
 }
 
 // Path: messages
@@ -898,7 +873,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String get incorrectPin => 'Notoʻgʻri PIN kod.';
 	@override String get incorrectPinTryAgain => 'Notoʻgʻri PIN kod. Qaytadan urinib koʻring.';
 	@override String get sourceProfileMissingParentAccount => 'Manba profilda asosiy hisob yoʻq.';
-	@override String get failedToLoadHomeUsers => 'Plex Home foydalanuvchilarini yuklab boʻlmadi.';
 	@override String get failedToVerifyPin => 'PIN kodni tekshirib boʻlmadi.';
 	@override String get newProfile => 'Yangi profil';
 	@override String get profileNameHint => 'masalan, Mehmonlar, Bolalar';
@@ -972,9 +946,6 @@ class _Translations$errors$uz extends Translations$errors$en {
 	@override String get connectionFailed => 'Media serveriga ulanib boʻlmadi';
 	@override String unableToLoad({required Object context}) => '${context} yuklab boʻlmadi.';
 	@override String get noClientAvailable => 'Mavjud mijoz yoʻq';
-	@override String get pleaseEnterToken => 'Tokenni kiriting';
-	@override String get invalidToken => 'Notoʻgʻri token';
-	@override String failedToVerifyToken({required Object error}) => 'Tokenni tekshirib boʻlmadi: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => '${displayName} profiliga oʻtib boʻlmadi';
 	@override String failedToDeleteProfile({required Object displayName}) => '${displayName} profilini oʻchirib boʻlmadi';
 	@override String get failedToRate => 'Reytingni yangilab boʻlmadi';
@@ -1046,17 +1017,6 @@ class _Translations$about$uz extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Versiya ${version}';
 	@override String get appDescription => 'Flutter asosidagi qulay Plex va Jellyfin mijozi';
 	@override String get viewLicensesDescription => 'Uchinchi tomon kutubxonalarining litsenziyalarini koʻrish';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$uz extends Translations$serverSelection$en {
-	_Translations$serverSelection$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => '${username} (${email}) uchun serverlar topilmadi';
-	@override String failedToLoadServers({required Object error}) => 'Serverlarni yuklashda xatolik: ${error}';
 }
 
 // Path: hubDetail
@@ -1316,80 +1276,6 @@ class _Translations$music$uz extends Translations$music$en {
 	@override String get repeatOne => 'Birtasini takrorlash';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$uz extends Translations$watchTogether$en {
-	_Translations$watchTogether$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Birgalikda tomosha qilish';
-	@override String get description => 'Doʻstlaringiz va oilangiz bilan birga tomosha qiling';
-	@override String get createSession => 'Seans yaratish';
-	@override String get creating => 'Yaratilmoqda...';
-	@override String get joinSession => 'Seansga qoʻshilish';
-	@override String get joining => 'Qoʻshilinmoqda...';
-	@override String get controlMode => 'Boshqaruv rejimi';
-	@override String get controlModeQuestion => 'Ijroni kim boshqara oladi?';
-	@override String get hostOnly => 'Faqat tashkilotchi';
-	@override String get anyone => 'Har kim';
-	@override String get hostingSession => 'Seans tashkillashtirilmoqda';
-	@override String get inSession => 'Seansda';
-	@override String get sessionCode => 'Seans kodi';
-	@override String get openSessionControls => 'Boshqaruv elementlarini ochish';
-	@override String get copySessionCode => 'Seans kodini nusxalash';
-	@override String get hostControlsPlayback => 'Ijroni tashkilotchi boshqaradi';
-	@override String get anyoneCanControl => 'Ijroni har kim boshqara oladi';
-	@override String get hostControls => 'Tashkilotchi boshqaradi';
-	@override String get anyoneControls => 'Hamma boshqaradi';
-	@override String get participants => 'Ishtirokchilar';
-	@override String get host => 'Tashkilotchi';
-	@override String get hostBadge => 'TASHKILOTCHI';
-	@override String get youAreHost => 'Siz tashkilotchisiz';
-	@override String get watchingWithOthers => 'Boshqalar bilan tomosha qilinmoqda';
-	@override String get endSession => 'Seansni yakunlash';
-	@override String get leaveSession => 'Seansdan chiqish';
-	@override String get endSessionQuestion => 'Seans yakunlansinmi?';
-	@override String get leaveSessionQuestion => 'Seansdan chiqasizmi?';
-	@override String get endSessionConfirm => 'Bu barcha ishtirokchilar uchun seansni yakunlaydi.';
-	@override String get leaveSessionConfirm => 'Siz seansdan uzilasiz.';
-	@override String get endSessionConfirmOverlay => 'Bu barcha uchun tomosha seansini yakunlaydi.';
-	@override String get leaveSessionConfirmOverlay => 'Tomosha seansidan uzilasiz.';
-	@override String get end => 'Yakunlash';
-	@override String get leave => 'Chiqish';
-	@override String get syncing => 'Sinxronlanmoqda...';
-	@override String get joinWatchSession => 'Tomosha seansiga qoʻshilish';
-	@override String get enterCodeHint => '5 xonali kodni kiriting';
-	@override String get pasteFromClipboard => 'Xotiradan joylash';
-	@override String get pleaseEnterCode => 'Seans kodini kiriting';
-	@override String get codeMustBe5Chars => 'Seans kodi 5 ta belgidan iborat boʻlishi kerak';
-	@override String get joinInstructions => 'Tashkilotchining seans kodini kiriting.';
-	@override String get failedToCreate => 'Seansni yaratib boʻlmadi';
-	@override String get failedToJoin => 'Seansga qoʻshilib boʻlmadi';
-	@override String get sessionCodeCopied => 'Seans kodi nusxalandi';
-	@override String get relayUnreachable => 'Rele serveriga ulanib boʻlmadi.';
-	@override String get reconnectingToHost => 'Tashkilotchiga qayta ulanilmoqda...';
-	@override String get currentPlayback => 'Joriy ijro';
-	@override String get joinCurrentPlayback => 'Joriy ijroga qoʻshilish';
-	@override String get joinCurrentPlaybackDescription => 'Tashkilotchi koʻrayotgan joyga oʻting';
-	@override String get failedToOpenCurrentPlayback => 'Joriy ijroni ochib boʻlmadi';
-	@override String participantJoined({required Object name}) => '${name} qoʻshildi';
-	@override String participantLeft({required Object name}) => '${name} chiqdi';
-	@override String participantPaused({required Object name}) => '${name} toʻxtatdi';
-	@override String participantResumed({required Object name}) => '${name} davom ettirdi';
-	@override String participantSeeked({required Object name}) => '${name} vaqtni oʻzgartirdi';
-	@override String participantBuffering({required Object name}) => '${name} buferlamoqda';
-	@override String participantNeedsUpdate({required Object name}) => '${name} eski versiyada';
-	@override String resumingWithout({required Object name}) => '${name} hisobga olinmasdan davom ettirilmoqda';
-	@override String get waitingForParticipants => 'Boshqalarning yuklashini kutilmoqda...';
-	@override String waitingForName({required Object name}) => '${name} kutilmoqda...';
-	@override String get recentRooms => 'Yaqindagi xonalar';
-	@override String get renameRoom => 'Xona nomini oʻzgartirmoqchimisiz?';
-	@override String get removeRoom => 'Oʻchirish';
-	@override String get guestSwitchUnavailable => 'Oʻtib boʻlmadi';
-	@override String get guestSwitchFailed => 'Oʻtib boʻlmadi — kontent topilmadi';
-}
-
 // Path: downloads
 class _Translations$downloads$uz extends Translations$downloads$en {
 	_Translations$downloads$uz._(TranslationsUz root) : this._root = root, super.internal(root);
@@ -1496,22 +1382,6 @@ class _Translations$shaders$uz extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Sheyderni import qilib boʻlmadi';
 	@override String get deleteShader => 'Sheyderni oʻchirish';
 	@override String deleteShaderConfirm({required Object name}) => '"${name}" oʻchirilsinmi?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$uz extends Translations$companionRemote$en {
-	_Translations$companionRemote$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Yordamchi pult';
-	@override String connectedTo({required Object name}) => '${name} qurilmasiga ulandi';
-	@override String get unknownDevice => 'Nomaʼlum qurilma';
-	@override late final _Translations$companionRemote$session$uz session = _Translations$companionRemote$session$uz._(_root);
-	@override late final _Translations$companionRemote$pairing$uz pairing = _Translations$companionRemote$pairing$uz._(_root);
-	@override late final _Translations$companionRemote$remote$uz remote = _Translations$companionRemote$remote$uz._(_root);
-	@override late final _Translations$companionRemote$errors$uz errors = _Translations$companionRemote$errors$uz._(_root);
 }
 
 // Path: videoSettings
@@ -1695,27 +1565,6 @@ class _Translations$metadataEdit$uz extends Translations$metadataEdit$en {
 	@override String get mood => 'Kayfiyat';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$uz extends Translations$matchScreen$en {
-	_Translations$matchScreen$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Moslashtirish...';
-	@override String get fixMatch => 'Moslikni tuzatish...';
-	@override String get unmatch => 'Moslikni oʻchirish';
-	@override String get unmatchConfirm => 'Ushbu moslik oʻchirilsinmi?';
-	@override String get unmatchSuccess => 'Moslik oʻchirildi';
-	@override String get unmatchFailed => 'Moslikni oʻchirib boʻlmadi';
-	@override String get matchApplied => 'Moslik qoʻllanildi';
-	@override String get matchFailed => 'Moslikni qoʻllab boʻlmadi';
-	@override String get titleHint => 'Nomi';
-	@override String get yearHint => 'Yil';
-	@override String get search => 'Qidiruv';
-	@override String get noMatchesFound => 'Mosliklar topilmadi';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$uz extends Translations$serverTasks$en {
 	_Translations$serverTasks$uz._(TranslationsUz root) : this._root = root, super.internal(root);
@@ -1828,15 +1677,9 @@ class _Translations$addServer$uz extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Serverga ulanib boʻlmadi: ${error}';
 	@override String signInFailed({required Object error}) => 'Kirish xatoligi: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Tezkor ulanish xatoligi: ${error}';
-	@override String get addPlexTitle => 'Plex orqali kirish';
-	@override String get pinExpired => 'PIN kod vaqti tugadi.';
-	@override String failedToRegisterAccount({required Object error}) => 'Hisobni roʻyxatdan oʻtkazishda xatolik: ${error}';
 	@override String get enterJellyfinUrlError => 'Jellyfin server URL-ini kiriting';
 	@override String get addConnectionTitle => 'Ulanish qoʻshish';
 	@override String addConnectionTitleScoped({required Object name}) => '${name} profiliga qoʻshish';
-	@override String get signInWithPlexCard => 'Plex orqali kirish';
-	@override String get signInWithPlexCardSubtitle => 'Ushbu qurilmani avtorizatsiya qiling.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Plex hisobini avtorizatsiya qiling.';
 	@override String get connectToJellyfinCard => 'Jellyfin-ga ulanish';
 	@override String get connectToJellyfinCardSubtitle => 'Server URL, foydalanuvchi nomi va parolingizni kiriting.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Jellyfin serveriga kiring. ${name} profiliga ulanmoqda.';
@@ -2042,103 +1885,6 @@ class _Translations$downloads$backgroundWarning$uz extends Translations$download
 	@override String get linkUnavailable => 'Bu qurilmada dontkillmyapp.com-ni ochib boʻlmadi';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$uz extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Pult serveri ishga tushmoqda...';
-	@override String get hostAddress => 'Xost manzili';
-	@override String get connected => 'Ulandi';
-	@override String get serverRunning => 'Server faol';
-	@override String get serverStopped => 'Server toʻxtatildi';
-	@override String get serverRunningDescription => 'Tarmoqdagi mobil qurilmalar ulanishi mumkin';
-	@override String get serverStoppedDescription => 'Ulanishga ruxsat berish uchun serverni ishga tushiring';
-	@override String get usePhoneToControl => 'Ushbu ilovani boshqarish uchun telefoningizdan foydalaning';
-	@override String get startServer => 'Serverni ishga tushirish';
-	@override String get stopServer => 'Serverni toʻxtatish';
-	@override String get minimize => 'Yigʻish';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$uz extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Bir xil Plex hisobidagi Plezy qurilmalari bu yerda koʻrinadi';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Ulanilmoqda...';
-	@override String get searchingForDevices => 'Qurilmalar qidirilmoqda...';
-	@override String get noDevicesFound => 'Tarmoqda qurilmalar topilmadi';
-	@override String get noDevicesHint => 'Kompyuterda Plezy-ni oching va bir xil Wi-Fi-ga ulaning';
-	@override String get availableDevices => 'Mavjud qurilmalar';
-	@override String get manualConnection => 'Qoʻlda ulanish';
-	@override String get cryptoInitFailed => 'Xavfsiz ulanish xatoligi. Avval Plex-ga kiring.';
-	@override String get validationHostRequired => 'Xost manzilini kiriting';
-	@override String get validationHostFormat => 'Format IP:port koʻrinishida boʻlishi kerak';
-	@override String get connectionTimedOut => 'Ulanish vaqti tugadi.';
-	@override String get sessionNotFound => 'Qurilma topilmadi.';
-	@override String get authFailed => 'Autentifikatsiya xatoligi.';
-	@override String failedToConnect({required Object error}) => 'Ulanib boʻlmadi: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$uz extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Pult seansidan uzilasizmi?';
-	@override String get reconnecting => 'Qayta ulanilmoqda...';
-	@override String attemptOf({required Object current}) => 'Urinish ${current} / 5';
-	@override String get retryNow => 'Hozir qaytadan urinib koʻrish';
-	@override String get tabRemote => 'Pult';
-	@override String get tabPlay => 'Ijro';
-	@override String get tabMore => 'Koʻproq';
-	@override String get menu => 'Menyu';
-	@override String get tabNavigation => 'Navigatsiya';
-	@override String get tabDiscover => 'Kashf qilish';
-	@override String get tabLibraries => 'Kutubxonalar';
-	@override String get tabSearch => 'Qidiruv';
-	@override String get tabDownloads => 'Yuklamalar';
-	@override String get tabSettings => 'Sozlamalar';
-	@override String get previous => 'Oldingi';
-	@override String get playPause => 'Ijro/Pauza';
-	@override String get next => 'Keyingi';
-	@override String get seekBack => 'Orqaga oʻtkazish';
-	@override String get stop => 'Toʻxtatish';
-	@override String get seekForward => 'Oldinga oʻtkazish';
-	@override String get volume => 'Ovoz';
-	@override String get volumeDown => 'Kamaytirish';
-	@override String get volumeUp => 'Oshirish';
-	@override String get fullscreen => 'Toʻliq ekran';
-	@override String get subtitles => 'Subtitrlar';
-	@override String get audio => 'Ovoz';
-	@override String get searchHint => 'Kompyuterda qidirish...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$uz extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Tarmoq interfeysi topilmadi';
-	@override String get authenticationFailed => 'Autentifikatsiya xatoligi';
-	@override String serverStartFailed({required Object error}) => 'Serverni ishga tushirishda xatolik: ${error}';
-	@override String commandFailed({required Object error}) => 'Buyruqni yuborishda xatolik: ${error}';
-	@override String get joinTimedOut => 'Ulanish vaqti tugadi';
-	@override String get failedToConnectAnyAddress => 'Hech bir manzilga ulanib boʻlmadi';
-	@override String connectionLostAfterAttempts({required Object attempts}) => '${attempts} urinishdan keyin aloqa uzildi';
-	@override String get connectionLost => 'Aloqa uzildi';
-}
-
 // Path: services.names
 class _Translations$services$names$uz extends Translations$services$names$en {
 	_Translations$services$names$uz._(TranslationsUz root) : this._root = root, super.internal(root);
@@ -2212,13 +1958,6 @@ extension on TranslationsUz {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Plex orqali kirish',
-			'auth.showQRCode' => 'QR kodni koʻrsatish',
-			'auth.authenticate' => 'Tasdiqlash',
-			'auth.authenticationTimeout' => 'Tasdiqlash vaqti tugadi. Iltimos, qaytadan urinib koʻring.',
-			'auth.scanQRToSignIn' => 'Kirish uchun ushbu QR kodni skanerlang',
-			'auth.waitingForAuth' => 'Tasdiqlanish kutilmoqda...\nBrauzeringizdan kiring.',
-			'auth.useBrowser' => 'Brauzerdan foydalanish',
-			'auth.or' => 'yoki',
 			'auth.connectToJellyfin' => 'Jellyfin-ga ulanish',
 			'auth.useQuickConnect' => 'Tezkor ulanishdan foydalanish',
 			'auth.quickConnectInstructions' => 'Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.',
@@ -2245,7 +1984,6 @@ extension on TranslationsUz {
 			'common.shuffle' => 'Aralashtirish',
 			'common.addTo' => 'Qoʻshish...',
 			'common.createNew' => 'Yangi yaratish',
-			'common.connect' => 'Ulanish',
 			'common.disconnect' => 'Uzilish',
 			'common.play' => 'Ijro etish',
 			'common.pause' => 'Pauza',
@@ -2255,7 +1993,6 @@ extension on TranslationsUz {
 			'common.home' => 'Bosh sahifa',
 			'common.back' => 'Orqaga',
 			'common.settings' => 'Sozlamalar',
-			'common.mute' => 'Ovozni oʻchirish',
 			'common.ok' => 'Tushunarli',
 			'common.off' => 'Oʻchirilgan',
 			'common.seasonNumber' => ({required Object number}) => '${number}-mavsum',
@@ -2271,6 +2008,7 @@ extension on TranslationsUz {
 			'common.fullscreen' => 'Toʻliq ekran',
 			'common.exitFullscreen' => 'Toʻliq ekrandan chiqish',
 			'common.pressBackAgainToExit' => 'Chiqish uchun orqaga tugmasini yana bir bor bosing',
+			'common.next' => 'Keyingi',
 			'screens.licenses' => 'Litsenziyalar',
 			'screens.switchProfile' => 'Profilni almashtirish',
 			'screens.subtitleStyling' => 'Subtitr sozlamalari',
@@ -2379,10 +2117,6 @@ extension on TranslationsUz {
 			'settings.keyboardShortcutsDescription' => 'Klaviatura tugmalarini moslashtiring',
 			'settings.videoPlayerNavigation' => 'Video pleyer navigatsiyasi',
 			'settings.videoPlayerNavigationDescription' => 'Pleyerni boshqarish uchun yoʻnalish tugmalaridan foydalaning',
-			'settings.watchTogetherRelay' => 'Birgalikda tomosha relesi',
-			'settings.watchTogetherRelayDescription' => 'Xususiy rele oʻrnating. Barcha bir xil serverdan foydalanishi kerak.',
-			'settings.watchTogetherRelayHint' => 'https://my-relay.example.com',
-			'settings.watchTogetherRelayInvalid' => 'Toʻgʻri HTTP yoki HTTPS rele manzilini kiriting.',
 			'settings.crashReporting' => 'Xatoliklar haqida hisobot',
 			'settings.crashReportingDescription' => 'Ilovani takomillashtirishga yordam berish uchun xatoliklar hisobotini yuboring',
 			'settings.debugLogging' => 'Nosozliklarni aniqlash jurnali',
@@ -2457,8 +2191,6 @@ extension on TranslationsUz {
 			'settings.services' => 'Xizmatlar',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr va boshqalarni ulang',
 			'settings.manageLibrariesDescription' => 'Kutubxonalarni tartiblash va yashirish',
-			'settings.companionRemoteServer' => 'Yordamchi pult serveri',
-			'settings.companionRemoteServerDescription' => 'Tarmoqdagi mobil qurilmalarga ushbu ilovani boshqarishga ruxsat berish',
 			'settings.autoPip' => 'Avtomatik Rasm ichida rasm (PiP)',
 			'settings.autoPipDescription' => 'Video ijro etilayotganda ilovadan chiqilganda avto-PiP rejimiga oʻtish',
 			'settings.matchContentFrameRate' => 'Kadrlar chastotasini moslashtirish',
@@ -2722,15 +2454,6 @@ extension on TranslationsUz {
 			'videoControls.noChaptersAvailable' => 'Boʻlimlar mavjud emas',
 			'videoControls.queue' => 'Navbat',
 			'videoControls.noQueueItems' => 'Navbatda elementlar yoʻq',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.searchSubtitles' => 'Subtitr qidirish',
-			'videoControls.language' => 'Til',
-			'videoControls.noSubtitlesFound' => 'Subtitr topilmadi',
-			'videoControls.subtitleDownloaded' => 'Subtitr yuklab olindi',
-			'videoControls.subtitleDownloadedNotApplied' => 'Subtitr yuklab olindi, lekin qoʻllanilmadi',
-			'videoControls.subtitleDownloadFailed' => 'Subtitrni yuklab boʻlmadi',
-			'videoControls.searchLanguages' => 'Tillardan qidirish...',
 			'messages.markedAsWatched' => 'Koʻrilgan deb belgilandi',
 			'messages.markedAsUnwatched' => 'Koʻrilmagan deb belgilandi',
 			'messages.markedAsWatchedOffline' => 'Koʻrilgan deb belgilandi (tarmoqqa ulanganda sinxronlanadi)',
@@ -2745,6 +2468,8 @@ extension on TranslationsUz {
 			'messages.fileInfoNotAvailable' => 'Fayl haqida maʼlumot mavjud emas',
 			'messages.playbackAuthenticationRequired' => 'Ushbu elementni ijro etish uchun serverga qaytadan kiring.',
 			'messages.playbackServerUnavailable' => 'Media serveri mavjud emas. Keyinroq qaytadan urinib koʻring.',
+			_ => null,
+		} ?? switch (path) {
 			'messages.playbackDataInvalid' => 'Server notoʻgʻri ijro maʼlumotlarini qaytardi.',
 			'messages.playbackCancelled' => 'Ijro bekor qilindi.',
 			'messages.playbackFailed' => 'Ijroni ishga tushirishda xatolik.',
@@ -2869,7 +2594,6 @@ extension on TranslationsUz {
 			'profiles.incorrectPin' => 'Notoʻgʻri PIN kod.',
 			'profiles.incorrectPinTryAgain' => 'Notoʻgʻri PIN kod. Qaytadan urinib koʻring.',
 			'profiles.sourceProfileMissingParentAccount' => 'Manba profilda asosiy hisob yoʻq.',
-			'profiles.failedToLoadHomeUsers' => 'Plex Home foydalanuvchilarini yuklab boʻlmadi.',
 			'profiles.failedToVerifyPin' => 'PIN kodni tekshirib boʻlmadi.',
 			'profiles.newProfile' => 'Yangi profil',
 			'profiles.profileNameHint' => 'masalan, Mehmonlar, Bolalar',
@@ -2916,9 +2640,6 @@ extension on TranslationsUz {
 			'errors.connectionFailed' => 'Media serveriga ulanib boʻlmadi',
 			'errors.unableToLoad' => ({required Object context}) => '${context} yuklab boʻlmadi.',
 			'errors.noClientAvailable' => 'Mavjud mijoz yoʻq',
-			'errors.pleaseEnterToken' => 'Tokenni kiriting',
-			'errors.invalidToken' => 'Notoʻgʻri token',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Tokenni tekshirib boʻlmadi: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => '${displayName} profiliga oʻtib boʻlmadi',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => '${displayName} profilini oʻchirib boʻlmadi',
 			'errors.failedToRate' => 'Reytingni yangilab boʻlmadi',
@@ -3009,8 +2730,6 @@ extension on TranslationsUz {
 			'about.versionLabel' => ({required Object version}) => 'Versiya ${version}',
 			'about.appDescription' => 'Flutter asosidagi qulay Plex va Jellyfin mijozi',
 			'about.viewLicensesDescription' => 'Uchinchi tomon kutubxonalarining litsenziyalarini koʻrish',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => '${username} (${email}) uchun serverlar topilmadi',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Serverlarni yuklashda xatolik: ${error}',
 			'hubDetail.title' => 'Nomi',
 			'hubDetail.releaseYear' => 'Chiqqan yili',
 			'hubDetail.dateAdded' => 'Qoʻshilgan sanasi',
@@ -3197,73 +2916,6 @@ extension on TranslationsUz {
 			'music.repeat' => 'Takrorlash',
 			'music.repeatAll' => 'Barchasini takrorlash',
 			'music.repeatOne' => 'Birtasini takrorlash',
-			'watchTogether.title' => 'Birgalikda tomosha qilish',
-			'watchTogether.description' => 'Doʻstlaringiz va oilangiz bilan birga tomosha qiling',
-			'watchTogether.createSession' => 'Seans yaratish',
-			'watchTogether.creating' => 'Yaratilmoqda...',
-			'watchTogether.joinSession' => 'Seansga qoʻshilish',
-			'watchTogether.joining' => 'Qoʻshilinmoqda...',
-			'watchTogether.controlMode' => 'Boshqaruv rejimi',
-			'watchTogether.controlModeQuestion' => 'Ijroni kim boshqara oladi?',
-			'watchTogether.hostOnly' => 'Faqat tashkilotchi',
-			'watchTogether.anyone' => 'Har kim',
-			'watchTogether.hostingSession' => 'Seans tashkillashtirilmoqda',
-			'watchTogether.inSession' => 'Seansda',
-			'watchTogether.sessionCode' => 'Seans kodi',
-			'watchTogether.openSessionControls' => 'Boshqaruv elementlarini ochish',
-			'watchTogether.copySessionCode' => 'Seans kodini nusxalash',
-			'watchTogether.hostControlsPlayback' => 'Ijroni tashkilotchi boshqaradi',
-			'watchTogether.anyoneCanControl' => 'Ijroni har kim boshqara oladi',
-			'watchTogether.hostControls' => 'Tashkilotchi boshqaradi',
-			'watchTogether.anyoneControls' => 'Hamma boshqaradi',
-			'watchTogether.participants' => 'Ishtirokchilar',
-			'watchTogether.host' => 'Tashkilotchi',
-			'watchTogether.hostBadge' => 'TASHKILOTCHI',
-			'watchTogether.youAreHost' => 'Siz tashkilotchisiz',
-			'watchTogether.watchingWithOthers' => 'Boshqalar bilan tomosha qilinmoqda',
-			'watchTogether.endSession' => 'Seansni yakunlash',
-			'watchTogether.leaveSession' => 'Seansdan chiqish',
-			'watchTogether.endSessionQuestion' => 'Seans yakunlansinmi?',
-			'watchTogether.leaveSessionQuestion' => 'Seansdan chiqasizmi?',
-			'watchTogether.endSessionConfirm' => 'Bu barcha ishtirokchilar uchun seansni yakunlaydi.',
-			'watchTogether.leaveSessionConfirm' => 'Siz seansdan uzilasiz.',
-			'watchTogether.endSessionConfirmOverlay' => 'Bu barcha uchun tomosha seansini yakunlaydi.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Tomosha seansidan uzilasiz.',
-			'watchTogether.end' => 'Yakunlash',
-			'watchTogether.leave' => 'Chiqish',
-			'watchTogether.syncing' => 'Sinxronlanmoqda...',
-			'watchTogether.joinWatchSession' => 'Tomosha seansiga qoʻshilish',
-			'watchTogether.enterCodeHint' => '5 xonali kodni kiriting',
-			'watchTogether.pasteFromClipboard' => 'Xotiradan joylash',
-			'watchTogether.pleaseEnterCode' => 'Seans kodini kiriting',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.codeMustBe5Chars' => 'Seans kodi 5 ta belgidan iborat boʻlishi kerak',
-			'watchTogether.joinInstructions' => 'Tashkilotchining seans kodini kiriting.',
-			'watchTogether.failedToCreate' => 'Seansni yaratib boʻlmadi',
-			'watchTogether.failedToJoin' => 'Seansga qoʻshilib boʻlmadi',
-			'watchTogether.sessionCodeCopied' => 'Seans kodi nusxalandi',
-			'watchTogether.relayUnreachable' => 'Rele serveriga ulanib boʻlmadi.',
-			'watchTogether.reconnectingToHost' => 'Tashkilotchiga qayta ulanilmoqda...',
-			'watchTogether.currentPlayback' => 'Joriy ijro',
-			'watchTogether.joinCurrentPlayback' => 'Joriy ijroga qoʻshilish',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Tashkilotchi koʻrayotgan joyga oʻting',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Joriy ijroni ochib boʻlmadi',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} qoʻshildi',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} chiqdi',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} toʻxtatdi',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} davom ettirdi',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} vaqtni oʻzgartirdi',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} buferlamoqda',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} eski versiyada',
-			'watchTogether.resumingWithout' => ({required Object name}) => '${name} hisobga olinmasdan davom ettirilmoqda',
-			'watchTogether.waitingForParticipants' => 'Boshqalarning yuklashini kutilmoqda...',
-			'watchTogether.waitingForName' => ({required Object name}) => '${name} kutilmoqda...',
-			'watchTogether.recentRooms' => 'Yaqindagi xonalar',
-			'watchTogether.renameRoom' => 'Xona nomini oʻzgartirmoqchimisiz?',
-			'watchTogether.removeRoom' => 'Oʻchirish',
-			'watchTogether.guestSwitchUnavailable' => 'Oʻtib boʻlmadi',
-			'watchTogether.guestSwitchFailed' => 'Oʻtib boʻlmadi — kontent topilmadi',
 			'downloads.title' => 'Yuklamalar',
 			'downloads.manage' => 'Boshqarish',
 			'downloads.tvShows' => 'TV Shoular',
@@ -3330,6 +2982,8 @@ extension on TranslationsUz {
 			'downloads.editEpisodeCount' => 'Qismlar soni',
 			'downloads.editSyncFilter' => 'Sinxronlash filtri',
 			'downloads.syncAllItems' => 'Barcha elementlar sinxronlanadi',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.syncUnwatchedItems' => 'Koʻrilmagan elementlar sinxronlanadi',
 			'downloads.syncRuleServerContext' => ({required Object server, required Object status}) => 'Server: ${server} • ${status}',
 			'downloads.syncRuleAvailable' => 'Mavjud',
@@ -3379,70 +3033,6 @@ extension on TranslationsUz {
 			'shaders.shaderImportFailed' => 'Sheyderni import qilib boʻlmadi',
 			'shaders.deleteShader' => 'Sheyderni oʻchirish',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => '"${name}" oʻchirilsinmi?',
-			'companionRemote.title' => 'Yordamchi pult',
-			'companionRemote.connectedTo' => ({required Object name}) => '${name} qurilmasiga ulandi',
-			'companionRemote.unknownDevice' => 'Nomaʼlum qurilma',
-			'companionRemote.session.startingServer' => 'Pult serveri ishga tushmoqda...',
-			'companionRemote.session.hostAddress' => 'Xost manzili',
-			'companionRemote.session.connected' => 'Ulandi',
-			'companionRemote.session.serverRunning' => 'Server faol',
-			'companionRemote.session.serverStopped' => 'Server toʻxtatildi',
-			'companionRemote.session.serverRunningDescription' => 'Tarmoqdagi mobil qurilmalar ulanishi mumkin',
-			'companionRemote.session.serverStoppedDescription' => 'Ulanishga ruxsat berish uchun serverni ishga tushiring',
-			'companionRemote.session.usePhoneToControl' => 'Ushbu ilovani boshqarish uchun telefoningizdan foydalaning',
-			'companionRemote.session.startServer' => 'Serverni ishga tushirish',
-			'companionRemote.session.stopServer' => 'Serverni toʻxtatish',
-			'companionRemote.session.minimize' => 'Yigʻish',
-			'companionRemote.pairing.discoveryDescription' => 'Bir xil Plex hisobidagi Plezy qurilmalari bu yerda koʻrinadi',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Ulanilmoqda...',
-			'companionRemote.pairing.searchingForDevices' => 'Qurilmalar qidirilmoqda...',
-			'companionRemote.pairing.noDevicesFound' => 'Tarmoqda qurilmalar topilmadi',
-			'companionRemote.pairing.noDevicesHint' => 'Kompyuterda Plezy-ni oching va bir xil Wi-Fi-ga ulaning',
-			'companionRemote.pairing.availableDevices' => 'Mavjud qurilmalar',
-			'companionRemote.pairing.manualConnection' => 'Qoʻlda ulanish',
-			'companionRemote.pairing.cryptoInitFailed' => 'Xavfsiz ulanish xatoligi. Avval Plex-ga kiring.',
-			'companionRemote.pairing.validationHostRequired' => 'Xost manzilini kiriting',
-			'companionRemote.pairing.validationHostFormat' => 'Format IP:port koʻrinishida boʻlishi kerak',
-			'companionRemote.pairing.connectionTimedOut' => 'Ulanish vaqti tugadi.',
-			'companionRemote.pairing.sessionNotFound' => 'Qurilma topilmadi.',
-			'companionRemote.pairing.authFailed' => 'Autentifikatsiya xatoligi.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Ulanib boʻlmadi: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Pult seansidan uzilasizmi?',
-			'companionRemote.remote.reconnecting' => 'Qayta ulanilmoqda...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Urinish ${current} / 5',
-			'companionRemote.remote.retryNow' => 'Hozir qaytadan urinib koʻrish',
-			'companionRemote.remote.tabRemote' => 'Pult',
-			'companionRemote.remote.tabPlay' => 'Ijro',
-			'companionRemote.remote.tabMore' => 'Koʻproq',
-			'companionRemote.remote.menu' => 'Menyu',
-			'companionRemote.remote.tabNavigation' => 'Navigatsiya',
-			'companionRemote.remote.tabDiscover' => 'Kashf qilish',
-			'companionRemote.remote.tabLibraries' => 'Kutubxonalar',
-			'companionRemote.remote.tabSearch' => 'Qidiruv',
-			'companionRemote.remote.tabDownloads' => 'Yuklamalar',
-			'companionRemote.remote.tabSettings' => 'Sozlamalar',
-			'companionRemote.remote.previous' => 'Oldingi',
-			'companionRemote.remote.playPause' => 'Ijro/Pauza',
-			'companionRemote.remote.next' => 'Keyingi',
-			'companionRemote.remote.seekBack' => 'Orqaga oʻtkazish',
-			'companionRemote.remote.stop' => 'Toʻxtatish',
-			'companionRemote.remote.seekForward' => 'Oldinga oʻtkazish',
-			'companionRemote.remote.volume' => 'Ovoz',
-			'companionRemote.remote.volumeDown' => 'Kamaytirish',
-			'companionRemote.remote.volumeUp' => 'Oshirish',
-			'companionRemote.remote.fullscreen' => 'Toʻliq ekran',
-			'companionRemote.remote.subtitles' => 'Subtitrlar',
-			'companionRemote.remote.audio' => 'Ovoz',
-			'companionRemote.remote.searchHint' => 'Kompyuterda qidirish...',
-			'companionRemote.errors.noNetworkInterface' => 'Tarmoq interfeysi topilmadi',
-			'companionRemote.errors.authenticationFailed' => 'Autentifikatsiya xatoligi',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Serverni ishga tushirishda xatolik: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Buyruqni yuborishda xatolik: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Ulanish vaqti tugadi',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Hech bir manzilga ulanib boʻlmadi',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => '${attempts} urinishdan keyin aloqa uzildi',
-			'companionRemote.errors.connectionLost' => 'Aloqa uzildi',
 			'videoSettings.playbackSpeed' => 'Ijro tezligi',
 			'videoSettings.normalSpeed' => 'Normal',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Faol (${duration})',
@@ -3588,18 +3178,6 @@ extension on TranslationsUz {
 			'metadataEdit.label' => 'Yorliq',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Kayfiyat',
-			'matchScreen.match' => 'Moslashtirish...',
-			'matchScreen.fixMatch' => 'Moslikni tuzatish...',
-			'matchScreen.unmatch' => 'Moslikni oʻchirish',
-			'matchScreen.unmatchConfirm' => 'Ushbu moslik oʻchirilsinmi?',
-			'matchScreen.unmatchSuccess' => 'Moslik oʻchirildi',
-			'matchScreen.unmatchFailed' => 'Moslikni oʻchirib boʻlmadi',
-			'matchScreen.matchApplied' => 'Moslik qoʻllanildi',
-			'matchScreen.matchFailed' => 'Moslikni qoʻllab boʻlmadi',
-			'matchScreen.titleHint' => 'Nomi',
-			'matchScreen.yearHint' => 'Yil',
-			'matchScreen.search' => 'Qidiruv',
-			'matchScreen.noMatchesFound' => 'Mosliklar topilmadi',
 			'serverTasks.title' => 'Server vazifalari',
 			'serverTasks.failedToLoad' => 'Vazifalarni yuklab boʻlmadi',
 			'serverTasks.noTasks' => 'Bajarilayotgan vazifalar yoʻq',
@@ -3692,15 +3270,9 @@ extension on TranslationsUz {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Serverga ulanib boʻlmadi: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Kirish xatoligi: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Tezkor ulanish xatoligi: ${error}',
-			'addServer.addPlexTitle' => 'Plex orqali kirish',
-			'addServer.pinExpired' => 'PIN kod vaqti tugadi.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Hisobni roʻyxatdan oʻtkazishda xatolik: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Jellyfin server URL-ini kiriting',
 			'addServer.addConnectionTitle' => 'Ulanish qoʻshish',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => '${name} profiliga qoʻshish',
-			'addServer.signInWithPlexCard' => 'Plex orqali kirish',
-			'addServer.signInWithPlexCardSubtitle' => 'Ushbu qurilmani avtorizatsiya qiling.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Plex hisobini avtorizatsiya qiling.',
 			'addServer.connectToJellyfinCard' => 'Jellyfin-ga ulanish',
 			'addServer.connectToJellyfinCardSubtitle' => 'Server URL, foydalanuvchi nomi va parolingizni kiriting.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Jellyfin serveriga kiring. ${name} profiliga ulanmoqda.',

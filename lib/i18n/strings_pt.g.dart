@@ -64,7 +64,6 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$pt errors = _Translations$errors$pt._(_root);
 	@override late final _Translations$libraries$pt libraries = _Translations$libraries$pt._(_root);
 	@override late final _Translations$about$pt about = _Translations$about$pt._(_root);
-	@override late final _Translations$serverSelection$pt serverSelection = _Translations$serverSelection$pt._(_root);
 	@override late final _Translations$hubDetail$pt hubDetail = _Translations$hubDetail$pt._(_root);
 	@override late final _Translations$logs$pt logs = _Translations$logs$pt._(_root);
 	@override late final _Translations$licenses$pt licenses = _Translations$licenses$pt._(_root);
@@ -74,15 +73,12 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$pt collections = _Translations$collections$pt._(_root);
 	@override late final _Translations$playlists$pt playlists = _Translations$playlists$pt._(_root);
 	@override late final _Translations$music$pt music = _Translations$music$pt._(_root);
-	@override late final _Translations$watchTogether$pt watchTogether = _Translations$watchTogether$pt._(_root);
 	@override late final _Translations$downloads$pt downloads = _Translations$downloads$pt._(_root);
 	@override late final _Translations$shaders$pt shaders = _Translations$shaders$pt._(_root);
-	@override late final _Translations$companionRemote$pt companionRemote = _Translations$companionRemote$pt._(_root);
 	@override late final _Translations$videoSettings$pt videoSettings = _Translations$videoSettings$pt._(_root);
 	@override late final _Translations$performanceOverlay$pt performanceOverlay = _Translations$performanceOverlay$pt._(_root);
 	@override late final _Translations$externalPlayer$pt externalPlayer = _Translations$externalPlayer$pt._(_root);
 	@override late final _Translations$metadataEdit$pt metadataEdit = _Translations$metadataEdit$pt._(_root);
-	@override late final _Translations$matchScreen$pt matchScreen = _Translations$matchScreen$pt._(_root);
 	@override late final _Translations$serverTasks$pt serverTasks = _Translations$serverTasks$pt._(_root);
 	@override late final _Translations$trakt$pt trakt = _Translations$trakt$pt._(_root);
 	@override late final _Translations$seerr$pt seerr = _Translations$seerr$pt._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$pt extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Entrar com Plex';
-	@override String get showQRCode => 'Mostrar código QR';
-	@override String get authenticate => 'Autenticar';
-	@override String get authenticationTimeout => 'A autenticação expirou. Tente novamente.';
-	@override String get scanQRToSignIn => 'Leia este código QR para entrar';
-	@override String get waitingForAuth => 'Aguardando autenticação...\nEntre pelo navegador.';
-	@override String get useBrowser => 'Usar navegador';
-	@override String get or => 'ou';
 	@override String get connectToJellyfin => 'Conectar ao Jellyfin';
 	@override String get useQuickConnect => 'Usar Quick Connect';
 	@override String get quickConnectInstructions => 'Abra o Quick Connect no Jellyfin e insira este código.';
@@ -150,7 +139,6 @@ class _Translations$common$pt extends Translations$common$en {
 	@override String get shuffle => 'Aleatório';
 	@override String get addTo => 'Adicionar a...';
 	@override String get createNew => 'Criar novo';
-	@override String get connect => 'Conectar';
 	@override String get disconnect => 'Desconectar';
 	@override String get play => 'Reproduzir';
 	@override String get pause => 'Pausar';
@@ -160,7 +148,6 @@ class _Translations$common$pt extends Translations$common$en {
 	@override String get home => 'Início';
 	@override String get back => 'Voltar';
 	@override String get settings => 'Configurações';
-	@override String get mute => 'Silenciar';
 	@override String get ok => 'OK';
 	@override String get off => 'Desativado';
 	@override String seasonNumber({required Object number}) => 'Temporada ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$pt extends Translations$common$en {
 	@override String get fullscreen => 'Tela cheia';
 	@override String get exitFullscreen => 'Sair da tela cheia';
 	@override String get pressBackAgainToExit => 'Pressione voltar novamente para sair';
+	@override String get next => 'Próximo';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Personalizar atalhos de teclado';
 	@override String get videoPlayerNavigation => 'Navegação do reprodutor de vídeo';
 	@override String get videoPlayerNavigationDescription => 'Usar as teclas de seta para navegar pelos controles do reprodutor';
-	@override String get watchTogetherRelay => 'Servidor de retransmissão do Assistir Juntos';
-	@override String get watchTogetherRelayDescription => 'Definir um servidor de retransmissão personalizado. Todos devem usar o mesmo servidor.';
-	@override String get watchTogetherRelayHint => 'https://minha-retransmissao.exemplo.com.br';
-	@override String get watchTogetherRelayInvalid => 'Insira uma URL base de retransmissão HTTP ou HTTPS válida.';
 	@override String get crashReporting => 'Relatório de Erros';
 	@override String get crashReportingDescription => 'Enviar relatórios de erros para ajudar a melhorar o app';
 	@override String get debugLogging => 'Log de Depuração';
@@ -386,8 +370,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get services => 'Serviços';
 	@override String get servicesDescription => 'Conecte Trakt, MyAnimeList, Seerr e mais';
 	@override String get manageLibrariesDescription => 'Reordene e oculte bibliotecas';
-	@override String get companionRemoteServer => 'Servidor de controle remoto';
-	@override String get companionRemoteServerDescription => 'Permitir que dispositivos móveis na sua rede controlem este app';
 	@override String get autoPip => 'Picture-in-picture automático';
 	@override String get autoPipDescription => 'Entrar automaticamente no modo picture-in-picture ao sair do app durante a reprodução';
 	@override String get matchContentFrameRate => 'Ajustar à taxa de quadros do conteúdo';
@@ -702,13 +684,6 @@ class _Translations$videoControls$pt extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => 'Nenhum capítulo disponível';
 	@override String get queue => 'Fila';
 	@override String get noQueueItems => 'Nenhum item na fila';
-	@override String get searchSubtitles => 'Pesquisar legendas';
-	@override String get language => 'Idioma';
-	@override String get noSubtitlesFound => 'Nenhuma legenda encontrada';
-	@override String get subtitleDownloaded => 'Legenda baixada';
-	@override String get subtitleDownloadedNotApplied => 'A legenda foi baixada, mas não foi possível selecioná-la';
-	@override String get subtitleDownloadFailed => 'Falha ao baixar legenda';
-	@override String get searchLanguages => 'Pesquisar idiomas...';
 }
 
 // Path: messages
@@ -894,7 +869,6 @@ class _Translations$profiles$pt extends Translations$profiles$en {
 	@override String get incorrectPin => 'PIN incorreto.';
 	@override String get incorrectPinTryAgain => 'PIN incorreto. Tente novamente.';
 	@override String get sourceProfileMissingParentAccount => 'O perfil de origem não tem a conta principal.';
-	@override String get failedToLoadHomeUsers => 'Não foi possível carregar os usuários do Plex Home. Verifique sua conexão e tente novamente.';
 	@override String get failedToVerifyPin => 'Não foi possível verificar o PIN.';
 	@override String get newProfile => 'Novo perfil';
 	@override String get profileNameHint => 'Ex.: Visitantes, Crianças, Sala de família';
@@ -967,9 +941,6 @@ class _Translations$errors$pt extends Translations$errors$en {
 	@override String get connectionFailed => 'Não foi possível conectar ao servidor de mídia';
 	@override String unableToLoad({required Object context}) => 'Não foi possível carregar ${context}. Tente novamente.';
 	@override String get noClientAvailable => 'Nenhum cliente disponível';
-	@override String get pleaseEnterToken => 'Insira um token';
-	@override String get invalidToken => 'Token inválido';
-	@override String failedToVerifyToken({required Object error}) => 'Falha ao verificar token: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => 'Falha ao trocar para ${displayName}';
 	@override String failedToDeleteProfile({required Object displayName}) => 'Falha ao excluir ${displayName}';
 	@override String get failedToRate => 'Não foi possível atualizar a classificação';
@@ -1041,17 +1012,6 @@ class _Translations$about$pt extends Translations$about$en {
 	@override String versionLabel({required Object version}) => 'Versão ${version}';
 	@override String get appDescription => 'Um belo cliente de Plex e Jellyfin feito com Flutter';
 	@override String get viewLicensesDescription => 'Ver as licenças de bibliotecas de terceiros';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$pt extends Translations$serverSelection$en {
-	_Translations$serverSelection$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => 'Nenhum servidor encontrado para ${username} (${email})';
-	@override String failedToLoadServers({required Object error}) => 'Falha ao carregar servidores: ${error}';
 }
 
 // Path: hubDetail
@@ -1311,80 +1271,6 @@ class _Translations$music$pt extends Translations$music$en {
 	@override String get repeatOne => 'Repetir uma faixa';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$pt extends Translations$watchTogether$en {
-	_Translations$watchTogether$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Assistir Juntos';
-	@override String get description => 'Assista a conteúdos sincronizados com amigos e familiares';
-	@override String get createSession => 'Criar sessão';
-	@override String get creating => 'Criando...';
-	@override String get joinSession => 'Entrar na sessão';
-	@override String get joining => 'Entrando...';
-	@override String get controlMode => 'Modo de controle';
-	@override String get controlModeQuestion => 'Quem pode controlar a reprodução?';
-	@override String get hostOnly => 'Apenas o anfitrião';
-	@override String get anyone => 'Qualquer pessoa';
-	@override String get hostingSession => 'Hospedando uma sessão';
-	@override String get inSession => 'Em uma sessão';
-	@override String get sessionCode => 'Código da sessão';
-	@override String get openSessionControls => 'Abrir os controles da sessão Assistir Juntos';
-	@override String get copySessionCode => 'Copiar código da sessão';
-	@override String get hostControlsPlayback => 'O anfitrião controla a reprodução';
-	@override String get anyoneCanControl => 'Qualquer pessoa pode controlar a reprodução';
-	@override String get hostControls => 'Controle do anfitrião';
-	@override String get anyoneControls => 'Controle por qualquer pessoa';
-	@override String get participants => 'Participantes';
-	@override String get host => 'Anfitrião';
-	@override String get hostBadge => 'ANFITRIÃO';
-	@override String get youAreHost => 'Você é o anfitrião';
-	@override String get watchingWithOthers => 'Assistindo com outras pessoas';
-	@override String get endSession => 'Encerrar sessão';
-	@override String get leaveSession => 'Sair da sessão';
-	@override String get endSessionQuestion => 'Encerrar sessão?';
-	@override String get leaveSessionQuestion => 'Sair da sessão?';
-	@override String get endSessionConfirm => 'Isso encerrará a sessão para todos os participantes.';
-	@override String get leaveSessionConfirm => 'Você será removido da sessão.';
-	@override String get endSessionConfirmOverlay => 'Isso encerrará a sessão do Assistir Juntos para todos os participantes.';
-	@override String get leaveSessionConfirmOverlay => 'Você será desconectado da sessão do Assistir Juntos.';
-	@override String get end => 'Encerrar';
-	@override String get leave => 'Sair';
-	@override String get syncing => 'Sincronizando...';
-	@override String get joinWatchSession => 'Entrar na sessão';
-	@override String get enterCodeHint => 'Insira o código de 5 caracteres';
-	@override String get pasteFromClipboard => 'Colar da área de transferência';
-	@override String get pleaseEnterCode => 'Insira um código de sessão';
-	@override String get codeMustBe5Chars => 'O código da sessão deve ter 5 caracteres';
-	@override String get joinInstructions => 'Insira o código de sessão do anfitrião para entrar.';
-	@override String get failedToCreate => 'Falha ao criar sessão';
-	@override String get failedToJoin => 'Falha ao entrar na sessão';
-	@override String get sessionCodeCopied => 'Código da sessão copiado para a área de transferência';
-	@override String get relayUnreachable => 'Servidor de retransmissão inacessível. O bloqueio pelo provedor de internet pode impedir o uso do Assistir Juntos.';
-	@override String get reconnectingToHost => 'Reconectando ao anfitrião...';
-	@override String get currentPlayback => 'Reprodução atual';
-	@override String get joinCurrentPlayback => 'Entrar na reprodução atual';
-	@override String get joinCurrentPlaybackDescription => 'Voltar ao conteúdo que o anfitrião está assistindo agora';
-	@override String get failedToOpenCurrentPlayback => 'Falha ao abrir a reprodução atual';
-	@override String participantJoined({required Object name}) => '${name} entrou';
-	@override String participantLeft({required Object name}) => '${name} saiu';
-	@override String participantPaused({required Object name}) => '${name} pausou';
-	@override String participantResumed({required Object name}) => '${name} retomou';
-	@override String participantSeeked({required Object name}) => '${name} mudou a posição da reprodução';
-	@override String participantBuffering({required Object name}) => '${name} está aguardando o carregamento';
-	@override String participantNeedsUpdate({required Object name}) => '${name} está usando uma versão mais antiga do app — sincronização indisponível';
-	@override String resumingWithout({required Object name}) => 'Retomando sem ${name}';
-	@override String get waitingForParticipants => 'Aguardando o carregamento dos outros participantes...';
-	@override String waitingForName({required Object name}) => 'Aguardando ${name}...';
-	@override String get recentRooms => 'Salas recentes';
-	@override String get renameRoom => 'Renomear sala';
-	@override String get removeRoom => 'Remover';
-	@override String get guestSwitchUnavailable => 'Não foi possível trocar — servidor indisponível para sincronização';
-	@override String get guestSwitchFailed => 'Não foi possível trocar — conteúdo não encontrado neste servidor';
-}
-
 // Path: downloads
 class _Translations$downloads$pt extends Translations$downloads$en {
 	_Translations$downloads$pt._(TranslationsPt root) : this._root = root, super.internal(root);
@@ -1485,22 +1371,6 @@ class _Translations$shaders$pt extends Translations$shaders$en {
 	@override String get shaderImportFailed => 'Falha ao importar shader';
 	@override String get deleteShader => 'Excluir Shader';
 	@override String deleteShaderConfirm({required Object name}) => 'Excluir "${name}"?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$pt extends Translations$companionRemote$en {
-	_Translations$companionRemote$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Controle remoto';
-	@override String connectedTo({required Object name}) => 'Conectado a ${name}';
-	@override String get unknownDevice => 'Dispositivo desconhecido';
-	@override late final _Translations$companionRemote$session$pt session = _Translations$companionRemote$session$pt._(_root);
-	@override late final _Translations$companionRemote$pairing$pt pairing = _Translations$companionRemote$pairing$pt._(_root);
-	@override late final _Translations$companionRemote$remote$pt remote = _Translations$companionRemote$remote$pt._(_root);
-	@override late final _Translations$companionRemote$errors$pt errors = _Translations$companionRemote$errors$pt._(_root);
 }
 
 // Path: videoSettings
@@ -1684,27 +1554,6 @@ class _Translations$metadataEdit$pt extends Translations$metadataEdit$en {
 	@override String get mood => 'Humor';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$pt extends Translations$matchScreen$en {
-	_Translations$matchScreen$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => 'Associar...';
-	@override String get fixMatch => 'Corrigir correspondência...';
-	@override String get unmatch => 'Desassociar';
-	@override String get unmatchConfirm => 'Limpar esta correspondência? Plex tratará como sem correspondência até refazer.';
-	@override String get unmatchSuccess => 'Item desassociado';
-	@override String get unmatchFailed => 'Falha ao desassociar item';
-	@override String get matchApplied => 'Correspondência aplicada';
-	@override String get matchFailed => 'Falha ao aplicar correspondência';
-	@override String get titleHint => 'Título';
-	@override String get yearHint => 'Ano';
-	@override String get search => 'Pesquisar';
-	@override String get noMatchesFound => 'Nenhuma correspondência encontrada';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$pt extends Translations$serverTasks$en {
 	_Translations$serverTasks$pt._(TranslationsPt root) : this._root = root, super.internal(root);
@@ -1817,15 +1666,9 @@ class _Translations$addServer$pt extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => 'Não foi possível conectar ao servidor: ${error}';
 	@override String signInFailed({required Object error}) => 'Falha ao entrar: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Quick Connect falhou: ${error}';
-	@override String get addPlexTitle => 'Entrar com Plex';
-	@override String get pinExpired => 'O PIN expirou antes de entrar. Tente novamente.';
-	@override String failedToRegisterAccount({required Object error}) => 'Falha ao registrar a conta: ${error}';
 	@override String get enterJellyfinUrlError => 'Insira a URL do seu servidor Jellyfin';
 	@override String get addConnectionTitle => 'Adicionar conexão';
 	@override String addConnectionTitleScoped({required Object name}) => 'Adicionar a ${name}';
-	@override String get signInWithPlexCard => 'Entrar com Plex';
-	@override String get signInWithPlexCardSubtitle => 'Autorize este dispositivo. Servidores compartilhados são adicionados.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Autorize uma conta Plex. Os usuários do Plex Home se tornam perfis.';
 	@override String get connectToJellyfinCard => 'Conectar ao Jellyfin';
 	@override String get connectToJellyfinCardSubtitle => 'Insira URL do servidor, usuário e senha.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Entre em um servidor Jellyfin. A conexão será vinculada a ${name}.';
@@ -2031,103 +1874,6 @@ class _Translations$downloads$backgroundWarning$pt extends Translations$download
 	@override String get linkUnavailable => 'Não foi possível abrir dontkillmyapp.com neste dispositivo';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$pt extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => 'Iniciando servidor remoto...';
-	@override String get hostAddress => 'Endereço do host';
-	@override String get connected => 'Conectado';
-	@override String get serverRunning => 'Servidor remoto ativo';
-	@override String get serverStopped => 'Servidor remoto parado';
-	@override String get serverRunningDescription => 'Dispositivos móveis na sua rede podem se conectar a este app';
-	@override String get serverStoppedDescription => 'Inicie o servidor para permitir que dispositivos móveis se conectem';
-	@override String get usePhoneToControl => 'Use seu dispositivo móvel para controlar este app';
-	@override String get startServer => 'Iniciar servidor';
-	@override String get stopServer => 'Parar servidor';
-	@override String get minimize => 'Minimizar';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$pt extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => 'Dispositivos Plezy com a mesma conta Plex aparecem aqui';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => 'Conectando...';
-	@override String get searchingForDevices => 'Procurando dispositivos...';
-	@override String get noDevicesFound => 'Nenhum dispositivo encontrado na sua rede';
-	@override String get noDevicesHint => 'Abra o Plezy no desktop e use a mesma rede Wi-Fi';
-	@override String get availableDevices => 'Dispositivos disponíveis';
-	@override String get manualConnection => 'Conexão manual';
-	@override String get cryptoInitFailed => 'Não foi possível iniciar a conexão segura. Entre no Plex primeiro.';
-	@override String get validationHostRequired => 'Insira o endereço do host';
-	@override String get validationHostFormat => 'O formato deve ser IP:porta (ex.: 192.168.1.100:48632)';
-	@override String get connectionTimedOut => 'A conexão atingiu o tempo limite. Use a mesma rede nos dois dispositivos.';
-	@override String get sessionNotFound => 'Dispositivo não encontrado. Verifique se o Plezy está em execução no host.';
-	@override String get authFailed => 'Falha na autenticação. Ambos os dispositivos precisam da mesma conta Plex.';
-	@override String failedToConnect({required Object error}) => 'Falha ao conectar: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$pt extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => 'Deseja desconectar da sessão remota?';
-	@override String get reconnecting => 'Reconectando...';
-	@override String attemptOf({required Object current}) => 'Tentativa ${current} de 5';
-	@override String get retryNow => 'Tentar agora';
-	@override String get tabRemote => 'Remoto';
-	@override String get tabPlay => 'Reproduzir';
-	@override String get tabMore => 'Mais';
-	@override String get menu => 'Menu';
-	@override String get tabNavigation => 'Navegação';
-	@override String get tabDiscover => 'Descobrir';
-	@override String get tabLibraries => 'Bibliotecas';
-	@override String get tabSearch => 'Buscar';
-	@override String get tabDownloads => 'Downloads';
-	@override String get tabSettings => 'Configurações';
-	@override String get previous => 'Anterior';
-	@override String get playPause => 'Reproduzir/Pausar';
-	@override String get next => 'Próximo';
-	@override String get seekBack => 'Retroceder';
-	@override String get stop => 'Parar';
-	@override String get seekForward => 'Avançar';
-	@override String get volume => 'Volume';
-	@override String get volumeDown => 'Diminuir';
-	@override String get volumeUp => 'Aumentar';
-	@override String get fullscreen => 'Tela cheia';
-	@override String get subtitles => 'Legendas';
-	@override String get audio => 'Áudio';
-	@override String get searchHint => 'Buscar no desktop...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$pt extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => 'Nenhuma interface de rede encontrada';
-	@override String get authenticationFailed => 'Falha na autenticação';
-	@override String serverStartFailed({required Object error}) => 'Falha ao iniciar o servidor remoto: ${error}';
-	@override String commandFailed({required Object error}) => 'Falha ao enviar o comando remoto: ${error}';
-	@override String get joinTimedOut => 'Tempo esgotado ao entrar na sessão';
-	@override String get failedToConnectAnyAddress => 'Falha ao conectar a qualquer endereço';
-	@override String connectionLostAfterAttempts({required Object attempts}) => 'Conexão perdida após ${attempts} tentativas';
-	@override String get connectionLost => 'Conexão perdida';
-}
-
 // Path: services.names
 class _Translations$services$names$pt extends Translations$services$names$en {
 	_Translations$services$names$pt._(TranslationsPt root) : this._root = root, super.internal(root);
@@ -2201,13 +1947,6 @@ extension on TranslationsPt {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Entrar com Plex',
-			'auth.showQRCode' => 'Mostrar código QR',
-			'auth.authenticate' => 'Autenticar',
-			'auth.authenticationTimeout' => 'A autenticação expirou. Tente novamente.',
-			'auth.scanQRToSignIn' => 'Leia este código QR para entrar',
-			'auth.waitingForAuth' => 'Aguardando autenticação...\nEntre pelo navegador.',
-			'auth.useBrowser' => 'Usar navegador',
-			'auth.or' => 'ou',
 			'auth.connectToJellyfin' => 'Conectar ao Jellyfin',
 			'auth.useQuickConnect' => 'Usar Quick Connect',
 			'auth.quickConnectInstructions' => 'Abra o Quick Connect no Jellyfin e insira este código.',
@@ -2234,7 +1973,6 @@ extension on TranslationsPt {
 			'common.shuffle' => 'Aleatório',
 			'common.addTo' => 'Adicionar a...',
 			'common.createNew' => 'Criar novo',
-			'common.connect' => 'Conectar',
 			'common.disconnect' => 'Desconectar',
 			'common.play' => 'Reproduzir',
 			'common.pause' => 'Pausar',
@@ -2244,7 +1982,6 @@ extension on TranslationsPt {
 			'common.home' => 'Início',
 			'common.back' => 'Voltar',
 			'common.settings' => 'Configurações',
-			'common.mute' => 'Silenciar',
 			'common.ok' => 'OK',
 			'common.off' => 'Desativado',
 			'common.seasonNumber' => ({required Object number}) => 'Temporada ${number}',
@@ -2260,6 +1997,7 @@ extension on TranslationsPt {
 			'common.fullscreen' => 'Tela cheia',
 			'common.exitFullscreen' => 'Sair da tela cheia',
 			'common.pressBackAgainToExit' => 'Pressione voltar novamente para sair',
+			'common.next' => 'Próximo',
 			'screens.licenses' => 'Licenças',
 			'screens.switchProfile' => 'Trocar Perfil',
 			'screens.subtitleStyling' => 'Estilo de Legendas',
@@ -2368,10 +2106,6 @@ extension on TranslationsPt {
 			'settings.keyboardShortcutsDescription' => 'Personalizar atalhos de teclado',
 			'settings.videoPlayerNavigation' => 'Navegação do reprodutor de vídeo',
 			'settings.videoPlayerNavigationDescription' => 'Usar as teclas de seta para navegar pelos controles do reprodutor',
-			'settings.watchTogetherRelay' => 'Servidor de retransmissão do Assistir Juntos',
-			'settings.watchTogetherRelayDescription' => 'Definir um servidor de retransmissão personalizado. Todos devem usar o mesmo servidor.',
-			'settings.watchTogetherRelayHint' => 'https://minha-retransmissao.exemplo.com.br',
-			'settings.watchTogetherRelayInvalid' => 'Insira uma URL base de retransmissão HTTP ou HTTPS válida.',
 			'settings.crashReporting' => 'Relatório de Erros',
 			'settings.crashReportingDescription' => 'Enviar relatórios de erros para ajudar a melhorar o app',
 			'settings.debugLogging' => 'Log de Depuração',
@@ -2443,8 +2177,6 @@ extension on TranslationsPt {
 			'settings.services' => 'Serviços',
 			'settings.servicesDescription' => 'Conecte Trakt, MyAnimeList, Seerr e mais',
 			'settings.manageLibrariesDescription' => 'Reordene e oculte bibliotecas',
-			'settings.companionRemoteServer' => 'Servidor de controle remoto',
-			'settings.companionRemoteServerDescription' => 'Permitir que dispositivos móveis na sua rede controlem este app',
 			'settings.autoPip' => 'Picture-in-picture automático',
 			'settings.autoPipDescription' => 'Entrar automaticamente no modo picture-in-picture ao sair do app durante a reprodução',
 			'settings.matchContentFrameRate' => 'Ajustar à taxa de quadros do conteúdo',
@@ -2708,15 +2440,6 @@ extension on TranslationsPt {
 			'videoControls.noChaptersAvailable' => 'Nenhum capítulo disponível',
 			'videoControls.queue' => 'Fila',
 			'videoControls.noQueueItems' => 'Nenhum item na fila',
-			'videoControls.searchSubtitles' => 'Pesquisar legendas',
-			'videoControls.language' => 'Idioma',
-			'videoControls.noSubtitlesFound' => 'Nenhuma legenda encontrada',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => 'Legenda baixada',
-			'videoControls.subtitleDownloadedNotApplied' => 'A legenda foi baixada, mas não foi possível selecioná-la',
-			'videoControls.subtitleDownloadFailed' => 'Falha ao baixar legenda',
-			'videoControls.searchLanguages' => 'Pesquisar idiomas...',
 			'messages.markedAsWatched' => 'Marcado como assistido',
 			'messages.markedAsUnwatched' => 'Marcado como não assistido',
 			'messages.markedAsWatchedOffline' => 'Marcado como assistido (será sincronizado quando online)',
@@ -2734,6 +2457,8 @@ extension on TranslationsPt {
 			'messages.playbackCancelled' => 'A reprodução foi cancelada.',
 			'messages.playbackFailed' => 'Não foi possível iniciar a reprodução.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Erro ao carregar as informações do arquivo: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Erro ao carregar série',
 			'messages.musicNotSupported' => 'A reprodução de música ainda não é compatível',
 			'messages.noDescriptionAvailable' => 'Nenhuma descrição disponível',
@@ -2854,7 +2579,6 @@ extension on TranslationsPt {
 			'profiles.incorrectPin' => 'PIN incorreto.',
 			'profiles.incorrectPinTryAgain' => 'PIN incorreto. Tente novamente.',
 			'profiles.sourceProfileMissingParentAccount' => 'O perfil de origem não tem a conta principal.',
-			'profiles.failedToLoadHomeUsers' => 'Não foi possível carregar os usuários do Plex Home. Verifique sua conexão e tente novamente.',
 			'profiles.failedToVerifyPin' => 'Não foi possível verificar o PIN.',
 			'profiles.newProfile' => 'Novo perfil',
 			'profiles.profileNameHint' => 'Ex.: Visitantes, Crianças, Sala de família',
@@ -2900,9 +2624,6 @@ extension on TranslationsPt {
 			'errors.connectionFailed' => 'Não foi possível conectar ao servidor de mídia',
 			'errors.unableToLoad' => ({required Object context}) => 'Não foi possível carregar ${context}. Tente novamente.',
 			'errors.noClientAvailable' => 'Nenhum cliente disponível',
-			'errors.pleaseEnterToken' => 'Insira um token',
-			'errors.invalidToken' => 'Token inválido',
-			'errors.failedToVerifyToken' => ({required Object error}) => 'Falha ao verificar token: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => 'Falha ao trocar para ${displayName}',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => 'Falha ao excluir ${displayName}',
 			'errors.failedToRate' => 'Não foi possível atualizar a classificação',
@@ -2993,8 +2714,6 @@ extension on TranslationsPt {
 			'about.versionLabel' => ({required Object version}) => 'Versão ${version}',
 			'about.appDescription' => 'Um belo cliente de Plex e Jellyfin feito com Flutter',
 			'about.viewLicensesDescription' => 'Ver as licenças de bibliotecas de terceiros',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => 'Nenhum servidor encontrado para ${username} (${email})',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => 'Falha ao carregar servidores: ${error}',
 			'hubDetail.title' => 'Título',
 			'hubDetail.releaseYear' => 'Ano de Lançamento',
 			'hubDetail.dateAdded' => 'Data de Adição',
@@ -3181,73 +2900,6 @@ extension on TranslationsPt {
 			'music.repeat' => 'Repetir',
 			'music.repeatAll' => 'Repetir tudo',
 			'music.repeatOne' => 'Repetir uma faixa',
-			'watchTogether.title' => 'Assistir Juntos',
-			'watchTogether.description' => 'Assista a conteúdos sincronizados com amigos e familiares',
-			'watchTogether.createSession' => 'Criar sessão',
-			'watchTogether.creating' => 'Criando...',
-			'watchTogether.joinSession' => 'Entrar na sessão',
-			'watchTogether.joining' => 'Entrando...',
-			'watchTogether.controlMode' => 'Modo de controle',
-			'watchTogether.controlModeQuestion' => 'Quem pode controlar a reprodução?',
-			'watchTogether.hostOnly' => 'Apenas o anfitrião',
-			'watchTogether.anyone' => 'Qualquer pessoa',
-			'watchTogether.hostingSession' => 'Hospedando uma sessão',
-			'watchTogether.inSession' => 'Em uma sessão',
-			'watchTogether.sessionCode' => 'Código da sessão',
-			'watchTogether.openSessionControls' => 'Abrir os controles da sessão Assistir Juntos',
-			'watchTogether.copySessionCode' => 'Copiar código da sessão',
-			'watchTogether.hostControlsPlayback' => 'O anfitrião controla a reprodução',
-			'watchTogether.anyoneCanControl' => 'Qualquer pessoa pode controlar a reprodução',
-			'watchTogether.hostControls' => 'Controle do anfitrião',
-			'watchTogether.anyoneControls' => 'Controle por qualquer pessoa',
-			'watchTogether.participants' => 'Participantes',
-			'watchTogether.host' => 'Anfitrião',
-			'watchTogether.hostBadge' => 'ANFITRIÃO',
-			'watchTogether.youAreHost' => 'Você é o anfitrião',
-			'watchTogether.watchingWithOthers' => 'Assistindo com outras pessoas',
-			'watchTogether.endSession' => 'Encerrar sessão',
-			'watchTogether.leaveSession' => 'Sair da sessão',
-			'watchTogether.endSessionQuestion' => 'Encerrar sessão?',
-			'watchTogether.leaveSessionQuestion' => 'Sair da sessão?',
-			'watchTogether.endSessionConfirm' => 'Isso encerrará a sessão para todos os participantes.',
-			'watchTogether.leaveSessionConfirm' => 'Você será removido da sessão.',
-			'watchTogether.endSessionConfirmOverlay' => 'Isso encerrará a sessão do Assistir Juntos para todos os participantes.',
-			'watchTogether.leaveSessionConfirmOverlay' => 'Você será desconectado da sessão do Assistir Juntos.',
-			'watchTogether.end' => 'Encerrar',
-			'watchTogether.leave' => 'Sair',
-			'watchTogether.syncing' => 'Sincronizando...',
-			'watchTogether.joinWatchSession' => 'Entrar na sessão',
-			'watchTogether.enterCodeHint' => 'Insira o código de 5 caracteres',
-			'watchTogether.pasteFromClipboard' => 'Colar da área de transferência',
-			'watchTogether.pleaseEnterCode' => 'Insira um código de sessão',
-			'watchTogether.codeMustBe5Chars' => 'O código da sessão deve ter 5 caracteres',
-			'watchTogether.joinInstructions' => 'Insira o código de sessão do anfitrião para entrar.',
-			'watchTogether.failedToCreate' => 'Falha ao criar sessão',
-			'watchTogether.failedToJoin' => 'Falha ao entrar na sessão',
-			'watchTogether.sessionCodeCopied' => 'Código da sessão copiado para a área de transferência',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => 'Servidor de retransmissão inacessível. O bloqueio pelo provedor de internet pode impedir o uso do Assistir Juntos.',
-			'watchTogether.reconnectingToHost' => 'Reconectando ao anfitrião...',
-			'watchTogether.currentPlayback' => 'Reprodução atual',
-			'watchTogether.joinCurrentPlayback' => 'Entrar na reprodução atual',
-			'watchTogether.joinCurrentPlaybackDescription' => 'Voltar ao conteúdo que o anfitrião está assistindo agora',
-			'watchTogether.failedToOpenCurrentPlayback' => 'Falha ao abrir a reprodução atual',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name} entrou',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name} saiu',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name} pausou',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name} retomou',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name} mudou a posição da reprodução',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name} está aguardando o carregamento',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name} está usando uma versão mais antiga do app — sincronização indisponível',
-			'watchTogether.resumingWithout' => ({required Object name}) => 'Retomando sem ${name}',
-			'watchTogether.waitingForParticipants' => 'Aguardando o carregamento dos outros participantes...',
-			'watchTogether.waitingForName' => ({required Object name}) => 'Aguardando ${name}...',
-			'watchTogether.recentRooms' => 'Salas recentes',
-			'watchTogether.renameRoom' => 'Renomear sala',
-			'watchTogether.removeRoom' => 'Remover',
-			'watchTogether.guestSwitchUnavailable' => 'Não foi possível trocar — servidor indisponível para sincronização',
-			'watchTogether.guestSwitchFailed' => 'Não foi possível trocar — conteúdo não encontrado neste servidor',
 			'downloads.title' => 'Downloads',
 			'downloads.manage' => 'Gerenciar',
 			'downloads.tvShows' => 'Séries de TV',
@@ -3319,6 +2971,8 @@ extension on TranslationsPt {
 			'downloads.backgroundWarning.bannerBlocked' => 'Os downloads serão interrompidos ao sair do app',
 			'downloads.backgroundWarning.bannerDegraded' => 'Os downloads em segundo plano podem ser limitados',
 			'downloads.backgroundWarning.bannerAction' => 'Detalhes',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => 'Os downloads em segundo plano estão bloqueados',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Os downloads em segundo plano podem ser limitados',
 			'downloads.backgroundWarning.sheetIntro' => 'O Android está impedindo que o Plezy faça downloads de forma confiável em segundo plano.',
@@ -3357,70 +3011,6 @@ extension on TranslationsPt {
 			'shaders.shaderImportFailed' => 'Falha ao importar shader',
 			'shaders.deleteShader' => 'Excluir Shader',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => 'Excluir "${name}"?',
-			'companionRemote.title' => 'Controle remoto',
-			'companionRemote.connectedTo' => ({required Object name}) => 'Conectado a ${name}',
-			'companionRemote.unknownDevice' => 'Dispositivo desconhecido',
-			'companionRemote.session.startingServer' => 'Iniciando servidor remoto...',
-			'companionRemote.session.hostAddress' => 'Endereço do host',
-			'companionRemote.session.connected' => 'Conectado',
-			'companionRemote.session.serverRunning' => 'Servidor remoto ativo',
-			'companionRemote.session.serverStopped' => 'Servidor remoto parado',
-			'companionRemote.session.serverRunningDescription' => 'Dispositivos móveis na sua rede podem se conectar a este app',
-			'companionRemote.session.serverStoppedDescription' => 'Inicie o servidor para permitir que dispositivos móveis se conectem',
-			'companionRemote.session.usePhoneToControl' => 'Use seu dispositivo móvel para controlar este app',
-			'companionRemote.session.startServer' => 'Iniciar servidor',
-			'companionRemote.session.stopServer' => 'Parar servidor',
-			'companionRemote.session.minimize' => 'Minimizar',
-			'companionRemote.pairing.discoveryDescription' => 'Dispositivos Plezy com a mesma conta Plex aparecem aqui',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => 'Conectando...',
-			'companionRemote.pairing.searchingForDevices' => 'Procurando dispositivos...',
-			'companionRemote.pairing.noDevicesFound' => 'Nenhum dispositivo encontrado na sua rede',
-			'companionRemote.pairing.noDevicesHint' => 'Abra o Plezy no desktop e use a mesma rede Wi-Fi',
-			'companionRemote.pairing.availableDevices' => 'Dispositivos disponíveis',
-			'companionRemote.pairing.manualConnection' => 'Conexão manual',
-			'companionRemote.pairing.cryptoInitFailed' => 'Não foi possível iniciar a conexão segura. Entre no Plex primeiro.',
-			'companionRemote.pairing.validationHostRequired' => 'Insira o endereço do host',
-			'companionRemote.pairing.validationHostFormat' => 'O formato deve ser IP:porta (ex.: 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => 'A conexão atingiu o tempo limite. Use a mesma rede nos dois dispositivos.',
-			'companionRemote.pairing.sessionNotFound' => 'Dispositivo não encontrado. Verifique se o Plezy está em execução no host.',
-			'companionRemote.pairing.authFailed' => 'Falha na autenticação. Ambos os dispositivos precisam da mesma conta Plex.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => 'Falha ao conectar: ${error}',
-			'companionRemote.remote.disconnectConfirm' => 'Deseja desconectar da sessão remota?',
-			'companionRemote.remote.reconnecting' => 'Reconectando...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => 'Tentativa ${current} de 5',
-			'companionRemote.remote.retryNow' => 'Tentar agora',
-			'companionRemote.remote.tabRemote' => 'Remoto',
-			'companionRemote.remote.tabPlay' => 'Reproduzir',
-			'companionRemote.remote.tabMore' => 'Mais',
-			'companionRemote.remote.menu' => 'Menu',
-			'companionRemote.remote.tabNavigation' => 'Navegação',
-			'companionRemote.remote.tabDiscover' => 'Descobrir',
-			'companionRemote.remote.tabLibraries' => 'Bibliotecas',
-			'companionRemote.remote.tabSearch' => 'Buscar',
-			'companionRemote.remote.tabDownloads' => 'Downloads',
-			'companionRemote.remote.tabSettings' => 'Configurações',
-			'companionRemote.remote.previous' => 'Anterior',
-			'companionRemote.remote.playPause' => 'Reproduzir/Pausar',
-			'companionRemote.remote.next' => 'Próximo',
-			'companionRemote.remote.seekBack' => 'Retroceder',
-			'companionRemote.remote.stop' => 'Parar',
-			'companionRemote.remote.seekForward' => 'Avançar',
-			'companionRemote.remote.volume' => 'Volume',
-			'companionRemote.remote.volumeDown' => 'Diminuir',
-			'companionRemote.remote.volumeUp' => 'Aumentar',
-			'companionRemote.remote.fullscreen' => 'Tela cheia',
-			'companionRemote.remote.subtitles' => 'Legendas',
-			'companionRemote.remote.audio' => 'Áudio',
-			'companionRemote.remote.searchHint' => 'Buscar no desktop...',
-			'companionRemote.errors.noNetworkInterface' => 'Nenhuma interface de rede encontrada',
-			'companionRemote.errors.authenticationFailed' => 'Falha na autenticação',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => 'Falha ao iniciar o servidor remoto: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => 'Falha ao enviar o comando remoto: ${error}',
-			'companionRemote.errors.joinTimedOut' => 'Tempo esgotado ao entrar na sessão',
-			'companionRemote.errors.failedToConnectAnyAddress' => 'Falha ao conectar a qualquer endereço',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => 'Conexão perdida após ${attempts} tentativas',
-			'companionRemote.errors.connectionLost' => 'Conexão perdida',
 			'videoSettings.playbackSpeed' => 'Velocidade de Reprodução',
 			'videoSettings.normalSpeed' => 'Normal',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => 'Ativo (${duration})',
@@ -3566,18 +3156,6 @@ extension on TranslationsPt {
 			'metadataEdit.label' => 'Rótulo',
 			'metadataEdit.style' => 'Estilo',
 			'metadataEdit.mood' => 'Humor',
-			'matchScreen.match' => 'Associar...',
-			'matchScreen.fixMatch' => 'Corrigir correspondência...',
-			'matchScreen.unmatch' => 'Desassociar',
-			'matchScreen.unmatchConfirm' => 'Limpar esta correspondência? Plex tratará como sem correspondência até refazer.',
-			'matchScreen.unmatchSuccess' => 'Item desassociado',
-			'matchScreen.unmatchFailed' => 'Falha ao desassociar item',
-			'matchScreen.matchApplied' => 'Correspondência aplicada',
-			'matchScreen.matchFailed' => 'Falha ao aplicar correspondência',
-			'matchScreen.titleHint' => 'Título',
-			'matchScreen.yearHint' => 'Ano',
-			'matchScreen.search' => 'Pesquisar',
-			'matchScreen.noMatchesFound' => 'Nenhuma correspondência encontrada',
 			'serverTasks.title' => 'Tarefas do servidor',
 			'serverTasks.failedToLoad' => 'Falha ao carregar tarefas',
 			'serverTasks.noTasks' => 'Nenhuma tarefa em execução',
@@ -3670,15 +3248,9 @@ extension on TranslationsPt {
 			'addServer.couldNotReachServer' => ({required Object error}) => 'Não foi possível conectar ao servidor: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => 'Falha ao entrar: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Quick Connect falhou: ${error}',
-			'addServer.addPlexTitle' => 'Entrar com Plex',
-			'addServer.pinExpired' => 'O PIN expirou antes de entrar. Tente novamente.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => 'Falha ao registrar a conta: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Insira a URL do seu servidor Jellyfin',
 			'addServer.addConnectionTitle' => 'Adicionar conexão',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => 'Adicionar a ${name}',
-			'addServer.signInWithPlexCard' => 'Entrar com Plex',
-			'addServer.signInWithPlexCardSubtitle' => 'Autorize este dispositivo. Servidores compartilhados são adicionados.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Autorize uma conta Plex. Os usuários do Plex Home se tornam perfis.',
 			'addServer.connectToJellyfinCard' => 'Conectar ao Jellyfin',
 			'addServer.connectToJellyfinCardSubtitle' => 'Insira URL do servidor, usuário e senha.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Entre em um servidor Jellyfin. A conexão será vinculada a ${name}.',

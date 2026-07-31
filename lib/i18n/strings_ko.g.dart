@@ -64,7 +64,6 @@ class TranslationsKo extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$errors$ko errors = _Translations$errors$ko._(_root);
 	@override late final _Translations$libraries$ko libraries = _Translations$libraries$ko._(_root);
 	@override late final _Translations$about$ko about = _Translations$about$ko._(_root);
-	@override late final _Translations$serverSelection$ko serverSelection = _Translations$serverSelection$ko._(_root);
 	@override late final _Translations$hubDetail$ko hubDetail = _Translations$hubDetail$ko._(_root);
 	@override late final _Translations$logs$ko logs = _Translations$logs$ko._(_root);
 	@override late final _Translations$licenses$ko licenses = _Translations$licenses$ko._(_root);
@@ -74,15 +73,12 @@ class TranslationsKo extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$collections$ko collections = _Translations$collections$ko._(_root);
 	@override late final _Translations$playlists$ko playlists = _Translations$playlists$ko._(_root);
 	@override late final _Translations$music$ko music = _Translations$music$ko._(_root);
-	@override late final _Translations$watchTogether$ko watchTogether = _Translations$watchTogether$ko._(_root);
 	@override late final _Translations$downloads$ko downloads = _Translations$downloads$ko._(_root);
 	@override late final _Translations$shaders$ko shaders = _Translations$shaders$ko._(_root);
-	@override late final _Translations$companionRemote$ko companionRemote = _Translations$companionRemote$ko._(_root);
 	@override late final _Translations$videoSettings$ko videoSettings = _Translations$videoSettings$ko._(_root);
 	@override late final _Translations$performanceOverlay$ko performanceOverlay = _Translations$performanceOverlay$ko._(_root);
 	@override late final _Translations$externalPlayer$ko externalPlayer = _Translations$externalPlayer$ko._(_root);
 	@override late final _Translations$metadataEdit$ko metadataEdit = _Translations$metadataEdit$ko._(_root);
-	@override late final _Translations$matchScreen$ko matchScreen = _Translations$matchScreen$ko._(_root);
 	@override late final _Translations$serverTasks$ko serverTasks = _Translations$serverTasks$ko._(_root);
 	@override late final _Translations$trakt$ko trakt = _Translations$trakt$ko._(_root);
 	@override late final _Translations$seerr$ko seerr = _Translations$seerr$ko._(_root);
@@ -108,13 +104,6 @@ class _Translations$auth$ko extends Translations$auth$en {
 
 	// Translations
 	@override String get signInWithPlex => 'Plex 계정으로 로그인';
-	@override String get showQRCode => 'QR 코드 표시';
-	@override String get authenticate => '인증';
-	@override String get authenticationTimeout => '인증 시간이 초과되었습니다. 다시 시도해 주세요.';
-	@override String get scanQRToSignIn => '로그인하려면 이 QR 코드를 스캔하세요';
-	@override String get waitingForAuth => '인증 대기 중...\n브라우저에서 로그인하세요.';
-	@override String get useBrowser => '브라우저 사용';
-	@override String get or => '또는';
 	@override String get connectToJellyfin => 'Jellyfin에 연결';
 	@override String get useQuickConnect => 'Quick Connect 사용';
 	@override String get quickConnectInstructions => 'Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.';
@@ -150,7 +139,6 @@ class _Translations$common$ko extends Translations$common$en {
 	@override String get shuffle => '무작위 재생';
 	@override String get addTo => '추가하기...';
 	@override String get createNew => '새로 만들기';
-	@override String get connect => '연결';
 	@override String get disconnect => '연결 해제';
 	@override String get play => '재생';
 	@override String get pause => '일시정지';
@@ -160,7 +148,6 @@ class _Translations$common$ko extends Translations$common$en {
 	@override String get home => '홈';
 	@override String get back => '뒤로';
 	@override String get settings => '설정';
-	@override String get mute => '음소거';
 	@override String get ok => '확인';
 	@override String get off => '꺼짐';
 	@override String seasonNumber({required Object number}) => '시즌 ${number}';
@@ -176,6 +163,7 @@ class _Translations$common$ko extends Translations$common$en {
 	@override String get fullscreen => '전체 화면';
 	@override String get exitFullscreen => '전체 화면 종료';
 	@override String get pressBackAgainToExit => '한 번 더 누르면 종료됩니다';
+	@override String get next => '다음';
 }
 
 // Path: screens
@@ -311,10 +299,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => '키보드 단축키를 사용자 지정합니다';
 	@override String get videoPlayerNavigation => '비디오 플레이어 탐색';
 	@override String get videoPlayerNavigationDescription => '방향 키로 비디오 플레이어 컨트롤을 탐색합니다';
-	@override String get watchTogetherRelay => '함께 보기 릴레이';
-	@override String get watchTogetherRelayDescription => '사용자 지정 릴레이를 설정합니다. 모두 같은 서버를 사용해야 합니다.';
-	@override String get watchTogetherRelayHint => 'https://my-relay.example.com';
-	@override String get watchTogetherRelayInvalid => '올바른 HTTP 또는 HTTPS 릴레이 기본 URL을 입력하세요.';
 	@override String get crashReporting => '충돌 보고';
 	@override String get crashReportingDescription => '앱 개선을 위해 충돌 보고서 전송';
 	@override String get debugLogging => '디버그 로깅';
@@ -386,8 +370,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get services => '서비스';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr 등 연결';
 	@override String get manageLibrariesDescription => '라이브러리 순서를 변경하거나 숨깁니다';
-	@override String get companionRemoteServer => '컴패니언 리모트 서버';
-	@override String get companionRemoteServerDescription => '네트워크의 모바일 기기가 이 앱을 제어할 수 있도록 허용';
 	@override String get autoPip => '자동 PIP 모드';
 	@override String get autoPipDescription => '재생 중 앱을 떠나면 자동으로 화면 속 화면 모드로 전환합니다';
 	@override String get matchContentFrameRate => '콘텐츠 프레임 레이트 맞춤';
@@ -702,13 +684,6 @@ class _Translations$videoControls$ko extends Translations$videoControls$en {
 	@override String get noChaptersAvailable => '사용 가능한 챕터가 없습니다';
 	@override String get queue => '재생 대기열';
 	@override String get noQueueItems => '대기열에 항목이 없습니다';
-	@override String get searchSubtitles => '자막 검색';
-	@override String get language => '언어';
-	@override String get noSubtitlesFound => '자막을 찾을 수 없습니다';
-	@override String get subtitleDownloaded => '자막이 다운로드되었습니다';
-	@override String get subtitleDownloadedNotApplied => '자막을 다운로드했지만 선택할 수 없습니다';
-	@override String get subtitleDownloadFailed => '자막 다운로드에 실패했습니다';
-	@override String get searchLanguages => '언어 검색...';
 }
 
 // Path: messages
@@ -893,7 +868,6 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	@override String get incorrectPin => 'PIN이 올바르지 않습니다.';
 	@override String get incorrectPinTryAgain => 'PIN이 올바르지 않습니다. 다시 시도하세요.';
 	@override String get sourceProfileMissingParentAccount => '원본 프로필에 상위 계정이 없습니다.';
-	@override String get failedToLoadHomeUsers => 'Plex Home 사용자를 불러올 수 없습니다. 연결을 확인하고 다시 시도하세요.';
 	@override String get failedToVerifyPin => 'PIN을 확인하지 못했습니다.';
 	@override String get newProfile => '새 프로필';
 	@override String get profileNameHint => '예: 손님, 어린이, 가족실';
@@ -966,9 +940,6 @@ class _Translations$errors$ko extends Translations$errors$en {
 	@override String get connectionFailed => '미디어 서버에 연결할 수 없습니다';
 	@override String unableToLoad({required Object context}) => '${context}을(를) 불러올 수 없습니다. 다시 시도하세요.';
 	@override String get noClientAvailable => '사용 가능한 클라이언트가 없습니다';
-	@override String get pleaseEnterToken => '토큰을 입력해 주세요';
-	@override String get invalidToken => '토큰이 유효하지 않습니다';
-	@override String failedToVerifyToken({required Object error}) => '토큰을 확인할 수 없습니다: ${error}';
 	@override String failedToSwitchProfile({required Object displayName}) => '${displayName}으로 전환할 수 없습니다';
 	@override String failedToDeleteProfile({required Object displayName}) => '${displayName}을(를) 삭제할 수 없습니다';
 	@override String get failedToRate => '평점을 업데이트하지 못했습니다';
@@ -1040,17 +1011,6 @@ class _Translations$about$ko extends Translations$about$en {
 	@override String versionLabel({required Object version}) => '버전 ${version}';
 	@override String get appDescription => 'Flutter로 만든 아름다운 Plex 및 Jellyfin 클라이언트';
 	@override String get viewLicensesDescription => '타사 라이브러리 라이선스 보기';
-}
-
-// Path: serverSelection
-class _Translations$serverSelection$ko extends Translations$serverSelection$en {
-	_Translations$serverSelection$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String noServersFoundForAccount({required Object username, required Object email}) => '${username} (${email})의 서버를 찾을 수 없습니다.';
-	@override String failedToLoadServers({required Object error}) => '서버를 로드할 수 없습니다: ${error}';
 }
 
 // Path: hubDetail
@@ -1308,80 +1268,6 @@ class _Translations$music$ko extends Translations$music$en {
 	@override String get repeatOne => '한 곡 반복';
 }
 
-// Path: watchTogether
-class _Translations$watchTogether$ko extends Translations$watchTogether$en {
-	_Translations$watchTogether$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '함께 보기';
-	@override String get description => '친구 및 가족과 콘텐츠를 동시에 시청하세요';
-	@override String get createSession => '세션 생성';
-	@override String get creating => '생성 중...';
-	@override String get joinSession => '세션 참여';
-	@override String get joining => '참가 중...';
-	@override String get controlMode => '제어 모드';
-	@override String get controlModeQuestion => '누가 재생을 제어할 수 있나요?';
-	@override String get hostOnly => '호스트만';
-	@override String get anyone => '누구나';
-	@override String get hostingSession => '세션 호스팅 중';
-	@override String get inSession => '세션 중';
-	@override String get sessionCode => '세션 코드';
-	@override String get openSessionControls => '함께 보기 세션 제어 열기';
-	@override String get copySessionCode => '세션 코드 복사';
-	@override String get hostControlsPlayback => '호스트 재생 제어';
-	@override String get anyoneCanControl => '누구나 재생 제어 가능';
-	@override String get hostControls => '호스트 제어';
-	@override String get anyoneControls => '누구나 제어';
-	@override String get participants => '참가자';
-	@override String get host => '호스트';
-	@override String get hostBadge => '호스트';
-	@override String get youAreHost => '호스트입니다';
-	@override String get watchingWithOthers => '다른 사람과 함께 시청 중';
-	@override String get endSession => '세션 종료';
-	@override String get leaveSession => '세션 나가기';
-	@override String get endSessionQuestion => '세션을 종료하시겠습니까?';
-	@override String get leaveSessionQuestion => '세션에서 나가시겠습니까?';
-	@override String get endSessionConfirm => '모든 참가자의 세션이 종료됩니다.';
-	@override String get leaveSessionConfirm => '세션에서 나가게 됩니다.';
-	@override String get endSessionConfirmOverlay => '모든 참가자의 함께 보기 세션이 종료됩니다.';
-	@override String get leaveSessionConfirmOverlay => '함께 보기 세션의 연결이 끊어집니다.';
-	@override String get end => '종료';
-	@override String get leave => '나가기';
-	@override String get syncing => '동기화 중...';
-	@override String get joinWatchSession => '시청 세션에 참여';
-	@override String get enterCodeHint => '5자리 코드 입력';
-	@override String get pasteFromClipboard => '클립보드에서 붙여넣기';
-	@override String get pleaseEnterCode => '세션 코드를 입력하세요';
-	@override String get codeMustBe5Chars => '세션 코드는 반드시 5자리여야 합니다';
-	@override String get joinInstructions => '참여하려면 호스트의 세션 코드를 입력하세요.';
-	@override String get failedToCreate => '세션 생성 실패';
-	@override String get failedToJoin => '세션 참여 실패';
-	@override String get sessionCodeCopied => '세션 코드가 클립보드에 복사되었습니다';
-	@override String get relayUnreachable => '릴레이 서버에 연결할 수 없습니다. ISP 차단으로 함께 보기를 사용하지 못할 수 있습니다.';
-	@override String get reconnectingToHost => '호스트에 재연결 중...';
-	@override String get currentPlayback => '현재 재생';
-	@override String get joinCurrentPlayback => '현재 재생 참여';
-	@override String get joinCurrentPlaybackDescription => '호스트가 현재 시청 중인 콘텐츠로 이동합니다';
-	@override String get failedToOpenCurrentPlayback => '현재 재생을 열 수 없습니다';
-	@override String participantJoined({required Object name}) => '${name}님이 참여했습니다';
-	@override String participantLeft({required Object name}) => '${name}님이 나갔습니다';
-	@override String participantPaused({required Object name}) => '${name}님이 일시정지했습니다';
-	@override String participantResumed({required Object name}) => '${name}님이 재생했습니다';
-	@override String participantSeeked({required Object name}) => '${name}님이 재생 위치를 변경했습니다';
-	@override String participantBuffering({required Object name}) => '${name}님이 버퍼링 중입니다';
-	@override String participantNeedsUpdate({required Object name}) => '${name}님이 이전 버전의 앱을 사용 중입니다 — 동기화를 사용할 수 없습니다';
-	@override String resumingWithout({required Object name}) => '${name}님 없이 재생을 재개합니다';
-	@override String get waitingForParticipants => '다른 참가자의 로딩을 기다리는 중...';
-	@override String waitingForName({required Object name}) => '${name}님을 기다리는 중...';
-	@override String get recentRooms => '최근 참여한 방';
-	@override String get renameRoom => '방 이름 변경';
-	@override String get removeRoom => '제거';
-	@override String get guestSwitchUnavailable => '전환할 수 없음 — 동기화 서버를 사용할 수 없습니다';
-	@override String get guestSwitchFailed => '전환할 수 없음 — 이 서버에서 콘텐츠를 찾을 수 없습니다';
-}
-
 // Path: downloads
 class _Translations$downloads$ko extends Translations$downloads$en {
 	_Translations$downloads$ko._(TranslationsKo root) : this._root = root, super.internal(root);
@@ -1482,22 +1368,6 @@ class _Translations$shaders$ko extends Translations$shaders$en {
 	@override String get shaderImportFailed => '셰이더 가져오기 실패';
 	@override String get deleteShader => '셰이더 삭제';
 	@override String deleteShaderConfirm({required Object name}) => '"${name}"을(를) 삭제하시겠습니까?';
-}
-
-// Path: companionRemote
-class _Translations$companionRemote$ko extends Translations$companionRemote$en {
-	_Translations$companionRemote$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '컴패니언 리모컨';
-	@override String connectedTo({required Object name}) => '${name}에 연결됨';
-	@override String get unknownDevice => '알 수 없는 기기';
-	@override late final _Translations$companionRemote$session$ko session = _Translations$companionRemote$session$ko._(_root);
-	@override late final _Translations$companionRemote$pairing$ko pairing = _Translations$companionRemote$pairing$ko._(_root);
-	@override late final _Translations$companionRemote$remote$ko remote = _Translations$companionRemote$remote$ko._(_root);
-	@override late final _Translations$companionRemote$errors$ko errors = _Translations$companionRemote$errors$ko._(_root);
 }
 
 // Path: videoSettings
@@ -1681,27 +1551,6 @@ class _Translations$metadataEdit$ko extends Translations$metadataEdit$en {
 	@override String get mood => '분위기';
 }
 
-// Path: matchScreen
-class _Translations$matchScreen$ko extends Translations$matchScreen$en {
-	_Translations$matchScreen$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get match => '일치...';
-	@override String get fixMatch => '일치 수정...';
-	@override String get unmatch => '일치 해제';
-	@override String get unmatchConfirm => '이 매칭을 지울까요? 다시 매칭될 때까지 Plex에서는 미매칭으로 처리됩니다.';
-	@override String get unmatchSuccess => '일치 해제됨';
-	@override String get unmatchFailed => '일치 해제에 실패했습니다';
-	@override String get matchApplied => '일치 적용됨';
-	@override String get matchFailed => '일치 적용에 실패했습니다';
-	@override String get titleHint => '제목';
-	@override String get yearHint => '연도';
-	@override String get search => '검색';
-	@override String get noMatchesFound => '일치하는 항목이 없습니다';
-}
-
 // Path: serverTasks
 class _Translations$serverTasks$ko extends Translations$serverTasks$en {
 	_Translations$serverTasks$ko._(TranslationsKo root) : this._root = root, super.internal(root);
@@ -1814,15 +1663,9 @@ class _Translations$addServer$ko extends Translations$addServer$en {
 	@override String couldNotReachServer({required Object error}) => '서버에 연결할 수 없습니다: ${error}';
 	@override String signInFailed({required Object error}) => '로그인 실패: ${error}';
 	@override String quickConnectFailed({required Object error}) => 'Quick Connect 실패: ${error}';
-	@override String get addPlexTitle => 'Plex로 로그인';
-	@override String get pinExpired => '로그인 전에 PIN이 만료되었습니다. 다시 시도하세요.';
-	@override String failedToRegisterAccount({required Object error}) => '계정 등록 실패: ${error}';
 	@override String get enterJellyfinUrlError => 'Jellyfin 서버 URL을 입력하세요';
 	@override String get addConnectionTitle => '연결 추가';
 	@override String addConnectionTitleScoped({required Object name}) => '${name}에 추가';
-	@override String get signInWithPlexCard => 'Plex로 로그인';
-	@override String get signInWithPlexCardSubtitle => '이 기기를 승인합니다. 공유 서버가 추가됩니다.';
-	@override String get signInWithPlexCardSubtitleScoped => 'Plex 계정을 승인합니다. Home 사용자는 프로필이 됩니다.';
 	@override String get connectToJellyfinCard => 'Jellyfin에 연결';
 	@override String get connectToJellyfinCardSubtitle => '서버 URL, 사용자 이름, 비밀번호를 입력하세요.';
 	@override String connectToJellyfinCardSubtitleScoped({required Object name}) => 'Jellyfin 서버에 로그인합니다. ${name}에 연결됩니다.';
@@ -2028,103 +1871,6 @@ class _Translations$downloads$backgroundWarning$ko extends Translations$download
 	@override String get linkUnavailable => '이 기기에서 dontkillmyapp.com을 열 수 없습니다';
 }
 
-// Path: companionRemote.session
-class _Translations$companionRemote$session$ko extends Translations$companionRemote$session$en {
-	_Translations$companionRemote$session$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get startingServer => '원격 서버 시작 중...';
-	@override String get hostAddress => '호스트 주소';
-	@override String get connected => '연결됨';
-	@override String get serverRunning => '원격 서버 활성';
-	@override String get serverStopped => '원격 서버 중지됨';
-	@override String get serverRunningDescription => '네트워크의 모바일 기기가 이 앱에 연결할 수 있습니다';
-	@override String get serverStoppedDescription => '모바일 기기의 연결을 허용하려면 서버를 시작하세요';
-	@override String get usePhoneToControl => '모바일 기기로 이 앱을 제어하세요';
-	@override String get startServer => '서버 시작';
-	@override String get stopServer => '서버 중지';
-	@override String get minimize => '최소화';
-}
-
-// Path: companionRemote.pairing
-class _Translations$companionRemote$pairing$ko extends Translations$companionRemote$pairing$en {
-	_Translations$companionRemote$pairing$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get discoveryDescription => '같은 Plex 계정의 Plezy 기기가 여기에 표시됩니다';
-	@override String get hostAddressHint => '192.168.1.100:48632';
-	@override String get connecting => '연결 중...';
-	@override String get searchingForDevices => '기기 검색 중...';
-	@override String get noDevicesFound => '네트워크에서 기기를 찾을 수 없습니다';
-	@override String get noDevicesHint => '데스크톱에서 Plezy를 열고 같은 Wi-Fi를 사용하세요';
-	@override String get availableDevices => '사용 가능한 기기';
-	@override String get manualConnection => '수동 연결';
-	@override String get cryptoInitFailed => '보안 연결을 시작할 수 없습니다. 먼저 Plex에 로그인하세요.';
-	@override String get validationHostRequired => '호스트 주소를 입력하세요';
-	@override String get validationHostFormat => '형식은 IP:포트여야 합니다 (예: 192.168.1.100:48632)';
-	@override String get connectionTimedOut => '연결 시간이 초과되었습니다. 두 기기에서 같은 네트워크를 사용하세요.';
-	@override String get sessionNotFound => '기기를 찾을 수 없습니다. 호스트에서 Plezy가 실행 중인지 확인하세요.';
-	@override String get authFailed => '인증에 실패했습니다. 두 기기 모두 같은 Plex 계정이 필요합니다.';
-	@override String failedToConnect({required Object error}) => '연결 실패: ${error}';
-}
-
-// Path: companionRemote.remote
-class _Translations$companionRemote$remote$ko extends Translations$companionRemote$remote$en {
-	_Translations$companionRemote$remote$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get disconnectConfirm => '원격 세션 연결을 해제하시겠습니까?';
-	@override String get reconnecting => '재연결 중...';
-	@override String attemptOf({required Object current}) => '${current}/5 시도 중';
-	@override String get retryNow => '지금 재시도';
-	@override String get tabRemote => '리모컨';
-	@override String get tabPlay => '재생';
-	@override String get tabMore => '더 보기';
-	@override String get menu => '메뉴';
-	@override String get tabNavigation => '탭 탐색';
-	@override String get tabDiscover => '둘러보기';
-	@override String get tabLibraries => '미디어 라이브러리';
-	@override String get tabSearch => '검색';
-	@override String get tabDownloads => '다운로드';
-	@override String get tabSettings => '설정';
-	@override String get previous => '이전';
-	@override String get playPause => '재생/일시정지';
-	@override String get next => '다음';
-	@override String get seekBack => '되감기';
-	@override String get stop => '정지';
-	@override String get seekForward => '빨리감기';
-	@override String get volume => '볼륨';
-	@override String get volumeDown => '줄이기';
-	@override String get volumeUp => '높이기';
-	@override String get fullscreen => '전체 화면';
-	@override String get subtitles => '자막';
-	@override String get audio => '오디오';
-	@override String get searchHint => '데스크톱에서 검색...';
-}
-
-// Path: companionRemote.errors
-class _Translations$companionRemote$errors$ko extends Translations$companionRemote$errors$en {
-	_Translations$companionRemote$errors$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get noNetworkInterface => '네트워크 인터페이스를 찾을 수 없습니다';
-	@override String get authenticationFailed => '인증 실패';
-	@override String serverStartFailed({required Object error}) => '원격 서버를 시작하지 못했습니다: ${error}';
-	@override String commandFailed({required Object error}) => '원격 명령을 보내지 못했습니다: ${error}';
-	@override String get joinTimedOut => '세션 참가 시간이 초과되었습니다';
-	@override String get failedToConnectAnyAddress => '어떤 주소에도 연결하지 못했습니다';
-	@override String connectionLostAfterAttempts({required Object attempts}) => '${attempts}회 시도 후 연결이 끊어졌습니다';
-	@override String get connectionLost => '연결이 끊어졌습니다';
-}
-
 // Path: services.names
 class _Translations$services$names$ko extends Translations$services$names$en {
 	_Translations$services$names$ko._(TranslationsKo root) : this._root = root, super.internal(root);
@@ -2198,13 +1944,6 @@ extension on TranslationsKo {
 		return switch (path) {
 			'app.title' => 'Plezy',
 			'auth.signInWithPlex' => 'Plex 계정으로 로그인',
-			'auth.showQRCode' => 'QR 코드 표시',
-			'auth.authenticate' => '인증',
-			'auth.authenticationTimeout' => '인증 시간이 초과되었습니다. 다시 시도해 주세요.',
-			'auth.scanQRToSignIn' => '로그인하려면 이 QR 코드를 스캔하세요',
-			'auth.waitingForAuth' => '인증 대기 중...\n브라우저에서 로그인하세요.',
-			'auth.useBrowser' => '브라우저 사용',
-			'auth.or' => '또는',
 			'auth.connectToJellyfin' => 'Jellyfin에 연결',
 			'auth.useQuickConnect' => 'Quick Connect 사용',
 			'auth.quickConnectInstructions' => 'Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.',
@@ -2231,7 +1970,6 @@ extension on TranslationsKo {
 			'common.shuffle' => '무작위 재생',
 			'common.addTo' => '추가하기...',
 			'common.createNew' => '새로 만들기',
-			'common.connect' => '연결',
 			'common.disconnect' => '연결 해제',
 			'common.play' => '재생',
 			'common.pause' => '일시정지',
@@ -2241,7 +1979,6 @@ extension on TranslationsKo {
 			'common.home' => '홈',
 			'common.back' => '뒤로',
 			'common.settings' => '설정',
-			'common.mute' => '음소거',
 			'common.ok' => '확인',
 			'common.off' => '꺼짐',
 			'common.seasonNumber' => ({required Object number}) => '시즌 ${number}',
@@ -2257,6 +1994,7 @@ extension on TranslationsKo {
 			'common.fullscreen' => '전체 화면',
 			'common.exitFullscreen' => '전체 화면 종료',
 			'common.pressBackAgainToExit' => '한 번 더 누르면 종료됩니다',
+			'common.next' => '다음',
 			'screens.licenses' => '라이선스',
 			'screens.switchProfile' => '프로필 전환',
 			'screens.subtitleStyling' => '자막 스타일 설정',
@@ -2365,10 +2103,6 @@ extension on TranslationsKo {
 			'settings.keyboardShortcutsDescription' => '키보드 단축키를 사용자 지정합니다',
 			'settings.videoPlayerNavigation' => '비디오 플레이어 탐색',
 			'settings.videoPlayerNavigationDescription' => '방향 키로 비디오 플레이어 컨트롤을 탐색합니다',
-			'settings.watchTogetherRelay' => '함께 보기 릴레이',
-			'settings.watchTogetherRelayDescription' => '사용자 지정 릴레이를 설정합니다. 모두 같은 서버를 사용해야 합니다.',
-			'settings.watchTogetherRelayHint' => 'https://my-relay.example.com',
-			'settings.watchTogetherRelayInvalid' => '올바른 HTTP 또는 HTTPS 릴레이 기본 URL을 입력하세요.',
 			'settings.crashReporting' => '충돌 보고',
 			'settings.crashReportingDescription' => '앱 개선을 위해 충돌 보고서 전송',
 			'settings.debugLogging' => '디버그 로깅',
@@ -2440,8 +2174,6 @@ extension on TranslationsKo {
 			'settings.services' => '서비스',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr 등 연결',
 			'settings.manageLibrariesDescription' => '라이브러리 순서를 변경하거나 숨깁니다',
-			'settings.companionRemoteServer' => '컴패니언 리모트 서버',
-			'settings.companionRemoteServerDescription' => '네트워크의 모바일 기기가 이 앱을 제어할 수 있도록 허용',
 			'settings.autoPip' => '자동 PIP 모드',
 			'settings.autoPipDescription' => '재생 중 앱을 떠나면 자동으로 화면 속 화면 모드로 전환합니다',
 			'settings.matchContentFrameRate' => '콘텐츠 프레임 레이트 맞춤',
@@ -2705,15 +2437,6 @@ extension on TranslationsKo {
 			'videoControls.noChaptersAvailable' => '사용 가능한 챕터가 없습니다',
 			'videoControls.queue' => '재생 대기열',
 			'videoControls.noQueueItems' => '대기열에 항목이 없습니다',
-			'videoControls.searchSubtitles' => '자막 검색',
-			'videoControls.language' => '언어',
-			'videoControls.noSubtitlesFound' => '자막을 찾을 수 없습니다',
-			_ => null,
-		} ?? switch (path) {
-			'videoControls.subtitleDownloaded' => '자막이 다운로드되었습니다',
-			'videoControls.subtitleDownloadedNotApplied' => '자막을 다운로드했지만 선택할 수 없습니다',
-			'videoControls.subtitleDownloadFailed' => '자막 다운로드에 실패했습니다',
-			'videoControls.searchLanguages' => '언어 검색...',
 			'messages.markedAsWatched' => '시청 완료로 표시됨',
 			'messages.markedAsUnwatched' => '미시청으로 표시됨',
 			'messages.markedAsWatchedOffline' => '시청 완료로 표시됨 (연결 시 동기화됨)',
@@ -2731,6 +2454,8 @@ extension on TranslationsKo {
 			'messages.playbackCancelled' => '재생이 취소되었습니다.',
 			'messages.playbackFailed' => '재생을 시작할 수 없습니다.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => '파일 정보 로딩 중 오류: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.errorLoadingSeries' => '시리즈 로딩 중 오류',
 			'messages.musicNotSupported' => '음악 재생 미지원',
 			'messages.noDescriptionAvailable' => '설명이 없습니다',
@@ -2851,7 +2576,6 @@ extension on TranslationsKo {
 			'profiles.incorrectPin' => 'PIN이 올바르지 않습니다.',
 			'profiles.incorrectPinTryAgain' => 'PIN이 올바르지 않습니다. 다시 시도하세요.',
 			'profiles.sourceProfileMissingParentAccount' => '원본 프로필에 상위 계정이 없습니다.',
-			'profiles.failedToLoadHomeUsers' => 'Plex Home 사용자를 불러올 수 없습니다. 연결을 확인하고 다시 시도하세요.',
 			'profiles.failedToVerifyPin' => 'PIN을 확인하지 못했습니다.',
 			'profiles.newProfile' => '새 프로필',
 			'profiles.profileNameHint' => '예: 손님, 어린이, 가족실',
@@ -2897,9 +2621,6 @@ extension on TranslationsKo {
 			'errors.connectionFailed' => '미디어 서버에 연결할 수 없습니다',
 			'errors.unableToLoad' => ({required Object context}) => '${context}을(를) 불러올 수 없습니다. 다시 시도하세요.',
 			'errors.noClientAvailable' => '사용 가능한 클라이언트가 없습니다',
-			'errors.pleaseEnterToken' => '토큰을 입력해 주세요',
-			'errors.invalidToken' => '토큰이 유효하지 않습니다',
-			'errors.failedToVerifyToken' => ({required Object error}) => '토큰을 확인할 수 없습니다: ${error}',
 			'errors.failedToSwitchProfile' => ({required Object displayName}) => '${displayName}으로 전환할 수 없습니다',
 			'errors.failedToDeleteProfile' => ({required Object displayName}) => '${displayName}을(를) 삭제할 수 없습니다',
 			'errors.failedToRate' => '평점을 업데이트하지 못했습니다',
@@ -2990,8 +2711,6 @@ extension on TranslationsKo {
 			'about.versionLabel' => ({required Object version}) => '버전 ${version}',
 			'about.appDescription' => 'Flutter로 만든 아름다운 Plex 및 Jellyfin 클라이언트',
 			'about.viewLicensesDescription' => '타사 라이브러리 라이선스 보기',
-			'serverSelection.noServersFoundForAccount' => ({required Object username, required Object email}) => '${username} (${email})의 서버를 찾을 수 없습니다.',
-			'serverSelection.failedToLoadServers' => ({required Object error}) => '서버를 로드할 수 없습니다: ${error}',
 			'hubDetail.title' => '제목',
 			'hubDetail.releaseYear' => '출시 연도',
 			'hubDetail.dateAdded' => '추가 날짜',
@@ -3178,73 +2897,6 @@ extension on TranslationsKo {
 			'music.repeat' => '반복',
 			'music.repeatAll' => '전체 반복',
 			'music.repeatOne' => '한 곡 반복',
-			'watchTogether.title' => '함께 보기',
-			'watchTogether.description' => '친구 및 가족과 콘텐츠를 동시에 시청하세요',
-			'watchTogether.createSession' => '세션 생성',
-			'watchTogether.creating' => '생성 중...',
-			'watchTogether.joinSession' => '세션 참여',
-			'watchTogether.joining' => '참가 중...',
-			'watchTogether.controlMode' => '제어 모드',
-			'watchTogether.controlModeQuestion' => '누가 재생을 제어할 수 있나요?',
-			'watchTogether.hostOnly' => '호스트만',
-			'watchTogether.anyone' => '누구나',
-			'watchTogether.hostingSession' => '세션 호스팅 중',
-			'watchTogether.inSession' => '세션 중',
-			'watchTogether.sessionCode' => '세션 코드',
-			'watchTogether.openSessionControls' => '함께 보기 세션 제어 열기',
-			'watchTogether.copySessionCode' => '세션 코드 복사',
-			'watchTogether.hostControlsPlayback' => '호스트 재생 제어',
-			'watchTogether.anyoneCanControl' => '누구나 재생 제어 가능',
-			'watchTogether.hostControls' => '호스트 제어',
-			'watchTogether.anyoneControls' => '누구나 제어',
-			'watchTogether.participants' => '참가자',
-			'watchTogether.host' => '호스트',
-			'watchTogether.hostBadge' => '호스트',
-			'watchTogether.youAreHost' => '호스트입니다',
-			'watchTogether.watchingWithOthers' => '다른 사람과 함께 시청 중',
-			'watchTogether.endSession' => '세션 종료',
-			'watchTogether.leaveSession' => '세션 나가기',
-			'watchTogether.endSessionQuestion' => '세션을 종료하시겠습니까?',
-			'watchTogether.leaveSessionQuestion' => '세션에서 나가시겠습니까?',
-			'watchTogether.endSessionConfirm' => '모든 참가자의 세션이 종료됩니다.',
-			'watchTogether.leaveSessionConfirm' => '세션에서 나가게 됩니다.',
-			'watchTogether.endSessionConfirmOverlay' => '모든 참가자의 함께 보기 세션이 종료됩니다.',
-			'watchTogether.leaveSessionConfirmOverlay' => '함께 보기 세션의 연결이 끊어집니다.',
-			'watchTogether.end' => '종료',
-			'watchTogether.leave' => '나가기',
-			'watchTogether.syncing' => '동기화 중...',
-			'watchTogether.joinWatchSession' => '시청 세션에 참여',
-			'watchTogether.enterCodeHint' => '5자리 코드 입력',
-			'watchTogether.pasteFromClipboard' => '클립보드에서 붙여넣기',
-			'watchTogether.pleaseEnterCode' => '세션 코드를 입력하세요',
-			'watchTogether.codeMustBe5Chars' => '세션 코드는 반드시 5자리여야 합니다',
-			'watchTogether.joinInstructions' => '참여하려면 호스트의 세션 코드를 입력하세요.',
-			'watchTogether.failedToCreate' => '세션 생성 실패',
-			'watchTogether.failedToJoin' => '세션 참여 실패',
-			'watchTogether.sessionCodeCopied' => '세션 코드가 클립보드에 복사되었습니다',
-			_ => null,
-		} ?? switch (path) {
-			'watchTogether.relayUnreachable' => '릴레이 서버에 연결할 수 없습니다. ISP 차단으로 함께 보기를 사용하지 못할 수 있습니다.',
-			'watchTogether.reconnectingToHost' => '호스트에 재연결 중...',
-			'watchTogether.currentPlayback' => '현재 재생',
-			'watchTogether.joinCurrentPlayback' => '현재 재생 참여',
-			'watchTogether.joinCurrentPlaybackDescription' => '호스트가 현재 시청 중인 콘텐츠로 이동합니다',
-			'watchTogether.failedToOpenCurrentPlayback' => '현재 재생을 열 수 없습니다',
-			'watchTogether.participantJoined' => ({required Object name}) => '${name}님이 참여했습니다',
-			'watchTogether.participantLeft' => ({required Object name}) => '${name}님이 나갔습니다',
-			'watchTogether.participantPaused' => ({required Object name}) => '${name}님이 일시정지했습니다',
-			'watchTogether.participantResumed' => ({required Object name}) => '${name}님이 재생했습니다',
-			'watchTogether.participantSeeked' => ({required Object name}) => '${name}님이 재생 위치를 변경했습니다',
-			'watchTogether.participantBuffering' => ({required Object name}) => '${name}님이 버퍼링 중입니다',
-			'watchTogether.participantNeedsUpdate' => ({required Object name}) => '${name}님이 이전 버전의 앱을 사용 중입니다 — 동기화를 사용할 수 없습니다',
-			'watchTogether.resumingWithout' => ({required Object name}) => '${name}님 없이 재생을 재개합니다',
-			'watchTogether.waitingForParticipants' => '다른 참가자의 로딩을 기다리는 중...',
-			'watchTogether.waitingForName' => ({required Object name}) => '${name}님을 기다리는 중...',
-			'watchTogether.recentRooms' => '최근 참여한 방',
-			'watchTogether.renameRoom' => '방 이름 변경',
-			'watchTogether.removeRoom' => '제거',
-			'watchTogether.guestSwitchUnavailable' => '전환할 수 없음 — 동기화 서버를 사용할 수 없습니다',
-			'watchTogether.guestSwitchFailed' => '전환할 수 없음 — 이 서버에서 콘텐츠를 찾을 수 없습니다',
 			'downloads.title' => '다운로드',
 			'downloads.manage' => '관리',
 			'downloads.tvShows' => 'TV 프로그램',
@@ -3316,6 +2968,8 @@ extension on TranslationsKo {
 			'downloads.backgroundWarning.bannerBlocked' => '앱에서 나가면 다운로드가 중지됩니다',
 			'downloads.backgroundWarning.bannerDegraded' => '백그라운드 다운로드가 제한될 수 있습니다',
 			'downloads.backgroundWarning.bannerAction' => '세부정보',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.backgroundWarning.sheetTitle' => '백그라운드 다운로드가 차단됨',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '백그라운드 다운로드가 제한될 수 있음',
 			'downloads.backgroundWarning.sheetIntro' => 'Android가 Plezy의 안정적인 백그라운드 다운로드를 차단하고 있습니다.',
@@ -3354,70 +3008,6 @@ extension on TranslationsKo {
 			'shaders.shaderImportFailed' => '셰이더 가져오기 실패',
 			'shaders.deleteShader' => '셰이더 삭제',
 			'shaders.deleteShaderConfirm' => ({required Object name}) => '"${name}"을(를) 삭제하시겠습니까?',
-			'companionRemote.title' => '컴패니언 리모컨',
-			'companionRemote.connectedTo' => ({required Object name}) => '${name}에 연결됨',
-			'companionRemote.unknownDevice' => '알 수 없는 기기',
-			'companionRemote.session.startingServer' => '원격 서버 시작 중...',
-			'companionRemote.session.hostAddress' => '호스트 주소',
-			'companionRemote.session.connected' => '연결됨',
-			'companionRemote.session.serverRunning' => '원격 서버 활성',
-			'companionRemote.session.serverStopped' => '원격 서버 중지됨',
-			'companionRemote.session.serverRunningDescription' => '네트워크의 모바일 기기가 이 앱에 연결할 수 있습니다',
-			'companionRemote.session.serverStoppedDescription' => '모바일 기기의 연결을 허용하려면 서버를 시작하세요',
-			'companionRemote.session.usePhoneToControl' => '모바일 기기로 이 앱을 제어하세요',
-			'companionRemote.session.startServer' => '서버 시작',
-			'companionRemote.session.stopServer' => '서버 중지',
-			'companionRemote.session.minimize' => '최소화',
-			'companionRemote.pairing.discoveryDescription' => '같은 Plex 계정의 Plezy 기기가 여기에 표시됩니다',
-			'companionRemote.pairing.hostAddressHint' => '192.168.1.100:48632',
-			'companionRemote.pairing.connecting' => '연결 중...',
-			'companionRemote.pairing.searchingForDevices' => '기기 검색 중...',
-			'companionRemote.pairing.noDevicesFound' => '네트워크에서 기기를 찾을 수 없습니다',
-			'companionRemote.pairing.noDevicesHint' => '데스크톱에서 Plezy를 열고 같은 Wi-Fi를 사용하세요',
-			'companionRemote.pairing.availableDevices' => '사용 가능한 기기',
-			'companionRemote.pairing.manualConnection' => '수동 연결',
-			'companionRemote.pairing.cryptoInitFailed' => '보안 연결을 시작할 수 없습니다. 먼저 Plex에 로그인하세요.',
-			'companionRemote.pairing.validationHostRequired' => '호스트 주소를 입력하세요',
-			'companionRemote.pairing.validationHostFormat' => '형식은 IP:포트여야 합니다 (예: 192.168.1.100:48632)',
-			'companionRemote.pairing.connectionTimedOut' => '연결 시간이 초과되었습니다. 두 기기에서 같은 네트워크를 사용하세요.',
-			'companionRemote.pairing.sessionNotFound' => '기기를 찾을 수 없습니다. 호스트에서 Plezy가 실행 중인지 확인하세요.',
-			'companionRemote.pairing.authFailed' => '인증에 실패했습니다. 두 기기 모두 같은 Plex 계정이 필요합니다.',
-			'companionRemote.pairing.failedToConnect' => ({required Object error}) => '연결 실패: ${error}',
-			'companionRemote.remote.disconnectConfirm' => '원격 세션 연결을 해제하시겠습니까?',
-			'companionRemote.remote.reconnecting' => '재연결 중...',
-			'companionRemote.remote.attemptOf' => ({required Object current}) => '${current}/5 시도 중',
-			'companionRemote.remote.retryNow' => '지금 재시도',
-			'companionRemote.remote.tabRemote' => '리모컨',
-			'companionRemote.remote.tabPlay' => '재생',
-			'companionRemote.remote.tabMore' => '더 보기',
-			'companionRemote.remote.menu' => '메뉴',
-			'companionRemote.remote.tabNavigation' => '탭 탐색',
-			'companionRemote.remote.tabDiscover' => '둘러보기',
-			'companionRemote.remote.tabLibraries' => '미디어 라이브러리',
-			'companionRemote.remote.tabSearch' => '검색',
-			'companionRemote.remote.tabDownloads' => '다운로드',
-			'companionRemote.remote.tabSettings' => '설정',
-			'companionRemote.remote.previous' => '이전',
-			'companionRemote.remote.playPause' => '재생/일시정지',
-			'companionRemote.remote.next' => '다음',
-			'companionRemote.remote.seekBack' => '되감기',
-			'companionRemote.remote.stop' => '정지',
-			'companionRemote.remote.seekForward' => '빨리감기',
-			'companionRemote.remote.volume' => '볼륨',
-			'companionRemote.remote.volumeDown' => '줄이기',
-			'companionRemote.remote.volumeUp' => '높이기',
-			'companionRemote.remote.fullscreen' => '전체 화면',
-			'companionRemote.remote.subtitles' => '자막',
-			'companionRemote.remote.audio' => '오디오',
-			'companionRemote.remote.searchHint' => '데스크톱에서 검색...',
-			'companionRemote.errors.noNetworkInterface' => '네트워크 인터페이스를 찾을 수 없습니다',
-			'companionRemote.errors.authenticationFailed' => '인증 실패',
-			'companionRemote.errors.serverStartFailed' => ({required Object error}) => '원격 서버를 시작하지 못했습니다: ${error}',
-			'companionRemote.errors.commandFailed' => ({required Object error}) => '원격 명령을 보내지 못했습니다: ${error}',
-			'companionRemote.errors.joinTimedOut' => '세션 참가 시간이 초과되었습니다',
-			'companionRemote.errors.failedToConnectAnyAddress' => '어떤 주소에도 연결하지 못했습니다',
-			'companionRemote.errors.connectionLostAfterAttempts' => ({required Object attempts}) => '${attempts}회 시도 후 연결이 끊어졌습니다',
-			'companionRemote.errors.connectionLost' => '연결이 끊어졌습니다',
 			'videoSettings.playbackSpeed' => '재생 속도',
 			'videoSettings.normalSpeed' => '보통',
 			'videoSettings.sleepTimerActive' => ({required Object duration}) => '활성 (${duration})',
@@ -3563,18 +3153,6 @@ extension on TranslationsKo {
 			'metadataEdit.label' => '라벨',
 			'metadataEdit.style' => '스타일',
 			'metadataEdit.mood' => '분위기',
-			'matchScreen.match' => '일치...',
-			'matchScreen.fixMatch' => '일치 수정...',
-			'matchScreen.unmatch' => '일치 해제',
-			'matchScreen.unmatchConfirm' => '이 매칭을 지울까요? 다시 매칭될 때까지 Plex에서는 미매칭으로 처리됩니다.',
-			'matchScreen.unmatchSuccess' => '일치 해제됨',
-			'matchScreen.unmatchFailed' => '일치 해제에 실패했습니다',
-			'matchScreen.matchApplied' => '일치 적용됨',
-			'matchScreen.matchFailed' => '일치 적용에 실패했습니다',
-			'matchScreen.titleHint' => '제목',
-			'matchScreen.yearHint' => '연도',
-			'matchScreen.search' => '검색',
-			'matchScreen.noMatchesFound' => '일치하는 항목이 없습니다',
 			'serverTasks.title' => '서버 작업',
 			'serverTasks.failedToLoad' => '작업을 불러올 수 없습니다',
 			'serverTasks.noTasks' => '실행 중인 작업 없음',
@@ -3667,15 +3245,9 @@ extension on TranslationsKo {
 			'addServer.couldNotReachServer' => ({required Object error}) => '서버에 연결할 수 없습니다: ${error}',
 			'addServer.signInFailed' => ({required Object error}) => '로그인 실패: ${error}',
 			'addServer.quickConnectFailed' => ({required Object error}) => 'Quick Connect 실패: ${error}',
-			'addServer.addPlexTitle' => 'Plex로 로그인',
-			'addServer.pinExpired' => '로그인 전에 PIN이 만료되었습니다. 다시 시도하세요.',
-			'addServer.failedToRegisterAccount' => ({required Object error}) => '계정 등록 실패: ${error}',
 			'addServer.enterJellyfinUrlError' => 'Jellyfin 서버 URL을 입력하세요',
 			'addServer.addConnectionTitle' => '연결 추가',
 			'addServer.addConnectionTitleScoped' => ({required Object name}) => '${name}에 추가',
-			'addServer.signInWithPlexCard' => 'Plex로 로그인',
-			'addServer.signInWithPlexCardSubtitle' => '이 기기를 승인합니다. 공유 서버가 추가됩니다.',
-			'addServer.signInWithPlexCardSubtitleScoped' => 'Plex 계정을 승인합니다. Home 사용자는 프로필이 됩니다.',
 			'addServer.connectToJellyfinCard' => 'Jellyfin에 연결',
 			'addServer.connectToJellyfinCardSubtitle' => '서버 URL, 사용자 이름, 비밀번호를 입력하세요.',
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Jellyfin 서버에 로그인합니다. ${name}에 연결됩니다.',
