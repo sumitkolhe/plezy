@@ -59,6 +59,12 @@ class GridLayoutConstants {
   static EdgeInsets get gridPadding => const EdgeInsets.only(left: 2, right: 2, bottom: 2);
 }
 
+/// Touch-layout rail rhythm. TV equivalents live in [TvLayoutConstants].
+class HubLayoutConstants {
+  static const double shelfVerticalGap = 20;
+  static const double headerGap = 6;
+}
+
 class TvLayoutConstants {
   static const double horizontalInset = 72;
   static const double shelfHorizontalInset = 56;

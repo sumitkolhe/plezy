@@ -22,6 +22,8 @@ import '../services/settings_service.dart';
 import '../theme/mono_tokens.dart';
 import '../utils/layout_constants.dart';
 import '../utils/media_image_helper.dart';
+import '../utils/platform_detector.dart';
+import 'media_card_grid_layout.dart';
 import '../utils/media_navigation_helper.dart';
 import '../utils/provider_extensions.dart';
 import 'animated_dim_scrim.dart';
@@ -163,7 +165,14 @@ class TvBrowseRailLayout {
     final posterHeight = (isPersonHub || isSquareHub)
         ? posterWidth
         : (useWideLayout ? posterWidth * 9 / 16 : posterWidth * 1.5);
-    final labelHeight = fullCardLayout ? 0.0 : ((isPersonHub ? 58 : 42) * scale);
+    // Floor at what MediaCard actually draws; the scaled band alone is tuned
+    // for TV and goes short of the roomier touch caption.
+    final labelHeight = fullCardLayout
+        ? 0.0
+        : math.max(
+            (isPersonHub ? 58 : 42) * scale,
+            MediaCardGridLayout.of(isTv: PlatformDetector.isTV()).renderedCaptionHeight,
+          );
     final containerHeight = (posterHeight + labelHeight).ceilToDouble();
     final height = containerHeight + focusExtra + (14 * scale);
 

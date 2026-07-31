@@ -22,6 +22,7 @@ import '../utils/media_navigation_helper.dart';
 import 'card_inflation_budget.dart';
 import 'focus_builders.dart';
 import 'media_card.dart';
+import 'media_card_grid_layout.dart';
 import 'skeleton_media_card.dart';
 import 'sliver_child_memo.dart';
 import '../utils/scroll_utils.dart';
@@ -415,15 +416,21 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
     final isKeyboardMode = InputModeTracker.isKeyboardMode(context);
     final isTv = PlatformDetector.isTV();
     final leadingPadding = _leadingPaddingFor(isTv);
-    final titleStyle = Theme.of(
-      context,
-    ).textTheme.titleLarge?.copyWith(fontSize: isTv ? 26 : null, fontWeight: isTv ? FontWeight.w700 : null);
+    final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+      fontSize: isTv ? 26 : 17,
+      fontWeight: isTv ? FontWeight.w700 : FontWeight.w700,
+      letterSpacing: isTv ? null : -0.2,
+    );
+
+    final isTopLevelShelf = !widget.inset && widget.cardSizing == HubCardSizing.shelf;
 
     return Padding(
       padding: .only(
-        bottom: isTv && !widget.inset && widget.cardSizing == HubCardSizing.shelf
+        bottom: !isTopLevelShelf
+            ? 0
+            : isTv
             ? TvLayoutConstants.shelfVerticalGap
-            : 0,
+            : HubLayoutConstants.shelfVerticalGap,
       ),
       child: Column(
         crossAxisAlignment: .start,
@@ -433,7 +440,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
           Padding(
             padding: widget.inset
                 ? EdgeInsets.symmetric(vertical: isTv ? 6 : 2)
-                : EdgeInsets.fromLTRB(leadingPadding - 4, isTv ? 6 : 2, 8, isTv ? 8 : 2),
+                : EdgeInsets.fromLTRB(leadingPadding - 4, isTv ? 6 : 2, 8, isTv ? 8 : HubLayoutConstants.headerGap),
             child: ExcludeFocus(
               child: InkWell(
                 mouseCursor: widget.hub.more ? SystemMouseCursors.click : MouseCursor.defer,
@@ -446,8 +453,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                   child: Row(
                     mainAxisSize: .min,
                     children: [
-                      AppIcon(widget.icon, fill: 1, size: isTv ? 28 : null),
-                      SizedBox(width: isTv ? 12 : 8),
+                      AppIcon(widget.icon, fill: 1, size: isTv ? 28 : 18),
+                      SizedBox(width: isTv ? 12 : 7),
                       Flexible(
                         child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
                       ),
@@ -508,26 +515,26 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                     final EpisodePosterMode episodePosterMode =
                         widget.episodePosterModeOverride ?? svc.read(SettingsService.episodePosterMode);
 
-                    final hasEpisodes = widget.hub.items.any((item) => item.usesWideAspectRatio(episodePosterMode));
-                    final hasNonEpisodes = widget.hub.items.any((item) => !item.usesWideAspectRatio(episodePosterMode));
-
-                    final isMixedHub = hasEpisodes && hasNonEpisodes;
-
-                    final isEpisodeOnlyHub = hasEpisodes && !hasNonEpisodes;
-
-                    // Use 16:9 for episode-only hubs OR mixed hubs (with episode thumbnail mode)
-                    final useWideLayout =
-                        episodePosterMode == EpisodePosterMode.episodeThumbnail && (isEpisodeOnlyHub || isMixedHub);
-
                     // Music hubs render square album/artist artwork
                     final isSquareHub =
                         widget.hub.items.isNotEmpty &&
                         widget.hub.items.every((item) => item.cardShape(episodePosterMode) == CardShape.square);
 
+                    // On a top-level shelf, thumbnail mode is a screen-wide shape choice rather
+                    // than an episode-only one: a movies-only rail left portrait puts both
+                    // silhouettes on one screen, and the same movie renders wide in Continue
+                    // Watching and tall two rails below. Embedded hubs keep the episode-driven
+                    // rule — catalog rows carry poster-only external art that 16:9 would crop.
+                    final hasEpisodes = widget.hub.items.any((item) => item.usesWideAspectRatio(episodePosterMode));
+                    final useWideLayout =
+                        episodePosterMode == EpisodePosterMode.episodeThumbnail &&
+                        !isSquareHub &&
+                        (hasEpisodes || isTopLevelShelf);
+
                     // Card dimensions based on hub type
                     const wideCardMultiplier = 1.5;
                     final cardWidth = useWideLayout ? baseCardWidth * wideCardMultiplier : baseCardWidth;
-                    final posterWidth = cardWidth - 6; // 3px padding on each side
+                    final posterWidth = MediaCardGridLayout.posterWidth(cardWidth);
                     final posterHeight = useWideLayout
                         ? posterWidth *
                               (9 / 16) // 16:9 for wide layout
@@ -535,7 +542,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                         ? posterWidth // 1:1 for music artwork
                         : posterWidth * 1.5; // 2:3 for poster layout
 
-                    final containerHeight = posterHeight + (isTv ? 48 : 33);
+                    final containerHeight = posterHeight + MediaCardGridLayout.of(isTv: isTv).captionHeight;
                     final focusBorderWidth = FocusTheme.focusBorderWidth;
                     final focusExtra = focusBorderWidth * 2; // border on both sides
                     _itemExtent = cardWidth + focusExtra + 4;
@@ -546,7 +553,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                       cardWidth,
                       posterHeight,
                       useWideLayout,
-                      isMixedHub,
                       episodePosterMode,
                       isKeyboardMode,
                       widget.inset,
@@ -691,7 +697,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                                     forceGridMode: true,
                                     isInContinueWatching: widget.isInContinueWatching,
                                     usesContinueWatchingAction: widget.usesContinueWatchingAction,
-                                    mixedHubContext: isMixedHub,
+                                    mixedHubContext: useWideLayout,
                                     episodePosterModeOverride: episodePosterMode,
                                   ),
                                 ),

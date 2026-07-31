@@ -36,6 +36,7 @@ import '../utils/snackbar_helper.dart';
 import '../theme/mono_tokens.dart';
 import '../i18n/strings.g.dart';
 import 'media_context_menu.dart';
+import 'media_card_grid_layout.dart';
 import 'media_card_list_layout.dart';
 import 'backend_badge.dart';
 import 'optimized_media_image.dart';
@@ -565,8 +566,9 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
     required List<String> badgeLabels,
   }) {
     // Compute actual poster dimensions from card dimensions
-    final posterWidth = widget.width != null ? widget.width! - 6 : null;
+    final posterWidth = widget.width != null ? MediaCardGridLayout.posterWidth(widget.width!) : null;
     final posterHeight = widget.height;
+    final layout = MediaCardGridLayout.of(isTv: PlatformDetector.isTV());
 
     // The focus border hugs the poster (captions stay outside it), matching
     // the full-bleed card treatment.
@@ -610,7 +612,7 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
         onSecondaryTap: showContextMenuFromTap,
         borderRadius: BorderRadius.circular(tokens(context).radiusSm),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(3, 3, 3, 1),
+          padding: layout.padding,
           child: Column(
             mainAxisSize: .min,
             crossAxisAlignment: .start,
@@ -620,12 +622,12 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
                 SizedBox(width: double.infinity, height: posterHeight, child: poster)
               else
                 Expanded(child: poster),
-              const SizedBox(height: 2),
+              SizedBox(height: layout.captionGap),
               // Title (flattened — no inner Column)
               if (widget.onTap == null && item is MediaItem && _hasClickableTitle(item))
                 _ClickableText(
                   text: item.displayTitle,
-                  style: const TextStyle(fontWeight: .w600, fontSize: 13, height: 1.1),
+                  style: layout.titleStyle,
                   onTap: () => _navigateToFocusedDetail(context, item, isOffline: widget.isOffline),
                 )
               else
@@ -634,10 +636,11 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
                     item is MediaPlaylist ? item.title : (item as MediaItem).displayTitle,
                     maxLines: 1,
                     overflow: .ellipsis,
-                    style: const TextStyle(fontWeight: .w600, fontSize: 13, height: 1.1),
+                    style: layout.titleStyle,
                   ),
                 ),
               // Subtitle
+              SizedBox(height: layout.titleSubtitleGap),
               if (item is MediaPlaylist)
                 _MediaCardHelpers.buildPlaylistMeta(context, item)
               else if (item is MediaItem)
@@ -1118,9 +1121,12 @@ class _MediaCardHelpers {
     bool enableDetailLinks = true,
     CatalogItem? catalogItem,
   }) {
-    final subtitleStyle = Theme.of(
-      context,
-    ).textTheme.bodySmall?.copyWith(color: tokens(context).textMuted, fontSize: 11, height: 1.1);
+    final layout = MediaCardGridLayout.of(isTv: PlatformDetector.isTV());
+    final subtitleStyle = Theme.of(context).textTheme.bodySmall?.copyWith(
+      color: tokens(context).textMuted,
+      fontSize: layout.subtitleFontSize,
+      height: layout.subtitleHeight,
+    );
 
     if (catalogItem != null) {
       final metadata = _buildMediaMetadataLine(mi, catalogItem: catalogItem, compact: true);
