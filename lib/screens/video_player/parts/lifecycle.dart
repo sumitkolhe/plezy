@@ -80,10 +80,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
       return;
     }
 
-    // Suppress Watch Together heartbeats while backgrounded so App Nap
-    // doesn't cause stale position broadcasts that make guests loop.
-    _watchTogetherProvider?.setBackgrounded(true);
-
     final currentPlayer = player;
     if (currentPlayer == null || !_isPlayerInitialized) {
       _recordLifecycleState('hidden', action: 'skipped_no_player');
@@ -164,7 +160,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
 
   Future<void> _handleAppResumed() async {
     _recordLifecycleState('resumed', action: 'begin');
-    _watchTogetherProvider?.setBackgrounded(false);
 
     if (_live.exitOnResume) {
       _live.exitOnResume = false;

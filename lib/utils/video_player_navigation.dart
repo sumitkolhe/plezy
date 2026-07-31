@@ -13,7 +13,6 @@ import '../models/transcode_quality_preset.dart';
 import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/watch_state_store.dart';
-import '../watch_together/providers/watch_together_provider.dart';
 import '../screens/video_player_screen.dart';
 import '../services/external_player_service.dart';
 import '../services/local_playback_history.dart';
@@ -119,15 +118,6 @@ class VideoPlayerActiveRouteGuard {
 }
 
 final _videoPlayerNavigationInFlightGuard = VideoPlayerNavigationInFlightGuard();
-
-class WatchTogetherPlaybackNavigationException implements Exception {
-  final String message;
-
-  const WatchTogetherPlaybackNavigationException(this.message);
-
-  @override
-  String toString() => message;
-}
 
 /// Series (keyed by grandparent) or standalone-item key under
 /// [SettingsService.mediaVersionPreferences], scoped by server — raw Plex
@@ -428,42 +418,4 @@ Future<bool?> navigateToVideoPlayerWithRefresh(
   }
 
   return result;
-}
-
-/// Resolves the current Watch Together media and opens the video player.
-///
-/// Returns whether navigation was initiated. The fetch can outlive the
-/// dispatch that requested it (slow server, host switching again, dispatcher
-/// timeout); navigating then would stack a stale player route on top of the
-/// live one, so the key is re-validated against the session's current
-/// playback snapshot before the push.
-Future<bool> navigateToWatchTogetherPlayback(
-  BuildContext context, {
-  required String ratingKey,
-  required ServerId serverId,
-  VoidCallback? onBeforeNavigate,
-}) async {
-  final multiServer = context.read<MultiServerProvider>();
-  final client = multiServer.getClientForServer(serverId);
-
-  if (client == null) {
-    throw const WatchTogetherPlaybackNavigationException('Watch Together server is unavailable');
-  }
-
-  final metadata = await client.fetchItem(ratingKey);
-  if (metadata == null) {
-    throw const WatchTogetherPlaybackNavigationException('Current Watch Together media is unavailable');
-  }
-
-  if (!context.mounted) return false;
-
-  final watchTogether = context.read<WatchTogetherProvider>();
-  if (watchTogether.currentMediaRatingKey != ratingKey || watchTogether.currentMediaServerId != serverId) {
-    appLogger.d('WatchTogether: Skipping stale navigation to $ratingKey');
-    return false;
-  }
-
-  onBeforeNavigate?.call();
-  unawaited(navigateToVideoPlayer(context, metadata: metadata));
-  return true;
 }

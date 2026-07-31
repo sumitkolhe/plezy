@@ -8,8 +8,7 @@ import 'package:plezy/i18n/strings.g.dart';
 import 'package:plezy/models/livetv_capture_buffer.dart';
 import 'package:plezy/utils/formatters.dart';
 import 'package:plezy/widgets/video_controls/widgets/live_timeline_bar.dart';
-
-import '../test_helpers/watch_together_fakes.dart';
+import '../test_helpers/fake_player.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

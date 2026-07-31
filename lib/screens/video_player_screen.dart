@@ -36,9 +36,6 @@ import '../mixins/mounted_set_state_mixin.dart';
 import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/playback_state_provider.dart';
-import '../models/companion_remote/remote_command.dart';
-import '../providers/companion_remote_provider.dart';
-import '../services/companion_remote/companion_remote_receiver.dart';
 import '../services/fullscreen_state_manager.dart';
 import '../services/driver_distraction.dart';
 import '../services/discord_rpc_service.dart';
@@ -102,9 +99,7 @@ import '../focus/input_mode_tracker.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/key_event_utils.dart';
 import '../i18n/strings.g.dart';
-import '../watch_together/providers/watch_together_provider.dart';
 
-part 'video_player/parts/companion_remote.dart';
 part 'video_player/parts/display_matching.dart';
 part 'video_player/parts/episode_navigation.dart';
 part 'video_player/parts/episode_queue.dart';
@@ -119,20 +114,17 @@ part 'video_player/parts/playback_prompts.dart';
 part 'video_player/parts/playback_services.dart';
 part 'video_player/parts/playback_start.dart';
 part 'video_player/parts/seeking.dart';
+part 'video_player/parts/track_cycling.dart';
 part 'video_player/parts/build.dart';
-part 'video_player/parts/watch_together.dart';
 
 final WakelockController _wakelockController = WakelockController();
 
 /// Whether an in-place source reload may start the replacement media.
 ///
-/// Reloading a paused player must not manufacture a new play intent. Watch
-/// Together and explicit paused starts keep owning the eventual resume.
-bool shouldAutoStartReloadedMedia({
-  required bool wasPlayingBeforeReload,
-  required bool watchTogetherOwnsStart,
-  required bool startPaused,
-}) => wasPlayingBeforeReload && !watchTogetherOwnsStart && !startPaused;
+/// Reloading a paused player must not manufacture a new play intent; an
+/// explicit paused start keeps owning the eventual resume.
+bool shouldAutoStartReloadedMedia({required bool wasPlayingBeforeReload, required bool startPaused}) =>
+    wasPlayingBeforeReload && !startPaused;
 
 /// Builds an item-agnostic subtitle preference for an episode replacement.
 ///
@@ -348,7 +340,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
 
   /// Media key of the last Watch Together switch failure the user was
   /// toasted about — the heartbeat retry loop must not re-toast every 2s.
-  String? _wtSwitchToastShownForKey;
 
   bool _showPlayNextDialog = false;
   bool _isPhone = false;
@@ -529,9 +520,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   bool _pinchZoomChanged = false;
   final EpisodeNavigationService _episodeNavigation = EpisodeNavigationService();
 
-  WatchTogetherProvider? _watchTogetherProvider;
-
-  CompanionRemoteProvider? _companionRemoteProvider;
   VoidCallback? _savedOnHome;
 
   /// Backend-neutral lookup. Returns whichever client (Plex or Jellyfin)
@@ -827,7 +815,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
 
     WidgetsBinding.instance.addObserver(this);
 
-    _setupCompanionRemoteCallbacks();
     _setupAppleTvRemotePlaybackActions();
 
     _sleepTimerSubscription = SleepTimerService().onPrompt.listen((_) {
@@ -1402,27 +1389,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     if (_isHandlingBack) return;
     _isHandlingBack = true;
     try {
-      // For non-host participants, show leave session confirmation
-      if (_watchTogetherProvider != null && _watchTogetherProvider!.isInSession && !_watchTogetherProvider!.isHost) {
-        final confirmed = await showConfirmDialog(
-          context,
-          title: t.watchTogether.leaveSessionQuestion,
-          message: t.watchTogether.leaveSessionConfirm,
-          confirmText: t.watchTogether.leave,
-          isDestructive: true,
-        );
-
-        if (confirmed && mounted) {
-          try {
-            await _watchTogetherProvider!.leaveSession();
-          } catch (error, stackTrace) {
-            appLogger.e('WatchTogether: Session leave failed', error: error, stackTrace: stackTrace);
-          }
-          if (mounted) await _exitPlayerRoute(navigateHome: navigateHome);
-        }
-        return;
-      }
-
       // Default behavior for hosts or non-session users
       if (!mounted) return;
       await _exitPlayerRoute(navigateHome: navigateHome);
@@ -1499,20 +1465,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     _playbackTransitionIdleCompleter = null;
     if (transitionCompleter != null && !transitionCompleter.isCompleted) transitionCompleter.complete();
 
-    _cleanupCompanionRemoteCallbacks();
-
-    // Notify Watch Together guests that host is exiting the player.
-    // Use stored reference since context.read() may fail in dispose.
-    final isReplacingWithVideo = _isReplacingWithVideo;
-    if (!isReplacingWithVideo &&
-        _watchTogetherProvider != null &&
-        _watchTogetherProvider!.isHost &&
-        _watchTogetherProvider!.isInSession) {
-      _watchTogetherProvider!.notifyHostExitedPlayer();
-    }
-
-    _detachFromWatchTogetherSession();
-
     _isBuffering.dispose();
     _hasFirstFrame.dispose();
     _isExiting.dispose();
@@ -1541,6 +1493,7 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
 
     _scrubPreviewSource?.dispose();
 
+    final isReplacingWithVideo = _isReplacingWithVideo;
     if (!isReplacingWithVideo) {
       SleepTimerService().markNeedsRestart();
     }
@@ -1728,11 +1681,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       return;
     }
 
-    if (!_canControlPlayback()) {
-      appLogger.d('$source play/pause ignored: playback control unavailable');
-      return;
-    }
-
     // Rewind-on-resume follows the resolved intent, never the current state: a
     // directed pause on an already-paused video must not jump backwards.
     final resumes = switch (command) {
@@ -1780,8 +1728,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
 
   /// Navigate to a specific queue item (called from QueueSheet)
   Future<void> navigateToQueueItem(MediaItem metadata) async {
-    if (!_canNavigateMediaItems()) return;
-    _notifyWatchTogetherMediaChange(metadata: metadata);
     await _navigateToEpisode(metadata);
   }
 

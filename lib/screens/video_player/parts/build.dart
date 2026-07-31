@@ -231,18 +231,7 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                     final newSize = Size(constraints.maxWidth, constraints.maxHeight);
                     _scheduleVideoLayoutUpdate(newSize);
 
-                    var authority = (canControlPlayback: true, canNavigateMediaItems: true);
-                    try {
-                      authority = context
-                          .select<WatchTogetherProvider, ({bool canControlPlayback, bool canNavigateMediaItems})>(
-                            (wt) => (
-                              canControlPlayback: !wt.isInSession || wt.canControl(),
-                              canNavigateMediaItems: !wt.isInSession || wt.isHost,
-                            ),
-                          );
-                    } catch (_) {
-                      // Watch Together is optional outside the main app shell.
-                    }
+                    const authority = (canControlPlayback: true, canNavigateMediaItems: true);
                     if (_lastMediaControlAuthority != authority) {
                       _lastMediaControlAuthority = authority;
                       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -309,7 +298,6 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                         onSecondarySubtitleTrackChanged: _onSecondarySubtitleTrackChanged,
                         onSeekRequested: _seekPlayback,
                         onPlayPauseRequested: _handleControlsTransport,
-                        onSeekCompleted: _notifyWatchTogetherSeek,
                         onBack: _handleBackButton,
                         onReachedEnd: ({skipAutoPlayCountdown = false}) =>
                             _onVideoCompleted(true, skipAutoPlayCountdown: skipAutoPlayCountdown),
@@ -370,7 +358,6 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                 isExiting: _isExiting,
               ),
               // Watch Together overlays (isolated from video surface repaints)
-              const VideoPlayerWatchTogetherOverlays(),
               // Black overlay during exit (no spinner - just covers transparency)
               VideoPlayerExitOverlay(isExiting: _isExiting),
             ],

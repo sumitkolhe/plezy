@@ -8,9 +8,6 @@ import '../../../i18n/strings.g.dart';
 import '../../../media/media_item.dart';
 import '../../../providers/playback_state_provider.dart';
 import '../../../services/pip_service.dart';
-import '../../../utils/platform_detector.dart';
-import '../../../watch_together/providers/watch_together_provider.dart';
-import '../../../watch_together/widgets/watch_together_overlay.dart';
 import '../../../widgets/app_icon.dart';
 import '../../../widgets/video_controls/player_chrome_controller.dart';
 
@@ -87,62 +84,6 @@ class VideoPlayerBufferingOverlay extends StatelessWidget {
           },
         );
       },
-    );
-  }
-}
-
-class VideoPlayerWatchTogetherOverlays extends StatelessWidget {
-  const VideoPlayerWatchTogetherOverlays({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return RepaintBoundary(
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Selector<WatchTogetherProvider, bool>(
-            selector: (_, provider) => provider.isWaitingForHostReconnect,
-            builder: (context, isWaiting, child) {
-              if (!isWaiting) return const SizedBox.shrink();
-              return Positioned(
-                bottom: 120,
-                left: 0,
-                right: 0,
-                child: Center(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: const BoxDecoration(
-                      color: Colors.black54,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: Row(
-                      mainAxisSize: .min,
-                      children: [
-                        if (PlatformDetector.isTV())
-                          const AppIcon(Symbols.sync_rounded, size: 14, color: Colors.white)
-                        else
-                          const SizedBox(
-                            width: 14,
-                            height: 14,
-                            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
-                          ),
-                        const SizedBox(width: 8),
-                        Text(
-                          t.watchTogether.reconnectingToHost,
-                          style: const TextStyle(color: Colors.white, fontSize: 12),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-          const ParticipantNotificationOverlay(),
-          const WaitingForParticipantsIndicator(),
-          const SyncingIndicator(),
-        ],
-      ),
     );
   }
 }

@@ -49,15 +49,12 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
   }
 
   Future<void> _playNext() async {
-    if (!_canNavigateMediaItems()) return;
     if (!mounted) return;
     if (_nextEpisode == null || _isLoadingNext) return;
 
     _autoPlayTimer?.cancel();
     _unfocusPlayNextPrompt();
     _dismissStillWatching();
-
-    _notifyWatchTogetherMediaChange(metadata: _nextEpisode);
 
     _setPlayerState(() {
       _isLoadingNext = true;
@@ -68,10 +65,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
   }
 
   Future<void> _playPrevious() async {
-    if (!_canNavigateMediaItems()) return;
     if (_previousEpisode == null || _isLoadingPrevious) return;
-
-    _notifyWatchTogetherMediaChange(metadata: _previousEpisode);
 
     _setPlayerState(() {
       _isLoadingPrevious = true;
@@ -81,7 +75,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
   }
 
   Future<void> _restartOrPlayPrevious() async {
-    if (!_canNavigateMediaItems()) return;
     final currentPlayer = player;
     if (!mounted || currentPlayer == null || _isLoadingPrevious) return;
 
@@ -103,7 +96,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
     await _seekPlayback(target);
     if (!mounted || currentPlayer != player) return;
 
-    _notifyWatchTogetherSeek(target);
     _updateMediaControlsPlaybackState();
   }
 
@@ -505,25 +497,12 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
       late final PlaybackStateProvider playbackState;
       late final AppDatabase database;
       late final MultiServerManager serverManager;
-      late final WatchTogetherProvider? watchTogether;
-      late final bool watchTogetherWasAttached;
-      late final bool cycleWatchTogetherAttachment;
-      late final bool wtOwnsStart;
       try {
         offlineWatchService = context.read<OfflineWatchSyncService>();
         userProfileProvider = context.read<UserProfileProvider>();
         playbackState = context.read<PlaybackStateProvider>();
         database = context.read<AppDatabase>();
         serverManager = context.read<MultiServerProvider>().serverManager;
-        // Cycle the Watch Together attachment across every reload: the
-        // reload's internal pause/open churn must not leak into the sync layer
-        // as user intents. Readiness re-handshakes on re-attach (item changes
-        // start a new media epoch; same-item source switches group-wait while
-        // we reload).
-        watchTogether = _activeWatchTogetherSession();
-        watchTogetherWasAttached = watchTogether?.hasAttachedPlayer ?? false;
-        cycleWatchTogetherAttachment = watchTogetherWasAttached;
-        wtOwnsStart = _watchTogetherOwnsPlaybackStart();
       } catch (e, stackTrace) {
         appLogger.e('Failed to prepare media reload during $reason', error: e, stackTrace: stackTrace);
         if (mounted && showErrorUi) {
@@ -535,7 +514,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
 
       final shouldAutoStart = shouldAutoStartReloadedMedia(
         wasPlayingBeforeReload: wasPlayingBeforeReload,
-        watchTogetherOwnsStart: wtOwnsStart,
         startPaused: startPaused,
       );
 
@@ -572,11 +550,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         _autoPlayTimer?.cancel();
         _hasFirstFrame.value = false;
 
-        // Detach before pausing so the reload's internal pause can't broadcast
-        // a party-wide pause; the finally below restores the attachment.
-        if (cycleWatchTogetherAttachment) {
-          watchTogether!.detachPlayer();
-        }
         try {
           await currentPlayer.pause();
         } catch (e) {
@@ -807,7 +780,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
             externalSubtitlePlan: effectiveExternalSubtitlePlan,
             reason: reason,
             shouldResume: shouldAutoStart,
-            watchTogetherOwnsStart: wtOwnsStart,
           ),
           playbackResumedForStartupFrame: resumeForStartupFrame,
         );
@@ -889,37 +861,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
           showErrorSnackBar(context, t.messages.errorLoading(error: e.toString()));
         }
         return didOpenReplacement ? _MediaReloadOutcome.opened : _MediaReloadOutcome.failed;
-      } finally {
-        // Restore Watch Together sync on every exit: after a successful item
-        // change (readiness re-handshakes for the new item), after a failed
-        // reload (the still-playing old item must stay synced), and when the
-        // controller auto-detached itself on a mid-reload player failure.
-        // _currentMetadata is correct on both the success and rollback paths
-        // by the time we get here.
-        try {
-          final reattachServerId = _currentMetadata.serverId;
-          if (watchTogetherWasAttached &&
-              watchTogether != null &&
-              watchTogether.isInSession &&
-              mounted &&
-              player == currentPlayer &&
-              reattachServerId != null &&
-              !watchTogether.hasAttachedPlayer) {
-            watchTogether.attachPlayer(
-              currentPlayer,
-              ratingKey: _currentMetadata.id,
-              serverId: reattachServerId,
-              mediaTitle: _currentMetadata.displayTitle,
-              hasFirstFrame: _hasFirstFrame.value,
-              remoteSeek: _seekPlayback,
-            );
-          }
-        } catch (e, stackTrace) {
-          // Playback has already reached a definitive opened/failed outcome;
-          // a best-effort sync reattach must not rewrite it or escape through
-          // the source-switch error classifier.
-          appLogger.w('Failed to reattach Watch Together after $reason', error: e, stackTrace: stackTrace);
-        }
       }
     } finally {
       // Cover setup as well as async playback work: context/provider reads can

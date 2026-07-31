@@ -34,8 +34,8 @@ extension _VideoPlayerMediaControlsMethods on VideoPlayerScreenState {
     final playbackState = context.read<PlaybackStateProvider>();
     final hasNavigableItems = _currentMetadata.isEpisode || playbackState.isPlaylistActive;
     final contentCanSeek = !widget.isLive && currentPlayer.state.seekable;
-    final canControlPlayback = _canControlPlayback();
-    final canNavigateMediaItems = _canNavigateMediaItems();
+    const canControlPlayback = true;
+    const canNavigateMediaItems = true;
 
     if (!mounted || currentPlayer != player || manager != _mediaControlsManager) return;
 

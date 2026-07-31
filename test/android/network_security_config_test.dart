@@ -29,7 +29,6 @@ const _fixedEndpointSourcePaths = <String>[
   'lib/services/catalog/seerr_catalog_source.dart',
   'lib/services/discord_rpc_service.dart',
   'lib/services/update_service.dart',
-  'lib/watch_together/services/watch_together_relay_endpoint.dart',
   'lib/main.dart',
 ];
 

@@ -13,7 +13,6 @@ import '../../profiles/profile.dart';
 import '../../profiles/profile_connection_cleanup.dart';
 import '../../profiles/profile_connection_registry.dart';
 import '../../profiles/profile_registry.dart';
-import '../../providers/companion_remote_provider.dart';
 import '../../providers/download_provider.dart';
 import '../../providers/discover_provider.dart';
 import '../../providers/hidden_libraries_provider.dart';
@@ -289,7 +288,6 @@ Future<bool> confirmAndSignOutPlexAccount(BuildContext context, {required String
 Future<void> logoutAllProfiles(BuildContext context) async {
   final scope = SessionTeardownScope.of(context);
   final userProfileProvider = context.read<UserProfileProvider>();
-  final companionRemote = context.read<CompanionRemoteProvider>();
   final playbackState = context.read<PlaybackStateProvider>();
 
   final activeOwner = scope.active.activeId;
@@ -297,7 +295,6 @@ Future<void> logoutAllProfiles(BuildContext context) async {
     await scope.shelf.endProfileSession(activeOwner);
   }
 
-  await companionRemote.resetForLogout();
   await userProfileProvider.logout();
   // Downloads are device-local data, not credentials. Keep their physical
   // files and pinned metadata, but detach profile ownership before deleting

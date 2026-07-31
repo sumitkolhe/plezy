@@ -202,11 +202,6 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
       if (frameRatePlan == null) return;
       final shouldHoldPlaybackStart = frameRatePlan.holdPlaybackStart;
 
-      // When a Watch Together session is active the sync layer owns the
-      // start: open paused everywhere and let the host coordinate one
-      // simultaneous group start.
-      final wtOwnsStart = _watchTogetherOwnsPlaybackStart();
-      Completer<void>? wtStartupHold;
       late _ExternalSubtitleOpenPlan externalSubtitlePlan;
 
       // Open video through Player
@@ -244,8 +239,7 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
           player: currentPlayer,
           externalSubtitles: subtitleSelection.sidecarsAtOpen,
         );
-        final shouldAutoPlay =
-            !shouldHoldPlaybackStart && !wtOwnsStart && externalSubtitlePlan.canStartBeforeTrackSetup;
+        final shouldAutoPlay = !shouldHoldPlaybackStart && externalSubtitlePlan.canStartBeforeTrackSetup;
 
         // Backends that support at-open sidecars receive them with open()
         // so tracks are discovered in a single prepare/loadfile cycle. Any
@@ -277,15 +271,6 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
         }
 
         // Attach player to Watch Together session for sync (if in session).
-        // With a frame-rate startup gate pending, sync readiness waits for
-        // its release so the group start can't fire mid display switch.
-        if (mounted && !_isOfflinePlayback) {
-          if (wtOwnsStart && shouldHoldPlaybackStart) {
-            wtStartupHold = Completer<void>();
-          }
-          _attachToWatchTogetherSession(startupHold: wtStartupHold?.future);
-          _notifyWatchTogetherMediaChange();
-        }
         if (shouldAutoPlay && PlatformDetector.isAutomotive()) {
           await _playWithPlaybackIntent(currentPlayer);
           if (!attempt.isCurrent) return;
@@ -353,8 +338,7 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
         // Store only the active sidecars for re-use after backend fallback.
         _trackManager!.cacheExternalSubtitles(subtitleSelection.sidecarsAtOpen);
 
-        final resumeForStartupFrame =
-            frameRatePlan.needsStartupRefresh && externalSubtitlePlan.requiresPostOpenAdd && !wtOwnsStart;
+        final resumeForStartupFrame = frameRatePlan.needsStartupRefresh && externalSubtitlePlan.requiresPostOpenAdd;
         await _applyTracksAfterOpen(
           trackManager: _trackManager!,
           externalSubtitlePlan: externalSubtitlePlan,
@@ -363,11 +347,9 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
           // exception: after they attach we must resume once so mpv can
           // produce the startup frame that the decoder-refresh gate is waiting
           // for.
-          // Watch Together stays paused for the group start, so selection is
-          // armed through the resume-skipped branch.
           shouldResumeAfterSubtitleLoad: () =>
-              (!shouldHoldPlaybackStart || resumeForStartupFrame) && !wtOwnsStart && mounted && player == currentPlayer,
-          applySelectionWhenResumeSkipped: wtOwnsStart && !shouldHoldPlaybackStart,
+              (!shouldHoldPlaybackStart || resumeForStartupFrame) && mounted && player == currentPlayer,
+          applySelectionWhenResumeSkipped: false,
         );
 
         await _releaseFrameRateStartupGate(
@@ -378,17 +360,10 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
             currentPlayer: currentPlayer,
             externalSubtitlePlan: externalSubtitlePlan,
             reason: reason,
-            shouldResume: !wtOwnsStart,
-            watchTogetherOwnsStart: wtOwnsStart,
-            wtStartupHold: wtStartupHold,
+            shouldResume: true,
           ),
           playbackResumedForStartupFrame: resumeForStartupFrame,
         );
-        // Backstop: if the gate never ran its resume path (unmounted race),
-        // don't leave Watch Together readiness held forever.
-        if (wtStartupHold != null && !wtStartupHold.isCompleted) {
-          wtStartupHold.complete();
-        }
       }
     } on PlaybackException catch (e, st) {
       appLogger.w('Playback initialization failed', error: e, stackTrace: st);

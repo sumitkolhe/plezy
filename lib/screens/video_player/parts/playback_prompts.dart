@@ -44,11 +44,6 @@ extension _VideoPlayerPlaybackPromptMethods on VideoPlayerScreenState {
       sleepTimerService.notifyVideoCompleted();
       return;
     }
-    if (!_canNavigateMediaItems()) {
-      if (!_completionLatch.triggered) _completionLatch.latch();
-      return;
-    }
-
     var navigationAction = completionNavigationAction(
       hasNext: _nextEpisode != null,
       adjacentStatus: _nextEpisodeStatus,
@@ -117,7 +112,6 @@ extension _VideoPlayerPlaybackPromptMethods on VideoPlayerScreenState {
   }
 
   void _startAutoPlayTimer() {
-    if (!_canNavigateMediaItems()) return;
     _autoPlayTimer?.cancel();
     _autoPlayTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) {

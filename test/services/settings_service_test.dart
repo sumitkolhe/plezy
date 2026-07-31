@@ -250,60 +250,87 @@ void main() {
     });
   });
 
-  group('SettingsService companion remote prefs', () {
-    test('last manual host address trims whitespace and drops blanks', () async {
-      final settings = await SettingsService.getInstance();
+  group('SettingsService app locale', () {
+    test('persists script-specific locales by enum name', () async {
+      var settings = await SettingsService.getInstance();
 
-      await settings.write(SettingsService.companionRemoteLastHostAddress, '  192.168.1.10:48632  ');
-      expect(settings.read(SettingsService.companionRemoteLastHostAddress), '192.168.1.10:48632');
+      await settings.write(SettingsService.appLocale, AppLocale.zhHant);
+      expect(settings.prefs.getString(SettingsService.appLocale.key), 'zhHant');
 
-      await settings.write(SettingsService.companionRemoteLastHostAddress, '   ');
-      expect(settings.read(SettingsService.companionRemoteLastHostAddress), isNull);
+      BaseSharedPreferencesService.resetForTesting();
+      SettingsService.resetForTesting();
+      settings = await SettingsService.getInstance();
+
+      expect(settings.read(SettingsService.appLocale), AppLocale.zhHant);
     });
 
-    test('resetAllSettings clears the last manual host address', () async {
-      final settings = await SettingsService.getInstance();
+    test('continues to read legacy language-code values', () async {
+      var settings = await SettingsService.getInstance();
+      await settings.prefs.setString(SettingsService.appLocale.key, 'zh');
 
-      await settings.write(SettingsService.companionRemoteLastHostAddress, '192.168.1.10:48632');
-      expect(settings.read(SettingsService.companionRemoteLastHostAddress), isNotNull);
+      BaseSharedPreferencesService.resetForTesting();
+      SettingsService.resetForTesting();
+      settings = await SettingsService.getInstance();
 
-      await settings.resetAllSettings();
-
-      expect(settings.read(SettingsService.companionRemoteLastHostAddress), isNull);
+      expect(settings.read(SettingsService.appLocale), AppLocale.zh);
     });
   });
 
-  group('SettingsService Watch Together relay', () {
-    test('typed writes canonicalize valid bases and reject invalid replacement', () async {
-      final settings = await SettingsService.getInstance();
+  group('SettingsService platform gates', () {
+    test('audio passthrough stays available on desktop and Apple TV', () {
+      expect(PlatformDetector.supportsAudioPassthrough(), isTrue);
 
-      await settings.write(SettingsService.customRelayUrl, '  HTTPS://Relay.Example.Test/path///  ');
-      expect(settings.read(SettingsService.customRelayUrl), 'https://relay.example.test/path');
+      TvDetectionService.debugSetAppleTVOverride(true);
 
-      await expectLater(
-        settings.write(SettingsService.customRelayUrl, 'ws://relay.example.test'),
-        throwsFormatException,
-      );
-      expect(settings.read(SettingsService.customRelayUrl), 'https://relay.example.test/path');
-
-      await settings.write(SettingsService.customRelayUrl, '   ');
-      expect(settings.read(SettingsService.customRelayUrl), isNull);
+      expect(PlatformDetector.supportsAudioPassthrough(), isTrue);
     });
 
-    test('startup canonicalizes valid history and removes invalid history', () async {
-      resetSharedPreferencesForTest(
-        initialAsync: {SettingsService.customRelayUrl.key: '  http://Relay.Example.Test:8080/prefix// '},
-      );
-      SettingsService.resetForTesting();
-      var settings = await SettingsService.getInstance();
-      expect(settings.read(SettingsService.customRelayUrl), 'http://relay.example.test:8080/prefix');
+    test('audio passthrough defaults off on a non-Android-TV host and honors explicit writes', () async {
+      final settings = await SettingsService.getInstance();
+      // The Android-TV-on-ExoPlayer default-on branch depends on Platform.isAndroid,
+      // which is false (and unmockable) on the test host, so the default is off here.
+      expect(settings.read(SettingsService.audioPassthrough), isFalse);
 
-      resetSharedPreferencesForTest(
-        initialAsync: {SettingsService.customRelayUrl.key: 'https://relay.example.test/path?wrong=route'},
-      );
-      SettingsService.resetForTesting();
-      settings = await SettingsService.getInstance();
-      expect(settings.read(SettingsService.customRelayUrl), isNull);
+      await settings.write(SettingsService.audioPassthrough, true);
+      expect(settings.read(SettingsService.audioPassthrough), isTrue);
+
+      await settings.write(SettingsService.audioPassthrough, false);
+      expect(settings.read(SettingsService.audioPassthrough), isFalse);
+    });
+
+    test('forces external player off on Apple TV even when stored enabled', () async {
+      final settings = await SettingsService.getInstance();
+      await settings.write(SettingsService.useExternalPlayer, true);
+
+      TvDetectionService.debugSetAppleTVOverride(true);
+
+      expect(settings.read(SettingsService.useExternalPlayer), isFalse);
+    });
+
+    test('forces auto PiP off on Apple TV even when stored enabled', () async {
+      final settings = await SettingsService.getInstance();
+      await settings.write(SettingsService.autoPip, true);
+
+      TvDetectionService.debugSetAppleTVOverride(true);
+
+      expect(settings.read(SettingsService.autoPip), isFalse);
+    });
+
+    test('forces auto PiP off on automotive while honoring the stored value elsewhere', () async {
+      final settings = await SettingsService.getInstance();
+      await settings.write(SettingsService.autoPip, true);
+
+      // The pref can only surface a stored true where the host itself supports
+      // PiP. That term is Platform.isAndroid/isIOS/isMacOS, unmockable and false
+      // on the Linux and Windows CI hosts, where the gate pins the pref off no
+      // matter what is stored. pictureInPictureAllowed covers the automotive
+      // veto itself on every host.
+      final hostSupportsPip = PlatformDetector.supportsPictureInPicture();
+      expect(settings.read(SettingsService.autoPip), hostSupportsPip ? isTrue : isFalse);
+
+      TvDetectionService.debugSetAutomotiveOverride(true);
+
+      expect(settings.read(SettingsService.autoPip), isFalse);
     });
   });
 

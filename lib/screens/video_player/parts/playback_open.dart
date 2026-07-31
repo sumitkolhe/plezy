@@ -367,8 +367,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
     required _ExternalSubtitleOpenPlan externalSubtitlePlan,
     required String reason,
     required bool shouldResume,
-    required bool watchTogetherOwnsStart,
-    Completer<void>? wtStartupHold,
   }) async {
     if (shouldResume) {
       return _resumeAfterFrameRateStartupGate(
@@ -377,18 +375,11 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
         reason: reason,
       );
     }
-    appLogger.d(
-      watchTogetherOwnsStart
-          ? 'Frame rate matching: yielding post-gate resume to Watch Together ($reason)'
-          : 'Frame rate matching: preserving paused playback after $reason',
-    );
+    appLogger.d('Frame rate matching: preserving paused playback after $reason');
     final trackManager = _trackManager;
     if (trackManager != null && externalSubtitlePlan.requiresPostOpenAdd) {
       trackManager.waitingForExternalSubsTrackSelection = false;
       trackManager.applyTrackSelectionWhenReady();
-    }
-    if (watchTogetherOwnsStart && wtStartupHold != null && !wtStartupHold.isCompleted) {
-      wtStartupHold.complete();
     }
   }
 

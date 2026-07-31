@@ -24,7 +24,6 @@ import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
-import 'package:plezy/providers/companion_remote_provider.dart';
 import 'package:plezy/providers/discover_provider.dart';
 import 'package:plezy/providers/hidden_libraries_provider.dart';
 import 'package:plezy/providers/libraries_provider.dart';
@@ -38,7 +37,6 @@ import 'package:plezy/services/storage_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/layout_constants.dart';
 import 'package:plezy/utils/platform_detector.dart';
-import 'package:plezy/watch_together/watch_together.dart';
 import 'package:plezy/widgets/side_navigation_rail.dart';
 import 'package:plezy/widgets/tv_browse_rail.dart';
 import 'package:plezy/widgets/tv_spotlight_background.dart';
@@ -86,8 +84,6 @@ void main() {
     final multiServerProvider = testMultiServerProvider(manager);
     final hiddenLibrariesProvider = HiddenLibrariesProvider();
     final librariesProvider = LibrariesProvider();
-    final watchTogetherProvider = WatchTogetherProvider();
-    final companionRemoteProvider = CompanionRemoteProvider();
 
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final profileRegistry = _FakeProfileRegistry(db);
@@ -121,8 +117,6 @@ void main() {
     addTearDown(() async {
       discoverProvider.dispose();
       activeProfileProvider.dispose();
-      companionRemoteProvider.dispose();
-      watchTogetherProvider.dispose();
       librariesProvider.dispose();
       hiddenLibrariesProvider.dispose();
       multiServerProvider.dispose();
@@ -137,8 +131,6 @@ void main() {
             ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
             ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibrariesProvider),
             ChangeNotifierProvider<LibrariesProvider>.value(value: librariesProvider),
-            ChangeNotifierProvider<WatchTogetherProvider>.value(value: watchTogetherProvider),
-            ChangeNotifierProvider<CompanionRemoteProvider>.value(value: companionRemoteProvider),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfileProvider),
             ChangeNotifierProvider<DiscoverProvider>.value(value: discoverProvider),
           ],
@@ -277,8 +269,6 @@ void main() {
     final multiServerProvider = MultiServerProvider(manager, DataAggregationService(manager));
     final hiddenLibrariesProvider = HiddenLibrariesProvider();
     final librariesProvider = LibrariesProvider();
-    final watchTogetherProvider = WatchTogetherProvider();
-    final companionRemoteProvider = CompanionRemoteProvider();
 
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final profileRegistry = _FakeProfileRegistry(db);
@@ -309,8 +299,6 @@ void main() {
     addTearDown(() async {
       discoverProvider.dispose();
       activeProfileProvider.dispose();
-      companionRemoteProvider.dispose();
-      watchTogetherProvider.dispose();
       librariesProvider.dispose();
       hiddenLibrariesProvider.dispose();
       multiServerProvider.dispose();
@@ -325,8 +313,6 @@ void main() {
             ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
             ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibrariesProvider),
             ChangeNotifierProvider<LibrariesProvider>.value(value: librariesProvider),
-            ChangeNotifierProvider<WatchTogetherProvider>.value(value: watchTogetherProvider),
-            ChangeNotifierProvider<CompanionRemoteProvider>.value(value: companionRemoteProvider),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfileProvider),
             ChangeNotifierProvider<DiscoverProvider>.value(value: discoverProvider),
           ],
@@ -388,8 +374,6 @@ void main() {
     final multiServerProvider = testMultiServerProvider(manager);
     final hiddenLibrariesProvider = HiddenLibrariesProvider();
     final librariesProvider = LibrariesProvider();
-    final watchTogetherProvider = WatchTogetherProvider();
-    final companionRemoteProvider = CompanionRemoteProvider();
 
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final profileRegistry = _FakeProfileRegistry(db);
@@ -419,8 +403,6 @@ void main() {
     addTearDown(() async {
       discoverProvider.dispose();
       activeProfileProvider.dispose();
-      companionRemoteProvider.dispose();
-      watchTogetherProvider.dispose();
       librariesProvider.dispose();
       hiddenLibrariesProvider.dispose();
       multiServerProvider.dispose();
@@ -435,8 +417,6 @@ void main() {
             ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
             ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibrariesProvider),
             ChangeNotifierProvider<LibrariesProvider>.value(value: librariesProvider),
-            ChangeNotifierProvider<WatchTogetherProvider>.value(value: watchTogetherProvider),
-            ChangeNotifierProvider<CompanionRemoteProvider>.value(value: companionRemoteProvider),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfileProvider),
             ChangeNotifierProvider<DiscoverProvider>.value(value: discoverProvider),
           ],

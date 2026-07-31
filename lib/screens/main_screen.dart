@@ -49,10 +49,7 @@ import '../services/multi_server_manager.dart';
 import '../services/offline_watch_sync_service.dart';
 import '../services/settings_service.dart';
 import '../providers/offline_mode_provider.dart';
-import '../services/companion_remote/companion_remote_host_controller.dart';
-import '../services/companion_remote/companion_remote_receiver.dart';
 import '../services/fullscreen_state_manager.dart';
-import '../providers/companion_remote_provider.dart';
 import '../utils/desktop_window_padding.dart';
 import '../widgets/music/mini_player.dart';
 import '../widgets/side_navigation_rail.dart';
@@ -69,7 +66,6 @@ import 'settings/settings_screen.dart';
 import 'profile/profile_switch_screen.dart';
 import 'profile/profile_teardown.dart';
 import '../services/system_shelf_service.dart';
-import '../watch_together/watch_together.dart';
 
 /// Provides access to the main screen's focus control.
 // MainScreenFocusScope and SideNavigationBleedBuilder live in
@@ -375,7 +371,6 @@ class _MainScreenState extends State<MainScreen>
 
     // Set up Watch Together callbacks immediately (must be synchronous to catch early messages)
     if (!_isOffline) {
-      _setupWatchTogetherCallback();
       _setupSystemShelfDeepLink();
     }
 
@@ -409,9 +404,6 @@ class _MainScreenState extends State<MainScreen>
         if (!mounted) return;
 
         // Auto-start companion remote server once the active profile is known.
-        if (_companionRemoteSetup) {
-          unawaited(_autoStartCompanionRemoteServer());
-        }
       }
 
       // Focus content initially (replaces autofocus which caused focus stealing issues)
@@ -662,36 +654,6 @@ class _MainScreenState extends State<MainScreen>
     showSkipVersion: true,
   );
 
-  /// Set up the Watch Together navigation callback for guests
-  void _setupWatchTogetherCallback() {
-    try {
-      final watchTogether = context.read<WatchTogetherProvider>();
-      watchTogether.onMediaSwitched = (ratingKey, serverId, mediaTitle) {
-        appLogger.d('WatchTogether: Media switch received - navigating to $mediaTitle');
-        return _navigateToWatchTogetherMedia(ratingKey, serverId);
-      };
-      watchTogether.onHostExitedPlayer = () {
-        appLogger.d('WatchTogether: Host exited player - exiting player for guest');
-        // Watch Together playback lives in the profile navigator; root-level
-        // dialogs/profile picker must not be affected.
-        if (!mounted) return;
-        final navigator = Navigator.of(context);
-        bool isVideoPlayerOnTop = false;
-        navigator.popUntil((route) {
-          if (route.isCurrent) {
-            isVideoPlayerOnTop = route.settings.name == kVideoPlayerRouteName;
-          }
-          return true;
-        });
-        if (isVideoPlayerOnTop && navigator.canPop()) {
-          navigator.pop();
-        }
-      };
-    } catch (e) {
-      appLogger.w('Could not set up Watch Together callback', error: e);
-    }
-  }
-
   /// Set up launcher shelf deep link handling for Android TV and tvOS taps.
   void _setupSystemShelfDeepLink() {
     if (!Platform.isAndroid && !PlatformDetector.isAppleTV()) return;
@@ -749,18 +711,7 @@ class _MainScreenState extends State<MainScreen>
   /// Navigate to media when host switches content in Watch Together session.
   /// Returns whether navigation was initiated; failures are re-dispatched on
   /// the host's next state heartbeat.
-  Future<bool> _navigateToWatchTogetherMedia(String ratingKey, ServerId serverId) async {
-    if (!mounted) return false; // Check before any context usage
 
-    try {
-      return await navigateToWatchTogetherPlayback(context, ratingKey: ratingKey, serverId: serverId);
-    } catch (e) {
-      appLogger.e('WatchTogether: Failed to navigate to media', error: e);
-      return false;
-    }
-  }
-
-  bool _companionRemoteSetup = false;
   ValueChanged<String>? _systemShelfTapCallback;
 
   @override
@@ -800,10 +751,6 @@ class _MainScreenState extends State<MainScreen>
     }
 
     // Wire up Companion Remote command routing (host devices only, once)
-    if (!_companionRemoteSetup && PlatformDetector.shouldActAsRemoteHost(context)) {
-      _companionRemoteSetup = true;
-      _setupCompanionRemote();
-    }
 
     _miniPlayerInsets = context.read<MiniPlayerInsetController?>();
 
@@ -815,64 +762,6 @@ class _MainScreenState extends State<MainScreen>
       if (route is PageRoute<dynamic>) {
         scopedRouteObserver.subscribe(this, route);
       }
-    }
-  }
-
-  void _setupCompanionRemote() {
-    final companionRemote = context.read<CompanionRemoteProvider>();
-    companionRemote.onCommandReceived = (command) {
-      if (mounted) {
-        CompanionRemoteReceiver.instance.handleCommand(command, context);
-      }
-    };
-
-    final receiver = CompanionRemoteReceiver.instance;
-    receiver.navigationOwner = this;
-    receiver.onTabNext = () {
-      final tabs = _getVisibleTabs(_isOffline);
-      final idx = tabs.indexWhere((t) => t.id == _currentTab);
-      if (idx >= 0) _selectTab(tabs[(idx + 1) % tabs.length].id);
-    };
-    receiver.onTabPrevious = () {
-      final tabs = _getVisibleTabs(_isOffline);
-      final idx = tabs.indexWhere((t) => t.id == _currentTab);
-      if (idx >= 0) _selectTab(tabs[(idx - 1 + tabs.length) % tabs.length].id);
-    };
-    receiver.onTabDiscover = () => _selectTab(NavigationTabId.discover);
-    receiver.onTabLibraries = () => _selectTab(NavigationTabId.libraries);
-    receiver.onTabSearch = () => _selectTab(NavigationTabId.search);
-    receiver.onTabDownloads = () => _selectTab(NavigationTabId.downloads);
-    receiver.onTabSettings = () => _selectTab(NavigationTabId.settings);
-    receiver.onHome = () {
-      final tabs = _getVisibleTabs(_isOffline);
-      if (tabs.isEmpty) return;
-      _selectTab(tabs.first.id);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) _sideNavKey.currentState?.focusHomeItem();
-      });
-    };
-    receiver.onSearchAction = (query) {
-      final trimmed = query?.trim() ?? '';
-      final hasQuery = trimmed.isNotEmpty;
-      // With a query, don't focus the input (which would auto-open the TV
-      // keyboard); submitSearchQuery runs the search and focuses results.
-      _selectTab(NavigationTabId.search, focusSearchInput: !hasQuery);
-      if (hasQuery) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _onScreen<SearchInputFocusable>(NavigationTabId.search, (screen) => screen.submitSearchQuery(trimmed));
-        });
-      }
-    };
-  }
-
-  Future<void> _autoStartCompanionRemoteServer() async {
-    try {
-      final settings = await SettingsService.getInstance();
-      if (!settings.read(SettingsService.enableCompanionRemoteServer)) return;
-      if (!mounted) return;
-      await startCompanionRemoteHost(context);
-    } catch (e) {
-      appLogger.e('CompanionRemote: Failed to auto-start server', error: e);
     }
   }
 
@@ -899,23 +788,6 @@ class _MainScreenState extends State<MainScreen>
     _contentFocusScope.dispose();
     _setTvosMenuPassthrough(false);
 
-    // Clean up only callbacks still owned by this screen. A replacement
-    // MainScreen may already have installed its callbacks this frame.
-    if (_companionRemoteSetup) {
-      final receiver = CompanionRemoteReceiver.instance;
-      if (identical(receiver.navigationOwner, this)) {
-        receiver.onTabNext = null;
-        receiver.onTabPrevious = null;
-        receiver.onTabDiscover = null;
-        receiver.onTabLibraries = null;
-        receiver.onTabSearch = null;
-        receiver.onTabDownloads = null;
-        receiver.onTabSettings = null;
-        receiver.onHome = null;
-        receiver.onSearchAction = null;
-        receiver.navigationOwner = null;
-      }
-    }
     final shelfCallback = _systemShelfTapCallback;
     final systemShelf = SystemShelfService();
     if (shelfCallback != null && identical(systemShelf.onShelfItemTap, shelfCallback)) {

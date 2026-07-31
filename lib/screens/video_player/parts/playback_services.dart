@@ -470,11 +470,11 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     _mediaControlsManager = mediaControlsManager;
 
     final mediaControlRouter = MediaControlRouter(
-      // Authority stays Watch Together's. The automotive gate lives in the
-      // playback-intent wrappers below, so `onPause` can never be denied: a
-      // gated `canControlPlayback` would make the router swallow `PauseEvent`.
-      canControlPlayback: _canControlPlayback,
-      canNavigateMediaItems: () => _canNavigateMediaItems() && automotivePlaybackAllowedNow(),
+      // The automotive gate lives in the playback-intent wrappers below, so
+      // `onPause` can never be denied: a gated `canControlPlayback` would make
+      // the router swallow `PauseEvent`.
+      canControlPlayback: () => true,
+      canNavigateMediaItems: automotivePlaybackAllowedNow,
       onPlay: () {
         final currentPlayer = player;
         if (currentPlayer == null) return;
