@@ -15,7 +15,6 @@ import '../media/media_playlist.dart';
 import '../media/media_server_client.dart';
 import '../metadata_edit/metadata_edit_adapters.dart';
 import '../media/media_version.dart';
-import '../services/plex_client.dart';
 import '../services/media_list_playback_launcher.dart';
 import '../services/jellyfin_sequential_launcher.dart';
 import '../services/music/music_playback_service.dart';
@@ -47,7 +46,6 @@ import '../services/external_player_service.dart';
 import 'dialog_action_button.dart';
 import '../focus/focusable_text_field.dart';
 import '../focus/key_event_utils.dart';
-import '../screens/plex_match_screen.dart';
 import '../screens/media_detail_screen.dart';
 import '../screens/metadata_edit_screen.dart';
 import '../screens/music/album_detail_screen.dart';
@@ -197,14 +195,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     _ => '',
   };
 
-  /// Get the correct PlexClient for this item's server. Throws on
-  /// non-Plex backends — Plex-only flows (Add to Collection, match,
-  /// unmatch, etc.) call this directly. Backend-neutral flows must use
-  /// [_getMediaClientForItem] instead.
-  PlexClient _getClientForItem() => context.getPlexClientWithFallback(serverIdOrNull(_itemServerId));
-
-  /// Backend-neutral client for the active item's server. Used by flows
-  /// that work for Jellyfin too (downloads, basic browse).
+  /// Backend-neutral client for the active item's server.
   MediaServerClient _getMediaClientForItem() => context.getMediaClientWithFallback(serverIdOrNull(_itemServerId));
 
   void _showContextMenu(BuildContext context) async {
@@ -395,21 +386,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(value: 'edit_metadata', icon: Symbols.edit_rounded, label: t.metadataEdit.editMetadata),
         );
-      }
-
-      // Match / Unmatch — Plex-only (Jellyfin doesn't expose match agents).
-      if (isPlex && isAdmin && (mediaKind == MediaKind.movie || mediaKind == MediaKind.show)) {
-        final isUnmatched = _isUnmatched(mediaItem);
-        menuActions.add(
-          _MenuAction(
-            value: 'match',
-            icon: Symbols.search_rounded,
-            label: isUnmatched ? t.matchScreen.match : t.matchScreen.fixMatch,
-          ),
-        );
-        if (!isUnmatched) {
-          menuActions.add(_MenuAction(value: 'unmatch', icon: Symbols.link_off_rounded, label: t.matchScreen.unmatch));
-        }
       }
 
       // Remove from Collection (only when viewing items within a collection).
@@ -697,19 +673,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           }
           break;
 
-        case 'match':
-          didNavigate = true;
-          if (context.mounted) {
-            final item = mediaItem!;
-            await Navigator.push(context, MaterialPageRoute(builder: (context) => PlexMatchScreen(metadata: item)));
-            _notifyRefresh(item);
-          }
-          break;
-
-        case 'unmatch':
-          await _handleUnmatch(context, mediaItem!);
-          break;
-
         case 'remove_from_collection':
           await _handleRemoveFromCollection(context, mediaItem!);
           break;
@@ -865,40 +828,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       if (context.mounted) {
         showSuccessSnackBar(context, successMessage);
         if (_mediaItem case final source?) _notifyRefresh(source);
-      }
-    } catch (e) {
-      if (context.mounted) {
-        showErrorSnackBar(context, t.messages.errorLoading(error: e.toString()));
-      }
-    }
-  }
-
-  /// Plex-only: an item is unmatched when its [MediaItem.guid] is missing or
-  /// references the Plex no-agent marker.
-  bool _isUnmatched(MediaItem item) {
-    final g = item.guid;
-    return g == null || g.isEmpty || g.contains('agents.none://');
-  }
-
-  Future<void> _handleUnmatch(BuildContext context, MediaItem item) async {
-    final confirmed = await showConfirmDialog(
-      context,
-      title: t.matchScreen.unmatch,
-      message: t.matchScreen.unmatchConfirm,
-      confirmText: t.matchScreen.unmatch,
-      isDestructive: true,
-    );
-    if (!confirmed || !context.mounted) return;
-
-    final client = _getClientForItem();
-    try {
-      final success = await client.unmatchItem(item.id);
-      if (!context.mounted) return;
-      if (success) {
-        showSuccessSnackBar(context, t.matchScreen.unmatchSuccess);
-        _notifyRefresh(item);
-      } else {
-        showErrorSnackBar(context, t.matchScreen.unmatchFailed);
       }
     } catch (e) {
       if (context.mounted) {

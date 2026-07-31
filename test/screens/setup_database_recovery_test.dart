@@ -32,7 +32,6 @@ void main() {
         child: MaterialApp(
           home: SetupScreen(
             databaseRecoveryOutcome: TvosDatabaseRecoveryOutcome.recoveryRequired,
-            initializeAuthServices: false,
             debugRecoveryRequiredRouter: (_, message) {
               routedMessage = message;
             },
@@ -48,31 +47,25 @@ void main() {
     expect(prefs.getString('current_user_uuid'), 'legacy-user');
   });
 
-  testWidgets('AuthScreen visibly renders recovery notice with Plex and Jellyfin actions', (tester) async {
+  testWidgets('AuthScreen visibly renders recovery notice with the Jellyfin action', (tester) async {
     await tester.pumpWidget(
       TranslationProvider(
         child: MaterialApp(
-          home: AuthScreen(
-            initialErrorMessage: t.auth.localDataRecoveryRequired,
-            initializeServices: false,
-            databaseRecoveryRequired: true,
-          ),
+          home: AuthScreen(initialErrorMessage: t.auth.localDataRecoveryRequired, databaseRecoveryRequired: true),
         ),
       ),
     );
     await tester.pump();
 
     expect(find.text(t.auth.localDataRecoveryRequired), findsOneWidget);
-    expect(find.text(t.auth.signInWithPlex), findsOneWidget);
     expect(find.text(t.auth.connectToJellyfin), findsOneWidget);
   });
 
   testWidgets('fresh AuthScreen has normal actions without recovery notice', (tester) async {
-    await tester.pumpWidget(TranslationProvider(child: const MaterialApp(home: AuthScreen(initializeServices: false))));
+    await tester.pumpWidget(TranslationProvider(child: const MaterialApp(home: AuthScreen())));
     await tester.pump();
 
     expect(find.text(t.auth.localDataRecoveryRequired), findsNothing);
-    expect(find.text(t.auth.signInWithPlex), findsOneWidget);
     expect(find.text(t.auth.connectToJellyfin), findsOneWidget);
   });
 }

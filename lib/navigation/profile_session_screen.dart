@@ -37,13 +37,7 @@ import '../widgets/music/mini_player.dart';
 import 'profile_navigation_scope.dart';
 
 CatalogSourcesProvider _createCatalogSourcesProvider(BuildContext context) {
-  return CatalogSourcesProvider(
-    plexSessionSupplier: () => resolvePlexDiscoverSession(
-      activeProfile: context.read<ActiveProfileProvider>(),
-      connections: context.read<ConnectionRegistry>(),
-      profileConnections: context.read<ProfileConnectionRegistry>(),
-    ),
-  );
+  return CatalogSourcesProvider();
 }
 
 /// Root route for an active profile session.
@@ -194,7 +188,6 @@ class _ProfileSessionScreenState extends State<ProfileSessionScreen> {
                 update: (context, trackers, seerr, activeProfile, previous) {
                   final provider = previous ?? _createCatalogSourcesProvider(context);
                   provider.update(trackers, seerr);
-                  unawaited(provider.onProfileBindingStateChanged(activeProfile.isBinding));
                   return provider;
                 },
               ),

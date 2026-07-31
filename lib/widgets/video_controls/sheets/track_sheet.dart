@@ -6,12 +6,9 @@ import '../../../mpv/mpv.dart';
 import '../../../services/playback_subtitle_resolver.dart';
 import '../../../i18n/strings.g.dart';
 import '../../../utils/track_label_builder.dart';
-import '../../../widgets/app_icon.dart';
-import '../../../widgets/focusable_list_tile.dart';
 import '../../../widgets/overlay_sheet.dart';
 import 'base_video_control_sheet.dart';
 import 'sheet_selection_column.dart';
-import 'subtitle_search_sheet.dart';
 import '../models/track_controls_state.dart';
 import '../helpers/track_filter_helper.dart';
 import '../helpers/track_selection_helper.dart';
@@ -193,7 +190,6 @@ class _SourceSubtitleColumn extends StatelessWidget {
       headerLabel: showHeader ? t.videoControls.subtitlesLabel : null,
       itemCount: tracks.length + 1,
       initialIndex: selectedIndex,
-      footer: _buildSubtitleSearchFooter(context, trackControlsState),
       itemBuilder: (context, index, scope) {
         if (index == 0) {
           return TrackSelectionHelper.buildOffTile(
@@ -335,7 +331,6 @@ class _SubtitleColumn extends StatelessWidget {
       headerLabel: showHeader ? t.videoControls.subtitlesLabel : null,
       itemCount: itemCount,
       initialIndex: selectedIndex,
-      footer: _buildSubtitleSearchFooter(context, trackControlsState),
       itemBuilder: (context, index, scope) {
         if (index == 0) {
           return TrackSelectionHelper.buildOffTile(
@@ -444,26 +439,4 @@ class _SubtitleColumn extends StatelessWidget {
       },
     );
   }
-}
-
-List<Widget> _buildSubtitleSearchFooter(BuildContext context, TrackControlsState state) {
-  if (!state.canSearchSubtitles) return const [];
-
-  return [
-    Divider(height: 1, color: Theme.of(context).dividerColor),
-    FocusableListTile(
-      leading: const AppIcon(Symbols.search_rounded),
-      title: Text(t.videoControls.searchSubtitles),
-      onTap: () {
-        OverlaySheetController.of(context).push(
-          builder: (_) => SubtitleSearchSheet(
-            ratingKey: state.ratingKey,
-            serverId: state.serverId!,
-            mediaTitle: state.mediaTitle,
-            onSubtitleDownloaded: state.onSubtitleDownloaded,
-          ),
-        );
-      },
-    ),
-  ];
 }

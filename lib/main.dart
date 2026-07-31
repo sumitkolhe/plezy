@@ -1335,15 +1335,9 @@ bool shouldBypassSetupForDatabaseRecovery(TvosDatabaseRecoveryOutcome outcome) {
 }
 
 class SetupScreen extends StatefulWidget {
-  const SetupScreen({
-    super.key,
-    required this.databaseRecoveryOutcome,
-    this.initializeAuthServices = true,
-    this.debugRecoveryRequiredRouter,
-  });
+  const SetupScreen({super.key, required this.databaseRecoveryOutcome, this.debugRecoveryRequiredRouter});
 
   final TvosDatabaseRecoveryOutcome databaseRecoveryOutcome;
-  final bool initializeAuthServices;
   @visibleForTesting
   final FutureOr<void> Function(BuildContext context, String message)? debugRecoveryRequiredRouter;
 
@@ -1400,13 +1394,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
         unawaited(
           Navigator.pushReplacement(
             context,
-            fadeRoute(
-              AuthScreen(
-                initialErrorMessage: message,
-                initializeServices: widget.initializeAuthServices,
-                databaseRecoveryRequired: true,
-              ),
-            ),
+            fadeRoute(AuthScreen(initialErrorMessage: message, databaseRecoveryRequired: true)),
           ),
         );
       }

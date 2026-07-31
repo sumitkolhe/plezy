@@ -103,7 +103,7 @@ class _FakeCatalogSource implements CatalogSource, CatalogHubSource {
     if (title == null) return const [];
     return [
       CatalogHub(
-        id: 'plex-recommendation',
+        id: 'provider-recommendation',
         title: title,
         style: providerHubStyle,
         page: CatalogPage(
@@ -111,8 +111,8 @@ class _FakeCatalogSource implements CatalogSource, CatalogHubSource {
             CatalogItem(
               source: id,
               kind: MediaKind.show,
-              title: 'Plex Recommendation',
-              ids: const CatalogItemIds(plex: 'plex-recommendation'),
+              title: 'Seerr Recommendation',
+              ids: const CatalogItemIds(slug: 'provider-recommendation'),
             ),
           ],
         ),
@@ -162,7 +162,7 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
   bool? tv,
   CatalogItem? traktItem,
   int? traktTotalResults,
-  CatalogHubStyle? plexHubStyle,
+  CatalogHubStyle? providerHubStyle,
 }) async {
   if (tv != null) TvDetectionService.debugSetAppleTVOverride(tv);
   tester.view.devicePixelRatio = 1;
@@ -180,15 +180,14 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
   final mal = _FakeCatalogSource(CatalogSourceId.mal, 'MyAnimeList', malItemId);
   final anilist = _FakeCatalogSource(CatalogSourceId.anilist, 'AniList', 3);
   final simkl = _FakeCatalogSource(CatalogSourceId.simkl, 'Simkl', 4);
-  final plex = _FakeCatalogSource(
-    CatalogSourceId.plex,
-    'Plex',
-    5,
-    providerHubTitle: 'Trending on Plex',
-    providerHubStyle: plexHubStyle,
+  final seerr = _FakeCatalogSource(
+    CatalogSourceId.seerr,
+    'Seerr',
+    6,
+    providerHubTitle: 'Trending on Seerr',
+    providerHubStyle: providerHubStyle,
   );
-  final seerr = _FakeCatalogSource(CatalogSourceId.seerr, 'Seerr', 6);
-  final sources = _FakeCatalogSourcesProvider([trakt, mal, anilist, simkl, plex, seerr]);
+  final sources = _FakeCatalogSourcesProvider([trakt, mal, anilist, simkl, seerr]);
   final explore = ExploreProvider(sources);
   addTearDown(explore.dispose);
   addTearDown(sources.dispose);
@@ -196,7 +195,6 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
   addTearDown(mal.dispose);
   addTearDown(anilist.dispose);
   addTearDown(simkl.dispose);
-  addTearDown(plex.dispose);
   addTearDown(seerr.dispose);
 
   await tester.pumpWidget(
@@ -299,7 +297,7 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
 
-    for (final name in ['Trakt', 'MyAnimeList', 'AniList', 'Simkl', 'Plex', 'Seerr']) {
+    for (final name in ['Trakt', 'MyAnimeList', 'AniList', 'Simkl', 'Seerr']) {
       expect(find.text(name), findsAtLeast(1));
     }
     expect(find.byType(CatalogSourceLogo), findsAtLeast(6));
@@ -311,36 +309,36 @@ void main() {
     expect(find.text('AniList Movie'), findsAtLeast(1));
   });
 
-  testWidgets('a null-style Plex provider hub keeps the existing Explore shelf', (tester) async {
+  testWidgets('a null-style provider hub keeps the existing Explore shelf', (tester) async {
     final sources = await _pumpExplore(tester);
 
-    await sources.setActiveSource(CatalogSourceId.plex);
+    await sources.setActiveSource(CatalogSourceId.seerr);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
 
-    expect(find.text('Trending on Plex'), findsOneWidget);
-    expect(find.text('Plex Recommendation'), findsAtLeast(1));
+    expect(find.text('Trending on Seerr'), findsOneWidget);
+    expect(find.text('Seerr Recommendation'), findsAtLeast(1));
   });
 
-  testWidgets('an explicit shelf-style Plex hub keeps the existing Explore shelf', (tester) async {
-    final sources = await _pumpExplore(tester, plexHubStyle: CatalogHubStyle.shelf);
+  testWidgets('an explicit shelf-style provider hub keeps the existing Explore shelf', (tester) async {
+    final sources = await _pumpExplore(tester, providerHubStyle: CatalogHubStyle.shelf);
 
-    await sources.setActiveSource(CatalogSourceId.plex);
+    await sources.setActiveSource(CatalogSourceId.seerr);
     await tester.pumpAndSettle();
 
-    expect(find.text('Trending on Plex'), findsOneWidget);
-    expect(find.text('Plex Recommendation'), findsAtLeast(1));
+    expect(find.text('Trending on Seerr'), findsOneWidget);
+    expect(find.text('Seerr Recommendation'), findsAtLeast(1));
   });
 
   testWidgets('an availability-platforms hub is not rendered as a title shelf', (tester) async {
-    final sources = await _pumpExplore(tester, tv: false, plexHubStyle: CatalogHubStyle.availabilityPlatforms);
+    final sources = await _pumpExplore(tester, tv: false, providerHubStyle: CatalogHubStyle.availabilityPlatforms);
 
-    await sources.setActiveSource(CatalogSourceId.plex);
+    await sources.setActiveSource(CatalogSourceId.seerr);
     await tester.pumpAndSettle();
 
-    expect(find.text('Plex Movie'), findsAtLeast(1));
-    expect(find.text('Trending on Plex'), findsNothing);
-    expect(find.text('Plex Recommendation'), findsNothing);
+    expect(find.text('Seerr Movie'), findsAtLeast(1));
+    expect(find.text('Trending on Seerr'), findsNothing);
+    expect(find.text('Seerr Recommendation'), findsNothing);
   });
 
   testWidgets('a provider total result count reaches the existing shelf header', (tester) async {

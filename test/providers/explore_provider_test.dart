@@ -96,7 +96,7 @@ class _FakeHubSource extends _FakeSource implements CatalogHubSource {
     source: id,
     kind: MediaKind.movie,
     title: title,
-    ids: const CatalogItemIds(plex: 'plex-hub-item'),
+    ids: const CatalogItemIds(slug: 'provider-hub-item'),
   );
 
   @override
@@ -109,8 +109,8 @@ class _FakeHubSource extends _FakeSource implements CatalogHubSource {
     if (returnEmptyHubs) return const [];
     return [
       CatalogHub(
-        id: 'trending-plex',
-        title: 'Trending on Plex',
+        id: 'trending-provider',
+        title: 'Trending on Seerr',
         style: hubStyle,
         page: CatalogPage(items: [_hubItem('Initial Recommendation')], hasMore: true, totalResults: hubTotalResults),
       ),
@@ -188,7 +188,7 @@ void main() {
     });
 
     test('provider-defined hubs retain their titles and page through View All', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex);
+      final source = _FakeHubSource(CatalogSourceId.trakt);
       addTearDown(source.dispose);
 
       sources.setActive(source);
@@ -198,8 +198,8 @@ void main() {
       expect(explore.rowHubs, hasLength(2));
       final providerHub = explore.rowHubs.last;
       expect(providerHub.row, isNull);
-      expect(providerHub.providerHubId, 'trending-plex');
-      expect(providerHub.hub.title, 'Trending on Plex');
+      expect(providerHub.providerHubId, 'trending-provider');
+      expect(providerHub.hub.title, 'Trending on Seerr');
       expect(providerHub.hub.items.single.title, 'Initial Recommendation');
       expect(providerHub.hub.more, isTrue);
 
@@ -210,7 +210,7 @@ void main() {
     });
 
     test('null and shelf styles retain the existing shelf appearance', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex);
+      final source = _FakeHubSource(CatalogSourceId.trakt);
       addTearDown(source.dispose);
       sources.setActive(source);
       await _pumpMicrotasks();
@@ -230,19 +230,19 @@ void main() {
     });
 
     test('availability platform hubs are skipped instead of rendered as title posters', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex)..hubStyle = CatalogHubStyle.availabilityPlatforms;
+      final source = _FakeHubSource(CatalogSourceId.trakt)..hubStyle = CatalogHubStyle.availabilityPlatforms;
       addTearDown(source.dispose);
       sources.setActive(source);
       await _pumpMicrotasks();
 
       expect(explore.rowHubs, hasLength(1));
       expect(explore.rowHubs.single.row, CatalogRowId.watchlist);
-      expect(explore.rowHubs.single.hub.items.single.title, 'plex:watchlist');
+      expect(explore.rowHubs.single.hub.items.single.title, 'trakt:watchlist');
       expect(explore.rowHubs.where((hub) => hub.providerHubId != null), isEmpty);
     });
 
     test('provider totalResults reaches the rendered hub without replacing its loaded items', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex)..hubTotalResults = 347;
+      final source = _FakeHubSource(CatalogSourceId.trakt)..hubTotalResults = 347;
       addTearDown(source.dispose);
       sources.setActive(source);
       await _pumpMicrotasks();
@@ -276,7 +276,7 @@ void main() {
     });
 
     test('empty successful hubs do not mask every fixed row failing', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex)
+      final source = _FakeHubSource(CatalogSourceId.trakt)
         ..failedRows.add(CatalogRowId.watchlist)
         ..returnEmptyHubs = true;
       addTearDown(source.dispose);
@@ -289,7 +289,7 @@ void main() {
     });
 
     test('mutation retries provider hubs after a partial refresh failure', () async {
-      final source = _FakeHubSource(CatalogSourceId.plex);
+      final source = _FakeHubSource(CatalogSourceId.trakt);
       addTearDown(source.dispose);
       sources.setActive(source);
       await _pumpMicrotasks();

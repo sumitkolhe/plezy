@@ -11,15 +11,11 @@ import '../../widgets/backend_badge.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
 import '../profile/borrow_connection_screen.dart';
 import 'add_jellyfin_screen.dart';
-import 'add_plex_account_screen.dart';
 
 /// Picker shown when the user taps "Add connection".
 ///
 /// When [targetProfile] is provided, also offers a "Borrow from another
-/// profile" option that opens [BorrowConnectionScreen] for the target. The
-/// global Connections screen invokes this without a target — Plex auto-
-/// surfaces its Home users as new profiles, Jellyfin binds to the active
-/// profile via [AddJellyfinScreen].
+/// profile" option that opens [BorrowConnectionScreen] for the target.
 ///
 /// Pops with `true` after the underlying flow succeeds so the parent list
 /// refreshes; pops with `null` (the default) when the user backs out.
@@ -32,12 +28,6 @@ class AddConnectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final scoped = targetProfile != null;
     final options = <_BackendOption>[
-      _BackendOption(
-        backend: MediaBackend.plex,
-        title: t.addServer.signInWithPlexCard,
-        subtitle: scoped ? t.addServer.signInWithPlexCardSubtitleScoped : t.addServer.signInWithPlexCardSubtitle,
-        builder: (_) => AddPlexAccountScreen(targetProfile: targetProfile),
-      ),
       _BackendOption(
         backend: MediaBackend.jellyfin,
         title: t.addServer.connectToJellyfinCard,

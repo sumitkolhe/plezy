@@ -23,33 +23,6 @@ void main() {
   });
 
   group('TrackSheet subtitle controls', () {
-    testWidgets('shows subtitle search when Plex search is available without subtitle tracks', (tester) async {
-      final player = _FakeTrackSheetPlayer(
-        tracks: const Tracks(
-          audio: [
-            AudioTrack(id: 'a1'),
-            AudioTrack(id: 'a2'),
-          ],
-        ),
-        track: const TrackSelection(
-          audio: AudioTrack(id: 'a1'),
-          subtitle: SubtitleTrack.off,
-        ),
-      );
-
-      await _pumpTrackSheet(
-        tester,
-        player: player,
-        trackControlsState: const TrackControlsState(
-          ratingKey: '123',
-          serverId: 'plex-server',
-          subtitleSearchSupported: true,
-        ),
-      );
-
-      expect(find.text('Search Subtitles'), findsOneWidget);
-    });
-
     testWidgets('hides subtitle search when external subtitle search is unsupported', (tester) async {
       final player = _FakeTrackSheetPlayer(
         tracks: const Tracks(

@@ -18,7 +18,6 @@ const _expectedDomains = <String>{
 };
 const _fixedEndpointSourcePaths = <String>[
   'lib/services/plex_auth_service.dart',
-  'lib/services/plex_discover_client.dart',
   'lib/services/plex_client/parts/live_tv.dart',
   'lib/services/trackers/trakt/trakt_constants.dart',
   'lib/services/trackers/mal/mal_constants.dart',
