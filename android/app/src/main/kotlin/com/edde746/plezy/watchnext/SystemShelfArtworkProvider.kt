@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 
 class SystemShelfArtworkProvider : ContentProvider() {
   companion object {
-    const val AUTHORITY = "com.edde746.plezy.systemshelf.artwork"
+    const val AUTHORITY = "co.sumit.jello.systemshelf.artwork"
   }
 
   override fun onCreate(): Boolean = context != null
