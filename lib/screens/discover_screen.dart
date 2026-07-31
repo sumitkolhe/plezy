@@ -897,7 +897,9 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         ? MediaQuery.sizeOf(context).height * 0.82
         : useSideNav
         ? MediaQuery.sizeOf(context).height * 0.75
-        : 500 + statusBarHeight;
+        // Fixed rather than content-driven, so it has to come down with the
+        // synopsis the phone hero no longer renders.
+        : 450 + statusBarHeight;
     return SliverToBoxAdapter(
       child: Focus(
         focusNode: _heroFocusNode,
@@ -1206,8 +1208,12 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                           // On small screens: show button before summary
                           if (!alignLeft) ...[const SizedBox(height: 20), _buildSmartPlayButton(heroItem)],
 
-                          // Summary with episode info (Apple TV style)
-                          if (heroItem.summary != null && !shouldHideSpoiler) ...[
+                          // Only TV carries the synopsis. On a phone the hero
+                          // rotates every 8s, which is not long enough to read
+                          // one, and the space is better spent on the rails —
+                          // the episode identity is the useful part when the
+                          // hero exists to resume something.
+                          if (isTv && heroItem.summary != null && !shouldHideSpoiler) ...[
                             const SizedBox(height: 12),
                             RichText(
                               maxLines: isTv ? 3 : 2,
@@ -1233,10 +1239,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                                 ],
                               ),
                             ),
-                          ] else if (shouldHideSpoiler &&
-                              isEpisode &&
-                              heroItem.parentIndex != null &&
-                              heroItem.index != null) ...[
+                          ] else if (isEpisode && heroItem.parentIndex != null && heroItem.index != null) ...[
                             const SizedBox(height: 12),
                             Text(
                               'S${heroItem.parentIndex}, E${heroItem.index}: ${heroItem.title}',

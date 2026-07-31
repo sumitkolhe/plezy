@@ -239,22 +239,12 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                       });
                     }
 
-                    VoidCallback? onNext;
-                    if (widget.isLive) {
-                      onNext = _hasNextChannel ? () => _switchLiveChannel(1) : null;
-                    } else {
-                      onNext = (_nextEpisode != null && authority.canNavigateMediaItems) ? _playNext : null;
-                    }
+                    final onNext = (_nextEpisode != null && authority.canNavigateMediaItems) ? _playNext : null;
 
-                    VoidCallback? onPrevious;
-                    if (widget.isLive) {
-                      onPrevious = _hasPreviousChannel ? () => _switchLiveChannel(-1) : null;
-                    } else {
-                      final canRestartOrPrevious = _currentMetadata.isEpisode || _previousEpisode != null;
-                      onPrevious = (canRestartOrPrevious && authority.canNavigateMediaItems)
-                          ? _restartOrPlayPrevious
-                          : null;
-                    }
+                    final canRestartOrPrevious = _currentMetadata.isEpisode || _previousEpisode != null;
+                    final onPrevious = (canRestartOrPrevious && authority.canNavigateMediaItems)
+                        ? _restartOrPlayPrevious
+                        : null;
 
                     final sourceAudioTracks = _currentMediaInfo?.audioTracks ?? const <MediaAudioTrack>[];
                     final sourceSubtitleSidecars = _sourceSubtitleSidecarsForControls();
@@ -310,15 +300,6 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                         // ignore: no-empty-block - state update triggers rebuild to reflect shader change
                         onShaderChanged: () => _setPlayerState(() {}),
                         thumbnailDataBuilder: _scrubPreviewSource?.isAvailable == true ? _getThumbnailData : null,
-                        isLive: widget.isLive,
-                        liveChannelName: _live.channelName,
-                        captureBuffer: _live.captureBuffer,
-                        isAtLiveEdge: _live.atLiveEdge,
-                        streamStartEpoch: _live.streamStartEpoch,
-                        currentPositionEpoch: widget.isLive ? _currentPositionEpoch : null,
-                        onLiveSeek: _live.captureBuffer != null ? _seekLiveToEpoch : null,
-                        onLiveSeekBy: _live.captureBuffer != null ? _liveSeek.seekBy : null,
-                        onJumpToLive: _live.captureBuffer != null && !_live.atLiveEdge ? _jumpToLiveEdge : null,
                         isAmbientLightingEnabled: _ambientLightingService?.isEnabled ?? false,
                         onToggleAmbientLighting: _ambientLightingService?.isSupported == true
                             ? _toggleAmbientLighting

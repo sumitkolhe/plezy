@@ -61,19 +61,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
     _recordLifecycleState('pip_transition', action: '${value ? 'started' : 'cleared'}:$reason');
   }
 
-  void _suspendLiveTimelineForBackground() {
-    _live.resumeTimelineOnResume = _live.timelineTimer != null;
-    _stopLiveTimelineUpdates();
-  }
-
-  void _resumeLiveTimelineAfterBackgroundIfNeeded() {
-    final shouldResume = _live.resumeTimelineOnResume;
-    _live.resumeTimelineOnResume = false;
-    if (shouldResume && _live.session != null) {
-      _startLiveTimelineUpdates();
-    }
-  }
-
   Future<void> _handleAppHidden() async {
     if (_shouldSkipForPip) {
       _recordLifecycleState('hidden', action: 'skipped_for_pip');
@@ -87,26 +74,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
     }
 
     final isTv = PlatformDetector.isTV();
-    if (widget.isLive && shouldStopLiveSessionForTvBackground(isTv: isTv, policy: _live.session?.backgroundPolicy)) {
-      _live.exitOnResume = true;
-      _live.resumeTimelineOnResume = false;
-      _stopLiveTimelineUpdates();
-
-      // Start the server cleanup before releasing the native stream. tvOS may
-      // suspend the process shortly after this lifecycle callback returns.
-      final stoppedReport = _sendStoppedProgressOnce();
-      try {
-        await currentPlayer.stop();
-      } catch (e, stackTrace) {
-        appLogger.w('Failed to stop live player while backgrounding', error: e, stackTrace: stackTrace);
-      }
-      await stoppedReport;
-      if (!mounted || currentPlayer != player) return;
-      await _suspendMediaControlsForTvBackground('hidden_live_stopped');
-      _recordLifecycleState('hidden', action: 'live_stopped_exit_on_resume');
-      return;
-    }
-
     final isAutomotive = PlatformDetector.isAutomotive();
     final shouldPauseForBackground = shouldPauseVideoForBackground(
       isHandheld: PlatformDetector.isHandheld(context),
@@ -141,8 +108,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
 
     if (!mounted || currentPlayer != player) return;
 
-    _suspendLiveTimelineForBackground();
-
     if (isTv) {
       await _suspendMediaControlsForTvBackground('hidden');
       if (_armTvBackgroundPlayerSuspendTimer()) {
@@ -160,13 +125,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
 
   Future<void> _handleAppResumed() async {
     _recordLifecycleState('resumed', action: 'begin');
-
-    if (_live.exitOnResume) {
-      _live.exitOnResume = false;
-      _recordLifecycleState('resumed', action: 'exit_stopped_live_session');
-      await _handleBackButton();
-      return;
-    }
 
     if (Platform.isAndroid && _androidAutoPipTransitionInFlight && !PipService().isPipActive.value) {
       _setAndroidAutoPipTransitionInFlight(false, reason: 'resume_without_pip');
@@ -216,7 +174,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
       await _restoreMediaControlsAfterResume();
     }
 
-    _resumeLiveTimelineAfterBackgroundIfNeeded();
     _recordLifecycleState('resumed', action: 'complete');
   }
 
@@ -226,7 +183,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
     if (!shouldSuspendPlayerForTvBackground(
       isAndroid: Platform.isAndroid,
       isTv: PlatformDetector.isTV(),
-      isLive: widget.isLive,
       alreadySuspended: _playerSuspendedForTvBackground,
     )) {
       return false;

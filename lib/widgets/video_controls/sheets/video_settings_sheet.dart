@@ -530,8 +530,8 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
     return ListView(
       children: [
-        // Playback Speed - hidden for live TV and when user cannot control playback
-        if (_state.canControl && !_state.isLive)
+        // Playback Speed - hidden when the user cannot control playback
+        if (_state.canControl)
           StreamBuilder<double>(
             stream: widget.player.streams.rate,
             initialData: widget.player.state.rate,

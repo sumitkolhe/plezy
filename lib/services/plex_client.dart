@@ -10,7 +10,6 @@ import '../media/episode_collection.dart';
 import '../media/library_filter_result.dart';
 import '../media/library_first_character.dart';
 import '../media/library_query.dart';
-import '../media/live_tv_support.dart';
 import '../media/lyrics.dart';
 import '../media/media_backend.dart';
 import '../media/media_hub.dart';
@@ -29,15 +28,7 @@ import 'settings_service.dart';
 import 'library_query_translator.dart';
 import 'scrub_preview_source.dart';
 import '../utils/media_server_http_client.dart';
-import '../utils/url_utils.dart';
 import '../exceptions/media_server_exceptions.dart';
-import '../models/livetv_capture_buffer.dart';
-import '../models/livetv_channel.dart';
-import '../models/livetv_dvr.dart';
-import '../models/livetv_hub_result.dart';
-import '../models/livetv_program.dart';
-import '../models/media_grab_operation.dart';
-import '../models/media_subscription.dart';
 import '../models/plex/plex_activity.dart';
 import '../models/plex/plex_config.dart';
 import '../models/plex/plex_metadata_preferences.dart';
@@ -74,7 +65,6 @@ import 'plex_mappers.dart';
 import 'plex_playback_mapper.dart';
 import 'playback_initialization_types.dart';
 
-part 'plex_client/parts/live_tv.dart';
 part 'plex_client/parts/playlists.dart';
 part 'plex_client/parts/collections.dart';
 part 'plex_client/parts/play_queues.dart';
@@ -286,6 +276,7 @@ mixin _PlexClientInternals on MediaServerCacheMixin {
     // ignore: unused_element_parameter
     Duration? timeout,
     AbortController? abort,
+    // ignore: unused_element_parameter
     bool allowEndpointFailover = true,
   });
 
@@ -317,13 +308,11 @@ class PlexClient
     with
         MediaServerCacheMixin,
         _PlexClientInternals,
-        _PlexLiveTvClientMethods,
         _PlexPlaylistMethods,
         _PlexCollectionMethods,
         _PlexPlayQueueMethods,
         _PlexMetadataEditMethods
     implements MediaServerClient, SeasonEpisodePagingClient, ScopedMediaServerClient, GracefullyCloseable {
-  @override
   PlexConfig config;
 
   @override
@@ -385,9 +374,6 @@ class PlexClient
   /// Dedicated Continue Watching hub endpoint advertised by /media/providers.
   String? _providerContinueWatchingHubKey;
 
-  /// EPG providers parsed from /media/providers
-  @override
-  List<({String identifier, String gridEndpoint})> _providerEpg = const [];
   int _profileUpdateGeneration = 0;
 
   /// Server-level preferences fetched from /:/prefs
@@ -503,7 +489,6 @@ class PlexClient
       prioritizedEndpoints: prioritizedEndpoints,
     );
     client._providerLibraries = const [];
-    client._providerEpg = epgProviders;
     client._providerHomeHubKey = homeHubKey;
     client._providerPromotedHubKey = promotedHubKey;
     client._providerContinueWatchingHubKey = continueWatchingHubKey;
@@ -649,7 +634,6 @@ class PlexClient
 
   void _commitMediaProviders(_PlexMediaProviderState providers) {
     _providerLibraries = providers.libraries;
-    _providerEpg = providers.epg;
     _providerHomeHubKey = providers.homeHubKey;
     _providerPromotedHubKey = providers.promotedHubKey;
     _providerContinueWatchingHubKey = providers.continueWatchingHubKey;
@@ -796,7 +780,6 @@ class PlexClient
     );
   }
 
-  @override
   PlexMetadataDto _createTaggedMetadata(Map<String, dynamic> json) => _tagMetadata(PlexMetadataDto.fromJson(json));
 
   @override
@@ -2508,37 +2491,6 @@ class PlexClient
   /// forwarder stays for callers that already had a `PlexClient.` reference;
   /// remove it once they migrate.
   static String generateSessionIdentifier() => session_id.generateSessionIdentifier();
-
-  /// Coerce String values to num for fields that json_serializable expects as num.
-  /// Plex tune responses use XML-to-JSON conversion where all values are strings.
-  static void _coerceNumericFields(Map<String, dynamic> json) {
-    const numericKeys = [
-      'duration',
-      'year',
-      'addedAt',
-      'updatedAt',
-      'lastViewedAt',
-      'parentIndex',
-      'index',
-      'viewOffset',
-      'viewCount',
-      'leafCount',
-      'viewedLeafCount',
-      'childCount',
-      'rating',
-      'audienceRating',
-      'userRating',
-      'ratingCount',
-      'skipCount',
-      'lastRatedAt',
-    ];
-    for (final key in numericKeys) {
-      final val = json[key];
-      if (val is String) {
-        json[key] = num.tryParse(val);
-      }
-    }
-  }
 
   /// Checks whether the server has video transcoding enabled.
   ///

@@ -53,7 +53,6 @@ void main() {
       String? sourceId,
       TranscodeQualityPreset? quality,
       bool isOffline = false,
-      VideoPlayerRouteKind routeKind = VideoPlayerRouteKind.vod,
     }) {
       return VideoPlayerLaunchIdentity(
         metadata: item,
@@ -61,7 +60,6 @@ void main() {
         selectedMediaSourceId: sourceId,
         selectedQualityPreset: quality,
         isOffline: isOffline,
-        routeKind: routeKind,
       );
     }
 
@@ -95,7 +93,6 @@ void main() {
       expect(guard.blocks(identity(plexA, sourceId: 'source-b')), isFalse);
       expect(guard.blocks(identity(plexA, quality: TranscodeQualityPreset.p720_4mbps)), isFalse);
       expect(guard.blocks(identity(plexA, isOffline: true)), isFalse);
-      expect(guard.blocks(identity(plexA, routeKind: VideoPlayerRouteKind.liveTv)), isFalse);
     });
 
     test('blank and null source IDs identify the same route target', () {

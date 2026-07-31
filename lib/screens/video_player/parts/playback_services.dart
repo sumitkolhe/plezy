@@ -148,8 +148,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       if (!mounted || player != currentPlayer) return;
       _lastLogError = null;
       _sawServer500 = false;
-      _live.fallbackLevel = 0;
-      _live.retryFailed = false;
       final markFirstFrameReady = _markFirstFrameReady(currentPlayer, settingsService);
       _trackManager?.onPlaybackRestart();
       await markFirstFrameReady;
@@ -264,7 +262,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       mediaControlsManager.dispose();
     }
 
-    _stopLiveTimelineUpdates();
     _detachPipStateListener();
     _clearAutoPipEnteringCallback();
     final pipInitialized = _pipInitialized;
@@ -452,12 +449,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
   Future<void> _initializeServices() async {
     final currentPlayer = player;
     if (!mounted || currentPlayer == null || _hasFatalPlaybackError) return;
-
-    // Live TV: send timeline heartbeats to keep transcode session alive
-    if (widget.isLive) {
-      _startLiveTimelineUpdates();
-      return;
-    }
 
     // Get a live reporting client when possible. Downloaded/local playback
     // still uses this path when the server is reachable.

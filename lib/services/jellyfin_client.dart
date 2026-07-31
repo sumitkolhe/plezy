@@ -9,12 +9,9 @@ import '../media/episode_collection.dart';
 import '../media/library_filter_result.dart';
 import '../media/library_first_character.dart';
 import '../media/library_query.dart';
-import 'favorite_channels_repository.dart';
-import 'live_session_tracker.dart';
 import 'file_info_parser.dart';
 import 'library_query_translator.dart';
 import '../media/media_filter.dart';
-import '../media/live_tv_support.dart';
 import '../media/lyrics.dart';
 import '../media/media_backend.dart';
 import '../media/media_file_info.dart';
@@ -29,9 +26,6 @@ import '../media/playback_report_metadata.dart';
 import '../media/server_capabilities.dart';
 import '../models/audio_quality_preset.dart';
 import '../models/jellyfin/jellyfin_user_profile.dart';
-import '../models/livetv_capture_buffer.dart';
-import '../models/livetv_channel.dart';
-import '../models/livetv_program.dart';
 import '../media/media_source_info.dart';
 import '../media/media_sort.dart';
 import '../media/media_version.dart';
@@ -73,7 +67,6 @@ part 'jellyfin_client/parts/watch_state.dart';
 part 'jellyfin_client/parts/playlists.dart';
 part 'jellyfin_client/parts/collections.dart';
 part 'jellyfin_client/parts/file_info.dart';
-part 'jellyfin_client/parts/live_tv.dart';
 part 'jellyfin_client/parts/images_downloads.dart';
 part 'jellyfin_client/parts/metadata_edit.dart';
 
@@ -108,12 +101,10 @@ class JellyfinClient
         _JellyfinPlaylistMethods,
         _JellyfinCollectionMethods,
         _JellyfinFileInfoMethods,
-        _JellyfinLiveTvMethods,
         _JellyfinImageDownloadMethods,
         _JellyfinMetadataEditMethods
     implements MediaServerClient, SeasonEpisodePagingClient, ScopedMediaServerClient, GracefullyCloseable {
-  JellyfinClient._({required this._connection, required this._http, FavoriteChannelsRepository? favoritesRepository})
-    : _favoritesRepository = favoritesRepository ?? const SharedPreferencesFavoriteChannelsRepository();
+  JellyfinClient._({required this._connection, required this._http});
 
   /// Build a fully-initialised [JellyfinClient]. Endpoint reachability is
   /// raced before construction by onboarding/profile binding; this factory
@@ -127,7 +118,6 @@ class JellyfinClient
   /// 401. We send `X-Emby-Token` too for old Emby/Jellyfin builds.
   static Future<JellyfinClient> create(
     JellyfinConnection connection, {
-    FavoriteChannelsRepository? favoritesRepository,
     void Function()? onAllEndpointsExhausted,
   }) async {
     // Register every normalized connection endpoint and the token before any
@@ -177,7 +167,7 @@ class JellyfinClient
       validateCandidate: (candidateBaseUrl, abort) async =>
           (await endpointDiscovery.probe(candidateBaseUrl, abort: abort)).machineId == connection.serverMachineId,
     );
-    client = JellyfinClient._(connection: connection, http: http, favoritesRepository: favoritesRepository);
+    client = JellyfinClient._(connection: connection, http: http);
     return client;
   }
 
@@ -188,7 +178,6 @@ class JellyfinClient
     required JellyfinConnection connection,
     required http.Client httpClient,
     http.Client Function()? endpointProbeHttpClientFactory,
-    FavoriteChannelsRepository? favoritesRepository,
     void Function()? onAllEndpointsExhausted,
   }) {
     _registerConnectionDiagnostics(connection);
@@ -205,7 +194,7 @@ class JellyfinClient
           (await endpointDiscovery.probe(candidateBaseUrl, abort: abort)).machineId == connection.serverMachineId,
       client: httpClient,
     );
-    client = JellyfinClient._(connection: connection, http: mediaHttp, favoritesRepository: favoritesRepository);
+    client = JellyfinClient._(connection: connection, http: mediaHttp);
     return client;
   }
 
@@ -217,7 +206,6 @@ class JellyfinClient
   JellyfinConnection get connection => _connection;
   @override
   final FailoverHttpClient _http;
-  final FavoriteChannelsRepository _favoritesRepository;
   bool _offlineMode = false;
 
   /// Fired when the live `connection` snapshot diverges from the cached one

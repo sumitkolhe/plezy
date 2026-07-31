@@ -59,7 +59,6 @@ import 'discover_screen.dart';
 import 'explore_screen.dart';
 import 'libraries/library_quick_picker_sheet.dart';
 import 'libraries/libraries_screen.dart';
-import 'livetv/live_tv_screen.dart';
 import 'search_screen.dart';
 import 'downloads/downloads_screen.dart';
 import 'settings/settings_screen.dart';
@@ -217,19 +216,12 @@ class _MainScreenState extends State<MainScreen>
   /// Last selected online tab (restored when coming back online after an offline fallback)
   NavigationTabId? _lastOnlineTabId;
 
-  /// A preferred startup section (e.g. Live TV) that wasn't visible yet at cold
-  /// start because servers bind asynchronously. Applied once it becomes
-  /// available (see [_handleLiveTvChanged]); cleared on any explicit selection.
-  NavigationTabId? _pendingStartupTab;
-
   /// Whether we auto-switched to Downloads because the previous tab was unavailable offline
   bool _autoSwitchedToDownloads = false;
 
   OfflineModeProvider? _offlineModeProvider;
-  MultiServerProvider? _multiServerProvider;
   CatalogSourcesProvider? _catalogSourcesProvider;
   RouteObserver<PageRoute<dynamic>>? _profileRouteObserver;
-  bool _lastHasLiveTv = false;
   bool _lastHasExplore = false;
 
   /// Whether a reconnection attempt is in progress
@@ -321,13 +313,6 @@ class _MainScreenState extends State<MainScreen>
       windowManager.setPreventClose(true);
     }
 
-    // Synchronize _lastHasLiveTv with provider before building screens
-    // so _buildScreens and _hasLiveTv getter agree from the start.
-    try {
-      _lastHasLiveTv = context.read<MultiServerProvider>().hasLiveTv;
-    } catch (_) {
-      _lastHasLiveTv = false;
-    }
     try {
       _lastHasExplore = context.read<CatalogSourcesProvider>().hasAnySource;
     } catch (_) {
@@ -336,12 +321,6 @@ class _MainScreenState extends State<MainScreen>
     _currentTab = _defaultTabForMode(_isOffline);
     _lastOnlineTabId = _isOffline ? null : NavigationTabId.discover;
     _autoSwitchedToDownloads = _isOffline && _currentTab == NavigationTabId.downloads;
-    // If the preferred startup section isn't visible yet (e.g. Live TV before
-    // servers finish binding), remember it and switch once it becomes available.
-    final preferredStartup = SettingsService.instanceOrNull?.read(SettingsService.startupSection);
-    _pendingStartupTab = (!_isOffline && preferredStartup != null && preferredStartup != _currentTab)
-        ? preferredStartup
-        : null;
     _screens = _buildScreens(_isOffline);
 
     // Warm the TV keyboard's text-layout caches off the first real open
@@ -719,14 +698,6 @@ class _MainScreenState extends State<MainScreen>
       }
     }
 
-    // Listen for Live TV / DVR availability changes
-    final multiServer = context.read<MultiServerProvider>();
-    if (multiServer != _multiServerProvider) {
-      _multiServerProvider?.removeListener(_handleLiveTvChanged);
-      _multiServerProvider = multiServer;
-      _multiServerProvider!.addListener(_handleLiveTvChanged);
-    }
-
     // Listen for catalog sources (Explore tab) appearing/disappearing when a
     // provider like Trakt is connected or disconnected mid-session.
     final catalogSources = context.read<CatalogSourcesProvider>();
@@ -760,7 +731,6 @@ class _MainScreenState extends State<MainScreen>
       windowManager.setPreventClose(false);
     }
     _offlineModeProvider?.removeListener(_handleOfflineStatusChanged);
-    _multiServerProvider?.removeListener(_handleLiveTvChanged);
     _catalogSourcesProvider?.removeListener(_handleCatalogSourcesChanged);
     if (_bindingSettleListener != null) {
       _activeProfileForListener?.removeListener(_bindingSettleListener!);
@@ -852,7 +822,6 @@ class _MainScreenState extends State<MainScreen>
             onLibraryOrderChanged: _onLibraryOrderChanged,
             onLibrarySelected: _handleLibrariesScreenSelected,
           ),
-          NavigationTabId.liveTv => LiveTvScreen(key: _screenKeys[tab.id]),
           NavigationTabId.downloads => DownloadsScreen(key: _screenKeys[tab.id]),
           NavigationTabId.settings => SettingsScreen(key: _screenKeys[tab.id]),
         },
@@ -869,7 +838,6 @@ class _MainScreenState extends State<MainScreen>
 
   NavigationTabId _defaultTabForMode(bool isOffline) => NavigationTab.resolveDefaultTab(
     isOffline: isOffline,
-    hasLiveTv: _hasLiveTv,
     hasExplore: _lastHasExplore,
     preferredStartup: SettingsService.instanceOrNull?.read(SettingsService.startupSection),
   );
@@ -917,22 +885,6 @@ class _MainScreenState extends State<MainScreen>
       _currentTab = _normalizeTabForMode(_currentTab, _isOffline);
     });
     _updateTvosMenuPassthrough();
-  }
-
-  void _handleLiveTvChanged() {
-    final hasLiveTv = _multiServerProvider?.hasLiveTv ?? false;
-    if (hasLiveTv == _lastHasLiveTv) return;
-    _lastHasLiveTv = hasLiveTv;
-
-    _handleTabAvailabilityChanged();
-
-    // A preferred startup section (only Live TV can be deferred) just became
-    // available — switch to it via _selectTab so it gets the usual visibility
-    // and focus handling. _selectTab clears _pendingStartupTab.
-    final pending = _pendingStartupTab;
-    if (pending != null && _getVisibleTabs(_isOffline).any((t) => t.id == pending)) {
-      _selectTab(pending);
-    }
   }
 
   void _handleCatalogSourcesChanged() {
@@ -1340,8 +1292,6 @@ class _MainScreenState extends State<MainScreen>
     final previousTab = _currentTab;
     setState(() {
       _currentTab = tab;
-      // An explicit selection cancels any deferred startup-section switch.
-      _pendingStartupTab = null;
       if (!_isOffline) {
         _lastOnlineTabId = tab;
       } else if (previousTab != tab) {
@@ -1448,14 +1398,9 @@ class _MainScreenState extends State<MainScreen>
         });
   }
 
-  /// Whether the Live TV tab is currently visible
-  /// Use the synchronized value so screens list and nav bar always agree.
-  /// Updated by _handleLiveTvChanged when the provider notifies.
-  bool get _hasLiveTv => _lastHasLiveTv;
-
   /// Get navigation tabs filtered by offline mode
   List<NavigationTab> _getVisibleTabs(bool isOffline) {
-    return NavigationTab.getVisibleTabs(isOffline: isOffline, hasLiveTv: _hasLiveTv, hasExplore: _lastHasExplore);
+    return NavigationTab.getVisibleTabs(isOffline: isOffline, hasExplore: _lastHasExplore);
   }
 
   List<NavigationTab> _getBottomNavigationTabs(BuildContext context) => _getVisibleTabs(_isOffline);

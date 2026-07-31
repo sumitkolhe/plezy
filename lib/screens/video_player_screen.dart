@@ -23,9 +23,6 @@ import '../media/media_item.dart';
 import '../media/media_item_types.dart';
 import '../media/media_server_client.dart';
 import '../media/episode_collection.dart';
-import '../media/live_tv_support.dart';
-import '../models/livetv_channel.dart';
-import '../services/live_seek_accumulator.dart';
 import '../services/plex_client.dart';
 import '../utils/session_identifier.dart';
 import '../database/app_database.dart';
@@ -72,7 +69,6 @@ import '../providers/user_profile_provider.dart';
 import '../utils/app_logger.dart';
 import '../utils/dialogs.dart';
 import '../utils/log_redaction_manager.dart';
-import '../utils/live_tv_player_navigation.dart';
 import '../utils/player_utils.dart';
 import '../utils/orientation_helper.dart';
 import '../utils/platform_detector.dart';
@@ -83,11 +79,7 @@ import '../utils/video_player_navigation.dart';
 import '../utils/android_exit_diagnostics.dart';
 import 'video_player/completion_latch.dart';
 import 'video_player/frame_rate_matcher.dart';
-import 'video_player/live_stream_retry.dart';
-import 'video_player/live_timeline_report.dart';
 import 'video_player/wakelock_controller.dart';
-import 'video_player/live_tv_session_args.dart';
-import 'video_player/live_tv_session_state.dart';
 import 'video_player/tv_background_suspend_policy.dart';
 import 'video_player/widgets/player_prompt_overlays.dart';
 import '../widgets/overlay_sheet.dart';
@@ -105,7 +97,6 @@ part 'video_player/parts/episode_navigation.dart';
 part 'video_player/parts/episode_queue.dart';
 part 'video_player/parts/errors.dart';
 part 'video_player/parts/lifecycle.dart';
-part 'video_player/parts/live_tv.dart';
 part 'video_player/parts/media_controls.dart';
 part 'video_player/parts/pip.dart';
 part 'video_player/parts/shader.dart';
@@ -159,7 +150,7 @@ SubtitlePreference? subtitlePreferenceForItemChange({
 /// The in-place media-source transitions a [VideoPlayerScreenState] can run.
 /// They are mutually exclusive by construction — entry points bail while a
 /// transition is in flight.
-enum _PlaybackTransition { idle, switchingSource, reloadingMedia, switchingChannel }
+enum _PlaybackTransition { idle, switchingSource, reloadingMedia }
 
 enum _SubtitleSelectionSlot { primary, secondary }
 
@@ -276,11 +267,9 @@ class VideoPlayerScreen extends StatefulWidget {
   /// Plex audio track (fallback: first).
   final int? selectedAudioStreamId;
 
-  /// Present iff this screen plays live TV; carries the whole live launch
-  /// state (see [LiveTvSessionArgs]).
-  final LiveTvSessionArgs? live;
-
-  bool get isLive => live != null;
+  /// Live TV was removed; the flag survives because the player and its
+  /// controls branch on it in ~20 files, and every branch is now the VOD one.
+  bool get isLive => false;
 
   const VideoPlayerScreen({
     super.key,
@@ -294,7 +283,6 @@ class VideoPlayerScreen extends StatefulWidget {
     this.isOffline = false,
     this.selectedQualityPreset,
     this.selectedAudioStreamId,
-    this.live,
   });
 
   @override
@@ -302,8 +290,6 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindingObserver, MountedSetStateMixin {
-  static const int _liveEdgeThresholdSeconds = 5;
-
   // Track the currently active route target to guard duplicate navigation and
   // project the server-qualified media key to housekeeping consumers.
   static final VideoPlayerActiveRouteGuard _activeRouteGuard = VideoPlayerActiveRouteGuard();
@@ -403,21 +389,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   /// player-exit side effects because the replacement continues the session.
   bool _isReplacingWithVideo = false;
   ScrubPreviewSource? _scrubPreviewSource;
-
-  /// Live TV session state (tune identity, heartbeats, capture buffer,
-  /// retry ladder) — inert for VOD screens. See [LiveTvSessionState].
-  late final LiveTvSessionState _live = LiveTvSessionState(widget.live);
-
-  /// Coalesces rapid relative live-TV skips into a single transcode re-open so
-  /// mashing skip-forward can't compound into an overshoot to live (#1253).
-  /// Lazily built; its closures read the current live state on each call.
-  late final LiveSeekAccumulator _liveSeek = LiveSeekAccumulator(
-    seek: _runLiveSeek,
-    currentEpoch: () => _rawPositionEpoch,
-    positionSeconds: () => player?.state.position.inSeconds ?? 0,
-    bounds: _liveSeekBounds,
-    onChanged: _onLiveSeekTargetChanged,
-  );
 
   Timer? _autoPlayTimer;
   int _autoPlayCountdown = 5;
@@ -672,11 +643,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       return Future<void>.value();
     }
     _playbackIntentShouldPlay = true;
-    if (widget.isLive && _live.retryFailed) {
-      if (_live.retrying) return Future.value();
-      _live.retrying = true;
-      return _retryLiveStream();
-    }
     if (_spuriousEofRecoveryParked && _playbackTransition == _PlaybackTransition.idle) {
       // Parked on a dead stream: play/pause on a drained cache is a no-op
       // (mpv doesn't even flip `pause` on EOF), so any press means "get my
@@ -695,9 +661,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     if (!automotivePlaybackAllowedNow()) {
       appLogger.d('Play/pause requested while Android Automotive app is not resumed; keeping playback paused');
       return _pauseWithPlaybackIntent(currentPlayer);
-    }
-    if (widget.isLive && _live.retryFailed) {
-      return _playWithPlaybackIntent(currentPlayer);
     }
     if (_spuriousEofRecoveryParked && _playbackTransition == _PlaybackTransition.idle) {
       _playbackIntentShouldPlay = true;
@@ -752,7 +715,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
         selectedMediaSourceId: widget.selectedMediaSourceId,
         selectedQualityPreset: widget.selectedQualityPreset,
         isOffline: widget.isOffline,
-        routeKind: widget.isLive ? VideoPlayerRouteKind.liveTv : VideoPlayerRouteKind.vod,
       ),
     );
     _effectiveSelectedMediaIndex = widget.selectedMediaIndex;
@@ -1482,8 +1444,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     unawaited(_sendStoppedProgressOnce());
     _progressTracker?.stopTracking();
     _progressTracker?.dispose();
-    _stopLiveTimelineUpdates();
-
     _detachPipStateListener();
     if (_pipInitialized) unawaited(PipService.setAutoPipReady(ready: false));
     _clearAutoPipEnteringCallback();
@@ -1523,8 +1483,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     _tvBackgroundPlayerSuspendTimer?.cancel();
 
     _stillWatchingTimer?.cancel();
-
-    _liveSeek.dispose();
 
     _playNextCancelFocusNode.dispose();
     _playNextConfirmFocusNode.dispose();
@@ -1860,11 +1818,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   }
 
   Future<void> _sendStoppedProgressOnce({Duration? positionOverride}) {
-    if (widget.isLive) {
-      _stopLiveTimelineUpdates();
-      return _sendLiveTimeline('stopped');
-    }
-
     final tracker = _progressTracker;
     if (tracker == null) return Future<void>.value();
 

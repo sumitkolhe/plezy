@@ -422,8 +422,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
         return _showDownloads ? _kDownloads : null;
       case NavigationTabId.settings:
         return _kSettings;
-      case NavigationTabId.liveTv:
-        return 'liveTv';
     }
   }
 
@@ -453,7 +451,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     required List<_LibraryNavRow> visibleRows,
     required List<_LibraryNavRow> hiddenRows,
     required bool hasHiddenLibraries,
-    required bool hasLiveTv,
     required bool hasNowPlaying,
     required bool hasExplore,
   }) {
@@ -468,7 +465,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
       _kReconnect,
       if (hasHiddenLibraries) _kHiddenLibraries,
       if (_showFullscreenToggle) _kFullscreen,
-      if (hasLiveTv) 'liveTv',
       ..._focusKeysForLibraryRows(visibleRows),
       if (_hiddenLibrariesExpanded) ..._focusKeysForLibraryRows(hiddenRows),
     };
@@ -534,7 +530,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     List<_LibraryNavRow> visibleRows,
     List<_LibraryNavRow> hiddenRows, {
     required bool hasHiddenLibraries,
-    required bool hasLiveTv,
     required bool hasNowPlaying,
     required bool hasExplore,
   }) {
@@ -551,7 +546,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             if (_hiddenLibrariesExpanded) ..._focusKeysForLibraryRows(hiddenRows),
           ],
         ],
-        if (hasLiveTv) 'liveTv',
         if (hasExplore) _kExplore,
         _kSearch,
       ],
@@ -651,7 +645,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final effectiveCollapsedWidth = collapsedWidthForContext(context);
     final horizontalPadding = horizontalPaddingForContext(context, isCollapsed: isCollapsed);
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
-    final hasLiveTv = context.watch<MultiServerProvider>().hasLiveTv;
     // Nullable watch: rail tests (and any host without the profile session
     // scope) simply never show the Explore item.
     final hasExplore = context.watch<CatalogSourcesProvider?>()?.hasAnySource ?? false;
@@ -691,7 +684,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             visibleRows: visibleRows,
             hiddenRows: hiddenRows,
             hasHiddenLibraries: hiddenLibraries.isNotEmpty,
-            hasLiveTv: hasLiveTv,
             hasNowPlaying: nowPlayingTrack != null,
             hasExplore: hasExplore,
           ),
@@ -700,7 +692,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
           visibleRows,
           hiddenRows,
           hasHiddenLibraries: hiddenLibraries.isNotEmpty,
-          hasLiveTv: hasLiveTv,
           hasNowPlaying: nowPlayingTrack != null,
           hasExplore: hasExplore,
         );
@@ -778,18 +769,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                       itemHorizontalPadding: itemHorizontalPadding,
                                     ),
                                     const SizedBox(height: 8),
-                                    if (context.watch<MultiServerProvider>().hasLiveTv) ...[
-                                      _buildNavItem(
-                                        icon: Symbols.live_tv_rounded,
-                                        selectedIcon: Symbols.live_tv_rounded,
-                                        label: Translations.of(context).navigation.liveTv,
-                                        isSelected: widget.selectedTab == NavigationTabId.liveTv,
-                                        onTap: () => widget.onDestinationSelected(NavigationTabId.liveTv),
-                                        focusNode: _focusTracker.get('liveTv'),
-                                        isCollapsed: isCollapsed,
-                                      ),
-                                      const SizedBox(height: 8),
-                                    ],
                                     if (hasExplore) ...[
                                       _buildNavItem(
                                         icon: Symbols.explore_rounded,

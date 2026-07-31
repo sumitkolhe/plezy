@@ -3,7 +3,6 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../media/media_item.dart';
 import '../../mpv/mpv.dart';
-import '../../models/livetv_capture_buffer.dart';
 import '../../media/media_source_info.dart';
 import '../../services/scrub_preview_source.dart';
 import '../../utils/desktop_window_padding.dart';
@@ -14,7 +13,6 @@ import 'widgets/content_strip.dart';
 import 'widgets/content_strip_panel.dart';
 import 'widgets/first_frame_guard.dart';
 import 'widgets/play_pause_stream_builder.dart';
-import 'widgets/live_timeline_bar.dart';
 import 'widgets/video_controls_header.dart';
 import 'widgets/video_timeline_bar.dart';
 
@@ -58,17 +56,7 @@ class MobileVideoControls extends StatefulWidget {
   /// Optional callback that returns thumbnail image bytes for a given timestamp.
   final ScrubFrame? Function(Duration time)? thumbnailDataBuilder;
 
-  /// Whether this is a live TV stream
-  final bool isLive;
-
-  /// Channel name for live TV display
-  final String? liveChannelName;
-
   // Live TV time-shift
-  final CaptureBuffer? captureBuffer;
-  final bool isAtLiveEdge;
-  final double streamStartEpoch;
-  final ValueChanged<int>? onLiveSeek;
 
   /// Server ID for chapter thumbnails in the content strip
   final String? serverId;
@@ -112,12 +100,6 @@ class MobileVideoControls extends StatefulWidget {
     this.canControl = true,
     this.hasFirstFrame,
     this.thumbnailDataBuilder,
-    this.isLive = false,
-    this.liveChannelName,
-    this.captureBuffer,
-    this.isAtLiveEdge = true,
-    this.streamStartEpoch = 0,
-    this.onLiveSeek,
     this.serverId,
     this.showQueueTab = false,
     this.onQueueItemSelected,
@@ -353,16 +335,14 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
         return Row(
           mainAxisAlignment: .center,
           children: [
-            if (!widget.isLive) ...[
-              // Previous episode button (greyed out when unavailable)
-              CircularControlButton(
-                semanticLabel: t.videoControls.previousButton,
-                icon: Symbols.skip_previous_rounded,
-                iconSize: 48,
-                onPressed: widget.onPrevious,
-              ),
-              const SizedBox(width: 24),
-            ],
+            // Previous episode button (greyed out when unavailable)
+            CircularControlButton(
+              semanticLabel: t.videoControls.previousButton,
+              icon: Symbols.skip_previous_rounded,
+              iconSize: 48,
+              onPressed: widget.onPrevious,
+            ),
+            const SizedBox(width: 24),
             CircularControlButton(
               semanticLabel: isPlaying ? t.videoControls.pauseButton : t.videoControls.playButton,
               icon: isPlaying ? Symbols.pause_rounded : Symbols.play_arrow_rounded,
@@ -376,16 +356,14 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                 }
               },
             ),
-            if (!widget.isLive) ...[
-              const SizedBox(width: 24),
-              // Next episode button (greyed out when unavailable)
-              CircularControlButton(
-                semanticLabel: t.videoControls.nextButton,
-                icon: Symbols.skip_next_rounded,
-                iconSize: 48,
-                onPressed: widget.onNext,
-              ),
-            ],
+            const SizedBox(width: 24),
+            // Next episode button (greyed out when unavailable)
+            CircularControlButton(
+              semanticLabel: t.videoControls.nextButton,
+              icon: Symbols.skip_next_rounded,
+              iconSize: 48,
+              onPressed: widget.onNext,
+            ),
           ],
         );
       },
@@ -393,39 +371,6 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
   }
 
   Widget _buildBottomBar(BuildContext _) {
-    if (widget.isLive) {
-      if (widget.captureBuffer != null) {
-        // Live TV with time-shift: show seekable timeline
-        return FirstFrameGuard(
-          hasFirstFrame: widget.hasFirstFrame,
-          builder: (context) => LiveTimelineBar(
-            player: widget.player,
-            captureBuffer: widget.captureBuffer!,
-            streamStartEpoch: widget.streamStartEpoch,
-            isAtLiveEdge: widget.isAtLiveEdge,
-            onSeekEnd: widget.onLiveSeek,
-            horizontalLayout: false,
-            enabled: widget.canControl,
-          ),
-        );
-      }
-      // Fallback: static LIVE badge (no capture buffer)
-      return Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              decoration: const BoxDecoration(color: Colors.red, borderRadius: BorderRadius.all(Radius.circular(4))),
-              child: Text(
-                t.liveTv.live,
-                style: const TextStyle(color: Colors.white, fontWeight: .bold, fontSize: 12),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
     return FirstFrameGuard(hasFirstFrame: widget.hasFirstFrame, builder: (context) => _buildBottomBarContent(context));
   }
 

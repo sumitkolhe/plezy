@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'dart:ui' as ui;
 
+import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:plezy/database/app_database.dart';
 import 'package:plezy/focus/key_event_utils.dart';
 import 'package:plezy/i18n/strings.g.dart';
 import 'package:plezy/media/media_source_info.dart';
@@ -1517,6 +1519,8 @@ void main() {
       resetSharedPreferencesForTest();
       SettingsService.resetForTesting();
       final settings = await SettingsService.getInstance();
+      final database = AppDatabase.forTesting(NativeDatabase.memory());
+      addTearDown(database.close);
       final firstWrite = Completer<void>();
       final secondWrite = Completer<void>();
       final player = _FakeSubtitleVisibilityPlayer(writes: [firstWrite, secondWrite]);
@@ -1531,7 +1535,10 @@ void main() {
 
       await tester.pumpWidget(
         MultiProvider(
-          providers: [ChangeNotifierProvider<PlaybackStateProvider>.value(value: playbackState)],
+          providers: [
+            ChangeNotifierProvider<PlaybackStateProvider>.value(value: playbackState),
+            Provider<AppDatabase>.value(value: database),
+          ],
           child: MaterialApp(
             theme: ThemeData(platform: TargetPlatform.macOS, extensions: const [testMonoTokens]),
             home: Scaffold(
@@ -1545,7 +1552,6 @@ void main() {
                   toastController: toast,
                   canNavigateMediaItems: false,
                   chromeController: chrome,
-                  isLive: true,
                 ),
               ),
             ),

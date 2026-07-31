@@ -77,8 +77,6 @@ void main() {
       WidgetTester tester, {
       List<MediaChapter>? chapters,
       bool wireTransportCallback = false,
-      bool isLive = false,
-      ValueChanged<int>? onLiveSeekBy,
     }) async {
       transportCommands = [];
       await tester.pumpWidget(
@@ -101,8 +99,6 @@ void main() {
                   chromeController: chrome,
                   initialChapters: chapters,
                   canNavigateMediaItems: false,
-                  isLive: isLive,
-                  onLiveSeekBy: onLiveSeekBy,
                   onPlayPauseRequested: wireTransportCallback
                       ? (command) async {
                           transportCommands.add(command);
@@ -318,38 +314,6 @@ void main() {
 
       expect(find.byType(PlayerToastIndicator), findsNothing);
       expect(player.seeks, isEmpty, reason: 'already at the start — nothing to rewind to');
-      expect(chrome.controlsVisible, isFalse);
-
-      await settleFeedback(tester);
-    });
-
-    testWidgets('a live hold resets its acceleration tier when the key is released', (tester) async {
-      // Live seeks bypass the accumulator entirely, so nothing is ever pending;
-      // the release must still reset the tier or the next hold in the same
-      // direction resumes mid-acceleration.
-      final liveOffsets = <int>[];
-      await pumpControls(tester, isLive: true, onLiveSeekBy: liveOffsets.add);
-
-      await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowRight);
-      await tester.pump();
-      for (var i = 0; i < 6; i++) {
-        await tester.sendKeyRepeatEvent(LogicalKeyboardKey.arrowRight);
-        await tester.pump();
-      }
-      await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowRight);
-      await tester.pump();
-
-      expect(liveOffsets, [10, 15, 15, 15, 15, 15, 30], reason: 'the first hold climbs through the tiers');
-
-      liveOffsets.clear();
-      await tester.sendKeyDownEvent(LogicalKeyboardKey.arrowRight);
-      await tester.pump();
-      await tester.sendKeyRepeatEvent(LogicalKeyboardKey.arrowRight);
-      await tester.pump();
-      await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowRight);
-      await tester.pump();
-
-      expect(liveOffsets, [10, 15], reason: 'a fresh hold restarts at the slowest tier');
       expect(chrome.controlsVisible, isFalse);
 
       await settleFeedback(tester);

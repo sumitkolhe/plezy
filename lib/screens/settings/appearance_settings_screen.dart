@@ -175,12 +175,6 @@ class AppearanceSettingsScreen extends StatelessWidget {
           title: t.settings.content,
           children: [
             SettingSwitchTile(
-              pref: SettingsService.liveTvDefaultFavorites,
-              icon: Symbols.star_rounded,
-              title: t.settings.liveTvDefaultFavorites,
-              subtitle: t.settings.liveTvDefaultFavoritesDescription,
-            ),
-            SettingSwitchTile(
               pref: SettingsService.hideSpoilers,
               icon: Symbols.visibility_off_rounded,
               title: t.settings.hideSpoilers,
@@ -334,7 +328,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   // Sections offered as a startup destination, in display order. Live TV is
   // always listed; if no server provides it, startup falls back to Home.
-  static const _startupSectionOptions = [NavigationTabId.discover, NavigationTabId.libraries, NavigationTabId.liveTv];
+  static const _startupSectionOptions = [NavigationTabId.discover, NavigationTabId.libraries];
 
   String _startupSectionLabel(NavigationTabId id) => allNavigationTabs.firstWhere((t) => t.id == id).getLabel();
 

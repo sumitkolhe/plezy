@@ -530,7 +530,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         selectedMediaSourceId: selectedMediaSourceId,
         selectedQualityPreset: targetQualityPreset,
         isOffline: _offlineLibraryMode,
-        routeKind: VideoPlayerRouteKind.vod,
       );
       final preservesRequestedSubtitleSource =
           !isItemChange &&

@@ -18,15 +18,13 @@ void main() {
   tearDown(() => manager.dispose());
 
   group('MultiServerProvider', () {
-    test('starts with empty server lists and no live TV', () {
+    test('starts with empty server lists', () {
       final p = MultiServerProvider(manager, aggregation);
       expect(p.serverIds, isEmpty);
       expect(p.onlineServerIds, isEmpty);
       expect(p.onlineServerCount, 0);
       expect(p.totalServerCount, 0);
       expect(p.hasConnectedServers, isFalse);
-      expect(p.hasLiveTv, isFalse);
-      expect(p.liveTvServers, isEmpty);
       p.dispose();
     });
 
@@ -34,13 +32,6 @@ void main() {
       final p = MultiServerProvider(manager, aggregation);
       expect(p.isServerOnline(ServerId('nope')), isFalse);
       expect(p.getClientForServer(ServerId('nope')), isNull);
-      p.dispose();
-    });
-
-    test('liveTvServers getter returns an unmodifiable view', () {
-      final p = MultiServerProvider(manager, aggregation);
-      // Empty by default; mutating through the unmodifiable view must throw.
-      expect(() => p.liveTvServers.clear(), throwsUnsupportedError);
       p.dispose();
     });
 
@@ -207,34 +198,6 @@ void main() {
         // for a freshly-created profile that hasn't borrowed anything yet.
         p.setVisibleServerIds(<String>{});
         expect(p.onlineServerIds, isEmpty);
-
-        p.dispose();
-      });
-
-      test('setVisibleServerIds immediately hides Live TV servers outside the filter', () {
-        final p = MultiServerProvider(manager, aggregation);
-        p.debugSetLiveTvServersForTesting([
-          LiveTvServerInfo(serverId: 'srv-1', dvrKey: 'dvr-1'),
-          LiveTvServerInfo(serverId: 'srv-2', dvrKey: 'dvr-2'),
-        ]);
-
-        p.setVisibleServerIds({'srv-1'});
-
-        expect(p.hasLiveTv, isTrue);
-        expect(p.liveTvServers.map((s) => s.serverId), ['srv-1']);
-        expect(p.liveTvServers.single.dvrKey, 'dvr-1');
-
-        p.dispose();
-      });
-
-      test('setVisibleServerIds empty immediately clears stale Live TV state', () {
-        final p = MultiServerProvider(manager, aggregation);
-        p.debugSetLiveTvServersForTesting([LiveTvServerInfo(serverId: 'srv-1', dvrKey: 'dvr-1')]);
-
-        p.setVisibleServerIds(<String>{});
-
-        expect(p.hasLiveTv, isFalse);
-        expect(p.liveTvServers, isEmpty);
 
         p.dispose();
       });

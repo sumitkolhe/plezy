@@ -45,7 +45,6 @@ import '../../database/app_database.dart';
 import '../../media/media_backend.dart';
 import '../../media/media_item.dart';
 import '../../media/stepped_seek.dart';
-import '../../models/livetv_capture_buffer.dart';
 import '../../providers/multi_server_provider.dart';
 import '../../media/media_source_info.dart';
 import '../../models/transcode_quality_preset.dart';
@@ -505,35 +504,6 @@ class PlexVideoControls extends StatefulWidget {
   /// Optional callback that returns thumbnail image bytes for a given timestamp.
   final ScrubFrame? Function(Duration time)? thumbnailDataBuilder;
 
-  /// Whether this is a live TV stream (disables seek, progress, etc.)
-  final bool isLive;
-
-  /// Channel name for live TV display
-  final String? liveChannelName;
-
-  /// Capture buffer for live TV time-shift (null = no time-shift support)
-  final CaptureBuffer? captureBuffer;
-
-  /// Whether playback is at the live edge
-  final bool isAtLiveEdge;
-
-  /// Epoch seconds corresponding to player position 0 (for live TV)
-  final double streamStartEpoch;
-
-  /// Current playback position as absolute epoch seconds (for live TV)
-  final int? currentPositionEpoch;
-
-  /// Seek callback for live TV time-shift (absolute epoch seconds; scrubber)
-  final ValueChanged<int>? onLiveSeek;
-
-  /// Relative live-TV skip callback (delta seconds). The owning screen
-  /// accumulates rapid presses and debounces the transcode re-open, so skip
-  /// buttons/dpad/remote keys must use this rather than `onLiveSeek` (#1253).
-  final ValueChanged<int>? onLiveSeekBy;
-
-  /// Jump to live edge callback
-  final VoidCallback? onJumpToLive;
-
   /// Whether ambient lighting is enabled (passed to settings sheet)
   final bool isAmbientLightingEnabled;
 
@@ -598,15 +568,6 @@ class PlexVideoControls extends StatefulWidget {
     this.shaderService,
     this.onShaderChanged,
     this.thumbnailDataBuilder,
-    this.isLive = false,
-    this.liveChannelName,
-    this.captureBuffer,
-    this.isAtLiveEdge = true,
-    this.streamStartEpoch = 0,
-    this.currentPositionEpoch,
-    this.onLiveSeek,
-    this.onLiveSeekBy,
-    this.onJumpToLive,
     this.isAmbientLightingEnabled = false,
     this.onToggleAmbientLighting,
   });
@@ -1146,12 +1107,6 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
                                                       canControl: widget.canControl,
                                                       hasFirstFrame: widget.hasFirstFrame,
                                                       thumbnailDataBuilder: widget.thumbnailDataBuilder,
-                                                      isLive: widget.isLive,
-                                                      liveChannelName: widget.liveChannelName,
-                                                      captureBuffer: widget.captureBuffer,
-                                                      isAtLiveEdge: widget.isAtLiveEdge,
-                                                      streamStartEpoch: widget.streamStartEpoch,
-                                                      onLiveSeek: widget.onLiveSeek,
                                                       serverId: widget.metadata.serverId,
                                                       showQueueTab: canShowQueue,
                                                       onQueueItemSelected: canShowQueue ? _onQueueItemSelected : null,

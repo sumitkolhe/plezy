@@ -132,7 +132,6 @@ extension _PlexVideoControlsKeyEventMethods on _PlexVideoControlsState {
       onVolumeUp: () => widget.volumeController.adjust(10),
       onVolumeDown: () => widget.volumeController.adjust(-10),
       onToggleMute: widget.volumeController.toggleMute,
-      onLiveSeekBy: widget.onLiveSeekBy,
       onSeekRequested: widget.onSeekRequested,
       onSeekBy: _keyboardSeekBy,
     );

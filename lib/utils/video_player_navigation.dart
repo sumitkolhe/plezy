@@ -38,8 +38,6 @@ PageRouteBuilder<bool> buildVideoPlayerRoute({required WidgetBuilder builder}) {
   );
 }
 
-enum VideoPlayerRouteKind { vod, liveTv }
-
 @immutable
 final class VideoPlayerLaunchIdentity {
   VideoPlayerLaunchIdentity({
@@ -48,7 +46,6 @@ final class VideoPlayerLaunchIdentity {
     required String? selectedMediaSourceId,
     required this.selectedQualityPreset,
     required this.isOffline,
-    required this.routeKind,
   }) : globalKey = metadata.globalKey,
        mediaSourceId = _normalizeMediaSourceId(selectedMediaSourceId);
 
@@ -57,7 +54,6 @@ final class VideoPlayerLaunchIdentity {
   final String? mediaSourceId;
   final TranscodeQualityPreset? selectedQualityPreset;
   final bool isOffline;
-  final VideoPlayerRouteKind routeKind;
 
   static String? _normalizeMediaSourceId(String? mediaSourceId) {
     if (mediaSourceId == null || mediaSourceId.trim().isEmpty) return null;
@@ -72,12 +68,11 @@ final class VideoPlayerLaunchIdentity {
             other.mediaIndex == mediaIndex &&
             other.mediaSourceId == mediaSourceId &&
             other.selectedQualityPreset == selectedQualityPreset &&
-            other.isOffline == isOffline &&
-            other.routeKind == routeKind;
+            other.isOffline == isOffline;
   }
 
   @override
-  int get hashCode => Object.hash(globalKey, mediaIndex, mediaSourceId, selectedQualityPreset, isOffline, routeKind);
+  int get hashCode => Object.hash(globalKey, mediaIndex, mediaSourceId, selectedQualityPreset, isOffline);
 }
 
 class VideoPlayerNavigationInFlightGuard {
@@ -281,7 +276,6 @@ Future<bool?> navigateToVideoPlayer(
     selectedMediaSourceId: mediaSourceId,
     selectedQualityPreset: selectedQualityPreset,
     isOffline: isOffline,
-    routeKind: VideoPlayerRouteKind.vod,
   );
   var markedInFlight = false;
   if (!usePushReplacement) {
