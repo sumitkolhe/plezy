@@ -1486,11 +1486,6 @@
     "style": "Stijl",
     "mood": "Stemming"
   },
-  "serverTasks": {
-    "title": "Servertaken",
-    "failedToLoad": "Taken konden niet worden geladen",
-    "noTasks": "Geen actieve taken"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Verbonden",

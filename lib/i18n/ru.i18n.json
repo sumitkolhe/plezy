@@ -1498,11 +1498,6 @@
     "style": "Стиль",
     "mood": "Настроение"
   },
-  "serverTasks": {
-    "title": "Задачи сервера",
-    "failedToLoad": "Не удалось загрузить задачи",
-    "noTasks": "Нет выполняемых задач"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Подключено",

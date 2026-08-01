@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Stämning"
   },
-  "serverTasks": {
-    "title": "Serveruppgifter",
-    "failedToLoad": "Kunde inte ladda uppgifter",
-    "noTasks": "Inga pågående uppgifter"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Ansluten",

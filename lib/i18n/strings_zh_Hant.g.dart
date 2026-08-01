@@ -79,7 +79,6 @@ class TranslationsZhHant extends TranslationsZh with BaseTranslations<AppLocale,
 	@override late final _Translations$performanceOverlay$zh_Hant performanceOverlay = _Translations$performanceOverlay$zh_Hant._(_root);
 	@override late final _Translations$externalPlayer$zh_Hant externalPlayer = _Translations$externalPlayer$zh_Hant._(_root);
 	@override late final _Translations$metadataEdit$zh_Hant metadataEdit = _Translations$metadataEdit$zh_Hant._(_root);
-	@override late final _Translations$serverTasks$zh_Hant serverTasks = _Translations$serverTasks$zh_Hant._(_root);
 	@override late final _Translations$trakt$zh_Hant trakt = _Translations$trakt$zh_Hant._(_root);
 	@override late final _Translations$seerr$zh_Hant seerr = _Translations$seerr$zh_Hant._(_root);
 	@override late final _Translations$services$zh_Hant services = _Translations$services$zh_Hant._(_root);
@@ -1467,18 +1466,6 @@ class _Translations$metadataEdit$zh_Hant extends Translations$metadataEdit$zh {
 	@override String get label => '標記';
 	@override String get style => '風格';
 	@override String get mood => '氛圍';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$zh_Hant extends Translations$serverTasks$zh {
-	_Translations$serverTasks$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '伺服器工作';
-	@override String get failedToLoad => '載入工作失敗';
-	@override String get noTasks => '目前沒有執行中的工作';
 }
 
 // Path: trakt
@@ -2998,9 +2985,6 @@ extension on TranslationsZhHant {
 			'metadataEdit.label' => '標記',
 			'metadataEdit.style' => '風格',
 			'metadataEdit.mood' => '氛圍',
-			'serverTasks.title' => '伺服器工作',
-			'serverTasks.failedToLoad' => '載入工作失敗',
-			'serverTasks.noTasks' => '目前沒有執行中的工作',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '已連線',
 			'trakt.connectedAs' => ({required Object username}) => '已以 @${username} 身分連線',

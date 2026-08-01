@@ -1486,11 +1486,6 @@
     "style": "Stílus",
     "mood": "Hangulat"
   },
-  "serverTasks": {
-    "title": "Szerverfeladatok",
-    "failedToLoad": "Nem sikerült a feladatok betöltése",
-    "noTasks": "Nincsenek futó feladatok"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Csatlakoztatva",

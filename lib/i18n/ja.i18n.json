@@ -1480,11 +1480,6 @@
     "style": "スタイル",
     "mood": "ムード"
   },
-  "serverTasks": {
-    "title": "サーバータスク",
-    "failedToLoad": "タスクの読み込みに失敗しました",
-    "noTasks": "実行中のタスクはありません"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "接続済み",

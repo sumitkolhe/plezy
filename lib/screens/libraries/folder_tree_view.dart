@@ -7,7 +7,6 @@ import '../../media/media_kind.dart';
 import '../../media/media_server_client.dart';
 import '../../services/jellyfin_sequential_launcher.dart';
 import '../../services/media_list_playback_launcher.dart';
-import '../../services/play_queue_launcher.dart';
 import '../../utils/app_logger.dart';
 import '../../utils/error_message_utils.dart';
 import '../../utils/media_navigation_helper.dart';
@@ -249,13 +248,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
   /// tree is pinned to one server: the Plex client must be the one backing
   /// [widget.serverId], not `forItem`'s fall-back-to-any-online resolution.
   Future<void> _launchFolder(MediaItem folder, {required bool shuffle}) async {
-    final MediaListPlaybackLauncher launcher;
-    if (folder.backend == MediaBackend.jellyfin) {
-      launcher = JellyfinSequentialLauncher(context: context);
-    } else {
-      final client = context.getPlexClientForServer(ServerId(widget.serverId!));
-      launcher = PlexPlayQueueLauncher(context: context, client: client, serverId: widget.serverId);
-    }
+    final launcher = JellyfinSequentialLauncher(context: context);
     await launcher.launchFromFolder(folder: folder, shuffle: shuffle);
   }
 

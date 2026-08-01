@@ -1486,11 +1486,6 @@
     "style": "Tarz",
     "mood": "Ruh Hali"
   },
-  "serverTasks": {
-    "title": "Sunucu Görevleri",
-    "failedToLoad": "Görevler yüklenemedi",
-    "noTasks": "Çalışan görev yok"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Bağlandı",

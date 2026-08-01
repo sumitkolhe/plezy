@@ -1486,11 +1486,6 @@
     "style": "Style",
     "mood": "Mood"
   },
-  "serverTasks": {
-    "title": "Server Tasks",
-    "failedToLoad": "Failed to load tasks",
-    "noTasks": "No tasks running"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Connected",

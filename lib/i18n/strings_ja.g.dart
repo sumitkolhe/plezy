@@ -78,7 +78,6 @@ class TranslationsJa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$ja performanceOverlay = _Translations$performanceOverlay$ja._(_root);
 	@override late final _Translations$externalPlayer$ja externalPlayer = _Translations$externalPlayer$ja._(_root);
 	@override late final _Translations$metadataEdit$ja metadataEdit = _Translations$metadataEdit$ja._(_root);
-	@override late final _Translations$serverTasks$ja serverTasks = _Translations$serverTasks$ja._(_root);
 	@override late final _Translations$trakt$ja trakt = _Translations$trakt$ja._(_root);
 	@override late final _Translations$seerr$ja seerr = _Translations$seerr$ja._(_root);
 	@override late final _Translations$services$ja services = _Translations$services$ja._(_root);
@@ -1466,18 +1465,6 @@ class _Translations$metadataEdit$ja extends Translations$metadataEdit$en {
 	@override String get label => 'ラベル';
 	@override String get style => 'スタイル';
 	@override String get mood => 'ムード';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$ja extends Translations$serverTasks$en {
-	_Translations$serverTasks$ja._(TranslationsJa root) : this._root = root, super.internal(root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'サーバータスク';
-	@override String get failedToLoad => 'タスクの読み込みに失敗しました';
-	@override String get noTasks => '実行中のタスクはありません';
 }
 
 // Path: trakt
@@ -2997,9 +2984,6 @@ extension on TranslationsJa {
 			'metadataEdit.label' => 'ラベル',
 			'metadataEdit.style' => 'スタイル',
 			'metadataEdit.mood' => 'ムード',
-			'serverTasks.title' => 'サーバータスク',
-			'serverTasks.failedToLoad' => 'タスクの読み込みに失敗しました',
-			'serverTasks.noTasks' => '実行中のタスクはありません',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '接続済み',
 			'trakt.connectedAs' => ({required Object username}) => '@${username}として接続済み',

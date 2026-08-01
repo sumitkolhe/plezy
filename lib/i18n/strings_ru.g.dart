@@ -78,7 +78,6 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$ru performanceOverlay = _Translations$performanceOverlay$ru._(_root);
 	@override late final _Translations$externalPlayer$ru externalPlayer = _Translations$externalPlayer$ru._(_root);
 	@override late final _Translations$metadataEdit$ru metadataEdit = _Translations$metadataEdit$ru._(_root);
-	@override late final _Translations$serverTasks$ru serverTasks = _Translations$serverTasks$ru._(_root);
 	@override late final _Translations$trakt$ru trakt = _Translations$trakt$ru._(_root);
 	@override late final _Translations$seerr$ru seerr = _Translations$seerr$ru._(_root);
 	@override late final _Translations$services$ru services = _Translations$services$ru._(_root);
@@ -1475,18 +1474,6 @@ class _Translations$metadataEdit$ru extends Translations$metadataEdit$en {
 	@override String get label => 'Метка';
 	@override String get style => 'Стиль';
 	@override String get mood => 'Настроение';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$ru extends Translations$serverTasks$en {
-	_Translations$serverTasks$ru._(TranslationsRu root) : this._root = root, super.internal(root);
-
-	final TranslationsRu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Задачи сервера';
-	@override String get failedToLoad => 'Не удалось загрузить задачи';
-	@override String get noTasks => 'Нет выполняемых задач';
 }
 
 // Path: trakt
@@ -3006,9 +2993,6 @@ extension on TranslationsRu {
 			'metadataEdit.label' => 'Метка',
 			'metadataEdit.style' => 'Стиль',
 			'metadataEdit.mood' => 'Настроение',
-			'serverTasks.title' => 'Задачи сервера',
-			'serverTasks.failedToLoad' => 'Не удалось загрузить задачи',
-			'serverTasks.noTasks' => 'Нет выполняемых задач',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Подключено',
 			'trakt.connectedAs' => ({required Object username}) => 'Подключено как @${username}',

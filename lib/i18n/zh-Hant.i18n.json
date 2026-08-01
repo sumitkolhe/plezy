@@ -1480,11 +1480,6 @@
     "style": "風格",
     "mood": "氛圍"
   },
-  "serverTasks": {
-    "title": "伺服器工作",
-    "failedToLoad": "載入工作失敗",
-    "noTasks": "目前沒有執行中的工作"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "已連線",

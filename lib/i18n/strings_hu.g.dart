@@ -78,7 +78,6 @@ class TranslationsHu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$hu performanceOverlay = _Translations$performanceOverlay$hu._(_root);
 	@override late final _Translations$externalPlayer$hu externalPlayer = _Translations$externalPlayer$hu._(_root);
 	@override late final _Translations$metadataEdit$hu metadataEdit = _Translations$metadataEdit$hu._(_root);
-	@override late final _Translations$serverTasks$hu serverTasks = _Translations$serverTasks$hu._(_root);
 	@override late final _Translations$trakt$hu trakt = _Translations$trakt$hu._(_root);
 	@override late final _Translations$seerr$hu seerr = _Translations$seerr$hu._(_root);
 	@override late final _Translations$services$hu services = _Translations$services$hu._(_root);
@@ -1469,18 +1468,6 @@ class _Translations$metadataEdit$hu extends Translations$metadataEdit$en {
 	@override String get label => 'Kiadó';
 	@override String get style => 'Stílus';
 	@override String get mood => 'Hangulat';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$hu extends Translations$serverTasks$en {
-	_Translations$serverTasks$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Szerverfeladatok';
-	@override String get failedToLoad => 'Nem sikerült a feladatok betöltése';
-	@override String get noTasks => 'Nincsenek futó feladatok';
 }
 
 // Path: trakt
@@ -3000,9 +2987,6 @@ extension on TranslationsHu {
 			'metadataEdit.label' => 'Kiadó',
 			'metadataEdit.style' => 'Stílus',
 			'metadataEdit.mood' => 'Hangulat',
-			'serverTasks.title' => 'Szerverfeladatok',
-			'serverTasks.failedToLoad' => 'Nem sikerült a feladatok betöltése',
-			'serverTasks.noTasks' => 'Nincsenek futó feladatok',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Csatlakoztatva',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} néven csatlakoztatva',

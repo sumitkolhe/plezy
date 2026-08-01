@@ -78,7 +78,6 @@ class TranslationsNb extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$nb performanceOverlay = _Translations$performanceOverlay$nb._(_root);
 	@override late final _Translations$externalPlayer$nb externalPlayer = _Translations$externalPlayer$nb._(_root);
 	@override late final _Translations$metadataEdit$nb metadataEdit = _Translations$metadataEdit$nb._(_root);
-	@override late final _Translations$serverTasks$nb serverTasks = _Translations$serverTasks$nb._(_root);
 	@override late final _Translations$trakt$nb trakt = _Translations$trakt$nb._(_root);
 	@override late final _Translations$seerr$nb seerr = _Translations$seerr$nb._(_root);
 	@override late final _Translations$services$nb services = _Translations$services$nb._(_root);
@@ -1469,18 +1468,6 @@ class _Translations$metadataEdit$nb extends Translations$metadataEdit$en {
 	@override String get label => 'Etikett';
 	@override String get style => 'Stil';
 	@override String get mood => 'Stemning';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$nb extends Translations$serverTasks$en {
-	_Translations$serverTasks$nb._(TranslationsNb root) : this._root = root, super.internal(root);
-
-	final TranslationsNb _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Serveroppgaver';
-	@override String get failedToLoad => 'Kunne ikke laste oppgaver';
-	@override String get noTasks => 'Ingen oppgaver kjører';
 }
 
 // Path: trakt
@@ -3000,9 +2987,6 @@ extension on TranslationsNb {
 			'metadataEdit.label' => 'Etikett',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Stemning',
-			'serverTasks.title' => 'Serveroppgaver',
-			'serverTasks.failedToLoad' => 'Kunne ikke laste oppgaver',
-			'serverTasks.noTasks' => 'Ingen oppgaver kjører',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Tilkoblet',
 			'trakt.connectedAs' => ({required Object username}) => 'Tilkoblet som @${username}',

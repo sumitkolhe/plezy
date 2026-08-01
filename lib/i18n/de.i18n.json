@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Stimmung"
   },
-  "serverTasks": {
-    "title": "Serveraufgaben",
-    "failedToLoad": "Aufgaben konnten nicht geladen werden",
-    "noTasks": "Keine laufenden Aufgaben"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Verbunden",

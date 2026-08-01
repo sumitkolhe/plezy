@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Stemning"
   },
-  "serverTasks": {
-    "title": "Serveroppgaver",
-    "failedToLoad": "Kunne ikke laste oppgaver",
-    "noTasks": "Ingen oppgaver kjører"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Tilkoblet",

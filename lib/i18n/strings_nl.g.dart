@@ -78,7 +78,6 @@ class TranslationsNl extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$nl performanceOverlay = _Translations$performanceOverlay$nl._(_root);
 	@override late final _Translations$externalPlayer$nl externalPlayer = _Translations$externalPlayer$nl._(_root);
 	@override late final _Translations$metadataEdit$nl metadataEdit = _Translations$metadataEdit$nl._(_root);
-	@override late final _Translations$serverTasks$nl serverTasks = _Translations$serverTasks$nl._(_root);
 	@override late final _Translations$trakt$nl trakt = _Translations$trakt$nl._(_root);
 	@override late final _Translations$seerr$nl seerr = _Translations$seerr$nl._(_root);
 	@override late final _Translations$services$nl services = _Translations$services$nl._(_root);
@@ -1469,18 +1468,6 @@ class _Translations$metadataEdit$nl extends Translations$metadataEdit$en {
 	@override String get label => 'Label';
 	@override String get style => 'Stijl';
 	@override String get mood => 'Stemming';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$nl extends Translations$serverTasks$en {
-	_Translations$serverTasks$nl._(TranslationsNl root) : this._root = root, super.internal(root);
-
-	final TranslationsNl _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Servertaken';
-	@override String get failedToLoad => 'Taken konden niet worden geladen';
-	@override String get noTasks => 'Geen actieve taken';
 }
 
 // Path: trakt
@@ -3000,9 +2987,6 @@ extension on TranslationsNl {
 			'metadataEdit.label' => 'Label',
 			'metadataEdit.style' => 'Stijl',
 			'metadataEdit.mood' => 'Stemming',
-			'serverTasks.title' => 'Servertaken',
-			'serverTasks.failedToLoad' => 'Taken konden niet worden geladen',
-			'serverTasks.noTasks' => 'Geen actieve taken',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Verbonden',
 			'trakt.connectedAs' => ({required Object username}) => 'Verbonden als @${username}',

@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Əhval-ruhiyyə"
   },
-  "serverTasks": {
-    "title": "Server tapşırıqları",
-    "failedToLoad": "Tapşırıqlar yüklənə bilmədi",
-    "noTasks": "İcra olunan tapşırıq yoxdur"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Qoşuldu",

@@ -78,7 +78,6 @@ class TranslationsKk extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$kk performanceOverlay = _Translations$performanceOverlay$kk._(_root);
 	@override late final _Translations$externalPlayer$kk externalPlayer = _Translations$externalPlayer$kk._(_root);
 	@override late final _Translations$metadataEdit$kk metadataEdit = _Translations$metadataEdit$kk._(_root);
-	@override late final _Translations$serverTasks$kk serverTasks = _Translations$serverTasks$kk._(_root);
 	@override late final _Translations$trakt$kk trakt = _Translations$trakt$kk._(_root);
 	@override late final _Translations$seerr$kk seerr = _Translations$seerr$kk._(_root);
 	@override late final _Translations$services$kk services = _Translations$services$kk._(_root);
@@ -1480,18 +1479,6 @@ class _Translations$metadataEdit$kk extends Translations$metadataEdit$en {
 	@override String get label => 'Белгі';
 	@override String get style => 'Стиль';
 	@override String get mood => 'Көңіл-күй';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$kk extends Translations$serverTasks$en {
-	_Translations$serverTasks$kk._(TranslationsKk root) : this._root = root, super.internal(root);
-
-	final TranslationsKk _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Сервер тапсырмалары';
-	@override String get failedToLoad => 'Тапсырмаларды жүктеу мүмкін болмады';
-	@override String get noTasks => 'Орындалып жатқан тапсырмалар жоқ';
 }
 
 // Path: trakt
@@ -3022,9 +3009,6 @@ extension on TranslationsKk {
 			'metadataEdit.label' => 'Белгі',
 			'metadataEdit.style' => 'Стиль',
 			'metadataEdit.mood' => 'Көңіл-күй',
-			'serverTasks.title' => 'Сервер тапсырмалары',
-			'serverTasks.failedToLoad' => 'Тапсырмаларды жүктеу мүмкін болмады',
-			'serverTasks.noTasks' => 'Орындалып жатқан тапсырмалар жоқ',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Қосылды',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} ретінде қосылды',

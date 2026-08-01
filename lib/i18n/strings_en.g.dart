@@ -79,7 +79,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$performanceOverlay$en performanceOverlay = Translations$performanceOverlay$en.internal(_root);
 	late final Translations$externalPlayer$en externalPlayer = Translations$externalPlayer$en.internal(_root);
 	late final Translations$metadataEdit$en metadataEdit = Translations$metadataEdit$en.internal(_root);
-	late final Translations$serverTasks$en serverTasks = Translations$serverTasks$en.internal(_root);
 	late final Translations$trakt$en trakt = Translations$trakt$en.internal(_root);
 	late final Translations$seerr$en seerr = Translations$seerr$en.internal(_root);
 	late final Translations$services$en services = Translations$services$en.internal(_root);
@@ -3850,24 +3849,6 @@ class Translations$metadataEdit$en {
 	String get mood => 'Mood';
 }
 
-// Path: serverTasks
-class Translations$serverTasks$en {
-	Translations$serverTasks$en.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'Server Tasks'
-	String get title => 'Server Tasks';
-
-	/// en: 'Failed to load tasks'
-	String get failedToLoad => 'Failed to load tasks';
-
-	/// en: 'No tasks running'
-	String get noTasks => 'No tasks running';
-}
-
 // Path: trakt
 class Translations$trakt$en {
 	Translations$trakt$en.internal(this._root);
@@ -6461,9 +6442,6 @@ extension on Translations {
 			'metadataEdit.label' => 'Label',
 			'metadataEdit.style' => 'Style',
 			'metadataEdit.mood' => 'Mood',
-			'serverTasks.title' => 'Server Tasks',
-			'serverTasks.failedToLoad' => 'Failed to load tasks',
-			'serverTasks.noTasks' => 'No tasks running',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Connected',
 			'trakt.connectedAs' => ({required Object username}) => 'Connected as @${username}',

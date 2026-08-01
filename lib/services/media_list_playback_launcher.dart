@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../exceptions/media_server_exceptions.dart';
 import '../i18n/strings.g.dart';
-import '../media/media_backend.dart';
 import '../media/media_item.dart';
 import '../media/media_kind.dart';
 import '../media/media_playlist.dart';
@@ -84,21 +83,8 @@ abstract class MediaListPlaybackLauncher {
     bool showLoadingIndicator = true,
   });
 
-  /// Pick the right implementation for [item]. Reads
-  /// [MediaItem.backend] / [MediaPlaylist.backend].
-  static MediaListPlaybackLauncher forItem(BuildContext context, Object item) {
-    final backend = _backendOf(item);
-    if (backend == MediaBackend.jellyfin) {
-      return JellyfinSequentialLauncher(context: context);
-    }
-    return PlexPlayQueueLauncher.forContext(context, item);
-  }
-
-  static MediaBackend _backendOf(Object item) {
-    if (item is MediaItem) return item.backend;
-    if (item is MediaPlaylist) return item.backend;
-    throw ArgumentError('Unsupported item type for MediaListPlaybackLauncher: ${item.runtimeType}');
-  }
+  static MediaListPlaybackLauncher forItem(BuildContext context, Object item) =>
+      JellyfinSequentialLauncher(context: context);
 
   /// Pull (kind, id, serverId, serverName) from an [item] that's a
   /// [MediaItem] (collection-only) or a [MediaPlaylist]. Returns `null` for

@@ -78,7 +78,6 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final Translations$performanceOverlay$zh performanceOverlay = Translations$performanceOverlay$zh.internal(_root);
 	@override late final Translations$externalPlayer$zh externalPlayer = Translations$externalPlayer$zh.internal(_root);
 	@override late final Translations$metadataEdit$zh metadataEdit = Translations$metadataEdit$zh.internal(_root);
-	@override late final Translations$serverTasks$zh serverTasks = Translations$serverTasks$zh.internal(_root);
 	@override late final Translations$trakt$zh trakt = Translations$trakt$zh.internal(_root);
 	@override late final Translations$seerr$zh seerr = Translations$seerr$zh.internal(_root);
 	@override late final Translations$services$zh services = Translations$services$zh.internal(_root);
@@ -1466,18 +1465,6 @@ class Translations$metadataEdit$zh extends Translations$metadataEdit$en {
 	@override String get label => '标记';
 	@override String get style => '风格';
 	@override String get mood => '氛围';
-}
-
-// Path: serverTasks
-class Translations$serverTasks$zh extends Translations$serverTasks$en {
-	Translations$serverTasks$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '服务器任务';
-	@override String get failedToLoad => '加载任务失败';
-	@override String get noTasks => '没有正在运行的任务';
 }
 
 // Path: trakt
@@ -2997,9 +2984,6 @@ extension on TranslationsZh {
 			'metadataEdit.label' => '标记',
 			'metadataEdit.style' => '风格',
 			'metadataEdit.mood' => '氛围',
-			'serverTasks.title' => '服务器任务',
-			'serverTasks.failedToLoad' => '加载任务失败',
-			'serverTasks.noTasks' => '没有正在运行的任务',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '已连接',
 			'trakt.connectedAs' => ({required Object username}) => '已以 @${username} 身份连接',

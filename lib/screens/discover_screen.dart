@@ -4,7 +4,6 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:plezy/widgets/app_icon.dart';
-import '../widgets/server_activities_button.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import '../focus/focusable_action_bar.dart';
@@ -104,7 +103,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   // Hero and app bar focus
   late FocusNode _heroFocusNode;
   final _actionBarKey = GlobalKey<FocusableActionBarState>();
-  final _serverActivitiesButtonKey = GlobalKey<ServerActivitiesButtonState>();
 
   /// Backend-neutral hero client lookup. Returns the actual
   /// [MediaServerClient] for the item's server (Plex or Jellyfin) so
@@ -648,11 +646,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
                 // a permanently empty popover.
-                if (PlatformDetector.isDesktop(context) && multiServer.hasOnlinePlexServers)
-                  FocusableAction(
-                    onPressed: () => _serverActivitiesButtonKey.currentState?.togglePanel(),
-                    child: ServerActivitiesButton(key: _serverActivitiesButtonKey),
-                  ),
                 FocusableAction(
                   icon: Symbols.search_rounded,
                   iconColor: foregroundColor,

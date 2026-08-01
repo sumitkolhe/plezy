@@ -78,7 +78,6 @@ class TranslationsDa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$da performanceOverlay = _Translations$performanceOverlay$da._(_root);
 	@override late final _Translations$externalPlayer$da externalPlayer = _Translations$externalPlayer$da._(_root);
 	@override late final _Translations$metadataEdit$da metadataEdit = _Translations$metadataEdit$da._(_root);
-	@override late final _Translations$serverTasks$da serverTasks = _Translations$serverTasks$da._(_root);
 	@override late final _Translations$trakt$da trakt = _Translations$trakt$da._(_root);
 	@override late final _Translations$seerr$da seerr = _Translations$seerr$da._(_root);
 	@override late final _Translations$services$da services = _Translations$services$da._(_root);
@@ -1469,18 +1468,6 @@ class _Translations$metadataEdit$da extends Translations$metadataEdit$en {
 	@override String get label => 'Etiket';
 	@override String get style => 'Stil';
 	@override String get mood => 'Stemning';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$da extends Translations$serverTasks$en {
-	_Translations$serverTasks$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Serveropgaver';
-	@override String get failedToLoad => 'Kunne ikke indlæse opgaver';
-	@override String get noTasks => 'Ingen opgaver kører';
 }
 
 // Path: trakt
@@ -3000,9 +2987,6 @@ extension on TranslationsDa {
 			'metadataEdit.label' => 'Etiket',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Stemning',
-			'serverTasks.title' => 'Serveropgaver',
-			'serverTasks.failedToLoad' => 'Kunne ikke indlæse opgaver',
-			'serverTasks.noTasks' => 'Ingen opgaver kører',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Forbundet',
 			'trakt.connectedAs' => ({required Object username}) => 'Forbundet som @${username}',

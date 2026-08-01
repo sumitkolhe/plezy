@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Kayfiyat"
   },
-  "serverTasks": {
-    "title": "Server vazifalari",
-    "failedToLoad": "Vazifalarni yuklab boʻlmadi",
-    "noTasks": "Bajarilayotgan vazifalar yoʻq"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Ulandi",

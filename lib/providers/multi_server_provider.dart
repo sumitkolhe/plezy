@@ -168,7 +168,6 @@ class MultiServerProvider extends ChangeNotifier with DisposableChangeNotifierMi
   /// Whether at least one online server is a Plex server. Used to gate
   /// Plex-only chrome (server-activities popover, conflict-resolution
   /// helpers) so they don't render against a Jellyfin-only profile.
-  bool get hasOnlinePlexServers => onlineServerIds.any((id) => _serverManager.getPlexClient(ServerId(id)) != null);
 
   /// Visibility-filtered server ids whose latest health probe was rejected
   /// with HTTP 401/403 (token expired or revoked). UI uses this to show a

@@ -1486,11 +1486,6 @@
     "style": "Estilo",
     "mood": "Estado de ánimo"
   },
-  "serverTasks": {
-    "title": "Tareas del servidor",
-    "failedToLoad": "Error al cargar tareas",
-    "noTasks": "No hay tareas en ejecución"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Conectado",

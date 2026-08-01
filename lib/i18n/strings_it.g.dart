@@ -78,7 +78,6 @@ class TranslationsIt extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$it performanceOverlay = _Translations$performanceOverlay$it._(_root);
 	@override late final _Translations$externalPlayer$it externalPlayer = _Translations$externalPlayer$it._(_root);
 	@override late final _Translations$metadataEdit$it metadataEdit = _Translations$metadataEdit$it._(_root);
-	@override late final _Translations$serverTasks$it serverTasks = _Translations$serverTasks$it._(_root);
 	@override late final _Translations$trakt$it trakt = _Translations$trakt$it._(_root);
 	@override late final _Translations$seerr$it seerr = _Translations$seerr$it._(_root);
 	@override late final _Translations$services$it services = _Translations$services$it._(_root);
@@ -1469,18 +1468,6 @@ class _Translations$metadataEdit$it extends Translations$metadataEdit$en {
 	@override String get label => 'Etichetta';
 	@override String get style => 'Stile';
 	@override String get mood => 'Atmosfera';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$it extends Translations$serverTasks$en {
-	_Translations$serverTasks$it._(TranslationsIt root) : this._root = root, super.internal(root);
-
-	final TranslationsIt _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Attività del server';
-	@override String get failedToLoad => 'Impossibile caricare le attività';
-	@override String get noTasks => 'Nessuna attività in corso';
 }
 
 // Path: trakt
@@ -3000,9 +2987,6 @@ extension on TranslationsIt {
 			'metadataEdit.label' => 'Etichetta',
 			'metadataEdit.style' => 'Stile',
 			'metadataEdit.mood' => 'Atmosfera',
-			'serverTasks.title' => 'Attività del server',
-			'serverTasks.failedToLoad' => 'Impossibile caricare le attività',
-			'serverTasks.noTasks' => 'Nessuna attività in corso',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Connesso',
 			'trakt.connectedAs' => ({required Object username}) => 'Connesso come @${username}',

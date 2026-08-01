@@ -78,7 +78,6 @@ class TranslationsUz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$performanceOverlay$uz performanceOverlay = _Translations$performanceOverlay$uz._(_root);
 	@override late final _Translations$externalPlayer$uz externalPlayer = _Translations$externalPlayer$uz._(_root);
 	@override late final _Translations$metadataEdit$uz metadataEdit = _Translations$metadataEdit$uz._(_root);
-	@override late final _Translations$serverTasks$uz serverTasks = _Translations$serverTasks$uz._(_root);
 	@override late final _Translations$trakt$uz trakt = _Translations$trakt$uz._(_root);
 	@override late final _Translations$seerr$uz seerr = _Translations$seerr$uz._(_root);
 	@override late final _Translations$services$uz services = _Translations$services$uz._(_root);
@@ -1480,18 +1479,6 @@ class _Translations$metadataEdit$uz extends Translations$metadataEdit$en {
 	@override String get label => 'Yorliq';
 	@override String get style => 'Stil';
 	@override String get mood => 'Kayfiyat';
-}
-
-// Path: serverTasks
-class _Translations$serverTasks$uz extends Translations$serverTasks$en {
-	_Translations$serverTasks$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Server vazifalari';
-	@override String get failedToLoad => 'Vazifalarni yuklab boʻlmadi';
-	@override String get noTasks => 'Bajarilayotgan vazifalar yoʻq';
 }
 
 // Path: trakt
@@ -3022,9 +3009,6 @@ extension on TranslationsUz {
 			'metadataEdit.label' => 'Yorliq',
 			'metadataEdit.style' => 'Stil',
 			'metadataEdit.mood' => 'Kayfiyat',
-			'serverTasks.title' => 'Server vazifalari',
-			'serverTasks.failedToLoad' => 'Vazifalarni yuklab boʻlmadi',
-			'serverTasks.noTasks' => 'Bajarilayotgan vazifalar yoʻq',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Ulandi',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} sifatida ulandi',

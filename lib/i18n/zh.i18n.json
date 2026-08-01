@@ -1480,11 +1480,6 @@
     "style": "风格",
     "mood": "氛围"
   },
-  "serverTasks": {
-    "title": "服务器任务",
-    "failedToLoad": "加载任务失败",
-    "noTasks": "没有正在运行的任务"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "已连接",

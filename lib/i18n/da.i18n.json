@@ -1486,11 +1486,6 @@
     "style": "Stil",
     "mood": "Stemning"
   },
-  "serverTasks": {
-    "title": "Serveropgaver",
-    "failedToLoad": "Kunne ikke indlæse opgaver",
-    "noTasks": "Ingen opgaver kører"
-  },
   "trakt": {
     "title": "Trakt",
     "connected": "Forbundet",
