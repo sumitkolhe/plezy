@@ -752,7 +752,6 @@
     "deleteProfileButton": "Профильді өшіру",
     "noConnectionsHint": "Қосылымдар жоқ — бұл профильді пайдалану үшін қосылым қосыңыз.",
     "noConnections": "Қосылымдар жоқ",
-    "plexHomeAccount": "Plex Home тіркелгісі",
     "connectionDefault": "Әдепкі",
     "connectionAs": "${displayName} ретінде",
     "makeDefault": "Әдепкі ету",

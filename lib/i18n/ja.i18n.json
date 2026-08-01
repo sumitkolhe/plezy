@@ -751,7 +751,6 @@
     "deleteProfileButton": "プロフィールを削除",
     "noConnectionsHint": "接続がありません — このプロフィールを使うには接続を追加してください。",
     "noConnections": "接続がありません",
-    "plexHomeAccount": "Plex Homeアカウント",
     "connectionDefault": "デフォルト",
     "connectionAs": "${displayName}として",
     "makeDefault": "デフォルトに設定",

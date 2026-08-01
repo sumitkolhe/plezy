@@ -844,7 +844,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Profil törlése';
 	@override String get noConnectionsHint => 'Nincsenek kapcsolatok — adj hozzá egyet a profil használatához.';
 	@override String get noConnections => 'Nincsenek kapcsolatok';
-	@override String get plexHomeAccount => 'Plex Home-fiók';
 	@override String get connectionDefault => 'Alapértelmezett';
 	@override String connectionAs({required Object displayName}) => 'mint ${displayName}';
 	@override String get makeDefault => 'Beállítás alapértelmezettként';
@@ -2402,7 +2401,6 @@ extension on TranslationsHu {
 			'profiles.deleteProfileButton' => 'Profil törlése',
 			'profiles.noConnectionsHint' => 'Nincsenek kapcsolatok — adj hozzá egyet a profil használatához.',
 			'profiles.noConnections' => 'Nincsenek kapcsolatok',
-			'profiles.plexHomeAccount' => 'Plex Home-fiók',
 			'profiles.connectionDefault' => 'Alapértelmezett',
 			'profiles.connectionAs' => ({required Object displayName}) => 'mint ${displayName}',
 			'profiles.makeDefault' => 'Beállítás alapértelmezettként',
@@ -2817,9 +2815,9 @@ extension on TranslationsHu {
 			'externalPlayer.useExternalPlayer' => 'Külső lejátszó használata',
 			'externalPlayer.useExternalPlayerDescription' => 'Videók megnyitása egy másik alkalmazásban',
 			'externalPlayer.selectPlayer' => 'Lejátszó kiválasztása',
+			'externalPlayer.customPlayers' => 'Egyéni lejátszók',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Egyéni lejátszók',
 			'externalPlayer.systemDefault' => 'Rendszer alapértelmezése',
 			'externalPlayer.addCustomPlayer' => 'Egyéni lejátszó hozzáadása',
 			'externalPlayer.playerName' => 'Lejátszó neve',

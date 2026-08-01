@@ -843,7 +843,6 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	@override String get deleteProfileButton => '프로필 삭제';
 	@override String get noConnectionsHint => '연결이 없습니다 — 이 프로필을 사용하려면 하나 추가하세요.';
 	@override String get noConnections => '연결 없음';
-	@override String get plexHomeAccount => 'Plex Home 계정';
 	@override String get connectionDefault => '기본값';
 	@override String connectionAs({required Object displayName}) => '${displayName}(으)로';
 	@override String get makeDefault => '기본값으로 설정';
@@ -2399,7 +2398,6 @@ extension on TranslationsKo {
 			'profiles.deleteProfileButton' => '프로필 삭제',
 			'profiles.noConnectionsHint' => '연결이 없습니다 — 이 프로필을 사용하려면 하나 추가하세요.',
 			'profiles.noConnections' => '연결 없음',
-			'profiles.plexHomeAccount' => 'Plex Home 계정',
 			'profiles.connectionDefault' => '기본값',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName}(으)로',
 			'profiles.makeDefault' => '기본값으로 설정',
@@ -2814,9 +2812,9 @@ extension on TranslationsKo {
 			'externalPlayer.useExternalPlayer' => '외부 플레이어 사용',
 			'externalPlayer.useExternalPlayerDescription' => '동영상을 다른 앱에서 열기',
 			'externalPlayer.selectPlayer' => '플레이어 선택',
+			'externalPlayer.customPlayers' => '사용자 정의 플레이어',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => '사용자 정의 플레이어',
 			'externalPlayer.systemDefault' => '시스템 기본값',
 			'externalPlayer.addCustomPlayer' => '사용자 정의 플레이어 추가',
 			'externalPlayer.playerName' => '플레이어 이름',

@@ -752,7 +752,6 @@
     "deleteProfileButton": "Profil törlése",
     "noConnectionsHint": "Nincsenek kapcsolatok — adj hozzá egyet a profil használatához.",
     "noConnections": "Nincsenek kapcsolatok",
-    "plexHomeAccount": "Plex Home-fiók",
     "connectionDefault": "Alapértelmezett",
     "connectionAs": "mint ${displayName}",
     "makeDefault": "Beállítás alapértelmezettként",

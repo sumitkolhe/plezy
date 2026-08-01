@@ -846,7 +846,6 @@ class _Translations$profiles$ru extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Удалить профиль';
 	@override String get noConnectionsHint => 'Нет соединений — добавьте одно, чтобы использовать этот профиль.';
 	@override String get noConnections => 'Нет соединений';
-	@override String get plexHomeAccount => 'Аккаунт Plex Home';
 	@override String get connectionDefault => 'По умолчанию';
 	@override String connectionAs({required Object displayName}) => 'как ${displayName}';
 	@override String get makeDefault => 'Сделать по умолчанию';
@@ -2408,7 +2407,6 @@ extension on TranslationsRu {
 			'profiles.deleteProfileButton' => 'Удалить профиль',
 			'profiles.noConnectionsHint' => 'Нет соединений — добавьте одно, чтобы использовать этот профиль.',
 			'profiles.noConnections' => 'Нет соединений',
-			'profiles.plexHomeAccount' => 'Аккаунт Plex Home',
 			'profiles.connectionDefault' => 'По умолчанию',
 			'profiles.connectionAs' => ({required Object displayName}) => 'как ${displayName}',
 			'profiles.makeDefault' => 'Сделать по умолчанию',
@@ -2823,9 +2821,9 @@ extension on TranslationsRu {
 			'externalPlayer.useExternalPlayer' => 'Использовать внешний плеер',
 			'externalPlayer.useExternalPlayerDescription' => 'Открывать видео в другом приложении',
 			'externalPlayer.selectPlayer' => 'Выбрать плеер',
+			'externalPlayer.customPlayers' => 'Свои плееры',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Свои плееры',
 			'externalPlayer.systemDefault' => 'Системный по умолчанию',
 			'externalPlayer.addCustomPlayer' => 'Добавить свой плеер',
 			'externalPlayer.playerName' => 'Название плеера',

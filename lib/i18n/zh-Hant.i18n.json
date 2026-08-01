@@ -751,7 +751,6 @@
     "deleteProfileButton": "刪除使用者設定檔",
     "noConnectionsHint": "無連線 — 請新增一個連線以啟用此設定檔。",
     "noConnections": "無連線資訊",
-    "plexHomeAccount": "Plex Home 帳戶",
     "connectionDefault": "預設",
     "connectionAs": "以 ${displayName} 身分",
     "makeDefault": "設為預設值",

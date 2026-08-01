@@ -752,7 +752,6 @@
     "deleteProfileButton": "Profili sil",
     "noConnectionsHint": "Bağlantı yok — bu profili kullanmak için bir tane ekleyin.",
     "noConnections": "Bağlantı yok",
-    "plexHomeAccount": "Plex Ev hesabı",
     "connectionDefault": "Varsayılan",
     "connectionAs": "${displayName} olarak",
     "makeDefault": "Varsayılan yap",

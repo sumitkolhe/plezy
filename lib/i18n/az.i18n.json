@@ -752,7 +752,6 @@
     "deleteProfileButton": "Profili sil",
     "noConnectionsHint": "Qoşulma yoxdur — bu profili istifadə etmək üçün birini əlavə edin.",
     "noConnections": "Qoşulma yoxdur",
-    "plexHomeAccount": "Plex Ev hesabı",
     "connectionDefault": "Defolt",
     "connectionAs": "${displayName} olaraq",
     "makeDefault": "Defolt et",

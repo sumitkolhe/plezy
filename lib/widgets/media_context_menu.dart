@@ -31,8 +31,6 @@ import '../utils/global_key_utils.dart';
 import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/offline_mode_provider.dart';
-import '../profiles/active_profile_provider.dart';
-import '../profiles/profile.dart';
 import '../utils/provider_extensions.dart';
 import '../utils/app_logger.dart';
 import '../utils/library_refresh_notifier.dart';
@@ -68,16 +66,6 @@ class _MenuAction {
   final bool destructive;
 
   _MenuAction({required this.value, required this.icon, required this.label, this.destructive = false});
-}
-
-bool isAdminActionAllowedForMediaItem({
-  required bool isOwnerOrAdmin,
-  required MediaBackend? itemBackend,
-  required Profile? activeProfile,
-}) {
-  final blockedByPlexHomeRole =
-      itemBackend == MediaBackend.plex && activeProfile != null && activeProfile.isPlexHome && !activeProfile.plexAdmin;
-  return isOwnerOrAdmin && !blockedByPlexHomeRole;
 }
 
 /// A reusable wrapper widget that adds a context menu (long press / right click)
@@ -231,14 +219,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     // bit, when applicable); Jellyfin uses `JellyfinConnection.isAdministrator`
     // captured at sign-in.
     final multiServerProvider = Provider.of<MultiServerProvider>(context, listen: false);
-    final activeProfile = context.read<ActiveProfileProvider>().active;
-    final isOwnerOrAdmin =
-        _itemServerId != null && multiServerProvider.serverManager.isOwnerOrAdmin(ServerId(_itemServerId!));
-    final isAdmin = isAdminActionAllowedForMediaItem(
-      isOwnerOrAdmin: isOwnerOrAdmin,
-      itemBackend: itemBackend,
-      activeProfile: activeProfile,
-    );
+    final isAdmin = _itemServerId != null && multiServerProvider.serverManager.isOwnerOrAdmin(ServerId(_itemServerId!));
 
     // Backend capabilities gate menu items so we don't expose actions the
     // active server cannot perform.

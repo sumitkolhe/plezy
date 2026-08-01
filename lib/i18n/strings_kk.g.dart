@@ -848,7 +848,6 @@ class _Translations$profiles$kk extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Профильді өшіру';
 	@override String get noConnectionsHint => 'Қосылымдар жоқ — бұл профильді пайдалану үшін қосылым қосыңыз.';
 	@override String get noConnections => 'Қосылымдар жоқ';
-	@override String get plexHomeAccount => 'Plex Home тіркелгісі';
 	@override String get connectionDefault => 'Әдепкі';
 	@override String connectionAs({required Object displayName}) => '${displayName} ретінде';
 	@override String get makeDefault => 'Әдепкі ету';
@@ -2417,7 +2416,6 @@ extension on TranslationsKk {
 			'profiles.deleteProfileButton' => 'Профильді өшіру',
 			'profiles.noConnectionsHint' => 'Қосылымдар жоқ — бұл профильді пайдалану үшін қосылым қосыңыз.',
 			'profiles.noConnections' => 'Қосылымдар жоқ',
-			'profiles.plexHomeAccount' => 'Plex Home тіркелгісі',
 			'profiles.connectionDefault' => 'Әдепкі',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} ретінде',
 			'profiles.makeDefault' => 'Әдепкі ету',
@@ -2828,9 +2826,9 @@ extension on TranslationsKk {
 			'performanceOverlay.maxLuma' => 'Макс Luma',
 			'performanceOverlay.minLuma' => 'Мин Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			'performanceOverlay.maxFall' => 'MaxFALL',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Пайдаланылған кэш',
 			'performanceOverlay.cacheLimit' => 'Кэш шегі',
 			'performanceOverlay.speed' => 'Жылдамдық',

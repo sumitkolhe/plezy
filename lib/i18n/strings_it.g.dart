@@ -844,7 +844,6 @@ class _Translations$profiles$it extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Elimina profilo';
 	@override String get noConnectionsHint => 'Nessuna connessione — aggiungine una per usare questo profilo.';
 	@override String get noConnections => 'Nessuna connessione';
-	@override String get plexHomeAccount => 'Account Plex Home';
 	@override String get connectionDefault => 'Predefinita';
 	@override String connectionAs({required Object displayName}) => 'come ${displayName}';
 	@override String get makeDefault => 'Imposta come predefinita';
@@ -2402,7 +2401,6 @@ extension on TranslationsIt {
 			'profiles.deleteProfileButton' => 'Elimina profilo',
 			'profiles.noConnectionsHint' => 'Nessuna connessione — aggiungine una per usare questo profilo.',
 			'profiles.noConnections' => 'Nessuna connessione',
-			'profiles.plexHomeAccount' => 'Account Plex Home',
 			'profiles.connectionDefault' => 'Predefinita',
 			'profiles.connectionAs' => ({required Object displayName}) => 'come ${displayName}',
 			'profiles.makeDefault' => 'Imposta come predefinita',
@@ -2817,9 +2815,9 @@ extension on TranslationsIt {
 			'externalPlayer.useExternalPlayer' => 'Usa un lettore esterno',
 			'externalPlayer.useExternalPlayerDescription' => 'Apri i video in un\'altra app',
 			'externalPlayer.selectPlayer' => 'Seleziona il lettore',
+			'externalPlayer.customPlayers' => 'Lettori personalizzati',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Lettori personalizzati',
 			'externalPlayer.systemDefault' => 'Predefinito di sistema',
 			'externalPlayer.addCustomPlayer' => 'Aggiungi lettore personalizzato',
 			'externalPlayer.playerName' => 'Nome del lettore',

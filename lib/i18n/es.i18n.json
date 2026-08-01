@@ -752,7 +752,6 @@
     "deleteProfileButton": "Eliminar perfil",
     "noConnectionsHint": "Sin conexiones — añade una para usar este perfil.",
     "noConnections": "Sin conexiones",
-    "plexHomeAccount": "Cuenta Plex Home",
     "connectionDefault": "Predeterminada",
     "connectionAs": "como ${displayName}",
     "makeDefault": "Establecer como predeterminada",

@@ -844,7 +844,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String get deleteProfileButton => '刪除使用者設定檔';
 	@override String get noConnectionsHint => '無連線 — 請新增一個連線以啟用此設定檔。';
 	@override String get noConnections => '無連線資訊';
-	@override String get plexHomeAccount => 'Plex Home 帳戶';
 	@override String get connectionDefault => '預設';
 	@override String connectionAs({required Object displayName}) => '以 ${displayName} 身分';
 	@override String get makeDefault => '設為預設值';
@@ -2400,7 +2399,6 @@ extension on TranslationsZhHant {
 			'profiles.deleteProfileButton' => '刪除使用者設定檔',
 			'profiles.noConnectionsHint' => '無連線 — 請新增一個連線以啟用此設定檔。',
 			'profiles.noConnections' => '無連線資訊',
-			'profiles.plexHomeAccount' => 'Plex Home 帳戶',
 			'profiles.connectionDefault' => '預設',
 			'profiles.connectionAs' => ({required Object displayName}) => '以 ${displayName} 身分',
 			'profiles.makeDefault' => '設為預設值',
@@ -2815,9 +2813,9 @@ extension on TranslationsZhHant {
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',
 			'externalPlayer.useExternalPlayerDescription' => '在其他應用程式中開啟影片',
 			'externalPlayer.selectPlayer' => '選擇播放器',
+			'externalPlayer.customPlayers' => '自訂播放器',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => '自訂播放器',
 			'externalPlayer.systemDefault' => '系統預設',
 			'externalPlayer.addCustomPlayer' => '新增自訂播放器',
 			'externalPlayer.playerName' => '播放器名稱',

@@ -848,7 +848,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Profilni oʻchirish';
 	@override String get noConnectionsHint => 'Ulanishlar yoʻq — ushbu profildan foydalanish uchun ulanish qoʻshing.';
 	@override String get noConnections => 'Ulanishlar yoʻq';
-	@override String get plexHomeAccount => 'Plex Home hisobi';
 	@override String get connectionDefault => 'Standart';
 	@override String connectionAs({required Object displayName}) => '${displayName} sifatida';
 	@override String get makeDefault => 'Standart qilish';
@@ -2417,7 +2416,6 @@ extension on TranslationsUz {
 			'profiles.deleteProfileButton' => 'Profilni oʻchirish',
 			'profiles.noConnectionsHint' => 'Ulanishlar yoʻq — ushbu profildan foydalanish uchun ulanish qoʻshing.',
 			'profiles.noConnections' => 'Ulanishlar yoʻq',
-			'profiles.plexHomeAccount' => 'Plex Home hisobi',
 			'profiles.connectionDefault' => 'Standart',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} sifatida',
 			'profiles.makeDefault' => 'Standart qilish',
@@ -2828,9 +2826,9 @@ extension on TranslationsUz {
 			'performanceOverlay.maxLuma' => 'Maks Luma',
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			'performanceOverlay.maxFall' => 'MaxFALL',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Foydalanilgan kesh',
 			'performanceOverlay.cacheLimit' => 'Kesh chegarasi',
 			'performanceOverlay.speed' => 'Tezlik',

@@ -19,8 +19,6 @@ import 'package:plezy/media/media_playlist.dart';
 import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/metadata_edit/metadata_edit_adapters.dart';
-import 'package:plezy/models/plex/plex_home_user.dart';
-import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
 import 'package:plezy/providers/download_provider.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
@@ -47,39 +45,6 @@ import '../test_helpers/stub_music_playback_service.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-
-  group('isAdminActionAllowedForMediaItem', () {
-    test('blocks non-admin Plex Home users on Plex items', () {
-      final profile = Profile.virtualPlexHome(connectionId: 'plex-1', homeUser: _homeUser(admin: false));
-
-      expect(
-        isAdminActionAllowedForMediaItem(isOwnerOrAdmin: true, itemBackend: MediaBackend.plex, activeProfile: profile),
-        isFalse,
-      );
-    });
-
-    test('does not apply Plex Home role to Jellyfin items', () {
-      final profile = Profile.virtualPlexHome(connectionId: 'plex-1', homeUser: _homeUser(admin: false));
-
-      expect(
-        isAdminActionAllowedForMediaItem(
-          isOwnerOrAdmin: true,
-          itemBackend: MediaBackend.jellyfin,
-          activeProfile: profile,
-        ),
-        isTrue,
-      );
-    });
-
-    test('allows Plex admin Home users on Plex items', () {
-      final profile = Profile.virtualPlexHome(connectionId: 'plex-1', homeUser: _homeUser(admin: true));
-
-      expect(
-        isAdminActionAllowedForMediaItem(isOwnerOrAdmin: true, itemBackend: MediaBackend.plex, activeProfile: profile),
-        isTrue,
-      );
-    });
-  });
 
   group('supportsMetadataEdit', () {
     test('allows Jellyfin video metadata edit through capability gate', () {
@@ -710,24 +675,6 @@ Future<void> _selectSiblingMusicMenuAction(
   await tester.pumpAndSettle();
   await tester.tap(find.text(actionLabel));
   await tester.pumpAndSettle();
-}
-
-PlexHomeUser _homeUser({required bool admin}) {
-  return PlexHomeUser(
-    id: 0,
-    uuid: 'home-user',
-    title: 'Home User',
-    username: null,
-    email: null,
-    friendlyName: null,
-    thumb: 'https://plex.tv/users/home-user/avatar',
-    hasPassword: false,
-    restricted: false,
-    updatedAt: null,
-    admin: admin,
-    guest: false,
-    protected: false,
-  );
 }
 
 JellyfinConnection _jellyfinConnection() {

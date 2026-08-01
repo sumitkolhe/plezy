@@ -751,7 +751,6 @@
     "deleteProfileButton": "删除用户资料",
     "noConnectionsHint": "没有连接 — 请添加连接以使用此用户资料。",
     "noConnections": "没有连接",
-    "plexHomeAccount": "Plex Home 账户",
     "connectionDefault": "默认",
     "connectionAs": "以 ${displayName} 身份",
     "makeDefault": "设为默认",

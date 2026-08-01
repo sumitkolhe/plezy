@@ -16,7 +16,6 @@ import '../../profiles/profile_avatar.dart';
 import '../../profiles/profile_connection.dart';
 import '../../profiles/profile_connection_registry.dart';
 import '../../profiles/profile_registry.dart';
-import '../../profiles/profiles_view.dart';
 import '../../utils/snackbar_helper.dart';
 import '../../focus/focusable_button.dart';
 import '../../widgets/app_icon.dart';
@@ -432,13 +431,8 @@ class _ConnectionsListState extends State<_ConnectionsList> {
                 final all = snap.data ?? const <Connection>[];
                 final byId = {for (final c in all) c.id: c};
                 // Plex Home profiles have an implicit parent connection that
-                // isn't in the join table — list it first so the user sees the
-                // full picture. The profile *is* a home user of that account,
-                // so the only removal is signing out of the whole account;
-                // it isn't shown for locals.
-                final parentConn = profile.isPlexHome ? byId[profile.parentConnectionId] : null;
-                final visiblePcs = visibleProfileConnections(profile, pcs);
-                if (visiblePcs.isEmpty && parentConn == null) {
+                final visiblePcs = pcs;
+                if (visiblePcs.isEmpty) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Text(
@@ -452,22 +446,6 @@ class _ConnectionsListState extends State<_ConnectionsList> {
                 return SettingsGroup(
                   margin: EdgeInsets.zero,
                   children: [
-                    if (parentConn != null)
-                      ListTile(
-                        leading: BackendBadge(backend: parentConn.backend, size: 24),
-                        title: Text(parentConn.displayLabel),
-                        subtitle: Text(t.profiles.plexHomeAccount),
-                        trailing: FocusablePopupMenuButton<String>(
-                          icon: const AppIcon(Symbols.more_vert_rounded, fill: 1),
-                          tooltip: t.profiles.manage,
-                          onSelected: (value) {
-                            if (value == 'sign_out') {
-                              unawaited(widget.onSignOutParent(parentConn));
-                            }
-                          },
-                          itemBuilder: (_) => [AppMenuItem(value: 'sign_out', label: t.profiles.signOut)],
-                        ),
-                      ),
                     for (final pc in visiblePcs)
                       if (byId[pc.connectionId] case final conn?)
                         ListTile(

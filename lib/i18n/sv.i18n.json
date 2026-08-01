@@ -752,7 +752,6 @@
     "deleteProfileButton": "Ta bort profil",
     "noConnectionsHint": "Inga anslutningar — lägg till en för att använda den här profilen.",
     "noConnections": "Inga anslutningar",
-    "plexHomeAccount": "Plex Home-konto",
     "connectionDefault": "Standard",
     "connectionAs": "som ${displayName}",
     "makeDefault": "Gör till standard",

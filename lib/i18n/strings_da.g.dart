@@ -844,7 +844,6 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Slet profil';
 	@override String get noConnectionsHint => 'Ingen forbindelser — tilføj en for at bruge denne profil.';
 	@override String get noConnections => 'Ingen forbindelser';
-	@override String get plexHomeAccount => 'Plex Home-konto';
 	@override String get connectionDefault => 'Standard';
 	@override String connectionAs({required Object displayName}) => 'som ${displayName}';
 	@override String get makeDefault => 'Gør til standard';
@@ -2402,7 +2401,6 @@ extension on TranslationsDa {
 			'profiles.deleteProfileButton' => 'Slet profil',
 			'profiles.noConnectionsHint' => 'Ingen forbindelser — tilføj en for at bruge denne profil.',
 			'profiles.noConnections' => 'Ingen forbindelser',
-			'profiles.plexHomeAccount' => 'Plex Home-konto',
 			'profiles.connectionDefault' => 'Standard',
 			'profiles.connectionAs' => ({required Object displayName}) => 'som ${displayName}',
 			'profiles.makeDefault' => 'Gør til standard',
@@ -2817,9 +2815,9 @@ extension on TranslationsDa {
 			'externalPlayer.useExternalPlayer' => 'Brug ekstern afspiller',
 			'externalPlayer.useExternalPlayerDescription' => 'Åbn videoer i en anden app',
 			'externalPlayer.selectPlayer' => 'Vælg afspiller',
+			'externalPlayer.customPlayers' => 'Brugerdefinerede afspillere',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Brugerdefinerede afspillere',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Tilføj brugerdefineret afspiller',
 			'externalPlayer.playerName' => 'Afspillernavn',

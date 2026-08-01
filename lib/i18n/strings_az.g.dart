@@ -848,7 +848,6 @@ class _Translations$profiles$az extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Profili sil';
 	@override String get noConnectionsHint => 'Qoşulma yoxdur — bu profili istifadə etmək üçün birini əlavə edin.';
 	@override String get noConnections => 'Qoşulma yoxdur';
-	@override String get plexHomeAccount => 'Plex Ev hesabı';
 	@override String get connectionDefault => 'Defolt';
 	@override String connectionAs({required Object displayName}) => '${displayName} olaraq';
 	@override String get makeDefault => 'Defolt et';
@@ -2417,7 +2416,6 @@ extension on TranslationsAz {
 			'profiles.deleteProfileButton' => 'Profili sil',
 			'profiles.noConnectionsHint' => 'Qoşulma yoxdur — bu profili istifadə etmək üçün birini əlavə edin.',
 			'profiles.noConnections' => 'Qoşulma yoxdur',
-			'profiles.plexHomeAccount' => 'Plex Ev hesabı',
 			'profiles.connectionDefault' => 'Defolt',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} olaraq',
 			'profiles.makeDefault' => 'Defolt et',
@@ -2828,9 +2826,9 @@ extension on TranslationsAz {
 			'performanceOverlay.maxLuma' => 'Maks Luma',
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			'performanceOverlay.maxFall' => 'MaxFALL',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'İstifadə olunan keş',
 			'performanceOverlay.cacheLimit' => 'Keş limiti',
 			'performanceOverlay.speed' => 'Sürət',

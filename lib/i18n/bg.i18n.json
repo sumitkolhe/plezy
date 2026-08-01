@@ -752,7 +752,6 @@
     "deleteProfileButton": "Изтрий профил",
     "noConnectionsHint": "Няма връзки — добавете такава, за да използвате този профил.",
     "noConnections": "Няма връзки",
-    "plexHomeAccount": "Plex Home акаунт",
     "connectionDefault": "По подразбиране",
     "connectionAs": "като ${displayName}",
     "makeDefault": "Направи по подразбиране",

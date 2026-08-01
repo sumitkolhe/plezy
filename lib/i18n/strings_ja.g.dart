@@ -843,7 +843,6 @@ class _Translations$profiles$ja extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'プロフィールを削除';
 	@override String get noConnectionsHint => '接続がありません — このプロフィールを使うには接続を追加してください。';
 	@override String get noConnections => '接続がありません';
-	@override String get plexHomeAccount => 'Plex Homeアカウント';
 	@override String get connectionDefault => 'デフォルト';
 	@override String connectionAs({required Object displayName}) => '${displayName}として';
 	@override String get makeDefault => 'デフォルトに設定';
@@ -2399,7 +2398,6 @@ extension on TranslationsJa {
 			'profiles.deleteProfileButton' => 'プロフィールを削除',
 			'profiles.noConnectionsHint' => '接続がありません — このプロフィールを使うには接続を追加してください。',
 			'profiles.noConnections' => '接続がありません',
-			'profiles.plexHomeAccount' => 'Plex Homeアカウント',
 			'profiles.connectionDefault' => 'デフォルト',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName}として',
 			'profiles.makeDefault' => 'デフォルトに設定',
@@ -2814,9 +2812,9 @@ extension on TranslationsJa {
 			'externalPlayer.useExternalPlayer' => '外部プレーヤーを使用',
 			'externalPlayer.useExternalPlayerDescription' => '動画を別のアプリで開きます',
 			'externalPlayer.selectPlayer' => 'プレーヤーを選択',
+			'externalPlayer.customPlayers' => 'カスタムプレーヤー',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'カスタムプレーヤー',
 			'externalPlayer.systemDefault' => 'システム既定',
 			'externalPlayer.addCustomPlayer' => 'カスタムプレーヤーを追加',
 			'externalPlayer.playerName' => 'プレーヤー名',

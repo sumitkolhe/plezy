@@ -848,7 +848,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Profili sil';
 	@override String get noConnectionsHint => 'Bağlantı yok — bu profili kullanmak için bir tane ekleyin.';
 	@override String get noConnections => 'Bağlantı yok';
-	@override String get plexHomeAccount => 'Plex Ev hesabı';
 	@override String get connectionDefault => 'Varsayılan';
 	@override String connectionAs({required Object displayName}) => '${displayName} olarak';
 	@override String get makeDefault => 'Varsayılan yap';
@@ -2417,7 +2416,6 @@ extension on TranslationsTr {
 			'profiles.deleteProfileButton' => 'Profili sil',
 			'profiles.noConnectionsHint' => 'Bağlantı yok — bu profili kullanmak için bir tane ekleyin.',
 			'profiles.noConnections' => 'Bağlantı yok',
-			'profiles.plexHomeAccount' => 'Plex Ev hesabı',
 			'profiles.connectionDefault' => 'Varsayılan',
 			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} olarak',
 			'profiles.makeDefault' => 'Varsayılan yap',
@@ -2828,9 +2826,9 @@ extension on TranslationsTr {
 			'performanceOverlay.maxLuma' => 'Maks Luma',
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			'performanceOverlay.maxFall' => 'MaxFALL',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Kullanılan Önbellek',
 			'performanceOverlay.cacheLimit' => 'Önbellek Sınırı',
 			'performanceOverlay.speed' => 'Hız',

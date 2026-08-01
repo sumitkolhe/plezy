@@ -752,7 +752,6 @@
     "deleteProfileButton": "Profiel verwijderen",
     "noConnectionsHint": "Geen verbindingen — voeg er één toe om dit profiel te gebruiken.",
     "noConnections": "Geen verbindingen",
-    "plexHomeAccount": "Plex Home-account",
     "connectionDefault": "Standaard",
     "connectionAs": "als ${displayName}",
     "makeDefault": "Als standaard instellen",

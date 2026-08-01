@@ -341,10 +341,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
         if (conn != null) chips.add(_ChipData(backend: conn.backend, label: conn.displayLabel));
       }
     }
-    final pcs = visibleProfileConnections(
-      profile,
-      view.connectionsByProfile[profile.id] ?? const <ProfileConnection>[],
-    );
+    final pcs = view.connectionsByProfile[profile.id] ?? const <ProfileConnection>[];
     for (final pc in pcs) {
       final conn = view.connectionsById[pc.connectionId];
       if (conn != null) chips.add(_ChipData(backend: conn.backend, label: conn.displayLabel));

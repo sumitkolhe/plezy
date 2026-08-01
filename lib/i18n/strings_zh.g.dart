@@ -843,7 +843,6 @@ class Translations$profiles$zh extends Translations$profiles$en {
 	@override String get deleteProfileButton => '删除用户资料';
 	@override String get noConnectionsHint => '没有连接 — 请添加连接以使用此用户资料。';
 	@override String get noConnections => '没有连接';
-	@override String get plexHomeAccount => 'Plex Home 账户';
 	@override String get connectionDefault => '默认';
 	@override String connectionAs({required Object displayName}) => '以 ${displayName} 身份';
 	@override String get makeDefault => '设为默认';
@@ -2399,7 +2398,6 @@ extension on TranslationsZh {
 			'profiles.deleteProfileButton' => '删除用户资料',
 			'profiles.noConnectionsHint' => '没有连接 — 请添加连接以使用此用户资料。',
 			'profiles.noConnections' => '没有连接',
-			'profiles.plexHomeAccount' => 'Plex Home 账户',
 			'profiles.connectionDefault' => '默认',
 			'profiles.connectionAs' => ({required Object displayName}) => '以 ${displayName} 身份',
 			'profiles.makeDefault' => '设为默认',
@@ -2814,9 +2812,9 @@ extension on TranslationsZh {
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',
 			'externalPlayer.useExternalPlayerDescription' => '在其他应用中打开视频',
 			'externalPlayer.selectPlayer' => '选择播放器',
+			'externalPlayer.customPlayers' => '自定义播放器',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => '自定义播放器',
 			'externalPlayer.systemDefault' => '系统默认',
 			'externalPlayer.addCustomPlayer' => '添加自定义播放器',
 			'externalPlayer.playerName' => '播放器名称',

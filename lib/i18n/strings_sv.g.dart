@@ -844,7 +844,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Ta bort profil';
 	@override String get noConnectionsHint => 'Inga anslutningar — lägg till en för att använda den här profilen.';
 	@override String get noConnections => 'Inga anslutningar';
-	@override String get plexHomeAccount => 'Plex Home-konto';
 	@override String get connectionDefault => 'Standard';
 	@override String connectionAs({required Object displayName}) => 'som ${displayName}';
 	@override String get makeDefault => 'Gör till standard';
@@ -2402,7 +2401,6 @@ extension on TranslationsSv {
 			'profiles.deleteProfileButton' => 'Ta bort profil',
 			'profiles.noConnectionsHint' => 'Inga anslutningar — lägg till en för att använda den här profilen.',
 			'profiles.noConnections' => 'Inga anslutningar',
-			'profiles.plexHomeAccount' => 'Plex Home-konto',
 			'profiles.connectionDefault' => 'Standard',
 			'profiles.connectionAs' => ({required Object displayName}) => 'som ${displayName}',
 			'profiles.makeDefault' => 'Gör till standard',
@@ -2817,9 +2815,9 @@ extension on TranslationsSv {
 			'externalPlayer.useExternalPlayer' => 'Använd extern spelare',
 			'externalPlayer.useExternalPlayerDescription' => 'Öppna videor i en annan app',
 			'externalPlayer.selectPlayer' => 'Välj spelare',
+			'externalPlayer.customPlayers' => 'Anpassade spelare',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Anpassade spelare',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Lägg till anpassad spelare',
 			'externalPlayer.playerName' => 'Spelarnamn',

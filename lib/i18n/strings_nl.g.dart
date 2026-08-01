@@ -844,7 +844,6 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Profiel verwijderen';
 	@override String get noConnectionsHint => 'Geen verbindingen — voeg er één toe om dit profiel te gebruiken.';
 	@override String get noConnections => 'Geen verbindingen';
-	@override String get plexHomeAccount => 'Plex Home-account';
 	@override String get connectionDefault => 'Standaard';
 	@override String connectionAs({required Object displayName}) => 'als ${displayName}';
 	@override String get makeDefault => 'Als standaard instellen';
@@ -2402,7 +2401,6 @@ extension on TranslationsNl {
 			'profiles.deleteProfileButton' => 'Profiel verwijderen',
 			'profiles.noConnectionsHint' => 'Geen verbindingen — voeg er één toe om dit profiel te gebruiken.',
 			'profiles.noConnections' => 'Geen verbindingen',
-			'profiles.plexHomeAccount' => 'Plex Home-account',
 			'profiles.connectionDefault' => 'Standaard',
 			'profiles.connectionAs' => ({required Object displayName}) => 'als ${displayName}',
 			'profiles.makeDefault' => 'Als standaard instellen',
@@ -2817,9 +2815,9 @@ extension on TranslationsNl {
 			'externalPlayer.useExternalPlayer' => 'Externe speler gebruiken',
 			'externalPlayer.useExternalPlayerDescription' => 'Open video\'s in een andere app',
 			'externalPlayer.selectPlayer' => 'Speler selecteren',
+			'externalPlayer.customPlayers' => 'Aangepaste spelers',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Aangepaste spelers',
 			'externalPlayer.systemDefault' => 'Systeemstandaard',
 			'externalPlayer.addCustomPlayer' => 'Aangepaste speler toevoegen',
 			'externalPlayer.playerName' => 'Spelernaam',

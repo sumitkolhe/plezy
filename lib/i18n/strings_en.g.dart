@@ -2296,9 +2296,6 @@ class Translations$profiles$en {
 	/// en: 'No connections'
 	String get noConnections => 'No connections';
 
-	/// en: 'Plex Home account'
-	String get plexHomeAccount => 'Plex Home account';
-
 	/// en: 'Default'
 	String get connectionDefault => 'Default';
 
@@ -5618,7 +5615,6 @@ extension on Translations {
 			'profiles.deleteProfileButton' => 'Delete profile',
 			'profiles.noConnectionsHint' => 'No connections — add one to use this profile.',
 			'profiles.noConnections' => 'No connections',
-			'profiles.plexHomeAccount' => 'Plex Home account',
 			'profiles.connectionDefault' => 'Default',
 			'profiles.connectionAs' => ({required Object displayName}) => 'as ${displayName}',
 			'profiles.makeDefault' => 'Make default',
@@ -5935,9 +5931,9 @@ extension on Translations {
 			'collections.removedFromCollection' => 'Removed from collection',
 			'collections.removeFromCollectionFailed' => 'Failed to remove from collection',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Error removing from collection: ${error}',
+			'collections.searchCollections' => 'Search collections...',
 			_ => null,
 		} ?? switch (path) {
-			'collections.searchCollections' => 'Search collections...',
 			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'No playlists found',

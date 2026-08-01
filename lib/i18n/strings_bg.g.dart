@@ -844,7 +844,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String get deleteProfileButton => 'Изтрий профил';
 	@override String get noConnectionsHint => 'Няма връзки — добавете такава, за да използвате този профил.';
 	@override String get noConnections => 'Няма връзки';
-	@override String get plexHomeAccount => 'Plex Home акаунт';
 	@override String get connectionDefault => 'По подразбиране';
 	@override String connectionAs({required Object displayName}) => 'като ${displayName}';
 	@override String get makeDefault => 'Направи по подразбиране';
@@ -2402,7 +2401,6 @@ extension on TranslationsBg {
 			'profiles.deleteProfileButton' => 'Изтрий профил',
 			'profiles.noConnectionsHint' => 'Няма връзки — добавете такава, за да използвате този профил.',
 			'profiles.noConnections' => 'Няма връзки',
-			'profiles.plexHomeAccount' => 'Plex Home акаунт',
 			'profiles.connectionDefault' => 'По подразбиране',
 			'profiles.connectionAs' => ({required Object displayName}) => 'като ${displayName}',
 			'profiles.makeDefault' => 'Направи по подразбиране',
@@ -2817,9 +2815,9 @@ extension on TranslationsBg {
 			'externalPlayer.useExternalPlayer' => 'Използвай външен плеър',
 			'externalPlayer.useExternalPlayerDescription' => 'Отваряй видеата в друго приложение',
 			'externalPlayer.selectPlayer' => 'Избери плейър',
+			'externalPlayer.customPlayers' => 'Потребителски плейъри',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.customPlayers' => 'Потребителски плейъри',
 			'externalPlayer.systemDefault' => 'Системен по подразбиране',
 			'externalPlayer.addCustomPlayer' => 'Добави потребителски плейър',
 			'externalPlayer.playerName' => 'Име на плейъра',
