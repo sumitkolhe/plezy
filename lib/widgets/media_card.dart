@@ -566,9 +566,9 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
     required List<String> badgeLabels,
   }) {
     // Compute actual poster dimensions from card dimensions
-    final posterWidth = widget.width != null ? MediaCardGridLayout.posterWidth(widget.width!) : null;
-    final posterHeight = widget.height;
     final layout = MediaCardGridLayout.of(isTv: PlatformDetector.isTV());
+    final posterWidth = widget.width != null ? layout.posterWidth(widget.width!) : null;
+    final posterHeight = widget.height;
 
     // The focus border hugs the poster (captions stay outside it), matching
     // the full-bleed card treatment.

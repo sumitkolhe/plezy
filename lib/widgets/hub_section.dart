@@ -539,7 +539,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                         : isTv
                         ? baseCardWidth * wideCardMultiplier
                         : GridSizeCalculator.getWideCellWidth(constraints.maxWidth, context, density);
-                    final posterWidth = MediaCardGridLayout.posterWidth(cardWidth);
+                    final cardLayout = MediaCardGridLayout.of(isTv: isTv);
+                    final posterWidth = cardLayout.posterWidth(cardWidth);
                     final posterHeight = useWideLayout
                         ? posterWidth *
                               (9 / 16) // 16:9 for wide layout
@@ -547,7 +548,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                         ? posterWidth // 1:1 for music artwork
                         : posterWidth * 1.5; // 2:3 for poster layout
 
-                    final containerHeight = posterHeight + MediaCardGridLayout.of(isTv: isTv).captionHeight;
+                    final containerHeight = posterHeight + cardLayout.captionHeight;
                     final focusBorderWidth = FocusTheme.focusBorderWidth;
                     final focusExtra = focusBorderWidth * 2; // border on both sides
                     _itemExtent = cardWidth + focusExtra + 4;

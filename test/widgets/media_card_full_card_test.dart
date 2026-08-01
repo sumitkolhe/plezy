@@ -20,6 +20,7 @@ import 'package:plezy/utils/layout_constants.dart';
 import 'package:plezy/utils/platform_detector.dart';
 import 'package:plezy/widgets/focusable_media_card.dart';
 import 'package:plezy/widgets/media_card.dart';
+import 'package:plezy/widgets/media_card_grid_layout.dart';
 import 'package:plezy/widgets/media_grid_delegate.dart';
 import 'package:plezy/widgets/optimized_media_image.dart';
 
@@ -783,15 +784,18 @@ Widget _fullCardHarness({required FocusNode focusNode, required bool fullBleed})
 }
 
 Widget _catalogGridHarness(MediaItem item, {Key? key, double width = 220}) {
+  const posterHeight = 280.0;
   return _TestApp(
     child: SizedBox(
       width: width,
-      height: 330,
+      // Mirrors HubSection's containerHeight so a caption-metric change can't
+      // silently starve the card by a couple of pixels.
+      height: posterHeight + MediaCardGridLayout.touch.captionHeight,
       child: MediaCard(
         key: key,
         item: item,
         width: width,
-        height: 280,
+        height: posterHeight,
         forceGridMode: true,
         isOffline: true,
         onTap: () {},

@@ -15,7 +15,7 @@ class MediaCardGridLayout {
   });
 
   static const MediaCardGridLayout touch = MediaCardGridLayout._(
-    padding: EdgeInsets.fromLTRB(3, 3, 3, 3),
+    padding: EdgeInsets.all(6),
     captionGap: 8,
     titleSubtitleGap: 3,
     titleStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 13, height: 1.25),
@@ -46,9 +46,11 @@ class MediaCardGridLayout {
   /// Slack for the d-pad focus scale, which grows a card in place.
   final double focusHeadroom;
 
-  static double get horizontalInset => touch.padding.horizontal;
+  /// The card's own [padding] is the whole inter-card gap — grids and rails
+  /// space at zero, so widening this is how cards get more air.
+  double get horizontalInset => padding.horizontal;
 
-  static double posterWidth(double cardWidth) => cardWidth - horizontalInset;
+  double posterWidth(double cardWidth) => cardWidth - horizontalInset;
 
   double get _titleLine => titleStyle.fontSize! * titleStyle.height!;
   double get _subtitleLine => subtitleFontSize * subtitleHeight;

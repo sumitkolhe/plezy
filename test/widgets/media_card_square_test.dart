@@ -72,13 +72,13 @@ void main() {
   });
 
   testWidgets('album grid card renders a square rounded image with square image type', (tester) async {
-    // Hub-style explicit dimensions: cardWidth 200 -> posterWidth 194, square height 194.
+    // Hub-style explicit dimensions: cardWidth 200 -> posterWidth 188, square height 188.
     await tester.pumpWidget(
       _TestApp(
         child: MediaCard(
           item: _item(MediaKind.album, parentTitle: 'Album Artist'),
           width: 200,
-          height: 194,
+          height: 188,
           forceGridMode: true,
           isOffline: true,
         ),
@@ -86,7 +86,7 @@ void main() {
     );
 
     final clip = find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipRRect));
-    expect(tester.getSize(clip.first), const Size(194, 194));
+    expect(tester.getSize(clip.first), const Size(188, 188));
     expect(find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipOval)), findsNothing);
     expect(tester.widget<OptimizedMediaImage>(find.byType(OptimizedMediaImage)).imageType, ImageType.square);
     // Albums keep the watched overlay; subtitle shows the album artist.
@@ -97,12 +97,12 @@ void main() {
   testWidgets('artist grid card clips to a circle and skips the watched overlay', (tester) async {
     await tester.pumpWidget(
       _TestApp(
-        child: MediaCard(item: _item(MediaKind.artist), width: 200, height: 194, forceGridMode: true, isOffline: true),
+        child: MediaCard(item: _item(MediaKind.artist), width: 200, height: 188, forceGridMode: true, isOffline: true),
       ),
     );
 
     final oval = find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipOval));
-    expect(tester.getSize(oval), const Size(194, 194));
+    expect(tester.getSize(oval), const Size(188, 188));
     expect(tester.widget<OptimizedMediaImage>(find.byType(OptimizedMediaImage)).imageType, ImageType.square);
     expect(find.byType(WatchedIndicator), findsNothing);
   });
@@ -110,12 +110,12 @@ void main() {
   testWidgets('movie grid card still renders the 2:3 poster', (tester) async {
     await tester.pumpWidget(
       _TestApp(
-        child: MediaCard(item: _item(MediaKind.movie), width: 200, height: 291, forceGridMode: true, isOffline: true),
+        child: MediaCard(item: _item(MediaKind.movie), width: 200, height: 282, forceGridMode: true, isOffline: true),
       ),
     );
 
     final clip = find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipRRect));
-    expect(tester.getSize(clip.first), const Size(194, 291));
+    expect(tester.getSize(clip.first), const Size(188, 282));
     expect(find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipOval)), findsNothing);
     expect(tester.widget<OptimizedMediaImage>(find.byType(OptimizedMediaImage)).imageType, ImageType.poster);
   });
@@ -146,7 +146,7 @@ void main() {
         child: MediaCard(
           item: _item(MediaKind.collection),
           width: 200,
-          height: 194,
+          height: 188,
           forceGridMode: true,
           isOffline: true,
           cardShapeOverride: CardShape.square,
@@ -155,7 +155,7 @@ void main() {
     );
 
     final imageBox = find.descendant(of: find.byType(MediaCard), matching: find.byType(ClipRRect)).first;
-    expect(tester.getSize(imageBox), const Size(194, 194));
+    expect(tester.getSize(imageBox), const Size(188, 188));
     expect(tester.widget<OptimizedMediaImage>(find.byType(OptimizedMediaImage)).imageType, ImageType.square);
   });
 
@@ -196,7 +196,7 @@ void main() {
     );
 
     await tester.pumpWidget(
-      _TestApp(child: MediaCard(item: item, width: 200, height: 194, forceGridMode: true, isOffline: true)),
+      _TestApp(child: MediaCard(item: item, width: 200, height: 188, forceGridMode: true, isOffline: true)),
     );
 
     final primaryFinder = find.descendant(of: find.byType(MediaCard), matching: find.byType(OptimizedMediaImage)).first;
@@ -223,7 +223,7 @@ void main() {
     );
 
     Future<void> pumpCard() => tester.pumpWidget(
-      _TestApp(child: MediaCard(item: item, width: 200, height: 194, forceGridMode: true, isOffline: true)),
+      _TestApp(child: MediaCard(item: item, width: 200, height: 188, forceGridMode: true, isOffline: true)),
     );
 
     await pumpCard();
