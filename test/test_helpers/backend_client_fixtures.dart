@@ -2,10 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:plezy/connection/connection.dart';
 import 'package:plezy/media/ids.dart';
-import 'package:plezy/models/plex/plex_config.dart';
 import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/services/plex_client.dart';
-import 'package:plezy/utils/active_client_scope.dart';
 
 JellyfinConnection testJellyfinConnection({
   String machineId = 'srv-1',
@@ -39,34 +36,6 @@ JellyfinConnection testJellyfinConnection({
   );
 }
 
-PlexConfig testPlexConfig({
-  String baseUrl = 'https://plex.example.com',
-  String? token = 'token',
-  String clientIdentifier = 'test-client',
-  String product = 'Plezy Test',
-  String version = '1.0.0',
-  String platform = 'Flutter Test',
-  String? device,
-  String? deviceName,
-  bool acceptJson = true,
-  String? machineIdentifier,
-  String? languageCode,
-}) {
-  return PlexConfig(
-    baseUrl: baseUrl,
-    token: token,
-    clientIdentifier: clientIdentifier,
-    product: product,
-    version: version,
-    platform: platform,
-    device: device,
-    deviceName: deviceName,
-    acceptJson: acceptJson,
-    machineIdentifier: machineIdentifier,
-    languageCode: languageCode,
-  );
-}
-
 JellyfinClient testJellyfinClient({
   JellyfinConnection? connection,
   http.Client? httpClient,
@@ -81,36 +50,18 @@ JellyfinClient testJellyfinClient({
   );
 }
 
-PlexClient testPlexClient({
-  PlexConfig? config,
-  String baseUrl = 'https://plex.example.com',
-  String? token = 'token',
-  ServerId? serverId,
-  PlexProfileScopeId? profileScopeId,
-  String? serverName = 'Server',
-  http.Client? httpClient,
+/// A client bound to an explicit server id.
+///
+/// Mirrors the shape the old Plex fixture offered so tests that only needed
+/// "a client registered for this server" keep reading the same way.
+JellyfinClient testClientForServer(
+  ServerId serverId, {
   Future<http.Response> Function(http.Request request)? handler,
-  List<String>? prioritizedEndpoints,
-  List<({String identifier, String gridEndpoint})> epgProviders = const [],
-  String? homeHubKey,
-  String? promotedHubKey,
-  String? continueWatchingHubKey,
-}) {
-  assert(httpClient == null || handler == null, 'Provide either httpClient or handler, not both');
-  final resolvedServerId = serverId ?? ServerId('server-1');
-  return PlexClient.forTesting(
-    config: config ?? testPlexConfig(baseUrl: baseUrl, token: token),
-    serverId: resolvedServerId,
-    profileScopeId: profileScopeId ?? buildPlexProfileScopeId(serverId: resolvedServerId, profileId: 'test-profile'),
-    serverName: serverName,
-    httpClient: httpClient ?? MockClient(handler ?? _defaultResponse),
-    prioritizedEndpoints: prioritizedEndpoints,
-    epgProviders: epgProviders,
-    homeHubKey: homeHubKey,
-    promotedHubKey: promotedHubKey,
-    continueWatchingHubKey: continueWatchingHubKey,
-  );
-}
+  bool isAdministrator = false,
+}) => testJellyfinClient(
+  connection: testJellyfinConnection(machineId: serverId.toString(), isAdministrator: isAdministrator),
+  handler: handler,
+);
 
 Future<http.Response> _defaultResponse(http.Request request) async {
   return http.Response('{}', 200, headers: const {'content-type': 'application/json'});

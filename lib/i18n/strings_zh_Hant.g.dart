@@ -1377,7 +1377,6 @@ class _Translations$metadataEdit$zh_Hant extends Translations$metadataEdit$zh {
 	@override String get screenTitle => '編輯中繼資料';
 	@override String get basicInfo => '基本資訊';
 	@override String get artwork => '海報與背景';
-	@override String get advancedSettings => '進階設定';
 	@override String get title => '標題';
 	@override String get sortTitle => '排序標題';
 	@override String get originalTitle => '原始標題';
@@ -1406,38 +1405,6 @@ class _Translations$metadataEdit$zh_Hant extends Translations$metadataEdit$zh {
 	@override String artworkOption({required Object index}) => '封面圖片選項 ${index}';
 	@override String selectedArtworkOption({required Object index}) => '封面圖片選項 ${index}，已選擇';
 	@override String get notSet => '未設定';
-	@override String get libraryDefault => '媒體庫預設';
-	@override String get accountDefault => '帳戶預設';
-	@override String get seriesDefault => '影集預設';
-	@override String get episodeSorting => '單集排序方式';
-	@override String get oldestFirst => '由舊到新';
-	@override String get newestFirst => '由新到舊';
-	@override String get keep => '保留集數';
-	@override String get allEpisodes => '所有單集';
-	@override String latestEpisodes({required Object count}) => '最新 ${count} 集';
-	@override String get latestEpisode => '最新一集';
-	@override String episodesAddedPastDays({required Object count}) => '過去 ${count} 天內新增的單集';
-	@override String get deleteAfterPlaying => '播放後刪除單集';
-	@override String get never => '從不';
-	@override String get afterADay => '一天後';
-	@override String get afterAWeek => '一週後';
-	@override String get afterAMonth => '一個月後';
-	@override String get onNextRefresh => '下次重新整理時';
-	@override String get seasons => '季';
-	@override String get show => '顯示';
-	@override String get hide => '隱藏';
-	@override String get episodeOrdering => '單集排序資料源';
-	@override String get tmdbAiring => 'The Movie Database（播出順序）';
-	@override String get tvdbAiring => 'TheTVDB（播出順序）';
-	@override String get tvdbAbsolute => 'TheTVDB（絕對集數順序）';
-	@override String get metadataLanguage => '中繼資料語言';
-	@override String get useOriginalTitle => '使用原始標題';
-	@override String get preferredAudioLanguage => '偏好音訊語言';
-	@override String get preferredSubtitleLanguage => '偏好字幕語言';
-	@override String get subtitleMode => '自動選擇字幕模式';
-	@override String get manuallySelected => '手動選擇';
-	@override String get shownWithForeignAudio => '外語配音時顯示';
-	@override String get alwaysEnabled => '一律啟用';
 	@override String get tags => '標籤';
 	@override String get addTag => '新增標籤';
 	@override String get genre => '類型';
@@ -1445,10 +1412,7 @@ class _Translations$metadataEdit$zh_Hant extends Translations$metadataEdit$zh {
 	@override String get writer => '編劇';
 	@override String get producer => '製片';
 	@override String get country => '國家/地區';
-	@override String get collection => '收藏集';
 	@override String get label => '標記';
-	@override String get style => '風格';
-	@override String get mood => '氛圍';
 }
 
 // Path: trakt
@@ -1668,11 +1632,8 @@ class _Translations$libraries$sortLabels$zh_Hant extends Translations$libraries$
 	// Translations
 	@override String get title => '標題';
 	@override String get dateAdded => '新增日期';
-	@override String get releaseDate => '發行日期';
-	@override String get rating => '評分';
 	@override String get communityRating => '社群評分';
 	@override String get criticRating => '影評人評分';
-	@override String get userRating => '使用者評分';
 	@override String get datePlayed => '播放日期';
 	@override String get playCount => '播放次數';
 	@override String get productionYear => '製作年份';
@@ -1683,8 +1644,6 @@ class _Translations$libraries$sortLabels$zh_Hant extends Translations$libraries$
 	@override String get airTime => '播出時間';
 	@override String get studio => '工作室';
 	@override String get random => '隨機';
-	@override String get dateShared => '分享日期';
-	@override String get latestEpisodeAirDate => '最新一集播出日期';
 	@override String get lastEpisodeDateAdded => '最新一集新增日期';
 }
 
@@ -2554,11 +2513,8 @@ extension on TranslationsZhHant {
 			'libraries.filterCategories.favorites' => '我的最愛',
 			'libraries.sortLabels.title' => '標題',
 			'libraries.sortLabels.dateAdded' => '新增日期',
-			'libraries.sortLabels.releaseDate' => '發行日期',
-			'libraries.sortLabels.rating' => '評分',
 			'libraries.sortLabels.communityRating' => '社群評分',
 			'libraries.sortLabels.criticRating' => '影評人評分',
-			'libraries.sortLabels.userRating' => '使用者評分',
 			'libraries.sortLabels.datePlayed' => '播放日期',
 			'libraries.sortLabels.playCount' => '播放次數',
 			'libraries.sortLabels.productionYear' => '製作年份',
@@ -2569,8 +2525,6 @@ extension on TranslationsZhHant {
 			'libraries.sortLabels.airTime' => '播出時間',
 			'libraries.sortLabels.studio' => '工作室',
 			'libraries.sortLabels.random' => '隨機',
-			'libraries.sortLabels.dateShared' => '分享日期',
-			'libraries.sortLabels.latestEpisodeAirDate' => '最新一集播出日期',
 			'libraries.sortLabels.lastEpisodeDateAdded' => '最新一集新增日期',
 			'about.title' => '關於',
 			'about.openSourceLicenses' => '開源授權條款',
@@ -2856,13 +2810,13 @@ extension on TranslationsZhHant {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => '播放器',
 			'performanceOverlay.memory' => '記憶體',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部播放器',
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',
 			'externalPlayer.useExternalPlayerDescription' => '在其他應用程式中開啟影片',
 			'externalPlayer.selectPlayer' => '選擇播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => '自訂播放器',
 			'externalPlayer.systemDefault' => '系統預設',
 			'externalPlayer.addCustomPlayer' => '新增自訂播放器',
@@ -2879,7 +2833,6 @@ extension on TranslationsZhHant {
 			'metadataEdit.screenTitle' => '編輯中繼資料',
 			'metadataEdit.basicInfo' => '基本資訊',
 			'metadataEdit.artwork' => '海報與背景',
-			'metadataEdit.advancedSettings' => '進階設定',
 			'metadataEdit.title' => '標題',
 			'metadataEdit.sortTitle' => '排序標題',
 			'metadataEdit.originalTitle' => '原始標題',
@@ -2908,38 +2861,6 @@ extension on TranslationsZhHant {
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面圖片選項 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面圖片選項 ${index}，已選擇',
 			'metadataEdit.notSet' => '未設定',
-			'metadataEdit.libraryDefault' => '媒體庫預設',
-			'metadataEdit.accountDefault' => '帳戶預設',
-			'metadataEdit.seriesDefault' => '影集預設',
-			'metadataEdit.episodeSorting' => '單集排序方式',
-			'metadataEdit.oldestFirst' => '由舊到新',
-			'metadataEdit.newestFirst' => '由新到舊',
-			'metadataEdit.keep' => '保留集數',
-			'metadataEdit.allEpisodes' => '所有單集',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '最新 ${count} 集',
-			'metadataEdit.latestEpisode' => '最新一集',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => '過去 ${count} 天內新增的單集',
-			'metadataEdit.deleteAfterPlaying' => '播放後刪除單集',
-			'metadataEdit.never' => '從不',
-			'metadataEdit.afterADay' => '一天後',
-			'metadataEdit.afterAWeek' => '一週後',
-			'metadataEdit.afterAMonth' => '一個月後',
-			'metadataEdit.onNextRefresh' => '下次重新整理時',
-			'metadataEdit.seasons' => '季',
-			'metadataEdit.show' => '顯示',
-			'metadataEdit.hide' => '隱藏',
-			'metadataEdit.episodeOrdering' => '單集排序資料源',
-			'metadataEdit.tmdbAiring' => 'The Movie Database（播出順序）',
-			'metadataEdit.tvdbAiring' => 'TheTVDB（播出順序）',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB（絕對集數順序）',
-			'metadataEdit.metadataLanguage' => '中繼資料語言',
-			'metadataEdit.useOriginalTitle' => '使用原始標題',
-			'metadataEdit.preferredAudioLanguage' => '偏好音訊語言',
-			'metadataEdit.preferredSubtitleLanguage' => '偏好字幕語言',
-			'metadataEdit.subtitleMode' => '自動選擇字幕模式',
-			'metadataEdit.manuallySelected' => '手動選擇',
-			'metadataEdit.shownWithForeignAudio' => '外語配音時顯示',
-			'metadataEdit.alwaysEnabled' => '一律啟用',
 			'metadataEdit.tags' => '標籤',
 			'metadataEdit.addTag' => '新增標籤',
 			'metadataEdit.genre' => '類型',
@@ -2947,10 +2868,7 @@ extension on TranslationsZhHant {
 			'metadataEdit.writer' => '編劇',
 			'metadataEdit.producer' => '製片',
 			'metadataEdit.country' => '國家/地區',
-			'metadataEdit.collection' => '收藏集',
 			'metadataEdit.label' => '標記',
-			'metadataEdit.style' => '風格',
-			'metadataEdit.mood' => '氛圍',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '已連線',
 			'trakt.connectedAs' => ({required Object username}) => '已以 @${username} 身分連線',

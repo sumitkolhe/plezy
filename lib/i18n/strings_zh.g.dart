@@ -1376,7 +1376,6 @@ class Translations$metadataEdit$zh extends Translations$metadataEdit$en {
 	@override String get screenTitle => '编辑元数据';
 	@override String get basicInfo => '基本信息';
 	@override String get artwork => '封面图片';
-	@override String get advancedSettings => '高级设置';
 	@override String get title => '标题';
 	@override String get sortTitle => '排序标题';
 	@override String get originalTitle => '原始标题';
@@ -1405,38 +1404,6 @@ class Translations$metadataEdit$zh extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => '封面图片选项 ${index}';
 	@override String selectedArtworkOption({required Object index}) => '封面图片选项 ${index}，已选择';
 	@override String get notSet => '未设置';
-	@override String get libraryDefault => '媒体库默认';
-	@override String get accountDefault => '账户默认';
-	@override String get seriesDefault => '剧集默认';
-	@override String get episodeSorting => '剧集排序';
-	@override String get oldestFirst => '最旧优先';
-	@override String get newestFirst => '最新优先';
-	@override String get keep => '保留';
-	@override String get allEpisodes => '所有剧集';
-	@override String latestEpisodes({required Object count}) => '最新 ${count} 集';
-	@override String get latestEpisode => '最新一集';
-	@override String episodesAddedPastDays({required Object count}) => '过去 ${count} 天内添加的剧集';
-	@override String get deleteAfterPlaying => '播放后删除剧集';
-	@override String get never => '从不';
-	@override String get afterADay => '一天后';
-	@override String get afterAWeek => '一周后';
-	@override String get afterAMonth => '一个月后';
-	@override String get onNextRefresh => '下次刷新时';
-	@override String get seasons => '季';
-	@override String get show => '显示';
-	@override String get hide => '隐藏';
-	@override String get episodeOrdering => '剧集排列顺序';
-	@override String get tmdbAiring => 'The Movie Database（播出顺序）';
-	@override String get tvdbAiring => 'TheTVDB（播出顺序）';
-	@override String get tvdbAbsolute => 'TheTVDB（绝对顺序）';
-	@override String get metadataLanguage => '元数据语言';
-	@override String get useOriginalTitle => '使用原始标题';
-	@override String get preferredAudioLanguage => '首选音频语言';
-	@override String get preferredSubtitleLanguage => '首选字幕语言';
-	@override String get subtitleMode => '自动选择字幕模式';
-	@override String get manuallySelected => '手动选择';
-	@override String get shownWithForeignAudio => '外语音频时显示';
-	@override String get alwaysEnabled => '始终启用';
 	@override String get tags => '标签';
 	@override String get addTag => '添加标签';
 	@override String get genre => '类型';
@@ -1444,10 +1411,7 @@ class Translations$metadataEdit$zh extends Translations$metadataEdit$en {
 	@override String get writer => '编剧';
 	@override String get producer => '制片人';
 	@override String get country => '国家';
-	@override String get collection => '合集';
 	@override String get label => '标记';
-	@override String get style => '风格';
-	@override String get mood => '氛围';
 }
 
 // Path: trakt
@@ -1667,11 +1631,8 @@ class Translations$libraries$sortLabels$zh extends Translations$libraries$sortLa
 	// Translations
 	@override String get title => '标题';
 	@override String get dateAdded => '添加日期';
-	@override String get releaseDate => '发行日期';
-	@override String get rating => '评分';
 	@override String get communityRating => '社区评分';
 	@override String get criticRating => '影评人评分';
-	@override String get userRating => '用户评分';
 	@override String get datePlayed => '播放日期';
 	@override String get playCount => '播放次数';
 	@override String get productionYear => '制作年份';
@@ -1682,8 +1643,6 @@ class Translations$libraries$sortLabels$zh extends Translations$libraries$sortLa
 	@override String get airTime => '播出时间';
 	@override String get studio => '制片公司';
 	@override String get random => '随机';
-	@override String get dateShared => '共享日期';
-	@override String get latestEpisodeAirDate => '最新一集播出日期';
 	@override String get lastEpisodeDateAdded => '最新一集添加日期';
 }
 
@@ -2553,11 +2512,8 @@ extension on TranslationsZh {
 			'libraries.filterCategories.favorites' => '收藏夹',
 			'libraries.sortLabels.title' => '标题',
 			'libraries.sortLabels.dateAdded' => '添加日期',
-			'libraries.sortLabels.releaseDate' => '发行日期',
-			'libraries.sortLabels.rating' => '评分',
 			'libraries.sortLabels.communityRating' => '社区评分',
 			'libraries.sortLabels.criticRating' => '影评人评分',
-			'libraries.sortLabels.userRating' => '用户评分',
 			'libraries.sortLabels.datePlayed' => '播放日期',
 			'libraries.sortLabels.playCount' => '播放次数',
 			'libraries.sortLabels.productionYear' => '制作年份',
@@ -2568,8 +2524,6 @@ extension on TranslationsZh {
 			'libraries.sortLabels.airTime' => '播出时间',
 			'libraries.sortLabels.studio' => '制片公司',
 			'libraries.sortLabels.random' => '随机',
-			'libraries.sortLabels.dateShared' => '共享日期',
-			'libraries.sortLabels.latestEpisodeAirDate' => '最新一集播出日期',
 			'libraries.sortLabels.lastEpisodeDateAdded' => '最新一集添加日期',
 			'about.title' => '关于',
 			'about.openSourceLicenses' => '开源许可证',
@@ -2855,13 +2809,13 @@ extension on TranslationsZh {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => '播放器',
 			'performanceOverlay.memory' => '内存',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部播放器',
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',
 			'externalPlayer.useExternalPlayerDescription' => '在其他应用中打开视频',
 			'externalPlayer.selectPlayer' => '选择播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => '自定义播放器',
 			'externalPlayer.systemDefault' => '系统默认',
 			'externalPlayer.addCustomPlayer' => '添加自定义播放器',
@@ -2878,7 +2832,6 @@ extension on TranslationsZh {
 			'metadataEdit.screenTitle' => '编辑元数据',
 			'metadataEdit.basicInfo' => '基本信息',
 			'metadataEdit.artwork' => '封面图片',
-			'metadataEdit.advancedSettings' => '高级设置',
 			'metadataEdit.title' => '标题',
 			'metadataEdit.sortTitle' => '排序标题',
 			'metadataEdit.originalTitle' => '原始标题',
@@ -2907,38 +2860,6 @@ extension on TranslationsZh {
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面图片选项 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面图片选项 ${index}，已选择',
 			'metadataEdit.notSet' => '未设置',
-			'metadataEdit.libraryDefault' => '媒体库默认',
-			'metadataEdit.accountDefault' => '账户默认',
-			'metadataEdit.seriesDefault' => '剧集默认',
-			'metadataEdit.episodeSorting' => '剧集排序',
-			'metadataEdit.oldestFirst' => '最旧优先',
-			'metadataEdit.newestFirst' => '最新优先',
-			'metadataEdit.keep' => '保留',
-			'metadataEdit.allEpisodes' => '所有剧集',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '最新 ${count} 集',
-			'metadataEdit.latestEpisode' => '最新一集',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => '过去 ${count} 天内添加的剧集',
-			'metadataEdit.deleteAfterPlaying' => '播放后删除剧集',
-			'metadataEdit.never' => '从不',
-			'metadataEdit.afterADay' => '一天后',
-			'metadataEdit.afterAWeek' => '一周后',
-			'metadataEdit.afterAMonth' => '一个月后',
-			'metadataEdit.onNextRefresh' => '下次刷新时',
-			'metadataEdit.seasons' => '季',
-			'metadataEdit.show' => '显示',
-			'metadataEdit.hide' => '隐藏',
-			'metadataEdit.episodeOrdering' => '剧集排列顺序',
-			'metadataEdit.tmdbAiring' => 'The Movie Database（播出顺序）',
-			'metadataEdit.tvdbAiring' => 'TheTVDB（播出顺序）',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB（绝对顺序）',
-			'metadataEdit.metadataLanguage' => '元数据语言',
-			'metadataEdit.useOriginalTitle' => '使用原始标题',
-			'metadataEdit.preferredAudioLanguage' => '首选音频语言',
-			'metadataEdit.preferredSubtitleLanguage' => '首选字幕语言',
-			'metadataEdit.subtitleMode' => '自动选择字幕模式',
-			'metadataEdit.manuallySelected' => '手动选择',
-			'metadataEdit.shownWithForeignAudio' => '外语音频时显示',
-			'metadataEdit.alwaysEnabled' => '始终启用',
 			'metadataEdit.tags' => '标签',
 			'metadataEdit.addTag' => '添加标签',
 			'metadataEdit.genre' => '类型',
@@ -2946,10 +2867,7 @@ extension on TranslationsZh {
 			'metadataEdit.writer' => '编剧',
 			'metadataEdit.producer' => '制片人',
 			'metadataEdit.country' => '国家',
-			'metadataEdit.collection' => '合集',
 			'metadataEdit.label' => '标记',
-			'metadataEdit.style' => '风格',
-			'metadataEdit.mood' => '氛围',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '已连接',
 			'trakt.connectedAs' => ({required Object username}) => '已以 @${username} 身份连接',

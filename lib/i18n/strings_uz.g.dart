@@ -1390,7 +1390,6 @@ class _Translations$metadataEdit$uz extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Metamaʼlumotlarni tahrirlash';
 	@override String get basicInfo => 'Asosiy maʼlumotlar';
 	@override String get artwork => 'Rasmlar/Posterlar';
-	@override String get advancedSettings => 'Kengaytirilgan sozlamalar';
 	@override String get title => 'Nomi';
 	@override String get sortTitle => 'Saralash nomi';
 	@override String get originalTitle => 'Asl nomi';
@@ -1419,38 +1418,6 @@ class _Translations$metadataEdit$uz extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Rasm opsiyasi ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Rasm opsiyasi ${index}, tanlandi';
 	@override String get notSet => 'Oʻrnatilmagan';
-	@override String get libraryDefault => 'Kutubxona standarti';
-	@override String get accountDefault => 'Hisob standarti';
-	@override String get seriesDefault => 'Serial standarti';
-	@override String get episodeSorting => 'Qismlarni saralash';
-	@override String get oldestFirst => 'Avval eskilar';
-	@override String get newestFirst => 'Avval yangilar';
-	@override String get keep => 'Saqlash';
-	@override String get allEpisodes => 'Barcha qismlar';
-	@override String latestEpisodes({required Object count}) => 'Soʻnggi ${count} qism';
-	@override String get latestEpisode => 'Soʻnggi qism';
-	@override String episodesAddedPastDays({required Object count}) => 'Soʻnggi ${count} kunda qoʻshilgan qismlar';
-	@override String get deleteAfterPlaying => 'Ijro etgandan keyin oʻchirish';
-	@override String get never => 'Hech qachon';
-	@override String get afterADay => 'Bir kundan keyin';
-	@override String get afterAWeek => 'Bir haftadan keyin';
-	@override String get afterAMonth => 'Bir oydan keyin';
-	@override String get onNextRefresh => 'Keyingi yangilanishda';
-	@override String get seasons => 'Mavsumlar';
-	@override String get show => 'Koʻrsatish';
-	@override String get hide => 'Yashirish';
-	@override String get episodeOrdering => 'Qismlar tartibi';
-	@override String get tmdbAiring => 'The Movie Database (Efir)';
-	@override String get tvdbAiring => 'TheTVDB (Efir)';
-	@override String get tvdbAbsolute => 'TheTVDB (Absolyut)';
-	@override String get metadataLanguage => 'Metamaʼlumotlar tili';
-	@override String get useOriginalTitle => 'Asl nomidan foydalanish';
-	@override String get preferredAudioLanguage => 'Afzal koʻrilgan audio tili';
-	@override String get preferredSubtitleLanguage => 'Afzal koʻrilgan subtitr tili';
-	@override String get subtitleMode => 'Avtomatik subtitr tanlash rejimi';
-	@override String get manuallySelected => 'Qoʻlda tanlangan';
-	@override String get shownWithForeignAudio => 'Chet el audiosi bilan koʻrsatiladi';
-	@override String get alwaysEnabled => 'Har doim yoqilgan';
 	@override String get tags => 'Teglar';
 	@override String get addTag => 'Teg qoʻshish';
 	@override String get genre => 'Janr';
@@ -1458,10 +1425,7 @@ class _Translations$metadataEdit$uz extends Translations$metadataEdit$en {
 	@override String get writer => 'Ssenarist';
 	@override String get producer => 'Prodyuser';
 	@override String get country => 'Mamlakat';
-	@override String get collection => 'Toʻplam';
 	@override String get label => 'Yorliq';
-	@override String get style => 'Stil';
-	@override String get mood => 'Kayfiyat';
 }
 
 // Path: trakt
@@ -1681,11 +1645,8 @@ class _Translations$libraries$sortLabels$uz extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Nomi';
 	@override String get dateAdded => 'Qoʻshilgan sanasi';
-	@override String get releaseDate => 'Chıqqan sanasi';
-	@override String get rating => 'Reyting';
 	@override String get communityRating => 'Hamjamiyat reytingi';
 	@override String get criticRating => 'Muntaqidlar reytingi';
-	@override String get userRating => 'Foydalanuvchi reytingi';
 	@override String get datePlayed => 'Ijro etilgan sanasi';
 	@override String get playCount => 'Ijrolar soni';
 	@override String get productionYear => 'Ishlab chiqarilgan yili';
@@ -1696,8 +1657,6 @@ class _Translations$libraries$sortLabels$uz extends Translations$libraries$sortL
 	@override String get airTime => 'Efir vaqti';
 	@override String get studio => 'Studiya';
 	@override String get random => 'Tasodifiy';
-	@override String get dateShared => 'Ulashilgan sanasi';
-	@override String get latestEpisodeAirDate => 'Soʻnggi qism chiqqan sana';
 	@override String get lastEpisodeDateAdded => 'Soʻnggi qoʻshilgan qism sanasi';
 }
 
@@ -2572,11 +2531,8 @@ extension on TranslationsUz {
 			'libraries.filterCategories.favorites' => 'Tanlanganlar',
 			'libraries.sortLabels.title' => 'Nomi',
 			'libraries.sortLabels.dateAdded' => 'Qoʻshilgan sanasi',
-			'libraries.sortLabels.releaseDate' => 'Chıqqan sanasi',
-			'libraries.sortLabels.rating' => 'Reyting',
 			'libraries.sortLabels.communityRating' => 'Hamjamiyat reytingi',
 			'libraries.sortLabels.criticRating' => 'Muntaqidlar reytingi',
-			'libraries.sortLabels.userRating' => 'Foydalanuvchi reytingi',
 			'libraries.sortLabels.datePlayed' => 'Ijro etilgan sanasi',
 			'libraries.sortLabels.playCount' => 'Ijrolar soni',
 			'libraries.sortLabels.productionYear' => 'Ishlab chiqarilgan yili',
@@ -2587,8 +2543,6 @@ extension on TranslationsUz {
 			'libraries.sortLabels.airTime' => 'Efir vaqti',
 			'libraries.sortLabels.studio' => 'Studiya',
 			'libraries.sortLabels.random' => 'Tasodifiy',
-			'libraries.sortLabels.dateShared' => 'Ulashilgan sanasi',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Soʻnggi qism chiqqan sana',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Soʻnggi qoʻshilgan qism sanasi',
 			'about.title' => 'Dastur haqida',
 			'about.openSourceLicenses' => 'Ochiq kodli litsenziyalar',
@@ -2869,13 +2823,13 @@ extension on TranslationsUz {
 			'performanceOverlay.avSync' => 'A/V sinxronlash',
 			'performanceOverlay.dropped' => 'Tushirib qoldirilgan kadrlar',
 			'performanceOverlay.dvRpus' => 'DV RPU-lar',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Oʻrt.',
 			'performanceOverlay.dvSampleAverage' => 'DV Namuna Oʻrt.',
 			'performanceOverlay.maxLuma' => 'Maks Luma',
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Foydalanilgan kesh',
 			'performanceOverlay.cacheLimit' => 'Kesh chegarasi',
@@ -2903,7 +2857,6 @@ extension on TranslationsUz {
 			'metadataEdit.screenTitle' => 'Metamaʼlumotlarni tahrirlash',
 			'metadataEdit.basicInfo' => 'Asosiy maʼlumotlar',
 			'metadataEdit.artwork' => 'Rasmlar/Posterlar',
-			'metadataEdit.advancedSettings' => 'Kengaytirilgan sozlamalar',
 			'metadataEdit.title' => 'Nomi',
 			'metadataEdit.sortTitle' => 'Saralash nomi',
 			'metadataEdit.originalTitle' => 'Asl nomi',
@@ -2932,38 +2885,6 @@ extension on TranslationsUz {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Rasm opsiyasi ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Rasm opsiyasi ${index}, tanlandi',
 			'metadataEdit.notSet' => 'Oʻrnatilmagan',
-			'metadataEdit.libraryDefault' => 'Kutubxona standarti',
-			'metadataEdit.accountDefault' => 'Hisob standarti',
-			'metadataEdit.seriesDefault' => 'Serial standarti',
-			'metadataEdit.episodeSorting' => 'Qismlarni saralash',
-			'metadataEdit.oldestFirst' => 'Avval eskilar',
-			'metadataEdit.newestFirst' => 'Avval yangilar',
-			'metadataEdit.keep' => 'Saqlash',
-			'metadataEdit.allEpisodes' => 'Barcha qismlar',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => 'Soʻnggi ${count} qism',
-			'metadataEdit.latestEpisode' => 'Soʻnggi qism',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Soʻnggi ${count} kunda qoʻshilgan qismlar',
-			'metadataEdit.deleteAfterPlaying' => 'Ijro etgandan keyin oʻchirish',
-			'metadataEdit.never' => 'Hech qachon',
-			'metadataEdit.afterADay' => 'Bir kundan keyin',
-			'metadataEdit.afterAWeek' => 'Bir haftadan keyin',
-			'metadataEdit.afterAMonth' => 'Bir oydan keyin',
-			'metadataEdit.onNextRefresh' => 'Keyingi yangilanishda',
-			'metadataEdit.seasons' => 'Mavsumlar',
-			'metadataEdit.show' => 'Koʻrsatish',
-			'metadataEdit.hide' => 'Yashirish',
-			'metadataEdit.episodeOrdering' => 'Qismlar tartibi',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Efir)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Efir)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Absolyut)',
-			'metadataEdit.metadataLanguage' => 'Metamaʼlumotlar tili',
-			'metadataEdit.useOriginalTitle' => 'Asl nomidan foydalanish',
-			'metadataEdit.preferredAudioLanguage' => 'Afzal koʻrilgan audio tili',
-			'metadataEdit.preferredSubtitleLanguage' => 'Afzal koʻrilgan subtitr tili',
-			'metadataEdit.subtitleMode' => 'Avtomatik subtitr tanlash rejimi',
-			'metadataEdit.manuallySelected' => 'Qoʻlda tanlangan',
-			'metadataEdit.shownWithForeignAudio' => 'Chet el audiosi bilan koʻrsatiladi',
-			'metadataEdit.alwaysEnabled' => 'Har doim yoqilgan',
 			'metadataEdit.tags' => 'Teglar',
 			'metadataEdit.addTag' => 'Teg qoʻshish',
 			'metadataEdit.genre' => 'Janr',
@@ -2971,10 +2892,7 @@ extension on TranslationsUz {
 			'metadataEdit.writer' => 'Ssenarist',
 			'metadataEdit.producer' => 'Prodyuser',
 			'metadataEdit.country' => 'Mamlakat',
-			'metadataEdit.collection' => 'Toʻplam',
 			'metadataEdit.label' => 'Yorliq',
-			'metadataEdit.style' => 'Stil',
-			'metadataEdit.mood' => 'Kayfiyat',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Ulandi',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} sifatida ulandi',

@@ -3581,9 +3581,6 @@ class Translations$metadataEdit$en {
 	/// en: 'Artwork'
 	String get artwork => 'Artwork';
 
-	/// en: 'Advanced Settings'
-	String get advancedSettings => 'Advanced Settings';
-
 	/// en: 'Title'
 	String get title => 'Title';
 
@@ -3668,102 +3665,6 @@ class Translations$metadataEdit$en {
 	/// en: 'Not set'
 	String get notSet => 'Not set';
 
-	/// en: 'Library default'
-	String get libraryDefault => 'Library default';
-
-	/// en: 'Account default'
-	String get accountDefault => 'Account default';
-
-	/// en: 'Series default'
-	String get seriesDefault => 'Series default';
-
-	/// en: 'Episode Sorting'
-	String get episodeSorting => 'Episode Sorting';
-
-	/// en: 'Oldest first'
-	String get oldestFirst => 'Oldest first';
-
-	/// en: 'Newest first'
-	String get newestFirst => 'Newest first';
-
-	/// en: 'Keep'
-	String get keep => 'Keep';
-
-	/// en: 'All episodes'
-	String get allEpisodes => 'All episodes';
-
-	/// en: '${count} latest episodes'
-	String latestEpisodes({required Object count}) => '${count} latest episodes';
-
-	/// en: 'Latest episode'
-	String get latestEpisode => 'Latest episode';
-
-	/// en: 'Episodes added in the past ${count} days'
-	String episodesAddedPastDays({required Object count}) => 'Episodes added in the past ${count} days';
-
-	/// en: 'Delete Episodes After Playing'
-	String get deleteAfterPlaying => 'Delete Episodes After Playing';
-
-	/// en: 'Never'
-	String get never => 'Never';
-
-	/// en: 'After a day'
-	String get afterADay => 'After a day';
-
-	/// en: 'After a week'
-	String get afterAWeek => 'After a week';
-
-	/// en: 'After a month'
-	String get afterAMonth => 'After a month';
-
-	/// en: 'On next refresh'
-	String get onNextRefresh => 'On next refresh';
-
-	/// en: 'Seasons'
-	String get seasons => 'Seasons';
-
-	/// en: 'Show'
-	String get show => 'Show';
-
-	/// en: 'Hide'
-	String get hide => 'Hide';
-
-	/// en: 'Episode Ordering'
-	String get episodeOrdering => 'Episode Ordering';
-
-	/// en: 'The Movie Database (Aired)'
-	String get tmdbAiring => 'The Movie Database (Aired)';
-
-	/// en: 'TheTVDB (Aired)'
-	String get tvdbAiring => 'TheTVDB (Aired)';
-
-	/// en: 'TheTVDB (Absolute)'
-	String get tvdbAbsolute => 'TheTVDB (Absolute)';
-
-	/// en: 'Metadata Language'
-	String get metadataLanguage => 'Metadata Language';
-
-	/// en: 'Use Original Title'
-	String get useOriginalTitle => 'Use Original Title';
-
-	/// en: 'Preferred Audio Language'
-	String get preferredAudioLanguage => 'Preferred Audio Language';
-
-	/// en: 'Preferred Subtitle Language'
-	String get preferredSubtitleLanguage => 'Preferred Subtitle Language';
-
-	/// en: 'Auto-Select Subtitle Mode'
-	String get subtitleMode => 'Auto-Select Subtitle Mode';
-
-	/// en: 'Manually selected'
-	String get manuallySelected => 'Manually selected';
-
-	/// en: 'Shown with foreign audio'
-	String get shownWithForeignAudio => 'Shown with foreign audio';
-
-	/// en: 'Always enabled'
-	String get alwaysEnabled => 'Always enabled';
-
 	/// en: 'Tags'
 	String get tags => 'Tags';
 
@@ -3785,17 +3686,8 @@ class Translations$metadataEdit$en {
 	/// en: 'Country'
 	String get country => 'Country';
 
-	/// en: 'Collection'
-	String get collection => 'Collection';
-
 	/// en: 'Label'
 	String get label => 'Label';
-
-	/// en: 'Style'
-	String get style => 'Style';
-
-	/// en: 'Mood'
-	String get mood => 'Mood';
 }
 
 // Path: trakt
@@ -4267,20 +4159,11 @@ class Translations$libraries$sortLabels$en {
 	/// en: 'Date Added'
 	String get dateAdded => 'Date Added';
 
-	/// en: 'Release Date'
-	String get releaseDate => 'Release Date';
-
-	/// en: 'Rating'
-	String get rating => 'Rating';
-
 	/// en: 'Community Rating'
 	String get communityRating => 'Community Rating';
 
 	/// en: 'Critic Rating'
 	String get criticRating => 'Critic Rating';
-
-	/// en: 'User Rating'
-	String get userRating => 'User Rating';
 
 	/// en: 'Date Played'
 	String get datePlayed => 'Date Played';
@@ -4311,12 +4194,6 @@ class Translations$libraries$sortLabels$en {
 
 	/// en: 'Random'
 	String get random => 'Random';
-
-	/// en: 'Date Shared'
-	String get dateShared => 'Date Shared';
-
-	/// en: 'Latest Episode Air Date'
-	String get latestEpisodeAirDate => 'Latest Episode Air Date';
 
 	/// en: 'Last Episode Date Added'
 	String get lastEpisodeDateAdded => 'Last Episode Date Added';
@@ -5855,11 +5732,8 @@ extension on Translations {
 			'libraries.filterCategories.favorites' => 'Favorites',
 			'libraries.sortLabels.title' => 'Title',
 			'libraries.sortLabels.dateAdded' => 'Date Added',
-			'libraries.sortLabels.releaseDate' => 'Release Date',
-			'libraries.sortLabels.rating' => 'Rating',
 			'libraries.sortLabels.communityRating' => 'Community Rating',
 			'libraries.sortLabels.criticRating' => 'Critic Rating',
-			'libraries.sortLabels.userRating' => 'User Rating',
 			'libraries.sortLabels.datePlayed' => 'Date Played',
 			'libraries.sortLabels.playCount' => 'Play Count',
 			'libraries.sortLabels.productionYear' => 'Production Year',
@@ -5870,8 +5744,6 @@ extension on Translations {
 			'libraries.sortLabels.airTime' => 'Air Time',
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Random',
-			'libraries.sortLabels.dateShared' => 'Date Shared',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Latest Episode Air Date',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Last Episode Date Added',
 			'about.title' => 'About',
 			'about.openSourceLicenses' => 'Open Source Licenses',
@@ -6058,13 +5930,13 @@ extension on Translations {
 			'collections.addedToCollection' => 'Added to collection',
 			'collections.errorAddingToCollection' => 'Failed to add to collection',
 			'collections.created' => 'Collection created',
-			_ => null,
-		} ?? switch (path) {
 			'collections.removeFromCollection' => 'Remove from collection',
 			'collections.removeFromCollectionConfirm' => ({required Object title}) => 'Remove "${title}" from this collection?',
 			'collections.removedFromCollection' => 'Removed from collection',
 			'collections.removeFromCollectionFailed' => 'Failed to remove from collection',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Error removing from collection: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'collections.searchCollections' => 'Search collections...',
 			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
@@ -6302,7 +6174,6 @@ extension on Translations {
 			'metadataEdit.screenTitle' => 'Edit Metadata',
 			'metadataEdit.basicInfo' => 'Basic Info',
 			'metadataEdit.artwork' => 'Artwork',
-			'metadataEdit.advancedSettings' => 'Advanced Settings',
 			'metadataEdit.title' => 'Title',
 			'metadataEdit.sortTitle' => 'Sort Title',
 			'metadataEdit.originalTitle' => 'Original Title',
@@ -6331,38 +6202,6 @@ extension on Translations {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Artwork option ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Artwork option ${index}, selected',
 			'metadataEdit.notSet' => 'Not set',
-			'metadataEdit.libraryDefault' => 'Library default',
-			'metadataEdit.accountDefault' => 'Account default',
-			'metadataEdit.seriesDefault' => 'Series default',
-			'metadataEdit.episodeSorting' => 'Episode Sorting',
-			'metadataEdit.oldestFirst' => 'Oldest first',
-			'metadataEdit.newestFirst' => 'Newest first',
-			'metadataEdit.keep' => 'Keep',
-			'metadataEdit.allEpisodes' => 'All episodes',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '${count} latest episodes',
-			'metadataEdit.latestEpisode' => 'Latest episode',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Episodes added in the past ${count} days',
-			'metadataEdit.deleteAfterPlaying' => 'Delete Episodes After Playing',
-			'metadataEdit.never' => 'Never',
-			'metadataEdit.afterADay' => 'After a day',
-			'metadataEdit.afterAWeek' => 'After a week',
-			'metadataEdit.afterAMonth' => 'After a month',
-			'metadataEdit.onNextRefresh' => 'On next refresh',
-			'metadataEdit.seasons' => 'Seasons',
-			'metadataEdit.show' => 'Show',
-			'metadataEdit.hide' => 'Hide',
-			'metadataEdit.episodeOrdering' => 'Episode Ordering',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Aired)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Aired)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Absolute)',
-			'metadataEdit.metadataLanguage' => 'Metadata Language',
-			'metadataEdit.useOriginalTitle' => 'Use Original Title',
-			'metadataEdit.preferredAudioLanguage' => 'Preferred Audio Language',
-			'metadataEdit.preferredSubtitleLanguage' => 'Preferred Subtitle Language',
-			'metadataEdit.subtitleMode' => 'Auto-Select Subtitle Mode',
-			'metadataEdit.manuallySelected' => 'Manually selected',
-			'metadataEdit.shownWithForeignAudio' => 'Shown with foreign audio',
-			'metadataEdit.alwaysEnabled' => 'Always enabled',
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Add tag',
 			'metadataEdit.genre' => 'Genre',
@@ -6370,10 +6209,7 @@ extension on Translations {
 			'metadataEdit.writer' => 'Writer',
 			'metadataEdit.producer' => 'Producer',
 			'metadataEdit.country' => 'Country',
-			'metadataEdit.collection' => 'Collection',
 			'metadataEdit.label' => 'Label',
-			'metadataEdit.style' => 'Style',
-			'metadataEdit.mood' => 'Mood',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Connected',
 			'trakt.connectedAs' => ({required Object username}) => 'Connected as @${username}',

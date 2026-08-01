@@ -1376,7 +1376,6 @@ class _Translations$metadataEdit$ko extends Translations$metadataEdit$en {
 	@override String get screenTitle => '메타데이터 편집';
 	@override String get basicInfo => '기본 정보';
 	@override String get artwork => '아트워크';
-	@override String get advancedSettings => '고급 설정';
 	@override String get title => '제목';
 	@override String get sortTitle => '정렬 제목';
 	@override String get originalTitle => '원제';
@@ -1405,38 +1404,6 @@ class _Translations$metadataEdit$ko extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => '아트워크 옵션 ${index}';
 	@override String selectedArtworkOption({required Object index}) => '아트워크 옵션 ${index}, 선택됨';
 	@override String get notSet => '설정되지 않음';
-	@override String get libraryDefault => '라이브러리 기본값';
-	@override String get accountDefault => '계정 기본값';
-	@override String get seriesDefault => '시리즈 기본값';
-	@override String get episodeSorting => '에피소드 정렬';
-	@override String get oldestFirst => '오래된 순';
-	@override String get newestFirst => '최신 순';
-	@override String get keep => '유지';
-	@override String get allEpisodes => '모든 에피소드';
-	@override String latestEpisodes({required Object count}) => '최신 에피소드 ${count}개';
-	@override String get latestEpisode => '최신 에피소드';
-	@override String episodesAddedPastDays({required Object count}) => '최근 ${count}일 내 추가된 에피소드';
-	@override String get deleteAfterPlaying => '재생 후 에피소드 삭제';
-	@override String get never => '안 함';
-	@override String get afterADay => '하루 후';
-	@override String get afterAWeek => '일주일 후';
-	@override String get afterAMonth => '한 달 후';
-	@override String get onNextRefresh => '다음 새로고침 시';
-	@override String get seasons => '시즌';
-	@override String get show => '표시';
-	@override String get hide => '숨기기';
-	@override String get episodeOrdering => '에피소드 순서';
-	@override String get tmdbAiring => 'The Movie Database (방영순)';
-	@override String get tvdbAiring => 'TheTVDB (방영순)';
-	@override String get tvdbAbsolute => 'TheTVDB (절대순)';
-	@override String get metadataLanguage => '메타데이터 언어';
-	@override String get useOriginalTitle => '원제 사용';
-	@override String get preferredAudioLanguage => '선호 오디오 언어';
-	@override String get preferredSubtitleLanguage => '선호 자막 언어';
-	@override String get subtitleMode => '자막 자동 선택 모드';
-	@override String get manuallySelected => '수동 선택';
-	@override String get shownWithForeignAudio => '외국어 오디오 시 표시';
-	@override String get alwaysEnabled => '항상 활성화';
 	@override String get tags => '태그';
 	@override String get addTag => '태그 추가';
 	@override String get genre => '장르';
@@ -1444,10 +1411,7 @@ class _Translations$metadataEdit$ko extends Translations$metadataEdit$en {
 	@override String get writer => '작가';
 	@override String get producer => '프로듀서';
 	@override String get country => '국가';
-	@override String get collection => '컬렉션';
 	@override String get label => '라벨';
-	@override String get style => '스타일';
-	@override String get mood => '분위기';
 }
 
 // Path: trakt
@@ -1667,11 +1631,8 @@ class _Translations$libraries$sortLabels$ko extends Translations$libraries$sortL
 	// Translations
 	@override String get title => '제목';
 	@override String get dateAdded => '추가된 날짜';
-	@override String get releaseDate => '출시일';
-	@override String get rating => '평점';
 	@override String get communityRating => '커뮤니티 평점';
 	@override String get criticRating => '평론가 평점';
-	@override String get userRating => '사용자 평점';
 	@override String get datePlayed => '재생일';
 	@override String get playCount => '재생 횟수';
 	@override String get productionYear => '제작 연도';
@@ -1682,8 +1643,6 @@ class _Translations$libraries$sortLabels$ko extends Translations$libraries$sortL
 	@override String get airTime => '방영 시간';
 	@override String get studio => '스튜디오';
 	@override String get random => '무작위';
-	@override String get dateShared => '공유된 날짜';
-	@override String get latestEpisodeAirDate => '최신 에피소드 방영일';
 	@override String get lastEpisodeDateAdded => '최신 에피소드 추가일';
 }
 
@@ -2553,11 +2512,8 @@ extension on TranslationsKo {
 			'libraries.filterCategories.favorites' => '즐겨찾기',
 			'libraries.sortLabels.title' => '제목',
 			'libraries.sortLabels.dateAdded' => '추가된 날짜',
-			'libraries.sortLabels.releaseDate' => '출시일',
-			'libraries.sortLabels.rating' => '평점',
 			'libraries.sortLabels.communityRating' => '커뮤니티 평점',
 			'libraries.sortLabels.criticRating' => '평론가 평점',
-			'libraries.sortLabels.userRating' => '사용자 평점',
 			'libraries.sortLabels.datePlayed' => '재생일',
 			'libraries.sortLabels.playCount' => '재생 횟수',
 			'libraries.sortLabels.productionYear' => '제작 연도',
@@ -2568,8 +2524,6 @@ extension on TranslationsKo {
 			'libraries.sortLabels.airTime' => '방영 시간',
 			'libraries.sortLabels.studio' => '스튜디오',
 			'libraries.sortLabels.random' => '무작위',
-			'libraries.sortLabels.dateShared' => '공유된 날짜',
-			'libraries.sortLabels.latestEpisodeAirDate' => '최신 에피소드 방영일',
 			'libraries.sortLabels.lastEpisodeDateAdded' => '최신 에피소드 추가일',
 			'about.title' => '소개',
 			'about.openSourceLicenses' => '오픈소스 라이선스',
@@ -2855,13 +2809,13 @@ extension on TranslationsKo {
 			'performanceOverlay.speed' => '속도',
 			'performanceOverlay.player' => '플레이어',
 			'performanceOverlay.memory' => '메모리',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '외부 플레이어',
 			'externalPlayer.useExternalPlayer' => '외부 플레이어 사용',
 			'externalPlayer.useExternalPlayerDescription' => '동영상을 다른 앱에서 열기',
 			'externalPlayer.selectPlayer' => '플레이어 선택',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => '사용자 정의 플레이어',
 			'externalPlayer.systemDefault' => '시스템 기본값',
 			'externalPlayer.addCustomPlayer' => '사용자 정의 플레이어 추가',
@@ -2878,7 +2832,6 @@ extension on TranslationsKo {
 			'metadataEdit.screenTitle' => '메타데이터 편집',
 			'metadataEdit.basicInfo' => '기본 정보',
 			'metadataEdit.artwork' => '아트워크',
-			'metadataEdit.advancedSettings' => '고급 설정',
 			'metadataEdit.title' => '제목',
 			'metadataEdit.sortTitle' => '정렬 제목',
 			'metadataEdit.originalTitle' => '원제',
@@ -2907,38 +2860,6 @@ extension on TranslationsKo {
 			'metadataEdit.artworkOption' => ({required Object index}) => '아트워크 옵션 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '아트워크 옵션 ${index}, 선택됨',
 			'metadataEdit.notSet' => '설정되지 않음',
-			'metadataEdit.libraryDefault' => '라이브러리 기본값',
-			'metadataEdit.accountDefault' => '계정 기본값',
-			'metadataEdit.seriesDefault' => '시리즈 기본값',
-			'metadataEdit.episodeSorting' => '에피소드 정렬',
-			'metadataEdit.oldestFirst' => '오래된 순',
-			'metadataEdit.newestFirst' => '최신 순',
-			'metadataEdit.keep' => '유지',
-			'metadataEdit.allEpisodes' => '모든 에피소드',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '최신 에피소드 ${count}개',
-			'metadataEdit.latestEpisode' => '최신 에피소드',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => '최근 ${count}일 내 추가된 에피소드',
-			'metadataEdit.deleteAfterPlaying' => '재생 후 에피소드 삭제',
-			'metadataEdit.never' => '안 함',
-			'metadataEdit.afterADay' => '하루 후',
-			'metadataEdit.afterAWeek' => '일주일 후',
-			'metadataEdit.afterAMonth' => '한 달 후',
-			'metadataEdit.onNextRefresh' => '다음 새로고침 시',
-			'metadataEdit.seasons' => '시즌',
-			'metadataEdit.show' => '표시',
-			'metadataEdit.hide' => '숨기기',
-			'metadataEdit.episodeOrdering' => '에피소드 순서',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (방영순)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (방영순)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (절대순)',
-			'metadataEdit.metadataLanguage' => '메타데이터 언어',
-			'metadataEdit.useOriginalTitle' => '원제 사용',
-			'metadataEdit.preferredAudioLanguage' => '선호 오디오 언어',
-			'metadataEdit.preferredSubtitleLanguage' => '선호 자막 언어',
-			'metadataEdit.subtitleMode' => '자막 자동 선택 모드',
-			'metadataEdit.manuallySelected' => '수동 선택',
-			'metadataEdit.shownWithForeignAudio' => '외국어 오디오 시 표시',
-			'metadataEdit.alwaysEnabled' => '항상 활성화',
 			'metadataEdit.tags' => '태그',
 			'metadataEdit.addTag' => '태그 추가',
 			'metadataEdit.genre' => '장르',
@@ -2946,10 +2867,7 @@ extension on TranslationsKo {
 			'metadataEdit.writer' => '작가',
 			'metadataEdit.producer' => '프로듀서',
 			'metadataEdit.country' => '국가',
-			'metadataEdit.collection' => '컬렉션',
 			'metadataEdit.label' => '라벨',
-			'metadataEdit.style' => '스타일',
-			'metadataEdit.mood' => '분위기',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '연결됨',
 			'trakt.connectedAs' => ({required Object username}) => '@${username}(으)로 연결됨',

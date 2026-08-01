@@ -1379,7 +1379,6 @@ class _Translations$metadataEdit$it extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Modifica metadati';
 	@override String get basicInfo => 'Informazioni di base';
 	@override String get artwork => 'Immagini';
-	@override String get advancedSettings => 'Impostazioni avanzate';
 	@override String get title => 'Titolo';
 	@override String get sortTitle => 'Titolo di ordinamento';
 	@override String get originalTitle => 'Titolo originale';
@@ -1408,38 +1407,6 @@ class _Translations$metadataEdit$it extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Opzione immagine ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Opzione immagine ${index}, selezionata';
 	@override String get notSet => 'Non impostato';
-	@override String get libraryDefault => 'Predefinito della libreria';
-	@override String get accountDefault => 'Predefinito dell\'account';
-	@override String get seriesDefault => 'Predefinito della serie';
-	@override String get episodeSorting => 'Ordinamento episodi';
-	@override String get oldestFirst => 'Più vecchi prima';
-	@override String get newestFirst => 'Più recenti prima';
-	@override String get keep => 'Conserva';
-	@override String get allEpisodes => 'Tutti gli episodi';
-	@override String latestEpisodes({required Object count}) => '${count} episodi più recenti';
-	@override String get latestEpisode => 'Episodio più recente';
-	@override String episodesAddedPastDays({required Object count}) => 'Episodi aggiunti negli ultimi ${count} giorni';
-	@override String get deleteAfterPlaying => 'Elimina episodi dopo la riproduzione';
-	@override String get never => 'Mai';
-	@override String get afterADay => 'Dopo un giorno';
-	@override String get afterAWeek => 'Dopo una settimana';
-	@override String get afterAMonth => 'Dopo un mese';
-	@override String get onNextRefresh => 'Al prossimo aggiornamento';
-	@override String get seasons => 'Stagioni';
-	@override String get show => 'Mostra';
-	@override String get hide => 'Nascondi';
-	@override String get episodeOrdering => 'Ordine episodi';
-	@override String get tmdbAiring => 'The Movie Database (ordine di trasmissione)';
-	@override String get tvdbAiring => 'TheTVDB (ordine di trasmissione)';
-	@override String get tvdbAbsolute => 'TheTVDB (ordine assoluto)';
-	@override String get metadataLanguage => 'Lingua dei metadati';
-	@override String get useOriginalTitle => 'Usa il titolo originale';
-	@override String get preferredAudioLanguage => 'Lingua audio preferita';
-	@override String get preferredSubtitleLanguage => 'Lingua dei sottotitoli preferita';
-	@override String get subtitleMode => 'Modalità di selezione automatica dei sottotitoli';
-	@override String get manuallySelected => 'Selezionato manualmente';
-	@override String get shownWithForeignAudio => 'Mostrati con audio straniero';
-	@override String get alwaysEnabled => 'Sempre attivo';
 	@override String get tags => 'Tag';
 	@override String get addTag => 'Aggiungi tag';
 	@override String get genre => 'Genere';
@@ -1447,10 +1414,7 @@ class _Translations$metadataEdit$it extends Translations$metadataEdit$en {
 	@override String get writer => 'Sceneggiatore';
 	@override String get producer => 'Produttore';
 	@override String get country => 'Paese';
-	@override String get collection => 'Raccolta';
 	@override String get label => 'Etichetta';
-	@override String get style => 'Stile';
-	@override String get mood => 'Atmosfera';
 }
 
 // Path: trakt
@@ -1670,11 +1634,8 @@ class _Translations$libraries$sortLabels$it extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Titolo';
 	@override String get dateAdded => 'Data di aggiunta';
-	@override String get releaseDate => 'Data di uscita';
-	@override String get rating => 'Valutazione';
 	@override String get communityRating => 'Valutazione della comunità';
 	@override String get criticRating => 'Valutazione critica';
-	@override String get userRating => 'Valutazione utente';
 	@override String get datePlayed => 'Data di riproduzione';
 	@override String get playCount => 'Riproduzioni';
 	@override String get productionYear => 'Anno di produzione';
@@ -1685,8 +1646,6 @@ class _Translations$libraries$sortLabels$it extends Translations$libraries$sortL
 	@override String get airTime => 'Orario di messa in onda';
 	@override String get studio => 'Studio';
 	@override String get random => 'Casuale';
-	@override String get dateShared => 'Data di condivisione';
-	@override String get latestEpisodeAirDate => 'Data di trasmissione dell\'ultimo episodio';
 	@override String get lastEpisodeDateAdded => 'Data di aggiunta dell\'ultimo episodio';
 }
 
@@ -2556,11 +2515,8 @@ extension on TranslationsIt {
 			'libraries.filterCategories.favorites' => 'Preferiti',
 			'libraries.sortLabels.title' => 'Titolo',
 			'libraries.sortLabels.dateAdded' => 'Data di aggiunta',
-			'libraries.sortLabels.releaseDate' => 'Data di uscita',
-			'libraries.sortLabels.rating' => 'Valutazione',
 			'libraries.sortLabels.communityRating' => 'Valutazione della comunità',
 			'libraries.sortLabels.criticRating' => 'Valutazione critica',
-			'libraries.sortLabels.userRating' => 'Valutazione utente',
 			'libraries.sortLabels.datePlayed' => 'Data di riproduzione',
 			'libraries.sortLabels.playCount' => 'Riproduzioni',
 			'libraries.sortLabels.productionYear' => 'Anno di produzione',
@@ -2571,8 +2527,6 @@ extension on TranslationsIt {
 			'libraries.sortLabels.airTime' => 'Orario di messa in onda',
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Casuale',
-			'libraries.sortLabels.dateShared' => 'Data di condivisione',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Data di trasmissione dell\'ultimo episodio',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Data di aggiunta dell\'ultimo episodio',
 			'about.title' => 'Informazioni',
 			'about.openSourceLicenses' => 'Licenze open source',
@@ -2858,13 +2812,13 @@ extension on TranslationsIt {
 			'performanceOverlay.speed' => 'Velocità',
 			'performanceOverlay.player' => 'Lettore',
 			'performanceOverlay.memory' => 'Memoria',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'FPS UI',
 			'externalPlayer.title' => 'Lettore esterno',
 			'externalPlayer.useExternalPlayer' => 'Usa un lettore esterno',
 			'externalPlayer.useExternalPlayerDescription' => 'Apri i video in un\'altra app',
 			'externalPlayer.selectPlayer' => 'Seleziona il lettore',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'Lettori personalizzati',
 			'externalPlayer.systemDefault' => 'Predefinito di sistema',
 			'externalPlayer.addCustomPlayer' => 'Aggiungi lettore personalizzato',
@@ -2881,7 +2835,6 @@ extension on TranslationsIt {
 			'metadataEdit.screenTitle' => 'Modifica metadati',
 			'metadataEdit.basicInfo' => 'Informazioni di base',
 			'metadataEdit.artwork' => 'Immagini',
-			'metadataEdit.advancedSettings' => 'Impostazioni avanzate',
 			'metadataEdit.title' => 'Titolo',
 			'metadataEdit.sortTitle' => 'Titolo di ordinamento',
 			'metadataEdit.originalTitle' => 'Titolo originale',
@@ -2910,38 +2863,6 @@ extension on TranslationsIt {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opzione immagine ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opzione immagine ${index}, selezionata',
 			'metadataEdit.notSet' => 'Non impostato',
-			'metadataEdit.libraryDefault' => 'Predefinito della libreria',
-			'metadataEdit.accountDefault' => 'Predefinito dell\'account',
-			'metadataEdit.seriesDefault' => 'Predefinito della serie',
-			'metadataEdit.episodeSorting' => 'Ordinamento episodi',
-			'metadataEdit.oldestFirst' => 'Più vecchi prima',
-			'metadataEdit.newestFirst' => 'Più recenti prima',
-			'metadataEdit.keep' => 'Conserva',
-			'metadataEdit.allEpisodes' => 'Tutti gli episodi',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '${count} episodi più recenti',
-			'metadataEdit.latestEpisode' => 'Episodio più recente',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Episodi aggiunti negli ultimi ${count} giorni',
-			'metadataEdit.deleteAfterPlaying' => 'Elimina episodi dopo la riproduzione',
-			'metadataEdit.never' => 'Mai',
-			'metadataEdit.afterADay' => 'Dopo un giorno',
-			'metadataEdit.afterAWeek' => 'Dopo una settimana',
-			'metadataEdit.afterAMonth' => 'Dopo un mese',
-			'metadataEdit.onNextRefresh' => 'Al prossimo aggiornamento',
-			'metadataEdit.seasons' => 'Stagioni',
-			'metadataEdit.show' => 'Mostra',
-			'metadataEdit.hide' => 'Nascondi',
-			'metadataEdit.episodeOrdering' => 'Ordine episodi',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (ordine di trasmissione)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (ordine di trasmissione)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (ordine assoluto)',
-			'metadataEdit.metadataLanguage' => 'Lingua dei metadati',
-			'metadataEdit.useOriginalTitle' => 'Usa il titolo originale',
-			'metadataEdit.preferredAudioLanguage' => 'Lingua audio preferita',
-			'metadataEdit.preferredSubtitleLanguage' => 'Lingua dei sottotitoli preferita',
-			'metadataEdit.subtitleMode' => 'Modalità di selezione automatica dei sottotitoli',
-			'metadataEdit.manuallySelected' => 'Selezionato manualmente',
-			'metadataEdit.shownWithForeignAudio' => 'Mostrati con audio straniero',
-			'metadataEdit.alwaysEnabled' => 'Sempre attivo',
 			'metadataEdit.tags' => 'Tag',
 			'metadataEdit.addTag' => 'Aggiungi tag',
 			'metadataEdit.genre' => 'Genere',
@@ -2949,10 +2870,7 @@ extension on TranslationsIt {
 			'metadataEdit.writer' => 'Sceneggiatore',
 			'metadataEdit.producer' => 'Produttore',
 			'metadataEdit.country' => 'Paese',
-			'metadataEdit.collection' => 'Raccolta',
 			'metadataEdit.label' => 'Etichetta',
-			'metadataEdit.style' => 'Stile',
-			'metadataEdit.mood' => 'Atmosfera',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Connesso',
 			'trakt.connectedAs' => ({required Object username}) => 'Connesso come @${username}',

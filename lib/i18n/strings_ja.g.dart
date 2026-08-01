@@ -1376,7 +1376,6 @@ class _Translations$metadataEdit$ja extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'メタデータを編集';
 	@override String get basicInfo => '基本情報';
 	@override String get artwork => 'アートワーク';
-	@override String get advancedSettings => '詳細設定';
 	@override String get title => 'タイトル';
 	@override String get sortTitle => 'ソートタイトル';
 	@override String get originalTitle => '原題';
@@ -1405,38 +1404,6 @@ class _Translations$metadataEdit$ja extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'アートワークの選択肢 ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'アートワークの選択肢 ${index}、選択済み';
 	@override String get notSet => '未設定';
-	@override String get libraryDefault => 'ライブラリのデフォルト';
-	@override String get accountDefault => 'アカウントのデフォルト';
-	@override String get seriesDefault => 'シリーズのデフォルト';
-	@override String get episodeSorting => 'エピソードの並べ替え';
-	@override String get oldestFirst => '古い順';
-	@override String get newestFirst => '新しい順';
-	@override String get keep => '保持';
-	@override String get allEpisodes => 'すべてのエピソード';
-	@override String latestEpisodes({required Object count}) => '最新の${count}話';
-	@override String get latestEpisode => '最新エピソード';
-	@override String episodesAddedPastDays({required Object count}) => '過去${count}日間に追加されたエピソード';
-	@override String get deleteAfterPlaying => '再生後にエピソードを削除';
-	@override String get never => 'しない';
-	@override String get afterADay => '1日後';
-	@override String get afterAWeek => '1週間後';
-	@override String get afterAMonth => '1か月後';
-	@override String get onNextRefresh => '次回更新時';
-	@override String get seasons => 'シーズン';
-	@override String get show => '表示';
-	@override String get hide => '非表示';
-	@override String get episodeOrdering => 'エピソードの順序';
-	@override String get tmdbAiring => 'The Movie Database（放送順）';
-	@override String get tvdbAiring => 'TheTVDB（放送順）';
-	@override String get tvdbAbsolute => 'TheTVDB（絶対順）';
-	@override String get metadataLanguage => 'メタデータの言語';
-	@override String get useOriginalTitle => '原題を使用';
-	@override String get preferredAudioLanguage => '優先音声言語';
-	@override String get preferredSubtitleLanguage => '優先字幕言語';
-	@override String get subtitleMode => '字幕自動選択モード';
-	@override String get manuallySelected => '手動選択';
-	@override String get shownWithForeignAudio => '外国語音声時に表示';
-	@override String get alwaysEnabled => '常に有効';
 	@override String get tags => 'タグ';
 	@override String get addTag => 'タグを追加';
 	@override String get genre => 'ジャンル';
@@ -1444,10 +1411,7 @@ class _Translations$metadataEdit$ja extends Translations$metadataEdit$en {
 	@override String get writer => '脚本';
 	@override String get producer => 'プロデューサー';
 	@override String get country => '国';
-	@override String get collection => 'コレクション';
 	@override String get label => 'ラベル';
-	@override String get style => 'スタイル';
-	@override String get mood => 'ムード';
 }
 
 // Path: trakt
@@ -1667,11 +1631,8 @@ class _Translations$libraries$sortLabels$ja extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'タイトル';
 	@override String get dateAdded => '追加日';
-	@override String get releaseDate => 'リリース日';
-	@override String get rating => '評価';
 	@override String get communityRating => 'コミュニティ評価';
 	@override String get criticRating => '批評家評価';
-	@override String get userRating => 'ユーザー評価';
 	@override String get datePlayed => '再生日';
 	@override String get playCount => '再生回数';
 	@override String get productionYear => '製作年';
@@ -1682,8 +1643,6 @@ class _Translations$libraries$sortLabels$ja extends Translations$libraries$sortL
 	@override String get airTime => '放送時刻';
 	@override String get studio => 'スタジオ';
 	@override String get random => 'ランダム';
-	@override String get dateShared => '共有日';
-	@override String get latestEpisodeAirDate => '最新エピソード放送日';
 	@override String get lastEpisodeDateAdded => '最新エピソード追加日';
 }
 
@@ -2553,11 +2512,8 @@ extension on TranslationsJa {
 			'libraries.filterCategories.favorites' => 'お気に入り',
 			'libraries.sortLabels.title' => 'タイトル',
 			'libraries.sortLabels.dateAdded' => '追加日',
-			'libraries.sortLabels.releaseDate' => 'リリース日',
-			'libraries.sortLabels.rating' => '評価',
 			'libraries.sortLabels.communityRating' => 'コミュニティ評価',
 			'libraries.sortLabels.criticRating' => '批評家評価',
-			'libraries.sortLabels.userRating' => 'ユーザー評価',
 			'libraries.sortLabels.datePlayed' => '再生日',
 			'libraries.sortLabels.playCount' => '再生回数',
 			'libraries.sortLabels.productionYear' => '製作年',
@@ -2568,8 +2524,6 @@ extension on TranslationsJa {
 			'libraries.sortLabels.airTime' => '放送時刻',
 			'libraries.sortLabels.studio' => 'スタジオ',
 			'libraries.sortLabels.random' => 'ランダム',
-			'libraries.sortLabels.dateShared' => '共有日',
-			'libraries.sortLabels.latestEpisodeAirDate' => '最新エピソード放送日',
 			'libraries.sortLabels.lastEpisodeDateAdded' => '最新エピソード追加日',
 			'about.title' => 'アプリについて',
 			'about.openSourceLicenses' => 'オープンソースライセンス',
@@ -2855,13 +2809,13 @@ extension on TranslationsJa {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => 'プレーヤー',
 			'performanceOverlay.memory' => 'メモリ',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部プレーヤー',
 			'externalPlayer.useExternalPlayer' => '外部プレーヤーを使用',
 			'externalPlayer.useExternalPlayerDescription' => '動画を別のアプリで開きます',
 			'externalPlayer.selectPlayer' => 'プレーヤーを選択',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'カスタムプレーヤー',
 			'externalPlayer.systemDefault' => 'システム既定',
 			'externalPlayer.addCustomPlayer' => 'カスタムプレーヤーを追加',
@@ -2878,7 +2832,6 @@ extension on TranslationsJa {
 			'metadataEdit.screenTitle' => 'メタデータを編集',
 			'metadataEdit.basicInfo' => '基本情報',
 			'metadataEdit.artwork' => 'アートワーク',
-			'metadataEdit.advancedSettings' => '詳細設定',
 			'metadataEdit.title' => 'タイトル',
 			'metadataEdit.sortTitle' => 'ソートタイトル',
 			'metadataEdit.originalTitle' => '原題',
@@ -2907,38 +2860,6 @@ extension on TranslationsJa {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}、選択済み',
 			'metadataEdit.notSet' => '未設定',
-			'metadataEdit.libraryDefault' => 'ライブラリのデフォルト',
-			'metadataEdit.accountDefault' => 'アカウントのデフォルト',
-			'metadataEdit.seriesDefault' => 'シリーズのデフォルト',
-			'metadataEdit.episodeSorting' => 'エピソードの並べ替え',
-			'metadataEdit.oldestFirst' => '古い順',
-			'metadataEdit.newestFirst' => '新しい順',
-			'metadataEdit.keep' => '保持',
-			'metadataEdit.allEpisodes' => 'すべてのエピソード',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '最新の${count}話',
-			'metadataEdit.latestEpisode' => '最新エピソード',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => '過去${count}日間に追加されたエピソード',
-			'metadataEdit.deleteAfterPlaying' => '再生後にエピソードを削除',
-			'metadataEdit.never' => 'しない',
-			'metadataEdit.afterADay' => '1日後',
-			'metadataEdit.afterAWeek' => '1週間後',
-			'metadataEdit.afterAMonth' => '1か月後',
-			'metadataEdit.onNextRefresh' => '次回更新時',
-			'metadataEdit.seasons' => 'シーズン',
-			'metadataEdit.show' => '表示',
-			'metadataEdit.hide' => '非表示',
-			'metadataEdit.episodeOrdering' => 'エピソードの順序',
-			'metadataEdit.tmdbAiring' => 'The Movie Database（放送順）',
-			'metadataEdit.tvdbAiring' => 'TheTVDB（放送順）',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB（絶対順）',
-			'metadataEdit.metadataLanguage' => 'メタデータの言語',
-			'metadataEdit.useOriginalTitle' => '原題を使用',
-			'metadataEdit.preferredAudioLanguage' => '優先音声言語',
-			'metadataEdit.preferredSubtitleLanguage' => '優先字幕言語',
-			'metadataEdit.subtitleMode' => '字幕自動選択モード',
-			'metadataEdit.manuallySelected' => '手動選択',
-			'metadataEdit.shownWithForeignAudio' => '外国語音声時に表示',
-			'metadataEdit.alwaysEnabled' => '常に有効',
 			'metadataEdit.tags' => 'タグ',
 			'metadataEdit.addTag' => 'タグを追加',
 			'metadataEdit.genre' => 'ジャンル',
@@ -2946,10 +2867,7 @@ extension on TranslationsJa {
 			'metadataEdit.writer' => '脚本',
 			'metadataEdit.producer' => 'プロデューサー',
 			'metadataEdit.country' => '国',
-			'metadataEdit.collection' => 'コレクション',
 			'metadataEdit.label' => 'ラベル',
-			'metadataEdit.style' => 'スタイル',
-			'metadataEdit.mood' => 'ムード',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => '接続済み',
 			'trakt.connectedAs' => ({required Object username}) => '@${username}として接続済み',

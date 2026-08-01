@@ -1379,7 +1379,6 @@ class _Translations$metadataEdit$nl extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Metadata bewerken';
 	@override String get basicInfo => 'Basisinformatie';
 	@override String get artwork => 'Illustraties';
-	@override String get advancedSettings => 'Geavanceerde instellingen';
 	@override String get title => 'Titel';
 	@override String get sortTitle => 'Sorteertitel';
 	@override String get originalTitle => 'Oorspronkelijke titel';
@@ -1408,38 +1407,6 @@ class _Translations$metadataEdit$nl extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Illustratie ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Illustratie ${index}, geselecteerd';
 	@override String get notSet => 'Niet ingesteld';
-	@override String get libraryDefault => 'Standaard van de bibliotheek';
-	@override String get accountDefault => 'Standaard van het account';
-	@override String get seriesDefault => 'Standaard van de serie';
-	@override String get episodeSorting => 'Afleveringen sorteren';
-	@override String get oldestFirst => 'Oudste eerst';
-	@override String get newestFirst => 'Nieuwste eerst';
-	@override String get keep => 'Bewaren';
-	@override String get allEpisodes => 'Alle afleveringen';
-	@override String latestEpisodes({required Object count}) => '${count} nieuwste afleveringen';
-	@override String get latestEpisode => 'Nieuwste aflevering';
-	@override String episodesAddedPastDays({required Object count}) => 'Afleveringen toegevoegd in de afgelopen ${count} dagen';
-	@override String get deleteAfterPlaying => 'Afleveringen verwijderen na afspelen';
-	@override String get never => 'Nooit';
-	@override String get afterADay => 'Na een dag';
-	@override String get afterAWeek => 'Na een week';
-	@override String get afterAMonth => 'Na een maand';
-	@override String get onNextRefresh => 'Bij volgende verversing';
-	@override String get seasons => 'Seizoenen';
-	@override String get show => 'Tonen';
-	@override String get hide => 'Verbergen';
-	@override String get episodeOrdering => 'Afleveringsvolgorde';
-	@override String get tmdbAiring => 'The Movie Database (Uitgezonden)';
-	@override String get tvdbAiring => 'TheTVDB (Uitgezonden)';
-	@override String get tvdbAbsolute => 'TheTVDB (Absoluut)';
-	@override String get metadataLanguage => 'Metadatataal';
-	@override String get useOriginalTitle => 'Oorspronkelijke titel gebruiken';
-	@override String get preferredAudioLanguage => 'Voorkeurstaal voor audio';
-	@override String get preferredSubtitleLanguage => 'Voorkeurstaal voor ondertitels';
-	@override String get subtitleMode => 'Automatische ondertitelselectie';
-	@override String get manuallySelected => 'Handmatig geselecteerd';
-	@override String get shownWithForeignAudio => 'Weergeven bij anderstalig geluid';
-	@override String get alwaysEnabled => 'Altijd ingeschakeld';
 	@override String get tags => 'Tags';
 	@override String get addTag => 'Tag toevoegen';
 	@override String get genre => 'Genre';
@@ -1447,10 +1414,7 @@ class _Translations$metadataEdit$nl extends Translations$metadataEdit$en {
 	@override String get writer => 'Schrijver';
 	@override String get producer => 'Producent';
 	@override String get country => 'Land';
-	@override String get collection => 'Collectie';
 	@override String get label => 'Label';
-	@override String get style => 'Stijl';
-	@override String get mood => 'Stemming';
 }
 
 // Path: trakt
@@ -1670,11 +1634,8 @@ class _Translations$libraries$sortLabels$nl extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Titel';
 	@override String get dateAdded => 'Toegevoegd op';
-	@override String get releaseDate => 'Uitgavedatum';
-	@override String get rating => 'Beoordeling';
 	@override String get communityRating => 'Beoordeling door community';
 	@override String get criticRating => 'Beoordeling door critici';
-	@override String get userRating => 'Gebruikersbeoordeling';
 	@override String get datePlayed => 'Afspeeldatum';
 	@override String get playCount => 'Aantal afspelingen';
 	@override String get productionYear => 'Productiejaar';
@@ -1685,8 +1646,6 @@ class _Translations$libraries$sortLabels$nl extends Translations$libraries$sortL
 	@override String get airTime => 'Uitzendtijd';
 	@override String get studio => 'Studio';
 	@override String get random => 'Willekeurig';
-	@override String get dateShared => 'Gedeeld op';
-	@override String get latestEpisodeAirDate => 'Laatste afleveringsuitzending';
 	@override String get lastEpisodeDateAdded => 'Datum laatst toegevoegde aflevering';
 }
 
@@ -2556,11 +2515,8 @@ extension on TranslationsNl {
 			'libraries.filterCategories.favorites' => 'Favorieten',
 			'libraries.sortLabels.title' => 'Titel',
 			'libraries.sortLabels.dateAdded' => 'Toegevoegd op',
-			'libraries.sortLabels.releaseDate' => 'Uitgavedatum',
-			'libraries.sortLabels.rating' => 'Beoordeling',
 			'libraries.sortLabels.communityRating' => 'Beoordeling door community',
 			'libraries.sortLabels.criticRating' => 'Beoordeling door critici',
-			'libraries.sortLabels.userRating' => 'Gebruikersbeoordeling',
 			'libraries.sortLabels.datePlayed' => 'Afspeeldatum',
 			'libraries.sortLabels.playCount' => 'Aantal afspelingen',
 			'libraries.sortLabels.productionYear' => 'Productiejaar',
@@ -2571,8 +2527,6 @@ extension on TranslationsNl {
 			'libraries.sortLabels.airTime' => 'Uitzendtijd',
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Willekeurig',
-			'libraries.sortLabels.dateShared' => 'Gedeeld op',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Laatste afleveringsuitzending',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Datum laatst toegevoegde aflevering',
 			'about.title' => 'Over',
 			'about.openSourceLicenses' => 'Opensourcelicenties',
@@ -2858,13 +2812,13 @@ extension on TranslationsNl {
 			'performanceOverlay.speed' => 'Snelheid',
 			'performanceOverlay.player' => 'Speler',
 			'performanceOverlay.memory' => 'Geheugen',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Externe speler',
 			'externalPlayer.useExternalPlayer' => 'Externe speler gebruiken',
 			'externalPlayer.useExternalPlayerDescription' => 'Open video\'s in een andere app',
 			'externalPlayer.selectPlayer' => 'Speler selecteren',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'Aangepaste spelers',
 			'externalPlayer.systemDefault' => 'Systeemstandaard',
 			'externalPlayer.addCustomPlayer' => 'Aangepaste speler toevoegen',
@@ -2881,7 +2835,6 @@ extension on TranslationsNl {
 			'metadataEdit.screenTitle' => 'Metadata bewerken',
 			'metadataEdit.basicInfo' => 'Basisinformatie',
 			'metadataEdit.artwork' => 'Illustraties',
-			'metadataEdit.advancedSettings' => 'Geavanceerde instellingen',
 			'metadataEdit.title' => 'Titel',
 			'metadataEdit.sortTitle' => 'Sorteertitel',
 			'metadataEdit.originalTitle' => 'Oorspronkelijke titel',
@@ -2910,38 +2863,6 @@ extension on TranslationsNl {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Illustratie ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Illustratie ${index}, geselecteerd',
 			'metadataEdit.notSet' => 'Niet ingesteld',
-			'metadataEdit.libraryDefault' => 'Standaard van de bibliotheek',
-			'metadataEdit.accountDefault' => 'Standaard van het account',
-			'metadataEdit.seriesDefault' => 'Standaard van de serie',
-			'metadataEdit.episodeSorting' => 'Afleveringen sorteren',
-			'metadataEdit.oldestFirst' => 'Oudste eerst',
-			'metadataEdit.newestFirst' => 'Nieuwste eerst',
-			'metadataEdit.keep' => 'Bewaren',
-			'metadataEdit.allEpisodes' => 'Alle afleveringen',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '${count} nieuwste afleveringen',
-			'metadataEdit.latestEpisode' => 'Nieuwste aflevering',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Afleveringen toegevoegd in de afgelopen ${count} dagen',
-			'metadataEdit.deleteAfterPlaying' => 'Afleveringen verwijderen na afspelen',
-			'metadataEdit.never' => 'Nooit',
-			'metadataEdit.afterADay' => 'Na een dag',
-			'metadataEdit.afterAWeek' => 'Na een week',
-			'metadataEdit.afterAMonth' => 'Na een maand',
-			'metadataEdit.onNextRefresh' => 'Bij volgende verversing',
-			'metadataEdit.seasons' => 'Seizoenen',
-			'metadataEdit.show' => 'Tonen',
-			'metadataEdit.hide' => 'Verbergen',
-			'metadataEdit.episodeOrdering' => 'Afleveringsvolgorde',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Uitgezonden)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Uitgezonden)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Absoluut)',
-			'metadataEdit.metadataLanguage' => 'Metadatataal',
-			'metadataEdit.useOriginalTitle' => 'Oorspronkelijke titel gebruiken',
-			'metadataEdit.preferredAudioLanguage' => 'Voorkeurstaal voor audio',
-			'metadataEdit.preferredSubtitleLanguage' => 'Voorkeurstaal voor ondertitels',
-			'metadataEdit.subtitleMode' => 'Automatische ondertitelselectie',
-			'metadataEdit.manuallySelected' => 'Handmatig geselecteerd',
-			'metadataEdit.shownWithForeignAudio' => 'Weergeven bij anderstalig geluid',
-			'metadataEdit.alwaysEnabled' => 'Altijd ingeschakeld',
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tag toevoegen',
 			'metadataEdit.genre' => 'Genre',
@@ -2949,10 +2870,7 @@ extension on TranslationsNl {
 			'metadataEdit.writer' => 'Schrijver',
 			'metadataEdit.producer' => 'Producent',
 			'metadataEdit.country' => 'Land',
-			'metadataEdit.collection' => 'Collectie',
 			'metadataEdit.label' => 'Label',
-			'metadataEdit.style' => 'Stijl',
-			'metadataEdit.mood' => 'Stemming',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Verbonden',
 			'trakt.connectedAs' => ({required Object username}) => 'Verbonden als @${username}',

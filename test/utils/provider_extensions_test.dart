@@ -56,7 +56,7 @@ void main() {
   testWidgets('library-qualified helpers reject a missing owner instead of returning another online server', (
     tester,
   ) async {
-    final replacement = testPlexClient(serverId: ServerId('server-b'));
+    final replacement = testClientForServer(ServerId('server-b'));
     final context = await _pumpContext(tester, testMultiServer(clients: [replacement]).provider);
 
     expect(() => context.getMediaClientForLibrary(_missingOwnerLibrary), _throwsNoClientAvailable);
@@ -65,7 +65,7 @@ void main() {
   testWidgets('unqualified libraries fail while explicitly named fallback helpers still select an online server', (
     tester,
   ) async {
-    final replacement = testPlexClient(serverId: ServerId('server-b'));
+    final replacement = testClientForServer(ServerId('server-b'));
     final context = await _pumpContext(tester, testMultiServer(clients: [replacement]).provider);
 
     for (final serverId in <String?>[null, '   ']) {
@@ -84,8 +84,8 @@ void main() {
   });
 
   testWidgets('library-qualified helpers return their registered owner even when it is marked offline', (tester) async {
-    final owner = testPlexClient(serverId: ServerId('server-a'));
-    final replacement = testPlexClient(serverId: ServerId('server-b'));
+    final owner = testClientForServer(ServerId('server-a'));
+    final replacement = testClientForServer(ServerId('server-b'));
     final context = await _pumpContext(
       tester,
       testMultiServer(clients: [owner, replacement], offline: [owner]).provider,

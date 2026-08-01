@@ -943,11 +943,11 @@ Map<String, Object?>? _rawMetadata(PlexMetadataDto dto) {
 ///   * `<type>FromJson` — accept raw Plex JSON and parse + map in one step.
 ///     Used by tests and by callers that haven't already parsed a DTO.
 ///   * `<type>` (DTO-typed) — accept an already-parsed DTO. Used by the
-///     [PlexClient] which keeps a DTO step internally for caching, copying,
+///     the deleted Plex client, which kept a DTO step internally for caching,
 ///     and OnDeck composition.
 ///
 /// Pure: no HTTP, no client state, no token-aware image-URL resolution.
-/// Token-aware image URLs are layered on at the [PlexClient] boundary via
+/// Token-aware image URLs were layered on at the client boundary via
 /// `thumbnailUrl`/`externalImageUrl` — this layer leaves the relative
 /// `thumb`/`art`/`clearLogo` paths intact so they can be resolved per
 /// instance.

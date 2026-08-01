@@ -1379,7 +1379,6 @@ class _Translations$metadataEdit$hu extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Metaadatok szerkesztése';
 	@override String get basicInfo => 'Alapinformációk';
 	@override String get artwork => 'Borítók és képek';
-	@override String get advancedSettings => 'Haladó beállítások';
 	@override String get title => 'Cím';
 	@override String get sortTitle => 'Rendezési cím';
 	@override String get originalTitle => 'Eredeti cím';
@@ -1408,38 +1407,6 @@ class _Translations$metadataEdit$hu extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => '${index}. képváltozat';
 	@override String selectedArtworkOption({required Object index}) => '${index}. képváltozat, kiválasztva';
 	@override String get notSet => 'Nincs beállítva';
-	@override String get libraryDefault => 'Könyvtári alapértelmezés';
-	@override String get accountDefault => 'Fiók alapértelmezése';
-	@override String get seriesDefault => 'Sorozat alapértelmezése';
-	@override String get episodeSorting => 'Epizódok rendezése';
-	@override String get oldestFirst => 'Legrégebbi elöl';
-	@override String get newestFirst => 'Legújabb elöl';
-	@override String get keep => 'Megtartás';
-	@override String get allEpisodes => 'Minden epizód';
-	@override String latestEpisodes({required Object count}) => 'Legutóbbi ${count} epizód';
-	@override String get latestEpisode => 'Legutóbbi epizód';
-	@override String episodesAddedPastDays({required Object count}) => 'Az elmúlt ${count} napban hozzáadott epizódok';
-	@override String get deleteAfterPlaying => 'Epizódok törlése lejátszás után';
-	@override String get never => 'Soha';
-	@override String get afterADay => 'Egy nap után';
-	@override String get afterAWeek => 'Egy hét után';
-	@override String get afterAMonth => 'Egy hónap után';
-	@override String get onNextRefresh => 'A következő frissítéskor';
-	@override String get seasons => 'Évadok';
-	@override String get show => 'Megjelenítés';
-	@override String get hide => 'Elrejtés';
-	@override String get episodeOrdering => 'Epizódok sorrendje';
-	@override String get tmdbAiring => 'The Movie Database (sugárzási sorrend)';
-	@override String get tvdbAiring => 'TheTVDB (sugárzási sorrend)';
-	@override String get tvdbAbsolute => 'TheTVDB (abszolút sorrend)';
-	@override String get metadataLanguage => 'Metaadatok nyelve';
-	@override String get useOriginalTitle => 'Eredeti cím használata';
-	@override String get preferredAudioLanguage => 'Elsődleges hangnyelv';
-	@override String get preferredSubtitleLanguage => 'Elsődleges feliratnyelv';
-	@override String get subtitleMode => 'Automatikus feliratválasztási mód';
-	@override String get manuallySelected => 'Kézzel kiválasztva';
-	@override String get shownWithForeignAudio => 'Idegen nyelvű hang esetén megjelenítve';
-	@override String get alwaysEnabled => 'Mindig engedélyezve';
 	@override String get tags => 'Címkék';
 	@override String get addTag => 'Címke hozzáadása';
 	@override String get genre => 'Műfaj';
@@ -1447,10 +1414,7 @@ class _Translations$metadataEdit$hu extends Translations$metadataEdit$en {
 	@override String get writer => 'Író';
 	@override String get producer => 'Producer';
 	@override String get country => 'Ország';
-	@override String get collection => 'Gyűjtemény';
 	@override String get label => 'Kiadó';
-	@override String get style => 'Stílus';
-	@override String get mood => 'Hangulat';
 }
 
 // Path: trakt
@@ -1670,11 +1634,8 @@ class _Translations$libraries$sortLabels$hu extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Cím';
 	@override String get dateAdded => 'Hozzáadás dátuma';
-	@override String get releaseDate => 'Bemutató dátuma';
-	@override String get rating => 'Értékelés';
 	@override String get communityRating => 'Közösségi értékelés';
 	@override String get criticRating => 'Kritikusi értékelés';
-	@override String get userRating => 'Saját értékelés';
 	@override String get datePlayed => 'Lejátszás dátuma';
 	@override String get playCount => 'Lejátszások száma';
 	@override String get productionYear => 'Gyártási év';
@@ -1685,8 +1646,6 @@ class _Translations$libraries$sortLabels$hu extends Translations$libraries$sortL
 	@override String get airTime => 'Adásidő';
 	@override String get studio => 'Stúdió';
 	@override String get random => 'Véletlenszerű';
-	@override String get dateShared => 'Megosztás dátuma';
-	@override String get latestEpisodeAirDate => 'A legutóbbi epizód sugárzási dátuma';
 	@override String get lastEpisodeDateAdded => 'Utolsó epizód hozzáadásának dátuma';
 }
 
@@ -2556,11 +2515,8 @@ extension on TranslationsHu {
 			'libraries.filterCategories.favorites' => 'Kedvencek',
 			'libraries.sortLabels.title' => 'Cím',
 			'libraries.sortLabels.dateAdded' => 'Hozzáadás dátuma',
-			'libraries.sortLabels.releaseDate' => 'Bemutató dátuma',
-			'libraries.sortLabels.rating' => 'Értékelés',
 			'libraries.sortLabels.communityRating' => 'Közösségi értékelés',
 			'libraries.sortLabels.criticRating' => 'Kritikusi értékelés',
-			'libraries.sortLabels.userRating' => 'Saját értékelés',
 			'libraries.sortLabels.datePlayed' => 'Lejátszás dátuma',
 			'libraries.sortLabels.playCount' => 'Lejátszások száma',
 			'libraries.sortLabels.productionYear' => 'Gyártási év',
@@ -2571,8 +2527,6 @@ extension on TranslationsHu {
 			'libraries.sortLabels.airTime' => 'Adásidő',
 			'libraries.sortLabels.studio' => 'Stúdió',
 			'libraries.sortLabels.random' => 'Véletlenszerű',
-			'libraries.sortLabels.dateShared' => 'Megosztás dátuma',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'A legutóbbi epizód sugárzási dátuma',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Utolsó epizód hozzáadásának dátuma',
 			'about.title' => 'Névjegy',
 			'about.openSourceLicenses' => 'Nyílt forráskódú licencek',
@@ -2858,13 +2812,13 @@ extension on TranslationsHu {
 			'performanceOverlay.speed' => 'Sebesség',
 			'performanceOverlay.player' => 'Lejátszó',
 			'performanceOverlay.memory' => 'Memória',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Felület-FPS',
 			'externalPlayer.title' => 'Külső lejátszó',
 			'externalPlayer.useExternalPlayer' => 'Külső lejátszó használata',
 			'externalPlayer.useExternalPlayerDescription' => 'Videók megnyitása egy másik alkalmazásban',
 			'externalPlayer.selectPlayer' => 'Lejátszó kiválasztása',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'Egyéni lejátszók',
 			'externalPlayer.systemDefault' => 'Rendszer alapértelmezése',
 			'externalPlayer.addCustomPlayer' => 'Egyéni lejátszó hozzáadása',
@@ -2881,7 +2835,6 @@ extension on TranslationsHu {
 			'metadataEdit.screenTitle' => 'Metaadatok szerkesztése',
 			'metadataEdit.basicInfo' => 'Alapinformációk',
 			'metadataEdit.artwork' => 'Borítók és képek',
-			'metadataEdit.advancedSettings' => 'Haladó beállítások',
 			'metadataEdit.title' => 'Cím',
 			'metadataEdit.sortTitle' => 'Rendezési cím',
 			'metadataEdit.originalTitle' => 'Eredeti cím',
@@ -2910,38 +2863,6 @@ extension on TranslationsHu {
 			'metadataEdit.artworkOption' => ({required Object index}) => '${index}. képváltozat',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '${index}. képváltozat, kiválasztva',
 			'metadataEdit.notSet' => 'Nincs beállítva',
-			'metadataEdit.libraryDefault' => 'Könyvtári alapértelmezés',
-			'metadataEdit.accountDefault' => 'Fiók alapértelmezése',
-			'metadataEdit.seriesDefault' => 'Sorozat alapértelmezése',
-			'metadataEdit.episodeSorting' => 'Epizódok rendezése',
-			'metadataEdit.oldestFirst' => 'Legrégebbi elöl',
-			'metadataEdit.newestFirst' => 'Legújabb elöl',
-			'metadataEdit.keep' => 'Megtartás',
-			'metadataEdit.allEpisodes' => 'Minden epizód',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => 'Legutóbbi ${count} epizód',
-			'metadataEdit.latestEpisode' => 'Legutóbbi epizód',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Az elmúlt ${count} napban hozzáadott epizódok',
-			'metadataEdit.deleteAfterPlaying' => 'Epizódok törlése lejátszás után',
-			'metadataEdit.never' => 'Soha',
-			'metadataEdit.afterADay' => 'Egy nap után',
-			'metadataEdit.afterAWeek' => 'Egy hét után',
-			'metadataEdit.afterAMonth' => 'Egy hónap után',
-			'metadataEdit.onNextRefresh' => 'A következő frissítéskor',
-			'metadataEdit.seasons' => 'Évadok',
-			'metadataEdit.show' => 'Megjelenítés',
-			'metadataEdit.hide' => 'Elrejtés',
-			'metadataEdit.episodeOrdering' => 'Epizódok sorrendje',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (sugárzási sorrend)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (sugárzási sorrend)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (abszolút sorrend)',
-			'metadataEdit.metadataLanguage' => 'Metaadatok nyelve',
-			'metadataEdit.useOriginalTitle' => 'Eredeti cím használata',
-			'metadataEdit.preferredAudioLanguage' => 'Elsődleges hangnyelv',
-			'metadataEdit.preferredSubtitleLanguage' => 'Elsődleges feliratnyelv',
-			'metadataEdit.subtitleMode' => 'Automatikus feliratválasztási mód',
-			'metadataEdit.manuallySelected' => 'Kézzel kiválasztva',
-			'metadataEdit.shownWithForeignAudio' => 'Idegen nyelvű hang esetén megjelenítve',
-			'metadataEdit.alwaysEnabled' => 'Mindig engedélyezve',
 			'metadataEdit.tags' => 'Címkék',
 			'metadataEdit.addTag' => 'Címke hozzáadása',
 			'metadataEdit.genre' => 'Műfaj',
@@ -2949,10 +2870,7 @@ extension on TranslationsHu {
 			'metadataEdit.writer' => 'Író',
 			'metadataEdit.producer' => 'Producer',
 			'metadataEdit.country' => 'Ország',
-			'metadataEdit.collection' => 'Gyűjtemény',
 			'metadataEdit.label' => 'Kiadó',
-			'metadataEdit.style' => 'Stílus',
-			'metadataEdit.mood' => 'Hangulat',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Csatlakoztatva',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} néven csatlakoztatva',

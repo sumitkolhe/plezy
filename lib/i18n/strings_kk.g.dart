@@ -1390,7 +1390,6 @@ class _Translations$metadataEdit$kk extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Метадеректерді өңдеу';
 	@override String get basicInfo => 'Негізгі ақпарат';
 	@override String get artwork => 'Суреттер/Постерлер';
-	@override String get advancedSettings => 'Кеңейтілген баптаулар';
 	@override String get title => 'Атауы';
 	@override String get sortTitle => 'Сұрыптау атауы';
 	@override String get originalTitle => 'Түпнұсқа атауы';
@@ -1419,38 +1418,6 @@ class _Translations$metadataEdit$kk extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Сурет опциясы ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Сурет опциясы ${index}, таңдалды';
 	@override String get notSet => 'Орнатылмаған';
-	@override String get libraryDefault => 'Кітапхана әдепкісі';
-	@override String get accountDefault => 'Тіркелгі әдепкісі';
-	@override String get seriesDefault => 'Сериал әдепкісі';
-	@override String get episodeSorting => 'Бөлімдерді сұрыптау';
-	@override String get oldestFirst => 'Басында ескілері';
-	@override String get newestFirst => 'Басында жаңалары';
-	@override String get keep => 'Сақтау';
-	@override String get allEpisodes => 'Барлық бөлімдер';
-	@override String latestEpisodes({required Object count}) => 'Соңғы ${count} бөлім';
-	@override String get latestEpisode => 'Соңғы бөлім';
-	@override String episodesAddedPastDays({required Object count}) => 'Соңғы ${count} күнде қосылған бөлімдер';
-	@override String get deleteAfterPlaying => 'Ойнатқаннан кейін өшіру';
-	@override String get never => 'Ешқашан';
-	@override String get afterADay => 'Бір күннен кейін';
-	@override String get afterAWeek => 'Бір аптадан кейін';
-	@override String get afterAMonth => 'Бір айдан кейін';
-	@override String get onNextRefresh => 'Келесі жаңартуда';
-	@override String get seasons => 'Маусымдар';
-	@override String get show => 'Көрсету';
-	@override String get hide => 'Жасыру';
-	@override String get episodeOrdering => 'Бөлімдер реті';
-	@override String get tmdbAiring => 'The Movie Database (Эфир)';
-	@override String get tvdbAiring => 'TheTVDB (Эфир)';
-	@override String get tvdbAbsolute => 'TheTVDB (Абсолютті)';
-	@override String get metadataLanguage => 'Метадеректер тілі';
-	@override String get useOriginalTitle => 'Түпнұсқа атауын пайдалану';
-	@override String get preferredAudioLanguage => 'Қалаулы аудио тілі';
-	@override String get preferredSubtitleLanguage => 'Қалаулы субтитр тілі';
-	@override String get subtitleMode => 'Автоматты субтитр таңдау режимі';
-	@override String get manuallySelected => 'Қолмен таңдалған';
-	@override String get shownWithForeignAudio => 'Шетелдік аудио кезінде көрсетіледі';
-	@override String get alwaysEnabled => 'Әрдайым қосулы';
 	@override String get tags => 'Тегтер';
 	@override String get addTag => 'Тег қосу';
 	@override String get genre => 'Жанр';
@@ -1458,10 +1425,7 @@ class _Translations$metadataEdit$kk extends Translations$metadataEdit$en {
 	@override String get writer => 'Сценарист';
 	@override String get producer => 'Продюсер';
 	@override String get country => 'Ел';
-	@override String get collection => 'Топтама';
 	@override String get label => 'Белгі';
-	@override String get style => 'Стиль';
-	@override String get mood => 'Көңіл-күй';
 }
 
 // Path: trakt
@@ -1681,11 +1645,8 @@ class _Translations$libraries$sortLabels$kk extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Атауы';
 	@override String get dateAdded => 'Қосылған күні';
-	@override String get releaseDate => 'Шыққан күні';
-	@override String get rating => 'Рейтинг';
 	@override String get communityRating => 'Қауымдастық рейтингі';
 	@override String get criticRating => 'Сыншылар рейтингі';
-	@override String get userRating => 'Пайдаланушы рейтингі';
 	@override String get datePlayed => 'Ойнатылған күні';
 	@override String get playCount => 'Ойнатылу саны';
 	@override String get productionYear => 'Шығарылған жылы';
@@ -1696,8 +1657,6 @@ class _Translations$libraries$sortLabels$kk extends Translations$libraries$sortL
 	@override String get airTime => 'Эфир уақыты';
 	@override String get studio => 'Студия';
 	@override String get random => 'Кездейсоқ';
-	@override String get dateShared => 'Бөлісілген күні';
-	@override String get latestEpisodeAirDate => 'Соңғы бөлімнің шыққан күні';
 	@override String get lastEpisodeDateAdded => 'Соңғы қосылған бөлім күні';
 }
 
@@ -2572,11 +2531,8 @@ extension on TranslationsKk {
 			'libraries.filterCategories.favorites' => 'Таңдаулылар',
 			'libraries.sortLabels.title' => 'Атауы',
 			'libraries.sortLabels.dateAdded' => 'Қосылған күні',
-			'libraries.sortLabels.releaseDate' => 'Шыққан күні',
-			'libraries.sortLabels.rating' => 'Рейтинг',
 			'libraries.sortLabels.communityRating' => 'Қауымдастық рейтингі',
 			'libraries.sortLabels.criticRating' => 'Сыншылар рейтингі',
-			'libraries.sortLabels.userRating' => 'Пайдаланушы рейтингі',
 			'libraries.sortLabels.datePlayed' => 'Ойнатылған күні',
 			'libraries.sortLabels.playCount' => 'Ойнатылу саны',
 			'libraries.sortLabels.productionYear' => 'Шығарылған жылы',
@@ -2587,8 +2543,6 @@ extension on TranslationsKk {
 			'libraries.sortLabels.airTime' => 'Эфир уақыты',
 			'libraries.sortLabels.studio' => 'Студия',
 			'libraries.sortLabels.random' => 'Кездейсоқ',
-			'libraries.sortLabels.dateShared' => 'Бөлісілген күні',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Соңғы бөлімнің шыққан күні',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Соңғы қосылған бөлім күні',
 			'about.title' => 'Қолданба туралы',
 			'about.openSourceLicenses' => 'Ашық бастапқы код лицензиялары',
@@ -2869,13 +2823,13 @@ extension on TranslationsKk {
 			'performanceOverlay.avSync' => 'A/V синхрондау',
 			'performanceOverlay.dropped' => 'Өткізілген кадрлар',
 			'performanceOverlay.dvRpus' => 'DV RPU-лар',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Орт.',
 			'performanceOverlay.dvSampleAverage' => 'DV Үлгі Орт.',
 			'performanceOverlay.maxLuma' => 'Макс Luma',
 			'performanceOverlay.minLuma' => 'Мин Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Пайдаланылған кэш',
 			'performanceOverlay.cacheLimit' => 'Кэш шегі',
@@ -2903,7 +2857,6 @@ extension on TranslationsKk {
 			'metadataEdit.screenTitle' => 'Метадеректерді өңдеу',
 			'metadataEdit.basicInfo' => 'Негізгі ақпарат',
 			'metadataEdit.artwork' => 'Суреттер/Постерлер',
-			'metadataEdit.advancedSettings' => 'Кеңейтілген баптаулар',
 			'metadataEdit.title' => 'Атауы',
 			'metadataEdit.sortTitle' => 'Сұрыптау атауы',
 			'metadataEdit.originalTitle' => 'Түпнұсқа атауы',
@@ -2932,38 +2885,6 @@ extension on TranslationsKk {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Сурет опциясы ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Сурет опциясы ${index}, таңдалды',
 			'metadataEdit.notSet' => 'Орнатылмаған',
-			'metadataEdit.libraryDefault' => 'Кітапхана әдепкісі',
-			'metadataEdit.accountDefault' => 'Тіркелгі әдепкісі',
-			'metadataEdit.seriesDefault' => 'Сериал әдепкісі',
-			'metadataEdit.episodeSorting' => 'Бөлімдерді сұрыптау',
-			'metadataEdit.oldestFirst' => 'Басында ескілері',
-			'metadataEdit.newestFirst' => 'Басында жаңалары',
-			'metadataEdit.keep' => 'Сақтау',
-			'metadataEdit.allEpisodes' => 'Барлық бөлімдер',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => 'Соңғы ${count} бөлім',
-			'metadataEdit.latestEpisode' => 'Соңғы бөлім',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Соңғы ${count} күнде қосылған бөлімдер',
-			'metadataEdit.deleteAfterPlaying' => 'Ойнатқаннан кейін өшіру',
-			'metadataEdit.never' => 'Ешқашан',
-			'metadataEdit.afterADay' => 'Бір күннен кейін',
-			'metadataEdit.afterAWeek' => 'Бір аптадан кейін',
-			'metadataEdit.afterAMonth' => 'Бір айдан кейін',
-			'metadataEdit.onNextRefresh' => 'Келесі жаңартуда',
-			'metadataEdit.seasons' => 'Маусымдар',
-			'metadataEdit.show' => 'Көрсету',
-			'metadataEdit.hide' => 'Жасыру',
-			'metadataEdit.episodeOrdering' => 'Бөлімдер реті',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Эфир)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Эфир)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Абсолютті)',
-			'metadataEdit.metadataLanguage' => 'Метадеректер тілі',
-			'metadataEdit.useOriginalTitle' => 'Түпнұсқа атауын пайдалану',
-			'metadataEdit.preferredAudioLanguage' => 'Қалаулы аудио тілі',
-			'metadataEdit.preferredSubtitleLanguage' => 'Қалаулы субтитр тілі',
-			'metadataEdit.subtitleMode' => 'Автоматты субтитр таңдау режимі',
-			'metadataEdit.manuallySelected' => 'Қолмен таңдалған',
-			'metadataEdit.shownWithForeignAudio' => 'Шетелдік аудио кезінде көрсетіледі',
-			'metadataEdit.alwaysEnabled' => 'Әрдайым қосулы',
 			'metadataEdit.tags' => 'Тегтер',
 			'metadataEdit.addTag' => 'Тег қосу',
 			'metadataEdit.genre' => 'Жанр',
@@ -2971,10 +2892,7 @@ extension on TranslationsKk {
 			'metadataEdit.writer' => 'Сценарист',
 			'metadataEdit.producer' => 'Продюсер',
 			'metadataEdit.country' => 'Ел',
-			'metadataEdit.collection' => 'Топтама',
 			'metadataEdit.label' => 'Белгі',
-			'metadataEdit.style' => 'Стиль',
-			'metadataEdit.mood' => 'Көңіл-күй',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Қосылды',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} ретінде қосылды',

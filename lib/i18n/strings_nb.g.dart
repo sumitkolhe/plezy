@@ -1379,7 +1379,6 @@ class _Translations$metadataEdit$nb extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Rediger metadata';
 	@override String get basicInfo => 'Grunnleggende informasjon';
 	@override String get artwork => 'Grafikk';
-	@override String get advancedSettings => 'Avanserte innstillinger';
 	@override String get title => 'Tittel';
 	@override String get sortTitle => 'Sorteringstittel';
 	@override String get originalTitle => 'Originaltittel';
@@ -1408,38 +1407,6 @@ class _Translations$metadataEdit$nb extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Grafikkalternativ ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Grafikkalternativ ${index}, valgt';
 	@override String get notSet => 'Ikke angitt';
-	@override String get libraryDefault => 'Bibliotekstandard';
-	@override String get accountDefault => 'Kontostandard';
-	@override String get seriesDefault => 'Seriestandard';
-	@override String get episodeSorting => 'Episodesortering';
-	@override String get oldestFirst => 'Eldste først';
-	@override String get newestFirst => 'Nyeste først';
-	@override String get keep => 'Behold';
-	@override String get allEpisodes => 'Alle episoder';
-	@override String latestEpisodes({required Object count}) => '${count} nyeste episoder';
-	@override String get latestEpisode => 'Nyeste episode';
-	@override String episodesAddedPastDays({required Object count}) => 'Episoder lagt til de siste ${count} dagene';
-	@override String get deleteAfterPlaying => 'Slett episoder etter avspilling';
-	@override String get never => 'Aldri';
-	@override String get afterADay => 'Etter en dag';
-	@override String get afterAWeek => 'Etter en uke';
-	@override String get afterAMonth => 'Etter en måned';
-	@override String get onNextRefresh => 'Ved neste oppdatering';
-	@override String get seasons => 'Sesonger';
-	@override String get show => 'Vis';
-	@override String get hide => 'Skjul';
-	@override String get episodeOrdering => 'Episoderekkefølge';
-	@override String get tmdbAiring => 'The Movie Database (Sendt)';
-	@override String get tvdbAiring => 'TheTVDB (Sendt)';
-	@override String get tvdbAbsolute => 'TheTVDB (Absolutt)';
-	@override String get metadataLanguage => 'Metadataspråk';
-	@override String get useOriginalTitle => 'Bruk originaltittel';
-	@override String get preferredAudioLanguage => 'Foretrukket lydspråk';
-	@override String get preferredSubtitleLanguage => 'Foretrukket undertekstspråk';
-	@override String get subtitleMode => 'Automatisk valg av undertekstmodus';
-	@override String get manuallySelected => 'Manuelt valgt';
-	@override String get shownWithForeignAudio => 'Vist med fremmedspråklig lyd';
-	@override String get alwaysEnabled => 'Alltid aktivert';
 	@override String get tags => 'Tagger';
 	@override String get addTag => 'Legg til tagg';
 	@override String get genre => 'Sjanger';
@@ -1447,10 +1414,7 @@ class _Translations$metadataEdit$nb extends Translations$metadataEdit$en {
 	@override String get writer => 'Forfatter';
 	@override String get producer => 'Produsent';
 	@override String get country => 'Land';
-	@override String get collection => 'Samling';
 	@override String get label => 'Etikett';
-	@override String get style => 'Stil';
-	@override String get mood => 'Stemning';
 }
 
 // Path: trakt
@@ -1670,11 +1634,8 @@ class _Translations$libraries$sortLabels$nb extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Tittel';
 	@override String get dateAdded => 'Dato lagt til';
-	@override String get releaseDate => 'Utgivelsesdato';
-	@override String get rating => 'Vurdering';
 	@override String get communityRating => 'Fellesskapsvurdering';
 	@override String get criticRating => 'Kritikervurdering';
-	@override String get userRating => 'Brukervurdering';
 	@override String get datePlayed => 'Avspillingsdato';
 	@override String get playCount => 'Avspillinger';
 	@override String get productionYear => 'Produksjonsår';
@@ -1685,8 +1646,6 @@ class _Translations$libraries$sortLabels$nb extends Translations$libraries$sortL
 	@override String get airTime => 'Sendetid';
 	@override String get studio => 'Studio';
 	@override String get random => 'Tilfeldig';
-	@override String get dateShared => 'Delingsdato';
-	@override String get latestEpisodeAirDate => 'Siste episodes sendedato';
 	@override String get lastEpisodeDateAdded => 'Dato for sist lagt til episode';
 }
 
@@ -2556,11 +2515,8 @@ extension on TranslationsNb {
 			'libraries.filterCategories.favorites' => 'Favoritter',
 			'libraries.sortLabels.title' => 'Tittel',
 			'libraries.sortLabels.dateAdded' => 'Dato lagt til',
-			'libraries.sortLabels.releaseDate' => 'Utgivelsesdato',
-			'libraries.sortLabels.rating' => 'Vurdering',
 			'libraries.sortLabels.communityRating' => 'Fellesskapsvurdering',
 			'libraries.sortLabels.criticRating' => 'Kritikervurdering',
-			'libraries.sortLabels.userRating' => 'Brukervurdering',
 			'libraries.sortLabels.datePlayed' => 'Avspillingsdato',
 			'libraries.sortLabels.playCount' => 'Avspillinger',
 			'libraries.sortLabels.productionYear' => 'Produksjonsår',
@@ -2571,8 +2527,6 @@ extension on TranslationsNb {
 			'libraries.sortLabels.airTime' => 'Sendetid',
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Tilfeldig',
-			'libraries.sortLabels.dateShared' => 'Delingsdato',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Siste episodes sendedato',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Dato for sist lagt til episode',
 			'about.title' => 'Om',
 			'about.openSourceLicenses' => 'Lisenser for åpen kildekode',
@@ -2858,13 +2812,13 @@ extension on TranslationsNb {
 			'performanceOverlay.speed' => 'Hastighet',
 			'performanceOverlay.player' => 'Spiller',
 			'performanceOverlay.memory' => 'Minne',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Ekstern spiller',
 			'externalPlayer.useExternalPlayer' => 'Bruk ekstern spiller',
 			'externalPlayer.useExternalPlayerDescription' => 'Åpne videoer i en annen app',
 			'externalPlayer.selectPlayer' => 'Velg spiller',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'Egendefinerte spillere',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Legg til egendefinert spiller',
@@ -2881,7 +2835,6 @@ extension on TranslationsNb {
 			'metadataEdit.screenTitle' => 'Rediger metadata',
 			'metadataEdit.basicInfo' => 'Grunnleggende informasjon',
 			'metadataEdit.artwork' => 'Grafikk',
-			'metadataEdit.advancedSettings' => 'Avanserte innstillinger',
 			'metadataEdit.title' => 'Tittel',
 			'metadataEdit.sortTitle' => 'Sorteringstittel',
 			'metadataEdit.originalTitle' => 'Originaltittel',
@@ -2910,38 +2863,6 @@ extension on TranslationsNb {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke angitt',
-			'metadataEdit.libraryDefault' => 'Bibliotekstandard',
-			'metadataEdit.accountDefault' => 'Kontostandard',
-			'metadataEdit.seriesDefault' => 'Seriestandard',
-			'metadataEdit.episodeSorting' => 'Episodesortering',
-			'metadataEdit.oldestFirst' => 'Eldste først',
-			'metadataEdit.newestFirst' => 'Nyeste først',
-			'metadataEdit.keep' => 'Behold',
-			'metadataEdit.allEpisodes' => 'Alle episoder',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '${count} nyeste episoder',
-			'metadataEdit.latestEpisode' => 'Nyeste episode',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Episoder lagt til de siste ${count} dagene',
-			'metadataEdit.deleteAfterPlaying' => 'Slett episoder etter avspilling',
-			'metadataEdit.never' => 'Aldri',
-			'metadataEdit.afterADay' => 'Etter en dag',
-			'metadataEdit.afterAWeek' => 'Etter en uke',
-			'metadataEdit.afterAMonth' => 'Etter en måned',
-			'metadataEdit.onNextRefresh' => 'Ved neste oppdatering',
-			'metadataEdit.seasons' => 'Sesonger',
-			'metadataEdit.show' => 'Vis',
-			'metadataEdit.hide' => 'Skjul',
-			'metadataEdit.episodeOrdering' => 'Episoderekkefølge',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Sendt)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Sendt)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Absolutt)',
-			'metadataEdit.metadataLanguage' => 'Metadataspråk',
-			'metadataEdit.useOriginalTitle' => 'Bruk originaltittel',
-			'metadataEdit.preferredAudioLanguage' => 'Foretrukket lydspråk',
-			'metadataEdit.preferredSubtitleLanguage' => 'Foretrukket undertekstspråk',
-			'metadataEdit.subtitleMode' => 'Automatisk valg av undertekstmodus',
-			'metadataEdit.manuallySelected' => 'Manuelt valgt',
-			'metadataEdit.shownWithForeignAudio' => 'Vist med fremmedspråklig lyd',
-			'metadataEdit.alwaysEnabled' => 'Alltid aktivert',
 			'metadataEdit.tags' => 'Tagger',
 			'metadataEdit.addTag' => 'Legg til tagg',
 			'metadataEdit.genre' => 'Sjanger',
@@ -2949,10 +2870,7 @@ extension on TranslationsNb {
 			'metadataEdit.writer' => 'Forfatter',
 			'metadataEdit.producer' => 'Produsent',
 			'metadataEdit.country' => 'Land',
-			'metadataEdit.collection' => 'Samling',
 			'metadataEdit.label' => 'Etikett',
-			'metadataEdit.style' => 'Stil',
-			'metadataEdit.mood' => 'Stemning',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Tilkoblet',
 			'trakt.connectedAs' => ({required Object username}) => 'Tilkoblet som @${username}',

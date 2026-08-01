@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_item.dart';
+import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_source_info.dart';
 import 'package:plezy/media/playback_report_metadata.dart';
@@ -14,7 +15,6 @@ import 'package:plezy/mpv/mpv.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/offline_watch_sync_service.dart';
 import 'package:plezy/services/playback_progress_tracker.dart';
-import 'package:plezy/services/plex_client.dart';
 import 'package:plezy/utils/watch_state_notifier.dart';
 import 'package:plezy/utils/active_client_scope.dart';
 
@@ -84,25 +84,21 @@ class _FakePlayer implements Player {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-/// Recording fake [PlexClient] that captures every progress / scrobble call
+/// Recording fake client that captures every progress / scrobble call
 /// without touching the network.
-class _FakePlexClient with PlaybackReportRecorder implements PlexClient {
+class _FakePlexClient with PlaybackReportRecorder implements MediaServerClient, ScopedMediaServerClient {
   _FakePlexClient({this.thresholdPercent = 90});
 
   /// Watched-threshold percentage to report. Defaults to 90 (matches
   /// production fallback).
   final int thresholdPercent;
 
-  /// Override [PlexClient.watchedThresholdPercent] without going through
-  /// `_serverPrefs`.
-  @override
   int get watchedThresholdPercent => thresholdPercent;
 
   /// markWatchedFromPlaybackStop resolves the event's cacheServerId from
   /// [serverId] after the transport call.
   @override
   ServerId get serverId => ServerId('scrobbler');
-  @override
   PlexProfileScopeId profileScopeId = buildPlexProfileScopeId(serverId: ServerId('scrobbler'), profileId: 'profile-a');
 
   @override
@@ -130,7 +126,6 @@ class _FakePlexClient with PlaybackReportRecorder implements PlexClient {
   /// If non-null, the next reportPlayback*/markWatched call throws this.
   Object? throwOnNextCall;
 
-  @override
   Future<void> updateProgress(
     String ratingKey, {
     required int time,
@@ -181,7 +176,6 @@ class _FakePlexClient with PlaybackReportRecorder implements PlexClient {
     markWatchedCalls.add(item.id);
   }
 
-  @override
   Future<void> markAsWatched(String ratingKey) async {
     if (throwOnNextCall != null) {
       final err = throwOnNextCall!;
@@ -1423,7 +1417,7 @@ void main() {
 
 /// A more precise fake than [_FakePlexClient]: lets the test independently
 /// fail the scrobble (markWatched) without touching the progress signals.
-class _ScrobblePreciseClient with PlaybackReportRecorder implements PlexClient {
+class _ScrobblePreciseClient with PlaybackReportRecorder implements MediaServerClient, ScopedMediaServerClient {
   _ScrobblePreciseClient({this.thresholdPercent = 90, this.failScrobbleFirstTime = false});
 
   final int thresholdPercent;
@@ -1434,13 +1428,11 @@ class _ScrobblePreciseClient with PlaybackReportRecorder implements PlexClient {
   /// still registers as a failed scrobble.
   @override
   ServerId get serverId => ServerId('scrobbler');
-  @override
   PlexProfileScopeId profileScopeId = buildPlexProfileScopeId(serverId: ServerId('scrobbler'), profileId: 'profile-a');
 
   @override
   String get scopedServerId => profileScopeId;
 
-  @override
   int get watchedThresholdPercent => thresholdPercent;
 
   @override
@@ -1453,7 +1445,6 @@ class _ScrobblePreciseClient with PlaybackReportRecorder implements PlexClient {
   int markWatchedAttempts = 0;
   int markWatchedSuccesses = 0;
 
-  @override
   Future<void> updateProgress(
     String ratingKey, {
     required int time,
@@ -1476,7 +1467,6 @@ class _ScrobblePreciseClient with PlaybackReportRecorder implements PlexClient {
     markWatchedSuccesses++;
   }
 
-  @override
   Future<void> markAsWatched(String ratingKey, {MediaItem? item}) async {
     markWatchedAttempts++;
     if (failScrobbleFirstTime) {

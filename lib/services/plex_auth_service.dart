@@ -3,7 +3,7 @@ import 'dart:io' show InternetAddress, InternetAddressType, Platform;
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'storage_service.dart';
-import 'plex_client.dart';
+import 'plex_connection_probe.dart';
 import '../exceptions/media_server_exceptions.dart';
 import '../models/plex/plex_user_profile.dart';
 import '../models/plex/plex_home.dart';
@@ -468,18 +468,10 @@ class PlexServer {
         'error': result.error,
         'latencyMs': result.latencyMs,
       },
-      probe: (candidate, timeout) => PlexClient.testConnectionWithLatency(
-        candidate.url,
-        accessToken,
-        timeout: timeout,
-        clientIdentifier: clientIdentifier,
-      ),
-      measure: (candidate) => PlexClient.testConnectionWithAverageLatency(
-        candidate.url,
-        accessToken,
-        attempts: 2,
-        clientIdentifier: clientIdentifier,
-      ),
+      probe: (candidate, timeout) =>
+          testConnectionWithLatency(candidate.url, accessToken, timeout: timeout, clientIdentifier: clientIdentifier),
+      measure: (candidate) =>
+          testConnectionWithAverageLatency(candidate.url, accessToken, attempts: 2, clientIdentifier: clientIdentifier),
       isSuccess: (result) => result.success,
       selectBestCandidate: _selectBestCandidateWithLatency,
       onFirstSuccess: (_, result) {
@@ -724,7 +716,7 @@ class PlexServer {
 
     appLogger.d('Attempting HTTPS upgrade for candidate endpoint', error: {'from': currentUrl, 'to': httpsUrl});
 
-    final result = await PlexClient.testConnectionWithLatency(
+    final result = await testConnectionWithLatency(
       httpsUrl,
       accessToken,
       timeout: MediaServerTimeouts.connectionRace,

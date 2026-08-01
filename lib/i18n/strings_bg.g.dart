@@ -1379,7 +1379,6 @@ class _Translations$metadataEdit$bg extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Редактиране на метаданни';
 	@override String get basicInfo => 'Основна информация';
 	@override String get artwork => 'Обложка';
-	@override String get advancedSettings => 'Разширени настройки';
 	@override String get title => 'Заглавие';
 	@override String get sortTitle => 'Заглавие за сортиране';
 	@override String get originalTitle => 'Оригинално заглавие';
@@ -1408,38 +1407,6 @@ class _Translations$metadataEdit$bg extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Вариант за обложка ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Вариант за обложка ${index}, избран';
 	@override String get notSet => 'Не е зададено';
-	@override String get libraryDefault => 'По подразбиране за библиотеката';
-	@override String get accountDefault => 'По подразбиране за акаунта';
-	@override String get seriesDefault => 'По подразбиране за сериала';
-	@override String get episodeSorting => 'Сортиране на епизоди';
-	@override String get oldestFirst => 'Най-старите първо';
-	@override String get newestFirst => 'Най-новите първо';
-	@override String get keep => 'Запазвай';
-	@override String get allEpisodes => 'Всички епизоди';
-	@override String latestEpisodes({required Object count}) => '${count} последни епизода';
-	@override String get latestEpisode => 'Последен епизод';
-	@override String episodesAddedPastDays({required Object count}) => 'Епизоди, добавени през последните ${count} дни';
-	@override String get deleteAfterPlaying => 'Изтрий епизодите след възпроизвеждане';
-	@override String get never => 'Никога';
-	@override String get afterADay => 'След един ден';
-	@override String get afterAWeek => 'След една седмица';
-	@override String get afterAMonth => 'След един месец';
-	@override String get onNextRefresh => 'При следващо опресняване';
-	@override String get seasons => 'Сезони';
-	@override String get show => 'Покажи';
-	@override String get hide => 'Скрий';
-	@override String get episodeOrdering => 'Подредба на епизодите';
-	@override String get tmdbAiring => 'The Movie Database (по излъчване)';
-	@override String get tvdbAiring => 'TheTVDB (по излъчване)';
-	@override String get tvdbAbsolute => 'TheTVDB (абсолютна подредба)';
-	@override String get metadataLanguage => 'Език на метаданните';
-	@override String get useOriginalTitle => 'Използвай оригиналното заглавие';
-	@override String get preferredAudioLanguage => 'Предпочитан аудио език';
-	@override String get preferredSubtitleLanguage => 'Предпочитан език за субтитри';
-	@override String get subtitleMode => 'Режим за автоматичен избор на субтитри';
-	@override String get manuallySelected => 'Ръчно избрани';
-	@override String get shownWithForeignAudio => 'Показване при чуждоезично аудио';
-	@override String get alwaysEnabled => 'Винаги включени';
 	@override String get tags => 'Тагове';
 	@override String get addTag => 'Добави таг';
 	@override String get genre => 'Жанр';
@@ -1447,10 +1414,7 @@ class _Translations$metadataEdit$bg extends Translations$metadataEdit$en {
 	@override String get writer => 'Сценарист';
 	@override String get producer => 'Продуцент';
 	@override String get country => 'Държава';
-	@override String get collection => 'Колекция';
 	@override String get label => 'Етикет';
-	@override String get style => 'Стил';
-	@override String get mood => 'Настроение';
 }
 
 // Path: trakt
@@ -1670,11 +1634,8 @@ class _Translations$libraries$sortLabels$bg extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Заглавие';
 	@override String get dateAdded => 'Дата на добавяне';
-	@override String get releaseDate => 'Дата на излизане';
-	@override String get rating => 'Рейтинг';
 	@override String get communityRating => 'Оценка от общността';
 	@override String get criticRating => 'Оценка от критиците';
-	@override String get userRating => 'Потребителска оценка';
 	@override String get datePlayed => 'Дата на възпроизвеждане';
 	@override String get playCount => 'Брой възпроизвеждания';
 	@override String get productionYear => 'Година на производство';
@@ -1685,8 +1646,6 @@ class _Translations$libraries$sortLabels$bg extends Translations$libraries$sortL
 	@override String get airTime => 'Час на излъчване';
 	@override String get studio => 'Студио';
 	@override String get random => 'Случайно';
-	@override String get dateShared => 'Дата на споделяне';
-	@override String get latestEpisodeAirDate => 'Дата на излъчване на последния епизод';
 	@override String get lastEpisodeDateAdded => 'Дата на добавяне на последния епизод';
 }
 
@@ -2556,11 +2515,8 @@ extension on TranslationsBg {
 			'libraries.filterCategories.favorites' => 'Любими',
 			'libraries.sortLabels.title' => 'Заглавие',
 			'libraries.sortLabels.dateAdded' => 'Дата на добавяне',
-			'libraries.sortLabels.releaseDate' => 'Дата на излизане',
-			'libraries.sortLabels.rating' => 'Рейтинг',
 			'libraries.sortLabels.communityRating' => 'Оценка от общността',
 			'libraries.sortLabels.criticRating' => 'Оценка от критиците',
-			'libraries.sortLabels.userRating' => 'Потребителска оценка',
 			'libraries.sortLabels.datePlayed' => 'Дата на възпроизвеждане',
 			'libraries.sortLabels.playCount' => 'Брой възпроизвеждания',
 			'libraries.sortLabels.productionYear' => 'Година на производство',
@@ -2571,8 +2527,6 @@ extension on TranslationsBg {
 			'libraries.sortLabels.airTime' => 'Час на излъчване',
 			'libraries.sortLabels.studio' => 'Студио',
 			'libraries.sortLabels.random' => 'Случайно',
-			'libraries.sortLabels.dateShared' => 'Дата на споделяне',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Дата на излъчване на последния епизод',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Дата на добавяне на последния епизод',
 			'about.title' => 'Относно',
 			'about.openSourceLicenses' => 'Лицензи с отворен код',
@@ -2858,13 +2812,13 @@ extension on TranslationsBg {
 			'performanceOverlay.speed' => 'Скорост',
 			'performanceOverlay.player' => 'Плеър',
 			'performanceOverlay.memory' => 'Памет',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'FPS на интерфейса',
 			'externalPlayer.title' => 'Външен плеър',
 			'externalPlayer.useExternalPlayer' => 'Използвай външен плеър',
 			'externalPlayer.useExternalPlayerDescription' => 'Отваряй видеата в друго приложение',
 			'externalPlayer.selectPlayer' => 'Избери плейър',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.customPlayers' => 'Потребителски плейъри',
 			'externalPlayer.systemDefault' => 'Системен по подразбиране',
 			'externalPlayer.addCustomPlayer' => 'Добави потребителски плейър',
@@ -2881,7 +2835,6 @@ extension on TranslationsBg {
 			'metadataEdit.screenTitle' => 'Редактиране на метаданни',
 			'metadataEdit.basicInfo' => 'Основна информация',
 			'metadataEdit.artwork' => 'Обложка',
-			'metadataEdit.advancedSettings' => 'Разширени настройки',
 			'metadataEdit.title' => 'Заглавие',
 			'metadataEdit.sortTitle' => 'Заглавие за сортиране',
 			'metadataEdit.originalTitle' => 'Оригинално заглавие',
@@ -2910,38 +2863,6 @@ extension on TranslationsBg {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант за обложка ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант за обложка ${index}, избран',
 			'metadataEdit.notSet' => 'Не е зададено',
-			'metadataEdit.libraryDefault' => 'По подразбиране за библиотеката',
-			'metadataEdit.accountDefault' => 'По подразбиране за акаунта',
-			'metadataEdit.seriesDefault' => 'По подразбиране за сериала',
-			'metadataEdit.episodeSorting' => 'Сортиране на епизоди',
-			'metadataEdit.oldestFirst' => 'Най-старите първо',
-			'metadataEdit.newestFirst' => 'Най-новите първо',
-			'metadataEdit.keep' => 'Запазвай',
-			'metadataEdit.allEpisodes' => 'Всички епизоди',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => '${count} последни епизода',
-			'metadataEdit.latestEpisode' => 'Последен епизод',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Епизоди, добавени през последните ${count} дни',
-			'metadataEdit.deleteAfterPlaying' => 'Изтрий епизодите след възпроизвеждане',
-			'metadataEdit.never' => 'Никога',
-			'metadataEdit.afterADay' => 'След един ден',
-			'metadataEdit.afterAWeek' => 'След една седмица',
-			'metadataEdit.afterAMonth' => 'След един месец',
-			'metadataEdit.onNextRefresh' => 'При следващо опресняване',
-			'metadataEdit.seasons' => 'Сезони',
-			'metadataEdit.show' => 'Покажи',
-			'metadataEdit.hide' => 'Скрий',
-			'metadataEdit.episodeOrdering' => 'Подредба на епизодите',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (по излъчване)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (по излъчване)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (абсолютна подредба)',
-			'metadataEdit.metadataLanguage' => 'Език на метаданните',
-			'metadataEdit.useOriginalTitle' => 'Използвай оригиналното заглавие',
-			'metadataEdit.preferredAudioLanguage' => 'Предпочитан аудио език',
-			'metadataEdit.preferredSubtitleLanguage' => 'Предпочитан език за субтитри',
-			'metadataEdit.subtitleMode' => 'Режим за автоматичен избор на субтитри',
-			'metadataEdit.manuallySelected' => 'Ръчно избрани',
-			'metadataEdit.shownWithForeignAudio' => 'Показване при чуждоезично аудио',
-			'metadataEdit.alwaysEnabled' => 'Винаги включени',
 			'metadataEdit.tags' => 'Тагове',
 			'metadataEdit.addTag' => 'Добави таг',
 			'metadataEdit.genre' => 'Жанр',
@@ -2949,10 +2870,7 @@ extension on TranslationsBg {
 			'metadataEdit.writer' => 'Сценарист',
 			'metadataEdit.producer' => 'Продуцент',
 			'metadataEdit.country' => 'Държава',
-			'metadataEdit.collection' => 'Колекция',
 			'metadataEdit.label' => 'Етикет',
-			'metadataEdit.style' => 'Стил',
-			'metadataEdit.mood' => 'Настроение',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Свързан',
 			'trakt.connectedAs' => ({required Object username}) => 'Свързан като @${username}',

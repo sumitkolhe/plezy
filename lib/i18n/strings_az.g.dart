@@ -1390,7 +1390,6 @@ class _Translations$metadataEdit$az extends Translations$metadataEdit$en {
 	@override String get screenTitle => 'Meta-məlumatlara düzəliş et';
 	@override String get basicInfo => 'Əsas məlumatlar';
 	@override String get artwork => 'Şəkillər/Posterlər';
-	@override String get advancedSettings => 'Təkmilləşdirilmiş tənzimləmələr';
 	@override String get title => 'Başlıq';
 	@override String get sortTitle => 'Sıralama başlığı';
 	@override String get originalTitle => 'Orijinal başlıq';
@@ -1419,38 +1418,6 @@ class _Translations$metadataEdit$az extends Translations$metadataEdit$en {
 	@override String artworkOption({required Object index}) => 'Şəkil seçimi ${index}';
 	@override String selectedArtworkOption({required Object index}) => 'Şəkil seçimi ${index}, seçildi';
 	@override String get notSet => 'Təyin edilməyib';
-	@override String get libraryDefault => 'Kitabxana defoltu';
-	@override String get accountDefault => 'Hesab defoltu';
-	@override String get seriesDefault => 'Serial defoltu';
-	@override String get episodeSorting => 'Seriya sıralaması';
-	@override String get oldestFirst => 'Əvvəlcə ən köhnə';
-	@override String get newestFirst => 'Əvvəlcə ən yeni';
-	@override String get keep => 'Saxla';
-	@override String get allEpisodes => 'Bütün seriyalar';
-	@override String latestEpisodes({required Object count}) => 'Ən son ${count} seriya';
-	@override String get latestEpisode => 'Ən son seriya';
-	@override String episodesAddedPastDays({required Object count}) => 'Son ${count} gündə əlavə olunan seriyalar';
-	@override String get deleteAfterPlaying => 'Oynatdıqdan sonra seriyaları sil';
-	@override String get never => 'Heç vaxt';
-	@override String get afterADay => 'Bir gün sonra';
-	@override String get afterAWeek => 'Bir həftə sonra';
-	@override String get afterAMonth => 'Bir ay sonra';
-	@override String get onNextRefresh => 'Növbəti yenilənmədə';
-	@override String get seasons => 'Mövsümlər';
-	@override String get show => 'Göstər';
-	@override String get hide => 'Gizlət';
-	@override String get episodeOrdering => 'Seriya ardıcıllığı';
-	@override String get tmdbAiring => 'The Movie Database (Yayımlanma)';
-	@override String get tvdbAiring => 'TheTVDB (Yayımlanma)';
-	@override String get tvdbAbsolute => 'TheTVDB (Mütləq)';
-	@override String get metadataLanguage => 'Meta-məlumat dili';
-	@override String get useOriginalTitle => 'Orijinal başlığı istifadə et';
-	@override String get preferredAudioLanguage => 'Üstünlük verilən səs dili';
-	@override String get preferredSubtitleLanguage => 'Üstünlük verilən altyazı dili';
-	@override String get subtitleMode => 'Avtomatik altyazı seçim rejimi';
-	@override String get manuallySelected => 'Əl ilə seçilmiş';
-	@override String get shownWithForeignAudio => 'Xarici səs olduqda göstərilən';
-	@override String get alwaysEnabled => 'Həmişə aktivdir';
 	@override String get tags => 'Teqlər';
 	@override String get addTag => 'Teq əlavə et';
 	@override String get genre => 'Janr';
@@ -1458,10 +1425,7 @@ class _Translations$metadataEdit$az extends Translations$metadataEdit$en {
 	@override String get writer => 'Ssenarist';
 	@override String get producer => 'Prodüser';
 	@override String get country => 'Ölkə';
-	@override String get collection => 'Kolleksiya';
 	@override String get label => 'Etiket';
-	@override String get style => 'Stil';
-	@override String get mood => 'Əhval-ruhiyyə';
 }
 
 // Path: trakt
@@ -1681,11 +1645,8 @@ class _Translations$libraries$sortLabels$az extends Translations$libraries$sortL
 	// Translations
 	@override String get title => 'Ad';
 	@override String get dateAdded => 'Əlavə olunma tarixi';
-	@override String get releaseDate => 'Buraxılış tarixi';
-	@override String get rating => 'Reytinq';
 	@override String get communityRating => 'İcma reytinqi';
 	@override String get criticRating => 'Tənqidçi reytinqi';
-	@override String get userRating => 'İstifadəçi reytinqi';
 	@override String get datePlayed => 'Oynadılma tarixi';
 	@override String get playCount => 'Oynadılma sayı';
 	@override String get productionYear => 'İstehsal ili';
@@ -1696,8 +1657,6 @@ class _Translations$libraries$sortLabels$az extends Translations$libraries$sortL
 	@override String get airTime => 'Yayımlanma vaxtı';
 	@override String get studio => 'Studiya';
 	@override String get random => 'Təsadüfi';
-	@override String get dateShared => 'Paylaşılma tarixi';
-	@override String get latestEpisodeAirDate => 'Son seriya yayın tarixi';
 	@override String get lastEpisodeDateAdded => 'Əlavə olunan son seriya tarixi';
 }
 
@@ -2572,11 +2531,8 @@ extension on TranslationsAz {
 			'libraries.filterCategories.favorites' => 'Sevimlilər',
 			'libraries.sortLabels.title' => 'Ad',
 			'libraries.sortLabels.dateAdded' => 'Əlavə olunma tarixi',
-			'libraries.sortLabels.releaseDate' => 'Buraxılış tarixi',
-			'libraries.sortLabels.rating' => 'Reytinq',
 			'libraries.sortLabels.communityRating' => 'İcma reytinqi',
 			'libraries.sortLabels.criticRating' => 'Tənqidçi reytinqi',
-			'libraries.sortLabels.userRating' => 'İstifadəçi reytinqi',
 			'libraries.sortLabels.datePlayed' => 'Oynadılma tarixi',
 			'libraries.sortLabels.playCount' => 'Oynadılma sayı',
 			'libraries.sortLabels.productionYear' => 'İstehsal ili',
@@ -2587,8 +2543,6 @@ extension on TranslationsAz {
 			'libraries.sortLabels.airTime' => 'Yayımlanma vaxtı',
 			'libraries.sortLabels.studio' => 'Studiya',
 			'libraries.sortLabels.random' => 'Təsadüfi',
-			'libraries.sortLabels.dateShared' => 'Paylaşılma tarixi',
-			'libraries.sortLabels.latestEpisodeAirDate' => 'Son seriya yayın tarixi',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Əlavə olunan son seriya tarixi',
 			'about.title' => 'Haqqında',
 			'about.openSourceLicenses' => 'Açıq mənbə lisenziyaları',
@@ -2869,13 +2823,13 @@ extension on TranslationsAz {
 			'performanceOverlay.avSync' => 'A/V Eyniləşdirilməsi',
 			'performanceOverlay.dropped' => 'İtirilmiş kadrlar',
 			'performanceOverlay.dvRpus' => 'DV RPU-ları',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Ort.',
 			'performanceOverlay.dvSampleAverage' => 'DV Nümunə Ort.',
 			'performanceOverlay.maxLuma' => 'Maks Luma',
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'İstifadə olunan keş',
 			'performanceOverlay.cacheLimit' => 'Keş limiti',
@@ -2903,7 +2857,6 @@ extension on TranslationsAz {
 			'metadataEdit.screenTitle' => 'Meta-məlumatlara düzəliş et',
 			'metadataEdit.basicInfo' => 'Əsas məlumatlar',
 			'metadataEdit.artwork' => 'Şəkillər/Posterlər',
-			'metadataEdit.advancedSettings' => 'Təkmilləşdirilmiş tənzimləmələr',
 			'metadataEdit.title' => 'Başlıq',
 			'metadataEdit.sortTitle' => 'Sıralama başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal başlıq',
@@ -2932,38 +2885,6 @@ extension on TranslationsAz {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Şəkil seçimi ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Şəkil seçimi ${index}, seçildi',
 			'metadataEdit.notSet' => 'Təyin edilməyib',
-			'metadataEdit.libraryDefault' => 'Kitabxana defoltu',
-			'metadataEdit.accountDefault' => 'Hesab defoltu',
-			'metadataEdit.seriesDefault' => 'Serial defoltu',
-			'metadataEdit.episodeSorting' => 'Seriya sıralaması',
-			'metadataEdit.oldestFirst' => 'Əvvəlcə ən köhnə',
-			'metadataEdit.newestFirst' => 'Əvvəlcə ən yeni',
-			'metadataEdit.keep' => 'Saxla',
-			'metadataEdit.allEpisodes' => 'Bütün seriyalar',
-			'metadataEdit.latestEpisodes' => ({required Object count}) => 'Ən son ${count} seriya',
-			'metadataEdit.latestEpisode' => 'Ən son seriya',
-			'metadataEdit.episodesAddedPastDays' => ({required Object count}) => 'Son ${count} gündə əlavə olunan seriyalar',
-			'metadataEdit.deleteAfterPlaying' => 'Oynatdıqdan sonra seriyaları sil',
-			'metadataEdit.never' => 'Heç vaxt',
-			'metadataEdit.afterADay' => 'Bir gün sonra',
-			'metadataEdit.afterAWeek' => 'Bir həftə sonra',
-			'metadataEdit.afterAMonth' => 'Bir ay sonra',
-			'metadataEdit.onNextRefresh' => 'Növbəti yenilənmədə',
-			'metadataEdit.seasons' => 'Mövsümlər',
-			'metadataEdit.show' => 'Göstər',
-			'metadataEdit.hide' => 'Gizlət',
-			'metadataEdit.episodeOrdering' => 'Seriya ardıcıllığı',
-			'metadataEdit.tmdbAiring' => 'The Movie Database (Yayımlanma)',
-			'metadataEdit.tvdbAiring' => 'TheTVDB (Yayımlanma)',
-			'metadataEdit.tvdbAbsolute' => 'TheTVDB (Mütləq)',
-			'metadataEdit.metadataLanguage' => 'Meta-məlumat dili',
-			'metadataEdit.useOriginalTitle' => 'Orijinal başlığı istifadə et',
-			'metadataEdit.preferredAudioLanguage' => 'Üstünlük verilən səs dili',
-			'metadataEdit.preferredSubtitleLanguage' => 'Üstünlük verilən altyazı dili',
-			'metadataEdit.subtitleMode' => 'Avtomatik altyazı seçim rejimi',
-			'metadataEdit.manuallySelected' => 'Əl ilə seçilmiş',
-			'metadataEdit.shownWithForeignAudio' => 'Xarici səs olduqda göstərilən',
-			'metadataEdit.alwaysEnabled' => 'Həmişə aktivdir',
 			'metadataEdit.tags' => 'Teqlər',
 			'metadataEdit.addTag' => 'Teq əlavə et',
 			'metadataEdit.genre' => 'Janr',
@@ -2971,10 +2892,7 @@ extension on TranslationsAz {
 			'metadataEdit.writer' => 'Ssenarist',
 			'metadataEdit.producer' => 'Prodüser',
 			'metadataEdit.country' => 'Ölkə',
-			'metadataEdit.collection' => 'Kolleksiya',
 			'metadataEdit.label' => 'Etiket',
-			'metadataEdit.style' => 'Stil',
-			'metadataEdit.mood' => 'Əhval-ruhiyyə',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Qoşuldu',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} olaraq qoşuldu',

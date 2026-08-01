@@ -50,16 +50,3 @@ enum TranscodeQualityPreset {
     ...values.where((p) => !p.isOriginal).toList().reversed,
   ]);
 }
-
-/// Outcome of a transcode decision call.
-enum TranscodeDecisionOutcome {
-  /// Decision indicates transcode is available (`transcodeDecisionCode == 1001`).
-  transcodeOk,
-
-  /// Decision indicates only direct play is available (`transcodeDecisionCode == 1000`).
-  /// Caller should fall back to the direct-play URL.
-  directPlayOnly,
-
-  /// Decision failed (HTTP error, code >= 2000, or parse error).
-  failed,
-}
