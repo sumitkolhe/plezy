@@ -184,35 +184,12 @@ class JellyfinCacheResolver {
     )..where((t) => t.id.equals(scope.machineId))).getSingleOrNull();
     if (exact != null) return exact;
 
-    final plex = await _findPlexConnectionForServer(scope.machineId);
-    if (plex != null) return plex;
-
     final prefix = '${scope.machineId}/';
     return (database.select(database.connections)
           ..where((t) => t.id.substr(1, prefix.length).equals(prefix) & t.kind.equals('jellyfin'))
           ..orderBy([(t) => OrderingTerm.asc(t.id)])
           ..limit(1))
         .getSingleOrNull();
-  }
-
-  Future<ConnectionRow?> _findPlexConnectionForServer(String serverId) async {
-    final accounts = await (database.select(database.connections)..where((t) => t.kind.equals('plex'))).get();
-    for (final account in accounts) {
-      try {
-        final config = jsonDecode(account.configJson);
-        if (config is! Map<String, dynamic>) continue;
-        final servers = config['servers'];
-        if (servers is! List) continue;
-        for (final server in servers) {
-          if (server is Map && server['clientIdentifier'] == serverId) {
-            return account;
-          }
-        }
-      } on FormatException {
-        // Ignore malformed persisted accounts and continue deterministically.
-      }
-    }
-    return null;
   }
 
   Future<bool> _matchesProfileBinding(String connectionId, String userId) async {

@@ -74,11 +74,6 @@ class ActiveProfileBinder {
   /// still uses the cache unless the user enabled profile selection on open.
   bool _hasBoundOnce = false;
 
-  /// Plex Home profile ids whose PIN was just verified by the activation
-  /// UI via a successful `/home/users/{uuid}/switch` round-trip. Consumed
-  /// once by [_bindPlexHome] to permit the freshly cached user-token for
-  /// that single rebind and avoid a duplicate PIN prompt.
-  final Set<String> _plexHomePreVerified = {};
   final Set<String> _userInitiatedActivations = {};
 
   @visibleForTesting
@@ -423,7 +418,6 @@ class ActiveProfileBinder {
     _bindGeneration++;
     if (!_started) return;
     activeProfile.removeListener(_onActiveProfileChanged);
-    _plexHomePreVerified.clear();
     _userInitiatedActivations.clear();
     _lastFailedProfileId = null;
     _started = false;

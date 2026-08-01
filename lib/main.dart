@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io' show Directory, Platform, ProcessInfo;
+import 'dart:io' show Platform, ProcessInfo;
 import 'dart:ui' show AppExitResponse;
 import 'package:flutter/foundation.dart';
 // ignore: depend_on_referenced_packages
@@ -31,7 +31,6 @@ import 'services/storage_service.dart';
 import 'services/device_performance.dart';
 import 'services/settings_service.dart';
 import 'utils/platform_detector.dart';
-import 'package:path_provider/path_provider.dart';
 import 'services/image_cache_service.dart';
 import 'services/gamepad_service.dart';
 import 'services/trackers/tracker_coordinator.dart';
@@ -436,18 +435,7 @@ void _startNonessentialInitialization(SettingsService settings) {
     );
   }
 
-  bestEffort('Legacy image cache cleanup', () async {
-    if (settings.read(SettingsService.cleanedOldImageCache)) return;
-    try {
-      final tempDir = await getTemporaryDirectory();
-      final oldCacheDir = Directory('${tempDir.path}/plexImageCache');
-      if (await oldCacheDir.exists()) await oldCacheDir.delete(recursive: true);
-    } finally {
-      await settings.write(SettingsService.cleanedOldImageCache, true);
-    }
-  });
-
-  bestEffort('Native window', () {
+  bestEffort('Picture-in-Picture', () {
     if (Platform.isAndroid) PipService();
   });
 
@@ -508,10 +496,6 @@ FutureOr<SentryEvent?> _beforeSend(SentryEvent event, Hint _) {
     bool shouldDrop(SentryException e) {
       final v = e.value;
       final lowerValue = v?.toLowerCase();
-      // Windows file-lock errors from cache manager cleanup
-      if (e.type == 'FileSystemException' && v != null && v.contains('plexImageCache') && v.contains('errno = 32')) {
-        return true;
-      }
       if (e.type == 'FileSystemException' &&
           lowerValue != null &&
           lowerValue.contains('cached_network_image_ce') &&

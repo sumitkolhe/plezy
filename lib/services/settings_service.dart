@@ -338,7 +338,6 @@ class SettingsService extends BaseSharedPreferencesService {
   );
   static const subtitleBold = BoolPref('subtitle_bold');
   static const subtitleItalic = BoolPref('subtitle_italic');
-  static const cleanedOldImageCache = BoolPref('cleaned_old_image_cache');
   static const rememberTrackSelections = BoolPref('remember_track_selections', defaultValue: true);
 
   /// Episode advance follows the server's per-episode audio/subtitle

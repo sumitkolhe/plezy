@@ -141,7 +141,7 @@ class Connections extends Table {
   /// (one per account); for Jellyfin it's the server's machineId.
   TextColumn get id => text()();
 
-  /// Backend kind: `'plex'` or `'jellyfin'`.
+  /// Backend kind: always `'jellyfin'`.
   TextColumn get kind => text()();
 
   /// User-visible label (account email, server name).

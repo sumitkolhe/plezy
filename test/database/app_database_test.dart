@@ -164,19 +164,14 @@ class _AppDatabaseTestSuite {
         final prefs = await BaseSharedPreferencesService.sharedCache();
         AppDatabase? seeded;
         AppDatabase? opened;
-        const accountToken = 'legacy-account-token-canary';
-        const serverToken = 'legacy-server-token-canary';
+        const accessToken = 'legacy-access-token-canary';
         const profileToken = 'legacy-profile-token-canary';
 
         Future<void> expectProtectedConfig(String configJson) async {
           final config = jsonDecode(configJson) as Map<String, dynamic>;
-          final protectedAccountToken = config['accountToken'] as String;
-          final protectedServerToken =
-              ((config['servers'] as List).single as Map<String, dynamic>)['accessToken'] as String;
-          expect(CredentialVault.isProtected(protectedAccountToken), isTrue);
-          expect(CredentialVault.isProtected(protectedServerToken), isTrue);
-          expect(await CredentialVault.reveal(protectedAccountToken), accountToken);
-          expect(await CredentialVault.reveal(protectedServerToken), serverToken);
+          final protectedAccessToken = config['accessToken'] as String;
+          expect(CredentialVault.isProtected(protectedAccessToken), isTrue);
+          expect(await CredentialVault.reveal(protectedAccessToken), accessToken);
         }
 
         try {
@@ -186,15 +181,10 @@ class _AppDatabaseTestSuite {
               .into(seeded.connections)
               .insert(
                 ConnectionsCompanion.insert(
-                  id: 'plex-account',
-                  kind: 'plex',
-                  displayName: 'Legacy Plex',
-                  configJson: jsonEncode({
-                    'accountToken': accountToken,
-                    'servers': [
-                      {'machineIdentifier': 'plex-server', 'accessToken': serverToken},
-                    ],
-                  }),
+                  id: 'jellyfin-account',
+                  kind: 'jellyfin',
+                  displayName: 'Legacy server',
+                  configJson: jsonEncode({'accessToken': accessToken}),
                   createdAt: 1000,
                 ),
               );
@@ -214,9 +204,9 @@ class _AppDatabaseTestSuite {
               .insert(
                 ProfileConnectionsCompanion.insert(
                   profileId: 'profile-a',
-                  connectionId: 'plex-account',
+                  connectionId: 'jellyfin-account',
                   userToken: const Value(profileToken),
-                  userIdentifier: 'plex-user',
+                  userIdentifier: 'jellyfin-user',
                 ),
               );
           await seeded.close();
@@ -234,8 +224,7 @@ class _AppDatabaseTestSuite {
 
           final identityRaw = prefs.getString(TvosDatabaseRecoveryStore.identityKey);
           expect(identityRaw, isNotNull);
-          expect(identityRaw, isNot(contains(accountToken)));
-          expect(identityRaw, isNot(contains(serverToken)));
+          expect(identityRaw, isNot(contains(accessToken)));
           expect(identityRaw, isNot(contains(profileToken)));
           final envelope = jsonDecode(identityRaw!) as Map<String, dynamic>;
           final recoveryRows = envelope['rows'] as Map<String, dynamic>;

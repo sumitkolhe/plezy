@@ -62,16 +62,9 @@ class CredentialVault {
 
   static Future<Map<String, Object?>> protectConnectionConfig(String kind, Map<String, Object?> config) async {
     final copy = Map<String, Object?>.from(config);
-    final tokenKey = switch (kind) {
-      'plex' => 'accountToken',
-      'jellyfin' => 'accessToken',
-      _ => null,
-    };
+    final tokenKey = kind == 'jellyfin' ? 'accessToken' : null;
     final token = tokenKey == null ? null : copy[tokenKey];
     if (token is String) copy[tokenKey!] = await protect(token);
-    if (kind == 'plex') {
-      copy['servers'] = await _protectPlexServers(copy['servers']);
-    }
     return copy;
   }
 
@@ -80,11 +73,7 @@ class CredentialVault {
     Map<String, dynamic> config,
   ) async {
     final copy = Map<String, dynamic>.from(config);
-    final tokenKey = switch (kind) {
-      'plex' => 'accountToken',
-      'jellyfin' => 'accessToken',
-      _ => null,
-    };
+    final tokenKey = kind == 'jellyfin' ? 'accessToken' : null;
     var migrated = false;
     final token = tokenKey == null ? null : copy[tokenKey];
     if (token is String && token.isNotEmpty) {
@@ -94,50 +83,9 @@ class CredentialVault {
       migrated = revealed != null && !isProtected(token);
       copy[tokenKey!] = revealed ?? '';
     }
-    if (kind == 'plex') {
-      final result = await _revealPlexServers(copy['servers']);
-      copy['servers'] = result.servers;
-      migrated = migrated || result.migrated;
-    }
     return (config: copy, migrated: migrated);
   }
 
-  static Future<Object?> _protectPlexServers(Object? rawServers) async {
-    if (rawServers is! List) return rawServers;
-    final servers = <Object?>[];
-    for (final raw in rawServers) {
-      if (raw is! Map) {
-        servers.add(raw);
-        continue;
-      }
-      final server = Map<String, Object?>.from(raw);
-      final token = server['accessToken'];
-      if (token is String) server['accessToken'] = await protect(token);
-      servers.add(server);
-    }
-    return servers;
-  }
-
-  static Future<({Object? servers, bool migrated})> _revealPlexServers(Object? rawServers) async {
-    if (rawServers is! List) return (servers: rawServers, migrated: false);
-    var migrated = false;
-    final servers = <Object?>[];
-    for (final raw in rawServers) {
-      if (raw is! Map) {
-        servers.add(raw);
-        continue;
-      }
-      final server = Map<String, dynamic>.from(raw);
-      final token = server['accessToken'];
-      if (token is String && token.isNotEmpty) {
-        final revealed = await reveal(token);
-        migrated = migrated || (revealed != null && !isProtected(token));
-        server['accessToken'] = revealed ?? '';
-      }
-      servers.add(server);
-    }
-    return (servers: servers, migrated: migrated);
-  }
 
   static Future<SecretKey> _getSecretKey() {
     return _secretKey ??= () async {

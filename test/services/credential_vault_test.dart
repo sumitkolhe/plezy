@@ -50,30 +50,21 @@ void main() {
   });
 
   group('CredentialVault.revealConnectionConfig', () {
-    test('maps an undecryptable account token to the empty string without migrating', () async {
+    test('maps an undecryptable access token to the empty string without migrating', () async {
       final protected = await CredentialVault.protect('tok');
       resetSharedPreferencesForTest();
       CredentialVault.resetKeyForTesting();
 
-      final result = await CredentialVault.revealConnectionConfig('plex', {
-        'accountToken': protected,
-        'servers': [
-          {'accessToken': protected},
-        ],
-      });
+      final result = await CredentialVault.revealConnectionConfig('jellyfin', {'accessToken': protected});
 
-      expect(result.config['accountToken'], '');
-      expect((result.config['servers'] as List).single['accessToken'], '');
+      expect(result.config['accessToken'], '');
       expect(result.migrated, isFalse);
     });
 
     test('still reveals and flags plaintext tokens for migration', () async {
-      final result = await CredentialVault.revealConnectionConfig('plex', {
-        'accountToken': 'plain-tok',
-        'servers': const [],
-      });
+      final result = await CredentialVault.revealConnectionConfig('jellyfin', {'accessToken': 'plain-tok'});
 
-      expect(result.config['accountToken'], 'plain-tok');
+      expect(result.config['accessToken'], 'plain-tok');
       expect(result.migrated, isTrue);
     });
   });
