@@ -5,18 +5,11 @@ import '../media/media_kind.dart';
 import '../media/media_server_client.dart';
 import '../utils/media_image_helper.dart';
 
-enum MetadataEditFieldType { text, multilineText, date, stringList, choice, artwork }
+enum MetadataEditFieldType { text, multilineText, date, stringList, artwork }
 
 enum MetadataEditSaveMode { draft, immediate }
 
 enum MetadataArtworkFit { cover, contain }
-
-class MetadataEditOption {
-  final String value;
-  final String label;
-
-  const MetadataEditOption({required this.value, required this.label});
-}
 
 class MetadataArtworkConfig {
   final String key;
@@ -45,7 +38,6 @@ class MetadataEditField {
   final String label;
   final MetadataEditFieldType type;
   final MetadataEditSaveMode saveMode;
-  final List<MetadataEditOption> options;
   final MetadataArtworkConfig? artwork;
 
   const MetadataEditField({
@@ -53,7 +45,6 @@ class MetadataEditField {
     required this.label,
     required this.type,
     this.saveMode = MetadataEditSaveMode.draft,
-    this.options = const [],
     this.artwork,
   });
 }
@@ -138,13 +129,6 @@ abstract class MetadataEditAdapter {
   }
 
   Future<bool> save(MetadataEditDraft draft);
-
-  Future<bool> saveImmediateField(MetadataEditDraft draft, MetadataEditField field, Object? value) async {
-    draft.setValue(field.id, value);
-    final success = await save(draft);
-    if (success) draft.acceptChanges();
-    return success;
-  }
 
   Future<List<MetadataArtworkOption>> fetchArtwork(MetadataEditDraft draft, MetadataEditField field);
 

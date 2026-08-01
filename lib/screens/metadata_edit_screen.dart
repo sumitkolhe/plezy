@@ -173,77 +173,6 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
     }
   }
 
-  Future<void> _editChoice(MetadataEditField field) async {
-    final adapter = _adapter;
-    final draft = _draft;
-    if (adapter == null || draft == null || _isCommitting) return;
-    final current = draft.value<String>(field.id) ?? '';
-    final result = await showScopedDialog<String>(
-      context: context,
-      builder: (dialogContext) {
-        String selected = current;
-        return StatefulBuilder(
-          builder: (context, setDialogState) {
-            return AlertDialog(
-              title: Text(field.label),
-              content: SizedBox(
-                width: double.maxFinite,
-                child: RadioGroup<String>(
-                  groupValue: field.options.any((option) => option.value == selected) ? selected : null,
-                  onChanged: (value) {
-                    if (value == null) return;
-                    setDialogState(() => selected = value);
-                    Navigator.pop(dialogContext, value);
-                  },
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      for (final option in field.options)
-                        FocusableRadioListTile<String>(
-                          key: ValueKey(option.value),
-                          title: Text(option.label),
-                          value: option.value,
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-              actions: [DialogActionButton(onPressed: () => Navigator.pop(dialogContext), label: t.common.cancel)],
-            );
-          },
-        );
-      },
-    );
-
-    if (result == null || !mounted || _isCommitting || !identical(_draft, draft)) return;
-    if (field.saveMode == MetadataEditSaveMode.immediate) {
-      final metadata = widget.metadata;
-      final previous = draft.values[field.id];
-      setState(() {
-        draft.setValue(field.id, result);
-        _isCommitting = true;
-      });
-      bool success = false;
-      try {
-        success = await adapter.saveImmediateField(draft, field, result);
-      } catch (e, st) {
-        appLogger.e('Failed to update metadata field', error: e, stackTrace: st);
-      }
-      if (!mounted) return;
-      final ownsCompletion = identical(_draft, draft) && _sameMedia(widget.metadata, metadata);
-      setState(() {
-        _isCommitting = false;
-        if (!success && ownsCompletion && metadataEditValueEquals(draft.values[field.id], result)) {
-          draft.setValue(field.id, previous);
-        }
-      });
-      if (!ownsCompletion) return;
-      if (!success) showErrorSnackBar(context, t.metadataEdit.metadataUpdateFailed);
-    } else {
-      setState(() => draft.setValue(field.id, result));
-    }
-  }
-
   Future<void> _openArtworkPicker(MetadataEditField field) async {
     final adapter = _adapter;
     final draft = _draft;
@@ -358,11 +287,6 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
         value: metadataStringList(draft.values[field.id]).join(', '),
         onTap: () => _editStringList(field),
       ),
-      MetadataEditFieldType.choice => _buildFieldTile(
-        label: field.label,
-        value: _choiceDisplayValue(field, draft.value<String>(field.id)),
-        onTap: () => _editChoice(field),
-      ),
       MetadataEditFieldType.artwork => _buildArtworkTile(adapter, draft, field),
     };
   }
@@ -416,12 +340,6 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
     );
   }
 
-  String _choiceDisplayValue(MetadataEditField field, String? value) {
-    for (final option in field.options) {
-      if (option.value == value) return option.label;
-    }
-    return value == null || value.isEmpty ? t.metadataEdit.notSet : value;
-  }
 }
 
 bool _sameMedia(MediaItem left, MediaItem right) {
