@@ -5,12 +5,10 @@ import '../media/media_item.dart';
 import '../media/media_library.dart';
 import '../media/media_server_client.dart';
 import '../media/media_server_user_profile.dart';
-import '../services/plex_client.dart';
 import '../i18n/strings.g.dart';
 import '../providers/hidden_libraries_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/user_profile_provider.dart';
-import 'app_logger.dart';
 
 extension ProviderExtensions on BuildContext {
   UserProfileProvider get userProfile => Provider.of<UserProfileProvider>(this, listen: false);
@@ -19,59 +17,10 @@ extension ProviderExtensions on BuildContext {
 
   MediaServerUserProfile? get profileSettings => userProfile.profileSettings;
 
-  /// Internal: resolve a [PlexClient] from a serverId or fall back to the
-  /// first online server. Returns null if neither yields a Plex client.
-  /// Non-Plex servers (Jellyfin) are skipped — these helpers exist for
-  /// Plex-only flows that have no neutral equivalent (DVR tuning, match).
-  /// Backend-agnostic flows use the [_resolveMediaClient]
-  /// helpers below.
-  PlexClient? _resolveClient(ServerId? serverId) {
-    final provider = Provider.of<MultiServerProvider>(this, listen: false);
-    return _resolvePrioritized(serverId, provider.onlineServerIds, provider.getPlexClientForServer);
-  }
-
-  /// Internal: like [_resolveClient] but throws a localized exception when
-  /// no client is available. The thrown message is the canonical
-  /// `t.errors.noClientAvailable` so callers can surface it directly.
-  PlexClient _requireClient(ServerId? serverId, {bool fallback = true}) {
-    final provider = Provider.of<MultiServerProvider>(this, listen: false);
-    if (serverId != null) {
-      final client = provider.getPlexClientForServer(serverId);
-      if (client != null) return client;
-      if (!fallback) {
-        appLogger.e('No Plex client found for server $serverId');
-        throw Exception(t.errors.noClientAvailable);
-      }
-    }
-    final client = _resolveClient(null);
-    if (client == null) {
-      throw Exception(t.errors.noClientAvailable);
-    }
-    return client;
-  }
-
-  PlexClient getPlexClientForServer(ServerId serverId) => _requireClient(serverId, fallback: false);
-
-  PlexClient? tryGetPlexClientForServer(ServerId? serverId) {
-    if (serverId == null) return null;
-    final provider = Provider.of<MultiServerProvider?>(this, listen: false);
-    return provider?.getPlexClientForServer(serverId);
-  }
-
-  PlexClient getPlexClientForLibrary(MediaLibrary library) {
-    final serverId = serverIdOrNull(library.serverId);
-    if (serverId == null) throw Exception(t.errors.noClientAvailable);
-    return getPlexClientForServer(serverId);
-  }
-
-  PlexClient getPlexClientWithFallback(ServerId? serverId) => _requireClient(serverId);
-
-  // ── Backend-neutral helpers ──────────────────────────────────────
+  // ── Client resolution ────────────────────────────────────────────
   // These return [MediaServerClient] regardless of backend kind so callers
-  // that consume only the [MediaServerClient] surface don't need to type-
-  // check the result. Use [getPlexClientForServer] / [getPlexClientForLibrary]
-  // when you specifically need a [PlexClient] (Plex-only flows like Live TV or
-  // match/fix-match).
+  // that consume only the [MediaServerClient] surface don't need to
+  // type-check the result.
 
   MediaServerClient? _resolveMediaClient(ServerId? serverId) {
     final provider = Provider.of<MultiServerProvider>(this, listen: false);

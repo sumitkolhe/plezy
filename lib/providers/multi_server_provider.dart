@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 
 import '../media/media_server_client.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
-import '../services/plex_client.dart';
 import '../services/data_aggregation_service.dart';
 import '../services/multi_server_manager.dart';
 import '../utils/app_logger.dart';
@@ -129,13 +128,6 @@ class MultiServerProvider extends ChangeNotifier with DisposableChangeNotifierMi
   /// Get client for specific server.
   MediaServerClient? getClientForServer(ServerId serverId) {
     return _serverManager.getClient(serverId);
-  }
-
-  /// Get the [PlexClient] for a server, or `null` if the server is Jellyfin
-  /// (or not registered). Use for Plex-only flows that don't yet have a
-  /// backend-neutral equivalent.
-  PlexClient? getPlexClientForServer(ServerId serverId) {
-    return _serverManager.getPlexClient(serverId);
   }
 
   /// Get all online server IDs (visibility-filtered).

@@ -51,7 +51,6 @@ void main() {
 
     expect(capturedContext.tryGetMediaClientForServer(ServerId('server-1')), isNull);
     expect(capturedContext.tryGetMediaClientWithFallback(ServerId('server-1')), isNull);
-    expect(capturedContext.tryGetPlexClientForServer(ServerId('server-1')), isNull);
   });
 
   testWidgets('library-qualified helpers reject a missing owner instead of returning another online server', (
@@ -60,7 +59,6 @@ void main() {
     final replacement = testPlexClient(serverId: ServerId('server-b'));
     final context = await _pumpContext(tester, testMultiServer(clients: [replacement]).provider);
 
-    expect(() => context.getPlexClientForLibrary(_missingOwnerLibrary), _throwsNoClientAvailable);
     expect(() => context.getMediaClientForLibrary(_missingOwnerLibrary), _throwsNoClientAvailable);
   });
 
@@ -78,11 +76,9 @@ void main() {
         kind: MediaKind.movie,
         serverId: serverId,
       );
-      expect(() => context.getPlexClientForLibrary(library), _throwsNoClientAvailable);
       expect(() => context.getMediaClientForLibrary(library), _throwsNoClientAvailable);
     }
 
-    expect(context.getPlexClientWithFallback(ServerId('server-a')), same(replacement));
     expect(context.getMediaClientWithFallback(ServerId('server-a')), same(replacement));
     expect(context.tryGetMediaClientWithFallback(ServerId('server-a')), same(replacement));
   });
@@ -95,7 +91,6 @@ void main() {
       testMultiServer(clients: [owner, replacement], offline: [owner]).provider,
     );
 
-    expect(context.getPlexClientForLibrary(_missingOwnerLibrary), same(owner));
     expect(context.getMediaClientForLibrary(_missingOwnerLibrary), same(owner));
   });
 }
