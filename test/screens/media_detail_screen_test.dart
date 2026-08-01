@@ -20,6 +20,8 @@ import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/download_provider.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/providers/watch_state_store.dart';
+import 'package:plezy/screens/media_detail/season_picker.dart';
+import 'package:plezy/widgets/focusable_list_tile.dart';
 import 'package:plezy/screens/media_detail_screen.dart';
 
 import '../test_helpers/paged_fakes.dart';
@@ -756,6 +758,18 @@ void main() {
       serverName: show.serverName,
     );
 
+    /// Switch seasons the way touch does: the chip beside the Episodes heading
+    /// opens a sheet, and the sheet's row commits the choice.
+    Future<void> pickSeason(WidgetTester tester, String label) async {
+      final chip = find.byType(SeasonPickerChip);
+      await tester.ensureVisible(chip);
+      await tester.pumpAndSettle();
+      await tester.tap(chip);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FocusableListTile, label));
+      await tester.pumpAndSettle();
+    }
+
     Future<void> pumpPhoneDetail(
       WidgetTester tester,
       _FakeMediaServerClient client,
@@ -977,7 +991,7 @@ void main() {
       expect(FocusManager.instance.primaryFocus?.debugLabel, 'overview');
     });
 
-    testWidgets('phone detail focuses requested season tab', (tester) async {
+    testWidgets('phone detail opens on the requested season', (tester) async {
       final show = buildShow();
       final season1 = buildSeason(show, 1);
       final season2 = buildSeason(show, 2);
@@ -995,7 +1009,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
 
       expect(find.text('Episode S2E1'), findsOneWidget);
-      expect(FocusManager.instance.primaryFocus?.debugLabel, 'season_tab_1');
+      expect(find.widgetWithText(SeasonPickerChip, 'Season 2'), findsOneWidget);
     });
 
     testWidgets('phone detail focuses requested episode row', (tester) async {
@@ -1104,7 +1118,7 @@ void main() {
       expect(episodeRowWatched(tester, 'Episode S1E2'), isTrue);
     });
 
-    testWidgets('container mark clears progress, including after a season tab round-trip', (tester) async {
+    testWidgets('container mark clears progress, including after a season round-trip', (tester) async {
       final show = buildShow();
       final season1 = buildSeason(show, 1);
       final season2 = buildSeason(show, 2);
@@ -1131,14 +1145,10 @@ void main() {
       expect(episodeRowHasProgress(tester, 'Episode S1E1'), isFalse);
       expect(episodeRowWatched(tester, 'Episode S1E1'), isTrue);
 
-      // Round-trip through another season tab; the cached page restore must not
+      // Round-trip through another season; the cached page restore must not
       // resurrect the dead progress offset.
-      await tester.tap(find.text('Season 2'));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 300));
-      await tester.tap(find.text('Season 1'));
-      await tester.pump();
-      await tester.pump(const Duration(milliseconds: 300));
+      await pickSeason(tester, 'Season 2');
+      await pickSeason(tester, 'Season 1');
 
       expect(episodeRowHasProgress(tester, 'Episode S1E1'), isFalse);
       expect(episodeRowWatched(tester, 'Episode S1E1'), isTrue);

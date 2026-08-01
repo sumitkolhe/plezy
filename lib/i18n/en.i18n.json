@@ -928,6 +928,10 @@
       "one": "${n} episode",
       "other": "${n} episodes"
     },
+    "seasonCount": {
+      "one": "${n} season",
+      "other": "${n} seasons"
+    },
     "cast": "Cast",
     "characters": "Characters",
     "addToWatchlist": "Add to Watchlist",

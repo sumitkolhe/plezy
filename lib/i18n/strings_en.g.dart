@@ -2658,6 +2658,12 @@ class Translations$explore$en {
 		other: '${n} episodes',
 	);
 
+	/// en: '(one) {${n} season} (other) {${n} seasons}'
+	String seasonCount({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: '${n} season',
+		other: '${n} seasons',
+	);
+
 	/// en: 'Cast'
 	String get cast => 'Cast';
 
@@ -5678,6 +5684,7 @@ extension on Translations {
 			'explore.status.canceled' => 'Canceled',
 			'explore.status.upcoming' => 'Upcoming',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} episode', other: '${n} episodes', ), 
+			'explore.seasonCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} season', other: '${n} seasons', ), 
 			'explore.cast' => 'Cast',
 			'explore.characters' => 'Characters',
 			'explore.addToWatchlist' => 'Add to Watchlist',
@@ -5853,9 +5860,9 @@ extension on Translations {
 			'playlists.errorLoading' => 'Failed to load playlists',
 			'playlists.errorAdding' => 'Failed to add to playlist',
 			'playlists.errorReordering' => 'Failed to reorder playlist item',
-			'playlists.errorRemoving' => 'Failed to remove from playlist',
 			_ => null,
 		} ?? switch (path) {
+			'playlists.errorRemoving' => 'Failed to remove from playlist',
 			'music.goToAlbum' => 'Go to album',
 			'music.goToArtist' => 'Go to artist',
 			'music.instantMix' => 'Instant Mix',

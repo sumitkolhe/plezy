@@ -86,6 +86,8 @@ import '../utils/deletion_notifier.dart';
 import '../utils/global_key_utils.dart';
 import '../widgets/episode_card.dart';
 import '../widgets/fitting_title_text.dart';
+import 'media_detail/detail_design.dart';
+import 'media_detail/season_picker.dart';
 import 'actor_media_screen.dart';
 import '../widgets/focusable_tab_chip.dart';
 import '../widgets/hub_section.dart';
@@ -116,13 +118,8 @@ const String _tvDetailActorPersonIdRawKey = 'tvDetailActorPersonId';
 enum _SyncRuleAction { edit, remove, delete }
 
 /// Genres the hero shows. Its layout reserves one row and clips the rest.
-const int _maxGenreChips = 3;
-
-/// How a metadata pill presents what it carries.
-///
-/// [solid] is a plain fact, [technical] a machine-reported capability,
-/// [certificate] a classification mark, [outline] recedes to context.
-enum _ChipStyle { solid, technical, certificate, outline }
+/// Genres past the third add little and would wrap the hero's genre line.
+const int _maxGenreGenres = 3;
 
 /// A watchlist-capable catalog source paired with this item's ids in that
 /// source's terms (see `_resolveWatchlistIds`).
@@ -932,87 +929,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Build action buttons row (play, shuffle, download, mark watched)
   /// Build a metadata chip with optional leading icon or widget
-  Widget _buildMetadataChip(String text, {IconData? icon, Widget? leading, _ChipStyle style = _ChipStyle.solid}) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final isTv = PlatformDetector.isTV();
-    final tokensRef = tokens(context);
-    final solid = style == _ChipStyle.solid || style == _ChipStyle.technical;
-    final textWidget = Text(
-      text,
-      style: TextStyle(
-        color: solid ? colorScheme.onSecondaryContainer : tokensRef.textMuted,
-        fontSize: isTv ? 16 : 13,
-        fontWeight: .w600,
-        // The technical set reads as machine-reported capability rather than
-        // description, which is what the mono face is for.
-        fontFamily: style == _ChipStyle.technical ? MonoFonts.mono : null,
-        letterSpacing: style == _ChipStyle.certificate ? 0.5 : null,
-      ),
-    );
-
-    final hasLeading = leading != null || icon != null;
-
-    return Container(
-      padding: .symmetric(horizontal: isTv ? 14 : 12, vertical: isTv ? 8 : 6),
-      decoration: BoxDecoration(
-        color: solid ? colorScheme.secondaryContainer.withValues(alpha: 0.8) : null,
-        border: solid ? null : Border.all(color: tokensRef.outline),
-        // Certificates are squared marks in the wild; the pill radius is the
-        // one place a non-pill shape reads as more correct, not less.
-        borderRadius: style == _ChipStyle.certificate
-            ? BorderRadius.all(Radius.circular(tokensRef.radiusXs))
-            : const BorderRadius.all(Radius.circular(100)),
-      ),
-      child: hasLeading
-          ? Row(
-              mainAxisSize: .min,
-              children: [
-                if (leading != null)
-                  leading
-                else
-                  AppIcon(icon!, fill: 1, color: colorScheme.onSecondaryContainer, size: isTv ? 20 : 16),
-                SizedBox(width: isTv ? 6 : 4),
-                textWidget,
-              ],
-            )
-          : textWidget,
-    );
-  }
-
-  /// Build a rating chip that shows a source icon when available,
-  /// falling back to a generic Material icon.
-  Widget _buildRatingChip(double value, IconData fallbackIcon) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final isTv = PlatformDetector.isTV();
-    return MediaRatingBadge.chip(
-      value: value,
-      fallbackIcon: fallbackIcon,
-      foregroundColor: colorScheme.onSecondaryContainer,
-      backgroundColor: colorScheme.secondaryContainer.withValues(alpha: 0.8),
-      iconSize: isTv ? 20 : 16,
-      spacing: isTv ? 6 : 4,
-      padding: EdgeInsets.symmetric(horizontal: isTv ? 14 : 12, vertical: isTv ? 8 : 6),
-      textStyle: TextStyle(color: colorScheme.onSecondaryContainer, fontSize: isTv ? 16 : 13, fontWeight: .w600),
-    );
-  }
-
-  /// Build all rating chips for the metadata.
-  /// When both critic and audience ratings are from Rotten Tomatoes,
-  /// they are combined into a single badge.
-  List<Widget> _buildRatingChips(MediaItem metadata) {
-    final chips = <Widget>[];
-    if (metadata.rating != null) {
-      chips.add(_buildRatingChip(metadata.rating!, Symbols.star_rounded));
-    }
-
-    // User rating chip (tappable)
-    if (!widget.isOffline) {
-      chips.add(_buildUserRatingChip(metadata));
-    }
-
-    return chips;
-  }
-
   Widget _buildUserRatingChip(MediaItem metadata) {
     final active = metadata.isFavorite == true;
     const iconData = Symbols.favorite_rounded;
@@ -2934,13 +2850,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     final isShow = metadata.isShow;
     final isMobile = PlatformDetector.isMobile(context);
     final isTv = PlatformDetector.isTV();
+    // The season chip opens a sheet, which a d-pad reaches worse than a row of
+    // tabs it can walk with left/right. Keyboard focus keeps the strip.
+    final useDpadSeasonTabs = InputModeTracker.isKeyboardMode(context);
     final theme = Theme.of(context);
-    // Matches HubSection's rail header so the app has one heading scale.
-    final sectionTitleStyle = theme.textTheme.titleLarge?.copyWith(
-      fontWeight: .w700,
-      fontSize: isTv ? 28 : HubLayoutConstants.sectionHeadingSize,
-      letterSpacing: isTv ? null : -0.2,
-    );
 
     // Show loading state while fetching full metadata
     if (_isLoadingMetadata) {
@@ -3055,15 +2968,16 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                               // follow the synopsis. TV keeps them in the trailing block below,
                               // which its d-pad chain treats as the terminal section.
                               if (!isTv && _hasInfoRows) ...[
-                                if (metadata.directors?.isNotEmpty == true)
-                                  _buildInfoRow(
-                                    metadata.directors!.length > 1 ? t.discover.directors : t.discover.director,
-                                    metadata.directors!.join(', '),
-                                  ),
-                                if (metadata.studio != null) ...[
-                                  if (metadata.directors?.isNotEmpty == true) const SizedBox(height: 12),
-                                  _buildInfoRow(t.discover.studio, metadata.studio!),
-                                ],
+                                DetailInfoTable(
+                                  entries: [
+                                    if (metadata.directors?.isNotEmpty == true)
+                                      DetailInfoEntry(
+                                        metadata.directors!.length > 1 ? t.discover.directors : t.discover.director,
+                                        metadata.directors!.join(', '),
+                                      ),
+                                    if (metadata.studio != null) DetailInfoEntry(t.discover.studio, metadata.studio!),
+                                  ],
+                                ),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
@@ -3077,13 +2991,33 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 else if (_seasons.isEmpty)
                                   _sectionEmpty(context, t.messages.noSeasonsFound)
                                 else ...[
-                                  Text(
+                                  // Touch swaps the horizontal season strip for
+                                  // a chip beside the heading: it states which
+                                  // season is showing instead of leaving that to
+                                  // scroll position, and gives the episode rows
+                                  // back the width the strip was using. D-pad
+                                  // keeps the strip — a sheet is a worse target
+                                  // for it than a row of tabs.
+                                  KeyedSubtree(
                                     key: _seasonsSectionKey,
-                                    t.libraries.groupings.episodes,
-                                    style: sectionTitleStyle,
+                                    child: DetailSectionHeader(
+                                      title: t.libraries.groupings.episodes,
+                                      action: useDpadSeasonTabs
+                                          ? null
+                                          : SeasonPickerChip(
+                                              seasons: _seasons,
+                                              selectedIndex: _selectedSeasonIndex,
+                                              onSelected: (index) {
+                                                setState(() => _selectedSeasonIndex = index);
+                                                unawaited(_fetchSeasonEpisodes(index));
+                                              },
+                                            ),
+                                    ),
                                   ),
-                                  const SizedBox(height: 12),
-                                  _buildSeasonTabs(),
+                                  if (useDpadSeasonTabs) ...[
+                                    const SizedBox(height: 12),
+                                    _buildSeasonTabs(),
+                                  ],
                                   const SizedBox(height: 16),
                                   if (_isLoadingSeasonEpisodes)
                                     _sectionLoading
@@ -3100,7 +3034,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ] else if ((isShow && _showEpisodesDirectly) || metadata.isSeason) ...[
                                 // Server says flatten — existing behavior unchanged
-                                Text(key: _seasonsSectionKey, t.libraries.groupings.episodes, style: sectionTitleStyle),
+                                KeyedSubtree(
+                                  key: _seasonsSectionKey,
+                                  child: DetailSectionHeader(title: t.libraries.groupings.episodes),
+                                ),
                                 const SizedBox(height: 12),
                                 if (_isLoadingSeasons || _isLoadingEpisodes)
                                   _sectionLoading
@@ -3115,7 +3052,13 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
                               // Cast
                               if (metadata.roles != null && metadata.roles!.isNotEmpty) ...[
-                                Text(key: _castSectionKey, t.discover.cast, style: sectionTitleStyle),
+                                KeyedSubtree(
+                                  key: _castSectionKey,
+                                  child: DetailSectionHeader(
+                                    title: t.discover.cast,
+                                    trailing: '${metadata.roles!.length}',
+                                  ),
+                                ),
                                 const SizedBox(height: 12),
                                 _buildCastSection(metadata),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
@@ -3123,7 +3066,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
                               // Trailers & Extras Section
                               if (!widget.isOffline && _extras != null && _extras!.isNotEmpty) ...[
-                                Text(key: _extrasSectionKey, t.discover.extras, style: sectionTitleStyle),
+                                KeyedSubtree(
+                                  key: _extrasSectionKey,
+                                  child: DetailSectionHeader(title: t.discover.extras),
+                                ),
                                 const SizedBox(height: 12),
                                 _buildExtrasSection(),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
@@ -4154,55 +4100,41 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         const desiredLogoHeight = 120.0;
         const desiredLogoWidth = 400.0;
         const actionHeight = 48.0;
-        // Ordered by what should survive: the hero reserves a fixed height and
-        // clips, so whatever trails here is what a short hero drops. Year and
-        // runtime go last — the card that got you here already showed them.
-        final chips = <Widget>[
-          ..._buildRatingChips(metadata),
-          if (metadata.contentRating != null)
-            _buildMetadataChip(formatContentRating(metadata.contentRating!), style: _ChipStyle.certificate),
-          for (final label in buildMediaQualityLabels(metadata)) _buildMetadataChip(label, style: _ChipStyle.technical),
-          if (metadata.year != null) _buildMetadataChip('${metadata.year}', style: _ChipStyle.outline),
-          if (metadata.durationMs != null)
-            _buildMetadataChip(formatDurationTextual(metadata.durationMs!), style: _ChipStyle.outline),
+        const factLineHeight = 20.0;
+        const genreLineHeight = 18.0;
+
+        // Ordered by what should survive truncation: the card that got you here
+        // already showed year and runtime, so they trail the counts that are
+        // specific to this screen.
+        final facts = <String>[
+          if (metadata.year != null) '${metadata.year}',
+          ?_seasonCountLabel(metadata),
+          if (metadata.durationMs != null) formatDurationTextual(metadata.durationMs!),
+          ...buildMediaQualityLabels(metadata),
         ];
-        // Genres render on their own line below the metadata chips.
-        // genreRowHeight reserves a single row and the hero clips, so anything
-        // past what fits was being dropped without a trace. Three is what a
-        // phone row holds, and the ones beyond it carry little.
-        final genreChips = [
-          for (final genre in (metadata.genres ?? const <String>[]).take(_maxGenreChips))
-            _buildMetadataChip(genre, style: _ChipStyle.outline),
-        ];
+        final genres = (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
 
         final showActions = availableHeight >= actionHeight;
-        final remainingAfterActions = availableHeight - (showActions ? actionHeight : 0);
-        final showChips = chips.isNotEmpty && remainingAfterActions >= 88;
-        final chipHeight = showChips ? (remainingAfterActions >= 170 ? 68.0 : 32.0) : 0.0;
-        final chipActionGap = showChips && showActions ? (availableHeight < 180 ? 8.0 : 16.0) : 0.0;
-        // Reserve a dedicated genre row, but only when the logo still keeps room
-        // afterwards so the title isn't crowded out on short heroes.
-        const genreRowHeight = 32.0;
-        const genreGap = 8.0;
-        final showGenres =
-            showChips &&
-            genreChips.isNotEmpty &&
-            remainingAfterActions - chipHeight - chipActionGap - (genreRowHeight + genreGap) >= 52;
-        final genreBlockHeight = showGenres ? genreRowHeight + genreGap : 0.0;
-        final remainingForLogo = remainingAfterActions - chipHeight - chipActionGap - genreBlockHeight;
-        final logoGap = remainingForLogo >= 52 && (showChips || showActions)
-            ? (availableHeight < 180 ? 8.0 : 12.0)
-            : 0.0;
-        final logoHeight = (remainingForLogo - logoGap).clamp(0.0, desiredLogoHeight).toDouble();
+        var remaining = availableHeight - (showActions ? actionHeight : 0);
+        final hasFacts = metadata.rating != null || facts.isNotEmpty || metadata.contentRating != null;
+        final showFacts = hasFacts && remaining >= factLineHeight + 24;
+        final factsGap = showFacts && showActions ? 14.0 : 0.0;
+        remaining -= showFacts ? factLineHeight + factsGap : 0;
+        final showGenres = showFacts && genres.isNotEmpty && remaining >= genreLineHeight + 40;
+        const genreGap = 5.0;
+        remaining -= showGenres ? genreLineHeight + genreGap : 0;
+
+        final logoGap = remaining >= 52 && (showFacts || showActions) ? 12.0 : 0.0;
+        final logoHeight = (remaining - logoGap).clamp(0.0, desiredLogoHeight).toDouble();
         final showLogo = logoHeight >= 24;
         final effectiveLogoGap = showLogo ? logoGap : 0.0;
         final logoWidth = desiredLogoWidth.clamp(0.0, constraints.maxWidth).toDouble();
         final titleFontSize = (logoHeight * 0.38).clamp(24.0, 40.0).toDouble();
         final contentHeight =
             (showLogo ? logoHeight + effectiveLogoGap : 0.0) +
-            chipHeight +
-            genreBlockHeight +
-            chipActionGap +
+            (showFacts ? factLineHeight : 0.0) +
+            (showGenres ? genreLineHeight + genreGap : 0.0) +
+            factsGap +
             (showActions ? actionHeight : 0.0);
 
         return ClipRect(
@@ -4234,31 +4166,35 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                         ),
                         if (effectiveLogoGap > 0) SizedBox(height: effectiveLogoGap),
                       ],
-                      if (showChips)
-                        ClipRect(
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(maxHeight: chipHeight),
-                            child: Align(
-                              alignment: .bottomLeft,
-                              heightFactor: 1,
-                              child: Wrap(spacing: 8, runSpacing: 8, children: chips),
-                            ),
+                      if (showFacts)
+                        SizedBox(
+                          height: factLineHeight,
+                          child: Row(
+                            crossAxisAlignment: .center,
+                            children: [
+                              Flexible(
+                                child: DetailFactLine(
+                                  rating: metadata.rating,
+                                  contentRating: metadata.contentRating == null
+                                      ? null
+                                      : formatContentRating(metadata.contentRating!),
+                                  facts: facts,
+                                ),
+                              ),
+                              // Your rating is an action, not one of the facts
+                              // beside it, so it sits apart at the row's end.
+                              if (!widget.isOffline) ...[
+                                const SizedBox(width: 10),
+                                _buildUserRatingChip(metadata),
+                              ],
+                            ],
                           ),
                         ),
                       if (showGenres) ...[
                         const SizedBox(height: genreGap),
-                        ClipRect(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxHeight: genreRowHeight),
-                            child: Align(
-                              alignment: .bottomLeft,
-                              heightFactor: 1,
-                              child: Wrap(spacing: 8, runSpacing: 8, children: genreChips),
-                            ),
-                          ),
-                        ),
+                        SizedBox(height: genreLineHeight, child: DetailGenreLine(genres: genres)),
                       ],
-                      if (chipActionGap > 0) SizedBox(height: chipActionGap),
+                      if (factsGap > 0) SizedBox(height: factsGap),
                       if (showActions) SizedBox(height: actionHeight, child: _buildActionButtons(metadata)),
                     ],
                   ),
@@ -4269,6 +4205,15 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         );
       },
     );
+  }
+
+  /// Season count for the hero fact line. Shows are the only kind that carry
+  /// one; a season's own episode count is already the list below it.
+  String? _seasonCountLabel(MediaItem metadata) {
+    if (!metadata.isShow) return null;
+    final count = metadata.childCount ?? (_seasons.isEmpty ? null : _seasons.length);
+    if (count == null || count <= 0) return null;
+    return t.explore.seasonCount(n: count);
   }
 
   /// Get the primary trailer from the extras list.
