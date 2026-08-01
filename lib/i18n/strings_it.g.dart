@@ -360,8 +360,6 @@ class _Translations$settings$it extends Translations$settings$en {
 	@override String get maxVolume => 'Volume massimo consentito';
 	@override String get maxVolumeDescription => 'Consenti di aumentare il volume oltre il 100% per i contenuti con audio basso';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Mostra su Discord cosa stai guardando';
 	@override String get services => 'Servizi';
 	@override String get servicesDescription => 'Connetti Trakt, MyAnimeList, Seerr e altro';
 	@override String get manageLibrariesDescription => 'Riordina e nascondi le librerie';
@@ -1993,8 +1991,6 @@ extension on TranslationsIt {
 			'settings.maxVolume' => 'Volume massimo consentito',
 			'settings.maxVolumeDescription' => 'Consenti di aumentare il volume oltre il 100% per i contenuti con audio basso',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Mostra su Discord cosa stai guardando',
 			'settings.services' => 'Servizi',
 			'settings.servicesDescription' => 'Connetti Trakt, MyAnimeList, Seerr e altro',
 			'settings.manageLibrariesDescription' => 'Riordina e nascondi le librerie',
@@ -2281,10 +2277,10 @@ extension on TranslationsIt {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Impossibile aggiornare i metadati: ${error}',
 			'messages.logoutConfirm' => 'Vuoi uscire dall\'account?',
 			'messages.noSeasonsFound' => 'Nessuna stagione trovata',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Impossibile caricare le stagioni',
 			'messages.noEpisodesFound' => 'Nessun episodio trovato nella prima stagione',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nessun episodio trovato',
 			'messages.episodesLoadFailed' => 'Impossibile caricare gli episodi',
 			'messages.noResultsFound' => 'Nessun risultato',
@@ -2795,10 +2791,10 @@ extension on TranslationsIt {
 			'metadataEdit.releaseDate' => 'Data di uscita',
 			'metadataEdit.contentRating' => 'Classificazione per età',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Trama',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Sfondo',
 			'metadataEdit.logo' => 'Logo',

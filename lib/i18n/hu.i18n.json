@@ -237,8 +237,6 @@
     "maxVolume": "Maximális hangerő",
     "maxVolumeDescription": "A hangerő 100% fölé emelésének engedélyezése halk tartalmak esetén",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Megjeleníti a Discordon, hogy éppen mit nézel",
     "services": "Szolgáltatások",
     "servicesDescription": "Trakt, MyAnimeList, Seerr és egyéb szolgáltatások csatlakoztatása",
     "manageLibrariesDescription": "Könyvtárak sorrendjének módosítása és elrejtése",

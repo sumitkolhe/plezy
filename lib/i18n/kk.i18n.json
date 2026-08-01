@@ -237,8 +237,6 @@
     "maxVolume": "Максималды дыбыс",
     "maxVolumeDescription": "Ақырын видеолар үшін дыбысты 100%-дан асыруға рұқсат беру",
     "maxVolumePercent": "%${percent}",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discord-та не көріп жатқаныңызды көрсету",
     "services": "Қызметтер",
     "servicesDescription": "Trakt, MyAnimeList, Seerr және т.б. қосыңыз",
     "manageLibrariesDescription": "Кітапханаларды қайта реттеу және жасыру",

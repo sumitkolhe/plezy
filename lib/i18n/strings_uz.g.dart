@@ -363,8 +363,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get maxVolume => 'Maksimal ovoz';
 	@override String get maxVolumeDescription => 'Pastroq ovozli videolar uchun ovozni 100%-dan oshirishga ruxsat berish';
 	@override String maxVolumePercent({required Object percent}) => '%${percent}';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discord-da nima tomosha qilayotganingizni koʻrsatish';
 	@override String get services => 'Xizmatlar';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr va boshqalarni ulang';
 	@override String get manageLibrariesDescription => 'Kutubxonalarni tartiblash va yashirish';
@@ -2007,8 +2005,6 @@ extension on TranslationsUz {
 			'settings.maxVolume' => 'Maksimal ovoz',
 			'settings.maxVolumeDescription' => 'Pastroq ovozli videolar uchun ovozni 100%-dan oshirishga ruxsat berish',
 			'settings.maxVolumePercent' => ({required Object percent}) => '%${percent}',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discord-da nima tomosha qilayotganingizni koʻrsatish',
 			'settings.services' => 'Xizmatlar',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr va boshqalarni ulang',
 			'settings.manageLibrariesDescription' => 'Kutubxonalarni tartiblash va yashirish',
@@ -2292,10 +2288,10 @@ extension on TranslationsUz {
 			'messages.logsCopied' => 'Jurnallar nusxalandi',
 			'messages.noLogsAvailable' => 'Jurnallar yoʻq',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" uchun metamaʼlumotlar yangilanmoqda...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" uchun metamaʼlumotlarni yangilash boshlandi',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metamaʼlumotlarni yangilab boʻlmadi: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Haqiqatan ham chiqmoqchimisiz?',
 			'messages.noSeasonsFound' => 'Mavsumlar topilmadi',
 			'messages.seasonsLoadFailed' => 'Mavsumlarni yuklab boʻlmadi',
@@ -2806,10 +2802,10 @@ extension on TranslationsUz {
 			'externalPlayer.off' => 'Oʻchirilgan',
 			'externalPlayer.launchFailed' => 'Tashqi pleyerni ishga tushirib boʻlmadi',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} oʻrnatilmagan',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Tashqi pleyerda ijro etish',
 			'metadataEdit.editMetadata' => 'Tahrirlash...',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Metamaʼlumotlarni tahrirlash',
 			'metadataEdit.basicInfo' => 'Asosiy maʼlumotlar',
 			'metadataEdit.artwork' => 'Rasmlar/Posterlar',

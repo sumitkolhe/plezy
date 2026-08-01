@@ -237,8 +237,6 @@
     "maxVolume": "Maximaal volume",
     "maxVolumeDescription": "Volume boven 100% toestaan voor stille media",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Toon op Discord wat je aan het kijken bent",
     "services": "Diensten",
     "servicesDescription": "Koppel Trakt, MyAnimeList, Seerr en meer",
     "manageLibrariesDescription": "Bibliotheken herordenen en verbergen",

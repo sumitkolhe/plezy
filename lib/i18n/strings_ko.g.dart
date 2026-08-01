@@ -360,8 +360,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get maxVolume => '최대 볼륨';
 	@override String get maxVolumeDescription => '음량이 작은 콘텐츠를 위해 100% 이상의 볼륨을 허용합니다';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discord에서 시청 중인 콘텐츠 표시';
 	@override String get services => '서비스';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr 등 연결';
 	@override String get manageLibrariesDescription => '라이브러리 순서를 변경하거나 숨깁니다';
@@ -1990,8 +1988,6 @@ extension on TranslationsKo {
 			'settings.maxVolume' => '최대 볼륨',
 			'settings.maxVolumeDescription' => '음량이 작은 콘텐츠를 위해 100% 이상의 볼륨을 허용합니다',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discord에서 시청 중인 콘텐츠 표시',
 			'settings.services' => '서비스',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr 등 연결',
 			'settings.manageLibrariesDescription' => '라이브러리 순서를 변경하거나 숨깁니다',
@@ -2278,10 +2274,10 @@ extension on TranslationsKo {
 			'messages.metadataRefreshFailed' => ({required Object error}) => '메타데이터 새로고침 실패: ${error}',
 			'messages.logoutConfirm' => '로그아웃하시겠습니까?',
 			'messages.noSeasonsFound' => '시즌을 찾을 수 없음',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '시즌을 불러오지 못했습니다',
 			'messages.noEpisodesFound' => '시즌 1에서 에피소드를 찾을 수 없습니다',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => '에피소드를 찾을 수 없습니다',
 			'messages.episodesLoadFailed' => '에피소드를 불러오지 못했습니다',
 			'messages.noResultsFound' => '결과를 찾을 수 없습니다',
@@ -2792,10 +2788,10 @@ extension on TranslationsKo {
 			'metadataEdit.releaseDate' => '출시일',
 			'metadataEdit.contentRating' => '콘텐츠 등급',
 			'metadataEdit.studio' => '스튜디오',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => '태그라인',
 			'metadataEdit.summary' => '줄거리',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => '포스터',
 			'metadataEdit.background' => '배경',
 			'metadataEdit.logo' => '로고',

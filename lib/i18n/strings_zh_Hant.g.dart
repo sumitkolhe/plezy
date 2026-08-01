@@ -361,8 +361,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get maxVolume => '最大音量';
 	@override String get maxVolumeDescription => '允許音量調大至 100% 以上，以適應聲音過小的媒體';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord 狀態整合（Rich Presence）';
-	@override String get discordRichPresenceDescription => '在 Discord 上顯示您正在觀看的內容';
 	@override String get services => '外部服務';
 	@override String get servicesDescription => '連結 Trakt、MyAnimeList、Seerr 等服務';
 	@override String get manageLibrariesDescription => '重新排序與隱藏媒體庫';
@@ -1991,8 +1989,6 @@ extension on TranslationsZhHant {
 			'settings.maxVolume' => '最大音量',
 			'settings.maxVolumeDescription' => '允許音量調大至 100% 以上，以適應聲音過小的媒體',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord 狀態整合（Rich Presence）',
-			'settings.discordRichPresenceDescription' => '在 Discord 上顯示您正在觀看的內容',
 			'settings.services' => '外部服務',
 			'settings.servicesDescription' => '連結 Trakt、MyAnimeList、Seerr 等服務',
 			'settings.manageLibrariesDescription' => '重新排序與隱藏媒體庫',
@@ -2279,10 +2275,10 @@ extension on TranslationsZhHant {
 			'messages.metadataRefreshFailed' => ({required Object error}) => '無法重新整理中繼資料：${error}',
 			'messages.logoutConfirm' => '您確定要登出嗎？',
 			'messages.noSeasonsFound' => '找不到季數',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '無法載入季數',
 			'messages.noEpisodesFound' => '在第一季中找不到單集',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => '找不到單集',
 			'messages.episodesLoadFailed' => '無法載入單集',
 			'messages.noResultsFound' => '找不到結果',
@@ -2793,10 +2789,10 @@ extension on TranslationsZhHant {
 			'metadataEdit.releaseDate' => '上映日期',
 			'metadataEdit.contentRating' => '內容分級',
 			'metadataEdit.studio' => '製片商',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => '宣傳標語',
 			'metadataEdit.summary' => '大綱簡介',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => '海報',
 			'metadataEdit.background' => '背景圖',
 			'metadataEdit.logo' => '標誌（Logo）',

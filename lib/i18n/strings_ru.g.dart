@@ -360,8 +360,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get maxVolume => 'Максимальная громкость';
 	@override String get maxVolumeDescription => 'Разрешить усиление громкости выше 100% для тихих медиа';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Показывать, что вы смотрите, в Discord';
 	@override String get services => 'Сервисы';
 	@override String get servicesDescription => 'Подключите Trakt, MyAnimeList, Seerr и другие';
 	@override String get manageLibrariesDescription => 'Изменять порядок и скрывать библиотеки';
@@ -1999,8 +1997,6 @@ extension on TranslationsRu {
 			'settings.maxVolume' => 'Максимальная громкость',
 			'settings.maxVolumeDescription' => 'Разрешить усиление громкости выше 100% для тихих медиа',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Показывать, что вы смотрите, в Discord',
 			'settings.services' => 'Сервисы',
 			'settings.servicesDescription' => 'Подключите Trakt, MyAnimeList, Seerr и другие',
 			'settings.manageLibrariesDescription' => 'Изменять порядок и скрывать библиотеки',
@@ -2287,10 +2283,10 @@ extension on TranslationsRu {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Не удалось обновить метаданные: ${error}',
 			'messages.logoutConfirm' => 'Вы уверены, что хотите выйти?',
 			'messages.noSeasonsFound' => 'Сезоны не найдены',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Не удалось загрузить сезоны',
 			'messages.noEpisodesFound' => 'Эпизоды в первом сезоне не найдены',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Эпизоды не найдены',
 			'messages.episodesLoadFailed' => 'Не удалось загрузить эпизоды',
 			'messages.noResultsFound' => 'Результаты не найдены',
@@ -2801,10 +2797,10 @@ extension on TranslationsRu {
 			'metadataEdit.releaseDate' => 'Дата выпуска',
 			'metadataEdit.contentRating' => 'Возрастной рейтинг',
 			'metadataEdit.studio' => 'Студия',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Описание',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Логотип',

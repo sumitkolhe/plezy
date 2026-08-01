@@ -360,8 +360,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get maxVolume => 'Maksimal lydstyrke';
 	@override String get maxVolumeDescription => 'Tillad lydstyrkeforstærkning over 100 % for stille medier';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Vis på Discord, hvad du ser';
 	@override String get services => 'Tjenester';
 	@override String get servicesDescription => 'Forbind Trakt, MyAnimeList, Seerr og mere';
 	@override String get manageLibrariesDescription => 'Omarranger og skjul biblioteker';
@@ -1993,8 +1991,6 @@ extension on TranslationsDa {
 			'settings.maxVolume' => 'Maksimal lydstyrke',
 			'settings.maxVolumeDescription' => 'Tillad lydstyrkeforstærkning over 100 % for stille medier',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Vis på Discord, hvad du ser',
 			'settings.services' => 'Tjenester',
 			'settings.servicesDescription' => 'Forbind Trakt, MyAnimeList, Seerr og mere',
 			'settings.manageLibrariesDescription' => 'Omarranger og skjul biblioteker',
@@ -2281,10 +2277,10 @@ extension on TranslationsDa {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Kunne ikke opdatere metadata: ${error}',
 			'messages.logoutConfirm' => 'Er du sikker på, at du vil logge ud?',
 			'messages.noSeasonsFound' => 'Ingen sæsoner fundet',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Kunne ikke indlæse sæsoner',
 			'messages.noEpisodesFound' => 'Ingen episoder fundet i første sæson',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder fundet',
 			'messages.episodesLoadFailed' => 'Kunne ikke indlæse episoder',
 			'messages.noResultsFound' => 'Ingen resultater fundet',
@@ -2795,10 +2791,10 @@ extension on TranslationsDa {
 			'metadataEdit.releaseDate' => 'Udgivelsesdato',
 			'metadataEdit.contentRating' => 'Aldersgrænse',
 			'metadataEdit.studio' => 'Studie',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Resumé',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Baggrund',
 			'metadataEdit.logo' => 'Logo',

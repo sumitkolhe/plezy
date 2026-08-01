@@ -237,8 +237,6 @@
     "maxVolume": "最大音量",
     "maxVolumeDescription": "允許音量調大至 100% 以上，以適應聲音過小的媒體",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord 狀態整合（Rich Presence）",
-    "discordRichPresenceDescription": "在 Discord 上顯示您正在觀看的內容",
     "services": "外部服務",
     "servicesDescription": "連結 Trakt、MyAnimeList、Seerr 等服務",
     "manageLibrariesDescription": "重新排序與隱藏媒體庫",

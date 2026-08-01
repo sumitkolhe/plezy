@@ -360,8 +360,6 @@ class _Translations$settings$pl extends Translations$settings$en {
 	@override String get maxVolume => 'Maksymalna głośność';
 	@override String get maxVolumeDescription => 'Pozwól na wzmocnienie głośności powyżej 100% dla cichych multimediów';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Pokaż, co oglądasz na Discordzie';
 	@override String get services => 'Usługi';
 	@override String get servicesDescription => 'Połącz Trakt, MyAnimeList, Seerr i inne';
 	@override String get manageLibrariesDescription => 'Zmieniaj kolejność i ukrywaj biblioteki';
@@ -1999,8 +1997,6 @@ extension on TranslationsPl {
 			'settings.maxVolume' => 'Maksymalna głośność',
 			'settings.maxVolumeDescription' => 'Pozwól na wzmocnienie głośności powyżej 100% dla cichych multimediów',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Pokaż, co oglądasz na Discordzie',
 			'settings.services' => 'Usługi',
 			'settings.servicesDescription' => 'Połącz Trakt, MyAnimeList, Seerr i inne',
 			'settings.manageLibrariesDescription' => 'Zmieniaj kolejność i ukrywaj biblioteki',
@@ -2287,10 +2283,10 @@ extension on TranslationsPl {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nie udało się odświeżyć metadanych: ${error}',
 			'messages.logoutConfirm' => 'Czy na pewno chcesz się wylogować?',
 			'messages.noSeasonsFound' => 'Nie znaleziono sezonów',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Nie udało się załadować sezonów',
 			'messages.noEpisodesFound' => 'Nie znaleziono odcinków w pierwszym sezonie',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nie znaleziono odcinków',
 			'messages.episodesLoadFailed' => 'Nie udało się załadować odcinków',
 			'messages.noResultsFound' => 'Nie znaleziono wyników',
@@ -2801,10 +2797,10 @@ extension on TranslationsPl {
 			'metadataEdit.releaseDate' => 'Data premiery',
 			'metadataEdit.contentRating' => 'Klasyfikacja wiekowa',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Opis',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Tło',
 			'metadataEdit.logo' => 'Logo',

@@ -360,8 +360,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get maxVolume => 'Maximális hangerő';
 	@override String get maxVolumeDescription => 'A hangerő 100% fölé emelésének engedélyezése halk tartalmak esetén';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Megjeleníti a Discordon, hogy éppen mit nézel';
 	@override String get services => 'Szolgáltatások';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr és egyéb szolgáltatások csatlakoztatása';
 	@override String get manageLibrariesDescription => 'Könyvtárak sorrendjének módosítása és elrejtése';
@@ -1993,8 +1991,6 @@ extension on TranslationsHu {
 			'settings.maxVolume' => 'Maximális hangerő',
 			'settings.maxVolumeDescription' => 'A hangerő 100% fölé emelésének engedélyezése halk tartalmak esetén',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Megjeleníti a Discordon, hogy éppen mit nézel',
 			'settings.services' => 'Szolgáltatások',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr és egyéb szolgáltatások csatlakoztatása',
 			'settings.manageLibrariesDescription' => 'Könyvtárak sorrendjének módosítása és elrejtése',
@@ -2281,10 +2277,10 @@ extension on TranslationsHu {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nem sikerült a metaadatok frissítése: ${error}',
 			'messages.logoutConfirm' => 'Biztosan ki szeretnél jelentkezni?',
 			'messages.noSeasonsFound' => 'Nem találhatók évadok',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Nem sikerült az évadok betöltése',
 			'messages.noEpisodesFound' => 'Nem találhatók epizódok az első évadban',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nem találhatók epizódok',
 			'messages.episodesLoadFailed' => 'Nem sikerült az epizódok betöltése',
 			'messages.noResultsFound' => 'Nincs találat',
@@ -2795,10 +2791,10 @@ extension on TranslationsHu {
 			'metadataEdit.releaseDate' => 'Bemutató dátuma',
 			'metadataEdit.contentRating' => 'Korhatár-besorolás',
 			'metadataEdit.studio' => 'Stúdió',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Jelmondat',
 			'metadataEdit.summary' => 'Összefoglaló',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poszter',
 			'metadataEdit.background' => 'Háttér',
 			'metadataEdit.logo' => 'Logó',

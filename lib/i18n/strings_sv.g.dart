@@ -360,8 +360,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get maxVolume => 'Maxvolym';
 	@override String get maxVolumeDescription => 'Tillåt att volymen höjs över 100 % för innehåll med låg ljudnivå';
 	@override String maxVolumePercent({required Object percent}) => '${percent} %';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Visa vad du tittar på i Discord';
 	@override String get services => 'Tjänster';
 	@override String get servicesDescription => 'Anslut Trakt, MyAnimeList, Seerr med mera';
 	@override String get manageLibrariesDescription => 'Ordna om och dölj bibliotek';
@@ -1993,8 +1991,6 @@ extension on TranslationsSv {
 			'settings.maxVolume' => 'Maxvolym',
 			'settings.maxVolumeDescription' => 'Tillåt att volymen höjs över 100 % för innehåll med låg ljudnivå',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent} %',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Visa vad du tittar på i Discord',
 			'settings.services' => 'Tjänster',
 			'settings.servicesDescription' => 'Anslut Trakt, MyAnimeList, Seerr med mera',
 			'settings.manageLibrariesDescription' => 'Ordna om och dölj bibliotek',
@@ -2281,10 +2277,10 @@ extension on TranslationsSv {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Det gick inte att uppdatera metadata: ${error}',
 			'messages.logoutConfirm' => 'Är du säker på att du vill logga ut?',
 			'messages.noSeasonsFound' => 'Inga säsonger hittades',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Det gick inte att läsa in säsonger',
 			'messages.noEpisodesFound' => 'Inga avsnitt hittades i första säsongen',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Inga avsnitt hittades',
 			'messages.episodesLoadFailed' => 'Det gick inte att läsa in avsnitt',
 			'messages.noResultsFound' => 'Inga resultat hittades',
@@ -2795,10 +2791,10 @@ extension on TranslationsSv {
 			'metadataEdit.releaseDate' => 'Utgivningsdatum',
 			'metadataEdit.contentRating' => 'Åldersgräns',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sammanfattning',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Affisch',
 			'metadataEdit.background' => 'Bakgrund',
 			'metadataEdit.logo' => 'Logotyp',

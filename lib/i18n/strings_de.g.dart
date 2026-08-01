@@ -360,8 +360,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get maxVolume => 'Maximale Lautstärke';
 	@override String get maxVolumeDescription => 'Lautstärkeanhebung über 100 % für leise Medien erlauben';
 	@override String maxVolumePercent({required Object percent}) => '${percent} %';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Auf Discord anzeigen, was du gerade schaust';
 	@override String get services => 'Dienste';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr und mehr verbinden';
 	@override String get manageLibrariesDescription => 'Mediatheken neu anordnen und ausblenden';
@@ -1993,8 +1991,6 @@ extension on TranslationsDe {
 			'settings.maxVolume' => 'Maximale Lautstärke',
 			'settings.maxVolumeDescription' => 'Lautstärkeanhebung über 100 % für leise Medien erlauben',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent} %',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Auf Discord anzeigen, was du gerade schaust',
 			'settings.services' => 'Dienste',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr und mehr verbinden',
 			'settings.manageLibrariesDescription' => 'Mediatheken neu anordnen und ausblenden',
@@ -2281,10 +2277,10 @@ extension on TranslationsDe {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadaten konnten nicht aktualisiert werden: ${error}',
 			'messages.logoutConfirm' => 'Abmeldung wirklich durchführen?',
 			'messages.noSeasonsFound' => 'Keine Staffeln gefunden',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Staffeln konnten nicht geladen werden',
 			'messages.noEpisodesFound' => 'Keine Episoden in der ersten Staffel gefunden',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Keine Episoden gefunden',
 			'messages.episodesLoadFailed' => 'Episoden konnten nicht geladen werden',
 			'messages.noResultsFound' => 'Keine Ergebnisse gefunden',
@@ -2795,10 +2791,10 @@ extension on TranslationsDe {
 			'metadataEdit.releaseDate' => 'Erscheinungsdatum',
 			'metadataEdit.contentRating' => 'Altersfreigabe',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Zusammenfassung',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Hintergrund',
 			'metadataEdit.logo' => 'Logo',

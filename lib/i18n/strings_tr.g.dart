@@ -363,8 +363,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get maxVolume => 'Maksimum Ses';
 	@override String get maxVolumeDescription => 'Kısık sesli medyalar için %100\'ün üzerinde ses yükseltmeye izin ver';
 	@override String maxVolumePercent({required Object percent}) => '%${percent}';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discord\'da ne izlediğinizi gösterin';
 	@override String get services => 'Servisler';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr ve daha fazlasını bağlayın';
 	@override String get manageLibrariesDescription => 'Kitaplıkları yeniden sıralayın ve gizleyin';
@@ -2007,8 +2005,6 @@ extension on TranslationsTr {
 			'settings.maxVolume' => 'Maksimum Ses',
 			'settings.maxVolumeDescription' => 'Kısık sesli medyalar için %100\'ün üzerinde ses yükseltmeye izin ver',
 			'settings.maxVolumePercent' => ({required Object percent}) => '%${percent}',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discord\'da ne izlediğinizi gösterin',
 			'settings.services' => 'Servisler',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr ve daha fazlasını bağlayın',
 			'settings.manageLibrariesDescription' => 'Kitaplıkları yeniden sıralayın ve gizleyin',
@@ -2292,10 +2288,10 @@ extension on TranslationsTr {
 			'messages.logsCopied' => 'Günlükler panoya kopyalandı',
 			'messages.noLogsAvailable' => 'Günlük yok',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" için meta veriler yenileniyor...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" için meta veri yenilemesi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta veriler yenilenemedi: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
 			'messages.noSeasonsFound' => 'Sezon bulunamadı',
 			'messages.seasonsLoadFailed' => 'Sezonlar yüklenemedi',
@@ -2806,10 +2802,10 @@ extension on TranslationsTr {
 			'externalPlayer.off' => 'Kapalı',
 			'externalPlayer.launchFailed' => 'Harici oynatıcı açılamadı',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} yüklü değil',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Harici Oynatıcıda Oynat',
 			'metadataEdit.editMetadata' => 'Düzenle...',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Meta Verileri Düzenle',
 			'metadataEdit.basicInfo' => 'Temel Bilgiler',
 			'metadataEdit.artwork' => 'Görseller',

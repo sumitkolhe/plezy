@@ -237,8 +237,6 @@
     "maxVolume": "Maksimal səs",
     "maxVolumeDescription": "Sakit videolar üçün səsin 100%-dən yuxarı qalxmasına icazə ver",
     "maxVolumePercent": "%${percent}",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discord-da nəyə baxdığınızı göstərin",
     "services": "Xidmətlər",
     "servicesDescription": "Trakt, MyAnimeList, Seerr və daha çoxunu qoşun",
     "manageLibrariesDescription": "Kitabxanaları yenidən sıralayın və gizlədin",

@@ -215,7 +215,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       if (_mediaControlSubscription != null) _mediaControlSubscription!.cancel(),
       if (_mediaControlsPlayingSubscription != null) _mediaControlsPlayingSubscription!.cancel(),
       if (_mediaControlsPositionSubscription != null) _mediaControlsPositionSubscription!.cancel(),
-      if (_mediaControlsRateSubscription != null) _mediaControlsRateSubscription!.cancel(),
       if (_mediaControlsSeekableSubscription != null) _mediaControlsSeekableSubscription!.cancel(),
     ];
     _playingSubscription = null;
@@ -230,7 +229,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     _mediaControlSubscription = null;
     _mediaControlsPlayingSubscription = null;
     _mediaControlsPositionSubscription = null;
-    _mediaControlsRateSubscription = null;
     _mediaControlsSeekableSubscription = null;
     try {
       await Future.wait(cancellationFutures);
@@ -302,10 +300,7 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
 
     if (progressTracker != null) {
       try {
-        await Future.wait<void>([
-          DiscordRPCService.instance.stopPlayback(),
-          TrackerCoordinator.instance.stopPlayback(),
-        ]);
+        await TrackerCoordinator.instance.stopPlayback();
       } catch (e, st) {
         appLogger.w('Failed to stop scrobblers during initialization rollback', error: e, stackTrace: st);
       }
@@ -321,8 +316,8 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
 
   /// Wire the per-item playback services that need to (re)bind whenever
   /// the active media item changes: [PlaybackProgressTracker],
-  /// [MediaControlsManager.updateMetadata], and the
-  /// Discord/Trakt/Tracker scrobblers. Both [_initializeServices] and
+  /// [MediaControlsManager.updateMetadata], and the tracker
+  /// scrobblers. Both [_initializeServices] and
   /// [_reloadMediaInPlace] call this so the two flows can't drift.
   ///
   /// The caller is responsible for ensuring `player != null` and (if the
@@ -363,11 +358,9 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       );
     }
 
-    // Scrobblers — Discord RPC plus the tracker coordinator, which fans out to
-    // every connected service. Both accept the neutral [MediaServerClient]; null
-    // short-circuits cleanly.
+    // The tracker coordinator fans out to every connected service. It accepts
+    // the neutral [MediaServerClient]; null short-circuits cleanly.
     if (mediaClient != null) {
-      unawaited(DiscordRPCService.instance.startPlayback(metadata, mediaClient));
       unawaited(TrackerCoordinator.instance.startPlayback(metadata, mediaClient, isLive: widget.isLive));
     }
   }
@@ -533,9 +526,9 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       mediaControlRouter.route(event);
     });
 
-    // Wire progress tracker, media-controls metadata, and the
-    // Discord/Trakt/Tracker scrobblers. Shared with [_reloadMediaInPlace]
-    // so the two flows can't drift.
+    // Wire progress tracker, media-controls metadata, and the tracker
+    // scrobblers. Shared with [_reloadMediaInPlace] so the two flows can't
+    // drift.
     _wirePerItemPlaybackServices(
       metadata: _currentMetadata,
       mediaClient: mediaClient,
@@ -555,24 +548,18 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       _updateMediaControlsPlaybackState();
     });
 
-    // Listen to position updates for media controls and Discord
+    // Listen to position updates for media controls and trackers
     _mediaControlsPositionSubscription = currentPlayer.streams.position.listen((position) {
       mediaControlsManager.updatePlaybackState(
         isPlaying: currentPlayer.state.isActive,
         position: position,
         speed: currentPlayer.state.rate,
       );
-      DiscordRPCService.instance.updatePosition(position);
       TrackerCoordinator.instance.updatePosition(position);
       // Keep the trackers' known duration current — mpv only emits on the
       // duration stream once per load, but this is cheap and avoids an extra
       // listener.
       TrackerCoordinator.instance.updateDuration(currentPlayer.state.duration);
-    });
-
-    // Listen to playback rate changes for Discord Rich Presence
-    _mediaControlsRateSubscription = currentPlayer.streams.rate.listen((rate) {
-      DiscordRPCService.instance.updatePlaybackSpeed(rate);
     });
 
     _mediaControlsSeekableSubscription = currentPlayer.streams.seekable.listen((_) {
@@ -631,12 +618,9 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     // Update OS media controls playback state
     _updateMediaControlsPlaybackState();
 
-    // Update Discord Rich Presence + real-time trackers
     if (isPlaying) {
-      DiscordRPCService.instance.resumePlayback();
       TrackerCoordinator.instance.resumePlayback();
     } else {
-      DiscordRPCService.instance.pausePlayback();
       TrackerCoordinator.instance.pausePlayback();
     }
 

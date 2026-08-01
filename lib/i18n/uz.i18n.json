@@ -237,8 +237,6 @@
     "maxVolume": "Maksimal ovoz",
     "maxVolumeDescription": "Pastroq ovozli videolar uchun ovozni 100%-dan oshirishga ruxsat berish",
     "maxVolumePercent": "%${percent}",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discord-da nima tomosha qilayotganingizni koʻrsatish",
     "services": "Xizmatlar",
     "servicesDescription": "Trakt, MyAnimeList, Seerr va boshqalarni ulang",
     "manageLibrariesDescription": "Kutubxonalarni tartiblash va yashirish",

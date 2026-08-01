@@ -237,8 +237,6 @@
     "maxVolume": "最大音量",
     "maxVolumeDescription": "静かなメディアに対して100%以上の音量ブーストを許可",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discordで視聴中の内容を表示",
     "services": "サービス",
     "servicesDescription": "Trakt、MyAnimeList、Seerrなどを接続",
     "manageLibrariesDescription": "ライブラリを並べ替えたり非表示にしたりできます",

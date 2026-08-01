@@ -237,8 +237,6 @@
     "maxVolume": "Maximale Lautstärke",
     "maxVolumeDescription": "Lautstärkeanhebung über 100 % für leise Medien erlauben",
     "maxVolumePercent": "${percent} %",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Auf Discord anzeigen, was du gerade schaust",
     "services": "Dienste",
     "servicesDescription": "Trakt, MyAnimeList, Seerr und mehr verbinden",
     "manageLibrariesDescription": "Mediatheken neu anordnen und ausblenden",

@@ -360,8 +360,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get maxVolume => 'Максимална сила на звука';
 	@override String get maxVolumeDescription => 'Позволи усилване на звука над 100% за тихи медии';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Показвай какво гледате в Discord';
 	@override String get services => 'Услуги';
 	@override String get servicesDescription => 'Свържи Trakt, MyAnimeList, Seerr и още';
 	@override String get manageLibrariesDescription => 'Пренареждай и скривай библиотеки';
@@ -1993,8 +1991,6 @@ extension on TranslationsBg {
 			'settings.maxVolume' => 'Максимална сила на звука',
 			'settings.maxVolumeDescription' => 'Позволи усилване на звука над 100% за тихи медии',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Показвай какво гледате в Discord',
 			'settings.services' => 'Услуги',
 			'settings.servicesDescription' => 'Свържи Trakt, MyAnimeList, Seerr и още',
 			'settings.manageLibrariesDescription' => 'Пренареждай и скривай библиотеки',
@@ -2281,10 +2277,10 @@ extension on TranslationsBg {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Неуспешно опресняване на метаданни: ${error}',
 			'messages.logoutConfirm' => 'Сигурни ли сте, че искате да излезете?',
 			'messages.noSeasonsFound' => 'Не са намерени сезони',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Неуспешно зареждане на сезони',
 			'messages.noEpisodesFound' => 'Не са намерени епизоди в първия сезон',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Не са намерени епизоди',
 			'messages.episodesLoadFailed' => 'Неуспешно зареждане на епизоди',
 			'messages.noResultsFound' => 'Няма намерени резултати',
@@ -2795,10 +2791,10 @@ extension on TranslationsBg {
 			'metadataEdit.releaseDate' => 'Дата на излизане',
 			'metadataEdit.contentRating' => 'Възрастов рейтинг',
 			'metadataEdit.studio' => 'Студио',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Резюме',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Лого',

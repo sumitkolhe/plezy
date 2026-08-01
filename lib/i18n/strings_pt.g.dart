@@ -360,8 +360,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get maxVolume => 'Volume Máximo';
 	@override String get maxVolumeDescription => 'Permitir aumento de volume acima de 100% para mídias silenciosas';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Mostrar o que você está assistindo no Discord';
 	@override String get services => 'Serviços';
 	@override String get servicesDescription => 'Conecte Trakt, MyAnimeList, Seerr e mais';
 	@override String get manageLibrariesDescription => 'Reordene e oculte bibliotecas';
@@ -1993,8 +1991,6 @@ extension on TranslationsPt {
 			'settings.maxVolume' => 'Volume Máximo',
 			'settings.maxVolumeDescription' => 'Permitir aumento de volume acima de 100% para mídias silenciosas',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Mostrar o que você está assistindo no Discord',
 			'settings.services' => 'Serviços',
 			'settings.servicesDescription' => 'Conecte Trakt, MyAnimeList, Seerr e mais',
 			'settings.manageLibrariesDescription' => 'Reordene e oculte bibliotecas',
@@ -2281,10 +2277,10 @@ extension on TranslationsPt {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Falha ao atualizar metadados: ${error}',
 			'messages.logoutConfirm' => 'Tem certeza de que deseja sair?',
 			'messages.noSeasonsFound' => 'Nenhuma temporada encontrada',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Não foi possível carregar as temporadas',
 			'messages.noEpisodesFound' => 'Nenhum episódio encontrado na primeira temporada',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nenhum episódio encontrado',
 			'messages.episodesLoadFailed' => 'Não foi possível carregar os episódios',
 			'messages.noResultsFound' => 'Nenhum resultado encontrado',
@@ -2795,10 +2791,10 @@ extension on TranslationsPt {
 			'metadataEdit.releaseDate' => 'Data de Lançamento',
 			'metadataEdit.contentRating' => 'Classificação Indicativa',
 			'metadataEdit.studio' => 'Estúdio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sinopse',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Pôster',
 			'metadataEdit.background' => 'Plano de Fundo',
 			'metadataEdit.logo' => 'Logo',

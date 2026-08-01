@@ -360,8 +360,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get maxVolume => 'Maximaal volume';
 	@override String get maxVolumeDescription => 'Volume boven 100% toestaan voor stille media';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Toon op Discord wat je aan het kijken bent';
 	@override String get services => 'Diensten';
 	@override String get servicesDescription => 'Koppel Trakt, MyAnimeList, Seerr en meer';
 	@override String get manageLibrariesDescription => 'Bibliotheken herordenen en verbergen';
@@ -1993,8 +1991,6 @@ extension on TranslationsNl {
 			'settings.maxVolume' => 'Maximaal volume',
 			'settings.maxVolumeDescription' => 'Volume boven 100% toestaan voor stille media',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Toon op Discord wat je aan het kijken bent',
 			'settings.services' => 'Diensten',
 			'settings.servicesDescription' => 'Koppel Trakt, MyAnimeList, Seerr en meer',
 			'settings.manageLibrariesDescription' => 'Bibliotheken herordenen en verbergen',
@@ -2281,10 +2277,10 @@ extension on TranslationsNl {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadata vernieuwen mislukt: ${error}',
 			'messages.logoutConfirm' => 'Weet je zeker dat je wilt uitloggen?',
 			'messages.noSeasonsFound' => 'Geen seizoenen gevonden',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Kan seizoenen niet laden',
 			'messages.noEpisodesFound' => 'Geen afleveringen gevonden in eerste seizoen',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Geen afleveringen gevonden',
 			'messages.episodesLoadFailed' => 'Kan afleveringen niet laden',
 			'messages.noResultsFound' => 'Geen resultaten gevonden',
@@ -2795,10 +2791,10 @@ extension on TranslationsNl {
 			'metadataEdit.releaseDate' => 'Releasedatum',
 			'metadataEdit.contentRating' => 'Leeftijdsclassificatie',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Samenvatting',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Achtergrond',
 			'metadataEdit.logo' => 'Logo',

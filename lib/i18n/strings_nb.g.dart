@@ -360,8 +360,6 @@ class _Translations$settings$nb extends Translations$settings$en {
 	@override String get maxVolume => 'Maksvolum';
 	@override String get maxVolumeDescription => 'Tillat volumforsterkning over 100 % for medier med lavt lydnivå';
 	@override String maxVolumePercent({required Object percent}) => '${percent} %';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Vis hva du ser på Discord';
 	@override String get services => 'Tjenester';
 	@override String get servicesDescription => 'Koble til Trakt, MyAnimeList, Seerr og mer';
 	@override String get manageLibrariesDescription => 'Omorganiser og skjul biblioteker';
@@ -1993,8 +1991,6 @@ extension on TranslationsNb {
 			'settings.maxVolume' => 'Maksvolum',
 			'settings.maxVolumeDescription' => 'Tillat volumforsterkning over 100 % for medier med lavt lydnivå',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent} %',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Vis hva du ser på Discord',
 			'settings.services' => 'Tjenester',
 			'settings.servicesDescription' => 'Koble til Trakt, MyAnimeList, Seerr og mer',
 			'settings.manageLibrariesDescription' => 'Omorganiser og skjul biblioteker',
@@ -2281,10 +2277,10 @@ extension on TranslationsNb {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Kunne ikke oppdatere metadata: ${error}',
 			'messages.logoutConfirm' => 'Er du sikker på at du vil logge ut?',
 			'messages.noSeasonsFound' => 'Ingen sesonger funnet',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Kunne ikke laste sesonger',
 			'messages.noEpisodesFound' => 'Ingen episoder funnet i første sesong',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder funnet',
 			'messages.episodesLoadFailed' => 'Kunne ikke laste episoder',
 			'messages.noResultsFound' => 'Ingen resultater funnet',
@@ -2795,10 +2791,10 @@ extension on TranslationsNb {
 			'metadataEdit.releaseDate' => 'Utgivelsesdato',
 			'metadataEdit.contentRating' => 'Aldersgrense',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slagord',
 			'metadataEdit.summary' => 'Sammendrag',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Bakgrunn',
 			'metadataEdit.logo' => 'Logo',

@@ -237,8 +237,6 @@
     "maxVolume": "Максимална сила на звука",
     "maxVolumeDescription": "Позволи усилване на звука над 100% за тихи медии",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Показвай какво гледате в Discord",
     "services": "Услуги",
     "servicesDescription": "Свържи Trakt, MyAnimeList, Seerr и още",
     "manageLibrariesDescription": "Пренареждай и скривай библиотеки",

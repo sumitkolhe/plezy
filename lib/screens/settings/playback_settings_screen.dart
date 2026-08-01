@@ -8,7 +8,6 @@ import '../../models/audio_quality_preset.dart';
 import '../../models/transcode_quality_preset.dart';
 import '../../mpv/player/platform/player_android.dart';
 import '../../utils/quality_preset_labels.dart';
-import '../../services/discord_rpc_service.dart';
 import '../../services/keyboard_shortcuts_service.dart';
 import '../../services/settings_service.dart';
 import '../../utils/platform_detector.dart';
@@ -179,14 +178,6 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
   Widget _behaviorGroup(BuildContext context, bool isMobile) => SettingsGroup(
     title: t.settings.behavior,
     children: [
-      if (DiscordRPCService.isAvailable)
-        SettingSwitchTile(
-          pref: SettingsService.enableDiscordRPC,
-          icon: Symbols.chat_rounded,
-          title: t.settings.discordRichPresence,
-          subtitle: t.settings.discordRichPresenceDescription,
-          onAfterWrite: (v) => DiscordRPCService.instance.setEnabled(v),
-        ),
       SettingSwitchTile(
         pref: SettingsService.rememberTrackSelections,
         icon: Symbols.bookmark_rounded,

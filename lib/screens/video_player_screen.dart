@@ -32,7 +32,6 @@ import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/playback_state_provider.dart';
 import '../services/driver_distraction.dart';
-import '../services/discord_rpc_service.dart';
 import '../services/trackers/tracker_coordinator.dart';
 import '../services/episode_navigation_service.dart';
 import '../services/media_controls_manager.dart';
@@ -352,7 +351,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   StreamSubscription<void>? _sleepTimerSubscription;
   StreamSubscription<bool>? _mediaControlsPlayingSubscription;
   StreamSubscription<Duration>? _mediaControlsPositionSubscription;
-  StreamSubscription<double>? _mediaControlsRateSubscription;
   StreamSubscription<bool>? _mediaControlsSeekableSubscription;
   StreamSubscription<Map<String, bool>>? _serverStatusSubscription;
   bool _isHandlingBack = false;
@@ -1408,7 +1406,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     _sleepTimerSubscription?.cancel();
     _mediaControlsPlayingSubscription?.cancel();
     _mediaControlsPositionSubscription?.cancel();
-    _mediaControlsRateSubscription?.cancel();
     _mediaControlsSeekableSubscription?.cancel();
     _serverStatusSubscription?.cancel();
 
@@ -1430,7 +1427,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     _mediaControlsManager?.clear();
     _mediaControlsManager?.dispose();
 
-    DiscordRPCService.instance.stopPlayback();
     TrackerCoordinator.instance.stopPlayback();
 
     // Clear frame rate matching and abandon audio focus before disposing player (Android only)

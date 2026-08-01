@@ -360,8 +360,6 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get maxVolume => 'Volume maximal';
 	@override String get maxVolumeDescription => 'Autoriser l\'augmentation du volume au-delà de 100 % pour les médias silencieux';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Afficher sur Discord ce que vous regardez';
 	@override String get services => 'Services';
 	@override String get servicesDescription => 'Connecter Trakt, MyAnimeList, Seerr et d’autres services';
 	@override String get manageLibrariesDescription => 'Réorganiser et masquer les bibliothèques';
@@ -1993,8 +1991,6 @@ extension on TranslationsFr {
 			'settings.maxVolume' => 'Volume maximal',
 			'settings.maxVolumeDescription' => 'Autoriser l\'augmentation du volume au-delà de 100 % pour les médias silencieux',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Afficher sur Discord ce que vous regardez',
 			'settings.services' => 'Services',
 			'settings.servicesDescription' => 'Connecter Trakt, MyAnimeList, Seerr et d’autres services',
 			'settings.manageLibrariesDescription' => 'Réorganiser et masquer les bibliothèques',
@@ -2281,10 +2277,10 @@ extension on TranslationsFr {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Échec de l’actualisation des métadonnées : ${error}',
 			'messages.logoutConfirm' => 'Êtes-vous sûr de vouloir vous déconnecter ?',
 			'messages.noSeasonsFound' => 'Aucune saison trouvée',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Impossible de charger les saisons',
 			'messages.noEpisodesFound' => 'Aucun épisode trouvé dans la première saison',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Aucun épisode trouvé',
 			'messages.episodesLoadFailed' => 'Impossible de charger les épisodes',
 			'messages.noResultsFound' => 'Aucun résultat trouvé',
@@ -2795,10 +2791,10 @@ extension on TranslationsFr {
 			'metadataEdit.releaseDate' => 'Date de sortie',
 			'metadataEdit.contentRating' => 'Classification',
 			'metadataEdit.studio' => 'Studio',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Résumé',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'Affiche',
 			'metadataEdit.background' => 'Arrière-plan',
 			'metadataEdit.logo' => 'Logo',

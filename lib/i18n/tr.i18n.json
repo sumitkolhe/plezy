@@ -237,8 +237,6 @@
     "maxVolume": "Maksimum Ses",
     "maxVolumeDescription": "Kısık sesli medyalar için %100'ün üzerinde ses yükseltmeye izin ver",
     "maxVolumePercent": "%${percent}",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discord'da ne izlediğinizi gösterin",
     "services": "Servisler",
     "servicesDescription": "Trakt, MyAnimeList, Seerr ve daha fazlasını bağlayın",
     "manageLibrariesDescription": "Kitaplıkları yeniden sıralayın ve gizleyin",

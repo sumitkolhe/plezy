@@ -819,12 +819,6 @@ class Translations$settings$en {
 	/// en: '${percent}%'
 	String maxVolumePercent({required Object percent}) => '${percent}%';
 
-	/// en: 'Discord Rich Presence'
-	String get discordRichPresence => 'Discord Rich Presence';
-
-	/// en: 'Show what you're watching on Discord'
-	String get discordRichPresenceDescription => 'Show what you\'re watching on Discord';
-
 	/// en: 'Services'
 	String get services => 'Services';
 
@@ -5070,8 +5064,6 @@ extension on Translations {
 			'settings.maxVolume' => 'Maximum Volume',
 			'settings.maxVolumeDescription' => 'Allow volume boost above 100% for quiet media',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Show what you\'re watching on Discord',
 			'settings.services' => 'Services',
 			'settings.servicesDescription' => 'Connect Trakt, MyAnimeList, Seerr, and more',
 			'settings.manageLibrariesDescription' => 'Reorder and hide libraries',
@@ -5355,10 +5347,10 @@ extension on Translations {
 			'videoControls.addTime' => ({required Object amount, required Object unit}) => '+${amount}${unit}',
 			'videoControls.minusTime' => ({required Object amount, required Object unit}) => '-${amount}${unit}',
 			'videoControls.playsLater' => ({required Object label}) => '${label} plays later',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.playsEarlier' => ({required Object label}) => '${label} plays earlier',
 			'videoControls.noOffset' => 'No offset',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
 			'videoControls.stretch' => 'Stretch',
@@ -5869,10 +5861,10 @@ extension on Translations {
 			'playlists.selectPlaylist' => 'Select Playlist',
 			'playlists.searchPlaylists' => 'Search playlists...',
 			'playlists.errorCreating' => 'Failed to create playlist',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.errorDeleting' => 'Failed to delete playlist',
 			'playlists.errorLoading' => 'Failed to load playlists',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.errorAdding' => 'Failed to add to playlist',
 			'playlists.errorReordering' => 'Failed to reorder playlist item',
 			'playlists.errorRemoving' => 'Failed to remove from playlist',

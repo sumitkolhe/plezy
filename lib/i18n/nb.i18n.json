@@ -237,8 +237,6 @@
     "maxVolume": "Maksvolum",
     "maxVolumeDescription": "Tillat volumforsterkning over 100 % for medier med lavt lydnivå",
     "maxVolumePercent": "${percent} %",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Vis hva du ser på Discord",
     "services": "Tjenester",
     "servicesDescription": "Koble til Trakt, MyAnimeList, Seerr og mer",
     "manageLibrariesDescription": "Omorganiser og skjul biblioteker",

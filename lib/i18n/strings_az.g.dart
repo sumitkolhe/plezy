@@ -363,8 +363,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get maxVolume => 'Maksimal səs';
 	@override String get maxVolumeDescription => 'Sakit videolar üçün səsin 100%-dən yuxarı qalxmasına icazə ver';
 	@override String maxVolumePercent({required Object percent}) => '%${percent}';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discord-da nəyə baxdığınızı göstərin';
 	@override String get services => 'Xidmətlər';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr və daha çoxunu qoşun';
 	@override String get manageLibrariesDescription => 'Kitabxanaları yenidən sıralayın və gizlədin';
@@ -2007,8 +2005,6 @@ extension on TranslationsAz {
 			'settings.maxVolume' => 'Maksimal səs',
 			'settings.maxVolumeDescription' => 'Sakit videolar üçün səsin 100%-dən yuxarı qalxmasına icazə ver',
 			'settings.maxVolumePercent' => ({required Object percent}) => '%${percent}',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discord-da nəyə baxdığınızı göstərin',
 			'settings.services' => 'Xidmətlər',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr və daha çoxunu qoşun',
 			'settings.manageLibrariesDescription' => 'Kitabxanaları yenidən sıralayın və gizlədin',
@@ -2292,10 +2288,10 @@ extension on TranslationsAz {
 			'messages.logsCopied' => 'Jurnallar buferə kopyalandı',
 			'messages.noLogsAvailable' => 'Jurnal yoxdur',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" üçün meta-məlumatlar yenilənir...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" üçün meta-məlumat yenilənməsi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta-məlumatlar yenilənə bilmədi: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Çıxış etmək istədiyinizdən əminsiniz?',
 			'messages.noSeasonsFound' => 'Mövsüm tapılmadı',
 			'messages.seasonsLoadFailed' => 'Mövsümlər yüklənə bilmədi',
@@ -2806,10 +2802,10 @@ extension on TranslationsAz {
 			'externalPlayer.off' => 'Söndürülüb',
 			'externalPlayer.launchFailed' => 'Xarici oynadıcı açıla bilmədi',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} quraşdırılmayıb',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Xarici oynadıcıda oynat',
 			'metadataEdit.editMetadata' => 'Düzəliş et...',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Meta-məlumatlara düzəliş et',
 			'metadataEdit.basicInfo' => 'Əsas məlumatlar',
 			'metadataEdit.artwork' => 'Şəkillər/Posterlər',

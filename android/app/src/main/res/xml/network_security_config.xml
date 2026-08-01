@@ -17,11 +17,9 @@
          behaviour. Every hard-coded https:// host in lib/ must appear here.
          Pinned by test/android/network_security_config_test.dart. -->
     <domain-config>
-        <!-- ice.plezy.app: relay + /auth OAuth proxy + /posters
-             (lib/watch_together/services/watch_together_relay_endpoint.dart:8,
-             lib/services/trackers/oauth_proxy_client.dart:22,
-             lib/services/discord_rpc_service.dart:55);
-             bugs.plezy.app: Sentry DSN (lib/main.dart:90). -->
+        <!-- ice.plezy.app: /auth OAuth proxy
+             (lib/services/trackers/oauth_proxy_client.dart:20);
+             bugs.plezy.app: Sentry DSN (lib/main.dart:77). -->
         <domain includeSubdomains="true">plezy.app</domain>
         <!-- api.trakt.tv incl. /oauth/device/*, /oauth/token
              (lib/services/trakt/trakt_constants.dart:16,21-24). -->

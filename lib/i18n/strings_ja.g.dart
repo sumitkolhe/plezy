@@ -360,8 +360,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get maxVolume => '最大音量';
 	@override String get maxVolumeDescription => '静かなメディアに対して100%以上の音量ブーストを許可';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discordで視聴中の内容を表示';
 	@override String get services => 'サービス';
 	@override String get servicesDescription => 'Trakt、MyAnimeList、Seerrなどを接続';
 	@override String get manageLibrariesDescription => 'ライブラリを並べ替えたり非表示にしたりできます';
@@ -1990,8 +1988,6 @@ extension on TranslationsJa {
 			'settings.maxVolume' => '最大音量',
 			'settings.maxVolumeDescription' => '静かなメディアに対して100%以上の音量ブーストを許可',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discordで視聴中の内容を表示',
 			'settings.services' => 'サービス',
 			'settings.servicesDescription' => 'Trakt、MyAnimeList、Seerrなどを接続',
 			'settings.manageLibrariesDescription' => 'ライブラリを並べ替えたり非表示にしたりできます',
@@ -2278,10 +2274,10 @@ extension on TranslationsJa {
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'メタデータの更新に失敗しました: ${error}',
 			'messages.logoutConfirm' => 'ログアウトしてもよろしいですか？',
 			'messages.noSeasonsFound' => 'シーズンが見つかりません',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'シーズンを読み込めませんでした',
 			'messages.noEpisodesFound' => '最初のシーズンにエピソードが見つかりません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'エピソードが見つかりません',
 			'messages.episodesLoadFailed' => 'エピソードを読み込めませんでした',
 			'messages.noResultsFound' => '結果が見つかりません',
@@ -2792,10 +2788,10 @@ extension on TranslationsJa {
 			'metadataEdit.releaseDate' => '公開日',
 			'metadataEdit.contentRating' => 'コンテンツレーティング',
 			'metadataEdit.studio' => 'スタジオ',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'タグライン',
 			'metadataEdit.summary' => 'あらすじ',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => 'ポスター',
 			'metadataEdit.background' => '背景',
 			'metadataEdit.logo' => 'ロゴ',

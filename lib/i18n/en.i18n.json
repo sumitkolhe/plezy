@@ -237,8 +237,6 @@
     "maxVolume": "Maximum Volume",
     "maxVolumeDescription": "Allow volume boost above 100% for quiet media",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Show what you're watching on Discord",
     "services": "Services",
     "servicesDescription": "Connect Trakt, MyAnimeList, Seerr, and more",
     "manageLibrariesDescription": "Reorder and hide libraries",

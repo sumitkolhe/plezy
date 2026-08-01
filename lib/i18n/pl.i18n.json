@@ -237,8 +237,6 @@
     "maxVolume": "Maksymalna głośność",
     "maxVolumeDescription": "Pozwól na wzmocnienie głośności powyżej 100% dla cichych multimediów",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Pokaż, co oglądasz na Discordzie",
     "services": "Usługi",
     "servicesDescription": "Połącz Trakt, MyAnimeList, Seerr i inne",
     "manageLibrariesDescription": "Zmieniaj kolejność i ukrywaj biblioteki",

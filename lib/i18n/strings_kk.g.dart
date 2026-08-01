@@ -363,8 +363,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get maxVolume => 'Максималды дыбыс';
 	@override String get maxVolumeDescription => 'Ақырын видеолар үшін дыбысты 100%-дан асыруға рұқсат беру';
 	@override String maxVolumePercent({required Object percent}) => '%${percent}';
-	@override String get discordRichPresence => 'Discord Rich Presence';
-	@override String get discordRichPresenceDescription => 'Discord-та не көріп жатқаныңызды көрсету';
 	@override String get services => 'Қызметтер';
 	@override String get servicesDescription => 'Trakt, MyAnimeList, Seerr және т.б. қосыңыз';
 	@override String get manageLibrariesDescription => 'Кітапханаларды қайта реттеу және жасыру';
@@ -2007,8 +2005,6 @@ extension on TranslationsKk {
 			'settings.maxVolume' => 'Максималды дыбыс',
 			'settings.maxVolumeDescription' => 'Ақырын видеолар үшін дыбысты 100%-дан асыруға рұқсат беру',
 			'settings.maxVolumePercent' => ({required Object percent}) => '%${percent}',
-			'settings.discordRichPresence' => 'Discord Rich Presence',
-			'settings.discordRichPresenceDescription' => 'Discord-та не көріп жатқаныңызды көрсету',
 			'settings.services' => 'Қызметтер',
 			'settings.servicesDescription' => 'Trakt, MyAnimeList, Seerr және т.б. қосыңыз',
 			'settings.manageLibrariesDescription' => 'Кітапханаларды қайта реттеу және жасыру',
@@ -2292,10 +2288,10 @@ extension on TranslationsKk {
 			'messages.logsCopied' => 'Журналдар көшірілді',
 			'messages.noLogsAvailable' => 'Журналдар жоқ',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" үшін метадеректер жаңартылуда...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" үшін метадеректерді жаңарту басталды',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Метадеректерді жаңарту мүмкін болмады: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Шынымен шыққыңыз келе ме?',
 			'messages.noSeasonsFound' => 'Маусымдар табылмады',
 			'messages.seasonsLoadFailed' => 'Маусымдарды жүктеу мүмкін болмады',
@@ -2806,10 +2802,10 @@ extension on TranslationsKk {
 			'externalPlayer.off' => 'Өшірулі',
 			'externalPlayer.launchFailed' => 'Сыртқы ойнатқышты іске қосу мүмкін болмады',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} орнатылмаған',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Сыртқы ойнатқышта ойнату',
 			'metadataEdit.editMetadata' => 'Өңдеу...',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Метадеректерді өңдеу',
 			'metadataEdit.basicInfo' => 'Негізгі ақпарат',
 			'metadataEdit.artwork' => 'Суреттер/Постерлер',

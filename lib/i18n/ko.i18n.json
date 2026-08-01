@@ -237,8 +237,6 @@
     "maxVolume": "최대 볼륨",
     "maxVolumeDescription": "음량이 작은 콘텐츠를 위해 100% 이상의 볼륨을 허용합니다",
     "maxVolumePercent": "${percent}%",
-    "discordRichPresence": "Discord Rich Presence",
-    "discordRichPresenceDescription": "Discord에서 시청 중인 콘텐츠 표시",
     "services": "서비스",
     "servicesDescription": "Trakt, MyAnimeList, Seerr 등 연결",
     "manageLibrariesDescription": "라이브러리 순서를 변경하거나 숨깁니다",

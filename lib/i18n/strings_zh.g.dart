@@ -360,8 +360,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get maxVolume => '最大音量';
 	@override String get maxVolumeDescription => '允许音量超过 100%，以便播放音量较低的内容';
 	@override String maxVolumePercent({required Object percent}) => '${percent}%';
-	@override String get discordRichPresence => 'Discord 动态状态';
-	@override String get discordRichPresenceDescription => '在 Discord 上显示您正在观看的内容';
 	@override String get services => '服务';
 	@override String get servicesDescription => '连接 Trakt、MyAnimeList、Seerr 等';
 	@override String get manageLibrariesDescription => '重新排序和隐藏媒体库';
@@ -1990,8 +1988,6 @@ extension on TranslationsZh {
 			'settings.maxVolume' => '最大音量',
 			'settings.maxVolumeDescription' => '允许音量超过 100%，以便播放音量较低的内容',
 			'settings.maxVolumePercent' => ({required Object percent}) => '${percent}%',
-			'settings.discordRichPresence' => 'Discord 动态状态',
-			'settings.discordRichPresenceDescription' => '在 Discord 上显示您正在观看的内容',
 			'settings.services' => '服务',
 			'settings.servicesDescription' => '连接 Trakt、MyAnimeList、Seerr 等',
 			'settings.manageLibrariesDescription' => '重新排序和隐藏媒体库',
@@ -2278,10 +2274,10 @@ extension on TranslationsZh {
 			'messages.metadataRefreshFailed' => ({required Object error}) => '无法刷新元数据：${error}',
 			'messages.logoutConfirm' => '确定要退出登录吗？',
 			'messages.noSeasonsFound' => '未找到季',
-			_ => null,
-		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '无法加载季',
 			'messages.noEpisodesFound' => '在第一季中未找到剧集',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => '未找到剧集',
 			'messages.episodesLoadFailed' => '无法加载剧集',
 			'messages.noResultsFound' => '未找到结果',
@@ -2792,10 +2788,10 @@ extension on TranslationsZh {
 			'metadataEdit.releaseDate' => '上映日期',
 			'metadataEdit.contentRating' => '内容分级',
 			'metadataEdit.studio' => '制片厂',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => '标语',
 			'metadataEdit.summary' => '简介',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.poster' => '海报',
 			'metadataEdit.background' => '背景',
 			'metadataEdit.logo' => '标志',
