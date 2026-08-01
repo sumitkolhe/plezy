@@ -1808,8 +1808,10 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   static const double _gridTopPadding = 6.0;
   static const double _gridTopPaddingPhone = 0.0;
 
-  /// Matches HubSection's rail inset so grid and rail cards line up.
-  static const double _gridHorizontalPadding = 12.0;
+  /// Matches the rail's own inset (HubSection's ListView and header both use
+  /// 8 on touch; its 12 leadingPadding is the TV value) so a grid card and a
+  /// rail card start the same distance from the screen edge.
+  static const double _gridHorizontalPadding = 8.0;
 
   /// Width of the alpha jump bar widget
   static const double _alphaJumpBarWidth = 20.0;

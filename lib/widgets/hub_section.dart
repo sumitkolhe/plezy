@@ -544,7 +544,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                     final containerHeight = posterHeight + cardLayout.captionHeight;
                     final focusBorderWidth = FocusTheme.focusBorderWidth;
                     final focusExtra = focusBorderWidth * 2; // border on both sides
-                    _itemExtent = cardWidth + focusExtra + 4;
+                    _itemExtent = cardWidth + focusExtra;
 
                     // Everything the card closures capture; a change flushes
                     // the memo so cached cards can't carry stale geometry.
@@ -587,11 +587,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                             final isItemFocused = hasFocus && index == _focusedIndex;
 
                             if (index == widget.hub.items.length) {
-                              return Padding(
+                              return KeyedSubtree(
                                 key: _itemKeyFor(index),
-                                padding: widget.inset
-                                    ? const EdgeInsets.only(right: 4)
-                                    : const EdgeInsets.symmetric(horizontal: 2),
                                 child: FocusBuilders.buildLockedFocusWrapper(
                                   context: context,
                                   isFocused: isItemFocused,
@@ -640,12 +637,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                                 CardInflationBudget.isScrollingContext(context) &&
                                 !CardInflationBudget.tryTake()) {
                               scheduleSkeletonUpgrade();
-                              return Padding(
-                                padding: widget.inset
-                                    ? const EdgeInsets.only(right: 4)
-                                    : const EdgeInsets.symmetric(horizontal: 2),
-                                child: SizedBox(width: cardWidth, child: const SkeletonMediaCard()),
-                              );
+                              return SizedBox(width: cardWidth, child: const SkeletonMediaCard());
                             }
                             return _cardMemo.widgetFor(
                               index,
@@ -654,11 +646,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                               // Focus moves only rebuild the two affected
                               // indices instead of the whole realized row.
                               salt: isItemFocused,
-                              build: () => Padding(
+                              build: () => KeyedSubtree(
                                 key: _itemKeyFor(index),
-                                padding: widget.inset
-                                    ? const EdgeInsets.only(right: 4)
-                                    : const EdgeInsets.symmetric(horizontal: 2),
                                 child: FocusBuilders.buildLockedFocusWrapper(
                                   context: context,
                                   isFocused: isItemFocused,
