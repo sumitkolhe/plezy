@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'connection/connection.dart';
-import 'connection/connection_bootstrap.dart';
 import 'connection/connection_registry.dart';
 import 'navigation/profile_navigation_scope.dart';
 import 'navigation/profile_session_screen.dart';
@@ -54,7 +53,6 @@ import 'utils/snackbar_helper.dart';
 import 'services/multi_server_manager.dart';
 import 'services/offline_watch_sync_service.dart';
 import 'services/data_aggregation_service.dart';
-import 'services/server_registry.dart';
 import 'services/download_manager_service.dart';
 import 'services/pip_service.dart';
 import 'services/download_storage_service.dart';
@@ -1373,25 +1371,13 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     _setStatus(t.common.checkingNetwork);
 
     final storage = await StorageService.getInstance();
-    final registry = ServerRegistry(storage);
 
-    // Idempotent: brings legacy SharedPreferences state (plexToken,
-    // currentUserUUID, homeUsersCache) into the new ConnectionRegistry +
-    // ProfileRegistry tables. No-op on subsequent launches.
     if (mounted) {
       try {
         final connRegistry = context.read<ConnectionRegistry>();
         final profileConnections = context.read<ProfileConnectionRegistry>();
-        final profileRegistry = context.read<ProfileRegistry>();
         final activeProfiles = context.read<ActiveProfileProvider>();
         final serverManager = context.read<MultiServerProvider>().serverManager;
-        final bootstrap = ConnectionBootstrap(
-          storage: storage,
-          connectionRegistry: connRegistry,
-          serverRegistry: registry,
-          profileRegistry: profileRegistry,
-        );
-        await bootstrap.run();
         final pruned = await ProfileConnectionCleanup(
           profileConnections: profileConnections,
           connections: connRegistry,
@@ -1401,13 +1387,11 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
         if (pruned > 0) {
           appLogger.i('Setup: pruned $pruned unreferenced Jellyfin connection${pruned == 1 ? '' : 's'}');
         }
-        // Provider initialization starts before this screen runs the legacy
-        // migration. Reload after bootstrap so copied Plex Home users and the
-        // selected active profile are visible before setup decides binding is
-        // already settled and navigates to MainScreen.
+        // Provider initialization starts before the prune, so reload after it
+        // to drop any profile whose only connection just went away.
         await activeProfiles.reloadFromStorage();
       } catch (e, st) {
-        appLogger.w('Boot-time migration failed', error: e, stackTrace: st);
+        appLogger.w('Boot-time connection prune failed', error: e, stackTrace: st);
       }
     }
 
