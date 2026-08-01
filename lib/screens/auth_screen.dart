@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../database/app_database.dart';
 import '../i18n/strings.g.dart';
 import '../focus/focusable_button.dart';
 import '../focus/key_event_utils.dart';
@@ -13,10 +11,9 @@ import 'settings/add_jellyfin_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthScreen extends StatefulWidget {
-  const AuthScreen({super.key, this.initialErrorMessage, this.databaseRecoveryRequired = false});
+  const AuthScreen({super.key, this.initialErrorMessage});
 
   final String? initialErrorMessage;
-  final bool databaseRecoveryRequired;
 
   @override
   State<AuthScreen> createState() => _AuthScreenState();
@@ -24,8 +21,6 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   String? _errorMessage;
-  Future<void>? _recoveryAcknowledgement;
-  bool _recoveryAcknowledged = false;
 
   @override
   void initState() {
@@ -33,26 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
     _errorMessage = widget.initialErrorMessage;
   }
 
-  Future<bool> _prepareDatabaseRecoveryForSignIn() async {
-    if (!widget.databaseRecoveryRequired || _recoveryAcknowledged) return true;
-    final acknowledgement = _recoveryAcknowledgement ??= context
-        .read<AppDatabase>()
-        .acknowledgeTvosDatabaseRecoveryRequired();
-    try {
-      await acknowledgement;
-      _recoveryAcknowledged = true;
-      if (mounted) setState(() => _errorMessage = null);
-      return mounted;
-    } catch (_) {
-      _recoveryAcknowledgement = null;
-      if (mounted) setState(() => _errorMessage = t.auth.localDataRecoveryRequired);
-      return false;
-    }
-  }
-
   Future<void> _connectToJellyfin() async {
-    if (!await _prepareDatabaseRecoveryForSignIn()) return;
-    if (!mounted) return;
     final added = await Navigator.push<bool>(context, MaterialPageRoute(builder: (_) => const AddJellyfinScreen()));
     if (!mounted || added != true) return;
     // The connection persisted and the manager registered the client; move

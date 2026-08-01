@@ -262,11 +262,6 @@ void main() {
   });
 
   group('DownloadManagerService — platform support', () {
-    test('disables downloads only for tvOS builds', () {
-      expect(DownloadManagerService.downloadsSupportedFor(tvosBuild: true), isFalse);
-      expect(DownloadManagerService.downloadsSupportedFor(tvosBuild: false), isTrue);
-    });
-
     test('recovery is a no-op when downloads are unsupported', () async {
       final unsupportedManager = DownloadManagerService(
         database: db,

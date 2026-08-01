@@ -14,7 +14,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
-import '../services/tvos_system_navigation_service.dart';
 import '../services/update_service.dart';
 import '../utils/app_logger.dart';
 import '../widgets/auth_error_banner.dart';
@@ -97,52 +96,6 @@ bool shouldRenderMainScreenOffline({
   required bool hasVisibleConnectedServers,
 }) {
   return providerOffline || (startupOfflineUntilConnected && !hasVisibleConnectedServers);
-}
-
-@visibleForTesting
-bool shouldPassTvosMenuToSystem({
-  required bool isAppleTV,
-  required bool isShowingProfileSelection,
-  required bool isOverlaySheetOpen,
-  required bool isRouteCurrent,
-  required bool isSidebarFocused,
-  required bool hasVisibleTabs,
-  required bool isCurrentTabRoot,
-}) {
-  return isAppleTV &&
-      isSidebarFocused &&
-      !isShowingProfileSelection &&
-      !isOverlaySheetOpen &&
-      isRouteCurrent &&
-      hasVisibleTabs &&
-      isCurrentTabRoot;
-}
-
-@visibleForTesting
-class TvosMenuPolicyPublisher {
-  TvosMenuPolicyPublisher(this._compute, this._publish);
-
-  final ValueGetter<bool> _compute;
-  final ValueChanged<bool> _publish;
-  int _transactionDepth = 0;
-
-  void run(VoidCallback transaction) {
-    _transactionDepth++;
-    try {
-      transaction();
-    } finally {
-      _transactionDepth--;
-      if (_transactionDepth == 0) {
-        _publish(_compute());
-      }
-    }
-  }
-
-  void update() {
-    if (_transactionDepth == 0) {
-      _publish(_compute());
-    }
-  }
 }
 
 @visibleForTesting
@@ -239,7 +192,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   bool _isSidebarFocused = false;
   bool _isSidebarInteractionExpanded = false;
   bool _isOverlaySheetOpen = false;
-  late final TvosMenuPolicyPublisher _tvosMenuPolicyPublisher;
 
   /// The binder is now owned by a top-level [Provider] (see main.dart) so
   /// the splash can await its first settle before navigating here. We just
@@ -285,7 +237,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   @override
   void initState() {
     super.initState();
-    _tvosMenuPolicyPublisher = TvosMenuPolicyPublisher(() => _shouldPassTvosMenuToSystem, _setTvosMenuPassthrough);
     _isOffline = widget.isOfflineMode;
     _offlineUntilConnected = widget.isOfflineMode;
 
@@ -354,8 +305,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         _contentFocusScope.requestFocus();
       }
 
-      _updateTvosMenuPassthrough();
-
+  
       // Check for updates on startup
       unawaited(_checkForUpdatesOnStartup());
     });
@@ -555,14 +505,12 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   /// passthrough for as long as it is up.
   Future<void> _pushProfileSelection() async {
     _isShowingProfileSelection = true;
-    _setTvosMenuPassthrough(false);
     await Navigator.of(
       context,
       rootNavigator: true,
     ).push(MaterialPageRoute(builder: (context) => const ProfileSwitchScreen(requireSelection: true)));
     if (!mounted) return;
     _isShowingProfileSelection = false;
-    _updateTvosMenuPassthrough();
   }
 
   Future<void> _checkForUpdatesOnStartup() async {
@@ -709,7 +657,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     _sidebarFocusScope.dispose();
     _contentFocusScope.removeListener(_syncSidebarFocusWithContent);
     _contentFocusScope.dispose();
-    _setTvosMenuPassthrough(false);
 
     final shelfCallback = _systemShelfTapCallback;
     final systemShelf = SystemShelfService();
@@ -833,7 +780,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
       _screens = _buildScreens(_isOffline);
       _currentTab = _normalizeTabForMode(_currentTab, _isOffline);
     });
-    _updateTvosMenuPassthrough();
   }
 
   void _handleCatalogSourcesChanged() {
@@ -887,7 +833,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         _autoSwitchedToDownloads = false;
       }
     });
-    _updateTvosMenuPassthrough();
 
     // Refresh sidebar focus after rebuilding navigation
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -916,7 +861,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     // and overwrites lastFocusedKey (e.g. to the Libraries toggle button).
     final targetKey = _sideNavKey.currentState?.lastFocusedKey;
     setState(() => _isSidebarFocused = true);
-    _updateTvosMenuPassthrough();
     _sidebarFocusScope.requestFocus();
     // Focus the active item after the focus scope has focus
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -926,7 +870,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
 
   void _focusContent({bool restorePreviousFocus = true}) {
     setState(() => _isSidebarFocused = false);
-    _updateTvosMenuPassthrough();
     if (restorePreviousFocus) {
       _contentFocusScope.requestFocus();
     }
@@ -945,7 +888,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   void _syncSidebarFocusWithContent() {
     if (!mounted || !_isSidebarFocused || !_contentFocusScope.hasFocus) return;
     setState(() => _isSidebarFocused = false);
-    _updateTvosMenuPassthrough();
   }
 
   void _handleSidebarInteractionExpandedChanged(bool expanded) {
@@ -956,7 +898,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   void _handleOverlaySheetOpenChanged(bool open) {
     if (_isOverlaySheetOpen == open) return;
     _isOverlaySheetOpen = open;
-    _updateTvosMenuPassthrough();
   }
 
   double _sideNavigationWidth(BuildContext context, {required bool alwaysExpanded}) {
@@ -966,32 +907,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         : SideNavigationRailState.collapsedWidthForContext(context);
   }
 
-  bool get _shouldPassTvosMenuToSystem {
-    final tabs = _getVisibleTabs(_isOffline);
-    return shouldPassTvosMenuToSystem(
-      isAppleTV: PlatformDetector.isAppleTV(),
-      isShowingProfileSelection: _isShowingProfileSelection,
-      isOverlaySheetOpen: _isOverlaySheetOpen,
-      isRouteCurrent: ModalRoute.of(context)?.isCurrent == true,
-      isSidebarFocused: _isSidebarFocused,
-      hasVisibleTabs: tabs.isNotEmpty,
-      isCurrentTabRoot: tabs.isNotEmpty && _currentTab == tabs.first.id,
-    );
-  }
-
-  void _setTvosMenuPassthrough(bool enabled) {
-    if (!PlatformDetector.isAppleTV()) return;
-    unawaited(TvosSystemNavigationService.setMenuPassthroughEnabled(enabled));
-  }
-
-  void _runNavigationTransaction(VoidCallback transaction) {
-    _tvosMenuPolicyPublisher.run(transaction);
-  }
-
-  void _updateTvosMenuPassthrough() {
-    if (!mounted) return;
-    _tvosMenuPolicyPublisher.update();
-  }
 
   /// Suppress stray back events after a child route pops.
   /// On Android TV the platform popRoute can arrive before the key events,
@@ -1113,7 +1028,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
 
   @override
   void didPushNext() {
-    _setTvosMenuPassthrough(false);
     // A pushed detail route covers the bottom bar — drop the mini-player to
     // the true (safe-area) bottom while it's hidden.
     _miniPlayerInsets?.setNavBarSuspended(true);
@@ -1135,7 +1049,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     });
 
     // Called when returning to this route from a child route (e.g., from video player)
-    _updateTvosMenuPassthrough();
     _miniPlayerInsets?.setNavBarSuspended(false);
     if (_currentTab == NavigationTabId.discover) {
       _onScreen<TabVisibilityAware>(NavigationTabId.discover, (screen) => screen.onTabShown());
@@ -1213,7 +1126,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         _autoSwitchedToDownloads = false;
       }
     });
-    _updateTvosMenuPassthrough();
 
     if (previousTab != tab) {
       // Notify previous screen it's being hidden
@@ -1245,10 +1157,8 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
 
   void _openSettings() {
     if (PlatformDetector.shouldUseSideNavigation(context)) {
-      _runNavigationTransaction(() {
-        _selectTab(NavigationTabId.settings);
-        _focusContent(restorePreviousFocus: false);
-      });
+      _selectTab(NavigationTabId.settings);
+      _focusContent(restorePreviousFocus: false);
       return;
     }
 
@@ -1498,17 +1408,13 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                                     onOpenSearch: () => unawaited(openSearchScreen(context)),
                                     onInteractionExpandedChanged: _handleSidebarInteractionExpandedChanged,
                                     onDestinationSelected: (tab) {
-                                      _runNavigationTransaction(() {
-                                        final restorePreviousFocus = tab == _currentTab;
-                                        _selectTab(tab);
-                                        _focusContent(restorePreviousFocus: restorePreviousFocus);
-                                      });
+                                      final restorePreviousFocus = tab == _currentTab;
+                                      _selectTab(tab);
+                                      _focusContent(restorePreviousFocus: restorePreviousFocus);
                                     },
                                     onLibrarySelected: (key) {
-                                      _runNavigationTransaction(() {
-                                        _selectLibrary(key);
-                                        _focusContent(restorePreviousFocus: false);
-                                      });
+                                      _selectLibrary(key);
+                                      _focusContent(restorePreviousFocus: false);
                                     },
                                     onNavigateToContent: _focusContent,
                                     onReconnect: _triggerReconnect,

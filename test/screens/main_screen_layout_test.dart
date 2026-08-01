@@ -41,59 +41,6 @@ void main() {
     expect(expanded.left + expanded.width, viewportWidth);
   });
 
-  test('tvOS Menu pass-through only enables at root with sidebar focus', () {
-    bool shouldPass({
-      bool isAppleTV = true,
-      bool isShowingProfileSelection = false,
-      bool isOverlaySheetOpen = false,
-      bool isRouteCurrent = true,
-      bool isSidebarFocused = true,
-      bool hasVisibleTabs = true,
-      bool isCurrentTabRoot = true,
-    }) {
-      return shouldPassTvosMenuToSystem(
-        isAppleTV: isAppleTV,
-        isShowingProfileSelection: isShowingProfileSelection,
-        isOverlaySheetOpen: isOverlaySheetOpen,
-        isRouteCurrent: isRouteCurrent,
-        isSidebarFocused: isSidebarFocused,
-        hasVisibleTabs: hasVisibleTabs,
-        isCurrentTabRoot: isCurrentTabRoot,
-      );
-    }
-
-    expect(shouldPass(), isTrue);
-    expect(shouldPass(isSidebarFocused: false), isFalse);
-    expect(shouldPass(isCurrentTabRoot: false), isFalse);
-    expect(shouldPass(isOverlaySheetOpen: true), isFalse);
-    expect(shouldPass(isRouteCurrent: false), isFalse);
-    expect(shouldPass(isAppleTV: false), isFalse);
-  });
-
-  test('tvOS Menu policy transaction publishes only the settled navigation state', () {
-    var desired = false;
-    final published = <bool>[];
-    final publisher = TvosMenuPolicyPublisher(() => desired, published.add);
-
-    publisher.run(() {
-      desired = true;
-      publisher.update();
-      desired = false;
-    });
-
-    expect(published, [false]);
-  });
-
-  test('tvOS Menu policy publishes retained sidebar Home state immediately', () {
-    final desired = true;
-    final published = <bool>[];
-    final publisher = TvosMenuPolicyPublisher(() => desired, published.add);
-
-    publisher.update();
-
-    expect(published, [true]);
-  });
-
   test('profile switch invalidates nothing here — the keyed session remount owns it', () {
     expect(
       profileInvalidationAction(

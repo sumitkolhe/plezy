@@ -20,7 +20,6 @@ class SystemShelfService {
   static const int schemaVersion = 2;
   static const MethodChannel _androidChannel = MethodChannel('com.plezy/watch_next');
   static const MethodChannel _tvosChannel = MethodChannel('com.plezy/system_shelf');
-  static const bool _tvosBuild = bool.fromEnvironment('TVOS_BUILD');
 
   static final SystemShelfService _instance = SystemShelfService._internal();
   static SystemShelfService? _testingInstance;
@@ -69,7 +68,7 @@ class SystemShelfService {
     final override = _channelOverride;
     if (override != null) return override;
     if (Platform.isAndroid) return _androidChannel;
-    if (Platform.isIOS && (_tvosBuild || PlatformDetector.isAppleTV())) return _tvosChannel;
+    if (Platform.isIOS && PlatformDetector.isAppleTV()) return _tvosChannel;
     return null;
   }
 

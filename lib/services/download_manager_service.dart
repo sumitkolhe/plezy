@@ -60,8 +60,6 @@ NativeTaskPartition partitionNativeTasks(Iterable<Task> tasks, String? currentTa
   return (current: current, stale: stale);
 }
 
-const bool _tvosBuild = bool.fromEnvironment('TVOS_BUILD');
-
 class _DownloadContext {
   final MediaItem metadata;
   final DownloadQueueItem queueItem;
@@ -164,11 +162,6 @@ class DownloadManagerService {
   int _consecutiveQueueFailures = 0;
   static const _maxConsecutiveFailures = 3;
 
-  static bool get platformDownloadsSupported => downloadsSupportedFor(tvosBuild: _tvosBuild);
-
-  @visibleForTesting
-  static bool downloadsSupportedFor({required bool tvosBuild}) => !tvosBuild;
-
   /// Cancels native work and discards resumable partial files so startup can
   /// recover enough space to reopen the application database.
   static Future<void> discardInterruptedNativeDownloadsAfterStorageFailure() async {
@@ -244,7 +237,9 @@ class DownloadManagerService {
        _downloadStorageRefresher = downloadStorageRefresher,
        _artworkService = DownloadArtworkService(storageService: storageService, http: http ?? httpClient);
 
-  bool get downloadsSupported => _downloadsSupportedOverride ?? platformDownloadsSupported;
+  /// False only under [_downloadsSupportedOverride], which lets tests drive
+  /// the manager without reaching the native downloader plugin.
+  bool get downloadsSupported => _downloadsSupportedOverride ?? true;
 
   bool _skipDownloadsUnsupported(String operation) {
     if (downloadsSupported) return false;

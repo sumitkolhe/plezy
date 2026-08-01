@@ -3,7 +3,6 @@ import 'dart:io' show Platform, ProcessInfo;
 import 'dart:ui' show AppExitResponse;
 import 'package:flutter/foundation.dart';
 // ignore: depend_on_referenced_packages
-import 'package:shared_preferences_foundation/shared_preferences_foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material show ThemeMode;
 import 'package:material_symbols_icons/symbols.dart';
@@ -52,7 +51,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'services/jellyfin_api_cache.dart';
 import 'database/app_database.dart';
 import 'database/download_operations.dart';
-import 'database/tvos_database_recovery_store.dart';
 import 'screens/video_player_screen.dart';
 import 'utils/app_logger.dart';
 import 'utils/managed_http_client.dart';
@@ -95,17 +93,6 @@ void _absorbZeroOffsetPointerEvent(PointerEvent event) {
   }
 }
 
-/// Register platform plugin stores manually for tvOS. Flutter's tool
-/// doesn't support tvOS so it never generates a plugin registrant for it.
-/// Each plugin whose iOS Swift implementation is tvOS-compatible must be
-/// wired here; the Swift side (GeneratedPluginRegistrant.m / AppDelegate)
-/// also needs to call the plugin's Swift register(with:) to attach its
-/// message channels.
-void _registerTvosPlatformPlugins() {
-  if (!Platform.isIOS) return; // tvOS reports as iOS via dart:io.
-  SharedPreferencesFoundation.registerWith();
-}
-
 void main() {
   final binding = WidgetsFlutterBinding.ensureInitialized();
   AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.dartMain);
@@ -113,11 +100,6 @@ void main() {
   // without adding release-build overhead.
   if (kDebugMode) binding.ensureSemantics();
   _installZeroOffsetPointerGuard(); // Workaround for iPadOS 26.1+ modal dismissal bug
-
-  // On tvOS, Flutter's generated plugin registrant doesn't run (no tvOS
-  // target in Flutter's tool), so register platform stores manually for
-  // the plugins we use.
-  _registerTvosPlatformPlugins();
   _bootstrapApp();
 }
 
@@ -137,7 +119,6 @@ void _bootstrapApp() {
         settings: dependencies.settings,
         storage: dependencies.storage,
         appDatabase: dependencies.appDatabase,
-        databaseRecoveryOutcome: dependencies.databaseRecoveryOutcome,
       ),
       discard: (dependencies) => dependencies.appDatabase.close(),
       onCommitted: (dependencies) => _startNonessentialInitialization(dependencies.settings),
@@ -329,18 +310,16 @@ class _StartupDependencies {
     required this.settings,
     required this.storage,
     required this.appDatabase,
-    required this.databaseRecoveryOutcome,
   });
 
   final SettingsService settings;
   final StorageService storage;
   final AppDatabase appDatabase;
-  final TvosDatabaseRecoveryOutcome databaseRecoveryOutcome;
 }
 
 @visibleForTesting
-Future<AppDatabaseBootstrap> openAppDatabaseWithDownloadRecovery({
-  required Future<AppDatabaseBootstrap> Function() openDatabase,
+Future<AppDatabase> openAppDatabaseWithDownloadRecovery({
+  required Future<AppDatabase> Function() openDatabase,
   required Future<void> Function() recoverNativeDownloads,
   required String storageFullMessage,
 }) async {
@@ -356,15 +335,15 @@ Future<AppDatabaseBootstrap> openAppDatabaseWithDownloadRecovery({
   }
 
   await recoverNativeDownloads();
-  final bootstrap = await openDatabase();
+  final database = await openDatabase();
   try {
-    final failedKeys = await bootstrap.database.failActiveDownloadsForStorageFull(storageFullMessage);
+    final failedKeys = await database.failActiveDownloadsForStorageFull(storageFullMessage);
     appLogger.w('Recovered startup after storage exhaustion; stopped ${failedKeys.length} active download(s)');
-    return bootstrap;
+    return database;
   } catch (_) {
     // The caller only takes ownership once this helper returns, so the freshly
     // opened background isolate has to be released here.
-    await bootstrap.database.close();
+    await database.close();
     rethrow;
   }
 }
@@ -398,12 +377,12 @@ Future<_StartupDependencies> _initializeStartup(SettingsService settings) async 
     markStartupPhase('platform-services');
 
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.databaseOpenStarted);
-    final databaseBootstrap = await openAppDatabaseWithDownloadRecovery(
-      openDatabase: () => AppDatabase.open(isTvos: PlatformDetector.isAppleTV()),
+    final database = await openAppDatabaseWithDownloadRecovery(
+      openDatabase: AppDatabase.open,
       recoverNativeDownloads: DownloadManagerService.discardInterruptedNativeDownloadsAfterStorageFailure,
       storageFullMessage: t.downloads.storageFull,
     );
-    openedDatabase = databaseBootstrap.database;
+    openedDatabase = database;
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.databaseReady);
     markStartupPhase('database-recovery');
 
@@ -417,8 +396,7 @@ Future<_StartupDependencies> _initializeStartup(SettingsService settings) async 
     return _StartupDependencies(
       settings: settings,
       storage: storage,
-      appDatabase: databaseBootstrap.database,
-      databaseRecoveryOutcome: databaseBootstrap.recoveryOutcome,
+      appDatabase: database,
     );
   } catch (_) {
     await openedDatabase?.close();
@@ -633,14 +611,11 @@ class MainApp extends StatefulWidget {
   final SettingsService settings;
   final StorageService storage;
   final AppDatabase appDatabase;
-  final TvosDatabaseRecoveryOutcome databaseRecoveryOutcome;
-
   const MainApp({
     super.key,
     required this.settings,
     required this.storage,
     required this.appDatabase,
-    required this.databaseRecoveryOutcome,
   });
 
   @override
@@ -1109,7 +1084,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
         // profile-scoped session in ProfileSessionScreen.
         ChangeNotifierProvider(create: (context) => ShaderProvider()),
       ],
-      child: _AppShell(databaseRecoveryOutcome: widget.databaseRecoveryOutcome),
+      child: const _AppShell(),
     );
   }
 }
@@ -1119,9 +1094,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 /// [ProfileSessionScreen], not here, so root auth/PIN/global dialogs survive a
 /// profile switch.
 class _AppShell extends StatelessWidget {
-  const _AppShell({required this.databaseRecoveryOutcome});
-
-  final TvosDatabaseRecoveryOutcome databaseRecoveryOutcome;
+  const _AppShell();
 
   @override
   Widget build(BuildContext context) {
@@ -1153,7 +1126,7 @@ class _AppShell extends StatelessWidget {
                     themeMode: themeProvider.materialThemeMode,
                     navigatorKey: rootNavigatorKey,
                     navigatorObservers: [BackKeySuppressorObserver()],
-                    home: SetupScreen(databaseRecoveryOutcome: databaseRecoveryOutcome),
+                    home: const SetupScreen(),
                     // Siri Remote select + gamepad A report as
                     // LogicalKeyboardKey.{select,gameButtonA} which aren't
                     // in Flutter's default shortcut set — Material-level
@@ -1236,16 +1209,8 @@ class _AppleTvScale extends StatelessWidget {
 }
 
 @visibleForTesting
-bool shouldBypassSetupForDatabaseRecovery(TvosDatabaseRecoveryOutcome outcome) {
-  return outcome == TvosDatabaseRecoveryOutcome.recoveryRequired;
-}
-
 class SetupScreen extends StatefulWidget {
-  const SetupScreen({super.key, required this.databaseRecoveryOutcome, this.debugRecoveryRequiredRouter});
-
-  final TvosDatabaseRecoveryOutcome databaseRecoveryOutcome;
-  @visibleForTesting
-  final FutureOr<void> Function(BuildContext context, String message)? debugRecoveryRequiredRouter;
+  const SetupScreen({super.key});
 
   @override
   State<SetupScreen> createState() => _SetupScreenState();
@@ -1288,25 +1253,6 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
   }
 
   Future<void> _loadSavedCredentials() async {
-    if (shouldBypassSetupForDatabaseRecovery(widget.databaseRecoveryOutcome)) {
-      final message = t.auth.localDataRecoveryRequired;
-      final debugRouter = widget.debugRecoveryRequiredRouter;
-      if (debugRouter != null) {
-        await Future.sync(() => debugRouter(context, message));
-        return;
-      }
-      await Future<void>.delayed(Duration.zero);
-      if (mounted) {
-        unawaited(
-          Navigator.pushReplacement(
-            context,
-            fadeRoute(AuthScreen(initialErrorMessage: message, databaseRecoveryRequired: true)),
-          ),
-        );
-      }
-      return;
-    }
-
     _setStatus(t.common.checkingNetwork);
 
     final storage = await StorageService.getInstance();
