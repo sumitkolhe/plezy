@@ -785,10 +785,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   void _startRssWatchdog() {
     final int threshold;
     final Duration period;
-    if (PlatformDetector.isDesktopOS()) {
-      threshold = 1536 << 20; // 1.5GB
-      period = const Duration(seconds: 30);
-    } else if (Platform.isAndroid) {
+    if (Platform.isAndroid) {
       final totalMem = DevicePerformance.totalMemBytes;
       threshold = totalMem != null ? (totalMem * 0.45).round().clamp(512 << 20, 1536 << 20) : 1 << 30;
       // Decode bursts can spike RSS in seconds on low-end boxes; the read
@@ -951,12 +948,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
         // Closing here would kill the Drift isolate channel while services
         // (sync, downloads, cache) still hold references to the executor.
         // SQLite WAL mode handles process death; desktop uses onExitRequested.
-        if (PlatformDetector.isDesktopOS()) {
-          if (ProcessInfo.currentRss > 1024 * 1024 * 1024) {
-            // 1GB
-            _evictImageCaches();
-          }
-        } else if (Platform.isAndroid) {
+        if (Platform.isAndroid) {
           // A backgrounded app is LMK's first candidate; shed the image
           // caches at a lower bar than the foreground watchdog to survive
           // the HOME press on low-RAM boxes.

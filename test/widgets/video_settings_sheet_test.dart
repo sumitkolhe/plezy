@@ -16,6 +16,7 @@ import 'package:plezy/widgets/video_controls/sheets/video_settings_sheet.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/theme.dart';
+import 'package:plezy/utils/platform_detector.dart';
 
 void main() {
   setUpAll(() async {
@@ -37,6 +38,8 @@ void main() {
   });
 
   testWidgets('shows audio passthrough on supported TV-style surfaces', (tester) async {
+    PlatformDetector.debugSetSupportsAudioPassthroughOverride(true);
+    addTearDown(() => PlatformDetector.debugSetSupportsAudioPassthroughOverride(null));
     await _pumpSheet(tester);
 
     await tester.scrollUntilVisible(find.text('Audio Passthrough'), 500, scrollable: find.byType(Scrollable).first);

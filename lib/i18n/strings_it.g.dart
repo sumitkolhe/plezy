@@ -425,10 +425,6 @@ class _Translations$settings$it extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Mostra la selezione del profilo ogni volta che l\'app viene aperta';
 	@override String get forceTvMode => 'Forza modalità TV';
 	@override String get forceTvModeDescription => 'Forza il layout TV sui dispositivi che non vengono rilevati automaticamente. Richiede il riavvio.';
-	@override String get startInFullscreen => 'Avvia a schermo intero';
-	@override String get startInFullscreenDescription => 'Apri Harbor a schermo intero all\'avvio';
-	@override String get exitFullscreenOnPlayerClose => 'Esci dalla modalità a schermo intero alla chiusura del lettore';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Esce automaticamente dalla modalità a schermo intero quando chiudi il lettore video';
 	@override String get autoHidePerformanceOverlay => 'Nascondi automaticamente il riquadro delle prestazioni';
 	@override String get autoHidePerformanceOverlayDescription => 'Dissolvi il riquadro delle prestazioni insieme ai controlli di riproduzione';
 	@override String get showNavBarLabels => 'Mostra le etichette della barra di navigazione';
@@ -437,7 +433,6 @@ class _Translations$settings$it extends Translations$settings$en {
 	@override String get display => 'Schermo';
 	@override String get homeScreen => 'Schermata iniziale';
 	@override String get navigation => 'Navigazione';
-	@override String get window => 'Finestra';
 	@override String get content => 'Contenuti';
 	@override String get player => 'Lettore';
 	@override String get subtitlesAndConfig => 'Sottotitoli e impostazioni';
@@ -2063,10 +2058,6 @@ extension on TranslationsIt {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Mostra la selezione del profilo ogni volta che l\'app viene aperta',
 			'settings.forceTvMode' => 'Forza modalità TV',
 			'settings.forceTvModeDescription' => 'Forza il layout TV sui dispositivi che non vengono rilevati automaticamente. Richiede il riavvio.',
-			'settings.startInFullscreen' => 'Avvia a schermo intero',
-			'settings.startInFullscreenDescription' => 'Apri Harbor a schermo intero all\'avvio',
-			'settings.exitFullscreenOnPlayerClose' => 'Esci dalla modalità a schermo intero alla chiusura del lettore',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Esce automaticamente dalla modalità a schermo intero quando chiudi il lettore video',
 			'settings.autoHidePerformanceOverlay' => 'Nascondi automaticamente il riquadro delle prestazioni',
 			'settings.autoHidePerformanceOverlayDescription' => 'Dissolvi il riquadro delle prestazioni insieme ai controlli di riproduzione',
 			'settings.showNavBarLabels' => 'Mostra le etichette della barra di navigazione',
@@ -2075,7 +2066,6 @@ extension on TranslationsIt {
 			'settings.display' => 'Schermo',
 			'settings.homeScreen' => 'Schermata iniziale',
 			'settings.navigation' => 'Navigazione',
-			'settings.window' => 'Finestra',
 			'settings.content' => 'Contenuti',
 			'settings.player' => 'Lettore',
 			'settings.subtitlesAndConfig' => 'Sottotitoli e impostazioni',
@@ -2286,13 +2276,13 @@ extension on TranslationsIt {
 			'messages.logsCleared' => 'Log eliminati',
 			'messages.logsCopied' => 'Log copiati negli appunti',
 			'messages.noLogsAvailable' => 'Nessun log disponibile',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Aggiornamento dei metadati di "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Aggiornamento dei metadati avviato per "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Impossibile aggiornare i metadati: ${error}',
 			'messages.logoutConfirm' => 'Vuoi uscire dall\'account?',
 			'messages.noSeasonsFound' => 'Nessuna stagione trovata',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Impossibile caricare le stagioni',
 			'messages.noEpisodesFound' => 'Nessun episodio trovato nella prima stagione',
 			'messages.noEpisodesFoundGeneral' => 'Nessun episodio trovato',
@@ -2800,13 +2790,13 @@ extension on TranslationsIt {
 			'metadataEdit.basicInfo' => 'Informazioni di base',
 			'metadataEdit.artwork' => 'Immagini',
 			'metadataEdit.title' => 'Titolo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Titolo di ordinamento',
 			'metadataEdit.originalTitle' => 'Titolo originale',
 			'metadataEdit.releaseDate' => 'Data di uscita',
 			'metadataEdit.contentRating' => 'Classificazione per età',
 			'metadataEdit.studio' => 'Studio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Trama',
 			'metadataEdit.poster' => 'Poster',

@@ -425,10 +425,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => '앱을 열 때마다 프로필 선택 화면을 표시합니다';
 	@override String get forceTvMode => 'TV 모드 강제 사용';
 	@override String get forceTvModeDescription => 'TV 레이아웃을 강제합니다. 자동 감지되지 않는 기기용입니다. 재시작이 필요합니다.';
-	@override String get startInFullscreen => '전체 화면으로 시작';
-	@override String get startInFullscreenDescription => '실행 시 Harbor를 전체 화면 모드로 엽니다';
-	@override String get exitFullscreenOnPlayerClose => '플레이어를 닫을 때 전체 화면 종료';
-	@override String get exitFullscreenOnPlayerCloseDescription => '비디오 플레이어를 닫을 때 자동으로 전체 화면을 종료합니다';
 	@override String get autoHidePerformanceOverlay => '성능 오버레이 자동 숨기기';
 	@override String get autoHidePerformanceOverlayDescription => '재생 컨트롤과 함께 성능 오버레이를 페이드 처리';
 	@override String get showNavBarLabels => '내비게이션 바 라벨 표시';
@@ -437,7 +433,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get display => '디스플레이';
 	@override String get homeScreen => '홈 화면';
 	@override String get navigation => '탐색';
-	@override String get window => '창';
 	@override String get content => '콘텐츠';
 	@override String get player => '플레이어';
 	@override String get subtitlesAndConfig => '자막 및 구성';
@@ -2060,10 +2055,6 @@ extension on TranslationsKo {
 			'settings.requireProfileSelectionOnOpenDescription' => '앱을 열 때마다 프로필 선택 화면을 표시합니다',
 			'settings.forceTvMode' => 'TV 모드 강제 사용',
 			'settings.forceTvModeDescription' => 'TV 레이아웃을 강제합니다. 자동 감지되지 않는 기기용입니다. 재시작이 필요합니다.',
-			'settings.startInFullscreen' => '전체 화면으로 시작',
-			'settings.startInFullscreenDescription' => '실행 시 Harbor를 전체 화면 모드로 엽니다',
-			'settings.exitFullscreenOnPlayerClose' => '플레이어를 닫을 때 전체 화면 종료',
-			'settings.exitFullscreenOnPlayerCloseDescription' => '비디오 플레이어를 닫을 때 자동으로 전체 화면을 종료합니다',
 			'settings.autoHidePerformanceOverlay' => '성능 오버레이 자동 숨기기',
 			'settings.autoHidePerformanceOverlayDescription' => '재생 컨트롤과 함께 성능 오버레이를 페이드 처리',
 			'settings.showNavBarLabels' => '내비게이션 바 라벨 표시',
@@ -2072,7 +2063,6 @@ extension on TranslationsKo {
 			'settings.display' => '디스플레이',
 			'settings.homeScreen' => '홈 화면',
 			'settings.navigation' => '탐색',
-			'settings.window' => '창',
 			'settings.content' => '콘텐츠',
 			'settings.player' => '플레이어',
 			'settings.subtitlesAndConfig' => '자막 및 구성',
@@ -2283,13 +2273,13 @@ extension on TranslationsKo {
 			'messages.logsCleared' => '로그가 삭제되었습니다',
 			'messages.logsCopied' => '로그가 클립보드에 복사되었습니다',
 			'messages.noLogsAvailable' => '사용 가능한 로그가 없습니다',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" 메타데이터 새로고침 중...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" 메타데이터 새로고침 시작됨',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '메타데이터 새로고침 실패: ${error}',
 			'messages.logoutConfirm' => '로그아웃하시겠습니까?',
 			'messages.noSeasonsFound' => '시즌을 찾을 수 없음',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '시즌을 불러오지 못했습니다',
 			'messages.noEpisodesFound' => '시즌 1에서 에피소드를 찾을 수 없습니다',
 			'messages.noEpisodesFoundGeneral' => '에피소드를 찾을 수 없습니다',
@@ -2797,13 +2787,13 @@ extension on TranslationsKo {
 			'metadataEdit.basicInfo' => '기본 정보',
 			'metadataEdit.artwork' => '아트워크',
 			'metadataEdit.title' => '제목',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '정렬 제목',
 			'metadataEdit.originalTitle' => '원제',
 			'metadataEdit.releaseDate' => '출시일',
 			'metadataEdit.contentRating' => '콘텐츠 등급',
 			'metadataEdit.studio' => '스튜디오',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => '태그라인',
 			'metadataEdit.summary' => '줄거리',
 			'metadataEdit.poster' => '포스터',

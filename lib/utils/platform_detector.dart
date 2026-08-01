@@ -57,16 +57,13 @@ AndroidTvFeatureDetection detectAndroidTvFromSystemFeatures(Iterable<String> fea
 /// factors have no windowed surface to float into.
 ///
 /// [hostSupportsPictureInPicture] is injected rather than read from [Platform]
-/// so the form-factor vetoes stay observable on hosts that never support PiP:
-/// on the Linux and Windows CI runners every [Platform] branch of the real gate
-/// is false and unmockable, which would otherwise make the vetoes vacuous
-/// exactly where the release is gated.
+/// so the form-factor vetoes stay observable on a test host that never supports
+/// PiP, which would otherwise make them vacuous.
 bool pictureInPictureAllowed({
   required bool hostSupportsPictureInPicture,
-  required bool isAppleTv,
   required bool isTv,
   required bool isAutomotive,
-}) => hostSupportsPictureInPicture && !isAppleTv && !isTv && !isAutomotive;
+}) => hostSupportsPictureInPicture && !isTv && !isAutomotive;
 
 /// Service for detecting if the app is running on Android TV or Apple TV.
 class TvDetectionService {
@@ -78,7 +75,6 @@ class TvDetectionService {
   bool _detected = false;
   bool _forceTv = false;
   bool _isTV = false;
-  bool _isAppleTV = false;
   bool _isAutomotive = false;
   bool _initialized = false;
   List<String> _detectionReasons = const [];
@@ -89,8 +85,6 @@ class TvDetectionService {
   /// Pass [forceTv] to combine a user override with the system-feature check.
   static Future<TvDetectionService> getInstance({bool forceTv = false}) =>
       _singleton.getInstance(TvDetectionService._, (instance) => instance._detect(forceTv));
-
-  static const bool _tvosBuild = bool.fromEnvironment('TVOS_BUILD');
 
   Future<void> _detect(bool forceTv) async {
     if (_initialized) return;
@@ -103,31 +97,11 @@ class TvDetectionService {
       _detected = detection.isTv;
       _isAutomotive = detection.isAutomotive;
       _detectionReasons = detection.reasons;
-    } else if (Platform.isIOS) {
-      if (_tvosBuild) {
-        _isAppleTV = true;
-        _detected = true;
-        _detectionReasons = const ['tvos_build'];
-      } else {
-        final iosInfo = await deviceInfo.iosInfo;
-        final sysName = iosInfo.systemName.toLowerCase();
-        _isAppleTV =
-            sysName == 'tvos' ||
-            sysName.contains('appletv') ||
-            iosInfo.model.toLowerCase().contains('appletv') ||
-            iosInfo.utsname.machine.toLowerCase().contains('appletv');
-        _detected = _isAppleTV;
-        _detectionReasons = _isAppleTV ? const ['apple_tv'] : const [];
-      }
     }
     _forceTv = forceTv;
     _isTV = _detected || _forceTv;
     _initialized = true;
   }
-
-  /// True when running on Apple TV (tvOS). False for all other platforms
-  /// including force-TV on non-tvOS devices.
-  bool get isAppleTV => _isAppleTV;
 
   bool get isTV => _isTV;
 
@@ -181,8 +155,10 @@ class TvDetectionService {
   /// Synchronous access after initialization (returns false if not initialized)
   static bool isTVSync() => _debugAppleTVOverride ?? _singleton.instance?._isTV ?? false;
 
-  /// Synchronous Apple TV check (returns false if not initialized or not tvOS).
-  static bool isAppleTVSync() => _debugAppleTVOverride ?? (_tvosBuild || _singleton.instance?._isAppleTV == true);
+  /// Synchronous Apple TV check. Always false in production — there is no tvOS
+  /// target — but tests still simulate it while the branches behind
+  /// [PlatformDetector.isAppleTV] await collapse.
+  static bool isAppleTVSync() => _debugAppleTVOverride ?? false;
 
   /// Synchronous Android Automotive OS check (false before initialization).
   static bool isAutomotiveSync() => _debugAutomotiveOverride ?? _singleton.instance?._isAutomotive ?? false;
@@ -213,10 +189,6 @@ class TvDetectionService {
 class PlatformDetector {
   static bool isTV() {
     return TvDetectionService.isTVSync();
-  }
-
-  static bool isAppleTV() {
-    return TvDetectionService.isAppleTVSync();
   }
 
   /// True on Android Automotive OS head units.
@@ -260,22 +232,6 @@ class PlatformDetector {
     return !isMobile(context);
   }
 
-  /// True on the desktop OS (Windows / macOS / Linux), without needing a
-  /// BuildContext. Use for OS-level capability checks (window state, native
-  /// keyboard, etc.); use [isDesktop] for layout decisions.
-  static bool isDesktopOS() {
-    return _debugIsDesktopOSOverride ?? (Platform.isWindows || Platform.isMacOS || Platform.isLinux);
-  }
-
-  static bool? _debugIsDesktopOSOverride;
-
-  /// Test-only: override [isDesktopOS] so device simulations (Android TV /
-  /// Apple TV) don't inherit the test host's real platform.
-  @visibleForTesting
-  static void debugSetIsDesktopOSOverride(bool? value) {
-    _debugIsDesktopOSOverride = value;
-  }
-
   /// Whether an executable path belongs to a packaged (MSIX/Store) install.
   /// Packaged apps run from C:\Program Files\WindowsApps\<package>\, matched
   /// case-insensitively because a casing difference would silently re-enable
@@ -300,9 +256,7 @@ class PlatformDetector {
   }
 
   static bool supportsExternalPlayers() {
-    if (_debugSupportsExternalPlayersOverride != null) return _debugSupportsExternalPlayersOverride!;
-    if (isAppleTV()) return false;
-    return Platform.isAndroid || Platform.isIOS;
+    return _debugSupportsExternalPlayersOverride ?? (Platform.isAndroid || Platform.isIOS);
   }
 
   static bool? _debugSupportsExternalPlayersOverride;
@@ -314,18 +268,24 @@ class PlatformDetector {
     _debugSupportsExternalPlayersOverride = value;
   }
 
-  static bool supportsAudioPassthrough() {
-    // Apple TV hands AC3/EAC3 access units to the native sample-buffer audio
-    // renderer; unsupported streams and renderer failures fall back to PCM.
-    return isAppleTV() || isDesktopOS() || (Platform.isAndroid && isTV());
+  static bool supportsAudioPassthrough() => _debugSupportsAudioPassthroughOverride ?? (Platform.isAndroid && isTV());
+
+  static bool? _debugSupportsAudioPassthroughOverride;
+
+  /// Test-only: the suite's host is not Android, so a screen test that needs
+  /// the passthrough row has to say which surface it simulates.
+  @visibleForTesting
+  static void debugSetSupportsAudioPassthroughOverride(bool? value) {
+    _debugSupportsAudioPassthroughOverride = value;
   }
 
   static bool supportsPictureInPicture() => pictureInPictureAllowed(
-    hostSupportsPictureInPicture: Platform.isAndroid || Platform.isIOS || Platform.isMacOS,
-    isAppleTv: isAppleTV(),
+    hostSupportsPictureInPicture: Platform.isAndroid || Platform.isIOS,
     isTv: isTV(),
     isAutomotive: isAutomotive(),
   );
+
+  static bool isAppleTV() => TvDetectionService.isAppleTVSync();
 
   /// Detects if the device is likely a tablet based on screen size
   /// Uses diagonal screen size to determine if device is a tablet

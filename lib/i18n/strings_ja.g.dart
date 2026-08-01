@@ -425,10 +425,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'アプリを開くたびにプロフィール選択を表示';
 	@override String get forceTvMode => 'TVモードを強制';
 	@override String get forceTvModeDescription => 'TVレイアウトを強制します。自動検出しないデバイス向けです。再起動が必要です。';
-	@override String get startInFullscreen => '全画面表示で起動';
-	@override String get startInFullscreenDescription => '起動時にHarborを全画面モードで開きます';
-	@override String get exitFullscreenOnPlayerClose => 'プレイヤーを閉じたときに全画面を終了';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'ビデオプレイヤーを閉じたときに自動的に全画面モードを終了します';
 	@override String get autoHidePerformanceOverlay => 'パフォーマンスオーバーレイを自動非表示';
 	@override String get autoHidePerformanceOverlayDescription => '再生コントロールと一緒にパフォーマンスオーバーレイをフェードする';
 	@override String get showNavBarLabels => 'ナビゲーションバーのラベルを表示';
@@ -437,7 +433,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get display => 'ディスプレイ';
 	@override String get homeScreen => 'ホーム画面';
 	@override String get navigation => 'ナビゲーション';
-	@override String get window => 'ウィンドウ';
 	@override String get content => 'コンテンツ';
 	@override String get player => 'プレーヤー';
 	@override String get subtitlesAndConfig => '字幕と設定';
@@ -2060,10 +2055,6 @@ extension on TranslationsJa {
 			'settings.requireProfileSelectionOnOpenDescription' => 'アプリを開くたびにプロフィール選択を表示',
 			'settings.forceTvMode' => 'TVモードを強制',
 			'settings.forceTvModeDescription' => 'TVレイアウトを強制します。自動検出しないデバイス向けです。再起動が必要です。',
-			'settings.startInFullscreen' => '全画面表示で起動',
-			'settings.startInFullscreenDescription' => '起動時にHarborを全画面モードで開きます',
-			'settings.exitFullscreenOnPlayerClose' => 'プレイヤーを閉じたときに全画面を終了',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'ビデオプレイヤーを閉じたときに自動的に全画面モードを終了します',
 			'settings.autoHidePerformanceOverlay' => 'パフォーマンスオーバーレイを自動非表示',
 			'settings.autoHidePerformanceOverlayDescription' => '再生コントロールと一緒にパフォーマンスオーバーレイをフェードする',
 			'settings.showNavBarLabels' => 'ナビゲーションバーのラベルを表示',
@@ -2072,7 +2063,6 @@ extension on TranslationsJa {
 			'settings.display' => 'ディスプレイ',
 			'settings.homeScreen' => 'ホーム画面',
 			'settings.navigation' => 'ナビゲーション',
-			'settings.window' => 'ウィンドウ',
 			'settings.content' => 'コンテンツ',
 			'settings.player' => 'プレーヤー',
 			'settings.subtitlesAndConfig' => '字幕と設定',
@@ -2283,13 +2273,13 @@ extension on TranslationsJa {
 			'messages.logsCleared' => 'ログをクリアしました',
 			'messages.logsCopied' => 'ログをクリップボードにコピーしました',
 			'messages.noLogsAvailable' => 'ログがありません',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '「${title}」のメタデータを更新中…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}"のメタデータ更新を開始しました',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'メタデータの更新に失敗しました: ${error}',
 			'messages.logoutConfirm' => 'ログアウトしてもよろしいですか？',
 			'messages.noSeasonsFound' => 'シーズンが見つかりません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'シーズンを読み込めませんでした',
 			'messages.noEpisodesFound' => '最初のシーズンにエピソードが見つかりません',
 			'messages.noEpisodesFoundGeneral' => 'エピソードが見つかりません',
@@ -2797,13 +2787,13 @@ extension on TranslationsJa {
 			'metadataEdit.basicInfo' => '基本情報',
 			'metadataEdit.artwork' => 'アートワーク',
 			'metadataEdit.title' => 'タイトル',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'ソートタイトル',
 			'metadataEdit.originalTitle' => '原題',
 			'metadataEdit.releaseDate' => '公開日',
 			'metadataEdit.contentRating' => 'コンテンツレーティング',
 			'metadataEdit.studio' => 'スタジオ',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'タグライン',
 			'metadataEdit.summary' => 'あらすじ',
 			'metadataEdit.poster' => 'ポスター',

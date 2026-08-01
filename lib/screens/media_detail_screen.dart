@@ -72,7 +72,7 @@ import '../widgets/app_menu.dart';
 import '../widgets/catalog_source_logo.dart';
 import '../widgets/desktop_app_bar.dart';
 import '../utils/desktop_window_padding.dart';
-import '../widgets/horizontal_scroll_with_arrows.dart';
+import '../widgets/scroll_controller_scope.dart';
 import '../widgets/media_context_menu.dart';
 import 'libraries/state_messages.dart';
 import '../widgets/overlay_sheet.dart';
@@ -2129,7 +2129,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   Widget _buildSeasonTabsContent(BuildContext context, bool showPosters) {
     final showSeasonPosters = showPosters && !PlatformDetector.isTV();
 
-    return HorizontalScrollWithArrows(
+    return ScrollControllerScope(
       controller: _seasonTabsScrollController,
       builder: (scrollController) => SingleChildScrollView(
         controller: scrollController,
@@ -4349,7 +4349,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
           return SizedBox(
             height: containerHeight,
-            child: HorizontalScrollWithArrows(
+            child: ScrollControllerScope(
               controller: _extrasScrollController,
               builder: (scrollController) => ListView.builder(
                 addAutomaticKeepAlives: false,

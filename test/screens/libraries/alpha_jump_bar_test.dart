@@ -91,46 +91,6 @@ void main() {
       await tester.pump();
       expect(harness.nextFocusNode.hasFocus, isTrue);
     });
-
-    testWidgets('${backKey.label} runs back once on Apple TV key down and consumes key up', (tester) async {
-      TvDetectionService.debugSetAppleTVOverride(true);
-      final harness = await _pumpBackHarness(tester);
-
-      final downHandled = _sendKeyDown(tester, backKey);
-      expect(downHandled, isTrue);
-      expect(harness.jumpBarBacks, 1);
-      expect(harness.ancestorEvents, 0);
-
-      final repeatHandled = _sendKeyRepeat(tester, backKey);
-      expect(repeatHandled, isTrue);
-      expect(harness.jumpBarBacks, 1);
-      expect(harness.ancestorEvents, 0);
-
-      final upHandled = _sendKeyUp(tester, backKey);
-      expect(upHandled, isTrue);
-      expect(harness.jumpBarBacks, 1);
-      expect(harness.ancestorEvents, 0);
-      expect(harness.ancestorBacks, 0);
-
-      await tester.pump();
-      harness.moveFocusOnBack = true;
-
-      final movingDownHandled = _sendKeyDown(tester, backKey);
-      expect(movingDownHandled, isTrue);
-      expect(harness.jumpBarBacks, 2);
-      expect(harness.ancestorEvents, 0);
-      await tester.pump();
-      expect(harness.nextFocusNode.hasFocus, isTrue);
-
-      final movingRepeatHandled = _sendKeyRepeat(tester, backKey);
-      final movingUpHandled = _sendKeyUp(tester, backKey);
-
-      expect(movingRepeatHandled, isTrue);
-      expect(movingUpHandled, isTrue);
-      expect(harness.jumpBarBacks, 2);
-      expect(harness.ancestorEvents, 2);
-      expect(harness.ancestorBacks, 0);
-    });
   }
 
   testWidgets('keeps the full alphabet visible in a short TV-height bar', (tester) async {

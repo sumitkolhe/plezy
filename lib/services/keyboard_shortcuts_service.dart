@@ -10,7 +10,6 @@ import '../mpv/mpv.dart';
 import 'settings_binding_owner.dart';
 import 'settings_service.dart';
 import 'shortcut_action.dart';
-import '../utils/platform_detector.dart';
 import '../utils/player_utils.dart';
 
 class KeyboardShortcutsService extends ChangeNotifier {
@@ -61,10 +60,8 @@ class KeyboardShortcutsService extends ChangeNotifier {
     return instance;
   }
 
-  /// Keyboard shortcut customization is only supported on desktop platforms.
-  static bool isPlatformSupported() {
-    return PlatformDetector.isDesktopOS();
-  }
+  /// Shortcut customization needed a hardware keyboard as the primary input.
+  static bool isPlatformSupported() => false;
 
   Future<void> _init() async {
     await _settingsBinding.bind();

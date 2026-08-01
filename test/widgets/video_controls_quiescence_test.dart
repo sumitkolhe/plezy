@@ -55,7 +55,6 @@ void main() {
       final settings = await SettingsService.getInstance();
 
       TvDetectionService.debugSetAppleTVOverride(true);
-      PlatformDetector.debugSetIsDesktopOSOverride(false);
 
       database = AppDatabase.forTesting(NativeDatabase.memory());
       player = _IdlePlayer();
@@ -68,7 +67,6 @@ void main() {
     tearDown(() async {
       LinuxKeepAlive.debugIsLinuxOverride = null;
       TvDetectionService.debugSetAppleTVOverride(null);
-      PlatformDetector.debugSetIsDesktopOSOverride(null);
       volume.dispose();
       playbackState.dispose();
       chrome.dispose();

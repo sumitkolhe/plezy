@@ -30,7 +30,7 @@ import 'animated_dim_scrim.dart';
 import 'app_icon.dart';
 import 'clickable_cursor.dart';
 import 'focus_builders.dart';
-import 'horizontal_scroll_with_arrows.dart';
+import 'scroll_controller_scope.dart';
 import 'listenable_selector.dart';
 import 'media_card.dart';
 import 'optimized_media_image.dart';
@@ -1392,7 +1392,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
     required ScrollController scrollController,
     required int totalCount,
   }) {
-    return HorizontalScrollWithArrows(
+    return ScrollControllerScope(
       controller: scrollController,
       builder: (scrollController) => ListView.builder(
         controller: scrollController,

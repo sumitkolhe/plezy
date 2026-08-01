@@ -26,7 +26,7 @@ import 'media_card_grid_layout.dart';
 import 'skeleton_media_card.dart';
 import 'sliver_child_memo.dart';
 import '../utils/scroll_utils.dart';
-import 'horizontal_scroll_with_arrows.dart';
+import 'scroll_controller_scope.dart';
 import '../i18n/strings.g.dart';
 
 enum HubCardSizing {
@@ -562,7 +562,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
 
                     return SizedBox(
                       height: containerHeight + focusExtra + (isTv ? 12 : 4), // extra for scale + border top/bottom
-                      child: HorizontalScrollWithArrows(
+                      child: ScrollControllerScope(
                         controller: _scrollController,
                         builder: (scrollController) => ListView.builder(
                           // Inert on media lists (no keep-alive clients): dropping the

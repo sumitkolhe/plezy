@@ -425,10 +425,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Visa profilval varje gång appen öppnas';
 	@override String get forceTvMode => 'Tvinga TV-läge';
 	@override String get forceTvModeDescription => 'Tvinga TV-layout. För enheter som inte upptäcks automatiskt. Kräver omstart.';
-	@override String get startInFullscreen => 'Starta i helskärm';
-	@override String get startInFullscreenDescription => 'Öppna Harbor i helskärm vid start';
-	@override String get exitFullscreenOnPlayerClose => 'Avsluta helskärm vid stängning av spelare';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Avslutar automatiskt helskärmsläge när videospelaren stängs';
 	@override String get autoHidePerformanceOverlay => 'Dölj prestandainformation automatiskt';
 	@override String get autoHidePerformanceOverlayDescription => 'Tona bort prestandainformationen tillsammans med uppspelningskontrollerna';
 	@override String get showNavBarLabels => 'Visa navigeringsfältets etiketter';
@@ -437,7 +433,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get display => 'Skärm';
 	@override String get homeScreen => 'Hemskärm';
 	@override String get navigation => 'Navigering';
-	@override String get window => 'Fönster';
 	@override String get content => 'Innehåll';
 	@override String get player => 'Spelare';
 	@override String get subtitlesAndConfig => 'Undertexter och konfiguration';
@@ -2063,10 +2058,6 @@ extension on TranslationsSv {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Visa profilval varje gång appen öppnas',
 			'settings.forceTvMode' => 'Tvinga TV-läge',
 			'settings.forceTvModeDescription' => 'Tvinga TV-layout. För enheter som inte upptäcks automatiskt. Kräver omstart.',
-			'settings.startInFullscreen' => 'Starta i helskärm',
-			'settings.startInFullscreenDescription' => 'Öppna Harbor i helskärm vid start',
-			'settings.exitFullscreenOnPlayerClose' => 'Avsluta helskärm vid stängning av spelare',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Avslutar automatiskt helskärmsläge när videospelaren stängs',
 			'settings.autoHidePerformanceOverlay' => 'Dölj prestandainformation automatiskt',
 			'settings.autoHidePerformanceOverlayDescription' => 'Tona bort prestandainformationen tillsammans med uppspelningskontrollerna',
 			'settings.showNavBarLabels' => 'Visa navigeringsfältets etiketter',
@@ -2075,7 +2066,6 @@ extension on TranslationsSv {
 			'settings.display' => 'Skärm',
 			'settings.homeScreen' => 'Hemskärm',
 			'settings.navigation' => 'Navigering',
-			'settings.window' => 'Fönster',
 			'settings.content' => 'Innehåll',
 			'settings.player' => 'Spelare',
 			'settings.subtitlesAndConfig' => 'Undertexter och konfiguration',
@@ -2286,13 +2276,13 @@ extension on TranslationsSv {
 			'messages.logsCleared' => 'Loggar rensade',
 			'messages.logsCopied' => 'Loggar kopierade till urklipp',
 			'messages.noLogsAvailable' => 'Inga loggar tillgängliga',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Uppdaterar metadata för "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadatauppdateringen har startat för "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Det gick inte att uppdatera metadata: ${error}',
 			'messages.logoutConfirm' => 'Är du säker på att du vill logga ut?',
 			'messages.noSeasonsFound' => 'Inga säsonger hittades',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Det gick inte att läsa in säsonger',
 			'messages.noEpisodesFound' => 'Inga avsnitt hittades i första säsongen',
 			'messages.noEpisodesFoundGeneral' => 'Inga avsnitt hittades',
@@ -2800,13 +2790,13 @@ extension on TranslationsSv {
 			'metadataEdit.basicInfo' => 'Grundläggande information',
 			'metadataEdit.artwork' => 'Bildmaterial',
 			'metadataEdit.title' => 'Titel',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteringstitel',
 			'metadataEdit.originalTitle' => 'Originaltitel',
 			'metadataEdit.releaseDate' => 'Utgivningsdatum',
 			'metadataEdit.contentRating' => 'Åldersgräns',
 			'metadataEdit.studio' => 'Studio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sammanfattning',
 			'metadataEdit.poster' => 'Affisch',

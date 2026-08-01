@@ -425,10 +425,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Показвай избор на профил всеки път при отваряне на приложението';
 	@override String get forceTvMode => 'Принуди TV режим';
 	@override String get forceTvModeDescription => 'Принуди ТВ оформление. За устройства, които не се разпознават автоматично. Изисква рестарт.';
-	@override String get startInFullscreen => 'Стартирай на цял екран';
-	@override String get startInFullscreenDescription => 'Отваряй Harbor в режим цял екран при стартиране';
-	@override String get exitFullscreenOnPlayerClose => 'Изход от цял екран при затваряне на плейъра';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Автоматично излиза от режим цял екран при затваряне на видео плейъра';
 	@override String get autoHidePerformanceOverlay => 'Автоматично скриване на оверлея за производителност';
 	@override String get autoHidePerformanceOverlayDescription => 'Скривай постепенно оверлея за производителност заедно с контролите за възпроизвеждане';
 	@override String get showNavBarLabels => 'Показвай етикети в навигационната лента';
@@ -437,7 +433,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get display => 'Дисплей';
 	@override String get homeScreen => 'Начален екран';
 	@override String get navigation => 'Навигация';
-	@override String get window => 'Прозорец';
 	@override String get content => 'Съдържание';
 	@override String get player => 'Плейър';
 	@override String get subtitlesAndConfig => 'Субтитри и конфигурация';
@@ -2063,10 +2058,6 @@ extension on TranslationsBg {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Показвай избор на профил всеки път при отваряне на приложението',
 			'settings.forceTvMode' => 'Принуди TV режим',
 			'settings.forceTvModeDescription' => 'Принуди ТВ оформление. За устройства, които не се разпознават автоматично. Изисква рестарт.',
-			'settings.startInFullscreen' => 'Стартирай на цял екран',
-			'settings.startInFullscreenDescription' => 'Отваряй Harbor в режим цял екран при стартиране',
-			'settings.exitFullscreenOnPlayerClose' => 'Изход от цял екран при затваряне на плейъра',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Автоматично излиза от режим цял екран при затваряне на видео плейъра',
 			'settings.autoHidePerformanceOverlay' => 'Автоматично скриване на оверлея за производителност',
 			'settings.autoHidePerformanceOverlayDescription' => 'Скривай постепенно оверлея за производителност заедно с контролите за възпроизвеждане',
 			'settings.showNavBarLabels' => 'Показвай етикети в навигационната лента',
@@ -2075,7 +2066,6 @@ extension on TranslationsBg {
 			'settings.display' => 'Дисплей',
 			'settings.homeScreen' => 'Начален екран',
 			'settings.navigation' => 'Навигация',
-			'settings.window' => 'Прозорец',
 			'settings.content' => 'Съдържание',
 			'settings.player' => 'Плейър',
 			'settings.subtitlesAndConfig' => 'Субтитри и конфигурация',
@@ -2286,13 +2276,13 @@ extension on TranslationsBg {
 			'messages.logsCleared' => 'Логовете са изчистени',
 			'messages.logsCopied' => 'Логовете са копирани в клипборда',
 			'messages.noLogsAvailable' => 'Няма налични логове',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Опресняване на метаданни за "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Опресняването на метаданни е стартирано за "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Неуспешно опресняване на метаданни: ${error}',
 			'messages.logoutConfirm' => 'Сигурни ли сте, че искате да излезете?',
 			'messages.noSeasonsFound' => 'Не са намерени сезони',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Неуспешно зареждане на сезони',
 			'messages.noEpisodesFound' => 'Не са намерени епизоди в първия сезон',
 			'messages.noEpisodesFoundGeneral' => 'Не са намерени епизоди',
@@ -2800,13 +2790,13 @@ extension on TranslationsBg {
 			'metadataEdit.basicInfo' => 'Основна информация',
 			'metadataEdit.artwork' => 'Обложка',
 			'metadataEdit.title' => 'Заглавие',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Заглавие за сортиране',
 			'metadataEdit.originalTitle' => 'Оригинално заглавие',
 			'metadataEdit.releaseDate' => 'Дата на излизане',
 			'metadataEdit.contentRating' => 'Възрастов рейтинг',
 			'metadataEdit.studio' => 'Студио',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Резюме',
 			'metadataEdit.poster' => 'Постер',

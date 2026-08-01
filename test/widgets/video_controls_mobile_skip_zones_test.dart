@@ -49,7 +49,6 @@ void main() {
 
     // Phone layout: the skip zones only exist when PlatformDetector.isMobile.
     TvDetectionService.debugSetAppleTVOverride(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
 
     database = AppDatabase.forTesting(NativeDatabase.memory());
     player = _RecordingPlayer();
@@ -61,7 +60,6 @@ void main() {
 
   tearDown(() async {
     TvDetectionService.debugSetAppleTVOverride(null);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
     volume.dispose();
     playbackState.dispose();
     chrome.dispose();

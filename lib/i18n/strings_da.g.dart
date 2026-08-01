@@ -425,10 +425,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Vis profilvalg hver gang appen åbnes';
 	@override String get forceTvMode => 'Gennemtving TV-tilstand';
 	@override String get forceTvModeDescription => 'Tving TV-layout. Til enheder, der ikke registreres automatisk. Kræver genstart.';
-	@override String get startInFullscreen => 'Start i fuldskærm';
-	@override String get startInFullscreenDescription => 'Åbn Harbor i fuldskærmstilstand ved opstart';
-	@override String get exitFullscreenOnPlayerClose => 'Forlad fuldskærm ved lukning af afspiller';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Afslut automatisk fuldskærm, når videoafspilleren lukkes';
 	@override String get autoHidePerformanceOverlay => 'Skjul ydelsesoverlay automatisk';
 	@override String get autoHidePerformanceOverlayDescription => 'Lad ydelsesoverlayet tone ud sammen med afspilningsknapperne';
 	@override String get showNavBarLabels => 'Vis tekst på navigationslinjen';
@@ -437,7 +433,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get display => 'Skærm';
 	@override String get homeScreen => 'Startskærm';
 	@override String get navigation => 'Navigation';
-	@override String get window => 'Vindue';
 	@override String get content => 'Indhold';
 	@override String get player => 'Afspiller';
 	@override String get subtitlesAndConfig => 'Undertekster og konfiguration';
@@ -2063,10 +2058,6 @@ extension on TranslationsDa {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Vis profilvalg hver gang appen åbnes',
 			'settings.forceTvMode' => 'Gennemtving TV-tilstand',
 			'settings.forceTvModeDescription' => 'Tving TV-layout. Til enheder, der ikke registreres automatisk. Kræver genstart.',
-			'settings.startInFullscreen' => 'Start i fuldskærm',
-			'settings.startInFullscreenDescription' => 'Åbn Harbor i fuldskærmstilstand ved opstart',
-			'settings.exitFullscreenOnPlayerClose' => 'Forlad fuldskærm ved lukning af afspiller',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Afslut automatisk fuldskærm, når videoafspilleren lukkes',
 			'settings.autoHidePerformanceOverlay' => 'Skjul ydelsesoverlay automatisk',
 			'settings.autoHidePerformanceOverlayDescription' => 'Lad ydelsesoverlayet tone ud sammen med afspilningsknapperne',
 			'settings.showNavBarLabels' => 'Vis tekst på navigationslinjen',
@@ -2075,7 +2066,6 @@ extension on TranslationsDa {
 			'settings.display' => 'Skærm',
 			'settings.homeScreen' => 'Startskærm',
 			'settings.navigation' => 'Navigation',
-			'settings.window' => 'Vindue',
 			'settings.content' => 'Indhold',
 			'settings.player' => 'Afspiller',
 			'settings.subtitlesAndConfig' => 'Undertekster og konfiguration',
@@ -2286,13 +2276,13 @@ extension on TranslationsDa {
 			'messages.logsCleared' => 'Logfilerne blev ryddet',
 			'messages.logsCopied' => 'Logfilerne blev kopieret til udklipsholderen',
 			'messages.noLogsAvailable' => 'Ingen logfiler tilgængelige',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Opdaterer metadata for "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadataopdatering startet for "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Kunne ikke opdatere metadata: ${error}',
 			'messages.logoutConfirm' => 'Er du sikker på, at du vil logge ud?',
 			'messages.noSeasonsFound' => 'Ingen sæsoner fundet',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Kunne ikke indlæse sæsoner',
 			'messages.noEpisodesFound' => 'Ingen episoder fundet i første sæson',
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder fundet',
@@ -2800,13 +2790,13 @@ extension on TranslationsDa {
 			'metadataEdit.basicInfo' => 'Grundlæggende oplysninger',
 			'metadataEdit.artwork' => 'Grafik',
 			'metadataEdit.title' => 'Titel',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteringstitel',
 			'metadataEdit.originalTitle' => 'Originaltitel',
 			'metadataEdit.releaseDate' => 'Udgivelsesdato',
 			'metadataEdit.contentRating' => 'Aldersgrænse',
 			'metadataEdit.studio' => 'Studie',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Resumé',
 			'metadataEdit.poster' => 'Plakat',

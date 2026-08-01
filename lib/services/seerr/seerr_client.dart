@@ -166,7 +166,7 @@ class SeerrClient {
   }
 
   // ---------- Internals ----------
-  String get _language => LocaleSettings.currentLocale.plexLanguageCode;
+  String get _language => LocaleSettings.currentLocale.apiLanguageCode;
 
   Future<dynamic> _request(
     String method,

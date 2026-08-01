@@ -63,33 +63,7 @@ class DeviceIdentityService {
       }
       if (Platform.isIOS) {
         final iosInfo = await deviceInfo.iosInfo;
-        if (TvDetectionService.isAppleTVSync()) {
-          return DeviceIdentity(platform: 'tvOS', deviceModel: 'Apple TV', deviceName: iosInfo.name, isTv: true);
-        }
         return DeviceIdentity(platform: 'iOS', deviceModel: iosInfo.model, deviceName: iosInfo.name, isTv: isTv);
-      }
-      if (Platform.isMacOS) {
-        final macInfo = await deviceInfo.macOsInfo;
-        return DeviceIdentity(
-          platform: 'macOS',
-          deviceModel: macInfo.model,
-          deviceName: macInfo.computerName,
-          isTv: isTv,
-        );
-      }
-      if (Platform.isWindows) {
-        final windowsInfo = await deviceInfo.windowsInfo;
-        return DeviceIdentity(
-          platform: 'Windows',
-          deviceModel: 'Windows',
-          deviceName: windowsInfo.computerName,
-          isTv: isTv,
-        );
-      }
-      if (Platform.isLinux) {
-        final host = Platform.localHostname.trim();
-        final name = (host.isNotEmpty && host != 'localhost') ? host : (await deviceInfo.linuxInfo).name;
-        return DeviceIdentity(platform: 'Linux', deviceModel: 'Linux', deviceName: name, isTv: isTv);
       }
     } catch (e) {
       appLogger.w('DeviceIdentity: failed to resolve device info', error: e);
@@ -100,7 +74,7 @@ class DeviceIdentityService {
 }
 
 /// Makes a free-form device name safe to send as an HTTP header value on
-/// every transport Plezy uses: folds Latin letters to their base form
+/// every transport the app uses: folds Latin letters to their base form
 /// (`Bjørn PC` → `Bjorn PC`), drops whatever is still outside printable
 /// ASCII, trims, and returns null when nothing usable remains.
 ///

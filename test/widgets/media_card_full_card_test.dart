@@ -104,7 +104,7 @@ void main() {
 
     expect(find.text('Hidden Movie'), findsNothing);
     expect(find.text('2024'), findsNothing);
-    expect(tester.getSize(find.byType(InkWell)), const Size(200, 300));
+    expect(tester.getSize(find.byType(MediaCard)), const Size(200, 300));
   });
 
   testWidgets('standard grid media cards still show text', (tester) async {

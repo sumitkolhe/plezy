@@ -30,14 +30,6 @@ class AppExitService {
       }
     }
 
-    if (PlatformDetector.isDesktopOS()) {
-      final exitApplication =
-          exitApplicationForTesting ??
-          (exitType, exitCode) => ServicesBinding.instance.exitApplication(exitType, exitCode);
-      final response = await exitApplication(ui.AppExitType.required, 0);
-      return response == ui.AppExitResponse.exit;
-    }
-
     await SystemNavigator.pop();
     return true;
   }
@@ -47,14 +39,7 @@ class AppExitService {
   /// the terminal playback report for trackers that own their own watched
   /// semantics.
   ///
-  /// Desktop only; returns false elsewhere, and when the platform declined, so
-  /// the caller can fall back to a hard exit.
-  static Future<bool> requestGracefulExit({AppExitApplication? exitApplicationForTesting}) async {
-    if (!PlatformDetector.isDesktopOS()) return false;
-    final exitApplication =
-        exitApplicationForTesting ??
-        (exitType, exitCode) => ServicesBinding.instance.exitApplication(exitType, exitCode);
-    final response = await exitApplication(ui.AppExitType.cancelable, 0);
-    return response == ui.AppExitResponse.exit;
-  }
+  /// Always false: the cancelable exit handshake was a desktop shell feature,
+  /// so callers fall through to their hard-exit path.
+  static Future<bool> requestGracefulExit({AppExitApplication? exitApplicationForTesting}) async => false;
 }

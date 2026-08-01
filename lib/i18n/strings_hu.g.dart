@@ -425,10 +425,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Profilválasztó megjelenítése minden alkalommal, amikor az alkalmazást megnyitod';
 	@override String get forceTvMode => 'TV-mód kényszerítése';
 	@override String get forceTvModeDescription => 'TV-elrendezés kényszerítése az automatikus felismeréssel nem rendelkező eszközökön. Újraindítást igényel.';
-	@override String get startInFullscreen => 'Indítás teljes képernyőn';
-	@override String get startInFullscreenDescription => 'A Harbor megnyitása teljes képernyős módban indításkor';
-	@override String get exitFullscreenOnPlayerClose => 'Kilépés a teljes képernyőből a lejátszó bezárásakor';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Automatikus kilépés a teljes képernyőből a videólejátszó bezárásakor';
 	@override String get autoHidePerformanceOverlay => 'Teljesítményadatok automatikus elrejtése';
 	@override String get autoHidePerformanceOverlayDescription => 'A teljesítményadatok elhalványítása a lejátszásvezérlőkkel együtt';
 	@override String get showNavBarLabels => 'Navigációs sáv címkéinek megjelenítése';
@@ -437,7 +433,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get display => 'Kijelző';
 	@override String get homeScreen => 'Kezdőképernyő';
 	@override String get navigation => 'Navigáció';
-	@override String get window => 'Ablak';
 	@override String get content => 'Tartalom';
 	@override String get player => 'Lejátszó';
 	@override String get subtitlesAndConfig => 'Feliratok és konfiguráció';
@@ -2063,10 +2058,6 @@ extension on TranslationsHu {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Profilválasztó megjelenítése minden alkalommal, amikor az alkalmazást megnyitod',
 			'settings.forceTvMode' => 'TV-mód kényszerítése',
 			'settings.forceTvModeDescription' => 'TV-elrendezés kényszerítése az automatikus felismeréssel nem rendelkező eszközökön. Újraindítást igényel.',
-			'settings.startInFullscreen' => 'Indítás teljes képernyőn',
-			'settings.startInFullscreenDescription' => 'A Harbor megnyitása teljes képernyős módban indításkor',
-			'settings.exitFullscreenOnPlayerClose' => 'Kilépés a teljes képernyőből a lejátszó bezárásakor',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Automatikus kilépés a teljes képernyőből a videólejátszó bezárásakor',
 			'settings.autoHidePerformanceOverlay' => 'Teljesítményadatok automatikus elrejtése',
 			'settings.autoHidePerformanceOverlayDescription' => 'A teljesítményadatok elhalványítása a lejátszásvezérlőkkel együtt',
 			'settings.showNavBarLabels' => 'Navigációs sáv címkéinek megjelenítése',
@@ -2075,7 +2066,6 @@ extension on TranslationsHu {
 			'settings.display' => 'Kijelző',
 			'settings.homeScreen' => 'Kezdőképernyő',
 			'settings.navigation' => 'Navigáció',
-			'settings.window' => 'Ablak',
 			'settings.content' => 'Tartalom',
 			'settings.player' => 'Lejátszó',
 			'settings.subtitlesAndConfig' => 'Feliratok és konfiguráció',
@@ -2286,13 +2276,13 @@ extension on TranslationsHu {
 			'messages.logsCleared' => 'Naplók törölve',
 			'messages.logsCopied' => 'Naplók a vágólapra másolva',
 			'messages.noLogsAvailable' => 'Nincsenek elérhető naplók',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metaadatok frissítése a következőhöz: "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metaadatok frissítése elindítva a következőhöz: "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nem sikerült a metaadatok frissítése: ${error}',
 			'messages.logoutConfirm' => 'Biztosan ki szeretnél jelentkezni?',
 			'messages.noSeasonsFound' => 'Nem találhatók évadok',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Nem sikerült az évadok betöltése',
 			'messages.noEpisodesFound' => 'Nem találhatók epizódok az első évadban',
 			'messages.noEpisodesFoundGeneral' => 'Nem találhatók epizódok',
@@ -2800,13 +2790,13 @@ extension on TranslationsHu {
 			'metadataEdit.basicInfo' => 'Alapinformációk',
 			'metadataEdit.artwork' => 'Borítók és képek',
 			'metadataEdit.title' => 'Cím',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Rendezési cím',
 			'metadataEdit.originalTitle' => 'Eredeti cím',
 			'metadataEdit.releaseDate' => 'Bemutató dátuma',
 			'metadataEdit.contentRating' => 'Korhatár-besorolás',
 			'metadataEdit.studio' => 'Stúdió',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Jelmondat',
 			'metadataEdit.summary' => 'Összefoglaló',
 			'metadataEdit.poster' => 'Poszter',

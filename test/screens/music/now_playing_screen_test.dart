@@ -98,12 +98,10 @@ void main() {
   setUp(() {
     LocaleSettings.setLocaleSync(AppLocale.en);
     TvDetectionService.debugSetAppleTVOverride(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
   });
 
   tearDown(() {
     TvDetectionService.debugSetAppleTVOverride(null);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
   });
 
   Future<void> pumpNowPlaying(WidgetTester tester, _FakeMusicService service, {required bool isTv}) async {
@@ -113,7 +111,6 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
 
     TvDetectionService.debugSetAppleTVOverride(isTv);
-    PlatformDetector.debugSetIsDesktopOSOverride(!isTv);
 
     addTearDown(service.dispose);
     final multiServerProvider = testMultiServer().provider;

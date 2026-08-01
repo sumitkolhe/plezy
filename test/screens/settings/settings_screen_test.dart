@@ -62,7 +62,6 @@ void main() {
     temporaryDirectory = await Directory.systemTemp.createTemp('plezy_settings_screen_test_');
     PathProviderPlatform.instance = FakePathProvider(temporaryDirectory);
     TvDetectionService.debugSetAppleTVOverride(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
     directoryPicker = _FakeDirectoryPicker();
     FilePickerService.setDelegateForTesting(directoryPicker);
     await SettingsService.getInstance();
@@ -70,7 +69,6 @@ void main() {
 
   tearDown(() async {
     TvDetectionService.debugSetAppleTVOverride(null);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
     DownloadStorageService.resetForTesting();
     FilePickerService.setDelegateForTesting(null);
     SettingsService.resetForTesting();

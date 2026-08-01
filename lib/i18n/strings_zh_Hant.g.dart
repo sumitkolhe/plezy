@@ -426,10 +426,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get requireProfileSelectionOnOpenDescription => '每次開啟應用程式時顯示使用者設定檔選擇畫面';
 	@override String get forceTvMode => '強制 TV 模式';
 	@override String get forceTvModeDescription => '強制使用 TV 介面版面。適用於無法自動辨識 TV 的裝置。需要重新啟動。';
-	@override String get startInFullscreen => '以全螢幕模式啟動';
-	@override String get startInFullscreenDescription => '啟動時直接以全螢幕開啟 Harbor';
-	@override String get exitFullscreenOnPlayerClose => '關閉播放器時退出全螢幕';
-	@override String get exitFullscreenOnPlayerCloseDescription => '關閉影片播放器時自動退出全螢幕模式';
 	@override String get autoHidePerformanceOverlay => '自動隱藏效能疊加層';
 	@override String get autoHidePerformanceOverlayDescription => '效能疊加層隨播放控制面板一起淡入或淡出';
 	@override String get showNavBarLabels => '顯示導覽列標籤';
@@ -438,7 +434,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get display => '顯示器';
 	@override String get homeScreen => '主畫面';
 	@override String get navigation => '導覽';
-	@override String get window => '視窗';
 	@override String get content => '內容';
 	@override String get player => '播放器';
 	@override String get subtitlesAndConfig => '字幕與設定';
@@ -2061,10 +2056,6 @@ extension on TranslationsZhHant {
 			'settings.requireProfileSelectionOnOpenDescription' => '每次開啟應用程式時顯示使用者設定檔選擇畫面',
 			'settings.forceTvMode' => '強制 TV 模式',
 			'settings.forceTvModeDescription' => '強制使用 TV 介面版面。適用於無法自動辨識 TV 的裝置。需要重新啟動。',
-			'settings.startInFullscreen' => '以全螢幕模式啟動',
-			'settings.startInFullscreenDescription' => '啟動時直接以全螢幕開啟 Harbor',
-			'settings.exitFullscreenOnPlayerClose' => '關閉播放器時退出全螢幕',
-			'settings.exitFullscreenOnPlayerCloseDescription' => '關閉影片播放器時自動退出全螢幕模式',
 			'settings.autoHidePerformanceOverlay' => '自動隱藏效能疊加層',
 			'settings.autoHidePerformanceOverlayDescription' => '效能疊加層隨播放控制面板一起淡入或淡出',
 			'settings.showNavBarLabels' => '顯示導覽列標籤',
@@ -2073,7 +2064,6 @@ extension on TranslationsZhHant {
 			'settings.display' => '顯示器',
 			'settings.homeScreen' => '主畫面',
 			'settings.navigation' => '導覽',
-			'settings.window' => '視窗',
 			'settings.content' => '內容',
 			'settings.player' => '播放器',
 			'settings.subtitlesAndConfig' => '字幕與設定',
@@ -2284,13 +2274,13 @@ extension on TranslationsZhHant {
 			'messages.logsCleared' => '日誌已清除',
 			'messages.logsCopied' => '日誌已複製到剪貼簿',
 			'messages.noLogsAvailable' => '沒有可用的日誌',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '正在重新整理「${title}」的中繼資料…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已開始重新整理「${title}」的中繼資料',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '無法重新整理中繼資料：${error}',
 			'messages.logoutConfirm' => '您確定要登出嗎？',
 			'messages.noSeasonsFound' => '找不到季數',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '無法載入季數',
 			'messages.noEpisodesFound' => '在第一季中找不到單集',
 			'messages.noEpisodesFoundGeneral' => '找不到單集',
@@ -2798,13 +2788,13 @@ extension on TranslationsZhHant {
 			'metadataEdit.basicInfo' => '基本資訊',
 			'metadataEdit.artwork' => '海報與背景',
 			'metadataEdit.title' => '標題',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '排序標題',
 			'metadataEdit.originalTitle' => '原始標題',
 			'metadataEdit.releaseDate' => '上映日期',
 			'metadataEdit.contentRating' => '內容分級',
 			'metadataEdit.studio' => '製片商',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => '宣傳標語',
 			'metadataEdit.summary' => '大綱簡介',
 			'metadataEdit.poster' => '海報',

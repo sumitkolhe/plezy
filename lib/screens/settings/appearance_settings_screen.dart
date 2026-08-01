@@ -110,7 +110,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
           title: t.settings.navigation,
           children: [
             _startupSectionSelector(),
-            if (Platform.isAndroid || PlatformDetector.isDesktopOS())
+            if (Platform.isAndroid)
               SettingSwitchTile(
                 pref: SettingsService.forceTvMode,
                 icon: Symbols.tv_rounded,
@@ -150,25 +150,6 @@ class AppearanceSettingsScreen extends StatelessWidget {
             ),
           ],
         ),
-
-        if (PlatformDetector.isDesktopOS())
-          SettingsGroup(
-            title: t.settings.window,
-            children: [
-              SettingSwitchTile(
-                pref: SettingsService.startInFullscreen,
-                icon: Symbols.fullscreen_rounded,
-                title: t.settings.startInFullscreen,
-                subtitle: t.settings.startInFullscreenDescription,
-              ),
-              SettingSwitchTile(
-                pref: SettingsService.exitFullscreenOnPlayerClose,
-                icon: Symbols.fullscreen_exit_rounded,
-                title: t.settings.exitFullscreenOnPlayerClose,
-                subtitle: t.settings.exitFullscreenOnPlayerCloseDescription,
-              ),
-            ],
-          ),
 
         SettingsGroup(
           title: t.settings.content,

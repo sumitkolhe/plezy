@@ -428,10 +428,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Tətbiq hər dəfə açıldıqda profil seçimini göstər';
 	@override String get forceTvMode => 'TV rejimini məcburi et';
 	@override String get forceTvModeDescription => 'TV interfeysini məcburi et. Avtomatik təyin etməyən cihazlar üçündür.';
-	@override String get startInFullscreen => 'Tam ekranda başlat';
-	@override String get startInFullscreenDescription => 'Harbor-ni açılışda tam ekran rejimində aç';
-	@override String get exitFullscreenOnPlayerClose => 'Oynadıcı bağlandıqda tam ekrandan çıx';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Video oynadıcını bağlayarkən avtomatik tam ekrandan çıx';
 	@override String get autoHidePerformanceOverlay => 'Məhsuldarlıq paneli avtomatik gizlənsin';
 	@override String get autoHidePerformanceOverlayDescription => 'Məhsuldarlıq panelini oynatıcı idarəetmələri ilə birlikdə gizlət';
 	@override String get showNavBarLabels => 'Naviqasiya paneli yazılarını göstər';
@@ -440,7 +436,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get display => 'Ekran';
 	@override String get homeScreen => 'Ana ekran';
 	@override String get navigation => 'Naviqasiya';
-	@override String get window => 'Pəncərə';
 	@override String get content => 'Məzmun';
 	@override String get player => 'Oynadıcı';
 	@override String get subtitlesAndConfig => 'Altyazılar və konfiqurasiya';
@@ -2077,10 +2072,6 @@ extension on TranslationsAz {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Tətbiq hər dəfə açıldıqda profil seçimini göstər',
 			'settings.forceTvMode' => 'TV rejimini məcburi et',
 			'settings.forceTvModeDescription' => 'TV interfeysini məcburi et. Avtomatik təyin etməyən cihazlar üçündür.',
-			'settings.startInFullscreen' => 'Tam ekranda başlat',
-			'settings.startInFullscreenDescription' => 'Harbor-ni açılışda tam ekran rejimində aç',
-			'settings.exitFullscreenOnPlayerClose' => 'Oynadıcı bağlandıqda tam ekrandan çıx',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Video oynadıcını bağlayarkən avtomatik tam ekrandan çıx',
 			'settings.autoHidePerformanceOverlay' => 'Məhsuldarlıq paneli avtomatik gizlənsin',
 			'settings.autoHidePerformanceOverlayDescription' => 'Məhsuldarlıq panelini oynatıcı idarəetmələri ilə birlikdə gizlət',
 			'settings.showNavBarLabels' => 'Naviqasiya paneli yazılarını göstər',
@@ -2089,7 +2080,6 @@ extension on TranslationsAz {
 			'settings.display' => 'Ekran',
 			'settings.homeScreen' => 'Ana ekran',
 			'settings.navigation' => 'Naviqasiya',
-			'settings.window' => 'Pəncərə',
 			'settings.content' => 'Məzmun',
 			'settings.player' => 'Oynadıcı',
 			'settings.subtitlesAndConfig' => 'Altyazılar və konfiqurasiya',
@@ -2297,13 +2287,13 @@ extension on TranslationsAz {
 			'messages.noDescriptionAvailable' => 'Təsvir əlçatan deyil',
 			'messages.noProfilesAvailable' => 'Profil yoxdur',
 			'messages.contactAdminForProfiles' => 'Profil əlavə etmək üçün server inzibatçınızla əlaqə saxlayın',
-			_ => null,
-		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Bu element üçün kitabxana bölməsi müəyyən edilə bilmədi',
 			'messages.logsCleared' => 'Jurnallar təmizləndi',
 			'messages.logsCopied' => 'Jurnallar buferə kopyalandı',
 			'messages.noLogsAvailable' => 'Jurnal yoxdur',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" üçün meta-məlumatlar yenilənir...',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" üçün meta-məlumat yenilənməsi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta-məlumatlar yenilənə bilmədi: ${error}',
 			'messages.logoutConfirm' => 'Çıxış etmək istədiyinizdən əminsiniz?',
@@ -2811,13 +2801,13 @@ extension on TranslationsAz {
 			'externalPlayer.playerName' => 'Oynadıcı adı',
 			'externalPlayer.playerNameHint' => 'Mənim oynadıcım',
 			'externalPlayer.playerCommand' => 'Əmr',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paket adı',
 			'externalPlayer.playerUrlScheme' => 'URL sxemi',
 			'externalPlayer.off' => 'Söndürülüb',
 			'externalPlayer.launchFailed' => 'Xarici oynadıcı açıla bilmədi',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} quraşdırılmayıb',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Xarici oynadıcıda oynat',
 			'metadataEdit.editMetadata' => 'Düzəliş et...',
 			'metadataEdit.screenTitle' => 'Meta-məlumatlara düzəliş et',

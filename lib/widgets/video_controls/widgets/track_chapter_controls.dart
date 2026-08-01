@@ -144,7 +144,7 @@ class TrackChapterControls extends StatelessWidget {
         final tracks = snapshot.data;
         final state = trackControlsState;
         final isMobile = PlatformDetector.isMobile(context);
-        final isDesktop = PlatformDetector.isDesktopOS();
+        const isDesktop = false;
 
         // Build list of buttons dynamically to track indices
         final buttons = <Widget>[];

@@ -285,7 +285,6 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
   BoxConstraints? _constraints;
   Color? _explicitBackgroundColor;
   Alignment _alignment = Alignment.bottomCenter;
-  Offset? _lastPointerPosition;
   double? _sheetHorizontalAnchor;
 
   // Drag-to-dismiss state
@@ -438,15 +437,10 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
 
   void _rememberPointerPosition(PointerEvent event) {
     if (event.kind != PointerDeviceKind.mouse) return;
-    _lastPointerPosition = event.localPosition;
   }
 
-  double? _resolveSheetHorizontalAnchor(Alignment alignment) {
-    if (!PlatformDetector.isDesktopOS() || PlatformDetector.isTV()) return null;
-    if (InputModeTracker.isKeyboardMode(context, listen: false)) return null;
-    if (alignment.x != 0 || alignment.y <= 0) return null;
-    return _lastPointerPosition?.dx;
-  }
+  /// Anchoring a sheet to the pointer needed a mouse; nothing supplies one now.
+  double? _resolveSheetHorizontalAnchor(Alignment alignment) => null;
 
   void _autoFocus({bool clearSelectSuppression = true}) {
     final focusDescendant = InputModeTracker.isKeyboardMode(context, listen: false);

@@ -29,13 +29,11 @@ void main() {
 
   tearDown(() {
     TvDetectionService.debugSetAppleTVOverride(null);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
   });
 
   testWidgets('remote back pops the manage profile page', (tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
     // Simulated TV device, not desktop force-TV: keep locked keyboard mode.
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final profile = Profile.local(id: 'local-owner', displayName: 'Owner', createdAt: DateTime(2026, 1, 1));
     final profiles = _FakeProfileRegistry(db, [profile]);

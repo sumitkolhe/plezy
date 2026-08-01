@@ -414,7 +414,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   bool _resumeAfterAppleAudioSessionPause = false;
   DateTime? _lastPlaybackPauseAt;
   bool _autoPipEnabled = false;
-  bool _exitFullscreenOnPlayerClose = false;
   bool _androidAutoPipTransitionInFlight = false;
   bool _pipFiltersPrepared = false;
   VoidCallback? _autoPipEnteringCallback;
@@ -910,7 +909,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       if (!_isPlayerInitializationCurrent(generation)) return;
       _videoPlayerNavigationEnabled = settingsService.read(SettingsService.videoPlayerNavigationEnabled);
       _autoPipEnabled = settingsService.read(SettingsService.autoPip);
-      _exitFullscreenOnPlayerClose = settingsService.read(SettingsService.exitFullscreenOnPlayerClose);
       _rewindOnResume = settingsService.read(SettingsService.rewindOnResume);
       final bufferSizeMB = settingsService.read(SettingsService.bufferSize);
       final enableHardwareDecoding = settingsService.read(SettingsService.enableHardwareDecoding);
@@ -1132,10 +1130,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
         );
       }
 
-      if (PlatformDetector.isDesktopOS()) {
-        await currentPlayer.setProperty('screenshot-directory', '~/Pictures');
-      }
-
       final customMpvConfig = SettingsService.parseMpvConfigText(settingsService.read(SettingsService.mpvConfigText));
       for (final entry in customMpvConfig.entries) {
         try {
@@ -1330,8 +1324,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   }
 
   Future<void> _restoreSystemUiAndOrientation() async {
-    if (PlatformDetector.isDesktopOS() && _exitFullscreenOnPlayerClose) {}
-
     try {
       await OrientationHelper.restoreSystemUI();
     } catch (e) {

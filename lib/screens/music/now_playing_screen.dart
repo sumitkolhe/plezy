@@ -263,7 +263,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
     final client = context.tryGetMediaClientWithFallback(serverIdOrNull(track.serverId));
     final isTV = PlatformDetector.isTV();
 
-    Widget content = Stack(
+    final Widget content = Stack(
       fit: StackFit.expand,
       children: [
         _Background(track: track, client: client, heavyScrim: isTV),
@@ -278,13 +278,6 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         ),
       ],
     );
-
-    if (PlatformDetector.isDesktopOS() && !isTV) {
-      content = CallbackShortcuts(
-        bindings: {const SingleActivator(LogicalKeyboardKey.space): () => unawaited(service.togglePlayPause())},
-        child: FocusScope(child: Focus(autofocus: true, skipTraversal: true, child: content)),
-      );
-    }
 
     // Own OverlaySheetHost so the queue / sleep-timer sheets have a host on
     // TV; the host also owns system back (a back with a sheet open closes
@@ -320,19 +313,16 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         Padding(padding: const EdgeInsets.fromLTRB(32, 8, 32, 0), child: _buildTrackInfo(track, centered: true)),
       ],
     );
-    // Touch only — desktop keeps mouse drags for text selection and the
-    // lyrics pane. A drag starting on the lyrics scrollable still scrolls
-    // (the descendant recognizer wins the arena).
-    if (!PlatformDetector.isDesktopOS()) {
-      upper = GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onVerticalDragStart: _onDismissDragStart,
-        onVerticalDragUpdate: _onDismissDragUpdate,
-        onVerticalDragEnd: _onDismissDragEnd,
-        onVerticalDragCancel: _onDismissDragCancel,
-        child: upper,
-      );
-    }
+    // A drag starting on the lyrics scrollable still scrolls (the descendant
+    // recognizer wins the arena).
+    upper = GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onVerticalDragStart: _onDismissDragStart,
+      onVerticalDragUpdate: _onDismissDragUpdate,
+      onVerticalDragEnd: _onDismissDragEnd,
+      onVerticalDragCancel: _onDismissDragCancel,
+      child: upper,
+    );
     return Column(
       children: [
         Expanded(child: upper),

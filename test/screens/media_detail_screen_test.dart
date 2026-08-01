@@ -49,16 +49,37 @@ import '../test_helpers/multi_server_fixtures.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  late AppDatabase scopeDb;
+  late DownloadManagerService scopeManager;
+  late DownloadProvider scopeDownloads;
+
   setUp(() {
     resetSharedPreferencesForTest();
     SettingsService.resetForTesting();
     TvDetectionService.debugSetAppleTVOverride(true);
     LocaleSettings.setLocaleSync(AppLocale.en);
+    // Android TV offers downloads, so the detail screen's action bar resolves
+    // a DownloadProvider on every pump.
+    scopeDb = AppDatabase.forTesting(NativeDatabase.memory());
+    scopeManager = DownloadManagerService(
+      database: scopeDb,
+      storageService: DownloadStorageService.instance,
+      clientResolver: (serverId, {clientScopeId}) => null,
+    )..recoveryFuture = Future<void>.value();
+    scopeDownloads = DownloadProvider.forTesting(downloadManager: scopeManager, database: scopeDb);
   });
 
-  tearDown(() {
+  tearDown(() async {
     TvDetectionService.debugSetAppleTVOverride(null);
+    scopeDownloads.dispose();
+    scopeManager.dispose();
+    await scopeDb.close();
   });
+
+  Widget scope({required Widget child}) => ChangeNotifierProvider<DownloadProvider>.value(
+    value: scopeDownloads,
+    child: withProfileNavigationScope(child: child),
+  );
 
   testWidgets('TV detail scales fallback title to fit logo bounds', (tester) async {
     await SettingsService.getInstance();
@@ -80,7 +101,7 @@ void main() {
       TranslationProvider(
         child: MaterialApp(
           theme: monoTheme(dark: true),
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
+          home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
     );
@@ -116,7 +137,7 @@ void main() {
       TranslationProvider(
         child: MaterialApp(
           theme: monoTheme(dark: true),
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
+          home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
     );
@@ -156,7 +177,7 @@ void main() {
       TranslationProvider(
         child: MaterialApp(
           theme: monoTheme(dark: true),
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
+          home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
     );
@@ -249,7 +270,7 @@ void main() {
           value: provider,
           child: MaterialApp(
             theme: monoTheme(dark: true),
-            home: withProfileNavigationScope(
+            home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
           ),
@@ -288,7 +309,7 @@ void main() {
       TranslationProvider(
         child: MaterialApp(
           theme: theme,
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
+          home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
     );
@@ -375,7 +396,7 @@ void main() {
           value: provider,
           child: MaterialApp(
             theme: monoTheme(dark: true),
-            home: withProfileNavigationScope(
+            home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
           ),
@@ -472,7 +493,7 @@ void main() {
           value: provider,
           child: MaterialApp(
             theme: monoTheme(dark: true),
-            home: withProfileNavigationScope(
+            home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
           ),
@@ -563,7 +584,7 @@ void main() {
           value: provider,
           child: MaterialApp(
             theme: monoTheme(dark: true),
-            home: withProfileNavigationScope(
+            home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
           ),
@@ -671,7 +692,7 @@ void main() {
             navigatorKey: navigatorKey,
             navigatorObservers: [observer],
             theme: monoTheme(dark: true),
-            home: withProfileNavigationScope(
+            home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
           ),
@@ -783,7 +804,7 @@ void main() {
             ],
             child: MaterialApp(
               theme: monoTheme(dark: true),
-              home: withProfileNavigationScope(
+              home: scope(
                 child: MediaDetailScreen(
                   metadata: show,
                   initialSeasonId: initialSeasonId,

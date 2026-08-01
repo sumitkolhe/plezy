@@ -202,9 +202,8 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
 
                 if (UpdateService.isUpdateCheckAvailable) ...[_buildUpdateSection()],
 
-                // Hidden on Android TV / tvOS (no document picker); desktop in
-                // force-TV mode keeps it — FilePickerService works there.
-                if (!PlatformDetector.isTV() || PlatformDetector.isDesktopOS()) _buildBackupSection(),
+                // Hidden on Android TV (no document picker).
+                if (!PlatformDetector.isTV()) _buildBackupSection(),
 
                 const SizedBox(height: 24),
                 SettingsGroup(

@@ -116,9 +116,9 @@ class _InputModeTrackerState extends State<InputModeTracker> {
 
   @override
   Widget build(BuildContext context) {
-    // Non-desktop TVs keep keyboard mode across synthetic pointer events, but
-    // their controls remain pointer-reachable for engine-generated taps.
-    if (TvDetectionService.isTVSync() && !PlatformDetector.isDesktopOS()) {
+    // TVs keep keyboard mode across synthetic pointer events, but their
+    // controls remain pointer-reachable for engine-generated taps.
+    if (TvDetectionService.isTVSync()) {
       return _InputModeProvider(mode: _mode, child: widget.child);
     }
 

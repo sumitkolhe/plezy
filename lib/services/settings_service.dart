@@ -453,8 +453,6 @@ class SettingsService extends BaseSharedPreferencesService {
     'video_player_navigation_enabled',
     defaultValueProvider: TvDetectionService.isTVSync,
   );
-  static const startInFullscreen = BoolPref('start_in_fullscreen');
-  static const exitFullscreenOnPlayerClose = BoolPref('exit_fullscreen_on_player_close');
 
   static const bufferSize = _BufferSizePref();
   static const libraryDensity = _LibraryDensityPref();
@@ -902,8 +900,6 @@ class SettingsService extends BaseSharedPreferencesService {
     matchRefreshRate,
     matchDynamicRange,
     displaySwitchDelay,
-    startInFullscreen,
-    exitFullscreenOnPlayerClose,
   ];
 
   /// Group three: reset but *not* exported — device-local paths, endpoints and

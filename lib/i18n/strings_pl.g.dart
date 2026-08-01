@@ -425,10 +425,6 @@ class _Translations$settings$pl extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Pokaż wybór profilu za każdym razem, gdy aplikacja jest otwierana';
 	@override String get forceTvMode => 'Wymuś tryb TV';
 	@override String get forceTvModeDescription => 'Wymuś układ telewizyjny na urządzeniach, które nie wykrywają go automatycznie. Wymaga ponownego uruchomienia.';
-	@override String get startInFullscreen => 'Uruchom na pełnym ekranie';
-	@override String get startInFullscreenDescription => 'Otwiera Harbor w trybie pełnoekranowym przy uruchomieniu';
-	@override String get exitFullscreenOnPlayerClose => 'Wyjdź z pełnego ekranu przy zamykaniu odtwarzacza';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Automatycznie wychodzi z trybu pełnoekranowego po zamknięciu odtwarzacza wideo';
 	@override String get autoHidePerformanceOverlay => 'Automatycznie ukrywaj nakładkę wydajności';
 	@override String get autoHidePerformanceOverlayDescription => 'Wygaszaj nakładkę wydajności wraz z kontrolkami odtwarzania';
 	@override String get showNavBarLabels => 'Pokaż etykiety paska nawigacji';
@@ -437,7 +433,6 @@ class _Translations$settings$pl extends Translations$settings$en {
 	@override String get display => 'Ekran';
 	@override String get homeScreen => 'Ekran główny';
 	@override String get navigation => 'Nawigacja';
-	@override String get window => 'Okno';
 	@override String get content => 'Zawartość';
 	@override String get player => 'Odtwarzacz';
 	@override String get subtitlesAndConfig => 'Napisy i konfiguracja';
@@ -2069,10 +2064,6 @@ extension on TranslationsPl {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Pokaż wybór profilu za każdym razem, gdy aplikacja jest otwierana',
 			'settings.forceTvMode' => 'Wymuś tryb TV',
 			'settings.forceTvModeDescription' => 'Wymuś układ telewizyjny na urządzeniach, które nie wykrywają go automatycznie. Wymaga ponownego uruchomienia.',
-			'settings.startInFullscreen' => 'Uruchom na pełnym ekranie',
-			'settings.startInFullscreenDescription' => 'Otwiera Harbor w trybie pełnoekranowym przy uruchomieniu',
-			'settings.exitFullscreenOnPlayerClose' => 'Wyjdź z pełnego ekranu przy zamykaniu odtwarzacza',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Automatycznie wychodzi z trybu pełnoekranowego po zamknięciu odtwarzacza wideo',
 			'settings.autoHidePerformanceOverlay' => 'Automatycznie ukrywaj nakładkę wydajności',
 			'settings.autoHidePerformanceOverlayDescription' => 'Wygaszaj nakładkę wydajności wraz z kontrolkami odtwarzania',
 			'settings.showNavBarLabels' => 'Pokaż etykiety paska nawigacji',
@@ -2081,7 +2072,6 @@ extension on TranslationsPl {
 			'settings.display' => 'Ekran',
 			'settings.homeScreen' => 'Ekran główny',
 			'settings.navigation' => 'Nawigacja',
-			'settings.window' => 'Okno',
 			'settings.content' => 'Zawartość',
 			'settings.player' => 'Odtwarzacz',
 			'settings.subtitlesAndConfig' => 'Napisy i konfiguracja',
@@ -2292,13 +2282,13 @@ extension on TranslationsPl {
 			'messages.logsCleared' => 'Logi wyczyszczone',
 			'messages.logsCopied' => 'Logi skopiowane do schowka',
 			'messages.noLogsAvailable' => 'Brak dostępnych logów',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Odświeżanie metadanych "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Rozpoczęto odświeżanie metadanych "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nie udało się odświeżyć metadanych: ${error}',
 			'messages.logoutConfirm' => 'Czy na pewno chcesz się wylogować?',
 			'messages.noSeasonsFound' => 'Nie znaleziono sezonów',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Nie udało się załadować sezonów',
 			'messages.noEpisodesFound' => 'Nie znaleziono odcinków w pierwszym sezonie',
 			'messages.noEpisodesFoundGeneral' => 'Nie znaleziono odcinków',
@@ -2806,13 +2796,13 @@ extension on TranslationsPl {
 			'metadataEdit.basicInfo' => 'Podstawowe informacje',
 			'metadataEdit.artwork' => 'Grafika',
 			'metadataEdit.title' => 'Tytuł',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Tytuł do sortowania',
 			'metadataEdit.originalTitle' => 'Tytuł oryginalny',
 			'metadataEdit.releaseDate' => 'Data premiery',
 			'metadataEdit.contentRating' => 'Klasyfikacja wiekowa',
 			'metadataEdit.studio' => 'Studio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Opis',
 			'metadataEdit.poster' => 'Plakat',

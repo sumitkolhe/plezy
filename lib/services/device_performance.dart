@@ -151,10 +151,7 @@ class DevicePerformance {
   static void applyImageCacheBudget() {
     _detectDisplayBudget();
     final cache = PaintingBinding.instance.imageCache;
-    if (PlatformDetector.isDesktopOS()) {
-      cache.maximumSize = 1000;
-      cache.maximumSizeBytes = 150 << 20; // 150MB
-    } else if (isReduced) {
+    if (isReduced) {
       cache.maximumSize = 400;
       cache.maximumSizeBytes = 48 << 20; // 48MB
     } else if (PlatformDetector.isTV()) {

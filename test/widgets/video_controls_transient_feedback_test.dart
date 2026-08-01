@@ -53,7 +53,6 @@ void main() {
       // Android TV: PlatformDetector.isTV() drives both the directional-seek
       // branch and the videoPlayerNavigationEnabled default.
       TvDetectionService.debugSetAppleTVOverride(true);
-      PlatformDetector.debugSetIsDesktopOSOverride(false);
 
       database = AppDatabase.forTesting(NativeDatabase.memory());
       player = _RecordingPlayer();
@@ -65,7 +64,6 @@ void main() {
 
     tearDown(() async {
       TvDetectionService.debugSetAppleTVOverride(null);
-      PlatformDetector.debugSetIsDesktopOSOverride(null);
       volume.dispose();
       playbackState.dispose();
       chrome.dispose();
@@ -651,7 +649,6 @@ void main() {
       await settings.write(SettingsService.videoPlayerNavigationEnabled, false);
 
       TvDetectionService.debugSetAppleTVOverride(false);
-      PlatformDetector.debugSetIsDesktopOSOverride(true);
 
       database = AppDatabase.forTesting(NativeDatabase.memory());
       player = _RecordingPlayer();
@@ -663,7 +660,6 @@ void main() {
 
     tearDown(() async {
       TvDetectionService.debugSetAppleTVOverride(null);
-      PlatformDetector.debugSetIsDesktopOSOverride(null);
       volume.dispose();
       playbackState.dispose();
       chrome.dispose();

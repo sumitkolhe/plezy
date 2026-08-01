@@ -117,7 +117,7 @@ abstract class MediaServerClient {
   ///
   /// The previous `plexStyleFilters: Map<String,String>` parameter was
   /// retired — the library UI now builds a neutral [LibraryQuery] at the
-  /// call boundary via `libraryQueryFromPlexMap`, and the Plex client
+  /// call boundary via `libraryQueryFromFilterMap`, and the Plex client
   /// translates back to wire params via [PlexLibraryQueryTranslator].
   Future<LibraryPage<MediaItem>> fetchLibraryPagedContent(
     String libraryId, {

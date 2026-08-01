@@ -115,13 +115,8 @@ void main() {
   });
 
   group('pictureInPictureAllowed', () {
-    bool allowed({bool host = true, bool appleTv = false, bool tv = false, bool automotive = false}) =>
-        pictureInPictureAllowed(
-          hostSupportsPictureInPicture: host,
-          isAppleTv: appleTv,
-          isTv: tv,
-          isAutomotive: automotive,
-        );
+    bool allowed({bool host = true, bool tv = false, bool automotive = false}) =>
+        pictureInPictureAllowed(hostSupportsPictureInPicture: host, isTv: tv, isAutomotive: automotive);
 
     test('a plain handheld host may float a player', () {
       expect(allowed(), isTrue);
@@ -133,7 +128,6 @@ void main() {
 
     test('TV form factors veto a host that otherwise supports PiP', () {
       expect(allowed(tv: true), isFalse);
-      expect(allowed(appleTv: true), isFalse);
     });
 
     test('a host without PiP is never allowed, whatever the form factor', () {

@@ -150,14 +150,12 @@ void main() {
     LocaleSettings.setLocaleSync(AppLocale.en);
     TvDetectionService.debugSetAppleTVOverride(false);
     TvDetectionService.setForceTVSync(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
     database = AppDatabase.forTesting(NativeDatabase.memory());
   });
 
   tearDown(() {
     TvDetectionService.debugSetAppleTVOverride(null);
     TvDetectionService.setForceTVSync(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
     FocusManager.instance.highlightStrategy = FocusHighlightStrategy.automatic;
   });
   tearDown(() => database.close());

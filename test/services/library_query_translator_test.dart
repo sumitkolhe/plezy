@@ -204,9 +204,9 @@ void main() {
       expect(LibraryQueryTranslator.parseSortParam(':desc'), isNull);
     });
   });
-  group('libraryQueryFromPlexMap', () {
+  group('libraryQueryFromFilterMap', () {
     test('favorite=1 maps to favoritesOnly, not a generic filter entry', () {
-      final query = libraryQueryFromPlexMap(map: {'favorite': '1'});
+      final query = libraryQueryFromFilterMap(map: {'favorite': '1'});
       expect(query.favoritesOnly, isTrue);
       expect(query.filters, isEmpty);
     });
@@ -214,23 +214,23 @@ void main() {
     test('libraryKind argument overrides any type entry in the map', () {
       // The browse tab always passes the library's actual kind; map's `type`
       // is dropped if the explicit arg is present.
-      final query = libraryQueryFromPlexMap(map: {'type': '1'}, libraryKind: MediaKind.show);
+      final query = libraryQueryFromFilterMap(map: {'type': '1'}, libraryKind: MediaKind.show);
       expect(query.kind, MediaKind.show);
     });
 
     test('numeric type maps to MediaKind when libraryKind is absent', () {
-      final query = libraryQueryFromPlexMap(map: {'type': '1'});
+      final query = libraryQueryFromFilterMap(map: {'type': '1'});
       expect(query.kind, MediaKind.movie);
     });
 
     test('multi-value type stays in the generic filters bucket', () {
-      final query = libraryQueryFromPlexMap(map: {'type': '1,4'});
+      final query = libraryQueryFromFilterMap(map: {'type': '1,4'});
       expect(query.filters.single.field, 'type');
       expect(query.filters.single.values, ['1', '4']);
     });
 
     test('unknown keys survive as generic LibraryFilter entries', () {
-      final query = libraryQueryFromPlexMap(map: {'director': '12345'});
+      final query = libraryQueryFromFilterMap(map: {'director': '12345'});
       expect(query.filters.single.field, 'director');
     });
   });

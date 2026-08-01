@@ -50,7 +50,7 @@ abstract class LibraryQueryTranslator {
 ///
 /// `libraryKind` overrides any `type=` entry — both can be sources of truth
 /// in the existing browse tab and the explicit argument wins.
-LibraryQuery libraryQueryFromPlexMap({
+LibraryQuery libraryQueryFromFilterMap({
   required Map<String, String> map,
   MediaKind? libraryKind,
   int offset = 0,

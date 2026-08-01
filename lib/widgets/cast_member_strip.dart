@@ -11,7 +11,7 @@ import '../utils/grid_size_calculator.dart';
 import '../utils/media_image_helper.dart';
 import '../utils/scroll_utils.dart';
 import 'focus_builders.dart';
-import 'horizontal_scroll_with_arrows.dart';
+import 'scroll_controller_scope.dart';
 import 'optimized_media_image.dart';
 
 /// One person in a [CastMemberStrip]: display name, secondary line
@@ -176,7 +176,7 @@ class CastMemberStripState extends State<CastMemberStrip> {
       onKeyEvent: _handleKeyEvent,
       child: SizedBox(
         height: CastMemberStrip.heightForCardWidth(cardWidth),
-        child: HorizontalScrollWithArrows(
+        child: ScrollControllerScope(
           controller: _scrollController,
           builder: (scrollController) => ListView.builder(
             addAutomaticKeepAlives: false,

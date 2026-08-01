@@ -428,10 +428,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Ilova ochilgan har safar profilni tanlashni koʻrsatish';
 	@override String get forceTvMode => 'TV rejimini majburlash';
 	@override String get forceTvModeDescription => 'TV interfeysini majburiy yoqish.';
-	@override String get startInFullscreen => 'Toʻliq ekranda boshlash';
-	@override String get startInFullscreenDescription => 'Harbor-ni ochganda toʻliq ekran rejimida ochish';
-	@override String get exitFullscreenOnPlayerClose => 'Pleyer yopilganda toʻliq ekrandan chiqish';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Video pleyerni yopganda avtomatik ravishda toʻliq ekrandan chiqish';
 	@override String get autoHidePerformanceOverlay => 'Unumdorlik panelini avto-yashirish';
 	@override String get autoHidePerformanceOverlayDescription => 'Unumdorlik panelini boshqaruv tugmalari bilan birga yashirish';
 	@override String get showNavBarLabels => 'Navigatsiya paneli matnlarini koʻrsatish';
@@ -440,7 +436,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get display => 'Displey';
 	@override String get homeScreen => 'Bosh ekran';
 	@override String get navigation => 'Navigatsiya';
-	@override String get window => 'Oyna';
 	@override String get content => 'Kontent';
 	@override String get player => 'Pleyer';
 	@override String get subtitlesAndConfig => 'Subtitrlar va konfiguratsiya';
@@ -2077,10 +2072,6 @@ extension on TranslationsUz {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Ilova ochilgan har safar profilni tanlashni koʻrsatish',
 			'settings.forceTvMode' => 'TV rejimini majburlash',
 			'settings.forceTvModeDescription' => 'TV interfeysini majburiy yoqish.',
-			'settings.startInFullscreen' => 'Toʻliq ekranda boshlash',
-			'settings.startInFullscreenDescription' => 'Harbor-ni ochganda toʻliq ekran rejimida ochish',
-			'settings.exitFullscreenOnPlayerClose' => 'Pleyer yopilganda toʻliq ekrandan chiqish',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Video pleyerni yopganda avtomatik ravishda toʻliq ekrandan chiqish',
 			'settings.autoHidePerformanceOverlay' => 'Unumdorlik panelini avto-yashirish',
 			'settings.autoHidePerformanceOverlayDescription' => 'Unumdorlik panelini boshqaruv tugmalari bilan birga yashirish',
 			'settings.showNavBarLabels' => 'Navigatsiya paneli matnlarini koʻrsatish',
@@ -2089,7 +2080,6 @@ extension on TranslationsUz {
 			'settings.display' => 'Displey',
 			'settings.homeScreen' => 'Bosh ekran',
 			'settings.navigation' => 'Navigatsiya',
-			'settings.window' => 'Oyna',
 			'settings.content' => 'Kontent',
 			'settings.player' => 'Pleyer',
 			'settings.subtitlesAndConfig' => 'Subtitrlar va konfiguratsiya',
@@ -2297,13 +2287,13 @@ extension on TranslationsUz {
 			'messages.noDescriptionAvailable' => 'Tavsif mavjud emas',
 			'messages.noProfilesAvailable' => 'Profillar yoʻq',
 			'messages.contactAdminForProfiles' => 'Profil qoʻshish uchun administratorga murojaat qiling',
-			_ => null,
-		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Kutubxona boʻlimini aniqlab boʻlmadi',
 			'messages.logsCleared' => 'Jurnallar tozalandi',
 			'messages.logsCopied' => 'Jurnallar nusxalandi',
 			'messages.noLogsAvailable' => 'Jurnallar yoʻq',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" uchun metamaʼlumotlar yangilanmoqda...',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" uchun metamaʼlumotlarni yangilash boshlandi',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metamaʼlumotlarni yangilab boʻlmadi: ${error}',
 			'messages.logoutConfirm' => 'Haqiqatan ham chiqmoqchimisiz?',
@@ -2811,13 +2801,13 @@ extension on TranslationsUz {
 			'externalPlayer.playerName' => 'Pleyer nomi',
 			'externalPlayer.playerNameHint' => 'Mening pleyerim',
 			'externalPlayer.playerCommand' => 'Buyruq',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paket nomi',
 			'externalPlayer.playerUrlScheme' => 'URL sxemasi',
 			'externalPlayer.off' => 'Oʻchirilgan',
 			'externalPlayer.launchFailed' => 'Tashqi pleyerni ishga tushirib boʻlmadi',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} oʻrnatilmagan',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Tashqi pleyerda ijro etish',
 			'metadataEdit.editMetadata' => 'Tahrirlash...',
 			'metadataEdit.screenTitle' => 'Metamaʼlumotlarni tahrirlash',

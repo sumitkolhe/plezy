@@ -1014,18 +1014,6 @@ class Translations$settings$en {
 	/// en: 'Force TV layout. For devices that don't auto-detect. Requires restart.'
 	String get forceTvModeDescription => 'Force TV layout. For devices that don\'t auto-detect. Requires restart.';
 
-	/// en: 'Start in fullscreen'
-	String get startInFullscreen => 'Start in fullscreen';
-
-	/// en: 'Open Harbor in fullscreen mode at launch'
-	String get startInFullscreenDescription => 'Open Harbor in fullscreen mode at launch';
-
-	/// en: 'Exit fullscreen on player close'
-	String get exitFullscreenOnPlayerClose => 'Exit fullscreen on player close';
-
-	/// en: 'Automatically exit fullscreen when closing the video player'
-	String get exitFullscreenOnPlayerCloseDescription => 'Automatically exit fullscreen when closing the video player';
-
 	/// en: 'Auto-Hide Performance Overlay'
 	String get autoHidePerformanceOverlay => 'Auto-Hide Performance Overlay';
 
@@ -1058,9 +1046,6 @@ class Translations$settings$en {
 
 	/// en: 'Navigation'
 	String get navigation => 'Navigation';
-
-	/// en: 'Window'
-	String get window => 'Window';
 
 	/// en: 'Content'
 	String get content => 'Content';
@@ -5150,10 +5135,6 @@ extension on Translations {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Show profile selection every time the app is opened',
 			'settings.forceTvMode' => 'Force TV mode',
 			'settings.forceTvModeDescription' => 'Force TV layout. For devices that don\'t auto-detect. Requires restart.',
-			'settings.startInFullscreen' => 'Start in fullscreen',
-			'settings.startInFullscreenDescription' => 'Open Harbor in fullscreen mode at launch',
-			'settings.exitFullscreenOnPlayerClose' => 'Exit fullscreen on player close',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Automatically exit fullscreen when closing the video player',
 			'settings.autoHidePerformanceOverlay' => 'Auto-Hide Performance Overlay',
 			'settings.autoHidePerformanceOverlayDescription' => 'Fade the performance overlay with the playback controls',
 			'settings.showNavBarLabels' => 'Show Navigation Bar Labels',
@@ -5165,7 +5146,6 @@ extension on Translations {
 			'settings.display' => 'Display',
 			'settings.homeScreen' => 'Home Screen',
 			'settings.navigation' => 'Navigation',
-			'settings.window' => 'Window',
 			'settings.content' => 'Content',
 			'settings.player' => 'Player',
 			'settings.subtitlesAndConfig' => 'Subtitles & Configuration',
@@ -5370,13 +5350,13 @@ extension on Translations {
 			'tooltips.markAsUnwatched' => 'Mark as unwatched',
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.subtitlesLabel' => 'Subtitles',
 			'videoControls.resetToZero' => 'Reset to 0ms',
 			'videoControls.addTime' => ({required Object amount, required Object unit}) => '+${amount}${unit}',
 			'videoControls.minusTime' => ({required Object amount, required Object unit}) => '-${amount}${unit}',
 			'videoControls.playsLater' => ({required Object label}) => '${label} plays later',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.playsEarlier' => ({required Object label}) => '${label} plays earlier',
 			'videoControls.noOffset' => 'No offset',
 			'videoControls.letterbox' => 'Letterbox',
@@ -5884,13 +5864,13 @@ extension on Translations {
 			'playlists.deleteMessage' => ({required Object name}) => 'Are you sure you want to delete "${name}"?',
 			'playlists.created' => 'Playlist created',
 			'playlists.deleted' => 'Playlist deleted',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.itemAdded' => 'Added to playlist',
 			'playlists.itemRemoved' => 'Removed from playlist',
 			'playlists.selectPlaylist' => 'Select Playlist',
 			'playlists.searchPlaylists' => 'Search playlists...',
 			'playlists.errorCreating' => 'Failed to create playlist',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.errorDeleting' => 'Failed to delete playlist',
 			'playlists.errorLoading' => 'Failed to load playlists',
 			'playlists.errorAdding' => 'Failed to add to playlist',

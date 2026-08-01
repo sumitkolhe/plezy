@@ -425,10 +425,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Profilauswahl bei jedem Öffnen der App anzeigen';
 	@override String get forceTvMode => 'TV-Modus erzwingen';
 	@override String get forceTvModeDescription => 'TV-Layout erzwingen. Für Geräte ohne automatische Erkennung. Neustart erforderlich.';
-	@override String get startInFullscreen => 'Im Vollbildmodus starten';
-	@override String get startInFullscreenDescription => 'Harbor beim Start im Vollbildmodus öffnen';
-	@override String get exitFullscreenOnPlayerClose => 'Vollbild beim Schließen des Players beenden';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Vollbildmodus automatisch beenden, wenn der Videoplayer geschlossen wird';
 	@override String get autoHidePerformanceOverlay => 'Leistungsoverlay automatisch ausblenden';
 	@override String get autoHidePerformanceOverlayDescription => 'Leistungsoverlay mit den Wiedergabesteuerungen ein-/ausblenden';
 	@override String get showNavBarLabels => 'Navigationsleisten-Beschriftungen anzeigen';
@@ -437,7 +433,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get display => 'Anzeige';
 	@override String get homeScreen => 'Startseite';
 	@override String get navigation => 'Navigation';
-	@override String get window => 'Fenster';
 	@override String get content => 'Inhalt';
 	@override String get player => 'Wiedergabe';
 	@override String get subtitlesAndConfig => 'Untertitel und Konfiguration';
@@ -2063,10 +2058,6 @@ extension on TranslationsDe {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Profilauswahl bei jedem Öffnen der App anzeigen',
 			'settings.forceTvMode' => 'TV-Modus erzwingen',
 			'settings.forceTvModeDescription' => 'TV-Layout erzwingen. Für Geräte ohne automatische Erkennung. Neustart erforderlich.',
-			'settings.startInFullscreen' => 'Im Vollbildmodus starten',
-			'settings.startInFullscreenDescription' => 'Harbor beim Start im Vollbildmodus öffnen',
-			'settings.exitFullscreenOnPlayerClose' => 'Vollbild beim Schließen des Players beenden',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Vollbildmodus automatisch beenden, wenn der Videoplayer geschlossen wird',
 			'settings.autoHidePerformanceOverlay' => 'Leistungsoverlay automatisch ausblenden',
 			'settings.autoHidePerformanceOverlayDescription' => 'Leistungsoverlay mit den Wiedergabesteuerungen ein-/ausblenden',
 			'settings.showNavBarLabels' => 'Navigationsleisten-Beschriftungen anzeigen',
@@ -2075,7 +2066,6 @@ extension on TranslationsDe {
 			'settings.display' => 'Anzeige',
 			'settings.homeScreen' => 'Startseite',
 			'settings.navigation' => 'Navigation',
-			'settings.window' => 'Fenster',
 			'settings.content' => 'Inhalt',
 			'settings.player' => 'Wiedergabe',
 			'settings.subtitlesAndConfig' => 'Untertitel und Konfiguration',
@@ -2286,13 +2276,13 @@ extension on TranslationsDe {
 			'messages.logsCleared' => 'Protokolle gelöscht',
 			'messages.logsCopied' => 'Protokolle in Zwischenablage kopiert',
 			'messages.noLogsAvailable' => 'Keine Protokolle verfügbar',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metadaten für „${title}“ werden aktualisiert …',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadaten-Aktualisierung gestartet für „${title}“',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadaten konnten nicht aktualisiert werden: ${error}',
 			'messages.logoutConfirm' => 'Abmeldung wirklich durchführen?',
 			'messages.noSeasonsFound' => 'Keine Staffeln gefunden',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Staffeln konnten nicht geladen werden',
 			'messages.noEpisodesFound' => 'Keine Episoden in der ersten Staffel gefunden',
 			'messages.noEpisodesFoundGeneral' => 'Keine Episoden gefunden',
@@ -2800,13 +2790,13 @@ extension on TranslationsDe {
 			'metadataEdit.basicInfo' => 'Grundinformationen',
 			'metadataEdit.artwork' => 'Grafiken',
 			'metadataEdit.title' => 'Titel',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sortiertitel',
 			'metadataEdit.originalTitle' => 'Originaltitel',
 			'metadataEdit.releaseDate' => 'Erscheinungsdatum',
 			'metadataEdit.contentRating' => 'Altersfreigabe',
 			'metadataEdit.studio' => 'Studio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Zusammenfassung',
 			'metadataEdit.poster' => 'Poster',

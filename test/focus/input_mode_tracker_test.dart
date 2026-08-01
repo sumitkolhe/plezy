@@ -84,10 +84,8 @@ void main() {
 
   testWidgets('non-desktop TV path has no cursor shield and remains pointer-reachable', (tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
     addTearDown(() {
       TvDetectionService.debugSetAppleTVOverride(null);
-      PlatformDetector.debugSetIsDesktopOSOverride(null);
     });
     var taps = 0;
 

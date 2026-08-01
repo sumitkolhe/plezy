@@ -425,10 +425,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => '每次打开应用时都显示用户资料选择界面';
 	@override String get forceTvMode => '强制 TV 模式';
 	@override String get forceTvModeDescription => '强制 TV 布局。适用于无法自动检测的设备。需要重启。';
-	@override String get startInFullscreen => '以全屏模式启动';
-	@override String get startInFullscreenDescription => '启动时以全屏模式打开 Harbor';
-	@override String get exitFullscreenOnPlayerClose => '关闭播放器时退出全屏';
-	@override String get exitFullscreenOnPlayerCloseDescription => '关闭视频播放器时自动退出全屏模式';
 	@override String get autoHidePerformanceOverlay => '自动隐藏性能叠加层';
 	@override String get autoHidePerformanceOverlayDescription => '性能叠加层随播放控件一起淡入淡出';
 	@override String get showNavBarLabels => '显示导航栏标签';
@@ -437,7 +433,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get display => '显示';
 	@override String get homeScreen => '主屏幕';
 	@override String get navigation => '导航';
-	@override String get window => '窗口';
 	@override String get content => '内容';
 	@override String get player => '播放器';
 	@override String get subtitlesAndConfig => '字幕与配置';
@@ -2060,10 +2055,6 @@ extension on TranslationsZh {
 			'settings.requireProfileSelectionOnOpenDescription' => '每次打开应用时都显示用户资料选择界面',
 			'settings.forceTvMode' => '强制 TV 模式',
 			'settings.forceTvModeDescription' => '强制 TV 布局。适用于无法自动检测的设备。需要重启。',
-			'settings.startInFullscreen' => '以全屏模式启动',
-			'settings.startInFullscreenDescription' => '启动时以全屏模式打开 Harbor',
-			'settings.exitFullscreenOnPlayerClose' => '关闭播放器时退出全屏',
-			'settings.exitFullscreenOnPlayerCloseDescription' => '关闭视频播放器时自动退出全屏模式',
 			'settings.autoHidePerformanceOverlay' => '自动隐藏性能叠加层',
 			'settings.autoHidePerformanceOverlayDescription' => '性能叠加层随播放控件一起淡入淡出',
 			'settings.showNavBarLabels' => '显示导航栏标签',
@@ -2072,7 +2063,6 @@ extension on TranslationsZh {
 			'settings.display' => '显示',
 			'settings.homeScreen' => '主屏幕',
 			'settings.navigation' => '导航',
-			'settings.window' => '窗口',
 			'settings.content' => '内容',
 			'settings.player' => '播放器',
 			'settings.subtitlesAndConfig' => '字幕与配置',
@@ -2283,13 +2273,13 @@ extension on TranslationsZh {
 			'messages.logsCleared' => '日志已清除',
 			'messages.logsCopied' => '日志已复制到剪贴板',
 			'messages.noLogsAvailable' => '没有可用日志',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '正在刷新“${title}”的元数据…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已开始刷新“${title}”的元数据',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '无法刷新元数据：${error}',
 			'messages.logoutConfirm' => '确定要退出登录吗？',
 			'messages.noSeasonsFound' => '未找到季',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => '无法加载季',
 			'messages.noEpisodesFound' => '在第一季中未找到剧集',
 			'messages.noEpisodesFoundGeneral' => '未找到剧集',
@@ -2797,13 +2787,13 @@ extension on TranslationsZh {
 			'metadataEdit.basicInfo' => '基本信息',
 			'metadataEdit.artwork' => '封面图片',
 			'metadataEdit.title' => '标题',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '排序标题',
 			'metadataEdit.originalTitle' => '原始标题',
 			'metadataEdit.releaseDate' => '上映日期',
 			'metadataEdit.contentRating' => '内容分级',
 			'metadataEdit.studio' => '制片厂',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => '标语',
 			'metadataEdit.summary' => '简介',
 			'metadataEdit.poster' => '海报',

@@ -8,7 +8,6 @@ import '../media/media_server_client.dart';
 import '../media/playback_timeline.dart';
 import '../utils/app_logger.dart';
 import '../utils/media_image_helper.dart';
-import '../utils/platform_detector.dart';
 import '../utils/media_server_http_client.dart';
 import 'settings_service.dart';
 
@@ -85,12 +84,8 @@ class DiscordRPCService {
 
   DiscordRPCService._();
 
-  static bool get isAvailable {
-    if (!PlatformDetector.isDesktopOS()) {
-      return false;
-    }
-    return DiscordRPC.isAvailable;
-  }
+  /// Rich Presence needs a desktop Discord client to talk to.
+  static bool get isAvailable => false;
 
   /// Initialize the service. Call once at app startup (main.dart).
   Future<void> initialize() async {

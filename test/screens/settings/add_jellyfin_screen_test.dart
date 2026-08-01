@@ -312,7 +312,6 @@ void main() {
   tearDown(() {
     TvDetectionService.debugSetAppleTVOverride(null);
     TvDetectionService.setForceTVSync(false);
-    PlatformDetector.debugSetIsDesktopOSOverride(null);
   });
 
   testWidgets('autofocuses the server URL field', (tester) async {
@@ -407,7 +406,6 @@ void main() {
   /// leaves focus on the username field, as the probe does.
   Future<void> pumpAppleTvCredentialsStep(WidgetTester tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
     await tester.pumpWidget(
       InputModeTracker(
         child: _testApp(
@@ -597,7 +595,6 @@ void main() {
     await TvDetectionService.getInstance(forceTv: true);
     TvDetectionService.setForceTVSync(true);
     // Simulated TV device, not desktop force-TV: keep locked keyboard mode.
-    PlatformDetector.debugSetIsDesktopOSOverride(false);
 
     await tester.pumpWidget(
       InputModeTracker(

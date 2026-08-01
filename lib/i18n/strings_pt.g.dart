@@ -425,10 +425,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Mostrar a seleção de perfil sempre que o app for aberto';
 	@override String get forceTvMode => 'Forçar modo TV';
 	@override String get forceTvModeDescription => 'Forçar o layout de TV em dispositivos sem detecção automática. Requer reiniciar o app.';
-	@override String get startInFullscreen => 'Iniciar em tela cheia';
-	@override String get startInFullscreenDescription => 'Abrir o Harbor em modo de tela cheia ao iniciar';
-	@override String get exitFullscreenOnPlayerClose => 'Sair da tela cheia ao fechar o reprodutor';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Sair automaticamente da tela cheia ao fechar o reprodutor de vídeo';
 	@override String get autoHidePerformanceOverlay => 'Ocultar automaticamente o painel de desempenho';
 	@override String get autoHidePerformanceOverlayDescription => 'Esmaecer o painel de desempenho junto com os controles de reprodução';
 	@override String get showNavBarLabels => 'Mostrar Rótulos da Barra de Navegação';
@@ -437,7 +433,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get display => 'Tela';
 	@override String get homeScreen => 'Tela inicial';
 	@override String get navigation => 'Navegação';
-	@override String get window => 'Janela';
 	@override String get content => 'Conteúdo';
 	@override String get player => 'Reprodutor';
 	@override String get subtitlesAndConfig => 'Legendas e configuração';
@@ -2063,10 +2058,6 @@ extension on TranslationsPt {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Mostrar a seleção de perfil sempre que o app for aberto',
 			'settings.forceTvMode' => 'Forçar modo TV',
 			'settings.forceTvModeDescription' => 'Forçar o layout de TV em dispositivos sem detecção automática. Requer reiniciar o app.',
-			'settings.startInFullscreen' => 'Iniciar em tela cheia',
-			'settings.startInFullscreenDescription' => 'Abrir o Harbor em modo de tela cheia ao iniciar',
-			'settings.exitFullscreenOnPlayerClose' => 'Sair da tela cheia ao fechar o reprodutor',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Sair automaticamente da tela cheia ao fechar o reprodutor de vídeo',
 			'settings.autoHidePerformanceOverlay' => 'Ocultar automaticamente o painel de desempenho',
 			'settings.autoHidePerformanceOverlayDescription' => 'Esmaecer o painel de desempenho junto com os controles de reprodução',
 			'settings.showNavBarLabels' => 'Mostrar Rótulos da Barra de Navegação',
@@ -2075,7 +2066,6 @@ extension on TranslationsPt {
 			'settings.display' => 'Tela',
 			'settings.homeScreen' => 'Tela inicial',
 			'settings.navigation' => 'Navegação',
-			'settings.window' => 'Janela',
 			'settings.content' => 'Conteúdo',
 			'settings.player' => 'Reprodutor',
 			'settings.subtitlesAndConfig' => 'Legendas e configuração',
@@ -2286,13 +2276,13 @@ extension on TranslationsPt {
 			'messages.logsCleared' => 'Logs limpos',
 			'messages.logsCopied' => 'Logs copiados para a área de transferência',
 			'messages.noLogsAvailable' => 'Nenhum log disponível',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Atualizando metadados de "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Atualização de metadados iniciada para "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Falha ao atualizar metadados: ${error}',
 			'messages.logoutConfirm' => 'Tem certeza de que deseja sair?',
 			'messages.noSeasonsFound' => 'Nenhuma temporada encontrada',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Não foi possível carregar as temporadas',
 			'messages.noEpisodesFound' => 'Nenhum episódio encontrado na primeira temporada',
 			'messages.noEpisodesFoundGeneral' => 'Nenhum episódio encontrado',
@@ -2800,13 +2790,13 @@ extension on TranslationsPt {
 			'metadataEdit.basicInfo' => 'Informações Básicas',
 			'metadataEdit.artwork' => 'Arte',
 			'metadataEdit.title' => 'Título',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Título para Ordenação',
 			'metadataEdit.originalTitle' => 'Título Original',
 			'metadataEdit.releaseDate' => 'Data de Lançamento',
 			'metadataEdit.contentRating' => 'Classificação Indicativa',
 			'metadataEdit.studio' => 'Estúdio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sinopse',
 			'metadataEdit.poster' => 'Pôster',

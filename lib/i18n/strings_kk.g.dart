@@ -428,10 +428,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Қолданба ашылған сайын профильді таңдауды көрсету';
 	@override String get forceTvMode => 'TV режимін мәжбүрлеу';
 	@override String get forceTvModeDescription => 'TV интерфейсін мәжбүрлеу.';
-	@override String get startInFullscreen => 'Толық экранда бастау';
-	@override String get startInFullscreenDescription => 'Harbor-ді ашқанда толық экран режимінде ашу';
-	@override String get exitFullscreenOnPlayerClose => 'Ойнатқыш жабылғанда толық экраннан шығу';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Видео ойнатқышты жапқанда автоматты түрде толық экраннан шығу';
 	@override String get autoHidePerformanceOverlay => 'Өнімділік панелін авто-жасыру';
 	@override String get autoHidePerformanceOverlayDescription => 'Өнімділік панелін басқару элементтерімен бірге жасыру';
 	@override String get showNavBarLabels => 'Навигация панелінің мәтіндерін көрсету';
@@ -440,7 +436,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get display => 'Дисплей';
 	@override String get homeScreen => 'Басты экран';
 	@override String get navigation => 'Навигация';
-	@override String get window => 'Терезе';
 	@override String get content => 'Мазмұн';
 	@override String get player => 'Ойнатқыш';
 	@override String get subtitlesAndConfig => 'Субтитрлер мен конфигурация';
@@ -2077,10 +2072,6 @@ extension on TranslationsKk {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Қолданба ашылған сайын профильді таңдауды көрсету',
 			'settings.forceTvMode' => 'TV режимін мәжбүрлеу',
 			'settings.forceTvModeDescription' => 'TV интерфейсін мәжбүрлеу.',
-			'settings.startInFullscreen' => 'Толық экранда бастау',
-			'settings.startInFullscreenDescription' => 'Harbor-ді ашқанда толық экран режимінде ашу',
-			'settings.exitFullscreenOnPlayerClose' => 'Ойнатқыш жабылғанда толық экраннан шығу',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Видео ойнатқышты жапқанда автоматты түрде толық экраннан шығу',
 			'settings.autoHidePerformanceOverlay' => 'Өнімділік панелін авто-жасыру',
 			'settings.autoHidePerformanceOverlayDescription' => 'Өнімділік панелін басқару элементтерімен бірге жасыру',
 			'settings.showNavBarLabels' => 'Навигация панелінің мәтіндерін көрсету',
@@ -2089,7 +2080,6 @@ extension on TranslationsKk {
 			'settings.display' => 'Дисплей',
 			'settings.homeScreen' => 'Басты экран',
 			'settings.navigation' => 'Навигация',
-			'settings.window' => 'Терезе',
 			'settings.content' => 'Мазмұн',
 			'settings.player' => 'Ойнатқыш',
 			'settings.subtitlesAndConfig' => 'Субтитрлер мен конфигурация',
@@ -2297,13 +2287,13 @@ extension on TranslationsKk {
 			'messages.noDescriptionAvailable' => 'Сипаттамасы жоқ',
 			'messages.noProfilesAvailable' => 'Профильдер жоқ',
 			'messages.contactAdminForProfiles' => 'Профиль қосу үшін администраторға хабарласыңыз',
-			_ => null,
-		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Кітапхана бөлімін анықтау мүмкін болмады',
 			'messages.logsCleared' => 'Журналдар тазаланды',
 			'messages.logsCopied' => 'Журналдар көшірілді',
 			'messages.noLogsAvailable' => 'Журналдар жоқ',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" үшін метадеректер жаңартылуда...',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" үшін метадеректерді жаңарту басталды',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Метадеректерді жаңарту мүмкін болмады: ${error}',
 			'messages.logoutConfirm' => 'Шынымен шыққыңыз келе ме?',
@@ -2811,13 +2801,13 @@ extension on TranslationsKk {
 			'externalPlayer.playerName' => 'Ойнатқыш атауы',
 			'externalPlayer.playerNameHint' => 'Менің ойнатқышым',
 			'externalPlayer.playerCommand' => 'Пәрмен',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Пакет атауы',
 			'externalPlayer.playerUrlScheme' => 'URL схемасы',
 			'externalPlayer.off' => 'Өшірулі',
 			'externalPlayer.launchFailed' => 'Сыртқы ойнатқышты іске қосу мүмкін болмады',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} орнатылмаған',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playInExternalPlayer' => 'Сыртқы ойнатқышта ойнату',
 			'metadataEdit.editMetadata' => 'Өңдеу...',
 			'metadataEdit.screenTitle' => 'Метадеректерді өңдеу',

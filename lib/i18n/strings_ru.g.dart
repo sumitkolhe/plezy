@@ -425,10 +425,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Показывать выбор профиля при каждом открытии приложения';
 	@override String get forceTvMode => 'Принудительный режим ТВ';
 	@override String get forceTvModeDescription => 'Принудительно включить ТВ-интерфейс. Для устройств без автоопределения. Требуется перезапуск.';
-	@override String get startInFullscreen => 'Запускать в полноэкранном режиме';
-	@override String get startInFullscreenDescription => 'Открывать Harbor в полноэкранном режиме при запуске';
-	@override String get exitFullscreenOnPlayerClose => 'Выходить из полноэкранного режима при закрытии плеера';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Автоматически выходить из полноэкранного режима при закрытии видеоплеера';
 	@override String get autoHidePerformanceOverlay => 'Автоскрытие оверлея производительности';
 	@override String get autoHidePerformanceOverlayDescription => 'Скрывать оверлей производительности вместе с элементами управления воспроизведением';
 	@override String get showNavBarLabels => 'Показывать подписи панели навигации';
@@ -437,7 +433,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get display => 'Экран';
 	@override String get homeScreen => 'Главный экран';
 	@override String get navigation => 'Навигация';
-	@override String get window => 'Окно';
 	@override String get content => 'Контент';
 	@override String get player => 'Плеер';
 	@override String get subtitlesAndConfig => 'Субтитры и конфигурация';
@@ -2069,10 +2064,6 @@ extension on TranslationsRu {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Показывать выбор профиля при каждом открытии приложения',
 			'settings.forceTvMode' => 'Принудительный режим ТВ',
 			'settings.forceTvModeDescription' => 'Принудительно включить ТВ-интерфейс. Для устройств без автоопределения. Требуется перезапуск.',
-			'settings.startInFullscreen' => 'Запускать в полноэкранном режиме',
-			'settings.startInFullscreenDescription' => 'Открывать Harbor в полноэкранном режиме при запуске',
-			'settings.exitFullscreenOnPlayerClose' => 'Выходить из полноэкранного режима при закрытии плеера',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Автоматически выходить из полноэкранного режима при закрытии видеоплеера',
 			'settings.autoHidePerformanceOverlay' => 'Автоскрытие оверлея производительности',
 			'settings.autoHidePerformanceOverlayDescription' => 'Скрывать оверлей производительности вместе с элементами управления воспроизведением',
 			'settings.showNavBarLabels' => 'Показывать подписи панели навигации',
@@ -2081,7 +2072,6 @@ extension on TranslationsRu {
 			'settings.display' => 'Экран',
 			'settings.homeScreen' => 'Главный экран',
 			'settings.navigation' => 'Навигация',
-			'settings.window' => 'Окно',
 			'settings.content' => 'Контент',
 			'settings.player' => 'Плеер',
 			'settings.subtitlesAndConfig' => 'Субтитры и конфигурация',
@@ -2292,13 +2282,13 @@ extension on TranslationsRu {
 			'messages.logsCleared' => 'Логи очищены',
 			'messages.logsCopied' => 'Логи скопированы в буфер обмена',
 			'messages.noLogsAvailable' => 'Логи отсутствуют',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Обновление метаданных "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Обновление метаданных начато для "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Не удалось обновить метаданные: ${error}',
 			'messages.logoutConfirm' => 'Вы уверены, что хотите выйти?',
 			'messages.noSeasonsFound' => 'Сезоны не найдены',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Не удалось загрузить сезоны',
 			'messages.noEpisodesFound' => 'Эпизоды в первом сезоне не найдены',
 			'messages.noEpisodesFoundGeneral' => 'Эпизоды не найдены',
@@ -2806,13 +2796,13 @@ extension on TranslationsRu {
 			'metadataEdit.basicInfo' => 'Основная информация',
 			'metadataEdit.artwork' => 'Обложка',
 			'metadataEdit.title' => 'Название',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Название для сортировки',
 			'metadataEdit.originalTitle' => 'Оригинальное название',
 			'metadataEdit.releaseDate' => 'Дата выпуска',
 			'metadataEdit.contentRating' => 'Возрастной рейтинг',
 			'metadataEdit.studio' => 'Студия',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Описание',
 			'metadataEdit.poster' => 'Постер',

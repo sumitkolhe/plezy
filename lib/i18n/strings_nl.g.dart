@@ -425,10 +425,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get requireProfileSelectionOnOpenDescription => 'Toon profielselectie telkens wanneer de app wordt geopend';
 	@override String get forceTvMode => 'Tv-modus afdwingen';
 	@override String get forceTvModeDescription => 'Dwing de tv-indeling af op apparaten zonder automatische detectie. Herstart vereist.';
-	@override String get startInFullscreen => 'Starten in volledig scherm';
-	@override String get startInFullscreenDescription => 'Open Harbor bij het starten in volledig scherm';
-	@override String get exitFullscreenOnPlayerClose => 'Volledig scherm verlaten bij sluiten van speler';
-	@override String get exitFullscreenOnPlayerCloseDescription => 'Verlaat automatisch de volledigschermmodus wanneer de videospeler wordt gesloten';
 	@override String get autoHidePerformanceOverlay => 'Prestatie-overlay automatisch verbergen';
 	@override String get autoHidePerformanceOverlayDescription => 'Laat de prestatie-overlay samen met de afspeelknoppen vervagen';
 	@override String get showNavBarLabels => 'Labels op navigatiebalk tonen';
@@ -437,7 +433,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get display => 'Weergave';
 	@override String get homeScreen => 'Startscherm';
 	@override String get navigation => 'Navigatie';
-	@override String get window => 'Venster';
 	@override String get content => 'Inhoud';
 	@override String get player => 'Speler';
 	@override String get subtitlesAndConfig => 'Ondertitels en instellingen';
@@ -2063,10 +2058,6 @@ extension on TranslationsNl {
 			'settings.requireProfileSelectionOnOpenDescription' => 'Toon profielselectie telkens wanneer de app wordt geopend',
 			'settings.forceTvMode' => 'Tv-modus afdwingen',
 			'settings.forceTvModeDescription' => 'Dwing de tv-indeling af op apparaten zonder automatische detectie. Herstart vereist.',
-			'settings.startInFullscreen' => 'Starten in volledig scherm',
-			'settings.startInFullscreenDescription' => 'Open Harbor bij het starten in volledig scherm',
-			'settings.exitFullscreenOnPlayerClose' => 'Volledig scherm verlaten bij sluiten van speler',
-			'settings.exitFullscreenOnPlayerCloseDescription' => 'Verlaat automatisch de volledigschermmodus wanneer de videospeler wordt gesloten',
 			'settings.autoHidePerformanceOverlay' => 'Prestatie-overlay automatisch verbergen',
 			'settings.autoHidePerformanceOverlayDescription' => 'Laat de prestatie-overlay samen met de afspeelknoppen vervagen',
 			'settings.showNavBarLabels' => 'Labels op navigatiebalk tonen',
@@ -2075,7 +2066,6 @@ extension on TranslationsNl {
 			'settings.display' => 'Weergave',
 			'settings.homeScreen' => 'Startscherm',
 			'settings.navigation' => 'Navigatie',
-			'settings.window' => 'Venster',
 			'settings.content' => 'Inhoud',
 			'settings.player' => 'Speler',
 			'settings.subtitlesAndConfig' => 'Ondertitels en instellingen',
@@ -2286,13 +2276,13 @@ extension on TranslationsNl {
 			'messages.logsCleared' => 'Logbestanden gewist',
 			'messages.logsCopied' => 'Logbestanden naar het klembord gekopieerd',
 			'messages.noLogsAvailable' => 'Geen logbestanden beschikbaar',
-			_ => null,
-		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metadata voor "${title}" vernieuwen...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Vernieuwen van metadata gestart voor "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadata vernieuwen mislukt: ${error}',
 			'messages.logoutConfirm' => 'Weet je zeker dat je wilt uitloggen?',
 			'messages.noSeasonsFound' => 'Geen seizoenen gevonden',
+			_ => null,
+		} ?? switch (path) {
 			'messages.seasonsLoadFailed' => 'Kan seizoenen niet laden',
 			'messages.noEpisodesFound' => 'Geen afleveringen gevonden in eerste seizoen',
 			'messages.noEpisodesFoundGeneral' => 'Geen afleveringen gevonden',
@@ -2800,13 +2790,13 @@ extension on TranslationsNl {
 			'metadataEdit.basicInfo' => 'Basisinformatie',
 			'metadataEdit.artwork' => 'Illustraties',
 			'metadataEdit.title' => 'Titel',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteertitel',
 			'metadataEdit.originalTitle' => 'Oorspronkelijke titel',
 			'metadataEdit.releaseDate' => 'Releasedatum',
 			'metadataEdit.contentRating' => 'Leeftijdsclassificatie',
 			'metadataEdit.studio' => 'Studio',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Samenvatting',
 			'metadataEdit.poster' => 'Poster',
