@@ -40,12 +40,7 @@ void main() {
       storage: storage,
       plexHomeUserFetcher: (_) async => const [],
     );
-    final activeProfile = ActiveProfileProvider(
-      registry: profiles,
-      plexHome: plexHome,
-      connections: connections,
-      storage: storage,
-    );
+    final activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     addTearDown(() async {
       activeProfile.dispose();
       await plexHome.dispose();
@@ -102,12 +97,7 @@ void main() {
       storage: storage,
       plexHomeUserFetcher: (_) async => const [],
     );
-    final activeProfile = ActiveProfileProvider(
-      registry: profiles,
-      plexHome: plexHome,
-      connections: connections,
-      storage: storage,
-    );
+    final activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     addTearDown(() async {
       activeProfile.dispose();
       await plexHome.dispose();

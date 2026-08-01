@@ -353,11 +353,8 @@ void main() {
       profileRegistry = ProfileRegistry(db);
     });
 
-    Future<({PostRemovalRoute route, List<Profile> profiles})> resolve({
-      Map<String, List<PlexHomeUser>> plexHomeUsers = const {},
-    }) {
-      return cleanup.resolvePostRemovalState(profileRegistry: profileRegistry, plexHomeUsers: plexHomeUsers);
-    }
+    Future<({PostRemovalRoute route, List<Profile> profiles})> resolve() =>
+        cleanup.resolvePostRemovalState(profileRegistry: profileRegistry);
 
     Profile local(String id) =>
         Profile.local(id: id, displayName: id, createdAt: DateTime.fromMillisecondsSinceEpoch(1_000_000));
@@ -376,20 +373,6 @@ void main() {
 
       expect(result.route, PostRemovalRoute.signedOut);
       expect(await connections.list(), isEmpty);
-    });
-
-    test('account with cached home users → stay signed in with the virtual profiles', () async {
-      final acct = _plex();
-      await connections.upsert(acct);
-
-      final result = await resolve(
-        plexHomeUsers: {
-          acct.id: [_homeUser('aaaaaaaaaaaaaaaa')],
-        },
-      );
-
-      expect(result.route, PostRemovalRoute.staySignedIn);
-      expect(result.profiles.single.isPlexHome, isTrue);
     });
 
     test('account but no resolvable home users and no locals → signed out (boot-guard mirror)', () async {

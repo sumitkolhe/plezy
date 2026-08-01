@@ -1,7 +1,6 @@
 import '../connection/connection.dart';
 import '../connection/connection_registry.dart';
 import '../media/ids.dart';
-import '../models/plex/plex_home_user.dart';
 import '../services/multi_server_manager.dart';
 import '../services/storage_service.dart';
 import 'profile.dart';
@@ -132,22 +131,14 @@ class ProfileConnectionCleanup {
   /// In-session mirror of the boot guard (`main.dart`: "stored connections
   /// exist but no profiles resolved — returning to auth"): prune orphaned
   /// Jellyfin connections, then decide whether any selectable profile remains.
-  /// [plexHomeUsers] is [PlexHomeService.current]; stale entries for removed
-  /// accounts are harmless because the connection map is re-read here.
   Future<({PostRemovalRoute route, List<Profile> profiles})> resolvePostRemovalState({
     required ProfileRegistry profileRegistry,
-    required Map<String, List<PlexHomeUser>> plexHomeUsers,
   }) async {
     await pruneUnreferencedJellyfinConnections();
     final conns = await connections.list();
     if (conns.isEmpty) return (route: PostRemovalRoute.signedOut, profiles: const <Profile>[]);
 
-    final merged = mergeLocalWithPlexHome(
-      locals: await profileRegistry.list(),
-      plexHomeByConnectionId: plexHomeUsers,
-      connectionsById: {for (final c in conns) c.id: c},
-      storage: storage,
-    );
+    final merged = hydrateProfiles(locals: await profileRegistry.list(), storage: storage);
     if (merged.isEmpty) return (route: PostRemovalRoute.signedOut, profiles: const <Profile>[]);
     return (route: PostRemovalRoute.staySignedIn, profiles: merged);
   }

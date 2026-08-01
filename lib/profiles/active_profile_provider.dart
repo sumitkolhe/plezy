@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import '../connection/connection.dart';
 import '../connection/connection_registry.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
-import '../models/plex/plex_home_user.dart';
 import '../services/storage_service.dart';
 import '../utils/app_logger.dart';
 import 'plex_home_service.dart';
@@ -18,21 +17,17 @@ import 'profile_registry.dart';
 /// profiles — local rows from [ProfileRegistry] plus virtual Plex Home
 /// profiles built from [PlexHomeService]'s live cache.
 ///
-/// The active id (in storage) can reference either a local row or a Plex
-/// Home virtual id like `plex-home-{connId}-{uuid}`. Resolution checks
-/// local profiles first, then live home users; if neither matches we fall
-/// back to the first profile in the merged list.
+/// If the active id (in storage) matches no profile row, resolution falls
+/// back to the first profile in the list.
 class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   ActiveProfileProvider({
     required this._registry,
-    required this._plexHome,
     required this._connections,
     this._storage,
     this._activeProfileIdWriter,
   });
 
   final ProfileRegistry _registry;
-  final PlexHomeService _plexHome;
   final ConnectionRegistry _connections;
   StorageService? _storage;
   final Future<void> Function(String profileId)? _activeProfileIdWriter;
@@ -40,12 +35,10 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
   Profile? _active;
   List<Profile> _profiles = const [];
   List<Profile> _localProfiles = const [];
-  Map<String, List<PlexHomeUser>> _plexHomeUsers = const {};
   Map<String, Connection> _connectionsById = const {};
 
   StreamSubscription<List<Profile>>? _localSub;
   StreamSubscription<List<Connection>>? _connSub;
-  StreamSubscription<Map<String, List<PlexHomeUser>>>? _plexHomeSub;
   Future<void>? _initializeFuture;
   bool _initialized = false;
 
@@ -137,13 +130,12 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
     return future;
   }
 
-  /// Re-read connections, Plex Home cache, local profiles, and active id.
+  /// Re-read connections, local profiles, and the active id.
   ///
   /// Provider initialization starts before boot-time migration, so the first
   /// snapshot can legitimately miss the migrated connection/profile state.
   Future<void> reloadFromStorage() async {
     await initialize();
-    await _plexHome.reloadFromStorage();
     await _reloadSnapshot();
     safeNotifyListeners();
   }
@@ -170,28 +162,15 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
       _resolveActive();
       safeNotifyListeners();
     });
-    _plexHomeSub = _plexHome.stream.listen((cache) {
-      if (_samePlexHomeUsers(cache, _plexHomeUsers)) return;
-      _plexHomeUsers = cache;
-      _recomputeProfiles();
-      _resolveActive();
-      safeNotifyListeners();
-    });
-
     _initialized = true;
     safeNotifyListeners();
   }
 
   Future<void> _reloadSnapshot() async {
     _storage ??= await StorageService.getInstance();
-    // Hydrate the Plex Home cache before we read it — `_plexHome.current`
-    // is only populated after start() finishes its disk-cache load.
-    await _plexHome.start();
-
     _localProfiles = await _registry.list();
     final initialConns = await _connections.list();
     _connectionsById = {for (final c in initialConns) c.id: c};
-    _plexHomeUsers = _plexHome.current;
     _recomputeProfiles();
     _resolveActive();
   }
@@ -209,22 +188,8 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
     return true;
   }
 
-  static bool _samePlexHomeUsers(Map<String, List<PlexHomeUser>> a, Map<String, List<PlexHomeUser>> b) {
-    if (a.length != b.length) return false;
-    for (final entry in a.entries) {
-      final other = b[entry.key];
-      if (other == null || !listEquals(entry.value, other)) return false;
-    }
-    return true;
-  }
-
   void _recomputeProfiles() {
-    _profiles = mergeLocalWithPlexHome(
-      locals: _localProfiles,
-      plexHomeByConnectionId: _plexHomeUsers,
-      connectionsById: _connectionsById,
-      storage: _storage,
-    );
+    _profiles = hydrateProfiles(locals: _localProfiles, storage: _storage);
   }
 
   void _resolveActive() {
@@ -486,13 +451,10 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
   Future<void> resetForTesting() async {
     await _localSub?.cancel();
     await _connSub?.cancel();
-    await _plexHomeSub?.cancel();
     _localSub = null;
     _connSub = null;
-    _plexHomeSub = null;
     _profiles = const [];
     _localProfiles = const [];
-    _plexHomeUsers = const {};
     _connectionsById = const {};
     _active = null;
     _initializeFuture = null;
@@ -524,7 +486,6 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
     _initializeFuture = null;
     _localSub?.cancel();
     _connSub?.cancel();
-    _plexHomeSub?.cancel();
     super.dispose();
   }
 }

@@ -8,7 +8,6 @@ import '../../database/app_database.dart';
 import '../../i18n/strings.g.dart';
 import '../../profiles/active_profile_binder.dart';
 import '../../profiles/active_profile_provider.dart';
-import '../../profiles/plex_home_service.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_connection_cleanup.dart';
 import '../../profiles/profile_connection_registry.dart';
@@ -33,7 +32,6 @@ import '../auth_screen.dart';
 class SessionTeardownScope {
   final ActiveProfileProvider active;
   final ActiveProfileBinder binder;
-  final PlexHomeService plexHome;
   final ProfileRegistry profileRegistry;
   final ProfileConnectionRegistry profileConnections;
   final ConnectionRegistry connections;
@@ -58,7 +56,6 @@ class SessionTeardownScope {
   SessionTeardownScope.of(BuildContext context)
     : active = context.read<ActiveProfileProvider>(),
       binder = context.read<ActiveProfileBinder>(),
-      plexHome = context.read<PlexHomeService>(),
       profileRegistry = context.read<ProfileRegistry>(),
       profileConnections = context.read<ProfileConnectionRegistry>(),
       connections = context.read<ConnectionRegistry>(),
@@ -86,10 +83,7 @@ Future<bool> settleSessionAfterRemoval(
   bool rebindIfActiveKept = false,
   String? endedShelfOwner,
 }) async {
-  final result = await scope.cleanup.resolvePostRemovalState(
-    profileRegistry: scope.profileRegistry,
-    plexHomeUsers: scope.plexHome.current,
-  );
+  final result = await scope.cleanup.resolvePostRemovalState(profileRegistry: scope.profileRegistry);
 
   if (result.route == PostRemovalRoute.signedOut) {
     await scope.active.clearActiveProfile();
@@ -306,7 +300,6 @@ Future<void> logoutAllProfiles(BuildContext context) async {
   await scope.profileConnections.clear();
   await scope.profileRegistry.clear();
   await scope.connections.clear();
-  await scope.plexHome.clearAll();
   await scope.storage.clearActiveProfileId();
   await scope.storage.clearAllProfileLastUsed();
   await scope.storage.clearAllUserScopedPreferences();

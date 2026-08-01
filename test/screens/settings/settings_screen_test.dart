@@ -14,8 +14,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_library.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
-import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
 import 'package:plezy/providers/hidden_libraries_provider.dart';
 import 'package:plezy/providers/libraries_provider.dart';
@@ -524,7 +522,6 @@ class _MigratedRow {
 class _SettingsHarness {
   _SettingsHarness({
     required this.database,
-    required this.plexHome,
     required this.activeProfile,
     required this.libraries,
     required this.hiddenLibraries,
@@ -538,7 +535,6 @@ class _SettingsHarness {
   });
 
   final AppDatabase database;
-  final PlexHomeService plexHome;
   final ActiveProfileProvider activeProfile;
   final LibrariesProvider libraries;
   final HiddenLibrariesProvider hiddenLibraries;
@@ -561,7 +557,6 @@ class _SettingsHarness {
     trackers.dispose();
     seerr.dispose();
     activeProfile.dispose();
-    await plexHome.dispose();
     await database.close();
     expect(trackerHttpClients, hasLength(5));
     expect(trackerHttpClients.toSet(), hasLength(5));
@@ -586,14 +581,8 @@ Future<_SettingsHarness> _pumpSettingsScreen(
 
   final database = AppDatabase.forTesting(NativeDatabase.memory());
   final connections = ConnectionRegistry(database);
-  final profileConnections = ProfileConnectionRegistry(database);
   final profiles = ProfileRegistry(database);
-  final plexHome = PlexHomeService(
-    connections: connections,
-    profileConnections: profileConnections,
-    plexHomeUserFetcher: (_) async => const [],
-  );
-  final activeProfile = ActiveProfileProvider(registry: profiles, plexHome: plexHome, connections: connections);
+  final activeProfile = ActiveProfileProvider(registry: profiles, connections: connections);
   final libraries = LibrariesProvider();
   final hiddenLibraries = HiddenLibrariesProvider(storageService: _FakeHiddenLibrariesStorage());
   await hiddenLibraries.ensureInitialized();
@@ -635,7 +624,6 @@ Future<_SettingsHarness> _pumpSettingsScreen(
   final downloadProvider = DownloadProvider.forTesting(downloadManager: downloadManager, database: database);
   final harness = _SettingsHarness(
     database: database,
-    plexHome: plexHome,
     activeProfile: activeProfile,
     libraries: libraries,
     hiddenLibraries: hiddenLibraries,

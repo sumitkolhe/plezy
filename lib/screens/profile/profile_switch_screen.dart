@@ -10,7 +10,6 @@ import '../../i18n/strings.g.dart';
 import '../../media/media_backend.dart';
 import '../../mixins/mounted_set_state_mixin.dart';
 import '../../profiles/active_profile_provider.dart';
-import '../../profiles/plex_home_service.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_activation.dart';
 import '../../profiles/profile_avatar.dart';
@@ -80,7 +79,6 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
       profiles: context.read<ProfileRegistry>(),
       profileConnections: context.read<ProfileConnectionRegistry>(),
       connections: context.read<ConnectionRegistry>(),
-      plexHome: context.read<PlexHomeService>(),
       storage: _storage,
     );
   }

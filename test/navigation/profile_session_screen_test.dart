@@ -46,7 +46,6 @@ void main() {
     );
     final activeProfile = ActiveProfileProvider(
       registry: profileRegistry,
-      plexHome: plexHome,
       connections: connectionRegistry,
       storage: storage,
     );

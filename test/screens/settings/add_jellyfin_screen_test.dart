@@ -14,7 +14,6 @@ import 'package:plezy/focus/input_mode_tracker.dart';
 import 'package:plezy/media/ids.dart';
 import 'package:plezy/profiles/active_profile_binder.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
@@ -138,16 +137,6 @@ JellyfinConnectionAuthService _successfulAuthService({required bool quickConnect
   );
 }
 
-class _NoTimerPlexHomeService extends PlexHomeService {
-  _NoTimerPlexHomeService({required super.connections, required super.profileConnections, required super.storage});
-
-  @override
-  Future<void> start() async {}
-
-  @override
-  Future<void> reloadFromStorage() async {}
-}
-
 class _CountingJellyfinManager extends MultiServerManager {
   int calls = 0;
 
@@ -164,12 +153,7 @@ class _RouteJoinFailure implements Exception {
 }
 
 class _NoWatchActiveProfileProvider extends ActiveProfileProvider {
-  _NoWatchActiveProfileProvider({
-    required super.registry,
-    required super.plexHome,
-    required super.connections,
-    required super.storage,
-  });
+  _NoWatchActiveProfileProvider({required super.registry, required super.connections, required super.storage});
 
   @override
   Future<void> initialize() async {}
@@ -209,7 +193,6 @@ class _RouteHarness {
     required this.profiles,
     required this.connections,
     required this.profileConnections,
-    required this.plexHome,
     required this.activeProfiles,
     required this.manager,
     required this.multiServerProvider,
@@ -221,7 +204,6 @@ class _RouteHarness {
   final ProfileRegistry profiles;
   final ConnectionRegistry connections;
   final ProfileConnectionRegistry profileConnections;
-  final PlexHomeService plexHome;
   final ActiveProfileProvider activeProfiles;
   final _CountingJellyfinManager manager;
   final MultiServerProvider multiServerProvider;
@@ -232,14 +214,8 @@ class _RouteHarness {
     final profiles = ProfileRegistry(db);
     final connections = ConnectionRegistry(db);
     final profileConnections = failJoin ? _FailingRouteJoinRegistry(db) : ProfileConnectionRegistry(db);
-    final plexHome = _NoTimerPlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-    );
     final activeProfiles = _NoWatchActiveProfileProvider(
       registry: profiles,
-      plexHome: plexHome,
       connections: connections,
       storage: storage,
     );
@@ -258,7 +234,6 @@ class _RouteHarness {
       profiles: profiles,
       connections: connections,
       profileConnections: profileConnections,
-      plexHome: plexHome,
       activeProfiles: activeProfiles,
       manager: manager,
       multiServerProvider: multiServerProvider,
@@ -303,7 +278,6 @@ class _RouteHarness {
     multiServerProvider.dispose();
     await activeProfiles.resetForTesting();
     activeProfiles.dispose();
-    await plexHome.dispose();
     await db.close();
   }
 }

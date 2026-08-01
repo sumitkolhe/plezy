@@ -8,9 +8,7 @@ import '../../connection/connection.dart';
 import '../../connection/connection_registry.dart';
 import '../../i18n/strings.g.dart';
 import '../../mixins/controller_disposer_mixin.dart';
-import '../../models/plex/plex_home_user.dart';
 import '../../profiles/active_profile_binder.dart';
-import '../../profiles/plex_home_service.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_avatar.dart';
 import '../../profiles/profile_connection.dart';
@@ -380,17 +378,12 @@ class _ConnectionsListState extends State<_ConnectionsList> {
   // refetches on every parent rebuild (each keystroke in the name field),
   // flashing the spinner and hammering the DB.
   Stream<List<ProfileConnection>>? _pcsStream;
-  Stream<Map<String, List<PlexHomeUser>>>? _homeStream;
-  Map<String, List<PlexHomeUser>>? _homeInitial;
   Stream<List<Connection>>? _connectionsStream;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _pcsStream ??= context.read<ProfileConnectionRegistry>().watchForProfile(widget.profile.id);
-    final plexHome = context.read<PlexHomeService>();
-    _homeStream ??= plexHome.stream;
-    _homeInitial ??= plexHome.current;
     _connectionsStream ??= context.read<ConnectionRegistry>().watchConnections();
   }
 
@@ -410,60 +403,52 @@ class _ConnectionsListState extends State<_ConnectionsList> {
             child: Center(child: CircularProgressIndicator()),
           );
         }
-        return StreamBuilder<Map<String, List<PlexHomeUser>>>(
-          stream: _homeStream,
-          initialData: _homeInitial,
-          builder: (context, homeSnap) {
-            final homeCache = homeSnap.data ?? const <String, List<PlexHomeUser>>{};
-            return StreamBuilder<List<Connection>>(
-              stream: _connectionsStream,
-              builder: (context, snap) {
-                final all = snap.data ?? const <Connection>[];
-                final byId = {for (final c in all) c.id: c};
-                // Plex Home profiles have an implicit parent connection that
-                final visiblePcs = pcs;
-                if (visiblePcs.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text(
-                      t.profiles.noConnectionsHint,
-                      style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.error),
+        return StreamBuilder<List<Connection>>(
+          stream: _connectionsStream,
+          builder: (context, snap) {
+            final all = snap.data ?? const <Connection>[];
+            final byId = {for (final c in all) c.id: c};
+            final visiblePcs = pcs;
+            if (visiblePcs.isEmpty) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text(
+                  t.profiles.noConnectionsHint,
+                  style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.error),
+                ),
+              );
+            }
+            // The screen already pads its content; SettingsGroup supplies
+            // the M3E connected-group card geometry.
+            return SettingsGroup(
+              margin: EdgeInsets.zero,
+              children: [
+                for (final pc in visiblePcs)
+                  if (byId[pc.connectionId] case final conn?)
+                    ListTile(
+                      leading: BackendBadge(backend: conn.backend, size: 24),
+                      title: Text(conn.displayLabel),
+                      subtitle: _ConnectionSubtitle.build(pc: pc, theme: theme),
+                      trailing: FocusablePopupMenuButton<String>(
+                        icon: const AppIcon(Symbols.more_vert_rounded, fill: 1),
+                        tooltip: t.profiles.manage,
+                        onSelected: (value) {
+                          if (value == 'default') {
+                            unawaited(pcRegistry.setDefault(profile.id, pc.connectionId));
+                          } else if (value == 'edit') {
+                            unawaited(widget.onEdit(conn));
+                          } else if (value == 'remove') {
+                            unawaited(widget.onRemove(pc, conn));
+                          }
+                        },
+                        itemBuilder: (_) => [
+                          if (!pc.isDefault) AppMenuItem(value: 'default', label: t.profiles.makeDefault),
+                          if (conn is JellyfinConnection) AppMenuItem(value: 'edit', label: t.common.edit),
+                          AppMenuItem(value: 'remove', label: t.profiles.removeConnection),
+                        ],
+                      ),
                     ),
-                  );
-                }
-                // The screen already pads its content; SettingsGroup supplies
-                // the M3E connected-group card geometry.
-                return SettingsGroup(
-                  margin: EdgeInsets.zero,
-                  children: [
-                    for (final pc in visiblePcs)
-                      if (byId[pc.connectionId] case final conn?)
-                        ListTile(
-                          leading: BackendBadge(backend: conn.backend, size: 24),
-                          title: Text(conn.displayLabel),
-                          subtitle: _ConnectionSubtitle.build(conn: conn, pc: pc, homeCache: homeCache, theme: theme),
-                          trailing: FocusablePopupMenuButton<String>(
-                            icon: const AppIcon(Symbols.more_vert_rounded, fill: 1),
-                            tooltip: t.profiles.manage,
-                            onSelected: (value) {
-                              if (value == 'default') {
-                                unawaited(pcRegistry.setDefault(profile.id, pc.connectionId));
-                              } else if (value == 'edit') {
-                                unawaited(widget.onEdit(conn));
-                              } else if (value == 'remove') {
-                                unawaited(widget.onRemove(pc, conn));
-                              }
-                            },
-                            itemBuilder: (_) => [
-                              if (!pc.isDefault) AppMenuItem(value: 'default', label: t.profiles.makeDefault),
-                              if (conn is JellyfinConnection) AppMenuItem(value: 'edit', label: t.common.edit),
-                              AppMenuItem(value: 'remove', label: t.profiles.removeConnection),
-                            ],
-                          ),
-                        ),
-                  ],
-                );
-              },
+              ],
             );
           },
         );
@@ -472,27 +457,9 @@ class _ConnectionsListState extends State<_ConnectionsList> {
   }
 }
 
-/// Renders the "as {homeUser} · Default" sub-line under each connection
-/// row. The home-user lookup turns the bare account label (e.g. the
-/// owner's email) into something the user can match to the picker —
-/// otherwise borrowed-from-different-home connections look identical.
 class _ConnectionSubtitle {
-  static Widget? build({
-    required Connection conn,
-    required ProfileConnection pc,
-    required Map<String, List<PlexHomeUser>> homeCache,
-    required ThemeData theme,
-  }) {
-    final parts = <String>[];
-    if (conn is PlexAccountConnection) {
-      final users = homeCache[conn.id];
-      if (users != null) {
-        final user = users.where((u) => u.uuid == pc.userIdentifier).firstOrNull;
-        if (user != null) parts.add(t.profiles.connectionAs(displayName: user.displayName));
-      }
-    }
-    if (pc.isDefault) parts.add(t.profiles.connectionDefault);
-    if (parts.isEmpty) return null;
-    return Text(parts.join(' · '));
+  static Widget? build({required ProfileConnection pc, required ThemeData theme}) {
+    if (!pc.isDefault) return null;
+    return Text(t.profiles.connectionDefault);
   }
 }

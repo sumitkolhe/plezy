@@ -5,11 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/connection/connection.dart';
 import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
-import 'package:plezy/models/plex/plex_home_user.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
-import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
 import 'package:plezy/services/storage_service.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_async_platform_interface.dart';
@@ -78,21 +75,6 @@ final class _RecordingPreferencesPlatform extends SharedPreferencesAsyncPlatform
       delegate.getKeys(parameters, options);
 }
 
-PlexHomeUser _homeUser(String uuid, {String name = 'Home User'}) {
-  return PlexHomeUser(
-    id: 1,
-    uuid: uuid,
-    title: name,
-    thumb: '',
-    hasPassword: false,
-    restricted: false,
-    updatedAt: null,
-    admin: true,
-    guest: false,
-    protected: false,
-  );
-}
-
 PlexAccountConnection _account(String id) {
   return PlexAccountConnection(
     id: id,
@@ -107,11 +89,9 @@ void main() {
   late AppDatabase db;
   late ProfileRegistry registry;
   late ConnectionRegistry connections;
-  late PlexHomeService plexHome;
   late ActiveProfileProvider provider;
   late StorageService storage;
   late _RecordingPreferencesPlatform preferencesPlatform;
-  late List<PlexHomeUser> fetchedHomeUsers;
 
   setUp(() async {
     resetSharedPreferencesForTest();
@@ -121,25 +101,12 @@ void main() {
     registry = ProfileRegistry(db);
     connections = ConnectionRegistry(db);
     storage = await StorageService.getInstance();
-    fetchedHomeUsers = const [];
-    plexHome = PlexHomeService(
-      connections: connections,
-      profileConnections: ProfileConnectionRegistry(db),
-      storage: storage,
-      plexHomeUserFetcher: (_) async => fetchedHomeUsers,
-    );
-    provider = ActiveProfileProvider(
-      registry: registry,
-      plexHome: plexHome,
-      connections: connections,
-      storage: storage,
-    );
+    provider = ActiveProfileProvider(registry: registry, connections: connections, storage: storage);
   });
 
   tearDown(() async {
     await provider.resetForTesting();
     provider.dispose();
-    await plexHome.dispose();
     await db.close();
   });
 
@@ -169,22 +136,19 @@ void main() {
       expect(provider.activeId, isNull);
     });
 
-    test('reloadFromStorage resolves Plex Home profile added after early initialize', () async {
+    test('reloadFromStorage resolves a profile added after early initialize', () async {
       await provider.initialize();
       expect(provider.profiles, isEmpty);
 
-      final account = _account('plex.migrated');
-      final user = _homeUser('home-user-1', name: 'Migrated User');
-      fetchedHomeUsers = [user];
-      await connections.upsert(account);
-      await storage.savePlexHomeUsersCache(account.id, [user.toJson()]);
-      final profileId = plexHomeProfileId(accountConnectionId: account.id, homeUserUuid: user.uuid);
-      await storage.setActiveProfileId(profileId);
+      await registry.upsert(
+        Profile.local(id: 'migrated', displayName: 'Migrated User', createdAt: DateTime(2026, 1, 1)),
+      );
+      await storage.setActiveProfileId('migrated');
 
       await provider.reloadFromStorage();
 
-      expect(provider.profiles.map((p) => p.id), contains(profileId));
-      expect(provider.activeId, profileId);
+      expect(provider.profiles.map((p) => p.id), contains('migrated'));
+      expect(provider.activeId, 'migrated');
       expect(provider.active?.displayName, 'Migrated User');
     });
 

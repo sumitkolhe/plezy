@@ -28,7 +28,6 @@ import 'models/external_player_models.dart';
 import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
-import 'profiles/plex_home_service.dart';
 import 'screens/auth_screen.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
@@ -1024,26 +1023,10 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
         Provider<ConnectionRegistry>(create: (_) => ConnectionRegistry(_appDatabase)),
         Provider<ProfileRegistry>(create: (_) => ProfileRegistry(_appDatabase)),
         Provider<ProfileConnectionRegistry>(create: (_) => ProfileConnectionRegistry(_appDatabase)),
-        Provider<PlexHomeService>(
-          create: (context) {
-            // start() resolves StorageService internally — the singleton was
-            // already initialised eagerly during boot, so the await is a
-            // microtask hop in practice.
-            final service = PlexHomeService(
-              connections: context.read<ConnectionRegistry>(),
-              profileConnections: context.read<ProfileConnectionRegistry>(),
-              storage: context.read<StorageService>(),
-            );
-            unawaited(service.start());
-            return service;
-          },
-          dispose: (_, s) => s.dispose(),
-        ),
         ChangeNotifierProvider<ActiveProfileProvider>(
           create: (context) {
             final provider = ActiveProfileProvider(
               registry: context.read<ProfileRegistry>(),
-              plexHome: context.read<PlexHomeService>(),
               connections: context.read<ConnectionRegistry>(),
               storage: context.read<StorageService>(),
             );

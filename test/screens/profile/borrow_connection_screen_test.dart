@@ -8,8 +8,8 @@ import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/focus/input_mode_tracker.dart';
 import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
+import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
 import 'package:plezy/screens/profile/borrow_connection_screen.dart';
@@ -30,18 +30,10 @@ void main() {
   testWidgets('load failure has retry and remains distinct from successful empty state', (tester) async {
     final db = AppDatabase.forTesting(NativeDatabase.memory());
     final connections = ConnectionRegistry(db);
-    final profileConnections = ProfileConnectionRegistry(db);
+    final profileConnections = _ControlledJoinRegistry(db);
     final profiles = ProfileRegistry(db);
-    final storage = await StorageService.getInstance();
-    final plexHome = _ControlledPlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-    );
-    addTearDown(() async {
-      await plexHome.dispose();
-      await db.close();
-    });
+    await StorageService.getInstance();
+    addTearDown(db.close);
 
     final target = Profile.local(id: 'target', displayName: 'Target', createdAt: DateTime(2026));
 
@@ -52,7 +44,6 @@ void main() {
             Provider<ProfileConnectionRegistry>.value(value: profileConnections),
             Provider<ConnectionRegistry>.value(value: connections),
             Provider<ProfileRegistry>.value(value: profiles),
-            Provider<PlexHomeService>.value(value: plexHome),
           ],
           child: InputModeTracker(
             child: MaterialApp(
@@ -64,10 +55,10 @@ void main() {
       ),
     );
 
-    expect(plexHome.starts, hasLength(1));
+    expect(profileConnections.loads, hasLength(1));
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-    plexHome.starts.first.completeError(StateError('load failed'));
+    profileConnections.loads.first.completeError(StateError('load failed'));
     await tester.pumpAndSettle();
 
     expect(find.text(t.profiles.borrowLoadFailed), findsOneWidget);
@@ -77,11 +68,11 @@ void main() {
     await tester.tap(find.text(t.common.retry));
     await tester.pump();
 
-    expect(plexHome.starts, hasLength(2));
+    expect(profileConnections.loads, hasLength(2));
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(find.text(t.profiles.borrowLoadFailed), findsNothing);
 
-    plexHome.starts.last.complete();
+    profileConnections.loads.last.complete(const []);
     await tester.pumpAndSettle();
 
     expect(find.text(t.profiles.borrowEmpty), findsOneWidget);
@@ -89,15 +80,17 @@ void main() {
   });
 }
 
-class _ControlledPlexHomeService extends PlexHomeService {
-  _ControlledPlexHomeService({required super.connections, required super.profileConnections, required super.storage});
+/// Gates the candidate load so the test can hold it pending, fail it, and
+/// retry it — the screen awaits every registry read in one Future.wait.
+class _ControlledJoinRegistry extends ProfileConnectionRegistry {
+  _ControlledJoinRegistry(super.db);
 
-  final Queue<Completer<void>> starts = Queue();
+  final Queue<Completer<List<ProfileConnection>>> loads = Queue();
 
   @override
-  Future<void> start() {
-    final completer = Completer<void>();
-    starts.add(completer);
+  Future<List<ProfileConnection>> listAll() {
+    final completer = Completer<List<ProfileConnection>>();
+    loads.add(completer);
     return completer.future;
   }
 }

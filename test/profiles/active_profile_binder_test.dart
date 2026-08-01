@@ -61,12 +61,7 @@ void main() {
       storage: storage,
       plexHomeUserFetcher: (_) async => fetchedHomeUsers,
     );
-    activeProfile = ActiveProfileProvider(
-      registry: profiles,
-      plexHome: plexHome,
-      connections: connections,
-      storage: storage,
-    );
+    activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     manager = MultiServerManager();
     multiServerProvider = testMultiServerProvider(manager);
     shouldDeferInitialBind = false;

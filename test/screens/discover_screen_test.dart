@@ -98,7 +98,6 @@ void main() {
     );
     final activeProfileProvider = ActiveProfileProvider(
       registry: profileRegistry,
-      plexHome: plexHome,
       connections: connectionRegistry,
       storage: storage,
     );
@@ -283,7 +282,6 @@ void main() {
     );
     final activeProfileProvider = ActiveProfileProvider(
       registry: profileRegistry,
-      plexHome: plexHome,
       connections: connectionRegistry,
       storage: storage,
     );
@@ -388,7 +386,6 @@ void main() {
     );
     final activeProfileProvider = ActiveProfileProvider(
       registry: profileRegistry,
-      plexHome: plexHome,
       connections: connectionRegistry,
       storage: storage,
     );

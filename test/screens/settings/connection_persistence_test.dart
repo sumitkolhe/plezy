@@ -7,7 +7,6 @@ import 'package:plezy/connection/connection.dart';
 import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
@@ -75,40 +74,20 @@ class _GatedProfileConnectionRegistry extends ProfileConnectionRegistry {
 }
 
 class _RejectingActiveProfileProvider extends ActiveProfileProvider {
-  _RejectingActiveProfileProvider({
-    required super.registry,
-    required super.plexHome,
-    required super.connections,
-    required super.storage,
-  });
+  _RejectingActiveProfileProvider({required super.registry, required super.connections, required super.storage});
 
   @override
   Future<bool> activate(Profile profile, {String? pin}) async => false;
 }
 
 class _ThrowingActiveProfileProvider extends ActiveProfileProvider {
-  _ThrowingActiveProfileProvider({
-    required super.registry,
-    required super.plexHome,
-    required super.connections,
-    required super.storage,
-  });
+  _ThrowingActiveProfileProvider({required super.registry, required super.connections, required super.storage});
 
   @override
   Future<bool> activate(Profile profile, {String? pin}) async {
     await super.activate(profile, pin: pin);
     throw const _AfterStatementFailure('active marker');
   }
-}
-
-class _NoTimerPlexHomeService extends PlexHomeService {
-  _NoTimerPlexHomeService({required super.connections, required super.profileConnections, required super.storage});
-
-  @override
-  Future<void> start() async {}
-
-  @override
-  Future<void> reloadFromStorage() async {}
 }
 
 JellyfinConnection _connection({String token = 'opaque-token-current', String userName = 'Fixture User'}) {
@@ -155,7 +134,6 @@ void main() {
   late ProfileRegistry profiles;
   late ConnectionRegistry connections;
   late ProfileConnectionRegistry profileConnections;
-  late PlexHomeService plexHome;
   late ActiveProfileProvider activeProfiles;
   BuildContext? hostContext;
 
@@ -165,26 +143,16 @@ void main() {
     ConnectionRegistry? connectionRegistry,
     ProfileConnectionRegistry? joinRegistry,
     bool initializeActive = false,
-    ActiveProfileProvider Function(
-      ProfileRegistry profiles,
-      PlexHomeService plexHome,
-      ConnectionRegistry connections,
-      StorageService storage,
-    )?
+    ActiveProfileProvider Function(ProfileRegistry profiles, ConnectionRegistry connections, StorageService storage)?
     activeFactory,
   }) async {
     await tester.runAsync(() => CredentialVault.protect('opaque-vault-warmup'));
     profiles = profileRegistry ?? ProfileRegistry(db);
     connections = connectionRegistry ?? ConnectionRegistry(db);
     profileConnections = joinRegistry ?? ProfileConnectionRegistry(db);
-    plexHome = _NoTimerPlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-    );
     activeProfiles =
-        activeFactory?.call(profiles, plexHome, connections, storage) ??
-        ActiveProfileProvider(registry: profiles, plexHome: plexHome, connections: connections, storage: storage);
+        activeFactory?.call(profiles, connections, storage) ??
+        ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     if (initializeActive) await tester.runAsync(activeProfiles.initialize);
     await tester.pumpWidget(
       MultiProvider(
@@ -228,7 +196,6 @@ void main() {
     if (hostContext != null) {
       await activeProfiles.resetForTesting();
       activeProfiles.dispose();
-      await plexHome.dispose();
     }
     await db.close();
   });
@@ -343,12 +310,8 @@ void main() {
     await mountHost(
       tester,
       initializeActive: true,
-      activeFactory: (profiles, plexHome, connections, storage) => _RejectingActiveProfileProvider(
-        registry: profiles,
-        plexHome: plexHome,
-        connections: connections,
-        storage: storage,
-      ),
+      activeFactory: (profiles, connections, storage) =>
+          _RejectingActiveProfileProvider(registry: profiles, connections: connections, storage: storage),
     );
 
     final error = await _runProvisioning(
@@ -384,12 +347,8 @@ void main() {
     await mountHost(
       tester,
       initializeActive: true,
-      activeFactory: (profiles, plexHome, connections, storage) => _ThrowingActiveProfileProvider(
-        registry: profiles,
-        plexHome: plexHome,
-        connections: connections,
-        storage: storage,
-      ),
+      activeFactory: (profiles, connections, storage) =>
+          _ThrowingActiveProfileProvider(registry: profiles, connections: connections, storage: storage),
     );
 
     final error = await _runProvisioning(

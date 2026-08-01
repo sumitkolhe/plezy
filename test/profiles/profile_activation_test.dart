@@ -8,30 +8,14 @@ import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/profiles/active_profile_binder.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_activation.dart';
-import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
 import 'package:plezy/services/storage_service.dart';
 import 'package:plezy/services/system_shelf_service.dart';
 import 'package:provider/provider.dart';
 
 import '../test_helpers/prefs.dart';
-
-class _PlexHome extends PlexHomeService {
-  _PlexHome({required super.connections, required super.profileConnections, required super.storage})
-    : super(plexHomeUserFetcher: (_) async => const []);
-
-  @override
-  Future<void> start() async {}
-
-  @override
-  Future<void> reloadFromStorage() async {}
-
-  @override
-  Future<void> dispose() async {}
-}
 
 class _Binder implements ActiveProfileBinder {
   _Binder(this.events);
@@ -116,7 +100,6 @@ class _RollbackBinder implements ActiveProfileBinder {
 class _ThrowingActiveProfileProvider extends ActiveProfileProvider {
   _ThrowingActiveProfileProvider({
     required super.registry,
-    required super.plexHome,
     required super.connections,
     required super.storage,
     super.activeProfileIdWriter,
@@ -493,9 +476,7 @@ void main() {
     final database = AppDatabase.forTesting(NativeDatabase.memory());
     final profiles = ProfileRegistry(database);
     final connections = ConnectionRegistry(database);
-    final profileConnections = ProfileConnectionRegistry(database);
     final storage = await StorageService.getInstance();
-    final plexHome = _PlexHome(connections: connections, profileConnections: profileConnections, storage: storage);
     final targetWriteStarted = Completer<void>();
     final allowTargetWriteToFail = Completer<void>();
     final newerWriteStarted = Completer<void>();
@@ -513,14 +494,12 @@ void main() {
 
     final active = _ThrowingActiveProfileProvider(
       registry: profiles,
-      plexHome: plexHome,
       connections: connections,
       storage: storage,
       activeProfileIdWriter: writer,
     );
     addTearDown(() async {
       active.dispose();
-      await plexHome.dispose();
       await database.close();
     });
     final owner = Profile.local(id: 'owner', displayName: 'Owner', createdAt: DateTime(2026, 1, 1));
@@ -559,7 +538,6 @@ class _Harness {
     required this.newer,
     required this.events,
     required this.latest,
-    required this.plexHome,
     required this.rollbackBinder,
     required this.database,
     required this.restoreWriteStarted,
@@ -573,7 +551,6 @@ class _Harness {
   final Profile newer;
   final Profile latest;
   final List<String> events;
-  final PlexHomeService plexHome;
   final _RollbackBinder? rollbackBinder;
   final AppDatabase database;
   final Completer<void> restoreWriteStarted;
@@ -583,7 +560,6 @@ class _Harness {
   Future<void> dispose() async {
     rollbackBinder?.dispose();
     active.dispose();
-    await plexHome.dispose();
     await database.close();
   }
 }
@@ -602,7 +578,6 @@ Future<_Harness> _pumpHarness(
   final database = AppDatabase.forTesting(NativeDatabase.memory());
   final profiles = ProfileRegistry(database);
   final connections = ConnectionRegistry(database);
-  final profileConnections = ProfileConnectionRegistry(database);
   final storage = await StorageService.getInstance();
   final restoreWriteStarted = Completer<void>();
   final allowRestoreWrite = Completer<void>();
@@ -618,10 +593,8 @@ Future<_Harness> _pumpHarness(
     }
   }
 
-  final plexHome = _PlexHome(connections: connections, profileConnections: profileConnections, storage: storage);
   final active = _ThrowingActiveProfileProvider(
     registry: profiles,
-    plexHome: plexHome,
     connections: connections,
     storage: storage,
     activeProfileIdWriter: gateOwnerRestoreWrite || failNewerIdentityWrite ? activeProfileIdWriter : null,
@@ -679,7 +652,6 @@ Future<_Harness> _pumpHarness(
     latest: latest,
     rollbackBinder: rollbackBinder,
     events: events,
-    plexHome: plexHome,
     restoreWriteStarted: restoreWriteStarted,
     allowRestoreWrite: allowRestoreWrite,
     identityWrites: identityWrites,

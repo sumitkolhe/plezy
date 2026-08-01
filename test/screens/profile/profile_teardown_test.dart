@@ -8,7 +8,6 @@ import 'package:plezy/database/app_database.dart';
 import 'package:plezy/media/ids.dart';
 import 'package:plezy/profiles/active_profile_binder.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
@@ -26,20 +25,6 @@ import 'package:provider/provider.dart';
 
 import '../../test_helpers/multi_server_fixtures.dart';
 import '../../test_helpers/prefs.dart';
-
-class _PlexHome extends PlexHomeService {
-  _PlexHome({required super.connections, required super.profileConnections, required super.storage})
-    : super(plexHomeUserFetcher: (_) async => const []);
-
-  @override
-  Future<void> start() async {}
-
-  @override
-  Future<void> reloadFromStorage() async {}
-
-  @override
-  Future<void> dispose() async {}
-}
 
 class _Binder implements ActiveProfileBinder {
   _Binder(this.events);
@@ -224,7 +209,6 @@ class _Harness {
     required this.profileRegistry,
     required this.multiServer,
     required this.manager,
-    required this.plexHome,
     required this.database,
     required this.connections,
     required this.profileConnections,
@@ -235,7 +219,6 @@ class _Harness {
   final ProfileRegistry profileRegistry;
   final MultiServerProvider multiServer;
   final MultiServerManager manager;
-  final PlexHomeService plexHome;
   final AppDatabase database;
   final ConnectionRegistry connections;
   final ProfileConnectionRegistry profileConnections;
@@ -244,7 +227,6 @@ class _Harness {
     active.dispose();
     multiServer.dispose();
     manager.dispose();
-    await plexHome.dispose();
     await database.close();
   }
 }
@@ -259,13 +241,7 @@ Future<_Harness> _pumpHarness(
   final connections = ConnectionRegistry(database);
   final profileConnections = ProfileConnectionRegistry(database);
   final storage = await StorageService.getInstance();
-  final plexHome = _PlexHome(connections: connections, profileConnections: profileConnections, storage: storage);
-  final active = ActiveProfileProvider(
-    registry: profileRegistry,
-    plexHome: plexHome,
-    connections: connections,
-    storage: storage,
-  );
+  final active = ActiveProfileProvider(registry: profileRegistry, connections: connections, storage: storage);
   final profile = Profile.local(id: 'active', displayName: 'Active', createdAt: DateTime(2026, 1, 1));
   await profileRegistry.upsert(profile);
   await storage.setActiveProfileId(profile.id);
@@ -291,7 +267,6 @@ Future<_Harness> _pumpHarness(
         Provider<ProfileRegistry>.value(value: profileRegistry),
         Provider<ConnectionRegistry>.value(value: connections),
         Provider<ProfileConnectionRegistry>.value(value: profileConnections),
-        Provider<PlexHomeService>.value(value: plexHome),
         ChangeNotifierProvider<ActiveProfileProvider>.value(value: active),
         Provider<ActiveProfileBinder>.value(value: _Binder(events)),
         ChangeNotifierProvider<MultiServerProvider>.value(value: multiServer),
@@ -318,7 +293,6 @@ Future<_Harness> _pumpHarness(
     profileRegistry: profileRegistry,
     multiServer: multiServer,
     manager: manager,
-    plexHome: plexHome,
     database: database,
     connections: connections,
     profileConnections: profileConnections,

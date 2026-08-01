@@ -9,7 +9,6 @@ import '../../connection/connection_registry.dart';
 import '../../focus/focusable_wrapper.dart';
 import '../../i18n/strings.g.dart';
 import '../../profiles/active_profile_binder.dart';
-import '../../profiles/plex_home_service.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_activation.dart';
 import '../../profiles/profile_connection.dart';
@@ -78,9 +77,6 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
     final pcRegistry = context.read<ProfileConnectionRegistry>();
     final connRegistry = context.read<ConnectionRegistry>();
     final profileRegistry = context.read<ProfileRegistry>();
-    final plexHome = context.read<PlexHomeService>();
-
-    await plexHome.start();
     final results = await Future.wait([
       pcRegistry.listAll(),
       connRegistry.list(),
@@ -92,12 +88,7 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
     final localProfiles = results[2] as List<Profile>;
     final storage = results[3] as StorageService;
     final connById = {for (final c in allConns) c.id: c};
-    final allProfiles = mergeLocalWithPlexHome(
-      locals: localProfiles,
-      plexHomeByConnectionId: plexHome.current,
-      connectionsById: connById,
-      storage: storage,
-    );
+    final allProfiles = hydrateProfiles(locals: localProfiles, storage: storage);
 
     // What does the target already have? Skip duplicates by connection id.
     final targetConnIds = allPcs

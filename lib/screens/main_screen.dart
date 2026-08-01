@@ -34,7 +34,6 @@ import '../navigation/profile_navigation_scope.dart';
 import '../profiles/active_profile_binder.dart';
 import '../connection/connection_registry.dart';
 import '../profiles/active_profile_provider.dart';
-import '../profiles/plex_home_service.dart';
 import '../profiles/profile_selection_policy.dart';
 import '../providers/catalog_sources_provider.dart';
 import '../providers/download_provider.dart';
@@ -260,7 +259,6 @@ class _MainScreenState extends State<MainScreen>
   /// the splash can await its first settle before navigating here. We just
   /// observe its [ActiveProfileProvider.isBinding] state for the once-only
   /// priming below.
-  PlexHomeService? _plexHomeService;
   ActiveProfileProvider? _activeProfileForListener;
   String? _lastSeenProfileId;
   // Tracks ActiveProfileProvider.isBinding from the previous notification
@@ -347,8 +345,6 @@ class _MainScreenState extends State<MainScreen>
       _activeProfileForListener = activeProfile;
       _lastSeenProfileId = activeProfile.activeId;
       activeProfile.addListener(_onActiveProfileChanged);
-      _plexHomeService = context.read<PlexHomeService>();
-      unawaited(_plexHomeService!.start());
       final manager = context.read<MultiServerProvider>().serverManager;
       // Read the binder so the Provider's `lazy: false` create has fired
       // for sure; start only in online mode so explicit startup offline does
