@@ -9,7 +9,7 @@ import '../media/media_item.dart';
 import '../media/media_server_client.dart';
 import '../services/device_performance.dart';
 import '../services/image_cache_service.dart';
-import '../services/settings_service.dart' show EpisodePosterMode;
+import '../services/settings_service.dart' show CardOrientation;
 import 'platform_detector.dart';
 
 /// Image types for different transcoding strategies
@@ -296,8 +296,8 @@ class MediaImageHelper {
   /// Selects the decode/transcode shape used by media cards and their
   /// prefetchers. Keeping this derived from [MediaItem.cardShape] prevents the
   /// renderer and prefetch pipeline from assigning different cache budgets.
-  static ImageType cardImageType(MediaItem item, EpisodePosterMode episodePosterMode, {bool mixedHubContext = false}) {
-    return switch (item.cardShape(episodePosterMode, mixedHubContext: mixedHubContext)) {
+  static ImageType cardImageType(MediaItem item, CardOrientation orientation) {
+    return switch (item.cardShape(orientation)) {
       CardShape.square => ImageType.square,
       CardShape.wide => ImageType.thumb,
       CardShape.poster => ImageType.poster,

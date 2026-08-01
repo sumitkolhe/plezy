@@ -38,14 +38,14 @@ void main() {
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.min,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
         scale: 0.85,
       );
       final comfortable = TvBrowseRailLayout.metricsForHub(
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
         scale: 0.85,
       );
 
@@ -68,21 +68,21 @@ void main() {
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
         scale: 0.85,
       );
       final forcedLayout = TvBrowseRailLayout.metricsForHub(
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: 0.85,
       );
       final compactForcedLayout = TvBrowseRailLayout.metricsForHub(
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: 0.85,
         widePosterScale: TvBrowseRailLayout.compactEpisodeThumbnailScale,
       );
@@ -96,7 +96,9 @@ void main() {
     });
 
     test('estimated rail height is stable across mixed hub heights', () {
-      final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+      // Square music artwork opts out of the orientation, so a music rail and
+      // a landscape rail still differ in height for the estimate to reconcile.
+      final album = testMediaItem(id: 'album_1', backend: MediaBackend.plex, kind: MediaKind.album, title: 'Album');
       final episode = testMediaItem(
         id: 'episode_1',
         backend: MediaBackend.plex,
@@ -104,7 +106,7 @@ void main() {
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
       );
-      final posterHub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 1);
+      final posterHub = MediaHub(id: 'albums', title: 'Albums', type: 'album', items: [album], size: 1);
       final wideHub = MediaHub(id: 'episodes', title: 'Episodes', type: 'episode', items: [episode], size: 1);
 
       const size = Size(1280, 720);
@@ -114,14 +116,14 @@ void main() {
         hub: posterHub,
         availableWidth: availableWidth,
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: scale,
       );
       final wideMetrics = TvBrowseRailLayout.metricsForHub(
         hub: wideHub,
         availableWidth: availableWidth,
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: scale,
       );
 
@@ -129,7 +131,7 @@ void main() {
         hubs: [wideHub, posterHub],
         availableWidth: availableWidth,
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: scale,
       );
 
@@ -137,7 +139,7 @@ void main() {
         size: size,
         hubs: [wideHub, posterHub],
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
       );
       final posterSectionHeight = TvBrowseRailLayout.hubSectionHeightFor(
         scale: scale,
@@ -157,7 +159,7 @@ void main() {
           size: size,
           hubs: [posterHub, wideHub],
           density: LibraryDensity.max,
-          episodePosterMode: EpisodePosterMode.episodeThumbnail,
+          orientation: CardOrientation.landscape,
         ),
       );
     });
@@ -171,13 +173,13 @@ void main() {
         size: size,
         hubs: [hub],
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
       );
       final compactHeight = TvBrowseRailLayout.estimateHeight(
         size: size,
         hubs: [hub],
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
         tallPosterScale: TvBrowseRailLayout.compactTallPosterScale,
       );
 
@@ -202,7 +204,7 @@ void main() {
         hub: emptyHub,
         availableWidth: availableWidth,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: scale,
         tallPosterScale: TvBrowseRailLayout.compactTallPosterScale,
         widePosterScale: TvBrowseRailLayout.compactEpisodeThumbnailScale,
@@ -211,7 +213,7 @@ void main() {
         hub: loadedHub,
         availableWidth: availableWidth,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: scale,
         tallPosterScale: TvBrowseRailLayout.compactTallPosterScale,
         widePosterScale: TvBrowseRailLayout.compactEpisodeThumbnailScale,
@@ -237,14 +239,14 @@ void main() {
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: 0.85,
       );
       final full = TvBrowseRailLayout.metricsForHub(
         hub: hub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: 0.85,
         fullCardLayout: true,
       );
@@ -278,7 +280,7 @@ void main() {
         hub: episodeHub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.episodeThumbnail,
+        orientation: CardOrientation.landscape,
         scale: 0.85,
         widePosterScale: TvBrowseRailLayout.compactEpisodeThumbnailScale,
       );
@@ -286,7 +288,7 @@ void main() {
         hub: clipHub,
         availableWidth: 1040,
         density: LibraryDensity.defaultValue,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
         scale: 0.85,
         widePosterScale: TvBrowseRailLayout.compactEpisodeThumbnailScale,
       );
@@ -307,13 +309,13 @@ void main() {
         size: size,
         hubs: [movieHub],
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
       );
       final multiHubHeight = TvBrowseRailLayout.estimateHeight(
         size: size,
         hubs: [movieHub, showHub],
         density: LibraryDensity.max,
-        episodePosterMode: EpisodePosterMode.seriesPoster,
+        orientation: CardOrientation.portrait,
       );
 
       expect(multiHubHeight - singleHubHeight, closeTo(TvBrowseRailLayout.nextHubPeekHeightForScale(scale), 0.001));
@@ -626,7 +628,7 @@ void main() {
       hub: hub,
       availableWidth: 1280 - TvBrowseRailLayout.horizontalInsetForScale(scale),
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.seriesPoster,
+      orientation: CardOrientation.landscape,
       scale: scale,
       fullCardLayout: true,
     );
@@ -1333,7 +1335,7 @@ void main() {
       hub: movieHub,
       availableWidth: availableWidth,
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
       fullCardLayout: fullCardLayout,
     );
@@ -1360,7 +1362,7 @@ void main() {
       hub: episodeHub,
       availableWidth: position.viewportDimension,
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
       fullCardLayout: fullCardLayout,
     );
@@ -1449,7 +1451,7 @@ void main() {
       hub: firstHubWide,
       availableWidth: availableWidth,
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
     );
     final expectedVerticalOffset = TvBrowseRailLayout.hubSectionHeightFor(
@@ -1613,7 +1615,7 @@ void main() {
       hub: firstHub,
       availableWidth: availableWidth,
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
     );
     final middleTargetOffset = TvBrowseRailLayout.hubSectionHeightFor(
@@ -1877,7 +1879,7 @@ void main() {
       hub: hub,
       availableWidth: size.width - TvBrowseRailLayout.horizontalInsetForScale(scale),
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
     );
     final expectedOffset = TvBrowseRailLayout.scrollOffsetForIndex(
@@ -1972,7 +1974,7 @@ void main() {
       hub: hub,
       availableWidth: size.width - TvBrowseRailLayout.horizontalInsetForScale(scale),
       density: LibraryDensity.defaultValue,
-      episodePosterMode: EpisodePosterMode.episodeThumbnail,
+      orientation: CardOrientation.landscape,
       scale: scale,
     );
     final expectedOffset = TvBrowseRailLayout.scrollOffsetForIndex(

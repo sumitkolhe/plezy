@@ -3,7 +3,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'ids.dart';
 
-import '../services/settings_service.dart' show EpisodePosterMode;
+import '../services/settings_service.dart' show CardOrientation, EpisodePosterMode;
 import '../utils/global_key_utils.dart';
 import '../utils/json_utils.dart';
 import 'media_backend.dart';
@@ -586,40 +586,49 @@ sealed class MediaItem with _$MediaItem {
   /// Plex-only edition label. Jellyfin returns null.
   String? get editionTitle => null;
 
-  /// Returns the appropriate poster path based on episode poster mode.
-  String? posterThumb({EpisodePosterMode mode = EpisodePosterMode.seriesPoster, bool mixedHubContext = false}) {
-    if (kind == MediaKind.episode) {
-      switch (mode) {
-        case EpisodePosterMode.episodeThumbnail:
-          return thumbPath;
-        case EpisodePosterMode.seasonPoster:
-          return parentThumbPath ?? grandparentThumbPath ?? thumbPath;
-        case EpisodePosterMode.seriesPoster:
-          return grandparentThumbPath ?? thumbPath;
-      }
-    } else if (kind == MediaKind.season) {
-      if (mixedHubContext && mode == EpisodePosterMode.episodeThumbnail) {
-        return artPath ?? thumbPath;
-      }
-      if (grandparentThumbPath != null) {
-        return grandparentThumbPath;
-      }
-    }
-
-    if (mixedHubContext &&
-        mode == EpisodePosterMode.episodeThumbnail &&
-        (kind == MediaKind.movie || kind == MediaKind.show)) {
-      return artPath ?? thumbPath;
-    }
-
+  /// The artwork this card shows. [mode] picks whose art an episode borrows;
+  /// [orientation] picks which image of that subject — poster or backdrop.
+  ///
+  /// Two pairs collapse because the model carries no season backdrop and
+  /// episodes carry no portrait art of their own: in landscape, season and
+  /// series both resolve to the series backdrop; in portrait, thumbnail and
+  /// series both resolve to the series poster. Folding beats cropping a 2:3
+  /// poster into 16:9, which loses most of its height.
+  String? posterThumb({
+    EpisodePosterMode mode = EpisodePosterMode.seriesPoster,
+    CardOrientation orientation = CardOrientation.portrait,
+  }) {
+    if (kind.isMusic) return thumbPath;
     if (kind == MediaKind.clip) return thumbPath ?? artPath;
 
+    final wide = orientation == CardOrientation.landscape;
+
+    if (kind == MediaKind.episode) {
+      if (wide) {
+        return mode == EpisodePosterMode.episodeThumbnail
+            ? (thumbPath ?? grandparentArtPath)
+            : (grandparentArtPath ?? thumbPath);
+      }
+      return mode == EpisodePosterMode.seasonPoster
+          ? (parentThumbPath ?? grandparentThumbPath ?? thumbPath)
+          : (grandparentThumbPath ?? thumbPath);
+    }
+
+    if (kind == MediaKind.season) {
+      if (wide) return artPath ?? grandparentArtPath ?? thumbPath;
+      return grandparentThumbPath ?? thumbPath;
+    }
+
+    if (wide) return artPath ?? thumbPath;
     return thumbPath;
   }
 
   /// Secondary poster path to try when [posterThumb] returns an image URL that
   /// exists syntactically but the server cannot serve it.
-  String? posterThumbFallback({EpisodePosterMode mode = EpisodePosterMode.seriesPoster, bool mixedHubContext = false}) {
+  String? posterThumbFallback({
+    EpisodePosterMode mode = EpisodePosterMode.seriesPoster,
+    CardOrientation orientation = CardOrientation.portrait,
+  }) {
     final String? fallback;
     if (kind == MediaKind.track) {
       fallback = parentThumbPath;
@@ -628,29 +637,38 @@ sealed class MediaItem with _$MediaItem {
     } else {
       return null;
     }
-    return fallback != null && fallback != posterThumb(mode: mode, mixedHubContext: mixedHubContext) ? fallback : null;
+    return fallback != null && fallback != posterThumb(mode: mode, orientation: orientation) ? fallback : null;
   }
 
   /// True when the item should render in 16:9.
-  bool usesWideAspectRatio(EpisodePosterMode mode, {bool mixedHubContext = false}) {
+  ///
+  /// Clips only ever have a 16:9 still, and music artwork is square, so both
+  /// opt out of the user's choice rather than render a frame they cannot fill.
+  bool usesWideAspectRatio(CardOrientation orientation) {
     if (kind == MediaKind.clip) return true;
-    if (kind == MediaKind.episode && mode == EpisodePosterMode.episodeThumbnail) {
-      return true;
-    }
-    if (mixedHubContext &&
-        mode == EpisodePosterMode.episodeThumbnail &&
-        (kind == MediaKind.movie || kind == MediaKind.show || kind == MediaKind.season)) {
-      return true;
-    }
-    return false;
+    if (kind.isMusic) return false;
+    return orientation == CardOrientation.landscape;
   }
 
   /// The card silhouette this item renders with. Music items (artist/album/
   /// track) are square; everything else folds in the [usesWideAspectRatio]
   /// wide-vs-poster decision, so the two can never disagree.
-  CardShape cardShape(EpisodePosterMode mode, {bool mixedHubContext = false}) {
+  CardShape cardShape(CardOrientation orientation) {
     if (kind.isMusic) return CardShape.square;
-    return usesWideAspectRatio(mode, mixedHubContext: mixedHubContext) ? CardShape.wide : CardShape.poster;
+    return usesWideAspectRatio(orientation) ? CardShape.wide : CardShape.poster;
+  }
+
+  /// The single silhouette a rail or grid of [items] reserves room for.
+  ///
+  /// Kinds that opt out of [orientation] — square music artwork, always-wide
+  /// clips — would otherwise render a shape their row never sized for. A row
+  /// that agrees on one shape uses it; anything mixed falls back to what
+  /// [orientation] asks for, as does an empty row still loading.
+  static CardShape shapeForItems(List<MediaItem> items, CardOrientation orientation) {
+    final fallback = orientation == CardOrientation.landscape ? CardShape.wide : CardShape.poster;
+    if (items.isEmpty) return fallback;
+    final first = items.first.cardShape(orientation);
+    return items.every((item) => item.cardShape(orientation) == first) ? first : fallback;
   }
 
   /// Every own-item backdrop in Jellyfin display order. Older persisted

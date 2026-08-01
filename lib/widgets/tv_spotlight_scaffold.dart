@@ -92,7 +92,7 @@ class TvSpotlightScaffold extends StatelessWidget {
             size: railSize,
             hubs: hubs,
             density: settings.read(SettingsService.libraryDensity),
-            episodePosterMode: settings.read(SettingsService.episodePosterMode),
+            orientation: settings.read(SettingsService.cardOrientation),
             fullCardLayout: settings.read(SettingsService.tvFullCardLayout),
             tallPosterScale: TvBrowseRailLayout.compactTallPosterScale,
           );

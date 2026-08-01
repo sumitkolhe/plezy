@@ -250,7 +250,8 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     final showUnwatchedCount = svc.read(SettingsService.showUnwatchedCount);
     final expandIcon = widget.isExpanded ? Symbols.keyboard_arrow_down_rounded : Symbols.keyboard_arrow_right_rounded;
 
-    final isWide = widget.item.usesWideAspectRatio(episodePosterMode);
+    final orientation = svc.read(SettingsService.cardOrientation);
+    final isWide = widget.item.usesWideAspectRatio(orientation);
     final thumbWidth = isWide ? 130.0 : 53.0;
     final thumbHeight = isWide ? 73.0 : 80.0;
 
@@ -277,7 +278,14 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(6),
-                  child: _buildThumbnail(context, episodePosterMode, hideSpoilers, thumbWidth, thumbHeight),
+                  child: _buildThumbnail(
+                    context,
+                    episodePosterMode,
+                    orientation,
+                    hideSpoilers,
+                    thumbWidth,
+                    thumbHeight,
+                  ),
                 ),
                 // Watch progress overlay
                 _buildWatchOverlay(context, showUnwatchedCount),
@@ -336,19 +344,20 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
   Widget _buildThumbnail(
     BuildContext context,
     EpisodePosterMode episodePosterMode,
+    CardOrientation orientation,
     bool hideSpoilers,
     double width,
     double height,
   ) {
     final item = widget.item;
-    final posterUrl = item.posterThumb(mode: episodePosterMode);
+    final posterUrl = item.posterThumb(mode: episodePosterMode, orientation: orientation);
     // Backend-neutral so Jellyfin items render via Jellyfin's transcoder.
     final client = context.tryGetMediaClientWithFallback(serverIdOrNull(widget.serverId));
     final shouldBlur =
         hideSpoilers && item.shouldHideSpoiler && episodePosterMode == EpisodePosterMode.episodeThumbnail;
 
     Widget image;
-    if (item.usesWideAspectRatio(episodePosterMode)) {
+    if (item.usesWideAspectRatio(orientation)) {
       image = OptimizedMediaImage.thumb(
         client: client,
         imagePath: posterUrl,
@@ -393,6 +402,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
         : SettingsBuilder(
             prefs: const [
               SettingsService.episodePosterMode,
+              SettingsService.cardOrientation,
               SettingsService.hideSpoilers,
               SettingsService.showUnwatchedCount,
             ],

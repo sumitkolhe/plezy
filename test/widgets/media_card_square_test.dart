@@ -37,11 +37,13 @@ void main() {
 
   test('music items resolve to the square card shape', () {
     for (final kind in [MediaKind.artist, MediaKind.album, MediaKind.track]) {
-      expect(_item(kind).cardShape(EpisodePosterMode.seriesPoster), CardShape.square);
-      expect(_item(kind).cardShape(EpisodePosterMode.episodeThumbnail), CardShape.square);
+      expect(_item(kind).cardShape(CardOrientation.portrait), CardShape.square);
+      expect(_item(kind).cardShape(CardOrientation.landscape), CardShape.square);
     }
-    expect(_item(MediaKind.movie).cardShape(EpisodePosterMode.seriesPoster), CardShape.poster);
-    expect(_item(MediaKind.episode).cardShape(EpisodePosterMode.episodeThumbnail), CardShape.wide);
+    expect(_item(MediaKind.movie).cardShape(CardOrientation.portrait), CardShape.poster);
+    expect(_item(MediaKind.movie).cardShape(CardOrientation.landscape), CardShape.wide);
+    expect(_item(MediaKind.episode).cardShape(CardOrientation.portrait), CardShape.poster);
+    expect(_item(MediaKind.episode).cardShape(CardOrientation.landscape), CardShape.wide);
   });
 
   test('square grid delegates use square aspect ratios, defaults unchanged', () {
@@ -108,6 +110,7 @@ void main() {
   });
 
   testWidgets('movie grid card still renders the 2:3 poster', (tester) async {
+    await SettingsService.instance.write(SettingsService.cardOrientation, CardOrientation.portrait);
     await tester.pumpWidget(
       _TestApp(
         child: MediaCard(item: _item(MediaKind.movie), width: 200, height: 282, forceGridMode: true, isOffline: true),

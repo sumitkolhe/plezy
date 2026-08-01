@@ -42,6 +42,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
             _languageSelector(context),
             _densitySelector(),
             _viewModeSelector(),
+            _cardOrientationSelector(),
             _episodePosterModeSelector(),
             if (PlatformDetector.isTV())
               SettingSwitchTile(
@@ -292,6 +293,16 @@ class AppearanceSettingsScreen extends StatelessWidget {
     segments: [
       ButtonSegment(value: ViewMode.grid, label: Text(t.settings.gridView)),
       ButtonSegment(value: ViewMode.list, label: Text(t.settings.listView)),
+    ],
+  );
+
+  Widget _cardOrientationSelector() => SettingSegmentedTile<CardOrientation>(
+    pref: SettingsService.cardOrientation,
+    icon: Symbols.crop_rounded,
+    title: t.settings.cardOrientation,
+    segments: [
+      ButtonSegment(value: CardOrientation.portrait, label: Text(t.settings.cardPortrait)),
+      ButtonSegment(value: CardOrientation.landscape, label: Text(t.settings.cardLandscape)),
     ],
   );
 

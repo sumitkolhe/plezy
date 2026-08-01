@@ -42,6 +42,11 @@ enum ViewMode { grid, list }
 
 enum EpisodePosterMode { seriesPoster, seasonPoster, episodeThumbnail }
 
+/// The silhouette every media card renders in. [EpisodePosterMode] stays
+/// orthogonal: it picks whose artwork an episode borrows, this picks which
+/// artwork of that subject — poster for [portrait], backdrop for [landscape].
+enum CardOrientation { portrait, landscape }
+
 enum ContinueWatchingAction { play, details }
 
 enum EpisodeAction { play, details }
@@ -455,6 +460,11 @@ class SettingsService extends BaseSharedPreferencesService {
   static const libraryDensity = _LibraryDensityPref();
   static const tvCornerSpotlightBackdrop = BoolPref('tv_corner_spotlight_backdrop');
   static const episodePosterMode = _EpisodePosterModePref();
+  static const cardOrientation = EnumPref<CardOrientation>(
+    'card_orientation',
+    values: CardOrientation.values,
+    defaultValue: CardOrientation.landscape,
+  );
   static const continueWatchingAction = EnumPref<ContinueWatchingAction>(
     'continue_watching_action',
     values: ContinueWatchingAction.values,
@@ -855,6 +865,7 @@ class SettingsService extends BaseSharedPreferencesService {
     libraryDensity,
     tvCornerSpotlightBackdrop,
     episodePosterMode,
+    cardOrientation,
     continueWatchingAction,
     episodeAction,
     keyboardHotkeys,

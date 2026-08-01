@@ -223,7 +223,6 @@ class MediaCard extends StatefulWidget {
   final bool usesContinueWatchingAction;
   final String? collectionId; // The collection ID if displaying within a collection
   final bool isOffline; // True for downloaded content without server access
-  final bool mixedHubContext; // True when in a hub with mixed content (movies + episodes)
   final bool showServerName; // Show server name in list view (multi-server)
   final EpisodePosterMode? episodePosterModeOverride;
   final bool fullBleedImage;
@@ -253,7 +252,6 @@ class MediaCard extends StatefulWidget {
     bool? usesContinueWatchingAction,
     this.collectionId,
     this.isOffline = false,
-    this.mixedHubContext = false,
     this.showServerName = false,
     this.episodePosterModeOverride,
     this.fullBleedImage = false,
@@ -388,6 +386,7 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
         SettingsService.viewMode,
         SettingsService.libraryDensity,
         SettingsService.episodePosterMode,
+        SettingsService.cardOrientation,
         SettingsService.showEpisodeNumberOnCards,
         SettingsService.hideSpoilers,
         SettingsService.showUnwatchedCount,
@@ -540,7 +539,6 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
                     item,
                     isOffline: widget.isOffline,
                     localPosterPath: localPosterPath,
-                    mixedHubContext: widget.mixedHubContext,
                     episodePosterModeOverride: widget.episodePosterModeOverride,
                     cardShapeOverride: widget.cardShapeOverride,
                     catalogItem: _catalogItem,
@@ -586,7 +584,6 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
                 item,
                 isOffline: widget.isOffline,
                 localPosterPath: localPosterPath,
-                mixedHubContext: widget.mixedHubContext,
                 episodePosterModeOverride: widget.episodePosterModeOverride,
                 cardShapeOverride: widget.cardShapeOverride,
                 catalogItem: _catalogItem,
@@ -696,9 +693,7 @@ class _MediaCardList extends StatelessWidget {
   CardShape _cardShape() {
     if (cardShapeOverride case final shape?) return shape;
     if (item is! MediaItem) return CardShape.poster;
-    final EpisodePosterMode mode =
-        episodePosterModeOverride ?? SettingsService.instance.read(SettingsService.episodePosterMode);
-    return (item as MediaItem).cardShape(mode);
+    return (item as MediaItem).cardShape(SettingsService.instance.read(SettingsService.cardOrientation));
   }
 
   double _posterWidth() => MediaCardListLayout.posterWidth(density: density, shape: _cardShape());
@@ -977,7 +972,6 @@ Widget _buildPosterImage(
   Object item, {
   bool isOffline = false,
   String? localPosterPath,
-  bool mixedHubContext = false,
   EpisodePosterMode? episodePosterModeOverride,
   CardShape? cardShapeOverride,
   CatalogItem? catalogItem,
@@ -1001,6 +995,7 @@ Widget _buildPosterImage(
   } else if (item is MediaItem) {
     final EpisodePosterMode episodePosterMode =
         episodePosterModeOverride ?? SettingsService.instance.read(SettingsService.episodePosterMode);
+    final orientation = SettingsService.instance.read(SettingsService.cardOrientation);
     final hideSpoilers = SettingsService.instance.read(SettingsService.hideSpoilers);
     final shouldBlur =
         hideSpoilers && item.shouldHideSpoiler && episodePosterMode == EpisodePosterMode.episodeThumbnail;
@@ -1010,17 +1005,20 @@ Widget _buildPosterImage(
       CardShape.square => ImageType.square,
       CardShape.wide => ImageType.thumb,
       CardShape.poster => ImageType.poster,
-      null => MediaImageHelper.cardImageType(item, episodePosterMode, mixedHubContext: mixedHubContext),
+      null => MediaImageHelper.cardImageType(item, orientation),
     };
-    final defaultPosterUrl = item.posterThumb(mode: episodePosterMode, mixedHubContext: mixedHubContext);
-    final defaultFallbackUrl = item.posterThumbFallback(mode: episodePosterMode, mixedHubContext: mixedHubContext);
+    final defaultPosterUrl = item.posterThumb(mode: episodePosterMode, orientation: orientation);
+    final defaultFallbackUrl = item.posterThumbFallback(mode: episodePosterMode, orientation: orientation);
     final targetPx = knownWidth != null && knownWidth.isFinite && knownWidth > 0
         ? (knownWidth * MediaQuery.devicePixelRatioOf(context)).ceil()
         : null;
     final catalogArtworkUrl = targetPx == null
         ? null
         : imageType == ImageType.thumb
-        ? catalogItem?.backdropFor(targetPx)
+        // Catalog sources often ship posters without a backdrop. Falling back
+        // to the sized poster keeps the resolution-matched variant rather than
+        // dropping to the unsized default URL.
+        ? (catalogItem?.backdropFor(targetPx) ?? catalogItem?.posterFor(targetPx))
         : catalogItem?.posterFor(targetPx);
     final primaryPosterUrl = catalogArtworkUrl ?? defaultPosterUrl;
     final posterFallbackUrl = catalogArtworkUrl != null && catalogArtworkUrl != defaultPosterUrl

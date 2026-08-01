@@ -263,24 +263,16 @@ void main() {
     test('card artwork follows square, wide, and poster media shapes', () {
       for (final kind in [MediaKind.artist, MediaKind.album, MediaKind.track]) {
         expect(
-          MediaImageHelper.cardImageType(_item(kind), EpisodePosterMode.episodeThumbnail),
+          MediaImageHelper.cardImageType(_item(kind), CardOrientation.landscape),
           ImageType.square,
           reason: '${kind.id} artwork must keep its square music cache budget',
         );
       }
 
-      expect(
-        MediaImageHelper.cardImageType(_item(MediaKind.episode), EpisodePosterMode.episodeThumbnail),
-        ImageType.thumb,
-      );
-      expect(
-        MediaImageHelper.cardImageType(_item(MediaKind.episode), EpisodePosterMode.seriesPoster),
-        ImageType.poster,
-      );
-      expect(
-        MediaImageHelper.cardImageType(_item(MediaKind.movie), EpisodePosterMode.episodeThumbnail),
-        ImageType.poster,
-      );
+      expect(MediaImageHelper.cardImageType(_item(MediaKind.episode), CardOrientation.landscape), ImageType.thumb);
+      expect(MediaImageHelper.cardImageType(_item(MediaKind.episode), CardOrientation.portrait), ImageType.poster);
+      expect(MediaImageHelper.cardImageType(_item(MediaKind.movie), CardOrientation.landscape), ImageType.thumb);
+      expect(MediaImageHelper.cardImageType(_item(MediaKind.movie), CardOrientation.portrait), ImageType.poster);
     });
   });
 

@@ -1051,6 +1051,15 @@ class Translations$settings$en {
 	/// en: 'Startup Section'
 	String get startupSection => 'Startup Section';
 
+	/// en: 'Card Shape'
+	String get cardOrientation => 'Card Shape';
+
+	/// en: 'Portrait'
+	String get cardPortrait => 'Portrait';
+
+	/// en: 'Landscape'
+	String get cardLandscape => 'Landscape';
+
 	/// en: 'Display'
 	String get display => 'Display';
 
@@ -5403,6 +5412,9 @@ extension on Translations {
 			'settings.showNavBarLabels' => 'Show Navigation Bar Labels',
 			'settings.showNavBarLabelsDescription' => 'Display text labels under navigation bar icons',
 			'settings.startupSection' => 'Startup Section',
+			'settings.cardOrientation' => 'Card Shape',
+			'settings.cardPortrait' => 'Portrait',
+			'settings.cardLandscape' => 'Landscape',
 			'settings.display' => 'Display',
 			'settings.homeScreen' => 'Home Screen',
 			'settings.navigation' => 'Navigation',
@@ -5608,11 +5620,11 @@ extension on Translations {
 			'tooltips.shufflePlay' => 'Shuffle play',
 			'tooltips.playTrailer' => 'Play trailer',
 			'tooltips.markAsWatched' => 'Mark as watched',
+			_ => null,
+		} ?? switch (path) {
 			'tooltips.markAsUnwatched' => 'Mark as unwatched',
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.subtitlesLabel' => 'Subtitles',
 			'videoControls.resetToZero' => 'Reset to 0ms',
 			'videoControls.addTime' => ({required Object amount, required Object unit}) => '+${amount}${unit}',
@@ -6122,11 +6134,11 @@ extension on Translations {
 			'explore.relation.sequel' => 'Sequel',
 			'explore.relation.sideStory' => 'Side story',
 			'explore.relation.spinOff' => 'Spin-off',
+			_ => null,
+		} ?? switch (path) {
 			'explore.relation.alternativeVersion' => 'Alternative version',
 			'explore.relation.summary' => 'Summary',
 			'explore.relation.parentStory' => 'Parent story',
-			_ => null,
-		} ?? switch (path) {
 			'explore.relation.adaptation' => 'Adaptation',
 			'explore.relation.other' => 'Related',
 			'collections.title' => 'Collections',

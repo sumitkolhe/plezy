@@ -529,35 +529,20 @@ class _HubDetailScreenState extends State<HubDetailScreen>
                   SettingsBuilder(
                     prefs: const [
                       SettingsService.viewMode,
-                      SettingsService.episodePosterMode,
+                      SettingsService.cardOrientation,
                       SettingsService.libraryDensity,
                       SettingsService.tvFullCardLayout,
                     ],
                     builder: (context) {
                       final svc = SettingsService.instance;
                       final viewMode = svc.read(SettingsService.viewMode);
-                      final episodePosterMode = svc.read(SettingsService.episodePosterMode);
+                      final orientation = svc.read(SettingsService.cardOrientation);
                       final libraryDensity = svc.read(SettingsService.libraryDensity);
                       final fullCardLayout = PlatformDetector.isTV() && svc.read(SettingsService.tvFullCardLayout);
 
-                      // Determine hub content type for layout decisions
-                      final hasEpisodes = _filteredItems.any((item) => item.usesWideAspectRatio(episodePosterMode));
-                      final hasNonEpisodes = _filteredItems.any((item) => !item.usesWideAspectRatio(episodePosterMode));
-
-                      // Mixed hub = has both episodes AND non-episodes
-                      final isMixedHub = hasEpisodes && hasNonEpisodes;
-
-                      // Episode-only = all items are episodes with thumbnails
-                      final isEpisodeOnlyHub = hasEpisodes && !hasNonEpisodes;
-
-                      // Use 16:9 for episode-only hubs OR mixed hubs (with episode thumbnail mode)
-                      final useWideLayout =
-                          episodePosterMode == EpisodePosterMode.episodeThumbnail && (isEpisodeOnlyHub || isMixedHub);
-
-                      // Music hubs render square album/artist artwork
-                      final isSquareHub =
-                          _filteredItems.isNotEmpty &&
-                          _filteredItems.every((item) => item.cardShape(episodePosterMode) == CardShape.square);
+                      final hubShape = MediaItem.shapeForItems(_filteredItems, orientation);
+                      final isSquareHub = hubShape == CardShape.square;
+                      final useWideLayout = hubShape == CardShape.wide;
 
                       return MediaCardSliverLayout(
                         viewMode: viewMode,
@@ -596,7 +581,6 @@ class _HubDetailScreenState extends State<HubDetailScreen>
                               hasFocus,
                               isLastRow: position.index >= position.itemCount - position.columnCount,
                             ),
-                            mixedHubContext: isMixedHub,
                             fullBleedImage: fullCardLayout && position.isGrid,
                           );
                         },

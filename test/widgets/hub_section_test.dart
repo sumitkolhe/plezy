@@ -99,6 +99,7 @@ void main() {
 
   testWidgets('grid poster override uses dense 2:3 TV geometry', (tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
+    await SettingsService.instance.write(SettingsService.cardOrientation, CardOrientation.portrait);
     final item = testMediaItem(
       id: 'poster_episode',
       backend: MediaBackend.plex,

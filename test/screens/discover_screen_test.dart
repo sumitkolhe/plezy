@@ -171,7 +171,7 @@ void main() {
       size: const Size(foregroundWidth, 720),
       hubs: [hub],
       density: LibraryDensity.max,
-      episodePosterMode: settings.read(SettingsService.episodePosterMode),
+      orientation: settings.read(SettingsService.cardOrientation),
       fullCardLayout: settings.read(SettingsService.tvFullCardLayout),
       tallPosterScale: TvBrowseRailLayout.compactTallPosterScale,
     );

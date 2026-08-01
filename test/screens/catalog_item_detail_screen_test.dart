@@ -905,6 +905,7 @@ void main() {
   });
 
   testWidgets('recommendation posters use compact grid-equivalent TV sizing', (tester) async {
+    await SettingsService.instance.write(SettingsService.cardOrientation, CardOrientation.portrait);
     tester.view.devicePixelRatio = 1;
     tester.view.physicalSize = const Size(1920, 1080);
     addTearDown(tester.view.resetDevicePixelRatio);

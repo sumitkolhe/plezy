@@ -69,6 +69,8 @@ void main() {
   testWidgets('Jellyfin Recently Added fetches every page only as the user reaches the end', (tester) async {
     final items = List.generate(450, (index) => _item(index, backend: MediaBackend.jellyfin));
     final harness = await _createHarness(items, backend: MediaBackend.jellyfin);
+    // Portrait keeps the column count this scroll budget was calibrated against.
+    await SettingsService.instance.write(SettingsService.cardOrientation, CardOrientation.portrait);
 
     await tester.pumpWidget(
       harness.wrap(

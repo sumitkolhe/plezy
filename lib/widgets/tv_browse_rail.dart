@@ -41,7 +41,6 @@ const _inactiveArtworkDimAlpha = 0.3;
 
 class TvBrowseRailLayoutMetrics {
   final bool isPersonHub;
-  final bool isMixedHub;
   final bool useWideLayout;
   final double focusExtra;
   final double railEdgePadding;
@@ -54,7 +53,6 @@ class TvBrowseRailLayoutMetrics {
 
   const TvBrowseRailLayoutMetrics({
     required this.isPersonHub,
-    required this.isMixedHub,
     required this.useWideLayout,
     required this.focusExtra,
     required this.railEdgePadding,
@@ -129,7 +127,7 @@ class TvBrowseRailLayout {
     required MediaHub hub,
     required double availableWidth,
     required int density,
-    required EpisodePosterMode episodePosterMode,
+    required CardOrientation orientation,
     required double scale,
     bool fullCardLayout = false,
     double tallPosterScale = 1.0,
@@ -139,19 +137,11 @@ class TvBrowseRailLayout {
     final railEdgePadding = focusExtra + (12 * scale);
     final itemGap = fullCardLayout ? fullCardItemGapForScale(scale) : itemGapForScale(scale);
     final isPersonHub = TvBrowseRailLayout.isPersonHub(hub);
-    final emptyEpisodeThumbnailHub =
-        hub.items.isEmpty && hub.type == 'episode' && episodePosterMode == EpisodePosterMode.episodeThumbnail;
-    final hasWide =
-        !isPersonHub &&
-        (emptyEpisodeThumbnailHub || hub.items.any((item) => item.usesWideAspectRatio(episodePosterMode)));
-    final hasTall = !isPersonHub && hub.items.any((item) => !item.usesWideAspectRatio(episodePosterMode));
-    final isMixedHub = hasWide && hasTall;
-    final useWideLayout = hasWide && (!hasTall || episodePosterMode == EpisodePosterMode.episodeThumbnail);
-    // Music hubs render square album/artist artwork (person hubs are already square).
-    final isSquareHub =
-        !isPersonHub &&
-        hub.items.isNotEmpty &&
-        hub.items.every((item) => item.cardShape(episodePosterMode) == CardShape.square);
+    // Person hubs are already square; otherwise the row follows the shape its
+    // items agree on, which may not be the one [orientation] asked for.
+    final hubShape = MediaItem.shapeForItems(hub.items, orientation);
+    final isSquareHub = !isPersonHub && hubShape == CardShape.square;
+    final useWideLayout = !isPersonHub && hubShape == CardShape.wide;
     final baseCardWidth = cardWidthFor(
       availableWidth: availableWidth,
       density: density,
@@ -178,7 +168,6 @@ class TvBrowseRailLayout {
 
     return TvBrowseRailLayoutMetrics(
       isPersonHub: isPersonHub,
-      isMixedHub: isMixedHub,
       useWideLayout: useWideLayout,
       focusExtra: focusExtra,
       railEdgePadding: railEdgePadding,
@@ -195,8 +184,7 @@ class TvBrowseRailLayout {
     required List<MediaHub> hubs,
     required double availableWidth,
     required int density,
-    required EpisodePosterMode episodePosterMode,
-    EpisodePosterMode Function(MediaHub hub)? episodePosterModeForHub,
+    required CardOrientation orientation,
     double Function(MediaHub hub)? widePosterScaleForHub,
     required double scale,
     bool fullCardLayout = false,
@@ -209,7 +197,7 @@ class TvBrowseRailLayout {
         hub: hub,
         availableWidth: availableWidth,
         density: density,
-        episodePosterMode: episodePosterModeForHub?.call(hub) ?? episodePosterMode,
+        orientation: orientation,
         scale: scale,
         fullCardLayout: fullCardLayout,
         tallPosterScale: tallPosterScale,
@@ -278,8 +266,7 @@ class TvBrowseRailLayout {
     required Size size,
     required List<MediaHub> hubs,
     required int density,
-    required EpisodePosterMode episodePosterMode,
-    EpisodePosterMode Function(MediaHub hub)? episodePosterModeForHub,
+    required CardOrientation orientation,
     double Function(MediaHub hub)? widePosterScaleForHub,
     bool fullCardLayout = false,
     double tallPosterScale = 1.0,
@@ -295,8 +282,7 @@ class TvBrowseRailLayout {
       hubs: hubs,
       availableWidth: availableWidth,
       density: density,
-      episodePosterMode: episodePosterMode,
-      episodePosterModeForHub: episodePosterModeForHub,
+      orientation: orientation,
       widePosterScaleForHub: widePosterScaleForHub,
       scale: scale,
       fullCardLayout: fullCardLayout,
@@ -1005,6 +991,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
       prefs: const [
         SettingsService.libraryDensity,
         SettingsService.episodePosterMode,
+        SettingsService.cardOrientation,
         SettingsService.tvFullCardLayout,
       ],
       builder: (context) => LayoutBuilder(
@@ -1021,6 +1008,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           final railViewportWidth = (availableWidth + interactionExpansion).clamp(1.0, double.infinity).toDouble();
           final density = svc.read(SettingsService.libraryDensity);
           final episodePosterMode = svc.read(SettingsService.episodePosterMode);
+          final orientation = svc.read(SettingsService.cardOrientation);
           final fullCardLayout = svc.read(SettingsService.tvFullCardLayout);
           final modes = [for (final hub in widget.hubs) widget.episodePosterModeForHub?.call(hub) ?? episodePosterMode];
           final wideScales = [
@@ -1032,7 +1020,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                 hub: widget.hubs[i],
                 availableWidth: availableWidth,
                 density: density,
-                episodePosterMode: modes[i],
+                orientation: orientation,
                 scale: scale,
                 fullCardLayout: fullCardLayout,
                 tallPosterScale: widget.tallPosterScale,
@@ -1533,7 +1521,6 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
             artworkDim: artworkDim,
             isInContinueWatching: _isContinueWatchingHub(hub),
             usesContinueWatchingAction: _usesContinueWatchingAction(hub),
-            mixedHubContext: metrics.isMixedHub,
             episodePosterModeOverride: episodePosterMode,
           );
   }

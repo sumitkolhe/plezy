@@ -502,7 +502,11 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
               focusNode: _hubFocusNode,
               onKeyEvent: _handleKeyEvent,
               child: SettingsBuilder(
-                prefs: const [SettingsService.libraryDensity, SettingsService.episodePosterMode],
+                prefs: const [
+                  SettingsService.libraryDensity,
+                  SettingsService.episodePosterMode,
+                  SettingsService.cardOrientation,
+                ],
                 builder: (context) => LayoutBuilder(
                   builder: (context, constraints) {
                     final svc = SettingsService.instanceOrNull;
@@ -512,24 +516,13 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                         ? _getTvCardWidth(constraints.maxWidth, density, leadingPadding)
                         : GridSizeCalculator.getCellWidth(constraints.maxWidth, context, density);
 
+                    final orientation = svc.read(SettingsService.cardOrientation);
                     final EpisodePosterMode episodePosterMode =
                         widget.episodePosterModeOverride ?? svc.read(SettingsService.episodePosterMode);
 
-                    // Music hubs render square album/artist artwork
-                    final isSquareHub =
-                        widget.hub.items.isNotEmpty &&
-                        widget.hub.items.every((item) => item.cardShape(episodePosterMode) == CardShape.square);
-
-                    // On a top-level shelf, thumbnail mode is a screen-wide shape choice rather
-                    // than an episode-only one: a movies-only rail left portrait puts both
-                    // silhouettes on one screen, and the same movie renders wide in Continue
-                    // Watching and tall two rails below. Embedded hubs keep the episode-driven
-                    // rule — catalog rows carry poster-only external art that 16:9 would crop.
-                    final hasEpisodes = widget.hub.items.any((item) => item.usesWideAspectRatio(episodePosterMode));
-                    final useWideLayout =
-                        episodePosterMode == EpisodePosterMode.episodeThumbnail &&
-                        !isSquareHub &&
-                        (hasEpisodes || isTopLevelShelf);
+                    final hubShape = MediaItem.shapeForItems(widget.hub.items, orientation);
+                    final isSquareHub = hubShape == CardShape.square;
+                    final useWideLayout = hubShape == CardShape.wide;
 
                     // TV keeps the shelf multiplier; touch layouts target a
                     // card count so the density slider spans evenly.
@@ -560,6 +553,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                       posterHeight,
                       useWideLayout,
                       episodePosterMode,
+                      orientation,
                       isKeyboardMode,
                       widget.inset,
                       widget.isInContinueWatching,
@@ -703,7 +697,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                                     forceGridMode: true,
                                     isInContinueWatching: widget.isInContinueWatching,
                                     usesContinueWatchingAction: widget.usesContinueWatchingAction,
-                                    mixedHubContext: useWideLayout,
                                     episodePosterModeOverride: episodePosterMode,
                                   ),
                                 ),

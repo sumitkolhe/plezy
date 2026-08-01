@@ -34,7 +34,6 @@ class FocusableMediaCard extends StatefulWidget {
   final bool isOffline;
 
   /// True when in a hub with mixed content (movies + episodes)
-  final bool mixedHubContext;
 
   /// Render grid cards as image-only full-bleed cards.
   final bool fullBleedImage;
@@ -93,7 +92,6 @@ class FocusableMediaCard extends StatefulWidget {
     bool? usesContinueWatchingAction,
     this.collectionId,
     this.isOffline = false,
-    this.mixedHubContext = false,
     this.fullBleedImage = false,
     this.cardShapeOverride,
     this.showServerName = false,
@@ -154,7 +152,6 @@ class _FocusableMediaCardState extends State<FocusableMediaCard> {
         usesContinueWatchingAction: widget.usesContinueWatchingAction,
         collectionId: widget.collectionId,
         isOffline: widget.isOffline,
-        mixedHubContext: widget.mixedHubContext,
         fullBleedImage: widget.fullBleedImage,
         cardShapeOverride: widget.cardShapeOverride,
         showServerName: widget.showServerName,

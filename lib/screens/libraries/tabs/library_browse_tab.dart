@@ -1625,15 +1625,16 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     if (client == null) return;
     final devicePixelRatio = MediaImageHelper.effectiveDevicePixelRatio(context);
     final episodePosterMode = context.settingsRead(SettingsService.episodePosterMode);
+    final orientation = context.settingsRead(SettingsService.cardOrientation);
 
     for (var i = 0; i < items.length; i++) {
       final index = startIndex + i;
       if (index < firstVisible || index > prefetchEnd) continue;
 
       final item = items[i];
-      final thumb = item.posterThumb(mode: episodePosterMode);
+      final thumb = item.posterThumb(mode: episodePosterMode, orientation: orientation);
       if (thumb == null || thumb.isEmpty) continue;
-      final imageType = MediaImageHelper.cardImageType(item, episodePosterMode);
+      final imageType = MediaImageHelper.cardImageType(item, orientation);
 
       final imageUrl = MediaImageHelper.getOptimizedImageUrl(
         client: client,
@@ -1793,6 +1794,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           SettingsService.viewMode,
           SettingsService.libraryDensity,
           SettingsService.episodePosterMode,
+          SettingsService.cardOrientation,
           SettingsService.tvFullCardLayout,
         ],
         builder: (context) => _buildItemsSliver(context),
@@ -1865,7 +1867,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final svc = SettingsService.instance;
     final viewMode = svc.read(SettingsService.viewMode);
     final libraryDensity = svc.read(SettingsService.libraryDensity);
-    final episodePosterMode = svc.read(SettingsService.episodePosterMode);
+    final orientation = svc.read(SettingsService.cardOrientation);
     final fullCardLayout = PlatformDetector.isTV() && svc.read(SettingsService.tvFullCardLayout);
     final itemCount = totalSize;
     final isPhone = _isPhone(context);
@@ -1873,7 +1875,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     _effectiveTopPadding = topPadding;
     final rightPadding = _shouldShowAlphaJumpBar && !isPhone ? _alphaJumpBarWidth : 8.0;
 
-    final useWideRatio = _selectedGrouping == 'episodes' && episodePosterMode == EpisodePosterMode.episodeThumbnail;
+    final useWideRatio = orientation == CardOrientation.landscape;
     // Music groupings are homogeneous, so the whole grid shares the square
     // cell shape (artists render circular inside the square cell).
     final isMusicGrouping =

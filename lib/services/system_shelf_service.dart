@@ -11,7 +11,7 @@ import '../media/media_kind.dart';
 import '../media/media_server_client.dart';
 import '../utils/app_logger.dart';
 import '../utils/platform_detector.dart';
-import 'settings_service.dart' show EpisodePosterMode;
+import 'settings_service.dart' show CardOrientation, EpisodePosterMode;
 
 /// Syncs Continue Watching content to platform launcher surfaces.
 ///
@@ -278,7 +278,12 @@ class SystemShelfService {
         if (hideSpoilers && item.shouldHideSpoiler) {
           thumbPath = item.spoilerSafeArt;
         }
-        thumbPath ??= item.posterThumb(mode: EpisodePosterMode.episodeThumbnail, mixedHubContext: true);
+        // The system shelf slot is a fixed 640x360, so it always wants the
+        // wide art regardless of the in-app card setting.
+        thumbPath ??= item.posterThumb(
+          mode: EpisodePosterMode.episodeThumbnail,
+          orientation: CardOrientation.landscape,
+        );
         if (thumbPath != null) {
           posterSourceUri = client.thumbnailUrl(thumbPath, width: 640, height: 360);
         }
