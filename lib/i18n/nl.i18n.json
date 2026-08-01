@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Verbinden met Jellyfin",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Wachten op goedkeuring…",
     "quickConnectCancel": "Annuleren",
     "quickConnectExpired": "Quick Connect is verlopen. Probeer opnieuw.",
-    "localDataRecoveryRequired": "Plezy kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan."
+    "localDataRecoveryRequired": "Harbor kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan."
   },
   "common": {
     "cancel": "Annuleren",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Instellingen",
-    "supportDeveloper": "Steun Plezy",
+    "supportDeveloper": "Steun Harbor",
     "supportDeveloperDescription": "Doneer via Liberapay om de ontwikkeling te steunen",
     "language": "Taal",
     "theme": "Thema",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Voorkeuren herstellen vanuit een bestand",
     "importSettingsConfirm": "Hiermee worden je huidige instellingen vervangen. Doorgaan?",
     "importSettingsSuccess": "Instellingen geïmporteerd",
-    "importSettingsInvalidFile": "Dit bestand is geen geldige Plezy-export",
+    "importSettingsInvalidFile": "Dit bestand is geen geldige Harbor-export",
     "importSettingsNoUser": "Meld je aan voordat je instellingen importeert",
     "shortcutsReset": "Sneltoetsen gereset naar standaard",
     "about": "Over",
@@ -303,7 +303,7 @@
     "forceTvMode": "Tv-modus afdwingen",
     "forceTvModeDescription": "Dwing de tv-indeling af op apparaten zonder automatische detectie. Herstart vereist.",
     "startInFullscreen": "Starten in volledig scherm",
-    "startInFullscreenDescription": "Open Plezy bij het starten in volledig scherm",
+    "startInFullscreenDescription": "Open Harbor bij het starten in volledig scherm",
     "exitFullscreenOnPlayerClose": "Volledig scherm verlaten bij sluiten van speler",
     "exitFullscreenOnPlayerCloseDescription": "Verlaat automatisch de volledigschermmodus wanneer de videospeler wordt gesloten",
     "autoHidePerformanceOverlay": "Prestatie-overlay automatisch verbergen",
@@ -711,7 +711,7 @@
     "confirmAction": "Bevestig actie"
   },
   "profiles": {
-    "addPlezyProfile": "Plezy-profiel toevoegen",
+    "addLocalProfile": "Harbor-profiel toevoegen",
     "switchingProfile": "Profiel wisselen…",
     "deleteThisProfileTitle": "Dit profiel verwijderen?",
     "deleteThisProfileMessage": "Verwijder ${displayName}. Verbindingen blijven ongewijzigd.",
@@ -769,7 +769,7 @@
     "sessionExpiredMany": "Sessie verlopen voor ${count} servers",
     "signInAgain": "Opnieuw aanmelden",
     "editJellyfinTitle": "Jellyfin-verbinding bewerken",
-    "editJellyfinIntro": "Voeg URL's voor ${serverName} toe of verwijder ze. Plezy gebruikt de bereikbare URL met de laagste latentie."
+    "editJellyfinIntro": "Voeg URL's voor ${serverName} toe of verwijder ze. Harbor gebruikt de bereikbare URL met de laagste latentie."
   },
   "discover": {
     "title": "Ontdekken",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Details",
       "sheetTitle": "Downloads op de achtergrond zijn geblokkeerd",
       "sheetTitleDegraded": "Downloads op de achtergrond kunnen beperkt zijn",
-      "sheetIntro": "Android verhindert dat Plezy betrouwbaar op de achtergrond downloadt.",
-      "sheetIntroDegraded": "Je apparaat beperkt wanneer Plezy op de achtergrond kan downloaden.",
-      "reasonBackgroundRestricted": "Het achtergrondgebruik van Plezy is beperkt. Stel het batterij- of achtergrondgebruik in op \"Onbeperkt\".",
-      "reasonStandbyRestricted": "Android heeft Plezy in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op \"Onbeperkt\".",
+      "sheetIntro": "Android verhindert dat Harbor betrouwbaar op de achtergrond downloadt.",
+      "sheetIntroDegraded": "Je apparaat beperkt wanneer Harbor op de achtergrond kan downloaden.",
+      "reasonBackgroundRestricted": "Het achtergrondgebruik van Harbor is beperkt. Stel het batterij- of achtergrondgebruik in op \"Onbeperkt\".",
+      "reasonStandbyRestricted": "Android heeft Harbor in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op \"Onbeperkt\".",
       "reasonDownloadChannelBlocked": "Downloadmeldingen zijn uitgeschakeld, waardoor voortgang en bediening mogelijk niet beschikbaar zijn.",
       "reasonNotificationsDisabled": "Meldingen zijn uitgeschakeld. Op Android 13 of nieuwer zijn ze vereist voor langdurige downloads op de achtergrond.",
       "reasonDataSaver": "Databesparing is ingeschakeld en blokkeert downloads op de achtergrond via mobiele data. Via Wi-Fi zouden downloads nog wel moeten werken.",
-      "reasonOemUnknown": "Downloads zijn herhaaldelijk gestopt terwijl Plezy op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Plezy.",
+      "reasonOemUnknown": "Downloads zijn herhaaldelijk gestopt terwijl Harbor op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Harbor.",
       "openSettings": "Instellingen openen",
       "stillNotWorking": "Apparaatspecifieke hulp",
       "stillNotWorkingDescription": "Bekijk de stappen voor je apparaat of stuur een logbestand vanuit Instellingen › Logbestanden bekijken als het probleem aanhoudt.",
@@ -1416,11 +1416,11 @@
     "connected": "Verbonden",
     "connectedAs": "Verbonden als @${username}",
     "disconnectConfirm": "Trakt-account loskoppelen?",
-    "disconnectConfirmBody": "Plezy stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.",
+    "disconnectConfirmBody": "Harbor stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.",
     "scrobble": "Realtime scrobblen",
     "scrobbleDescription": "Stuur tijdens het afspelen gebeurtenissen voor afspelen, pauzeren en stoppen naar Trakt.",
     "watchedSync": "Kijkstatus synchroniseren",
-    "watchedSyncDescription": "Wanneer je items in Plezy als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd."
+    "watchedSyncDescription": "Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd."
   },
   "seerr": {
     "title": "Seerr",
@@ -1432,10 +1432,10 @@
     "signInWithEmby": "Inloggen met Emby",
     "signInWithLocal": "Een lokaal account gebruiken",
     "email": "E-mail",
-    "noSignInMethods": "Deze Seerr-instantie biedt geen inlogmethode die Plezy ondersteunt.",
+    "noSignInMethods": "Deze Seerr-instantie biedt geen inlogmethode die Harbor ondersteunt.",
     "instance": "Instantie",
     "disconnectConfirm": "Seerr loskoppelen?",
-    "disconnectConfirmBody": "Plezy vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.",
+    "disconnectConfirmBody": "Harbor vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.",
     "request": "Aanvragen",
     "request4k": "Aanvragen in 4K",
     "seasons": "Seizoenen",
@@ -1462,7 +1462,7 @@
     "scrobble": "Voortgang automatisch volgen",
     "scrobbleDescription": "Werk je lijst bij wanneer je een aflevering of film afrondt.",
     "disconnectConfirm": "${service} loskoppelen?",
-    "disconnectConfirmBody": "Plezy werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.",
+    "disconnectConfirmBody": "Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.",
     "connectFailed": "Verbinding maken met ${service} is mislukt. Probeer het opnieuw.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Plezy activeren op ${service}",
+      "title": "Harbor activeren op ${service}",
       "body": "Ga naar ${url} en voer deze code in:",
       "openToActivate": "Open ${service} om te activeren",
       "copyCode": "Activeringscode kopiëren",

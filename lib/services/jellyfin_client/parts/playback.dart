@@ -628,7 +628,7 @@ mixin _JellyfinPlaybackMethods on _JellyfinClientInternals {
         'AllowVideoStreamCopy': ?allowVideoStreamCopy,
         'AllowAudioStreamCopy': ?allowAudioStreamCopy,
         'DeviceProfile': <String, Object?>{
-          'Name': 'Plezy',
+          'Name': 'Harbor',
           'MaxStreamingBitrate': ?maxStreamingBitrate,
           'CodecProfiles': const <Map<String, Object?>>[],
           // Comma-separated codec lists are order-sensitive — first entry

@@ -51,7 +51,7 @@ void main() {
     String? clipboardText;
 
     PackageInfo.setMockInitialValues(
-      appName: 'Plezy',
+      appName: 'Harbor',
       packageName: 'com.plezy.test',
       version: '1.2.3',
       buildNumber: '45',

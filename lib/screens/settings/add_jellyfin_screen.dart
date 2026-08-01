@@ -440,7 +440,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
     if (authServiceFactory != null) return await authServiceFactory();
     final clientVersion = await resolveJellyfinClientVersion();
     final deviceName = await _resolveDeviceName();
-    return JellyfinConnectionAuthService(clientName: 'Plezy', clientVersion: clientVersion, deviceName: deviceName);
+    return JellyfinConnectionAuthService(clientName: 'Harbor', clientVersion: clientVersion, deviceName: deviceName);
   }
 
   /// The raw name, not a header-sanitized one: the Jellyfin `MediaBrowser`
@@ -448,7 +448,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
   Future<String> _resolveDeviceName() async {
     final identity = await DeviceIdentityService.resolve();
     final name = identity.deviceName?.trim();
-    return name == null || name.isEmpty ? 'Plezy' : name;
+    return name == null || name.isEmpty ? 'Harbor' : name;
   }
 
   @override

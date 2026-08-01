@@ -18,7 +18,7 @@ void main() {
   group('buildJellyfinAuthHeader', () {
     test('formats the SDK-style MediaBrowser header', () {
       final header = buildJellyfinAuthHeader(
-        clientName: 'Plezy',
+        clientName: 'Harbor',
         clientVersion: '1.2.3',
         deviceName: 'Living Room TV',
         deviceId: 'dev-1',
@@ -26,16 +26,16 @@ void main() {
       );
       expect(
         header,
-        'MediaBrowser Client="Plezy", Device="Living%20Room%20TV", DeviceId="dev-1", Version="1.2.3", Token="tok"',
+        'MediaBrowser Client="Harbor", Device="Living%20Room%20TV", DeviceId="dev-1", Version="1.2.3", Token="tok"',
       );
     });
 
     test('omits Token when access token is null or empty', () {
       for (final token in [null, '']) {
         final header = buildJellyfinAuthHeader(
-          clientName: 'Plezy',
+          clientName: 'Harbor',
           clientVersion: '1.2.3',
-          deviceName: 'Plezy',
+          deviceName: 'Harbor',
           deviceId: 'dev-1',
           accessToken: token,
         );
@@ -50,7 +50,7 @@ void main() {
     test('keeps a non-ASCII device name on the wire as ASCII the server decodes back', () {
       const deviceName = 'Bjørn stue-TV 客厅 📺';
       final header = buildJellyfinAuthHeader(
-        clientName: 'Plezy',
+        clientName: 'Harbor',
         clientVersion: '2.10.0',
         deviceName: deviceName,
         deviceId: 'dev-1',
@@ -65,7 +65,7 @@ void main() {
     test('keeps a device name that would corrupt the header grammar intact', () {
       const deviceName = 'My "cool", TV = 1+2 100%';
       final header = buildJellyfinAuthHeader(
-        clientName: 'Plezy',
+        clientName: 'Harbor',
         clientVersion: '1.2.3',
         deviceName: deviceName,
         deviceId: 'dev-1',
@@ -74,7 +74,7 @@ void main() {
 
       final parsed = parseAsJellyfinWould(header);
       expect(parsed['Device'], deviceName);
-      expect(parsed['Client'], 'Plezy');
+      expect(parsed['Client'], 'Harbor');
       expect(parsed['DeviceId'], 'dev-1');
       expect(parsed['Version'], '1.2.3');
       expect(parsed['Token'], 'tok');
@@ -88,12 +88,12 @@ void main() {
         deviceId: 'dev-1',
       );
 
-      expect(header, 'MediaBrowser Client="Plezy", Device="Plezy", DeviceId="dev-1", Version="1.0"');
+      expect(header, 'MediaBrowser Client="Harbor", Device="Harbor", DeviceId="dev-1", Version="1.0"');
     });
 
     test('omits an empty device ID instead of emitting a malformed field', () {
       final header = buildJellyfinAuthHeader(
-        clientName: 'Plezy',
+        clientName: 'Harbor',
         clientVersion: '1.2.3',
         deviceName: 'Living Room',
         deviceId: '',

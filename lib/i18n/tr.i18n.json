@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Jellyfin'e Bağlan",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Onay bekleniyor…",
     "quickConnectCancel": "İptal",
     "quickConnectExpired": "Hızlı Bağlantı süresi doldu. Tekrar deneyin.",
-    "localDataRecoveryRequired": "Plezy yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın."
+    "localDataRecoveryRequired": "Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın."
   },
   "common": {
     "cancel": "İptal",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Ayarlar",
-    "supportDeveloper": "Plezy'yi Destekleyin",
+    "supportDeveloper": "Harbor'yi Destekleyin",
     "supportDeveloperDescription": "Geliştirmeyi fonlamak için Liberapay üzerinden bağış yapın",
     "language": "Dil",
     "theme": "Tema",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Tercihleri bir dosyadan geri yükleyin",
     "importSettingsConfirm": "Bu işlem mevcut ayarlarınızın üzerine yazacak. Devam edilsin mi?",
     "importSettingsSuccess": "Ayarlar içe aktarıldı",
-    "importSettingsInvalidFile": "Bu dosya geçerli bir Plezy ayar dosyası değil",
+    "importSettingsInvalidFile": "Bu dosya geçerli bir Harbor ayar dosyası değil",
     "importSettingsNoUser": "Ayarları içe aktarmadan önce giriş yapın",
     "shortcutsReset": "Kısayollar varsayılana sıfırlandı",
     "about": "Hakkında",
@@ -303,7 +303,7 @@
     "forceTvMode": "TV modunu zorla",
     "forceTvModeDescription": "TV düzenini zorla. Otomatik algılamayan cihazlar içindir. Yeniden başlatma gerektirir.",
     "startInFullscreen": "Tam ekranda başlat",
-    "startInFullscreenDescription": "Plezy'yi açılışta tam ekran modunda aç",
+    "startInFullscreenDescription": "Harbor'yi açılışta tam ekran modunda aç",
     "exitFullscreenOnPlayerClose": "Oynatıcı kapandığında tam ekrandan çık",
     "exitFullscreenOnPlayerCloseDescription": "Video oynatıcıyı kapatırken otomatik olarak tam ekrandan çık",
     "autoHidePerformanceOverlay": "Performans Katmanını Otomatik Gizle",
@@ -711,7 +711,7 @@
     "confirmAction": "Eylemi Onayla"
   },
   "profiles": {
-    "addPlezyProfile": "Plezy profili ekle",
+    "addLocalProfile": "Harbor profili ekle",
     "switchingProfile": "Profil değiştiriliyor…",
     "deleteThisProfileTitle": "Bu profil silinsin mi?",
     "deleteThisProfileMessage": "${displayName} kişisi kaldırılacak. Bağlantılar etkilenmez.",
@@ -769,7 +769,7 @@
     "sessionExpiredMany": "${count} sunucu için oturum süresi doldu",
     "signInAgain": "Tekrar giriş yap",
     "editJellyfinTitle": "Jellyfin bağlantısını düzenle",
-    "editJellyfinIntro": "${serverName} için URL'ler ekleyin veya kaldırın. Plezy, en düşük gecikmeye sahip ulaşılabilir URL'yi kullanacaktır."
+    "editJellyfinIntro": "${serverName} için URL'ler ekleyin veya kaldırın. Harbor, en düşük gecikmeye sahip ulaşılabilir URL'yi kullanacaktır."
   },
   "discover": {
     "title": "Keşfet",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Detaylar",
       "sheetTitle": "Arka plan indirmeleri engellendi",
       "sheetTitleDegraded": "Arka plan indirmeleri sınırlı olabilir",
-      "sheetIntro": "Android, Plezy'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.",
-      "sheetIntroDegraded": "Cihazınız, Plezy'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.",
-      "reasonBackgroundRestricted": "Plezy'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını \"Kısıtlanmamış\" olarak ayarlayın.",
-      "reasonStandbyRestricted": "Android, Plezy'yi kısıtlı bekleme durumuna aldı. Pil kullanımını \"Kısıtlanmamış\" olarak ayarlayın.",
+      "sheetIntro": "Android, Harbor'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.",
+      "sheetIntroDegraded": "Cihazınız, Harbor'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.",
+      "reasonBackgroundRestricted": "Harbor'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını \"Kısıtlanmamış\" olarak ayarlayın.",
+      "reasonStandbyRestricted": "Android, Harbor'yi kısıtlı bekleme durumuna aldı. Pil kullanımını \"Kısıtlanmamış\" olarak ayarlayın.",
       "reasonDownloadChannelBlocked": "İndirme bildirimleri kapalı; bu nedenle ilerleme ve kontroller kullanılamayabilir.",
       "reasonNotificationsDisabled": "Bildirimler kapalı. Android 13 ve sonraki sürümlerde uzun arka plan indirmeleri için gereklidir.",
       "reasonDataSaver": "Veri Tasarrufu açık; bu, mobil veride arka plan indirmelerini engeller. Wi-Fi üzerinde indirmeler yine de çalışır.",
-      "reasonOemUnknown": "Plezy arka plandayken indirmeler tekrar tekrar durdu. Plezy'nin pil veya arka plan kullanım ayarlarını kontrol edin.",
+      "reasonOemUnknown": "Harbor arka plandayken indirmeler tekrar tekrar durdu. Harbor'nin pil veya arka plan kullanım ayarlarını kontrol edin.",
       "openSettings": "Ayarları aç",
       "stillNotWorking": "Cihaza özel yardım",
       "stillNotWorkingDescription": "Cihazınıza yönelik adımlara bakın veya sorun sürerse Ayarlar › Günlükleri Görüntüle bölümünden bir günlük gönderin.",
@@ -1416,11 +1416,11 @@
     "connected": "Bağlandı",
     "connectedAs": "@${username} olarak bağlandı",
     "disconnectConfirm": "Trakt hesabının bağlantısı kesilsin mi?",
-    "disconnectConfirmBody": "Plezy, Trakt'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
+    "disconnectConfirmBody": "Harbor, Trakt'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
     "scrobble": "Gerçek zamanlı scrobble",
     "scrobbleDescription": "Oynatma sırasında Trakt'a oynatma, duraklatma ve durdurma olayları gönderin.",
     "watchedSync": "İzleme durumunu eşitle",
-    "watchedSyncDescription": "Plezy'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir."
+    "watchedSyncDescription": "Harbor'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir."
   },
   "seerr": {
     "title": "Seerr",
@@ -1432,10 +1432,10 @@
     "signInWithEmby": "Emby ile Giriş Yap",
     "signInWithLocal": "Yerel hesap kullan",
     "email": "E-posta",
-    "noSignInMethods": "Bu Seerr örneği Plezy'nin desteklediği bir giriş yöntemi sunmuyor.",
+    "noSignInMethods": "Bu Seerr örneği Harbor'nin desteklediği bir giriş yöntemi sunmuyor.",
     "instance": "Örnek (Instance)",
     "disconnectConfirm": "Seerr bağlantısı kesilsin mi?",
-    "disconnectConfirmBody": "Plezy bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
+    "disconnectConfirmBody": "Harbor bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
     "request": "İstek Gönder",
     "request4k": "4K İstek Gönder",
     "seasons": "Sezonlar",
@@ -1462,7 +1462,7 @@
     "scrobble": "İlerlemeyi otomatik takip et",
     "scrobbleDescription": "Bir bölümü veya filmi bitirdiğinizde listenizi güncelleyin.",
     "disconnectConfirm": "${service} bağlantısı kesilsin mi?",
-    "disconnectConfirmBody": "Plezy, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
+    "disconnectConfirmBody": "Harbor, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
     "connectFailed": "${service} ile bağlantı kurulamadı. Tekrar deneyin.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Plezy'yi ${service} üzerinde etkinleştirin",
+      "title": "Harbor'yi ${service} üzerinde etkinleştirin",
       "body": "${url} adresini ziyaret edin ve bu kodu girin:",
       "openToActivate": "Etkinleştirmek için ${service} servisini açın",
       "copyCode": "Etkinleştirme kodunu kopyala",

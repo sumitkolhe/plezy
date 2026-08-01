@@ -91,7 +91,7 @@ class _Translations$app$az extends Translations$app$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$az extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Təsdiq gözlənilir…';
 	@override String get quickConnectCancel => 'Ləğv et';
 	@override String get quickConnectExpired => 'Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin.';
-	@override String get localDataRecoveryRequired => 'Plezy yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.';
+	@override String get localDataRecoveryRequired => 'Harbor yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$az extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Tənzimləmələr';
-	@override String get supportDeveloper => 'Plezy-yə dəstək ol';
+	@override String get supportDeveloper => 'Harbor-yə dəstək ol';
 	@override String get supportDeveloperDescription => 'İnkişafı maliyyələşdirmək üçün Liberapay vasitəsilə iyanə edin';
 	@override String get language => 'Dil';
 	@override String get theme => 'Mövzu';
@@ -314,7 +314,7 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Seçimləri fayldan bərpa edin';
 	@override String get importSettingsConfirm => 'Bu cari tənzimləmələrinizin üzərinə yazacaq. Davam edilsin?';
 	@override String get importSettingsSuccess => 'Tənzimləmələr idxal edildi';
-	@override String get importSettingsInvalidFile => 'Bu fayl düzgün Plezy tənzimləmələr faylı deyil';
+	@override String get importSettingsInvalidFile => 'Bu fayl düzgün Harbor tənzimləmələr faylı deyil';
 	@override String get importSettingsNoUser => 'Tənzimləmələri idxal etməzdən əvvəl daxil olun';
 	@override String get shortcutsReset => 'Qısayollar defolt vəziyyətə sıfırlandı';
 	@override String get about => 'Haqqında';
@@ -429,7 +429,7 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get forceTvMode => 'TV rejimini məcburi et';
 	@override String get forceTvModeDescription => 'TV interfeysini məcburi et. Avtomatik təyin etməyən cihazlar üçündür.';
 	@override String get startInFullscreen => 'Tam ekranda başlat';
-	@override String get startInFullscreenDescription => 'Plezy-ni açılışda tam ekran rejimində aç';
+	@override String get startInFullscreenDescription => 'Harbor-ni açılışda tam ekran rejimində aç';
 	@override String get exitFullscreenOnPlayerClose => 'Oynadıcı bağlandıqda tam ekrandan çıx';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Video oynadıcını bağlayarkən avtomatik tam ekrandan çıx';
 	@override String get autoHidePerformanceOverlay => 'Məhsuldarlıq paneli avtomatik gizlənsin';
@@ -807,7 +807,7 @@ class _Translations$profiles$az extends Translations$profiles$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Plezy profili əlavə et';
+	@override String get addLocalProfile => 'Harbor profili əlavə et';
 	@override String get switchingProfile => 'Profil dəyişdirilir…';
 	@override String get deleteThisProfileTitle => 'Bu profil silinsin?';
 	@override String deleteThisProfileMessage({required Object displayName}) => '${displayName} silinəcək. Qoşulmalar təsirlənmir.';
@@ -1422,11 +1422,11 @@ class _Translations$trakt$az extends Translations$trakt$en {
 	@override String get connected => 'Qoşuldu';
 	@override String connectedAs({required Object username}) => '@${username} olaraq qoşuldu';
 	@override String get disconnectConfirm => 'Trakt hesabı ayırılsın?';
-	@override String get disconnectConfirmBody => 'Plezy Trakt-a məlumat göndərməyi dayandıracaq.';
+	@override String get disconnectConfirmBody => 'Harbor Trakt-a məlumat göndərməyi dayandıracaq.';
 	@override String get scrobble => 'Real vaxt rejimində izləmə';
 	@override String get scrobbleDescription => 'Oynatma zamanı Trakt-a məlumat göndər.';
 	@override String get watchedSync => 'Baxış statusunu eyniləşdir';
-	@override String get watchedSyncDescription => 'Plezy-də baxıldı işarələdikdə Trakt-da da işarələnsin.';
+	@override String get watchedSyncDescription => 'Harbor-də baxıldı işarələdikdə Trakt-da da işarələnsin.';
 }
 
 // Path: seerr
@@ -1448,7 +1448,7 @@ class _Translations$seerr$az extends Translations$seerr$en {
 	@override String get noSignInMethods => 'Bu Seerr dəstəklənən daxil olma üsulu təklif etmir.';
 	@override String get instance => 'Nüsxə';
 	@override String get disconnectConfirm => 'Seerr ayırılsın?';
-	@override String get disconnectConfirmBody => 'Plezy bu Seerr ünvanını unudacaq.';
+	@override String get disconnectConfirmBody => 'Harbor bu Seerr ünvanını unudacaq.';
 	@override String get request => 'Sorğu göndər';
 	@override String get request4k => '4K sorğu göndər';
 	@override String get seasons => 'Mövsümlər';
@@ -1482,7 +1482,7 @@ class _Translations$services$az extends Translations$services$en {
 	@override String get scrobble => 'Tərəqqini avtomatik izlə';
 	@override String get scrobbleDescription => 'Siyahınızı avtomatik yeniləyin.';
 	@override String disconnectConfirm({required Object service}) => '${service} ayırılsın?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy ${service} yeniləməyi dayandıracaq.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor ${service} yeniləməyi dayandıracaq.';
 	@override String connectFailed({required Object service}) => '${service} qoşula bilmədi. Təzədən cəhd edin.';
 	@override late final _Translations$services$names$az names = _Translations$services$names$az._(_root);
 	@override late final _Translations$services$deviceCode$az deviceCode = _Translations$services$deviceCode$az._(_root);
@@ -1691,14 +1691,14 @@ class _Translations$downloads$backgroundWarning$az extends Translations$download
 	@override String get bannerAction => 'Ətraflı';
 	@override String get sheetTitle => 'Arxa fonda yükləmələr bloklanıb';
 	@override String get sheetTitleDegraded => 'Arxa fonda yükləmələr məhdudlaşdırıla bilər';
-	@override String get sheetIntro => 'Android Plezy-nin arxa fonda etibarlı şəkildə yükləməsinə mane olur.';
-	@override String get sheetIntroDegraded => 'Cihazınız Plezy-nin arxa fonda nə vaxt yükləyə biləcəyini məhdudlaşdırır.';
-	@override String get reasonBackgroundRestricted => 'Plezy-nin arxa fon istifadəsi məhdudlaşdırılıb. Batareya və ya arxa fon istifadəsini "Məhdudiyyətsiz" edin.';
-	@override String get reasonStandbyRestricted => 'Android Plezy-ni məhdud gözləmə rejiminə salıb. Batareya istifadəsini "Məhdudiyyətsiz" edin.';
+	@override String get sheetIntro => 'Android Harbor-nin arxa fonda etibarlı şəkildə yükləməsinə mane olur.';
+	@override String get sheetIntroDegraded => 'Cihazınız Harbor-nin arxa fonda nə vaxt yükləyə biləcəyini məhdudlaşdırır.';
+	@override String get reasonBackgroundRestricted => 'Harbor-nin arxa fon istifadəsi məhdudlaşdırılıb. Batareya və ya arxa fon istifadəsini "Məhdudiyyətsiz" edin.';
+	@override String get reasonStandbyRestricted => 'Android Harbor-ni məhdud gözləmə rejiminə salıb. Batareya istifadəsini "Məhdudiyyətsiz" edin.';
 	@override String get reasonDownloadChannelBlocked => 'Yükləmə bildirişləri söndürülüb, ona görə gedişat və idarəetmələr əlçatan olmaya bilər.';
 	@override String get reasonNotificationsDisabled => 'Bildirişlər söndürülüb. Android 13 və daha yeni versiyalarda uzun arxa fon yükləmələri üçün onlar tələb olunur.';
 	@override String get reasonDataSaver => 'Data Saver aktivdir və bu, mobil internetdə arxa fon yükləmələrini bloklayır. Wi-Fi ilə yükləmələr işləməlidir.';
-	@override String get reasonOemUnknown => 'Plezy arxa fonda olarkən yükləmələr dəfələrlə dayandı. Plezy-nin batareya və ya arxa fon istifadəsi tənzimləmələrini yoxlayın.';
+	@override String get reasonOemUnknown => 'Harbor arxa fonda olarkən yükləmələr dəfələrlə dayandı. Harbor-nin batareya və ya arxa fon istifadəsi tənzimləmələrini yoxlayın.';
 	@override String get openSettings => 'Tənzimləmələri aç';
 	@override String get stillNotWorking => 'Cihaza özəl kömək';
 	@override String get stillNotWorkingDescription => 'Cihazınız üçün addımlara baxın və ya problem davam edərsə Tənzimləmələr › Jurnallara bax bölməsindən jurnal göndərin.';
@@ -1734,7 +1734,7 @@ class _Translations$services$deviceCode$az extends Translations$services$deviceC
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Plezy-ni ${service} üzərində aktivləşdirin';
+	@override String title({required Object service}) => 'Harbor-ni ${service} üzərində aktivləşdirin';
 	@override String body({required Object url}) => '${url} ünvanına keçin və bu kodu daxil edin:';
 	@override String openToActivate({required Object service}) => 'Aktivləşdirmək üçün ${service} açın';
 	@override String get copyCode => 'Aktivləşdirmə kodunu kopyala';
@@ -1785,14 +1785,14 @@ class _Translations$services$libraryFilter$az extends Translations$services$libr
 extension on TranslationsAz {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Jellyfin-ə qoşul',
 			'auth.useQuickConnect' => 'Sürətli Qoşulmanı istifadə et',
 			'auth.quickConnectInstructions' => 'Jellyfin-də Sürətli Qoşulmanı açın və bu kodu daxil edin.',
 			'auth.quickConnectWaiting' => 'Təsdiq gözlənilir…',
 			'auth.quickConnectCancel' => 'Ləğv et',
 			'auth.quickConnectExpired' => 'Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin.',
-			'auth.localDataRecoveryRequired' => 'Plezy yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.',
+			'auth.localDataRecoveryRequired' => 'Harbor yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.',
 			'common.cancel' => 'Ləğv et',
 			'common.save' => 'Yadda saxla',
 			'common.close' => 'Bağla',
@@ -1848,7 +1848,7 @@ extension on TranslationsAz {
 			'update.latestVersion' => 'Siz ən son versiyadasınız',
 			'update.checkFailed' => 'Yenilənmələr yoxlanıla bilmədi',
 			'settings.title' => 'Tənzimləmələr',
-			'settings.supportDeveloper' => 'Plezy-yə dəstək ol',
+			'settings.supportDeveloper' => 'Harbor-yə dəstək ol',
 			'settings.supportDeveloperDescription' => 'İnkişafı maliyyələşdirmək üçün Liberapay vasitəsilə iyanə edin',
 			'settings.language' => 'Dil',
 			'settings.theme' => 'Mövzu',
@@ -1963,7 +1963,7 @@ extension on TranslationsAz {
 			'settings.importSettingsDescription' => 'Seçimləri fayldan bərpa edin',
 			'settings.importSettingsConfirm' => 'Bu cari tənzimləmələrinizin üzərinə yazacaq. Davam edilsin?',
 			'settings.importSettingsSuccess' => 'Tənzimləmələr idxal edildi',
-			'settings.importSettingsInvalidFile' => 'Bu fayl düzgün Plezy tənzimləmələr faylı deyil',
+			'settings.importSettingsInvalidFile' => 'Bu fayl düzgün Harbor tənzimləmələr faylı deyil',
 			'settings.importSettingsNoUser' => 'Tənzimləmələri idxal etməzdən əvvəl daxil olun',
 			'settings.shortcutsReset' => 'Qısayollar defolt vəziyyətə sıfırlandı',
 			'settings.about' => 'Haqqında',
@@ -2078,7 +2078,7 @@ extension on TranslationsAz {
 			'settings.forceTvMode' => 'TV rejimini məcburi et',
 			'settings.forceTvModeDescription' => 'TV interfeysini məcburi et. Avtomatik təyin etməyən cihazlar üçündür.',
 			'settings.startInFullscreen' => 'Tam ekranda başlat',
-			'settings.startInFullscreenDescription' => 'Plezy-ni açılışda tam ekran rejimində aç',
+			'settings.startInFullscreenDescription' => 'Harbor-ni açılışda tam ekran rejimində aç',
 			'settings.exitFullscreenOnPlayerClose' => 'Oynadıcı bağlandıqda tam ekrandan çıx',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Video oynadıcını bağlayarkən avtomatik tam ekrandan çıx',
 			'settings.autoHidePerformanceOverlay' => 'Məhsuldarlıq paneli avtomatik gizlənsin',
@@ -2359,7 +2359,7 @@ extension on TranslationsAz {
 			'mpvConfig.confirmDeletePreset' => 'Bu ön ayarı silmək istədiyinizə əminsiniz?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# şərh',
 			'dialog.confirmAction' => 'Əməliyyatı təsdiqlə',
-			'profiles.addPlezyProfile' => 'Plezy profili əlavə et',
+			'profiles.addLocalProfile' => 'Harbor profili əlavə et',
 			'profiles.switchingProfile' => 'Profil dəyişdirilir…',
 			'profiles.deleteThisProfileTitle' => 'Bu profil silinsin?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => '${displayName} silinəcək. Qoşulmalar təsirlənmir.',
@@ -2712,14 +2712,14 @@ extension on TranslationsAz {
 			'downloads.backgroundWarning.bannerAction' => 'Ətraflı',
 			'downloads.backgroundWarning.sheetTitle' => 'Arxa fonda yükləmələr bloklanıb',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Arxa fonda yükləmələr məhdudlaşdırıla bilər',
-			'downloads.backgroundWarning.sheetIntro' => 'Android Plezy-nin arxa fonda etibarlı şəkildə yükləməsinə mane olur.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Cihazınız Plezy-nin arxa fonda nə vaxt yükləyə biləcəyini məhdudlaşdırır.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Plezy-nin arxa fon istifadəsi məhdudlaşdırılıb. Batareya və ya arxa fon istifadəsini "Məhdudiyyətsiz" edin.',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android Plezy-ni məhdud gözləmə rejiminə salıb. Batareya istifadəsini "Məhdudiyyətsiz" edin.',
+			'downloads.backgroundWarning.sheetIntro' => 'Android Harbor-nin arxa fonda etibarlı şəkildə yükləməsinə mane olur.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Cihazınız Harbor-nin arxa fonda nə vaxt yükləyə biləcəyini məhdudlaşdırır.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Harbor-nin arxa fon istifadəsi məhdudlaşdırılıb. Batareya və ya arxa fon istifadəsini "Məhdudiyyətsiz" edin.',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android Harbor-ni məhdud gözləmə rejiminə salıb. Batareya istifadəsini "Məhdudiyyətsiz" edin.',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'Yükləmə bildirişləri söndürülüb, ona görə gedişat və idarəetmələr əlçatan olmaya bilər.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Bildirişlər söndürülüb. Android 13 və daha yeni versiyalarda uzun arxa fon yükləmələri üçün onlar tələb olunur.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'Data Saver aktivdir və bu, mobil internetdə arxa fon yükləmələrini bloklayır. Wi-Fi ilə yükləmələr işləməlidir.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Plezy arxa fonda olarkən yükləmələr dəfələrlə dayandı. Plezy-nin batareya və ya arxa fon istifadəsi tənzimləmələrini yoxlayın.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Harbor arxa fonda olarkən yükləmələr dəfələrlə dayandı. Harbor-nin batareya və ya arxa fon istifadəsi tənzimləmələrini yoxlayın.',
 			'downloads.backgroundWarning.openSettings' => 'Tənzimləmələri aç',
 			'downloads.backgroundWarning.stillNotWorking' => 'Cihaza özəl kömək',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Cihazınız üçün addımlara baxın və ya problem davam edərsə Tənzimləmələr › Jurnallara bax bölməsindən jurnal göndərin.',
@@ -2863,11 +2863,11 @@ extension on TranslationsAz {
 			'trakt.connected' => 'Qoşuldu',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} olaraq qoşuldu',
 			'trakt.disconnectConfirm' => 'Trakt hesabı ayırılsın?',
-			'trakt.disconnectConfirmBody' => 'Plezy Trakt-a məlumat göndərməyi dayandıracaq.',
+			'trakt.disconnectConfirmBody' => 'Harbor Trakt-a məlumat göndərməyi dayandıracaq.',
 			'trakt.scrobble' => 'Real vaxt rejimində izləmə',
 			'trakt.scrobbleDescription' => 'Oynatma zamanı Trakt-a məlumat göndər.',
 			'trakt.watchedSync' => 'Baxış statusunu eyniləşdir',
-			'trakt.watchedSyncDescription' => 'Plezy-də baxıldı işarələdikdə Trakt-da da işarələnsin.',
+			'trakt.watchedSyncDescription' => 'Harbor-də baxıldı işarələdikdə Trakt-da da işarələnsin.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr qoş',
 			'seerr.serverUrl' => 'Server URL-i',
@@ -2880,7 +2880,7 @@ extension on TranslationsAz {
 			'seerr.noSignInMethods' => 'Bu Seerr dəstəklənən daxil olma üsulu təklif etmir.',
 			'seerr.instance' => 'Nüsxə',
 			'seerr.disconnectConfirm' => 'Seerr ayırılsın?',
-			'seerr.disconnectConfirmBody' => 'Plezy bu Seerr ünvanını unudacaq.',
+			'seerr.disconnectConfirmBody' => 'Harbor bu Seerr ünvanını unudacaq.',
 			'seerr.request' => 'Sorğu göndər',
 			'seerr.request4k' => '4K sorğu göndər',
 			'seerr.seasons' => 'Mövsümlər',
@@ -2905,13 +2905,13 @@ extension on TranslationsAz {
 			'services.scrobble' => 'Tərəqqini avtomatik izlə',
 			'services.scrobbleDescription' => 'Siyahınızı avtomatik yeniləyin.',
 			'services.disconnectConfirm' => ({required Object service}) => '${service} ayırılsın?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy ${service} yeniləməyi dayandıracaq.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ${service} yeniləməyi dayandıracaq.',
 			'services.connectFailed' => ({required Object service}) => '${service} qoşula bilmədi. Təzədən cəhd edin.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Plezy-ni ${service} üzərində aktivləşdirin',
+			'services.deviceCode.title' => ({required Object service}) => 'Harbor-ni ${service} üzərində aktivləşdirin',
 			'services.deviceCode.body' => ({required Object url}) => '${url} ünvanına keçin və bu kodu daxil edin:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Aktivləşdirmək üçün ${service} açın',
 			'services.deviceCode.copyCode' => 'Aktivləşdirmə kodunu kopyala',

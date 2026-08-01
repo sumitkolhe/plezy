@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Jellyfinに接続",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "設定",
-    "supportDeveloper": "Plezyを支援",
+    "supportDeveloper": "Harborを支援",
     "supportDeveloperDescription": "Liberapayで寄付して開発を支援",
     "language": "言語",
     "theme": "テーマ",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "ファイルから設定を復元",
     "importSettingsConfirm": "現在の設定を置き換えます。続行しますか？",
     "importSettingsSuccess": "設定をインポートしました",
-    "importSettingsInvalidFile": "このファイルは有効なPlezyの設定エクスポートではありません",
+    "importSettingsInvalidFile": "このファイルは有効なHarborの設定エクスポートではありません",
     "importSettingsNoUser": "設定をインポートする前にサインインしてください",
     "shortcutsReset": "ショートカットをデフォルトにリセットしました",
     "about": "アプリについて",
@@ -303,7 +303,7 @@
     "forceTvMode": "TVモードを強制",
     "forceTvModeDescription": "TVレイアウトを強制します。自動検出しないデバイス向けです。再起動が必要です。",
     "startInFullscreen": "全画面表示で起動",
-    "startInFullscreenDescription": "起動時にPlezyを全画面モードで開きます",
+    "startInFullscreenDescription": "起動時にHarborを全画面モードで開きます",
     "exitFullscreenOnPlayerClose": "プレイヤーを閉じたときに全画面を終了",
     "exitFullscreenOnPlayerCloseDescription": "ビデオプレイヤーを閉じたときに自動的に全画面モードを終了します",
     "autoHidePerformanceOverlay": "パフォーマンスオーバーレイを自動非表示",
@@ -710,7 +710,7 @@
     "confirmAction": "操作の確認"
   },
   "profiles": {
-    "addPlezyProfile": "Plezyプロフィールを追加",
+    "addLocalProfile": "Harborプロフィールを追加",
     "switchingProfile": "プロフィールを切り替え中…",
     "deleteThisProfileTitle": "このプロフィールを削除しますか？",
     "deleteThisProfileMessage": "${displayName}を削除します。接続には影響しません。",
@@ -768,7 +768,7 @@
     "sessionExpiredMany": "${count} 台のサーバーのセッションの有効期限が切れました",
     "signInAgain": "再度サインイン",
     "editJellyfinTitle": "Jellyfin接続を編集",
-    "editJellyfinIntro": "${serverName}のURLを追加または削除します。Plezyは接続可能なURLのうち遅延が最も少ないものを使用します。"
+    "editJellyfinIntro": "${serverName}のURLを追加または削除します。Harborは接続可能なURLのうち遅延が最も少ないものを使用します。"
   },
   "discover": {
     "title": "探す",
@@ -1248,14 +1248,14 @@
       "bannerAction": "詳細",
       "sheetTitle": "バックグラウンドダウンロードはブロックされています",
       "sheetTitleDegraded": "バックグラウンドダウンロードが制限される場合があります",
-      "sheetIntro": "Androidにより、Plezyはバックグラウンドで安定してダウンロードできません。",
-      "sheetIntroDegraded": "端末により、Plezyがバックグラウンドでダウンロードできるタイミングが制限されています。",
-      "reasonBackgroundRestricted": "Plezyのバックグラウンド使用が制限されています。バッテリー使用量またはバックグラウンド使用を「制限なし」に設定してください。",
-      "reasonStandbyRestricted": "Androidにより、Plezyが制限付きのスタンバイ状態に設定されています。バッテリー使用量を「制限なし」に設定してください。",
+      "sheetIntro": "Androidにより、Harborはバックグラウンドで安定してダウンロードできません。",
+      "sheetIntroDegraded": "端末により、Harborがバックグラウンドでダウンロードできるタイミングが制限されています。",
+      "reasonBackgroundRestricted": "Harborのバックグラウンド使用が制限されています。バッテリー使用量またはバックグラウンド使用を「制限なし」に設定してください。",
+      "reasonStandbyRestricted": "Androidにより、Harborが制限付きのスタンバイ状態に設定されています。バッテリー使用量を「制限なし」に設定してください。",
       "reasonDownloadChannelBlocked": "ダウンロード通知がオフのため、進行状況や操作ボタンを利用できない場合があります。",
       "reasonNotificationsDisabled": "通知がオフです。Android 13以降では、長時間のバックグラウンドダウンロードに通知が必要です。",
       "reasonDataSaver": "データセーバーがオンのため、モバイルデータ通信ではバックグラウンドダウンロードがブロックされます。Wi-Fiでは引き続きダウンロードできるはずです。",
-      "reasonOemUnknown": "Plezyがバックグラウンドで動作中に、ダウンロードが繰り返し停止しました。Plezyのバッテリー使用量またはバックグラウンド使用の設定を確認してください。",
+      "reasonOemUnknown": "Harborがバックグラウンドで動作中に、ダウンロードが繰り返し停止しました。Harborのバッテリー使用量またはバックグラウンド使用の設定を確認してください。",
       "openSettings": "設定を開く",
       "stillNotWorking": "端末別のヘルプ",
       "stillNotWorkingDescription": "お使いの端末向けの手順を確認してください。問題が続く場合は、設定 › ログを表示 からログを送信してください。",
@@ -1410,11 +1410,11 @@
     "connected": "接続済み",
     "connectedAs": "@${username}として接続済み",
     "disconnectConfirm": "Traktアカウントとの接続を解除しますか？",
-    "disconnectConfirmBody": "PlezyはTraktへのイベント送信を停止します。いつでも再接続できます。",
+    "disconnectConfirmBody": "HarborはTraktへのイベント送信を停止します。いつでも再接続できます。",
     "scrobble": "リアルタイムのスクロブル",
     "scrobbleDescription": "再生中に再生・一時停止・停止の各イベントをTraktに送信します。",
     "watchedSync": "視聴済みステータスを同期",
-    "watchedSyncDescription": "Plezyで項目を視聴済みにすると、Traktでも視聴済みになります。"
+    "watchedSyncDescription": "Harborで項目を視聴済みにすると、Traktでも視聴済みになります。"
   },
   "seerr": {
     "title": "Seerr",
@@ -1426,10 +1426,10 @@
     "signInWithEmby": "Embyでサインイン",
     "signInWithLocal": "ローカルアカウントを使う",
     "email": "メールアドレス",
-    "noSignInMethods": "この Seerr インスタンスには Plezy が対応しているサインイン方法がありません。",
+    "noSignInMethods": "この Seerr インスタンスには Harbor が対応しているサインイン方法がありません。",
     "instance": "インスタンス",
     "disconnectConfirm": "Seerr の接続を解除しますか？",
-    "disconnectConfirmBody": "Plezy はこの Seerr インスタンスの情報を削除します。いつでも再接続できます。",
+    "disconnectConfirmBody": "Harbor はこの Seerr インスタンスの情報を削除します。いつでも再接続できます。",
     "request": "リクエスト",
     "request4k": "4K でリクエスト",
     "seasons": "シーズン",
@@ -1456,7 +1456,7 @@
     "scrobble": "進捗を自動で記録",
     "scrobbleDescription": "エピソードや映画を見終えたときにリストを更新します。",
     "disconnectConfirm": "${service} の接続を解除しますか？",
-    "disconnectConfirmBody": "Plezyは${service}の更新を停止します。いつでも再接続できます。",
+    "disconnectConfirmBody": "Harborは${service}の更新を停止します。いつでも再接続できます。",
     "connectFailed": "${service} に接続できませんでした。もう一度お試しください。",
     "names": {
       "mal": "MyAnimeList",
@@ -1465,7 +1465,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "${service} で Plezy を有効化",
+      "title": "${service} で Harbor を有効化",
       "body": "${url}にアクセスして、このコードを入力してください。",
       "openToActivate": "${service} を開いて有効化",
       "copyCode": "アクティベーションコードをコピー",

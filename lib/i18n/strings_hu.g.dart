@@ -91,7 +91,7 @@ class _Translations$app$hu extends Translations$app$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$hu extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Várakozás a jóváhagyásra…';
 	@override String get quickConnectCancel => 'Mégse';
 	@override String get quickConnectExpired => 'A Quick Connect kód lejárt. Próbáld újra.';
-	@override String get localDataRecoveryRequired => 'A Plezy nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.';
+	@override String get localDataRecoveryRequired => 'A Harbor nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$hu extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Beállítások';
-	@override String get supportDeveloper => 'Plezy támogatása';
+	@override String get supportDeveloper => 'Harbor támogatása';
 	@override String get supportDeveloperDescription => 'A fejlesztés támogatása Liberapay-en keresztül';
 	@override String get language => 'Nyelv';
 	@override String get theme => 'Téma';
@@ -311,7 +311,7 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Beállítások visszaállítása fájlból';
 	@override String get importSettingsConfirm => 'Ez felülírja a jelenlegi beállításaidat. Folytatod?';
 	@override String get importSettingsSuccess => 'Beállítások importálva';
-	@override String get importSettingsInvalidFile => 'Ez a fájl nem érvényes Plezy-beállításexport';
+	@override String get importSettingsInvalidFile => 'Ez a fájl nem érvényes Harbor-beállításexport';
 	@override String get importSettingsNoUser => 'Jelentkezz be a beállítások importálása előtt';
 	@override String get shortcutsReset => 'A billentyűparancsok visszaálltak az alapértelmezettekre';
 	@override String get about => 'Névjegy';
@@ -426,7 +426,7 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get forceTvMode => 'TV-mód kényszerítése';
 	@override String get forceTvModeDescription => 'TV-elrendezés kényszerítése az automatikus felismeréssel nem rendelkező eszközökön. Újraindítást igényel.';
 	@override String get startInFullscreen => 'Indítás teljes képernyőn';
-	@override String get startInFullscreenDescription => 'A Plezy megnyitása teljes képernyős módban indításkor';
+	@override String get startInFullscreenDescription => 'A Harbor megnyitása teljes képernyős módban indításkor';
 	@override String get exitFullscreenOnPlayerClose => 'Kilépés a teljes képernyőből a lejátszó bezárásakor';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Automatikus kilépés a teljes képernyőből a videólejátszó bezárásakor';
 	@override String get autoHidePerformanceOverlay => 'Teljesítményadatok automatikus elrejtése';
@@ -803,7 +803,7 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Plezy profil hozzáadása';
+	@override String get addLocalProfile => 'Harbor profil hozzáadása';
 	@override String get switchingProfile => 'Profilváltás…';
 	@override String get deleteThisProfileTitle => 'Törlöd ezt a profilt?';
 	@override String deleteThisProfileMessage({required Object displayName}) => '${displayName} eltávolítása. A kapcsolatokat nem érinti.';
@@ -868,7 +868,7 @@ class _Translations$connections$hu extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => '${count} szerver munkamenete lejárt';
 	@override String get signInAgain => 'Bejelentkezés újra';
 	@override String get editJellyfinTitle => 'Jellyfin kapcsolat szerkesztése';
-	@override String editJellyfinIntro({required Object serverName}) => 'URL-ek hozzáadása vagy eltávolítása ehhez: ${serverName}. A Plezy a legalacsonyabb késleltetésű, elérhető URL-t fogja használni.';
+	@override String editJellyfinIntro({required Object serverName}) => 'URL-ek hozzáadása vagy eltávolítása ehhez: ${serverName}. A Harbor a legalacsonyabb késleltetésű, elérhető URL-t fogja használni.';
 }
 
 // Path: discover
@@ -1411,11 +1411,11 @@ class _Translations$trakt$hu extends Translations$trakt$en {
 	@override String get connected => 'Csatlakoztatva';
 	@override String connectedAs({required Object username}) => '@${username} néven csatlakoztatva';
 	@override String get disconnectConfirm => 'Leválasztod a Trakt-fiókot?';
-	@override String get disconnectConfirmBody => 'A Plezy nem küld több eseményt a Traktnak. Bármikor újracsatlakozhatsz.';
+	@override String get disconnectConfirmBody => 'A Harbor nem küld több eseményt a Traktnak. Bármikor újracsatlakozhatsz.';
 	@override String get scrobble => 'Valós idejű scrobbling';
 	@override String get scrobbleDescription => 'Lejátszási, szüneteltetési és leállítási események küldése a Traktnak lejátszás közben.';
 	@override String get watchedSync => 'Megtekintési állapot szinkronizálása';
-	@override String get watchedSyncDescription => 'Ha egy elemet megtekintettként jelölsz meg a Plezyben, a Trakt is megtekintettként jelöli.';
+	@override String get watchedSyncDescription => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.';
 }
 
 // Path: seerr
@@ -1434,10 +1434,10 @@ class _Translations$seerr$hu extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Bejelentkezés Emby-vel';
 	@override String get signInWithLocal => 'Helyi fiók használata';
 	@override String get email => 'E-mail';
-	@override String get noSignInMethods => 'Ez a Seerr példány nem kínál olyan bejelentkezési módot, amit a Plezy támogat.';
+	@override String get noSignInMethods => 'Ez a Seerr példány nem kínál olyan bejelentkezési módot, amit a Harbor támogat.';
 	@override String get instance => 'Példány';
 	@override String get disconnectConfirm => 'Leválasztod a Seerr-kapcsolatot?';
-	@override String get disconnectConfirmBody => 'A Plezy elfelejti ezt a Seerr példányt. Bármikor újracsatlakozhatsz.';
+	@override String get disconnectConfirmBody => 'A Harbor elfelejti ezt a Seerr példányt. Bármikor újracsatlakozhatsz.';
 	@override String get request => 'Igénylés';
 	@override String get request4k => 'Igénylés 4K-ban';
 	@override String get seasons => 'Évadok';
@@ -1471,7 +1471,7 @@ class _Translations$services$hu extends Translations$services$en {
 	@override String get scrobble => 'Haladás automatikus követése';
 	@override String get scrobbleDescription => 'Lista frissítése, amikor befejezel egy epizódot vagy filmet.';
 	@override String disconnectConfirm({required Object service}) => 'Leválasztod a(z) ${service} szolgáltatást?';
-	@override String disconnectConfirmBody({required Object service}) => 'A Plezy nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.';
+	@override String disconnectConfirmBody({required Object service}) => 'A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.';
 	@override String connectFailed({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.';
 	@override late final _Translations$services$names$hu names = _Translations$services$names$hu._(_root);
 	@override late final _Translations$services$deviceCode$hu deviceCode = _Translations$services$deviceCode$hu._(_root);
@@ -1680,14 +1680,14 @@ class _Translations$downloads$backgroundWarning$hu extends Translations$download
 	@override String get bannerAction => 'Részletek';
 	@override String get sheetTitle => 'A háttérbeli letöltések le vannak tiltva';
 	@override String get sheetTitleDegraded => 'A háttérbeli letöltések korlátozottak lehetnek';
-	@override String get sheetIntro => 'Az Android megakadályozza, hogy a Plezy megbízhatóan töltsön le a háttérben.';
-	@override String get sheetIntroDegraded => 'Az eszközöd korlátozza, hogy a Plezy mikor tölthet le a háttérben.';
-	@override String get reasonBackgroundRestricted => 'A Plezy háttérbeli használata korlátozva van. Állítsd az akkumulátor- vagy háttérhasználatát „Korlátlan” értékre.';
-	@override String get reasonStandbyRestricted => 'Az Android korlátozott készenléti állapotba helyezte a Plezyt. Állítsd az akkumulátorhasználatát „Korlátlan” értékre.';
+	@override String get sheetIntro => 'Az Android megakadályozza, hogy a Harbor megbízhatóan töltsön le a háttérben.';
+	@override String get sheetIntroDegraded => 'Az eszközöd korlátozza, hogy a Harbor mikor tölthet le a háttérben.';
+	@override String get reasonBackgroundRestricted => 'A Harbor háttérbeli használata korlátozva van. Állítsd az akkumulátor- vagy háttérhasználatát „Korlátlan” értékre.';
+	@override String get reasonStandbyRestricted => 'Az Android korlátozott készenléti állapotba helyezte a Harbort. Állítsd az akkumulátorhasználatát „Korlátlan” értékre.';
 	@override String get reasonDownloadChannelBlocked => 'A letöltési értesítések ki vannak kapcsolva, ezért előfordulhat, hogy a folyamatjelzés és a vezérlők nem érhetők el.';
 	@override String get reasonNotificationsDisabled => 'Az értesítések ki vannak kapcsolva. Android 13 vagy újabb rendszeren szükségesek a hosszú háttérbeli letöltésekhez.';
 	@override String get reasonDataSaver => 'Az Adatforgalom-csökkentő be van kapcsolva, ezért mobiladat-kapcsolaton nem működnek a háttérbeli letöltések. Wi-Fi-n továbbra is működniük kell.';
-	@override String get reasonOemUnknown => 'A letöltések többször leálltak, miközben a Plezy a háttérben futott. Ellenőrizd a Plezy akkumulátor- vagy háttérhasználati beállításait.';
+	@override String get reasonOemUnknown => 'A letöltések többször leálltak, miközben a Harbor a háttérben futott. Ellenőrizd a Harbor akkumulátor- vagy háttérhasználati beállításait.';
 	@override String get openSettings => 'Beállítások megnyitása';
 	@override String get stillNotWorking => 'Eszközspecifikus segítség';
 	@override String get stillNotWorkingDescription => 'Nézd meg az eszközödhöz tartozó lépéseket, vagy ha a probléma továbbra is fennáll, küldj naplót a Beállítások › Naplók megtekintése menüből.';
@@ -1723,7 +1723,7 @@ class _Translations$services$deviceCode$hu extends Translations$services$deviceC
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Plezy aktiválása a következőn: ${service}';
+	@override String title({required Object service}) => 'Harbor aktiválása a következőn: ${service}';
 	@override String body({required Object url}) => 'Nyisd meg a(z) ${url} oldalt és add meg ezt a kódot:';
 	@override String openToActivate({required Object service}) => 'Nyisd meg a(z) ${service} oldalt az aktiváláshoz';
 	@override String get copyCode => 'Aktiválási kód másolása';
@@ -1774,14 +1774,14 @@ class _Translations$services$libraryFilter$hu extends Translations$services$libr
 extension on TranslationsHu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Csatlakozás Jellyfinhez',
 			'auth.useQuickConnect' => 'Quick Connect használata',
 			'auth.quickConnectInstructions' => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.',
 			'auth.quickConnectWaiting' => 'Várakozás a jóváhagyásra…',
 			'auth.quickConnectCancel' => 'Mégse',
 			'auth.quickConnectExpired' => 'A Quick Connect kód lejárt. Próbáld újra.',
-			'auth.localDataRecoveryRequired' => 'A Plezy nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.',
+			'auth.localDataRecoveryRequired' => 'A Harbor nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.',
 			'common.cancel' => 'Mégse',
 			'common.save' => 'Mentés',
 			'common.close' => 'Bezárás',
@@ -1837,7 +1837,7 @@ extension on TranslationsHu {
 			'update.latestVersion' => 'A legújabb verziót használod',
 			'update.checkFailed' => 'Nem sikerült az újabb frissítések ellenőrzése',
 			'settings.title' => 'Beállítások',
-			'settings.supportDeveloper' => 'Plezy támogatása',
+			'settings.supportDeveloper' => 'Harbor támogatása',
 			'settings.supportDeveloperDescription' => 'A fejlesztés támogatása Liberapay-en keresztül',
 			'settings.language' => 'Nyelv',
 			'settings.theme' => 'Téma',
@@ -1949,7 +1949,7 @@ extension on TranslationsHu {
 			'settings.importSettingsDescription' => 'Beállítások visszaállítása fájlból',
 			'settings.importSettingsConfirm' => 'Ez felülírja a jelenlegi beállításaidat. Folytatod?',
 			'settings.importSettingsSuccess' => 'Beállítások importálva',
-			'settings.importSettingsInvalidFile' => 'Ez a fájl nem érvényes Plezy-beállításexport',
+			'settings.importSettingsInvalidFile' => 'Ez a fájl nem érvényes Harbor-beállításexport',
 			'settings.importSettingsNoUser' => 'Jelentkezz be a beállítások importálása előtt',
 			'settings.shortcutsReset' => 'A billentyűparancsok visszaálltak az alapértelmezettekre',
 			'settings.about' => 'Névjegy',
@@ -2064,7 +2064,7 @@ extension on TranslationsHu {
 			'settings.forceTvMode' => 'TV-mód kényszerítése',
 			'settings.forceTvModeDescription' => 'TV-elrendezés kényszerítése az automatikus felismeréssel nem rendelkező eszközökön. Újraindítást igényel.',
 			'settings.startInFullscreen' => 'Indítás teljes képernyőn',
-			'settings.startInFullscreenDescription' => 'A Plezy megnyitása teljes képernyős módban indításkor',
+			'settings.startInFullscreenDescription' => 'A Harbor megnyitása teljes képernyős módban indításkor',
 			'settings.exitFullscreenOnPlayerClose' => 'Kilépés a teljes képernyőből a lejátszó bezárásakor',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Automatikus kilépés a teljes képernyőből a videólejátszó bezárásakor',
 			'settings.autoHidePerformanceOverlay' => 'Teljesítményadatok automatikus elrejtése',
@@ -2344,7 +2344,7 @@ extension on TranslationsHu {
 			'mpvConfig.confirmDeletePreset' => 'Biztosan törölni szeretnéd ezt az előbeállítást?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# megjegyzés',
 			'dialog.confirmAction' => 'Művelet megerősítése',
-			'profiles.addPlezyProfile' => 'Plezy profil hozzáadása',
+			'profiles.addLocalProfile' => 'Harbor profil hozzáadása',
 			'profiles.switchingProfile' => 'Profilváltás…',
 			'profiles.deleteThisProfileTitle' => 'Törlöd ezt a profilt?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => '${displayName} eltávolítása. A kapcsolatokat nem érinti.',
@@ -2400,7 +2400,7 @@ extension on TranslationsHu {
 			'connections.sessionExpiredMany' => ({required Object count}) => '${count} szerver munkamenete lejárt',
 			'connections.signInAgain' => 'Bejelentkezés újra',
 			'connections.editJellyfinTitle' => 'Jellyfin kapcsolat szerkesztése',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => 'URL-ek hozzáadása vagy eltávolítása ehhez: ${serverName}. A Plezy a legalacsonyabb késleltetésű, elérhető URL-t fogja használni.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => 'URL-ek hozzáadása vagy eltávolítása ehhez: ${serverName}. A Harbor a legalacsonyabb késleltetésű, elérhető URL-t fogja használni.',
 			'discover.title' => 'Felfedezés',
 			'discover.noContentAvailable' => 'Nincs elérhető tartalom',
 			'discover.addMediaToLibraries' => 'Adj hozzá médiát a könyvtáraidhoz',
@@ -2690,14 +2690,14 @@ extension on TranslationsHu {
 			'downloads.backgroundWarning.bannerAction' => 'Részletek',
 			'downloads.backgroundWarning.sheetTitle' => 'A háttérbeli letöltések le vannak tiltva',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'A háttérbeli letöltések korlátozottak lehetnek',
-			'downloads.backgroundWarning.sheetIntro' => 'Az Android megakadályozza, hogy a Plezy megbízhatóan töltsön le a háttérben.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Az eszközöd korlátozza, hogy a Plezy mikor tölthet le a háttérben.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'A Plezy háttérbeli használata korlátozva van. Állítsd az akkumulátor- vagy háttérhasználatát „Korlátlan” értékre.',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Az Android korlátozott készenléti állapotba helyezte a Plezyt. Állítsd az akkumulátorhasználatát „Korlátlan” értékre.',
+			'downloads.backgroundWarning.sheetIntro' => 'Az Android megakadályozza, hogy a Harbor megbízhatóan töltsön le a háttérben.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Az eszközöd korlátozza, hogy a Harbor mikor tölthet le a háttérben.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'A Harbor háttérbeli használata korlátozva van. Állítsd az akkumulátor- vagy háttérhasználatát „Korlátlan” értékre.',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Az Android korlátozott készenléti állapotba helyezte a Harbort. Állítsd az akkumulátorhasználatát „Korlátlan” értékre.',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'A letöltési értesítések ki vannak kapcsolva, ezért előfordulhat, hogy a folyamatjelzés és a vezérlők nem érhetők el.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Az értesítések ki vannak kapcsolva. Android 13 vagy újabb rendszeren szükségesek a hosszú háttérbeli letöltésekhez.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'Az Adatforgalom-csökkentő be van kapcsolva, ezért mobiladat-kapcsolaton nem működnek a háttérbeli letöltések. Wi-Fi-n továbbra is működniük kell.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'A letöltések többször leálltak, miközben a Plezy a háttérben futott. Ellenőrizd a Plezy akkumulátor- vagy háttérhasználati beállításait.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'A letöltések többször leálltak, miközben a Harbor a háttérben futott. Ellenőrizd a Harbor akkumulátor- vagy háttérhasználati beállításait.',
 			'downloads.backgroundWarning.openSettings' => 'Beállítások megnyitása',
 			'downloads.backgroundWarning.stillNotWorking' => 'Eszközspecifikus segítség',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Nézd meg az eszközödhöz tartozó lépéseket, vagy ha a probléma továbbra is fennáll, küldj naplót a Beállítások › Naplók megtekintése menüből.',
@@ -2841,11 +2841,11 @@ extension on TranslationsHu {
 			'trakt.connected' => 'Csatlakoztatva',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} néven csatlakoztatva',
 			'trakt.disconnectConfirm' => 'Leválasztod a Trakt-fiókot?',
-			'trakt.disconnectConfirmBody' => 'A Plezy nem küld több eseményt a Traktnak. Bármikor újracsatlakozhatsz.',
+			'trakt.disconnectConfirmBody' => 'A Harbor nem küld több eseményt a Traktnak. Bármikor újracsatlakozhatsz.',
 			'trakt.scrobble' => 'Valós idejű scrobbling',
 			'trakt.scrobbleDescription' => 'Lejátszási, szüneteltetési és leállítási események küldése a Traktnak lejátszás közben.',
 			'trakt.watchedSync' => 'Megtekintési állapot szinkronizálása',
-			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Plezyben, a Trakt is megtekintettként jelöli.',
+			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr csatlakoztatása',
 			'seerr.serverUrl' => 'Szerver URL-címe',
@@ -2855,10 +2855,10 @@ extension on TranslationsHu {
 			'seerr.signInWithEmby' => 'Bejelentkezés Emby-vel',
 			'seerr.signInWithLocal' => 'Helyi fiók használata',
 			'seerr.email' => 'E-mail',
-			'seerr.noSignInMethods' => 'Ez a Seerr példány nem kínál olyan bejelentkezési módot, amit a Plezy támogat.',
+			'seerr.noSignInMethods' => 'Ez a Seerr példány nem kínál olyan bejelentkezési módot, amit a Harbor támogat.',
 			'seerr.instance' => 'Példány',
 			'seerr.disconnectConfirm' => 'Leválasztod a Seerr-kapcsolatot?',
-			'seerr.disconnectConfirmBody' => 'A Plezy elfelejti ezt a Seerr példányt. Bármikor újracsatlakozhatsz.',
+			'seerr.disconnectConfirmBody' => 'A Harbor elfelejti ezt a Seerr példányt. Bármikor újracsatlakozhatsz.',
 			'seerr.request' => 'Igénylés',
 			'seerr.request4k' => 'Igénylés 4K-ban',
 			'seerr.seasons' => 'Évadok',
@@ -2883,13 +2883,13 @@ extension on TranslationsHu {
 			'services.scrobble' => 'Haladás automatikus követése',
 			'services.scrobbleDescription' => 'Lista frissítése, amikor befejezel egy epizódot vagy filmet.',
 			'services.disconnectConfirm' => ({required Object service}) => 'Leválasztod a(z) ${service} szolgáltatást?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'A Plezy nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.',
 			'services.connectFailed' => ({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Plezy aktiválása a következőn: ${service}',
+			'services.deviceCode.title' => ({required Object service}) => 'Harbor aktiválása a következőn: ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Nyisd meg a(z) ${url} oldalt és add meg ezt a kódot:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Nyisd meg a(z) ${service} oldalt az aktiváláshoz',
 			'services.deviceCode.copyCode' => 'Aktiválási kód másolása',

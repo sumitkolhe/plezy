@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Connect to Jellyfin",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Waiting for approval…",
     "quickConnectCancel": "Cancel",
     "quickConnectExpired": "Quick Connect expired. Try again.",
-    "localDataRecoveryRequired": "Plezy could not safely recover local sign-in and pending playback data. Please sign in again."
+    "localDataRecoveryRequired": "Harbor could not safely recover local sign-in and pending playback data. Please sign in again."
   },
   "common": {
     "cancel": "Cancel",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Settings",
-    "supportDeveloper": "Support Plezy",
+    "supportDeveloper": "Support Harbor",
     "supportDeveloperDescription": "Donate via Liberapay to fund development",
     "language": "Language",
     "theme": "Theme",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Restore preferences from a file",
     "importSettingsConfirm": "This will replace your current settings. Continue?",
     "importSettingsSuccess": "Settings imported",
-    "importSettingsInvalidFile": "This file isn't a valid Plezy settings export",
+    "importSettingsInvalidFile": "This file isn't a valid Harbor settings export",
     "importSettingsNoUser": "Sign in before importing settings",
     "shortcutsReset": "Shortcuts reset to defaults",
     "about": "About",
@@ -303,7 +303,7 @@
     "forceTvMode": "Force TV mode",
     "forceTvModeDescription": "Force TV layout. For devices that don't auto-detect. Requires restart.",
     "startInFullscreen": "Start in fullscreen",
-    "startInFullscreenDescription": "Open Plezy in fullscreen mode at launch",
+    "startInFullscreenDescription": "Open Harbor in fullscreen mode at launch",
     "exitFullscreenOnPlayerClose": "Exit fullscreen on player close",
     "exitFullscreenOnPlayerCloseDescription": "Automatically exit fullscreen when closing the video player",
     "autoHidePerformanceOverlay": "Auto-Hide Performance Overlay",
@@ -711,7 +711,7 @@
     "confirmAction": "Confirm Action"
   },
   "profiles": {
-    "addPlezyProfile": "Add Plezy profile",
+    "addLocalProfile": "Add Harbor profile",
     "switchingProfile": "Switching profile…",
     "deleteThisProfileTitle": "Delete this profile?",
     "deleteThisProfileMessage": "Remove ${displayName}. Connections aren't affected.",
@@ -769,7 +769,7 @@
     "sessionExpiredMany": "Session expired for ${count} servers",
     "signInAgain": "Sign in again",
     "editJellyfinTitle": "Edit Jellyfin connection",
-    "editJellyfinIntro": "Add or remove URLs for ${serverName}. Plezy will use the reachable URL with the lowest latency."
+    "editJellyfinIntro": "Add or remove URLs for ${serverName}. Harbor will use the reachable URL with the lowest latency."
   },
   "discover": {
     "title": "Discover",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Details",
       "sheetTitle": "Background downloads are blocked",
       "sheetTitleDegraded": "Background downloads may be limited",
-      "sheetIntro": "Android is preventing Plezy from downloading reliably in the background.",
-      "sheetIntroDegraded": "Your device is limiting when Plezy can download in the background.",
-      "reasonBackgroundRestricted": "Plezy's background usage is restricted. Set its battery or background usage to \"Unrestricted\".",
-      "reasonStandbyRestricted": "Android has put Plezy in a restricted standby state. Set its battery usage to \"Unrestricted\".",
+      "sheetIntro": "Android is preventing Harbor from downloading reliably in the background.",
+      "sheetIntroDegraded": "Your device is limiting when Harbor can download in the background.",
+      "reasonBackgroundRestricted": "Harbor's background usage is restricted. Set its battery or background usage to \"Unrestricted\".",
+      "reasonStandbyRestricted": "Android has put Harbor in a restricted standby state. Set its battery usage to \"Unrestricted\".",
       "reasonDownloadChannelBlocked": "Download notifications are turned off, so progress and controls may be unavailable.",
       "reasonNotificationsDisabled": "Notifications are turned off. On Android 13 or newer, they are required for long background downloads.",
       "reasonDataSaver": "Data Saver is on, which blocks background downloads on mobile data. Downloads should still run on Wi-Fi.",
-      "reasonOemUnknown": "Downloads repeatedly stopped while Plezy was in the background. Check Plezy's battery or background usage settings.",
+      "reasonOemUnknown": "Downloads repeatedly stopped while Harbor was in the background. Check Harbor's battery or background usage settings.",
       "openSettings": "Open settings",
       "stillNotWorking": "Device-specific help",
       "stillNotWorkingDescription": "See steps for your device, or send a log from Settings › View Logs if the issue continues.",
@@ -1416,11 +1416,11 @@
     "connected": "Connected",
     "connectedAs": "Connected as @${username}",
     "disconnectConfirm": "Disconnect Trakt account?",
-    "disconnectConfirmBody": "Plezy will stop sending events to Trakt. You can reconnect any time.",
+    "disconnectConfirmBody": "Harbor will stop sending events to Trakt. You can reconnect any time.",
     "scrobble": "Real-time scrobbling",
     "scrobbleDescription": "Send play, pause, and stop events to Trakt during playback.",
     "watchedSync": "Sync watched status",
-    "watchedSyncDescription": "When you mark items as watched in Plezy, they are also marked as watched on Trakt."
+    "watchedSyncDescription": "When you mark items as watched in Harbor, they are also marked as watched on Trakt."
   },
   "seerr": {
     "title": "Seerr",
@@ -1432,10 +1432,10 @@
     "signInWithEmby": "Sign in with Emby",
     "signInWithLocal": "Use a local account",
     "email": "Email",
-    "noSignInMethods": "This Seerr instance offers no sign-in method Plezy supports.",
+    "noSignInMethods": "This Seerr instance offers no sign-in method Harbor supports.",
     "instance": "Instance",
     "disconnectConfirm": "Disconnect Seerr?",
-    "disconnectConfirmBody": "Plezy will forget this Seerr instance. Reconnect any time.",
+    "disconnectConfirmBody": "Harbor will forget this Seerr instance. Reconnect any time.",
     "request": "Request",
     "request4k": "Request in 4K",
     "seasons": "Seasons",
@@ -1462,7 +1462,7 @@
     "scrobble": "Track progress automatically",
     "scrobbleDescription": "Update your list when you finish an episode or movie.",
     "disconnectConfirm": "Disconnect ${service}?",
-    "disconnectConfirmBody": "Plezy will stop updating ${service}. Reconnect any time.",
+    "disconnectConfirmBody": "Harbor will stop updating ${service}. Reconnect any time.",
     "connectFailed": "Couldn't connect to ${service}. Try again.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Activate Plezy on ${service}",
+      "title": "Activate Harbor on ${service}",
       "body": "Visit ${url} and enter this code:",
       "openToActivate": "Open ${service} to activate",
       "copyCode": "Copy activation code",

@@ -88,7 +88,7 @@ JellyfinClient _clientWithPlaybackInfo(
 /// has something to point at.
 void main() {
   // Pin device identity so JellyfinClient.create's MediaBrowser header falls
-  // back to Device="Plezy" instead of resolving the host machine's name.
+  // back to Device="Harbor" instead of resolving the host machine's name.
   setUpAll(() => DeviceIdentityService.debugOverride(const DeviceIdentity(platform: 'Test')));
   tearDownAll(() => DeviceIdentityService.debugOverride(null));
 
@@ -2125,8 +2125,8 @@ void main() {
       final auth = headers['Authorization'];
       expect(auth, isNotNull);
       expect(auth, startsWith('MediaBrowser '));
-      expect(auth, contains('Client="Plezy"'));
-      expect(auth, contains('Device="Plezy"'));
+      expect(auth, contains('Client="Harbor"'));
+      expect(auth, contains('Device="Harbor"'));
       expect(auth, contains('DeviceId="dev-xyz"'));
       expect(auth, contains(RegExp(r'Version="[^"]+"')));
       expect(auth, contains('Token="tok-abc"'));

@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Conectar ao Jellyfin",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Aguardando aprovação…",
     "quickConnectCancel": "Cancelar",
     "quickConnectExpired": "Quick Connect expirou. Tente novamente.",
-    "localDataRecoveryRequired": "O Plezy não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente."
+    "localDataRecoveryRequired": "O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente."
   },
   "common": {
     "cancel": "Cancelar",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Configurações",
-    "supportDeveloper": "Apoie o Plezy",
+    "supportDeveloper": "Apoie o Harbor",
     "supportDeveloperDescription": "Doe via Liberapay para financiar o desenvolvimento",
     "language": "Idioma",
     "theme": "Tema",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Restaurar preferências a partir de um arquivo",
     "importSettingsConfirm": "Isso substituirá suas configurações atuais. Continuar?",
     "importSettingsSuccess": "Configurações importadas",
-    "importSettingsInvalidFile": "Este arquivo não é uma exportação válida do Plezy",
+    "importSettingsInvalidFile": "Este arquivo não é uma exportação válida do Harbor",
     "importSettingsNoUser": "Entre na conta antes de importar as configurações",
     "shortcutsReset": "Atalhos redefinidos para o padrão",
     "about": "Sobre",
@@ -303,7 +303,7 @@
     "forceTvMode": "Forçar modo TV",
     "forceTvModeDescription": "Forçar o layout de TV em dispositivos sem detecção automática. Requer reiniciar o app.",
     "startInFullscreen": "Iniciar em tela cheia",
-    "startInFullscreenDescription": "Abrir o Plezy em modo de tela cheia ao iniciar",
+    "startInFullscreenDescription": "Abrir o Harbor em modo de tela cheia ao iniciar",
     "exitFullscreenOnPlayerClose": "Sair da tela cheia ao fechar o reprodutor",
     "exitFullscreenOnPlayerCloseDescription": "Sair automaticamente da tela cheia ao fechar o reprodutor de vídeo",
     "autoHidePerformanceOverlay": "Ocultar automaticamente o painel de desempenho",
@@ -711,7 +711,7 @@
     "confirmAction": "Confirmar Ação"
   },
   "profiles": {
-    "addPlezyProfile": "Adicionar perfil Plezy",
+    "addLocalProfile": "Adicionar perfil Harbor",
     "switchingProfile": "Mudando perfil…",
     "deleteThisProfileTitle": "Excluir este perfil?",
     "deleteThisProfileMessage": "Remover ${displayName}. As conexões não serão afetadas.",
@@ -769,7 +769,7 @@
     "sessionExpiredMany": "Sessões expiradas em ${count} servidores",
     "signInAgain": "Entrar novamente",
     "editJellyfinTitle": "Editar conexão Jellyfin",
-    "editJellyfinIntro": "Adicione ou remova URLs de ${serverName}. O Plezy usará a URL acessível com a menor latência."
+    "editJellyfinIntro": "Adicione ou remova URLs de ${serverName}. O Harbor usará a URL acessível com a menor latência."
   },
   "discover": {
     "title": "Descobrir",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Detalhes",
       "sheetTitle": "Os downloads em segundo plano estão bloqueados",
       "sheetTitleDegraded": "Os downloads em segundo plano podem ser limitados",
-      "sheetIntro": "O Android está impedindo que o Plezy faça downloads de forma confiável em segundo plano.",
-      "sheetIntroDegraded": "Seu dispositivo está limitando quando o Plezy pode fazer downloads em segundo plano.",
-      "reasonBackgroundRestricted": "O uso em segundo plano do Plezy está restrito. Defina o uso da bateria ou o uso em segundo plano como \"Sem restrições\".",
-      "reasonStandbyRestricted": "O Android colocou o Plezy em um modo de espera restrito. Defina o uso da bateria como \"Sem restrições\".",
+      "sheetIntro": "O Android está impedindo que o Harbor faça downloads de forma confiável em segundo plano.",
+      "sheetIntroDegraded": "Seu dispositivo está limitando quando o Harbor pode fazer downloads em segundo plano.",
+      "reasonBackgroundRestricted": "O uso em segundo plano do Harbor está restrito. Defina o uso da bateria ou o uso em segundo plano como \"Sem restrições\".",
+      "reasonStandbyRestricted": "O Android colocou o Harbor em um modo de espera restrito. Defina o uso da bateria como \"Sem restrições\".",
       "reasonDownloadChannelBlocked": "As notificações de download estão desativadas; por isso, o progresso e os controles podem ficar indisponíveis.",
       "reasonNotificationsDisabled": "As notificações estão desativadas. No Android 13 ou mais recente, elas são necessárias para downloads longos em segundo plano.",
       "reasonDataSaver": "A Economia de dados está ativada e bloqueia downloads em segundo plano usando dados móveis. Os downloads ainda devem funcionar no Wi-Fi.",
-      "reasonOemUnknown": "Os downloads foram interrompidos várias vezes enquanto o Plezy estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Plezy.",
+      "reasonOemUnknown": "Os downloads foram interrompidos várias vezes enquanto o Harbor estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Harbor.",
       "openSettings": "Abrir configurações",
       "stillNotWorking": "Ajuda específica para o dispositivo",
       "stillNotWorkingDescription": "Veja as instruções para seu dispositivo ou, se o problema persistir, envie um log em Configurações › Ver Logs.",
@@ -1416,11 +1416,11 @@
     "connected": "Conectado",
     "connectedAs": "Conectado como @${username}",
     "disconnectConfirm": "Desconectar a conta do Trakt?",
-    "disconnectConfirmBody": "O Plezy deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.",
+    "disconnectConfirmBody": "O Harbor deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.",
     "scrobble": "Scrobbling em tempo real",
     "scrobbleDescription": "Envia eventos de reprodução, pausa e parada ao Trakt durante a exibição.",
     "watchedSync": "Sincronizar status de assistido",
-    "watchedSyncDescription": "Ao marcar itens como assistidos no Plezy, eles também serão marcados no Trakt."
+    "watchedSyncDescription": "Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt."
   },
   "seerr": {
     "title": "Seerr",
@@ -1432,10 +1432,10 @@
     "signInWithEmby": "Entrar com Emby",
     "signInWithLocal": "Usar uma conta local",
     "email": "E-mail",
-    "noSignInMethods": "Esta instância do Seerr não oferece nenhum método de acesso compatível com o Plezy.",
+    "noSignInMethods": "Esta instância do Seerr não oferece nenhum método de acesso compatível com o Harbor.",
     "instance": "Instância",
     "disconnectConfirm": "Desconectar Seerr?",
-    "disconnectConfirmBody": "O Plezy esquecerá esta instância do Seerr. Reconecte quando quiser.",
+    "disconnectConfirmBody": "O Harbor esquecerá esta instância do Seerr. Reconecte quando quiser.",
     "request": "Solicitar",
     "request4k": "Solicitar em 4K",
     "seasons": "Temporadas",
@@ -1462,7 +1462,7 @@
     "scrobble": "Registrar progresso automaticamente",
     "scrobbleDescription": "Atualiza sua lista quando você termina um episódio ou filme.",
     "disconnectConfirm": "Desconectar ${service}?",
-    "disconnectConfirmBody": "O Plezy deixará de atualizar ${service}. Reconecte quando quiser.",
+    "disconnectConfirmBody": "O Harbor deixará de atualizar ${service}. Reconecte quando quiser.",
     "connectFailed": "Não foi possível conectar ao ${service}. Tente novamente.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Ativar o Plezy no ${service}",
+      "title": "Ativar o Harbor no ${service}",
       "body": "Acesse ${url} e insira este código:",
       "openToActivate": "Abrir ${service} para ativar",
       "copyCode": "Copiar código de ativação",

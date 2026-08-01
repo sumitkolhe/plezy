@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Подключиться к Jellyfin",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Ожидание подтверждения…",
     "quickConnectCancel": "Отмена",
     "quickConnectExpired": "Срок действия Quick Connect истёк. Попробуйте снова.",
-    "localDataRecoveryRequired": "Plezy не удалось безопасно восстановить данные локального входа и несинхронизированные данные о воспроизведении. Войдите снова."
+    "localDataRecoveryRequired": "Harbor не удалось безопасно восстановить данные локального входа и несинхронизированные данные о воспроизведении. Войдите снова."
   },
   "common": {
     "cancel": "Отмена",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Настройки",
-    "supportDeveloper": "Поддержать Plezy",
+    "supportDeveloper": "Поддержать Harbor",
     "supportDeveloperDescription": "Пожертвуйте через Liberapay на развитие",
     "language": "Язык",
     "theme": "Тема",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Восстановить настройки из файла",
     "importSettingsConfirm": "Это заменит ваши текущие настройки. Продолжить?",
     "importSettingsSuccess": "Настройки импортированы",
-    "importSettingsInvalidFile": "Этот файл не является действительным экспортом настроек Plezy",
+    "importSettingsInvalidFile": "Этот файл не является действительным экспортом настроек Harbor",
     "importSettingsNoUser": "Войдите в систему перед импортом настроек",
     "shortcutsReset": "Горячие клавиши сброшены по умолчанию",
     "about": "О приложении",
@@ -303,7 +303,7 @@
     "forceTvMode": "Принудительный режим ТВ",
     "forceTvModeDescription": "Принудительно включить ТВ-интерфейс. Для устройств без автоопределения. Требуется перезапуск.",
     "startInFullscreen": "Запускать в полноэкранном режиме",
-    "startInFullscreenDescription": "Открывать Plezy в полноэкранном режиме при запуске",
+    "startInFullscreenDescription": "Открывать Harbor в полноэкранном режиме при запуске",
     "exitFullscreenOnPlayerClose": "Выходить из полноэкранного режима при закрытии плеера",
     "exitFullscreenOnPlayerCloseDescription": "Автоматически выходить из полноэкранного режима при закрытии видеоплеера",
     "autoHidePerformanceOverlay": "Автоскрытие оверлея производительности",
@@ -713,7 +713,7 @@
     "confirmAction": "Подтвердить действие"
   },
   "profiles": {
-    "addPlezyProfile": "Добавить профиль Plezy",
+    "addLocalProfile": "Добавить профиль Harbor",
     "switchingProfile": "Переключение профиля…",
     "deleteThisProfileTitle": "Удалить этот профиль?",
     "deleteThisProfileMessage": "Удалить ${displayName}. Подключения не изменятся.",
@@ -771,7 +771,7 @@
     "sessionExpiredMany": "Сессия истекла для ${count} серверов",
     "signInAgain": "Войти снова",
     "editJellyfinTitle": "Изменить подключение Jellyfin",
-    "editJellyfinIntro": "Добавьте или удалите URL для ${serverName}. Plezy будет использовать доступный URL с минимальной задержкой."
+    "editJellyfinIntro": "Добавьте или удалите URL для ${serverName}. Harbor будет использовать доступный URL с минимальной задержкой."
   },
   "discover": {
     "title": "Обзор",
@@ -1266,14 +1266,14 @@
       "bannerAction": "Подробнее",
       "sheetTitle": "Фоновые загрузки заблокированы",
       "sheetTitleDegraded": "Фоновые загрузки могут быть ограничены",
-      "sheetIntro": "Android не позволяет Plezy стабильно выполнять загрузки в фоновом режиме.",
-      "sheetIntroDegraded": "Ваше устройство ограничивает время, когда Plezy может выполнять загрузки в фоновом режиме.",
-      "reasonBackgroundRestricted": "Фоновая работа Plezy ограничена. В настройках расхода заряда батареи или фоновой работы выберите «Без ограничений».",
-      "reasonStandbyRestricted": "Android перевёл Plezy в режим ожидания с ограничениями. Для расхода заряда батареи выберите «Без ограничений».",
+      "sheetIntro": "Android не позволяет Harbor стабильно выполнять загрузки в фоновом режиме.",
+      "sheetIntroDegraded": "Ваше устройство ограничивает время, когда Harbor может выполнять загрузки в фоновом режиме.",
+      "reasonBackgroundRestricted": "Фоновая работа Harbor ограничена. В настройках расхода заряда батареи или фоновой работы выберите «Без ограничений».",
+      "reasonStandbyRestricted": "Android перевёл Harbor в режим ожидания с ограничениями. Для расхода заряда батареи выберите «Без ограничений».",
       "reasonDownloadChannelBlocked": "Уведомления о загрузках отключены, поэтому ход загрузок и элементы управления могут быть недоступны.",
       "reasonNotificationsDisabled": "Уведомления отключены. В Android 13 и более новых версиях они необходимы для длительных фоновых загрузок.",
       "reasonDataSaver": "Экономия трафика включена, поэтому фоновые загрузки через мобильную сеть заблокированы. Загрузки по Wi-Fi должны работать.",
-      "reasonOemUnknown": "Загрузки неоднократно останавливались, пока Plezy работал в фоне. Проверьте настройки расхода заряда батареи или фоновой работы для Plezy.",
+      "reasonOemUnknown": "Загрузки неоднократно останавливались, пока Harbor работал в фоне. Проверьте настройки расхода заряда батареи или фоновой работы для Harbor.",
       "openSettings": "Открыть настройки",
       "stillNotWorking": "Помощь для вашего устройства",
       "stillNotWorkingDescription": "Посмотрите инструкции для своего устройства. Если проблема не исчезнет, отправьте лог через Настройки › Просмотр логов.",
@@ -1428,11 +1428,11 @@
     "connected": "Подключено",
     "connectedAs": "Подключено как @${username}",
     "disconnectConfirm": "Отключить аккаунт Trakt?",
-    "disconnectConfirmBody": "Plezy перестанет отправлять события в Trakt. Можно подключить снова в любое время.",
+    "disconnectConfirmBody": "Harbor перестанет отправлять события в Trakt. Можно подключить снова в любое время.",
     "scrobble": "Скробблинг в реальном времени",
     "scrobbleDescription": "Отправлять события воспроизведения, паузы и остановки в Trakt во время просмотра.",
     "watchedSync": "Синхронизация статуса просмотра",
-    "watchedSyncDescription": "Когда вы отмечаете элементы как просмотренные в Plezy, они отмечаются и в Trakt."
+    "watchedSyncDescription": "Когда вы отмечаете элементы как просмотренные в Harbor, они отмечаются и в Trakt."
   },
   "seerr": {
     "title": "Seerr",
@@ -1444,10 +1444,10 @@
     "signInWithEmby": "Войти через Emby",
     "signInWithLocal": "Использовать локальную учётную запись",
     "email": "Эл. почта",
-    "noSignInMethods": "Этот экземпляр Seerr не предлагает способа входа, поддерживаемого Plezy.",
+    "noSignInMethods": "Этот экземпляр Seerr не предлагает способа входа, поддерживаемого Harbor.",
     "instance": "Экземпляр",
     "disconnectConfirm": "Отключить Seerr?",
-    "disconnectConfirmBody": "Plezy забудет этот экземпляр Seerr. Подключитесь снова в любое время.",
+    "disconnectConfirmBody": "Harbor забудет этот экземпляр Seerr. Подключитесь снова в любое время.",
     "request": "Запросить",
     "request4k": "Запросить в 4K",
     "seasons": "Сезоны",
@@ -1474,7 +1474,7 @@
     "scrobble": "Автоматически отслеживать прогресс",
     "scrobbleDescription": "Обновляет список, когда вы заканчиваете эпизод или фильм.",
     "disconnectConfirm": "Отключить ${service}?",
-    "disconnectConfirmBody": "Plezy перестанет обновлять ${service}. Подключите снова в любое время.",
+    "disconnectConfirmBody": "Harbor перестанет обновлять ${service}. Подключите снова в любое время.",
     "connectFailed": "Не удалось подключиться к ${service}. Попробуйте ещё раз.",
     "names": {
       "mal": "MyAnimeList",
@@ -1483,7 +1483,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Активируйте Plezy в ${service}",
+      "title": "Активируйте Harbor в ${service}",
       "body": "Перейдите на ${url} и введите этот код:",
       "openToActivate": "Открыть ${service} для активации",
       "copyCode": "Скопировать код активации",

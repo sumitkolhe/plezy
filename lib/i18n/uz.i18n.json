@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Jellyfin-ga ulanish",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Tasdiq kutilmoqda…",
     "quickConnectCancel": "Bekor qilish",
     "quickConnectExpired": "Tezkor ulanish vaqti tugadi. Qaytadan urinib koʻring.",
-    "localDataRecoveryRequired": "Plezy mahalliy kirish maʼlumotlarini tiklay olmadi. Iltimos, qaytadan kiring."
+    "localDataRecoveryRequired": "Harbor mahalliy kirish maʼlumotlarini tiklay olmadi. Iltimos, qaytadan kiring."
   },
   "common": {
     "cancel": "Bekor qilish",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Sozlamalar",
-    "supportDeveloper": "Plezy-ni qoʻllab-quvvatlash",
+    "supportDeveloper": "Harbor-ni qoʻllab-quvvatlash",
     "supportDeveloperDescription": "Dasturchini Liberapay orqali qoʻllab-quvvatlang",
     "language": "Til",
     "theme": "Mavzu",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Parametrlarni fayldan tiklang",
     "importSettingsConfirm": "Bu joriy sozlamalaringiz ustidan yoziladi. Davom etasizmi?",
     "importSettingsSuccess": "Sozlamalar import qilindi",
-    "importSettingsInvalidFile": "Ushbu fayl toʻgʻri Plezy sozlamalar fayli emas",
+    "importSettingsInvalidFile": "Ushbu fayl toʻgʻri Harbor sozlamalar fayli emas",
     "importSettingsNoUser": "Sozlamalarni import qilishdan oldin tizimga kiring",
     "shortcutsReset": "Tugmalar birlashmasi standart holatga qaytarildi",
     "about": "Dastur haqida",
@@ -303,7 +303,7 @@
     "forceTvMode": "TV rejimini majburlash",
     "forceTvModeDescription": "TV interfeysini majburiy yoqish.",
     "startInFullscreen": "Toʻliq ekranda boshlash",
-    "startInFullscreenDescription": "Plezy-ni ochganda toʻliq ekran rejimida ochish",
+    "startInFullscreenDescription": "Harbor-ni ochganda toʻliq ekran rejimida ochish",
     "exitFullscreenOnPlayerClose": "Pleyer yopilganda toʻliq ekrandan chiqish",
     "exitFullscreenOnPlayerCloseDescription": "Video pleyerni yopganda avtomatik ravishda toʻliq ekrandan chiqish",
     "autoHidePerformanceOverlay": "Unumdorlik panelini avto-yashirish",
@@ -711,7 +711,7 @@
     "confirmAction": "Harakatni tasdiqlash"
   },
   "profiles": {
-    "addPlezyProfile": "Plezy profilini qoʻshish",
+    "addLocalProfile": "Harbor profilini qoʻshish",
     "switchingProfile": "Profil almashtirilmoqda…",
     "deleteThisProfileTitle": "Ushbu profil oʻchirilsinmi?",
     "deleteThisProfileMessage": "${displayName} oʻchiriladi. Ulanishlarga taʼsir qilmaydi.",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Batafsil",
       "sheetTitle": "Fondagi yuklamalar bloklangan",
       "sheetTitleDegraded": "Fondagi yuklamalar cheklangan boʻlishi mumkin",
-      "sheetIntro": "Android Plezy-ning fonda ishonchli yuklab olishiga toʻsqinlik qilmoqda.",
-      "sheetIntroDegraded": "Qurilmangiz Plezy fonda qachon yuklay olishini cheklamoqda.",
-      "reasonBackgroundRestricted": "Plezy-ning fondagi faoliyati cheklangan. Batareya yoki fondagi foydalanishni \"Cheklanmagan\" qilib belgilang.",
-      "reasonStandbyRestricted": "Android Plezy-ni cheklangan kutish holatiga oʻtkazdi. Batareya foydalanishini \"Cheklanmagan\" qilib belgilang.",
+      "sheetIntro": "Android Harbor-ning fonda ishonchli yuklab olishiga toʻsqinlik qilmoqda.",
+      "sheetIntroDegraded": "Qurilmangiz Harbor fonda qachon yuklay olishini cheklamoqda.",
+      "reasonBackgroundRestricted": "Harbor-ning fondagi faoliyati cheklangan. Batareya yoki fondagi foydalanishni \"Cheklanmagan\" qilib belgilang.",
+      "reasonStandbyRestricted": "Android Harbor-ni cheklangan kutish holatiga oʻtkazdi. Batareya foydalanishini \"Cheklanmagan\" qilib belgilang.",
       "reasonDownloadChannelBlocked": "Yuklash bildirishnomalari oʻchirilgan, shuning uchun jarayon koʻrsatkichi va boshqaruv elementlari mavjud boʻlmasligi mumkin.",
       "reasonNotificationsDisabled": "Bildirishnomalar oʻchirilgan. Android 13 va undan yangi versiyalarda uzoq davom etadigan fondagi yuklamalar uchun ular talab qilinadi.",
       "reasonDataSaver": "Trafik tejash yoqilgan, bu mobil internetda fondagi yuklamalarni bloklaydi. Wi-Fi orqali yuklamalar ishlashi kerak.",
-      "reasonOemUnknown": "Plezy fonda boʻlganida yuklamalar bir necha marta toʻxtadi. Plezy-ning batareya yoki fondagi foydalanish sozlamalarini tekshiring.",
+      "reasonOemUnknown": "Harbor fonda boʻlganida yuklamalar bir necha marta toʻxtadi. Harbor-ning batareya yoki fondagi foydalanish sozlamalarini tekshiring.",
       "openSettings": "Sozlamalarni ochish",
       "stillNotWorking": "Qurilmaga oid yordam",
       "stillNotWorkingDescription": "Qurilmangiz uchun qadamlarni koʻring yoki muammo davom etsa Sozlamalar › Jurnallarni koʻrish boʻlimidan jurnal yuboring.",
@@ -1416,11 +1416,11 @@
     "connected": "Ulandi",
     "connectedAs": "@${username} sifatida ulandi",
     "disconnectConfirm": "Trakt uzilsinmi?",
-    "disconnectConfirmBody": "Plezy Trakt-ga maʼlumot yuborishni toʻxtatadi.",
+    "disconnectConfirmBody": "Harbor Trakt-ga maʼlumot yuborishni toʻxtatadi.",
     "scrobble": "Real vaqt rejimida kuzatish",
     "scrobbleDescription": "Ijro paytida Trakt-ga maʼlumot yuborish.",
     "watchedSync": "Koʻrish holatini sinxronlash",
-    "watchedSyncDescription": "Plezy-da belgilanganda Trakt-da ham belgilanadi."
+    "watchedSyncDescription": "Harbor-da belgilanganda Trakt-da ham belgilanadi."
   },
   "seerr": {
     "title": "Seerr",
@@ -1435,7 +1435,7 @@
     "noSignInMethods": "Ushbu Seerr qoʻllab-quvvatlanadigan kirish usulini taklif qilmaydi.",
     "instance": "Instansiya",
     "disconnectConfirm": "Seerr uzilsinmi?",
-    "disconnectConfirmBody": "Plezy ushbu Seerr manzilini oʻchiradi.",
+    "disconnectConfirmBody": "Harbor ushbu Seerr manzilini oʻchiradi.",
     "request": "Soʻrov yuborish",
     "request4k": "4K soʻrov yuborish",
     "seasons": "Mavsumlar",
@@ -1462,7 +1462,7 @@
     "scrobble": "Jarayonni avtomatik kuzatish",
     "scrobbleDescription": "Roʻyxatingizni avtomatik yangilang.",
     "disconnectConfirm": "${service} uzilsinmi?",
-    "disconnectConfirmBody": "Plezy ${service} yangilanishini toʻxtatadi.",
+    "disconnectConfirmBody": "Harbor ${service} yangilanishini toʻxtatadi.",
     "connectFailed": "${service} ulana olmadi. Qaytadan urinib koʻring.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Plezy-ni ${service} xizmatida faollashtiring",
+      "title": "Harbor-ni ${service} xizmatida faollashtiring",
       "body": "${url} manziliga oʻting va ushbu kodni kiriting:",
       "openToActivate": "Faollashtirish uchun ${service} xizmatini oching",
       "copyCode": "Faollashtirish kodini nusxalash",

@@ -29,7 +29,7 @@ String buildJellyfinAuthHeader({
   String field(String name, String value) => '$name="${Uri.encodeComponent(value)}"';
 
   final client = _meaningful(clientName);
-  final effectiveClient = client.isEmpty ? 'Plezy' : client;
+  final effectiveClient = client.isEmpty ? 'Harbor' : client;
   final device = _meaningful(deviceName);
   final version = _meaningful(clientVersion);
   final id = _meaningful(deviceId);

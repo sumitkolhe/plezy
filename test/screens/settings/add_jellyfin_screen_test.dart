@@ -39,7 +39,7 @@ Widget _testApp(Widget home) => MaterialApp(theme: monoTheme(dark: true), home: 
 
 JellyfinConnectionAuthService _jellyfinAuthService({bool quickConnectEnabled = false, Duration? initiateDelay}) {
   return JellyfinConnectionAuthService(
-    clientName: 'Plezy',
+    clientName: 'Harbor',
     clientVersion: 'test',
     deviceName: 'TestDevice',
     testHttpClientFactory: () => MockClient((request) async {
@@ -74,7 +74,7 @@ JellyfinConnectionAuthService _jellyfinAuthService({bool quickConnectEnabled = f
 
 JellyfinConnectionAuthService _jellyfinAuthServiceForBareHost() {
   return JellyfinConnectionAuthService(
-    clientName: 'Plezy',
+    clientName: 'Harbor',
     clientVersion: 'test',
     deviceName: 'TestDevice',
     testHttpClientFactory: () => MockClient((request) async {
@@ -107,7 +107,7 @@ JellyfinConnectionAuthService _successfulAuthService({required bool quickConnect
   };
 
   return JellyfinConnectionAuthService(
-    clientName: 'Plezy',
+    clientName: 'Harbor',
     clientVersion: 'test',
     deviceName: 'Opaque Device',
     testHttpClientFactory: () => MockClient((request) async {
@@ -287,7 +287,7 @@ Future<List<DiscoveredJellyfinServer>> _noLocalServers() async => const [];
 void main() {
   group('resolveJellyfinClientVersion', () {
     PackageInfo packageInfo(String version) =>
-        PackageInfo(appName: 'Plezy', packageName: 'com.example.plezy', version: version, buildNumber: '1');
+        PackageInfo(appName: 'Harbor', packageName: 'com.example.plezy', version: version, buildNumber: '1');
 
     test('uses a non-empty package version', () async {
       final version = await resolveJellyfinClientVersion(packageInfoLoader: () async => packageInfo(' 2.9.1 '));

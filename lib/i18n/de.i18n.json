@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Mit Jellyfin verbinden",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Warte auf Bestätigung…",
     "quickConnectCancel": "Abbrechen",
     "quickConnectExpired": "Quick Connect ist abgelaufen. Versuche es erneut.",
-    "localDataRecoveryRequired": "Plezy konnte lokale Anmeldedaten und ausstehende Wiedergabedaten nicht sicher wiederherstellen. Bitte melde dich erneut an."
+    "localDataRecoveryRequired": "Harbor konnte lokale Anmeldedaten und ausstehende Wiedergabedaten nicht sicher wiederherstellen. Bitte melde dich erneut an."
   },
   "common": {
     "cancel": "Abbrechen",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Einstellungen",
-    "supportDeveloper": "Plezy unterstützen",
+    "supportDeveloper": "Harbor unterstützen",
     "supportDeveloperDescription": "Per Liberapay spenden, um die Entwicklung zu fördern",
     "language": "Sprache",
     "theme": "Design",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Einstellungen aus einer Datei wiederherstellen",
     "importSettingsConfirm": "Dies ersetzt deine aktuellen Einstellungen. Fortfahren?",
     "importSettingsSuccess": "Einstellungen importiert",
-    "importSettingsInvalidFile": "Diese Datei ist kein gültiger Plezy-Einstellungsexport",
+    "importSettingsInvalidFile": "Diese Datei ist kein gültiger Harbor-Einstellungsexport",
     "importSettingsNoUser": "Vor dem Import bitte anmelden",
     "shortcutsReset": "Tastenkürzel auf Standard zurückgesetzt",
     "about": "Über",
@@ -303,7 +303,7 @@
     "forceTvMode": "TV-Modus erzwingen",
     "forceTvModeDescription": "TV-Layout erzwingen. Für Geräte ohne automatische Erkennung. Neustart erforderlich.",
     "startInFullscreen": "Im Vollbildmodus starten",
-    "startInFullscreenDescription": "Plezy beim Start im Vollbildmodus öffnen",
+    "startInFullscreenDescription": "Harbor beim Start im Vollbildmodus öffnen",
     "exitFullscreenOnPlayerClose": "Vollbild beim Schließen des Players beenden",
     "exitFullscreenOnPlayerCloseDescription": "Vollbildmodus automatisch beenden, wenn der Videoplayer geschlossen wird",
     "autoHidePerformanceOverlay": "Leistungsoverlay automatisch ausblenden",
@@ -711,7 +711,7 @@
     "confirmAction": "Aktion bestätigen"
   },
   "profiles": {
-    "addPlezyProfile": "Plezy-Profil hinzufügen",
+    "addLocalProfile": "Harbor-Profil hinzufügen",
     "switchingProfile": "Profil wird gewechselt…",
     "deleteThisProfileTitle": "Dieses Profil löschen?",
     "deleteThisProfileMessage": "${displayName} entfernen. Verbindungen bleiben unberührt.",
@@ -769,7 +769,7 @@
     "sessionExpiredMany": "Sitzungen für ${count} Server abgelaufen",
     "signInAgain": "Erneut anmelden",
     "editJellyfinTitle": "Jellyfin-Verbindung bearbeiten",
-    "editJellyfinIntro": "Füge URLs für ${serverName} hinzu oder entferne sie. Plezy verwendet die erreichbare URL mit der geringsten Latenz."
+    "editJellyfinIntro": "Füge URLs für ${serverName} hinzu oder entferne sie. Harbor verwendet die erreichbare URL mit der geringsten Latenz."
   },
   "discover": {
     "title": "Entdecken",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Details",
       "sheetTitle": "Downloads im Hintergrund sind blockiert",
       "sheetTitleDegraded": "Downloads im Hintergrund sind möglicherweise eingeschränkt",
-      "sheetIntro": "Android verhindert, dass Plezy zuverlässig im Hintergrund herunterlädt.",
-      "sheetIntroDegraded": "Dein Gerät schränkt ein, wann Plezy im Hintergrund herunterladen kann.",
-      "reasonBackgroundRestricted": "Die Hintergrundnutzung von Plezy ist eingeschränkt. Stelle die Akku- oder Hintergrundnutzung auf „Uneingeschränkt“.",
-      "reasonStandbyRestricted": "Android hat Plezy in einen eingeschränkten Standby-Modus versetzt. Stelle die Akkunutzung auf „Uneingeschränkt“.",
+      "sheetIntro": "Android verhindert, dass Harbor zuverlässig im Hintergrund herunterlädt.",
+      "sheetIntroDegraded": "Dein Gerät schränkt ein, wann Harbor im Hintergrund herunterladen kann.",
+      "reasonBackgroundRestricted": "Die Hintergrundnutzung von Harbor ist eingeschränkt. Stelle die Akku- oder Hintergrundnutzung auf „Uneingeschränkt“.",
+      "reasonStandbyRestricted": "Android hat Harbor in einen eingeschränkten Standby-Modus versetzt. Stelle die Akkunutzung auf „Uneingeschränkt“.",
       "reasonDownloadChannelBlocked": "Download-Benachrichtigungen sind deaktiviert. Fortschritt und Steuerelemente sind daher möglicherweise nicht verfügbar.",
       "reasonNotificationsDisabled": "Benachrichtigungen sind deaktiviert. Ab Android 13 sind sie für lange Downloads im Hintergrund erforderlich.",
       "reasonDataSaver": "Der Datensparmodus ist aktiviert und blockiert Downloads im Hintergrund über mobile Daten. Über Wi-Fi sollten Downloads weiterhin funktionieren.",
-      "reasonOemUnknown": "Downloads wurden wiederholt gestoppt, während Plezy im Hintergrund war. Prüfe die Einstellungen zur Akku- oder Hintergrundnutzung von Plezy.",
+      "reasonOemUnknown": "Downloads wurden wiederholt gestoppt, während Harbor im Hintergrund war. Prüfe die Einstellungen zur Akku- oder Hintergrundnutzung von Harbor.",
       "openSettings": "Einstellungen öffnen",
       "stillNotWorking": "Gerätespezifische Hilfe",
       "stillNotWorkingDescription": "Sieh dir die Schritte für dein Gerät an oder sende bei anhaltendem Problem ein Protokoll über Einstellungen › Protokolle anzeigen.",
@@ -1416,11 +1416,11 @@
     "connected": "Verbunden",
     "connectedAs": "Verbunden als @${username}",
     "disconnectConfirm": "Trakt-Konto trennen?",
-    "disconnectConfirmBody": "Plezy sendet keine Ereignisse mehr an Trakt. Du kannst jederzeit erneut verbinden.",
+    "disconnectConfirmBody": "Harbor sendet keine Ereignisse mehr an Trakt. Du kannst jederzeit erneut verbinden.",
     "scrobble": "Echtzeit-Scrobbling",
     "scrobbleDescription": "Sende Play-, Pause- und Stopp-Ereignisse während der Wiedergabe an Trakt.",
     "watchedSync": "Gesehen-Status synchronisieren",
-    "watchedSyncDescription": "Wenn du Inhalte in Plezy als gesehen markierst, werden sie auch auf Trakt markiert."
+    "watchedSyncDescription": "Wenn du Inhalte in Harbor als gesehen markierst, werden sie auch auf Trakt markiert."
   },
   "seerr": {
     "title": "Seerr",
@@ -1432,10 +1432,10 @@
     "signInWithEmby": "Mit Emby anmelden",
     "signInWithLocal": "Lokales Konto verwenden",
     "email": "E-Mail",
-    "noSignInMethods": "Diese Seerr-Instanz bietet keine von Plezy unterstützte Anmeldemethode.",
+    "noSignInMethods": "Diese Seerr-Instanz bietet keine von Harbor unterstützte Anmeldemethode.",
     "instance": "Instanz",
     "disconnectConfirm": "Seerr trennen?",
-    "disconnectConfirmBody": "Plezy vergisst diese Seerr-Instanz. Jederzeit erneut verbinden.",
+    "disconnectConfirmBody": "Harbor vergisst diese Seerr-Instanz. Jederzeit erneut verbinden.",
     "request": "Anfragen",
     "request4k": "In 4K anfragen",
     "seasons": "Staffeln",
@@ -1462,7 +1462,7 @@
     "scrobble": "Fortschritt automatisch verfolgen",
     "scrobbleDescription": "Aktualisiere deine Liste, wenn du eine Folge oder einen Film beendest.",
     "disconnectConfirm": "${service} trennen?",
-    "disconnectConfirmBody": "Plezy aktualisiert ${service} nicht mehr. Jederzeit erneut verbinden.",
+    "disconnectConfirmBody": "Harbor aktualisiert ${service} nicht mehr. Jederzeit erneut verbinden.",
     "connectFailed": "Verbindung zu ${service} fehlgeschlagen. Versuche es erneut.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Plezy auf ${service} aktivieren",
+      "title": "Harbor auf ${service} aktivieren",
       "body": "Gehe zu ${url} und gib diesen Code ein:",
       "openToActivate": "${service} zum Aktivieren öffnen",
       "copyCode": "Aktivierungscode kopieren",

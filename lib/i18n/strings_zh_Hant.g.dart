@@ -92,7 +92,7 @@ class _Translations$app$zh_Hant extends Translations$app$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -108,7 +108,7 @@ class _Translations$auth$zh_Hant extends Translations$auth$zh {
 	@override String get quickConnectWaiting => '等待核准…';
 	@override String get quickConnectCancel => '取消';
 	@override String get quickConnectExpired => '快速連線代碼已過期。請重試。';
-	@override String get localDataRecoveryRequired => 'Plezy 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。';
+	@override String get localDataRecoveryRequired => 'Harbor 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。';
 }
 
 // Path: common
@@ -200,7 +200,7 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 
 	// Translations
 	@override String get title => '設定';
-	@override String get supportDeveloper => '贊助 Plezy';
+	@override String get supportDeveloper => '贊助 Harbor';
 	@override String get supportDeveloperDescription => '透過 Liberapay 捐款支持開發者';
 	@override String get language => '語言';
 	@override String get theme => '主題';
@@ -312,7 +312,7 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get importSettingsDescription => '從檔案還原偏好設定';
 	@override String get importSettingsConfirm => '這將覆蓋您目前的設定。要繼續嗎？';
 	@override String get importSettingsSuccess => '設定已匯入';
-	@override String get importSettingsInvalidFile => '此檔案不是有效的 Plezy 設定匯出檔';
+	@override String get importSettingsInvalidFile => '此檔案不是有效的 Harbor 設定匯出檔';
 	@override String get importSettingsNoUser => '匯入設定前請先登入';
 	@override String get shortcutsReset => '快速鍵已重設為預設值';
 	@override String get about => '關於';
@@ -427,7 +427,7 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get forceTvMode => '強制 TV 模式';
 	@override String get forceTvModeDescription => '強制使用 TV 介面版面。適用於無法自動辨識 TV 的裝置。需要重新啟動。';
 	@override String get startInFullscreen => '以全螢幕模式啟動';
-	@override String get startInFullscreenDescription => '啟動時直接以全螢幕開啟 Plezy';
+	@override String get startInFullscreenDescription => '啟動時直接以全螢幕開啟 Harbor';
 	@override String get exitFullscreenOnPlayerClose => '關閉播放器時退出全螢幕';
 	@override String get exitFullscreenOnPlayerCloseDescription => '關閉影片播放器時自動退出全螢幕模式';
 	@override String get autoHidePerformanceOverlay => '自動隱藏效能疊加層';
@@ -803,7 +803,7 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => '新增 Plezy 使用者設定檔';
+	@override String get addLocalProfile => '新增 Harbor 使用者設定檔';
 	@override String get switchingProfile => '正在切換使用者設定檔…';
 	@override String get deleteThisProfileTitle => '刪除此使用者設定檔？';
 	@override String deleteThisProfileMessage({required Object displayName}) => '將移除 ${displayName}。連線資訊將不受影響。';
@@ -868,7 +868,7 @@ class _Translations$connections$zh_Hant extends Translations$connections$zh {
 	@override String sessionExpiredMany({required Object count}) => '${count} 個伺服器的工作階段已過期';
 	@override String get signInAgain => '重新登入';
 	@override String get editJellyfinTitle => '編輯 Jellyfin 連線';
-	@override String editJellyfinIntro({required Object serverName}) => '新增或移除 ${serverName} 的 URL。Plezy 會自動選擇可連線且延遲最低的網址。';
+	@override String editJellyfinIntro({required Object serverName}) => '新增或移除 ${serverName} 的 URL。Harbor 會自動選擇可連線且延遲最低的網址。';
 }
 
 // Path: discover
@@ -1409,11 +1409,11 @@ class _Translations$trakt$zh_Hant extends Translations$trakt$zh {
 	@override String get connected => '已連線';
 	@override String connectedAs({required Object username}) => '已以 @${username} 身分連線';
 	@override String get disconnectConfirm => '中斷與 Trakt 帳戶的連結？';
-	@override String get disconnectConfirmBody => 'Plezy 將停止向 Trakt 傳送事件。您可以隨時重新連線。';
+	@override String get disconnectConfirmBody => 'Harbor 將停止向 Trakt 傳送事件。您可以隨時重新連線。';
 	@override String get scrobble => '即時同步記錄（Scrobble）';
 	@override String get scrobbleDescription => '在播放時向 Trakt 傳送播放、暫停和停止等狀態。';
 	@override String get watchedSync => '同步已觀看狀態';
-	@override String get watchedSyncDescription => '在 Plezy 中將項目標記為已觀看時，也會在 Trakt 上標記為已觀看。';
+	@override String get watchedSyncDescription => '在 Harbor 中將項目標記為已觀看時，也會在 Trakt 上標記為已觀看。';
 }
 
 // Path: seerr
@@ -1432,10 +1432,10 @@ class _Translations$seerr$zh_Hant extends Translations$seerr$zh {
 	@override String get signInWithEmby => '使用 Emby 登入';
 	@override String get signInWithLocal => '使用本地帳戶';
 	@override String get email => '電子郵件';
-	@override String get noSignInMethods => '此 Seerr 執行個體未提供 Plezy 支援的登入方式。';
+	@override String get noSignInMethods => '此 Seerr 執行個體未提供 Harbor 支援的登入方式。';
 	@override String get instance => '執行個體';
 	@override String get disconnectConfirm => '中斷與 Seerr 的連線？';
-	@override String get disconnectConfirmBody => 'Plezy 將忘記此 Seerr 連線資訊。您可以隨時重新連線。';
+	@override String get disconnectConfirmBody => 'Harbor 將忘記此 Seerr 連線資訊。您可以隨時重新連線。';
 	@override String get request => '請求';
 	@override String get request4k => '請求 4K 版本';
 	@override String get seasons => '季';
@@ -1469,7 +1469,7 @@ class _Translations$services$zh_Hant extends Translations$services$zh {
 	@override String get scrobble => '自動同步播放進度';
 	@override String get scrobbleDescription => '觀賞完一集或一部電影後自動更新您的外部列表。';
 	@override String disconnectConfirm({required Object service}) => '中斷與 ${service} 的連線？';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy 將停止更新 ${service}。您可以隨時重新連線。';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor 將停止更新 ${service}。您可以隨時重新連線。';
 	@override String connectFailed({required Object service}) => '無法連線至 ${service}。請重試。';
 	@override late final _Translations$services$names$zh_Hant names = _Translations$services$names$zh_Hant._(_root);
 	@override late final _Translations$services$deviceCode$zh_Hant deviceCode = _Translations$services$deviceCode$zh_Hant._(_root);
@@ -1678,14 +1678,14 @@ class _Translations$downloads$backgroundWarning$zh_Hant extends Translations$dow
 	@override String get bannerAction => '詳細資料';
 	@override String get sheetTitle => '背景下載遭到封鎖';
 	@override String get sheetTitleDegraded => '背景下載可能受限';
-	@override String get sheetIntro => 'Android 正在阻止 Plezy 在背景穩定下載。';
-	@override String get sheetIntroDegraded => '你的裝置限制了 Plezy 可在背景下載的時機。';
-	@override String get reasonBackgroundRestricted => 'Plezy 的背景使用受限。請將其電池用量或背景使用設定為「無限制」。';
-	@override String get reasonStandbyRestricted => 'Android 已將 Plezy 設為受限待命狀態。請將電池用量設為「無限制」。';
+	@override String get sheetIntro => 'Android 正在阻止 Harbor 在背景穩定下載。';
+	@override String get sheetIntroDegraded => '你的裝置限制了 Harbor 可在背景下載的時機。';
+	@override String get reasonBackgroundRestricted => 'Harbor 的背景使用受限。請將其電池用量或背景使用設定為「無限制」。';
+	@override String get reasonStandbyRestricted => 'Android 已將 Harbor 設為受限待命狀態。請將電池用量設為「無限制」。';
 	@override String get reasonDownloadChannelBlocked => '下載通知已關閉，因此可能無法查看進度或使用控制項。';
 	@override String get reasonNotificationsDisabled => '通知已關閉。在 Android 13 或更新版本中，長時間背景下載需要啟用通知。';
 	@override String get reasonDataSaver => '已開啟數據節省模式，因此系統會封鎖使用行動數據的背景下載。透過 Wi-Fi 下載應仍可正常執行。';
-	@override String get reasonOemUnknown => 'Plezy 在背景執行時，下載屢次停止。請檢查 Plezy 的電池用量或背景使用設定。';
+	@override String get reasonOemUnknown => 'Harbor 在背景執行時，下載屢次停止。請檢查 Harbor 的電池用量或背景使用設定。';
 	@override String get openSettings => '開啟設定';
 	@override String get stillNotWorking => '裝置專屬說明';
 	@override String get stillNotWorkingDescription => '查看適用於你裝置的步驟；若問題持續發生，也可從設定 › 查看日誌傳送日誌。';
@@ -1721,7 +1721,7 @@ class _Translations$services$deviceCode$zh_Hant extends Translations$services$de
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => '在 ${service} 啟用 Plezy';
+	@override String title({required Object service}) => '在 ${service} 啟用 Harbor';
 	@override String body({required Object url}) => '請前往 ${url} 並輸入此代碼：';
 	@override String openToActivate({required Object service}) => '開啟 ${service} 進行啟用';
 	@override String get copyCode => '複製啟用代碼';
@@ -1772,14 +1772,14 @@ class _Translations$services$libraryFilter$zh_Hant extends Translations$services
 extension on TranslationsZhHant {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => '連線至 Jellyfin',
 			'auth.useQuickConnect' => '使用快速連線（Quick Connect）',
 			'auth.quickConnectInstructions' => '在 Jellyfin 中開啟快速連線並輸入此代碼。',
 			'auth.quickConnectWaiting' => '等待核准…',
 			'auth.quickConnectCancel' => '取消',
 			'auth.quickConnectExpired' => '快速連線代碼已過期。請重試。',
-			'auth.localDataRecoveryRequired' => 'Plezy 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。',
+			'auth.localDataRecoveryRequired' => 'Harbor 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。',
 			'common.cancel' => '取消',
 			'common.save' => '儲存',
 			'common.close' => '關閉',
@@ -1835,7 +1835,7 @@ extension on TranslationsZhHant {
 			'update.latestVersion' => '已安裝的版本為最新版本',
 			'update.checkFailed' => '無法檢查更新',
 			'settings.title' => '設定',
-			'settings.supportDeveloper' => '贊助 Plezy',
+			'settings.supportDeveloper' => '贊助 Harbor',
 			'settings.supportDeveloperDescription' => '透過 Liberapay 捐款支持開發者',
 			'settings.language' => '語言',
 			'settings.theme' => '主題',
@@ -1947,7 +1947,7 @@ extension on TranslationsZhHant {
 			'settings.importSettingsDescription' => '從檔案還原偏好設定',
 			'settings.importSettingsConfirm' => '這將覆蓋您目前的設定。要繼續嗎？',
 			'settings.importSettingsSuccess' => '設定已匯入',
-			'settings.importSettingsInvalidFile' => '此檔案不是有效的 Plezy 設定匯出檔',
+			'settings.importSettingsInvalidFile' => '此檔案不是有效的 Harbor 設定匯出檔',
 			'settings.importSettingsNoUser' => '匯入設定前請先登入',
 			'settings.shortcutsReset' => '快速鍵已重設為預設值',
 			'settings.about' => '關於',
@@ -2062,7 +2062,7 @@ extension on TranslationsZhHant {
 			'settings.forceTvMode' => '強制 TV 模式',
 			'settings.forceTvModeDescription' => '強制使用 TV 介面版面。適用於無法自動辨識 TV 的裝置。需要重新啟動。',
 			'settings.startInFullscreen' => '以全螢幕模式啟動',
-			'settings.startInFullscreenDescription' => '啟動時直接以全螢幕開啟 Plezy',
+			'settings.startInFullscreenDescription' => '啟動時直接以全螢幕開啟 Harbor',
 			'settings.exitFullscreenOnPlayerClose' => '關閉播放器時退出全螢幕',
 			'settings.exitFullscreenOnPlayerCloseDescription' => '關閉影片播放器時自動退出全螢幕模式',
 			'settings.autoHidePerformanceOverlay' => '自動隱藏效能疊加層',
@@ -2342,7 +2342,7 @@ extension on TranslationsZhHant {
 			'mpvConfig.confirmDeletePreset' => '確定要刪除此預設組嗎？',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# 註解',
 			'dialog.confirmAction' => '確認操作',
-			'profiles.addPlezyProfile' => '新增 Plezy 使用者設定檔',
+			'profiles.addLocalProfile' => '新增 Harbor 使用者設定檔',
 			'profiles.switchingProfile' => '正在切換使用者設定檔…',
 			'profiles.deleteThisProfileTitle' => '刪除此使用者設定檔？',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => '將移除 ${displayName}。連線資訊將不受影響。',
@@ -2398,7 +2398,7 @@ extension on TranslationsZhHant {
 			'connections.sessionExpiredMany' => ({required Object count}) => '${count} 個伺服器的工作階段已過期',
 			'connections.signInAgain' => '重新登入',
 			'connections.editJellyfinTitle' => '編輯 Jellyfin 連線',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => '新增或移除 ${serverName} 的 URL。Plezy 會自動選擇可連線且延遲最低的網址。',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => '新增或移除 ${serverName} 的 URL。Harbor 會自動選擇可連線且延遲最低的網址。',
 			'discover.title' => '發現',
 			'discover.noContentAvailable' => '沒有可用內容',
 			'discover.addMediaToLibraries' => '請向您的媒體庫新增一些媒體內容',
@@ -2688,14 +2688,14 @@ extension on TranslationsZhHant {
 			'downloads.backgroundWarning.bannerAction' => '詳細資料',
 			'downloads.backgroundWarning.sheetTitle' => '背景下載遭到封鎖',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '背景下載可能受限',
-			'downloads.backgroundWarning.sheetIntro' => 'Android 正在阻止 Plezy 在背景穩定下載。',
-			'downloads.backgroundWarning.sheetIntroDegraded' => '你的裝置限制了 Plezy 可在背景下載的時機。',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Plezy 的背景使用受限。請將其電池用量或背景使用設定為「無限制」。',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android 已將 Plezy 設為受限待命狀態。請將電池用量設為「無限制」。',
+			'downloads.backgroundWarning.sheetIntro' => 'Android 正在阻止 Harbor 在背景穩定下載。',
+			'downloads.backgroundWarning.sheetIntroDegraded' => '你的裝置限制了 Harbor 可在背景下載的時機。',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Harbor 的背景使用受限。請將其電池用量或背景使用設定為「無限制」。',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android 已將 Harbor 設為受限待命狀態。請將電池用量設為「無限制」。',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => '下載通知已關閉，因此可能無法查看進度或使用控制項。',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => '通知已關閉。在 Android 13 或更新版本中，長時間背景下載需要啟用通知。',
 			'downloads.backgroundWarning.reasonDataSaver' => '已開啟數據節省模式，因此系統會封鎖使用行動數據的背景下載。透過 Wi-Fi 下載應仍可正常執行。',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Plezy 在背景執行時，下載屢次停止。請檢查 Plezy 的電池用量或背景使用設定。',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Harbor 在背景執行時，下載屢次停止。請檢查 Harbor 的電池用量或背景使用設定。',
 			'downloads.backgroundWarning.openSettings' => '開啟設定',
 			'downloads.backgroundWarning.stillNotWorking' => '裝置專屬說明',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => '查看適用於你裝置的步驟；若問題持續發生，也可從設定 › 查看日誌傳送日誌。',
@@ -2839,11 +2839,11 @@ extension on TranslationsZhHant {
 			'trakt.connected' => '已連線',
 			'trakt.connectedAs' => ({required Object username}) => '已以 @${username} 身分連線',
 			'trakt.disconnectConfirm' => '中斷與 Trakt 帳戶的連結？',
-			'trakt.disconnectConfirmBody' => 'Plezy 將停止向 Trakt 傳送事件。您可以隨時重新連線。',
+			'trakt.disconnectConfirmBody' => 'Harbor 將停止向 Trakt 傳送事件。您可以隨時重新連線。',
 			'trakt.scrobble' => '即時同步記錄（Scrobble）',
 			'trakt.scrobbleDescription' => '在播放時向 Trakt 傳送播放、暫停和停止等狀態。',
 			'trakt.watchedSync' => '同步已觀看狀態',
-			'trakt.watchedSyncDescription' => '在 Plezy 中將項目標記為已觀看時，也會在 Trakt 上標記為已觀看。',
+			'trakt.watchedSyncDescription' => '在 Harbor 中將項目標記為已觀看時，也會在 Trakt 上標記為已觀看。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => '連線至 Seerr',
 			'seerr.serverUrl' => '伺服器 URL',
@@ -2853,10 +2853,10 @@ extension on TranslationsZhHant {
 			'seerr.signInWithEmby' => '使用 Emby 登入',
 			'seerr.signInWithLocal' => '使用本地帳戶',
 			'seerr.email' => '電子郵件',
-			'seerr.noSignInMethods' => '此 Seerr 執行個體未提供 Plezy 支援的登入方式。',
+			'seerr.noSignInMethods' => '此 Seerr 執行個體未提供 Harbor 支援的登入方式。',
 			'seerr.instance' => '執行個體',
 			'seerr.disconnectConfirm' => '中斷與 Seerr 的連線？',
-			'seerr.disconnectConfirmBody' => 'Plezy 將忘記此 Seerr 連線資訊。您可以隨時重新連線。',
+			'seerr.disconnectConfirmBody' => 'Harbor 將忘記此 Seerr 連線資訊。您可以隨時重新連線。',
 			'seerr.request' => '請求',
 			'seerr.request4k' => '請求 4K 版本',
 			'seerr.seasons' => '季',
@@ -2881,13 +2881,13 @@ extension on TranslationsZhHant {
 			'services.scrobble' => '自動同步播放進度',
 			'services.scrobbleDescription' => '觀賞完一集或一部電影後自動更新您的外部列表。',
 			'services.disconnectConfirm' => ({required Object service}) => '中斷與 ${service} 的連線？',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy 將停止更新 ${service}。您可以隨時重新連線。',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor 將停止更新 ${service}。您可以隨時重新連線。',
 			'services.connectFailed' => ({required Object service}) => '無法連線至 ${service}。請重試。',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 啟用 Plezy',
+			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 啟用 Harbor',
 			'services.deviceCode.body' => ({required Object url}) => '請前往 ${url} 並輸入此代碼：',
 			'services.deviceCode.openToActivate' => ({required Object service}) => '開啟 ${service} 進行啟用',
 			'services.deviceCode.copyCode' => '複製啟用代碼',

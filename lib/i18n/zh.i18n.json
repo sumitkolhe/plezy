@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "连接到 Jellyfin",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "等待批准…",
     "quickConnectCancel": "取消",
     "quickConnectExpired": "Quick Connect 已过期。请重试。",
-    "localDataRecoveryRequired": "Plezy 无法安全恢复本地登录状态和待处理的播放数据。请重新登录。"
+    "localDataRecoveryRequired": "Harbor 无法安全恢复本地登录状态和待处理的播放数据。请重新登录。"
   },
   "common": {
     "cancel": "取消",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "设置",
-    "supportDeveloper": "支持 Plezy",
+    "supportDeveloper": "支持 Harbor",
     "supportDeveloperDescription": "通过 Liberapay 捐赠支持开发",
     "language": "语言",
     "theme": "主题",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "从文件恢复偏好设置",
     "importSettingsConfirm": "这将替换您当前的设置。继续吗？",
     "importSettingsSuccess": "设置已导入",
-    "importSettingsInvalidFile": "此文件不是有效的 Plezy 设置导出",
+    "importSettingsInvalidFile": "此文件不是有效的 Harbor 设置导出",
     "importSettingsNoUser": "导入设置前请先登录",
     "shortcutsReset": "快捷键已重置为默认值",
     "about": "关于",
@@ -303,7 +303,7 @@
     "forceTvMode": "强制 TV 模式",
     "forceTvModeDescription": "强制 TV 布局。适用于无法自动检测的设备。需要重启。",
     "startInFullscreen": "以全屏模式启动",
-    "startInFullscreenDescription": "启动时以全屏模式打开 Plezy",
+    "startInFullscreenDescription": "启动时以全屏模式打开 Harbor",
     "exitFullscreenOnPlayerClose": "关闭播放器时退出全屏",
     "exitFullscreenOnPlayerCloseDescription": "关闭视频播放器时自动退出全屏模式",
     "autoHidePerformanceOverlay": "自动隐藏性能叠加层",
@@ -710,7 +710,7 @@
     "confirmAction": "确认操作"
   },
   "profiles": {
-    "addPlezyProfile": "添加 Plezy 用户资料",
+    "addLocalProfile": "添加 Harbor 用户资料",
     "switchingProfile": "正在切换用户资料…",
     "deleteThisProfileTitle": "删除此用户资料？",
     "deleteThisProfileMessage": "移除 ${displayName}。连接不会受影响。",
@@ -768,7 +768,7 @@
     "sessionExpiredMany": "${count} 个服务器的会话已过期",
     "signInAgain": "重新登录",
     "editJellyfinTitle": "编辑 Jellyfin 连接",
-    "editJellyfinIntro": "添加或移除 ${serverName} 的 URL。Plezy 会使用可访问且延迟最低的地址。"
+    "editJellyfinIntro": "添加或移除 ${serverName} 的 URL。Harbor 会使用可访问且延迟最低的地址。"
   },
   "discover": {
     "title": "发现",
@@ -1248,14 +1248,14 @@
       "bannerAction": "详情",
       "sheetTitle": "后台下载已被阻止",
       "sheetTitleDegraded": "后台下载可能受限",
-      "sheetIntro": "Android 正在阻止 Plezy 在后台稳定下载。",
-      "sheetIntroDegraded": "你的设备限制了 Plezy 在后台下载的时机。",
-      "reasonBackgroundRestricted": "Plezy 的后台使用受到限制。请将其电池用量或后台使用设置为“不受限制”。",
-      "reasonStandbyRestricted": "Android 已将 Plezy 置于受限待机状态。请将其电池用量设为“不受限制”。",
+      "sheetIntro": "Android 正在阻止 Harbor 在后台稳定下载。",
+      "sheetIntroDegraded": "你的设备限制了 Harbor 在后台下载的时机。",
+      "reasonBackgroundRestricted": "Harbor 的后台使用受到限制。请将其电池用量或后台使用设置为“不受限制”。",
+      "reasonStandbyRestricted": "Android 已将 Harbor 置于受限待机状态。请将其电池用量设为“不受限制”。",
       "reasonDownloadChannelBlocked": "下载通知已关闭，因此可能无法查看进度或进行控制。",
       "reasonNotificationsDisabled": "通知已关闭。在 Android 13 或更高版本中，长时间后台下载需要开启通知。",
       "reasonDataSaver": "流量节省程序已开启，会阻止使用移动数据进行后台下载。使用 Wi-Fi 时下载应仍可进行。",
-      "reasonOemUnknown": "Plezy 在后台时，下载曾多次停止。请检查 Plezy 的电池用量或后台使用设置。",
+      "reasonOemUnknown": "Harbor 在后台时，下载曾多次停止。请检查 Harbor 的电池用量或后台使用设置。",
       "openSettings": "打开设置",
       "stillNotWorking": "设备专属帮助",
       "stillNotWorkingDescription": "查看适用于你设备的操作步骤；如果问题仍然存在，请通过设置 › 查看日志发送日志。",
@@ -1410,11 +1410,11 @@
     "connected": "已连接",
     "connectedAs": "已以 @${username} 身份连接",
     "disconnectConfirm": "断开 Trakt 账户？",
-    "disconnectConfirmBody": "Plezy 将停止向 Trakt 发送事件。你可随时重新连接。",
+    "disconnectConfirmBody": "Harbor 将停止向 Trakt 发送事件。你可随时重新连接。",
     "scrobble": "实时同步播放状态",
     "scrobbleDescription": "播放期间将播放、暂停和停止事件发送到 Trakt。",
     "watchedSync": "同步已观看状态",
-    "watchedSyncDescription": "在 Plezy 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。"
+    "watchedSyncDescription": "在 Harbor 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。"
   },
   "seerr": {
     "title": "Seerr",
@@ -1426,10 +1426,10 @@
     "signInWithEmby": "使用 Emby 登录",
     "signInWithLocal": "使用本地账户",
     "email": "邮箱",
-    "noSignInMethods": "此 Seerr 实例未提供 Plezy 支持的登录方式。",
+    "noSignInMethods": "此 Seerr 实例未提供 Harbor 支持的登录方式。",
     "instance": "实例",
     "disconnectConfirm": "断开 Seerr 连接？",
-    "disconnectConfirmBody": "Plezy 将忘记此 Seerr 实例。可随时重新连接。",
+    "disconnectConfirmBody": "Harbor 将忘记此 Seerr 实例。可随时重新连接。",
     "request": "请求",
     "request4k": "请求 4K",
     "seasons": "季",
@@ -1456,7 +1456,7 @@
     "scrobble": "自动记录进度",
     "scrobbleDescription": "观看完一集或一部电影后更新你的列表。",
     "disconnectConfirm": "断开 ${service} 连接？",
-    "disconnectConfirmBody": "Plezy 将停止更新 ${service}。可随时重新连接。",
+    "disconnectConfirmBody": "Harbor 将停止更新 ${service}。可随时重新连接。",
     "connectFailed": "无法连接到 ${service}。请重试。",
     "names": {
       "mal": "MyAnimeList",
@@ -1465,7 +1465,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "在 ${service} 上激活 Plezy",
+      "title": "在 ${service} 上激活 Harbor",
       "body": "访问 ${url} 并输入此代码：",
       "openToActivate": "打开 ${service} 以激活",
       "copyCode": "复制激活代码",

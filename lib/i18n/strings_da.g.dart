@@ -91,7 +91,7 @@ class _Translations$app$da extends Translations$app$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$da extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Venter på godkendelse…';
 	@override String get quickConnectCancel => 'Annuller';
 	@override String get quickConnectExpired => 'Quick Connect er udløbet. Prøv igen.';
-	@override String get localDataRecoveryRequired => 'Plezy kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.';
+	@override String get localDataRecoveryRequired => 'Harbor kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$da extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Indstillinger';
-	@override String get supportDeveloper => 'Støt Plezy';
+	@override String get supportDeveloper => 'Støt Harbor';
 	@override String get supportDeveloperDescription => 'Doner via Liberapay for at finansiere udviklingen';
 	@override String get language => 'Sprog';
 	@override String get theme => 'Tema';
@@ -311,7 +311,7 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Gendan præferencer fra en fil';
 	@override String get importSettingsConfirm => 'Dette vil erstatte dine nuværende indstillinger. Fortsæt?';
 	@override String get importSettingsSuccess => 'Indstillinger importeret';
-	@override String get importSettingsInvalidFile => 'Denne fil er ikke en gyldig eksport af Plezy-indstillinger';
+	@override String get importSettingsInvalidFile => 'Denne fil er ikke en gyldig eksport af Harbor-indstillinger';
 	@override String get importSettingsNoUser => 'Log ind før import af indstillinger';
 	@override String get shortcutsReset => 'Genveje nulstillet til standard';
 	@override String get about => 'Om';
@@ -426,7 +426,7 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get forceTvMode => 'Gennemtving TV-tilstand';
 	@override String get forceTvModeDescription => 'Tving TV-layout. Til enheder, der ikke registreres automatisk. Kræver genstart.';
 	@override String get startInFullscreen => 'Start i fuldskærm';
-	@override String get startInFullscreenDescription => 'Åbn Plezy i fuldskærmstilstand ved opstart';
+	@override String get startInFullscreenDescription => 'Åbn Harbor i fuldskærmstilstand ved opstart';
 	@override String get exitFullscreenOnPlayerClose => 'Forlad fuldskærm ved lukning af afspiller';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Afslut automatisk fuldskærm, når videoafspilleren lukkes';
 	@override String get autoHidePerformanceOverlay => 'Skjul ydelsesoverlay automatisk';
@@ -803,7 +803,7 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Tilføj Plezy-profil';
+	@override String get addLocalProfile => 'Tilføj Harbor-profil';
 	@override String get switchingProfile => 'Skifter profil…';
 	@override String get deleteThisProfileTitle => 'Slet denne profil?';
 	@override String deleteThisProfileMessage({required Object displayName}) => 'Fjern ${displayName}. Forbindelser påvirkes ikke.';
@@ -868,7 +868,7 @@ class _Translations$connections$da extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => 'Sessionerne er udløbet for ${count} servere';
 	@override String get signInAgain => 'Log ind igen';
 	@override String get editJellyfinTitle => 'Rediger Jellyfin-forbindelse';
-	@override String editJellyfinIntro({required Object serverName}) => 'Tilføj eller fjern URL\'er for ${serverName}. Plezy bruger den tilgængelige URL med lavest latenstid.';
+	@override String editJellyfinIntro({required Object serverName}) => 'Tilføj eller fjern URL\'er for ${serverName}. Harbor bruger den tilgængelige URL med lavest latenstid.';
 }
 
 // Path: discover
@@ -1411,11 +1411,11 @@ class _Translations$trakt$da extends Translations$trakt$en {
 	@override String get connected => 'Forbundet';
 	@override String connectedAs({required Object username}) => 'Forbundet som @${username}';
 	@override String get disconnectConfirm => 'Frakobl Trakt-konto?';
-	@override String get disconnectConfirmBody => 'Plezy stopper med at sende hændelser til Trakt. Du kan tilslutte igen når som helst.';
+	@override String get disconnectConfirmBody => 'Harbor stopper med at sende hændelser til Trakt. Du kan tilslutte igen når som helst.';
 	@override String get scrobble => 'Realtids-scrobbling';
 	@override String get scrobbleDescription => 'Send afspil-, pause- og stop-begivenheder til Trakt under afspilning.';
 	@override String get watchedSync => 'Synkroniser set-status';
-	@override String get watchedSyncDescription => 'Når du markerer elementer som set i Plezy, markeres de også på Trakt.';
+	@override String get watchedSyncDescription => 'Når du markerer elementer som set i Harbor, markeres de også på Trakt.';
 }
 
 // Path: seerr
@@ -1434,10 +1434,10 @@ class _Translations$seerr$da extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Log ind med Emby';
 	@override String get signInWithLocal => 'Brug en lokal konto';
 	@override String get email => 'E-mail';
-	@override String get noSignInMethods => 'Denne Seerr-instans tilbyder ingen loginmetode, som Plezy understøtter.';
+	@override String get noSignInMethods => 'Denne Seerr-instans tilbyder ingen loginmetode, som Harbor understøtter.';
 	@override String get instance => 'Instans';
 	@override String get disconnectConfirm => 'Afbryd forbindelsen til Seerr?';
-	@override String get disconnectConfirmBody => 'Plezy glemmer denne Seerr-instans. Du kan altid oprette forbindelse igen.';
+	@override String get disconnectConfirmBody => 'Harbor glemmer denne Seerr-instans. Du kan altid oprette forbindelse igen.';
 	@override String get request => 'Anmod';
 	@override String get request4k => 'Anmod i 4K';
 	@override String get seasons => 'Sæsoner';
@@ -1471,7 +1471,7 @@ class _Translations$services$da extends Translations$services$en {
 	@override String get scrobble => 'Registrer fremgang automatisk';
 	@override String get scrobbleDescription => 'Opdater din liste, når du er færdig med et afsnit eller en film.';
 	@override String disconnectConfirm({required Object service}) => 'Afbryd forbindelsen til ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.';
 	@override String connectFailed({required Object service}) => 'Kunne ikke forbinde til ${service}. Prøv igen.';
 	@override late final _Translations$services$names$da names = _Translations$services$names$da._(_root);
 	@override late final _Translations$services$deviceCode$da deviceCode = _Translations$services$deviceCode$da._(_root);
@@ -1680,14 +1680,14 @@ class _Translations$downloads$backgroundWarning$da extends Translations$download
 	@override String get bannerAction => 'Detaljer';
 	@override String get sheetTitle => 'Downloads i baggrunden er blokeret';
 	@override String get sheetTitleDegraded => 'Downloads i baggrunden kan være begrænsede';
-	@override String get sheetIntro => 'Android forhindrer Plezy i at downloade stabilt i baggrunden.';
-	@override String get sheetIntroDegraded => 'Din enhed begrænser, hvornår Plezy kan downloade i baggrunden.';
-	@override String get reasonBackgroundRestricted => 'Plezys baggrundsaktivitet er begrænset. Indstil batteriforbruget eller baggrundsaktiviteten til "Ubegrænset".';
-	@override String get reasonStandbyRestricted => 'Android har sat Plezy i begrænset standbytilstand. Indstil batteriforbruget til "Ubegrænset".';
+	@override String get sheetIntro => 'Android forhindrer Harbor i at downloade stabilt i baggrunden.';
+	@override String get sheetIntroDegraded => 'Din enhed begrænser, hvornår Harbor kan downloade i baggrunden.';
+	@override String get reasonBackgroundRestricted => 'Harbors baggrundsaktivitet er begrænset. Indstil batteriforbruget eller baggrundsaktiviteten til "Ubegrænset".';
+	@override String get reasonStandbyRestricted => 'Android har sat Harbor i begrænset standbytilstand. Indstil batteriforbruget til "Ubegrænset".';
 	@override String get reasonDownloadChannelBlocked => 'Notifikationer om downloads er slået fra, så status og betjeningsknapper muligvis ikke er tilgængelige.';
 	@override String get reasonNotificationsDisabled => 'Notifikationer er slået fra. På Android 13 eller nyere er de nødvendige ved lange downloads i baggrunden.';
 	@override String get reasonDataSaver => 'Datasparefunktionen er slået til, hvilket blokerer downloads i baggrunden via mobildata. Downloads bør stadig køre på Wi-Fi.';
-	@override String get reasonOemUnknown => 'Downloads stoppede gentagne gange, mens Plezy var i baggrunden. Tjek Plezys indstillinger for batteriforbrug eller baggrundsaktivitet.';
+	@override String get reasonOemUnknown => 'Downloads stoppede gentagne gange, mens Harbor var i baggrunden. Tjek Harbors indstillinger for batteriforbrug eller baggrundsaktivitet.';
 	@override String get openSettings => 'Åbn indstillinger';
 	@override String get stillNotWorking => 'Enhedsspecifik hjælp';
 	@override String get stillNotWorkingDescription => 'Se vejledningen til din enhed, eller send en logfil fra Indstillinger › Vis logfiler, hvis problemet fortsætter.';
@@ -1723,7 +1723,7 @@ class _Translations$services$deviceCode$da extends Translations$services$deviceC
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Aktiver Plezy på ${service}';
+	@override String title({required Object service}) => 'Aktiver Harbor på ${service}';
 	@override String body({required Object url}) => 'Besøg ${url} og indtast denne kode:';
 	@override String openToActivate({required Object service}) => 'Åbn ${service} for at aktivere';
 	@override String get copyCode => 'Kopiér aktiveringskode';
@@ -1774,14 +1774,14 @@ class _Translations$services$libraryFilter$da extends Translations$services$libr
 extension on TranslationsDa {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Forbind til Jellyfin',
 			'auth.useQuickConnect' => 'Brug Quick Connect',
 			'auth.quickConnectInstructions' => 'Åbn Quick Connect i Jellyfin, og indtast denne kode.',
 			'auth.quickConnectWaiting' => 'Venter på godkendelse…',
 			'auth.quickConnectCancel' => 'Annuller',
 			'auth.quickConnectExpired' => 'Quick Connect er udløbet. Prøv igen.',
-			'auth.localDataRecoveryRequired' => 'Plezy kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.',
+			'auth.localDataRecoveryRequired' => 'Harbor kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.',
 			'common.cancel' => 'Annuller',
 			'common.save' => 'Gem',
 			'common.close' => 'Luk',
@@ -1837,7 +1837,7 @@ extension on TranslationsDa {
 			'update.latestVersion' => 'Du har den nyeste version',
 			'update.checkFailed' => 'Kunne ikke søge efter opdateringer',
 			'settings.title' => 'Indstillinger',
-			'settings.supportDeveloper' => 'Støt Plezy',
+			'settings.supportDeveloper' => 'Støt Harbor',
 			'settings.supportDeveloperDescription' => 'Doner via Liberapay for at finansiere udviklingen',
 			'settings.language' => 'Sprog',
 			'settings.theme' => 'Tema',
@@ -1949,7 +1949,7 @@ extension on TranslationsDa {
 			'settings.importSettingsDescription' => 'Gendan præferencer fra en fil',
 			'settings.importSettingsConfirm' => 'Dette vil erstatte dine nuværende indstillinger. Fortsæt?',
 			'settings.importSettingsSuccess' => 'Indstillinger importeret',
-			'settings.importSettingsInvalidFile' => 'Denne fil er ikke en gyldig eksport af Plezy-indstillinger',
+			'settings.importSettingsInvalidFile' => 'Denne fil er ikke en gyldig eksport af Harbor-indstillinger',
 			'settings.importSettingsNoUser' => 'Log ind før import af indstillinger',
 			'settings.shortcutsReset' => 'Genveje nulstillet til standard',
 			'settings.about' => 'Om',
@@ -2064,7 +2064,7 @@ extension on TranslationsDa {
 			'settings.forceTvMode' => 'Gennemtving TV-tilstand',
 			'settings.forceTvModeDescription' => 'Tving TV-layout. Til enheder, der ikke registreres automatisk. Kræver genstart.',
 			'settings.startInFullscreen' => 'Start i fuldskærm',
-			'settings.startInFullscreenDescription' => 'Åbn Plezy i fuldskærmstilstand ved opstart',
+			'settings.startInFullscreenDescription' => 'Åbn Harbor i fuldskærmstilstand ved opstart',
 			'settings.exitFullscreenOnPlayerClose' => 'Forlad fuldskærm ved lukning af afspiller',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Afslut automatisk fuldskærm, når videoafspilleren lukkes',
 			'settings.autoHidePerformanceOverlay' => 'Skjul ydelsesoverlay automatisk',
@@ -2344,7 +2344,7 @@ extension on TranslationsDa {
 			'mpvConfig.confirmDeletePreset' => 'Er du sikker på, at du vil slette denne forudindstilling?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# comment',
 			'dialog.confirmAction' => 'Bekræft handling',
-			'profiles.addPlezyProfile' => 'Tilføj Plezy-profil',
+			'profiles.addLocalProfile' => 'Tilføj Harbor-profil',
 			'profiles.switchingProfile' => 'Skifter profil…',
 			'profiles.deleteThisProfileTitle' => 'Slet denne profil?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => 'Fjern ${displayName}. Forbindelser påvirkes ikke.',
@@ -2400,7 +2400,7 @@ extension on TranslationsDa {
 			'connections.sessionExpiredMany' => ({required Object count}) => 'Sessionerne er udløbet for ${count} servere',
 			'connections.signInAgain' => 'Log ind igen',
 			'connections.editJellyfinTitle' => 'Rediger Jellyfin-forbindelse',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Tilføj eller fjern URL\'er for ${serverName}. Plezy bruger den tilgængelige URL med lavest latenstid.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Tilføj eller fjern URL\'er for ${serverName}. Harbor bruger den tilgængelige URL med lavest latenstid.',
 			'discover.title' => 'Opdag',
 			'discover.noContentAvailable' => 'Intet indhold tilgængeligt',
 			'discover.addMediaToLibraries' => 'Tilføj medier til dine biblioteker',
@@ -2690,14 +2690,14 @@ extension on TranslationsDa {
 			'downloads.backgroundWarning.bannerAction' => 'Detaljer',
 			'downloads.backgroundWarning.sheetTitle' => 'Downloads i baggrunden er blokeret',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Downloads i baggrunden kan være begrænsede',
-			'downloads.backgroundWarning.sheetIntro' => 'Android forhindrer Plezy i at downloade stabilt i baggrunden.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Din enhed begrænser, hvornår Plezy kan downloade i baggrunden.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Plezys baggrundsaktivitet er begrænset. Indstil batteriforbruget eller baggrundsaktiviteten til "Ubegrænset".',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android har sat Plezy i begrænset standbytilstand. Indstil batteriforbruget til "Ubegrænset".',
+			'downloads.backgroundWarning.sheetIntro' => 'Android forhindrer Harbor i at downloade stabilt i baggrunden.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Din enhed begrænser, hvornår Harbor kan downloade i baggrunden.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Harbors baggrundsaktivitet er begrænset. Indstil batteriforbruget eller baggrundsaktiviteten til "Ubegrænset".',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android har sat Harbor i begrænset standbytilstand. Indstil batteriforbruget til "Ubegrænset".',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'Notifikationer om downloads er slået fra, så status og betjeningsknapper muligvis ikke er tilgængelige.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Notifikationer er slået fra. På Android 13 eller nyere er de nødvendige ved lange downloads i baggrunden.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'Datasparefunktionen er slået til, hvilket blokerer downloads i baggrunden via mobildata. Downloads bør stadig køre på Wi-Fi.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Downloads stoppede gentagne gange, mens Plezy var i baggrunden. Tjek Plezys indstillinger for batteriforbrug eller baggrundsaktivitet.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Downloads stoppede gentagne gange, mens Harbor var i baggrunden. Tjek Harbors indstillinger for batteriforbrug eller baggrundsaktivitet.',
 			'downloads.backgroundWarning.openSettings' => 'Åbn indstillinger',
 			'downloads.backgroundWarning.stillNotWorking' => 'Enhedsspecifik hjælp',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Se vejledningen til din enhed, eller send en logfil fra Indstillinger › Vis logfiler, hvis problemet fortsætter.',
@@ -2841,11 +2841,11 @@ extension on TranslationsDa {
 			'trakt.connected' => 'Forbundet',
 			'trakt.connectedAs' => ({required Object username}) => 'Forbundet som @${username}',
 			'trakt.disconnectConfirm' => 'Frakobl Trakt-konto?',
-			'trakt.disconnectConfirmBody' => 'Plezy stopper med at sende hændelser til Trakt. Du kan tilslutte igen når som helst.',
+			'trakt.disconnectConfirmBody' => 'Harbor stopper med at sende hændelser til Trakt. Du kan tilslutte igen når som helst.',
 			'trakt.scrobble' => 'Realtids-scrobbling',
 			'trakt.scrobbleDescription' => 'Send afspil-, pause- og stop-begivenheder til Trakt under afspilning.',
 			'trakt.watchedSync' => 'Synkroniser set-status',
-			'trakt.watchedSyncDescription' => 'Når du markerer elementer som set i Plezy, markeres de også på Trakt.',
+			'trakt.watchedSyncDescription' => 'Når du markerer elementer som set i Harbor, markeres de også på Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Forbind Seerr',
 			'seerr.serverUrl' => 'Server-URL',
@@ -2855,10 +2855,10 @@ extension on TranslationsDa {
 			'seerr.signInWithEmby' => 'Log ind med Emby',
 			'seerr.signInWithLocal' => 'Brug en lokal konto',
 			'seerr.email' => 'E-mail',
-			'seerr.noSignInMethods' => 'Denne Seerr-instans tilbyder ingen loginmetode, som Plezy understøtter.',
+			'seerr.noSignInMethods' => 'Denne Seerr-instans tilbyder ingen loginmetode, som Harbor understøtter.',
 			'seerr.instance' => 'Instans',
 			'seerr.disconnectConfirm' => 'Afbryd forbindelsen til Seerr?',
-			'seerr.disconnectConfirmBody' => 'Plezy glemmer denne Seerr-instans. Du kan altid oprette forbindelse igen.',
+			'seerr.disconnectConfirmBody' => 'Harbor glemmer denne Seerr-instans. Du kan altid oprette forbindelse igen.',
 			'seerr.request' => 'Anmod',
 			'seerr.request4k' => 'Anmod i 4K',
 			'seerr.seasons' => 'Sæsoner',
@@ -2883,13 +2883,13 @@ extension on TranslationsDa {
 			'services.scrobble' => 'Registrer fremgang automatisk',
 			'services.scrobbleDescription' => 'Opdater din liste, når du er færdig med et afsnit eller en film.',
 			'services.disconnectConfirm' => ({required Object service}) => 'Afbryd forbindelsen til ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.',
 			'services.connectFailed' => ({required Object service}) => 'Kunne ikke forbinde til ${service}. Prøv igen.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Aktiver Plezy på ${service}',
+			'services.deviceCode.title' => ({required Object service}) => 'Aktiver Harbor på ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Besøg ${url} og indtast denne kode:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Åbn ${service} for at aktivere',
 			'services.deviceCode.copyCode' => 'Kopiér aktiveringskode',

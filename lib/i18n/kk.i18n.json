@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "Plezy"
+    "title": "Harbor"
   },
   "auth": {
     "connectToJellyfin": "Jellyfin-ге қосылу",
@@ -9,7 +9,7 @@
     "quickConnectWaiting": "Растау күтілуде…",
     "quickConnectCancel": "Бас тарту",
     "quickConnectExpired": "Жылдам қосылу мерзімі өтті. Қайтадан байқап көріңіз.",
-    "localDataRecoveryRequired": "Plezy жергілікті кіру мәліметтерін қалпына келтіре алмады. Қайтадан кіріңіз."
+    "localDataRecoveryRequired": "Harbor жергілікті кіру мәліметтерін қалпына келтіре алмады. Қайтадан кіріңіз."
   },
   "common": {
     "cancel": "Бас тарту",
@@ -73,7 +73,7 @@
   },
   "settings": {
     "title": "Баптаулар",
-    "supportDeveloper": "Plezy жобасын қолдау",
+    "supportDeveloper": "Harbor жобасын қолдау",
     "supportDeveloperDescription": "Дамытуды қаржыландыру үшін Liberapay арқылы демеушілік жасаңыз",
     "language": "Тіл",
     "theme": "Тақырып",
@@ -188,7 +188,7 @@
     "importSettingsDescription": "Параметрлерді файлдан қалпына келтіріңіз",
     "importSettingsConfirm": "Бұл ағымдағы баптауларыңыздың үстінен жазады. Жалғастырасыз ба?",
     "importSettingsSuccess": "Баптаулар импортталды",
-    "importSettingsInvalidFile": "Бұл файл дұрыс Plezy баптаулар файлы емес",
+    "importSettingsInvalidFile": "Бұл файл дұрыс Harbor баптаулар файлы емес",
     "importSettingsNoUser": "Баптауларды импорттау алдында жүйеге кіріңіз",
     "shortcutsReset": "Пернелер тіркесі әдепкі күйге қайтарылды",
     "about": "Қолданба туралы",
@@ -303,7 +303,7 @@
     "forceTvMode": "TV режимін мәжбүрлеу",
     "forceTvModeDescription": "TV интерфейсін мәжбүрлеу.",
     "startInFullscreen": "Толық экранда бастау",
-    "startInFullscreenDescription": "Plezy-ді ашқанда толық экран режимінде ашу",
+    "startInFullscreenDescription": "Harbor-ді ашқанда толық экран режимінде ашу",
     "exitFullscreenOnPlayerClose": "Ойнатқыш жабылғанда толық экраннан шығу",
     "exitFullscreenOnPlayerCloseDescription": "Видео ойнатқышты жапқанда автоматты түрде толық экраннан шығу",
     "autoHidePerformanceOverlay": "Өнімділік панелін авто-жасыру",
@@ -711,7 +711,7 @@
     "confirmAction": "Әрекетті растау"
   },
   "profiles": {
-    "addPlezyProfile": "Plezy профилін қосу",
+    "addLocalProfile": "Harbor профилін қосу",
     "switchingProfile": "Профильді ауыстыру…",
     "deleteThisProfileTitle": "Осы профиль өшірілсін бе?",
     "deleteThisProfileMessage": "${displayName} өшіріледі. Қосылымдарға әсер етпейді.",
@@ -1254,14 +1254,14 @@
       "bannerAction": "Толығырақ",
       "sheetTitle": "Фондық жүктеулер бұғатталған",
       "sheetTitleDegraded": "Фондық жүктеулер шектелуі мүмкін",
-      "sheetIntro": "Android Plezy-дің фонда сенімді жүктеуіне кедергі келтіруде.",
-      "sheetIntroDegraded": "Құрылғыңыз Plezy-дің фонда қашан жүктей алатынын шектеп отыр.",
-      "reasonBackgroundRestricted": "Plezy-дің фондық жұмысы шектелген. Батарея немесе фондық пайдалануды \"Шектеусіз\" етіп қойыңыз.",
-      "reasonStandbyRestricted": "Android Plezy-ді шектеулі күту режиміне ауыстырды. Батарея пайдалануын \"Шектеусіз\" етіп қойыңыз.",
+      "sheetIntro": "Android Harbor-дің фонда сенімді жүктеуіне кедергі келтіруде.",
+      "sheetIntroDegraded": "Құрылғыңыз Harbor-дің фонда қашан жүктей алатынын шектеп отыр.",
+      "reasonBackgroundRestricted": "Harbor-дің фондық жұмысы шектелген. Батарея немесе фондық пайдалануды \"Шектеусіз\" етіп қойыңыз.",
+      "reasonStandbyRestricted": "Android Harbor-ді шектеулі күту режиміне ауыстырды. Батарея пайдалануын \"Шектеусіз\" етіп қойыңыз.",
       "reasonDownloadChannelBlocked": "Жүктеу хабарландырулары өшірілген, сондықтан жүктеу барысы мен басқару элементтері қолжетімсіз болуы мүмкін.",
       "reasonNotificationsDisabled": "Хабарландырулар өшірілген. Android 13 және одан жаңа нұсқаларда ұзақ фондық жүктеулер үшін олар қажет.",
       "reasonDataSaver": "Трафикті үнемдеу қосулы, бұл мобильді деректер арқылы фондық жүктеулерді бұғаттайды. Wi-Fi арқылы жүктеулер жұмыс істеуі тиіс.",
-      "reasonOemUnknown": "Plezy фонда тұрғанда жүктеулер бірнеше рет тоқтады. Plezy-дің батарея немесе фондық пайдалану баптауларын тексеріңіз.",
+      "reasonOemUnknown": "Harbor фонда тұрғанда жүктеулер бірнеше рет тоқтады. Harbor-дің батарея немесе фондық пайдалану баптауларын тексеріңіз.",
       "openSettings": "Баптауларды ашу",
       "stillNotWorking": "Құрылғыға арналған көмек",
       "stillNotWorkingDescription": "Құрылғыңызға арналған қадамдарды қараңыз немесе мәселе жалғасса Баптаулар › Журналдарды көру бөлімінен журнал жіберіңіз.",
@@ -1416,11 +1416,11 @@
     "connected": "Қосылды",
     "connectedAs": "@${username} ретінде қосылды",
     "disconnectConfirm": "Trakt ажыратылсын ба?",
-    "disconnectConfirmBody": "Plezy Trakt-қа деректер жіберуді тоқтатады.",
+    "disconnectConfirmBody": "Harbor Trakt-қа деректер жіберуді тоқтатады.",
     "scrobble": "Нақты уақытта бақылау",
     "scrobbleDescription": "Ойнату кезінде Trakt-қа деректер жіберу.",
     "watchedSync": "Көру мәртебесін синхрондау",
-    "watchedSyncDescription": "Plezy-де белгіленгенде Trakt-та да белгіленеді."
+    "watchedSyncDescription": "Harbor-де белгіленгенде Trakt-та да белгіленеді."
   },
   "seerr": {
     "title": "Seerr",
@@ -1435,7 +1435,7 @@
     "noSignInMethods": "Бұл Seerr қолдау көрсетілетін кіру әдісін ұсынбайды.",
     "instance": "Инстанция",
     "disconnectConfirm": "Seerr ажыратылсын ба?",
-    "disconnectConfirmBody": "Plezy бұл Seerr мекенжайын өшіреді.",
+    "disconnectConfirmBody": "Harbor бұл Seerr мекенжайын өшіреді.",
     "request": "Сұрау салу",
     "request4k": "4K сұрау салу",
     "seasons": "Маусымдар",
@@ -1462,7 +1462,7 @@
     "scrobble": "Барысты автоматты бақылау",
     "scrobbleDescription": "Тізіміңізді автоматты түрде жаңартыңыз.",
     "disconnectConfirm": "${service} ажыратылсын ба?",
-    "disconnectConfirmBody": "Plezy ${service} жаңартуды тоқтатады.",
+    "disconnectConfirmBody": "Harbor ${service} жаңартуды тоқтатады.",
     "connectFailed": "${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.",
     "names": {
       "mal": "MyAnimeList",
@@ -1471,7 +1471,7 @@
       "seerr": "Seerr"
     },
     "deviceCode": {
-      "title": "Plezy-ді ${service} қызметінде белсендіру",
+      "title": "Harbor-ді ${service} қызметінде белсендіру",
       "body": "${url} мекенжайына өтіп, осы кодты енгізіңіз:",
       "openToActivate": "Белсендіру үшін ${service} ашу",
       "copyCode": "Белсендіру кодын көшіру",

@@ -91,7 +91,7 @@ class _Translations$app$tr extends Translations$app$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Onay bekleniyor…';
 	@override String get quickConnectCancel => 'İptal';
 	@override String get quickConnectExpired => 'Hızlı Bağlantı süresi doldu. Tekrar deneyin.';
-	@override String get localDataRecoveryRequired => 'Plezy yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.';
+	@override String get localDataRecoveryRequired => 'Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$tr extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Ayarlar';
-	@override String get supportDeveloper => 'Plezy\'yi Destekleyin';
+	@override String get supportDeveloper => 'Harbor\'yi Destekleyin';
 	@override String get supportDeveloperDescription => 'Geliştirmeyi fonlamak için Liberapay üzerinden bağış yapın';
 	@override String get language => 'Dil';
 	@override String get theme => 'Tema';
@@ -314,7 +314,7 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Tercihleri bir dosyadan geri yükleyin';
 	@override String get importSettingsConfirm => 'Bu işlem mevcut ayarlarınızın üzerine yazacak. Devam edilsin mi?';
 	@override String get importSettingsSuccess => 'Ayarlar içe aktarıldı';
-	@override String get importSettingsInvalidFile => 'Bu dosya geçerli bir Plezy ayar dosyası değil';
+	@override String get importSettingsInvalidFile => 'Bu dosya geçerli bir Harbor ayar dosyası değil';
 	@override String get importSettingsNoUser => 'Ayarları içe aktarmadan önce giriş yapın';
 	@override String get shortcutsReset => 'Kısayollar varsayılana sıfırlandı';
 	@override String get about => 'Hakkında';
@@ -429,7 +429,7 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get forceTvMode => 'TV modunu zorla';
 	@override String get forceTvModeDescription => 'TV düzenini zorla. Otomatik algılamayan cihazlar içindir. Yeniden başlatma gerektirir.';
 	@override String get startInFullscreen => 'Tam ekranda başlat';
-	@override String get startInFullscreenDescription => 'Plezy\'yi açılışta tam ekran modunda aç';
+	@override String get startInFullscreenDescription => 'Harbor\'yi açılışta tam ekran modunda aç';
 	@override String get exitFullscreenOnPlayerClose => 'Oynatıcı kapandığında tam ekrandan çık';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Video oynatıcıyı kapatırken otomatik olarak tam ekrandan çık';
 	@override String get autoHidePerformanceOverlay => 'Performans Katmanını Otomatik Gizle';
@@ -807,7 +807,7 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Plezy profili ekle';
+	@override String get addLocalProfile => 'Harbor profili ekle';
 	@override String get switchingProfile => 'Profil değiştiriliyor…';
 	@override String get deleteThisProfileTitle => 'Bu profil silinsin mi?';
 	@override String deleteThisProfileMessage({required Object displayName}) => '${displayName} kişisi kaldırılacak. Bağlantılar etkilenmez.';
@@ -872,7 +872,7 @@ class _Translations$connections$tr extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => '${count} sunucu için oturum süresi doldu';
 	@override String get signInAgain => 'Tekrar giriş yap';
 	@override String get editJellyfinTitle => 'Jellyfin bağlantısını düzenle';
-	@override String editJellyfinIntro({required Object serverName}) => '${serverName} için URL\'ler ekleyin veya kaldırın. Plezy, en düşük gecikmeye sahip ulaşılabilir URL\'yi kullanacaktır.';
+	@override String editJellyfinIntro({required Object serverName}) => '${serverName} için URL\'ler ekleyin veya kaldırın. Harbor, en düşük gecikmeye sahip ulaşılabilir URL\'yi kullanacaktır.';
 }
 
 // Path: discover
@@ -1422,11 +1422,11 @@ class _Translations$trakt$tr extends Translations$trakt$en {
 	@override String get connected => 'Bağlandı';
 	@override String connectedAs({required Object username}) => '@${username} olarak bağlandı';
 	@override String get disconnectConfirm => 'Trakt hesabının bağlantısı kesilsin mi?';
-	@override String get disconnectConfirmBody => 'Plezy, Trakt\'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
+	@override String get disconnectConfirmBody => 'Harbor, Trakt\'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
 	@override String get scrobble => 'Gerçek zamanlı scrobble';
 	@override String get scrobbleDescription => 'Oynatma sırasında Trakt\'a oynatma, duraklatma ve durdurma olayları gönderin.';
 	@override String get watchedSync => 'İzleme durumunu eşitle';
-	@override String get watchedSyncDescription => 'Plezy\'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir.';
+	@override String get watchedSyncDescription => 'Harbor\'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir.';
 }
 
 // Path: seerr
@@ -1445,10 +1445,10 @@ class _Translations$seerr$tr extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Emby ile Giriş Yap';
 	@override String get signInWithLocal => 'Yerel hesap kullan';
 	@override String get email => 'E-posta';
-	@override String get noSignInMethods => 'Bu Seerr örneği Plezy\'nin desteklediği bir giriş yöntemi sunmuyor.';
+	@override String get noSignInMethods => 'Bu Seerr örneği Harbor\'nin desteklediği bir giriş yöntemi sunmuyor.';
 	@override String get instance => 'Örnek (Instance)';
 	@override String get disconnectConfirm => 'Seerr bağlantısı kesilsin mi?';
-	@override String get disconnectConfirmBody => 'Plezy bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
+	@override String get disconnectConfirmBody => 'Harbor bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
 	@override String get request => 'İstek Gönder';
 	@override String get request4k => '4K İstek Gönder';
 	@override String get seasons => 'Sezonlar';
@@ -1482,7 +1482,7 @@ class _Translations$services$tr extends Translations$services$en {
 	@override String get scrobble => 'İlerlemeyi otomatik takip et';
 	@override String get scrobbleDescription => 'Bir bölümü veya filmi bitirdiğinizde listenizi güncelleyin.';
 	@override String disconnectConfirm({required Object service}) => '${service} bağlantısı kesilsin mi?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.';
 	@override String connectFailed({required Object service}) => '${service} ile bağlantı kurulamadı. Tekrar deneyin.';
 	@override late final _Translations$services$names$tr names = _Translations$services$names$tr._(_root);
 	@override late final _Translations$services$deviceCode$tr deviceCode = _Translations$services$deviceCode$tr._(_root);
@@ -1691,14 +1691,14 @@ class _Translations$downloads$backgroundWarning$tr extends Translations$download
 	@override String get bannerAction => 'Detaylar';
 	@override String get sheetTitle => 'Arka plan indirmeleri engellendi';
 	@override String get sheetTitleDegraded => 'Arka plan indirmeleri sınırlı olabilir';
-	@override String get sheetIntro => 'Android, Plezy\'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.';
-	@override String get sheetIntroDegraded => 'Cihazınız, Plezy\'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.';
-	@override String get reasonBackgroundRestricted => 'Plezy\'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını "Kısıtlanmamış" olarak ayarlayın.';
-	@override String get reasonStandbyRestricted => 'Android, Plezy\'yi kısıtlı bekleme durumuna aldı. Pil kullanımını "Kısıtlanmamış" olarak ayarlayın.';
+	@override String get sheetIntro => 'Android, Harbor\'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.';
+	@override String get sheetIntroDegraded => 'Cihazınız, Harbor\'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.';
+	@override String get reasonBackgroundRestricted => 'Harbor\'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını "Kısıtlanmamış" olarak ayarlayın.';
+	@override String get reasonStandbyRestricted => 'Android, Harbor\'yi kısıtlı bekleme durumuna aldı. Pil kullanımını "Kısıtlanmamış" olarak ayarlayın.';
 	@override String get reasonDownloadChannelBlocked => 'İndirme bildirimleri kapalı; bu nedenle ilerleme ve kontroller kullanılamayabilir.';
 	@override String get reasonNotificationsDisabled => 'Bildirimler kapalı. Android 13 ve sonraki sürümlerde uzun arka plan indirmeleri için gereklidir.';
 	@override String get reasonDataSaver => 'Veri Tasarrufu açık; bu, mobil veride arka plan indirmelerini engeller. Wi-Fi üzerinde indirmeler yine de çalışır.';
-	@override String get reasonOemUnknown => 'Plezy arka plandayken indirmeler tekrar tekrar durdu. Plezy\'nin pil veya arka plan kullanım ayarlarını kontrol edin.';
+	@override String get reasonOemUnknown => 'Harbor arka plandayken indirmeler tekrar tekrar durdu. Harbor\'nin pil veya arka plan kullanım ayarlarını kontrol edin.';
 	@override String get openSettings => 'Ayarları aç';
 	@override String get stillNotWorking => 'Cihaza özel yardım';
 	@override String get stillNotWorkingDescription => 'Cihazınıza yönelik adımlara bakın veya sorun sürerse Ayarlar › Günlükleri Görüntüle bölümünden bir günlük gönderin.';
@@ -1734,7 +1734,7 @@ class _Translations$services$deviceCode$tr extends Translations$services$deviceC
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Plezy\'yi ${service} üzerinde etkinleştirin';
+	@override String title({required Object service}) => 'Harbor\'yi ${service} üzerinde etkinleştirin';
 	@override String body({required Object url}) => '${url} adresini ziyaret edin ve bu kodu girin:';
 	@override String openToActivate({required Object service}) => 'Etkinleştirmek için ${service} servisini açın';
 	@override String get copyCode => 'Etkinleştirme kodunu kopyala';
@@ -1785,14 +1785,14 @@ class _Translations$services$libraryFilter$tr extends Translations$services$libr
 extension on TranslationsTr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Jellyfin\'e Bağlan',
 			'auth.useQuickConnect' => 'Hızlı Bağlantıyı Kullan',
 			'auth.quickConnectInstructions' => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.',
 			'auth.quickConnectWaiting' => 'Onay bekleniyor…',
 			'auth.quickConnectCancel' => 'İptal',
 			'auth.quickConnectExpired' => 'Hızlı Bağlantı süresi doldu. Tekrar deneyin.',
-			'auth.localDataRecoveryRequired' => 'Plezy yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.',
+			'auth.localDataRecoveryRequired' => 'Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.',
 			'common.cancel' => 'İptal',
 			'common.save' => 'Kaydet',
 			'common.close' => 'Kapat',
@@ -1848,7 +1848,7 @@ extension on TranslationsTr {
 			'update.latestVersion' => 'En son sürümü kullanıyorsunuz',
 			'update.checkFailed' => 'Güncellemeler kontrol edilemedi',
 			'settings.title' => 'Ayarlar',
-			'settings.supportDeveloper' => 'Plezy\'yi Destekleyin',
+			'settings.supportDeveloper' => 'Harbor\'yi Destekleyin',
 			'settings.supportDeveloperDescription' => 'Geliştirmeyi fonlamak için Liberapay üzerinden bağış yapın',
 			'settings.language' => 'Dil',
 			'settings.theme' => 'Tema',
@@ -1963,7 +1963,7 @@ extension on TranslationsTr {
 			'settings.importSettingsDescription' => 'Tercihleri bir dosyadan geri yükleyin',
 			'settings.importSettingsConfirm' => 'Bu işlem mevcut ayarlarınızın üzerine yazacak. Devam edilsin mi?',
 			'settings.importSettingsSuccess' => 'Ayarlar içe aktarıldı',
-			'settings.importSettingsInvalidFile' => 'Bu dosya geçerli bir Plezy ayar dosyası değil',
+			'settings.importSettingsInvalidFile' => 'Bu dosya geçerli bir Harbor ayar dosyası değil',
 			'settings.importSettingsNoUser' => 'Ayarları içe aktarmadan önce giriş yapın',
 			'settings.shortcutsReset' => 'Kısayollar varsayılana sıfırlandı',
 			'settings.about' => 'Hakkında',
@@ -2078,7 +2078,7 @@ extension on TranslationsTr {
 			'settings.forceTvMode' => 'TV modunu zorla',
 			'settings.forceTvModeDescription' => 'TV düzenini zorla. Otomatik algılamayan cihazlar içindir. Yeniden başlatma gerektirir.',
 			'settings.startInFullscreen' => 'Tam ekranda başlat',
-			'settings.startInFullscreenDescription' => 'Plezy\'yi açılışta tam ekran modunda aç',
+			'settings.startInFullscreenDescription' => 'Harbor\'yi açılışta tam ekran modunda aç',
 			'settings.exitFullscreenOnPlayerClose' => 'Oynatıcı kapandığında tam ekrandan çık',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Video oynatıcıyı kapatırken otomatik olarak tam ekrandan çık',
 			'settings.autoHidePerformanceOverlay' => 'Performans Katmanını Otomatik Gizle',
@@ -2359,7 +2359,7 @@ extension on TranslationsTr {
 			'mpvConfig.confirmDeletePreset' => 'Bu önayarı silmek istediğinizden emin misiniz?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# yorum',
 			'dialog.confirmAction' => 'Eylemi Onayla',
-			'profiles.addPlezyProfile' => 'Plezy profili ekle',
+			'profiles.addLocalProfile' => 'Harbor profili ekle',
 			'profiles.switchingProfile' => 'Profil değiştiriliyor…',
 			'profiles.deleteThisProfileTitle' => 'Bu profil silinsin mi?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => '${displayName} kişisi kaldırılacak. Bağlantılar etkilenmez.',
@@ -2415,7 +2415,7 @@ extension on TranslationsTr {
 			'connections.sessionExpiredMany' => ({required Object count}) => '${count} sunucu için oturum süresi doldu',
 			'connections.signInAgain' => 'Tekrar giriş yap',
 			'connections.editJellyfinTitle' => 'Jellyfin bağlantısını düzenle',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => '${serverName} için URL\'ler ekleyin veya kaldırın. Plezy, en düşük gecikmeye sahip ulaşılabilir URL\'yi kullanacaktır.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => '${serverName} için URL\'ler ekleyin veya kaldırın. Harbor, en düşük gecikmeye sahip ulaşılabilir URL\'yi kullanacaktır.',
 			'discover.title' => 'Keşfet',
 			'discover.noContentAvailable' => 'İçerik bulunmuyor',
 			'discover.addMediaToLibraries' => 'Kitaplıklarınıza biraz medya ekleyin',
@@ -2712,14 +2712,14 @@ extension on TranslationsTr {
 			'downloads.backgroundWarning.bannerAction' => 'Detaylar',
 			'downloads.backgroundWarning.sheetTitle' => 'Arka plan indirmeleri engellendi',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Arka plan indirmeleri sınırlı olabilir',
-			'downloads.backgroundWarning.sheetIntro' => 'Android, Plezy\'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Cihazınız, Plezy\'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Plezy\'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını "Kısıtlanmamış" olarak ayarlayın.',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android, Plezy\'yi kısıtlı bekleme durumuna aldı. Pil kullanımını "Kısıtlanmamış" olarak ayarlayın.',
+			'downloads.backgroundWarning.sheetIntro' => 'Android, Harbor\'nin arka planda güvenilir şekilde indirme yapmasını engelliyor.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Cihazınız, Harbor\'nin arka planda ne zaman indirme yapabileceğini sınırlıyor.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Harbor\'nin arka plan kullanımı kısıtlanmış. Pil veya arka plan kullanımını "Kısıtlanmamış" olarak ayarlayın.',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android, Harbor\'yi kısıtlı bekleme durumuna aldı. Pil kullanımını "Kısıtlanmamış" olarak ayarlayın.',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'İndirme bildirimleri kapalı; bu nedenle ilerleme ve kontroller kullanılamayabilir.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Bildirimler kapalı. Android 13 ve sonraki sürümlerde uzun arka plan indirmeleri için gereklidir.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'Veri Tasarrufu açık; bu, mobil veride arka plan indirmelerini engeller. Wi-Fi üzerinde indirmeler yine de çalışır.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Plezy arka plandayken indirmeler tekrar tekrar durdu. Plezy\'nin pil veya arka plan kullanım ayarlarını kontrol edin.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Harbor arka plandayken indirmeler tekrar tekrar durdu. Harbor\'nin pil veya arka plan kullanım ayarlarını kontrol edin.',
 			'downloads.backgroundWarning.openSettings' => 'Ayarları aç',
 			'downloads.backgroundWarning.stillNotWorking' => 'Cihaza özel yardım',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Cihazınıza yönelik adımlara bakın veya sorun sürerse Ayarlar › Günlükleri Görüntüle bölümünden bir günlük gönderin.',
@@ -2863,11 +2863,11 @@ extension on TranslationsTr {
 			'trakt.connected' => 'Bağlandı',
 			'trakt.connectedAs' => ({required Object username}) => '@${username} olarak bağlandı',
 			'trakt.disconnectConfirm' => 'Trakt hesabının bağlantısı kesilsin mi?',
-			'trakt.disconnectConfirmBody' => 'Plezy, Trakt\'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
+			'trakt.disconnectConfirmBody' => 'Harbor, Trakt\'a olay göndermeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
 			'trakt.scrobble' => 'Gerçek zamanlı scrobble',
 			'trakt.scrobbleDescription' => 'Oynatma sırasında Trakt\'a oynatma, duraklatma ve durdurma olayları gönderin.',
 			'trakt.watchedSync' => 'İzleme durumunu eşitle',
-			'trakt.watchedSyncDescription' => 'Plezy\'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir.',
+			'trakt.watchedSyncDescription' => 'Harbor\'de ögeleri izlendi olarak işaretlediğinizde, Trakt üzerinde de izlendi olarak işaretlenir.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr Bağla',
 			'seerr.serverUrl' => 'Sunucu URL\'si',
@@ -2877,10 +2877,10 @@ extension on TranslationsTr {
 			'seerr.signInWithEmby' => 'Emby ile Giriş Yap',
 			'seerr.signInWithLocal' => 'Yerel hesap kullan',
 			'seerr.email' => 'E-posta',
-			'seerr.noSignInMethods' => 'Bu Seerr örneği Plezy\'nin desteklediği bir giriş yöntemi sunmuyor.',
+			'seerr.noSignInMethods' => 'Bu Seerr örneği Harbor\'nin desteklediği bir giriş yöntemi sunmuyor.',
 			'seerr.instance' => 'Örnek (Instance)',
 			'seerr.disconnectConfirm' => 'Seerr bağlantısı kesilsin mi?',
-			'seerr.disconnectConfirmBody' => 'Plezy bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
+			'seerr.disconnectConfirmBody' => 'Harbor bu Seerr örneğini unutacak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
 			'seerr.request' => 'İstek Gönder',
 			'seerr.request4k' => '4K İstek Gönder',
 			'seerr.seasons' => 'Sezonlar',
@@ -2905,13 +2905,13 @@ extension on TranslationsTr {
 			'services.scrobble' => 'İlerlemeyi otomatik takip et',
 			'services.scrobbleDescription' => 'Bir bölümü veya filmi bitirdiğinizde listenizi güncelleyin.',
 			'services.disconnectConfirm' => ({required Object service}) => '${service} bağlantısı kesilsin mi?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
 			'services.connectFailed' => ({required Object service}) => '${service} ile bağlantı kurulamadı. Tekrar deneyin.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Plezy\'yi ${service} üzerinde etkinleştirin',
+			'services.deviceCode.title' => ({required Object service}) => 'Harbor\'yi ${service} üzerinde etkinleştirin',
 			'services.deviceCode.body' => ({required Object url}) => '${url} adresini ziyaret edin ve bu kodu girin:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Etkinleştirmek için ${service} servisini açın',
 			'services.deviceCode.copyCode' => 'Etkinleştirme kodunu kopyala',

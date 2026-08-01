@@ -91,7 +91,7 @@ class _Translations$app$fr extends Translations$app$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$fr extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'En attente d\'approbation…';
 	@override String get quickConnectCancel => 'Annuler';
 	@override String get quickConnectExpired => 'Quick Connect a expiré. Réessayez.';
-	@override String get localDataRecoveryRequired => 'Plezy n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.';
+	@override String get localDataRecoveryRequired => 'Harbor n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$fr extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Paramètres';
-	@override String get supportDeveloper => 'Soutenir Plezy';
+	@override String get supportDeveloper => 'Soutenir Harbor';
 	@override String get supportDeveloperDescription => 'Faites un don via Liberapay pour financer le développement';
 	@override String get language => 'Langue';
 	@override String get theme => 'Thème';
@@ -311,7 +311,7 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Restaurer les préférences depuis un fichier';
 	@override String get importSettingsConfirm => 'Cela remplacera vos paramètres actuels. Continuer ?';
 	@override String get importSettingsSuccess => 'Paramètres importés';
-	@override String get importSettingsInvalidFile => 'Ce fichier n’est pas une exportation valide des paramètres de Plezy';
+	@override String get importSettingsInvalidFile => 'Ce fichier n’est pas une exportation valide des paramètres de Harbor';
 	@override String get importSettingsNoUser => 'Connectez-vous avant d’importer les paramètres';
 	@override String get shortcutsReset => 'Raccourcis réinitialisés aux valeurs par défaut';
 	@override String get about => 'À propos';
@@ -426,7 +426,7 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get forceTvMode => 'Forcer le mode TV';
 	@override String get forceTvModeDescription => 'Forcer l’interface TV sur les appareils qui ne sont pas détectés automatiquement. Redémarrage requis.';
 	@override String get startInFullscreen => 'Démarrer en plein écran';
-	@override String get startInFullscreenDescription => 'Ouvrir Plezy en mode plein écran au lancement';
+	@override String get startInFullscreenDescription => 'Ouvrir Harbor en mode plein écran au lancement';
 	@override String get exitFullscreenOnPlayerClose => 'Quitter le plein écran à la fermeture du lecteur';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Quitter automatiquement le plein écran lors de la fermeture du lecteur vidéo';
 	@override String get autoHidePerformanceOverlay => 'Masquer automatiquement les données de performance';
@@ -803,7 +803,7 @@ class _Translations$profiles$fr extends Translations$profiles$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Ajouter un profil Plezy';
+	@override String get addLocalProfile => 'Ajouter un profil Harbor';
 	@override String get switchingProfile => 'Changement de profil…';
 	@override String get deleteThisProfileTitle => 'Supprimer ce profil ?';
 	@override String deleteThisProfileMessage({required Object displayName}) => 'Supprimer ${displayName}. Les connexions ne sont pas affectées.';
@@ -868,7 +868,7 @@ class _Translations$connections$fr extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => 'Session expirée pour ${count} serveurs';
 	@override String get signInAgain => 'Se reconnecter';
 	@override String get editJellyfinTitle => 'Modifier la connexion Jellyfin';
-	@override String editJellyfinIntro({required Object serverName}) => 'Ajoutez ou supprimez des URL pour ${serverName}. Plezy utilisera l\'URL joignable avec la latence la plus faible.';
+	@override String editJellyfinIntro({required Object serverName}) => 'Ajoutez ou supprimez des URL pour ${serverName}. Harbor utilisera l\'URL joignable avec la latence la plus faible.';
 }
 
 // Path: discover
@@ -1411,11 +1411,11 @@ class _Translations$trakt$fr extends Translations$trakt$en {
 	@override String get connected => 'Connecté';
 	@override String connectedAs({required Object username}) => 'Connecté en tant que @${username}';
 	@override String get disconnectConfirm => 'Déconnecter le compte Trakt ?';
-	@override String get disconnectConfirmBody => 'Plezy cessera d’envoyer des événements à Trakt. Vous pourrez vous reconnecter à tout moment.';
+	@override String get disconnectConfirmBody => 'Harbor cessera d’envoyer des événements à Trakt. Vous pourrez vous reconnecter à tout moment.';
 	@override String get scrobble => 'Scrobbling en temps réel';
 	@override String get scrobbleDescription => 'Envoyer les événements de lecture, pause et arrêt à Trakt pendant la lecture.';
 	@override String get watchedSync => 'Synchroniser le statut « vu »';
-	@override String get watchedSyncDescription => 'Lorsque vous marquez des éléments comme vus dans Plezy, ils sont également marqués comme vus sur Trakt.';
+	@override String get watchedSyncDescription => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.';
 }
 
 // Path: seerr
@@ -1434,10 +1434,10 @@ class _Translations$seerr$fr extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Se connecter avec Emby';
 	@override String get signInWithLocal => 'Utiliser un compte local';
 	@override String get email => 'E-mail';
-	@override String get noSignInMethods => 'Cette instance Seerr ne propose aucune méthode de connexion prise en charge par Plezy.';
+	@override String get noSignInMethods => 'Cette instance Seerr ne propose aucune méthode de connexion prise en charge par Harbor.';
 	@override String get instance => 'Instance';
 	@override String get disconnectConfirm => 'Déconnecter Seerr ?';
-	@override String get disconnectConfirmBody => 'Plezy oubliera cette instance Seerr. Vous pourrez vous reconnecter à tout moment.';
+	@override String get disconnectConfirmBody => 'Harbor oubliera cette instance Seerr. Vous pourrez vous reconnecter à tout moment.';
 	@override String get request => 'Demander';
 	@override String get request4k => 'Demander en 4K';
 	@override String get seasons => 'Saisons';
@@ -1471,7 +1471,7 @@ class _Translations$services$fr extends Translations$services$en {
 	@override String get scrobble => 'Suivre la progression automatiquement';
 	@override String get scrobbleDescription => 'Mettre à jour votre liste lorsque vous terminez un épisode ou un film.';
 	@override String disconnectConfirm({required Object service}) => 'Déconnecter ${service} ?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.';
 	@override String connectFailed({required Object service}) => 'Échec de la connexion à ${service}. Réessayez.';
 	@override late final _Translations$services$names$fr names = _Translations$services$names$fr._(_root);
 	@override late final _Translations$services$deviceCode$fr deviceCode = _Translations$services$deviceCode$fr._(_root);
@@ -1680,14 +1680,14 @@ class _Translations$downloads$backgroundWarning$fr extends Translations$download
 	@override String get bannerAction => 'Détails';
 	@override String get sheetTitle => 'Les téléchargements en arrière-plan sont bloqués';
 	@override String get sheetTitleDegraded => 'Les téléchargements en arrière-plan peuvent être limités';
-	@override String get sheetIntro => 'Android empêche Plezy de télécharger de façon fiable en arrière-plan.';
-	@override String get sheetIntroDegraded => 'Votre appareil limite les moments où Plezy peut télécharger en arrière-plan.';
-	@override String get reasonBackgroundRestricted => 'L’utilisation de Plezy en arrière-plan est restreinte. Dans les paramètres de batterie ou d’utilisation en arrière-plan, sélectionnez « Sans restriction ».';
-	@override String get reasonStandbyRestricted => 'Android a placé Plezy en veille restreinte. Réglez l’utilisation de la batterie sur « Sans restriction ».';
+	@override String get sheetIntro => 'Android empêche Harbor de télécharger de façon fiable en arrière-plan.';
+	@override String get sheetIntroDegraded => 'Votre appareil limite les moments où Harbor peut télécharger en arrière-plan.';
+	@override String get reasonBackgroundRestricted => 'L’utilisation de Harbor en arrière-plan est restreinte. Dans les paramètres de batterie ou d’utilisation en arrière-plan, sélectionnez « Sans restriction ».';
+	@override String get reasonStandbyRestricted => 'Android a placé Harbor en veille restreinte. Réglez l’utilisation de la batterie sur « Sans restriction ».';
 	@override String get reasonDownloadChannelBlocked => 'Les notifications de téléchargement sont désactivées. La progression et les commandes peuvent donc être indisponibles.';
 	@override String get reasonNotificationsDisabled => 'Les notifications sont désactivées. Sur Android 13 ou version ultérieure, elles sont nécessaires pour les longs téléchargements en arrière-plan.';
 	@override String get reasonDataSaver => 'L’Économiseur de données est activé et bloque les téléchargements en arrière-plan via les données mobiles. Ils devraient toujours fonctionner en Wi-Fi.';
-	@override String get reasonOemUnknown => 'Les téléchargements se sont arrêtés plusieurs fois lorsque Plezy était en arrière-plan. Vérifiez les paramètres de batterie ou d’utilisation en arrière-plan de Plezy.';
+	@override String get reasonOemUnknown => 'Les téléchargements se sont arrêtés plusieurs fois lorsque Harbor était en arrière-plan. Vérifiez les paramètres de batterie ou d’utilisation en arrière-plan de Harbor.';
 	@override String get openSettings => 'Ouvrir les paramètres';
 	@override String get stillNotWorking => 'Aide spécifique à l’appareil';
 	@override String get stillNotWorkingDescription => 'Consultez les étapes adaptées à votre appareil ou, si le problème persiste, envoyez un journal depuis Paramètres › Voir les journaux.';
@@ -1723,7 +1723,7 @@ class _Translations$services$deviceCode$fr extends Translations$services$deviceC
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Activer Plezy sur ${service}';
+	@override String title({required Object service}) => 'Activer Harbor sur ${service}';
 	@override String body({required Object url}) => 'Rendez-vous sur ${url} et entrez ce code :';
 	@override String openToActivate({required Object service}) => 'Ouvrir ${service} pour activer';
 	@override String get copyCode => 'Copier le code d\'activation';
@@ -1774,14 +1774,14 @@ class _Translations$services$libraryFilter$fr extends Translations$services$libr
 extension on TranslationsFr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Se connecter à Jellyfin',
 			'auth.useQuickConnect' => 'Utiliser Quick Connect',
 			'auth.quickConnectInstructions' => 'Ouvrez Quick Connect dans Jellyfin et saisissez ce code.',
 			'auth.quickConnectWaiting' => 'En attente d\'approbation…',
 			'auth.quickConnectCancel' => 'Annuler',
 			'auth.quickConnectExpired' => 'Quick Connect a expiré. Réessayez.',
-			'auth.localDataRecoveryRequired' => 'Plezy n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.',
+			'auth.localDataRecoveryRequired' => 'Harbor n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.',
 			'common.cancel' => 'Annuler',
 			'common.save' => 'Enregistrer',
 			'common.close' => 'Fermer',
@@ -1837,7 +1837,7 @@ extension on TranslationsFr {
 			'update.latestVersion' => 'Vous utilisez la dernière version',
 			'update.checkFailed' => 'Échec de la vérification des mises à jour',
 			'settings.title' => 'Paramètres',
-			'settings.supportDeveloper' => 'Soutenir Plezy',
+			'settings.supportDeveloper' => 'Soutenir Harbor',
 			'settings.supportDeveloperDescription' => 'Faites un don via Liberapay pour financer le développement',
 			'settings.language' => 'Langue',
 			'settings.theme' => 'Thème',
@@ -1949,7 +1949,7 @@ extension on TranslationsFr {
 			'settings.importSettingsDescription' => 'Restaurer les préférences depuis un fichier',
 			'settings.importSettingsConfirm' => 'Cela remplacera vos paramètres actuels. Continuer ?',
 			'settings.importSettingsSuccess' => 'Paramètres importés',
-			'settings.importSettingsInvalidFile' => 'Ce fichier n’est pas une exportation valide des paramètres de Plezy',
+			'settings.importSettingsInvalidFile' => 'Ce fichier n’est pas une exportation valide des paramètres de Harbor',
 			'settings.importSettingsNoUser' => 'Connectez-vous avant d’importer les paramètres',
 			'settings.shortcutsReset' => 'Raccourcis réinitialisés aux valeurs par défaut',
 			'settings.about' => 'À propos',
@@ -2064,7 +2064,7 @@ extension on TranslationsFr {
 			'settings.forceTvMode' => 'Forcer le mode TV',
 			'settings.forceTvModeDescription' => 'Forcer l’interface TV sur les appareils qui ne sont pas détectés automatiquement. Redémarrage requis.',
 			'settings.startInFullscreen' => 'Démarrer en plein écran',
-			'settings.startInFullscreenDescription' => 'Ouvrir Plezy en mode plein écran au lancement',
+			'settings.startInFullscreenDescription' => 'Ouvrir Harbor en mode plein écran au lancement',
 			'settings.exitFullscreenOnPlayerClose' => 'Quitter le plein écran à la fermeture du lecteur',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Quitter automatiquement le plein écran lors de la fermeture du lecteur vidéo',
 			'settings.autoHidePerformanceOverlay' => 'Masquer automatiquement les données de performance',
@@ -2344,7 +2344,7 @@ extension on TranslationsFr {
 			'mpvConfig.confirmDeletePreset' => 'Êtes-vous sûr de vouloir supprimer ce préréglage ?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# comment',
 			'dialog.confirmAction' => 'Confirmer l\'action',
-			'profiles.addPlezyProfile' => 'Ajouter un profil Plezy',
+			'profiles.addLocalProfile' => 'Ajouter un profil Harbor',
 			'profiles.switchingProfile' => 'Changement de profil…',
 			'profiles.deleteThisProfileTitle' => 'Supprimer ce profil ?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => 'Supprimer ${displayName}. Les connexions ne sont pas affectées.',
@@ -2400,7 +2400,7 @@ extension on TranslationsFr {
 			'connections.sessionExpiredMany' => ({required Object count}) => 'Session expirée pour ${count} serveurs',
 			'connections.signInAgain' => 'Se reconnecter',
 			'connections.editJellyfinTitle' => 'Modifier la connexion Jellyfin',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Ajoutez ou supprimez des URL pour ${serverName}. Plezy utilisera l\'URL joignable avec la latence la plus faible.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Ajoutez ou supprimez des URL pour ${serverName}. Harbor utilisera l\'URL joignable avec la latence la plus faible.',
 			'discover.title' => 'Découvrir',
 			'discover.noContentAvailable' => 'Aucun contenu disponible',
 			'discover.addMediaToLibraries' => 'Ajoutez des médias à vos bibliothèques',
@@ -2690,14 +2690,14 @@ extension on TranslationsFr {
 			'downloads.backgroundWarning.bannerAction' => 'Détails',
 			'downloads.backgroundWarning.sheetTitle' => 'Les téléchargements en arrière-plan sont bloqués',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Les téléchargements en arrière-plan peuvent être limités',
-			'downloads.backgroundWarning.sheetIntro' => 'Android empêche Plezy de télécharger de façon fiable en arrière-plan.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Votre appareil limite les moments où Plezy peut télécharger en arrière-plan.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'L’utilisation de Plezy en arrière-plan est restreinte. Dans les paramètres de batterie ou d’utilisation en arrière-plan, sélectionnez « Sans restriction ».',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android a placé Plezy en veille restreinte. Réglez l’utilisation de la batterie sur « Sans restriction ».',
+			'downloads.backgroundWarning.sheetIntro' => 'Android empêche Harbor de télécharger de façon fiable en arrière-plan.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Votre appareil limite les moments où Harbor peut télécharger en arrière-plan.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'L’utilisation de Harbor en arrière-plan est restreinte. Dans les paramètres de batterie ou d’utilisation en arrière-plan, sélectionnez « Sans restriction ».',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android a placé Harbor en veille restreinte. Réglez l’utilisation de la batterie sur « Sans restriction ».',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'Les notifications de téléchargement sont désactivées. La progression et les commandes peuvent donc être indisponibles.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Les notifications sont désactivées. Sur Android 13 ou version ultérieure, elles sont nécessaires pour les longs téléchargements en arrière-plan.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'L’Économiseur de données est activé et bloque les téléchargements en arrière-plan via les données mobiles. Ils devraient toujours fonctionner en Wi-Fi.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Les téléchargements se sont arrêtés plusieurs fois lorsque Plezy était en arrière-plan. Vérifiez les paramètres de batterie ou d’utilisation en arrière-plan de Plezy.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Les téléchargements se sont arrêtés plusieurs fois lorsque Harbor était en arrière-plan. Vérifiez les paramètres de batterie ou d’utilisation en arrière-plan de Harbor.',
 			'downloads.backgroundWarning.openSettings' => 'Ouvrir les paramètres',
 			'downloads.backgroundWarning.stillNotWorking' => 'Aide spécifique à l’appareil',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Consultez les étapes adaptées à votre appareil ou, si le problème persiste, envoyez un journal depuis Paramètres › Voir les journaux.',
@@ -2841,11 +2841,11 @@ extension on TranslationsFr {
 			'trakt.connected' => 'Connecté',
 			'trakt.connectedAs' => ({required Object username}) => 'Connecté en tant que @${username}',
 			'trakt.disconnectConfirm' => 'Déconnecter le compte Trakt ?',
-			'trakt.disconnectConfirmBody' => 'Plezy cessera d’envoyer des événements à Trakt. Vous pourrez vous reconnecter à tout moment.',
+			'trakt.disconnectConfirmBody' => 'Harbor cessera d’envoyer des événements à Trakt. Vous pourrez vous reconnecter à tout moment.',
 			'trakt.scrobble' => 'Scrobbling en temps réel',
 			'trakt.scrobbleDescription' => 'Envoyer les événements de lecture, pause et arrêt à Trakt pendant la lecture.',
 			'trakt.watchedSync' => 'Synchroniser le statut « vu »',
-			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Plezy, ils sont également marqués comme vus sur Trakt.',
+			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Se connecter à Seerr',
 			'seerr.serverUrl' => 'URL du serveur',
@@ -2855,10 +2855,10 @@ extension on TranslationsFr {
 			'seerr.signInWithEmby' => 'Se connecter avec Emby',
 			'seerr.signInWithLocal' => 'Utiliser un compte local',
 			'seerr.email' => 'E-mail',
-			'seerr.noSignInMethods' => 'Cette instance Seerr ne propose aucune méthode de connexion prise en charge par Plezy.',
+			'seerr.noSignInMethods' => 'Cette instance Seerr ne propose aucune méthode de connexion prise en charge par Harbor.',
 			'seerr.instance' => 'Instance',
 			'seerr.disconnectConfirm' => 'Déconnecter Seerr ?',
-			'seerr.disconnectConfirmBody' => 'Plezy oubliera cette instance Seerr. Vous pourrez vous reconnecter à tout moment.',
+			'seerr.disconnectConfirmBody' => 'Harbor oubliera cette instance Seerr. Vous pourrez vous reconnecter à tout moment.',
 			'seerr.request' => 'Demander',
 			'seerr.request4k' => 'Demander en 4K',
 			'seerr.seasons' => 'Saisons',
@@ -2883,13 +2883,13 @@ extension on TranslationsFr {
 			'services.scrobble' => 'Suivre la progression automatiquement',
 			'services.scrobbleDescription' => 'Mettre à jour votre liste lorsque vous terminez un épisode ou un film.',
 			'services.disconnectConfirm' => ({required Object service}) => 'Déconnecter ${service} ?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.',
 			'services.connectFailed' => ({required Object service}) => 'Échec de la connexion à ${service}. Réessayez.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Activer Plezy sur ${service}',
+			'services.deviceCode.title' => ({required Object service}) => 'Activer Harbor sur ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Rendez-vous sur ${url} et entrez ce code :',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Ouvrir ${service} pour activer',
 			'services.deviceCode.copyCode' => 'Copier le code d\'activation',

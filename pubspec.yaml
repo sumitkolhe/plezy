@@ -1,5 +1,5 @@
 name: plezy
-description: "A beautiful Plex and Jellyfin client for Flutter"
+description: "A Jellyfin client for Android"
 publish_to: "none"
 version: 2.11.1+125
 

@@ -91,7 +91,7 @@ class _Translations$app$nl extends Translations$app$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$nl extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Wachten op goedkeuring…';
 	@override String get quickConnectCancel => 'Annuleren';
 	@override String get quickConnectExpired => 'Quick Connect is verlopen. Probeer opnieuw.';
-	@override String get localDataRecoveryRequired => 'Plezy kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.';
+	@override String get localDataRecoveryRequired => 'Harbor kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$nl extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Instellingen';
-	@override String get supportDeveloper => 'Steun Plezy';
+	@override String get supportDeveloper => 'Steun Harbor';
 	@override String get supportDeveloperDescription => 'Doneer via Liberapay om de ontwikkeling te steunen';
 	@override String get language => 'Taal';
 	@override String get theme => 'Thema';
@@ -311,7 +311,7 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Voorkeuren herstellen vanuit een bestand';
 	@override String get importSettingsConfirm => 'Hiermee worden je huidige instellingen vervangen. Doorgaan?';
 	@override String get importSettingsSuccess => 'Instellingen geïmporteerd';
-	@override String get importSettingsInvalidFile => 'Dit bestand is geen geldige Plezy-export';
+	@override String get importSettingsInvalidFile => 'Dit bestand is geen geldige Harbor-export';
 	@override String get importSettingsNoUser => 'Meld je aan voordat je instellingen importeert';
 	@override String get shortcutsReset => 'Sneltoetsen gereset naar standaard';
 	@override String get about => 'Over';
@@ -426,7 +426,7 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get forceTvMode => 'Tv-modus afdwingen';
 	@override String get forceTvModeDescription => 'Dwing de tv-indeling af op apparaten zonder automatische detectie. Herstart vereist.';
 	@override String get startInFullscreen => 'Starten in volledig scherm';
-	@override String get startInFullscreenDescription => 'Open Plezy bij het starten in volledig scherm';
+	@override String get startInFullscreenDescription => 'Open Harbor bij het starten in volledig scherm';
 	@override String get exitFullscreenOnPlayerClose => 'Volledig scherm verlaten bij sluiten van speler';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Verlaat automatisch de volledigschermmodus wanneer de videospeler wordt gesloten';
 	@override String get autoHidePerformanceOverlay => 'Prestatie-overlay automatisch verbergen';
@@ -803,7 +803,7 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Plezy-profiel toevoegen';
+	@override String get addLocalProfile => 'Harbor-profiel toevoegen';
 	@override String get switchingProfile => 'Profiel wisselen…';
 	@override String get deleteThisProfileTitle => 'Dit profiel verwijderen?';
 	@override String deleteThisProfileMessage({required Object displayName}) => 'Verwijder ${displayName}. Verbindingen blijven ongewijzigd.';
@@ -868,7 +868,7 @@ class _Translations$connections$nl extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => 'Sessie verlopen voor ${count} servers';
 	@override String get signInAgain => 'Opnieuw aanmelden';
 	@override String get editJellyfinTitle => 'Jellyfin-verbinding bewerken';
-	@override String editJellyfinIntro({required Object serverName}) => 'Voeg URL\'s voor ${serverName} toe of verwijder ze. Plezy gebruikt de bereikbare URL met de laagste latentie.';
+	@override String editJellyfinIntro({required Object serverName}) => 'Voeg URL\'s voor ${serverName} toe of verwijder ze. Harbor gebruikt de bereikbare URL met de laagste latentie.';
 }
 
 // Path: discover
@@ -1411,11 +1411,11 @@ class _Translations$trakt$nl extends Translations$trakt$en {
 	@override String get connected => 'Verbonden';
 	@override String connectedAs({required Object username}) => 'Verbonden als @${username}';
 	@override String get disconnectConfirm => 'Trakt-account loskoppelen?';
-	@override String get disconnectConfirmBody => 'Plezy stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.';
+	@override String get disconnectConfirmBody => 'Harbor stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.';
 	@override String get scrobble => 'Realtime scrobblen';
 	@override String get scrobbleDescription => 'Stuur tijdens het afspelen gebeurtenissen voor afspelen, pauzeren en stoppen naar Trakt.';
 	@override String get watchedSync => 'Kijkstatus synchroniseren';
-	@override String get watchedSyncDescription => 'Wanneer je items in Plezy als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.';
+	@override String get watchedSyncDescription => 'Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.';
 }
 
 // Path: seerr
@@ -1434,10 +1434,10 @@ class _Translations$seerr$nl extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Inloggen met Emby';
 	@override String get signInWithLocal => 'Een lokaal account gebruiken';
 	@override String get email => 'E-mail';
-	@override String get noSignInMethods => 'Deze Seerr-instantie biedt geen inlogmethode die Plezy ondersteunt.';
+	@override String get noSignInMethods => 'Deze Seerr-instantie biedt geen inlogmethode die Harbor ondersteunt.';
 	@override String get instance => 'Instantie';
 	@override String get disconnectConfirm => 'Seerr loskoppelen?';
-	@override String get disconnectConfirmBody => 'Plezy vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.';
+	@override String get disconnectConfirmBody => 'Harbor vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.';
 	@override String get request => 'Aanvragen';
 	@override String get request4k => 'Aanvragen in 4K';
 	@override String get seasons => 'Seizoenen';
@@ -1471,7 +1471,7 @@ class _Translations$services$nl extends Translations$services$en {
 	@override String get scrobble => 'Voortgang automatisch volgen';
 	@override String get scrobbleDescription => 'Werk je lijst bij wanneer je een aflevering of film afrondt.';
 	@override String disconnectConfirm({required Object service}) => '${service} loskoppelen?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.';
 	@override String connectFailed({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.';
 	@override late final _Translations$services$names$nl names = _Translations$services$names$nl._(_root);
 	@override late final _Translations$services$deviceCode$nl deviceCode = _Translations$services$deviceCode$nl._(_root);
@@ -1680,14 +1680,14 @@ class _Translations$downloads$backgroundWarning$nl extends Translations$download
 	@override String get bannerAction => 'Details';
 	@override String get sheetTitle => 'Downloads op de achtergrond zijn geblokkeerd';
 	@override String get sheetTitleDegraded => 'Downloads op de achtergrond kunnen beperkt zijn';
-	@override String get sheetIntro => 'Android verhindert dat Plezy betrouwbaar op de achtergrond downloadt.';
-	@override String get sheetIntroDegraded => 'Je apparaat beperkt wanneer Plezy op de achtergrond kan downloaden.';
-	@override String get reasonBackgroundRestricted => 'Het achtergrondgebruik van Plezy is beperkt. Stel het batterij- of achtergrondgebruik in op "Onbeperkt".';
-	@override String get reasonStandbyRestricted => 'Android heeft Plezy in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op "Onbeperkt".';
+	@override String get sheetIntro => 'Android verhindert dat Harbor betrouwbaar op de achtergrond downloadt.';
+	@override String get sheetIntroDegraded => 'Je apparaat beperkt wanneer Harbor op de achtergrond kan downloaden.';
+	@override String get reasonBackgroundRestricted => 'Het achtergrondgebruik van Harbor is beperkt. Stel het batterij- of achtergrondgebruik in op "Onbeperkt".';
+	@override String get reasonStandbyRestricted => 'Android heeft Harbor in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op "Onbeperkt".';
 	@override String get reasonDownloadChannelBlocked => 'Downloadmeldingen zijn uitgeschakeld, waardoor voortgang en bediening mogelijk niet beschikbaar zijn.';
 	@override String get reasonNotificationsDisabled => 'Meldingen zijn uitgeschakeld. Op Android 13 of nieuwer zijn ze vereist voor langdurige downloads op de achtergrond.';
 	@override String get reasonDataSaver => 'Databesparing is ingeschakeld en blokkeert downloads op de achtergrond via mobiele data. Via Wi-Fi zouden downloads nog wel moeten werken.';
-	@override String get reasonOemUnknown => 'Downloads zijn herhaaldelijk gestopt terwijl Plezy op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Plezy.';
+	@override String get reasonOemUnknown => 'Downloads zijn herhaaldelijk gestopt terwijl Harbor op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Harbor.';
 	@override String get openSettings => 'Instellingen openen';
 	@override String get stillNotWorking => 'Apparaatspecifieke hulp';
 	@override String get stillNotWorkingDescription => 'Bekijk de stappen voor je apparaat of stuur een logbestand vanuit Instellingen › Logbestanden bekijken als het probleem aanhoudt.';
@@ -1723,7 +1723,7 @@ class _Translations$services$deviceCode$nl extends Translations$services$deviceC
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Plezy activeren op ${service}';
+	@override String title({required Object service}) => 'Harbor activeren op ${service}';
 	@override String body({required Object url}) => 'Ga naar ${url} en voer deze code in:';
 	@override String openToActivate({required Object service}) => 'Open ${service} om te activeren';
 	@override String get copyCode => 'Activeringscode kopiëren';
@@ -1774,14 +1774,14 @@ class _Translations$services$libraryFilter$nl extends Translations$services$libr
 extension on TranslationsNl {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Verbinden met Jellyfin',
 			'auth.useQuickConnect' => 'Quick Connect gebruiken',
 			'auth.quickConnectInstructions' => 'Open Quick Connect in Jellyfin en voer deze code in.',
 			'auth.quickConnectWaiting' => 'Wachten op goedkeuring…',
 			'auth.quickConnectCancel' => 'Annuleren',
 			'auth.quickConnectExpired' => 'Quick Connect is verlopen. Probeer opnieuw.',
-			'auth.localDataRecoveryRequired' => 'Plezy kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.',
+			'auth.localDataRecoveryRequired' => 'Harbor kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.',
 			'common.cancel' => 'Annuleren',
 			'common.save' => 'Opslaan',
 			'common.close' => 'Sluiten',
@@ -1837,7 +1837,7 @@ extension on TranslationsNl {
 			'update.latestVersion' => 'Je hebt de nieuwste versie',
 			'update.checkFailed' => 'Kon niet controleren op updates',
 			'settings.title' => 'Instellingen',
-			'settings.supportDeveloper' => 'Steun Plezy',
+			'settings.supportDeveloper' => 'Steun Harbor',
 			'settings.supportDeveloperDescription' => 'Doneer via Liberapay om de ontwikkeling te steunen',
 			'settings.language' => 'Taal',
 			'settings.theme' => 'Thema',
@@ -1949,7 +1949,7 @@ extension on TranslationsNl {
 			'settings.importSettingsDescription' => 'Voorkeuren herstellen vanuit een bestand',
 			'settings.importSettingsConfirm' => 'Hiermee worden je huidige instellingen vervangen. Doorgaan?',
 			'settings.importSettingsSuccess' => 'Instellingen geïmporteerd',
-			'settings.importSettingsInvalidFile' => 'Dit bestand is geen geldige Plezy-export',
+			'settings.importSettingsInvalidFile' => 'Dit bestand is geen geldige Harbor-export',
 			'settings.importSettingsNoUser' => 'Meld je aan voordat je instellingen importeert',
 			'settings.shortcutsReset' => 'Sneltoetsen gereset naar standaard',
 			'settings.about' => 'Over',
@@ -2064,7 +2064,7 @@ extension on TranslationsNl {
 			'settings.forceTvMode' => 'Tv-modus afdwingen',
 			'settings.forceTvModeDescription' => 'Dwing de tv-indeling af op apparaten zonder automatische detectie. Herstart vereist.',
 			'settings.startInFullscreen' => 'Starten in volledig scherm',
-			'settings.startInFullscreenDescription' => 'Open Plezy bij het starten in volledig scherm',
+			'settings.startInFullscreenDescription' => 'Open Harbor bij het starten in volledig scherm',
 			'settings.exitFullscreenOnPlayerClose' => 'Volledig scherm verlaten bij sluiten van speler',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Verlaat automatisch de volledigschermmodus wanneer de videospeler wordt gesloten',
 			'settings.autoHidePerformanceOverlay' => 'Prestatie-overlay automatisch verbergen',
@@ -2344,7 +2344,7 @@ extension on TranslationsNl {
 			'mpvConfig.confirmDeletePreset' => 'Weet je zeker dat je deze voorinstelling wilt verwijderen?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# comment',
 			'dialog.confirmAction' => 'Bevestig actie',
-			'profiles.addPlezyProfile' => 'Plezy-profiel toevoegen',
+			'profiles.addLocalProfile' => 'Harbor-profiel toevoegen',
 			'profiles.switchingProfile' => 'Profiel wisselen…',
 			'profiles.deleteThisProfileTitle' => 'Dit profiel verwijderen?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => 'Verwijder ${displayName}. Verbindingen blijven ongewijzigd.',
@@ -2400,7 +2400,7 @@ extension on TranslationsNl {
 			'connections.sessionExpiredMany' => ({required Object count}) => 'Sessie verlopen voor ${count} servers',
 			'connections.signInAgain' => 'Opnieuw aanmelden',
 			'connections.editJellyfinTitle' => 'Jellyfin-verbinding bewerken',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Voeg URL\'s voor ${serverName} toe of verwijder ze. Plezy gebruikt de bereikbare URL met de laagste latentie.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Voeg URL\'s voor ${serverName} toe of verwijder ze. Harbor gebruikt de bereikbare URL met de laagste latentie.',
 			'discover.title' => 'Ontdekken',
 			'discover.noContentAvailable' => 'Geen inhoud beschikbaar',
 			'discover.addMediaToLibraries' => 'Voeg wat media toe aan je bibliotheken',
@@ -2690,14 +2690,14 @@ extension on TranslationsNl {
 			'downloads.backgroundWarning.bannerAction' => 'Details',
 			'downloads.backgroundWarning.sheetTitle' => 'Downloads op de achtergrond zijn geblokkeerd',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Downloads op de achtergrond kunnen beperkt zijn',
-			'downloads.backgroundWarning.sheetIntro' => 'Android verhindert dat Plezy betrouwbaar op de achtergrond downloadt.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Je apparaat beperkt wanneer Plezy op de achtergrond kan downloaden.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Het achtergrondgebruik van Plezy is beperkt. Stel het batterij- of achtergrondgebruik in op "Onbeperkt".',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android heeft Plezy in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op "Onbeperkt".',
+			'downloads.backgroundWarning.sheetIntro' => 'Android verhindert dat Harbor betrouwbaar op de achtergrond downloadt.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Je apparaat beperkt wanneer Harbor op de achtergrond kan downloaden.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Het achtergrondgebruik van Harbor is beperkt. Stel het batterij- of achtergrondgebruik in op "Onbeperkt".',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android heeft Harbor in een beperkte stand-bymodus geplaatst. Stel het batterijgebruik in op "Onbeperkt".',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'Downloadmeldingen zijn uitgeschakeld, waardoor voortgang en bediening mogelijk niet beschikbaar zijn.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'Meldingen zijn uitgeschakeld. Op Android 13 of nieuwer zijn ze vereist voor langdurige downloads op de achtergrond.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'Databesparing is ingeschakeld en blokkeert downloads op de achtergrond via mobiele data. Via Wi-Fi zouden downloads nog wel moeten werken.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Downloads zijn herhaaldelijk gestopt terwijl Plezy op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Plezy.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Downloads zijn herhaaldelijk gestopt terwijl Harbor op de achtergrond draaide. Controleer de instellingen voor het batterij- of achtergrondgebruik van Harbor.',
 			'downloads.backgroundWarning.openSettings' => 'Instellingen openen',
 			'downloads.backgroundWarning.stillNotWorking' => 'Apparaatspecifieke hulp',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Bekijk de stappen voor je apparaat of stuur een logbestand vanuit Instellingen › Logbestanden bekijken als het probleem aanhoudt.',
@@ -2841,11 +2841,11 @@ extension on TranslationsNl {
 			'trakt.connected' => 'Verbonden',
 			'trakt.connectedAs' => ({required Object username}) => 'Verbonden als @${username}',
 			'trakt.disconnectConfirm' => 'Trakt-account loskoppelen?',
-			'trakt.disconnectConfirmBody' => 'Plezy stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.',
+			'trakt.disconnectConfirmBody' => 'Harbor stuurt geen gebeurtenissen meer naar Trakt. Je kunt op elk moment opnieuw verbinding maken.',
 			'trakt.scrobble' => 'Realtime scrobblen',
 			'trakt.scrobbleDescription' => 'Stuur tijdens het afspelen gebeurtenissen voor afspelen, pauzeren en stoppen naar Trakt.',
 			'trakt.watchedSync' => 'Kijkstatus synchroniseren',
-			'trakt.watchedSyncDescription' => 'Wanneer je items in Plezy als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.',
+			'trakt.watchedSyncDescription' => 'Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Verbinden met Seerr',
 			'seerr.serverUrl' => 'Server-URL',
@@ -2855,10 +2855,10 @@ extension on TranslationsNl {
 			'seerr.signInWithEmby' => 'Inloggen met Emby',
 			'seerr.signInWithLocal' => 'Een lokaal account gebruiken',
 			'seerr.email' => 'E-mail',
-			'seerr.noSignInMethods' => 'Deze Seerr-instantie biedt geen inlogmethode die Plezy ondersteunt.',
+			'seerr.noSignInMethods' => 'Deze Seerr-instantie biedt geen inlogmethode die Harbor ondersteunt.',
 			'seerr.instance' => 'Instantie',
 			'seerr.disconnectConfirm' => 'Seerr loskoppelen?',
-			'seerr.disconnectConfirmBody' => 'Plezy vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.',
+			'seerr.disconnectConfirmBody' => 'Harbor vergeet deze Seerr-instantie. Je kunt altijd opnieuw verbinden.',
 			'seerr.request' => 'Aanvragen',
 			'seerr.request4k' => 'Aanvragen in 4K',
 			'seerr.seasons' => 'Seizoenen',
@@ -2883,13 +2883,13 @@ extension on TranslationsNl {
 			'services.scrobble' => 'Voortgang automatisch volgen',
 			'services.scrobbleDescription' => 'Werk je lijst bij wanneer je een aflevering of film afrondt.',
 			'services.disconnectConfirm' => ({required Object service}) => '${service} loskoppelen?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.',
 			'services.connectFailed' => ({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Plezy activeren op ${service}',
+			'services.deviceCode.title' => ({required Object service}) => 'Harbor activeren op ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Ga naar ${url} en voer deze code in:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Open ${service} om te activeren',
 			'services.deviceCode.copyCode' => 'Activeringscode kopiëren',

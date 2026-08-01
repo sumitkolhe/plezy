@@ -319,7 +319,7 @@ class MediaImageHelper {
       imageUrl,
       cacheKey: cacheKey ?? _serverArtworkCacheKey(imageUrl),
       cacheManager: PlexImageCacheManager.instance,
-      headers: const {'User-Agent': 'Plezy'},
+      headers: const {'User-Agent': 'Harbor'},
     );
     return boundedDecode(provider, memWidth: memWidth, memHeight: memHeight);
   }

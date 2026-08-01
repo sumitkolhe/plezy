@@ -15,7 +15,7 @@ void main() {
 
   setUp(resetSharedPreferencesForTest);
   PackageInfo.setMockInitialValues(
-    appName: 'Plezy',
+    appName: 'Harbor',
     packageName: 'com.plezy.test',
     version: '1.0.0',
     buildNumber: '1',

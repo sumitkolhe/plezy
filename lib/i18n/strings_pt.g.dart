@@ -91,7 +91,7 @@ class _Translations$app$pt extends Translations$app$en {
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$pt extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Aguardando aprovação…';
 	@override String get quickConnectCancel => 'Cancelar';
 	@override String get quickConnectExpired => 'Quick Connect expirou. Tente novamente.';
-	@override String get localDataRecoveryRequired => 'O Plezy não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.';
+	@override String get localDataRecoveryRequired => 'O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$pt extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Configurações';
-	@override String get supportDeveloper => 'Apoie o Plezy';
+	@override String get supportDeveloper => 'Apoie o Harbor';
 	@override String get supportDeveloperDescription => 'Doe via Liberapay para financiar o desenvolvimento';
 	@override String get language => 'Idioma';
 	@override String get theme => 'Tema';
@@ -311,7 +311,7 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get importSettingsDescription => 'Restaurar preferências a partir de um arquivo';
 	@override String get importSettingsConfirm => 'Isso substituirá suas configurações atuais. Continuar?';
 	@override String get importSettingsSuccess => 'Configurações importadas';
-	@override String get importSettingsInvalidFile => 'Este arquivo não é uma exportação válida do Plezy';
+	@override String get importSettingsInvalidFile => 'Este arquivo não é uma exportação válida do Harbor';
 	@override String get importSettingsNoUser => 'Entre na conta antes de importar as configurações';
 	@override String get shortcutsReset => 'Atalhos redefinidos para o padrão';
 	@override String get about => 'Sobre';
@@ -426,7 +426,7 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get forceTvMode => 'Forçar modo TV';
 	@override String get forceTvModeDescription => 'Forçar o layout de TV em dispositivos sem detecção automática. Requer reiniciar o app.';
 	@override String get startInFullscreen => 'Iniciar em tela cheia';
-	@override String get startInFullscreenDescription => 'Abrir o Plezy em modo de tela cheia ao iniciar';
+	@override String get startInFullscreenDescription => 'Abrir o Harbor em modo de tela cheia ao iniciar';
 	@override String get exitFullscreenOnPlayerClose => 'Sair da tela cheia ao fechar o reprodutor';
 	@override String get exitFullscreenOnPlayerCloseDescription => 'Sair automaticamente da tela cheia ao fechar o reprodutor de vídeo';
 	@override String get autoHidePerformanceOverlay => 'Ocultar automaticamente o painel de desempenho';
@@ -803,7 +803,7 @@ class _Translations$profiles$pt extends Translations$profiles$en {
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Adicionar perfil Plezy';
+	@override String get addLocalProfile => 'Adicionar perfil Harbor';
 	@override String get switchingProfile => 'Mudando perfil…';
 	@override String get deleteThisProfileTitle => 'Excluir este perfil?';
 	@override String deleteThisProfileMessage({required Object displayName}) => 'Remover ${displayName}. As conexões não serão afetadas.';
@@ -868,7 +868,7 @@ class _Translations$connections$pt extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => 'Sessões expiradas em ${count} servidores';
 	@override String get signInAgain => 'Entrar novamente';
 	@override String get editJellyfinTitle => 'Editar conexão Jellyfin';
-	@override String editJellyfinIntro({required Object serverName}) => 'Adicione ou remova URLs de ${serverName}. O Plezy usará a URL acessível com a menor latência.';
+	@override String editJellyfinIntro({required Object serverName}) => 'Adicione ou remova URLs de ${serverName}. O Harbor usará a URL acessível com a menor latência.';
 }
 
 // Path: discover
@@ -1411,11 +1411,11 @@ class _Translations$trakt$pt extends Translations$trakt$en {
 	@override String get connected => 'Conectado';
 	@override String connectedAs({required Object username}) => 'Conectado como @${username}';
 	@override String get disconnectConfirm => 'Desconectar a conta do Trakt?';
-	@override String get disconnectConfirmBody => 'O Plezy deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.';
+	@override String get disconnectConfirmBody => 'O Harbor deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.';
 	@override String get scrobble => 'Scrobbling em tempo real';
 	@override String get scrobbleDescription => 'Envia eventos de reprodução, pausa e parada ao Trakt durante a exibição.';
 	@override String get watchedSync => 'Sincronizar status de assistido';
-	@override String get watchedSyncDescription => 'Ao marcar itens como assistidos no Plezy, eles também serão marcados no Trakt.';
+	@override String get watchedSyncDescription => 'Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt.';
 }
 
 // Path: seerr
@@ -1434,10 +1434,10 @@ class _Translations$seerr$pt extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Entrar com Emby';
 	@override String get signInWithLocal => 'Usar uma conta local';
 	@override String get email => 'E-mail';
-	@override String get noSignInMethods => 'Esta instância do Seerr não oferece nenhum método de acesso compatível com o Plezy.';
+	@override String get noSignInMethods => 'Esta instância do Seerr não oferece nenhum método de acesso compatível com o Harbor.';
 	@override String get instance => 'Instância';
 	@override String get disconnectConfirm => 'Desconectar Seerr?';
-	@override String get disconnectConfirmBody => 'O Plezy esquecerá esta instância do Seerr. Reconecte quando quiser.';
+	@override String get disconnectConfirmBody => 'O Harbor esquecerá esta instância do Seerr. Reconecte quando quiser.';
 	@override String get request => 'Solicitar';
 	@override String get request4k => 'Solicitar em 4K';
 	@override String get seasons => 'Temporadas';
@@ -1471,7 +1471,7 @@ class _Translations$services$pt extends Translations$services$en {
 	@override String get scrobble => 'Registrar progresso automaticamente';
 	@override String get scrobbleDescription => 'Atualiza sua lista quando você termina um episódio ou filme.';
 	@override String disconnectConfirm({required Object service}) => 'Desconectar ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'O Plezy deixará de atualizar ${service}. Reconecte quando quiser.';
+	@override String disconnectConfirmBody({required Object service}) => 'O Harbor deixará de atualizar ${service}. Reconecte quando quiser.';
 	@override String connectFailed({required Object service}) => 'Não foi possível conectar ao ${service}. Tente novamente.';
 	@override late final _Translations$services$names$pt names = _Translations$services$names$pt._(_root);
 	@override late final _Translations$services$deviceCode$pt deviceCode = _Translations$services$deviceCode$pt._(_root);
@@ -1680,14 +1680,14 @@ class _Translations$downloads$backgroundWarning$pt extends Translations$download
 	@override String get bannerAction => 'Detalhes';
 	@override String get sheetTitle => 'Os downloads em segundo plano estão bloqueados';
 	@override String get sheetTitleDegraded => 'Os downloads em segundo plano podem ser limitados';
-	@override String get sheetIntro => 'O Android está impedindo que o Plezy faça downloads de forma confiável em segundo plano.';
-	@override String get sheetIntroDegraded => 'Seu dispositivo está limitando quando o Plezy pode fazer downloads em segundo plano.';
-	@override String get reasonBackgroundRestricted => 'O uso em segundo plano do Plezy está restrito. Defina o uso da bateria ou o uso em segundo plano como "Sem restrições".';
-	@override String get reasonStandbyRestricted => 'O Android colocou o Plezy em um modo de espera restrito. Defina o uso da bateria como "Sem restrições".';
+	@override String get sheetIntro => 'O Android está impedindo que o Harbor faça downloads de forma confiável em segundo plano.';
+	@override String get sheetIntroDegraded => 'Seu dispositivo está limitando quando o Harbor pode fazer downloads em segundo plano.';
+	@override String get reasonBackgroundRestricted => 'O uso em segundo plano do Harbor está restrito. Defina o uso da bateria ou o uso em segundo plano como "Sem restrições".';
+	@override String get reasonStandbyRestricted => 'O Android colocou o Harbor em um modo de espera restrito. Defina o uso da bateria como "Sem restrições".';
 	@override String get reasonDownloadChannelBlocked => 'As notificações de download estão desativadas; por isso, o progresso e os controles podem ficar indisponíveis.';
 	@override String get reasonNotificationsDisabled => 'As notificações estão desativadas. No Android 13 ou mais recente, elas são necessárias para downloads longos em segundo plano.';
 	@override String get reasonDataSaver => 'A Economia de dados está ativada e bloqueia downloads em segundo plano usando dados móveis. Os downloads ainda devem funcionar no Wi-Fi.';
-	@override String get reasonOemUnknown => 'Os downloads foram interrompidos várias vezes enquanto o Plezy estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Plezy.';
+	@override String get reasonOemUnknown => 'Os downloads foram interrompidos várias vezes enquanto o Harbor estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Harbor.';
 	@override String get openSettings => 'Abrir configurações';
 	@override String get stillNotWorking => 'Ajuda específica para o dispositivo';
 	@override String get stillNotWorkingDescription => 'Veja as instruções para seu dispositivo ou, se o problema persistir, envie um log em Configurações › Ver Logs.';
@@ -1723,7 +1723,7 @@ class _Translations$services$deviceCode$pt extends Translations$services$deviceC
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => 'Ativar o Plezy no ${service}';
+	@override String title({required Object service}) => 'Ativar o Harbor no ${service}';
 	@override String body({required Object url}) => 'Acesse ${url} e insira este código:';
 	@override String openToActivate({required Object service}) => 'Abrir ${service} para ativar';
 	@override String get copyCode => 'Copiar código de ativação';
@@ -1774,14 +1774,14 @@ class _Translations$services$libraryFilter$pt extends Translations$services$libr
 extension on TranslationsPt {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Conectar ao Jellyfin',
 			'auth.useQuickConnect' => 'Usar Quick Connect',
 			'auth.quickConnectInstructions' => 'Abra o Quick Connect no Jellyfin e insira este código.',
 			'auth.quickConnectWaiting' => 'Aguardando aprovação…',
 			'auth.quickConnectCancel' => 'Cancelar',
 			'auth.quickConnectExpired' => 'Quick Connect expirou. Tente novamente.',
-			'auth.localDataRecoveryRequired' => 'O Plezy não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.',
+			'auth.localDataRecoveryRequired' => 'O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.',
 			'common.cancel' => 'Cancelar',
 			'common.save' => 'Salvar',
 			'common.close' => 'Fechar',
@@ -1837,7 +1837,7 @@ extension on TranslationsPt {
 			'update.latestVersion' => 'Você está na versão mais recente',
 			'update.checkFailed' => 'Falha ao verificar atualizações',
 			'settings.title' => 'Configurações',
-			'settings.supportDeveloper' => 'Apoie o Plezy',
+			'settings.supportDeveloper' => 'Apoie o Harbor',
 			'settings.supportDeveloperDescription' => 'Doe via Liberapay para financiar o desenvolvimento',
 			'settings.language' => 'Idioma',
 			'settings.theme' => 'Tema',
@@ -1949,7 +1949,7 @@ extension on TranslationsPt {
 			'settings.importSettingsDescription' => 'Restaurar preferências a partir de um arquivo',
 			'settings.importSettingsConfirm' => 'Isso substituirá suas configurações atuais. Continuar?',
 			'settings.importSettingsSuccess' => 'Configurações importadas',
-			'settings.importSettingsInvalidFile' => 'Este arquivo não é uma exportação válida do Plezy',
+			'settings.importSettingsInvalidFile' => 'Este arquivo não é uma exportação válida do Harbor',
 			'settings.importSettingsNoUser' => 'Entre na conta antes de importar as configurações',
 			'settings.shortcutsReset' => 'Atalhos redefinidos para o padrão',
 			'settings.about' => 'Sobre',
@@ -2064,7 +2064,7 @@ extension on TranslationsPt {
 			'settings.forceTvMode' => 'Forçar modo TV',
 			'settings.forceTvModeDescription' => 'Forçar o layout de TV em dispositivos sem detecção automática. Requer reiniciar o app.',
 			'settings.startInFullscreen' => 'Iniciar em tela cheia',
-			'settings.startInFullscreenDescription' => 'Abrir o Plezy em modo de tela cheia ao iniciar',
+			'settings.startInFullscreenDescription' => 'Abrir o Harbor em modo de tela cheia ao iniciar',
 			'settings.exitFullscreenOnPlayerClose' => 'Sair da tela cheia ao fechar o reprodutor',
 			'settings.exitFullscreenOnPlayerCloseDescription' => 'Sair automaticamente da tela cheia ao fechar o reprodutor de vídeo',
 			'settings.autoHidePerformanceOverlay' => 'Ocultar automaticamente o painel de desempenho',
@@ -2344,7 +2344,7 @@ extension on TranslationsPt {
 			'mpvConfig.confirmDeletePreset' => 'Tem certeza de que deseja excluir esta predefinição?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# comment',
 			'dialog.confirmAction' => 'Confirmar Ação',
-			'profiles.addPlezyProfile' => 'Adicionar perfil Plezy',
+			'profiles.addLocalProfile' => 'Adicionar perfil Harbor',
 			'profiles.switchingProfile' => 'Mudando perfil…',
 			'profiles.deleteThisProfileTitle' => 'Excluir este perfil?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => 'Remover ${displayName}. As conexões não serão afetadas.',
@@ -2400,7 +2400,7 @@ extension on TranslationsPt {
 			'connections.sessionExpiredMany' => ({required Object count}) => 'Sessões expiradas em ${count} servidores',
 			'connections.signInAgain' => 'Entrar novamente',
 			'connections.editJellyfinTitle' => 'Editar conexão Jellyfin',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Adicione ou remova URLs de ${serverName}. O Plezy usará a URL acessível com a menor latência.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => 'Adicione ou remova URLs de ${serverName}. O Harbor usará a URL acessível com a menor latência.',
 			'discover.title' => 'Descobrir',
 			'discover.noContentAvailable' => 'Nenhum conteúdo disponível',
 			'discover.addMediaToLibraries' => 'Adicione mídias às suas bibliotecas',
@@ -2690,14 +2690,14 @@ extension on TranslationsPt {
 			'downloads.backgroundWarning.bannerAction' => 'Detalhes',
 			'downloads.backgroundWarning.sheetTitle' => 'Os downloads em segundo plano estão bloqueados',
 			'downloads.backgroundWarning.sheetTitleDegraded' => 'Os downloads em segundo plano podem ser limitados',
-			'downloads.backgroundWarning.sheetIntro' => 'O Android está impedindo que o Plezy faça downloads de forma confiável em segundo plano.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => 'Seu dispositivo está limitando quando o Plezy pode fazer downloads em segundo plano.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'O uso em segundo plano do Plezy está restrito. Defina o uso da bateria ou o uso em segundo plano como "Sem restrições".',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'O Android colocou o Plezy em um modo de espera restrito. Defina o uso da bateria como "Sem restrições".',
+			'downloads.backgroundWarning.sheetIntro' => 'O Android está impedindo que o Harbor faça downloads de forma confiável em segundo plano.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => 'Seu dispositivo está limitando quando o Harbor pode fazer downloads em segundo plano.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'O uso em segundo plano do Harbor está restrito. Defina o uso da bateria ou o uso em segundo plano como "Sem restrições".',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'O Android colocou o Harbor em um modo de espera restrito. Defina o uso da bateria como "Sem restrições".',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => 'As notificações de download estão desativadas; por isso, o progresso e os controles podem ficar indisponíveis.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => 'As notificações estão desativadas. No Android 13 ou mais recente, elas são necessárias para downloads longos em segundo plano.',
 			'downloads.backgroundWarning.reasonDataSaver' => 'A Economia de dados está ativada e bloqueia downloads em segundo plano usando dados móveis. Os downloads ainda devem funcionar no Wi-Fi.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Os downloads foram interrompidos várias vezes enquanto o Plezy estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Plezy.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Os downloads foram interrompidos várias vezes enquanto o Harbor estava em segundo plano. Verifique as configurações de bateria ou uso em segundo plano do Harbor.',
 			'downloads.backgroundWarning.openSettings' => 'Abrir configurações',
 			'downloads.backgroundWarning.stillNotWorking' => 'Ajuda específica para o dispositivo',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => 'Veja as instruções para seu dispositivo ou, se o problema persistir, envie um log em Configurações › Ver Logs.',
@@ -2841,11 +2841,11 @@ extension on TranslationsPt {
 			'trakt.connected' => 'Conectado',
 			'trakt.connectedAs' => ({required Object username}) => 'Conectado como @${username}',
 			'trakt.disconnectConfirm' => 'Desconectar a conta do Trakt?',
-			'trakt.disconnectConfirmBody' => 'O Plezy deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.',
+			'trakt.disconnectConfirmBody' => 'O Harbor deixará de enviar eventos ao Trakt. Você pode reconectar quando quiser.',
 			'trakt.scrobble' => 'Scrobbling em tempo real',
 			'trakt.scrobbleDescription' => 'Envia eventos de reprodução, pausa e parada ao Trakt durante a exibição.',
 			'trakt.watchedSync' => 'Sincronizar status de assistido',
-			'trakt.watchedSyncDescription' => 'Ao marcar itens como assistidos no Plezy, eles também serão marcados no Trakt.',
+			'trakt.watchedSyncDescription' => 'Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Conectar ao Seerr',
 			'seerr.serverUrl' => 'URL do servidor',
@@ -2855,10 +2855,10 @@ extension on TranslationsPt {
 			'seerr.signInWithEmby' => 'Entrar com Emby',
 			'seerr.signInWithLocal' => 'Usar uma conta local',
 			'seerr.email' => 'E-mail',
-			'seerr.noSignInMethods' => 'Esta instância do Seerr não oferece nenhum método de acesso compatível com o Plezy.',
+			'seerr.noSignInMethods' => 'Esta instância do Seerr não oferece nenhum método de acesso compatível com o Harbor.',
 			'seerr.instance' => 'Instância',
 			'seerr.disconnectConfirm' => 'Desconectar Seerr?',
-			'seerr.disconnectConfirmBody' => 'O Plezy esquecerá esta instância do Seerr. Reconecte quando quiser.',
+			'seerr.disconnectConfirmBody' => 'O Harbor esquecerá esta instância do Seerr. Reconecte quando quiser.',
 			'seerr.request' => 'Solicitar',
 			'seerr.request4k' => 'Solicitar em 4K',
 			'seerr.seasons' => 'Temporadas',
@@ -2883,13 +2883,13 @@ extension on TranslationsPt {
 			'services.scrobble' => 'Registrar progresso automaticamente',
 			'services.scrobbleDescription' => 'Atualiza sua lista quando você termina um episódio ou filme.',
 			'services.disconnectConfirm' => ({required Object service}) => 'Desconectar ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'O Plezy deixará de atualizar ${service}. Reconecte quando quiser.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'O Harbor deixará de atualizar ${service}. Reconecte quando quiser.',
 			'services.connectFailed' => ({required Object service}) => 'Não foi possível conectar ao ${service}. Tente novamente.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => 'Ativar o Plezy no ${service}',
+			'services.deviceCode.title' => ({required Object service}) => 'Ativar o Harbor no ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Acesse ${url} e insira este código:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => 'Abrir ${service} para ativar',
 			'services.deviceCode.copyCode' => 'Copiar código de ativação',

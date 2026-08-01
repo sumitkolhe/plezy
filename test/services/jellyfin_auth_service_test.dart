@@ -31,7 +31,7 @@ JellyfinConnection _existingConn({String accessToken = 'tok-old'}) => testJellyf
 
 JellyfinConnectionAuthService _service({required _Handler handler}) {
   return JellyfinConnectionAuthService(
-    clientName: 'Plezy',
+    clientName: 'Harbor',
     clientVersion: 'test',
     deviceName: 'TestDevice',
     testHttpClientFactory: () => MockClient((req) async => handler(req)),
@@ -246,7 +246,7 @@ void main() {
 
     test('returns false on transport error', () async {
       final svc = JellyfinConnectionAuthService(
-        clientName: 'Plezy',
+        clientName: 'Harbor',
         clientVersion: 'test',
         deviceName: 'TestDevice',
         testHttpClientFactory: () => MockClient((_) async => throw http.ClientException('network down')),
@@ -653,7 +653,7 @@ void main() {
       expect(request.method, 'POST');
       expect(
         request.headers['authorization'],
-        'MediaBrowser Client="Plezy", Device="TestDevice", DeviceId="dev-xyz", Version="test"',
+        'MediaBrowser Client="Harbor", Device="TestDevice", DeviceId="dev-xyz", Version="test"',
       );
       expect(request.headers['content-type'], 'application/json');
     });
@@ -672,7 +672,7 @@ void main() {
       expect(request.method, 'GET');
       expect(
         request.headers['authorization'],
-        'MediaBrowser Client="Plezy", Device="TestDevice", DeviceId="dev-xyz", Version="test"',
+        'MediaBrowser Client="Harbor", Device="TestDevice", DeviceId="dev-xyz", Version="test"',
       );
     });
 

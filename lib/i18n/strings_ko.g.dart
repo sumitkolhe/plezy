@@ -91,7 +91,7 @@ class _Translations$app$ko extends Translations$app$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Plezy';
+	@override String get title => 'Harbor';
 }
 
 // Path: auth
@@ -107,7 +107,7 @@ class _Translations$auth$ko extends Translations$auth$en {
 	@override String get quickConnectWaiting => '승인 대기 중…';
 	@override String get quickConnectCancel => '취소';
 	@override String get quickConnectExpired => 'Quick Connect가 만료되었습니다. 다시 시도하세요.';
-	@override String get localDataRecoveryRequired => 'Plezy에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.';
+	@override String get localDataRecoveryRequired => 'Harbor에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.';
 }
 
 // Path: common
@@ -199,7 +199,7 @@ class _Translations$settings$ko extends Translations$settings$en {
 
 	// Translations
 	@override String get title => '설정';
-	@override String get supportDeveloper => 'Plezy 후원하기';
+	@override String get supportDeveloper => 'Harbor 후원하기';
 	@override String get supportDeveloperDescription => 'Liberapay로 후원하여 개발 지원';
 	@override String get language => '언어';
 	@override String get theme => '테마';
@@ -311,7 +311,7 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get importSettingsDescription => '파일에서 기본 설정 복원';
 	@override String get importSettingsConfirm => '현재 설정을 대체합니다. 계속하시겠습니까?';
 	@override String get importSettingsSuccess => '설정 가져오기 완료';
-	@override String get importSettingsInvalidFile => '유효한 Plezy 설정 내보내기 파일이 아닙니다';
+	@override String get importSettingsInvalidFile => '유효한 Harbor 설정 내보내기 파일이 아닙니다';
 	@override String get importSettingsNoUser => '설정을 가져오기 전에 로그인하세요';
 	@override String get shortcutsReset => '단축키가 기본값으로 재설정되었습니다';
 	@override String get about => '정보';
@@ -426,7 +426,7 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get forceTvMode => 'TV 모드 강제 사용';
 	@override String get forceTvModeDescription => 'TV 레이아웃을 강제합니다. 자동 감지되지 않는 기기용입니다. 재시작이 필요합니다.';
 	@override String get startInFullscreen => '전체 화면으로 시작';
-	@override String get startInFullscreenDescription => '실행 시 Plezy를 전체 화면 모드로 엽니다';
+	@override String get startInFullscreenDescription => '실행 시 Harbor를 전체 화면 모드로 엽니다';
 	@override String get exitFullscreenOnPlayerClose => '플레이어를 닫을 때 전체 화면 종료';
 	@override String get exitFullscreenOnPlayerCloseDescription => '비디오 플레이어를 닫을 때 자동으로 전체 화면을 종료합니다';
 	@override String get autoHidePerformanceOverlay => '성능 오버레이 자동 숨기기';
@@ -802,7 +802,7 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get addPlezyProfile => 'Plezy 프로필 추가';
+	@override String get addLocalProfile => 'Harbor 프로필 추가';
 	@override String get switchingProfile => '프로필 전환 중…';
 	@override String get deleteThisProfileTitle => '이 프로필을 삭제하시겠습니까?';
 	@override String deleteThisProfileMessage({required Object displayName}) => '${displayName}을(를) 제거합니다. 연결에는 영향이 없습니다.';
@@ -867,7 +867,7 @@ class _Translations$connections$ko extends Translations$connections$en {
 	@override String sessionExpiredMany({required Object count}) => '${count}개 서버의 세션이 만료되었습니다';
 	@override String get signInAgain => '다시 로그인';
 	@override String get editJellyfinTitle => 'Jellyfin 연결 편집';
-	@override String editJellyfinIntro({required Object serverName}) => '${serverName}의 URL을 추가하거나 제거하세요. Plezy는 연결 가능한 URL 중 지연 시간이 가장 낮은 URL을 사용합니다.';
+	@override String editJellyfinIntro({required Object serverName}) => '${serverName}의 URL을 추가하거나 제거하세요. Harbor는 연결 가능한 URL 중 지연 시간이 가장 낮은 URL을 사용합니다.';
 }
 
 // Path: discover
@@ -1408,11 +1408,11 @@ class _Translations$trakt$ko extends Translations$trakt$en {
 	@override String get connected => '연결됨';
 	@override String connectedAs({required Object username}) => '@${username}(으)로 연결됨';
 	@override String get disconnectConfirm => 'Trakt 계정 연결을 끊으시겠습니까?';
-	@override String get disconnectConfirmBody => 'Plezy가 Trakt로 이벤트 전송을 중지합니다. 언제든 다시 연결할 수 있습니다.';
+	@override String get disconnectConfirmBody => 'Harbor가 Trakt로 이벤트 전송을 중지합니다. 언제든 다시 연결할 수 있습니다.';
 	@override String get scrobble => '실시간 스크로블';
 	@override String get scrobbleDescription => '재생 중 재생, 일시정지, 정지 이벤트를 Trakt로 전송합니다.';
 	@override String get watchedSync => '시청 상태 동기화';
-	@override String get watchedSyncDescription => 'Plezy에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.';
+	@override String get watchedSyncDescription => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.';
 }
 
 // Path: seerr
@@ -1431,10 +1431,10 @@ class _Translations$seerr$ko extends Translations$seerr$en {
 	@override String get signInWithEmby => 'Emby로 로그인';
 	@override String get signInWithLocal => '로컬 계정 사용';
 	@override String get email => '이메일';
-	@override String get noSignInMethods => '이 Seerr 인스턴스에는 Plezy가 지원하는 로그인 방법이 없습니다.';
+	@override String get noSignInMethods => '이 Seerr 인스턴스에는 Harbor가 지원하는 로그인 방법이 없습니다.';
 	@override String get instance => '인스턴스';
 	@override String get disconnectConfirm => 'Seerr 연결을 해제하시겠습니까?';
-	@override String get disconnectConfirmBody => 'Plezy가 이 Seerr 인스턴스를 삭제합니다. 언제든 다시 연결할 수 있습니다.';
+	@override String get disconnectConfirmBody => 'Harbor가 이 Seerr 인스턴스를 삭제합니다. 언제든 다시 연결할 수 있습니다.';
 	@override String get request => '요청';
 	@override String get request4k => '4K로 요청';
 	@override String get seasons => '시즌';
@@ -1468,7 +1468,7 @@ class _Translations$services$ko extends Translations$services$en {
 	@override String get scrobble => '진행률 자동 추적';
 	@override String get scrobbleDescription => '에피소드나 영화를 시청하면 목록을 업데이트합니다.';
 	@override String disconnectConfirm({required Object service}) => '${service} 연결을 해제하시겠습니까?';
-	@override String disconnectConfirmBody({required Object service}) => 'Plezy가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.';
+	@override String disconnectConfirmBody({required Object service}) => 'Harbor가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.';
 	@override String connectFailed({required Object service}) => '${service}에 연결할 수 없습니다. 다시 시도하세요.';
 	@override late final _Translations$services$names$ko names = _Translations$services$names$ko._(_root);
 	@override late final _Translations$services$deviceCode$ko deviceCode = _Translations$services$deviceCode$ko._(_root);
@@ -1677,14 +1677,14 @@ class _Translations$downloads$backgroundWarning$ko extends Translations$download
 	@override String get bannerAction => '세부정보';
 	@override String get sheetTitle => '백그라운드 다운로드가 차단됨';
 	@override String get sheetTitleDegraded => '백그라운드 다운로드가 제한될 수 있음';
-	@override String get sheetIntro => 'Android가 Plezy의 안정적인 백그라운드 다운로드를 차단하고 있습니다.';
-	@override String get sheetIntroDegraded => '기기에서 Plezy가 백그라운드로 다운로드할 수 있는 시점을 제한하고 있습니다.';
-	@override String get reasonBackgroundRestricted => 'Plezy의 백그라운드 사용이 제한되어 있습니다. 배터리 또는 백그라운드 사용을 "제한 없음"으로 설정하세요.';
-	@override String get reasonStandbyRestricted => 'Android가 Plezy를 제한된 대기 상태로 전환했습니다. 배터리 사용량을 "제한 없음"으로 설정하세요.';
+	@override String get sheetIntro => 'Android가 Harbor의 안정적인 백그라운드 다운로드를 차단하고 있습니다.';
+	@override String get sheetIntroDegraded => '기기에서 Harbor가 백그라운드로 다운로드할 수 있는 시점을 제한하고 있습니다.';
+	@override String get reasonBackgroundRestricted => 'Harbor의 백그라운드 사용이 제한되어 있습니다. 배터리 또는 백그라운드 사용을 "제한 없음"으로 설정하세요.';
+	@override String get reasonStandbyRestricted => 'Android가 Harbor를 제한된 대기 상태로 전환했습니다. 배터리 사용량을 "제한 없음"으로 설정하세요.';
 	@override String get reasonDownloadChannelBlocked => '다운로드 알림이 꺼져 있어 진행 상황과 제어 기능을 사용하지 못할 수 있습니다.';
 	@override String get reasonNotificationsDisabled => '알림이 꺼져 있습니다. Android 13 이상에서는 장시간 백그라운드 다운로드에 알림이 필요합니다.';
 	@override String get reasonDataSaver => '데이터 절약 모드가 켜져 있어 모바일 데이터로 백그라운드 다운로드를 할 수 없습니다. Wi-Fi에서는 계속 다운로드할 수 있습니다.';
-	@override String get reasonOemUnknown => 'Plezy가 백그라운드에 있을 때 다운로드가 반복해서 중지되었습니다. Plezy의 배터리 또는 백그라운드 사용 설정을 확인하세요.';
+	@override String get reasonOemUnknown => 'Harbor가 백그라운드에 있을 때 다운로드가 반복해서 중지되었습니다. Harbor의 배터리 또는 백그라운드 사용 설정을 확인하세요.';
 	@override String get openSettings => '설정 열기';
 	@override String get stillNotWorking => '기기별 도움말';
 	@override String get stillNotWorkingDescription => '기기에 맞는 단계를 확인하세요. 문제가 계속되면 설정 › 로그 보기에서 로그를 보내 주세요.';
@@ -1720,7 +1720,7 @@ class _Translations$services$deviceCode$ko extends Translations$services$deviceC
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String title({required Object service}) => '${service}에서 Plezy 활성화';
+	@override String title({required Object service}) => '${service}에서 Harbor 활성화';
 	@override String body({required Object url}) => '${url}을 방문하여 이 코드를 입력하세요:';
 	@override String openToActivate({required Object service}) => '활성화하려면 ${service} 열기';
 	@override String get copyCode => '활성화 코드 복사';
@@ -1771,14 +1771,14 @@ class _Translations$services$libraryFilter$ko extends Translations$services$libr
 extension on TranslationsKo {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
-			'app.title' => 'Plezy',
+			'app.title' => 'Harbor',
 			'auth.connectToJellyfin' => 'Jellyfin에 연결',
 			'auth.useQuickConnect' => 'Quick Connect 사용',
 			'auth.quickConnectInstructions' => 'Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.',
 			'auth.quickConnectWaiting' => '승인 대기 중…',
 			'auth.quickConnectCancel' => '취소',
 			'auth.quickConnectExpired' => 'Quick Connect가 만료되었습니다. 다시 시도하세요.',
-			'auth.localDataRecoveryRequired' => 'Plezy에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.',
+			'auth.localDataRecoveryRequired' => 'Harbor에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.',
 			'common.cancel' => '취소',
 			'common.save' => '저장',
 			'common.close' => '닫기',
@@ -1834,7 +1834,7 @@ extension on TranslationsKo {
 			'update.latestVersion' => '최신 버전을 사용 중입니다',
 			'update.checkFailed' => '업데이트 확인 실패',
 			'settings.title' => '설정',
-			'settings.supportDeveloper' => 'Plezy 후원하기',
+			'settings.supportDeveloper' => 'Harbor 후원하기',
 			'settings.supportDeveloperDescription' => 'Liberapay로 후원하여 개발 지원',
 			'settings.language' => '언어',
 			'settings.theme' => '테마',
@@ -1946,7 +1946,7 @@ extension on TranslationsKo {
 			'settings.importSettingsDescription' => '파일에서 기본 설정 복원',
 			'settings.importSettingsConfirm' => '현재 설정을 대체합니다. 계속하시겠습니까?',
 			'settings.importSettingsSuccess' => '설정 가져오기 완료',
-			'settings.importSettingsInvalidFile' => '유효한 Plezy 설정 내보내기 파일이 아닙니다',
+			'settings.importSettingsInvalidFile' => '유효한 Harbor 설정 내보내기 파일이 아닙니다',
 			'settings.importSettingsNoUser' => '설정을 가져오기 전에 로그인하세요',
 			'settings.shortcutsReset' => '단축키가 기본값으로 재설정되었습니다',
 			'settings.about' => '정보',
@@ -2061,7 +2061,7 @@ extension on TranslationsKo {
 			'settings.forceTvMode' => 'TV 모드 강제 사용',
 			'settings.forceTvModeDescription' => 'TV 레이아웃을 강제합니다. 자동 감지되지 않는 기기용입니다. 재시작이 필요합니다.',
 			'settings.startInFullscreen' => '전체 화면으로 시작',
-			'settings.startInFullscreenDescription' => '실행 시 Plezy를 전체 화면 모드로 엽니다',
+			'settings.startInFullscreenDescription' => '실행 시 Harbor를 전체 화면 모드로 엽니다',
 			'settings.exitFullscreenOnPlayerClose' => '플레이어를 닫을 때 전체 화면 종료',
 			'settings.exitFullscreenOnPlayerCloseDescription' => '비디오 플레이어를 닫을 때 자동으로 전체 화면을 종료합니다',
 			'settings.autoHidePerformanceOverlay' => '성능 오버레이 자동 숨기기',
@@ -2341,7 +2341,7 @@ extension on TranslationsKo {
 			'mpvConfig.confirmDeletePreset' => '이 프리셋을 삭제하시겠습니까?',
 			'mpvConfig.configPlaceholder' => 'gpu-api=vulkan\nhwdec=auto\n# comment',
 			'dialog.confirmAction' => '작업 확인',
-			'profiles.addPlezyProfile' => 'Plezy 프로필 추가',
+			'profiles.addLocalProfile' => 'Harbor 프로필 추가',
 			'profiles.switchingProfile' => '프로필 전환 중…',
 			'profiles.deleteThisProfileTitle' => '이 프로필을 삭제하시겠습니까?',
 			'profiles.deleteThisProfileMessage' => ({required Object displayName}) => '${displayName}을(를) 제거합니다. 연결에는 영향이 없습니다.',
@@ -2397,7 +2397,7 @@ extension on TranslationsKo {
 			'connections.sessionExpiredMany' => ({required Object count}) => '${count}개 서버의 세션이 만료되었습니다',
 			'connections.signInAgain' => '다시 로그인',
 			'connections.editJellyfinTitle' => 'Jellyfin 연결 편집',
-			'connections.editJellyfinIntro' => ({required Object serverName}) => '${serverName}의 URL을 추가하거나 제거하세요. Plezy는 연결 가능한 URL 중 지연 시간이 가장 낮은 URL을 사용합니다.',
+			'connections.editJellyfinIntro' => ({required Object serverName}) => '${serverName}의 URL을 추가하거나 제거하세요. Harbor는 연결 가능한 URL 중 지연 시간이 가장 낮은 URL을 사용합니다.',
 			'discover.title' => '둘러보기',
 			'discover.noContentAvailable' => '사용 가능한 콘텐츠가 없습니다',
 			'discover.addMediaToLibraries' => '미디어 라이브러리에 미디어를 추가해 주세요',
@@ -2687,14 +2687,14 @@ extension on TranslationsKo {
 			'downloads.backgroundWarning.bannerAction' => '세부정보',
 			'downloads.backgroundWarning.sheetTitle' => '백그라운드 다운로드가 차단됨',
 			'downloads.backgroundWarning.sheetTitleDegraded' => '백그라운드 다운로드가 제한될 수 있음',
-			'downloads.backgroundWarning.sheetIntro' => 'Android가 Plezy의 안정적인 백그라운드 다운로드를 차단하고 있습니다.',
-			'downloads.backgroundWarning.sheetIntroDegraded' => '기기에서 Plezy가 백그라운드로 다운로드할 수 있는 시점을 제한하고 있습니다.',
-			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Plezy의 백그라운드 사용이 제한되어 있습니다. 배터리 또는 백그라운드 사용을 "제한 없음"으로 설정하세요.',
-			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android가 Plezy를 제한된 대기 상태로 전환했습니다. 배터리 사용량을 "제한 없음"으로 설정하세요.',
+			'downloads.backgroundWarning.sheetIntro' => 'Android가 Harbor의 안정적인 백그라운드 다운로드를 차단하고 있습니다.',
+			'downloads.backgroundWarning.sheetIntroDegraded' => '기기에서 Harbor가 백그라운드로 다운로드할 수 있는 시점을 제한하고 있습니다.',
+			'downloads.backgroundWarning.reasonBackgroundRestricted' => 'Harbor의 백그라운드 사용이 제한되어 있습니다. 배터리 또는 백그라운드 사용을 "제한 없음"으로 설정하세요.',
+			'downloads.backgroundWarning.reasonStandbyRestricted' => 'Android가 Harbor를 제한된 대기 상태로 전환했습니다. 배터리 사용량을 "제한 없음"으로 설정하세요.',
 			'downloads.backgroundWarning.reasonDownloadChannelBlocked' => '다운로드 알림이 꺼져 있어 진행 상황과 제어 기능을 사용하지 못할 수 있습니다.',
 			'downloads.backgroundWarning.reasonNotificationsDisabled' => '알림이 꺼져 있습니다. Android 13 이상에서는 장시간 백그라운드 다운로드에 알림이 필요합니다.',
 			'downloads.backgroundWarning.reasonDataSaver' => '데이터 절약 모드가 켜져 있어 모바일 데이터로 백그라운드 다운로드를 할 수 없습니다. Wi-Fi에서는 계속 다운로드할 수 있습니다.',
-			'downloads.backgroundWarning.reasonOemUnknown' => 'Plezy가 백그라운드에 있을 때 다운로드가 반복해서 중지되었습니다. Plezy의 배터리 또는 백그라운드 사용 설정을 확인하세요.',
+			'downloads.backgroundWarning.reasonOemUnknown' => 'Harbor가 백그라운드에 있을 때 다운로드가 반복해서 중지되었습니다. Harbor의 배터리 또는 백그라운드 사용 설정을 확인하세요.',
 			'downloads.backgroundWarning.openSettings' => '설정 열기',
 			'downloads.backgroundWarning.stillNotWorking' => '기기별 도움말',
 			'downloads.backgroundWarning.stillNotWorkingDescription' => '기기에 맞는 단계를 확인하세요. 문제가 계속되면 설정 › 로그 보기에서 로그를 보내 주세요.',
@@ -2838,11 +2838,11 @@ extension on TranslationsKo {
 			'trakt.connected' => '연결됨',
 			'trakt.connectedAs' => ({required Object username}) => '@${username}(으)로 연결됨',
 			'trakt.disconnectConfirm' => 'Trakt 계정 연결을 끊으시겠습니까?',
-			'trakt.disconnectConfirmBody' => 'Plezy가 Trakt로 이벤트 전송을 중지합니다. 언제든 다시 연결할 수 있습니다.',
+			'trakt.disconnectConfirmBody' => 'Harbor가 Trakt로 이벤트 전송을 중지합니다. 언제든 다시 연결할 수 있습니다.',
 			'trakt.scrobble' => '실시간 스크로블',
 			'trakt.scrobbleDescription' => '재생 중 재생, 일시정지, 정지 이벤트를 Trakt로 전송합니다.',
 			'trakt.watchedSync' => '시청 상태 동기화',
-			'trakt.watchedSyncDescription' => 'Plezy에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
+			'trakt.watchedSyncDescription' => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr에 연결',
 			'seerr.serverUrl' => '서버 URL',
@@ -2852,10 +2852,10 @@ extension on TranslationsKo {
 			'seerr.signInWithEmby' => 'Emby로 로그인',
 			'seerr.signInWithLocal' => '로컬 계정 사용',
 			'seerr.email' => '이메일',
-			'seerr.noSignInMethods' => '이 Seerr 인스턴스에는 Plezy가 지원하는 로그인 방법이 없습니다.',
+			'seerr.noSignInMethods' => '이 Seerr 인스턴스에는 Harbor가 지원하는 로그인 방법이 없습니다.',
 			'seerr.instance' => '인스턴스',
 			'seerr.disconnectConfirm' => 'Seerr 연결을 해제하시겠습니까?',
-			'seerr.disconnectConfirmBody' => 'Plezy가 이 Seerr 인스턴스를 삭제합니다. 언제든 다시 연결할 수 있습니다.',
+			'seerr.disconnectConfirmBody' => 'Harbor가 이 Seerr 인스턴스를 삭제합니다. 언제든 다시 연결할 수 있습니다.',
 			'seerr.request' => '요청',
 			'seerr.request4k' => '4K로 요청',
 			'seerr.seasons' => '시즌',
@@ -2880,13 +2880,13 @@ extension on TranslationsKo {
 			'services.scrobble' => '진행률 자동 추적',
 			'services.scrobbleDescription' => '에피소드나 영화를 시청하면 목록을 업데이트합니다.',
 			'services.disconnectConfirm' => ({required Object service}) => '${service} 연결을 해제하시겠습니까?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Plezy가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.',
+			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.',
 			'services.connectFailed' => ({required Object service}) => '${service}에 연결할 수 없습니다. 다시 시도하세요.',
 			'services.names.mal' => 'MyAnimeList',
 			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
-			'services.deviceCode.title' => ({required Object service}) => '${service}에서 Plezy 활성화',
+			'services.deviceCode.title' => ({required Object service}) => '${service}에서 Harbor 활성화',
 			'services.deviceCode.body' => ({required Object url}) => '${url}을 방문하여 이 코드를 입력하세요:',
 			'services.deviceCode.openToActivate' => ({required Object service}) => '활성화하려면 ${service} 열기',
 			'services.deviceCode.copyCode' => '활성화 코드 복사',
