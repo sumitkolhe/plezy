@@ -182,7 +182,6 @@ class _CountingActiveProfileBinder extends ActiveProfileBinder {
     required super.profileConnections,
     required super.serverManager,
     required super.multiServerProvider,
-    required super.pinPrompt,
   });
 
   int calls = 0;
@@ -252,7 +251,6 @@ class _RouteHarness {
       profileConnections: profileConnections,
       serverManager: manager,
       multiServerProvider: multiServerProvider,
-      pinPrompt: (_, {String? errorMessage}) async => null,
     );
     return _RouteHarness._(
       db: db,

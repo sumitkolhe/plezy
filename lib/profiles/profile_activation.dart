@@ -233,7 +233,6 @@ Future<PlexHomeSwitchStatus> _preVerifyPlexHomePin(BuildContext context, Profile
 
   final connections = context.read<ConnectionRegistry>();
   final pcRegistry = context.read<ProfileConnectionRegistry>();
-  final binder = context.read<ActiveProfileBinder>();
   // Built before the await: capturing the prompt needs a live context.
   final promptForPin = dialogPinPrompt(context, profile.displayName);
   final all = await connections.list();
@@ -255,7 +254,6 @@ Future<PlexHomeSwitchStatus> _preVerifyPlexHomePin(BuildContext context, Profile
     persistProfileId: profile.id,
     logLabel: profile.displayName,
   );
-  if (result.succeeded) binder.markPlexHomePreVerified(profile.id);
   return result.status;
 }
 

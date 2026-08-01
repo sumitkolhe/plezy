@@ -20,7 +20,6 @@ import 'navigation/profile_navigation_scope.dart';
 import 'navigation/profile_session_screen.dart';
 import 'profiles/active_profile_binder.dart';
 import 'profiles/active_profile_provider.dart';
-import 'profiles/profile.dart';
 import 'profiles/profile_connection_cleanup.dart';
 import 'profiles/profile_connection_registry.dart';
 import 'profiles/profile_registry.dart';
@@ -31,7 +30,6 @@ import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
 import 'profiles/plex_home_service.dart';
 import 'screens/auth_screen.dart';
-import 'screens/profile/pin_entry_dialog.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
 import 'services/device_performance.dart';
@@ -686,17 +684,6 @@ bool shouldEnterOfflineModeAfterStartupBind({required bool bindingSucceeded, req
   return !bindingSucceeded && !hasOnlineServers;
 }
 
-/// Top-level PIN prompt used by [ActiveProfileBinder] when it runs above the
-/// profile-scoped widget tree. Routes through the app-global
-/// [rootNavigatorKey] so the dialog survives profile-session remounts. Returns
-/// `null` when no Navigator is available yet (early boot, post-dispose) so the
-/// binder treats it as "PIN cancelled".
-Future<String?> _rootPinPrompt(Profile profile, {String? errorMessage}) {
-  final ctx = rootNavigatorKey.currentContext;
-  if (ctx == null) return Future.value(null);
-  return showPinEntryDialog(ctx, profile.displayName, errorMessage: errorMessage);
-}
-
 class MainApp extends StatefulWidget {
   final SettingsService settings;
   final StorageService storage;
@@ -1103,7 +1090,6 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
               profileConnections: context.read<ProfileConnectionRegistry>(),
               serverManager: _serverManager,
               multiServerProvider: context.read<MultiServerProvider>(),
-              pinPrompt: _rootPinPrompt,
               shouldDeferInitialBind: (_) async {
                 final settings = await SettingsService.getInstance();
                 return activeProfile.requiresSelectionOnOpen(settings);

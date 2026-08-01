@@ -17,8 +17,6 @@ import 'package:plezy/services/jellyfin_client.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/offline_mode_source.dart';
 import 'package:plezy/services/offline_watch_sync_service.dart';
-import 'package:plezy/services/plex_client.dart';
-import 'package:plezy/utils/active_client_scope.dart';
 import 'package:plezy/utils/watch_state_notifier.dart';
 
 import '../test_helpers/backend_client_fixtures.dart';
@@ -122,21 +120,6 @@ class _ScopedRecordingMediaClient extends _RecordingMediaClient implements Scope
 
   @override
   final String scopedServerId;
-}
-
-class _RecordingPlexClient extends _RecordingMediaClient implements PlexClient, ScopedMediaServerClient {
-  _RecordingPlexClient({required super.serverId, required String profileId})
-    : profileScopeId = buildPlexProfileScopeId(serverId: serverId, profileId: profileId),
-      super(backend: MediaBackend.plex);
-
-  @override
-  PlexProfileScopeId profileScopeId;
-
-  @override
-  String get scopedServerId => profileScopeId;
-
-  @override
-  Future<void> closeGracefully({Duration drainTimeout = const Duration(seconds: 2)}) async {}
 }
 
 /// Build a service against an in-memory database and a bare-metal
@@ -859,54 +842,6 @@ void main() {
 
       svc.setActiveProfileId('profile-a');
       expect(await svc.getLocalWatchStatus('plex-machine:item-1'), isTrue);
-      expect(await svc.getPendingSyncCount(), 1);
-    });
-  });
-
-  group('Plex scoped sync', () {
-    test('queues and replays through the exact active Plex profile scope', () async {
-      final (svc: svc, db: db, mgr: mgr) = _makeService();
-      addTearDown(() async {
-        svc.dispose();
-        mgr.dispose();
-        await db.close();
-      });
-      svc.setActiveProfileId('profile-a');
-      final clientA = _RecordingPlexClient(serverId: ServerId('plex-machine'), profileId: 'profile-a');
-      mgr.debugRegisterClientForTesting(clientA);
-
-      final queuedScope = await svc.queueMarkWatched(serverId: ServerId('plex-machine'), itemId: 'item-1');
-      expect(queuedScope, clientA.profileScopeId);
-      expect((await db.getPendingWatchActions()).single.clientScopeId, clientA.profileScopeId);
-
-      await svc.syncPendingItems();
-
-      expect(clientA.watched, ['item-1']);
-      expect(await svc.getPendingSyncCount(), 0);
-    });
-
-    test('does not replay a queued Plex owner action through a foreign active profile', () async {
-      final (svc: svc, db: db, mgr: mgr) = _makeService();
-      addTearDown(() async {
-        svc.dispose();
-        mgr.dispose();
-        await db.close();
-      });
-      svc.setActiveProfileId('profile-a');
-      final scopeA = buildPlexProfileScopeId(serverId: ServerId('plex-machine'), profileId: 'profile-a');
-      final clientB = _RecordingPlexClient(serverId: ServerId('plex-machine'), profileId: 'profile-b');
-      mgr.debugRegisterClientForTesting(clientB);
-      await db.insertWatchAction(
-        profileId: 'profile-a',
-        serverId: ServerId('plex-machine'),
-        clientScopeId: scopeA,
-        ratingKey: 'item-1',
-        actionType: OfflineActionType.watched.id,
-      );
-
-      await svc.syncPendingItems();
-
-      expect(clientB.watched, isEmpty);
       expect(await svc.getPendingSyncCount(), 1);
     });
   });
