@@ -1802,11 +1802,12 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     ];
   }
 
-  // Top padding for grid content. Chips are inline above the grid now, so this
-  // is purely focus-decoration clearance on desktop. Phone has no D-pad
-  // focus ring so no extra clearance is needed.
+  // Top padding for grid content. Chips are inline above the grid now, so on
+  // desktop this doubles as focus-decoration clearance. Phone has no D-pad
+  // focus ring, but still needs the gap: with the card's own 6 it gives the
+  // chips bar the same 12 of air a rail header gets on Home.
   static const double _gridTopPadding = 6.0;
-  static const double _gridTopPaddingPhone = 0.0;
+  static const double _gridTopPaddingPhone = HubLayoutConstants.headerGap;
 
   /// Matches the rail's own inset (HubSection's ListView and header both use
   /// 8 on touch; its 12 leadingPadding is the TV value) so a grid card and a
