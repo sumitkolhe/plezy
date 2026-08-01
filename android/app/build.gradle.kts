@@ -318,6 +318,20 @@ val downloadLibdovi = tasks.register("downloadLibdovi") {
   }
 }
 
+// A half-filled key.properties used to configure a signing config with blank
+// credentials, which fails deep inside the signing task with no hint at the
+// cause. Reject it up front instead, and treat the file's absence as "no
+// release key" rather than as an error.
+val releaseKeystoreProperties: Properties? = rootProject.file("key.properties").takeIf { it.exists() }?.let { file ->
+  val props = Properties().apply { FileInputStream(file).use { load(it) } }
+  val missing = listOf("keyAlias", "keyPassword", "storeFile", "storePassword")
+    .filter { props.getProperty(it).isNullOrBlank() }
+  require(missing.isEmpty()) { "android/key.properties is missing values for: ${missing.joinToString(", ")}" }
+  val store = file(props.getProperty("storeFile"))
+  require(store.exists()) { "android/key.properties points at a missing keystore: ${store.absolutePath}" }
+  props
+}
+
 android {
   namespace = "com.edde746.plezy"
   compileSdk = flutter.compileSdkVersion
@@ -365,28 +379,23 @@ android {
   }
 
   signingConfigs {
-    create("release") {
-      val keystorePropertiesFile = rootProject.file("key.properties")
-      if (keystorePropertiesFile.exists()) {
-        val keystoreProperties = Properties()
-        keystoreProperties.load(FileInputStream(keystorePropertiesFile))
-
-        keyAlias = keystoreProperties["keyAlias"] as String
-        keyPassword = keystoreProperties["keyPassword"] as String
-        storeFile = file(keystoreProperties["storeFile"] as String)
-        storePassword = keystoreProperties["storePassword"] as String
+    releaseKeystoreProperties?.let { props ->
+      create("release") {
+        keyAlias = props.getProperty("keyAlias")
+        keyPassword = props.getProperty("keyPassword")
+        storeFile = file(props.getProperty("storeFile"))
+        storePassword = props.getProperty("storePassword")
       }
     }
   }
 
   buildTypes {
     release {
-      // Only use release signing if key.properties exists (not in CI/CD)
-      val keystorePropertiesFile = rootProject.file("key.properties")
-      if (keystorePropertiesFile.exists()) {
-        signingConfig = signingConfigs.getByName("release")
-      }
-      // If key.properties doesn't exist, it will use debug signing for CI builds
+      // Falls back to the debug key so a release build without key.properties
+      // is still installable: an unsigned APK fails `adb install` with
+      // INSTALL_PARSE_FAILED_NO_CERTIFICATES. Android refuses to update across
+      // signers, so switching to a real keystore later needs an uninstall.
+      signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
       ndk {
         debugSymbolLevel = "FULL"
       }
