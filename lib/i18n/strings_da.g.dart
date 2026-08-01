@@ -107,7 +107,6 @@ class _Translations$auth$da extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Venter på godkendelse…';
 	@override String get quickConnectCancel => 'Annuller';
 	@override String get quickConnectExpired => 'Quick Connect er udløbet. Prøv igen.';
-	@override String get localDataRecoveryRequired => 'Harbor kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$da extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Markér som set';
 	@override String get markAsUnwatched => 'Markér som uset';
-	@override String get removeFromContinueWatching => 'Fjern fra Fortsæt med at se';
 	@override String get viewDetails => 'Vis detaljer';
 	@override String get goToSeries => 'Gå til serie';
 	@override String get shufflePlay => 'Afspil tilfældigt';
@@ -685,7 +683,6 @@ class _Translations$messages$da extends Translations$messages$en {
 		one: 'Fjernede automatisk ${n} set download',
 		other: 'Fjernede automatisk ${n} sete downloads',
 	);
-	@override String get removedFromContinueWatching => 'Fjernet fra Fortsæt med at se';
 	@override String errorLoading({required Object error}) => 'Fejl: ${error}';
 	@override String get streamInterrupted => 'Streamen blev afbrudt. Tryk på afspil, eller spol for at prøve igen.';
 	@override String get fileInfoNotAvailable => 'Filinfo ikke tilgængelig';
@@ -1774,7 +1771,6 @@ extension on TranslationsDa {
 			'auth.quickConnectWaiting' => 'Venter på godkendelse…',
 			'auth.quickConnectCancel' => 'Annuller',
 			'auth.quickConnectExpired' => 'Quick Connect er udløbet. Prøv igen.',
-			'auth.localDataRecoveryRequired' => 'Harbor kunne ikke gendanne lokale loginoplysninger og ventende afspilningsdata på en sikker måde. Log ind igen.',
 			'common.cancel' => 'Annuller',
 			'common.save' => 'Gem',
 			'common.close' => 'Luk',
@@ -2128,7 +2124,6 @@ extension on TranslationsDa {
 			'fileInfo.has64bitOffsets' => '64-bit-forskydninger',
 			'mediaMenu.markAsWatched' => 'Markér som set',
 			'mediaMenu.markAsUnwatched' => 'Markér som uset',
-			'mediaMenu.removeFromContinueWatching' => 'Fjern fra Fortsæt med at se',
 			'mediaMenu.viewDetails' => 'Vis detaljer',
 			'mediaMenu.goToSeries' => 'Gå til serie',
 			'mediaMenu.shufflePlay' => 'Afspil tilfældigt',
@@ -2253,7 +2248,6 @@ extension on TranslationsDa {
 			'messages.markedAsUnwatchedOffline' => 'Markeret som uset (synkroniseres online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatisk fjernet: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('da'))(n, one: 'Fjernede automatisk ${n} set download', other: 'Fjernede automatisk ${n} sete downloads', ), 
-			'messages.removedFromContinueWatching' => 'Fjernet fra Fortsæt med at se',
 			'messages.errorLoading' => ({required Object error}) => 'Fejl: ${error}',
 			'messages.streamInterrupted' => 'Streamen blev afbrudt. Tryk på afspil, eller spol for at prøve igen.',
 			'messages.fileInfoNotAvailable' => 'Filinfo ikke tilgængelig',
@@ -2279,11 +2273,11 @@ extension on TranslationsDa {
 			'messages.noSeasonsFound' => 'Ingen sæsoner fundet',
 			'messages.seasonsLoadFailed' => 'Kunne ikke indlæse sæsoner',
 			'messages.noEpisodesFound' => 'Ingen episoder fundet i første sæson',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder fundet',
 			'messages.episodesLoadFailed' => 'Kunne ikke indlæse episoder',
 			'messages.noResultsFound' => 'Ingen resultater fundet',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sove-timer indstillet til ${label}',
 			'messages.noItemsAvailable' => 'Ingen elementer tilgængelige',
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke oprette en afspilningskø — ingen elementer',
@@ -2793,11 +2787,11 @@ extension on TranslationsDa {
 			'metadataEdit.studio' => 'Studie',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Resumé',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Baggrund',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk billede',
 			'metadataEdit.selectPoster' => 'Vælg plakat',
 			'metadataEdit.selectBackground' => 'Vælg baggrund',

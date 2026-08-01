@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Abra o Quick Connect no Jellyfin e insira este código.",
     "quickConnectWaiting": "Aguardando aprovação…",
     "quickConnectCancel": "Cancelar",
-    "quickConnectExpired": "Quick Connect expirou. Tente novamente.",
-    "localDataRecoveryRequired": "O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente."
+    "quickConnectExpired": "Quick Connect expirou. Tente novamente."
   },
   "common": {
     "cancel": "Cancelar",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Marcar como Assistido",
     "markAsUnwatched": "Marcar como Não Assistido",
-    "removeFromContinueWatching": "Remover de Continuar Assistindo",
     "viewDetails": "Ver detalhes",
     "goToSeries": "Ir para a série",
     "shufflePlay": "Reprodução Aleatória",
@@ -620,7 +618,6 @@
       "one": "Removido automaticamente ${n} download assistido",
       "other": "Removidos automaticamente ${n} downloads assistidos"
     },
-    "removedFromContinueWatching": "Removido de Continuar assistindo",
     "errorLoading": "Erro: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "A transmissão foi interrompida. Pressione reproduzir ou avance para tentar novamente.",

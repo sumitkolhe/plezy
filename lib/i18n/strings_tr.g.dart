@@ -107,7 +107,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Onay bekleniyor…';
 	@override String get quickConnectCancel => 'İptal';
 	@override String get quickConnectExpired => 'Hızlı Bağlantı süresi doldu. Tekrar deneyin.';
-	@override String get localDataRecoveryRequired => 'Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.';
 }
 
 // Path: common
@@ -512,7 +511,6 @@ class _Translations$mediaMenu$tr extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'İzlendi Olarak İşaretle';
 	@override String get markAsUnwatched => 'İzlenmedi Olarak İşaretle';
-	@override String get removeFromContinueWatching => 'İzlemeye Devam Et\'ten Kaldır';
 	@override String get viewDetails => 'Detayları görüntüle';
 	@override String get goToSeries => 'Diziye git';
 	@override String get shufflePlay => 'Karışık Oynat';
@@ -688,7 +686,6 @@ class _Translations$messages$tr extends Translations$messages$en {
 		one: 'İzlenen ${n} indirme otomatik kaldırıldı',
 		other: 'İzlenen ${n} indirme otomatik kaldırıldı',
 	);
-	@override String get removedFromContinueWatching => 'İzlemeye Devam Et\'ten kaldırıldı';
 	@override String errorLoading({required Object error}) => 'Hata: ${error}';
 	@override String get searchPartialResults => 'Bazı medya sunucularında arama yapılamadı. Kullanılabilir sonuçlar gösteriliyor.';
 	@override String get streamInterrupted => 'Akış kesintiye uğradı. Tekrar denemek için oynatın veya sarın.';
@@ -1785,7 +1782,6 @@ extension on TranslationsTr {
 			'auth.quickConnectWaiting' => 'Onay bekleniyor…',
 			'auth.quickConnectCancel' => 'İptal',
 			'auth.quickConnectExpired' => 'Hızlı Bağlantı süresi doldu. Tekrar deneyin.',
-			'auth.localDataRecoveryRequired' => 'Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın.',
 			'common.cancel' => 'İptal',
 			'common.save' => 'Kaydet',
 			'common.close' => 'Kapat',
@@ -2142,7 +2138,6 @@ extension on TranslationsTr {
 			'fileInfo.has64bitOffsets' => '64-bit Ofsetler',
 			'mediaMenu.markAsWatched' => 'İzlendi Olarak İşaretle',
 			'mediaMenu.markAsUnwatched' => 'İzlenmedi Olarak İşaretle',
-			'mediaMenu.removeFromContinueWatching' => 'İzlemeye Devam Et\'ten Kaldır',
 			'mediaMenu.viewDetails' => 'Detayları görüntüle',
 			'mediaMenu.goToSeries' => 'Diziye git',
 			'mediaMenu.shufflePlay' => 'Karışık Oynat',
@@ -2267,7 +2262,6 @@ extension on TranslationsTr {
 			'messages.markedAsUnwatchedOffline' => 'İzlenmedi olarak işaretlendi (çevrimiçi olunca senkronize edilecek)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Otomatik kaldırıldı: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('tr'))(n, one: 'İzlenen ${n} indirme otomatik kaldırıldı', other: 'İzlenen ${n} indirme otomatik kaldırıldı', ), 
-			'messages.removedFromContinueWatching' => 'İzlemeye Devam Et\'ten kaldırıldı',
 			'messages.errorLoading' => ({required Object error}) => 'Hata: ${error}',
 			'messages.searchPartialResults' => 'Bazı medya sunucularında arama yapılamadı. Kullanılabilir sonuçlar gösteriliyor.',
 			'messages.streamInterrupted' => 'Akış kesintiye uğradı. Tekrar denemek için oynatın veya sarın.',
@@ -2290,11 +2284,11 @@ extension on TranslationsTr {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" için meta veriler yenileniyor...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" için meta veri yenilemesi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta veriler yenilenemedi: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
 			'messages.noSeasonsFound' => 'Sezon bulunamadı',
 			'messages.seasonsLoadFailed' => 'Sezonlar yüklenemedi',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'İlk sezonda bölüm bulunamadı',
 			'messages.noEpisodesFoundGeneral' => 'Bölüm bulunamadı',
 			'messages.episodesLoadFailed' => 'Bölümler yüklenemedi',
@@ -2804,11 +2798,11 @@ extension on TranslationsTr {
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} yüklü değil',
 			'externalPlayer.playInExternalPlayer' => 'Harici Oynatıcıda Oynat',
 			'metadataEdit.editMetadata' => 'Düzenle...',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Meta Verileri Düzenle',
 			'metadataEdit.basicInfo' => 'Temel Bilgiler',
 			'metadataEdit.artwork' => 'Görseller',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.title' => 'Başlık',
 			'metadataEdit.sortTitle' => 'Sıralama Başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal Başlık',

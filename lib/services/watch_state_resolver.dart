@@ -52,7 +52,6 @@ class WatchStateResolver {
         event.isNowWatched == true
             ? const WatchStateSnapshot(isWatched: true, hasViewOffsetMs: true, viewOffsetMs: 0)
             : WatchStateSnapshot(hasViewOffsetMs: event.viewOffset != null, viewOffsetMs: event.viewOffset),
-      WatchStateChangeType.removedFromContinueWatching => const WatchStateSnapshot(),
     };
   }
 

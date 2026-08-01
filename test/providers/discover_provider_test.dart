@@ -392,29 +392,6 @@ void main() {
     expect(aggregation.hubCalls, hubCallsBefore);
   });
 
-  test('removal event drops the row immediately, then refreshes in background', () async {
-    aggregation.onDeckResult = () => [_item('ep-1'), _item('ep-2')];
-    await provider.load();
-    final onDeckCallsBefore = aggregation.onDeckCalls;
-    final hubCallsBefore = aggregation.hubCalls;
-
-    var sawImmediateRemoval = false;
-    provider.addListener(() {
-      if (provider.onDeck.length == 1 && provider.onDeck.single.id == 'ep-2') {
-        sawImmediateRemoval = true;
-      }
-    });
-    aggregation.onDeckResult = () => [_item('ep-2')];
-
-    WatchStateNotifier().notifyRemovedFromContinueWatching(item: _item('ep-1'));
-    await pumpEventQueue();
-
-    expect(sawImmediateRemoval, isTrue);
-    expect(provider.onDeck.map((i) => i.id), ['ep-2']);
-    expect(aggregation.onDeckCalls, onDeckCallsBefore + 1);
-    expect(aggregation.hubCalls, hubCallsBefore);
-  });
-
   test('deletion drops the item from on-deck and hubs, then refreshes continue watching only', () async {
     aggregation.onDeckResult = () => [_item('ep-1'), _item('ep-2')];
     aggregation.hubsResult = () => [

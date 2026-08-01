@@ -313,7 +313,6 @@ class TvBrowseRail extends StatefulWidget {
   final ValueChanged<MediaItem>? onFocusedItemChanged;
   final void Function(MediaHub hub, MediaItem item)? onFocusedHubItemChanged;
   final void Function(MediaItem source)? onRefresh;
-  final VoidCallback? onRemoveFromContinueWatching;
   final bool Function(MediaHub hub)? isContinueWatchingHub;
   final bool Function(MediaHub hub)? usesContinueWatchingAction;
   final Future<List<MediaItem>> Function(MediaHub hub)? loadMoreItems;
@@ -351,7 +350,6 @@ class TvBrowseRail extends StatefulWidget {
     this.onFocusedItemChanged,
     this.onFocusedHubItemChanged,
     this.onRefresh,
-    this.onRemoveFromContinueWatching,
     this.isContinueWatchingHub,
     this.usesContinueWatchingAction,
     this.loadMoreItems,
@@ -974,7 +972,6 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           loadItems: widget.loadMoreItems == null ? null : () => widget.loadMoreItems!(hub),
           isInContinueWatching: _isContinueWatchingHub(hub),
           usesContinueWatchingAction: _usesContinueWatchingAction(hub),
-          onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
         ),
       ),
     );
@@ -1515,7 +1512,6 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
             width: metrics.cardWidth,
             height: metrics.posterHeight,
             onRefresh: widget.onRefresh,
-            onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
             forceGridMode: true,
             fullBleedImage: fullCardLayout,
             artworkDim: artworkDim,

@@ -330,14 +330,8 @@ abstract class MediaServerClient {
   /// Mark [item] as unwatched. Transport only — see [markWatched].
   Future<void> markUnwatched(MediaItem item);
 
-  /// Hide an item from Continue Watching without changing watched status or
-  /// progress. Only call when [capabilities.continueWatchingRemoval] is true;
-  /// unsupported backends throw [UnsupportedError].
-  Future<void> removeFromContinueWatching(MediaItem item);
-
-  /// Set or clear the per-user favorite flag ("heart") for [item]. Only call
-  /// when [ServerCapabilities.userFavorites] is true; unsupported backends
-  /// throw [UnsupportedError]. Throws [MediaServerHttpException] on failure.
+  /// Set or clear the per-user favorite flag ("heart") for [item].
+  /// Throws [MediaServerHttpException] on failure.
   Future<void> setFavorite(MediaItem item, bool isFavorite);
 
   Future<List<MediaPlaylist>> fetchPlaylists({String playlistType = 'video', bool? smart});

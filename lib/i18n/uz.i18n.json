@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.",
     "quickConnectWaiting": "Tasdiq kutilmoqda…",
     "quickConnectCancel": "Bekor qilish",
-    "quickConnectExpired": "Tezkor ulanish vaqti tugadi. Qaytadan urinib koʻring.",
-    "localDataRecoveryRequired": "Harbor mahalliy kirish maʼlumotlarini tiklay olmadi. Iltimos, qaytadan kiring."
+    "quickConnectExpired": "Tezkor ulanish vaqti tugadi. Qaytadan urinib koʻring."
   },
   "common": {
     "cancel": "Bekor qilish",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Koʻrilgan deb belgilash",
     "markAsUnwatched": "Koʻrilmagan deb belgilash",
-    "removeFromContinueWatching": "\"Tomoshani davom ettirish\"dan oʻchirish",
     "viewDetails": "Batafsil koʻrish",
     "goToSeries": "Serialga oʻtish",
     "shufflePlay": "Aralashtirib ijro etish",
@@ -620,7 +618,6 @@
       "one": "Koʻrilgan ${n} yuklama avtomatik oʻchirildi",
       "other": "Koʻrilgan ${n} yuklama avtomatik oʻchirildi"
     },
-    "removedFromContinueWatching": "\"Tomoshani davom ettirish\"dan oʻchirildi",
     "errorLoading": "Xatolik: ${error}",
     "searchPartialResults": "Baʼzi media serverlarda qidiruv amalga oshmadi. Mavjud natijalar koʻrsatilmoqda.",
     "streamInterrupted": "Oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.",

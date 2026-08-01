@@ -107,7 +107,6 @@ class _Translations$auth$ja extends Translations$auth$en {
 	@override String get quickConnectWaiting => '承認を待っています…';
 	@override String get quickConnectCancel => 'キャンセル';
 	@override String get quickConnectExpired => 'Quick Connectの有効期限が切れました。もう一度お試しください。';
-	@override String get localDataRecoveryRequired => 'ローカルのサインイン情報と保留中の再生データを安全に復元できませんでした。もう一度サインインしてください。';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$ja extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => '視聴済みにする';
 	@override String get markAsUnwatched => '未視聴にする';
-	@override String get removeFromContinueWatching => '視聴中から削除';
 	@override String get viewDetails => '詳細を表示';
 	@override String get goToSeries => 'シリーズへ移動';
 	@override String get shufflePlay => 'シャッフル再生';
@@ -684,7 +682,6 @@ class _Translations$messages$ja extends Translations$messages$en {
 	@override String autoRemovedWatchedDownloads({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'))(n,
 		other: '視聴済みダウンロードを${n}件自動削除しました',
 	);
-	@override String get removedFromContinueWatching => '視聴中から削除しました';
 	@override String errorLoading({required Object error}) => 'エラー: ${error}';
 	@override String get streamInterrupted => 'ストリームが中断されました。再生を押すかシークして再試行してください。';
 	@override String get fileInfoNotAvailable => 'ファイル情報が利用できません';
@@ -1771,7 +1768,6 @@ extension on TranslationsJa {
 			'auth.quickConnectWaiting' => '承認を待っています…',
 			'auth.quickConnectCancel' => 'キャンセル',
 			'auth.quickConnectExpired' => 'Quick Connectの有効期限が切れました。もう一度お試しください。',
-			'auth.localDataRecoveryRequired' => 'ローカルのサインイン情報と保留中の再生データを安全に復元できませんでした。もう一度サインインしてください。',
 			'common.cancel' => 'キャンセル',
 			'common.save' => '保存',
 			'common.close' => '閉じる',
@@ -2125,7 +2121,6 @@ extension on TranslationsJa {
 			'fileInfo.has64bitOffsets' => '64ビットオフセット',
 			'mediaMenu.markAsWatched' => '視聴済みにする',
 			'mediaMenu.markAsUnwatched' => '未視聴にする',
-			'mediaMenu.removeFromContinueWatching' => '視聴中から削除',
 			'mediaMenu.viewDetails' => '詳細を表示',
 			'mediaMenu.goToSeries' => 'シリーズへ移動',
 			'mediaMenu.shufflePlay' => 'シャッフル再生',
@@ -2250,7 +2245,6 @@ extension on TranslationsJa {
 			'messages.markedAsUnwatchedOffline' => '未視聴にしました（オンライン時に同期）',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => '自動削除: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'))(n, other: '視聴済みダウンロードを${n}件自動削除しました', ), 
-			'messages.removedFromContinueWatching' => '視聴中から削除しました',
 			'messages.errorLoading' => ({required Object error}) => 'エラー: ${error}',
 			'messages.streamInterrupted' => 'ストリームが中断されました。再生を押すかシークして再試行してください。',
 			'messages.fileInfoNotAvailable' => 'ファイル情報が利用できません',
@@ -2276,11 +2270,11 @@ extension on TranslationsJa {
 			'messages.noSeasonsFound' => 'シーズンが見つかりません',
 			'messages.seasonsLoadFailed' => 'シーズンを読み込めませんでした',
 			'messages.noEpisodesFound' => '最初のシーズンにエピソードが見つかりません',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'エピソードが見つかりません',
 			'messages.episodesLoadFailed' => 'エピソードを読み込めませんでした',
 			'messages.noResultsFound' => '結果が見つかりません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'スリープタイマーを${label}に設定しました',
 			'messages.noItemsAvailable' => 'アイテムがありません',
 			'messages.failedToCreatePlayQueueNoItems' => '再生キューを作成できませんでした — アイテムがありません',
@@ -2790,11 +2784,11 @@ extension on TranslationsJa {
 			'metadataEdit.studio' => 'スタジオ',
 			'metadataEdit.tagline' => 'タグライン',
 			'metadataEdit.summary' => 'あらすじ',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'ポスター',
 			'metadataEdit.background' => '背景',
 			'metadataEdit.logo' => 'ロゴ',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => '正方形アート',
 			'metadataEdit.selectPoster' => 'ポスターを選択',
 			'metadataEdit.selectBackground' => '背景を選択',

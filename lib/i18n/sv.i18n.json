@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Öppna Quick Connect i Jellyfin och ange den här koden.",
     "quickConnectWaiting": "Väntar på godkännande…",
     "quickConnectCancel": "Avbryt",
-    "quickConnectExpired": "Quick Connect har gått ut. Försök igen.",
-    "localDataRecoveryRequired": "Harbor kunde inte återställa lokala inloggningsuppgifter och väntande uppspelningsdata på ett säkert sätt. Logga in igen."
+    "quickConnectExpired": "Quick Connect har gått ut. Försök igen."
   },
   "common": {
     "cancel": "Avbryt",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Markera som sedd",
     "markAsUnwatched": "Markera som osedd",
-    "removeFromContinueWatching": "Ta bort från Fortsätt titta",
     "viewDetails": "Visa detaljer",
     "goToSeries": "Gå till serie",
     "shufflePlay": "Blanda uppspelning",
@@ -620,7 +618,6 @@
       "one": "Tog automatiskt bort ${n} sedd nedladdning",
       "other": "Tog automatiskt bort ${n} sedda nedladdningar"
     },
-    "removedFromContinueWatching": "Borttagen från Fortsätt titta",
     "errorLoading": "Fel: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "Strömmen avbröts. Tryck på uppspelning eller spola för att försöka igen.",

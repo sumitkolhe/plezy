@@ -71,13 +71,4 @@ class WatchActions {
     );
     return WatchMarkOutcome.marked;
   }
-
-  /// Removes [item] from Continue Watching without touching watch state.
-  /// Throws when no client is bound for the item's server (mirrors the
-  /// pre-existing menu behaviour so callers surface an error snackbar).
-  static Future<void> removeFromContinueWatching(BuildContext context, MediaItem item) async {
-    final client = context.getMediaClientForServer(ServerId(item.serverId!));
-    await client.removeFromContinueWatching(item);
-    WatchStateNotifier().notifyRemovedFromContinueWatching(item: item);
-  }
 }

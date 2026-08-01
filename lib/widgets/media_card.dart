@@ -210,7 +210,6 @@ class MediaCard extends StatefulWidget {
   final double? width;
   final double? height;
   final void Function(MediaItem source)? onRefresh;
-  final VoidCallback? onRemoveFromContinueWatching;
   final VoidCallback? onListRefresh; // Callback to refresh the entire parent list
   /// Overrides the card's default media navigation for specialized surfaces.
   final VoidCallback? onTap;
@@ -242,7 +241,6 @@ class MediaCard extends StatefulWidget {
     this.width,
     this.height,
     this.onRefresh,
-    this.onRemoveFromContinueWatching,
     this.onListRefresh,
     this.onTap,
     this.onLongPress,
@@ -456,7 +454,6 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
       key: contextMenuKey,
       item: item,
       onRefresh: widget.onRefresh,
-      onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
       onListRefresh: widget.onListRefresh,
       onTap: () => _handleTap(context, item),
       isInContinueWatching: widget.isInContinueWatching,

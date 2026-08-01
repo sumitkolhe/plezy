@@ -107,7 +107,6 @@ class _Translations$auth$pl extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Oczekiwanie na zatwierdzenie…';
 	@override String get quickConnectCancel => 'Anuluj';
 	@override String get quickConnectExpired => 'Quick Connect wygasł. Spróbuj ponownie.';
-	@override String get localDataRecoveryRequired => 'Harbor nie mogło bezpiecznie odzyskać lokalnych danych logowania ani oczekujących danych odtwarzania. Zaloguj się ponownie.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$pl extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Oznacz jako obejrzane';
 	@override String get markAsUnwatched => 'Oznacz jako nieobejrzane';
-	@override String get removeFromContinueWatching => 'Usuń z kontynuowania oglądania';
 	@override String get viewDetails => 'Pokaż szczegóły';
 	@override String get goToSeries => 'Przejdź do serialu';
 	@override String get shufflePlay => 'Odtwarzanie losowe';
@@ -687,7 +685,6 @@ class _Translations$messages$pl extends Translations$messages$en {
 		many: 'Automatycznie usunięto ${n} obejrzanych pobrań',
 		other: 'Automatycznie usunięto ${n} obejrzanego pobrania',
 	);
-	@override String get removedFromContinueWatching => 'Usunięto z kontynuowania oglądania';
 	@override String errorLoading({required Object error}) => 'Błąd: ${error}';
 	@override String get streamInterrupted => 'Strumień został przerwany. Naciśnij odtwarzanie lub przewiń, aby spróbować ponownie.';
 	@override String get fileInfoNotAvailable => 'Informacje o pliku niedostępne';
@@ -1780,7 +1777,6 @@ extension on TranslationsPl {
 			'auth.quickConnectWaiting' => 'Oczekiwanie na zatwierdzenie…',
 			'auth.quickConnectCancel' => 'Anuluj',
 			'auth.quickConnectExpired' => 'Quick Connect wygasł. Spróbuj ponownie.',
-			'auth.localDataRecoveryRequired' => 'Harbor nie mogło bezpiecznie odzyskać lokalnych danych logowania ani oczekujących danych odtwarzania. Zaloguj się ponownie.',
 			'common.cancel' => 'Anuluj',
 			'common.save' => 'Zapisz',
 			'common.close' => 'Zamknij',
@@ -2134,7 +2130,6 @@ extension on TranslationsPl {
 			'fileInfo.has64bitOffsets' => 'Przesunięcia 64-bitowe',
 			'mediaMenu.markAsWatched' => 'Oznacz jako obejrzane',
 			'mediaMenu.markAsUnwatched' => 'Oznacz jako nieobejrzane',
-			'mediaMenu.removeFromContinueWatching' => 'Usuń z kontynuowania oglądania',
 			'mediaMenu.viewDetails' => 'Pokaż szczegóły',
 			'mediaMenu.goToSeries' => 'Przejdź do serialu',
 			'mediaMenu.shufflePlay' => 'Odtwarzanie losowe',
@@ -2259,7 +2254,6 @@ extension on TranslationsPl {
 			'messages.markedAsUnwatchedOffline' => 'Oznaczono jako nieobejrzane (zsynchronizuje się po połączeniu)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatycznie usunięto: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pl'))(n, one: 'Automatycznie usunięto ${n} obejrzane pobranie', few: 'Automatycznie usunięto ${n} obejrzane pobrania', many: 'Automatycznie usunięto ${n} obejrzanych pobrań', other: 'Automatycznie usunięto ${n} obejrzanego pobrania', ), 
-			'messages.removedFromContinueWatching' => 'Usunięto z kontynuowania oglądania',
 			'messages.errorLoading' => ({required Object error}) => 'Błąd: ${error}',
 			'messages.streamInterrupted' => 'Strumień został przerwany. Naciśnij odtwarzanie lub przewiń, aby spróbować ponownie.',
 			'messages.fileInfoNotAvailable' => 'Informacje o pliku niedostępne',
@@ -2285,11 +2279,11 @@ extension on TranslationsPl {
 			'messages.noSeasonsFound' => 'Nie znaleziono sezonów',
 			'messages.seasonsLoadFailed' => 'Nie udało się załadować sezonów',
 			'messages.noEpisodesFound' => 'Nie znaleziono odcinków w pierwszym sezonie',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nie znaleziono odcinków',
 			'messages.episodesLoadFailed' => 'Nie udało się załadować odcinków',
 			'messages.noResultsFound' => 'Nie znaleziono wyników',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Wyłącznik czasowy ustawiony na ${label}',
 			'messages.noItemsAvailable' => 'Brak dostępnych elementów',
 			'messages.failedToCreatePlayQueueNoItems' => 'Nie udało się utworzyć kolejki odtwarzania — brak elementów',
@@ -2799,11 +2793,11 @@ extension on TranslationsPl {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Opis',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Tło',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kwadratowy obraz',
 			'metadataEdit.selectPoster' => 'Wybierz plakat',
 			'metadataEdit.selectBackground' => 'Wybierz tło',

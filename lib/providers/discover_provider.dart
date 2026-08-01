@@ -483,13 +483,6 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       return;
     }
 
-    if (event.changeType == WatchStateChangeType.removedFromContinueWatching) {
-      final remaining = _onDeck.where((item) => item.id != event.itemId).toList();
-      if (remaining.length != _onDeck.length) {
-        _onDeck = remaining;
-        safeNotifyListeners();
-      }
-    }
     unawaited(refreshContinueWatching());
   }
 

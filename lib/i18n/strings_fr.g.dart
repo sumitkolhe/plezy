@@ -107,7 +107,6 @@ class _Translations$auth$fr extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'En attente d\'approbation…';
 	@override String get quickConnectCancel => 'Annuler';
 	@override String get quickConnectExpired => 'Quick Connect a expiré. Réessayez.';
-	@override String get localDataRecoveryRequired => 'Harbor n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$fr extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Marquer comme vu';
 	@override String get markAsUnwatched => 'Marquer comme non visionné';
-	@override String get removeFromContinueWatching => 'Supprimer de la liste "Continuer à regarder"';
 	@override String get viewDetails => 'Voir les détails';
 	@override String get goToSeries => 'Aller à la série';
 	@override String get shufflePlay => 'Lecture aléatoire';
@@ -685,7 +683,6 @@ class _Translations$messages$fr extends Translations$messages$en {
 		one: '${n} téléchargement vu supprimé automatiquement',
 		other: '${n} téléchargements vus supprimés automatiquement',
 	);
-	@override String get removedFromContinueWatching => 'Supprimé de « Continuer à regarder »';
 	@override String errorLoading({required Object error}) => 'Erreur : ${error}';
 	@override String get streamInterrupted => 'La lecture a été interrompue. Appuyez sur Lecture ou avancez pour réessayer.';
 	@override String get fileInfoNotAvailable => 'Informations sur le fichier non disponibles';
@@ -1774,7 +1771,6 @@ extension on TranslationsFr {
 			'auth.quickConnectWaiting' => 'En attente d\'approbation…',
 			'auth.quickConnectCancel' => 'Annuler',
 			'auth.quickConnectExpired' => 'Quick Connect a expiré. Réessayez.',
-			'auth.localDataRecoveryRequired' => 'Harbor n’a pas pu récupérer en toute sécurité les données locales de connexion et de lecture en attente. Veuillez vous reconnecter.',
 			'common.cancel' => 'Annuler',
 			'common.save' => 'Enregistrer',
 			'common.close' => 'Fermer',
@@ -2128,7 +2124,6 @@ extension on TranslationsFr {
 			'fileInfo.has64bitOffsets' => 'Décalages 64 bits',
 			'mediaMenu.markAsWatched' => 'Marquer comme vu',
 			'mediaMenu.markAsUnwatched' => 'Marquer comme non visionné',
-			'mediaMenu.removeFromContinueWatching' => 'Supprimer de la liste "Continuer à regarder"',
 			'mediaMenu.viewDetails' => 'Voir les détails',
 			'mediaMenu.goToSeries' => 'Aller à la série',
 			'mediaMenu.shufflePlay' => 'Lecture aléatoire',
@@ -2253,7 +2248,6 @@ extension on TranslationsFr {
 			'messages.markedAsUnwatchedOffline' => 'Marqué comme non vu (sera synchronisé lorsque vous serez en ligne)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Supprimé automatiquement : ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} téléchargement vu supprimé automatiquement', other: '${n} téléchargements vus supprimés automatiquement', ), 
-			'messages.removedFromContinueWatching' => 'Supprimé de « Continuer à regarder »',
 			'messages.errorLoading' => ({required Object error}) => 'Erreur : ${error}',
 			'messages.streamInterrupted' => 'La lecture a été interrompue. Appuyez sur Lecture ou avancez pour réessayer.',
 			'messages.fileInfoNotAvailable' => 'Informations sur le fichier non disponibles',
@@ -2279,11 +2273,11 @@ extension on TranslationsFr {
 			'messages.noSeasonsFound' => 'Aucune saison trouvée',
 			'messages.seasonsLoadFailed' => 'Impossible de charger les saisons',
 			'messages.noEpisodesFound' => 'Aucun épisode trouvé dans la première saison',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Aucun épisode trouvé',
 			'messages.episodesLoadFailed' => 'Impossible de charger les épisodes',
 			'messages.noResultsFound' => 'Aucun résultat trouvé',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Minuterie de mise en veille réglée sur ${label}',
 			'messages.noItemsAvailable' => 'Aucun élément disponible',
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossible de créer la file d’attente de lecture : aucun élément',
@@ -2793,11 +2787,11 @@ extension on TranslationsFr {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Résumé',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Affiche',
 			'metadataEdit.background' => 'Arrière-plan',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Image carrée',
 			'metadataEdit.selectPoster' => 'Sélectionner l\'affiche',
 			'metadataEdit.selectBackground' => 'Sélectionner l\'arrière-plan',

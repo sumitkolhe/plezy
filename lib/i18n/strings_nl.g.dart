@@ -107,7 +107,6 @@ class _Translations$auth$nl extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Wachten op goedkeuring…';
 	@override String get quickConnectCancel => 'Annuleren';
 	@override String get quickConnectExpired => 'Quick Connect is verlopen. Probeer opnieuw.';
-	@override String get localDataRecoveryRequired => 'Harbor kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$nl extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Als bekeken markeren';
 	@override String get markAsUnwatched => 'Als ongekeken markeren';
-	@override String get removeFromContinueWatching => 'Uit \'Doorgaan met kijken\' verwijderen';
 	@override String get viewDetails => 'Details bekijken';
 	@override String get goToSeries => 'Ga naar serie';
 	@override String get shufflePlay => 'Willekeurig afspelen';
@@ -685,7 +683,6 @@ class _Translations$messages$nl extends Translations$messages$en {
 		one: 'Automatisch ${n} bekeken download verwijderd',
 		other: 'Automatisch ${n} bekeken downloads verwijderd',
 	);
-	@override String get removedFromContinueWatching => 'Verwijderd uit \'Doorgaan met kijken\'';
 	@override String errorLoading({required Object error}) => 'Fout: ${error}';
 	@override String get streamInterrupted => 'De stream is onderbroken. Druk op afspelen of spoel om het opnieuw te proberen.';
 	@override String get fileInfoNotAvailable => 'Bestandsinformatie niet beschikbaar';
@@ -1774,7 +1771,6 @@ extension on TranslationsNl {
 			'auth.quickConnectWaiting' => 'Wachten op goedkeuring…',
 			'auth.quickConnectCancel' => 'Annuleren',
 			'auth.quickConnectExpired' => 'Quick Connect is verlopen. Probeer opnieuw.',
-			'auth.localDataRecoveryRequired' => 'Harbor kon lokale aanmeldings- en openstaande afspeelgegevens niet veilig herstellen. Meld je opnieuw aan.',
 			'common.cancel' => 'Annuleren',
 			'common.save' => 'Opslaan',
 			'common.close' => 'Sluiten',
@@ -2128,7 +2124,6 @@ extension on TranslationsNl {
 			'fileInfo.has64bitOffsets' => '64-bits offsets',
 			'mediaMenu.markAsWatched' => 'Als bekeken markeren',
 			'mediaMenu.markAsUnwatched' => 'Als ongekeken markeren',
-			'mediaMenu.removeFromContinueWatching' => 'Uit \'Doorgaan met kijken\' verwijderen',
 			'mediaMenu.viewDetails' => 'Details bekijken',
 			'mediaMenu.goToSeries' => 'Ga naar serie',
 			'mediaMenu.shufflePlay' => 'Willekeurig afspelen',
@@ -2253,7 +2248,6 @@ extension on TranslationsNl {
 			'messages.markedAsUnwatchedOffline' => 'Gemarkeerd als ongekeken (wordt gesynchroniseerd zodra je online bent)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatisch verwijderd: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('nl'))(n, one: 'Automatisch ${n} bekeken download verwijderd', other: 'Automatisch ${n} bekeken downloads verwijderd', ), 
-			'messages.removedFromContinueWatching' => 'Verwijderd uit \'Doorgaan met kijken\'',
 			'messages.errorLoading' => ({required Object error}) => 'Fout: ${error}',
 			'messages.streamInterrupted' => 'De stream is onderbroken. Druk op afspelen of spoel om het opnieuw te proberen.',
 			'messages.fileInfoNotAvailable' => 'Bestandsinformatie niet beschikbaar',
@@ -2279,11 +2273,11 @@ extension on TranslationsNl {
 			'messages.noSeasonsFound' => 'Geen seizoenen gevonden',
 			'messages.seasonsLoadFailed' => 'Kan seizoenen niet laden',
 			'messages.noEpisodesFound' => 'Geen afleveringen gevonden in eerste seizoen',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Geen afleveringen gevonden',
 			'messages.episodesLoadFailed' => 'Kan afleveringen niet laden',
 			'messages.noResultsFound' => 'Geen resultaten gevonden',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Slaaptimer ingesteld op ${label}',
 			'messages.noItemsAvailable' => 'Geen items beschikbaar',
 			'messages.failedToCreatePlayQueueNoItems' => 'Afspeelwachtrij maken mislukt — geen items',
@@ -2793,11 +2787,11 @@ extension on TranslationsNl {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Samenvatting',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Achtergrond',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Vierkante afbeelding',
 			'metadataEdit.selectPoster' => 'Poster selecteren',
 			'metadataEdit.selectBackground' => 'Achtergrond selecteren',

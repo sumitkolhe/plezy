@@ -107,7 +107,6 @@ class _Translations$auth$pt extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Aguardando aprovação…';
 	@override String get quickConnectCancel => 'Cancelar';
 	@override String get quickConnectExpired => 'Quick Connect expirou. Tente novamente.';
-	@override String get localDataRecoveryRequired => 'O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$pt extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Marcar como Assistido';
 	@override String get markAsUnwatched => 'Marcar como Não Assistido';
-	@override String get removeFromContinueWatching => 'Remover de Continuar Assistindo';
 	@override String get viewDetails => 'Ver detalhes';
 	@override String get goToSeries => 'Ir para a série';
 	@override String get shufflePlay => 'Reprodução Aleatória';
@@ -685,7 +683,6 @@ class _Translations$messages$pt extends Translations$messages$en {
 		one: 'Removido automaticamente ${n} download assistido',
 		other: 'Removidos automaticamente ${n} downloads assistidos',
 	);
-	@override String get removedFromContinueWatching => 'Removido de Continuar assistindo';
 	@override String errorLoading({required Object error}) => 'Erro: ${error}';
 	@override String get streamInterrupted => 'A transmissão foi interrompida. Pressione reproduzir ou avance para tentar novamente.';
 	@override String get fileInfoNotAvailable => 'Informações do arquivo não disponíveis';
@@ -1774,7 +1771,6 @@ extension on TranslationsPt {
 			'auth.quickConnectWaiting' => 'Aguardando aprovação…',
 			'auth.quickConnectCancel' => 'Cancelar',
 			'auth.quickConnectExpired' => 'Quick Connect expirou. Tente novamente.',
-			'auth.localDataRecoveryRequired' => 'O Harbor não conseguiu recuperar com segurança os dados locais de acesso e de reproduções pendentes. Entre novamente.',
 			'common.cancel' => 'Cancelar',
 			'common.save' => 'Salvar',
 			'common.close' => 'Fechar',
@@ -2128,7 +2124,6 @@ extension on TranslationsPt {
 			'fileInfo.has64bitOffsets' => 'Deslocamentos de 64 bits',
 			'mediaMenu.markAsWatched' => 'Marcar como Assistido',
 			'mediaMenu.markAsUnwatched' => 'Marcar como Não Assistido',
-			'mediaMenu.removeFromContinueWatching' => 'Remover de Continuar Assistindo',
 			'mediaMenu.viewDetails' => 'Ver detalhes',
 			'mediaMenu.goToSeries' => 'Ir para a série',
 			'mediaMenu.shufflePlay' => 'Reprodução Aleatória',
@@ -2253,7 +2248,6 @@ extension on TranslationsPt {
 			'messages.markedAsUnwatchedOffline' => 'Marcado como não assistido (será sincronizado quando online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Removido automaticamente: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: 'Removido automaticamente ${n} download assistido', other: 'Removidos automaticamente ${n} downloads assistidos', ), 
-			'messages.removedFromContinueWatching' => 'Removido de Continuar assistindo',
 			'messages.errorLoading' => ({required Object error}) => 'Erro: ${error}',
 			'messages.streamInterrupted' => 'A transmissão foi interrompida. Pressione reproduzir ou avance para tentar novamente.',
 			'messages.fileInfoNotAvailable' => 'Informações do arquivo não disponíveis',
@@ -2279,11 +2273,11 @@ extension on TranslationsPt {
 			'messages.noSeasonsFound' => 'Nenhuma temporada encontrada',
 			'messages.seasonsLoadFailed' => 'Não foi possível carregar as temporadas',
 			'messages.noEpisodesFound' => 'Nenhum episódio encontrado na primeira temporada',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nenhum episódio encontrado',
 			'messages.episodesLoadFailed' => 'Não foi possível carregar os episódios',
 			'messages.noResultsFound' => 'Nenhum resultado encontrado',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Temporizador de suspensão definido como ${label}',
 			'messages.noItemsAvailable' => 'Nenhum item disponível',
 			'messages.failedToCreatePlayQueueNoItems' => 'Falha ao criar a fila de reprodução — nenhum item',
@@ -2793,11 +2787,11 @@ extension on TranslationsPt {
 			'metadataEdit.studio' => 'Estúdio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sinopse',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Pôster',
 			'metadataEdit.background' => 'Plano de Fundo',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Imagem Quadrada',
 			'metadataEdit.selectPoster' => 'Selecionar pôster',
 			'metadataEdit.selectBackground' => 'Selecionar Plano de Fundo',

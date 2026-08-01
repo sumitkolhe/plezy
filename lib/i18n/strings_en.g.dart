@@ -122,9 +122,6 @@ class Translations$auth$en {
 
 	/// en: 'Quick Connect expired. Try again.'
 	String get quickConnectExpired => 'Quick Connect expired. Try again.';
-
-	/// en: 'Harbor could not safely recover local sign-in and pending playback data. Please sign in again.'
-	String get localDataRecoveryRequired => 'Harbor could not safely recover local sign-in and pending playback data. Please sign in again.';
 }
 
 // Path: common
@@ -1469,9 +1466,6 @@ class Translations$mediaMenu$en {
 	/// en: 'Mark as Unwatched'
 	String get markAsUnwatched => 'Mark as Unwatched';
 
-	/// en: 'Remove from Continue Watching'
-	String get removeFromContinueWatching => 'Remove from Continue Watching';
-
 	/// en: 'View details'
 	String get viewDetails => 'View details';
 
@@ -1887,9 +1881,6 @@ class Translations$messages$en {
 		one: 'Auto-removed ${n} watched download',
 		other: 'Auto-removed ${n} watched downloads',
 	);
-
-	/// en: 'Removed from Continue Watching'
-	String get removedFromContinueWatching => 'Removed from Continue Watching';
 
 	/// en: 'Error: ${error}'
 	String errorLoading({required Object error}) => 'Error: ${error}';
@@ -4844,7 +4835,6 @@ extension on Translations {
 			'auth.quickConnectWaiting' => 'Waiting for approval…',
 			'auth.quickConnectCancel' => 'Cancel',
 			'auth.quickConnectExpired' => 'Quick Connect expired. Try again.',
-			'auth.localDataRecoveryRequired' => 'Harbor could not safely recover local sign-in and pending playback data. Please sign in again.',
 			'common.cancel' => 'Cancel',
 			'common.save' => 'Save',
 			'common.close' => 'Close',
@@ -5293,7 +5283,6 @@ extension on Translations {
 			'fileInfo.flagOriginal' => 'Original',
 			'mediaMenu.markAsWatched' => 'Mark as Watched',
 			'mediaMenu.markAsUnwatched' => 'Mark as Unwatched',
-			'mediaMenu.removeFromContinueWatching' => 'Remove from Continue Watching',
 			'mediaMenu.viewDetails' => 'View details',
 			'mediaMenu.goToSeries' => 'Go to series',
 			'mediaMenu.shufflePlay' => 'Shuffle Play',
@@ -5349,10 +5338,10 @@ extension on Translations {
 			'videoControls.playsLater' => ({required Object label}) => '${label} plays later',
 			'videoControls.playsEarlier' => ({required Object label}) => '${label} plays earlier',
 			'videoControls.noOffset' => 'No offset',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.stretch' => 'Stretch',
 			'videoControls.lockRotation' => 'Lock rotation',
 			'videoControls.unlockRotation' => 'Unlock rotation',
@@ -5422,7 +5411,6 @@ extension on Translations {
 			'messages.markedAsUnwatchedOffline' => 'Marked as unwatched (will sync when online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Auto-removed: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'Auto-removed ${n} watched download', other: 'Auto-removed ${n} watched downloads', ), 
-			'messages.removedFromContinueWatching' => 'Removed from Continue Watching',
 			'messages.errorLoading' => ({required Object error}) => 'Error: ${error}',
 			'messages.searchPartialResults' => 'Some media servers could not be searched. Showing available results.',
 			'messages.streamInterrupted' => 'The stream was interrupted. Press play or seek to retry.',
@@ -5863,11 +5851,11 @@ extension on Translations {
 			'playlists.errorCreating' => 'Failed to create playlist',
 			'playlists.errorDeleting' => 'Failed to delete playlist',
 			'playlists.errorLoading' => 'Failed to load playlists',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.errorAdding' => 'Failed to add to playlist',
 			'playlists.errorReordering' => 'Failed to reorder playlist item',
 			'playlists.errorRemoving' => 'Failed to remove from playlist',
+			_ => null,
+		} ?? switch (path) {
 			'music.goToAlbum' => 'Go to album',
 			'music.goToArtist' => 'Go to artist',
 			'music.instantMix' => 'Instant Mix',

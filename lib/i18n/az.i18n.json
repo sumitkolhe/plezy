@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Jellyfin-də Sürətli Qoşulmanı açın və bu kodu daxil edin.",
     "quickConnectWaiting": "Təsdiq gözlənilir…",
     "quickConnectCancel": "Ləğv et",
-    "quickConnectExpired": "Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin.",
-    "localDataRecoveryRequired": "Harbor yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun."
+    "quickConnectExpired": "Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin."
   },
   "common": {
     "cancel": "Ləğv et",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Baxıldı olaraq işarələ",
     "markAsUnwatched": "Baxılmadı olaraq işarələ",
-    "removeFromContinueWatching": "İzləməyə davam et-dən sil",
     "viewDetails": "Ətraflı bax",
     "goToSeries": "Seriala keç",
     "shufflePlay": "Qarışıq oynat",
@@ -620,7 +618,6 @@
       "one": "Baxılmış ${n} yükləmə avtomatik silindi",
       "other": "Baxılmış ${n} yükləmə avtomatik silindi"
     },
-    "removedFromContinueWatching": "İzləməyə davam et-dən silindi",
     "errorLoading": "Xəta: ${error}",
     "searchPartialResults": "Bəzi media serverlərində axtarış aparıla bilmədi. Mövcud nəticələr göstərilir.",
     "streamInterrupted": "Yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.",

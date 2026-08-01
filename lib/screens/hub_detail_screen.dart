@@ -41,7 +41,6 @@ class HubDetailScreen extends StatefulWidget {
   final Future<List<MediaItem>> Function()? loadItems;
   final bool isInContinueWatching;
   final bool usesContinueWatchingAction;
-  final VoidCallback? onRemoveFromContinueWatching;
 
   const HubDetailScreen({
     super.key,
@@ -49,7 +48,6 @@ class HubDetailScreen extends StatefulWidget {
     this.loadItems,
     this.isInContinueWatching = false,
     bool? usesContinueWatchingAction,
-    this.onRemoveFromContinueWatching,
   }) : usesContinueWatchingAction = usesContinueWatchingAction ?? isInContinueWatching;
 
   @override
@@ -488,11 +486,6 @@ class _HubDetailScreenState extends State<HubDetailScreen>
     }
   }
 
-  void _handleRemoveFromContinueWatching() {
-    widget.onRemoveFromContinueWatching?.call();
-    unawaited(_loadMoreItems());
-  }
-
   Object? get _pageLoadError => _usesPaginatedLoader ? paginationError : _continuation.error;
   bool get _isLoadingPage => _usesPaginatedLoader ? isPaginationLoading : _continuation.isLoading;
 
@@ -568,9 +561,6 @@ class _HubDetailScreenState extends State<HubDetailScreen>
                             item: item,
                             disableScale: position.disableScale,
                             onRefresh: _handleItemRefresh,
-                            onRemoveFromContinueWatching: widget.isInContinueWatching
-                                ? _handleRemoveFromContinueWatching
-                                : null,
                             isInContinueWatching: widget.isInContinueWatching,
                             usesContinueWatchingAction: widget.usesContinueWatchingAction,
                             onNavigateUp: position.isFirstRow ? navigateToAppBar : null,

@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('recovery and error locale entries are absent or non-empty', () {
     const recoveryPaths = <List<String>>[
-      ['auth', 'localDataRecoveryRequired'],
       ['settings', 'saveFailed'],
       ['messages', 'playbackAuthenticationRequired'],
       ['messages', 'playbackServerUnavailable'],

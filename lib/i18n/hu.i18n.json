@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.",
     "quickConnectWaiting": "Várakozás a jóváhagyásra…",
     "quickConnectCancel": "Mégse",
-    "quickConnectExpired": "A Quick Connect kód lejárt. Próbáld újra.",
-    "localDataRecoveryRequired": "A Harbor nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra."
+    "quickConnectExpired": "A Quick Connect kód lejárt. Próbáld újra."
   },
   "common": {
     "cancel": "Mégse",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Megjelölés megtekintettként",
     "markAsUnwatched": "Megjelölés nem megtekintettként",
-    "removeFromContinueWatching": "Eltávolítás a folytatásból",
     "viewDetails": "Részletek megtekintése",
     "goToSeries": "Ugrás a sorozathoz",
     "shufflePlay": "Véletlenszerű lejátszás",
@@ -620,7 +618,6 @@
       "one": "${n} megtekintett letöltés automatikusan eltávolítva",
       "other": "${n} megtekintett letöltés automatikusan eltávolítva"
     },
-    "removedFromContinueWatching": "Eltávolítva a folytatásból",
     "errorLoading": "Hiba: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "Az adatfolyam megszakadt. Az újrapróbálkozáshoz indítsd el a lejátszást, vagy tekerj másik pozícióra.",

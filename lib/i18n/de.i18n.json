@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Öffne Quick Connect in Jellyfin und gib diesen Code ein.",
     "quickConnectWaiting": "Warte auf Bestätigung…",
     "quickConnectCancel": "Abbrechen",
-    "quickConnectExpired": "Quick Connect ist abgelaufen. Versuche es erneut.",
-    "localDataRecoveryRequired": "Harbor konnte lokale Anmeldedaten und ausstehende Wiedergabedaten nicht sicher wiederherstellen. Bitte melde dich erneut an."
+    "quickConnectExpired": "Quick Connect ist abgelaufen. Versuche es erneut."
   },
   "common": {
     "cancel": "Abbrechen",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Als gesehen markieren",
     "markAsUnwatched": "Als ungesehen markieren",
-    "removeFromContinueWatching": "Aus ‚Weiterschauen‘ entfernen",
     "viewDetails": "Details anzeigen",
     "goToSeries": "Zur Serie",
     "shufflePlay": "Zufallswiedergabe",
@@ -620,7 +618,6 @@
       "one": "Automatisch entfernt: ${n} angesehener Download",
       "other": "Automatisch entfernt: ${n} angesehene Downloads"
     },
-    "removedFromContinueWatching": "Aus „Weiterschauen“ entfernt",
     "errorLoading": "Fehler: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "Der Stream wurde unterbrochen. Drücke auf Wiedergabe oder spule, um es erneut zu versuchen.",

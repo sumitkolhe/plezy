@@ -107,7 +107,6 @@ class _Translations$auth$ru extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Ожидание подтверждения…';
 	@override String get quickConnectCancel => 'Отмена';
 	@override String get quickConnectExpired => 'Срок действия Quick Connect истёк. Попробуйте снова.';
-	@override String get localDataRecoveryRequired => 'Harbor не удалось безопасно восстановить данные локального входа и несинхронизированные данные о воспроизведении. Войдите снова.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$ru extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Отметить как просмотренное';
 	@override String get markAsUnwatched => 'Отметить как непросмотренное';
-	@override String get removeFromContinueWatching => 'Удалить из «Продолжить просмотр»';
 	@override String get viewDetails => 'Показать сведения';
 	@override String get goToSeries => 'Перейти к сериалу';
 	@override String get shufflePlay => 'Случайное воспроизведение';
@@ -687,7 +685,6 @@ class _Translations$messages$ru extends Translations$messages$en {
 		many: 'Автоматически удалено ${n} просмотренных загрузок',
 		other: 'Автоматически удалено ${n} просмотренной загрузки',
 	);
-	@override String get removedFromContinueWatching => 'Удалено из «Продолжить просмотр»';
 	@override String errorLoading({required Object error}) => 'Ошибка: ${error}';
 	@override String get streamInterrupted => 'Поток прервался. Нажмите «Воспроизвести» или перемотайте, чтобы повторить попытку.';
 	@override String get fileInfoNotAvailable => 'Информация о файле недоступна';
@@ -1780,7 +1777,6 @@ extension on TranslationsRu {
 			'auth.quickConnectWaiting' => 'Ожидание подтверждения…',
 			'auth.quickConnectCancel' => 'Отмена',
 			'auth.quickConnectExpired' => 'Срок действия Quick Connect истёк. Попробуйте снова.',
-			'auth.localDataRecoveryRequired' => 'Harbor не удалось безопасно восстановить данные локального входа и несинхронизированные данные о воспроизведении. Войдите снова.',
 			'common.cancel' => 'Отмена',
 			'common.save' => 'Сохранить',
 			'common.close' => 'Закрыть',
@@ -2134,7 +2130,6 @@ extension on TranslationsRu {
 			'fileInfo.has64bitOffsets' => '64-битные смещения',
 			'mediaMenu.markAsWatched' => 'Отметить как просмотренное',
 			'mediaMenu.markAsUnwatched' => 'Отметить как непросмотренное',
-			'mediaMenu.removeFromContinueWatching' => 'Удалить из «Продолжить просмотр»',
 			'mediaMenu.viewDetails' => 'Показать сведения',
 			'mediaMenu.goToSeries' => 'Перейти к сериалу',
 			'mediaMenu.shufflePlay' => 'Случайное воспроизведение',
@@ -2259,7 +2254,6 @@ extension on TranslationsRu {
 			'messages.markedAsUnwatchedOffline' => 'Отмечено как непросмотренное (синхронизируется при подключении)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Автоудалено: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ru'))(n, one: 'Автоматически удалена ${n} просмотренная загрузка', few: 'Автоматически удалены ${n} просмотренные загрузки', many: 'Автоматически удалено ${n} просмотренных загрузок', other: 'Автоматически удалено ${n} просмотренной загрузки', ), 
-			'messages.removedFromContinueWatching' => 'Удалено из «Продолжить просмотр»',
 			'messages.errorLoading' => ({required Object error}) => 'Ошибка: ${error}',
 			'messages.streamInterrupted' => 'Поток прервался. Нажмите «Воспроизвести» или перемотайте, чтобы повторить попытку.',
 			'messages.fileInfoNotAvailable' => 'Информация о файле недоступна',
@@ -2285,11 +2279,11 @@ extension on TranslationsRu {
 			'messages.noSeasonsFound' => 'Сезоны не найдены',
 			'messages.seasonsLoadFailed' => 'Не удалось загрузить сезоны',
 			'messages.noEpisodesFound' => 'Эпизоды в первом сезоне не найдены',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Эпизоды не найдены',
 			'messages.episodesLoadFailed' => 'Не удалось загрузить эпизоды',
 			'messages.noResultsFound' => 'Результаты не найдены',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Таймер сна установлен на ${label}',
 			'messages.noItemsAvailable' => 'Нет доступных элементов',
 			'messages.failedToCreatePlayQueueNoItems' => 'Не удалось создать очередь воспроизведения — нет элементов',
@@ -2799,11 +2793,11 @@ extension on TranslationsRu {
 			'metadataEdit.studio' => 'Студия',
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Описание',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Логотип',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Квадратное изображение',
 			'metadataEdit.selectPoster' => 'Выбрать постер',
 			'metadataEdit.selectBackground' => 'Выбрать фон',

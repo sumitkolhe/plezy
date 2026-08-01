@@ -107,7 +107,6 @@ class _Translations$auth$bg extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Изчакване на одобрение…';
 	@override String get quickConnectCancel => 'Отказ';
 	@override String get quickConnectExpired => 'Quick Connect изтече. Опитайте отново.';
-	@override String get localDataRecoveryRequired => 'Harbor не успя безопасно да възстанови локалните данни за вход и несинхронизираните данни за възпроизвеждане. Моля, влезте отново.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$bg extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Маркирай като гледано';
 	@override String get markAsUnwatched => 'Маркирай като негледано';
-	@override String get removeFromContinueWatching => 'Премахни от продължаване на гледането';
 	@override String get viewDetails => 'Виж подробности';
 	@override String get goToSeries => 'Към сериала';
 	@override String get shufflePlay => 'Разбъркано възпроизвеждане';
@@ -685,7 +683,6 @@ class _Translations$messages$bg extends Translations$messages$en {
 		one: 'Автоматично премахнато ${n} гледано изтегляне',
 		other: 'Автоматично премахнати ${n} гледани изтегляния',
 	);
-	@override String get removedFromContinueWatching => 'Премахнато от продължаване на гледането';
 	@override String errorLoading({required Object error}) => 'Грешка: ${error}';
 	@override String get streamInterrupted => 'Потокът прекъсна. Натиснете „Пусни“ или превъртете, за да опитате отново.';
 	@override String get fileInfoNotAvailable => 'Информацията за файла не е налична';
@@ -1774,7 +1771,6 @@ extension on TranslationsBg {
 			'auth.quickConnectWaiting' => 'Изчакване на одобрение…',
 			'auth.quickConnectCancel' => 'Отказ',
 			'auth.quickConnectExpired' => 'Quick Connect изтече. Опитайте отново.',
-			'auth.localDataRecoveryRequired' => 'Harbor не успя безопасно да възстанови локалните данни за вход и несинхронизираните данни за възпроизвеждане. Моля, влезте отново.',
 			'common.cancel' => 'Отказ',
 			'common.save' => 'Запази',
 			'common.close' => 'Затвори',
@@ -2128,7 +2124,6 @@ extension on TranslationsBg {
 			'fileInfo.has64bitOffsets' => '64-битови отмествания',
 			'mediaMenu.markAsWatched' => 'Маркирай като гледано',
 			'mediaMenu.markAsUnwatched' => 'Маркирай като негледано',
-			'mediaMenu.removeFromContinueWatching' => 'Премахни от продължаване на гледането',
 			'mediaMenu.viewDetails' => 'Виж подробности',
 			'mediaMenu.goToSeries' => 'Към сериала',
 			'mediaMenu.shufflePlay' => 'Разбъркано възпроизвеждане',
@@ -2253,7 +2248,6 @@ extension on TranslationsBg {
 			'messages.markedAsUnwatchedOffline' => 'Маркирано като негледано (ще се синхронизира, когато сте онлайн)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Автоматично премахнато: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('bg'))(n, one: 'Автоматично премахнато ${n} гледано изтегляне', other: 'Автоматично премахнати ${n} гледани изтегляния', ), 
-			'messages.removedFromContinueWatching' => 'Премахнато от продължаване на гледането',
 			'messages.errorLoading' => ({required Object error}) => 'Грешка: ${error}',
 			'messages.streamInterrupted' => 'Потокът прекъсна. Натиснете „Пусни“ или превъртете, за да опитате отново.',
 			'messages.fileInfoNotAvailable' => 'Информацията за файла не е налична',
@@ -2279,11 +2273,11 @@ extension on TranslationsBg {
 			'messages.noSeasonsFound' => 'Не са намерени сезони',
 			'messages.seasonsLoadFailed' => 'Неуспешно зареждане на сезони',
 			'messages.noEpisodesFound' => 'Не са намерени епизоди в първия сезон',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Не са намерени епизоди',
 			'messages.episodesLoadFailed' => 'Неуспешно зареждане на епизоди',
 			'messages.noResultsFound' => 'Няма намерени резултати',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Таймерът за заспиване е зададен за ${label}',
 			'messages.noItemsAvailable' => 'Няма налични елементи',
 			'messages.failedToCreatePlayQueueNoItems' => 'Неуспешно създаване на опашка за възпроизвеждане - няма елементи',
@@ -2793,11 +2787,11 @@ extension on TranslationsBg {
 			'metadataEdit.studio' => 'Студио',
 			'metadataEdit.tagline' => 'Слоган',
 			'metadataEdit.summary' => 'Резюме',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Лого',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Квадратно изображение',
 			'metadataEdit.selectPoster' => 'Избери постер',
 			'metadataEdit.selectBackground' => 'Избери фон',

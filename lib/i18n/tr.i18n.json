@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Jellyfin'de Hızlı Bağlantı'yı açın ve bu kodu girin.",
     "quickConnectWaiting": "Onay bekleniyor…",
     "quickConnectCancel": "İptal",
-    "quickConnectExpired": "Hızlı Bağlantı süresi doldu. Tekrar deneyin.",
-    "localDataRecoveryRequired": "Harbor yerel giriş ve bekleyen oynatma verilerini güvenli bir şekilde kurtaramadı. Lütfen tekrar giriş yapın."
+    "quickConnectExpired": "Hızlı Bağlantı süresi doldu. Tekrar deneyin."
   },
   "common": {
     "cancel": "İptal",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "İzlendi Olarak İşaretle",
     "markAsUnwatched": "İzlenmedi Olarak İşaretle",
-    "removeFromContinueWatching": "İzlemeye Devam Et'ten Kaldır",
     "viewDetails": "Detayları görüntüle",
     "goToSeries": "Diziye git",
     "shufflePlay": "Karışık Oynat",
@@ -620,7 +618,6 @@
       "one": "İzlenen ${n} indirme otomatik kaldırıldı",
       "other": "İzlenen ${n} indirme otomatik kaldırıldı"
     },
-    "removedFromContinueWatching": "İzlemeye Devam Et'ten kaldırıldı",
     "errorLoading": "Hata: ${error}",
     "searchPartialResults": "Bazı medya sunucularında arama yapılamadı. Kullanılabilir sonuçlar gösteriliyor.",
     "streamInterrupted": "Akış kesintiye uğradı. Tekrar denemek için oynatın veya sarın.",

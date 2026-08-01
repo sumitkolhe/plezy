@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Откройте Quick Connect в Jellyfin и введите этот код.",
     "quickConnectWaiting": "Ожидание подтверждения…",
     "quickConnectCancel": "Отмена",
-    "quickConnectExpired": "Срок действия Quick Connect истёк. Попробуйте снова.",
-    "localDataRecoveryRequired": "Harbor не удалось безопасно восстановить данные локального входа и несинхронизированные данные о воспроизведении. Войдите снова."
+    "quickConnectExpired": "Срок действия Quick Connect истёк. Попробуйте снова."
   },
   "common": {
     "cancel": "Отмена",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Отметить как просмотренное",
     "markAsUnwatched": "Отметить как непросмотренное",
-    "removeFromContinueWatching": "Удалить из «Продолжить просмотр»",
     "viewDetails": "Показать сведения",
     "goToSeries": "Перейти к сериалу",
     "shufflePlay": "Случайное воспроизведение",
@@ -622,7 +620,6 @@
       "many": "Автоматически удалено ${n} просмотренных загрузок",
       "other": "Автоматически удалено ${n} просмотренной загрузки"
     },
-    "removedFromContinueWatching": "Удалено из «Продолжить просмотр»",
     "errorLoading": "Ошибка: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "Поток прервался. Нажмите «Воспроизвести» или перемотайте, чтобы повторить попытку.",

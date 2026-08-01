@@ -107,7 +107,6 @@ class _Translations$auth$hu extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Várakozás a jóváhagyásra…';
 	@override String get quickConnectCancel => 'Mégse';
 	@override String get quickConnectExpired => 'A Quick Connect kód lejárt. Próbáld újra.';
-	@override String get localDataRecoveryRequired => 'A Harbor nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$hu extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Megjelölés megtekintettként';
 	@override String get markAsUnwatched => 'Megjelölés nem megtekintettként';
-	@override String get removeFromContinueWatching => 'Eltávolítás a folytatásból';
 	@override String get viewDetails => 'Részletek megtekintése';
 	@override String get goToSeries => 'Ugrás a sorozathoz';
 	@override String get shufflePlay => 'Véletlenszerű lejátszás';
@@ -685,7 +683,6 @@ class _Translations$messages$hu extends Translations$messages$en {
 		one: '${n} megtekintett letöltés automatikusan eltávolítva',
 		other: '${n} megtekintett letöltés automatikusan eltávolítva',
 	);
-	@override String get removedFromContinueWatching => 'Eltávolítva a folytatásból';
 	@override String errorLoading({required Object error}) => 'Hiba: ${error}';
 	@override String get streamInterrupted => 'Az adatfolyam megszakadt. Az újrapróbálkozáshoz indítsd el a lejátszást, vagy tekerj másik pozícióra.';
 	@override String get fileInfoNotAvailable => 'A fájlinformáció nem érhető el';
@@ -1774,7 +1771,6 @@ extension on TranslationsHu {
 			'auth.quickConnectWaiting' => 'Várakozás a jóváhagyásra…',
 			'auth.quickConnectCancel' => 'Mégse',
 			'auth.quickConnectExpired' => 'A Quick Connect kód lejárt. Próbáld újra.',
-			'auth.localDataRecoveryRequired' => 'A Harbor nem tudta biztonságosan helyreállítani a helyi bejelentkezés és a függőben lévő lejátszás adatait. Jelentkezz be újra.',
 			'common.cancel' => 'Mégse',
 			'common.save' => 'Mentés',
 			'common.close' => 'Bezárás',
@@ -2128,7 +2124,6 @@ extension on TranslationsHu {
 			'fileInfo.has64bitOffsets' => '64 bites eltolások',
 			'mediaMenu.markAsWatched' => 'Megjelölés megtekintettként',
 			'mediaMenu.markAsUnwatched' => 'Megjelölés nem megtekintettként',
-			'mediaMenu.removeFromContinueWatching' => 'Eltávolítás a folytatásból',
 			'mediaMenu.viewDetails' => 'Részletek megtekintése',
 			'mediaMenu.goToSeries' => 'Ugrás a sorozathoz',
 			'mediaMenu.shufflePlay' => 'Véletlenszerű lejátszás',
@@ -2253,7 +2248,6 @@ extension on TranslationsHu {
 			'messages.markedAsUnwatchedOffline' => 'Megjelölve nem megtekintettként (szinkronizálás online állapotban)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatikusan eltávolítva: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hu'))(n, one: '${n} megtekintett letöltés automatikusan eltávolítva', other: '${n} megtekintett letöltés automatikusan eltávolítva', ), 
-			'messages.removedFromContinueWatching' => 'Eltávolítva a folytatásból',
 			'messages.errorLoading' => ({required Object error}) => 'Hiba: ${error}',
 			'messages.streamInterrupted' => 'Az adatfolyam megszakadt. Az újrapróbálkozáshoz indítsd el a lejátszást, vagy tekerj másik pozícióra.',
 			'messages.fileInfoNotAvailable' => 'A fájlinformáció nem érhető el',
@@ -2279,11 +2273,11 @@ extension on TranslationsHu {
 			'messages.noSeasonsFound' => 'Nem találhatók évadok',
 			'messages.seasonsLoadFailed' => 'Nem sikerült az évadok betöltése',
 			'messages.noEpisodesFound' => 'Nem találhatók epizódok az első évadban',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nem találhatók epizódok',
 			'messages.episodesLoadFailed' => 'Nem sikerült az epizódok betöltése',
 			'messages.noResultsFound' => 'Nincs találat',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Elalvási időzítő beállítva: ${label}',
 			'messages.noItemsAvailable' => 'Nincsenek elérhető elemek',
 			'messages.failedToCreatePlayQueueNoItems' => 'Nem sikerült létrehozni a lejátszási sort — nincsenek elemek',
@@ -2793,11 +2787,11 @@ extension on TranslationsHu {
 			'metadataEdit.studio' => 'Stúdió',
 			'metadataEdit.tagline' => 'Jelmondat',
 			'metadataEdit.summary' => 'Összefoglaló',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poszter',
 			'metadataEdit.background' => 'Háttér',
 			'metadataEdit.logo' => 'Logó',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Négyzetes kép',
 			'metadataEdit.selectPoster' => 'Poszter kiválasztása',
 			'metadataEdit.selectBackground' => 'Háttér kiválasztása',

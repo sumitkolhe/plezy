@@ -85,7 +85,6 @@ class MediaContextMenu extends StatefulWidget {
   /// [_itemAsMediaItem] / [_itemAsPlaylist] helpers.
   final Object item;
   final void Function(MediaItem source)? onRefresh;
-  final VoidCallback? onRemoveFromContinueWatching;
   final VoidCallback? onListRefresh; // For refreshing list after deletion
   final VoidCallback? onTap;
 
@@ -106,7 +105,6 @@ class MediaContextMenu extends StatefulWidget {
     super.key,
     required this.item,
     this.onRefresh,
-    this.onRemoveFromContinueWatching,
     this.onListRefresh,
     this.onTap,
     this.onPlayTrailer,
@@ -220,7 +218,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     // liveness check on top.
     final itemServerOnline =
         _itemServerId != null && multiServerProvider.serverManager.isClientOnline(ServerId(_itemServerId!));
-    final canRemoveFromContinueWatching = mediaClient?.capabilities.continueWatchingRemoval ?? false;
     final canEditMetadata = isAdmin && supportsMetadataEdit(mediaClient, mediaKind);
 
     final menuActions = <_MenuAction>[];
@@ -328,16 +325,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
             value: 'unwatch',
             icon: Symbols.remove_circle_outline_rounded,
             label: t.mediaMenu.markAsUnwatched,
-          ),
-        );
-      }
-
-      if (widget.isInContinueWatching && canRemoveFromContinueWatching) {
-        menuActions.add(
-          _MenuAction(
-            value: 'remove_from_continue_watching',
-            icon: Symbols.close_rounded,
-            label: t.mediaMenu.removeFromContinueWatching,
           ),
         );
       }
@@ -561,27 +548,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
             await _executeAction(context, () async {
               await WatchActions.setWatched(context, item, watched: watched, offline: false);
             }, watched ? t.messages.markedAsWatched : t.messages.markedAsUnwatched);
-          }
-          break;
-
-        case 'remove_from_continue_watching':
-          // Remove from Continue Watching without affecting watch status or progress
-          // This preserves the progression for partially watched items
-          // and doesn't mark unwatched next episodes as watched
-          try {
-            await WatchActions.removeFromContinueWatching(context, mediaItem!);
-            if (context.mounted) {
-              showSuccessSnackBar(context, t.messages.removedFromContinueWatching);
-              if (widget.onRemoveFromContinueWatching != null) {
-                widget.onRemoveFromContinueWatching!();
-              } else {
-                _notifyRefresh(mediaItem);
-              }
-            }
-          } catch (e) {
-            if (context.mounted) {
-              showErrorSnackBar(context, t.messages.errorLoading(error: e.toString()));
-            }
           }
           break;
 

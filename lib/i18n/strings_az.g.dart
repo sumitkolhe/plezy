@@ -107,7 +107,6 @@ class _Translations$auth$az extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Təsdiq gözlənilir…';
 	@override String get quickConnectCancel => 'Ləğv et';
 	@override String get quickConnectExpired => 'Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin.';
-	@override String get localDataRecoveryRequired => 'Harbor yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.';
 }
 
 // Path: common
@@ -512,7 +511,6 @@ class _Translations$mediaMenu$az extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Baxıldı olaraq işarələ';
 	@override String get markAsUnwatched => 'Baxılmadı olaraq işarələ';
-	@override String get removeFromContinueWatching => 'İzləməyə davam et-dən sil';
 	@override String get viewDetails => 'Ətraflı bax';
 	@override String get goToSeries => 'Seriala keç';
 	@override String get shufflePlay => 'Qarışıq oynat';
@@ -688,7 +686,6 @@ class _Translations$messages$az extends Translations$messages$en {
 		one: 'Baxılmış ${n} yükləmə avtomatik silindi',
 		other: 'Baxılmış ${n} yükləmə avtomatik silindi',
 	);
-	@override String get removedFromContinueWatching => 'İzləməyə davam et-dən silindi';
 	@override String errorLoading({required Object error}) => 'Xəta: ${error}';
 	@override String get searchPartialResults => 'Bəzi media serverlərində axtarış aparıla bilmədi. Mövcud nəticələr göstərilir.';
 	@override String get streamInterrupted => 'Yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.';
@@ -1785,7 +1782,6 @@ extension on TranslationsAz {
 			'auth.quickConnectWaiting' => 'Təsdiq gözlənilir…',
 			'auth.quickConnectCancel' => 'Ləğv et',
 			'auth.quickConnectExpired' => 'Sürətli Qoşulmanın vaxtı bitdi. Təzədən cəhd edin.',
-			'auth.localDataRecoveryRequired' => 'Harbor yerli daxil olma və gözləyən oxutma məlumatlarını təhlükəsiz bərpa edə bilmədi. Lütfən təzədən daxil olun.',
 			'common.cancel' => 'Ləğv et',
 			'common.save' => 'Yadda saxla',
 			'common.close' => 'Bağla',
@@ -2142,7 +2138,6 @@ extension on TranslationsAz {
 			'fileInfo.has64bitOffsets' => '64-bit ofsetlər',
 			'mediaMenu.markAsWatched' => 'Baxıldı olaraq işarələ',
 			'mediaMenu.markAsUnwatched' => 'Baxılmadı olaraq işarələ',
-			'mediaMenu.removeFromContinueWatching' => 'İzləməyə davam et-dən sil',
 			'mediaMenu.viewDetails' => 'Ətraflı bax',
 			'mediaMenu.goToSeries' => 'Seriala keç',
 			'mediaMenu.shufflePlay' => 'Qarışıq oynat',
@@ -2267,7 +2262,6 @@ extension on TranslationsAz {
 			'messages.markedAsUnwatchedOffline' => 'Baxılmadı olaraq işarələndi (onlayn olduqda eyniləşdiriləcək)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Avtomatik silindi: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('az'))(n, one: 'Baxılmış ${n} yükləmə avtomatik silindi', other: 'Baxılmış ${n} yükləmə avtomatik silindi', ), 
-			'messages.removedFromContinueWatching' => 'İzləməyə davam et-dən silindi',
 			'messages.errorLoading' => ({required Object error}) => 'Xəta: ${error}',
 			'messages.searchPartialResults' => 'Bəzi media serverlərində axtarış aparıla bilmədi. Mövcud nəticələr göstərilir.',
 			'messages.streamInterrupted' => 'Yayım kəsildi. Təzədən cəhd etmək üçün oynat düyməsinə basın.',
@@ -2290,11 +2284,11 @@ extension on TranslationsAz {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" üçün meta-məlumatlar yenilənir...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" üçün meta-məlumat yenilənməsi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta-məlumatlar yenilənə bilmədi: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Çıxış etmək istədiyinizdən əminsiniz?',
 			'messages.noSeasonsFound' => 'Mövsüm tapılmadı',
 			'messages.seasonsLoadFailed' => 'Mövsümlər yüklənə bilmədi',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Birinci mövsümdə seriya tapılmadı',
 			'messages.noEpisodesFoundGeneral' => 'Seriya tapılmadı',
 			'messages.episodesLoadFailed' => 'Seriyalar yüklənə bilmədi',
@@ -2804,11 +2798,11 @@ extension on TranslationsAz {
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} quraşdırılmayıb',
 			'externalPlayer.playInExternalPlayer' => 'Xarici oynadıcıda oynat',
 			'metadataEdit.editMetadata' => 'Düzəliş et...',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Meta-məlumatlara düzəliş et',
 			'metadataEdit.basicInfo' => 'Əsas məlumatlar',
 			'metadataEdit.artwork' => 'Şəkillər/Posterlər',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.title' => 'Başlıq',
 			'metadataEdit.sortTitle' => 'Sıralama başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal başlıq',

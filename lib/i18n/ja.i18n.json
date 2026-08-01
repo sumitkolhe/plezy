@@ -8,8 +8,7 @@
     "quickConnectInstructions": "JellyfinでQuick Connectを開き、このコードを入力してください。",
     "quickConnectWaiting": "承認を待っています…",
     "quickConnectCancel": "キャンセル",
-    "quickConnectExpired": "Quick Connectの有効期限が切れました。もう一度お試しください。",
-    "localDataRecoveryRequired": "ローカルのサインイン情報と保留中の再生データを安全に復元できませんでした。もう一度サインインしてください。"
+    "quickConnectExpired": "Quick Connectの有効期限が切れました。もう一度お試しください。"
   },
   "common": {
     "cancel": "キャンセル",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "視聴済みにする",
     "markAsUnwatched": "未視聴にする",
-    "removeFromContinueWatching": "視聴中から削除",
     "viewDetails": "詳細を表示",
     "goToSeries": "シリーズへ移動",
     "shufflePlay": "シャッフル再生",
@@ -619,7 +617,6 @@
     "autoRemovedWatchedDownloads": {
       "other": "視聴済みダウンロードを${n}件自動削除しました"
     },
-    "removedFromContinueWatching": "視聴中から削除しました",
     "errorLoading": "エラー: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "ストリームが中断されました。再生を押すかシークして再試行してください。",

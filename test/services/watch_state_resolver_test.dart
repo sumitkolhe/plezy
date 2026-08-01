@@ -71,20 +71,6 @@ void main() {
     expect(snapshot.viewOffsetMs, 5000);
   });
 
-  test('removed from continue watching is not a watch-state overlay patch', () {
-    final snapshot = WatchStateResolver.fromEvent(
-      WatchStateEvent(
-        itemId: 'item-1',
-        serverId: ServerId('srv'),
-        changeType: WatchStateChangeType.removedFromContinueWatching,
-        parentChain: const [],
-        mediaType: 'movie',
-      ),
-    );
-
-    expect(snapshot.isEmpty, isTrue);
-  });
-
   test('applying a watched snapshot patches container leaf counts so isWatched flips', () {
     const snapshot = WatchStateSnapshot(isWatched: true, hasViewOffsetMs: true, viewOffsetMs: 0);
     final season = testMediaItem(

@@ -107,7 +107,6 @@ class _Translations$auth$it extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'In attesa di approvazione…';
 	@override String get quickConnectCancel => 'Annulla';
 	@override String get quickConnectExpired => 'Quick Connect scaduto. Riprova.';
-	@override String get localDataRecoveryRequired => 'Harbor non è riuscito a recuperare in sicurezza i dati locali di accesso e delle riproduzioni in sospeso. Accedi di nuovo.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$it extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Segna come visto';
 	@override String get markAsUnwatched => 'Segna come non visto';
-	@override String get removeFromContinueWatching => 'Rimuovi da Continua a guardare';
 	@override String get viewDetails => 'Visualizza dettagli';
 	@override String get goToSeries => 'Vai alla serie';
 	@override String get shufflePlay => 'Riproduzione casuale';
@@ -685,7 +683,6 @@ class _Translations$messages$it extends Translations$messages$en {
 		one: 'Rimosso automaticamente ${n} download già visto',
 		other: 'Rimossi automaticamente ${n} download già visti',
 	);
-	@override String get removedFromContinueWatching => 'Rimosso da Continua a guardare';
 	@override String errorLoading({required Object error}) => 'Errore: ${error}';
 	@override String get streamInterrupted => 'La riproduzione si è interrotta. Premi Riproduci o vai a un altro punto per riprovare.';
 	@override String get fileInfoNotAvailable => 'Informazioni sul file non disponibili';
@@ -1774,7 +1771,6 @@ extension on TranslationsIt {
 			'auth.quickConnectWaiting' => 'In attesa di approvazione…',
 			'auth.quickConnectCancel' => 'Annulla',
 			'auth.quickConnectExpired' => 'Quick Connect scaduto. Riprova.',
-			'auth.localDataRecoveryRequired' => 'Harbor non è riuscito a recuperare in sicurezza i dati locali di accesso e delle riproduzioni in sospeso. Accedi di nuovo.',
 			'common.cancel' => 'Annulla',
 			'common.save' => 'Salva',
 			'common.close' => 'Chiudi',
@@ -2128,7 +2124,6 @@ extension on TranslationsIt {
 			'fileInfo.has64bitOffsets' => 'Offset a 64 bit',
 			'mediaMenu.markAsWatched' => 'Segna come visto',
 			'mediaMenu.markAsUnwatched' => 'Segna come non visto',
-			'mediaMenu.removeFromContinueWatching' => 'Rimuovi da Continua a guardare',
 			'mediaMenu.viewDetails' => 'Visualizza dettagli',
 			'mediaMenu.goToSeries' => 'Vai alla serie',
 			'mediaMenu.shufflePlay' => 'Riproduzione casuale',
@@ -2253,7 +2248,6 @@ extension on TranslationsIt {
 			'messages.markedAsUnwatchedOffline' => 'Segnato come non visto (verrà sincronizzato quando torni online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Rimosso automaticamente: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('it'))(n, one: 'Rimosso automaticamente ${n} download già visto', other: 'Rimossi automaticamente ${n} download già visti', ), 
-			'messages.removedFromContinueWatching' => 'Rimosso da Continua a guardare',
 			'messages.errorLoading' => ({required Object error}) => 'Errore: ${error}',
 			'messages.streamInterrupted' => 'La riproduzione si è interrotta. Premi Riproduci o vai a un altro punto per riprovare.',
 			'messages.fileInfoNotAvailable' => 'Informazioni sul file non disponibili',
@@ -2279,11 +2273,11 @@ extension on TranslationsIt {
 			'messages.noSeasonsFound' => 'Nessuna stagione trovata',
 			'messages.seasonsLoadFailed' => 'Impossibile caricare le stagioni',
 			'messages.noEpisodesFound' => 'Nessun episodio trovato nella prima stagione',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Nessun episodio trovato',
 			'messages.episodesLoadFailed' => 'Impossibile caricare gli episodi',
 			'messages.noResultsFound' => 'Nessun risultato',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Timer di spegnimento impostato su ${label}',
 			'messages.noItemsAvailable' => 'Nessun elemento disponibile',
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossibile creare una coda di riproduzione: nessun elemento',
@@ -2793,11 +2787,11 @@ extension on TranslationsIt {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Trama',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Sfondo',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Immagine quadrata',
 			'metadataEdit.selectPoster' => 'Seleziona poster',
 			'metadataEdit.selectBackground' => 'Seleziona sfondo',

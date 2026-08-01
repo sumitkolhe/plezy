@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Open Quick Connect in Jellyfin and enter this code.",
     "quickConnectWaiting": "Waiting for approval…",
     "quickConnectCancel": "Cancel",
-    "quickConnectExpired": "Quick Connect expired. Try again.",
-    "localDataRecoveryRequired": "Harbor could not safely recover local sign-in and pending playback data. Please sign in again."
+    "quickConnectExpired": "Quick Connect expired. Try again."
   },
   "common": {
     "cancel": "Cancel",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Mark as Watched",
     "markAsUnwatched": "Mark as Unwatched",
-    "removeFromContinueWatching": "Remove from Continue Watching",
     "viewDetails": "View details",
     "goToSeries": "Go to series",
     "shufflePlay": "Shuffle Play",
@@ -620,7 +618,6 @@
       "one": "Auto-removed ${n} watched download",
       "other": "Auto-removed ${n} watched downloads"
     },
-    "removedFromContinueWatching": "Removed from Continue Watching",
     "errorLoading": "Error: ${error}",
     "searchPartialResults": "Some media servers could not be searched. Showing available results.",
     "streamInterrupted": "The stream was interrupted. Press play or seek to retry.",

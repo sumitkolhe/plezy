@@ -107,7 +107,6 @@ class _Translations$auth$ko extends Translations$auth$en {
 	@override String get quickConnectWaiting => '승인 대기 중…';
 	@override String get quickConnectCancel => '취소';
 	@override String get quickConnectExpired => 'Quick Connect가 만료되었습니다. 다시 시도하세요.';
-	@override String get localDataRecoveryRequired => 'Harbor에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$ko extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => '시청 완료로 표시';
 	@override String get markAsUnwatched => '미시청으로 표시';
-	@override String get removeFromContinueWatching => '계속 보기에서 제거';
 	@override String get viewDetails => '상세 정보 보기';
 	@override String get goToSeries => '시리즈로 이동';
 	@override String get shufflePlay => '무작위 재생';
@@ -684,7 +682,6 @@ class _Translations$messages$ko extends Translations$messages$en {
 	@override String autoRemovedWatchedDownloads({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ko'))(n,
 		other: '시청한 다운로드 ${n}개를 자동 삭제했습니다',
 	);
-	@override String get removedFromContinueWatching => '계속 시청 목록에서 제거됨';
 	@override String errorLoading({required Object error}) => '오류: ${error}';
 	@override String get streamInterrupted => '스트림이 중단되었습니다. 재생을 누르거나 탐색하여 다시 시도하세요.';
 	@override String get fileInfoNotAvailable => '파일 정보가 없습니다';
@@ -1771,7 +1768,6 @@ extension on TranslationsKo {
 			'auth.quickConnectWaiting' => '승인 대기 중…',
 			'auth.quickConnectCancel' => '취소',
 			'auth.quickConnectExpired' => 'Quick Connect가 만료되었습니다. 다시 시도하세요.',
-			'auth.localDataRecoveryRequired' => 'Harbor에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요.',
 			'common.cancel' => '취소',
 			'common.save' => '저장',
 			'common.close' => '닫기',
@@ -2125,7 +2121,6 @@ extension on TranslationsKo {
 			'fileInfo.has64bitOffsets' => '64비트 오프셋',
 			'mediaMenu.markAsWatched' => '시청 완료로 표시',
 			'mediaMenu.markAsUnwatched' => '미시청으로 표시',
-			'mediaMenu.removeFromContinueWatching' => '계속 보기에서 제거',
 			'mediaMenu.viewDetails' => '상세 정보 보기',
 			'mediaMenu.goToSeries' => '시리즈로 이동',
 			'mediaMenu.shufflePlay' => '무작위 재생',
@@ -2250,7 +2245,6 @@ extension on TranslationsKo {
 			'messages.markedAsUnwatchedOffline' => '미시청으로 표시됨 (연결 시 동기화됨)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => '자동 삭제됨: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ko'))(n, other: '시청한 다운로드 ${n}개를 자동 삭제했습니다', ), 
-			'messages.removedFromContinueWatching' => '계속 시청 목록에서 제거됨',
 			'messages.errorLoading' => ({required Object error}) => '오류: ${error}',
 			'messages.streamInterrupted' => '스트림이 중단되었습니다. 재생을 누르거나 탐색하여 다시 시도하세요.',
 			'messages.fileInfoNotAvailable' => '파일 정보가 없습니다',
@@ -2276,11 +2270,11 @@ extension on TranslationsKo {
 			'messages.noSeasonsFound' => '시즌을 찾을 수 없음',
 			'messages.seasonsLoadFailed' => '시즌을 불러오지 못했습니다',
 			'messages.noEpisodesFound' => '시즌 1에서 에피소드를 찾을 수 없습니다',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => '에피소드를 찾을 수 없습니다',
 			'messages.episodesLoadFailed' => '에피소드를 불러오지 못했습니다',
 			'messages.noResultsFound' => '결과를 찾을 수 없습니다',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => '취침 타이머가 ${label}(으)로 설정되었습니다',
 			'messages.noItemsAvailable' => '사용 가능한 항목이 없습니다',
 			'messages.failedToCreatePlayQueueNoItems' => '재생 대기열을 만들지 못했습니다 — 항목이 없습니다',
@@ -2790,11 +2784,11 @@ extension on TranslationsKo {
 			'metadataEdit.studio' => '스튜디오',
 			'metadataEdit.tagline' => '태그라인',
 			'metadataEdit.summary' => '줄거리',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => '포스터',
 			'metadataEdit.background' => '배경',
 			'metadataEdit.logo' => '로고',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => '정사각형 아트',
 			'metadataEdit.selectPoster' => '포스터 선택',
 			'metadataEdit.selectBackground' => '배경 선택',

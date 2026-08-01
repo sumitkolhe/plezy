@@ -45,18 +45,6 @@ final _episode = testMediaItem(
 );
 
 void main() {
-  test('removed from continue watching does not replace an existing watched patch', () async {
-    final provider = WatchStateStore();
-    addTearDown(provider.dispose);
-
-    await _emit(_event(changeType: WatchStateChangeType.watched, isNowWatched: true));
-    await _emit(_event(changeType: WatchStateChangeType.removedFromContinueWatching, isNowWatched: null));
-
-    final patch = provider.patchForGlobalKey('jf-machine:item-1');
-    expect(patch?.isWatched, isTrue);
-    expect(patch?.viewOffsetMs, 0);
-  });
-
   test('known active scope resolves a newer legacy bare event into that scope', () async {
     final provider = WatchStateStore();
     addTearDown(provider.dispose);

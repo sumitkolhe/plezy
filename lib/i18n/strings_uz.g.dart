@@ -107,7 +107,6 @@ class _Translations$auth$uz extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Tasdiq kutilmoqda…';
 	@override String get quickConnectCancel => 'Bekor qilish';
 	@override String get quickConnectExpired => 'Tezkor ulanish vaqti tugadi. Qaytadan urinib koʻring.';
-	@override String get localDataRecoveryRequired => 'Harbor mahalliy kirish maʼlumotlarini tiklay olmadi. Iltimos, qaytadan kiring.';
 }
 
 // Path: common
@@ -512,7 +511,6 @@ class _Translations$mediaMenu$uz extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Koʻrilgan deb belgilash';
 	@override String get markAsUnwatched => 'Koʻrilmagan deb belgilash';
-	@override String get removeFromContinueWatching => '"Tomoshani davom ettirish"dan oʻchirish';
 	@override String get viewDetails => 'Batafsil koʻrish';
 	@override String get goToSeries => 'Serialga oʻtish';
 	@override String get shufflePlay => 'Aralashtirib ijro etish';
@@ -688,7 +686,6 @@ class _Translations$messages$uz extends Translations$messages$en {
 		one: 'Koʻrilgan ${n} yuklama avtomatik oʻchirildi',
 		other: 'Koʻrilgan ${n} yuklama avtomatik oʻchirildi',
 	);
-	@override String get removedFromContinueWatching => '"Tomoshani davom ettirish"dan oʻchirildi';
 	@override String errorLoading({required Object error}) => 'Xatolik: ${error}';
 	@override String get searchPartialResults => 'Baʼzi media serverlarda qidiruv amalga oshmadi. Mavjud natijalar koʻrsatilmoqda.';
 	@override String get streamInterrupted => 'Oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.';
@@ -1785,7 +1782,6 @@ extension on TranslationsUz {
 			'auth.quickConnectWaiting' => 'Tasdiq kutilmoqda…',
 			'auth.quickConnectCancel' => 'Bekor qilish',
 			'auth.quickConnectExpired' => 'Tezkor ulanish vaqti tugadi. Qaytadan urinib koʻring.',
-			'auth.localDataRecoveryRequired' => 'Harbor mahalliy kirish maʼlumotlarini tiklay olmadi. Iltimos, qaytadan kiring.',
 			'common.cancel' => 'Bekor qilish',
 			'common.save' => 'Saqlash',
 			'common.close' => 'Yopish',
@@ -2142,7 +2138,6 @@ extension on TranslationsUz {
 			'fileInfo.has64bitOffsets' => '64-bitli siljishlar',
 			'mediaMenu.markAsWatched' => 'Koʻrilgan deb belgilash',
 			'mediaMenu.markAsUnwatched' => 'Koʻrilmagan deb belgilash',
-			'mediaMenu.removeFromContinueWatching' => '"Tomoshani davom ettirish"dan oʻchirish',
 			'mediaMenu.viewDetails' => 'Batafsil koʻrish',
 			'mediaMenu.goToSeries' => 'Serialga oʻtish',
 			'mediaMenu.shufflePlay' => 'Aralashtirib ijro etish',
@@ -2267,7 +2262,6 @@ extension on TranslationsUz {
 			'messages.markedAsUnwatchedOffline' => 'Koʻrilmagan deb belgilandi (tarmoqqa ulanganda sinxronlanadi)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Avtomatik oʻchirildi: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('uz'))(n, one: 'Koʻrilgan ${n} yuklama avtomatik oʻchirildi', other: 'Koʻrilgan ${n} yuklama avtomatik oʻchirildi', ), 
-			'messages.removedFromContinueWatching' => '"Tomoshani davom ettirish"dan oʻchirildi',
 			'messages.errorLoading' => ({required Object error}) => 'Xatolik: ${error}',
 			'messages.searchPartialResults' => 'Baʼzi media serverlarda qidiruv amalga oshmadi. Mavjud natijalar koʻrsatilmoqda.',
 			'messages.streamInterrupted' => 'Oqim uzildi. Qayta urinish uchun ijro tugmasini bosing.',
@@ -2290,11 +2284,11 @@ extension on TranslationsUz {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" uchun metamaʼlumotlar yangilanmoqda...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" uchun metamaʼlumotlarni yangilash boshlandi',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metamaʼlumotlarni yangilab boʻlmadi: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Haqiqatan ham chiqmoqchimisiz?',
 			'messages.noSeasonsFound' => 'Mavsumlar topilmadi',
 			'messages.seasonsLoadFailed' => 'Mavsumlarni yuklab boʻlmadi',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Birinchi mavsumda qismlar topilmadi',
 			'messages.noEpisodesFoundGeneral' => 'Qismlar topilmadi',
 			'messages.episodesLoadFailed' => 'Qismlarni yuklab boʻlmadi',
@@ -2804,11 +2798,11 @@ extension on TranslationsUz {
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} oʻrnatilmagan',
 			'externalPlayer.playInExternalPlayer' => 'Tashqi pleyerda ijro etish',
 			'metadataEdit.editMetadata' => 'Tahrirlash...',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Metamaʼlumotlarni tahrirlash',
 			'metadataEdit.basicInfo' => 'Asosiy maʼlumotlar',
 			'metadataEdit.artwork' => 'Rasmlar/Posterlar',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.title' => 'Nomi',
 			'metadataEdit.sortTitle' => 'Saralash nomi',
 			'metadataEdit.originalTitle' => 'Asl nomi',

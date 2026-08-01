@@ -441,8 +441,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   @override
   void onWatchStateChanged(WatchStateEvent event) {
     _watchStateChanged = true;
-    if (event.changeType == WatchStateChangeType.removedFromContinueWatching) return;
-
     // Lists keep their server snapshots untouched; cards and the hero resolve
     // them against [WatchStateStore] at build, so a rebuild is all the
     // visuals need.

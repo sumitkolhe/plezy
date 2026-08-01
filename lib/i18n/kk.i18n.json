@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Jellyfin-де Жылдам қосылуды ашып, осы кодты енгізіңіз.",
     "quickConnectWaiting": "Растау күтілуде…",
     "quickConnectCancel": "Бас тарту",
-    "quickConnectExpired": "Жылдам қосылу мерзімі өтті. Қайтадан байқап көріңіз.",
-    "localDataRecoveryRequired": "Harbor жергілікті кіру мәліметтерін қалпына келтіре алмады. Қайтадан кіріңіз."
+    "quickConnectExpired": "Жылдам қосылу мерзімі өтті. Қайтадан байқап көріңіз."
   },
   "common": {
     "cancel": "Бас тарту",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Көрілді деп белгілеу",
     "markAsUnwatched": "Көрілмеді деп белгілеу",
-    "removeFromContinueWatching": "\"Көруді жалғастыру\" тізімінен өшіру",
     "viewDetails": "Толығырақ көру",
     "goToSeries": "Сериалға өту",
     "shufflePlay": "Араластырып ойнату",
@@ -620,7 +618,6 @@
       "one": "Көрілген ${n} жүктеу автоматты өшірілді",
       "other": "Көрілген ${n} жүктеу автоматты өшірілді"
     },
-    "removedFromContinueWatching": "\"Көруді жалғастыру\" тізімінен өшірілді",
     "errorLoading": "Қате: ${error}",
     "searchPartialResults": "Кейбір медиа серверлерінде іздеу орындалмады. Қолжетімді нәтижелер көрсетілуде.",
     "streamInterrupted": "Ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.",

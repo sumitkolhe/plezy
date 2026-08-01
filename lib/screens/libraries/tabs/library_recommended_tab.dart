@@ -105,12 +105,6 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
   void onWatchStateChanged(WatchStateEvent event) {
     if (event.changeType == WatchStateChangeType.progressUpdate) return;
 
-    if (event.changeType == WatchStateChangeType.removedFromContinueWatching) {
-      _removeContinueWatchingItem(event.itemId);
-      unawaited(loadItems());
-      return;
-    }
-
     final affectedIds = {event.itemId, ...event.parentChain};
     final refreshItems = <String, MediaItem>{};
     for (final hub in items) {
@@ -125,10 +119,6 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
     }
   }
 
-  void _removeContinueWatchingItem(String itemId) {
-    _removeItemsFromHubs(hubMatches: _isContinueWatchingHub, itemMatches: (item) => item.id == itemId);
-  }
-
   @override
   void onDeletionEvent(DeletionEvent event) {
     // This tab is server-backed: a download-only deletion leaves the server
@@ -137,9 +127,7 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
 
     // Drop the item and any descendants (season/show deletions take their
     // episodes with them) from every hub, then resync with the server for
-    // parent leaf counts and replacement on-deck items — same
-    // remove-in-place-then-reload shape as the removedFromContinueWatching
-    // path above.
+    // parent leaf counts and replacement on-deck items.
     _removeItemsFromHubs(
       hubMatches: (_) => true,
       itemMatches: (item) =>
@@ -294,7 +282,6 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
                 isInContinueWatching: isContinueWatching,
                 usesContinueWatchingAction: usesContinueWatchingAction,
                 onRefresh: updateItem,
-                onRemoveFromContinueWatching: isContinueWatching ? _refreshContinueWatching : null,
                 onVerticalNavigation: (isUp) => _handleVerticalNavigation(index, isUp),
                 onBack: widget.onBack,
                 onNavigateUp: index == 0 ? widget.onBack : null,
@@ -328,7 +315,6 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
                 iconForHub: (hub, _) => hubIconFor(hub),
                 onFocusedItemChanged: _setSpotlightItem,
                 onRefresh: updateItem,
-                onRemoveFromContinueWatching: _refreshContinueWatching,
                 isContinueWatchingHub: _isContinueWatchingHub,
                 usesContinueWatchingAction: _usesContinueWatchingAction,
                 onNavigateUp: widget.onNavigateToChrome ?? widget.onBack,
@@ -340,9 +326,4 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
     );
   }
 
-  /// Refresh the Continue Watching section
-  void _refreshContinueWatching() {
-    // Reload all data to refresh the continue watching section
-    loadItems();
-  }
 }

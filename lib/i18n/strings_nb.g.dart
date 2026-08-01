@@ -107,7 +107,6 @@ class _Translations$auth$nb extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Venter på godkjenning…';
 	@override String get quickConnectCancel => 'Avbryt';
 	@override String get quickConnectExpired => 'Quick Connect er utløpt. Prøv igjen.';
-	@override String get localDataRecoveryRequired => 'Harbor kunne ikke gjenopprette lokale innloggingsdata og ventende avspillingsdata på en sikker måte. Logg inn på nytt.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$nb extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Merk som sett';
 	@override String get markAsUnwatched => 'Merk som usett';
-	@override String get removeFromContinueWatching => 'Fjern fra Fortsett å se';
 	@override String get viewDetails => 'Vis detaljer';
 	@override String get goToSeries => 'Gå til serie';
 	@override String get shufflePlay => 'Tilfeldig avspilling';
@@ -685,7 +683,6 @@ class _Translations$messages$nb extends Translations$messages$en {
 		one: 'Fjernet automatisk ${n} avspilt nedlasting',
 		other: 'Fjernet automatisk ${n} avspilte nedlastinger',
 	);
-	@override String get removedFromContinueWatching => 'Fjernet fra Fortsett å se';
 	@override String errorLoading({required Object error}) => 'Feil: ${error}';
 	@override String get streamInterrupted => 'Avspillingen ble avbrutt. Trykk på Spill av eller spol for å prøve på nytt.';
 	@override String get fileInfoNotAvailable => 'Filinformasjon ikke tilgjengelig';
@@ -1774,7 +1771,6 @@ extension on TranslationsNb {
 			'auth.quickConnectWaiting' => 'Venter på godkjenning…',
 			'auth.quickConnectCancel' => 'Avbryt',
 			'auth.quickConnectExpired' => 'Quick Connect er utløpt. Prøv igjen.',
-			'auth.localDataRecoveryRequired' => 'Harbor kunne ikke gjenopprette lokale innloggingsdata og ventende avspillingsdata på en sikker måte. Logg inn på nytt.',
 			'common.cancel' => 'Avbryt',
 			'common.save' => 'Lagre',
 			'common.close' => 'Lukk',
@@ -2128,7 +2124,6 @@ extension on TranslationsNb {
 			'fileInfo.has64bitOffsets' => '64-biters forskyvninger',
 			'mediaMenu.markAsWatched' => 'Merk som sett',
 			'mediaMenu.markAsUnwatched' => 'Merk som usett',
-			'mediaMenu.removeFromContinueWatching' => 'Fjern fra Fortsett å se',
 			'mediaMenu.viewDetails' => 'Vis detaljer',
 			'mediaMenu.goToSeries' => 'Gå til serie',
 			'mediaMenu.shufflePlay' => 'Tilfeldig avspilling',
@@ -2253,7 +2248,6 @@ extension on TranslationsNb {
 			'messages.markedAsUnwatchedOffline' => 'Merket som usett (synkroniseres når tilkoblet)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatisk fjernet: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('nb'))(n, one: 'Fjernet automatisk ${n} avspilt nedlasting', other: 'Fjernet automatisk ${n} avspilte nedlastinger', ), 
-			'messages.removedFromContinueWatching' => 'Fjernet fra Fortsett å se',
 			'messages.errorLoading' => ({required Object error}) => 'Feil: ${error}',
 			'messages.streamInterrupted' => 'Avspillingen ble avbrutt. Trykk på Spill av eller spol for å prøve på nytt.',
 			'messages.fileInfoNotAvailable' => 'Filinformasjon ikke tilgjengelig',
@@ -2279,11 +2273,11 @@ extension on TranslationsNb {
 			'messages.noSeasonsFound' => 'Ingen sesonger funnet',
 			'messages.seasonsLoadFailed' => 'Kunne ikke laste sesonger',
 			'messages.noEpisodesFound' => 'Ingen episoder funnet i første sesong',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder funnet',
 			'messages.episodesLoadFailed' => 'Kunne ikke laste episoder',
 			'messages.noResultsFound' => 'Ingen resultater funnet',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Innsovningstimer satt til ${label}',
 			'messages.noItemsAvailable' => 'Ingen elementer tilgjengelig',
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke opprette avspillingskø – ingen elementer',
@@ -2793,11 +2787,11 @@ extension on TranslationsNb {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slagord',
 			'metadataEdit.summary' => 'Sammendrag',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Bakgrunn',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk bilde',
 			'metadataEdit.selectPoster' => 'Velg plakat',
 			'metadataEdit.selectBackground' => 'Velg bakgrunn',

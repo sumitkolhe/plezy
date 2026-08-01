@@ -130,10 +130,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
 
   @override
   void onWatchStateChanged(WatchStateEvent event) {
-    if (event.changeType == WatchStateChangeType.progressUpdate ||
-        event.changeType == WatchStateChangeType.removedFromContinueWatching) {
-      return;
-    }
+    if (event.changeType == WatchStateChangeType.progressUpdate) return;
 
     final affectedIds = {event.itemId, ...event.parentChain};
     for (final item in loadedItems.values) {

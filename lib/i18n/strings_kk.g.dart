@@ -107,7 +107,6 @@ class _Translations$auth$kk extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Растау күтілуде…';
 	@override String get quickConnectCancel => 'Бас тарту';
 	@override String get quickConnectExpired => 'Жылдам қосылу мерзімі өтті. Қайтадан байқап көріңіз.';
-	@override String get localDataRecoveryRequired => 'Harbor жергілікті кіру мәліметтерін қалпына келтіре алмады. Қайтадан кіріңіз.';
 }
 
 // Path: common
@@ -512,7 +511,6 @@ class _Translations$mediaMenu$kk extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Көрілді деп белгілеу';
 	@override String get markAsUnwatched => 'Көрілмеді деп белгілеу';
-	@override String get removeFromContinueWatching => '"Көруді жалғастыру" тізімінен өшіру';
 	@override String get viewDetails => 'Толығырақ көру';
 	@override String get goToSeries => 'Сериалға өту';
 	@override String get shufflePlay => 'Араластырып ойнату';
@@ -688,7 +686,6 @@ class _Translations$messages$kk extends Translations$messages$en {
 		one: 'Көрілген ${n} жүктеу автоматты өшірілді',
 		other: 'Көрілген ${n} жүктеу автоматты өшірілді',
 	);
-	@override String get removedFromContinueWatching => '"Көруді жалғастыру" тізімінен өшірілді';
 	@override String errorLoading({required Object error}) => 'Қате: ${error}';
 	@override String get searchPartialResults => 'Кейбір медиа серверлерінде іздеу орындалмады. Қолжетімді нәтижелер көрсетілуде.';
 	@override String get streamInterrupted => 'Ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.';
@@ -1785,7 +1782,6 @@ extension on TranslationsKk {
 			'auth.quickConnectWaiting' => 'Растау күтілуде…',
 			'auth.quickConnectCancel' => 'Бас тарту',
 			'auth.quickConnectExpired' => 'Жылдам қосылу мерзімі өтті. Қайтадан байқап көріңіз.',
-			'auth.localDataRecoveryRequired' => 'Harbor жергілікті кіру мәліметтерін қалпына келтіре алмады. Қайтадан кіріңіз.',
 			'common.cancel' => 'Бас тарту',
 			'common.save' => 'Сақтау',
 			'common.close' => 'Жабу',
@@ -2142,7 +2138,6 @@ extension on TranslationsKk {
 			'fileInfo.has64bitOffsets' => '64-биттік ығысулар',
 			'mediaMenu.markAsWatched' => 'Көрілді деп белгілеу',
 			'mediaMenu.markAsUnwatched' => 'Көрілмеді деп белгілеу',
-			'mediaMenu.removeFromContinueWatching' => '"Көруді жалғастыру" тізімінен өшіру',
 			'mediaMenu.viewDetails' => 'Толығырақ көру',
 			'mediaMenu.goToSeries' => 'Сериалға өту',
 			'mediaMenu.shufflePlay' => 'Араластырып ойнату',
@@ -2267,7 +2262,6 @@ extension on TranslationsKk {
 			'messages.markedAsUnwatchedOffline' => 'Көрілмеді деп белгіленді (онлайн болғанда синхрондалады)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Автоматты түрде өшірілді: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('kk'))(n, one: 'Көрілген ${n} жүктеу автоматты өшірілді', other: 'Көрілген ${n} жүктеу автоматты өшірілді', ), 
-			'messages.removedFromContinueWatching' => '"Көруді жалғастыру" тізімінен өшірілді',
 			'messages.errorLoading' => ({required Object error}) => 'Қате: ${error}',
 			'messages.searchPartialResults' => 'Кейбір медиа серверлерінде іздеу орындалмады. Қолжетімді нәтижелер көрсетілуде.',
 			'messages.streamInterrupted' => 'Ағын үзілді. Қайталау үшін ойнату түймесін басыңыз.',
@@ -2290,11 +2284,11 @@ extension on TranslationsKk {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" үшін метадеректер жаңартылуда...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" үшін метадеректерді жаңарту басталды',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Метадеректерді жаңарту мүмкін болмады: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.logoutConfirm' => 'Шынымен шыққыңыз келе ме?',
 			'messages.noSeasonsFound' => 'Маусымдар табылмады',
 			'messages.seasonsLoadFailed' => 'Маусымдарды жүктеу мүмкін болмады',
+			_ => null,
+		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Бірінші маусымда бөлімдер табылмады',
 			'messages.noEpisodesFoundGeneral' => 'Бөлімдер табылмады',
 			'messages.episodesLoadFailed' => 'Бөлімдерді жүктеу мүмкін болмады',
@@ -2804,11 +2798,11 @@ extension on TranslationsKk {
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} орнатылмаған',
 			'externalPlayer.playInExternalPlayer' => 'Сыртқы ойнатқышта ойнату',
 			'metadataEdit.editMetadata' => 'Өңдеу...',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.screenTitle' => 'Метадеректерді өңдеу',
 			'metadataEdit.basicInfo' => 'Негізгі ақпарат',
 			'metadataEdit.artwork' => 'Суреттер/Постерлер',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.title' => 'Атауы',
 			'metadataEdit.sortTitle' => 'Сұрыптау атауы',
 			'metadataEdit.originalTitle' => 'Түпнұсқа атауы',

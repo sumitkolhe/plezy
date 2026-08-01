@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Отворете Quick Connect в Jellyfin и въведете този код.",
     "quickConnectWaiting": "Изчакване на одобрение…",
     "quickConnectCancel": "Отказ",
-    "quickConnectExpired": "Quick Connect изтече. Опитайте отново.",
-    "localDataRecoveryRequired": "Harbor не успя безопасно да възстанови локалните данни за вход и несинхронизираните данни за възпроизвеждане. Моля, влезте отново."
+    "quickConnectExpired": "Quick Connect изтече. Опитайте отново."
   },
   "common": {
     "cancel": "Отказ",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "Маркирай като гледано",
     "markAsUnwatched": "Маркирай като негледано",
-    "removeFromContinueWatching": "Премахни от продължаване на гледането",
     "viewDetails": "Виж подробности",
     "goToSeries": "Към сериала",
     "shufflePlay": "Разбъркано възпроизвеждане",
@@ -620,7 +618,6 @@
       "one": "Автоматично премахнато ${n} гледано изтегляне",
       "other": "Автоматично премахнати ${n} гледани изтегляния"
     },
-    "removedFromContinueWatching": "Премахнато от продължаване на гледането",
     "errorLoading": "Грешка: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "Потокът прекъсна. Натиснете „Пусни“ или превъртете, за да опитате отново.",

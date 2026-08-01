@@ -1792,28 +1792,6 @@ void main() {
       expect(paths.where((p) => p == '/UserPlayedItems/folder%2Fitem%20%231%3Fx'), hasLength(2));
     });
 
-    test('removeFromContinueWatching is unsupported for Jellyfin and does not call the server', () async {
-      var requested = false;
-      final scoped = JellyfinClient.forTesting(
-        connection: _conn(),
-        httpClient: MockClient((request) async {
-          requested = true;
-          return http.Response('', 500);
-        }),
-      );
-      addTearDown(scoped.close);
-
-      final item = testMediaItem(
-        id: 'item-1',
-        backend: MediaBackend.jellyfin,
-        kind: MediaKind.movie,
-        serverId: 'srv-1',
-      );
-
-      await expectLater(scoped.removeFromContinueWatching(item), throwsA(isA<UnsupportedError>()));
-      expect(requested, isFalse);
-    });
-
     test('getPlaybackInitialization URL-encodes appended api_key', () async {
       final scoped = JellyfinClient.forTesting(
         connection: _conn(accessToken: 'tok+with spaces/?&'),

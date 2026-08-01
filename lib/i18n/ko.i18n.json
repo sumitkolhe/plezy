@@ -8,8 +8,7 @@
     "quickConnectInstructions": "Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.",
     "quickConnectWaiting": "승인 대기 중…",
     "quickConnectCancel": "취소",
-    "quickConnectExpired": "Quick Connect가 만료되었습니다. 다시 시도하세요.",
-    "localDataRecoveryRequired": "Harbor에서 로컬 로그인 정보와 대기 중인 재생 데이터를 안전하게 복구하지 못했습니다. 다시 로그인해 주세요."
+    "quickConnectExpired": "Quick Connect가 만료되었습니다. 다시 시도하세요."
   },
   "common": {
     "cancel": "취소",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "시청 완료로 표시",
     "markAsUnwatched": "미시청으로 표시",
-    "removeFromContinueWatching": "계속 보기에서 제거",
     "viewDetails": "상세 정보 보기",
     "goToSeries": "시리즈로 이동",
     "shufflePlay": "무작위 재생",
@@ -619,7 +617,6 @@
     "autoRemovedWatchedDownloads": {
       "other": "시청한 다운로드 ${n}개를 자동 삭제했습니다"
     },
-    "removedFromContinueWatching": "계속 시청 목록에서 제거됨",
     "errorLoading": "오류: ${error}",
     "searchPartialResults": "",
     "streamInterrupted": "스트림이 중단되었습니다. 재생을 누르거나 탐색하여 다시 시도하세요.",

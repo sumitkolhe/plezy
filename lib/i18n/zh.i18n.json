@@ -8,8 +8,7 @@
     "quickConnectInstructions": "在 Jellyfin 中打开 Quick Connect 并输入此代码。",
     "quickConnectWaiting": "等待批准…",
     "quickConnectCancel": "取消",
-    "quickConnectExpired": "Quick Connect 已过期。请重试。",
-    "localDataRecoveryRequired": "Harbor 无法安全恢复本地登录状态和待处理的播放数据。请重新登录。"
+    "quickConnectExpired": "Quick Connect 已过期。请重试。"
   },
   "common": {
     "cancel": "取消",
@@ -476,7 +475,6 @@
   "mediaMenu": {
     "markAsWatched": "标记为已观看",
     "markAsUnwatched": "标记为未观看",
-    "removeFromContinueWatching": "从继续观看中移除",
     "viewDetails": "查看详情",
     "goToSeries": "前往剧集",
     "shufflePlay": "随机播放",
@@ -619,7 +617,6 @@
     "autoRemovedWatchedDownloads": {
       "other": "已自动移除 ${n} 个看过的下载"
     },
-    "removedFromContinueWatching": "已从继续观看中移除",
     "errorLoading": "出错：${error}",
     "searchPartialResults": "",
     "streamInterrupted": "视频流已中断。按播放键或拖动进度条重试。",

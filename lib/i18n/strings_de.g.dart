@@ -107,7 +107,6 @@ class _Translations$auth$de extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Warte auf Bestätigung…';
 	@override String get quickConnectCancel => 'Abbrechen';
 	@override String get quickConnectExpired => 'Quick Connect ist abgelaufen. Versuche es erneut.';
-	@override String get localDataRecoveryRequired => 'Harbor konnte lokale Anmeldedaten und ausstehende Wiedergabedaten nicht sicher wiederherstellen. Bitte melde dich erneut an.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$de extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Als gesehen markieren';
 	@override String get markAsUnwatched => 'Als ungesehen markieren';
-	@override String get removeFromContinueWatching => 'Aus ‚Weiterschauen‘ entfernen';
 	@override String get viewDetails => 'Details anzeigen';
 	@override String get goToSeries => 'Zur Serie';
 	@override String get shufflePlay => 'Zufallswiedergabe';
@@ -685,7 +683,6 @@ class _Translations$messages$de extends Translations$messages$en {
 		one: 'Automatisch entfernt: ${n} angesehener Download',
 		other: 'Automatisch entfernt: ${n} angesehene Downloads',
 	);
-	@override String get removedFromContinueWatching => 'Aus „Weiterschauen“ entfernt';
 	@override String errorLoading({required Object error}) => 'Fehler: ${error}';
 	@override String get streamInterrupted => 'Der Stream wurde unterbrochen. Drücke auf Wiedergabe oder spule, um es erneut zu versuchen.';
 	@override String get fileInfoNotAvailable => 'Dateiinfo nicht verfügbar';
@@ -1774,7 +1771,6 @@ extension on TranslationsDe {
 			'auth.quickConnectWaiting' => 'Warte auf Bestätigung…',
 			'auth.quickConnectCancel' => 'Abbrechen',
 			'auth.quickConnectExpired' => 'Quick Connect ist abgelaufen. Versuche es erneut.',
-			'auth.localDataRecoveryRequired' => 'Harbor konnte lokale Anmeldedaten und ausstehende Wiedergabedaten nicht sicher wiederherstellen. Bitte melde dich erneut an.',
 			'common.cancel' => 'Abbrechen',
 			'common.save' => 'Speichern',
 			'common.close' => 'Schließen',
@@ -2128,7 +2124,6 @@ extension on TranslationsDe {
 			'fileInfo.has64bitOffsets' => '64-Bit-Offsets',
 			'mediaMenu.markAsWatched' => 'Als gesehen markieren',
 			'mediaMenu.markAsUnwatched' => 'Als ungesehen markieren',
-			'mediaMenu.removeFromContinueWatching' => 'Aus ‚Weiterschauen‘ entfernen',
 			'mediaMenu.viewDetails' => 'Details anzeigen',
 			'mediaMenu.goToSeries' => 'Zur Serie',
 			'mediaMenu.shufflePlay' => 'Zufallswiedergabe',
@@ -2253,7 +2248,6 @@ extension on TranslationsDe {
 			'messages.markedAsUnwatchedOffline' => 'Als ungesehen markiert (wird synchronisiert, wenn online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatisch entfernt: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: 'Automatisch entfernt: ${n} angesehener Download', other: 'Automatisch entfernt: ${n} angesehene Downloads', ), 
-			'messages.removedFromContinueWatching' => 'Aus „Weiterschauen“ entfernt',
 			'messages.errorLoading' => ({required Object error}) => 'Fehler: ${error}',
 			'messages.streamInterrupted' => 'Der Stream wurde unterbrochen. Drücke auf Wiedergabe oder spule, um es erneut zu versuchen.',
 			'messages.fileInfoNotAvailable' => 'Dateiinfo nicht verfügbar',
@@ -2279,11 +2273,11 @@ extension on TranslationsDe {
 			'messages.noSeasonsFound' => 'Keine Staffeln gefunden',
 			'messages.seasonsLoadFailed' => 'Staffeln konnten nicht geladen werden',
 			'messages.noEpisodesFound' => 'Keine Episoden in der ersten Staffel gefunden',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Keine Episoden gefunden',
 			'messages.episodesLoadFailed' => 'Episoden konnten nicht geladen werden',
 			'messages.noResultsFound' => 'Keine Ergebnisse gefunden',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Schlaftimer auf ${label} eingestellt',
 			'messages.noItemsAvailable' => 'Keine Elemente verfügbar',
 			'messages.failedToCreatePlayQueueNoItems' => 'Wiedergabewarteschlange konnte nicht erstellt werden – keine Elemente',
@@ -2793,11 +2787,11 @@ extension on TranslationsDe {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Zusammenfassung',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Hintergrund',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Quadratisches Bild',
 			'metadataEdit.selectPoster' => 'Poster auswählen',
 			'metadataEdit.selectBackground' => 'Hintergrund auswählen',

@@ -107,7 +107,6 @@ class _Translations$auth$sv extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Väntar på godkännande…';
 	@override String get quickConnectCancel => 'Avbryt';
 	@override String get quickConnectExpired => 'Quick Connect har gått ut. Försök igen.';
-	@override String get localDataRecoveryRequired => 'Harbor kunde inte återställa lokala inloggningsuppgifter och väntande uppspelningsdata på ett säkert sätt. Logga in igen.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$sv extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Markera som sedd';
 	@override String get markAsUnwatched => 'Markera som osedd';
-	@override String get removeFromContinueWatching => 'Ta bort från Fortsätt titta';
 	@override String get viewDetails => 'Visa detaljer';
 	@override String get goToSeries => 'Gå till serie';
 	@override String get shufflePlay => 'Blanda uppspelning';
@@ -685,7 +683,6 @@ class _Translations$messages$sv extends Translations$messages$en {
 		one: 'Tog automatiskt bort ${n} sedd nedladdning',
 		other: 'Tog automatiskt bort ${n} sedda nedladdningar',
 	);
-	@override String get removedFromContinueWatching => 'Borttagen från Fortsätt titta';
 	@override String errorLoading({required Object error}) => 'Fel: ${error}';
 	@override String get streamInterrupted => 'Strömmen avbröts. Tryck på uppspelning eller spola för att försöka igen.';
 	@override String get fileInfoNotAvailable => 'Filinformation är inte tillgänglig';
@@ -1774,7 +1771,6 @@ extension on TranslationsSv {
 			'auth.quickConnectWaiting' => 'Väntar på godkännande…',
 			'auth.quickConnectCancel' => 'Avbryt',
 			'auth.quickConnectExpired' => 'Quick Connect har gått ut. Försök igen.',
-			'auth.localDataRecoveryRequired' => 'Harbor kunde inte återställa lokala inloggningsuppgifter och väntande uppspelningsdata på ett säkert sätt. Logga in igen.',
 			'common.cancel' => 'Avbryt',
 			'common.save' => 'Spara',
 			'common.close' => 'Stäng',
@@ -2128,7 +2124,6 @@ extension on TranslationsSv {
 			'fileInfo.has64bitOffsets' => '64-bitars offsetvärden',
 			'mediaMenu.markAsWatched' => 'Markera som sedd',
 			'mediaMenu.markAsUnwatched' => 'Markera som osedd',
-			'mediaMenu.removeFromContinueWatching' => 'Ta bort från Fortsätt titta',
 			'mediaMenu.viewDetails' => 'Visa detaljer',
 			'mediaMenu.goToSeries' => 'Gå till serie',
 			'mediaMenu.shufflePlay' => 'Blanda uppspelning',
@@ -2253,7 +2248,6 @@ extension on TranslationsSv {
 			'messages.markedAsUnwatchedOffline' => 'Markerad som osedd (synkroniseras när online)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Automatiskt borttagen: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('sv'))(n, one: 'Tog automatiskt bort ${n} sedd nedladdning', other: 'Tog automatiskt bort ${n} sedda nedladdningar', ), 
-			'messages.removedFromContinueWatching' => 'Borttagen från Fortsätt titta',
 			'messages.errorLoading' => ({required Object error}) => 'Fel: ${error}',
 			'messages.streamInterrupted' => 'Strömmen avbröts. Tryck på uppspelning eller spola för att försöka igen.',
 			'messages.fileInfoNotAvailable' => 'Filinformation är inte tillgänglig',
@@ -2279,11 +2273,11 @@ extension on TranslationsSv {
 			'messages.noSeasonsFound' => 'Inga säsonger hittades',
 			'messages.seasonsLoadFailed' => 'Det gick inte att läsa in säsonger',
 			'messages.noEpisodesFound' => 'Inga avsnitt hittades i första säsongen',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'Inga avsnitt hittades',
 			'messages.episodesLoadFailed' => 'Det gick inte att läsa in avsnitt',
 			'messages.noResultsFound' => 'Inga resultat hittades',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sovtimer inställd för ${label}',
 			'messages.noItemsAvailable' => 'Inga objekt tillgängliga',
 			'messages.failedToCreatePlayQueueNoItems' => 'Det gick inte att skapa en uppspelningskö – inga objekt',
@@ -2793,11 +2787,11 @@ extension on TranslationsSv {
 			'metadataEdit.studio' => 'Studio',
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Sammanfattning',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Affisch',
 			'metadataEdit.background' => 'Bakgrund',
 			'metadataEdit.logo' => 'Logotyp',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk bild',
 			'metadataEdit.selectPoster' => 'Välj affisch',
 			'metadataEdit.selectBackground' => 'Välj bakgrund',

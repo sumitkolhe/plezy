@@ -107,7 +107,6 @@ class _Translations$auth$es extends Translations$auth$en {
 	@override String get quickConnectWaiting => 'Esperando aprobación…';
 	@override String get quickConnectCancel => 'Cancelar';
 	@override String get quickConnectExpired => 'Quick Connect caducó. Inténtalo de nuevo.';
-	@override String get localDataRecoveryRequired => 'Harbor no pudo recuperar de forma segura los datos locales de inicio de sesión ni la reproducción pendiente. Vuelve a iniciar sesión.';
 }
 
 // Path: common
@@ -509,7 +508,6 @@ class _Translations$mediaMenu$es extends Translations$mediaMenu$en {
 	// Translations
 	@override String get markAsWatched => 'Marcar como visto';
 	@override String get markAsUnwatched => 'Marcar como no visto';
-	@override String get removeFromContinueWatching => 'Eliminar de Seguir viendo';
 	@override String get viewDetails => 'Ver detalles';
 	@override String get goToSeries => 'Ir a la serie';
 	@override String get shufflePlay => 'Reproducción aleatoria';
@@ -685,7 +683,6 @@ class _Translations$messages$es extends Translations$messages$en {
 		one: 'Se eliminó automáticamente ${n} descarga vista',
 		other: 'Se eliminaron automáticamente ${n} descargas vistas',
 	);
-	@override String get removedFromContinueWatching => 'Eliminado de Seguir Viendo';
 	@override String errorLoading({required Object error}) => 'Error: ${error}';
 	@override String get streamInterrupted => 'La reproducción se interrumpió. Pulsa reproducir o avanza para volver a intentarlo.';
 	@override String get fileInfoNotAvailable => 'Información de archivo no disponible';
@@ -1774,7 +1771,6 @@ extension on TranslationsEs {
 			'auth.quickConnectWaiting' => 'Esperando aprobación…',
 			'auth.quickConnectCancel' => 'Cancelar',
 			'auth.quickConnectExpired' => 'Quick Connect caducó. Inténtalo de nuevo.',
-			'auth.localDataRecoveryRequired' => 'Harbor no pudo recuperar de forma segura los datos locales de inicio de sesión ni la reproducción pendiente. Vuelve a iniciar sesión.',
 			'common.cancel' => 'Cancelar',
 			'common.save' => 'Guardar',
 			'common.close' => 'Cerrar',
@@ -2128,7 +2124,6 @@ extension on TranslationsEs {
 			'fileInfo.has64bitOffsets' => 'Desplazamientos de 64 bits',
 			'mediaMenu.markAsWatched' => 'Marcar como visto',
 			'mediaMenu.markAsUnwatched' => 'Marcar como no visto',
-			'mediaMenu.removeFromContinueWatching' => 'Eliminar de Seguir viendo',
 			'mediaMenu.viewDetails' => 'Ver detalles',
 			'mediaMenu.goToSeries' => 'Ir a la serie',
 			'mediaMenu.shufflePlay' => 'Reproducción aleatoria',
@@ -2253,7 +2248,6 @@ extension on TranslationsEs {
 			'messages.markedAsUnwatchedOffline' => 'Marcado como no visto (se sincronizará al estar en línea)',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => 'Eliminado automáticamente: ${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('es'))(n, one: 'Se eliminó automáticamente ${n} descarga vista', other: 'Se eliminaron automáticamente ${n} descargas vistas', ), 
-			'messages.removedFromContinueWatching' => 'Eliminado de Seguir Viendo',
 			'messages.errorLoading' => ({required Object error}) => 'Error: ${error}',
 			'messages.streamInterrupted' => 'La reproducción se interrumpió. Pulsa reproducir o avanza para volver a intentarlo.',
 			'messages.fileInfoNotAvailable' => 'Información de archivo no disponible',
@@ -2279,11 +2273,11 @@ extension on TranslationsEs {
 			'messages.noSeasonsFound' => 'No se encontraron temporadas',
 			'messages.seasonsLoadFailed' => 'No se pudieron cargar las temporadas',
 			'messages.noEpisodesFound' => 'No se encontraron episodios en la primera temporada',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => 'No se encontraron episodios',
 			'messages.episodesLoadFailed' => 'No se pudieron cargar los episodios',
 			'messages.noResultsFound' => 'No se encontraron resultados',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Temporizador establecido en ${label}',
 			'messages.noItemsAvailable' => 'No hay elementos disponibles',
 			'messages.failedToCreatePlayQueueNoItems' => 'No se pudo crear la cola de reproducción: no hay elementos',
@@ -2793,11 +2787,11 @@ extension on TranslationsEs {
 			'metadataEdit.studio' => 'Estudio',
 			'metadataEdit.tagline' => 'Eslogan',
 			'metadataEdit.summary' => 'Resumen',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => 'Póster',
 			'metadataEdit.background' => 'Fondo',
 			'metadataEdit.logo' => 'Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Imagen cuadrada',
 			'metadataEdit.selectPoster' => 'Seleccionar póster',
 			'metadataEdit.selectBackground' => 'Seleccionar fondo',

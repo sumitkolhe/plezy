@@ -726,7 +726,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                         focusMemory: _hubFocusMemory,
                         icon: hubIconFor(continueWatchingHub),
                         onRefresh: _discover.updateItem,
-                        onRemoveFromContinueWatching: _discover.refreshContinueWatching,
                         isInContinueWatching: true,
                         loadMoreItems: _discover.loadAllContinueWatching,
                         onVerticalNavigation: (isUp) => _handleVerticalNavigation(0, isUp),
@@ -832,7 +831,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       iconForHub: (hub, _) => hubIconFor(hub),
       onFocusedItemChanged: _setSpotlightItem,
       onRefresh: _discover.updateItem,
-      onRemoveFromContinueWatching: _discover.refreshContinueWatching,
       isContinueWatchingHub: (hub) => hub.isContinueWatchingHub,
       usesContinueWatchingAction: (hub) => hub.usesContinueWatchingAction,
       loadMoreItems: (hub) =>

@@ -50,7 +50,6 @@ class HubSection extends StatefulWidget {
   final HubFocusMemory focusMemory;
   final IconData icon;
   final void Function(MediaItem source)? onRefresh;
-  final VoidCallback? onRemoveFromContinueWatching;
   final bool isInContinueWatching;
   final bool usesContinueWatchingAction;
   final bool showServerName;
@@ -102,7 +101,6 @@ class HubSection extends StatefulWidget {
     required this.focusMemory,
     required this.icon,
     this.onRefresh,
-    this.onRemoveFromContinueWatching,
     this.isInContinueWatching = false,
     bool? usesContinueWatchingAction,
     this.showServerName = false,
@@ -397,7 +395,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
           loadItems: widget.loadMoreItems,
           isInContinueWatching: widget.isInContinueWatching,
           usesContinueWatchingAction: widget.usesContinueWatchingAction,
-          onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
         ),
       ),
     );
@@ -670,7 +667,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                                     width: cardWidth,
                                     height: posterHeight,
                                     onRefresh: widget.onRefresh,
-                                    onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
                                     onTap: widget.onItemTap == null
                                         ? null
                                         : () {

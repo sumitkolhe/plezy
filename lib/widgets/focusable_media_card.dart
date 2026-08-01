@@ -22,7 +22,6 @@ class FocusableMediaCard extends StatefulWidget {
   final double? width;
   final double? height;
   final void Function(MediaItem source)? onRefresh;
-  final VoidCallback? onRemoveFromContinueWatching;
   final VoidCallback? onListRefresh;
   final bool forceGridMode;
   final bool forceListMode;
@@ -84,7 +83,6 @@ class FocusableMediaCard extends StatefulWidget {
     this.width,
     this.height,
     this.onRefresh,
-    this.onRemoveFromContinueWatching,
     this.onListRefresh,
     this.forceGridMode = false,
     this.forceListMode = false,
@@ -144,7 +142,6 @@ class _FocusableMediaCardState extends State<FocusableMediaCard> {
         width: widget.width,
         height: widget.height,
         onRefresh: widget.onRefresh,
-        onRemoveFromContinueWatching: widget.onRemoveFromContinueWatching,
         onListRefresh: widget.onListRefresh,
         forceGridMode: widget.forceGridMode,
         forceListMode: widget.forceListMode,

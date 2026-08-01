@@ -108,7 +108,6 @@ class _Translations$auth$zh_Hant extends Translations$auth$zh {
 	@override String get quickConnectWaiting => '等待核准…';
 	@override String get quickConnectCancel => '取消';
 	@override String get quickConnectExpired => '快速連線代碼已過期。請重試。';
-	@override String get localDataRecoveryRequired => 'Harbor 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。';
 }
 
 // Path: common
@@ -510,7 +509,6 @@ class _Translations$mediaMenu$zh_Hant extends Translations$mediaMenu$zh {
 	// Translations
 	@override String get markAsWatched => '標記為已觀看';
 	@override String get markAsUnwatched => '標記為未觀看';
-	@override String get removeFromContinueWatching => '從「繼續觀看」中移除';
 	@override String get viewDetails => '查看詳情';
 	@override String get goToSeries => '前往影集';
 	@override String get shufflePlay => '隨機播放';
@@ -685,7 +683,6 @@ class _Translations$messages$zh_Hant extends Translations$messages$zh {
 	@override String autoRemovedWatchedDownloads({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n,
 		other: '已自動移除 ${n} 個已觀看的下載內容',
 	);
-	@override String get removedFromContinueWatching => '已從「繼續觀看」中移除';
 	@override String errorLoading({required Object error}) => '錯誤：${error}';
 	@override String get streamInterrupted => '影片串流中斷。請按播放鍵或拖動進度條重試。';
 	@override String get fileInfoNotAvailable => '無法取得檔案資訊';
@@ -1772,7 +1769,6 @@ extension on TranslationsZhHant {
 			'auth.quickConnectWaiting' => '等待核准…',
 			'auth.quickConnectCancel' => '取消',
 			'auth.quickConnectExpired' => '快速連線代碼已過期。請重試。',
-			'auth.localDataRecoveryRequired' => 'Harbor 無法安全地復原本機登入資料與待處理的播放資料。請重新登入。',
 			'common.cancel' => '取消',
 			'common.save' => '儲存',
 			'common.close' => '關閉',
@@ -2126,7 +2122,6 @@ extension on TranslationsZhHant {
 			'fileInfo.has64bitOffsets' => '具 64 位元偏移量',
 			'mediaMenu.markAsWatched' => '標記為已觀看',
 			'mediaMenu.markAsUnwatched' => '標記為未觀看',
-			'mediaMenu.removeFromContinueWatching' => '從「繼續觀看」中移除',
 			'mediaMenu.viewDetails' => '查看詳情',
 			'mediaMenu.goToSeries' => '前往影集',
 			'mediaMenu.shufflePlay' => '隨機播放',
@@ -2251,7 +2246,6 @@ extension on TranslationsZhHant {
 			'messages.markedAsUnwatchedOffline' => '已標記為未觀看（將在連線時同步）',
 			'messages.autoRemovedWatchedDownload' => ({required Object title}) => '已自動移除：${title}',
 			'messages.autoRemovedWatchedDownloads' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '已自動移除 ${n} 個已觀看的下載內容', ), 
-			'messages.removedFromContinueWatching' => '已從「繼續觀看」中移除',
 			'messages.errorLoading' => ({required Object error}) => '錯誤：${error}',
 			'messages.streamInterrupted' => '影片串流中斷。請按播放鍵或拖動進度條重試。',
 			'messages.fileInfoNotAvailable' => '無法取得檔案資訊',
@@ -2277,11 +2271,11 @@ extension on TranslationsZhHant {
 			'messages.noSeasonsFound' => '找不到季數',
 			'messages.seasonsLoadFailed' => '無法載入季數',
 			'messages.noEpisodesFound' => '在第一季中找不到單集',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFoundGeneral' => '找不到單集',
 			'messages.episodesLoadFailed' => '無法載入單集',
 			'messages.noResultsFound' => '找不到結果',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => '睡眠計時器已設定為 ${label}',
 			'messages.noItemsAvailable' => '沒有可用的項目',
 			'messages.failedToCreatePlayQueueNoItems' => '無法建立播放佇列 — 沒有項目',
@@ -2791,11 +2785,11 @@ extension on TranslationsZhHant {
 			'metadataEdit.studio' => '製片商',
 			'metadataEdit.tagline' => '宣傳標語',
 			'metadataEdit.summary' => '大綱簡介',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.poster' => '海報',
 			'metadataEdit.background' => '背景圖',
 			'metadataEdit.logo' => '標誌（Logo）',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.squareArt' => '方形圖片',
 			'metadataEdit.selectPoster' => '選擇海報',
 			'metadataEdit.selectBackground' => '選擇背景圖',

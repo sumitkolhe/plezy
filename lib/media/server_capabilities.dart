@@ -15,11 +15,7 @@ class ServerCapabilities {
   /// how sparse Jellyfin's categorisation is, not a wiring gap.
   final bool richHubs;
 
-  /// Hide an item from Continue Watching without changing watch state or
-  /// playback progress. Jellyfin exposes no endpoint for this.
-  final bool continueWatchingRemoval;
-
-  const ServerCapabilities({this.richHubs = false, this.continueWatchingRemoval = false});
+  const ServerCapabilities({this.richHubs = false});
 
   static const ServerCapabilities jellyfin = ServerCapabilities();
 }

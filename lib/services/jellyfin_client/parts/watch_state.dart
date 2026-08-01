@@ -20,10 +20,6 @@ mixin _JellyfinWatchStateMethods on _JellyfinClientInternals {
   }
 
   @override
-  Future<void> removeFromContinueWatching(MediaItem item) async {
-    throw UnsupportedError('Jellyfin does not support removing items from Continue Watching.');
-  }
-
   @override
   Future<void> setFavorite(MediaItem item, bool isFavorite) => _setItemFavorite(item.id, isFavorite);
 
