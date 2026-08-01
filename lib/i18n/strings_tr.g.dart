@@ -721,9 +721,6 @@ class _Translations$messages$tr extends Translations$messages$en {
 	@override String get logsCleared => 'Günlükler temizlendi';
 	@override String get logsCopied => 'Günlükler panoya kopyalandı';
 	@override String get noLogsAvailable => 'Günlük yok';
-	@override String libraryScanning({required Object title}) => '"${title}" taranıyor...';
-	@override String libraryScanStarted({required Object title}) => '"${title}" için kitaplık taraması başladı';
-	@override String libraryScanFailed({required Object error}) => 'Kitaplık taranamadı: ${error}';
 	@override String metadataRefreshing({required Object title}) => '"${title}" için meta veriler yenileniyor...';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}" için meta veri yenilemesi başladı';
 	@override String metadataRefreshFailed({required Object error}) => 'Meta veriler yenilenemedi: ${error}';
@@ -953,18 +950,7 @@ class _Translations$libraries$tr extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Kitaplıklar';
 	@override String get fallbackTitle => 'Kitaplık';
-	@override String get scanLibraryFiles => 'Kitaplık Dosyalarını Tarayınız';
-	@override String get scanLibrary => 'Kitaplığı Taramak';
-	@override String get analyze => 'Analiz Et';
-	@override String get analyzeLibrary => 'Kitaplığı Analiz Et';
 	@override String get refreshMetadata => 'Meta Verileri Yenile';
-	@override String get emptyTrash => 'Çöpü Boşalt';
-	@override String emptyingTrash({required Object title}) => '"${title}" için çöp boşaltılıyor...';
-	@override String trashEmptied({required Object title}) => '"${title}" için çöp boşaltıldı';
-	@override String failedToEmptyTrash({required Object error}) => 'Çöp boşaltılamadı: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" analiz ediliyor...';
-	@override String analysisStarted({required Object title}) => '"${title}" için analiz başladı';
-	@override String failedToAnalyze({required Object error}) => 'Kitaplık analiz edilemedi: ${error}';
 	@override String get noLibrariesFound => 'Kitaplık bulunamadı';
 	@override String get allLibrariesHidden => 'Tüm kitaplıklar gizli';
 	@override String hiddenLibrariesCount({required Object count}) => 'Gizli kitaplıklar (${count})';
@@ -973,10 +959,7 @@ class _Translations$libraries$tr extends Translations$libraries$en {
 	@override String get resetFilters => 'Filtreleri sıfırla';
 	@override String get all => 'Tümü';
 	@override String get clearAll => 'Tümünü Temizle';
-	@override String scanLibraryConfirm({required Object title}) => '"${title}" kitaplığını taramak istediğinizden emin misiniz?';
-	@override String analyzeLibraryConfirm({required Object title}) => '"${title}" kitaplığını analiz etmek istediğinizden emin misiniz?';
 	@override String refreshMetadataConfirm({required Object title}) => '"${title}" kitaplığı için meta verileri yenilemek istediğinizden emin misiniz?';
-	@override String emptyTrashConfirm({required Object title}) => '"${title}" için çöpü boşaltmak istediğinizden emin misiniz?';
 	@override String get manageLibraries => 'Kitaplıkları Yönet';
 	@override String get sort => 'Sırala';
 	@override String get sortBy => 'Sıralama Ölçütü';
@@ -2384,9 +2367,6 @@ extension on TranslationsTr {
 			'messages.logsCleared' => 'Günlükler temizlendi',
 			'messages.logsCopied' => 'Günlükler panoya kopyalandı',
 			'messages.noLogsAvailable' => 'Günlük yok',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" taranıyor...',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}" için kitaplık taraması başladı',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Kitaplık taranamadı: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" için meta veriler yenileniyor...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" için meta veri yenilemesi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta veriler yenilenemedi: ${error}',
@@ -2544,18 +2524,7 @@ extension on TranslationsTr {
 			'errors.failedToRate' => 'Puan güncellenemedi',
 			'libraries.title' => 'Kitaplıklar',
 			'libraries.fallbackTitle' => 'Kitaplık',
-			'libraries.scanLibraryFiles' => 'Kitaplık Dosyalarını Tarayınız',
-			'libraries.scanLibrary' => 'Kitaplığı Taramak',
-			'libraries.analyze' => 'Analiz Et',
-			'libraries.analyzeLibrary' => 'Kitaplığı Analiz Et',
 			'libraries.refreshMetadata' => 'Meta Verileri Yenile',
-			'libraries.emptyTrash' => 'Çöpü Boşalt',
-			'libraries.emptyingTrash' => ({required Object title}) => '"${title}" için çöp boşaltılıyor...',
-			'libraries.trashEmptied' => ({required Object title}) => '"${title}" için çöp boşaltıldı',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Çöp boşaltılamadı: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" analiz ediliyor...',
-			'libraries.analysisStarted' => ({required Object title}) => '"${title}" için analiz başladı',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Kitaplık analiz edilemedi: ${error}',
 			'libraries.noLibrariesFound' => 'Kitaplık bulunamadı',
 			'libraries.allLibrariesHidden' => 'Tüm kitaplıklar gizli',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Gizli kitaplıklar (${count})',
@@ -2564,10 +2533,7 @@ extension on TranslationsTr {
 			'libraries.resetFilters' => 'Filtreleri sıfırla',
 			'libraries.all' => 'Tümü',
 			'libraries.clearAll' => 'Tümünü Temizle',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '"${title}" kitaplığını taramak istediğinizden emin misiniz?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '"${title}" kitaplığını analiz etmek istediğinizden emin misiniz?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '"${title}" kitaplığı için meta verileri yenilemek istediğinizden emin misiniz?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '"${title}" için çöpü boşaltmak istediğinizden emin misiniz?',
 			'libraries.manageLibraries' => 'Kitaplıkları Yönet',
 			'libraries.sort' => 'Sırala',
 			'libraries.sortBy' => 'Sıralama Ölçütü',
@@ -2886,8 +2852,6 @@ extension on TranslationsTr {
 			'performanceOverlay.app' => 'Uygulama',
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Ham Çözücü',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Tünelleme',
 			'performanceOverlay.aspect' => 'Oran',
 			'performanceOverlay.rotation' => 'Döndürme',
@@ -2905,6 +2869,8 @@ extension on TranslationsTr {
 			'performanceOverlay.avSync' => 'A/V Eşitleme',
 			'performanceOverlay.dropped' => 'Kare Kaybı',
 			'performanceOverlay.dvRpus' => 'DV RPU\'ları',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Ort.',
 			'performanceOverlay.dvSampleAverage' => 'DV Örnek Ort.',
 			'performanceOverlay.maxLuma' => 'Maks Luma',

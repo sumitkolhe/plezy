@@ -721,9 +721,6 @@ class _Translations$messages$kk extends Translations$messages$en {
 	@override String get logsCleared => 'Журналдар тазаланды';
 	@override String get logsCopied => 'Журналдар көшірілді';
 	@override String get noLogsAvailable => 'Журналдар жоқ';
-	@override String libraryScanning({required Object title}) => '"${title}" сканерленуде...';
-	@override String libraryScanStarted({required Object title}) => '"${title}" үшін сканерлеу басталды';
-	@override String libraryScanFailed({required Object error}) => 'Кітапхананы сканерлеу мүмкін болмады: ${error}';
 	@override String metadataRefreshing({required Object title}) => '"${title}" үшін метадеректер жаңартылуда...';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}" үшін метадеректерді жаңарту басталды';
 	@override String metadataRefreshFailed({required Object error}) => 'Метадеректерді жаңарту мүмкін болмады: ${error}';
@@ -953,18 +950,7 @@ class _Translations$libraries$kk extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Кітапханалар';
 	@override String get fallbackTitle => 'Кітапхана';
-	@override String get scanLibraryFiles => 'Файлдарды сканерлеу';
-	@override String get scanLibrary => 'Кітапхананы сканерлеу';
-	@override String get analyze => 'Талдау жасау';
-	@override String get analyzeLibrary => 'Кітапханаға талдау жасау';
 	@override String get refreshMetadata => 'Метадеректерді жаңарту';
-	@override String get emptyTrash => 'Себетті тазалау';
-	@override String emptyingTrash({required Object title}) => '"${title}" себеті тазалануда...';
-	@override String trashEmptied({required Object title}) => '"${title}" себеті тазаланды';
-	@override String failedToEmptyTrash({required Object error}) => 'Себетті тазалау мүмкін болмады: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" талдануда...';
-	@override String analysisStarted({required Object title}) => '"${title}" үшін талдау басталды';
-	@override String failedToAnalyze({required Object error}) => 'Талдау жасау мүмкін болмады: ${error}';
 	@override String get noLibrariesFound => 'Кітапханалар табылмады';
 	@override String get allLibrariesHidden => 'Барлық кітапханалар жасырылған';
 	@override String hiddenLibrariesCount({required Object count}) => 'Жасырын кітапханалар (${count})';
@@ -973,10 +959,7 @@ class _Translations$libraries$kk extends Translations$libraries$en {
 	@override String get resetFilters => 'Фильтрлерді қалпына келтіру';
 	@override String get all => 'Барлығы';
 	@override String get clearAll => 'Барлығын тазалау';
-	@override String scanLibraryConfirm({required Object title}) => '"${title}" кітапханасын сканерлегіңіз келе ме?';
-	@override String analyzeLibraryConfirm({required Object title}) => '"${title}" кітапханасына талдау жасағыңыз келе ме?';
 	@override String refreshMetadataConfirm({required Object title}) => '"${title}" метадеректерін жаңартасыз ба?';
-	@override String emptyTrashConfirm({required Object title}) => '"${title}" себетін тазалайсыз ба?';
 	@override String get manageLibraries => 'Кітапханаларды басқару';
 	@override String get sort => 'Сұрыптау';
 	@override String get sortBy => 'Сұрыптау реті';
@@ -2384,9 +2367,6 @@ extension on TranslationsKk {
 			'messages.logsCleared' => 'Журналдар тазаланды',
 			'messages.logsCopied' => 'Журналдар көшірілді',
 			'messages.noLogsAvailable' => 'Журналдар жоқ',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" сканерленуде...',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}" үшін сканерлеу басталды',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Кітапхананы сканерлеу мүмкін болмады: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" үшін метадеректер жаңартылуда...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" үшін метадеректерді жаңарту басталды',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Метадеректерді жаңарту мүмкін болмады: ${error}',
@@ -2544,18 +2524,7 @@ extension on TranslationsKk {
 			'errors.failedToRate' => 'Рейтингті жаңарту мүмкін болмады',
 			'libraries.title' => 'Кітапханалар',
 			'libraries.fallbackTitle' => 'Кітапхана',
-			'libraries.scanLibraryFiles' => 'Файлдарды сканерлеу',
-			'libraries.scanLibrary' => 'Кітапхананы сканерлеу',
-			'libraries.analyze' => 'Талдау жасау',
-			'libraries.analyzeLibrary' => 'Кітапханаға талдау жасау',
 			'libraries.refreshMetadata' => 'Метадеректерді жаңарту',
-			'libraries.emptyTrash' => 'Себетті тазалау',
-			'libraries.emptyingTrash' => ({required Object title}) => '"${title}" себеті тазалануда...',
-			'libraries.trashEmptied' => ({required Object title}) => '"${title}" себеті тазаланды',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Себетті тазалау мүмкін болмады: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" талдануда...',
-			'libraries.analysisStarted' => ({required Object title}) => '"${title}" үшін талдау басталды',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Талдау жасау мүмкін болмады: ${error}',
 			'libraries.noLibrariesFound' => 'Кітапханалар табылмады',
 			'libraries.allLibrariesHidden' => 'Барлық кітапханалар жасырылған',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Жасырын кітапханалар (${count})',
@@ -2564,10 +2533,7 @@ extension on TranslationsKk {
 			'libraries.resetFilters' => 'Фильтрлерді қалпына келтіру',
 			'libraries.all' => 'Барлығы',
 			'libraries.clearAll' => 'Барлығын тазалау',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '"${title}" кітапханасын сканерлегіңіз келе ме?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '"${title}" кітапханасына талдау жасағыңыз келе ме?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '"${title}" метадеректерін жаңартасыз ба?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '"${title}" себетін тазалайсыз ба?',
 			'libraries.manageLibraries' => 'Кітапханаларды басқару',
 			'libraries.sort' => 'Сұрыптау',
 			'libraries.sortBy' => 'Сұрыптау реті',
@@ -2886,8 +2852,6 @@ extension on TranslationsKk {
 			'performanceOverlay.app' => 'Қолданба',
 			'performanceOverlay.decoder' => 'Декодер',
 			'performanceOverlay.rawDecoder' => 'Өңделмеген декодер',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Туннельдеу',
 			'performanceOverlay.aspect' => 'Қатынас',
 			'performanceOverlay.rotation' => 'Бұрылыс',
@@ -2905,6 +2869,8 @@ extension on TranslationsKk {
 			'performanceOverlay.avSync' => 'A/V синхрондау',
 			'performanceOverlay.dropped' => 'Өткізілген кадрлар',
 			'performanceOverlay.dvRpus' => 'DV RPU-лар',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Орт.',
 			'performanceOverlay.dvSampleAverage' => 'DV Үлгі Орт.',
 			'performanceOverlay.maxLuma' => 'Макс Luma',

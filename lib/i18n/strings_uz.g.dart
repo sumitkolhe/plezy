@@ -721,9 +721,6 @@ class _Translations$messages$uz extends Translations$messages$en {
 	@override String get logsCleared => 'Jurnallar tozalandi';
 	@override String get logsCopied => 'Jurnallar nusxalandi';
 	@override String get noLogsAvailable => 'Jurnallar yoʻq';
-	@override String libraryScanning({required Object title}) => '"${title}" skanerlanmoqda...';
-	@override String libraryScanStarted({required Object title}) => '"${title}" uchun skanerlash boshlandi';
-	@override String libraryScanFailed({required Object error}) => 'Kutubxonani skanerlab boʻlmadi: ${error}';
 	@override String metadataRefreshing({required Object title}) => '"${title}" uchun metamaʼlumotlar yangilanmoqda...';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}" uchun metamaʼlumotlarni yangilash boshlandi';
 	@override String metadataRefreshFailed({required Object error}) => 'Metamaʼlumotlarni yangilab boʻlmadi: ${error}';
@@ -953,18 +950,7 @@ class _Translations$libraries$uz extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Kutubxonalar';
 	@override String get fallbackTitle => 'Kutubxona';
-	@override String get scanLibraryFiles => 'Fayllarni skanerlash';
-	@override String get scanLibrary => 'Kutubxonani skanerlash';
-	@override String get analyze => 'Tahlil qilish';
-	@override String get analyzeLibrary => 'Kutubxonani tahlil qilish';
 	@override String get refreshMetadata => 'Metamaʼlumotlarni yangilash';
-	@override String get emptyTrash => 'Savatni tozalash';
-	@override String emptyingTrash({required Object title}) => '"${title}" savati tozalanmoqda...';
-	@override String trashEmptied({required Object title}) => '"${title}" savati tozalandi';
-	@override String failedToEmptyTrash({required Object error}) => 'Savatni tozalab boʻlmadi: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" tahlil qilinmoqda...';
-	@override String analysisStarted({required Object title}) => '"${title}" uchun tahlil boshlandi';
-	@override String failedToAnalyze({required Object error}) => 'Tahlil qilib boʻlmadi: ${error}';
 	@override String get noLibrariesFound => 'Kutubxonalar topilmadi';
 	@override String get allLibrariesHidden => 'Barcha kutubxonalar yashirilgan';
 	@override String hiddenLibrariesCount({required Object count}) => 'Yashirin kutubxonalar (${count})';
@@ -973,10 +959,7 @@ class _Translations$libraries$uz extends Translations$libraries$en {
 	@override String get resetFilters => 'Filtrlarni qayta oʻrnatish';
 	@override String get all => 'Barchasi';
 	@override String get clearAll => 'Barchasini tozalash';
-	@override String scanLibraryConfirm({required Object title}) => '"${title}" kutubxonasini skanerlamoqchimisiz?';
-	@override String analyzeLibraryConfirm({required Object title}) => '"${title}" kutubxonasini tahlil qilmoqchimisiz?';
 	@override String refreshMetadataConfirm({required Object title}) => '"${title}" metamaʼlumotlarini yangilaysizmi?';
-	@override String emptyTrashConfirm({required Object title}) => '"${title}" savatini tozalaysizmi?';
 	@override String get manageLibraries => 'Kutubxonalarni boshqarish';
 	@override String get sort => 'Saralash';
 	@override String get sortBy => 'Saralash mezonlari';
@@ -2384,9 +2367,6 @@ extension on TranslationsUz {
 			'messages.logsCleared' => 'Jurnallar tozalandi',
 			'messages.logsCopied' => 'Jurnallar nusxalandi',
 			'messages.noLogsAvailable' => 'Jurnallar yoʻq',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" skanerlanmoqda...',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}" uchun skanerlash boshlandi',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Kutubxonani skanerlab boʻlmadi: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" uchun metamaʼlumotlar yangilanmoqda...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" uchun metamaʼlumotlarni yangilash boshlandi',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metamaʼlumotlarni yangilab boʻlmadi: ${error}',
@@ -2544,18 +2524,7 @@ extension on TranslationsUz {
 			'errors.failedToRate' => 'Reytingni yangilab boʻlmadi',
 			'libraries.title' => 'Kutubxonalar',
 			'libraries.fallbackTitle' => 'Kutubxona',
-			'libraries.scanLibraryFiles' => 'Fayllarni skanerlash',
-			'libraries.scanLibrary' => 'Kutubxonani skanerlash',
-			'libraries.analyze' => 'Tahlil qilish',
-			'libraries.analyzeLibrary' => 'Kutubxonani tahlil qilish',
 			'libraries.refreshMetadata' => 'Metamaʼlumotlarni yangilash',
-			'libraries.emptyTrash' => 'Savatni tozalash',
-			'libraries.emptyingTrash' => ({required Object title}) => '"${title}" savati tozalanmoqda...',
-			'libraries.trashEmptied' => ({required Object title}) => '"${title}" savati tozalandi',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Savatni tozalab boʻlmadi: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" tahlil qilinmoqda...',
-			'libraries.analysisStarted' => ({required Object title}) => '"${title}" uchun tahlil boshlandi',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Tahlil qilib boʻlmadi: ${error}',
 			'libraries.noLibrariesFound' => 'Kutubxonalar topilmadi',
 			'libraries.allLibrariesHidden' => 'Barcha kutubxonalar yashirilgan',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Yashirin kutubxonalar (${count})',
@@ -2564,10 +2533,7 @@ extension on TranslationsUz {
 			'libraries.resetFilters' => 'Filtrlarni qayta oʻrnatish',
 			'libraries.all' => 'Barchasi',
 			'libraries.clearAll' => 'Barchasini tozalash',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '"${title}" kutubxonasini skanerlamoqchimisiz?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '"${title}" kutubxonasini tahlil qilmoqchimisiz?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '"${title}" metamaʼlumotlarini yangilaysizmi?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '"${title}" savatini tozalaysizmi?',
 			'libraries.manageLibraries' => 'Kutubxonalarni boshqarish',
 			'libraries.sort' => 'Saralash',
 			'libraries.sortBy' => 'Saralash mezonlari',
@@ -2886,8 +2852,6 @@ extension on TranslationsUz {
 			'performanceOverlay.app' => 'Ilova',
 			'performanceOverlay.decoder' => 'Dekoder',
 			'performanceOverlay.rawDecoder' => 'Ishlov berilmagan dekoder',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Tunnellash',
 			'performanceOverlay.aspect' => 'Nisbat',
 			'performanceOverlay.rotation' => 'Aylanish',
@@ -2905,6 +2869,8 @@ extension on TranslationsUz {
 			'performanceOverlay.avSync' => 'A/V sinxronlash',
 			'performanceOverlay.dropped' => 'Tushirib qoldirilgan kadrlar',
 			'performanceOverlay.dvRpus' => 'DV RPU-lar',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Oʻrt.',
 			'performanceOverlay.dvSampleAverage' => 'DV Namuna Oʻrt.',
 			'performanceOverlay.maxLuma' => 'Maks Luma',

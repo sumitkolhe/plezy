@@ -717,9 +717,6 @@ class _Translations$messages$nl extends Translations$messages$en {
 	@override String get logsCleared => 'Logbestanden gewist';
 	@override String get logsCopied => 'Logbestanden naar het klembord gekopieerd';
 	@override String get noLogsAvailable => 'Geen logbestanden beschikbaar';
-	@override String libraryScanning({required Object title}) => '"${title}" scannen...';
-	@override String libraryScanStarted({required Object title}) => 'Bibliotheekscan gestart voor "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Bibliotheek scannen mislukt: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Metadata voor "${title}" vernieuwen...';
 	@override String metadataRefreshStarted({required Object title}) => 'Vernieuwen van metadata gestart voor "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Metadata vernieuwen mislukt: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$nl extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Bibliotheken';
 	@override String get fallbackTitle => 'Bibliotheek';
-	@override String get scanLibraryFiles => 'Bibliotheekbestanden scannen';
-	@override String get scanLibrary => 'Bibliotheek scannen';
-	@override String get analyze => 'Analyseren';
-	@override String get analyzeLibrary => 'Bibliotheek analyseren';
 	@override String get refreshMetadata => 'Metadata vernieuwen';
-	@override String get emptyTrash => 'Prullenbak legen';
-	@override String emptyingTrash({required Object title}) => 'Prullenbak legen voor "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Prullenbak geleegd voor "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Kon prullenbak niet legen: ${error}';
-	@override String analyzing({required Object title}) => 'Analyseren "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Analyse gestart voor "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Kon bibliotheek niet analyseren: ${error}';
 	@override String get noLibrariesFound => 'Geen bibliotheken gevonden';
 	@override String get allLibrariesHidden => 'Alle bibliotheken zijn verborgen';
 	@override String hiddenLibrariesCount({required Object count}) => 'Verborgen bibliotheken (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$nl extends Translations$libraries$en {
 	@override String get resetFilters => 'Filters opnieuw instellen';
 	@override String get all => 'Alles';
 	@override String get clearAll => 'Alles wissen';
-	@override String scanLibraryConfirm({required Object title}) => 'Weet je zeker dat je "${title}" wilt scannen?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Weet je zeker dat je "${title}" wilt analyseren?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Weet je zeker dat je metadata wilt vernieuwen voor "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Weet je zeker dat je de prullenbak wilt legen voor "${title}"?';
 	@override String get manageLibraries => 'Bibliotheken beheren';
 	@override String get sort => 'Sorteren';
 	@override String get sortBy => 'Sorteer op';
@@ -2369,9 +2352,6 @@ extension on TranslationsNl {
 			'messages.logsCleared' => 'Logbestanden gewist',
 			'messages.logsCopied' => 'Logbestanden naar het klembord gekopieerd',
 			'messages.noLogsAvailable' => 'Geen logbestanden beschikbaar',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" scannen...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Bibliotheekscan gestart voor "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Bibliotheek scannen mislukt: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metadata voor "${title}" vernieuwen...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Vernieuwen van metadata gestart voor "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadata vernieuwen mislukt: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsNl {
 			'errors.failedToRate' => 'Beoordeling kon niet worden bijgewerkt',
 			'libraries.title' => 'Bibliotheken',
 			'libraries.fallbackTitle' => 'Bibliotheek',
-			'libraries.scanLibraryFiles' => 'Bibliotheekbestanden scannen',
-			'libraries.scanLibrary' => 'Bibliotheek scannen',
-			'libraries.analyze' => 'Analyseren',
-			'libraries.analyzeLibrary' => 'Bibliotheek analyseren',
 			'libraries.refreshMetadata' => 'Metadata vernieuwen',
-			'libraries.emptyTrash' => 'Prullenbak legen',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Prullenbak legen voor "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Prullenbak geleegd voor "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Kon prullenbak niet legen: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analyseren "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analyse gestart voor "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Kon bibliotheek niet analyseren: ${error}',
 			'libraries.noLibrariesFound' => 'Geen bibliotheken gevonden',
 			'libraries.allLibrariesHidden' => 'Alle bibliotheken zijn verborgen',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Verborgen bibliotheken (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsNl {
 			'libraries.resetFilters' => 'Filters opnieuw instellen',
 			'libraries.all' => 'Alles',
 			'libraries.clearAll' => 'Alles wissen',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Weet je zeker dat je "${title}" wilt scannen?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Weet je zeker dat je "${title}" wilt analyseren?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Weet je zeker dat je metadata wilt vernieuwen voor "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Weet je zeker dat je de prullenbak wilt legen voor "${title}"?',
 			'libraries.manageLibraries' => 'Bibliotheken beheren',
 			'libraries.sort' => 'Sorteren',
 			'libraries.sortBy' => 'Sorteer op',
@@ -2875,8 +2841,6 @@ extension on TranslationsNl {
 			'performanceOverlay.hwFormat' => 'HW-formaat',
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primaire kleuren',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Overdracht',
 			'performanceOverlay.renderFps' => 'Render-FPS',
 			'performanceOverlay.displayFps' => 'Scherm-FPS',
@@ -2894,6 +2858,8 @@ extension on TranslationsNl {
 			'performanceOverlay.speed' => 'Snelheid',
 			'performanceOverlay.player' => 'Speler',
 			'performanceOverlay.memory' => 'Geheugen',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Externe speler',
 			'externalPlayer.useExternalPlayer' => 'Externe speler gebruiken',

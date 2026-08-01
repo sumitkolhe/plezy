@@ -721,9 +721,6 @@ class _Translations$messages$az extends Translations$messages$en {
 	@override String get logsCleared => 'Jurnallar təmizləndi';
 	@override String get logsCopied => 'Jurnallar buferə kopyalandı';
 	@override String get noLogsAvailable => 'Jurnal yoxdur';
-	@override String libraryScanning({required Object title}) => '"${title}" skan edilir...';
-	@override String libraryScanStarted({required Object title}) => '"${title}" üçün skan başladı';
-	@override String libraryScanFailed({required Object error}) => 'Kitabxana skan edilə bilmədi: ${error}';
 	@override String metadataRefreshing({required Object title}) => '"${title}" üçün meta-məlumatlar yenilənir...';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}" üçün meta-məlumat yenilənməsi başladı';
 	@override String metadataRefreshFailed({required Object error}) => 'Meta-məlumatlar yenilənə bilmədi: ${error}';
@@ -953,18 +950,7 @@ class _Translations$libraries$az extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Kitabxanalar';
 	@override String get fallbackTitle => 'Kitabxana';
-	@override String get scanLibraryFiles => 'Kitabxana fayllarını skan et';
-	@override String get scanLibrary => 'Kitabxananı skan et';
-	@override String get analyze => 'Analiz et';
-	@override String get analyzeLibrary => 'Kitabxananı analiz et';
 	@override String get refreshMetadata => 'Meta-məlumatları yenilə';
-	@override String get emptyTrash => 'Zibil qutusunu təmizlə';
-	@override String emptyingTrash({required Object title}) => '"${title}" üçün zibil qutusu təmizlənir...';
-	@override String trashEmptied({required Object title}) => '"${title}" üçün zibil qutusu təmizləndi';
-	@override String failedToEmptyTrash({required Object error}) => 'Zibil qutusu təmizlənə bilmədi: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" analiz edilir...';
-	@override String analysisStarted({required Object title}) => '"${title}" üçün analiz başladı';
-	@override String failedToAnalyze({required Object error}) => 'Kitabxana analiz edilə bilmədi: ${error}';
 	@override String get noLibrariesFound => 'Kitabxana tapılmadı';
 	@override String get allLibrariesHidden => 'Bütün kitabxanalar gizlədilib';
 	@override String hiddenLibrariesCount({required Object count}) => 'Gizli kitabxanalar (${count})';
@@ -973,10 +959,7 @@ class _Translations$libraries$az extends Translations$libraries$en {
 	@override String get resetFilters => 'Filtrləri sıfırla';
 	@override String get all => 'Hamısı';
 	@override String get clearAll => 'Hamısını təmizlə';
-	@override String scanLibraryConfirm({required Object title}) => '"${title}" kitabxanasını skan etmək istədiyinizdən əminsiniz?';
-	@override String analyzeLibraryConfirm({required Object title}) => '"${title}" kitabxanasını analiz etmək istədiyinizdən əminsiniz?';
 	@override String refreshMetadataConfirm({required Object title}) => '"${title}" üçün meta-məlumatları yeniləmək istədiyinizdən əminsiniz?';
-	@override String emptyTrashConfirm({required Object title}) => '"${title}" üçün zibil qutusunu təmizləmək istədiyinizdən əminsiniz?';
 	@override String get manageLibraries => 'Kitabxanaları idarə et';
 	@override String get sort => 'Sırala';
 	@override String get sortBy => 'Sıralama meyarı';
@@ -2384,9 +2367,6 @@ extension on TranslationsAz {
 			'messages.logsCleared' => 'Jurnallar təmizləndi',
 			'messages.logsCopied' => 'Jurnallar buferə kopyalandı',
 			'messages.noLogsAvailable' => 'Jurnal yoxdur',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" skan edilir...',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}" üçün skan başladı',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Kitabxana skan edilə bilmədi: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" üçün meta-məlumatlar yenilənir...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" üçün meta-məlumat yenilənməsi başladı',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Meta-məlumatlar yenilənə bilmədi: ${error}',
@@ -2544,18 +2524,7 @@ extension on TranslationsAz {
 			'errors.failedToRate' => 'Reytinq yenilənə bilmədi',
 			'libraries.title' => 'Kitabxanalar',
 			'libraries.fallbackTitle' => 'Kitabxana',
-			'libraries.scanLibraryFiles' => 'Kitabxana fayllarını skan et',
-			'libraries.scanLibrary' => 'Kitabxananı skan et',
-			'libraries.analyze' => 'Analiz et',
-			'libraries.analyzeLibrary' => 'Kitabxananı analiz et',
 			'libraries.refreshMetadata' => 'Meta-məlumatları yenilə',
-			'libraries.emptyTrash' => 'Zibil qutusunu təmizlə',
-			'libraries.emptyingTrash' => ({required Object title}) => '"${title}" üçün zibil qutusu təmizlənir...',
-			'libraries.trashEmptied' => ({required Object title}) => '"${title}" üçün zibil qutusu təmizləndi',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Zibil qutusu təmizlənə bilmədi: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" analiz edilir...',
-			'libraries.analysisStarted' => ({required Object title}) => '"${title}" üçün analiz başladı',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Kitabxana analiz edilə bilmədi: ${error}',
 			'libraries.noLibrariesFound' => 'Kitabxana tapılmadı',
 			'libraries.allLibrariesHidden' => 'Bütün kitabxanalar gizlədilib',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Gizli kitabxanalar (${count})',
@@ -2564,10 +2533,7 @@ extension on TranslationsAz {
 			'libraries.resetFilters' => 'Filtrləri sıfırla',
 			'libraries.all' => 'Hamısı',
 			'libraries.clearAll' => 'Hamısını təmizlə',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '"${title}" kitabxanasını skan etmək istədiyinizdən əminsiniz?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '"${title}" kitabxanasını analiz etmək istədiyinizdən əminsiniz?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '"${title}" üçün meta-məlumatları yeniləmək istədiyinizdən əminsiniz?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '"${title}" üçün zibil qutusunu təmizləmək istədiyinizdən əminsiniz?',
 			'libraries.manageLibraries' => 'Kitabxanaları idarə et',
 			'libraries.sort' => 'Sırala',
 			'libraries.sortBy' => 'Sıralama meyarı',
@@ -2886,8 +2852,6 @@ extension on TranslationsAz {
 			'performanceOverlay.app' => 'Tətbiq',
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Xam çözücü',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Tünelləmə',
 			'performanceOverlay.aspect' => 'Nisbət',
 			'performanceOverlay.rotation' => 'Dönmə',
@@ -2905,6 +2869,8 @@ extension on TranslationsAz {
 			'performanceOverlay.avSync' => 'A/V Eyniləşdirilməsi',
 			'performanceOverlay.dropped' => 'İtirilmiş kadrlar',
 			'performanceOverlay.dvRpus' => 'DV RPU-ları',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.dvRpuAverage' => 'DV RPU Ort.',
 			'performanceOverlay.dvSampleAverage' => 'DV Nümunə Ort.',
 			'performanceOverlay.maxLuma' => 'Maks Luma',

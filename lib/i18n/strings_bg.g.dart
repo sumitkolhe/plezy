@@ -717,9 +717,6 @@ class _Translations$messages$bg extends Translations$messages$en {
 	@override String get logsCleared => 'Логовете са изчистени';
 	@override String get logsCopied => 'Логовете са копирани в клипборда';
 	@override String get noLogsAvailable => 'Няма налични логове';
-	@override String libraryScanning({required Object title}) => 'Сканиране на "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Сканирането на библиотеката е стартирано за "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Неуспешно сканиране на библиотеката: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Опресняване на метаданни за "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Опресняването на метаданни е стартирано за "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Неуспешно опресняване на метаданни: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$bg extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Библиотеки';
 	@override String get fallbackTitle => 'Библиотека';
-	@override String get scanLibraryFiles => 'Сканирай файловете на библиотеката';
-	@override String get scanLibrary => 'Сканирай библиотеката';
-	@override String get analyze => 'Анализирай';
-	@override String get analyzeLibrary => 'Анализирай библиотеката';
 	@override String get refreshMetadata => 'Опресни метаданни';
-	@override String get emptyTrash => 'Изпразни кошчето';
-	@override String emptyingTrash({required Object title}) => 'Изпразване на кошчето за "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Кошчето е изпразнено за "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Неуспешно изпразване на кошчето: ${error}';
-	@override String analyzing({required Object title}) => 'Анализиране на "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Анализът е стартиран за "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Неуспешен анализ на библиотеката: ${error}';
 	@override String get noLibrariesFound => 'Не са намерени библиотеки';
 	@override String get allLibrariesHidden => 'Всички библиотеки са скрити';
 	@override String hiddenLibrariesCount({required Object count}) => 'Скрити библиотеки (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$bg extends Translations$libraries$en {
 	@override String get resetFilters => 'Нулирай филтрите';
 	@override String get all => 'Всички';
 	@override String get clearAll => 'Изчисти всички';
-	@override String scanLibraryConfirm({required Object title}) => 'Сигурни ли сте, че искате да сканирате "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Сигурни ли сте, че искате да анализирате "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Сигурни ли сте, че искате да опресните метаданните за "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Сигурни ли сте, че искате да изпразните кошчето за "${title}"?';
 	@override String get manageLibraries => 'Управление на библиотеки';
 	@override String get sort => 'Сортиране';
 	@override String get sortBy => 'Сортирай по';
@@ -2369,9 +2352,6 @@ extension on TranslationsBg {
 			'messages.logsCleared' => 'Логовете са изчистени',
 			'messages.logsCopied' => 'Логовете са копирани в клипборда',
 			'messages.noLogsAvailable' => 'Няма налични логове',
-			'messages.libraryScanning' => ({required Object title}) => 'Сканиране на "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Сканирането на библиотеката е стартирано за "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Неуспешно сканиране на библиотеката: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Опресняване на метаданни за "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Опресняването на метаданни е стартирано за "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Неуспешно опресняване на метаданни: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsBg {
 			'errors.failedToRate' => 'Оценката не можа да бъде обновена',
 			'libraries.title' => 'Библиотеки',
 			'libraries.fallbackTitle' => 'Библиотека',
-			'libraries.scanLibraryFiles' => 'Сканирай файловете на библиотеката',
-			'libraries.scanLibrary' => 'Сканирай библиотеката',
-			'libraries.analyze' => 'Анализирай',
-			'libraries.analyzeLibrary' => 'Анализирай библиотеката',
 			'libraries.refreshMetadata' => 'Опресни метаданни',
-			'libraries.emptyTrash' => 'Изпразни кошчето',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Изпразване на кошчето за "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Кошчето е изпразнено за "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Неуспешно изпразване на кошчето: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Анализиране на "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Анализът е стартиран за "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Неуспешен анализ на библиотеката: ${error}',
 			'libraries.noLibrariesFound' => 'Не са намерени библиотеки',
 			'libraries.allLibrariesHidden' => 'Всички библиотеки са скрити',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Скрити библиотеки (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsBg {
 			'libraries.resetFilters' => 'Нулирай филтрите',
 			'libraries.all' => 'Всички',
 			'libraries.clearAll' => 'Изчисти всички',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Сигурни ли сте, че искате да сканирате "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Сигурни ли сте, че искате да анализирате "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Сигурни ли сте, че искате да опресните метаданните за "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Сигурни ли сте, че искате да изпразните кошчето за "${title}"?',
 			'libraries.manageLibraries' => 'Управление на библиотеки',
 			'libraries.sort' => 'Сортиране',
 			'libraries.sortBy' => 'Сортирай по',
@@ -2875,8 +2841,6 @@ extension on TranslationsBg {
 			'performanceOverlay.hwFormat' => 'HW формат',
 			'performanceOverlay.matrix' => 'Матрица',
 			'performanceOverlay.primaries' => 'Основни цветове',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Трансфер',
 			'performanceOverlay.renderFps' => 'FPS при изобразяване',
 			'performanceOverlay.displayFps' => 'FPS на дисплея',
@@ -2894,6 +2858,8 @@ extension on TranslationsBg {
 			'performanceOverlay.speed' => 'Скорост',
 			'performanceOverlay.player' => 'Плеър',
 			'performanceOverlay.memory' => 'Памет',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'FPS на интерфейса',
 			'externalPlayer.title' => 'Външен плеър',
 			'externalPlayer.useExternalPlayer' => 'Използвай външен плеър',

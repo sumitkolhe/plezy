@@ -717,9 +717,6 @@ class _Translations$messages$de extends Translations$messages$en {
 	@override String get logsCleared => 'Protokolle gelöscht';
 	@override String get logsCopied => 'Protokolle in Zwischenablage kopiert';
 	@override String get noLogsAvailable => 'Keine Protokolle verfügbar';
-	@override String libraryScanning({required Object title}) => '„${title}“ wird gescannt …';
-	@override String libraryScanStarted({required Object title}) => 'Mediathekscan gestartet für „${title}“';
-	@override String libraryScanFailed({required Object error}) => 'Fehler beim Scannen der Mediathek: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Metadaten für „${title}“ werden aktualisiert …';
 	@override String metadataRefreshStarted({required Object title}) => 'Metadaten-Aktualisierung gestartet für „${title}“';
 	@override String metadataRefreshFailed({required Object error}) => 'Metadaten konnten nicht aktualisiert werden: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$de extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Mediatheken';
 	@override String get fallbackTitle => 'Mediathek';
-	@override String get scanLibraryFiles => 'Mediatheksdateien scannen';
-	@override String get scanLibrary => 'Mediathek scannen';
-	@override String get analyze => 'Analysieren';
-	@override String get analyzeLibrary => 'Mediathek analysieren';
 	@override String get refreshMetadata => 'Metadaten aktualisieren';
-	@override String get emptyTrash => 'Papierkorb leeren';
-	@override String emptyingTrash({required Object title}) => 'Papierkorb für „${title}“ wird geleert...';
-	@override String trashEmptied({required Object title}) => 'Papierkorb für „${title}“ geleert';
-	@override String failedToEmptyTrash({required Object error}) => 'Papierkorb konnte nicht geleert werden: ${error}';
-	@override String analyzing({required Object title}) => 'Analysiere „${title}“...';
-	@override String analysisStarted({required Object title}) => 'Analyse gestartet für „${title}“';
-	@override String failedToAnalyze({required Object error}) => 'Analyse der Mediathek fehlgeschlagen: ${error}';
 	@override String get noLibrariesFound => 'Keine Mediatheken gefunden';
 	@override String get allLibrariesHidden => 'Alle Mediatheken sind ausgeblendet';
 	@override String hiddenLibrariesCount({required Object count}) => 'Ausgeblendete Mediatheken (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$de extends Translations$libraries$en {
 	@override String get resetFilters => 'Filter zurücksetzen';
 	@override String get all => 'Alle';
 	@override String get clearAll => 'Alle Filter entfernen';
-	@override String scanLibraryConfirm({required Object title}) => '„${title}“ wirklich scannen?';
-	@override String analyzeLibraryConfirm({required Object title}) => '„${title}“ wirklich analysieren?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Metadaten für „${title}“ wirklich aktualisieren?';
-	@override String emptyTrashConfirm({required Object title}) => 'Papierkorb für „${title}“ wirklich leeren?';
 	@override String get manageLibraries => 'Mediatheken verwalten';
 	@override String get sort => 'Sortieren';
 	@override String get sortBy => 'Sortieren nach';
@@ -2369,9 +2352,6 @@ extension on TranslationsDe {
 			'messages.logsCleared' => 'Protokolle gelöscht',
 			'messages.logsCopied' => 'Protokolle in Zwischenablage kopiert',
 			'messages.noLogsAvailable' => 'Keine Protokolle verfügbar',
-			'messages.libraryScanning' => ({required Object title}) => '„${title}“ wird gescannt …',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Mediathekscan gestartet für „${title}“',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Fehler beim Scannen der Mediathek: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metadaten für „${title}“ werden aktualisiert …',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadaten-Aktualisierung gestartet für „${title}“',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadaten konnten nicht aktualisiert werden: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsDe {
 			'errors.failedToRate' => 'Bewertung konnte nicht aktualisiert werden',
 			'libraries.title' => 'Mediatheken',
 			'libraries.fallbackTitle' => 'Mediathek',
-			'libraries.scanLibraryFiles' => 'Mediatheksdateien scannen',
-			'libraries.scanLibrary' => 'Mediathek scannen',
-			'libraries.analyze' => 'Analysieren',
-			'libraries.analyzeLibrary' => 'Mediathek analysieren',
 			'libraries.refreshMetadata' => 'Metadaten aktualisieren',
-			'libraries.emptyTrash' => 'Papierkorb leeren',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Papierkorb für „${title}“ wird geleert...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Papierkorb für „${title}“ geleert',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Papierkorb konnte nicht geleert werden: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analysiere „${title}“...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analyse gestartet für „${title}“',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Analyse der Mediathek fehlgeschlagen: ${error}',
 			'libraries.noLibrariesFound' => 'Keine Mediatheken gefunden',
 			'libraries.allLibrariesHidden' => 'Alle Mediatheken sind ausgeblendet',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Ausgeblendete Mediatheken (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsDe {
 			'libraries.resetFilters' => 'Filter zurücksetzen',
 			'libraries.all' => 'Alle',
 			'libraries.clearAll' => 'Alle Filter entfernen',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '„${title}“ wirklich scannen?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '„${title}“ wirklich analysieren?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Metadaten für „${title}“ wirklich aktualisieren?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Papierkorb für „${title}“ wirklich leeren?',
 			'libraries.manageLibraries' => 'Mediatheken verwalten',
 			'libraries.sort' => 'Sortieren',
 			'libraries.sortBy' => 'Sortieren nach',
@@ -2875,8 +2841,6 @@ extension on TranslationsDe {
 			'performanceOverlay.hwFormat' => 'HW-Format',
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primärfarben',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Transfer',
 			'performanceOverlay.renderFps' => 'Render-FPS',
 			'performanceOverlay.displayFps' => 'Display-FPS',
@@ -2894,6 +2858,8 @@ extension on TranslationsDe {
 			'performanceOverlay.speed' => 'Geschwindigkeit',
 			'performanceOverlay.player' => 'Player',
 			'performanceOverlay.memory' => 'Speicher',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI-FPS',
 			'externalPlayer.title' => 'Externer Player',
 			'externalPlayer.useExternalPlayer' => 'Externen Player verwenden',

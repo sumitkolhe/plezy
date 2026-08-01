@@ -717,9 +717,6 @@ class _Translations$messages$nb extends Translations$messages$en {
 	@override String get logsCleared => 'Logger tømt';
 	@override String get logsCopied => 'Logger kopiert til utklippstavle';
 	@override String get noLogsAvailable => 'Ingen logger tilgjengelig';
-	@override String libraryScanning({required Object title}) => 'Skanner "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Bibliotekkanning startet for "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Kunne ikke skanne bibliotek: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Oppdaterer metadata for "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Metadataoppdatering startet for "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Kunne ikke oppdatere metadata: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$nb extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Biblioteker';
 	@override String get fallbackTitle => 'Bibliotek';
-	@override String get scanLibraryFiles => 'Skann bibliotekfiler';
-	@override String get scanLibrary => 'Skann bibliotek';
-	@override String get analyze => 'Analyser';
-	@override String get analyzeLibrary => 'Analyser bibliotek';
 	@override String get refreshMetadata => 'Oppdater metadata';
-	@override String get emptyTrash => 'Tøm papirkurv';
-	@override String emptyingTrash({required Object title}) => 'Tømmer papirkurv for "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Papirkurv tømt for "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Kunne ikke tømme papirkurv: ${error}';
-	@override String analyzing({required Object title}) => 'Analyserer "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Analyse startet for "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Kunne ikke analysere bibliotek: ${error}';
 	@override String get noLibrariesFound => 'Ingen biblioteker funnet';
 	@override String get allLibrariesHidden => 'Alle biblioteker er skjult';
 	@override String hiddenLibrariesCount({required Object count}) => 'Skjulte biblioteker (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$nb extends Translations$libraries$en {
 	@override String get resetFilters => 'Tilbakestill filtre';
 	@override String get all => 'Alle';
 	@override String get clearAll => 'Tøm alle';
-	@override String scanLibraryConfirm({required Object title}) => 'Er du sikker på at du vil skanne "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Er du sikker på at du vil analysere "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Er du sikker på at du vil oppdatere metadata for "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Er du sikker på at du vil tømme papirkurven for "${title}"?';
 	@override String get manageLibraries => 'Administrer biblioteker';
 	@override String get sort => 'Sorter';
 	@override String get sortBy => 'Sorter etter';
@@ -2369,9 +2352,6 @@ extension on TranslationsNb {
 			'messages.logsCleared' => 'Logger tømt',
 			'messages.logsCopied' => 'Logger kopiert til utklippstavle',
 			'messages.noLogsAvailable' => 'Ingen logger tilgjengelig',
-			'messages.libraryScanning' => ({required Object title}) => 'Skanner "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Bibliotekkanning startet for "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Kunne ikke skanne bibliotek: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Oppdaterer metadata for "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadataoppdatering startet for "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Kunne ikke oppdatere metadata: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsNb {
 			'errors.failedToRate' => 'Kunne ikke oppdatere vurderingen',
 			'libraries.title' => 'Biblioteker',
 			'libraries.fallbackTitle' => 'Bibliotek',
-			'libraries.scanLibraryFiles' => 'Skann bibliotekfiler',
-			'libraries.scanLibrary' => 'Skann bibliotek',
-			'libraries.analyze' => 'Analyser',
-			'libraries.analyzeLibrary' => 'Analyser bibliotek',
 			'libraries.refreshMetadata' => 'Oppdater metadata',
-			'libraries.emptyTrash' => 'Tøm papirkurv',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Tømmer papirkurv for "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Papirkurv tømt for "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Kunne ikke tømme papirkurv: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analyserer "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analyse startet for "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Kunne ikke analysere bibliotek: ${error}',
 			'libraries.noLibrariesFound' => 'Ingen biblioteker funnet',
 			'libraries.allLibrariesHidden' => 'Alle biblioteker er skjult',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Skjulte biblioteker (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsNb {
 			'libraries.resetFilters' => 'Tilbakestill filtre',
 			'libraries.all' => 'Alle',
 			'libraries.clearAll' => 'Tøm alle',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Er du sikker på at du vil skanne "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Er du sikker på at du vil analysere "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Er du sikker på at du vil oppdatere metadata for "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Er du sikker på at du vil tømme papirkurven for "${title}"?',
 			'libraries.manageLibraries' => 'Administrer biblioteker',
 			'libraries.sort' => 'Sorter',
 			'libraries.sortBy' => 'Sorter etter',
@@ -2875,8 +2841,6 @@ extension on TranslationsNb {
 			'performanceOverlay.hwFormat' => 'HW-format',
 			'performanceOverlay.matrix' => 'Matrise',
 			'performanceOverlay.primaries' => 'Primærfarger',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Overføring',
 			'performanceOverlay.renderFps' => 'Gjengivelses-FPS',
 			'performanceOverlay.displayFps' => 'Skjerm-FPS',
@@ -2894,6 +2858,8 @@ extension on TranslationsNb {
 			'performanceOverlay.speed' => 'Hastighet',
 			'performanceOverlay.player' => 'Spiller',
 			'performanceOverlay.memory' => 'Minne',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Ekstern spiller',
 			'externalPlayer.useExternalPlayer' => 'Bruk ekstern spiller',

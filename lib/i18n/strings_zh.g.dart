@@ -716,9 +716,6 @@ class Translations$messages$zh extends Translations$messages$en {
 	@override String get logsCleared => '日志已清除';
 	@override String get logsCopied => '日志已复制到剪贴板';
 	@override String get noLogsAvailable => '没有可用日志';
-	@override String libraryScanning({required Object title}) => '正在扫描“${title}”…';
-	@override String libraryScanStarted({required Object title}) => '已开始扫描“${title}”媒体库';
-	@override String libraryScanFailed({required Object error}) => '无法扫描媒体库：${error}';
 	@override String metadataRefreshing({required Object title}) => '正在刷新“${title}”的元数据…';
 	@override String metadataRefreshStarted({required Object title}) => '已开始刷新“${title}”的元数据';
 	@override String metadataRefreshFailed({required Object error}) => '无法刷新元数据：${error}';
@@ -947,18 +944,7 @@ class Translations$libraries$zh extends Translations$libraries$en {
 	// Translations
 	@override String get title => '媒体库';
 	@override String get fallbackTitle => '媒体库';
-	@override String get scanLibraryFiles => '扫描媒体库文件';
-	@override String get scanLibrary => '扫描媒体库';
-	@override String get analyze => '分析';
-	@override String get analyzeLibrary => '分析媒体库';
 	@override String get refreshMetadata => '刷新元数据';
-	@override String get emptyTrash => '清空回收站';
-	@override String emptyingTrash({required Object title}) => '正在清空“${title}”的回收站…';
-	@override String trashEmptied({required Object title}) => '已清空“${title}”的回收站';
-	@override String failedToEmptyTrash({required Object error}) => '无法清空回收站：${error}';
-	@override String analyzing({required Object title}) => '正在分析“${title}”…';
-	@override String analysisStarted({required Object title}) => '已开始分析“${title}”';
-	@override String failedToAnalyze({required Object error}) => '无法分析媒体库：${error}';
 	@override String get noLibrariesFound => '未找到媒体库';
 	@override String get allLibrariesHidden => '所有媒体库已隐藏';
 	@override String hiddenLibrariesCount({required Object count}) => '已隐藏的媒体库 (${count})';
@@ -967,10 +953,7 @@ class Translations$libraries$zh extends Translations$libraries$en {
 	@override String get resetFilters => '重置筛选条件';
 	@override String get all => '全部';
 	@override String get clearAll => '全部清除';
-	@override String scanLibraryConfirm({required Object title}) => '确定要扫描“${title}”吗？';
-	@override String analyzeLibraryConfirm({required Object title}) => '确定要分析“${title}”吗？';
 	@override String refreshMetadataConfirm({required Object title}) => '确定要刷新“${title}”的元数据吗？';
-	@override String emptyTrashConfirm({required Object title}) => '确定要清空“${title}”的回收站吗？';
 	@override String get manageLibraries => '管理媒体库';
 	@override String get sort => '排序';
 	@override String get sortBy => '排序依据';
@@ -2366,9 +2349,6 @@ extension on TranslationsZh {
 			'messages.logsCleared' => '日志已清除',
 			'messages.logsCopied' => '日志已复制到剪贴板',
 			'messages.noLogsAvailable' => '没有可用日志',
-			'messages.libraryScanning' => ({required Object title}) => '正在扫描“${title}”…',
-			'messages.libraryScanStarted' => ({required Object title}) => '已开始扫描“${title}”媒体库',
-			'messages.libraryScanFailed' => ({required Object error}) => '无法扫描媒体库：${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '正在刷新“${title}”的元数据…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已开始刷新“${title}”的元数据',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '无法刷新元数据：${error}',
@@ -2525,18 +2505,7 @@ extension on TranslationsZh {
 			'errors.failedToRate' => '无法更新评分',
 			'libraries.title' => '媒体库',
 			'libraries.fallbackTitle' => '媒体库',
-			'libraries.scanLibraryFiles' => '扫描媒体库文件',
-			'libraries.scanLibrary' => '扫描媒体库',
-			'libraries.analyze' => '分析',
-			'libraries.analyzeLibrary' => '分析媒体库',
 			'libraries.refreshMetadata' => '刷新元数据',
-			'libraries.emptyTrash' => '清空回收站',
-			'libraries.emptyingTrash' => ({required Object title}) => '正在清空“${title}”的回收站…',
-			'libraries.trashEmptied' => ({required Object title}) => '已清空“${title}”的回收站',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => '无法清空回收站：${error}',
-			'libraries.analyzing' => ({required Object title}) => '正在分析“${title}”…',
-			'libraries.analysisStarted' => ({required Object title}) => '已开始分析“${title}”',
-			'libraries.failedToAnalyze' => ({required Object error}) => '无法分析媒体库：${error}',
 			'libraries.noLibrariesFound' => '未找到媒体库',
 			'libraries.allLibrariesHidden' => '所有媒体库已隐藏',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => '已隐藏的媒体库 (${count})',
@@ -2545,10 +2514,7 @@ extension on TranslationsZh {
 			'libraries.resetFilters' => '重置筛选条件',
 			'libraries.all' => '全部',
 			'libraries.clearAll' => '全部清除',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '确定要扫描“${title}”吗？',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '确定要分析“${title}”吗？',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '确定要刷新“${title}”的元数据吗？',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '确定要清空“${title}”的回收站吗？',
 			'libraries.manageLibraries' => '管理媒体库',
 			'libraries.sort' => '排序',
 			'libraries.sortBy' => '排序依据',
@@ -2872,8 +2838,6 @@ extension on TranslationsZh {
 			'performanceOverlay.hwFormat' => '硬件格式',
 			'performanceOverlay.matrix' => '矩阵',
 			'performanceOverlay.primaries' => '基色',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => '传递特性',
 			'performanceOverlay.renderFps' => '渲染 FPS',
 			'performanceOverlay.displayFps' => '显示 FPS',
@@ -2891,6 +2855,8 @@ extension on TranslationsZh {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => '播放器',
 			'performanceOverlay.memory' => '内存',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部播放器',
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',

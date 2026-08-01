@@ -716,9 +716,6 @@ class _Translations$messages$ja extends Translations$messages$en {
 	@override String get logsCleared => 'ログをクリアしました';
 	@override String get logsCopied => 'ログをクリップボードにコピーしました';
 	@override String get noLogsAvailable => 'ログがありません';
-	@override String libraryScanning({required Object title}) => '「${title}」をスキャン中…';
-	@override String libraryScanStarted({required Object title}) => '"${title}"のライブラリスキャンを開始しました';
-	@override String libraryScanFailed({required Object error}) => 'ライブラリのスキャンに失敗しました: ${error}';
 	@override String metadataRefreshing({required Object title}) => '「${title}」のメタデータを更新中…';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}"のメタデータ更新を開始しました';
 	@override String metadataRefreshFailed({required Object error}) => 'メタデータの更新に失敗しました: ${error}';
@@ -947,18 +944,7 @@ class _Translations$libraries$ja extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'ライブラリ';
 	@override String get fallbackTitle => 'ライブラリ';
-	@override String get scanLibraryFiles => 'ライブラリファイルをスキャン';
-	@override String get scanLibrary => 'ライブラリをスキャン';
-	@override String get analyze => '解析';
-	@override String get analyzeLibrary => 'ライブラリを解析';
 	@override String get refreshMetadata => 'メタデータを更新';
-	@override String get emptyTrash => 'ゴミ箱を空にする';
-	@override String emptyingTrash({required Object title}) => '「${title}」のゴミ箱を空にしています…';
-	@override String trashEmptied({required Object title}) => '「${title}」のゴミ箱を空にしました';
-	@override String failedToEmptyTrash({required Object error}) => 'ゴミ箱を空にできませんでした: ${error}';
-	@override String analyzing({required Object title}) => '「${title}」を解析中…';
-	@override String analysisStarted({required Object title}) => '「${title}」の解析を開始しました';
-	@override String failedToAnalyze({required Object error}) => 'ライブラリの解析に失敗しました: ${error}';
 	@override String get noLibrariesFound => 'ライブラリが見つかりません';
 	@override String get allLibrariesHidden => 'すべてのライブラリが非表示です';
 	@override String hiddenLibrariesCount({required Object count}) => '非表示のライブラリ (${count})';
@@ -967,10 +953,7 @@ class _Translations$libraries$ja extends Translations$libraries$en {
 	@override String get resetFilters => 'フィルターをリセット';
 	@override String get all => 'すべて';
 	@override String get clearAll => 'すべてクリア';
-	@override String scanLibraryConfirm({required Object title}) => '"${title}"をスキャンしてもよろしいですか？';
-	@override String analyzeLibraryConfirm({required Object title}) => '"${title}"を解析してもよろしいですか？';
 	@override String refreshMetadataConfirm({required Object title}) => '"${title}"のメタデータを更新してもよろしいですか？';
-	@override String emptyTrashConfirm({required Object title}) => '"${title}"のゴミ箱を空にしてもよろしいですか？';
 	@override String get manageLibraries => 'ライブラリを管理';
 	@override String get sort => '並べ替え';
 	@override String get sortBy => '並べ替え順';
@@ -2366,9 +2349,6 @@ extension on TranslationsJa {
 			'messages.logsCleared' => 'ログをクリアしました',
 			'messages.logsCopied' => 'ログをクリップボードにコピーしました',
 			'messages.noLogsAvailable' => 'ログがありません',
-			'messages.libraryScanning' => ({required Object title}) => '「${title}」をスキャン中…',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}"のライブラリスキャンを開始しました',
-			'messages.libraryScanFailed' => ({required Object error}) => 'ライブラリのスキャンに失敗しました: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '「${title}」のメタデータを更新中…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}"のメタデータ更新を開始しました',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'メタデータの更新に失敗しました: ${error}',
@@ -2525,18 +2505,7 @@ extension on TranslationsJa {
 			'errors.failedToRate' => '評価を更新できませんでした',
 			'libraries.title' => 'ライブラリ',
 			'libraries.fallbackTitle' => 'ライブラリ',
-			'libraries.scanLibraryFiles' => 'ライブラリファイルをスキャン',
-			'libraries.scanLibrary' => 'ライブラリをスキャン',
-			'libraries.analyze' => '解析',
-			'libraries.analyzeLibrary' => 'ライブラリを解析',
 			'libraries.refreshMetadata' => 'メタデータを更新',
-			'libraries.emptyTrash' => 'ゴミ箱を空にする',
-			'libraries.emptyingTrash' => ({required Object title}) => '「${title}」のゴミ箱を空にしています…',
-			'libraries.trashEmptied' => ({required Object title}) => '「${title}」のゴミ箱を空にしました',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'ゴミ箱を空にできませんでした: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '「${title}」を解析中…',
-			'libraries.analysisStarted' => ({required Object title}) => '「${title}」の解析を開始しました',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'ライブラリの解析に失敗しました: ${error}',
 			'libraries.noLibrariesFound' => 'ライブラリが見つかりません',
 			'libraries.allLibrariesHidden' => 'すべてのライブラリが非表示です',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => '非表示のライブラリ (${count})',
@@ -2545,10 +2514,7 @@ extension on TranslationsJa {
 			'libraries.resetFilters' => 'フィルターをリセット',
 			'libraries.all' => 'すべて',
 			'libraries.clearAll' => 'すべてクリア',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '"${title}"をスキャンしてもよろしいですか？',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '"${title}"を解析してもよろしいですか？',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '"${title}"のメタデータを更新してもよろしいですか？',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '"${title}"のゴミ箱を空にしてもよろしいですか？',
 			'libraries.manageLibraries' => 'ライブラリを管理',
 			'libraries.sort' => '並べ替え',
 			'libraries.sortBy' => '並べ替え順',
@@ -2872,8 +2838,6 @@ extension on TranslationsJa {
 			'performanceOverlay.hwFormat' => 'HW 形式',
 			'performanceOverlay.matrix' => 'マトリクス',
 			'performanceOverlay.primaries' => 'プライマリ',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => '伝達特性',
 			'performanceOverlay.renderFps' => '描画 FPS',
 			'performanceOverlay.displayFps' => '表示 FPS',
@@ -2891,6 +2855,8 @@ extension on TranslationsJa {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => 'プレーヤー',
 			'performanceOverlay.memory' => 'メモリ',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部プレーヤー',
 			'externalPlayer.useExternalPlayer' => '外部プレーヤーを使用',

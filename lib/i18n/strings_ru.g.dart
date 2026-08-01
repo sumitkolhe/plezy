@@ -719,9 +719,6 @@ class _Translations$messages$ru extends Translations$messages$en {
 	@override String get logsCleared => 'Логи очищены';
 	@override String get logsCopied => 'Логи скопированы в буфер обмена';
 	@override String get noLogsAvailable => 'Логи отсутствуют';
-	@override String libraryScanning({required Object title}) => 'Сканирование "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Сканирование библиотеки начато для "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Не удалось отсканировать библиотеку: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Обновление метаданных "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Обновление метаданных начато для "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Не удалось обновить метаданные: ${error}';
@@ -950,18 +947,7 @@ class _Translations$libraries$ru extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Библиотеки';
 	@override String get fallbackTitle => 'Библиотека';
-	@override String get scanLibraryFiles => 'Сканировать файлы библиотеки';
-	@override String get scanLibrary => 'Сканировать библиотеку';
-	@override String get analyze => 'Анализировать';
-	@override String get analyzeLibrary => 'Анализировать библиотеку';
 	@override String get refreshMetadata => 'Обновить метаданные';
-	@override String get emptyTrash => 'Очистить корзину';
-	@override String emptyingTrash({required Object title}) => 'Очистка корзины для "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Корзина очищена для "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Не удалось очистить корзину: ${error}';
-	@override String analyzing({required Object title}) => 'Анализ "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Анализ начат для "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Не удалось проанализировать библиотеку: ${error}';
 	@override String get noLibrariesFound => 'Библиотеки не найдены';
 	@override String get allLibrariesHidden => 'Все библиотеки скрыты';
 	@override String hiddenLibrariesCount({required Object count}) => 'Скрытые библиотеки (${count})';
@@ -970,10 +956,7 @@ class _Translations$libraries$ru extends Translations$libraries$en {
 	@override String get resetFilters => 'Сбросить фильтры';
 	@override String get all => 'Все';
 	@override String get clearAll => 'Очистить все';
-	@override String scanLibraryConfirm({required Object title}) => 'Вы уверены, что хотите сканировать "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Вы уверены, что хотите проанализировать "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Вы уверены, что хотите обновить метаданные для "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Вы уверены, что хотите очистить корзину для "${title}"?';
 	@override String get manageLibraries => 'Управление библиотеками';
 	@override String get sort => 'Сортировка';
 	@override String get sortBy => 'Сортировать по';
@@ -2375,9 +2358,6 @@ extension on TranslationsRu {
 			'messages.logsCleared' => 'Логи очищены',
 			'messages.logsCopied' => 'Логи скопированы в буфер обмена',
 			'messages.noLogsAvailable' => 'Логи отсутствуют',
-			'messages.libraryScanning' => ({required Object title}) => 'Сканирование "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Сканирование библиотеки начато для "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Не удалось отсканировать библиотеку: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Обновление метаданных "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Обновление метаданных начато для "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Не удалось обновить метаданные: ${error}',
@@ -2534,18 +2514,7 @@ extension on TranslationsRu {
 			'errors.failedToRate' => 'Не удалось обновить оценку',
 			'libraries.title' => 'Библиотеки',
 			'libraries.fallbackTitle' => 'Библиотека',
-			'libraries.scanLibraryFiles' => 'Сканировать файлы библиотеки',
-			'libraries.scanLibrary' => 'Сканировать библиотеку',
-			'libraries.analyze' => 'Анализировать',
-			'libraries.analyzeLibrary' => 'Анализировать библиотеку',
 			'libraries.refreshMetadata' => 'Обновить метаданные',
-			'libraries.emptyTrash' => 'Очистить корзину',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Очистка корзины для "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Корзина очищена для "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Не удалось очистить корзину: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Анализ "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Анализ начат для "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Не удалось проанализировать библиотеку: ${error}',
 			'libraries.noLibrariesFound' => 'Библиотеки не найдены',
 			'libraries.allLibrariesHidden' => 'Все библиотеки скрыты',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Скрытые библиотеки (${count})',
@@ -2554,10 +2523,7 @@ extension on TranslationsRu {
 			'libraries.resetFilters' => 'Сбросить фильтры',
 			'libraries.all' => 'Все',
 			'libraries.clearAll' => 'Очистить все',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Вы уверены, что хотите сканировать "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Вы уверены, что хотите проанализировать "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Вы уверены, что хотите обновить метаданные для "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Вы уверены, что хотите очистить корзину для "${title}"?',
 			'libraries.manageLibraries' => 'Управление библиотеками',
 			'libraries.sort' => 'Сортировка',
 			'libraries.sortBy' => 'Сортировать по',
@@ -2881,8 +2847,6 @@ extension on TranslationsRu {
 			'performanceOverlay.hwFormat' => 'Формат HW',
 			'performanceOverlay.matrix' => 'Матрица',
 			'performanceOverlay.primaries' => 'Основные цвета',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Передача',
 			'performanceOverlay.renderFps' => 'FPS рендера',
 			'performanceOverlay.displayFps' => 'FPS дисплея',
@@ -2900,6 +2864,8 @@ extension on TranslationsRu {
 			'performanceOverlay.speed' => 'Скорость',
 			'performanceOverlay.player' => 'Плеер',
 			'performanceOverlay.memory' => 'Память',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Внешний плеер',
 			'externalPlayer.useExternalPlayer' => 'Использовать внешний плеер',

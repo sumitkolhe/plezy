@@ -717,9 +717,6 @@ class _Translations$messages$zh_Hant extends Translations$messages$zh {
 	@override String get logsCleared => '日誌已清除';
 	@override String get logsCopied => '日誌已複製到剪貼簿';
 	@override String get noLogsAvailable => '沒有可用的日誌';
-	@override String libraryScanning({required Object title}) => '正在掃描「${title}」…';
-	@override String libraryScanStarted({required Object title}) => '已開始掃描「${title}」媒體庫';
-	@override String libraryScanFailed({required Object error}) => '無法掃描媒體庫：${error}';
 	@override String metadataRefreshing({required Object title}) => '正在重新整理「${title}」的中繼資料…';
 	@override String metadataRefreshStarted({required Object title}) => '已開始重新整理「${title}」的中繼資料';
 	@override String metadataRefreshFailed({required Object error}) => '無法重新整理中繼資料：${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$zh_Hant extends Translations$libraries$zh {
 	// Translations
 	@override String get title => '媒體庫';
 	@override String get fallbackTitle => '媒體庫';
-	@override String get scanLibraryFiles => '掃描媒體庫檔案';
-	@override String get scanLibrary => '掃描媒體庫';
-	@override String get analyze => '分析';
-	@override String get analyzeLibrary => '分析媒體庫';
 	@override String get refreshMetadata => '重新整理中繼資料';
-	@override String get emptyTrash => '清空垃圾桶';
-	@override String emptyingTrash({required Object title}) => '正在清空「${title}」的垃圾桶…';
-	@override String trashEmptied({required Object title}) => '已清空「${title}」的垃圾桶';
-	@override String failedToEmptyTrash({required Object error}) => '無法清空垃圾桶：${error}';
-	@override String analyzing({required Object title}) => '正在分析「${title}」…';
-	@override String analysisStarted({required Object title}) => '已開始分析「${title}」';
-	@override String failedToAnalyze({required Object error}) => '無法分析媒體庫：${error}';
 	@override String get noLibrariesFound => '找不到媒體庫';
 	@override String get allLibrariesHidden => '所有媒體庫都已隱藏';
 	@override String hiddenLibrariesCount({required Object count}) => '已隱藏的媒體庫（${count}）';
@@ -968,10 +954,7 @@ class _Translations$libraries$zh_Hant extends Translations$libraries$zh {
 	@override String get resetFilters => '重設篩選條件';
 	@override String get all => '全部';
 	@override String get clearAll => '全部清除';
-	@override String scanLibraryConfirm({required Object title}) => '確定要掃描「${title}」嗎？';
-	@override String analyzeLibraryConfirm({required Object title}) => '確定要分析「${title}」嗎？';
 	@override String refreshMetadataConfirm({required Object title}) => '確定要重新整理「${title}」的中繼資料嗎？';
-	@override String emptyTrashConfirm({required Object title}) => '確定要清空「${title}」的垃圾桶嗎？';
 	@override String get manageLibraries => '管理媒體庫';
 	@override String get sort => '排序';
 	@override String get sortBy => '排序依據';
@@ -2367,9 +2350,6 @@ extension on TranslationsZhHant {
 			'messages.logsCleared' => '日誌已清除',
 			'messages.logsCopied' => '日誌已複製到剪貼簿',
 			'messages.noLogsAvailable' => '沒有可用的日誌',
-			'messages.libraryScanning' => ({required Object title}) => '正在掃描「${title}」…',
-			'messages.libraryScanStarted' => ({required Object title}) => '已開始掃描「${title}」媒體庫',
-			'messages.libraryScanFailed' => ({required Object error}) => '無法掃描媒體庫：${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '正在重新整理「${title}」的中繼資料…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已開始重新整理「${title}」的中繼資料',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '無法重新整理中繼資料：${error}',
@@ -2526,18 +2506,7 @@ extension on TranslationsZhHant {
 			'errors.failedToRate' => '無法更新評分',
 			'libraries.title' => '媒體庫',
 			'libraries.fallbackTitle' => '媒體庫',
-			'libraries.scanLibraryFiles' => '掃描媒體庫檔案',
-			'libraries.scanLibrary' => '掃描媒體庫',
-			'libraries.analyze' => '分析',
-			'libraries.analyzeLibrary' => '分析媒體庫',
 			'libraries.refreshMetadata' => '重新整理中繼資料',
-			'libraries.emptyTrash' => '清空垃圾桶',
-			'libraries.emptyingTrash' => ({required Object title}) => '正在清空「${title}」的垃圾桶…',
-			'libraries.trashEmptied' => ({required Object title}) => '已清空「${title}」的垃圾桶',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => '無法清空垃圾桶：${error}',
-			'libraries.analyzing' => ({required Object title}) => '正在分析「${title}」…',
-			'libraries.analysisStarted' => ({required Object title}) => '已開始分析「${title}」',
-			'libraries.failedToAnalyze' => ({required Object error}) => '無法分析媒體庫：${error}',
 			'libraries.noLibrariesFound' => '找不到媒體庫',
 			'libraries.allLibrariesHidden' => '所有媒體庫都已隱藏',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => '已隱藏的媒體庫（${count}）',
@@ -2546,10 +2515,7 @@ extension on TranslationsZhHant {
 			'libraries.resetFilters' => '重設篩選條件',
 			'libraries.all' => '全部',
 			'libraries.clearAll' => '全部清除',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '確定要掃描「${title}」嗎？',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '確定要分析「${title}」嗎？',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '確定要重新整理「${title}」的中繼資料嗎？',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '確定要清空「${title}」的垃圾桶嗎？',
 			'libraries.manageLibraries' => '管理媒體庫',
 			'libraries.sort' => '排序',
 			'libraries.sortBy' => '排序依據',
@@ -2873,8 +2839,6 @@ extension on TranslationsZhHant {
 			'performanceOverlay.hwFormat' => '硬體格式',
 			'performanceOverlay.matrix' => '矩陣',
 			'performanceOverlay.primaries' => '基色',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => '傳輸特性',
 			'performanceOverlay.renderFps' => '渲染 FPS',
 			'performanceOverlay.displayFps' => '螢幕 FPS',
@@ -2892,6 +2856,8 @@ extension on TranslationsZhHant {
 			'performanceOverlay.speed' => '速度',
 			'performanceOverlay.player' => '播放器',
 			'performanceOverlay.memory' => '記憶體',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '外部播放器',
 			'externalPlayer.useExternalPlayer' => '使用外部播放器',

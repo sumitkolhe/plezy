@@ -8,7 +8,6 @@ import '../focus/dpad_reorder_mixin.dart';
 import '../focus/focus_theme.dart';
 import '../focus/input_mode_tracker.dart';
 import '../i18n/strings.g.dart';
-import '../media/media_backend.dart';
 import '../media/media_library.dart';
 import '../media/media_server_client.dart';
 import '../providers/hidden_libraries_provider.dart';
@@ -111,38 +110,7 @@ List<ContextMenuItem> _getLibraryMenuItems(MediaLibrary library) {
     confirmationMessage: t.libraries.refreshMetadataConfirm(title: library.title),
     isDestructive: true,
   );
-  // Scan / analyze / empty trash hit Plex-only endpoints, so backend
-  // capability gating keeps them out of Jellyfin menus. The library-qualified
-  // resolver independently requires the exact owning Plex server.
-  if (library.backend != MediaBackend.plex) return [refresh];
-  return [
-    ContextMenuItem(
-      value: 'scan',
-      icon: Symbols.refresh_rounded,
-      label: t.libraries.scanLibraryFiles,
-      requiresConfirmation: true,
-      confirmationTitle: t.libraries.scanLibrary,
-      confirmationMessage: t.libraries.scanLibraryConfirm(title: library.title),
-    ),
-    ContextMenuItem(
-      value: 'analyze',
-      icon: Symbols.analytics_rounded,
-      label: t.libraries.analyze,
-      requiresConfirmation: true,
-      confirmationTitle: t.libraries.analyzeLibrary,
-      confirmationMessage: t.libraries.analyzeLibraryConfirm(title: library.title),
-    ),
-    refresh,
-    ContextMenuItem(
-      value: 'empty_trash',
-      icon: Symbols.delete_outline_rounded,
-      label: t.libraries.emptyTrash,
-      requiresConfirmation: true,
-      confirmationTitle: t.libraries.emptyTrash,
-      confirmationMessage: t.libraries.emptyTrashConfirm(title: library.title),
-      isDestructive: true,
-    ),
-  ];
+  return [refresh];
 }
 
 Future<void> _handleLibraryMenuAction(BuildContext context, String action, MediaLibrary library) async {
@@ -163,17 +131,8 @@ Future<void> _handleLibraryMenuAction(BuildContext context, String action, Media
   }
 
   switch (action) {
-    case 'scan':
-      unawaited(_scanLibrary(context, library));
-      break;
-    case 'analyze':
-      unawaited(_analyzeLibrary(context, library));
-      break;
     case 'refresh':
       unawaited(_refreshLibraryMetadata(context, library));
-      break;
-    case 'empty_trash':
-      unawaited(_emptyLibraryTrash(context, library));
       break;
   }
 }
@@ -181,11 +140,8 @@ Future<void> _handleLibraryMenuAction(BuildContext context, String action, Media
 /// Runs a library admin action, wrapping it in progress/success/failure
 /// snackbars.
 ///
-/// [resolveClient] picks the client flavour: `getPlexClientForLibrary` for the
-/// Plex-only endpoints (scan / analyze / empty trash), `getMediaClientForLibrary`
-/// for ops that exist on the backend-neutral [MediaServerClient] interface
-/// (currently just refresh metadata). Both resolvers require the library's exact
-/// owning server and throw the same error when it isn't available.
+/// [resolveClient] resolves the library's exact owning server and throws when
+/// it isn't available.
 Future<void> _performLibraryAction<T extends MediaServerClient>(
   BuildContext context, {
   required T Function(BuildContext context) resolveClient,
@@ -214,17 +170,6 @@ Future<void> _performLibraryAction<T extends MediaServerClient>(
   }
 }
 
-Future<void> _scanLibrary(BuildContext context, MediaLibrary library) {
-  return _performLibraryAction(
-    context,
-    resolveClient: (ctx) => ctx.getPlexClientForLibrary(library),
-    action: (client) => client.scanLibrary(library.id),
-    progressMessage: t.messages.libraryScanning(title: library.title),
-    successMessage: t.messages.libraryScanStarted(title: library.title),
-    failureMessage: (error) => t.messages.libraryScanFailed(error: error.toString()),
-  );
-}
-
 Future<void> _refreshLibraryMetadata(BuildContext context, MediaLibrary library) {
   return _performLibraryAction(
     context,
@@ -233,28 +178,6 @@ Future<void> _refreshLibraryMetadata(BuildContext context, MediaLibrary library)
     progressMessage: t.messages.metadataRefreshing(title: library.title),
     successMessage: t.messages.metadataRefreshStarted(title: library.title),
     failureMessage: (error) => t.messages.metadataRefreshFailed(error: error.toString()),
-  );
-}
-
-Future<void> _emptyLibraryTrash(BuildContext context, MediaLibrary library) {
-  return _performLibraryAction(
-    context,
-    resolveClient: (ctx) => ctx.getPlexClientForLibrary(library),
-    action: (client) => client.emptyLibraryTrash(library.id),
-    progressMessage: t.libraries.emptyingTrash(title: library.title),
-    successMessage: t.libraries.trashEmptied(title: library.title),
-    failureMessage: (error) => t.libraries.failedToEmptyTrash(error: error),
-  );
-}
-
-Future<void> _analyzeLibrary(BuildContext context, MediaLibrary library) {
-  return _performLibraryAction(
-    context,
-    resolveClient: (ctx) => ctx.getPlexClientForLibrary(library),
-    action: (client) => client.analyzeLibrary(library.id),
-    progressMessage: t.libraries.analyzing(title: library.title),
-    successMessage: t.libraries.analysisStarted(title: library.title),
-    failureMessage: (error) => t.libraries.failedToAnalyze(error: error),
   );
 }
 

@@ -717,9 +717,6 @@ class _Translations$messages$hu extends Translations$messages$en {
 	@override String get logsCleared => 'Naplók törölve';
 	@override String get logsCopied => 'Naplók a vágólapra másolva';
 	@override String get noLogsAvailable => 'Nincsenek elérhető naplók';
-	@override String libraryScanning({required Object title}) => '"${title}" beolvasása...';
-	@override String libraryScanStarted({required Object title}) => 'Könyvtár beolvasása elindítva a következőhöz: "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Nem sikerült a könyvtár beolvasása: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Metaadatok frissítése a következőhöz: "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Metaadatok frissítése elindítva a következőhöz: "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Nem sikerült a metaadatok frissítése: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$hu extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Könyvtárak';
 	@override String get fallbackTitle => 'Könyvtár';
-	@override String get scanLibraryFiles => 'Könyvtárfájlok beolvasása';
-	@override String get scanLibrary => 'Könyvtár beolvasása';
-	@override String get analyze => 'Elemzés';
-	@override String get analyzeLibrary => 'Könyvtár elemzése';
 	@override String get refreshMetadata => 'Metaadatok frissítése';
-	@override String get emptyTrash => 'Lomtár ürítése';
-	@override String emptyingTrash({required Object title}) => 'Lomtár ürítése a következőhöz: "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Lomtár kiürítve a következőhöz: "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Nem sikerült a lomtár ürítése: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" elemzése...';
-	@override String analysisStarted({required Object title}) => 'Elemzés elindítva a következőhöz: "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Nem sikerült a könyvtár elemzése: ${error}';
 	@override String get noLibrariesFound => 'Nem találhatók könyvtárak';
 	@override String get allLibrariesHidden => 'Minden könyvtár el van rejtve';
 	@override String hiddenLibrariesCount({required Object count}) => 'Rejtett könyvtárak (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$hu extends Translations$libraries$en {
 	@override String get resetFilters => 'Szűrők visszaállítása';
 	@override String get all => 'Összes';
 	@override String get clearAll => 'Összes törlése';
-	@override String scanLibraryConfirm({required Object title}) => 'Biztosan be szeretnéd olvasni a következőt: "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Biztosan elemezni szeretnéd a következőt: "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Biztosan frissíteni szeretnéd a metaadatokat a következőhöz: "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Biztosan ki szeretnéd üríteni a lomtárat a következőnél: "${title}"?';
 	@override String get manageLibraries => 'Könyvtárak kezelése';
 	@override String get sort => 'Rendezés';
 	@override String get sortBy => 'Rendezés ez alapján';
@@ -2369,9 +2352,6 @@ extension on TranslationsHu {
 			'messages.logsCleared' => 'Naplók törölve',
 			'messages.logsCopied' => 'Naplók a vágólapra másolva',
 			'messages.noLogsAvailable' => 'Nincsenek elérhető naplók',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}" beolvasása...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Könyvtár beolvasása elindítva a következőhöz: "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Nem sikerült a könyvtár beolvasása: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metaadatok frissítése a következőhöz: "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metaadatok frissítése elindítva a következőhöz: "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nem sikerült a metaadatok frissítése: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsHu {
 			'errors.failedToRate' => 'Nem sikerült frissíteni az értékelést',
 			'libraries.title' => 'Könyvtárak',
 			'libraries.fallbackTitle' => 'Könyvtár',
-			'libraries.scanLibraryFiles' => 'Könyvtárfájlok beolvasása',
-			'libraries.scanLibrary' => 'Könyvtár beolvasása',
-			'libraries.analyze' => 'Elemzés',
-			'libraries.analyzeLibrary' => 'Könyvtár elemzése',
 			'libraries.refreshMetadata' => 'Metaadatok frissítése',
-			'libraries.emptyTrash' => 'Lomtár ürítése',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Lomtár ürítése a következőhöz: "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Lomtár kiürítve a következőhöz: "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Nem sikerült a lomtár ürítése: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" elemzése...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Elemzés elindítva a következőhöz: "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Nem sikerült a könyvtár elemzése: ${error}',
 			'libraries.noLibrariesFound' => 'Nem találhatók könyvtárak',
 			'libraries.allLibrariesHidden' => 'Minden könyvtár el van rejtve',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Rejtett könyvtárak (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsHu {
 			'libraries.resetFilters' => 'Szűrők visszaállítása',
 			'libraries.all' => 'Összes',
 			'libraries.clearAll' => 'Összes törlése',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Biztosan be szeretnéd olvasni a következőt: "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Biztosan elemezni szeretnéd a következőt: "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Biztosan frissíteni szeretnéd a metaadatokat a következőhöz: "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Biztosan ki szeretnéd üríteni a lomtárat a következőnél: "${title}"?',
 			'libraries.manageLibraries' => 'Könyvtárak kezelése',
 			'libraries.sort' => 'Rendezés',
 			'libraries.sortBy' => 'Rendezés ez alapján',
@@ -2875,8 +2841,6 @@ extension on TranslationsHu {
 			'performanceOverlay.hwFormat' => 'Hardverformátum',
 			'performanceOverlay.matrix' => 'Mátrix',
 			'performanceOverlay.primaries' => 'Elsődleges színek',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Átvitel',
 			'performanceOverlay.renderFps' => 'Renderelési FPS',
 			'performanceOverlay.displayFps' => 'Kijelző-FPS',
@@ -2894,6 +2858,8 @@ extension on TranslationsHu {
 			'performanceOverlay.speed' => 'Sebesség',
 			'performanceOverlay.player' => 'Lejátszó',
 			'performanceOverlay.memory' => 'Memória',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Felület-FPS',
 			'externalPlayer.title' => 'Külső lejátszó',
 			'externalPlayer.useExternalPlayer' => 'Külső lejátszó használata',

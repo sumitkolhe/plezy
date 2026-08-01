@@ -717,9 +717,6 @@ class _Translations$messages$it extends Translations$messages$en {
 	@override String get logsCleared => 'Log eliminati';
 	@override String get logsCopied => 'Log copiati negli appunti';
 	@override String get noLogsAvailable => 'Nessun log disponibile';
-	@override String libraryScanning({required Object title}) => 'Scansione di "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Scansione della libreria avviata per "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Impossibile eseguire la scansione della libreria: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Aggiornamento dei metadati di "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Aggiornamento dei metadati avviato per "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Impossibile aggiornare i metadati: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$it extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Librerie';
 	@override String get fallbackTitle => 'Libreria';
-	@override String get scanLibraryFiles => 'Scansiona i file della libreria';
-	@override String get scanLibrary => 'Scansiona libreria';
-	@override String get analyze => 'Analizza';
-	@override String get analyzeLibrary => 'Analizza libreria';
 	@override String get refreshMetadata => 'Aggiorna metadati';
-	@override String get emptyTrash => 'Svuota cestino';
-	@override String emptyingTrash({required Object title}) => 'Svuotamento del cestino di "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Cestino di "${title}" svuotato';
-	@override String failedToEmptyTrash({required Object error}) => 'Impossibile svuotare il cestino: ${error}';
-	@override String analyzing({required Object title}) => 'Analisi di "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Analisi avviata per "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Impossibile analizzare la libreria: ${error}';
 	@override String get noLibrariesFound => 'Nessuna libreria trovata';
 	@override String get allLibrariesHidden => 'Tutte le librerie sono nascoste';
 	@override String hiddenLibrariesCount({required Object count}) => 'Librerie nascoste (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$it extends Translations$libraries$en {
 	@override String get resetFilters => 'Reimposta filtri';
 	@override String get all => 'Tutto';
 	@override String get clearAll => 'Azzera tutto';
-	@override String scanLibraryConfirm({required Object title}) => 'Vuoi scansionare "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Vuoi analizzare "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Vuoi aggiornare i metadati di "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Vuoi svuotare il cestino di "${title}"?';
 	@override String get manageLibraries => 'Gestisci librerie';
 	@override String get sort => 'Ordina';
 	@override String get sortBy => 'Ordina per';
@@ -2369,9 +2352,6 @@ extension on TranslationsIt {
 			'messages.logsCleared' => 'Log eliminati',
 			'messages.logsCopied' => 'Log copiati negli appunti',
 			'messages.noLogsAvailable' => 'Nessun log disponibile',
-			'messages.libraryScanning' => ({required Object title}) => 'Scansione di "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Scansione della libreria avviata per "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Impossibile eseguire la scansione della libreria: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Aggiornamento dei metadati di "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Aggiornamento dei metadati avviato per "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Impossibile aggiornare i metadati: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsIt {
 			'errors.failedToRate' => 'Impossibile aggiornare la valutazione',
 			'libraries.title' => 'Librerie',
 			'libraries.fallbackTitle' => 'Libreria',
-			'libraries.scanLibraryFiles' => 'Scansiona i file della libreria',
-			'libraries.scanLibrary' => 'Scansiona libreria',
-			'libraries.analyze' => 'Analizza',
-			'libraries.analyzeLibrary' => 'Analizza libreria',
 			'libraries.refreshMetadata' => 'Aggiorna metadati',
-			'libraries.emptyTrash' => 'Svuota cestino',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Svuotamento del cestino di "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Cestino di "${title}" svuotato',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Impossibile svuotare il cestino: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analisi di "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analisi avviata per "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Impossibile analizzare la libreria: ${error}',
 			'libraries.noLibrariesFound' => 'Nessuna libreria trovata',
 			'libraries.allLibrariesHidden' => 'Tutte le librerie sono nascoste',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Librerie nascoste (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsIt {
 			'libraries.resetFilters' => 'Reimposta filtri',
 			'libraries.all' => 'Tutto',
 			'libraries.clearAll' => 'Azzera tutto',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Vuoi scansionare "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Vuoi analizzare "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Vuoi aggiornare i metadati di "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Vuoi svuotare il cestino di "${title}"?',
 			'libraries.manageLibraries' => 'Gestisci librerie',
 			'libraries.sort' => 'Ordina',
 			'libraries.sortBy' => 'Ordina per',
@@ -2875,8 +2841,6 @@ extension on TranslationsIt {
 			'performanceOverlay.hwFormat' => 'Formato HW',
 			'performanceOverlay.matrix' => 'Matrice',
 			'performanceOverlay.primaries' => 'Colori primari',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Trasferimento',
 			'performanceOverlay.renderFps' => 'FPS rendering',
 			'performanceOverlay.displayFps' => 'FPS display',
@@ -2894,6 +2858,8 @@ extension on TranslationsIt {
 			'performanceOverlay.speed' => 'Velocità',
 			'performanceOverlay.player' => 'Lettore',
 			'performanceOverlay.memory' => 'Memoria',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'FPS UI',
 			'externalPlayer.title' => 'Lettore esterno',
 			'externalPlayer.useExternalPlayer' => 'Usa un lettore esterno',

@@ -1987,15 +1987,6 @@ class Translations$messages$en {
 	/// en: 'No logs available'
 	String get noLogsAvailable => 'No logs available';
 
-	/// en: 'Scanning "${title}"...'
-	String libraryScanning({required Object title}) => 'Scanning "${title}"...';
-
-	/// en: 'Library scan started for "${title}"'
-	String libraryScanStarted({required Object title}) => 'Library scan started for "${title}"';
-
-	/// en: 'Failed to scan library: ${error}'
-	String libraryScanFailed({required Object error}) => 'Failed to scan library: ${error}';
-
 	/// en: 'Refreshing metadata for "${title}"...'
 	String metadataRefreshing({required Object title}) => 'Refreshing metadata for "${title}"...';
 
@@ -2539,41 +2530,8 @@ class Translations$libraries$en {
 	/// en: 'Library'
 	String get fallbackTitle => 'Library';
 
-	/// en: 'Scan Library Files'
-	String get scanLibraryFiles => 'Scan Library Files';
-
-	/// en: 'Scan Library'
-	String get scanLibrary => 'Scan Library';
-
-	/// en: 'Analyze'
-	String get analyze => 'Analyze';
-
-	/// en: 'Analyze Library'
-	String get analyzeLibrary => 'Analyze Library';
-
 	/// en: 'Refresh Metadata'
 	String get refreshMetadata => 'Refresh Metadata';
-
-	/// en: 'Empty Trash'
-	String get emptyTrash => 'Empty Trash';
-
-	/// en: 'Emptying trash for "${title}"...'
-	String emptyingTrash({required Object title}) => 'Emptying trash for "${title}"...';
-
-	/// en: 'Trash emptied for "${title}"'
-	String trashEmptied({required Object title}) => 'Trash emptied for "${title}"';
-
-	/// en: 'Failed to empty trash: ${error}'
-	String failedToEmptyTrash({required Object error}) => 'Failed to empty trash: ${error}';
-
-	/// en: 'Analyzing "${title}"...'
-	String analyzing({required Object title}) => 'Analyzing "${title}"...';
-
-	/// en: 'Analysis started for "${title}"'
-	String analysisStarted({required Object title}) => 'Analysis started for "${title}"';
-
-	/// en: 'Failed to analyze library: ${error}'
-	String failedToAnalyze({required Object error}) => 'Failed to analyze library: ${error}';
 
 	/// en: 'No libraries found'
 	String get noLibrariesFound => 'No libraries found';
@@ -2599,17 +2557,8 @@ class Translations$libraries$en {
 	/// en: 'Clear All'
 	String get clearAll => 'Clear All';
 
-	/// en: 'Are you sure you want to scan "${title}"?'
-	String scanLibraryConfirm({required Object title}) => 'Are you sure you want to scan "${title}"?';
-
-	/// en: 'Are you sure you want to analyze "${title}"?'
-	String analyzeLibraryConfirm({required Object title}) => 'Are you sure you want to analyze "${title}"?';
-
 	/// en: 'Are you sure you want to refresh metadata for "${title}"?'
 	String refreshMetadataConfirm({required Object title}) => 'Are you sure you want to refresh metadata for "${title}"?';
-
-	/// en: 'Are you sure you want to empty trash for "${title}"?'
-	String emptyTrashConfirm({required Object title}) => 'Are you sure you want to empty trash for "${title}"?';
 
 	/// en: 'Manage Libraries'
 	String get manageLibraries => 'Manage Libraries';
@@ -5701,9 +5650,6 @@ extension on Translations {
 			'messages.logsCleared' => 'Logs cleared',
 			'messages.logsCopied' => 'Logs copied to clipboard',
 			'messages.noLogsAvailable' => 'No logs available',
-			'messages.libraryScanning' => ({required Object title}) => 'Scanning "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Library scan started for "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Failed to scan library: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Refreshing metadata for "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadata refresh started for "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Failed to refresh metadata: ${error}',
@@ -5861,18 +5807,7 @@ extension on Translations {
 			'errors.failedToRate' => 'Couldn\'t update rating',
 			'libraries.title' => 'Libraries',
 			'libraries.fallbackTitle' => 'Library',
-			'libraries.scanLibraryFiles' => 'Scan Library Files',
-			'libraries.scanLibrary' => 'Scan Library',
-			'libraries.analyze' => 'Analyze',
-			'libraries.analyzeLibrary' => 'Analyze Library',
 			'libraries.refreshMetadata' => 'Refresh Metadata',
-			'libraries.emptyTrash' => 'Empty Trash',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Emptying trash for "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Trash emptied for "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Failed to empty trash: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analyzing "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analysis started for "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Failed to analyze library: ${error}',
 			'libraries.noLibrariesFound' => 'No libraries found',
 			'libraries.allLibrariesHidden' => 'All libraries are hidden',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Hidden libraries (${count})',
@@ -5881,10 +5816,7 @@ extension on Translations {
 			'libraries.resetFilters' => 'Reset filters',
 			'libraries.all' => 'All',
 			'libraries.clearAll' => 'Clear All',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Are you sure you want to scan "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Are you sure you want to analyze "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Are you sure you want to refresh metadata for "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Are you sure you want to empty trash for "${title}"?',
 			'libraries.manageLibraries' => 'Manage Libraries',
 			'libraries.sort' => 'Sort',
 			'libraries.sortBy' => 'Sort By',
@@ -6109,8 +6041,6 @@ extension on Translations {
 			'explore.relation.spinOff' => 'Spin-off',
 			'explore.relation.alternativeVersion' => 'Alternative version',
 			'explore.relation.summary' => 'Summary',
-			_ => null,
-		} ?? switch (path) {
 			'explore.relation.parentStory' => 'Parent story',
 			'explore.relation.adaptation' => 'Adaptation',
 			'explore.relation.other' => 'Related',
@@ -6128,6 +6058,8 @@ extension on Translations {
 			'collections.addedToCollection' => 'Added to collection',
 			'collections.errorAddingToCollection' => 'Failed to add to collection',
 			'collections.created' => 'Collection created',
+			_ => null,
+		} ?? switch (path) {
 			'collections.removeFromCollection' => 'Remove from collection',
 			'collections.removeFromCollectionConfirm' => ({required Object title}) => 'Remove "${title}" from this collection?',
 			'collections.removedFromCollection' => 'Removed from collection',

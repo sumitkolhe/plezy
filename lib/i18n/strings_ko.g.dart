@@ -716,9 +716,6 @@ class _Translations$messages$ko extends Translations$messages$en {
 	@override String get logsCleared => '로그가 삭제되었습니다';
 	@override String get logsCopied => '로그가 클립보드에 복사되었습니다';
 	@override String get noLogsAvailable => '사용 가능한 로그가 없습니다';
-	@override String libraryScanning({required Object title}) => '"${title}"을(를) 스캔 중입니다...';
-	@override String libraryScanStarted({required Object title}) => '"${title}" 미디어 라이브러리 스캔 시작';
-	@override String libraryScanFailed({required Object error}) => '미디어 라이브러리 스캔 실패: ${error}';
 	@override String metadataRefreshing({required Object title}) => '"${title}" 메타데이터 새로고침 중...';
 	@override String metadataRefreshStarted({required Object title}) => '"${title}" 메타데이터 새로고침 시작됨';
 	@override String metadataRefreshFailed({required Object error}) => '메타데이터 새로고침 실패: ${error}';
@@ -947,18 +944,7 @@ class _Translations$libraries$ko extends Translations$libraries$en {
 	// Translations
 	@override String get title => '미디어 라이브러리';
 	@override String get fallbackTitle => '라이브러리';
-	@override String get scanLibraryFiles => '미디어 라이브러리 파일 스캔';
-	@override String get scanLibrary => '미디어 라이브러리 스캔';
-	@override String get analyze => '분석';
-	@override String get analyzeLibrary => '미디어 라이브러리 분석';
 	@override String get refreshMetadata => '메타데이터 새로 고침';
-	@override String get emptyTrash => '휴지통 비우기';
-	@override String emptyingTrash({required Object title}) => '「${title}」의 휴지통을 비우고 있습니다...';
-	@override String trashEmptied({required Object title}) => '「${title}」의 휴지통을 비웠습니다';
-	@override String failedToEmptyTrash({required Object error}) => '휴지통 비우기 실패: ${error}';
-	@override String analyzing({required Object title}) => '"${title}" 분석 중...';
-	@override String analysisStarted({required Object title}) => '"${title}" 분석 시작됨';
-	@override String failedToAnalyze({required Object error}) => '미디어 라이브러리 분석 실패: ${error}';
 	@override String get noLibrariesFound => '미디어 라이브러리 없음';
 	@override String get allLibrariesHidden => '모든 라이브러리가 숨겨졌습니다';
 	@override String hiddenLibrariesCount({required Object count}) => '숨겨진 라이브러리 (${count})';
@@ -967,10 +953,7 @@ class _Translations$libraries$ko extends Translations$libraries$en {
 	@override String get resetFilters => '필터 초기화';
 	@override String get all => '전체';
 	@override String get clearAll => '모두 삭제';
-	@override String scanLibraryConfirm({required Object title}) => '「${title}」을(를) 스캔하시겠습니까?';
-	@override String analyzeLibraryConfirm({required Object title}) => '「${title}」을(를) 분석하시겠습니까?';
 	@override String refreshMetadataConfirm({required Object title}) => '「${title}」의 메타데이터를 새로고침하시겠습니까?';
-	@override String emptyTrashConfirm({required Object title}) => '${title}의 휴지통을 비우시겠습니까?';
 	@override String get manageLibraries => '미디어 라이브러리 관리';
 	@override String get sort => '정렬';
 	@override String get sortBy => '정렬 기준';
@@ -2366,9 +2349,6 @@ extension on TranslationsKo {
 			'messages.logsCleared' => '로그가 삭제되었습니다',
 			'messages.logsCopied' => '로그가 클립보드에 복사되었습니다',
 			'messages.noLogsAvailable' => '사용 가능한 로그가 없습니다',
-			'messages.libraryScanning' => ({required Object title}) => '"${title}"을(를) 스캔 중입니다...',
-			'messages.libraryScanStarted' => ({required Object title}) => '"${title}" 미디어 라이브러리 스캔 시작',
-			'messages.libraryScanFailed' => ({required Object error}) => '미디어 라이브러리 스캔 실패: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" 메타데이터 새로고침 중...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" 메타데이터 새로고침 시작됨',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '메타데이터 새로고침 실패: ${error}',
@@ -2525,18 +2505,7 @@ extension on TranslationsKo {
 			'errors.failedToRate' => '평점을 업데이트하지 못했습니다',
 			'libraries.title' => '미디어 라이브러리',
 			'libraries.fallbackTitle' => '라이브러리',
-			'libraries.scanLibraryFiles' => '미디어 라이브러리 파일 스캔',
-			'libraries.scanLibrary' => '미디어 라이브러리 스캔',
-			'libraries.analyze' => '분석',
-			'libraries.analyzeLibrary' => '미디어 라이브러리 분석',
 			'libraries.refreshMetadata' => '메타데이터 새로 고침',
-			'libraries.emptyTrash' => '휴지통 비우기',
-			'libraries.emptyingTrash' => ({required Object title}) => '「${title}」의 휴지통을 비우고 있습니다...',
-			'libraries.trashEmptied' => ({required Object title}) => '「${title}」의 휴지통을 비웠습니다',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => '휴지통 비우기 실패: ${error}',
-			'libraries.analyzing' => ({required Object title}) => '"${title}" 분석 중...',
-			'libraries.analysisStarted' => ({required Object title}) => '"${title}" 분석 시작됨',
-			'libraries.failedToAnalyze' => ({required Object error}) => '미디어 라이브러리 분석 실패: ${error}',
 			'libraries.noLibrariesFound' => '미디어 라이브러리 없음',
 			'libraries.allLibrariesHidden' => '모든 라이브러리가 숨겨졌습니다',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => '숨겨진 라이브러리 (${count})',
@@ -2545,10 +2514,7 @@ extension on TranslationsKo {
 			'libraries.resetFilters' => '필터 초기화',
 			'libraries.all' => '전체',
 			'libraries.clearAll' => '모두 삭제',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '「${title}」을(를) 스캔하시겠습니까?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '「${title}」을(를) 분석하시겠습니까?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '「${title}」의 메타데이터를 새로고침하시겠습니까?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '${title}의 휴지통을 비우시겠습니까?',
 			'libraries.manageLibraries' => '미디어 라이브러리 관리',
 			'libraries.sort' => '정렬',
 			'libraries.sortBy' => '정렬 기준',
@@ -2872,8 +2838,6 @@ extension on TranslationsKo {
 			'performanceOverlay.hwFormat' => 'HW 형식',
 			'performanceOverlay.matrix' => '매트릭스',
 			'performanceOverlay.primaries' => '원색',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => '전송',
 			'performanceOverlay.renderFps' => '렌더 FPS',
 			'performanceOverlay.displayFps' => '디스플레이 FPS',
@@ -2891,6 +2855,8 @@ extension on TranslationsKo {
 			'performanceOverlay.speed' => '속도',
 			'performanceOverlay.player' => '플레이어',
 			'performanceOverlay.memory' => '메모리',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => '외부 플레이어',
 			'externalPlayer.useExternalPlayer' => '외부 플레이어 사용',

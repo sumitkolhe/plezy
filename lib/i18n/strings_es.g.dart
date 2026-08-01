@@ -717,9 +717,6 @@ class _Translations$messages$es extends Translations$messages$en {
 	@override String get logsCleared => 'Registros borrados';
 	@override String get logsCopied => 'Registros copiados al portapapeles';
 	@override String get noLogsAvailable => 'No hay registros disponibles';
-	@override String libraryScanning({required Object title}) => 'Escaneando "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Escaneo de biblioteca iniciado para "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Error al escanear biblioteca: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Actualizando metadatos de "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Actualización de metadatos iniciada para "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Error al actualizar metadatos: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$es extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Bibliotecas';
 	@override String get fallbackTitle => 'Biblioteca';
-	@override String get scanLibraryFiles => 'Escanear archivos de la biblioteca';
-	@override String get scanLibrary => 'Escanear biblioteca';
-	@override String get analyze => 'Analizar';
-	@override String get analyzeLibrary => 'Analizar biblioteca';
 	@override String get refreshMetadata => 'Actualizar metadatos';
-	@override String get emptyTrash => 'Vaciar papelera';
-	@override String emptyingTrash({required Object title}) => 'Vaciando papelera de "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Papelera vaciada para "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Error al vaciar papelera: ${error}';
-	@override String analyzing({required Object title}) => 'Analizando "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Análisis iniciado para "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Error al analizar la biblioteca: ${error}';
 	@override String get noLibrariesFound => 'No se encontraron bibliotecas';
 	@override String get allLibrariesHidden => 'Todas las bibliotecas están ocultas';
 	@override String hiddenLibrariesCount({required Object count}) => 'Bibliotecas ocultas (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$es extends Translations$libraries$en {
 	@override String get resetFilters => 'Restablecer filtros';
 	@override String get all => 'Todos';
 	@override String get clearAll => 'Borrar todo';
-	@override String scanLibraryConfirm({required Object title}) => '¿Estás seguro de que quieres escanear "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => '¿Estás seguro de que quieres analizar "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => '¿Estás seguro de que quieres actualizar los metadatos de "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => '¿Estás seguro de que quieres vaciar la papelera de "${title}"?';
 	@override String get manageLibraries => 'Gestionar bibliotecas';
 	@override String get sort => 'Ordenar';
 	@override String get sortBy => 'Ordenar por';
@@ -2369,9 +2352,6 @@ extension on TranslationsEs {
 			'messages.logsCleared' => 'Registros borrados',
 			'messages.logsCopied' => 'Registros copiados al portapapeles',
 			'messages.noLogsAvailable' => 'No hay registros disponibles',
-			'messages.libraryScanning' => ({required Object title}) => 'Escaneando "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Escaneo de biblioteca iniciado para "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Error al escanear biblioteca: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Actualizando metadatos de "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Actualización de metadatos iniciada para "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Error al actualizar metadatos: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsEs {
 			'errors.failedToRate' => 'No se pudo actualizar la valoración',
 			'libraries.title' => 'Bibliotecas',
 			'libraries.fallbackTitle' => 'Biblioteca',
-			'libraries.scanLibraryFiles' => 'Escanear archivos de la biblioteca',
-			'libraries.scanLibrary' => 'Escanear biblioteca',
-			'libraries.analyze' => 'Analizar',
-			'libraries.analyzeLibrary' => 'Analizar biblioteca',
 			'libraries.refreshMetadata' => 'Actualizar metadatos',
-			'libraries.emptyTrash' => 'Vaciar papelera',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Vaciando papelera de "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Papelera vaciada para "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Error al vaciar papelera: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analizando "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Análisis iniciado para "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Error al analizar la biblioteca: ${error}',
 			'libraries.noLibrariesFound' => 'No se encontraron bibliotecas',
 			'libraries.allLibrariesHidden' => 'Todas las bibliotecas están ocultas',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Bibliotecas ocultas (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsEs {
 			'libraries.resetFilters' => 'Restablecer filtros',
 			'libraries.all' => 'Todos',
 			'libraries.clearAll' => 'Borrar todo',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => '¿Estás seguro de que quieres escanear "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => '¿Estás seguro de que quieres analizar "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => '¿Estás seguro de que quieres actualizar los metadatos de "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => '¿Estás seguro de que quieres vaciar la papelera de "${title}"?',
 			'libraries.manageLibraries' => 'Gestionar bibliotecas',
 			'libraries.sort' => 'Ordenar',
 			'libraries.sortBy' => 'Ordenar por',
@@ -2875,8 +2841,6 @@ extension on TranslationsEs {
 			'performanceOverlay.hwFormat' => 'Formato HW',
 			'performanceOverlay.matrix' => 'Matriz',
 			'performanceOverlay.primaries' => 'Primarios',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Transferencia',
 			'performanceOverlay.renderFps' => 'FPS render',
 			'performanceOverlay.displayFps' => 'FPS pantalla',
@@ -2894,6 +2858,8 @@ extension on TranslationsEs {
 			'performanceOverlay.speed' => 'Velocidad',
 			'performanceOverlay.player' => 'Reproductor',
 			'performanceOverlay.memory' => 'Memoria',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'FPS UI',
 			'externalPlayer.title' => 'Reproductor externo',
 			'externalPlayer.useExternalPlayer' => 'Usar reproductor externo',

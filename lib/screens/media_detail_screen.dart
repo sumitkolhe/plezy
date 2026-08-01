@@ -31,7 +31,6 @@ import '../widgets/focus_builders.dart';
 import '../media/library_query.dart';
 import '../media/media_hub.dart';
 import '../utils/provider_extensions.dart';
-import '../utils/plex_season_display.dart';
 import '../media/media_item.dart';
 import '../media/episode_collection.dart';
 import '../media/media_item_types.dart';
@@ -46,7 +45,6 @@ import '../widgets/cycling_media_backdrop.dart';
 import '../widgets/optimized_media_image.dart';
 import '../utils/media_image_helper.dart';
 import '../utils/media_quality_labels.dart';
-import '../services/plex_client.dart';
 import '../media/media_server_client.dart';
 import '../services/media_list_playback_launcher.dart';
 import '../utils/content_utils.dart';
@@ -1178,7 +1176,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     );
   }
 
-  /// Backend-neutral counterpart of [getServerBoundPlexClient]. Returns a
+  /// Returns a
   /// [MediaServerClient] for Jellyfin items too, so image URLs use the
   /// right server's transcoder.
   MediaServerClient? _getMediaClientForMetadata(BuildContext context) {
@@ -1461,22 +1459,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     }
 
     try {
-      // Plex has a server-side "flatten seasons" preference;
-      // Jellyfin has no equivalent, so fetch the prefs only when we have
-      // a Plex client and a section id. The library section id came from
-      // Plex as an int but lands in [MediaItem.libraryId] as the string
-      // form (or null on Jellyfin items).
-      final sectionId = (_fullMetadata ?? _metadata).libraryId;
-      final seasonsFuture = client.fetchChildren(_metadata.id);
-      // Prefs are a per-library nicety (Plex "flatten seasons"); a failure here
-      // must never take down the seasons list, so degrade to defaults.
-      final prefsFuture = (client is PlexClient && sectionId != null)
-          ? client.getLibrarySectionPrefs(sectionId).catchError((_) => <String, dynamic>{})
-          : Future.value(<String, dynamic>{});
-
-      final results = await Future.wait([seasonsFuture, prefsFuture]);
-      final seasons = results.first as List<MediaItem>;
-      final prefs = results[1] as Map<String, dynamic>;
+      final seasons = await client.fetchChildren(_metadata.id);
 
       // Preserve serverId for each season.
       final seasonsWithServerId = seasons
@@ -1488,18 +1471,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
           )
           .toList();
 
-      // Plex can override the library season mode per show; Jellyfin falls
-      // through to "flatten when there's a single season".
-      bool shouldShowEpisodesDirectly;
-      if (client is PlexClient) {
-        shouldShowEpisodesDirectly = shouldShowPlexEpisodesDirectly(
-          show: _metadata,
-          seasons: seasonsWithServerId,
-          libraryPrefs: prefs,
-        );
-      } else {
-        shouldShowEpisodesDirectly = seasonsWithServerId.length <= 1;
-      }
+      final shouldShowEpisodesDirectly = seasonsWithServerId.length <= 1;
 
       // Create focus nodes for season tabs
       _updateSeasonTabFocusNodes(seasonsWithServerId.length);

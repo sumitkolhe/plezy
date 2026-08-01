@@ -717,9 +717,6 @@ class _Translations$messages$sv extends Translations$messages$en {
 	@override String get logsCleared => 'Loggar rensade';
 	@override String get logsCopied => 'Loggar kopierade till urklipp';
 	@override String get noLogsAvailable => 'Inga loggar tillgängliga';
-	@override String libraryScanning({required Object title}) => 'Skannar "${title}"...';
-	@override String libraryScanStarted({required Object title}) => 'Biblioteksskanningen har startat för "${title}"';
-	@override String libraryScanFailed({required Object error}) => 'Det gick inte att skanna biblioteket: ${error}';
 	@override String metadataRefreshing({required Object title}) => 'Uppdaterar metadata för "${title}"...';
 	@override String metadataRefreshStarted({required Object title}) => 'Metadatauppdateringen har startat för "${title}"';
 	@override String metadataRefreshFailed({required Object error}) => 'Det gick inte att uppdatera metadata: ${error}';
@@ -948,18 +945,7 @@ class _Translations$libraries$sv extends Translations$libraries$en {
 	// Translations
 	@override String get title => 'Bibliotek';
 	@override String get fallbackTitle => 'Bibliotek';
-	@override String get scanLibraryFiles => 'Skanna biblioteksfiler';
-	@override String get scanLibrary => 'Skanna bibliotek';
-	@override String get analyze => 'Analysera';
-	@override String get analyzeLibrary => 'Analysera bibliotek';
 	@override String get refreshMetadata => 'Uppdatera metadata';
-	@override String get emptyTrash => 'Töm papperskorg';
-	@override String emptyingTrash({required Object title}) => 'Tömmer papperskorgen för "${title}"...';
-	@override String trashEmptied({required Object title}) => 'Papperskorgen har tömts för "${title}"';
-	@override String failedToEmptyTrash({required Object error}) => 'Det gick inte att tömma papperskorgen: ${error}';
-	@override String analyzing({required Object title}) => 'Analyserar "${title}"...';
-	@override String analysisStarted({required Object title}) => 'Analysen har startat för "${title}"';
-	@override String failedToAnalyze({required Object error}) => 'Det gick inte att analysera biblioteket: ${error}';
 	@override String get noLibrariesFound => 'Inga bibliotek hittades';
 	@override String get allLibrariesHidden => 'Alla bibliotek är dolda';
 	@override String hiddenLibrariesCount({required Object count}) => 'Dolda bibliotek (${count})';
@@ -968,10 +954,7 @@ class _Translations$libraries$sv extends Translations$libraries$en {
 	@override String get resetFilters => 'Återställ filter';
 	@override String get all => 'Alla';
 	@override String get clearAll => 'Rensa alla';
-	@override String scanLibraryConfirm({required Object title}) => 'Är du säker på att du vill skanna "${title}"?';
-	@override String analyzeLibraryConfirm({required Object title}) => 'Är du säker på att du vill analysera "${title}"?';
 	@override String refreshMetadataConfirm({required Object title}) => 'Är du säker på att du vill uppdatera metadata för "${title}"?';
-	@override String emptyTrashConfirm({required Object title}) => 'Är du säker på att du vill tömma papperskorgen för "${title}"?';
 	@override String get manageLibraries => 'Hantera bibliotek';
 	@override String get sort => 'Sortera';
 	@override String get sortBy => 'Sortera efter';
@@ -2369,9 +2352,6 @@ extension on TranslationsSv {
 			'messages.logsCleared' => 'Loggar rensade',
 			'messages.logsCopied' => 'Loggar kopierade till urklipp',
 			'messages.noLogsAvailable' => 'Inga loggar tillgängliga',
-			'messages.libraryScanning' => ({required Object title}) => 'Skannar "${title}"...',
-			'messages.libraryScanStarted' => ({required Object title}) => 'Biblioteksskanningen har startat för "${title}"',
-			'messages.libraryScanFailed' => ({required Object error}) => 'Det gick inte att skanna biblioteket: ${error}',
 			'messages.metadataRefreshing' => ({required Object title}) => 'Uppdaterar metadata för "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadatauppdateringen har startat för "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Det gick inte att uppdatera metadata: ${error}',
@@ -2528,18 +2508,7 @@ extension on TranslationsSv {
 			'errors.failedToRate' => 'Det gick inte att uppdatera betyget',
 			'libraries.title' => 'Bibliotek',
 			'libraries.fallbackTitle' => 'Bibliotek',
-			'libraries.scanLibraryFiles' => 'Skanna biblioteksfiler',
-			'libraries.scanLibrary' => 'Skanna bibliotek',
-			'libraries.analyze' => 'Analysera',
-			'libraries.analyzeLibrary' => 'Analysera bibliotek',
 			'libraries.refreshMetadata' => 'Uppdatera metadata',
-			'libraries.emptyTrash' => 'Töm papperskorg',
-			'libraries.emptyingTrash' => ({required Object title}) => 'Tömmer papperskorgen för "${title}"...',
-			'libraries.trashEmptied' => ({required Object title}) => 'Papperskorgen har tömts för "${title}"',
-			'libraries.failedToEmptyTrash' => ({required Object error}) => 'Det gick inte att tömma papperskorgen: ${error}',
-			'libraries.analyzing' => ({required Object title}) => 'Analyserar "${title}"...',
-			'libraries.analysisStarted' => ({required Object title}) => 'Analysen har startat för "${title}"',
-			'libraries.failedToAnalyze' => ({required Object error}) => 'Det gick inte att analysera biblioteket: ${error}',
 			'libraries.noLibrariesFound' => 'Inga bibliotek hittades',
 			'libraries.allLibrariesHidden' => 'Alla bibliotek är dolda',
 			'libraries.hiddenLibrariesCount' => ({required Object count}) => 'Dolda bibliotek (${count})',
@@ -2548,10 +2517,7 @@ extension on TranslationsSv {
 			'libraries.resetFilters' => 'Återställ filter',
 			'libraries.all' => 'Alla',
 			'libraries.clearAll' => 'Rensa alla',
-			'libraries.scanLibraryConfirm' => ({required Object title}) => 'Är du säker på att du vill skanna "${title}"?',
-			'libraries.analyzeLibraryConfirm' => ({required Object title}) => 'Är du säker på att du vill analysera "${title}"?',
 			'libraries.refreshMetadataConfirm' => ({required Object title}) => 'Är du säker på att du vill uppdatera metadata för "${title}"?',
-			'libraries.emptyTrashConfirm' => ({required Object title}) => 'Är du säker på att du vill tömma papperskorgen för "${title}"?',
 			'libraries.manageLibraries' => 'Hantera bibliotek',
 			'libraries.sort' => 'Sortera',
 			'libraries.sortBy' => 'Sortera efter',
@@ -2875,8 +2841,6 @@ extension on TranslationsSv {
 			'performanceOverlay.hwFormat' => 'HW-format',
 			'performanceOverlay.matrix' => 'Matris',
 			'performanceOverlay.primaries' => 'Primärfärger',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Överföring',
 			'performanceOverlay.renderFps' => 'Renderings-FPS',
 			'performanceOverlay.displayFps' => 'Skärm-FPS',
@@ -2894,6 +2858,8 @@ extension on TranslationsSv {
 			'performanceOverlay.speed' => 'Hastighet',
 			'performanceOverlay.player' => 'Spelare',
 			'performanceOverlay.memory' => 'Minne',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'UI FPS',
 			'externalPlayer.title' => 'Extern spelare',
 			'externalPlayer.useExternalPlayer' => 'Använd extern spelare',
