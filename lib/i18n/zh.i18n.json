@@ -764,8 +764,6 @@
     "borrowFailed": "无法添加连接。",
     "incorrectPin": "PIN 不正确。",
     "incorrectPinTryAgain": "PIN 不正确。请重试。",
-    "sourceProfileMissingParentAccount": "源用户资料缺少关联的主账户。",
-    "failedToVerifyPin": "无法验证 PIN。",
     "newProfile": "新建用户资料",
     "profileNameHint": "例如：访客、儿童、客厅",
     "pinProtectionOptional": "PIN 保护（可选）",

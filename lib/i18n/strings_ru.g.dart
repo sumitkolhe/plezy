@@ -859,8 +859,6 @@ class _Translations$profiles$ru extends Translations$profiles$en {
 	@override String get borrowFailed => 'Не удалось добавить подключение.';
 	@override String get incorrectPin => 'Неверный PIN.';
 	@override String get incorrectPinTryAgain => 'Неверный PIN. Попробуйте ещё раз.';
-	@override String get sourceProfileMissingParentAccount => 'У исходного профиля отсутствует родительская учётная запись.';
-	@override String get failedToVerifyPin => 'Не удалось проверить PIN.';
 	@override String get newProfile => 'Новый профиль';
 	@override String get profileNameHint => 'например, Гости, Дети, Семейная комната';
 	@override String get pinProtectionOptional => 'Защита PIN-кодом (необязательно)';
@@ -2418,8 +2416,6 @@ extension on TranslationsRu {
 			'profiles.borrowFailed' => 'Не удалось добавить подключение.',
 			'profiles.incorrectPin' => 'Неверный PIN.',
 			'profiles.incorrectPinTryAgain' => 'Неверный PIN. Попробуйте ещё раз.',
-			'profiles.sourceProfileMissingParentAccount' => 'У исходного профиля отсутствует родительская учётная запись.',
-			'profiles.failedToVerifyPin' => 'Не удалось проверить PIN.',
 			'profiles.newProfile' => 'Новый профиль',
 			'profiles.profileNameHint' => 'например, Гости, Дети, Семейная комната',
 			'profiles.pinProtectionOptional' => 'Защита PIN-кодом (необязательно)',
@@ -2820,10 +2816,10 @@ extension on TranslationsRu {
 			'externalPlayer.customPlayers' => 'Свои плееры',
 			'externalPlayer.systemDefault' => 'Системный по умолчанию',
 			'externalPlayer.addCustomPlayer' => 'Добавить свой плеер',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Название плеера',
 			'externalPlayer.playerNameHint' => 'Мой плеер',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Команда',
 			'externalPlayer.playerPackage' => 'Имя пакета',
 			'externalPlayer.playerUrlScheme' => 'URL-схема',

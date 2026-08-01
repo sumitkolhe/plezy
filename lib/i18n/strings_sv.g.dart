@@ -857,8 +857,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String get borrowFailed => 'Kunde inte låna anslutningen.';
 	@override String get incorrectPin => 'Fel PIN.';
 	@override String get incorrectPinTryAgain => 'Fel PIN. Försök igen.';
-	@override String get sourceProfileMissingParentAccount => 'Källprofilen saknar sitt överordnade konto.';
-	@override String get failedToVerifyPin => 'Kunde inte verifiera PIN.';
 	@override String get newProfile => 'Ny profil';
 	@override String get profileNameHint => 't.ex. Gäster, Barn eller Familjerum';
 	@override String get pinProtectionOptional => 'PIN-skydd (valfritt)';
@@ -2412,8 +2410,6 @@ extension on TranslationsSv {
 			'profiles.borrowFailed' => 'Kunde inte låna anslutningen.',
 			'profiles.incorrectPin' => 'Fel PIN.',
 			'profiles.incorrectPinTryAgain' => 'Fel PIN. Försök igen.',
-			'profiles.sourceProfileMissingParentAccount' => 'Källprofilen saknar sitt överordnade konto.',
-			'profiles.failedToVerifyPin' => 'Kunde inte verifiera PIN.',
 			'profiles.newProfile' => 'Ny profil',
 			'profiles.profileNameHint' => 't.ex. Gäster, Barn eller Familjerum',
 			'profiles.pinProtectionOptional' => 'PIN-skydd (valfritt)',
@@ -2814,10 +2810,10 @@ extension on TranslationsSv {
 			'externalPlayer.customPlayers' => 'Anpassade spelare',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Lägg till anpassad spelare',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Spelarnamn',
 			'externalPlayer.playerNameHint' => 'Min spelare',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Kommando',
 			'externalPlayer.playerPackage' => 'Paketnamn',
 			'externalPlayer.playerUrlScheme' => 'URL-schema',

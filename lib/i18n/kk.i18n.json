@@ -765,8 +765,6 @@
     "borrowFailed": "Қосылымды пайдалану мүмкін болмады.",
     "incorrectPin": "Қате PIN код.",
     "incorrectPinTryAgain": "Қате PIN код. Қайтадан байқап көріңіз.",
-    "sourceProfileMissingParentAccount": "Бастапқы профильде негізгі тіркелгі жоқ.",
-    "failedToVerifyPin": "PIN кодын тексеру мүмкін болмады.",
     "newProfile": "Жаңа профиль",
     "profileNameHint": "мысалы, Қонақтар, Балалар",
     "pinProtectionOptional": "PIN қорғанысы (қосымша)",

@@ -861,8 +861,6 @@ class _Translations$profiles$kk extends Translations$profiles$en {
 	@override String get borrowFailed => 'Қосылымды пайдалану мүмкін болмады.';
 	@override String get incorrectPin => 'Қате PIN код.';
 	@override String get incorrectPinTryAgain => 'Қате PIN код. Қайтадан байқап көріңіз.';
-	@override String get sourceProfileMissingParentAccount => 'Бастапқы профильде негізгі тіркелгі жоқ.';
-	@override String get failedToVerifyPin => 'PIN кодын тексеру мүмкін болмады.';
 	@override String get newProfile => 'Жаңа профиль';
 	@override String get profileNameHint => 'мысалы, Қонақтар, Балалар';
 	@override String get pinProtectionOptional => 'PIN қорғанысы (қосымша)';
@@ -2427,8 +2425,6 @@ extension on TranslationsKk {
 			'profiles.borrowFailed' => 'Қосылымды пайдалану мүмкін болмады.',
 			'profiles.incorrectPin' => 'Қате PIN код.',
 			'profiles.incorrectPinTryAgain' => 'Қате PIN код. Қайтадан байқап көріңіз.',
-			'profiles.sourceProfileMissingParentAccount' => 'Бастапқы профильде негізгі тіркелгі жоқ.',
-			'profiles.failedToVerifyPin' => 'PIN кодын тексеру мүмкін болмады.',
 			'profiles.newProfile' => 'Жаңа профиль',
 			'profiles.profileNameHint' => 'мысалы, Қонақтар, Балалар',
 			'profiles.pinProtectionOptional' => 'PIN қорғанысы (қосымша)',
@@ -2825,10 +2821,10 @@ extension on TranslationsKk {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Пайдаланылған кэш',
 			'performanceOverlay.cacheLimit' => 'Кэш шегі',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Жылдамдық',
 			'performanceOverlay.player' => 'Ойнатқыш',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.memory' => 'Жады',
 			'performanceOverlay.uiFps' => 'Интерфейс (UI) FPS',
 			'externalPlayer.title' => 'Сыртқы ойнатқыш',

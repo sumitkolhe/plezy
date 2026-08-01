@@ -857,8 +857,6 @@ class _Translations$profiles$pt extends Translations$profiles$en {
 	@override String get borrowFailed => 'Não foi possível adicionar a conexão.';
 	@override String get incorrectPin => 'PIN incorreto.';
 	@override String get incorrectPinTryAgain => 'PIN incorreto. Tente novamente.';
-	@override String get sourceProfileMissingParentAccount => 'O perfil de origem não tem a conta principal.';
-	@override String get failedToVerifyPin => 'Não foi possível verificar o PIN.';
 	@override String get newProfile => 'Novo perfil';
 	@override String get profileNameHint => 'Ex.: Visitantes, Crianças, Sala de família';
 	@override String get pinProtectionOptional => 'Proteção por PIN (opcional)';
@@ -2412,8 +2410,6 @@ extension on TranslationsPt {
 			'profiles.borrowFailed' => 'Não foi possível adicionar a conexão.',
 			'profiles.incorrectPin' => 'PIN incorreto.',
 			'profiles.incorrectPinTryAgain' => 'PIN incorreto. Tente novamente.',
-			'profiles.sourceProfileMissingParentAccount' => 'O perfil de origem não tem a conta principal.',
-			'profiles.failedToVerifyPin' => 'Não foi possível verificar o PIN.',
 			'profiles.newProfile' => 'Novo perfil',
 			'profiles.profileNameHint' => 'Ex.: Visitantes, Crianças, Sala de família',
 			'profiles.pinProtectionOptional' => 'Proteção por PIN (opcional)',
@@ -2814,10 +2810,10 @@ extension on TranslationsPt {
 			'externalPlayer.customPlayers' => 'Reprodutores personalizados',
 			'externalPlayer.systemDefault' => 'Padrão do sistema',
 			'externalPlayer.addCustomPlayer' => 'Adicionar reprodutor personalizado',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nome do reprodutor',
 			'externalPlayer.playerNameHint' => 'Meu reprodutor',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Comando',
 			'externalPlayer.playerPackage' => 'Nome do pacote',
 			'externalPlayer.playerUrlScheme' => 'Esquema de URL',

@@ -861,8 +861,6 @@ class _Translations$profiles$az extends Translations$profiles$en {
 	@override String get borrowFailed => 'Qoşulma istifadə edilə bilmədi.';
 	@override String get incorrectPin => 'Səhv PIN.';
 	@override String get incorrectPinTryAgain => 'Səhv PIN. Lütfən təzədən cəhd edin.';
-	@override String get sourceProfileMissingParentAccount => 'Mənbə profilin əsas hesabı yoxdur.';
-	@override String get failedToVerifyPin => 'PIN təsdiqlənə bilmədi.';
 	@override String get newProfile => 'Yeni profil';
 	@override String get profileNameHint => 'məs. Qonaqlar, Uşaqlar, Qonaq otağı';
 	@override String get pinProtectionOptional => 'PIN mühafizəsi (istəyə bağlı)';
@@ -2427,8 +2425,6 @@ extension on TranslationsAz {
 			'profiles.borrowFailed' => 'Qoşulma istifadə edilə bilmədi.',
 			'profiles.incorrectPin' => 'Səhv PIN.',
 			'profiles.incorrectPinTryAgain' => 'Səhv PIN. Lütfən təzədən cəhd edin.',
-			'profiles.sourceProfileMissingParentAccount' => 'Mənbə profilin əsas hesabı yoxdur.',
-			'profiles.failedToVerifyPin' => 'PIN təsdiqlənə bilmədi.',
 			'profiles.newProfile' => 'Yeni profil',
 			'profiles.profileNameHint' => 'məs. Qonaqlar, Uşaqlar, Qonaq otağı',
 			'profiles.pinProtectionOptional' => 'PIN mühafizəsi (istəyə bağlı)',
@@ -2825,10 +2821,10 @@ extension on TranslationsAz {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'İstifadə olunan keş',
 			'performanceOverlay.cacheLimit' => 'Keş limiti',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Sürət',
 			'performanceOverlay.player' => 'Oynadıcı',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.memory' => 'Yaddaş',
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS-i',
 			'externalPlayer.title' => 'Xarici oynadıcı',

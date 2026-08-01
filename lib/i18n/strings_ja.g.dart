@@ -856,8 +856,6 @@ class _Translations$profiles$ja extends Translations$profiles$en {
 	@override String get borrowFailed => '接続を追加できませんでした。';
 	@override String get incorrectPin => 'PINが正しくありません。';
 	@override String get incorrectPinTryAgain => 'PINが正しくありません。もう一度お試しください。';
-	@override String get sourceProfileMissingParentAccount => '元のプロフィールに親アカウントがありません。';
-	@override String get failedToVerifyPin => 'PINを確認できませんでした。';
 	@override String get newProfile => '新しいプロフィール';
 	@override String get profileNameHint => '例：ゲスト、キッズ、ファミリールーム';
 	@override String get pinProtectionOptional => 'PIN保護（オプション）';
@@ -2409,8 +2407,6 @@ extension on TranslationsJa {
 			'profiles.borrowFailed' => '接続を追加できませんでした。',
 			'profiles.incorrectPin' => 'PINが正しくありません。',
 			'profiles.incorrectPinTryAgain' => 'PINが正しくありません。もう一度お試しください。',
-			'profiles.sourceProfileMissingParentAccount' => '元のプロフィールに親アカウントがありません。',
-			'profiles.failedToVerifyPin' => 'PINを確認できませんでした。',
 			'profiles.newProfile' => '新しいプロフィール',
 			'profiles.profileNameHint' => '例：ゲスト、キッズ、ファミリールーム',
 			'profiles.pinProtectionOptional' => 'PIN保護（オプション）',
@@ -2811,10 +2807,10 @@ extension on TranslationsJa {
 			'externalPlayer.customPlayers' => 'カスタムプレーヤー',
 			'externalPlayer.systemDefault' => 'システム既定',
 			'externalPlayer.addCustomPlayer' => 'カスタムプレーヤーを追加',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'プレーヤー名',
 			'externalPlayer.playerNameHint' => 'マイプレーヤー',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'コマンド',
 			'externalPlayer.playerPackage' => 'パッケージ名',
 			'externalPlayer.playerUrlScheme' => 'URLスキーム',

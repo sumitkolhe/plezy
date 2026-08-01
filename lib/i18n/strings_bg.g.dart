@@ -857,8 +857,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String get borrowFailed => 'Неуспешно използване на връзка.';
 	@override String get incorrectPin => 'Неправилен PIN.';
 	@override String get incorrectPinTryAgain => 'Неправилен PIN. Опитайте отново.';
-	@override String get sourceProfileMissingParentAccount => 'Изходният профил няма родителски акаунт.';
-	@override String get failedToVerifyPin => 'Неуспешна проверка на PIN.';
 	@override String get newProfile => 'Нов профил';
 	@override String get profileNameHint => 'напр. Гости, Деца, Семейна стая';
 	@override String get pinProtectionOptional => 'PIN защита (по желание)';
@@ -2412,8 +2410,6 @@ extension on TranslationsBg {
 			'profiles.borrowFailed' => 'Неуспешно използване на връзка.',
 			'profiles.incorrectPin' => 'Неправилен PIN.',
 			'profiles.incorrectPinTryAgain' => 'Неправилен PIN. Опитайте отново.',
-			'profiles.sourceProfileMissingParentAccount' => 'Изходният профил няма родителски акаунт.',
-			'profiles.failedToVerifyPin' => 'Неуспешна проверка на PIN.',
 			'profiles.newProfile' => 'Нов профил',
 			'profiles.profileNameHint' => 'напр. Гости, Деца, Семейна стая',
 			'profiles.pinProtectionOptional' => 'PIN защита (по желание)',
@@ -2814,10 +2810,10 @@ extension on TranslationsBg {
 			'externalPlayer.customPlayers' => 'Потребителски плейъри',
 			'externalPlayer.systemDefault' => 'Системен по подразбиране',
 			'externalPlayer.addCustomPlayer' => 'Добави потребителски плейър',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Име на плейъра',
 			'externalPlayer.playerNameHint' => 'Моят плеър',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Команда',
 			'externalPlayer.playerPackage' => 'Име на пакет',
 			'externalPlayer.playerUrlScheme' => 'URL схема',

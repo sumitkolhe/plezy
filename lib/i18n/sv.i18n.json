@@ -765,8 +765,6 @@
     "borrowFailed": "Kunde inte låna anslutningen.",
     "incorrectPin": "Fel PIN.",
     "incorrectPinTryAgain": "Fel PIN. Försök igen.",
-    "sourceProfileMissingParentAccount": "Källprofilen saknar sitt överordnade konto.",
-    "failedToVerifyPin": "Kunde inte verifiera PIN.",
     "newProfile": "Ny profil",
     "profileNameHint": "t.ex. Gäster, Barn eller Familjerum",
     "pinProtectionOptional": "PIN-skydd (valfritt)",

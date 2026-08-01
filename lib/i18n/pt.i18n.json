@@ -765,8 +765,6 @@
     "borrowFailed": "Não foi possível adicionar a conexão.",
     "incorrectPin": "PIN incorreto.",
     "incorrectPinTryAgain": "PIN incorreto. Tente novamente.",
-    "sourceProfileMissingParentAccount": "O perfil de origem não tem a conta principal.",
-    "failedToVerifyPin": "Não foi possível verificar o PIN.",
     "newProfile": "Novo perfil",
     "profileNameHint": "Ex.: Visitantes, Crianças, Sala de família",
     "pinProtectionOptional": "Proteção por PIN (opcional)",

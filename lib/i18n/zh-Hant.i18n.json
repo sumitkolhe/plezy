@@ -764,8 +764,6 @@
     "borrowFailed": "無法共用連線。",
     "incorrectPin": "PIN 碼不正確。",
     "incorrectPinTryAgain": "PIN 碼不正確。請重試。",
-    "sourceProfileMissingParentAccount": "來源使用者設定檔缺少其父帳戶資訊。",
-    "failedToVerifyPin": "無法驗證 PIN 碼。",
     "newProfile": "建立使用者設定檔",
     "profileNameHint": "例如：訪客、兒童、客廳",
     "pinProtectionOptional": "PIN 碼保護（選填）",

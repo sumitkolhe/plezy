@@ -767,8 +767,6 @@
     "borrowFailed": "Nie udało się dodać połączenia z innego profilu.",
     "incorrectPin": "Nieprawidłowy PIN.",
     "incorrectPinTryAgain": "Nieprawidłowy PIN. Spróbuj ponownie.",
-    "sourceProfileMissingParentAccount": "Profil źródłowy nie ma konta nadrzędnego.",
-    "failedToVerifyPin": "Nie udało się zweryfikować PIN-u.",
     "newProfile": "Nowy profil",
     "profileNameHint": "np. Goście, Dzieci, Salon",
     "pinProtectionOptional": "Ochrona PIN-em (opcjonalnie)",

@@ -765,8 +765,6 @@
     "borrowFailed": "Nem sikerült átvenni a kapcsolatot.",
     "incorrectPin": "Helytelen PIN-kód.",
     "incorrectPinTryAgain": "Helytelen PIN-kód. Próbáld újra.",
-    "sourceProfileMissingParentAccount": "A forrásprofilból hiányzik a szülőfiók.",
-    "failedToVerifyPin": "Nem sikerült a PIN-kód ellenőrzése.",
     "newProfile": "Új profil",
     "profileNameHint": "pl. Vendégek, Gyerekek, Nappali",
     "pinProtectionOptional": "PIN-védelem (opcionális)",

@@ -325,9 +325,7 @@ class ActiveProfileBinder {
     required Map<String, Connection> connectionsById,
   }) {
     final expected = <String>{};
-    final parentId = profile.parentConnectionId;
     for (final pc in joinRows) {
-      if (parentId != null && pc.connectionId == parentId) continue;
       switch (connectionsById[pc.connectionId]) {
         case PlexAccountConnection(:final servers):
           expected.addAll(servers.map((server) => server.clientIdentifier));
@@ -360,13 +358,10 @@ class ActiveProfileBinder {
       }
       return const _ProfileBindResult.empty();
     }
-    final parentId = profile.parentConnectionId;
-
     final visible = <String>{};
     final expected = <String>{};
     final futures = <Future<_ProfileBindResult>>[];
     for (final pc in joinRows) {
-      if (parentId != null && pc.connectionId == parentId) continue;
       final conn = connectionsById[pc.connectionId];
       if (conn == null) {
         appLogger.w('ActiveProfileBinder: missing connection ${pc.connectionId} for ${profile.displayName}');

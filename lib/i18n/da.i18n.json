@@ -765,8 +765,6 @@
     "borrowFailed": "Kunne ikke låne forbindelse.",
     "incorrectPin": "Forkert PIN.",
     "incorrectPinTryAgain": "Forkert PIN. Prøv igen.",
-    "sourceProfileMissingParentAccount": "Kildeprofilen mangler sin overordnede konto.",
-    "failedToVerifyPin": "Kunne ikke bekræfte PIN.",
     "newProfile": "Ny profil",
     "profileNameHint": "f.eks. Gæster, Børn, Familiens stue",
     "pinProtectionOptional": "PIN-beskyttelse (valgfri)",

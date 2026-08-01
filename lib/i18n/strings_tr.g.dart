@@ -861,8 +861,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String get borrowFailed => 'Bağlantı ödünç alınamadı.';
 	@override String get incorrectPin => 'Yanlış PIN.';
 	@override String get incorrectPinTryAgain => 'Yanlış PIN. Lütfen tekrar deneyin.';
-	@override String get sourceProfileMissingParentAccount => 'Kaynak profilin üst hesabı eksik.';
-	@override String get failedToVerifyPin => 'PIN doğrulanamadı.';
 	@override String get newProfile => 'Yeni profil';
 	@override String get profileNameHint => 'ör. Misafirler, Çocuklar, Oturma Odası';
 	@override String get pinProtectionOptional => 'PIN koruması (isteğe bağlı)';
@@ -2427,8 +2425,6 @@ extension on TranslationsTr {
 			'profiles.borrowFailed' => 'Bağlantı ödünç alınamadı.',
 			'profiles.incorrectPin' => 'Yanlış PIN.',
 			'profiles.incorrectPinTryAgain' => 'Yanlış PIN. Lütfen tekrar deneyin.',
-			'profiles.sourceProfileMissingParentAccount' => 'Kaynak profilin üst hesabı eksik.',
-			'profiles.failedToVerifyPin' => 'PIN doğrulanamadı.',
 			'profiles.newProfile' => 'Yeni profil',
 			'profiles.profileNameHint' => 'ör. Misafirler, Çocuklar, Oturma Odası',
 			'profiles.pinProtectionOptional' => 'PIN koruması (isteğe bağlı)',
@@ -2825,10 +2821,10 @@ extension on TranslationsTr {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Kullanılan Önbellek',
 			'performanceOverlay.cacheLimit' => 'Önbellek Sınırı',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Hız',
 			'performanceOverlay.player' => 'Oynatıcı',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.memory' => 'Bellek',
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS',
 			'externalPlayer.title' => 'Harici Oynatıcı',

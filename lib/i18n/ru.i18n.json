@@ -767,8 +767,6 @@
     "borrowFailed": "Не удалось добавить подключение.",
     "incorrectPin": "Неверный PIN.",
     "incorrectPinTryAgain": "Неверный PIN. Попробуйте ещё раз.",
-    "sourceProfileMissingParentAccount": "У исходного профиля отсутствует родительская учётная запись.",
-    "failedToVerifyPin": "Не удалось проверить PIN.",
     "newProfile": "Новый профиль",
     "profileNameHint": "например, Гости, Дети, Семейная комната",
     "pinProtectionOptional": "Защита PIN-кодом (необязательно)",

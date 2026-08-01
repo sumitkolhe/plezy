@@ -861,8 +861,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String get borrowFailed => 'Ulanishdan foydalanib boʻlmadi.';
 	@override String get incorrectPin => 'Notoʻgʻri PIN kod.';
 	@override String get incorrectPinTryAgain => 'Notoʻgʻri PIN kod. Qaytadan urinib koʻring.';
-	@override String get sourceProfileMissingParentAccount => 'Manba profilda asosiy hisob yoʻq.';
-	@override String get failedToVerifyPin => 'PIN kodni tekshirib boʻlmadi.';
 	@override String get newProfile => 'Yangi profil';
 	@override String get profileNameHint => 'masalan, Mehmonlar, Bolalar';
 	@override String get pinProtectionOptional => 'PIN himoyasi (ixtiyoriy)';
@@ -2427,8 +2425,6 @@ extension on TranslationsUz {
 			'profiles.borrowFailed' => 'Ulanishdan foydalanib boʻlmadi.',
 			'profiles.incorrectPin' => 'Notoʻgʻri PIN kod.',
 			'profiles.incorrectPinTryAgain' => 'Notoʻgʻri PIN kod. Qaytadan urinib koʻring.',
-			'profiles.sourceProfileMissingParentAccount' => 'Manba profilda asosiy hisob yoʻq.',
-			'profiles.failedToVerifyPin' => 'PIN kodni tekshirib boʻlmadi.',
 			'profiles.newProfile' => 'Yangi profil',
 			'profiles.profileNameHint' => 'masalan, Mehmonlar, Bolalar',
 			'profiles.pinProtectionOptional' => 'PIN himoyasi (ixtiyoriy)',
@@ -2825,10 +2821,10 @@ extension on TranslationsUz {
 			'performanceOverlay.maxFall' => 'MaxFALL',
 			'performanceOverlay.cacheUsed' => 'Foydalanilgan kesh',
 			'performanceOverlay.cacheLimit' => 'Kesh chegarasi',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Tezlik',
 			'performanceOverlay.player' => 'Pleyer',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.memory' => 'Xotira',
 			'performanceOverlay.uiFps' => 'Interfeys (UI) FPS',
 			'externalPlayer.title' => 'Tashqi pleyer',

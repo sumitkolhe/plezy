@@ -765,8 +765,6 @@
     "borrowFailed": "Kan verbinding niet lenen.",
     "incorrectPin": "Onjuiste pincode.",
     "incorrectPinTryAgain": "Onjuiste pincode. Probeer het opnieuw.",
-    "sourceProfileMissingParentAccount": "Het bovenliggende account van het bronprofiel ontbreekt.",
-    "failedToVerifyPin": "De pincode kon niet worden geverifieerd.",
     "newProfile": "Nieuw profiel",
     "profileNameHint": "bijv. Gasten, Kinderen, Woonkamer",
     "pinProtectionOptional": "Pincodebeveiliging (optioneel)",

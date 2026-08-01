@@ -765,8 +765,6 @@
     "borrowFailed": "Impossible d'emprunter la connexion.",
     "incorrectPin": "PIN incorrect.",
     "incorrectPinTryAgain": "PIN incorrect. Veuillez réessayer.",
-    "sourceProfileMissingParentAccount": "Le profil source ne possède pas de compte parent.",
-    "failedToVerifyPin": "Impossible de vérifier le PIN.",
     "newProfile": "Nouveau profil",
     "profileNameHint": "ex. Invités, Enfants, Salon familial",
     "pinProtectionOptional": "Protection par PIN (optionnelle)",

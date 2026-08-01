@@ -10,7 +10,6 @@ import '../../focus/focusable_wrapper.dart';
 import '../../i18n/strings.g.dart';
 import '../../profiles/active_profile_binder.dart';
 import '../../profiles/plex_home_service.dart';
-import '../../profiles/plex_home_switch.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_activation.dart';
 import '../../profiles/profile_connection.dart';
@@ -105,11 +104,6 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
         .where((pc) => pc.profileId == widget.targetProfile.id)
         .map((pc) => pc.connectionId)
         .toSet();
-    // Plex Home profiles also implicitly own their parent Plex connection.
-    if (widget.targetProfile.parentConnectionId != null) {
-      targetConnIds.add(widget.targetProfile.parentConnectionId!);
-    }
-
     final out = <_BorrowCandidate>[];
     final seen = <String>{};
 
@@ -118,36 +112,6 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
     // the borrow operation is identical regardless of which one the picker
     // points at; showing both is just clutter.
     String key(String connId, String userId) => '$connId/$userId';
-
-    // Pass 1: virtual Plex Home profiles (auto-surfaced from PlexHomeService)
-    // come first so they win as the canonical source for a given Home user.
-    // Their parent Plex connection isn't represented as a join row, so
-    // synthesize a ProfileConnection on the fly with userToken=null — the
-    // borrow flow re-mints the token via `/home/users/{uuid}/switch` from
-    // the parent account anyway, so the placeholder never gets persisted.
-    for (final source in allProfiles) {
-      if (source.id == widget.targetProfile.id) continue;
-      if (!source.isPlexHome) continue;
-      final parentId = source.parentConnectionId;
-      final homeUuid = source.plexHomeUserUuid;
-      if (parentId == null || homeUuid == null) continue;
-      if (targetConnIds.contains(parentId)) continue;
-      final conn = connById[parentId];
-      if (conn == null) continue;
-      if (!seen.add(key(conn.id, homeUuid))) continue;
-      out.add(
-        _BorrowCandidate(
-          source: source,
-          pc: ProfileConnection(
-            profileId: source.id,
-            connectionId: parentId,
-            userToken: null,
-            userIdentifier: homeUuid,
-          ),
-          connection: conn,
-        ),
-      );
-    }
 
     // Pass 2: persisted ProfileConnection rows from any other profile
     // (local profiles' own connections + already-borrowed rows on plex_home
@@ -243,12 +207,7 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
     setState(() => _busy = true);
     try {
       if (!await _verifySourcePin(cand)) return;
-      switch (cand.connection) {
-        case PlexAccountConnection():
-          await _borrowPlex(cand);
-        case JellyfinConnection():
-          await _borrowJellyfin(cand);
-      }
+      await _borrowJellyfin(cand);
     } catch (e, st) {
       // Without this, a throw from the verify/borrow steps (network, DB)
       // dies in the unawaited caller and the user gets no feedback.
@@ -266,76 +225,17 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
     }
   }
 
-  /// Verify the source profile's PIN if it has one. Locals check the local
-  /// hash; Plex Home sources doing a non-Plex borrow do a
-  /// `/home/users/{uuid}/switch` round-trip against the parent account so
-  /// Plex validates the PIN server-side (the minted token is discarded —
-  /// we only need the validation side effect).
-  ///
-  /// Plex-source borrows of a Plex Home profile pass through
-  /// `switchPlexHomeUserWithPin` in [_borrowPlex] anyway (it mints the
-  /// target's user-token), so re-validating here would prompt twice for
-  /// the same PIN. Skip in that case and let the inner call handle it.
+  /// Verify the source profile's PIN if it has one.
   Future<bool> _verifySourcePin(_BorrowCandidate cand) async {
     if (!cand.source.isPinProtected) return true;
-    if (cand.source.isLocal) {
-      final pin = await showPinEntryDialog(context, cand.source.displayName);
-      if (pin == null) return false;
-      if (!verifyProfilePin(cand.source, pin)) {
-        if (!mounted) return false;
-        showErrorSnackBar(context, t.profiles.incorrectPin);
-        return false;
-      }
-      return true;
-    }
-    // Plex Home source: defer to _borrowPlex's PIN prompt for Plex borrows.
-    if (cand.connection is PlexAccountConnection) return true;
-    // Other backends (Jellyfin) — validate via /switch and discard the token.
-    final parentId = cand.source.parentConnectionId;
-    final homeUuid = cand.source.plexHomeUserUuid;
-    if (parentId == null || homeUuid == null) return false;
-    // Built before the await: capturing the prompt needs a live element.
-    final promptForPin = dialogPinPrompt(context, cand.source.displayName);
-    final parent = await context.read<ConnectionRegistry>().getPlexAccount(parentId);
-    if (parent == null) {
-      if (mounted) showErrorSnackBar(context, t.profiles.sourceProfileMissingParentAccount);
-      return false;
-    }
-    final result = await mintPlexHomeUserToken(
-      account: parent,
-      homeUserUuid: homeUuid,
-      requiresPin: true,
-      promptForPin: promptForPin,
-      logLabel: cand.source.displayName,
-    );
-    if (!result.succeeded) {
-      if (result.status == PlexHomeSwitchStatus.failed && mounted) {
-        showErrorSnackBar(context, t.profiles.failedToVerifyPin);
-      }
+    final pin = await showPinEntryDialog(context, cand.source.displayName);
+    if (pin == null) return false;
+    if (!verifyProfilePin(cand.source, pin)) {
+      if (!mounted) return false;
+      showErrorSnackBar(context, t.profiles.incorrectPin);
       return false;
     }
     return true;
-  }
-
-  Future<void> _borrowPlex(_BorrowCandidate cand) async {
-    final pcRegistry = context.read<ProfileConnectionRegistry>();
-    final account = cand.connection as PlexAccountConnection;
-    final result = await mintPlexHomeUserToken(
-      account: account,
-      homeUserUuid: cand.pc.userIdentifier,
-      requiresPin: cand.source.plexProtected,
-      promptForPin: dialogPinPrompt(context, cand.source.displayName),
-      persistTo: pcRegistry,
-      persistProfileId: widget.targetProfile.id,
-      logLabel: cand.source.displayName,
-    );
-    if (!result.succeeded) {
-      if (result.status == PlexHomeSwitchStatus.failed && mounted) {
-        showErrorSnackBar(context, t.profiles.borrowFailed);
-      }
-      return;
-    }
-    _finishBorrow();
   }
 
   Future<void> _borrowJellyfin(_BorrowCandidate cand) async {

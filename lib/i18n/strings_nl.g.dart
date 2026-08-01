@@ -857,8 +857,6 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	@override String get borrowFailed => 'Kan verbinding niet lenen.';
 	@override String get incorrectPin => 'Onjuiste pincode.';
 	@override String get incorrectPinTryAgain => 'Onjuiste pincode. Probeer het opnieuw.';
-	@override String get sourceProfileMissingParentAccount => 'Het bovenliggende account van het bronprofiel ontbreekt.';
-	@override String get failedToVerifyPin => 'De pincode kon niet worden geverifieerd.';
 	@override String get newProfile => 'Nieuw profiel';
 	@override String get profileNameHint => 'bijv. Gasten, Kinderen, Woonkamer';
 	@override String get pinProtectionOptional => 'Pincodebeveiliging (optioneel)';
@@ -2412,8 +2410,6 @@ extension on TranslationsNl {
 			'profiles.borrowFailed' => 'Kan verbinding niet lenen.',
 			'profiles.incorrectPin' => 'Onjuiste pincode.',
 			'profiles.incorrectPinTryAgain' => 'Onjuiste pincode. Probeer het opnieuw.',
-			'profiles.sourceProfileMissingParentAccount' => 'Het bovenliggende account van het bronprofiel ontbreekt.',
-			'profiles.failedToVerifyPin' => 'De pincode kon niet worden geverifieerd.',
 			'profiles.newProfile' => 'Nieuw profiel',
 			'profiles.profileNameHint' => 'bijv. Gasten, Kinderen, Woonkamer',
 			'profiles.pinProtectionOptional' => 'Pincodebeveiliging (optioneel)',
@@ -2814,10 +2810,10 @@ extension on TranslationsNl {
 			'externalPlayer.customPlayers' => 'Aangepaste spelers',
 			'externalPlayer.systemDefault' => 'Systeemstandaard',
 			'externalPlayer.addCustomPlayer' => 'Aangepaste speler toevoegen',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Spelernaam',
 			'externalPlayer.playerNameHint' => 'Mijn speler',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Commando',
 			'externalPlayer.playerPackage' => 'Pakketnaam',
 			'externalPlayer.playerUrlScheme' => 'URL-schema',

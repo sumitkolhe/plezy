@@ -857,8 +857,6 @@ class _Translations$profiles$de extends Translations$profiles$en {
 	@override String get borrowFailed => 'Verbindung konnte nicht übernommen werden.';
 	@override String get incorrectPin => 'Falsche PIN.';
 	@override String get incorrectPinTryAgain => 'Falsche PIN. Bitte erneut versuchen.';
-	@override String get sourceProfileMissingParentAccount => 'Dem Quellprofil fehlt das übergeordnete Konto.';
-	@override String get failedToVerifyPin => 'PIN konnte nicht verifiziert werden.';
 	@override String get newProfile => 'Neues Profil';
 	@override String get profileNameHint => 'z. B. Gäste, Kinder, Wohnzimmer';
 	@override String get pinProtectionOptional => 'PIN-Schutz (optional)';
@@ -2412,8 +2410,6 @@ extension on TranslationsDe {
 			'profiles.borrowFailed' => 'Verbindung konnte nicht übernommen werden.',
 			'profiles.incorrectPin' => 'Falsche PIN.',
 			'profiles.incorrectPinTryAgain' => 'Falsche PIN. Bitte erneut versuchen.',
-			'profiles.sourceProfileMissingParentAccount' => 'Dem Quellprofil fehlt das übergeordnete Konto.',
-			'profiles.failedToVerifyPin' => 'PIN konnte nicht verifiziert werden.',
 			'profiles.newProfile' => 'Neues Profil',
 			'profiles.profileNameHint' => 'z. B. Gäste, Kinder, Wohnzimmer',
 			'profiles.pinProtectionOptional' => 'PIN-Schutz (optional)',
@@ -2814,10 +2810,10 @@ extension on TranslationsDe {
 			'externalPlayer.customPlayers' => 'Benutzerdefinierte Player',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Benutzerdefinierten Player hinzufügen',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Playername',
 			'externalPlayer.playerNameHint' => 'Mein Player',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Befehl',
 			'externalPlayer.playerPackage' => 'Paketname',
 			'externalPlayer.playerUrlScheme' => 'URL-Schema',

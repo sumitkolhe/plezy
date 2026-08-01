@@ -765,8 +765,6 @@
     "borrowFailed": "Qoşulma istifadə edilə bilmədi.",
     "incorrectPin": "Səhv PIN.",
     "incorrectPinTryAgain": "Səhv PIN. Lütfən təzədən cəhd edin.",
-    "sourceProfileMissingParentAccount": "Mənbə profilin əsas hesabı yoxdur.",
-    "failedToVerifyPin": "PIN təsdiqlənə bilmədi.",
     "newProfile": "Yeni profil",
     "profileNameHint": "məs. Qonaqlar, Uşaqlar, Qonaq otağı",
     "pinProtectionOptional": "PIN mühafizəsi (istəyə bağlı)",

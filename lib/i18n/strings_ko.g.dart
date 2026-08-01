@@ -856,8 +856,6 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	@override String get borrowFailed => '연결을 빌리지 못했습니다.';
 	@override String get incorrectPin => 'PIN이 올바르지 않습니다.';
 	@override String get incorrectPinTryAgain => 'PIN이 올바르지 않습니다. 다시 시도하세요.';
-	@override String get sourceProfileMissingParentAccount => '원본 프로필에 상위 계정이 없습니다.';
-	@override String get failedToVerifyPin => 'PIN을 확인하지 못했습니다.';
 	@override String get newProfile => '새 프로필';
 	@override String get profileNameHint => '예: 손님, 어린이, 가족실';
 	@override String get pinProtectionOptional => 'PIN 보호 (선택 사항)';
@@ -2409,8 +2407,6 @@ extension on TranslationsKo {
 			'profiles.borrowFailed' => '연결을 빌리지 못했습니다.',
 			'profiles.incorrectPin' => 'PIN이 올바르지 않습니다.',
 			'profiles.incorrectPinTryAgain' => 'PIN이 올바르지 않습니다. 다시 시도하세요.',
-			'profiles.sourceProfileMissingParentAccount' => '원본 프로필에 상위 계정이 없습니다.',
-			'profiles.failedToVerifyPin' => 'PIN을 확인하지 못했습니다.',
 			'profiles.newProfile' => '새 프로필',
 			'profiles.profileNameHint' => '예: 손님, 어린이, 가족실',
 			'profiles.pinProtectionOptional' => 'PIN 보호 (선택 사항)',
@@ -2811,10 +2807,10 @@ extension on TranslationsKo {
 			'externalPlayer.customPlayers' => '사용자 정의 플레이어',
 			'externalPlayer.systemDefault' => '시스템 기본값',
 			'externalPlayer.addCustomPlayer' => '사용자 정의 플레이어 추가',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => '플레이어 이름',
 			'externalPlayer.playerNameHint' => '내 플레이어',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => '명령어',
 			'externalPlayer.playerPackage' => '패키지 이름',
 			'externalPlayer.playerUrlScheme' => 'URL 스킴',

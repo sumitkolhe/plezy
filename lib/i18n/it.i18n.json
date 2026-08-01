@@ -765,8 +765,6 @@
     "borrowFailed": "Impossibile prendere in prestito la connessione.",
     "incorrectPin": "PIN errato.",
     "incorrectPinTryAgain": "PIN errato. Riprova.",
-    "sourceProfileMissingParentAccount": "Al profilo di origine manca l'account principale.",
-    "failedToVerifyPin": "Impossibile verificare il PIN.",
     "newProfile": "Nuovo profilo",
     "profileNameHint": "es. Ospiti, Bambini, Soggiorno",
     "pinProtectionOptional": "Protezione PIN (opzionale)",

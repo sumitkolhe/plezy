@@ -765,8 +765,6 @@
     "borrowFailed": "Ulanishdan foydalanib boʻlmadi.",
     "incorrectPin": "Notoʻgʻri PIN kod.",
     "incorrectPinTryAgain": "Notoʻgʻri PIN kod. Qaytadan urinib koʻring.",
-    "sourceProfileMissingParentAccount": "Manba profilda asosiy hisob yoʻq.",
-    "failedToVerifyPin": "PIN kodni tekshirib boʻlmadi.",
     "newProfile": "Yangi profil",
     "profileNameHint": "masalan, Mehmonlar, Bolalar",
     "pinProtectionOptional": "PIN himoyasi (ixtiyoriy)",

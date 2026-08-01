@@ -765,8 +765,6 @@
     "borrowFailed": "Kunne ikke låne tilkoblingen.",
     "incorrectPin": "Feil PIN.",
     "incorrectPinTryAgain": "Feil PIN. Prøv igjen.",
-    "sourceProfileMissingParentAccount": "Kildeprofilen mangler foreldrekontoen sin.",
-    "failedToVerifyPin": "Kunne ikke bekrefte PIN.",
     "newProfile": "Ny profil",
     "profileNameHint": "f.eks. Gjester, Barn, Familierom",
     "pinProtectionOptional": "PIN-beskyttelse (valgfri)",

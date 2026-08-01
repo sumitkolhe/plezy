@@ -857,8 +857,6 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	@override String get borrowFailed => 'Kunne ikke låne forbindelse.';
 	@override String get incorrectPin => 'Forkert PIN.';
 	@override String get incorrectPinTryAgain => 'Forkert PIN. Prøv igen.';
-	@override String get sourceProfileMissingParentAccount => 'Kildeprofilen mangler sin overordnede konto.';
-	@override String get failedToVerifyPin => 'Kunne ikke bekræfte PIN.';
 	@override String get newProfile => 'Ny profil';
 	@override String get profileNameHint => 'f.eks. Gæster, Børn, Familiens stue';
 	@override String get pinProtectionOptional => 'PIN-beskyttelse (valgfri)';
@@ -2412,8 +2410,6 @@ extension on TranslationsDa {
 			'profiles.borrowFailed' => 'Kunne ikke låne forbindelse.',
 			'profiles.incorrectPin' => 'Forkert PIN.',
 			'profiles.incorrectPinTryAgain' => 'Forkert PIN. Prøv igen.',
-			'profiles.sourceProfileMissingParentAccount' => 'Kildeprofilen mangler sin overordnede konto.',
-			'profiles.failedToVerifyPin' => 'Kunne ikke bekræfte PIN.',
 			'profiles.newProfile' => 'Ny profil',
 			'profiles.profileNameHint' => 'f.eks. Gæster, Børn, Familiens stue',
 			'profiles.pinProtectionOptional' => 'PIN-beskyttelse (valgfri)',
@@ -2814,10 +2810,10 @@ extension on TranslationsDa {
 			'externalPlayer.customPlayers' => 'Brugerdefinerede afspillere',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Tilføj brugerdefineret afspiller',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Afspillernavn',
 			'externalPlayer.playerNameHint' => 'Min afspiller',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Kommando',
 			'externalPlayer.playerPackage' => 'Pakkenavn',
 			'externalPlayer.playerUrlScheme' => 'URL-skema',

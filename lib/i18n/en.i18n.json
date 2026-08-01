@@ -765,8 +765,6 @@
     "borrowFailed": "Failed to borrow connection.",
     "incorrectPin": "Incorrect PIN.",
     "incorrectPinTryAgain": "Incorrect PIN. Please try again.",
-    "sourceProfileMissingParentAccount": "Source profile is missing its parent account.",
-    "failedToVerifyPin": "Failed to verify PIN.",
     "newProfile": "New profile",
     "profileNameHint": "e.g. Guests, Kids, Family Room",
     "pinProtectionOptional": "PIN protection (optional)",

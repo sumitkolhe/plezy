@@ -857,8 +857,6 @@ class _Translations$profiles$nb extends Translations$profiles$en {
 	@override String get borrowFailed => 'Kunne ikke låne tilkoblingen.';
 	@override String get incorrectPin => 'Feil PIN.';
 	@override String get incorrectPinTryAgain => 'Feil PIN. Prøv igjen.';
-	@override String get sourceProfileMissingParentAccount => 'Kildeprofilen mangler foreldrekontoen sin.';
-	@override String get failedToVerifyPin => 'Kunne ikke bekrefte PIN.';
 	@override String get newProfile => 'Ny profil';
 	@override String get profileNameHint => 'f.eks. Gjester, Barn, Familierom';
 	@override String get pinProtectionOptional => 'PIN-beskyttelse (valgfri)';
@@ -2412,8 +2410,6 @@ extension on TranslationsNb {
 			'profiles.borrowFailed' => 'Kunne ikke låne tilkoblingen.',
 			'profiles.incorrectPin' => 'Feil PIN.',
 			'profiles.incorrectPinTryAgain' => 'Feil PIN. Prøv igjen.',
-			'profiles.sourceProfileMissingParentAccount' => 'Kildeprofilen mangler foreldrekontoen sin.',
-			'profiles.failedToVerifyPin' => 'Kunne ikke bekrefte PIN.',
 			'profiles.newProfile' => 'Ny profil',
 			'profiles.profileNameHint' => 'f.eks. Gjester, Barn, Familierom',
 			'profiles.pinProtectionOptional' => 'PIN-beskyttelse (valgfri)',
@@ -2814,10 +2810,10 @@ extension on TranslationsNb {
 			'externalPlayer.customPlayers' => 'Egendefinerte spillere',
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Legg til egendefinert spiller',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Spillernavn',
 			'externalPlayer.playerNameHint' => 'Min spiller',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Kommando',
 			'externalPlayer.playerPackage' => 'Pakkenavn',
 			'externalPlayer.playerUrlScheme' => 'URL-skjema',

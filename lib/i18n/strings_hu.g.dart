@@ -857,8 +857,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String get borrowFailed => 'Nem sikerült átvenni a kapcsolatot.';
 	@override String get incorrectPin => 'Helytelen PIN-kód.';
 	@override String get incorrectPinTryAgain => 'Helytelen PIN-kód. Próbáld újra.';
-	@override String get sourceProfileMissingParentAccount => 'A forrásprofilból hiányzik a szülőfiók.';
-	@override String get failedToVerifyPin => 'Nem sikerült a PIN-kód ellenőrzése.';
 	@override String get newProfile => 'Új profil';
 	@override String get profileNameHint => 'pl. Vendégek, Gyerekek, Nappali';
 	@override String get pinProtectionOptional => 'PIN-védelem (opcionális)';
@@ -2412,8 +2410,6 @@ extension on TranslationsHu {
 			'profiles.borrowFailed' => 'Nem sikerült átvenni a kapcsolatot.',
 			'profiles.incorrectPin' => 'Helytelen PIN-kód.',
 			'profiles.incorrectPinTryAgain' => 'Helytelen PIN-kód. Próbáld újra.',
-			'profiles.sourceProfileMissingParentAccount' => 'A forrásprofilból hiányzik a szülőfiók.',
-			'profiles.failedToVerifyPin' => 'Nem sikerült a PIN-kód ellenőrzése.',
 			'profiles.newProfile' => 'Új profil',
 			'profiles.profileNameHint' => 'pl. Vendégek, Gyerekek, Nappali',
 			'profiles.pinProtectionOptional' => 'PIN-védelem (opcionális)',
@@ -2814,10 +2810,10 @@ extension on TranslationsHu {
 			'externalPlayer.customPlayers' => 'Egyéni lejátszók',
 			'externalPlayer.systemDefault' => 'Rendszer alapértelmezése',
 			'externalPlayer.addCustomPlayer' => 'Egyéni lejátszó hozzáadása',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Lejátszó neve',
 			'externalPlayer.playerNameHint' => 'Saját lejátszó',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Parancs',
 			'externalPlayer.playerPackage' => 'Csomagnév',
 			'externalPlayer.playerUrlScheme' => 'URL-séma',

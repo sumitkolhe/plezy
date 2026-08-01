@@ -859,8 +859,6 @@ class _Translations$profiles$pl extends Translations$profiles$en {
 	@override String get borrowFailed => 'Nie udało się dodać połączenia z innego profilu.';
 	@override String get incorrectPin => 'Nieprawidłowy PIN.';
 	@override String get incorrectPinTryAgain => 'Nieprawidłowy PIN. Spróbuj ponownie.';
-	@override String get sourceProfileMissingParentAccount => 'Profil źródłowy nie ma konta nadrzędnego.';
-	@override String get failedToVerifyPin => 'Nie udało się zweryfikować PIN-u.';
 	@override String get newProfile => 'Nowy profil';
 	@override String get profileNameHint => 'np. Goście, Dzieci, Salon';
 	@override String get pinProtectionOptional => 'Ochrona PIN-em (opcjonalnie)';
@@ -2418,8 +2416,6 @@ extension on TranslationsPl {
 			'profiles.borrowFailed' => 'Nie udało się dodać połączenia z innego profilu.',
 			'profiles.incorrectPin' => 'Nieprawidłowy PIN.',
 			'profiles.incorrectPinTryAgain' => 'Nieprawidłowy PIN. Spróbuj ponownie.',
-			'profiles.sourceProfileMissingParentAccount' => 'Profil źródłowy nie ma konta nadrzędnego.',
-			'profiles.failedToVerifyPin' => 'Nie udało się zweryfikować PIN-u.',
 			'profiles.newProfile' => 'Nowy profil',
 			'profiles.profileNameHint' => 'np. Goście, Dzieci, Salon',
 			'profiles.pinProtectionOptional' => 'Ochrona PIN-em (opcjonalnie)',
@@ -2820,10 +2816,10 @@ extension on TranslationsPl {
 			'externalPlayer.customPlayers' => 'Niestandardowe odtwarzacze',
 			'externalPlayer.systemDefault' => 'Domyślny systemowy',
 			'externalPlayer.addCustomPlayer' => 'Dodaj niestandardowy odtwarzacz',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nazwa odtwarzacza',
 			'externalPlayer.playerNameHint' => 'Mój odtwarzacz',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Polecenie',
 			'externalPlayer.playerPackage' => 'Nazwa pakietu',
 			'externalPlayer.playerUrlScheme' => 'Schemat URL',

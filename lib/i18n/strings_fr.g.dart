@@ -857,8 +857,6 @@ class _Translations$profiles$fr extends Translations$profiles$en {
 	@override String get borrowFailed => 'Impossible d\'emprunter la connexion.';
 	@override String get incorrectPin => 'PIN incorrect.';
 	@override String get incorrectPinTryAgain => 'PIN incorrect. Veuillez réessayer.';
-	@override String get sourceProfileMissingParentAccount => 'Le profil source ne possède pas de compte parent.';
-	@override String get failedToVerifyPin => 'Impossible de vérifier le PIN.';
 	@override String get newProfile => 'Nouveau profil';
 	@override String get profileNameHint => 'ex. Invités, Enfants, Salon familial';
 	@override String get pinProtectionOptional => 'Protection par PIN (optionnelle)';
@@ -2412,8 +2410,6 @@ extension on TranslationsFr {
 			'profiles.borrowFailed' => 'Impossible d\'emprunter la connexion.',
 			'profiles.incorrectPin' => 'PIN incorrect.',
 			'profiles.incorrectPinTryAgain' => 'PIN incorrect. Veuillez réessayer.',
-			'profiles.sourceProfileMissingParentAccount' => 'Le profil source ne possède pas de compte parent.',
-			'profiles.failedToVerifyPin' => 'Impossible de vérifier le PIN.',
 			'profiles.newProfile' => 'Nouveau profil',
 			'profiles.profileNameHint' => 'ex. Invités, Enfants, Salon familial',
 			'profiles.pinProtectionOptional' => 'Protection par PIN (optionnelle)',
@@ -2814,10 +2810,10 @@ extension on TranslationsFr {
 			'externalPlayer.customPlayers' => 'Lecteurs personnalisés',
 			'externalPlayer.systemDefault' => 'Par défaut du système',
 			'externalPlayer.addCustomPlayer' => 'Ajouter un lecteur personnalisé',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nom du lecteur',
 			'externalPlayer.playerNameHint' => 'Mon lecteur',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => 'Commande',
 			'externalPlayer.playerPackage' => 'Nom du paquet',
 			'externalPlayer.playerUrlScheme' => 'Schéma URL',

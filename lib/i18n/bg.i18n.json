@@ -765,8 +765,6 @@
     "borrowFailed": "Неуспешно използване на връзка.",
     "incorrectPin": "Неправилен PIN.",
     "incorrectPinTryAgain": "Неправилен PIN. Опитайте отново.",
-    "sourceProfileMissingParentAccount": "Изходният профил няма родителски акаунт.",
-    "failedToVerifyPin": "Неуспешна проверка на PIN.",
     "newProfile": "Нов профил",
     "profileNameHint": "напр. Гости, Деца, Семейна стая",
     "pinProtectionOptional": "PIN защита (по желание)",

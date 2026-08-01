@@ -856,8 +856,6 @@ class Translations$profiles$zh extends Translations$profiles$en {
 	@override String get borrowFailed => '无法添加连接。';
 	@override String get incorrectPin => 'PIN 不正确。';
 	@override String get incorrectPinTryAgain => 'PIN 不正确。请重试。';
-	@override String get sourceProfileMissingParentAccount => '源用户资料缺少关联的主账户。';
-	@override String get failedToVerifyPin => '无法验证 PIN。';
 	@override String get newProfile => '新建用户资料';
 	@override String get profileNameHint => '例如：访客、儿童、客厅';
 	@override String get pinProtectionOptional => 'PIN 保护（可选）';
@@ -2409,8 +2407,6 @@ extension on TranslationsZh {
 			'profiles.borrowFailed' => '无法添加连接。',
 			'profiles.incorrectPin' => 'PIN 不正确。',
 			'profiles.incorrectPinTryAgain' => 'PIN 不正确。请重试。',
-			'profiles.sourceProfileMissingParentAccount' => '源用户资料缺少关联的主账户。',
-			'profiles.failedToVerifyPin' => '无法验证 PIN。',
 			'profiles.newProfile' => '新建用户资料',
 			'profiles.profileNameHint' => '例如：访客、儿童、客厅',
 			'profiles.pinProtectionOptional' => 'PIN 保护（可选）',
@@ -2811,10 +2807,10 @@ extension on TranslationsZh {
 			'externalPlayer.customPlayers' => '自定义播放器',
 			'externalPlayer.systemDefault' => '系统默认',
 			'externalPlayer.addCustomPlayer' => '添加自定义播放器',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => '播放器名称',
 			'externalPlayer.playerNameHint' => '我的播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => '命令',
 			'externalPlayer.playerPackage' => '包名',
 			'externalPlayer.playerUrlScheme' => 'URL 方案',

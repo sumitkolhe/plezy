@@ -2335,12 +2335,6 @@ class Translations$profiles$en {
 	/// en: 'Incorrect PIN. Please try again.'
 	String get incorrectPinTryAgain => 'Incorrect PIN. Please try again.';
 
-	/// en: 'Source profile is missing its parent account.'
-	String get sourceProfileMissingParentAccount => 'Source profile is missing its parent account.';
-
-	/// en: 'Failed to verify PIN.'
-	String get failedToVerifyPin => 'Failed to verify PIN.';
-
 	/// en: 'New profile'
 	String get newProfile => 'New profile';
 
@@ -5622,8 +5616,6 @@ extension on Translations {
 			'profiles.borrowFailed' => 'Failed to borrow connection.',
 			'profiles.incorrectPin' => 'Incorrect PIN.',
 			'profiles.incorrectPinTryAgain' => 'Incorrect PIN. Please try again.',
-			'profiles.sourceProfileMissingParentAccount' => 'Source profile is missing its parent account.',
-			'profiles.failedToVerifyPin' => 'Failed to verify PIN.',
 			'profiles.newProfile' => 'New profile',
 			'profiles.profileNameHint' => 'e.g. Guests, Kids, Family Room',
 			'profiles.pinProtectionOptional' => 'PIN protection (optional)',
@@ -5926,10 +5918,10 @@ extension on Translations {
 			'collections.searchCollections' => 'Search collections...',
 			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.noPlaylists' => 'No playlists found',
 			'playlists.create' => 'Create Playlist',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.playlistName' => 'Playlist Name',
 			'playlists.enterPlaylistName' => 'Enter playlist name',
 			'playlists.delete' => 'Delete Playlist',

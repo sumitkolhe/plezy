@@ -764,8 +764,6 @@
     "borrowFailed": "接続を追加できませんでした。",
     "incorrectPin": "PINが正しくありません。",
     "incorrectPinTryAgain": "PINが正しくありません。もう一度お試しください。",
-    "sourceProfileMissingParentAccount": "元のプロフィールに親アカウントがありません。",
-    "failedToVerifyPin": "PINを確認できませんでした。",
     "newProfile": "新しいプロフィール",
     "profileNameHint": "例：ゲスト、キッズ、ファミリールーム",
     "pinProtectionOptional": "PIN保護（オプション）",

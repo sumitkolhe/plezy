@@ -857,8 +857,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String get borrowFailed => '無法共用連線。';
 	@override String get incorrectPin => 'PIN 碼不正確。';
 	@override String get incorrectPinTryAgain => 'PIN 碼不正確。請重試。';
-	@override String get sourceProfileMissingParentAccount => '來源使用者設定檔缺少其父帳戶資訊。';
-	@override String get failedToVerifyPin => '無法驗證 PIN 碼。';
 	@override String get newProfile => '建立使用者設定檔';
 	@override String get profileNameHint => '例如：訪客、兒童、客廳';
 	@override String get pinProtectionOptional => 'PIN 碼保護（選填）';
@@ -2410,8 +2408,6 @@ extension on TranslationsZhHant {
 			'profiles.borrowFailed' => '無法共用連線。',
 			'profiles.incorrectPin' => 'PIN 碼不正確。',
 			'profiles.incorrectPinTryAgain' => 'PIN 碼不正確。請重試。',
-			'profiles.sourceProfileMissingParentAccount' => '來源使用者設定檔缺少其父帳戶資訊。',
-			'profiles.failedToVerifyPin' => '無法驗證 PIN 碼。',
 			'profiles.newProfile' => '建立使用者設定檔',
 			'profiles.profileNameHint' => '例如：訪客、兒童、客廳',
 			'profiles.pinProtectionOptional' => 'PIN 碼保護（選填）',
@@ -2812,10 +2808,10 @@ extension on TranslationsZhHant {
 			'externalPlayer.customPlayers' => '自訂播放器',
 			'externalPlayer.systemDefault' => '系統預設',
 			'externalPlayer.addCustomPlayer' => '新增自訂播放器',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerName' => '播放器名稱',
 			'externalPlayer.playerNameHint' => '我的播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerCommand' => '執行命令',
 			'externalPlayer.playerPackage' => '套件名稱',
 			'externalPlayer.playerUrlScheme' => 'URL 協定架構（Scheme）',

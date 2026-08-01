@@ -765,8 +765,6 @@
     "borrowFailed": "Bağlantı ödünç alınamadı.",
     "incorrectPin": "Yanlış PIN.",
     "incorrectPinTryAgain": "Yanlış PIN. Lütfen tekrar deneyin.",
-    "sourceProfileMissingParentAccount": "Kaynak profilin üst hesabı eksik.",
-    "failedToVerifyPin": "PIN doğrulanamadı.",
     "newProfile": "Yeni profil",
     "profileNameHint": "ör. Misafirler, Çocuklar, Oturma Odası",
     "pinProtectionOptional": "PIN koruması (isteğe bağlı)",

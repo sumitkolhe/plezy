@@ -765,8 +765,6 @@
     "borrowFailed": "Verbindung konnte nicht übernommen werden.",
     "incorrectPin": "Falsche PIN.",
     "incorrectPinTryAgain": "Falsche PIN. Bitte erneut versuchen.",
-    "sourceProfileMissingParentAccount": "Dem Quellprofil fehlt das übergeordnete Konto.",
-    "failedToVerifyPin": "PIN konnte nicht verifiziert werden.",
     "newProfile": "Neues Profil",
     "profileNameHint": "z. B. Gäste, Kinder, Wohnzimmer",
     "pinProtectionOptional": "PIN-Schutz (optional)",
