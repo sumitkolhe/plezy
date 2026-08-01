@@ -25,7 +25,7 @@ class _ShelfClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  ServerCapabilities get capabilities => ServerCapabilities.plex;
+  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   String thumbnailUrl(String? path, {int? width, int? height, bool cover = true}) {

@@ -157,7 +157,7 @@ class _PagedHubClient implements MediaServerClient {
 
   @override
   ServerCapabilities get capabilities =>
-      backend == MediaBackend.jellyfin ? ServerCapabilities.plex : ServerCapabilities.jellyfin;
+      ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchMoreHubItemsPage(

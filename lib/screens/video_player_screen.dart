@@ -317,7 +317,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   AudioTrack? _preferredAudioTrack;
   SubtitlePreference? _preferredSubtitleTrack;
   SubtitlePreference? _preferredSecondarySubtitleTrack;
-  bool _serverSupportsTranscoding = false;
   // Kicked off early in the player initialization attempt for online non-live playback so
   // the metadata fetch (and transcode-decision HTTP, if non-original preset)
   // overlaps with MPV property configuration. Awaited inside `_startPlayback`
@@ -947,14 +946,8 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
         if (genericClient == null) {
           throw StateError('No client registered for ${_currentMetadata.serverId}');
         }
-        // Single source of truth for showing quality controls and applying the
-        // saved startup quality. Backends that cannot transcode always start at
-        // Original even if the user picked a lower default quality.
-        _serverSupportsTranscoding = genericClient.capabilities.videoTranscoding;
         if (widget.selectedQualityPreset == null) {
-          _selectedQualityPreset = _serverSupportsTranscoding
-              ? settingsService.read(SettingsService.defaultQualityPreset)
-              : TranscodeQualityPreset.original;
+          _selectedQualityPreset = settingsService.read(SettingsService.defaultQualityPreset);
         } else {
           _selectedQualityPreset = widget.selectedQualityPreset!;
         }

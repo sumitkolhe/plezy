@@ -71,7 +71,6 @@ mixin _JellyfinPlaybackMethods on _JellyfinClientInternals {
     required MediaItem item,
     required MediaSourceInfo mediaSource,
   }) async {
-    if (!capabilities.scrubThumbnails) return null;
     final manifest = mediaSource.trickplayByWidth;
     if (manifest == null || manifest.isEmpty) return null;
     return JellyfinTrickplayService.create(

@@ -1016,18 +1016,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   }
 
   Widget _buildUserRatingChip(MediaItem metadata) {
-    final mediaClient = _getMediaClientForMetadata(context);
-    final isNumeric = mediaClient?.capabilities.numericUserRating ?? true;
-    final hasRating = metadata.userRating != null && metadata.userRating! > 0;
-    final starValue = hasRating ? metadata.userRating! / 2.0 : 0.0;
-    final active = isNumeric ? hasRating : metadata.isFavorite == true;
-
-    final iconData = isNumeric ? Symbols.star_rounded : Symbols.favorite_rounded;
-    final activeIconColor = isNumeric ? Colors.amber : Colors.redAccent;
-    // Numeric backends show the formatted rating when set; favorite backends
-    // rely on the filled heart to communicate the favorite state and keep the
-    // "Rate" label as the action prompt either way.
-    final label = isNumeric && hasRating ? formatRating(starValue) : t.mediaMenu.rate;
+    final active = metadata.isFavorite == true;
+    const iconData = Symbols.favorite_rounded;
+    const activeIconColor = Colors.redAccent;
+    final label = t.mediaMenu.rate;
 
     return ListenableBuilder(
       listenable: _ratingChipFocusNode,
@@ -1096,11 +1088,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       builder: (context) => RatingBottomSheet(
         item: metadata,
         serverClient: _getMediaClientForMetadata(this.context),
-        onServerRatingChanged: (rating) {
-          setStateIfMounted(() {
-            _fullMetadata = (_fullMetadata ?? widget.metadata).copyWith(userRating: rating);
-          });
-        },
         onServerFavoriteChanged: (favorite) {
           setStateIfMounted(() {
             _fullMetadata = (_fullMetadata ?? widget.metadata).copyWith(isFavorite: favorite);

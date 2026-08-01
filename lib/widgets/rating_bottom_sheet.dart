@@ -28,14 +28,12 @@ import 'clickable_cursor.dart';
 class RatingBottomSheet extends StatefulWidget {
   final MediaItem item;
   final MediaServerClient? serverClient;
-  final ValueChanged<double>? onServerRatingChanged;
   final ValueChanged<bool>? onServerFavoriteChanged;
 
   const RatingBottomSheet({
     super.key,
     required this.item,
     required this.serverClient,
-    this.onServerRatingChanged,
     this.onServerFavoriteChanged,
   });
 
@@ -46,8 +44,6 @@ class RatingBottomSheet extends StatefulWidget {
 class _RatingBottomSheetState extends State<RatingBottomSheet> {
   static const _autoSaveDelay = Duration(milliseconds: 600);
 
-  late double _serverStars;
-  late double _serverRating;
   late bool _serverFavorite;
   late final FocusNode _serverFocusNode;
 
@@ -67,9 +63,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
   void initState() {
     super.initState();
     _serverFocusNode = FocusNode(debugLabel: 'rating_server');
-    final rawServerRating = widget.item.userRating;
-    _serverRating = rawServerRating != null && rawServerRating > 0 ? rawServerRating : 0.0;
-    _serverStars = _serverRating > 0 ? _serverRating / 2.0 : 0.0;
     _serverFavorite = widget.item.isFavorite == true;
   }
 
@@ -98,8 +91,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
         _resolverNeedsFribb = trackers.isMalConnected || trackers.isAnilistConnected;
         _queueTrackerScoreLoad(allTrackerSources);
 
-        final serverCaps = widget.serverClient?.capabilities;
-        final showServerRow = serverCaps != null && (serverCaps.numericUserRating || serverCaps.userFavorites);
+        final showServerRow = widget.serverClient != null;
         final focusNodes = <FocusNode>[
           if (showServerRow) _serverFocusNode,
           for (final source in trackerSources) _trackerFocusNode(source.service),
@@ -163,31 +155,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
     final status = _statuses[_serverKey];
     final subtitle =
         '${_backendLabel(client.backend)} - ${client.serverName ?? widget.item.serverName ?? t.common.unknown}';
-
-    if (client.capabilities.numericUserRating) {
-      final value = (_serverStars * 2).round().clamp(0, 10).toInt();
-      return _RatingRow(
-        focusNode: focusNode,
-        autofocus: autofocus,
-        leading: BackendBadge(backend: client.backend, size: 22),
-        title: t.rateSheet.server,
-        subtitle: subtitle,
-        loading: loading,
-        status: status,
-        enabled: !loading,
-        onNavigateUp: onNavigateUp,
-        onNavigateDown: onNavigateDown,
-        onDecrease: () => _setServerStarUnits(value - 1),
-        onIncrease: () => _setServerStarUnits(value + 1),
-        onSubmit: () => unawaited(_submitServerStars()),
-        control: _StarRatingControl(
-          value: value,
-          enabled: !loading,
-          onChanged: _setServerStarUnits,
-          onSubmitValue: (units) => unawaited(_submitServerStars(stars: units / 2.0)),
-        ),
-      );
-    }
 
     return _RatingRow(
       focusNode: focusNode,
@@ -359,16 +326,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
     _trackerSourcesByKey.remove(key);
   }
 
-  void _setServerStarUnits(int units) {
-    final clamped = units.clamp(0, 10).toInt();
-    if ((_serverStars * 2).round() == clamped) return;
-    setState(() {
-      _serverStars = clamped / 2.0;
-      _statuses.remove(_serverKey);
-    });
-    _scheduleAutoSave(_serverKey, _submitServerStars);
-  }
-
   void _setServerFavorite(bool value) {
     if (_serverFavorite == value) return;
     setState(() {
@@ -386,33 +343,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
       _statuses.remove(source.service.name);
     });
     _scheduleAutoSave(source.service.name, () => _submitTrackerRating(source));
-  }
-
-  Future<void> _submitServerStars({double? stars}) async {
-    _cancelAutoSave(_serverKey);
-    final value = stars ?? _serverStars;
-    if (value <= 0) {
-      await _clearServerRating();
-      return;
-    }
-
-    final rating = value * 2.0;
-    await _run(_serverKey, () async {
-      await widget.serverClient!.rate(widget.item, rating);
-      _serverRating = rating;
-      _serverStars = value;
-      widget.onServerRatingChanged?.call(rating);
-    });
-  }
-
-  Future<void> _clearServerRating() async {
-    _cancelAutoSave(_serverKey);
-    await _run(_serverKey, () async {
-      await widget.serverClient!.rate(widget.item, -1);
-      _serverRating = 0;
-      _serverStars = 0;
-      widget.onServerRatingChanged?.call(0);
-    });
   }
 
   Future<void> _submitServerFavorite({bool? value}) async {
@@ -528,13 +458,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
     if (client == null) return;
 
     try {
-      if (client.capabilities.numericUserRating) {
-        final rating = _serverStars <= 0 ? -1.0 : _serverStars * 2.0;
-        await client.rate(widget.item, rating);
-        widget.onServerRatingChanged?.call(rating < 0 ? 0 : rating);
-        return;
-      }
-
       await client.setFavorite(widget.item, _serverFavorite);
       widget.onServerFavoriteChanged?.call(_serverFavorite);
     } catch (e) {

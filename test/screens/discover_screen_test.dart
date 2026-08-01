@@ -15,6 +15,7 @@ import 'package:plezy/media/media_hub.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
+import 'package:plezy/media/media_library.dart';
 import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/mixins/refreshable.dart';
 import 'package:plezy/mixins/tab_visibility_aware.dart';
@@ -474,14 +475,26 @@ class _FakeMediaServerClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  ServerCapabilities get capabilities => ServerCapabilities.plex;
+  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<List<MediaItem>> fetchContinueWatching({int? count = 20}) async => continueWatching;
 
+  // Home builds its rows from per-library hubs (ServerCapabilities.richHubs is
+  // false), so one library is enough to surface the whole fixture.
   @override
-  Future<List<MediaHub>> fetchGlobalHubs({int limit = defaultHubPreviewLimit, bool includePlaybackHubs = true}) async =>
-      hubs;
+  Future<List<MediaLibrary>> fetchLibraries() async => const [
+    MediaLibrary(id: 'lib-1', backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie),
+  ];
+
+  @override
+  Future<List<MediaHub>> fetchLibraryHubs(
+    String libraryId, {
+    required String libraryName,
+    int limit = defaultHubPreviewLimit,
+    bool includePlaybackHubs = true,
+    MediaKind? libraryKind,
+  }) async => hubs;
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);

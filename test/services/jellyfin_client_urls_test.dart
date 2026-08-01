@@ -1784,15 +1784,12 @@ void main() {
       await scoped.fetchClientSideEpisodeQueue('folder/show #1?x');
       await scoped.markWatched(item);
       await scoped.markUnwatched(item);
-      await scoped.rate(item, 7);
-      await scoped.rate(item, -1);
 
       final paths = captured.map((u) => u.path).toList();
       expect(paths, contains('/Shows/folder%2Fshow%20%231%3Fx/Seasons'));
       expect(paths, contains('/Shows/folder%2Fshow%20%231%3Fx/Episodes'));
       expect(paths, contains('/UserPlayedItems/folder%2Fitem%20%231%3Fx'));
       expect(paths.where((p) => p == '/UserPlayedItems/folder%2Fitem%20%231%3Fx'), hasLength(2));
-      expect(paths.where((p) => p == '/UserItems/folder%2Fitem%20%231%3Fx/Rating'), hasLength(2));
     });
 
     test('removeFromContinueWatching is unsupported for Jellyfin and does not call the server', () async {

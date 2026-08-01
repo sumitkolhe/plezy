@@ -142,7 +142,7 @@ class _FakeMusicClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  ServerCapabilities get capabilities => ServerCapabilities.plex;
+  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<List<MediaItem>> fetchAlbumTracks(String albumId) async {

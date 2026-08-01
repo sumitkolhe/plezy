@@ -215,9 +215,9 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     // Backend capabilities gate menu items so we don't expose actions the
     // active server cannot perform.
     final mediaClient = _itemServerId != null ? multiServerProvider.getClientForServer(ServerId(_itemServerId!)) : null;
-    final canTranscode = mediaClient?.capabilities.videoTranscoding ?? false;
-    // Static capabilities stay truthy while the server is unreachable, so
-    // version/quality choices need a liveness check on top.
+    final canTranscode = mediaClient != null;
+    // Transcoding is always available, so version/quality choices need a
+    // liveness check on top.
     final itemServerOnline =
         _itemServerId != null && multiServerProvider.serverManager.isClientOnline(ServerId(_itemServerId!));
     final canRemoveFromContinueWatching = mediaClient?.capabilities.continueWatchingRemoval ?? false;
@@ -275,9 +275,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           );
         }
 
-        // Instant Mix — capability-gated, and only while the server is
-        // reachable (capabilities stay truthy for offline servers).
-        if (itemServerOnline && (mediaClient?.capabilities.instantMix ?? false)) {
+        // Instant Mix — only while the server is reachable.
+        if (itemServerOnline) {
           menuActions.add(
             _MenuAction(value: 'music_instant_mix', icon: Symbols.instant_mix_rounded, label: t.music.instantMix),
           );
@@ -853,11 +852,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final client = context.tryGetMediaClientForServer(itemServerId);
     final itemServerOnline =
         itemServerId != null && context.read<MultiServerProvider>().serverManager.isClientOnline(itemServerId);
-    // Same flag the in-player Version & Quality sheet reads — keeps both
-    // surfaces honest about what the active backend can actually do. Also
-    // requires a reachable server: capabilities are static, and a server
-    // dropping between menu open and tap must not offer transcodes.
-    final canTranscode = itemServerOnline && (client?.capabilities.videoTranscoding ?? false);
+    // A server dropping between menu open and tap must not offer transcodes.
+    final canTranscode = itemServerOnline && client != null;
     final versions = client == null ? item.mediaVersions ?? const [] : await resolveMediaVersions(item, client);
     if (!context.mounted) return false;
 
@@ -1188,7 +1184,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       builder: (context) => RatingBottomSheet(
         item: item,
         serverClient: client,
-        onServerRatingChanged: (_) => _notifyRefresh(item),
         onServerFavoriteChanged: (_) => _notifyRefresh(item),
       ),
     );

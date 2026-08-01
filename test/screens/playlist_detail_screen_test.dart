@@ -756,7 +756,7 @@ class _PagedPlaylistClient implements MediaServerClient {
 
   @override
   ServerCapabilities get capabilities =>
-      _backend == MediaBackend.jellyfin ? ServerCapabilities.jellyfin : ServerCapabilities.plex;
+      ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchPlaylistPage(String id, {int? start, int? size, AbortController? abort}) async {

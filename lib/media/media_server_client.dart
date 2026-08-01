@@ -335,13 +335,6 @@ abstract class MediaServerClient {
   /// unsupported backends throw [UnsupportedError].
   Future<void> removeFromContinueWatching(MediaItem item);
 
-  /// Rate the item on a 0–10 scale. Backends without numeric ratings
-  /// (Jellyfin) collapse to like/dislike — see [ServerCapabilities.numericUserRating].
-  /// Throws [MediaServerHttpException] on failure, mirroring [markWatched] /
-  /// [markUnwatched] / [removeFromContinueWatching] — callers wrap the
-  /// awaited call in `try/catch` and surface a snackbar on the catch arm.
-  Future<void> rate(MediaItem item, double rating);
-
   /// Set or clear the per-user favorite flag ("heart") for [item]. Only call
   /// when [ServerCapabilities.userFavorites] is true; unsupported backends
   /// throw [UnsupportedError]. Throws [MediaServerHttpException] on failure.

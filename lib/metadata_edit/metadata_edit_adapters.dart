@@ -10,6 +10,6 @@ MetadataEditAdapter? metadataEditAdapterFor(MediaServerClient client) {
 }
 
 bool supportsMetadataEdit(MediaServerClient? client, MediaKind? kind) {
-  if (client == null || kind == null || !client.capabilities.richMetadataEdit) return false;
+  if (client == null || kind == null) return false;
   return metadataEditAdapterFor(client)?.supportsKind(kind) ?? false;
 }

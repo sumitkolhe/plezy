@@ -25,22 +25,6 @@ mixin _JellyfinWatchStateMethods on _JellyfinClientInternals {
   }
 
   @override
-  Future<void> rate(MediaItem item, double rating) async {
-    // Lossy mapping — Jellyfin only stores a binary like/dislike. Treat
-    // a negative input as "clear the rating" (DELETE), >= 6/10 as a like
-    // (POST Likes=true), and the rest as a dislike (POST Likes=false).
-    // No longer reachable from the rate sheet, which uses [setFavorite]
-    // for Jellyfin instead; kept as transport for the abstract member.
-    final response = rating < 0
-        ? await _http.delete('/UserItems/${_segment(item.id)}/Rating', queryParameters: {'userId': connection.userId})
-        : await _http.post(
-            '/UserItems/${_segment(item.id)}/Rating',
-            queryParameters: {'userId': connection.userId, 'Likes': (rating >= 6.0).toString()},
-          );
-    throwIfHttpError(response);
-  }
-
-  @override
   Future<void> setFavorite(MediaItem item, bool isFavorite) => _setItemFavorite(item.id, isFavorite);
 
   /// Toggle the per-user `IsFavorite` flag for [itemId]. Backs [setFavorite]

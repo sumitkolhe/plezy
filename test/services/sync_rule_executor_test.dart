@@ -566,7 +566,7 @@ class _PlayableDescendantsClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  ServerCapabilities get capabilities => ServerCapabilities.plex;
+  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   bool get isOfflineMode => false;
@@ -642,7 +642,7 @@ class _CollectionPagingClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  ServerCapabilities get capabilities => ServerCapabilities.plex;
+  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   bool get isOfflineMode => false;

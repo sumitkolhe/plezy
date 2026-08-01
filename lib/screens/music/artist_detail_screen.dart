@@ -93,13 +93,10 @@ class _ArtistDetailScreenState extends BaseMediaListDetailScreen<ArtistDetailScr
 
   @override
   List<FocusableAction> getAppBarActions() {
-    final client = context.tryGetMediaClientWithFallback(serverIdOrNull(widget.artist.serverId));
     return buildMusicActions(
       onPlay: () => unawaited(_playAll()),
       onShuffle: () => unawaited(_playAll(shuffle: true)),
-      onInstantMix: (client?.capabilities.instantMix ?? false)
-          ? () => unawaited(playInstantMix(context, widget.artist))
-          : null,
+      onInstantMix: () => unawaited(playInstantMix(context, widget.artist)),
     );
   }
 
