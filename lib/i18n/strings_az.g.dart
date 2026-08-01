@@ -101,7 +101,6 @@ class _Translations$auth$az extends Translations$auth$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => 'Plex ilə daxil ol';
 	@override String get connectToJellyfin => 'Jellyfin-ə qoşul';
 	@override String get useQuickConnect => 'Sürətli Qoşulmanı istifadə et';
 	@override String get quickConnectInstructions => 'Jellyfin-də Sürətli Qoşulmanı açın və bu kodu daxil edin.';
@@ -1798,7 +1797,6 @@ extension on TranslationsAz {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Plex ilə daxil ol',
 			'auth.connectToJellyfin' => 'Jellyfin-ə qoşul',
 			'auth.useQuickConnect' => 'Sürətli Qoşulmanı istifadə et',
 			'auth.quickConnectInstructions' => 'Jellyfin-də Sürətli Qoşulmanı açın və bu kodu daxil edin.',
@@ -2309,9 +2307,9 @@ extension on TranslationsAz {
 			'messages.playbackDataInvalid' => 'Server yanlış oynatma məlumatı qaytardı.',
 			'messages.playbackCancelled' => 'Oynatma ləğv edildi.',
 			'messages.playbackFailed' => 'Oynatma başladılarkən xəta.',
+			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl məlumatı yüklənərkən xəta: ${error}',
 			_ => null,
 		} ?? switch (path) {
-			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl məlumatı yüklənərkən xəta: ${error}',
 			'messages.errorLoadingSeries' => 'Serial yüklənərkən xəta',
 			'messages.musicNotSupported' => 'Musiqi oynatması hələ dəstəklənmir',
 			'messages.noDescriptionAvailable' => 'Təsvir əlçatan deyil',
@@ -2823,9 +2821,9 @@ extension on TranslationsAz {
 			'performanceOverlay.cacheLimit' => 'Keş limiti',
 			'performanceOverlay.speed' => 'Sürət',
 			'performanceOverlay.player' => 'Oynadıcı',
+			'performanceOverlay.memory' => 'Yaddaş',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.memory' => 'Yaddaş',
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS-i',
 			'externalPlayer.title' => 'Xarici oynadıcı',
 			'externalPlayer.useExternalPlayer' => 'Xarici oynadıcı istifadə et',

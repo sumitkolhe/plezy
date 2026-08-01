@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../connection/connection_registry.dart';
 import '../focus/key_event_utils.dart';
 import '../media/ids.dart';
 import '../media/media_server_client.dart';
 import '../profiles/active_profile_provider.dart';
-import '../profiles/profile_connection_registry.dart';
 import '../providers/catalog_sources_provider.dart';
 import '../providers/discover_provider.dart';
 import '../providers/explore_provider.dart';
@@ -152,13 +150,6 @@ class _ProfileSessionScreenState extends State<ProfileSessionScreen> {
               ChangeNotifierProvider(
                 create: (context) {
                   final provider = SeerrAccountProvider();
-                  provider.bindPlexTokenSupplier(
-                    buildSeerrPlexTokenSupplier(
-                      activeProfile: context.read<ActiveProfileProvider>(),
-                      connections: context.read<ConnectionRegistry>(),
-                      profileConnections: context.read<ProfileConnectionRegistry>(),
-                    ),
-                  );
                   unawaited(
                     provider.onActiveProfileChanged(activeId).catchError((Object e, StackTrace s) {
                       appLogger.w('Seerr profile hydrate failed', error: e, stackTrace: s);

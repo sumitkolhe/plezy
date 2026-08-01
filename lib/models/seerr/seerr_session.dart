@@ -3,10 +3,6 @@ import 'dart:convert';
 /// How the session was established — determines how a silent re-login is
 /// performed when the server-side session expires.
 enum SeerrAuthMethod {
-  /// `POST /auth/plex` with the profile's Plex account token (read live at
-  /// re-auth time, never copied into the session).
-  plex,
-
   /// `POST /auth/jellyfin` with stored username/password, serverType 2.
   jellyfin,
 
@@ -22,14 +18,14 @@ enum SeerrAuthMethod {
 /// Seerr-side user it maps to.
 ///
 /// [secret] is the plaintext password while in memory; the store protects it
-/// with CredentialVault before persisting. Empty for [SeerrAuthMethod.plex]
-/// and after an unrecoverable decrypt failure (session then lives until the
-/// cookie expires and the user must reconnect).
+/// with CredentialVault before persisting. Empty after an unrecoverable
+/// decrypt failure (session then lives until the cookie expires and the user
+/// must reconnect).
 class SeerrSession {
   final String baseUrl;
   final SeerrAuthMethod method;
 
-  /// Username (jellyfin/emby) or email (local); empty for plex.
+  /// Username (jellyfin/emby) or email (local).
   final String identifier;
   final String secret;
 

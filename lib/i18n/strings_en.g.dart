@@ -105,9 +105,6 @@ class Translations$auth$en {
 
 	// Translations
 
-	/// en: 'Sign in with Plex'
-	String get signInWithPlex => 'Sign in with Plex';
-
 	/// en: 'Connect to Jellyfin'
 	String get connectToJellyfin => 'Connect to Jellyfin';
 
@@ -4895,7 +4892,6 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Sign in with Plex',
 			'auth.connectToJellyfin' => 'Connect to Jellyfin',
 			'auth.useQuickConnect' => 'Use Quick Connect',
 			'auth.quickConnectInstructions' => 'Open Quick Connect in Jellyfin and enter this code.',
@@ -5406,9 +5402,9 @@ extension on Translations {
 			'tooltips.shufflePlay' => 'Shuffle play',
 			'tooltips.playTrailer' => 'Play trailer',
 			'tooltips.markAsWatched' => 'Mark as watched',
+			'tooltips.markAsUnwatched' => 'Mark as unwatched',
 			_ => null,
 		} ?? switch (path) {
-			'tooltips.markAsUnwatched' => 'Mark as unwatched',
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
 			'videoControls.subtitlesLabel' => 'Subtitles',
@@ -5920,9 +5916,9 @@ extension on Translations {
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'No playlists found',
 			'playlists.create' => 'Create Playlist',
+			'playlists.playlistName' => 'Playlist Name',
 			_ => null,
 		} ?? switch (path) {
-			'playlists.playlistName' => 'Playlist Name',
 			'playlists.enterPlaylistName' => 'Enter playlist name',
 			'playlists.delete' => 'Delete Playlist',
 			'playlists.removeItem' => 'Remove from Playlist',

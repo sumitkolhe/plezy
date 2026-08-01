@@ -19,18 +19,6 @@ class SeerrAuthException implements Exception {
   String toString() => 'SeerrAuthException: $message${statusCode == null ? '' : ' ($statusCode)'}';
 }
 
-/// Silent re-auth could not even be ATTEMPTED — the credentials weren't
-/// resolvable right now (e.g. the live Plex token supplier came up empty
-/// during a degraded launch). Deliberately not a [SeerrAuthException]:
-/// the failure is retryable and must not unlink the stored session.
-class SeerrReauthUnavailableException implements Exception {
-  final String message;
-  const SeerrReauthUnavailableException(this.message);
-
-  @override
-  String toString() => 'SeerrReauthUnavailableException: $message';
-}
-
 /// Non-auth API failure with a server-provided message (e.g. quota
 /// exceeded on a request, duplicate request).
 class SeerrApiException implements Exception {

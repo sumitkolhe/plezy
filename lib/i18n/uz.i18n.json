@@ -3,7 +3,6 @@
     "title": "Plezy"
   },
   "auth": {
-    "signInWithPlex": "Plex orqali kirish",
     "connectToJellyfin": "Jellyfin-ga ulanish",
     "useQuickConnect": "Tezkor ulanishdan foydalanish",
     "quickConnectInstructions": "Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.",

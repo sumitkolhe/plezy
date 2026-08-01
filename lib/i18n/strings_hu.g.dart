@@ -101,7 +101,6 @@ class _Translations$auth$hu extends Translations$auth$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => 'Bejelentkezés Plexszel';
 	@override String get connectToJellyfin => 'Csatlakozás Jellyfinhez';
 	@override String get useQuickConnect => 'Quick Connect használata';
 	@override String get quickConnectInstructions => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.';
@@ -1787,7 +1786,6 @@ extension on TranslationsHu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Bejelentkezés Plexszel',
 			'auth.connectToJellyfin' => 'Csatlakozás Jellyfinhez',
 			'auth.useQuickConnect' => 'Quick Connect használata',
 			'auth.quickConnectInstructions' => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.',
@@ -2298,9 +2296,9 @@ extension on TranslationsHu {
 			'messages.errorLoadingSeries' => 'Hiba a sorozat betöltésekor',
 			'messages.musicNotSupported' => 'A zenelejátszás még nem támogatott',
 			'messages.noDescriptionAvailable' => 'Nincs elérhető leírás',
+			'messages.noProfilesAvailable' => 'Nincsenek elérhető profilok',
 			_ => null,
 		} ?? switch (path) {
-			'messages.noProfilesAvailable' => 'Nincsenek elérhető profilok',
 			'messages.contactAdminForProfiles' => 'Lépj kapcsolatba a szerver adminisztrátorával profilok hozzáadásához',
 			'messages.unableToDetermineLibrarySection' => 'Nem sikerült meghatározni az elem könyvtári részlegét',
 			'messages.logsCleared' => 'Naplók törölve',
@@ -2812,9 +2810,9 @@ extension on TranslationsHu {
 			'externalPlayer.addCustomPlayer' => 'Egyéni lejátszó hozzáadása',
 			'externalPlayer.playerName' => 'Lejátszó neve',
 			'externalPlayer.playerNameHint' => 'Saját lejátszó',
+			'externalPlayer.playerCommand' => 'Parancs',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.playerCommand' => 'Parancs',
 			'externalPlayer.playerPackage' => 'Csomagnév',
 			'externalPlayer.playerUrlScheme' => 'URL-séma',
 			'externalPlayer.off' => 'Ki',

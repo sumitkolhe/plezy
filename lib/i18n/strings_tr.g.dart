@@ -101,7 +101,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => 'Plex ile Giriş Yap';
 	@override String get connectToJellyfin => 'Jellyfin\'e Bağlan';
 	@override String get useQuickConnect => 'Hızlı Bağlantıyı Kullan';
 	@override String get quickConnectInstructions => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.';
@@ -1798,7 +1797,6 @@ extension on TranslationsTr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Plex ile Giriş Yap',
 			'auth.connectToJellyfin' => 'Jellyfin\'e Bağlan',
 			'auth.useQuickConnect' => 'Hızlı Bağlantıyı Kullan',
 			'auth.quickConnectInstructions' => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.',
@@ -2309,9 +2307,9 @@ extension on TranslationsTr {
 			'messages.playbackDataInvalid' => 'Sunucu geçersiz oynatma bilgisi döndürdü.',
 			'messages.playbackCancelled' => 'Oynatma iptal edildi.',
 			'messages.playbackFailed' => 'Oynatma başlatılamadı.',
+			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Dosya bilgisi yüklenirken hata: ${error}',
 			_ => null,
 		} ?? switch (path) {
-			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Dosya bilgisi yüklenirken hata: ${error}',
 			'messages.errorLoadingSeries' => 'Dizi yüklenirken hata',
 			'messages.musicNotSupported' => 'Müzik oynatma henüz desteklenmiyor',
 			'messages.noDescriptionAvailable' => 'Açıklama mevcut değil',
@@ -2823,9 +2821,9 @@ extension on TranslationsTr {
 			'performanceOverlay.cacheLimit' => 'Önbellek Sınırı',
 			'performanceOverlay.speed' => 'Hız',
 			'performanceOverlay.player' => 'Oynatıcı',
+			'performanceOverlay.memory' => 'Bellek',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.memory' => 'Bellek',
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS',
 			'externalPlayer.title' => 'Harici Oynatıcı',
 			'externalPlayer.useExternalPlayer' => 'Harici Oynatıcı Kullan',

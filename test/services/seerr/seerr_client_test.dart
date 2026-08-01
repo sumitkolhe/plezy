@@ -112,22 +112,6 @@ void main() {
       expect(session.displayName, 'Alice');
     });
 
-    test('plex sign-in posts the token and stores no secret', () async {
-      late Map<String, dynamic> body;
-      final auth = SeerrAuthService(
-        httpClientFactory: () => MockClient((request) async {
-          expect(request.url.path, '/api/v1/auth/plex');
-          body = jsonDecode(request.body) as Map<String, dynamic>;
-          return _json(_user(), headers: {'set-cookie': '${SeerrConstants.sessionCookieName}=fresh'});
-        }),
-      );
-      final session = await auth.signInWithPlex(baseUrl: 'https://seerr.example.com', plexToken: 'plex-token');
-      expect(body, {'authToken': 'plex-token'});
-      expect(session.method, SeerrAuthMethod.plex);
-      expect(session.secret, isEmpty);
-      expect(session.identifier, isEmpty);
-    });
-
     test('rejected credentials surface as SeerrAuthException', () async {
       final auth = SeerrAuthService(
         httpClientFactory: () => MockClient((request) async => _json({'message': 'nope'}, status: 401)),
@@ -175,33 +159,6 @@ void main() {
       expect(updated?.method, SeerrAuthMethod.jellyfin);
     });
 
-    test('plex re-auth pulls the live token from the supplier', () async {
-      var suppliedToken = false;
-      final mock = MockClient((request) async {
-        if (request.url.path == '/api/v1/auth/plex') {
-          expect(jsonDecode(request.body), {'authToken': 'live-token'});
-          return _json(_user(), headers: {'set-cookie': '${SeerrConstants.sessionCookieName}=fresh'});
-        }
-        final cookie = request.headers['Cookie'];
-        if (cookie != '${SeerrConstants.sessionCookieName}=fresh') return _json({}, status: 401);
-        return _json(_user());
-      });
-      final client = SeerrClient(
-        _session(method: SeerrAuthMethod.plex, secret: ''),
-        onSessionInvalidated: () => fail('must not invalidate'),
-        plexTokenSupplier: () async {
-          suppliedToken = true;
-          return 'live-token';
-        },
-        authService: SeerrAuthService(httpClientFactory: () => mock),
-        httpClient: mock,
-      );
-      addTearDown(client.dispose);
-
-      await client.getMe();
-      expect(suppliedToken, isTrue);
-    });
-
     test('re-auth without stored credentials invalidates the session', () async {
       var invalidated = false;
       final mock = MockClient((request) async => _json({}, status: 401));
@@ -215,52 +172,6 @@ void main() {
 
       await expectLater(client.getMe(), throwsA(isA<SeerrAuthException>()));
       expect(invalidated, isTrue);
-    });
-
-    test('a transiently-unresolvable plex token errors WITHOUT unlinking the session', () async {
-      var invalidated = false;
-      var loginAttempts = 0;
-      final mock = MockClient((request) async {
-        if (request.url.path == '/api/v1/auth/plex') loginAttempts++;
-        return _json({}, status: 401);
-      });
-      final client = SeerrClient(
-        _session(method: SeerrAuthMethod.plex, secret: ''),
-        onSessionInvalidated: () => invalidated = true,
-        // Degraded launch: identity not resolvable right now.
-        plexTokenSupplier: () async => null,
-        authService: SeerrAuthService(httpClientFactory: () => mock),
-        httpClient: mock,
-      );
-      addTearDown(client.dispose);
-
-      await expectLater(client.getMe(), throwsA(isA<SeerrReauthUnavailableException>()));
-      expect(invalidated, isFalse, reason: 'a retryable failure must not clear the stored session');
-      expect(loginAttempts, 0);
-
-      // Once the supplier recovers, the next 401 re-auths normally.
-      final recovering = SeerrClient(
-        _session(method: SeerrAuthMethod.plex, secret: ''),
-        onSessionInvalidated: () => invalidated = true,
-        plexTokenSupplier: () async => 'live-token',
-        authService: SeerrAuthService(
-          httpClientFactory: () => MockClient((request) async {
-            if (request.url.path == '/api/v1/auth/plex') {
-              return _json(_user(), headers: {'set-cookie': '${SeerrConstants.sessionCookieName}=fresh'});
-            }
-            return _json(_user());
-          }),
-        ),
-        httpClient: MockClient((request) async {
-          final cookie = request.headers['Cookie'];
-          if (cookie != '${SeerrConstants.sessionCookieName}=fresh') return _json({}, status: 401);
-          return _json(_user());
-        }),
-      );
-      addTearDown(recovering.dispose);
-      final user = await recovering.getMe();
-      expect(user.id, 7);
-      expect(invalidated, isFalse);
     });
   });
 

@@ -101,7 +101,6 @@ class _Translations$auth$pt extends Translations$auth$en {
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => 'Entrar com Plex';
 	@override String get connectToJellyfin => 'Conectar ao Jellyfin';
 	@override String get useQuickConnect => 'Usar Quick Connect';
 	@override String get quickConnectInstructions => 'Abra o Quick Connect no Jellyfin e insira este código.';
@@ -1787,7 +1786,6 @@ extension on TranslationsPt {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Entrar com Plex',
 			'auth.connectToJellyfin' => 'Conectar ao Jellyfin',
 			'auth.useQuickConnect' => 'Usar Quick Connect',
 			'auth.quickConnectInstructions' => 'Abra o Quick Connect no Jellyfin e insira este código.',
@@ -2298,9 +2296,9 @@ extension on TranslationsPt {
 			'messages.errorLoadingSeries' => 'Erro ao carregar série',
 			'messages.musicNotSupported' => 'A reprodução de música ainda não é compatível',
 			'messages.noDescriptionAvailable' => 'Nenhuma descrição disponível',
+			'messages.noProfilesAvailable' => 'Nenhum perfil disponível',
 			_ => null,
 		} ?? switch (path) {
-			'messages.noProfilesAvailable' => 'Nenhum perfil disponível',
 			'messages.contactAdminForProfiles' => 'Entre em contato com o administrador do servidor para adicionar perfis',
 			'messages.unableToDetermineLibrarySection' => 'Não foi possível determinar a seção da biblioteca deste item',
 			'messages.logsCleared' => 'Logs limpos',
@@ -2812,9 +2810,9 @@ extension on TranslationsPt {
 			'externalPlayer.addCustomPlayer' => 'Adicionar reprodutor personalizado',
 			'externalPlayer.playerName' => 'Nome do reprodutor',
 			'externalPlayer.playerNameHint' => 'Meu reprodutor',
+			'externalPlayer.playerCommand' => 'Comando',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.playerCommand' => 'Comando',
 			'externalPlayer.playerPackage' => 'Nome do pacote',
 			'externalPlayer.playerUrlScheme' => 'Esquema de URL',
 			'externalPlayer.off' => 'Desativado',

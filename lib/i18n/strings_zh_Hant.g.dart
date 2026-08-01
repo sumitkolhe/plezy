@@ -102,7 +102,6 @@ class _Translations$auth$zh_Hant extends Translations$auth$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => '使用 Plex 登入';
 	@override String get connectToJellyfin => '連線至 Jellyfin';
 	@override String get useQuickConnect => '使用快速連線（Quick Connect）';
 	@override String get quickConnectInstructions => '在 Jellyfin 中開啟快速連線並輸入此代碼。';
@@ -1785,7 +1784,6 @@ extension on TranslationsZhHant {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => '使用 Plex 登入',
 			'auth.connectToJellyfin' => '連線至 Jellyfin',
 			'auth.useQuickConnect' => '使用快速連線（Quick Connect）',
 			'auth.quickConnectInstructions' => '在 Jellyfin 中開啟快速連線並輸入此代碼。',
@@ -2296,9 +2294,9 @@ extension on TranslationsZhHant {
 			'messages.errorLoadingSeries' => '載入影集時發生錯誤',
 			'messages.musicNotSupported' => '目前不支援播放音樂',
 			'messages.noDescriptionAvailable' => '目前沒有描述',
+			'messages.noProfilesAvailable' => '沒有可用的使用者設定檔',
 			_ => null,
 		} ?? switch (path) {
-			'messages.noProfilesAvailable' => '沒有可用的使用者設定檔',
 			'messages.contactAdminForProfiles' => '請聯絡伺服器管理員新增使用者設定檔',
 			'messages.unableToDetermineLibrarySection' => '無法確定此項目的媒體庫分區',
 			'messages.logsCleared' => '日誌已清除',
@@ -2810,9 +2808,9 @@ extension on TranslationsZhHant {
 			'externalPlayer.addCustomPlayer' => '新增自訂播放器',
 			'externalPlayer.playerName' => '播放器名稱',
 			'externalPlayer.playerNameHint' => '我的播放器',
+			'externalPlayer.playerCommand' => '執行命令',
 			_ => null,
 		} ?? switch (path) {
-			'externalPlayer.playerCommand' => '執行命令',
 			'externalPlayer.playerPackage' => '套件名稱',
 			'externalPlayer.playerUrlScheme' => 'URL 協定架構（Scheme）',
 			'externalPlayer.off' => '關閉',

@@ -3,7 +3,6 @@
     "title": "Plezy"
   },
   "auth": {
-    "signInWithPlex": "Plex ile Giriş Yap",
     "connectToJellyfin": "Jellyfin'e Bağlan",
     "useQuickConnect": "Hızlı Bağlantıyı Kullan",
     "quickConnectInstructions": "Jellyfin'de Hızlı Bağlantı'yı açın ve bu kodu girin.",

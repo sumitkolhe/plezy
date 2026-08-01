@@ -2,40 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-import '../connection/connection_registry.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../models/seerr/seerr_session.dart';
-import '../profiles/active_plex_identity.dart';
-import '../profiles/active_profile_provider.dart';
-import '../profiles/profile_connection_registry.dart';
 import '../services/seerr/seerr_auth_service.dart';
 import '../services/seerr/seerr_client.dart';
 import '../services/seerr/seerr_session_store.dart';
 import '../utils/app_logger.dart';
-
-/// Resolve the active profile's Plex token for Seerr sign-in/re-auth:
-/// the profile's per-user token when a bind exists (a Home user's Seerr
-/// account maps to their own plex.tv user), else the account token.
-SeerrPlexTokenSupplier buildSeerrPlexTokenSupplier({
-  required ActiveProfileProvider activeProfile,
-  required ConnectionRegistry connections,
-  required ProfileConnectionRegistry profileConnections,
-}) {
-  return () async {
-    final identity = await resolveActivePlexIdentity(
-      activeProfile: activeProfile,
-      connections: connections,
-      profileConnections: profileConnections,
-    );
-    if (identity == null) return null;
-    final profile = activeProfile.active;
-    if (profile != null) {
-      final pc = await profileConnections.get(profile.id, identity.account.id);
-      if (pc?.hasToken ?? false) return pc!.userToken;
-    }
-    return identity.account.accountToken;
-  };
-}
 
 /// Owns the active Seerr session for the currently-selected profile,
 /// mirroring [TrackersProvider]'s rebind shape: `onActiveProfileChanged` loads
@@ -51,7 +23,6 @@ class SeerrAccountProvider extends ChangeNotifier with DisposableChangeNotifierM
 
   final SeerrSessionStore _store;
   final SeerrAuthService authService;
-  SeerrPlexTokenSupplier? _plexTokenSupplier;
 
   /// Store writes go through one queue: save() awaits an AES-GCM protect
   /// step, so two rapid unawaited writes could otherwise persist
@@ -81,18 +52,6 @@ class SeerrAccountProvider extends ChangeNotifier with DisposableChangeNotifierM
 
   /// Wired once from the provider tree (the registries live above the
   /// profile session subtree).
-  void bindPlexTokenSupplier(SeerrPlexTokenSupplier supplier) => _plexTokenSupplier = supplier;
-
-  /// The connect screen's "Sign in with Plex" needs the same token the
-  /// silent re-auth path would use. Null on Jellyfin-only setups.
-  Future<String?> resolvePlexToken() async {
-    try {
-      return await _plexTokenSupplier?.call();
-    } catch (e) {
-      appLogger.w('Seerr: Plex token resolution failed', error: e);
-      return null;
-    }
-  }
 
   /// Called whenever the active profile changes (or on initial load).
   Future<void> onActiveProfileChanged(String? newUserUuid) async {
@@ -130,7 +89,6 @@ class SeerrAccountProvider extends ChangeNotifier with DisposableChangeNotifierM
             session,
             onSessionInvalidated: () => _handleSessionInvalidated(userUuid, generation),
             onSessionUpdated: (next) => _handleSessionUpdated(userUuid, generation, next),
-            plexTokenSupplier: () async => _plexTokenSupplier?.call(),
             authService: authService,
           );
     safeNotifyListeners();

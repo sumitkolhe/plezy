@@ -17,19 +17,13 @@ import '../../models/seerr/seerr_user.dart';
 import '../../utils/app_logger.dart';
 import '../trackers/future_coalescer.dart';
 import 'seerr_auth_service.dart';
-import 'seerr_constants.dart';
 import 'seerr_exceptions.dart';
 import 'seerr_http_client.dart';
 
-/// Supplies the profile's current Plex account token at silent-re-auth time,
-/// so plex-method sessions never store a token copy that could go stale.
-typedef SeerrPlexTokenSupplier = Future<String?> Function();
-
 /// Authenticated Seerr API client, scoped to one [SeerrSession].
 ///
-/// On 401 it re-logins silently via [SeerrAuthService.reauth] (password
-/// methods use the stored secret; plex uses [plexTokenSupplier]), swaps the
-/// cookie, and retries once. Concurrent re-auths coalesce per instance+user
+/// On 401 it re-logins silently via [SeerrAuthService.reauth] using the
+/// stored secret, swaps the cookie, and retries once. Concurrent re-auths coalesce per instance+user
 /// so a burst of in-flight 401s triggers a single login POST — the same
 /// shape as `TraktClient._refreshesByToken`.
 class SeerrClient {
@@ -38,7 +32,6 @@ class SeerrClient {
   SeerrSession _session;
   final SeerrHttpClient _http;
   final SeerrAuthService _auth;
-  final SeerrPlexTokenSupplier? plexTokenSupplier;
 
   /// Fired when re-auth fails permanently (rejected credentials, no stored
   /// secret). The owning provider clears local state.
@@ -51,7 +44,6 @@ class SeerrClient {
     SeerrSession session, {
     required this.onSessionInvalidated,
     this.onSessionUpdated,
-    this.plexTokenSupplier,
     SeerrAuthService? authService,
     http.Client? httpClient,
   }) : _session = session,
@@ -210,22 +202,10 @@ class SeerrClient {
 
   Future<SeerrSession> _doReauth() async {
     appLogger.d('Seerr: session expired, re-authenticating silently');
-    // The supplier reaches into profile/registry state with no timeout of
-    // its own; unbounded, a hang here would park the coalesced future in
-    // _reauthsByIdentity forever and wedge every future re-auth for this
-    // identity. A null token maps to a retryable SeerrReauthUnavailable.
-    final plexToken = _session.method == SeerrAuthMethod.plex
-        ? await _resolvePlexToken().timeout(SeerrConstants.authTimeout, onTimeout: () => null)
-        : null;
-    final next = await _auth.reauth(_session, plexToken: plexToken);
+    final next = await _auth.reauth(_session);
     _adopt(next);
     return next;
   }
-
-  /// Owns the `Future<String?>` type: calling `.timeout(onTimeout: () =>
-  /// null)` directly on the supplier's future trips the covariant-generics
-  /// runtime check when a caller hands us a `Future<String> Function()`.
-  Future<String?> _resolvePlexToken() async => plexTokenSupplier == null ? null : await plexTokenSupplier!();
 
   void _adopt(SeerrSession next) {
     updateSession(next);

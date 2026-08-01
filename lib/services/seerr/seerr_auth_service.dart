@@ -45,16 +45,6 @@ class SeerrAuthService {
     }
   }
 
-  /// `POST /auth/plex` with a Plex account token.
-  Future<SeerrSession> signInWithPlex({required String baseUrl, required String plexToken}) => _signIn(
-    baseUrl: baseUrl,
-    method: SeerrAuthMethod.plex,
-    path: '/auth/plex',
-    body: {'authToken': plexToken},
-    identifier: '',
-    secret: '',
-  );
-
   /// `POST /auth/jellyfin` with Jellyfin or Emby credentials.
   Future<SeerrSession> signInWithJellyfin({
     required String baseUrl,
@@ -85,20 +75,10 @@ class SeerrAuthService {
         secret: password,
       );
 
-  /// Silent re-login using the credentials carried by [session]
-  /// ([plexToken] for plex-method sessions). Returns the refreshed session.
-  Future<SeerrSession> reauth(SeerrSession session, {String? plexToken}) async {
+  /// Silent re-login using the credentials carried by [session]. Returns the
+  /// refreshed session.
+  Future<SeerrSession> reauth(SeerrSession session) async {
     final fresh = await switch (session.method) {
-      SeerrAuthMethod.plex when plexToken != null && plexToken.isNotEmpty => signInWithPlex(
-        baseUrl: session.baseUrl,
-        plexToken: plexToken,
-      ),
-      // No token RIGHT NOW is a degraded state (identity not hydrated yet,
-      // vault decrypt hiccup), not a server rejection — retryable, so it
-      // must not unlink the session. An empty stored secret below is the
-      // opposite: those credentials are gone for good, so re-linking is the
-      // only way forward and unlinking is honest.
-      SeerrAuthMethod.plex => throw const SeerrReauthUnavailableException('No Plex token available for silent re-auth'),
       SeerrAuthMethod.jellyfin || SeerrAuthMethod.emby when session.secret.isNotEmpty => signInWithJellyfin(
         baseUrl: session.baseUrl,
         username: session.identifier,

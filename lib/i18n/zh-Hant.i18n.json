@@ -3,7 +3,6 @@
     "title": "Plezy"
   },
   "auth": {
-    "signInWithPlex": "使用 Plex 登入",
     "connectToJellyfin": "連線至 Jellyfin",
     "useQuickConnect": "使用快速連線（Quick Connect）",
     "quickConnectInstructions": "在 Jellyfin 中開啟快速連線並輸入此代碼。",

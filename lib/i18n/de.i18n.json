@@ -3,7 +3,6 @@
     "title": "Plezy"
   },
   "auth": {
-    "signInWithPlex": "Mit Plex anmelden",
     "connectToJellyfin": "Mit Jellyfin verbinden",
     "useQuickConnect": "Quick Connect verwenden",
     "quickConnectInstructions": "Öffne Quick Connect in Jellyfin und gib diesen Code ein.",

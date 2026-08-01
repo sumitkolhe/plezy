@@ -3,7 +3,6 @@
     "title": "Plezy"
   },
   "auth": {
-    "signInWithPlex": "Bejelentkezés Plexszel",
     "connectToJellyfin": "Csatlakozás Jellyfinhez",
     "useQuickConnect": "Quick Connect használata",
     "quickConnectInstructions": "Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.",

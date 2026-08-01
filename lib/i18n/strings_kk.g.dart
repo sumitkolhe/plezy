@@ -101,7 +101,6 @@ class _Translations$auth$kk extends Translations$auth$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get signInWithPlex => 'Plex арқылы кіру';
 	@override String get connectToJellyfin => 'Jellyfin-ге қосылу';
 	@override String get useQuickConnect => 'Жылдам қосылуды пайдалану';
 	@override String get quickConnectInstructions => 'Jellyfin-де Жылдам қосылуды ашып, осы кодты енгізіңіз.';
@@ -1798,7 +1797,6 @@ extension on TranslationsKk {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Plezy',
-			'auth.signInWithPlex' => 'Plex арқылы кіру',
 			'auth.connectToJellyfin' => 'Jellyfin-ге қосылу',
 			'auth.useQuickConnect' => 'Жылдам қосылуды пайдалану',
 			'auth.quickConnectInstructions' => 'Jellyfin-де Жылдам қосылуды ашып, осы кодты енгізіңіз.',
@@ -2309,9 +2307,9 @@ extension on TranslationsKk {
 			'messages.playbackDataInvalid' => 'Сервер қате ойнату мәліметтерін қайтарды.',
 			'messages.playbackCancelled' => 'Ойнатудан бас тартылды.',
 			'messages.playbackFailed' => 'Ойнатуды іске қосу қатесі.',
+			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Файл ақпаратын жүктеу қатесі: ${error}',
 			_ => null,
 		} ?? switch (path) {
-			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Файл ақпаратын жүктеу қатесі: ${error}',
 			'messages.errorLoadingSeries' => 'Сериалды жүктеу қатесі',
 			'messages.musicNotSupported' => 'Музыка ойнату әлі қолдау таппайды',
 			'messages.noDescriptionAvailable' => 'Сипаттамасы жоқ',
@@ -2823,9 +2821,9 @@ extension on TranslationsKk {
 			'performanceOverlay.cacheLimit' => 'Кэш шегі',
 			'performanceOverlay.speed' => 'Жылдамдық',
 			'performanceOverlay.player' => 'Ойнатқыш',
+			'performanceOverlay.memory' => 'Жады',
 			_ => null,
 		} ?? switch (path) {
-			'performanceOverlay.memory' => 'Жады',
 			'performanceOverlay.uiFps' => 'Интерфейс (UI) FPS',
 			'externalPlayer.title' => 'Сыртқы ойнатқыш',
 			'externalPlayer.useExternalPlayer' => 'Сыртқы ойнатқышты пайдалану',
