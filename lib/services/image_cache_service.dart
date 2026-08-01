@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import '../utils/media_server_http_client.dart';
 import 'device_performance.dart';
 
-final _artworkHttpClient = MediaServerHttpClient(usePlainHttpClient: true);
+final _artworkHttpClient = MediaServerHttpClient();
 
 @visibleForTesting
 int artworkRequestConcurrencyForTier({required bool reduced}) => reduced ? 3 : 6;

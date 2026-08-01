@@ -45,7 +45,6 @@ class FailoverHttpClient extends MediaServerHttpClient {
     required super.defaultHeaders,
     super.connectTimeout,
     super.receiveTimeout,
-    super.usePlainHttpClient,
     required this.logLabel,
     required List<String> prioritizedEndpoints,
     required this.onEndpointSwitch,

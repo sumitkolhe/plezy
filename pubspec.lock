@@ -952,14 +952,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
-  saf_stream:
-    dependency: "direct main"
-    description:
-      name: saf_stream
-      sha256: "0be813853004e4c3d2aca2dae1f3089cef8769059af4528e2e137471b8e3367e"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
   saf_util:
     dependency: "direct main"
     description:
@@ -1149,7 +1141,7 @@ packages:
     source: hosted
     version: "1.12.1"
   stream_channel:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: stream_channel
       sha256: "969e04c80b8bcdf826f8f16579c7b14d780458bd97f56d107d3950fdbeef059d"
@@ -1380,7 +1372,7 @@ packages:
     source: hosted
     version: "1.0.1"
   web_socket_channel:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: web_socket_channel
       sha256: d645757fb0f4773d602444000a8131ff5d48c9e47adfe9772652dd1a4f2d45c8
@@ -1403,14 +1395,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  win_http:
-    dependency: "direct main"
-    description:
-      name: win_http
-      sha256: ebc4d37e2c0e6800cc200e40d289d3bac22fc17d40fce3ae7909d49a20da77bc
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.2"
   xdg_directories:
     dependency: transitive
     description:

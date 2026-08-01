@@ -4,7 +4,6 @@ import 'package:cronet_http/cronet_http.dart';
 import 'package:cupertino_http/cupertino_http.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:win_http/win_http.dart';
 
 import 'app_logger.dart';
 import 'managed_http_client.dart';
@@ -12,8 +11,6 @@ import 'managed_http_client.dart';
 /// Shared Cronet engine so all clients reuse the same connection pool.
 CronetEngine? _sharedEngine;
 bool _cronetBroken = false;
-
-const bool _tvosBuild = bool.fromEnvironment('TVOS_BUILD');
 
 bool _loggedPlatformClient = false;
 
@@ -55,40 +52,18 @@ http.Client createPlatformClient() {
     _logPlatformClient('android', 'IOClient (Android fallback)');
     return _createTunedIoClient('IOClient (Android fallback)');
   }
-  if (Platform.isIOS && _tvosBuild) {
-    _logPlatformClient('tvos', 'IOClient (tvOS tuned)');
-    return _createTunedIoClient('IOClient (tvOS tuned)');
-  }
-  if (Platform.isIOS || Platform.isMacOS) {
+  if (Platform.isIOS) {
     try {
       final client = CupertinoClient.defaultSessionConfiguration();
-      _logPlatformClient(Platform.isIOS ? 'ios' : 'macos', 'CupertinoClient');
+      _logPlatformClient('ios', 'CupertinoClient');
       return ManagedHttpClient(client, debugLabel: 'CupertinoClient');
     } catch (e, st) {
       appLogger.w('CupertinoClient init failed, falling back to IOClient', error: e, stackTrace: st);
-      _logPlatformClient(Platform.isIOS ? 'ios' : 'macos', 'IOClient (fallback)');
+      _logPlatformClient('ios', 'IOClient (fallback)');
       return ManagedHttpClient(IOClient(), debugLabel: 'IOClient (fallback)');
     }
   }
-  if (Platform.isWindows) {
-    try {
-      final client = WinHttpClient.defaultConfiguration();
-      _logPlatformClient('windows', 'WinHttpClient');
-      return ManagedHttpClient(client, debugLabel: 'WinHttpClient');
-    } catch (e, st) {
-      appLogger.w('WinHttpClient init failed, falling back to IOClient', error: e, stackTrace: st);
-      _logPlatformClient('windows', 'IOClient (fallback)');
-      return ManagedHttpClient(IOClient(), debugLabel: 'IOClient (fallback)');
-    }
-  }
+  // The macOS test host lands here; it has no native client wired up.
   _logPlatformClient(Platform.operatingSystem, 'IOClient');
   return ManagedHttpClient(IOClient(), debugLabel: 'IOClient');
-}
-
-http.Client createPlainHttpClient() {
-  if (Platform.isLinux) {
-    _logPlatformClient('linux', 'IOClient (Plex API tuned)');
-    return _createTunedIoClient('IOClient (Plex API tuned)');
-  }
-  return createPlatformClient();
 }

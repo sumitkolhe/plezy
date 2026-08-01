@@ -49,9 +49,7 @@ dependencies:
     # Vendored upstream 3.1.0 with a pending Result lifecycle fix (CHANGELOG) —
     # upstream still double-replies MethodChannel results and crashes the Activity.
     path: packages/saf_util
-  saf_stream: ^3.1.0
   material_symbols_icons: ^4.2951.0
-  web_socket_channel: ^3.0.1
   dart_discord_presence: ^1.2.0
   flutter_svg: ^2.2.3
   # Fork note: 41c16be creates the desktop temp parent before opening the
@@ -69,7 +67,6 @@ dependencies:
   sentry_flutter: ^9.25.0
   cupertino_http: ^3.0.2
   cronet_http: ^1.6.0
-  win_http: ^0.2.2
   collection: ^1.18.0
   freezed_annotation: ^3.1.0
   xml: ^7.0.1
@@ -83,7 +80,6 @@ dev_dependencies:
   # Root analysis traverses packages/saf_util and consumes its lint profile.
   mgenware_dart_lints: ^8.0.0
   fake_async: ^1.3.3
-  stream_channel: ^2.1.4
   build_runner: ^2.13.0
   json_serializable: ^6.7.1
   slang_build_runner: ^4.14.0
@@ -96,8 +92,6 @@ dev_dependencies:
   plugin_platform_interface: ^2.1.0
   freezed: ^3.2.5
   analyzer: 10.2.0
-
-dependency_overrides:
 sentry:
   org: plezy
   project: plezy
