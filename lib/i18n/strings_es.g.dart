@@ -831,8 +831,6 @@ class _Translations$profiles$es extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Eliminar ${displayName} y sus conexiones. Los servidores seguirán disponibles.';
 	@override String get profileNameLabel => 'Nombre del perfil';
 	@override String get pinProtectionLabel => 'Protección con PIN';
-	@override String get pinManagedByPlex => 'PIN gestionado por Plex. Edita en plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Sin PIN establecido. Para requerir uno, edita el usuario Home en plex.tv.';
 	@override String get setPin => 'Establecer PIN';
 	@override String get setPinTitle => 'Establecer PIN';
 	@override String get confirmPinTitle => 'Confirmar PIN';
@@ -2388,8 +2386,6 @@ extension on TranslationsEs {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Eliminar ${displayName} y sus conexiones. Los servidores seguirán disponibles.',
 			'profiles.profileNameLabel' => 'Nombre del perfil',
 			'profiles.pinProtectionLabel' => 'Protección con PIN',
-			'profiles.pinManagedByPlex' => 'PIN gestionado por Plex. Edita en plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Sin PIN establecido. Para requerir uno, edita el usuario Home en plex.tv.',
 			'profiles.setPin' => 'Establecer PIN',
 			'profiles.setPinTitle' => 'Establecer PIN',
 			'profiles.confirmPinTitle' => 'Confirmar PIN',
@@ -2816,10 +2812,10 @@ extension on TranslationsEs {
 			'externalPlayer.useExternalPlayerDescription' => 'Abrir videos en otra aplicación',
 			'externalPlayer.selectPlayer' => 'Seleccionar reproductor',
 			'externalPlayer.customPlayers' => 'Reproductores personalizados',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Predeterminado del sistema',
 			'externalPlayer.addCustomPlayer' => 'Añadir reproductor personalizado',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nombre del reproductor',
 			'externalPlayer.playerNameHint' => 'Mi reproductor',
 			'externalPlayer.playerCommand' => 'Comando',

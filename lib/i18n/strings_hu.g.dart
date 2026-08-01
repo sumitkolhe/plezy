@@ -831,8 +831,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Eltávolítod a(z) ${displayName} profilt és annak kapcsolatait. A szerverek elérhetőek maradnak.';
 	@override String get profileNameLabel => 'Profil neve';
 	@override String get pinProtectionLabel => 'PIN-kódos védelem';
-	@override String get pinManagedByPlex => 'A PIN-kódot a Plex kezeli. Szerkesztés a plex.tv oldalon.';
-	@override String get noPinSetEditOnPlex => 'Nincs PIN beállítva. PIN kéréséhez szerkeszd az otthoni felhasználót a plex.tv-n.';
 	@override String get setPin => 'PIN beállítása';
 	@override String get setPinTitle => 'PIN beállítása';
 	@override String get confirmPinTitle => 'PIN megerősítése';
@@ -2388,8 +2386,6 @@ extension on TranslationsHu {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Eltávolítod a(z) ${displayName} profilt és annak kapcsolatait. A szerverek elérhetőek maradnak.',
 			'profiles.profileNameLabel' => 'Profil neve',
 			'profiles.pinProtectionLabel' => 'PIN-kódos védelem',
-			'profiles.pinManagedByPlex' => 'A PIN-kódot a Plex kezeli. Szerkesztés a plex.tv oldalon.',
-			'profiles.noPinSetEditOnPlex' => 'Nincs PIN beállítva. PIN kéréséhez szerkeszd az otthoni felhasználót a plex.tv-n.',
 			'profiles.setPin' => 'PIN beállítása',
 			'profiles.setPinTitle' => 'PIN beállítása',
 			'profiles.confirmPinTitle' => 'PIN megerősítése',
@@ -2816,10 +2812,10 @@ extension on TranslationsHu {
 			'externalPlayer.useExternalPlayerDescription' => 'Videók megnyitása egy másik alkalmazásban',
 			'externalPlayer.selectPlayer' => 'Lejátszó kiválasztása',
 			'externalPlayer.customPlayers' => 'Egyéni lejátszók',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Rendszer alapértelmezése',
 			'externalPlayer.addCustomPlayer' => 'Egyéni lejátszó hozzáadása',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Lejátszó neve',
 			'externalPlayer.playerNameHint' => 'Saját lejátszó',
 			'externalPlayer.playerCommand' => 'Parancs',

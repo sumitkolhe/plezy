@@ -835,8 +835,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => '${displayName} ve bağlantıları kaldırılacak. Sunucular kullanılabilir kalır.';
 	@override String get profileNameLabel => 'Profil adı';
 	@override String get pinProtectionLabel => 'PIN koruması';
-	@override String get pinManagedByPlex => 'PIN, Plex tarafından yönetiliyor. plex.tv üzerinden düzenleyin.';
-	@override String get noPinSetEditOnPlex => 'PIN ayarlanmadı. Bir tane gerekli kılmak için plex.tv\'de ev kullanıcısını düzenleyin.';
 	@override String get setPin => 'PIN Ayarla';
 	@override String get setPinTitle => 'PIN Ayarla';
 	@override String get confirmPinTitle => 'PIN\'i Onayla';
@@ -2403,8 +2401,6 @@ extension on TranslationsTr {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => '${displayName} ve bağlantıları kaldırılacak. Sunucular kullanılabilir kalır.',
 			'profiles.profileNameLabel' => 'Profil adı',
 			'profiles.pinProtectionLabel' => 'PIN koruması',
-			'profiles.pinManagedByPlex' => 'PIN, Plex tarafından yönetiliyor. plex.tv üzerinden düzenleyin.',
-			'profiles.noPinSetEditOnPlex' => 'PIN ayarlanmadı. Bir tane gerekli kılmak için plex.tv\'de ev kullanıcısını düzenleyin.',
 			'profiles.setPin' => 'PIN Ayarla',
 			'profiles.setPinTitle' => 'PIN Ayarla',
 			'profiles.confirmPinTitle' => 'PIN\'i Onayla',
@@ -2827,10 +2823,10 @@ extension on TranslationsTr {
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
 			'performanceOverlay.maxFall' => 'MaxFALL',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.cacheUsed' => 'Kullanılan Önbellek',
 			'performanceOverlay.cacheLimit' => 'Önbellek Sınırı',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Hız',
 			'performanceOverlay.player' => 'Oynatıcı',
 			'performanceOverlay.memory' => 'Bellek',

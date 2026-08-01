@@ -833,8 +833,6 @@ class _Translations$profiles$pl extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Usuń ${displayName} i jego połączenia. Serwery pozostaną dostępne.';
 	@override String get profileNameLabel => 'Nazwa profilu';
 	@override String get pinProtectionLabel => 'Ochrona PIN-em';
-	@override String get pinManagedByPlex => 'PIN zarządzany przez Plex. Edytuj na plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Nie ustawiono PIN-u. Aby go wymagać, edytuj użytkownika Home na plex.tv.';
 	@override String get setPin => 'Ustaw PIN';
 	@override String get setPinTitle => 'Ustaw PIN';
 	@override String get confirmPinTitle => 'Potwierdź PIN';
@@ -2394,8 +2392,6 @@ extension on TranslationsPl {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Usuń ${displayName} i jego połączenia. Serwery pozostaną dostępne.',
 			'profiles.profileNameLabel' => 'Nazwa profilu',
 			'profiles.pinProtectionLabel' => 'Ochrona PIN-em',
-			'profiles.pinManagedByPlex' => 'PIN zarządzany przez Plex. Edytuj na plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Nie ustawiono PIN-u. Aby go wymagać, edytuj użytkownika Home na plex.tv.',
 			'profiles.setPin' => 'Ustaw PIN',
 			'profiles.setPinTitle' => 'Ustaw PIN',
 			'profiles.confirmPinTitle' => 'Potwierdź PIN',
@@ -2822,10 +2818,10 @@ extension on TranslationsPl {
 			'externalPlayer.useExternalPlayerDescription' => 'Otwieraj wideo w innej aplikacji',
 			'externalPlayer.selectPlayer' => 'Wybierz odtwarzacz',
 			'externalPlayer.customPlayers' => 'Niestandardowe odtwarzacze',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Domyślny systemowy',
 			'externalPlayer.addCustomPlayer' => 'Dodaj niestandardowy odtwarzacz',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nazwa odtwarzacza',
 			'externalPlayer.playerNameHint' => 'Mój odtwarzacz',
 			'externalPlayer.playerCommand' => 'Polecenie',

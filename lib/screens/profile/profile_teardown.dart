@@ -158,9 +158,9 @@ Future<void> resumeFreshSystemShelf(SessionTeardownScope scope, String profileId
 Future<String?> _activeProfileUsingConnection(SessionTeardownScope scope, String connectionId) async {
   final active = scope.active.active;
   if (active == null) return null;
-  final usesConnection =
-      active.parentConnectionId == connectionId ||
-      (await scope.profileConnections.listForProfile(active.id)).any((row) => row.connectionId == connectionId);
+  final usesConnection = (await scope.profileConnections.listForProfile(
+    active.id,
+  )).any((row) => row.connectionId == connectionId);
   if (!usesConnection || scope.active.activeId != active.id) return null;
   return active.id;
 }

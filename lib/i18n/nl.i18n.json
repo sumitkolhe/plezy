@@ -739,8 +739,6 @@
     "deleteProfileMessage": "Verwijder ${displayName} en de verbindingen. Servers blijven beschikbaar.",
     "profileNameLabel": "Profielnaam",
     "pinProtectionLabel": "Pincodebeveiliging",
-    "pinManagedByPlex": "De pincode wordt beheerd door Plex. Pas deze aan op plex.tv.",
-    "noPinSetEditOnPlex": "Geen pincode ingesteld. Bewerk de Plex Home-gebruiker op plex.tv om er een te vereisen.",
     "setPin": "Pincode instellen",
     "setPinTitle": "Pincode instellen",
     "confirmPinTitle": "Pincode bevestigen",

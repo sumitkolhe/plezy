@@ -835,8 +835,6 @@ class _Translations$profiles$kk extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => '${displayName} мен оның қосылымдары өшіріледі.';
 	@override String get profileNameLabel => 'Профиль атауы';
 	@override String get pinProtectionLabel => 'PIN қорғанысы';
-	@override String get pinManagedByPlex => 'PIN кодын Plex басқарады. plex.tv сайтында өңдеңіз.';
-	@override String get noPinSetEditOnPlex => 'PIN код орнатылмаған.';
 	@override String get setPin => 'PIN орнату';
 	@override String get setPinTitle => 'PIN орнату';
 	@override String get confirmPinTitle => 'PIN кодын растау';
@@ -2403,8 +2401,6 @@ extension on TranslationsKk {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => '${displayName} мен оның қосылымдары өшіріледі.',
 			'profiles.profileNameLabel' => 'Профиль атауы',
 			'profiles.pinProtectionLabel' => 'PIN қорғанысы',
-			'profiles.pinManagedByPlex' => 'PIN кодын Plex басқарады. plex.tv сайтында өңдеңіз.',
-			'profiles.noPinSetEditOnPlex' => 'PIN код орнатылмаған.',
 			'profiles.setPin' => 'PIN орнату',
 			'profiles.setPinTitle' => 'PIN орнату',
 			'profiles.confirmPinTitle' => 'PIN кодын растау',
@@ -2827,10 +2823,10 @@ extension on TranslationsKk {
 			'performanceOverlay.minLuma' => 'Мин Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
 			'performanceOverlay.maxFall' => 'MaxFALL',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.cacheUsed' => 'Пайдаланылған кэш',
 			'performanceOverlay.cacheLimit' => 'Кэш шегі',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Жылдамдық',
 			'performanceOverlay.player' => 'Ойнатқыш',
 			'performanceOverlay.memory' => 'Жады',

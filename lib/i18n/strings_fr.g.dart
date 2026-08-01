@@ -831,8 +831,6 @@ class _Translations$profiles$fr extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Supprimer ${displayName} et ses connexions. Les serveurs restent disponibles.';
 	@override String get profileNameLabel => 'Nom du profil';
 	@override String get pinProtectionLabel => 'Protection par code PIN';
-	@override String get pinManagedByPlex => 'PIN géré par Plex. Modifier sur plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Aucun PIN défini. Pour en exiger un, modifiez l\'utilisateur Home sur plex.tv.';
 	@override String get setPin => 'Définir un PIN';
 	@override String get setPinTitle => 'Définir un PIN';
 	@override String get confirmPinTitle => 'Confirmer le PIN';
@@ -2388,8 +2386,6 @@ extension on TranslationsFr {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Supprimer ${displayName} et ses connexions. Les serveurs restent disponibles.',
 			'profiles.profileNameLabel' => 'Nom du profil',
 			'profiles.pinProtectionLabel' => 'Protection par code PIN',
-			'profiles.pinManagedByPlex' => 'PIN géré par Plex. Modifier sur plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Aucun PIN défini. Pour en exiger un, modifiez l\'utilisateur Home sur plex.tv.',
 			'profiles.setPin' => 'Définir un PIN',
 			'profiles.setPinTitle' => 'Définir un PIN',
 			'profiles.confirmPinTitle' => 'Confirmer le PIN',
@@ -2816,10 +2812,10 @@ extension on TranslationsFr {
 			'externalPlayer.useExternalPlayerDescription' => 'Ouvrir les vidéos dans une autre application',
 			'externalPlayer.selectPlayer' => 'Sélectionner le lecteur',
 			'externalPlayer.customPlayers' => 'Lecteurs personnalisés',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Par défaut du système',
 			'externalPlayer.addCustomPlayer' => 'Ajouter un lecteur personnalisé',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Nom du lecteur',
 			'externalPlayer.playerNameHint' => 'Mon lecteur',
 			'externalPlayer.playerCommand' => 'Commande',

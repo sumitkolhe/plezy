@@ -831,8 +831,6 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Verwijder ${displayName} en de verbindingen. Servers blijven beschikbaar.';
 	@override String get profileNameLabel => 'Profielnaam';
 	@override String get pinProtectionLabel => 'Pincodebeveiliging';
-	@override String get pinManagedByPlex => 'De pincode wordt beheerd door Plex. Pas deze aan op plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Geen pincode ingesteld. Bewerk de Plex Home-gebruiker op plex.tv om er een te vereisen.';
 	@override String get setPin => 'Pincode instellen';
 	@override String get setPinTitle => 'Pincode instellen';
 	@override String get confirmPinTitle => 'Pincode bevestigen';
@@ -2388,8 +2386,6 @@ extension on TranslationsNl {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Verwijder ${displayName} en de verbindingen. Servers blijven beschikbaar.',
 			'profiles.profileNameLabel' => 'Profielnaam',
 			'profiles.pinProtectionLabel' => 'Pincodebeveiliging',
-			'profiles.pinManagedByPlex' => 'De pincode wordt beheerd door Plex. Pas deze aan op plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Geen pincode ingesteld. Bewerk de Plex Home-gebruiker op plex.tv om er een te vereisen.',
 			'profiles.setPin' => 'Pincode instellen',
 			'profiles.setPinTitle' => 'Pincode instellen',
 			'profiles.confirmPinTitle' => 'Pincode bevestigen',
@@ -2816,10 +2812,10 @@ extension on TranslationsNl {
 			'externalPlayer.useExternalPlayerDescription' => 'Open video\'s in een andere app',
 			'externalPlayer.selectPlayer' => 'Speler selecteren',
 			'externalPlayer.customPlayers' => 'Aangepaste spelers',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Systeemstandaard',
 			'externalPlayer.addCustomPlayer' => 'Aangepaste speler toevoegen',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Spelernaam',
 			'externalPlayer.playerNameHint' => 'Mijn speler',
 			'externalPlayer.playerCommand' => 'Commando',

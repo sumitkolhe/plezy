@@ -256,10 +256,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
         final actionsEnabled = !widget.requireSelection && !_switching;
         final onManage = actionsEnabled ? () => _manageProfile(profile) : null;
         final onDelete = profile.isLocal && actionsEnabled ? () => _deleteProfile(profile) : null;
-        final onSignOut = profile.isPlexHome && profile.parentConnectionId != null && actionsEnabled
-            ? () => _signOutPlexAccount(profile)
-            : null;
-        final hasMenu = onManage != null || onDelete != null || onSignOut != null;
+        final hasMenu = onManage != null || onDelete != null;
 
         if (isFirstSelectable && !_focusRequested) {
           _focusRequested = true;
@@ -294,7 +291,6 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                 // stays local-only (Plex Home users are owned by Plex).
                 onManage: onManage,
                 onDelete: onDelete,
-                onSignOut: onSignOut,
                 menuFocusNode: menuFocusNode,
                 menuKey: menuKey,
                 onMenuNavigateLeft: () => profileFocusNode.requestFocus(),
@@ -310,17 +306,6 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
     await Navigator.of(context).push(MaterialPageRoute(builder: (_) => ProfileDetailScreen(profile: profile)));
   }
 
-  /// Drop the parent Plex account [profile] hangs off — same effect as
-  /// "Forget account" elsewhere in Plex apps. The shared teardown flow
-  /// removes the account, its virtual Plex Home profiles, and their
-  /// borrowed connections, then routes to auth when nothing selectable
-  /// remains (#1423).
-  Future<void> _signOutPlexAccount(Profile profile) async {
-    final parentId = profile.parentConnectionId;
-    if (parentId == null) return;
-    await confirmAndSignOutPlexAccount(context, accountConnectionId: parentId);
-  }
-
   Future<void> _deleteProfile(Profile profile) async {
     await confirmAndDeleteProfile(
       context,
@@ -332,15 +317,6 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
 
   List<_ChipData> _chipsFor(Profile profile, ProfilesView view) {
     final chips = <_ChipData>[];
-    // Plex Home profiles implicitly own their parent Plex connection (no
-    // join-table row), so prepend it before any borrowed connections.
-    if (profile.isPlexHome) {
-      final parentId = profile.parentConnectionId;
-      if (parentId != null) {
-        final conn = view.connectionsById[parentId];
-        if (conn != null) chips.add(_ChipData(backend: conn.backend, label: conn.displayLabel));
-      }
-    }
     final pcs = view.connectionsByProfile[profile.id] ?? const <ProfileConnection>[];
     for (final pc in pcs) {
       final conn = view.connectionsById[pc.connectionId];
@@ -398,7 +374,6 @@ class _ProfileTile extends StatelessWidget {
   final VoidCallback? onLongPress;
   final VoidCallback? onManage;
   final VoidCallback? onDelete;
-  final VoidCallback? onSignOut;
   final FocusNode menuFocusNode;
   final GlobalKey<AppMenuButtonState<_TileAction>> menuKey;
   final VoidCallback onMenuNavigateLeft;
@@ -412,7 +387,6 @@ class _ProfileTile extends StatelessWidget {
     this.onLongPress,
     this.onManage,
     this.onDelete,
-    this.onSignOut,
     required this.menuFocusNode,
     required this.menuKey,
     required this.onMenuNavigateLeft,
@@ -421,7 +395,7 @@ class _ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final hasMenu = onManage != null || onDelete != null || onSignOut != null;
+    final hasMenu = onManage != null || onDelete != null;
     return InkWell(
       canRequestFocus: false,
       onTap: isActive ? null : onTap,
@@ -470,11 +444,7 @@ class _ProfileTile extends StatelessWidget {
                 focusNode: menuFocusNode,
                 onNavigateLeft: onMenuNavigateLeft,
                 onSelected: _handleAction,
-                actions: [
-                  if (onManage != null) _TileAction.manage,
-                  if (onDelete != null) _TileAction.delete,
-                  if (onSignOut != null) _TileAction.signOut,
-                ],
+                actions: [if (onManage != null) _TileAction.manage, if (onDelete != null) _TileAction.delete],
               )
             else if (!isActive)
               const Padding(padding: .only(left: 8), child: AppIcon(Symbols.chevron_right_rounded, fill: 1)),
@@ -492,9 +462,6 @@ class _ProfileTile extends StatelessWidget {
           break;
         case _TileAction.delete:
           onDelete?.call();
-          break;
-        case _TileAction.signOut:
-          onSignOut?.call();
           break;
       }
     });
@@ -536,12 +503,11 @@ extension _TileActionLabel on _TileAction {
     return switch (this) {
       _TileAction.manage => t.profiles.manage,
       _TileAction.delete => t.profiles.delete,
-      _TileAction.signOut => t.profiles.signOut,
     };
   }
 }
 
-enum _TileAction { manage, delete, signOut }
+enum _TileAction { manage, delete }
 
 class _ConnectionChips extends StatelessWidget {
   final List<_ChipData> chips;

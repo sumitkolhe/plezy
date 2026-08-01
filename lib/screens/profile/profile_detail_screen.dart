@@ -215,11 +215,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
       final other = byId[row.connectionId];
       if (other != null) retained.addAll(_serverIdsForConnection(other));
     }
-    final parentId = _profile.isPlexHome ? _profile.parentConnectionId : null;
-    if (parentId != null && parentId != excludingConnectionId) {
-      final parent = byId[parentId];
-      if (parent != null) retained.addAll(_serverIdsForConnection(parent));
-    }
     return retained;
   }
 
@@ -310,12 +305,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
               const SizedBox(height: 24),
               Text(t.profiles.pinProtectionLabel, style: theme.textTheme.labelLarge),
               const SizedBox(height: 8),
-              if (!isLocal)
-                Text(
-                  _profile.plexProtected ? t.profiles.pinManagedByPlex : t.profiles.noPinSetEditOnPlex,
-                  style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant),
-                )
-              else if (_profile.pinHash == null)
+              if (_profile.pinHash == null)
                 FocusableButton(
                   focusNode: _setPinFocusNode,
                   onPressed: _setPin,

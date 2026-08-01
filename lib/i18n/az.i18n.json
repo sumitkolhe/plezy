@@ -739,8 +739,6 @@
     "deleteProfileMessage": "${displayName} və onun qoşulmaları silinəcək. Serverlər əlçatan qalır.",
     "profileNameLabel": "Profil adı",
     "pinProtectionLabel": "PIN mühafizəsi",
-    "pinManagedByPlex": "PIN Plex tərəfindən idarə olunur. plex.tv-də düzəliş edin.",
-    "noPinSetEditOnPlex": "PIN təyin edilməyib. Tələb etmək üçün plex.tv-də düzəliş edin.",
     "setPin": "PIN təyin et",
     "setPinTitle": "PIN təyin et",
     "confirmPinTitle": "PIN-i təsdiqlə",

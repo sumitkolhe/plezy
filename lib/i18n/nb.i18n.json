@@ -739,8 +739,6 @@
     "deleteProfileMessage": "Fjern ${displayName} og tilkoblingene. Servere forblir tilgjengelige.",
     "profileNameLabel": "Profilnavn",
     "pinProtectionLabel": "PIN-beskyttelse",
-    "pinManagedByPlex": "PIN administreres av Plex. Rediger på plex.tv.",
-    "noPinSetEditOnPlex": "Ingen PIN er satt. For å kreve én, rediger Home-brukeren på plex.tv.",
     "setPin": "Sett PIN",
     "setPinTitle": "Sett PIN",
     "confirmPinTitle": "Bekreft PIN",

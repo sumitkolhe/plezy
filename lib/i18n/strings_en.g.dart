@@ -2257,12 +2257,6 @@ class Translations$profiles$en {
 	/// en: 'PIN protection'
 	String get pinProtectionLabel => 'PIN protection';
 
-	/// en: 'PIN managed by Plex. Edit on plex.tv.'
-	String get pinManagedByPlex => 'PIN managed by Plex. Edit on plex.tv.';
-
-	/// en: 'No PIN set. To require one, edit the home user on plex.tv.'
-	String get noPinSetEditOnPlex => 'No PIN set. To require one, edit the home user on plex.tv.';
-
 	/// en: 'Set PIN'
 	String get setPin => 'Set PIN';
 
@@ -5602,8 +5596,6 @@ extension on Translations {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Remove ${displayName} and its connections. Servers stay available.',
 			'profiles.profileNameLabel' => 'Profile name',
 			'profiles.pinProtectionLabel' => 'PIN protection',
-			'profiles.pinManagedByPlex' => 'PIN managed by Plex. Edit on plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'No PIN set. To require one, edit the home user on plex.tv.',
 			'profiles.setPin' => 'Set PIN',
 			'profiles.setPinTitle' => 'Set PIN',
 			'profiles.confirmPinTitle' => 'Confirm PIN',
@@ -5932,10 +5924,10 @@ extension on Translations {
 			'collections.removeFromCollectionFailed' => 'Failed to remove from collection',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Error removing from collection: ${error}',
 			'collections.searchCollections' => 'Search collections...',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.noPlaylists' => 'No playlists found',
 			'playlists.create' => 'Create Playlist',
 			'playlists.playlistName' => 'Playlist Name',

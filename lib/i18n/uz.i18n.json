@@ -739,8 +739,6 @@
     "deleteProfileMessage": "${displayName} va uning ulanishlari oʻchiriladi.",
     "profileNameLabel": "Profil nomi",
     "pinProtectionLabel": "PIN himoyasi",
-    "pinManagedByPlex": "PIN kodni Plex boshqaradi. plex.tv saytida tahrirlang.",
-    "noPinSetEditOnPlex": "PIN kod oʻrnatilmagan.",
     "setPin": "PIN oʻrnatish",
     "setPinTitle": "PIN oʻrnatish",
     "confirmPinTitle": "PIN kodni tasdiqlash",

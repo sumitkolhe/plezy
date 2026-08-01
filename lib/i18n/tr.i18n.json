@@ -739,8 +739,6 @@
     "deleteProfileMessage": "${displayName} ve bağlantıları kaldırılacak. Sunucular kullanılabilir kalır.",
     "profileNameLabel": "Profil adı",
     "pinProtectionLabel": "PIN koruması",
-    "pinManagedByPlex": "PIN, Plex tarafından yönetiliyor. plex.tv üzerinden düzenleyin.",
-    "noPinSetEditOnPlex": "PIN ayarlanmadı. Bir tane gerekli kılmak için plex.tv'de ev kullanıcısını düzenleyin.",
     "setPin": "PIN Ayarla",
     "setPinTitle": "PIN Ayarla",
     "confirmPinTitle": "PIN'i Onayla",

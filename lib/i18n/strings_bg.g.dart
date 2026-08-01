@@ -831,8 +831,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Премахване на ${displayName} и неговите връзки. Сървърите остават налични.';
 	@override String get profileNameLabel => 'Име на профила';
 	@override String get pinProtectionLabel => 'PIN защита';
-	@override String get pinManagedByPlex => 'PIN-ът се управлява от Plex. Редактирайте го в plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Няма зададен PIN. За да изисквате PIN, редактирайте домашния потребител в plex.tv.';
 	@override String get setPin => 'Задай PIN';
 	@override String get setPinTitle => 'Задай PIN';
 	@override String get confirmPinTitle => 'Потвърди PIN';
@@ -2388,8 +2386,6 @@ extension on TranslationsBg {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Премахване на ${displayName} и неговите връзки. Сървърите остават налични.',
 			'profiles.profileNameLabel' => 'Име на профила',
 			'profiles.pinProtectionLabel' => 'PIN защита',
-			'profiles.pinManagedByPlex' => 'PIN-ът се управлява от Plex. Редактирайте го в plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Няма зададен PIN. За да изисквате PIN, редактирайте домашния потребител в plex.tv.',
 			'profiles.setPin' => 'Задай PIN',
 			'profiles.setPinTitle' => 'Задай PIN',
 			'profiles.confirmPinTitle' => 'Потвърди PIN',
@@ -2816,10 +2812,10 @@ extension on TranslationsBg {
 			'externalPlayer.useExternalPlayerDescription' => 'Отваряй видеата в друго приложение',
 			'externalPlayer.selectPlayer' => 'Избери плейър',
 			'externalPlayer.customPlayers' => 'Потребителски плейъри',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Системен по подразбиране',
 			'externalPlayer.addCustomPlayer' => 'Добави потребителски плейър',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Име на плейъра',
 			'externalPlayer.playerNameHint' => 'Моят плеър',
 			'externalPlayer.playerCommand' => 'Команда',

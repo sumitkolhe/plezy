@@ -739,8 +739,6 @@
     "deleteProfileMessage": "Remover ${displayName} e suas conexões. Servidores continuam disponíveis.",
     "profileNameLabel": "Nome do perfil",
     "pinProtectionLabel": "Proteção por PIN",
-    "pinManagedByPlex": "PIN gerenciado pelo Plex. Edite em plex.tv.",
-    "noPinSetEditOnPlex": "Nenhum PIN definido. Para exigir um, edite o usuário do Plex Home em plex.tv.",
     "setPin": "Definir PIN",
     "setPinTitle": "Definir PIN",
     "confirmPinTitle": "Confirmar PIN",

@@ -738,8 +738,6 @@
     "deleteProfileMessage": "${displayName}とその接続を削除します。サーバーは引き続き利用できます。",
     "profileNameLabel": "プロフィール名",
     "pinProtectionLabel": "PIN保護",
-    "pinManagedByPlex": "PINはPlexで管理されています。plex.tvで編集してください。",
-    "noPinSetEditOnPlex": "PINが設定されていません。PINを必須にするには、plex.tvでHomeユーザーを編集してください。",
     "setPin": "PINを設定",
     "setPinTitle": "PINを設定",
     "confirmPinTitle": "PINを確認",

@@ -738,8 +738,6 @@
     "deleteProfileMessage": "移除 ${displayName} 及其连接。服务器仍可供其他用户资料使用。",
     "profileNameLabel": "用户资料名称",
     "pinProtectionLabel": "PIN 保护",
-    "pinManagedByPlex": "PIN 由 Plex 管理。在 plex.tv 上编辑。",
-    "noPinSetEditOnPlex": "未设置 PIN。如需设置，请在 plex.tv 上编辑 Plex Home 用户。",
     "setPin": "设置 PIN",
     "setPinTitle": "设置 PIN",
     "confirmPinTitle": "确认 PIN",

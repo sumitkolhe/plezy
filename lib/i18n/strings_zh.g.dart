@@ -830,8 +830,6 @@ class Translations$profiles$zh extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => '移除 ${displayName} 及其连接。服务器仍可供其他用户资料使用。';
 	@override String get profileNameLabel => '用户资料名称';
 	@override String get pinProtectionLabel => 'PIN 保护';
-	@override String get pinManagedByPlex => 'PIN 由 Plex 管理。在 plex.tv 上编辑。';
-	@override String get noPinSetEditOnPlex => '未设置 PIN。如需设置，请在 plex.tv 上编辑 Plex Home 用户。';
 	@override String get setPin => '设置 PIN';
 	@override String get setPinTitle => '设置 PIN';
 	@override String get confirmPinTitle => '确认 PIN';
@@ -2385,8 +2383,6 @@ extension on TranslationsZh {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => '移除 ${displayName} 及其连接。服务器仍可供其他用户资料使用。',
 			'profiles.profileNameLabel' => '用户资料名称',
 			'profiles.pinProtectionLabel' => 'PIN 保护',
-			'profiles.pinManagedByPlex' => 'PIN 由 Plex 管理。在 plex.tv 上编辑。',
-			'profiles.noPinSetEditOnPlex' => '未设置 PIN。如需设置，请在 plex.tv 上编辑 Plex Home 用户。',
 			'profiles.setPin' => '设置 PIN',
 			'profiles.setPinTitle' => '设置 PIN',
 			'profiles.confirmPinTitle' => '确认 PIN',
@@ -2813,10 +2809,10 @@ extension on TranslationsZh {
 			'externalPlayer.useExternalPlayerDescription' => '在其他应用中打开视频',
 			'externalPlayer.selectPlayer' => '选择播放器',
 			'externalPlayer.customPlayers' => '自定义播放器',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => '系统默认',
 			'externalPlayer.addCustomPlayer' => '添加自定义播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => '播放器名称',
 			'externalPlayer.playerNameHint' => '我的播放器',
 			'externalPlayer.playerCommand' => '命令',

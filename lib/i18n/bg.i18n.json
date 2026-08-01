@@ -739,8 +739,6 @@
     "deleteProfileMessage": "Премахване на ${displayName} и неговите връзки. Сървърите остават налични.",
     "profileNameLabel": "Име на профила",
     "pinProtectionLabel": "PIN защита",
-    "pinManagedByPlex": "PIN-ът се управлява от Plex. Редактирайте го в plex.tv.",
-    "noPinSetEditOnPlex": "Няма зададен PIN. За да изисквате PIN, редактирайте домашния потребител в plex.tv.",
     "setPin": "Задай PIN",
     "setPinTitle": "Задай PIN",
     "confirmPinTitle": "Потвърди PIN",

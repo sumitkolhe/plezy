@@ -831,8 +831,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => 'Ta bort ${displayName} och profilens anslutningar. Servrarna förblir tillgängliga.';
 	@override String get profileNameLabel => 'Profilnamn';
 	@override String get pinProtectionLabel => 'PIN-skydd';
-	@override String get pinManagedByPlex => 'PIN hanteras av Plex. Redigera på plex.tv.';
-	@override String get noPinSetEditOnPlex => 'Ingen PIN angiven. För att kräva en, redigera Home-användaren på plex.tv.';
 	@override String get setPin => 'Ange PIN';
 	@override String get setPinTitle => 'Ange PIN';
 	@override String get confirmPinTitle => 'Bekräfta PIN';
@@ -2388,8 +2386,6 @@ extension on TranslationsSv {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => 'Ta bort ${displayName} och profilens anslutningar. Servrarna förblir tillgängliga.',
 			'profiles.profileNameLabel' => 'Profilnamn',
 			'profiles.pinProtectionLabel' => 'PIN-skydd',
-			'profiles.pinManagedByPlex' => 'PIN hanteras av Plex. Redigera på plex.tv.',
-			'profiles.noPinSetEditOnPlex' => 'Ingen PIN angiven. För att kräva en, redigera Home-användaren på plex.tv.',
 			'profiles.setPin' => 'Ange PIN',
 			'profiles.setPinTitle' => 'Ange PIN',
 			'profiles.confirmPinTitle' => 'Bekräfta PIN',
@@ -2816,10 +2812,10 @@ extension on TranslationsSv {
 			'externalPlayer.useExternalPlayerDescription' => 'Öppna videor i en annan app',
 			'externalPlayer.selectPlayer' => 'Välj spelare',
 			'externalPlayer.customPlayers' => 'Anpassade spelare',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Systemstandard',
 			'externalPlayer.addCustomPlayer' => 'Lägg till anpassad spelare',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => 'Spelarnamn',
 			'externalPlayer.playerNameHint' => 'Min spelare',
 			'externalPlayer.playerCommand' => 'Kommando',

@@ -835,8 +835,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String deleteProfileMessage({required Object displayName}) => '${displayName} va uning ulanishlari oʻchiriladi.';
 	@override String get profileNameLabel => 'Profil nomi';
 	@override String get pinProtectionLabel => 'PIN himoyasi';
-	@override String get pinManagedByPlex => 'PIN kodni Plex boshqaradi. plex.tv saytida tahrirlang.';
-	@override String get noPinSetEditOnPlex => 'PIN kod oʻrnatilmagan.';
 	@override String get setPin => 'PIN oʻrnatish';
 	@override String get setPinTitle => 'PIN oʻrnatish';
 	@override String get confirmPinTitle => 'PIN kodni tasdiqlash';
@@ -2403,8 +2401,6 @@ extension on TranslationsUz {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => '${displayName} va uning ulanishlari oʻchiriladi.',
 			'profiles.profileNameLabel' => 'Profil nomi',
 			'profiles.pinProtectionLabel' => 'PIN himoyasi',
-			'profiles.pinManagedByPlex' => 'PIN kodni Plex boshqaradi. plex.tv saytida tahrirlang.',
-			'profiles.noPinSetEditOnPlex' => 'PIN kod oʻrnatilmagan.',
 			'profiles.setPin' => 'PIN oʻrnatish',
 			'profiles.setPinTitle' => 'PIN oʻrnatish',
 			'profiles.confirmPinTitle' => 'PIN kodni tasdiqlash',
@@ -2827,10 +2823,10 @@ extension on TranslationsUz {
 			'performanceOverlay.minLuma' => 'Min Luma',
 			'performanceOverlay.maxCll' => 'MaxCLL',
 			'performanceOverlay.maxFall' => 'MaxFALL',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.cacheUsed' => 'Foydalanilgan kesh',
 			'performanceOverlay.cacheLimit' => 'Kesh chegarasi',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.speed' => 'Tezlik',
 			'performanceOverlay.player' => 'Pleyer',
 			'performanceOverlay.memory' => 'Xotira',

@@ -739,8 +739,6 @@
     "deleteProfileMessage": "Eltávolítod a(z) ${displayName} profilt és annak kapcsolatait. A szerverek elérhetőek maradnak.",
     "profileNameLabel": "Profil neve",
     "pinProtectionLabel": "PIN-kódos védelem",
-    "pinManagedByPlex": "A PIN-kódot a Plex kezeli. Szerkesztés a plex.tv oldalon.",
-    "noPinSetEditOnPlex": "Nincs PIN beállítva. PIN kéréséhez szerkeszd az otthoni felhasználót a plex.tv-n.",
     "setPin": "PIN beállítása",
     "setPinTitle": "PIN beállítása",
     "confirmPinTitle": "PIN megerősítése",

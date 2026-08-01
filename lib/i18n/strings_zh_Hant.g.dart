@@ -831,8 +831,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String deleteProfileMessage({required Object displayName}) => '將移除 ${displayName} 及其連線資訊。伺服器仍維持可用狀態。';
 	@override String get profileNameLabel => '使用者設定檔名稱';
 	@override String get pinProtectionLabel => 'PIN 碼保護';
-	@override String get pinManagedByPlex => 'PIN 碼由 Plex 管理。請至 plex.tv 進行編輯。';
-	@override String get noPinSetEditOnPlex => '未設定 PIN 碼。如需啟用 PIN 碼限制，請在 plex.tv 編輯 Home 使用者設定。';
 	@override String get setPin => '設定 PIN 碼';
 	@override String get setPinTitle => '設定 PIN 碼';
 	@override String get confirmPinTitle => '確認 PIN 碼';
@@ -2386,8 +2384,6 @@ extension on TranslationsZhHant {
 			'profiles.deleteProfileMessage' => ({required Object displayName}) => '將移除 ${displayName} 及其連線資訊。伺服器仍維持可用狀態。',
 			'profiles.profileNameLabel' => '使用者設定檔名稱',
 			'profiles.pinProtectionLabel' => 'PIN 碼保護',
-			'profiles.pinManagedByPlex' => 'PIN 碼由 Plex 管理。請至 plex.tv 進行編輯。',
-			'profiles.noPinSetEditOnPlex' => '未設定 PIN 碼。如需啟用 PIN 碼限制，請在 plex.tv 編輯 Home 使用者設定。',
 			'profiles.setPin' => '設定 PIN 碼',
 			'profiles.setPinTitle' => '設定 PIN 碼',
 			'profiles.confirmPinTitle' => '確認 PIN 碼',
@@ -2814,10 +2810,10 @@ extension on TranslationsZhHant {
 			'externalPlayer.useExternalPlayerDescription' => '在其他應用程式中開啟影片',
 			'externalPlayer.selectPlayer' => '選擇播放器',
 			'externalPlayer.customPlayers' => '自訂播放器',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => '系統預設',
 			'externalPlayer.addCustomPlayer' => '新增自訂播放器',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerName' => '播放器名稱',
 			'externalPlayer.playerNameHint' => '我的播放器',
 			'externalPlayer.playerCommand' => '執行命令',
