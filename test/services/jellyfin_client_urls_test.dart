@@ -12,7 +12,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_playlist.dart';
-import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/models/transcode_quality_preset.dart';
 import 'package:plezy/mpv/mpv.dart';
 import 'package:plezy/services/jellyfin_client.dart';
@@ -3051,71 +3050,6 @@ void main() {
       expect(resume.queryParameters.containsKey('Limit'), isFalse);
       final nextUp = requests.singleWhere((uri) => uri.path == '/Shows/NextUp');
       expect(nextUp.queryParameters.containsKey('Limit'), isFalse);
-    });
-  });
-
-  group('JellyfinClient.fetchGlobalHubs URL builders', () {
-    late List<Uri> captured;
-
-    JellyfinClient buildClient() {
-      captured = [];
-      final mock = MockClient((req) async {
-        captured.add(req.url);
-        return jsonResponse({'Items': []});
-      });
-      return JellyfinClient.forTesting(connection: _conn(), httpClient: mock);
-    }
-
-    Uri capturedNextUpRequest() => captured.singleWhere((uri) => uri.path == '/Shows/NextUp');
-
-    test('global preview defaults to shared limit and marks filled previews as more', () async {
-      captured = [];
-      final mock = MockClient((req) async {
-        captured.add(req.url);
-        return jsonResponse({
-          'Items': [
-            for (var i = 0; i < defaultHubPreviewLimit; i++) {'Id': 'movie-$i', 'Type': 'Movie', 'Name': 'Movie $i'},
-          ],
-        });
-      });
-      final client = JellyfinClient.forTesting(connection: _conn(), httpClient: mock);
-      addTearDown(client.close);
-
-      final hubs = await client.fetchGlobalHubs(includePlaybackHubs: false);
-
-      expect(captured.single.queryParameters['Limit'], defaultHubPreviewLimit.toString());
-      expect(hubs.single.items, hasLength(defaultHubPreviewLimit));
-      expect(hubs.single.more, isTrue);
-    });
-
-    test('global Next Up excludes resumable episodes without date cutoff', () async {
-      final client = buildClient();
-      addTearDown(client.close);
-
-      await client.fetchGlobalHubs(limit: 12);
-
-      final resume = captured.singleWhere((uri) => uri.path == '/UserItems/Resume');
-      expect(resume.queryParameters['EnableTotalRecordCount'], 'false');
-
-      final nextUp = capturedNextUpRequest();
-      expect(nextUp.queryParameters['userId'], 'user-1');
-      expect(nextUp.queryParameters['Limit'], '12');
-      expect(nextUp.queryParameters['EnableResumable'], 'false');
-      expect(nextUp.queryParameters['EnableTotalRecordCount'], 'false');
-      expect(nextUp.queryParameters['EnableImageTypes'], 'Primary,Backdrop,Thumb,Logo');
-      expect(nextUp.queryParameters['ImageTypeLimit'], '3');
-      expect(nextUp.queryParameters.containsKey('NextUpDateCutoff'), isFalse);
-    });
-
-    test('can skip global playback hubs', () async {
-      final client = buildClient();
-      addTearDown(client.close);
-
-      await client.fetchGlobalHubs(limit: 12, includePlaybackHubs: false);
-
-      expect(captured.map((uri) => uri.path), ['/Users/user-1/Items/Latest']);
-      expect(captured.single.queryParameters['IncludeItemTypes'], 'Movie,Series,Episode');
-      expect(captured.single.queryParameters['Limit'], '12');
     });
   });
 

@@ -435,12 +435,6 @@ class Translations$settings$en {
 	/// en: 'Open Details'
 	String get episodeDetails => 'Open Details';
 
-	/// en: 'Use Home Layout'
-	String get useGlobalHubs => 'Use Home Layout';
-
-	/// en: 'Show unified home hubs. Otherwise use library recommendations.'
-	String get useGlobalHubsDescription => 'Show unified home hubs. Otherwise use library recommendations.';
-
 	/// en: 'Show Server Name on Hubs'
 	String get showServerNameOnHubs => 'Show Server Name on Hubs';
 
@@ -2347,14 +2341,8 @@ class Translations$discover$en {
 	/// en: 'Continue Watching in ${library}'
 	String continueWatchingIn({required Object library}) => 'Continue Watching in ${library}';
 
-	/// en: 'Next Up'
-	String get nextUp => 'Next Up';
-
 	/// en: 'Next Up in ${library}'
 	String nextUpIn({required Object library}) => 'Next Up in ${library}';
-
-	/// en: 'Recently Added'
-	String get recentlyAdded => 'Recently Added';
 
 	/// en: 'Recently Added in ${library}'
 	String recentlyAddedIn({required Object library}) => 'Recently Added in ${library}';
@@ -4933,8 +4921,6 @@ extension on Translations {
 			'settings.episodeAction' => 'Episode Action',
 			'settings.episodePlay' => 'Play',
 			'settings.episodeDetails' => 'Open Details',
-			'settings.useGlobalHubs' => 'Use Home Layout',
-			'settings.useGlobalHubsDescription' => 'Show unified home hubs. Otherwise use library recommendations.',
 			'settings.showServerNameOnHubs' => 'Show Server Name on Hubs',
 			'settings.showServerNameOnHubsDescription' => 'Always show server names in hub titles.',
 			'settings.groupLibrariesByServer' => 'Group Libraries by Server',
@@ -5346,10 +5332,10 @@ extension on Translations {
 			'videoControls.noOffset' => 'No offset',
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.stretch' => 'Stretch',
 			'videoControls.lockRotation' => 'Lock rotation',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.unlockRotation' => 'Unlock rotation',
 			'videoControls.timerActive' => 'Timer Active',
 			'videoControls.playbackWillPauseIn' => ({required Object duration}) => 'Playback will pause in ${duration}',
@@ -5554,9 +5540,7 @@ extension on Translations {
 			'discover.addMediaToLibraries' => 'Add some media to your libraries',
 			'discover.continueWatching' => 'Continue Watching',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Continue Watching in ${library}',
-			'discover.nextUp' => 'Next Up',
 			'discover.nextUpIn' => ({required Object library}) => 'Next Up in ${library}',
-			'discover.recentlyAdded' => 'Recently Added',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Recently Added in ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Latest Albums in ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Recently Played in ${library}',
@@ -5860,12 +5844,12 @@ extension on Translations {
 			'playlists.errorLoading' => 'Failed to load playlists',
 			'playlists.errorAdding' => 'Failed to add to playlist',
 			'playlists.errorReordering' => 'Failed to reorder playlist item',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.errorRemoving' => 'Failed to remove from playlist',
 			'music.goToAlbum' => 'Go to album',
 			'music.goToArtist' => 'Go to artist',
 			'music.instantMix' => 'Instant Mix',
+			_ => null,
+		} ?? switch (path) {
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',

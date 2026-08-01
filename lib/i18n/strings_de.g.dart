@@ -235,8 +235,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get episodeAction => 'Episodenaktion';
 	@override String get episodePlay => 'Abspielen';
 	@override String get episodeDetails => 'Details öffnen';
-	@override String get useGlobalHubs => 'Startlayout verwenden';
-	@override String get useGlobalHubsDescription => 'Einheitliche Start-Hubs anzeigen. Sonst Bibliotheksempfehlungen verwenden.';
 	@override String get showServerNameOnHubs => 'Servername bei Hubs anzeigen';
 	@override String get showServerNameOnHubsDescription => 'Servernamen immer in Hub-Titeln anzeigen.';
 	@override String get groupLibrariesByServer => 'Mediatheken nach Server gruppieren';
@@ -873,9 +871,7 @@ class _Translations$discover$de extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Medien zur Mediathek hinzufügen';
 	@override String get continueWatching => 'Weiterschauen';
 	@override String continueWatchingIn({required Object library}) => 'Weiterschauen in ${library}';
-	@override String get nextUp => 'Als Nächstes';
 	@override String nextUpIn({required Object library}) => 'Als Nächstes in ${library}';
-	@override String get recentlyAdded => 'Kürzlich hinzugefügt';
 	@override String recentlyAddedIn({required Object library}) => 'Kürzlich hinzugefügt in ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Neueste Alben in ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Kürzlich gespielt in ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsDe {
 			'settings.episodeAction' => 'Episodenaktion',
 			'settings.episodePlay' => 'Abspielen',
 			'settings.episodeDetails' => 'Details öffnen',
-			'settings.useGlobalHubs' => 'Startlayout verwenden',
-			'settings.useGlobalHubsDescription' => 'Einheitliche Start-Hubs anzeigen. Sonst Bibliotheksempfehlungen verwenden.',
 			'settings.showServerNameOnHubs' => 'Servername bei Hubs anzeigen',
 			'settings.showServerNameOnHubsDescription' => 'Servernamen immer in Hub-Titeln anzeigen.',
 			'settings.groupLibrariesByServer' => 'Mediatheken nach Server gruppieren',
@@ -2276,10 +2270,10 @@ extension on TranslationsDe {
 			'messages.noEpisodesFoundGeneral' => 'Keine Episoden gefunden',
 			'messages.episodesLoadFailed' => 'Episoden konnten nicht geladen werden',
 			'messages.noResultsFound' => 'Keine Ergebnisse gefunden',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Schlaftimer auf ${label} eingestellt',
 			'messages.noItemsAvailable' => 'Keine Elemente verfügbar',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Wiedergabewarteschlange konnte nicht erstellt werden – keine Elemente',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Wiedergabe für ${action} fehlgeschlagen: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Wechsel zu einem kompatiblen Player …',
@@ -2386,9 +2380,7 @@ extension on TranslationsDe {
 			'discover.addMediaToLibraries' => 'Medien zur Mediathek hinzufügen',
 			'discover.continueWatching' => 'Weiterschauen',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Weiterschauen in ${library}',
-			'discover.nextUp' => 'Als Nächstes',
 			'discover.nextUpIn' => ({required Object library}) => 'Als Nächstes in ${library}',
-			'discover.recentlyAdded' => 'Kürzlich hinzugefügt',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Kürzlich hinzugefügt in ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Neueste Alben in ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Kürzlich gespielt in ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsDe {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Hintergrund',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Quadratisches Bild',
 			'metadataEdit.selectPoster' => 'Poster auswählen',
 			'metadataEdit.selectBackground' => 'Hintergrund auswählen',
 			'metadataEdit.selectLogo' => 'Logo auswählen',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Quadratisches Bild auswählen',
 			'metadataEdit.fromUrl' => 'Über URL',
 			'metadataEdit.uploadFile' => 'Datei hochladen',

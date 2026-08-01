@@ -235,8 +235,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get episodeAction => 'Bölüm Eylemi';
 	@override String get episodePlay => 'Oynat';
 	@override String get episodeDetails => 'Detayları Aç';
-	@override String get useGlobalHubs => 'Ana Sayfa Düzenini Kullan';
-	@override String get useGlobalHubsDescription => 'Birleştirilmiş ana sayfa bölümlerini göster. Aksi takdirde kitaplık önerilerini kullanır.';
 	@override String get showServerNameOnHubs => 'Bölümlerde Sunucu Adını Göster';
 	@override String get showServerNameOnHubsDescription => 'Bölüm başlıklarında her zaman sunucu adlarını göster.';
 	@override String get groupLibrariesByServer => 'Kitaplıkları Sunucuya Göre Grupla';
@@ -877,9 +875,7 @@ class _Translations$discover$tr extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Kitaplıklarınıza biraz medya ekleyin';
 	@override String get continueWatching => 'İzlemeye Devam Et';
 	@override String continueWatchingIn({required Object library}) => '${library} içinde İzlemeye Devam Et';
-	@override String get nextUp => 'Sıradaki';
 	@override String nextUpIn({required Object library}) => '${library} içinde Sıradaki';
-	@override String get recentlyAdded => 'Son Eklenenler';
 	@override String recentlyAddedIn({required Object library}) => '${library} içinde Son Eklenenler';
 	@override String latestAlbumsIn({required Object library}) => '${library} içinde Son Albümler';
 	@override String recentlyPlayedIn({required Object library}) => '${library} içinde Son Oynatılanlar';
@@ -1874,8 +1870,6 @@ extension on TranslationsTr {
 			'settings.episodeAction' => 'Bölüm Eylemi',
 			'settings.episodePlay' => 'Oynat',
 			'settings.episodeDetails' => 'Detayları Aç',
-			'settings.useGlobalHubs' => 'Ana Sayfa Düzenini Kullan',
-			'settings.useGlobalHubsDescription' => 'Birleştirilmiş ana sayfa bölümlerini göster. Aksi takdirde kitaplık önerilerini kullanır.',
 			'settings.showServerNameOnHubs' => 'Bölümlerde Sunucu Adını Göster',
 			'settings.showServerNameOnHubsDescription' => 'Bölüm başlıklarında her zaman sunucu adlarını göster.',
 			'settings.groupLibrariesByServer' => 'Kitaplıkları Sunucuya Göre Grupla',
@@ -2287,10 +2281,10 @@ extension on TranslationsTr {
 			'messages.logoutConfirm' => 'Çıkış yapmak istediğinizden emin misiniz?',
 			'messages.noSeasonsFound' => 'Sezon bulunamadı',
 			'messages.seasonsLoadFailed' => 'Sezonlar yüklenemedi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'İlk sezonda bölüm bulunamadı',
 			'messages.noEpisodesFoundGeneral' => 'Bölüm bulunamadı',
+			_ => null,
+		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Bölümler yüklenemedi',
 			'messages.noResultsFound' => 'Sonuç bulunamadı',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyku zamanlayıcısı ${label} için ayarlandı',
@@ -2401,9 +2395,7 @@ extension on TranslationsTr {
 			'discover.addMediaToLibraries' => 'Kitaplıklarınıza biraz medya ekleyin',
 			'discover.continueWatching' => 'İzlemeye Devam Et',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library} içinde İzlemeye Devam Et',
-			'discover.nextUp' => 'Sıradaki',
 			'discover.nextUpIn' => ({required Object library}) => '${library} içinde Sıradaki',
-			'discover.recentlyAdded' => 'Son Eklenenler',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library} içinde Son Eklenenler',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} içinde Son Albümler',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} içinde Son Oynatılanlar',
@@ -2801,12 +2793,12 @@ extension on TranslationsTr {
 			'metadataEdit.screenTitle' => 'Meta Verileri Düzenle',
 			'metadataEdit.basicInfo' => 'Temel Bilgiler',
 			'metadataEdit.artwork' => 'Görseller',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.title' => 'Başlık',
 			'metadataEdit.sortTitle' => 'Sıralama Başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal Başlık',
 			'metadataEdit.releaseDate' => 'Yayınlanma Tarihi',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'İçerik Derecelendirmesi',
 			'metadataEdit.studio' => 'Stüdyo',
 			'metadataEdit.tagline' => 'Slogan',

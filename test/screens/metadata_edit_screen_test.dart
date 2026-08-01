@@ -16,7 +16,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/metadata_edit/metadata_edit_models.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/screens/metadata_edit_screen.dart';
@@ -502,8 +501,6 @@ class _NoopMediaClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   ServerId get serverId => ServerId('server-1');

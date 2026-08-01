@@ -398,17 +398,18 @@ class DataAggregationService {
   }
 
   /// Fetch recommendation hubs from all servers as neutral [MediaHub]s.
-  /// When useGlobalHubs is true (default), rich-hub backends use their true
-  /// home page hubs (Plex's promoted/global hub endpoint).
-  /// Backends without rich home hubs fall back to per-library hubs so one
-  /// capped "Latest" response cannot hide whole library types.
-  /// [serverIds] restricts the fan-out (including the library prefetch) to
-  /// those servers. Returns the ids of servers whose hub fetch succeeded so
+  ///
+  /// Home is built from per-library hubs so one capped "Latest" response
+  /// cannot hide whole library types. [prefetchLibraries] resolves every
+  /// server's library list up front in one fan-out instead of leaving each
+  /// client to fetch its own; callers that already know the list is cold
+  /// pass false. [serverIds] restricts the fan-out (including that prefetch)
+  /// to those servers. Returns the ids of servers whose hub fetch succeeded so
   /// callers do not cache transient per-server failures as loaded.
   Future<HubAggregationResult> getHubsFromAllServers({
     int? limit,
     Set<String>? hiddenLibraryKeys,
-    bool useGlobalHubs = true,
+    bool prefetchLibraries = true,
     bool includePlaybackHubs = true,
     Set<String>? serverIds,
   }) async {
@@ -418,12 +419,9 @@ class DataAggregationService {
       return (hubs: const <MediaHub>[], succeededServerIds: const <String>{}, cancelledServerIds: const <String>{});
     }
 
-    // Home layout needs the library list for every client: fallback backends
-    // build all their rows from per-library hubs, and rich-hub backends
-    // (Plex) need it to detect visible music libraries, whose hubs the
-    // global-hub endpoint excludes. One `fetchLibraries` per server, served
-    // from the per-backend API cache when warm.
-    final libraries = useGlobalHubs
+    // Every client needs its library list to build rows. One `fetchLibraries`
+    // per server, served from the per-backend API cache when warm.
+    final libraries = prefetchLibraries
         ? _groupLibrariesByServer((await getMediaLibrariesFromAllServers(serverIds: serverIds)).libraries)
         : null;
 
@@ -431,32 +429,13 @@ class DataAggregationService {
       clients,
       failureMessage: (serverId) => 'Failed to fetch hubs from server $serverId',
       fetch: (serverId, client) async {
-        final serverLibraries = libraries?[serverId];
-        final shouldUseGlobalHubs = useGlobalHubs && client.capabilities.richHubs;
-        final hubItemLimit = limit ?? defaultHubPreviewLimit;
-        final hubs = shouldUseGlobalHubs
-            ? [
-                ...await client.fetchGlobalHubs(limit: hubItemLimit, includePlaybackHubs: includePlaybackHubs),
-                // Plex's promoted/global hub endpoint never includes music
-                // libraries — append their per-library hubs so music rows
-                // reach home. No-op (zero extra calls) without a visible
-                // music library.
-                ...await _fetchLibraryHubsForClient(
-                  client,
-                  limit: hubItemLimit,
-                  hiddenLibraryKeys: hiddenLibraryKeys,
-                  includePlaybackHubs: includePlaybackHubs,
-                  libraries: serverLibraries ?? const [],
-                  kinds: const {MediaKind.artist},
-                ),
-              ]
-            : await _fetchLibraryHubsForClient(
-                client,
-                limit: hubItemLimit,
-                hiddenLibraryKeys: hiddenLibraryKeys,
-                includePlaybackHubs: includePlaybackHubs,
-                libraries: useGlobalHubs ? serverLibraries : null,
-              );
+        final hubs = await _fetchLibraryHubsForClient(
+          client,
+          limit: limit ?? defaultHubPreviewLimit,
+          hiddenLibraryKeys: hiddenLibraryKeys,
+          includePlaybackHubs: includePlaybackHubs,
+          libraries: libraries?[serverId],
+        );
         return _postProcessHubs(hubs, serverId: ServerId(serverId), hiddenLibraryKeys: hiddenLibraryKeys);
       },
     );

@@ -215,7 +215,7 @@ void main() {
       addTearDown(client.close);
       manager.debugRegisterJellyfinClientForTesting(client);
 
-      final result = await service.getHubsFromAllServers(useGlobalHubs: false, includePlaybackHubs: false);
+      final result = await service.getHubsFromAllServers(prefetchLibraries: false, includePlaybackHubs: false);
       final hubs = result.hubs;
 
       expect(result.succeededServerIds, {'srv-1'});
@@ -275,7 +275,7 @@ void main() {
       addTearDown(client.close);
       manager.debugRegisterJellyfinClientForTesting(client);
 
-      final result = await service.getHubsFromAllServers(useGlobalHubs: true, includePlaybackHubs: false);
+      final result = await service.getHubsFromAllServers(prefetchLibraries: true, includePlaybackHubs: false);
       final hubs = result.hubs;
 
       expect(result.succeededServerIds, {'srv-1'});
@@ -347,7 +347,7 @@ void main() {
       addTearDown(client.close);
       manager.debugRegisterJellyfinClientForTesting(client);
 
-      final result = await service.getHubsFromAllServers(useGlobalHubs: true, includePlaybackHubs: false);
+      final result = await service.getHubsFromAllServers(prefetchLibraries: true, includePlaybackHubs: false);
       final hubs = result.hubs;
 
       expect(result.succeededServerIds, {'srv-1'});

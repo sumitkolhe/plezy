@@ -14,7 +14,6 @@ import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_playlist.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/download_provider.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/providers/playback_state_provider.dart';
@@ -754,9 +753,6 @@ class _PagedPlaylistClient implements MediaServerClient {
   @override
   MediaBackend get backend => _backend;
 
-  @override
-  ServerCapabilities get capabilities =>
-      ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchPlaylistPage(String id, {int? start, int? size, AbortController? abort}) async {

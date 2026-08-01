@@ -190,9 +190,6 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       if (isDisposed) return;
       _lastSeenHiddenKeys = Set.of(_hiddenLibraries.hiddenLibraryKeys);
 
-      final settings = await SettingsService.getInstance();
-      if (isDisposed) return;
-      final useGlobalHubs = settings.read(SettingsService.useGlobalHubs);
       final aggregation = _multiServer.aggregationService;
 
       // On-deck and hubs fetch in parallel; on-deck is published as soon as
@@ -203,7 +200,6 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       );
       final hubsFuture = aggregation.getHubsFromAllServers(
         hiddenLibraryKeys: _hiddenLibraries.hiddenLibraryKeys,
-        useGlobalHubs: useGlobalHubs,
         includePlaybackHubs: false,
       );
 
@@ -287,9 +283,6 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       await _hiddenLibraries.ensureInitialized();
       if (isDisposed) return;
 
-      final settings = await SettingsService.getInstance();
-      if (isDisposed) return;
-      final useGlobalHubs = settings.read(SettingsService.useGlobalHubs);
       final aggregation = _multiServer.aggregationService;
 
       final Future<OnDeckAggregationResult?> onDeckFuture = onDeckIds.isEmpty
@@ -303,8 +296,7 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
           ? Future<HubAggregationResult?>.value()
           : aggregation.getHubsFromAllServers(
               hiddenLibraryKeys: _hiddenLibraries.hiddenLibraryKeys,
-              useGlobalHubs: useGlobalHubs,
-              includePlaybackHubs: false,
+                    includePlaybackHubs: false,
               serverIds: hubIds,
             );
 

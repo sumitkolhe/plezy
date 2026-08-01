@@ -235,8 +235,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get episodeAction => '剧集操作';
 	@override String get episodePlay => '播放';
 	@override String get episodeDetails => '打开详情';
-	@override String get useGlobalHubs => '使用主页布局';
-	@override String get useGlobalHubsDescription => '显示统一主页内容；否则使用各媒体库的推荐内容。';
 	@override String get showServerNameOnHubs => '在推荐栏显示服务器名称';
 	@override String get showServerNameOnHubsDescription => '始终在推荐栏标题中显示服务器名称。';
 	@override String get groupLibrariesByServer => '按服务器分组媒体库';
@@ -872,9 +870,7 @@ class Translations$discover$zh extends Translations$discover$en {
 	@override String get addMediaToLibraries => '请向你的媒体库添加一些媒体';
 	@override String get continueWatching => '继续观看';
 	@override String continueWatchingIn({required Object library}) => '${library} 中继续观看';
-	@override String get nextUp => '接下来';
 	@override String nextUpIn({required Object library}) => '${library} 中接下来';
-	@override String get recentlyAdded => '最近添加';
 	@override String recentlyAddedIn({required Object library}) => '${library} 中最近添加';
 	@override String latestAlbumsIn({required Object library}) => '${library} 中的最新专辑';
 	@override String recentlyPlayedIn({required Object library}) => '${library} 中最近播放';
@@ -1860,8 +1856,6 @@ extension on TranslationsZh {
 			'settings.episodeAction' => '剧集操作',
 			'settings.episodePlay' => '播放',
 			'settings.episodeDetails' => '打开详情',
-			'settings.useGlobalHubs' => '使用主页布局',
-			'settings.useGlobalHubsDescription' => '显示统一主页内容；否则使用各媒体库的推荐内容。',
 			'settings.showServerNameOnHubs' => '在推荐栏显示服务器名称',
 			'settings.showServerNameOnHubsDescription' => '始终在推荐栏标题中显示服务器名称。',
 			'settings.groupLibrariesByServer' => '按服务器分组媒体库',
@@ -2273,10 +2267,10 @@ extension on TranslationsZh {
 			'messages.noEpisodesFoundGeneral' => '未找到剧集',
 			'messages.episodesLoadFailed' => '无法加载剧集',
 			'messages.noResultsFound' => '未找到结果',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => '睡眠定时器已设置为 ${label}',
 			'messages.noItemsAvailable' => '没有可用的项目',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '创建播放队列失败：没有可用项目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '无法执行“${action}”：${error}',
 			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
@@ -2383,9 +2377,7 @@ extension on TranslationsZh {
 			'discover.addMediaToLibraries' => '请向你的媒体库添加一些媒体',
 			'discover.continueWatching' => '继续观看',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library} 中继续观看',
-			'discover.nextUp' => '接下来',
 			'discover.nextUpIn' => ({required Object library}) => '${library} 中接下来',
-			'discover.recentlyAdded' => '最近添加',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library} 中最近添加',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} 中的最新专辑',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} 中最近播放',
@@ -2787,12 +2779,12 @@ extension on TranslationsZh {
 			'metadataEdit.poster' => '海报',
 			'metadataEdit.background' => '背景',
 			'metadataEdit.logo' => '标志',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => '方形图片',
 			'metadataEdit.selectPoster' => '选择海报',
 			'metadataEdit.selectBackground' => '选择背景',
 			'metadataEdit.selectLogo' => '选择标志',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '选择方形图片',
 			'metadataEdit.fromUrl' => '通过 URL',
 			'metadataEdit.uploadFile' => '上传文件',

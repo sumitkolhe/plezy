@@ -22,7 +22,6 @@ import 'media_kind.dart';
 import 'media_library.dart';
 import 'media_playlist.dart';
 import 'playback_report_metadata.dart';
-import 'server_capabilities.dart';
 
 /// Default number of items requested for horizontal hub previews.
 const int defaultHubPreviewLimit = 20;
@@ -73,7 +72,6 @@ abstract class MediaServerClient {
   ServerId get serverId;
   String? get serverName;
   MediaBackend get backend;
-  ServerCapabilities get capabilities;
 
   /// Release HTTP resources and any other long-lived state. Idempotent.
   void close();
@@ -256,8 +254,7 @@ abstract class MediaServerClient {
   /// (track, album, artist, or playlist). Jellyfin:
   /// `/Items/{id}/InstantMix`; Plex: a station play queue
   /// (`POST /playQueues?type=audio&uri=...station...`), consumed here as a
-  /// plain track list — music playback is queue-managed client-side on both
-  /// backends. Gated by [ServerCapabilities.instantMix].
+  /// plain track list — music playback is queue-managed client-side.
   Future<List<MediaItem>> fetchInstantMix(String itemId, {int limit = 100});
 
   /// Lyrics for [track], or `null` when the server has none. Jellyfin:
@@ -276,10 +273,6 @@ abstract class MediaServerClient {
   /// Items the user has started but not finished. Plex calls this "On Deck"
   /// internally; the neutral name matches the Continue Watching UI surface.
   Future<List<MediaItem>> fetchContinueWatching({int? count = 20});
-
-  /// Curated home-screen hubs across all libraries (Plex Discover; Jellyfin
-  /// synthesizes `Latest` plus optional `Resume` + `NextUp`).
-  Future<List<MediaHub>> fetchGlobalHubs({int limit = defaultHubPreviewLimit, bool includePlaybackHubs = true});
 
   /// Hubs scoped to a single library section. [libraryName] is baked into
   /// the title of synthetic hubs (Jellyfin) so per-library "Recently Added"

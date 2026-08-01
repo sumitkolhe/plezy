@@ -16,7 +16,6 @@ import 'package:plezy/media/media_hub.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/download_provider.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/providers/watch_state_store.dart';
@@ -1182,8 +1181,6 @@ class _FakeMediaServerClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<({MediaItem? item, MediaItem? onDeckEpisode})> fetchItemWithOnDeck(String id) async {

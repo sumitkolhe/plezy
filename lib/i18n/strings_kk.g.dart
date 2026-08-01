@@ -235,8 +235,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get episodeAction => 'Бөлім әрекеті';
 	@override String get episodePlay => 'Ойнату';
 	@override String get episodeDetails => 'Толығырақ ашу';
-	@override String get useGlobalHubs => 'Басты бет құрылымын пайдалану';
-	@override String get useGlobalHubsDescription => 'Біріктірілген басты бет бөлімдерін көрсету.';
 	@override String get showServerNameOnHubs => 'Бөлімдерде сервер атын көрсету';
 	@override String get showServerNameOnHubsDescription => 'Бөлім тақырыптарында әрдайым сервер атын көрсету.';
 	@override String get groupLibrariesByServer => 'Кітапханаларды сервер бойынша топтау';
@@ -877,9 +875,7 @@ class _Translations$discover$kk extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Кітапханаларыңызға медиа қосыңыз';
 	@override String get continueWatching => 'Көруді жалғастыру';
 	@override String continueWatchingIn({required Object library}) => '${library} ішінде көруді жалғастыру';
-	@override String get nextUp => 'Келесіде';
 	@override String nextUpIn({required Object library}) => '${library} ішінде келесіде';
-	@override String get recentlyAdded => 'Соңғы қосылғандар';
 	@override String recentlyAddedIn({required Object library}) => '${library} ішінде соңғы қосылғандар';
 	@override String latestAlbumsIn({required Object library}) => '${library} ішінде соңғы альбомдар';
 	@override String recentlyPlayedIn({required Object library}) => '${library} ішінде соңғы ойнатылғандар';
@@ -1874,8 +1870,6 @@ extension on TranslationsKk {
 			'settings.episodeAction' => 'Бөлім әрекеті',
 			'settings.episodePlay' => 'Ойнату',
 			'settings.episodeDetails' => 'Толығырақ ашу',
-			'settings.useGlobalHubs' => 'Басты бет құрылымын пайдалану',
-			'settings.useGlobalHubsDescription' => 'Біріктірілген басты бет бөлімдерін көрсету.',
 			'settings.showServerNameOnHubs' => 'Бөлімдерде сервер атын көрсету',
 			'settings.showServerNameOnHubsDescription' => 'Бөлім тақырыптарында әрдайым сервер атын көрсету.',
 			'settings.groupLibrariesByServer' => 'Кітапханаларды сервер бойынша топтау',
@@ -2287,10 +2281,10 @@ extension on TranslationsKk {
 			'messages.logoutConfirm' => 'Шынымен шыққыңыз келе ме?',
 			'messages.noSeasonsFound' => 'Маусымдар табылмады',
 			'messages.seasonsLoadFailed' => 'Маусымдарды жүктеу мүмкін болмады',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Бірінші маусымда бөлімдер табылмады',
 			'messages.noEpisodesFoundGeneral' => 'Бөлімдер табылмады',
+			_ => null,
+		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Бөлімдерді жүктеу мүмкін болмады',
 			'messages.noResultsFound' => 'Нәтижелер табылмады',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Ұйқы таймері ${label} уақытына орнатылды',
@@ -2401,9 +2395,7 @@ extension on TranslationsKk {
 			'discover.addMediaToLibraries' => 'Кітапханаларыңызға медиа қосыңыз',
 			'discover.continueWatching' => 'Көруді жалғастыру',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library} ішінде көруді жалғастыру',
-			'discover.nextUp' => 'Келесіде',
 			'discover.nextUpIn' => ({required Object library}) => '${library} ішінде келесіде',
-			'discover.recentlyAdded' => 'Соңғы қосылғандар',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library} ішінде соңғы қосылғандар',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} ішінде соңғы альбомдар',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} ішінде соңғы ойнатылғандар',
@@ -2801,12 +2793,12 @@ extension on TranslationsKk {
 			'metadataEdit.screenTitle' => 'Метадеректерді өңдеу',
 			'metadataEdit.basicInfo' => 'Негізгі ақпарат',
 			'metadataEdit.artwork' => 'Суреттер/Постерлер',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.title' => 'Атауы',
 			'metadataEdit.sortTitle' => 'Сұрыптау атауы',
 			'metadataEdit.originalTitle' => 'Түпнұсқа атауы',
 			'metadataEdit.releaseDate' => 'Шыққан күні',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Мазмұн рейтингі',
 			'metadataEdit.studio' => 'Студия',
 			'metadataEdit.tagline' => 'Ұран/Слоган',

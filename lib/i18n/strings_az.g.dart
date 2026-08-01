@@ -235,8 +235,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get episodeAction => 'Seriya əməliyyatı';
 	@override String get episodePlay => 'Oynat';
 	@override String get episodeDetails => 'Ətraflı aç';
-	@override String get useGlobalHubs => 'Ana səhifə quruluşunu istifadə et';
-	@override String get useGlobalHubsDescription => 'Birləşdirilmiş ana səhifə bölmələrini göstər. Əks halda kitabxana tövsiyələrini istifadə edir.';
 	@override String get showServerNameOnHubs => 'Bölmələrdə server adını göstər';
 	@override String get showServerNameOnHubsDescription => 'Bölmə başlıqlarında həmişə server adlarını göstər.';
 	@override String get groupLibrariesByServer => 'Kitabxanaları serverə görə qrupla';
@@ -877,9 +875,7 @@ class _Translations$discover$az extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Kitabxanalarınıza bir az media əlavə edin';
 	@override String get continueWatching => 'İzləməyə davam et';
 	@override String continueWatchingIn({required Object library}) => '${library} daxilində İzləməyə davam et';
-	@override String get nextUp => 'Sırada';
 	@override String nextUpIn({required Object library}) => '${library} daxilində Sırada';
-	@override String get recentlyAdded => 'Son əlavə olunanlar';
 	@override String recentlyAddedIn({required Object library}) => '${library} daxilində Son əlavə olunanlar';
 	@override String latestAlbumsIn({required Object library}) => '${library} daxilində Son albomlar';
 	@override String recentlyPlayedIn({required Object library}) => '${library} daxilində Son oynadılanlar';
@@ -1874,8 +1870,6 @@ extension on TranslationsAz {
 			'settings.episodeAction' => 'Seriya əməliyyatı',
 			'settings.episodePlay' => 'Oynat',
 			'settings.episodeDetails' => 'Ətraflı aç',
-			'settings.useGlobalHubs' => 'Ana səhifə quruluşunu istifadə et',
-			'settings.useGlobalHubsDescription' => 'Birləşdirilmiş ana səhifə bölmələrini göstər. Əks halda kitabxana tövsiyələrini istifadə edir.',
 			'settings.showServerNameOnHubs' => 'Bölmələrdə server adını göstər',
 			'settings.showServerNameOnHubsDescription' => 'Bölmə başlıqlarında həmişə server adlarını göstər.',
 			'settings.groupLibrariesByServer' => 'Kitabxanaları serverə görə qrupla',
@@ -2287,10 +2281,10 @@ extension on TranslationsAz {
 			'messages.logoutConfirm' => 'Çıxış etmək istədiyinizdən əminsiniz?',
 			'messages.noSeasonsFound' => 'Mövsüm tapılmadı',
 			'messages.seasonsLoadFailed' => 'Mövsümlər yüklənə bilmədi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Birinci mövsümdə seriya tapılmadı',
 			'messages.noEpisodesFoundGeneral' => 'Seriya tapılmadı',
+			_ => null,
+		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Seriyalar yüklənə bilmədi',
 			'messages.noResultsFound' => 'Nəticə tapılmadı',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Yuxu taymeri ${label} üçün təyin edildi',
@@ -2401,9 +2395,7 @@ extension on TranslationsAz {
 			'discover.addMediaToLibraries' => 'Kitabxanalarınıza bir az media əlavə edin',
 			'discover.continueWatching' => 'İzləməyə davam et',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library} daxilində İzləməyə davam et',
-			'discover.nextUp' => 'Sırada',
 			'discover.nextUpIn' => ({required Object library}) => '${library} daxilində Sırada',
-			'discover.recentlyAdded' => 'Son əlavə olunanlar',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library} daxilində Son əlavə olunanlar',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} daxilində Son albomlar',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} daxilində Son oynadılanlar',
@@ -2801,12 +2793,12 @@ extension on TranslationsAz {
 			'metadataEdit.screenTitle' => 'Meta-məlumatlara düzəliş et',
 			'metadataEdit.basicInfo' => 'Əsas məlumatlar',
 			'metadataEdit.artwork' => 'Şəkillər/Posterlər',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.title' => 'Başlıq',
 			'metadataEdit.sortTitle' => 'Sıralama başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal başlıq',
 			'metadataEdit.releaseDate' => 'Buraxılış tarixi',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Məzmun reytinqi',
 			'metadataEdit.studio' => 'Studiya',
 			'metadataEdit.tagline' => 'Deviz/Slogan',

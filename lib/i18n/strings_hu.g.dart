@@ -235,8 +235,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get episodeAction => 'Az epizódkártya művelete';
 	@override String get episodePlay => 'Lejátszás';
 	@override String get episodeDetails => 'Részletek megnyitása';
-	@override String get useGlobalHubs => 'Kezdőlap elrendezés használata';
-	@override String get useGlobalHubsDescription => 'Egyesített kezdőlapi blokkok megjelenítése. Egyébként a könyvtári ajánlások jelennek meg.';
 	@override String get showServerNameOnHubs => 'Szervernév megjelenítése a blokkoknál';
 	@override String get showServerNameOnHubsDescription => 'Mindig jelenjen meg a szerver neve a blokkok címében.';
 	@override String get groupLibrariesByServer => 'Könyvtárak csoportosítása szerver szerint';
@@ -873,9 +871,7 @@ class _Translations$discover$hu extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Adj hozzá médiát a könyvtáraidhoz';
 	@override String get continueWatching => 'Folytatás';
 	@override String continueWatchingIn({required Object library}) => 'Folytatás itt: ${library}';
-	@override String get nextUp => 'Következik';
 	@override String nextUpIn({required Object library}) => 'Következik itt: ${library}';
-	@override String get recentlyAdded => 'Legutóbb hozzáadva';
 	@override String recentlyAddedIn({required Object library}) => 'Legutóbb hozzáadva itt: ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Legújabb albumok itt: ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Legutóbb lejátszva itt: ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsHu {
 			'settings.episodeAction' => 'Az epizódkártya művelete',
 			'settings.episodePlay' => 'Lejátszás',
 			'settings.episodeDetails' => 'Részletek megnyitása',
-			'settings.useGlobalHubs' => 'Kezdőlap elrendezés használata',
-			'settings.useGlobalHubsDescription' => 'Egyesített kezdőlapi blokkok megjelenítése. Egyébként a könyvtári ajánlások jelennek meg.',
 			'settings.showServerNameOnHubs' => 'Szervernév megjelenítése a blokkoknál',
 			'settings.showServerNameOnHubsDescription' => 'Mindig jelenjen meg a szerver neve a blokkok címében.',
 			'settings.groupLibrariesByServer' => 'Könyvtárak csoportosítása szerver szerint',
@@ -2276,10 +2270,10 @@ extension on TranslationsHu {
 			'messages.noEpisodesFoundGeneral' => 'Nem találhatók epizódok',
 			'messages.episodesLoadFailed' => 'Nem sikerült az epizódok betöltése',
 			'messages.noResultsFound' => 'Nincs találat',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Elalvási időzítő beállítva: ${label}',
 			'messages.noItemsAvailable' => 'Nincsenek elérhető elemek',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Nem sikerült létrehozni a lejátszási sort — nincsenek elemek',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nem sikerült a művelet (${action}): ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
@@ -2386,9 +2380,7 @@ extension on TranslationsHu {
 			'discover.addMediaToLibraries' => 'Adj hozzá médiát a könyvtáraidhoz',
 			'discover.continueWatching' => 'Folytatás',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Folytatás itt: ${library}',
-			'discover.nextUp' => 'Következik',
 			'discover.nextUpIn' => ({required Object library}) => 'Következik itt: ${library}',
-			'discover.recentlyAdded' => 'Legutóbb hozzáadva',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Legutóbb hozzáadva itt: ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Legújabb albumok itt: ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Legutóbb lejátszva itt: ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsHu {
 			'metadataEdit.poster' => 'Poszter',
 			'metadataEdit.background' => 'Háttér',
 			'metadataEdit.logo' => 'Logó',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Négyzetes kép',
 			'metadataEdit.selectPoster' => 'Poszter kiválasztása',
 			'metadataEdit.selectBackground' => 'Háttér kiválasztása',
 			'metadataEdit.selectLogo' => 'Logó kiválasztása',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Négyzetes kép kiválasztása',
 			'metadataEdit.fromUrl' => 'URL-ről',
 			'metadataEdit.uploadFile' => 'Fájl feltöltése',

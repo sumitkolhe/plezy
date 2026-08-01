@@ -235,8 +235,6 @@ class _Translations$settings$nb extends Translations$settings$en {
 	@override String get episodeAction => 'Handling for episoder';
 	@override String get episodePlay => 'Spill av';
 	@override String get episodeDetails => 'Åpne detaljer';
-	@override String get useGlobalHubs => 'Bruk startoppsett';
-	@override String get useGlobalHubsDescription => 'Vis samlet startinnhold. Ellers brukes bibliotekanbefalinger.';
 	@override String get showServerNameOnHubs => 'Vis servernavn på huber';
 	@override String get showServerNameOnHubsDescription => 'Vis alltid servernavn i hubtitler.';
 	@override String get groupLibrariesByServer => 'Grupper biblioteker etter server';
@@ -873,9 +871,7 @@ class _Translations$discover$nb extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Legg til medier i bibliotekene dine';
 	@override String get continueWatching => 'Fortsett å se';
 	@override String continueWatchingIn({required Object library}) => 'Fortsett å se i ${library}';
-	@override String get nextUp => 'Neste opp';
 	@override String nextUpIn({required Object library}) => 'Neste opp i ${library}';
-	@override String get recentlyAdded => 'Nylig lagt til';
 	@override String recentlyAddedIn({required Object library}) => 'Nylig lagt til i ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Nyeste album i ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Nylig spilt i ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsNb {
 			'settings.episodeAction' => 'Handling for episoder',
 			'settings.episodePlay' => 'Spill av',
 			'settings.episodeDetails' => 'Åpne detaljer',
-			'settings.useGlobalHubs' => 'Bruk startoppsett',
-			'settings.useGlobalHubsDescription' => 'Vis samlet startinnhold. Ellers brukes bibliotekanbefalinger.',
 			'settings.showServerNameOnHubs' => 'Vis servernavn på huber',
 			'settings.showServerNameOnHubsDescription' => 'Vis alltid servernavn i hubtitler.',
 			'settings.groupLibrariesByServer' => 'Grupper biblioteker etter server',
@@ -2276,10 +2270,10 @@ extension on TranslationsNb {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder funnet',
 			'messages.episodesLoadFailed' => 'Kunne ikke laste episoder',
 			'messages.noResultsFound' => 'Ingen resultater funnet',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Innsovningstimer satt til ${label}',
 			'messages.noItemsAvailable' => 'Ingen elementer tilgjengelig',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke opprette avspillingskø – ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Bytter til kompatibel spiller...',
@@ -2386,9 +2380,7 @@ extension on TranslationsNb {
 			'discover.addMediaToLibraries' => 'Legg til medier i bibliotekene dine',
 			'discover.continueWatching' => 'Fortsett å se',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Fortsett å se i ${library}',
-			'discover.nextUp' => 'Neste opp',
 			'discover.nextUpIn' => ({required Object library}) => 'Neste opp i ${library}',
-			'discover.recentlyAdded' => 'Nylig lagt til',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Nylig lagt til i ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Nyeste album i ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Nylig spilt i ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsNb {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Bakgrunn',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk bilde',
 			'metadataEdit.selectPoster' => 'Velg plakat',
 			'metadataEdit.selectBackground' => 'Velg bakgrunn',
 			'metadataEdit.selectLogo' => 'Velg logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Velg kvadratisk bilde',
 			'metadataEdit.fromUrl' => 'Fra URL',
 			'metadataEdit.uploadFile' => 'Last opp fil',

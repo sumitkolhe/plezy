@@ -6,7 +6,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/screens/music/album_detail_screen.dart';
 import 'package:plezy/services/multi_server_manager.dart';
@@ -141,8 +140,6 @@ class _FakeMusicClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<List<MediaItem>> fetchAlbumTracks(String albumId) async {

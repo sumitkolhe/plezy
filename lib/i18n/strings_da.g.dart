@@ -235,8 +235,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get episodeAction => 'Handling for afsnit';
 	@override String get episodePlay => 'Afspil';
 	@override String get episodeDetails => 'Åbn detaljer';
-	@override String get useGlobalHubs => 'Brug startlayout';
-	@override String get useGlobalHubsDescription => 'Vis samlet startsideindhold. Brug ellers biblioteksanbefalinger.';
 	@override String get showServerNameOnHubs => 'Vis servernavn på hubber';
 	@override String get showServerNameOnHubsDescription => 'Vis altid servernavne i titler på hubber.';
 	@override String get groupLibrariesByServer => 'Grupper biblioteker efter server';
@@ -873,9 +871,7 @@ class _Translations$discover$da extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Tilføj medier til dine biblioteker';
 	@override String get continueWatching => 'Fortsæt med at se';
 	@override String continueWatchingIn({required Object library}) => 'Fortsæt med at se i ${library}';
-	@override String get nextUp => 'Næste afsnit';
 	@override String nextUpIn({required Object library}) => 'Næste afsnit i ${library}';
-	@override String get recentlyAdded => 'Nyligt tilføjet';
 	@override String recentlyAddedIn({required Object library}) => 'Nyligt tilføjet i ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Nyeste album i ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Senest afspillet i ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsDa {
 			'settings.episodeAction' => 'Handling for afsnit',
 			'settings.episodePlay' => 'Afspil',
 			'settings.episodeDetails' => 'Åbn detaljer',
-			'settings.useGlobalHubs' => 'Brug startlayout',
-			'settings.useGlobalHubsDescription' => 'Vis samlet startsideindhold. Brug ellers biblioteksanbefalinger.',
 			'settings.showServerNameOnHubs' => 'Vis servernavn på hubber',
 			'settings.showServerNameOnHubsDescription' => 'Vis altid servernavne i titler på hubber.',
 			'settings.groupLibrariesByServer' => 'Grupper biblioteker efter server',
@@ -2276,10 +2270,10 @@ extension on TranslationsDa {
 			'messages.noEpisodesFoundGeneral' => 'Ingen episoder fundet',
 			'messages.episodesLoadFailed' => 'Kunne ikke indlæse episoder',
 			'messages.noResultsFound' => 'Ingen resultater fundet',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sove-timer indstillet til ${label}',
 			'messages.noItemsAvailable' => 'Ingen elementer tilgængelige',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke oprette en afspilningskø — ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
@@ -2386,9 +2380,7 @@ extension on TranslationsDa {
 			'discover.addMediaToLibraries' => 'Tilføj medier til dine biblioteker',
 			'discover.continueWatching' => 'Fortsæt med at se',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Fortsæt med at se i ${library}',
-			'discover.nextUp' => 'Næste afsnit',
 			'discover.nextUpIn' => ({required Object library}) => 'Næste afsnit i ${library}',
-			'discover.recentlyAdded' => 'Nyligt tilføjet',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Nyligt tilføjet i ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Nyeste album i ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Senest afspillet i ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsDa {
 			'metadataEdit.poster' => 'Plakat',
 			'metadataEdit.background' => 'Baggrund',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk billede',
 			'metadataEdit.selectPoster' => 'Vælg plakat',
 			'metadataEdit.selectBackground' => 'Vælg baggrund',
 			'metadataEdit.selectLogo' => 'Vælg logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Vælg kvadratisk billede',
 			'metadataEdit.fromUrl' => 'Fra URL',
 			'metadataEdit.uploadFile' => 'Upload fil',

@@ -235,8 +235,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get episodeAction => 'エピソードの操作';
 	@override String get episodePlay => '再生';
 	@override String get episodeDetails => '詳細を開く';
-	@override String get useGlobalHubs => 'ホームレイアウトを使用';
-	@override String get useGlobalHubsDescription => '統合ホームハブを表示します。オフの場合はライブラリのおすすめを使用します。';
 	@override String get showServerNameOnHubs => 'ハブにサーバー名を表示';
 	@override String get showServerNameOnHubsDescription => 'ハブのタイトルに常にサーバー名を表示します。';
 	@override String get groupLibrariesByServer => 'サーバーごとにライブラリをグループ化';
@@ -872,9 +870,7 @@ class _Translations$discover$ja extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'ライブラリにメディアを追加してください';
 	@override String get continueWatching => '視聴を続ける';
 	@override String continueWatchingIn({required Object library}) => '${library}の視聴を続ける';
-	@override String get nextUp => '次のエピソード';
 	@override String nextUpIn({required Object library}) => '${library}の次のエピソード';
-	@override String get recentlyAdded => '最近追加されたコンテンツ';
 	@override String recentlyAddedIn({required Object library}) => '${library}に最近追加されたコンテンツ';
 	@override String latestAlbumsIn({required Object library}) => '${library}の最新アルバム';
 	@override String recentlyPlayedIn({required Object library}) => '${library}で最近再生したコンテンツ';
@@ -1860,8 +1856,6 @@ extension on TranslationsJa {
 			'settings.episodeAction' => 'エピソードの操作',
 			'settings.episodePlay' => '再生',
 			'settings.episodeDetails' => '詳細を開く',
-			'settings.useGlobalHubs' => 'ホームレイアウトを使用',
-			'settings.useGlobalHubsDescription' => '統合ホームハブを表示します。オフの場合はライブラリのおすすめを使用します。',
 			'settings.showServerNameOnHubs' => 'ハブにサーバー名を表示',
 			'settings.showServerNameOnHubsDescription' => 'ハブのタイトルに常にサーバー名を表示します。',
 			'settings.groupLibrariesByServer' => 'サーバーごとにライブラリをグループ化',
@@ -2273,10 +2267,10 @@ extension on TranslationsJa {
 			'messages.noEpisodesFoundGeneral' => 'エピソードが見つかりません',
 			'messages.episodesLoadFailed' => 'エピソードを読み込めませんでした',
 			'messages.noResultsFound' => '結果が見つかりません',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'スリープタイマーを${label}に設定しました',
 			'messages.noItemsAvailable' => 'アイテムがありません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '再生キューを作成できませんでした — アイテムがありません',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}に失敗しました: ${error}',
 			'messages.switchingToCompatiblePlayer' => '互換性のあるプレーヤーに切り替え中…',
@@ -2383,9 +2377,7 @@ extension on TranslationsJa {
 			'discover.addMediaToLibraries' => 'ライブラリにメディアを追加してください',
 			'discover.continueWatching' => '視聴を続ける',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library}の視聴を続ける',
-			'discover.nextUp' => '次のエピソード',
 			'discover.nextUpIn' => ({required Object library}) => '${library}の次のエピソード',
-			'discover.recentlyAdded' => '最近追加されたコンテンツ',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library}に最近追加されたコンテンツ',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library}の最新アルバム',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library}で最近再生したコンテンツ',
@@ -2787,12 +2779,12 @@ extension on TranslationsJa {
 			'metadataEdit.poster' => 'ポスター',
 			'metadataEdit.background' => '背景',
 			'metadataEdit.logo' => 'ロゴ',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => '正方形アート',
 			'metadataEdit.selectPoster' => 'ポスターを選択',
 			'metadataEdit.selectBackground' => '背景を選択',
 			'metadataEdit.selectLogo' => 'ロゴを選択',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '正方形アートを選択',
 			'metadataEdit.fromUrl' => 'URLから',
 			'metadataEdit.uploadFile' => 'ファイルをアップロード',

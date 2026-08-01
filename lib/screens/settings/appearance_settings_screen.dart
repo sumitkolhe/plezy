@@ -92,12 +92,6 @@ class AppearanceSettingsScreen extends StatelessWidget {
               ),
             _continueWatchingActionSelector(),
             SettingSwitchTile(
-              pref: SettingsService.useGlobalHubs,
-              icon: Symbols.home_rounded,
-              title: t.settings.useGlobalHubs,
-              subtitle: t.settings.useGlobalHubsDescription,
-            ),
-            SettingSwitchTile(
               pref: SettingsService.showServerNameOnHubs,
               icon: Symbols.dns_rounded,
               title: t.settings.showServerNameOnHubs,

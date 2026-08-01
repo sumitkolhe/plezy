@@ -235,8 +235,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get episodeAction => 'Ação do episódio';
 	@override String get episodePlay => 'Reproduzir';
 	@override String get episodeDetails => 'Abrir detalhes';
-	@override String get useGlobalHubs => 'Usar layout inicial';
-	@override String get useGlobalHubsDescription => 'Mostrar hubs iniciais unificados. Caso contrário, usar recomendações da biblioteca.';
 	@override String get showServerNameOnHubs => 'Mostrar Nome do Servidor nos Hubs';
 	@override String get showServerNameOnHubsDescription => 'Sempre mostrar nomes dos servidores nos títulos dos hubs.';
 	@override String get groupLibrariesByServer => 'Agrupar Bibliotecas por Servidor';
@@ -873,9 +871,7 @@ class _Translations$discover$pt extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Adicione mídias às suas bibliotecas';
 	@override String get continueWatching => 'Continuar Assistindo';
 	@override String continueWatchingIn({required Object library}) => 'Continuar assistindo em ${library}';
-	@override String get nextUp => 'A seguir';
 	@override String nextUpIn({required Object library}) => 'A seguir em ${library}';
-	@override String get recentlyAdded => 'Adicionados recentemente';
 	@override String recentlyAddedIn({required Object library}) => 'Adicionados recentemente em ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Álbuns mais recentes em ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Reproduzidos recentemente em ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsPt {
 			'settings.episodeAction' => 'Ação do episódio',
 			'settings.episodePlay' => 'Reproduzir',
 			'settings.episodeDetails' => 'Abrir detalhes',
-			'settings.useGlobalHubs' => 'Usar layout inicial',
-			'settings.useGlobalHubsDescription' => 'Mostrar hubs iniciais unificados. Caso contrário, usar recomendações da biblioteca.',
 			'settings.showServerNameOnHubs' => 'Mostrar Nome do Servidor nos Hubs',
 			'settings.showServerNameOnHubsDescription' => 'Sempre mostrar nomes dos servidores nos títulos dos hubs.',
 			'settings.groupLibrariesByServer' => 'Agrupar Bibliotecas por Servidor',
@@ -2276,10 +2270,10 @@ extension on TranslationsPt {
 			'messages.noEpisodesFoundGeneral' => 'Nenhum episódio encontrado',
 			'messages.episodesLoadFailed' => 'Não foi possível carregar os episódios',
 			'messages.noResultsFound' => 'Nenhum resultado encontrado',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Temporizador de suspensão definido como ${label}',
 			'messages.noItemsAvailable' => 'Nenhum item disponível',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Falha ao criar a fila de reprodução — nenhum item',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Falha ao ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
@@ -2386,9 +2380,7 @@ extension on TranslationsPt {
 			'discover.addMediaToLibraries' => 'Adicione mídias às suas bibliotecas',
 			'discover.continueWatching' => 'Continuar Assistindo',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Continuar assistindo em ${library}',
-			'discover.nextUp' => 'A seguir',
 			'discover.nextUpIn' => ({required Object library}) => 'A seguir em ${library}',
-			'discover.recentlyAdded' => 'Adicionados recentemente',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Adicionados recentemente em ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Álbuns mais recentes em ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Reproduzidos recentemente em ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsPt {
 			'metadataEdit.poster' => 'Pôster',
 			'metadataEdit.background' => 'Plano de Fundo',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Imagem Quadrada',
 			'metadataEdit.selectPoster' => 'Selecionar pôster',
 			'metadataEdit.selectBackground' => 'Selecionar Plano de Fundo',
 			'metadataEdit.selectLogo' => 'Selecionar Logo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Selecionar Imagem Quadrada',
 			'metadataEdit.fromUrl' => 'Da URL',
 			'metadataEdit.uploadFile' => 'Enviar Arquivo',

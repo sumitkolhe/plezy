@@ -235,8 +235,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get episodeAction => 'Åtgärd för avsnitt';
 	@override String get episodePlay => 'Spela';
 	@override String get episodeDetails => 'Öppna detaljer';
-	@override String get useGlobalHubs => 'Använd startsidans layout';
-	@override String get useGlobalHubsDescription => 'Visa en gemensam layout på startsidan. Annars används bibliotekens rekommendationer.';
 	@override String get showServerNameOnHubs => 'Visa servernamn i innehållssektioner';
 	@override String get showServerNameOnHubsDescription => 'Visa alltid servernamnet i innehållssektionernas rubriker.';
 	@override String get groupLibrariesByServer => 'Gruppera bibliotek efter server';
@@ -873,9 +871,7 @@ class _Translations$discover$sv extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Lägg till medieinnehåll i dina bibliotek';
 	@override String get continueWatching => 'Fortsätt titta';
 	@override String continueWatchingIn({required Object library}) => 'Fortsätt titta i ${library}';
-	@override String get nextUp => 'Nästa';
 	@override String nextUpIn({required Object library}) => 'Nästa i ${library}';
-	@override String get recentlyAdded => 'Nyligen tillagda';
 	@override String recentlyAddedIn({required Object library}) => 'Nyligen tillagda i ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Senaste albumen i ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Nyligen spelade i ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsSv {
 			'settings.episodeAction' => 'Åtgärd för avsnitt',
 			'settings.episodePlay' => 'Spela',
 			'settings.episodeDetails' => 'Öppna detaljer',
-			'settings.useGlobalHubs' => 'Använd startsidans layout',
-			'settings.useGlobalHubsDescription' => 'Visa en gemensam layout på startsidan. Annars används bibliotekens rekommendationer.',
 			'settings.showServerNameOnHubs' => 'Visa servernamn i innehållssektioner',
 			'settings.showServerNameOnHubsDescription' => 'Visa alltid servernamnet i innehållssektionernas rubriker.',
 			'settings.groupLibrariesByServer' => 'Gruppera bibliotek efter server',
@@ -2276,10 +2270,10 @@ extension on TranslationsSv {
 			'messages.noEpisodesFoundGeneral' => 'Inga avsnitt hittades',
 			'messages.episodesLoadFailed' => 'Det gick inte att läsa in avsnitt',
 			'messages.noResultsFound' => 'Inga resultat hittades',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sovtimer inställd för ${label}',
 			'messages.noItemsAvailable' => 'Inga objekt tillgängliga',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Det gick inte att skapa en uppspelningskö – inga objekt',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Det gick inte att ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
@@ -2386,9 +2380,7 @@ extension on TranslationsSv {
 			'discover.addMediaToLibraries' => 'Lägg till medieinnehåll i dina bibliotek',
 			'discover.continueWatching' => 'Fortsätt titta',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Fortsätt titta i ${library}',
-			'discover.nextUp' => 'Nästa',
 			'discover.nextUpIn' => ({required Object library}) => 'Nästa i ${library}',
-			'discover.recentlyAdded' => 'Nyligen tillagda',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Nyligen tillagda i ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Senaste albumen i ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Nyligen spelade i ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsSv {
 			'metadataEdit.poster' => 'Affisch',
 			'metadataEdit.background' => 'Bakgrund',
 			'metadataEdit.logo' => 'Logotyp',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadratisk bild',
 			'metadataEdit.selectPoster' => 'Välj affisch',
 			'metadataEdit.selectBackground' => 'Välj bakgrund',
 			'metadataEdit.selectLogo' => 'Välj logotyp',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Välj kvadratisk bild',
 			'metadataEdit.fromUrl' => 'Från URL',
 			'metadataEdit.uploadFile' => 'Ladda upp fil',

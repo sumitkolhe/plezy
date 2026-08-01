@@ -13,7 +13,6 @@ import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_library.dart';
 import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/media/media_sort.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/screens/libraries/state_messages.dart';
 import 'package:plezy/screens/libraries/tabs/library_browse_tab.dart';
@@ -250,8 +249,6 @@ class _BrowseClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<List<MediaSort>> fetchSortOptions(String libraryId, {String? libraryType}) {

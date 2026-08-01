@@ -7,8 +7,8 @@ class MediaServerTimeouts {
 
   static const receive = Duration(seconds: 120);
 
-  /// Retry budget for home `/hubs` startup calls. These endpoints can be slow
-  /// while Plex wakes idle disks, but should not block forever.
+  /// Retry budget for the Continue Watching startup call. It can be slow on a
+  /// server waking idle disks, but should not block the home screen forever.
   static const homeHubAttemptTimeouts = [Duration(seconds: 10), Duration(seconds: 5), Duration(milliseconds: 2500)];
 
   /// Retry budget for per-library home hub rows (`/hubs/sections/{id}`). These

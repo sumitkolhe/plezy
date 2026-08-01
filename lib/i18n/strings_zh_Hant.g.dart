@@ -236,8 +236,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get episodeAction => '單集操作';
 	@override String get episodePlay => '播放';
 	@override String get episodeDetails => '開啟詳情頁';
-	@override String get useGlobalHubs => '使用首頁版面配置';
-	@override String get useGlobalHubsDescription => '顯示統一的首頁推薦欄，否則使用各媒體庫的推薦內容。';
 	@override String get showServerNameOnHubs => '在推薦欄顯示伺服器名稱';
 	@override String get showServerNameOnHubsDescription => '一律在推薦區標題中顯示伺服器名稱。';
 	@override String get groupLibrariesByServer => '依伺服器將媒體庫分組';
@@ -873,9 +871,7 @@ class _Translations$discover$zh_Hant extends Translations$discover$zh {
 	@override String get addMediaToLibraries => '請向您的媒體庫新增一些媒體內容';
 	@override String get continueWatching => '繼續觀看';
 	@override String continueWatchingIn({required Object library}) => '繼續在 ${library} 觀看';
-	@override String get nextUp => '接下來播放';
 	@override String nextUpIn({required Object library}) => '接下來在 ${library} 播放';
-	@override String get recentlyAdded => '最近新增';
 	@override String recentlyAddedIn({required Object library}) => '最近新增至 ${library}';
 	@override String latestAlbumsIn({required Object library}) => '${library} 中的最新專輯';
 	@override String recentlyPlayedIn({required Object library}) => '最近在 ${library} 播放';
@@ -1861,8 +1857,6 @@ extension on TranslationsZhHant {
 			'settings.episodeAction' => '單集操作',
 			'settings.episodePlay' => '播放',
 			'settings.episodeDetails' => '開啟詳情頁',
-			'settings.useGlobalHubs' => '使用首頁版面配置',
-			'settings.useGlobalHubsDescription' => '顯示統一的首頁推薦欄，否則使用各媒體庫的推薦內容。',
 			'settings.showServerNameOnHubs' => '在推薦欄顯示伺服器名稱',
 			'settings.showServerNameOnHubsDescription' => '一律在推薦區標題中顯示伺服器名稱。',
 			'settings.groupLibrariesByServer' => '依伺服器將媒體庫分組',
@@ -2274,10 +2268,10 @@ extension on TranslationsZhHant {
 			'messages.noEpisodesFoundGeneral' => '找不到單集',
 			'messages.episodesLoadFailed' => '無法載入單集',
 			'messages.noResultsFound' => '找不到結果',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => '睡眠計時器已設定為 ${label}',
 			'messages.noItemsAvailable' => '沒有可用的項目',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '無法建立播放佇列 — 沒有項目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '無法${action}：${error}',
 			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
@@ -2384,9 +2378,7 @@ extension on TranslationsZhHant {
 			'discover.addMediaToLibraries' => '請向您的媒體庫新增一些媒體內容',
 			'discover.continueWatching' => '繼續觀看',
 			'discover.continueWatchingIn' => ({required Object library}) => '繼續在 ${library} 觀看',
-			'discover.nextUp' => '接下來播放',
 			'discover.nextUpIn' => ({required Object library}) => '接下來在 ${library} 播放',
-			'discover.recentlyAdded' => '最近新增',
 			'discover.recentlyAddedIn' => ({required Object library}) => '最近新增至 ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} 中的最新專輯',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '最近在 ${library} 播放',
@@ -2788,12 +2780,12 @@ extension on TranslationsZhHant {
 			'metadataEdit.poster' => '海報',
 			'metadataEdit.background' => '背景圖',
 			'metadataEdit.logo' => '標誌（Logo）',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => '方形圖片',
 			'metadataEdit.selectPoster' => '選擇海報',
 			'metadataEdit.selectBackground' => '選擇背景圖',
 			'metadataEdit.selectLogo' => '選擇標誌',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '選擇方形圖片',
 			'metadataEdit.fromUrl' => '自訂網址',
 			'metadataEdit.uploadFile' => '上傳檔案',

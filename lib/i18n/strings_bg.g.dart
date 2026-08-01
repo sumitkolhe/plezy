@@ -235,8 +235,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get episodeAction => 'Действие за епизод';
 	@override String get episodePlay => 'Пусни';
 	@override String get episodeDetails => 'Отвори подробности';
-	@override String get useGlobalHubs => 'Използвай начално оформление';
-	@override String get useGlobalHubsDescription => 'Показвай обединени начални хъбове. В противен случай използвай препоръките на библиотеката.';
 	@override String get showServerNameOnHubs => 'Показвай името на сървъра в хъбовете';
 	@override String get showServerNameOnHubsDescription => 'Винаги показвай имената на сървърите в заглавията на хъбовете.';
 	@override String get groupLibrariesByServer => 'Групирай библиотеките по сървър';
@@ -873,9 +871,7 @@ class _Translations$discover$bg extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Добавете медия към библиотеките си';
 	@override String get continueWatching => 'Продължи гледането';
 	@override String continueWatchingIn({required Object library}) => 'Продължи гледането в ${library}';
-	@override String get nextUp => 'Следва';
 	@override String nextUpIn({required Object library}) => 'Следва в ${library}';
-	@override String get recentlyAdded => 'Наскоро добавени';
 	@override String recentlyAddedIn({required Object library}) => 'Наскоро добавени в ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Последни албуми в ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Наскоро възпроизведени в ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsBg {
 			'settings.episodeAction' => 'Действие за епизод',
 			'settings.episodePlay' => 'Пусни',
 			'settings.episodeDetails' => 'Отвори подробности',
-			'settings.useGlobalHubs' => 'Използвай начално оформление',
-			'settings.useGlobalHubsDescription' => 'Показвай обединени начални хъбове. В противен случай използвай препоръките на библиотеката.',
 			'settings.showServerNameOnHubs' => 'Показвай името на сървъра в хъбовете',
 			'settings.showServerNameOnHubsDescription' => 'Винаги показвай имената на сървърите в заглавията на хъбовете.',
 			'settings.groupLibrariesByServer' => 'Групирай библиотеките по сървър',
@@ -2276,10 +2270,10 @@ extension on TranslationsBg {
 			'messages.noEpisodesFoundGeneral' => 'Не са намерени епизоди',
 			'messages.episodesLoadFailed' => 'Неуспешно зареждане на епизоди',
 			'messages.noResultsFound' => 'Няма намерени резултати',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Таймерът за заспиване е зададен за ${label}',
 			'messages.noItemsAvailable' => 'Няма налични елементи',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Неуспешно създаване на опашка за възпроизвеждане - няма елементи',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Неуспешно ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
@@ -2386,9 +2380,7 @@ extension on TranslationsBg {
 			'discover.addMediaToLibraries' => 'Добавете медия към библиотеките си',
 			'discover.continueWatching' => 'Продължи гледането',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Продължи гледането в ${library}',
-			'discover.nextUp' => 'Следва',
 			'discover.nextUpIn' => ({required Object library}) => 'Следва в ${library}',
-			'discover.recentlyAdded' => 'Наскоро добавени',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Наскоро добавени в ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Последни албуми в ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Наскоро възпроизведени в ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsBg {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Лого',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Квадратно изображение',
 			'metadataEdit.selectPoster' => 'Избери постер',
 			'metadataEdit.selectBackground' => 'Избери фон',
 			'metadataEdit.selectLogo' => 'Избери лого',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Избери квадратно изображение',
 			'metadataEdit.fromUrl' => 'От URL',
 			'metadataEdit.uploadFile' => 'Качи файл',

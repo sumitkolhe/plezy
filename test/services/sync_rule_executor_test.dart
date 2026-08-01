@@ -11,7 +11,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/models/download_models.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/jellyfin_client.dart';
@@ -565,8 +564,6 @@ class _PlayableDescendantsClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   bool get isOfflineMode => false;
@@ -599,8 +596,6 @@ class _PlaylistPagingClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   bool get isOfflineMode => false;
@@ -641,8 +636,6 @@ class _CollectionPagingClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   bool get isOfflineMode => false;

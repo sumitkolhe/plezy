@@ -235,8 +235,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get episodeAction => 'Qism harakati';
 	@override String get episodePlay => 'Ijro etish';
 	@override String get episodeDetails => 'Tafsilotlarni ochish';
-	@override String get useGlobalHubs => 'Bosh sahifa tuzilishidan foydalanish';
-	@override String get useGlobalHubsDescription => 'Birlashtirilgan bosh sahifa boʻlimlarini koʻrsatish.';
 	@override String get showServerNameOnHubs => 'Boʻlimlarda server nomini koʻrsatish';
 	@override String get showServerNameOnHubsDescription => 'Boʻlim sarlavhalarida har doim server nomini koʻrsatish.';
 	@override String get groupLibrariesByServer => 'Kutubxonalarni server boʻyicha guruhlash';
@@ -877,9 +875,7 @@ class _Translations$discover$uz extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Kutubxonalaringizga media qoʻshing';
 	@override String get continueWatching => 'Tomoshani davom ettirish';
 	@override String continueWatchingIn({required Object library}) => '${library} ichida tomoshani davom ettirish';
-	@override String get nextUp => 'Navbatda';
 	@override String nextUpIn({required Object library}) => '${library} ichida navbatda';
-	@override String get recentlyAdded => 'Yaqinda qoʻshilganlar';
 	@override String recentlyAddedIn({required Object library}) => '${library} ichida yaqinda qoʻshilganlar';
 	@override String latestAlbumsIn({required Object library}) => '${library} ichida soʻnggi albomlar';
 	@override String recentlyPlayedIn({required Object library}) => '${library} ichida yaqinda eshitilganlar';
@@ -1874,8 +1870,6 @@ extension on TranslationsUz {
 			'settings.episodeAction' => 'Qism harakati',
 			'settings.episodePlay' => 'Ijro etish',
 			'settings.episodeDetails' => 'Tafsilotlarni ochish',
-			'settings.useGlobalHubs' => 'Bosh sahifa tuzilishidan foydalanish',
-			'settings.useGlobalHubsDescription' => 'Birlashtirilgan bosh sahifa boʻlimlarini koʻrsatish.',
 			'settings.showServerNameOnHubs' => 'Boʻlimlarda server nomini koʻrsatish',
 			'settings.showServerNameOnHubsDescription' => 'Boʻlim sarlavhalarida har doim server nomini koʻrsatish.',
 			'settings.groupLibrariesByServer' => 'Kutubxonalarni server boʻyicha guruhlash',
@@ -2287,10 +2281,10 @@ extension on TranslationsUz {
 			'messages.logoutConfirm' => 'Haqiqatan ham chiqmoqchimisiz?',
 			'messages.noSeasonsFound' => 'Mavsumlar topilmadi',
 			'messages.seasonsLoadFailed' => 'Mavsumlarni yuklab boʻlmadi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noEpisodesFound' => 'Birinchi mavsumda qismlar topilmadi',
 			'messages.noEpisodesFoundGeneral' => 'Qismlar topilmadi',
+			_ => null,
+		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Qismlarni yuklab boʻlmadi',
 			'messages.noResultsFound' => 'Natijalar topilmadi',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyqu taymeri ${label} vaqtiga oʻrnatildi',
@@ -2401,9 +2395,7 @@ extension on TranslationsUz {
 			'discover.addMediaToLibraries' => 'Kutubxonalaringizga media qoʻshing',
 			'discover.continueWatching' => 'Tomoshani davom ettirish',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library} ichida tomoshani davom ettirish',
-			'discover.nextUp' => 'Navbatda',
 			'discover.nextUpIn' => ({required Object library}) => '${library} ichida navbatda',
-			'discover.recentlyAdded' => 'Yaqinda qoʻshilganlar',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library} ichida yaqinda qoʻshilganlar',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library} ichida soʻnggi albomlar',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} ichida yaqinda eshitilganlar',
@@ -2801,12 +2793,12 @@ extension on TranslationsUz {
 			'metadataEdit.screenTitle' => 'Metamaʼlumotlarni tahrirlash',
 			'metadataEdit.basicInfo' => 'Asosiy maʼlumotlar',
 			'metadataEdit.artwork' => 'Rasmlar/Posterlar',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.title' => 'Nomi',
 			'metadataEdit.sortTitle' => 'Saralash nomi',
 			'metadataEdit.originalTitle' => 'Asl nomi',
 			'metadataEdit.releaseDate' => 'Chiqqan sanasi',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Kontent reytingi',
 			'metadataEdit.studio' => 'Studiya',
 			'metadataEdit.tagline' => 'Shior/Slogan',

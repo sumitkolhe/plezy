@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/media/ids.dart';
 import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/services/system_shelf_service.dart';
 
 import '../test_helpers/media_items.dart';
@@ -24,8 +23,6 @@ class _ShelfClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   String thumbnailUrl(String? path, {int? width, int? height, bool cover = true}) {

@@ -235,8 +235,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get episodeAction => '에피소드 동작';
 	@override String get episodePlay => '재생';
 	@override String get episodeDetails => '상세 정보 열기';
-	@override String get useGlobalHubs => '홈 레이아웃 사용';
-	@override String get useGlobalHubsDescription => '통합 홈 허브를 표시합니다. 끄면 라이브러리 추천을 사용합니다.';
 	@override String get showServerNameOnHubs => '허브에 서버 이름 표시';
 	@override String get showServerNameOnHubsDescription => '허브 제목에 항상 서버 이름을 표시합니다.';
 	@override String get groupLibrariesByServer => '서버별로 라이브러리 그룹화';
@@ -872,9 +870,7 @@ class _Translations$discover$ko extends Translations$discover$en {
 	@override String get addMediaToLibraries => '미디어 라이브러리에 미디어를 추가해 주세요';
 	@override String get continueWatching => '계속 시청';
 	@override String continueWatchingIn({required Object library}) => '${library}에서 계속 시청';
-	@override String get nextUp => '다음 에피소드';
 	@override String nextUpIn({required Object library}) => '${library}의 다음 에피소드';
-	@override String get recentlyAdded => '최근에 추가됨';
 	@override String recentlyAddedIn({required Object library}) => '${library}에 최근에 추가됨';
 	@override String latestAlbumsIn({required Object library}) => '${library}의 최신 앨범';
 	@override String recentlyPlayedIn({required Object library}) => '${library}에서 최근 재생';
@@ -1860,8 +1856,6 @@ extension on TranslationsKo {
 			'settings.episodeAction' => '에피소드 동작',
 			'settings.episodePlay' => '재생',
 			'settings.episodeDetails' => '상세 정보 열기',
-			'settings.useGlobalHubs' => '홈 레이아웃 사용',
-			'settings.useGlobalHubsDescription' => '통합 홈 허브를 표시합니다. 끄면 라이브러리 추천을 사용합니다.',
 			'settings.showServerNameOnHubs' => '허브에 서버 이름 표시',
 			'settings.showServerNameOnHubsDescription' => '허브 제목에 항상 서버 이름을 표시합니다.',
 			'settings.groupLibrariesByServer' => '서버별로 라이브러리 그룹화',
@@ -2273,10 +2267,10 @@ extension on TranslationsKo {
 			'messages.noEpisodesFoundGeneral' => '에피소드를 찾을 수 없습니다',
 			'messages.episodesLoadFailed' => '에피소드를 불러오지 못했습니다',
 			'messages.noResultsFound' => '결과를 찾을 수 없습니다',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => '취침 타이머가 ${label}(으)로 설정되었습니다',
 			'messages.noItemsAvailable' => '사용 가능한 항목이 없습니다',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '재생 대기열을 만들지 못했습니다 — 항목이 없습니다',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}을(를) 수행할 수 없습니다: ${error}',
 			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
@@ -2383,9 +2377,7 @@ extension on TranslationsKo {
 			'discover.addMediaToLibraries' => '미디어 라이브러리에 미디어를 추가해 주세요',
 			'discover.continueWatching' => '계속 시청',
 			'discover.continueWatchingIn' => ({required Object library}) => '${library}에서 계속 시청',
-			'discover.nextUp' => '다음 에피소드',
 			'discover.nextUpIn' => ({required Object library}) => '${library}의 다음 에피소드',
-			'discover.recentlyAdded' => '최근에 추가됨',
 			'discover.recentlyAddedIn' => ({required Object library}) => '${library}에 최근에 추가됨',
 			'discover.latestAlbumsIn' => ({required Object library}) => '${library}의 최신 앨범',
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library}에서 최근 재생',
@@ -2787,12 +2779,12 @@ extension on TranslationsKo {
 			'metadataEdit.poster' => '포스터',
 			'metadataEdit.background' => '배경',
 			'metadataEdit.logo' => '로고',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => '정사각형 아트',
 			'metadataEdit.selectPoster' => '포스터 선택',
 			'metadataEdit.selectBackground' => '배경 선택',
 			'metadataEdit.selectLogo' => '로고 선택',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '정사각형 아트 선택',
 			'metadataEdit.fromUrl' => 'URL에서',
 			'metadataEdit.uploadFile' => '파일 업로드',

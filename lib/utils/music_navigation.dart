@@ -188,8 +188,6 @@ Future<void> playTrackWithAlbumContext(BuildContext context, MediaItem track) as
 }
 
 /// Fetch and play an instant mix seeded from [seed] (track/album/artist).
-/// Only call when the seed's server advertises
-/// `ServerCapabilities.instantMix`.
 Future<void> playInstantMix(BuildContext context, MediaItem seed) async {
   await context.read<MusicPlaybackService>().playInstantMix(seed);
   if (context.mounted) _autoOpenNowPlayingOnTv(context);

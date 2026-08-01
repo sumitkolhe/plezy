@@ -6,11 +6,6 @@ String _segment(String value) => Uri.encodeComponent(value);
 /// endpoint failover. See `_getItemsResponse`.
 typedef _HubRetryPolicy = ({String operation, List<Duration> attemptTimeouts});
 
-const _HubRetryPolicy _homeHubRetry = (
-  operation: 'Jellyfin home hubs',
-  attemptTimeouts: MediaServerTimeouts.homeHubAttemptTimeouts,
-);
-
 const _HubRetryPolicy _libraryHubRetry = (
   operation: 'Jellyfin library hubs',
   attemptTimeouts: MediaServerTimeouts.libraryHubAttemptTimeouts,
@@ -1258,24 +1253,6 @@ mixin _JellyfinBrowseMethods on _JellyfinClientInternals {
       resume: _mapItems(results.first),
       nextUp: await _attachSeriesLastPlayed(_mapItems(results[1])),
       limit: count,
-    );
-  }
-
-  @override
-  Future<List<MediaHub>> fetchGlobalHubs({int limit = defaultHubPreviewLimit, bool includePlaybackHubs = true}) async {
-    // Jellyfin doesn't expose a single "hubs" endpoint, so we synthesise the
-    // home rows from Latest plus optional playback rows. The richer Plex Discover surface
-    // is intentionally left untranslated — see ServerCapabilities.richHubs.
-    return _playbackHubSet(
-      idPrefix: 'home',
-      limit: limit,
-      includePlaybackHubs: includePlaybackHubs,
-      includeNextUp: true,
-      retry: _homeHubRetry,
-      latestItemTypes: 'Movie,Series,Episode',
-      continueTitle: t.discover.continueWatching,
-      nextUpTitle: t.discover.nextUp,
-      recentTitle: t.discover.recentlyAdded,
     );
   }
 

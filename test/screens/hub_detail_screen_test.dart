@@ -8,7 +8,6 @@ import 'package:plezy/media/media_hub.dart';
 import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/screens/hub_detail_screen.dart';
 import 'package:plezy/services/multi_server_manager.dart';
@@ -155,9 +154,6 @@ class _PagedHubClient implements MediaServerClient {
   @override
   String? get serverName => 'Server';
 
-  @override
-  ServerCapabilities get capabilities =>
-      ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchMoreHubItemsPage(

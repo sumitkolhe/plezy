@@ -16,7 +16,6 @@ import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/media/media_library.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/mixins/refreshable.dart';
 import 'package:plezy/mixins/tab_visibility_aware.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
@@ -474,14 +473,12 @@ class _FakeMediaServerClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<List<MediaItem>> fetchContinueWatching({int? count = 20}) async => continueWatching;
 
-  // Home builds its rows from per-library hubs (ServerCapabilities.richHubs is
-  // false), so one library is enough to surface the whole fixture.
+  // Home builds every row from per-library hubs, so one library is enough to
+  // surface the whole fixture.
   @override
   Future<List<MediaLibrary>> fetchLibraries() async => const [
     MediaLibrary(id: 'lib-1', backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie),

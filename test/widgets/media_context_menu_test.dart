@@ -17,7 +17,6 @@ import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_playlist.dart';
 import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/server_capabilities.dart';
 import 'package:plezy/metadata_edit/metadata_edit_adapters.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
 import 'package:plezy/providers/download_provider.dart';
@@ -463,8 +462,6 @@ class _AudioPlaylistClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchPlaylistPage(String id, {int? start, int? size, AbortController? abort}) async {
@@ -533,8 +530,6 @@ class _RelatedMusicClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   @override
   Future<MediaItem?> fetchItem(String id) async => _items[id];

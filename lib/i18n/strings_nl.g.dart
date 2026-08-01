@@ -235,8 +235,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get episodeAction => 'Afleveringsactie';
 	@override String get episodePlay => 'Afspelen';
 	@override String get episodeDetails => 'Details openen';
-	@override String get useGlobalHubs => 'Startlayout gebruiken';
-	@override String get useGlobalHubsDescription => 'Toon gecombineerde hubs op het startscherm. Gebruik anders bibliotheekaanbevelingen.';
 	@override String get showServerNameOnHubs => 'Servernaam tonen bij hubs';
 	@override String get showServerNameOnHubsDescription => 'Toon servernamen altijd in hubtitels.';
 	@override String get groupLibrariesByServer => 'Bibliotheken groeperen per server';
@@ -873,9 +871,7 @@ class _Translations$discover$nl extends Translations$discover$en {
 	@override String get addMediaToLibraries => 'Voeg wat media toe aan je bibliotheken';
 	@override String get continueWatching => 'Verder kijken';
 	@override String continueWatchingIn({required Object library}) => 'Verder kijken in ${library}';
-	@override String get nextUp => 'Volgende';
 	@override String nextUpIn({required Object library}) => 'Volgende in ${library}';
-	@override String get recentlyAdded => 'Recent toegevoegd';
 	@override String recentlyAddedIn({required Object library}) => 'Recent toegevoegd in ${library}';
 	@override String latestAlbumsIn({required Object library}) => 'Nieuwste albums in ${library}';
 	@override String recentlyPlayedIn({required Object library}) => 'Onlangs afgespeeld in ${library}';
@@ -1863,8 +1859,6 @@ extension on TranslationsNl {
 			'settings.episodeAction' => 'Afleveringsactie',
 			'settings.episodePlay' => 'Afspelen',
 			'settings.episodeDetails' => 'Details openen',
-			'settings.useGlobalHubs' => 'Startlayout gebruiken',
-			'settings.useGlobalHubsDescription' => 'Toon gecombineerde hubs op het startscherm. Gebruik anders bibliotheekaanbevelingen.',
 			'settings.showServerNameOnHubs' => 'Servernaam tonen bij hubs',
 			'settings.showServerNameOnHubsDescription' => 'Toon servernamen altijd in hubtitels.',
 			'settings.groupLibrariesByServer' => 'Bibliotheken groeperen per server',
@@ -2276,10 +2270,10 @@ extension on TranslationsNl {
 			'messages.noEpisodesFoundGeneral' => 'Geen afleveringen gevonden',
 			'messages.episodesLoadFailed' => 'Kan afleveringen niet laden',
 			'messages.noResultsFound' => 'Geen resultaten gevonden',
-			_ => null,
-		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Slaaptimer ingesteld op ${label}',
 			'messages.noItemsAvailable' => 'Geen items beschikbaar',
+			_ => null,
+		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Afspeelwachtrij maken mislukt — geen items',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Afspelen van ${action} mislukt: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
@@ -2386,9 +2380,7 @@ extension on TranslationsNl {
 			'discover.addMediaToLibraries' => 'Voeg wat media toe aan je bibliotheken',
 			'discover.continueWatching' => 'Verder kijken',
 			'discover.continueWatchingIn' => ({required Object library}) => 'Verder kijken in ${library}',
-			'discover.nextUp' => 'Volgende',
 			'discover.nextUpIn' => ({required Object library}) => 'Volgende in ${library}',
-			'discover.recentlyAdded' => 'Recent toegevoegd',
 			'discover.recentlyAddedIn' => ({required Object library}) => 'Recent toegevoegd in ${library}',
 			'discover.latestAlbumsIn' => ({required Object library}) => 'Nieuwste albums in ${library}',
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Onlangs afgespeeld in ${library}',
@@ -2790,12 +2782,12 @@ extension on TranslationsNl {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Achtergrond',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Vierkante afbeelding',
 			'metadataEdit.selectPoster' => 'Poster selecteren',
 			'metadataEdit.selectBackground' => 'Achtergrond selecteren',
 			'metadataEdit.selectLogo' => 'Logo selecteren',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Vierkante afbeelding selecteren',
 			'metadataEdit.fromUrl' => 'Vanaf URL',
 			'metadataEdit.uploadFile' => 'Bestand uploaden',

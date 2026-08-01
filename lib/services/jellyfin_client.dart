@@ -23,7 +23,6 @@ import '../media/media_playlist.dart';
 import '../media/ids.dart';
 import '../media/media_server_client.dart';
 import '../media/playback_report_metadata.dart';
-import '../media/server_capabilities.dart';
 import '../models/audio_quality_preset.dart';
 import '../models/jellyfin/jellyfin_user_profile.dart';
 import '../media/media_source_info.dart';
@@ -270,9 +269,6 @@ class JellyfinClient
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
-  @override
-  ServerCapabilities get capabilities => ServerCapabilities.jellyfin;
 
   /// Jellyfin doesn't expose a per-server played-threshold pref, so we mirror
   /// Plex's default of 90%.
