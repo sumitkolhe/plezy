@@ -42,7 +42,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('LibraryTabStateMixin', () {
-    testWidgets('getClientForLibrary throws when no server matches and no fallback online', (tester) async {
+    testWidgets('getMediaClientForLibrary throws when no server matches and no fallback online', (tester) async {
       late _ProbeState state;
 
       final manager = MultiServerManager();
@@ -62,7 +62,7 @@ void main() {
       );
       await tester.pump();
 
-      expect(() => state.getClientForLibrary(), throwsA(isA<Exception>()));
+      expect(() => state.getMediaClientForLibrary(), throwsA(isA<Exception>()));
     });
   });
 }

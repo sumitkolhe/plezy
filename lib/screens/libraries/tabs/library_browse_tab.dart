@@ -3,14 +3,12 @@ import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:provider/provider.dart';
 import '../../../media/library_first_character.dart';
 import '../../../media/library_query.dart';
 import '../../../media/media_backend.dart';
 import '../../../media/media_item.dart';
 import '../../../media/media_kind.dart';
 import '../../../media/media_library.dart';
-import '../../../providers/multi_server_provider.dart';
 import '../../../utils/media_server_http_client.dart';
 import '../../../focus/dpad_navigator.dart';
 import '../../../focus/input_mode_tracker.dart';
@@ -262,22 +260,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   bool _rangeLoadScheduled = false;
   bool _topScrollResetScheduled = false;
 
-  LibraryAlphaBarStrategy _createAlphaStrategy() {
-    final library = widget.library;
-    return LibraryAlphaBarStrategy.forBackend(
-      library.backend,
-      // Resolved on demand and only invoked by [PlexAlphaBarStrategy], which is
-      // only constructed when the library's backend is Plex — the bang is safe.
-      plexClientProvider: () {
-        final manager = context.read<MultiServerProvider>().serverManager;
-        final serverId = serverIdOrNull(library.serverId);
-        if (serverId == null) throw StateError('Plex library ${library.id} is missing a serverId');
-        return manager.getPlexClient(serverId)!;
-      },
-      libraryKey: library.id,
-      isShared: library.isShared,
-    );
-  }
+  LibraryAlphaBarStrategy _createAlphaStrategy() => LibraryAlphaBarStrategy.forBackend(widget.library.backend);
 
   @override
   void didUpdateWidget(covariant LibraryBrowseTab oldWidget) {
@@ -1036,12 +1019,9 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   Future<List<MediaFilterValue>> _loadFilterValues(MediaFilter filter) async {
     if (!mounted) return const [];
 
-    final client = context.tryGetPlexClientForServer(serverIdOrNull(widget.library.serverId));
-    if (client != null) return client.getFilterValues(filter.key);
-
     // Jellyfin's canonical filter values come from the cached `/Items/Filters`
     // payload. If that payload missed a category, there is no neutral endpoint
-    // to query yet, so return an empty list instead of routing to a Plex-only API.
+    // to query yet, so return an empty list.
     return const [];
   }
 

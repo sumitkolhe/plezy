@@ -1,6 +1,5 @@
 import '../../media/library_first_character.dart';
 import '../../media/media_backend.dart';
-import '../../services/plex_client.dart';
 import 'alpha_jump_helper.dart';
 
 /// Backend-specific alpha-jump-bar behaviour.
@@ -55,81 +54,7 @@ abstract class LibraryAlphaBarStrategy {
   });
 
   /// Construct the right strategy for [backend].
-  factory LibraryAlphaBarStrategy.forBackend(
-    MediaBackend backend, {
-    required PlexClient Function() plexClientProvider,
-    required String libraryKey,
-    required bool isShared,
-  }) {
-    return switch (backend) {
-      MediaBackend.plex => PlexAlphaBarStrategy(
-        plexClientProvider: plexClientProvider,
-        libraryKey: libraryKey,
-        isShared: isShared,
-      ),
-      MediaBackend.jellyfin => const JellyfinAlphaBarStrategy(),
-    };
-  }
-}
-
-/// Plex strategy — calls `/library/sections/{id}/firstCharacter` for real
-/// per-letter counts and uses the cumulative offsets to drive scroll
-/// position.
-class PlexAlphaBarStrategy implements LibraryAlphaBarStrategy {
-  final PlexClient Function() plexClientProvider;
-  final String libraryKey;
-  final bool isShared;
-
-  PlexAlphaBarStrategy({required this.plexClientProvider, required this.libraryKey, required this.isShared});
-
-  @override
-  bool shouldShow({
-    required int totalItemCount,
-    required int loadedCharacterCount,
-    required String? sortKey,
-    required bool isFolderGrouping,
-    required String? jellyfinAlphaPrefix,
-    required bool isPhone,
-  }) {
-    if (isFolderGrouping) return false;
-    if (loadedCharacterCount < 6 || totalItemCount < 80) return false;
-    final s = sortKey ?? '';
-    return s.isEmpty || s.startsWith('titleSort');
-  }
-
-  @override
-  Future<({List<LibraryFirstCharacter> chars, AlphaJumpHelper helper})> loadCharacters({
-    required Map<String, String> filters,
-    required int? typeId,
-    required bool descending,
-  }) async {
-    if (isShared) {
-      // Shared libraries don't support first-characters.
-      return (chars: const <LibraryFirstCharacter>[], helper: AlphaJumpHelper(const []));
-    }
-    final client = plexClientProvider();
-    final params = Map<String, String>.from(filters);
-    params['includeCollections'] = '1';
-    final chars = await client.getFirstCharacters(libraryKey, type: typeId, filters: params.isNotEmpty ? params : null);
-    return (chars: chars, helper: AlphaJumpHelper(chars, descending: descending));
-  }
-
-  @override
-  String currentLetter(int index, AlphaJumpHelper helper, {String? jellyfinAlphaPrefix}) => helper.currentLetter(index);
-
-  /// Plex jumps the grid to the cumulative offset for the tapped letter —
-  /// the helper's letter list already encodes the per-letter ranges from
-  /// the server's `/firstCharacter` counts.
-  @override
-  void onLetterPressed(
-    int targetIndex,
-    AlphaJumpHelper helper, {
-    required String? currentJellyfinPrefix,
-    required void Function(int index) onPlexJump,
-    required void Function(String? nextPrefix) onJellyfinPrefixChange,
-  }) {
-    onPlexJump(targetIndex);
-  }
+  factory LibraryAlphaBarStrategy.forBackend(MediaBackend backend) => const JellyfinAlphaBarStrategy();
 }
 
 /// Jellyfin strategy — synthesises the 27-letter alphabet locally and uses
