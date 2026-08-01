@@ -11,6 +11,7 @@ import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/widgets/focusable_list_tile.dart';
 
 import '../../test_helpers/prefs.dart';
+import 'package:plezy/utils/platform_detector.dart';
 
 void main() {
   late SettingsService settings;
@@ -20,6 +21,7 @@ void main() {
     SettingsService.resetForTesting();
     KnownPlayers.resetForTesting();
     KnownPlayers.probe = const _AllPlayersInstalled();
+    PlatformDetector.debugSetSupportsExternalPlayersOverride(true);
     settings = await SettingsService.getInstance();
     LocaleSettings.setLocaleSync(AppLocale.en);
   });
@@ -27,6 +29,7 @@ void main() {
   tearDown(() {
     SettingsService.resetForTesting();
     KnownPlayers.resetForTesting();
+    PlatformDetector.debugSetSupportsExternalPlayersOverride(null);
   });
 
   testWidgets('only custom players expose a focusable delete action', (tester) async {
@@ -71,30 +74,6 @@ void main() {
     expect(settings.read(SettingsService.selectedExternalPlayer), KnownPlayers.systemDefault);
     expect(find.text(customPlayer.name), findsNothing);
   });
-
-  testWidgets('a selected known player stays listed when detection misses it', (tester) async {
-    tester.view.devicePixelRatio = 1;
-    tester.view.physicalSize = const Size(1000, 1400);
-    addTearDown(tester.view.resetDevicePixelRatio);
-    addTearDown(tester.view.resetPhysicalSize);
-
-    // VLC is supported on every platform Plezy ships, so with detection
-    // reporting nothing installed it is always one of the filtered-out ids.
-    KnownPlayers.resetForTesting();
-    KnownPlayers.probe = const _NoPlayersInstalled();
-    final selected = KnownPlayers.findById('vlc')!;
-    expect(selected.isAvailable, isTrue);
-    expect((await KnownPlayers.getForCurrentPlatform()).map((p) => p.id), isNot(contains('vlc')));
-
-    await settings.write(SettingsService.useExternalPlayer, true);
-    await settings.write(SettingsService.selectedExternalPlayer, selected);
-
-    await tester.pumpWidget(MaterialApp(theme: monoTheme(dark: true), home: const ExternalPlayerScreen()));
-    await tester.pumpAndSettle();
-
-    expect(find.widgetWithText(FocusableListTile, selected.name), findsOneWidget);
-    expect(find.widgetWithText(FocusableListTile, 'System Default'), findsOneWidget);
-  });
 }
 
 /// Reports every player as installed so the screen renders the full platform
@@ -113,21 +92,4 @@ class _AllPlayersInstalled extends PlayerInstallProbe {
 
   @override
   Future<bool> schemeHasHandler(String scheme) async => true;
-}
-
-/// Reports nothing as installed, so only players without a detector survive.
-class _NoPlayersInstalled extends PlayerInstallProbe {
-  const _NoPlayersInstalled();
-
-  @override
-  Future<ProcessResult> run(String executable, List<String> arguments) async => ProcessResult(0, 1, '', '');
-
-  @override
-  Future<bool> applicationInstalled(String bundleId) async => false;
-
-  @override
-  Future<bool> fileExists(String path) async => false;
-
-  @override
-  Future<bool> schemeHasHandler(String scheme) async => false;
 }

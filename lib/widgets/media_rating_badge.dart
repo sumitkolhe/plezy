@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../media/media_item.dart';
 import '../utils/formatters.dart';
-import '../utils/rating_utils.dart';
 import 'app_icon.dart';
 
 enum MediaRatingBadgeVariant { chip, inline }
@@ -14,7 +12,6 @@ class MediaRatingBadge extends StatelessWidget {
     super.key,
     required this.value,
     required this.fallbackIcon,
-    this.imageUri,
     this.fallbackText,
     this.textStyle,
     this.foregroundColor,
@@ -28,7 +25,6 @@ class MediaRatingBadge extends StatelessWidget {
     super.key,
     required this.value,
     required this.fallbackIcon,
-    this.imageUri,
     this.fallbackText,
     this.textStyle,
     this.foregroundColor,
@@ -38,7 +34,6 @@ class MediaRatingBadge extends StatelessWidget {
        backgroundColor = null,
        padding = EdgeInsets.zero;
 
-  final String? imageUri;
   final double value;
   final IconData fallbackIcon;
   final String? fallbackText;
@@ -62,7 +57,6 @@ class MediaRatingBadge extends StatelessWidget {
     if (data == null) return null;
 
     return MediaRatingBadge.inline(
-      imageUri: data.imageUri,
       value: data.value,
       fallbackIcon: data.fallbackIcon,
       fallbackText: data.fallbackText,
@@ -77,18 +71,13 @@ class MediaRatingBadge extends StatelessWidget {
   static String? semanticLabelForMedia(MediaItem item, {MediaItem? fallbackItem}) {
     final data = _ratingDataFor(item) ?? (fallbackItem == null ? null : _ratingDataFor(fallbackItem));
     if (data == null) return null;
-    return parseRatingImage(data.imageUri, data.value)?.formattedValue ?? data.fallbackText;
+    return data.fallbackText;
   }
 
   static _MediaRatingBadgeData? _ratingDataFor(MediaItem item) {
     final rating = item.rating;
     if (rating == null) return null;
-    return _MediaRatingBadgeData(
-      imageUri: null,
-      value: rating,
-      fallbackIcon: Symbols.star_rounded,
-      fallbackText: formatRating(rating),
-    );
+    return _MediaRatingBadgeData(value: rating, fallbackIcon: Symbols.star_rounded, fallbackText: formatRating(rating));
   }
 
   @override
@@ -101,15 +90,11 @@ class MediaRatingBadge extends StatelessWidget {
                 TextStyle(color: foreground, fontSize: 13, fontWeight: isInline ? FontWeight.w700 : FontWeight.w600))
             .copyWith(color: textStyle?.color ?? foreground);
     final size = iconSize ?? style.fontSize ?? 13;
-    final info = parseRatingImage(imageUri, value);
-    final label = info?.formattedValue ?? fallbackText ?? '${(value * 10).toStringAsFixed(0)}%';
+    final label = fallbackText ?? '${(value * 10).toStringAsFixed(0)}%';
     final content = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (info != null)
-          SvgPicture.asset(info.assetPath, width: size, height: size)
-        else
-          AppIcon(fallbackIcon, fill: 1, color: foreground, size: size),
+        AppIcon(fallbackIcon, fill: 1, color: foreground, size: size),
         SizedBox(width: spacing ?? (isInline ? 4 : 4)),
         Text(label, maxLines: 1, overflow: TextOverflow.clip, style: style),
       ],
@@ -129,14 +114,8 @@ class MediaRatingBadge extends StatelessWidget {
 }
 
 class _MediaRatingBadgeData {
-  const _MediaRatingBadgeData({
-    required this.value,
-    required this.fallbackIcon,
-    required this.fallbackText,
-    this.imageUri,
-  });
+  const _MediaRatingBadgeData({required this.value, required this.fallbackIcon, required this.fallbackText});
 
-  final String? imageUri;
   final double value;
   final IconData fallbackIcon;
   final String fallbackText;

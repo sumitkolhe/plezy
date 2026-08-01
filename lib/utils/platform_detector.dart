@@ -300,8 +300,18 @@ class PlatformDetector {
   }
 
   static bool supportsExternalPlayers() {
+    if (_debugSupportsExternalPlayersOverride != null) return _debugSupportsExternalPlayersOverride!;
     if (isAppleTV()) return false;
-    return Platform.isAndroid || Platform.isIOS || Platform.isMacOS || Platform.isLinux || Platform.isWindows;
+    return Platform.isAndroid || Platform.isIOS;
+  }
+
+  static bool? _debugSupportsExternalPlayersOverride;
+
+  /// Test-only: the suite runs on a desktop host, where external players are
+  /// unsupported, so screen tests must state the platform they simulate.
+  @visibleForTesting
+  static void debugSetSupportsExternalPlayersOverride(bool? value) {
+    _debugSupportsExternalPlayersOverride = value;
   }
 
   static bool supportsAudioPassthrough() {

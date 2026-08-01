@@ -1,6 +1,5 @@
-/// Resolves the brand badge shown beside a score: Plex's
-/// ratingImage/audienceRatingImage URIs, and the attributed source keys the
-/// Explore catalog carries instead of them.
+/// Resolves the brand badge shown beside a score, from the attributed source
+/// keys the Explore catalog publishes.
 library;
 
 class RatingInfo {
@@ -10,45 +9,12 @@ class RatingInfo {
   const RatingInfo(this.assetPath, this.formattedValue);
 }
 
-/// Parse a ratingImage URI (e.g. "rottentomatoes://image.rating.ripe")
-/// together with the numeric rating value into a [RatingInfo].
-///
-/// Returns null if the URI is unrecognised.
-RatingInfo? parseRatingImage(String? imageUri, double? value) {
-  if (imageUri == null || value == null) return null;
-
-  if (imageUri.startsWith('rottentomatoes://image.rating.')) {
-    final suffix = imageUri.substring('rottentomatoes://image.rating.'.length);
-    return switch (suffix) {
-      'ripe' => RatingInfo(_rtFreshAsset, _percent(value)),
-      'rotten' => RatingInfo(_rtRottenAsset, _percent(value)),
-      'upright' => RatingInfo(_rtUprightAsset, _percent(value)),
-      'spilled' => RatingInfo(_rtSpilledAsset, _percent(value)),
-      _ => null,
-    };
-  }
-
-  if (imageUri.startsWith('imdb://')) {
-    return RatingInfo(_imdbAsset, value.toStringAsFixed(1));
-  }
-
-  if (imageUri.startsWith('themoviedb://')) {
-    return RatingInfo(_tmdbAsset, _percent(value));
-  }
-
-  return null;
-}
-
-/// Whether the URI is a Rotten Tomatoes rating source.
-bool isRottenTomatoes(String? imageUri) => imageUri != null && imageUri.startsWith('rottentomatoes://');
-
-/// The same badge for a [CatalogRatingSource]-style source key.
+/// The badge for a [CatalogRatingSource]-style source key.
 ///
 /// Catalog providers attribute their scores by name (`imdb`, `tmdb`,
-/// `rottenTomatoesCritic`, …) and publish no badge URI, so the icon is chosen
-/// from the key. Rotten Tomatoes picks fresh/rotten and upright/spilled by the
-/// 60% threshold the tomatometer itself uses — the same state Plex encodes in
-/// `image.rating.ripe` / `.rotten`.
+/// `rottenTomatoesCritic`, …), so the icon is chosen from the key. Rotten
+/// Tomatoes picks fresh/rotten and upright/spilled by the 60% threshold the
+/// tomatometer itself uses.
 ///
 /// Returns null for keys with no brand badge (`critic`, `audience`, `simkl`,
 /// `mal`, `anilist`, `trakt`); those stay labelled with their source name.

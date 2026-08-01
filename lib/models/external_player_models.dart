@@ -135,86 +135,12 @@ Future<bool> _launchUrlScheme(String scheme, String url) async {
   return false;
 }
 
-Future<bool> _launchMacApp(String appName, String url) async {
-  try {
-    await Process.start('open', ['-a', appName, url], mode: ProcessStartMode.detached);
-    return true;
-  } catch (e) {
-    appLogger.w('Failed to launch $appName via open -a', error: e);
-    return false;
-  }
-}
-
-Future<bool> _launchCommand(String command, String url) async {
-  try {
-    final result = await Process.start(command, [url], mode: ProcessStartMode.detached);
-    appLogger.d('Launched $command with PID: ${result.pid}');
-    return true;
-  } catch (e) {
-    appLogger.w('Failed to launch $command', error: e);
-    return false;
-  }
-}
-
-Future<bool> _launchCommandCandidates(Iterable<String> commands, String url) async {
-  final commandList = commands.toList(growable: false);
-  Object? lastError;
-  for (final command in commandList) {
-    try {
-      final result = await Process.start(command, [url], mode: ProcessStartMode.detached);
-      appLogger.d('Launched $command with PID: ${result.pid}');
-      return true;
-    } catch (e) {
-      lastError = e;
-      appLogger.d('Failed to launch $command', error: e);
-    }
-  }
-
-  appLogger.w('Failed to launch any of: ${commandList.join(', ')}', error: lastError);
-  return false;
-}
-
-List<String> _windowsVlcCommandCandidates(Map<String, String> environment) {
-  final candidates = <String>['vlc'];
-
-  void addInstallPath(String? programFilesDir) {
-    final trimmed = programFilesDir?.trim();
-    if (trimmed == null || trimmed.isEmpty) return;
-    final root = trimmed.replaceFirst(RegExp(r'[\\/]+$'), '');
-    candidates.add('$root\\VideoLAN\\VLC\\vlc.exe');
-  }
-
-  addInstallPath(environment['ProgramW6432']);
-  addInstallPath(environment['ProgramFiles']);
-  addInstallPath(environment['ProgramFiles(x86)']);
-  addInstallPath(r'C:\Program Files');
-  addInstallPath(r'C:\Program Files (x86)');
-
-  final seen = <String>{};
-  return [
-    for (final candidate in candidates)
-      if (seen.add(candidate.toLowerCase())) candidate,
-  ];
-}
-
-Future<bool> _launchWindowsVlc(String url) {
-  return _launchCommandCandidates(_windowsVlcCommandCandidates(Platform.environment), url);
-}
-
 Future<bool> _launchCustom(String value, String url, CustomPlayerType type) async {
   if (type == CustomPlayerType.urlScheme) {
     return _launchUrlScheme(value, url);
   }
   // Command type
-  if (Platform.isAndroid) {
-    return _launchAndroidIntent(url, package: value);
-  } else if (Platform.isMacOS) {
-    // Try PATH first (e.g. mpv), fall back to open -a (e.g. VLC)
-    if (await _launchCommand(value, url)) return true;
-    return _launchMacApp(value, url);
-  } else {
-    return _launchCommand(value, url);
-  }
+  return _launchAndroidIntent(url, package: value);
 }
 
 class KnownPlayers {
@@ -247,31 +173,17 @@ class KnownPlayers {
       id: 'vlc',
       name: 'VLC',
       iconAsset: 'assets/player_icons/vlc.svg',
-      isAvailable: Platform.isAndroid || Platform.isIOS || Platform.isMacOS || Platform.isLinux || Platform.isWindows,
-      launch: (url) {
-        if (Platform.isAndroid) return _launchAndroidIntentCandidates(url, _androidPackageCandidatesForId('vlc'));
-        if (Platform.isIOS) return _launchUrlScheme('vlc://', url);
-        if (Platform.isMacOS) return _launchMacApp('VLC', url);
-        if (Platform.isWindows) return _launchWindowsVlc(url);
-        return _launchCommand('vlc', url);
-      },
+      isAvailable: Platform.isAndroid || Platform.isIOS,
+      launch: (url) => Platform.isAndroid
+          ? _launchAndroidIntentCandidates(url, _androidPackageCandidatesForId('vlc'))
+          : _launchUrlScheme('vlc://', url),
     ),
     ExternalPlayer(
       id: 'mpv',
       name: 'mpv',
       iconAsset: 'assets/player_icons/mpv.svg',
-      isAvailable: Platform.isAndroid || Platform.isMacOS || Platform.isLinux || Platform.isWindows,
-      launch: (url) {
-        if (Platform.isAndroid) return _launchAndroidIntentCandidates(url, _androidPackageCandidatesForId('mpv'));
-        return _launchCommand('mpv', url);
-      },
-    ),
-    ExternalPlayer(
-      id: 'iina',
-      name: 'IINA',
-      iconAsset: 'assets/player_icons/iina.png',
-      isAvailable: Platform.isMacOS,
-      launch: (url) => _launchUrlScheme('iina://weblink?url=', url),
+      isAvailable: Platform.isAndroid,
+      launch: (url) => _launchAndroidIntentCandidates(url, _androidPackageCandidatesForId('mpv')),
     ),
     ExternalPlayer(
       id: 'mx_player',
@@ -294,23 +206,6 @@ class KnownPlayers {
       isAvailable: Platform.isIOS,
       launch: (url) => _launchUrlScheme('infuse://x-callback-url/play?url=', url),
     ),
-    ExternalPlayer(
-      id: 'potplayer',
-      name: 'PotPlayer',
-      iconAsset: 'assets/player_icons/potplayer.png',
-      isAvailable: Platform.isWindows,
-      launch: (url) async {
-        if (await _launchUrlScheme('potplayer://', url)) return true;
-        return _launchCommand('PotPlayerMini64', url);
-      },
-    ),
-    ExternalPlayer(
-      id: 'celluloid',
-      name: 'Celluloid',
-      iconAsset: 'assets/player_icons/celluloid.svg',
-      isAvailable: Platform.isLinux,
-      launch: (url) => _launchCommand('celluloid', url),
-    ),
   ];
 
   /// Host lookups used to decide whether a supported player is actually
@@ -324,12 +219,11 @@ class KnownPlayers {
   /// Players supported on this platform, minus the ones we can positively tell
   /// are not installed.
   ///
-  /// Detection forks `sh` or `where.exe` and calls out over platform channels,
-  /// so it is asynchronous and memoised: it runs once per process and a player
-  /// installed while Plezy is running only appears after a restart. Android is
-  /// the one platform left unprobed — where there is no reliable check the
-  /// player stays listed, because hiding a working player is worse than
-  /// listing a missing one.
+  /// Detection calls out over platform channels, so it is asynchronous and
+  /// memoised: it runs once per process and a player installed while the app
+  /// is running only appears after a restart. Android is left unprobed —
+  /// where there is no reliable check the player stays listed, because hiding
+  /// a working player is worse than listing a missing one.
   static Future<List<ExternalPlayer>> getForCurrentPlatform() {
     return _installedPlayers ??= _resolveForCurrentPlatform();
   }
@@ -350,18 +244,6 @@ class KnownPlayers {
     // listed player is one we can actually start.
     final detectors = <String, Future<bool> Function()>{};
     switch (probe.operatingSystem) {
-      case 'linux':
-        detectors['vlc'] = () => _posixCommandExists('vlc');
-        detectors['mpv'] = () => _posixCommandExists('mpv');
-        detectors['celluloid'] = () => _posixCommandExists('celluloid');
-      case 'macos':
-        detectors['vlc'] = () => probe.applicationInstalled('org.videolan.vlc');
-        detectors['iina'] = () => probe.applicationInstalled('com.colliderli.iina');
-        detectors['mpv'] = () => _posixCommandExists('mpv');
-      case 'windows':
-        detectors['vlc'] = _windowsVlcExists;
-        detectors['mpv'] = () => _windowsCommandExists('mpv');
-        detectors['potplayer'] = _windowsPotPlayerExists;
       case 'ios':
         // Same predicate _launchUrlScheme gates on, so detection can never
         // hide a player the handoff would have reached. Both schemes are
@@ -394,35 +276,6 @@ class KnownPlayers {
       appLogger.w('External player detection failed for $id; listing it anyway', error: e, stackTrace: stackTrace);
       return true;
     }
-  }
-
-  /// True when [command] resolves on `PATH`. The shell defers to the kernel, so
-  /// permission classes, ACLs and `noexec` mounts are honoured exactly as they
-  /// will be when [Process.start] execs the command.
-  static Future<bool> _posixCommandExists(String command) async {
-    final result = await probe.run('sh', ['-c', r'command -v "$1" >/dev/null 2>&1', 'plezy-command-probe', command]);
-    return result.exitCode == 0;
-  }
-
-  static Future<bool> _windowsCommandExists(String command) async {
-    final result = await probe.run('where.exe', [command]);
-    return result.exitCode == 0;
-  }
-
-  /// Mirrors [_launchWindowsVlc]: any of the concrete install paths, or `vlc`
-  /// on `PATH`.
-  static Future<bool> _windowsVlcExists() async {
-    for (final candidate in _windowsVlcCommandCandidates(probe.environment)) {
-      if (candidate.contains(r'\') && await probe.fileExists(candidate)) return true;
-    }
-    return _windowsCommandExists('vlc');
-  }
-
-  /// Mirrors the PotPlayer launcher: the registered `potplayer://` handler, or
-  /// the executable on `PATH`.
-  static Future<bool> _windowsPotPlayerExists() async {
-    if (await probe.schemeHasHandler('potplayer://')) return true;
-    return _windowsCommandExists('PotPlayerMini64');
   }
 
   /// Find a known player by ID

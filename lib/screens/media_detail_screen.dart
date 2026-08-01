@@ -983,11 +983,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Build a rating chip that shows a source icon when available,
   /// falling back to a generic Material icon.
-  Widget _buildRatingChip(String? imageUri, double value, IconData fallbackIcon) {
+  Widget _buildRatingChip(double value, IconData fallbackIcon) {
     final colorScheme = Theme.of(context).colorScheme;
     final isTv = PlatformDetector.isTV();
     return MediaRatingBadge.chip(
-      imageUri: imageUri,
       value: value,
       fallbackIcon: fallbackIcon,
       foregroundColor: colorScheme.onSecondaryContainer,
@@ -1005,7 +1004,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   List<Widget> _buildRatingChips(MediaItem metadata) {
     final chips = <Widget>[];
     if (metadata.rating != null) {
-      chips.add(_buildRatingChip(null, metadata.rating!, Symbols.star_rounded));
+      chips.add(_buildRatingChip(metadata.rating!, Symbols.star_rounded));
     }
 
     // User rating chip (tappable)

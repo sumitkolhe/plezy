@@ -2,87 +2,49 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/utils/rating_utils.dart';
 
 void main() {
-  group('parseRatingImage - null/missing', () {
-    test('returns null when imageUri is null', () {
-      expect(parseRatingImage(null, 7.5), isNull);
+  group('catalogRatingInfo - branded sources', () {
+    test('imdb keeps one decimal on the 0-10 scale', () {
+      final info = catalogRatingInfo('imdb', 8.4)!;
+      expect(info.assetPath, 'assets/rating_icons/imdb.svg');
+      expect(info.formattedValue, '8.4');
+      expect(catalogRatingInfo('imdb', 8)!.formattedValue, '8.0');
     });
 
-    test('returns null when value is null', () {
-      expect(parseRatingImage('imdb://title/tt123', null), isNull);
-    });
-
-    test('returns null for unknown scheme', () {
-      expect(parseRatingImage('unknown://foo', 5.0), isNull);
-    });
-  });
-
-  group('parseRatingImage - Rotten Tomatoes', () {
-    test('ripe maps to rt_fresh with percent', () {
-      final info = parseRatingImage('rottentomatoes://image.rating.ripe', 7.5);
-      expect(info, isNotNull);
-      expect(info!.assetPath, 'assets/rating_icons/rt_fresh.svg');
-      expect(info.formattedValue, '75%');
-    });
-
-    test('rotten maps to rt_rotten', () {
-      final info = parseRatingImage('rottentomatoes://image.rating.rotten', 3.2);
-      expect(info, isNotNull);
-      expect(info!.assetPath, 'assets/rating_icons/rt_rotten.svg');
-      expect(info.formattedValue, '32%');
-    });
-
-    test('upright maps to rt_upright', () {
-      final info = parseRatingImage('rottentomatoes://image.rating.upright', 8.8);
-      expect(info!.assetPath, 'assets/rating_icons/rt_upright.svg');
-      expect(info.formattedValue, '88%');
-    });
-
-    test('spilled maps to rt_spilled', () {
-      final info = parseRatingImage('rottentomatoes://image.rating.spilled', 2.0);
-      expect(info!.assetPath, 'assets/rating_icons/rt_spilled.svg');
-      expect(info.formattedValue, '20%');
-    });
-
-    test('unknown RT suffix returns null', () {
-      expect(parseRatingImage('rottentomatoes://image.rating.green', 5.0), isNull);
-    });
-
-    test('percent rounds to whole number', () {
-      final info = parseRatingImage('rottentomatoes://image.rating.ripe', 7.57);
-      expect(info!.formattedValue, '76%');
+    test('tmdb renders as a whole percent', () {
+      final info = catalogRatingInfo('tmdb', 7.2)!;
+      expect(info.assetPath, 'assets/rating_icons/tmdb.svg');
+      expect(info.formattedValue, '72%');
     });
   });
 
-  group('parseRatingImage - IMDb', () {
-    test('formats with one decimal', () {
-      final info = parseRatingImage('imdb://title/tt123', 7.5);
-      expect(info!.assetPath, 'assets/rating_icons/imdb.svg');
-      expect(info.formattedValue, '7.5');
+  group('catalogRatingInfo - Rotten Tomatoes', () {
+    // The tomatometer flips at 60%, which is 6.0 on the normalized scale the
+    // catalog publishes. Both critic keys share the fresh/rotten pair; the
+    // audience key uses upright/spilled.
+    test('critic at or above the threshold is fresh', () {
+      expect(catalogRatingInfo('rottenTomatoes', 6.0)!.assetPath, 'assets/rating_icons/rt_fresh.svg');
+      expect(catalogRatingInfo('rottenTomatoesCritic', 9.1)!.assetPath, 'assets/rating_icons/rt_fresh.svg');
+    });
+
+    test('critic below the threshold is rotten', () {
+      expect(catalogRatingInfo('rottenTomatoesCritic', 5.9)!.assetPath, 'assets/rating_icons/rt_rotten.svg');
+    });
+
+    test('audience uses the upright/spilled pair on the same threshold', () {
+      expect(catalogRatingInfo('rottenTomatoesAudience', 6.0)!.assetPath, 'assets/rating_icons/rt_upright.svg');
+      expect(catalogRatingInfo('rottenTomatoesAudience', 5.9)!.assetPath, 'assets/rating_icons/rt_spilled.svg');
+    });
+
+    test('formats as a whole percent', () {
+      expect(catalogRatingInfo('rottenTomatoes', 8.5)!.formattedValue, '85%');
     });
   });
 
-  group('parseRatingImage - TMDB', () {
-    test('converts value*10 to percent', () {
-      final info = parseRatingImage('themoviedb://foo', 6.8);
-      expect(info!.assetPath, 'assets/rating_icons/tmdb.svg');
-      expect(info.formattedValue, '68%');
-    });
-  });
-
-  group('isRottenTomatoes', () {
-    test('matches rottentomatoes:// scheme', () {
-      expect(isRottenTomatoes('rottentomatoes://image.rating.ripe'), isTrue);
-      expect(isRottenTomatoes('rottentomatoes://anything'), isTrue);
-    });
-
-    test('false for null', () {
-      expect(isRottenTomatoes(null), isFalse);
-    });
-
-    test('false for other schemes', () {
-      expect(isRottenTomatoes('imdb://title'), isFalse);
-      expect(isRottenTomatoes('themoviedb://foo'), isFalse);
-      expect(isRottenTomatoes(''), isFalse);
+  group('catalogRatingInfo - unbranded sources', () {
+    test('sources with no badge return null so the caller labels them by name', () {
+      for (final source in ['critic', 'audience', 'simkl', 'mal', 'anilist', 'trakt', '']) {
+        expect(catalogRatingInfo(source, 7.0), isNull, reason: source);
+      }
     });
   });
 }
