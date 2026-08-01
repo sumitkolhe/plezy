@@ -7,7 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:universal_gamepad/universal_gamepad.dart';
 
 import '../utils/app_logger.dart';
-import '../utils/key_event_simulator.dart' as key_sim;
+import '../utils/key_event_simulator.dart';
 import '../utils/platform_detector.dart';
 import '../utils/text_input_diagnostics.dart';
 
@@ -201,7 +201,7 @@ class GamepadService {
   static const Duration _repeatInitialDelay = Duration(milliseconds: 400);
   static const Duration _repeatInterval = Duration(milliseconds: 80);
 
-  key_sim.KeyEventSimulatorController? _keyEventSimulator;
+  KeyEventSimulatorController? _keyEventSimulator;
 
   // Track stick state to detect deadzone crossings
   bool _leftStickUp = false;
@@ -223,8 +223,8 @@ class GamepadService {
   GamepadService._({GamepadDuplicateInputGuard? duplicateInputGuard})
     : _duplicateInputGuard = duplicateInputGuard ?? GamepadDuplicateInputGuard(enabled: () => Platform.isWindows);
 
-  key_sim.KeyEventSimulatorController get _simulator {
-    return _keyEventSimulator ??= key_sim.KeyEventSimulatorController(
+  KeyEventSimulatorController get _simulator {
+    return _keyEventSimulator ??= KeyEventSimulatorController(
       deviceType: ui.KeyEventDeviceType.gamepad,
       physicalKeyByLogicalKey: _gamepadPhysicalKeyByLogicalKey,
       log: _logGamepadDiag,
@@ -368,7 +368,7 @@ class GamepadService {
     // simulation fires promptly. Without this, key-up events can be
     // delayed indefinitely when the app is idle, causing the long-press
     // timer to fire before the release is delivered.
-    key_sim.scheduleFrameIfIdle();
+    scheduleFrameIfIdle();
 
     final wasPressed = _pressedButtons.contains(event.button);
 

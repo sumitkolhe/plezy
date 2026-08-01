@@ -16,26 +16,6 @@ void _logKeySimulator(String message) {
   TextInputDiagnostics.log('KeySimulator', message);
 }
 
-final KeyEventSimulatorController _defaultSimulator = KeyEventSimulatorController();
-
-/// Shared utility for simulating key press events through the focus tree.
-///
-/// Used by companion remotes, Apple TV touch input, and gamepad services to
-/// translate external input into focus-tree key events.
-void simulateKeyPress(LogicalKeyboardKey logicalKey) {
-  _defaultSimulator.simulateKeyPress(logicalKey);
-}
-
-/// Simulate only key down. Pair with [simulateKeyUp] for held buttons.
-void simulateKeyDown(LogicalKeyboardKey logicalKey) {
-  _defaultSimulator.simulateKeyDown(logicalKey);
-}
-
-/// Simulate only key up. The release half of [simulateKeyDown].
-void simulateKeyUp(LogicalKeyboardKey logicalKey) {
-  _defaultSimulator.simulateKeyUp(logicalKey);
-}
-
 /// Simulates key events for one external input source.
 ///
 /// Separate instances isolate held keys and repeat timers when multiple input

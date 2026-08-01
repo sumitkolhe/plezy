@@ -8,9 +8,11 @@ import 'package:plezy/utils/key_event_simulator.dart';
 void main() {
   testWidgets('simulateKeyPress dispatches directional pad key events', (tester) async {
     final events = await _pumpKeyEventRecorder(tester);
+    final simulator = KeyEventSimulatorController();
+    addTearDown(simulator.dispose);
 
     scheduleFrameIfIdle();
-    simulateKeyPress(LogicalKeyboardKey.enter);
+    simulator.simulateKeyPress(LogicalKeyboardKey.enter);
     await tester.pump();
     await tester.pump();
 
@@ -20,9 +22,11 @@ void main() {
 
   testWidgets('simulateKeyDown and simulateKeyUp dispatch held directional pad events', (tester) async {
     final events = await _pumpKeyEventRecorder(tester);
+    final simulator = KeyEventSimulatorController();
+    addTearDown(simulator.dispose);
 
-    simulateKeyDown(LogicalKeyboardKey.enter);
-    simulateKeyUp(LogicalKeyboardKey.enter);
+    simulator.simulateKeyDown(LogicalKeyboardKey.enter);
+    simulator.simulateKeyUp(LogicalKeyboardKey.enter);
     await tester.pump();
     await tester.pump();
 
@@ -135,7 +139,9 @@ void main() {
     firstNode.requestFocus();
     await tester.pump();
 
-    simulateKeyDown(LogicalKeyboardKey.enter);
+    final simulator = KeyEventSimulatorController();
+    addTearDown(simulator.dispose);
+    simulator.simulateKeyDown(LogicalKeyboardKey.enter);
     await tester.pump();
     expect(firstEvents, hasLength(1));
     expect(firstEvents.single, isA<KeyDownEvent>());
@@ -144,7 +150,7 @@ void main() {
     await tester.pump();
     expect(secondNode.hasPrimaryFocus, isTrue);
 
-    simulateKeyUp(LogicalKeyboardKey.enter);
+    simulator.simulateKeyUp(LogicalKeyboardKey.enter);
     await tester.pump();
 
     expect(firstEvents, hasLength(2));
@@ -183,7 +189,9 @@ void main() {
     Focus.of(childContext).requestFocus();
     await tester.pump();
 
-    simulateKeyPress(LogicalKeyboardKey.enter);
+    final simulator = KeyEventSimulatorController();
+    addTearDown(simulator.dispose);
+    simulator.simulateKeyPress(LogicalKeyboardKey.enter);
     await tester.pump();
     await tester.pump();
 
