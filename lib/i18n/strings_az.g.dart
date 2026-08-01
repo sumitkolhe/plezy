@@ -916,11 +916,9 @@ class _Translations$discover$az extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library} daxilində Son oynadılanlar';
 	@override String mostPlayedIn({required Object library}) => '${library} daxilində Ən çox oynadılanlar';
 	@override String playEpisode({required Object season, required Object episode}) => 'M${season}S${episode}';
-	@override String get overview => 'İcmal';
 	@override String get cast => 'Aktyorlar';
 	@override String get extras => 'Treylerlər və Əlavələr';
 	@override String get studio => 'Studiya';
-	@override String get rating => 'Reytinq';
 	@override String get director => 'Rejissor';
 	@override String get directors => 'Rejissorlar';
 	@override String get movie => 'Kino';
@@ -2539,11 +2537,9 @@ extension on TranslationsAz {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} daxilində Son oynadılanlar',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library} daxilində Ən çox oynadılanlar',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'M${season}S${episode}',
-			'discover.overview' => 'İcmal',
 			'discover.cast' => 'Aktyorlar',
 			'discover.extras' => 'Treylerlər və Əlavələr',
 			'discover.studio' => 'Studiya',
-			'discover.rating' => 'Reytinq',
 			'discover.director' => 'Rejissor',
 			'discover.directors' => 'Rejissorlar',
 			'discover.movie' => 'Kino',
@@ -2901,10 +2897,10 @@ extension on TranslationsAz {
 			'performanceOverlay.performance' => 'Məhsuldarlıq',
 			'performanceOverlay.buffer' => 'Bufer',
 			'performanceOverlay.app' => 'Tətbiq',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Xam çözücü',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Tünelləmə',
 			'performanceOverlay.aspect' => 'Nisbət',
 			'performanceOverlay.rotation' => 'Dönmə',

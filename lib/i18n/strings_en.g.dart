@@ -2462,9 +2462,6 @@ class Translations$discover$en {
 	/// en: 'S${season}E${episode}'
 	String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
 
-	/// en: 'Overview'
-	String get overview => 'Overview';
-
 	/// en: 'Cast'
 	String get cast => 'Cast';
 
@@ -2473,9 +2470,6 @@ class Translations$discover$en {
 
 	/// en: 'Studio'
 	String get studio => 'Studio';
-
-	/// en: 'Rating'
-	String get rating => 'Rating';
 
 	/// en: 'Director'
 	String get director => 'Director';
@@ -5866,11 +5860,9 @@ extension on Translations {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Recently Played in ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Most Played in ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'Overview',
 			'discover.cast' => 'Cast',
 			'discover.extras' => 'Trailers & Extras',
 			'discover.studio' => 'Studio',
-			'discover.rating' => 'Rating',
 			'discover.director' => 'Director',
 			'discover.directors' => 'Directors',
 			'discover.movie' => 'Movie',
@@ -6134,10 +6126,10 @@ extension on Translations {
 			'explore.relation.sequel' => 'Sequel',
 			'explore.relation.sideStory' => 'Side story',
 			'explore.relation.spinOff' => 'Spin-off',
-			_ => null,
-		} ?? switch (path) {
 			'explore.relation.alternativeVersion' => 'Alternative version',
 			'explore.relation.summary' => 'Summary',
+			_ => null,
+		} ?? switch (path) {
 			'explore.relation.parentStory' => 'Parent story',
 			'explore.relation.adaptation' => 'Adaptation',
 			'explore.relation.other' => 'Related',

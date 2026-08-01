@@ -911,11 +911,9 @@ class _Translations$discover$ko extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library}에서 최근 재생';
 	@override String mostPlayedIn({required Object library}) => '${library}에서 가장 많이 재생';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => '개요';
 	@override String get cast => '출연진';
 	@override String get extras => '예고편 및 부가영상';
 	@override String get studio => '제작사';
-	@override String get rating => '연령 등급';
 	@override String get director => '감독';
 	@override String get directors => '감독';
 	@override String get movie => '영화';
@@ -2521,11 +2519,9 @@ extension on TranslationsKo {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library}에서 최근 재생',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library}에서 가장 많이 재생',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => '개요',
 			'discover.cast' => '출연진',
 			'discover.extras' => '예고편 및 부가영상',
 			'discover.studio' => '제작사',
-			'discover.rating' => '연령 등급',
 			'discover.director' => '감독',
 			'discover.directors' => '감독',
 			'discover.movie' => '영화',
@@ -2887,10 +2883,10 @@ extension on TranslationsKo {
 			'performanceOverlay.sampleRate' => '샘플 레이트',
 			'performanceOverlay.pixelFormat' => '픽셀 형식',
 			'performanceOverlay.hwFormat' => 'HW 형식',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => '매트릭스',
 			'performanceOverlay.primaries' => '원색',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => '전송',
 			'performanceOverlay.renderFps' => '렌더 FPS',
 			'performanceOverlay.displayFps' => '디스플레이 FPS',

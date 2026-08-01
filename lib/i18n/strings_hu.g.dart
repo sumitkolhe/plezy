@@ -912,11 +912,9 @@ class _Translations$discover$hu extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => 'Legutóbb lejátszva itt: ${library}';
 	@override String mostPlayedIn({required Object library}) => 'Legtöbbször lejátszva itt: ${library}';
 	@override String playEpisode({required Object season, required Object episode}) => '${season}. évad, ${episode}. epizód';
-	@override String get overview => 'Áttekintés';
 	@override String get cast => 'Szereplők';
 	@override String get extras => 'Előzetesek és extrák';
 	@override String get studio => 'Stúdió';
-	@override String get rating => 'Értékelés';
 	@override String get director => 'Rendező';
 	@override String get directors => 'Rendezők';
 	@override String get movie => 'Film';
@@ -2524,11 +2522,9 @@ extension on TranslationsHu {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Legutóbb lejátszva itt: ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Legtöbbször lejátszva itt: ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => '${season}. évad, ${episode}. epizód',
-			'discover.overview' => 'Áttekintés',
 			'discover.cast' => 'Szereplők',
 			'discover.extras' => 'Előzetesek és extrák',
 			'discover.studio' => 'Stúdió',
-			'discover.rating' => 'Értékelés',
 			'discover.director' => 'Rendező',
 			'discover.directors' => 'Rendezők',
 			'discover.movie' => 'Film',
@@ -2890,10 +2886,10 @@ extension on TranslationsHu {
 			'performanceOverlay.sampleRate' => 'Mintavételezési frekvencia',
 			'performanceOverlay.pixelFormat' => 'Képpontformátum',
 			'performanceOverlay.hwFormat' => 'Hardverformátum',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Mátrix',
 			'performanceOverlay.primaries' => 'Elsődleges színek',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Átvitel',
 			'performanceOverlay.renderFps' => 'Renderelési FPS',
 			'performanceOverlay.displayFps' => 'Kijelző-FPS',

@@ -912,11 +912,9 @@ class _Translations$discover$zh_Hant extends Translations$discover$zh {
 	@override String recentlyPlayedIn({required Object library}) => '最近在 ${library} 播放';
 	@override String mostPlayedIn({required Object library}) => '在 ${library} 最常播放';
 	@override String playEpisode({required Object season, required Object episode}) => '第 ${season} 季 第 ${episode} 集';
-	@override String get overview => '概述';
 	@override String get cast => '演員陣容';
 	@override String get extras => '預告片與花絮';
 	@override String get studio => '製作商';
-	@override String get rating => '分級';
 	@override String get director => '導演';
 	@override String get directors => '導演';
 	@override String get movie => '電影';
@@ -2522,11 +2520,9 @@ extension on TranslationsZhHant {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '最近在 ${library} 播放',
 			'discover.mostPlayedIn' => ({required Object library}) => '在 ${library} 最常播放',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => '第 ${season} 季 第 ${episode} 集',
-			'discover.overview' => '概述',
 			'discover.cast' => '演員陣容',
 			'discover.extras' => '預告片與花絮',
 			'discover.studio' => '製作商',
-			'discover.rating' => '分級',
 			'discover.director' => '導演',
 			'discover.directors' => '導演',
 			'discover.movie' => '電影',
@@ -2888,10 +2884,10 @@ extension on TranslationsZhHant {
 			'performanceOverlay.sampleRate' => '取樣率',
 			'performanceOverlay.pixelFormat' => '像素格式',
 			'performanceOverlay.hwFormat' => '硬體格式',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => '矩陣',
 			'performanceOverlay.primaries' => '基色',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => '傳輸特性',
 			'performanceOverlay.renderFps' => '渲染 FPS',
 			'performanceOverlay.displayFps' => '螢幕 FPS',

@@ -911,11 +911,9 @@ class Translations$discover$zh extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library} 中最近播放';
 	@override String mostPlayedIn({required Object library}) => '${library} 中最常播放';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => '概述';
 	@override String get cast => '演员表';
 	@override String get extras => '预告片与花絮';
 	@override String get studio => '制作公司';
-	@override String get rating => '年龄分级';
 	@override String get director => '导演';
 	@override String get directors => '导演';
 	@override String get movie => '电影';
@@ -2521,11 +2519,9 @@ extension on TranslationsZh {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} 中最近播放',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library} 中最常播放',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => '概述',
 			'discover.cast' => '演员表',
 			'discover.extras' => '预告片与花絮',
 			'discover.studio' => '制作公司',
-			'discover.rating' => '年龄分级',
 			'discover.director' => '导演',
 			'discover.directors' => '导演',
 			'discover.movie' => '电影',
@@ -2887,10 +2883,10 @@ extension on TranslationsZh {
 			'performanceOverlay.sampleRate' => '采样率',
 			'performanceOverlay.pixelFormat' => '像素格式',
 			'performanceOverlay.hwFormat' => '硬件格式',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => '矩阵',
 			'performanceOverlay.primaries' => '基色',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => '传递特性',
 			'performanceOverlay.renderFps' => '渲染 FPS',
 			'performanceOverlay.displayFps' => '显示 FPS',

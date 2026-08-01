@@ -916,11 +916,9 @@ class _Translations$discover$tr extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library} içinde Son Oynatılanlar';
 	@override String mostPlayedIn({required Object library}) => '${library} içinde En Çok Oynatılanlar';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}B${episode}';
-	@override String get overview => 'Genel Bakış';
 	@override String get cast => 'Oyuncular';
 	@override String get extras => 'Fragmanlar ve Ekstralar';
 	@override String get studio => 'Stüdyo';
-	@override String get rating => 'Derecelendirme';
 	@override String get director => 'Yönetmen';
 	@override String get directors => 'Yönetmenler';
 	@override String get movie => 'Film';
@@ -2539,11 +2537,9 @@ extension on TranslationsTr {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} içinde Son Oynatılanlar',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library} içinde En Çok Oynatılanlar',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}B${episode}',
-			'discover.overview' => 'Genel Bakış',
 			'discover.cast' => 'Oyuncular',
 			'discover.extras' => 'Fragmanlar ve Ekstralar',
 			'discover.studio' => 'Stüdyo',
-			'discover.rating' => 'Derecelendirme',
 			'discover.director' => 'Yönetmen',
 			'discover.directors' => 'Yönetmenler',
 			'discover.movie' => 'Film',
@@ -2901,10 +2897,10 @@ extension on TranslationsTr {
 			'performanceOverlay.performance' => 'Performans',
 			'performanceOverlay.buffer' => 'Arabellek',
 			'performanceOverlay.app' => 'Uygulama',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Çözücü',
 			'performanceOverlay.rawDecoder' => 'Ham Çözücü',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Tünelleme',
 			'performanceOverlay.aspect' => 'Oran',
 			'performanceOverlay.rotation' => 'Döndürme',

@@ -912,11 +912,9 @@ class _Translations$discover$de extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => 'Kürzlich gespielt in ${library}';
 	@override String mostPlayedIn({required Object library}) => 'Am häufigsten gespielt in ${library}';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => 'Übersicht';
 	@override String get cast => 'Besetzung';
 	@override String get extras => 'Trailer & Extras';
 	@override String get studio => 'Studio';
-	@override String get rating => 'Altersfreigabe';
 	@override String get director => 'Regisseur';
 	@override String get directors => 'Regisseure';
 	@override String get movie => 'Film';
@@ -2524,11 +2522,9 @@ extension on TranslationsDe {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Kürzlich gespielt in ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Am häufigsten gespielt in ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'Übersicht',
 			'discover.cast' => 'Besetzung',
 			'discover.extras' => 'Trailer & Extras',
 			'discover.studio' => 'Studio',
-			'discover.rating' => 'Altersfreigabe',
 			'discover.director' => 'Regisseur',
 			'discover.directors' => 'Regisseure',
 			'discover.movie' => 'Film',
@@ -2890,10 +2886,10 @@ extension on TranslationsDe {
 			'performanceOverlay.sampleRate' => 'Abtastrate',
 			'performanceOverlay.pixelFormat' => 'Pixelformat',
 			'performanceOverlay.hwFormat' => 'HW-Format',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primärfarben',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Transfer',
 			'performanceOverlay.renderFps' => 'Render-FPS',
 			'performanceOverlay.displayFps' => 'Display-FPS',

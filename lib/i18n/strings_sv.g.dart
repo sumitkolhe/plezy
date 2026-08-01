@@ -912,11 +912,9 @@ class _Translations$discover$sv extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => 'Nyligen spelade i ${library}';
 	@override String mostPlayedIn({required Object library}) => 'Mest spelade i ${library}';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => 'Översikt';
 	@override String get cast => 'Rollbesättning';
 	@override String get extras => 'Trailrar och extramaterial';
 	@override String get studio => 'Studio';
-	@override String get rating => 'Betyg';
 	@override String get director => 'Regissör';
 	@override String get directors => 'Regissörer';
 	@override String get movie => 'Film';
@@ -2524,11 +2522,9 @@ extension on TranslationsSv {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Nyligen spelade i ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Mest spelade i ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'Översikt',
 			'discover.cast' => 'Rollbesättning',
 			'discover.extras' => 'Trailrar och extramaterial',
 			'discover.studio' => 'Studio',
-			'discover.rating' => 'Betyg',
 			'discover.director' => 'Regissör',
 			'discover.directors' => 'Regissörer',
 			'discover.movie' => 'Film',
@@ -2890,10 +2886,10 @@ extension on TranslationsSv {
 			'performanceOverlay.sampleRate' => 'Samplingsfrekvens',
 			'performanceOverlay.pixelFormat' => 'Pixelformat',
 			'performanceOverlay.hwFormat' => 'HW-format',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matris',
 			'performanceOverlay.primaries' => 'Primärfärger',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Överföring',
 			'performanceOverlay.renderFps' => 'Renderings-FPS',
 			'performanceOverlay.displayFps' => 'Skärm-FPS',

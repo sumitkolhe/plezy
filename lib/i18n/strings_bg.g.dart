@@ -912,11 +912,9 @@ class _Translations$discover$bg extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => 'Наскоро възпроизведени в ${library}';
 	@override String mostPlayedIn({required Object library}) => 'Най-възпроизвеждани в ${library}';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => 'Обзор';
 	@override String get cast => 'Актьори';
 	@override String get extras => 'Трейлъри и екстри';
 	@override String get studio => 'Студио';
-	@override String get rating => 'Рейтинг';
 	@override String get director => 'Режисьор';
 	@override String get directors => 'Режисьори';
 	@override String get movie => 'Филм';
@@ -2524,11 +2522,9 @@ extension on TranslationsBg {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Наскоро възпроизведени в ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Най-възпроизвеждани в ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'Обзор',
 			'discover.cast' => 'Актьори',
 			'discover.extras' => 'Трейлъри и екстри',
 			'discover.studio' => 'Студио',
-			'discover.rating' => 'Рейтинг',
 			'discover.director' => 'Режисьор',
 			'discover.directors' => 'Режисьори',
 			'discover.movie' => 'Филм',
@@ -2890,10 +2886,10 @@ extension on TranslationsBg {
 			'performanceOverlay.sampleRate' => 'Честота',
 			'performanceOverlay.pixelFormat' => 'Пикселен формат',
 			'performanceOverlay.hwFormat' => 'HW формат',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Матрица',
 			'performanceOverlay.primaries' => 'Основни цветове',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Трансфер',
 			'performanceOverlay.renderFps' => 'FPS при изобразяване',
 			'performanceOverlay.displayFps' => 'FPS на дисплея',

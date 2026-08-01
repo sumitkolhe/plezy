@@ -912,11 +912,9 @@ class _Translations$discover$da extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => 'Senest afspillet i ${library}';
 	@override String mostPlayedIn({required Object library}) => 'Mest afspillet i ${library}';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => 'Oversigt';
 	@override String get cast => 'Rollebesætning';
 	@override String get extras => 'Trailere og ekstramateriale';
 	@override String get studio => 'Studie';
-	@override String get rating => 'Bedømmelse';
 	@override String get director => 'Instruktør';
 	@override String get directors => 'Instruktører';
 	@override String get movie => 'Film';
@@ -2524,11 +2522,9 @@ extension on TranslationsDa {
 			'discover.recentlyPlayedIn' => ({required Object library}) => 'Senest afspillet i ${library}',
 			'discover.mostPlayedIn' => ({required Object library}) => 'Mest afspillet i ${library}',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'Oversigt',
 			'discover.cast' => 'Rollebesætning',
 			'discover.extras' => 'Trailere og ekstramateriale',
 			'discover.studio' => 'Studie',
-			'discover.rating' => 'Bedømmelse',
 			'discover.director' => 'Instruktør',
 			'discover.directors' => 'Instruktører',
 			'discover.movie' => 'Film',
@@ -2890,10 +2886,10 @@ extension on TranslationsDa {
 			'performanceOverlay.sampleRate' => 'Samplingsrate',
 			'performanceOverlay.pixelFormat' => 'Pixelformat',
 			'performanceOverlay.hwFormat' => 'HW-format',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'Matrix',
 			'performanceOverlay.primaries' => 'Primærfarver',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => 'Overførsel',
 			'performanceOverlay.renderFps' => 'Gengivelses-FPS',
 			'performanceOverlay.displayFps' => 'Skærm-FPS',

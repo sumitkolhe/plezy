@@ -1987,7 +1987,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   bool get _hasInfoRows {
     final metadata = _fullMetadata ?? _metadata;
-    return metadata.studio != null || metadata.directors?.isNotEmpty == true || metadata.contentRating != null;
+    return metadata.studio != null || metadata.directors?.isNotEmpty == true;
   }
 
   /// Focus the trailing info rows (studio / directors / contentRating) and scroll them into view.
@@ -3020,7 +3020,12 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     final isMobile = PlatformDetector.isMobile(context);
     final isTv = PlatformDetector.isTV();
     final theme = Theme.of(context);
-    final sectionTitleStyle = theme.textTheme.titleLarge?.copyWith(fontWeight: .bold, fontSize: isTv ? 28 : null);
+    // Matches HubSection's rail header so the app has one heading scale.
+    final sectionTitleStyle = theme.textTheme.titleLarge?.copyWith(
+      fontWeight: .w700,
+      fontSize: isTv ? 28 : 15,
+      letterSpacing: isTv ? null : -0.2,
+    );
 
     // Show loading state while fetching full metadata
     if (_isLoadingMetadata) {
@@ -3115,9 +3120,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                             children: [
                               // Summary
                               if (!isTv && metadata.summary != null && metadata.summary!.isNotEmpty) ...[
-                                Text(key: _overviewSectionKey, t.discover.overview, style: sectionTitleStyle),
-                                const SizedBox(height: 12),
                                 CollapsibleText(
+                                  key: _overviewSectionKey,
                                   text: metadata.summary!,
                                   maxLines: isMobile ? 6 : 4,
                                   style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
@@ -3135,7 +3139,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   onNavigateLeft: () {},
                                   onNavigateRight: () {},
                                 ),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
                               // Seasons / Episodes (for TV shows and seasons)
@@ -3168,7 +3172,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   else
                                     _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
                                 ],
-                                const SizedBox(height: 24),
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ] else if ((isShow && _showEpisodesDirectly) || metadata.isSeason) ...[
                                 // Server says flatten — existing behavior unchanged
                                 Text(key: _seasonsSectionKey, t.libraries.groupings.episodes, style: sectionTitleStyle),
@@ -3181,7 +3185,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   _buildEpisodesList()
                                 else
                                   _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
                               // Cast
@@ -3189,7 +3193,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 Text(key: _castSectionKey, t.discover.cast, style: sectionTitleStyle),
                                 const SizedBox(height: 12),
                                 _buildCastSection(metadata),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
                               // Trailers & Extras Section
@@ -3197,7 +3201,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 Text(key: _extrasSectionKey, t.discover.extras, style: sectionTitleStyle),
                                 const SizedBox(height: 12),
                                 _buildExtrasSection(),
-                                const SizedBox(height: 24),
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
                               // Related Hubs (Collections, Similar, More From...)
@@ -3232,10 +3236,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                           metadata.directors!.length > 1 ? t.discover.directors : t.discover.director,
                                           metadata.directors!.join(', '),
                                         ),
-                                        const SizedBox(height: 12),
-                                      ],
-                                      if (metadata.contentRating != null) ...[
-                                        _buildInfoRow(t.discover.rating, formatContentRating(metadata.contentRating!)),
                                         const SizedBox(height: 12),
                                       ],
                                     ],

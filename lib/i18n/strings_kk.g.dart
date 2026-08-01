@@ -916,11 +916,9 @@ class _Translations$discover$kk extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library} ішінде соңғы ойнатылғандар';
 	@override String mostPlayedIn({required Object library}) => '${library} ішінде ең көп ойнатылғандар';
 	@override String playEpisode({required Object season, required Object episode}) => 'М${season}Б${episode}';
-	@override String get overview => 'Сипаттамасы';
 	@override String get cast => 'Актерлер';
 	@override String get extras => 'Трейлерлер мен қосымшалар';
 	@override String get studio => 'Студия';
-	@override String get rating => 'Рейтинг';
 	@override String get director => 'Режиссер';
 	@override String get directors => 'Режиссерлер';
 	@override String get movie => 'Фильм';
@@ -2539,11 +2537,9 @@ extension on TranslationsKk {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library} ішінде соңғы ойнатылғандар',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library} ішінде ең көп ойнатылғандар',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'М${season}Б${episode}',
-			'discover.overview' => 'Сипаттамасы',
 			'discover.cast' => 'Актерлер',
 			'discover.extras' => 'Трейлерлер мен қосымшалар',
 			'discover.studio' => 'Студия',
-			'discover.rating' => 'Рейтинг',
 			'discover.director' => 'Режиссер',
 			'discover.directors' => 'Режиссерлер',
 			'discover.movie' => 'Фильм',
@@ -2901,10 +2897,10 @@ extension on TranslationsKk {
 			'performanceOverlay.performance' => 'Өнімділік',
 			'performanceOverlay.buffer' => 'Буфер',
 			'performanceOverlay.app' => 'Қолданба',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.decoder' => 'Декодер',
 			'performanceOverlay.rawDecoder' => 'Өңделмеген декодер',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.tunneling' => 'Туннельдеу',
 			'performanceOverlay.aspect' => 'Қатынас',
 			'performanceOverlay.rotation' => 'Бұрылыс',

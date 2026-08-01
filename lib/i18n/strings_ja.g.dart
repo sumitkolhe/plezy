@@ -911,11 +911,9 @@ class _Translations$discover$ja extends Translations$discover$en {
 	@override String recentlyPlayedIn({required Object library}) => '${library}で最近再生したコンテンツ';
 	@override String mostPlayedIn({required Object library}) => '${library}で最も再生したコンテンツ';
 	@override String playEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
-	@override String get overview => 'あらすじ';
 	@override String get cast => 'キャスト';
 	@override String get extras => '予告編とエクストラ';
 	@override String get studio => 'スタジオ';
-	@override String get rating => '評価';
 	@override String get director => '監督';
 	@override String get directors => '監督';
 	@override String get movie => '映画';
@@ -2521,11 +2519,9 @@ extension on TranslationsJa {
 			'discover.recentlyPlayedIn' => ({required Object library}) => '${library}で最近再生したコンテンツ',
 			'discover.mostPlayedIn' => ({required Object library}) => '${library}で最も再生したコンテンツ',
 			'discover.playEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'discover.overview' => 'あらすじ',
 			'discover.cast' => 'キャスト',
 			'discover.extras' => '予告編とエクストラ',
 			'discover.studio' => 'スタジオ',
-			'discover.rating' => '評価',
 			'discover.director' => '監督',
 			'discover.directors' => '監督',
 			'discover.movie' => '映画',
@@ -2887,10 +2883,10 @@ extension on TranslationsJa {
 			'performanceOverlay.sampleRate' => 'サンプルレート',
 			'performanceOverlay.pixelFormat' => 'ピクセル形式',
 			'performanceOverlay.hwFormat' => 'HW 形式',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.matrix' => 'マトリクス',
 			'performanceOverlay.primaries' => 'プライマリ',
+			_ => null,
+		} ?? switch (path) {
 			'performanceOverlay.transfer' => '伝達特性',
 			'performanceOverlay.renderFps' => '描画 FPS',
 			'performanceOverlay.displayFps' => '表示 FPS',
