@@ -428,7 +428,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
   TrackManager _buildTrackManager({
     required Player forPlayer,
     required MediaItem metadata,
-    required PlexClient? plexClient,
     required MediaServerUserProfile? Function() getProfileSettings,
     AudioTrack? preferredAudioTrack,
     SubtitlePreference? preferredSubtitleTrack,
@@ -439,7 +438,7 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
       isActive: () => mounted && player == forPlayer,
       // Plex writes track changes immediately. Jellyfin persists selected
       // indexes through playback progress reports.
-      persistTrackPreference: plexClient != null ? _plexTrackPersister(() => plexClient) : null,
+      persistTrackPreference: null,
       getProfileSettings: getProfileSettings,
       waitForProfileSettings: _waitForProfileSettingsIfNeeded,
       metadata: metadata,

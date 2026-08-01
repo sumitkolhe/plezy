@@ -411,9 +411,7 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
         mediaInfo: mediaInfo,
         canReportPlayback: () => _hasRenderedFirstFrame && !_hasFatalPlaybackError,
         hasRenderedPlayback: () => _hasRenderedFirstFrame,
-        onPausedKeepalive: mediaClient is PlexClient && effectivePlayMethod == 'Transcode'
-            ? () => mediaClient.pingTranscodeSession(_playbackTranscodeSessionId)
-            : null,
+        onPausedKeepalive: null,
         onScrobbled: () async {
           // Other episodes of a Plex multi-episode file share this item's
           // part — watching the file watched them too (#1500). Reusing

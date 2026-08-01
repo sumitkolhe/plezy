@@ -214,17 +214,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         _ownsPlaybackTransition(transitionLease, expected: _PlaybackTransition.switchingSource);
     bool sourceSwitchWasSuperseded() => !mounted || player != currentPlayer || transitionLease.wasSuperseded;
 
-    // Snapshot the backend client before subtitle selection can cross an
-    // async boundary or the profile-scoped context can disappear.
-    final serverId = _currentMetadata.serverId;
-    final isPlexBacked = _currentMetadata.backend == MediaBackend.plex;
-    PlexClient? streamSelectClient;
-    if (isPlexBacked && serverId != null) {
-      try {
-        streamSelectClient = context.getPlexClientForServer(ServerId(serverId));
-      } catch (_) {}
-    }
-
     if (newSubtitleChoice != null && newMediaIndex == null && newPreset == null && newAudioStreamId == null) {
       try {
         final selected = await _selectSourceSubtitleLocally(
@@ -273,29 +262,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
     try {
       if (isVersionChange) {
         await saveMediaVersionPreferenceFor(_currentMetadata, index: effectiveMediaIndex, versions: _availableVersions);
-        if (!isCurrentSourceSwitch()) return PlaybackSourceChangeOutcome.superseded;
-      }
-
-      if ((isSubtitleChange && isPlexBacked) || (isAudioChange && isPlexBacked)) {
-        final partId = _currentMediaInfo?.partId;
-        if (streamSelectClient == null || partId == null) {
-          throw StateError('No Plex part available for stream selection');
-        }
-        final saved = await streamSelectClient.selectStreams(
-          partId,
-          audioStreamID: isAudioChange ? effectiveAudioStreamId : null,
-          // Plex's wire API uses 0 for Off. Keep that convention at this
-          // backend boundary so it cannot collide with Jellyfin source ids.
-          subtitleStreamID: isSubtitleChange
-              ? newSubtitleChoice.isOff
-                    ? 0
-                    : newSubtitleChoice.sourceStreamId
-              : null,
-          allParts: true,
-        );
-        if (!saved) {
-          throw StateError('Failed to select streams');
-        }
         if (!isCurrentSourceSwitch()) return PlaybackSourceChangeOutcome.superseded;
       }
 
@@ -489,9 +455,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
 
       // Capture context-dependent values before async gaps. The neutral
       // [PlaybackInitializationService] consumes [mediaClient] regardless of
-      // backend. We still narrow to [plexClient] for [TrackManager]'s
-      // server-side track persistence, which is Plex-only — Jellyfin
-      // sessions get a null `getPlexClient` and skip that path.
+      // backend.
       late final OfflineWatchSyncService offlineWatchService;
       late final UserProfileProvider userProfileProvider;
       late final PlaybackStateProvider playbackState;
@@ -578,7 +542,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         if (!isCurrentReload()) return _MediaReloadOutcome.superseded;
         final result = playbackContext.result;
         final mediaClient = playbackContext.reportingClient;
-        final plexClient = mediaClient is PlexClient ? mediaClient : null;
         final streamHeaders = playbackContext.streamHeaders;
 
         if (result.videoUrl == null) {
@@ -740,7 +703,6 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         final trackManager = _buildTrackManager(
           forPlayer: currentPlayer,
           metadata: metadata,
-          plexClient: plexClient,
           getProfileSettings: () => userProfileProvider.profileSettings,
           preferredAudioTrack: currentAudioTrack,
           preferredSubtitleTrack: SubtitlePreference.trackOrNull(subtitleSelection.primaryTrack),

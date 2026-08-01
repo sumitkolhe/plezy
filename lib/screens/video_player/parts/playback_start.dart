@@ -232,7 +232,6 @@ extension _VideoPlayerPlaybackStartMethods on VideoPlayerScreenState {
         _trackManager = _buildTrackManager(
           forPlayer: currentPlayer,
           metadata: _currentMetadata,
-          plexClient: mediaClient is PlexClient ? mediaClient : null,
           getProfileSettings: () => context.read<UserProfileProvider>().profileSettings,
           preferredAudioTrack: _preferredAudioTrack,
           preferredSubtitleTrack: SubtitlePreference.trackOrNull(subtitleSelection.primaryTrack),
