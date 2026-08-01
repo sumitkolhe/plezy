@@ -7,13 +7,7 @@ import '../database/app_database.dart';
 import '../utils/app_logger.dart';
 import 'profile.dart';
 
-/// CRUD over the persisted [Profiles] table — local profiles only.
-///
-/// Plex Home users are NOT stored here; Plex owns those, and
-/// [PlexHomeService] fetches them live and caches them in
-/// [StorageService] for cold-start UX. UI surfaces should subscribe to
-/// both this registry and [PlexHomeService] (typically via [ProfilesView]
-/// or [ActiveProfileProvider]) to render the merged picker list.
+/// CRUD over the persisted [Profiles] table.
 class ProfileRegistry {
   ProfileRegistry(this._db);
 

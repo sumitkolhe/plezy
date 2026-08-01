@@ -8,7 +8,6 @@ import '../connection/connection_registry.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../services/storage_service.dart';
 import '../utils/app_logger.dart';
-import 'plex_home_service.dart';
 import 'profile.dart';
 import 'profile_merge.dart';
 import 'profile_registry.dart';

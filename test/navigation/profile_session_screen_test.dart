@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
-import 'package:plezy/models/plex/plex_home_user.dart';
 import 'package:plezy/navigation/profile_navigation_scope.dart';
 import 'package:plezy/navigation/profile_session_screen.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
 import 'package:plezy/profiles/profile_registry.dart';
@@ -39,11 +37,6 @@ void main() {
     final connectionRegistry = ConnectionRegistry(db);
     final profileConnectionRegistry = ProfileConnectionRegistry(db);
     final storage = await StorageService.getInstance();
-    final plexHome = _FakePlexHomeService(
-      connections: connectionRegistry,
-      profileConnections: profileConnectionRegistry,
-      storage: storage,
-    );
     final activeProfile = ActiveProfileProvider(
       registry: profileRegistry,
       connections: connectionRegistry,
@@ -75,7 +68,6 @@ void main() {
       activeProfile.dispose();
       multiServer.dispose();
       serverManager.dispose();
-      await plexHome.dispose();
       offlineWatch.dispose();
       await db.close();
     });
@@ -96,7 +88,6 @@ void main() {
           Provider<AppDatabase>.value(value: db),
           Provider<ConnectionRegistry>.value(value: connectionRegistry),
           Provider<ProfileConnectionRegistry>.value(value: profileConnectionRegistry),
-          Provider<PlexHomeService>.value(value: plexHome),
           ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfile),
           ChangeNotifierProvider<MultiServerProvider>.value(value: multiServer),
           ChangeNotifierProvider<OfflineWatchSyncService>.value(value: offlineWatch),
@@ -249,24 +240,4 @@ class _ProfileProbeShellState extends State<_ProfileProbeShell> {
       ),
     );
   }
-}
-
-class _FakePlexHomeService extends PlexHomeService {
-  _FakePlexHomeService({required super.connections, required super.profileConnections, required StorageService storage})
-    : super(storage: storage, plexHomeUserFetcher: (_) async => const []);
-
-  @override
-  Map<String, List<PlexHomeUser>> get current => const {};
-
-  @override
-  Stream<Map<String, List<PlexHomeUser>>> get stream => Stream.value(const {});
-
-  @override
-  Future<void> start() async {}
-
-  @override
-  Future<void> reloadFromStorage() async {}
-
-  @override
-  Future<void> dispose() async {}
 }

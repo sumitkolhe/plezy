@@ -7,7 +7,6 @@ import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/i18n/strings.g.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
@@ -34,16 +33,9 @@ void main() {
     final connections = _FakeConnectionRegistry(db);
     final profileConnections = _FakeProfileConnectionRegistry(db);
     final storage = await StorageService.getInstance();
-    final plexHome = PlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-      plexHomeUserFetcher: (_) async => const [],
-    );
     final activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     addTearDown(() async {
       activeProfile.dispose();
-      await plexHome.dispose();
       await db.close();
     });
 
@@ -54,7 +46,6 @@ void main() {
             Provider<ProfileRegistry>.value(value: profiles),
             Provider<ProfileConnectionRegistry>.value(value: profileConnections),
             Provider<ConnectionRegistry>.value(value: connections),
-            Provider<PlexHomeService>.value(value: plexHome),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfile),
           ],
           child: MaterialApp(theme: monoTheme(dark: true), home: const ProfileSwitchScreen()),
@@ -91,16 +82,9 @@ void main() {
     final profileConnections = _FakeProfileConnectionRegistry(db);
     final storage = await StorageService.getInstance();
     await storage.markProfileUsed('local-kids', DateTime(2026, 1, 3));
-    final plexHome = PlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-      plexHomeUserFetcher: (_) async => const [],
-    );
     final activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     addTearDown(() async {
       activeProfile.dispose();
-      await plexHome.dispose();
       await db.close();
     });
 
@@ -111,7 +95,6 @@ void main() {
             Provider<ProfileRegistry>.value(value: profiles),
             Provider<ProfileConnectionRegistry>.value(value: profileConnections),
             Provider<ConnectionRegistry>.value(value: connections),
-            Provider<PlexHomeService>.value(value: plexHome),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfile),
           ],
           child: MaterialApp(theme: monoTheme(dark: true), home: const ProfileSwitchScreen()),

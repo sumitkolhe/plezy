@@ -6,10 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/connection/connection.dart';
 import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
-import 'package:plezy/models/plex/plex_home_user.dart';
 import 'package:plezy/profiles/active_profile_binder.dart';
 import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/plex_home_service.dart';
 import 'package:plezy/profiles/profile.dart';
 import 'package:plezy/profiles/profile_connection.dart';
 import 'package:plezy/profiles/profile_connection_registry.dart';
@@ -38,14 +36,12 @@ void main() {
   late ConnectionRegistry connections;
   late ProfileConnectionRegistry profileConnections;
   late ProfileRegistry profiles;
-  late PlexHomeService plexHome;
   late ActiveProfileProvider activeProfile;
   late MultiServerManager manager;
   late MultiServerProvider multiServerProvider;
   late ActiveProfileBinder binder;
   late StorageService storage;
   late bool shouldDeferInitialBind;
-  late List<PlexHomeUser> fetchedHomeUsers;
 
   setUp(() async {
     resetSharedPreferencesForTest();
@@ -54,13 +50,6 @@ void main() {
     profileConnections = ProfileConnectionRegistry(db);
     profiles = ProfileRegistry(db);
     storage = await StorageService.getInstance();
-    fetchedHomeUsers = const [];
-    plexHome = PlexHomeService(
-      connections: connections,
-      profileConnections: profileConnections,
-      storage: storage,
-      plexHomeUserFetcher: (_) async => fetchedHomeUsers,
-    );
     activeProfile = ActiveProfileProvider(registry: profiles, connections: connections, storage: storage);
     manager = MultiServerManager();
     multiServerProvider = testMultiServerProvider(manager);
@@ -80,7 +69,6 @@ void main() {
     multiServerProvider.dispose();
     await activeProfile.resetForTesting();
     activeProfile.dispose();
-    await plexHome.dispose();
     await db.close();
   });
 

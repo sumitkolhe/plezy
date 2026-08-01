@@ -214,12 +214,9 @@ class Profiles extends Table {
 @TableIndex(name: 'idx_profile_connections_connection_id', columns: {#connectionId})
 @TableIndex(name: 'idx_profile_connections_profile_id', columns: {#profileId})
 class ProfileConnections extends Table {
-  // No FK on profile_id: Plex Home profiles are virtual (built by
-  // Profile.virtualPlexHome from PlexHomeService's live cache, never
-  // persisted in `profiles`), so an FK here would reject every join row
-  // they need. Profile deletion instead cleans up join rows explicitly
-  // (ProfileConnectionCleanup.removeAllProfileConnections)
-  // before calling ProfileRegistry.remove.
+  // No FK on profile_id: profile deletion cleans up join rows explicitly
+  // (ProfileConnectionCleanup.removeAllProfileConnections) before calling
+  // ProfileRegistry.remove.
   TextColumn get profileId => text()();
   TextColumn get connectionId => text().references(Connections, #id, onDelete: KeyAction.cascade)();
   TextColumn get userToken => text().withDefault(const Constant(''))();
