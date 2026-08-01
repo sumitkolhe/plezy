@@ -52,8 +52,6 @@
     "connectingToServers": "Connecting to servers...",
     "startingOfflineMode": "Starting offline mode...",
     "loading": "Loading...",
-    "fullscreen": "Fullscreen",
-    "exitFullscreen": "Exit fullscreen",
     "pressBackAgainToExit": "Press back again to exit",
     "next": "Next"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Picture-in-Picture mode",
     "aspectRatioButton": "Aspect ratio",
     "ambientLighting": "Ambient lighting",
-    "fullscreenButton": "Enter fullscreen",
-    "exitFullscreenButton": "Exit fullscreen",
-    "alwaysOnTopButton": "Always on top",
     "rotationLockButton": "Rotation lock",
     "lockScreen": "Lock screen",
     "screenLockButton": "Screen lock",

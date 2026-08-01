@@ -52,8 +52,6 @@
     "connectingToServers": "Serverlərə qoşulunur...",
     "startingOfflineMode": "Oflayn rejim başladılır...",
     "loading": "Yüklənir...",
-    "fullscreen": "Tam ekran",
-    "exitFullscreen": "Tam ekrandan çıx",
     "pressBackAgainToExit": "Çıxmaq üçün geri düyməsinə bir daha basın",
     "next": "Növbəti"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Pəncərə daxilində pəncərə rejimi",
     "aspectRatioButton": "Tərəf nisbəti",
     "ambientLighting": "Ətraf işıqlandırması",
-    "fullscreenButton": "Tam ekrana keç",
-    "exitFullscreenButton": "Tam ekrandan çıx",
-    "alwaysOnTopButton": "Həmişə üstə",
     "rotationLockButton": "Dönmə kilidi",
     "lockScreen": "Ekranı kilidlə",
     "screenLockButton": "Ekran kilidi",

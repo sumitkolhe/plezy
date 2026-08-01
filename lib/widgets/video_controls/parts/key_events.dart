@@ -112,7 +112,7 @@ extension _PlexVideoControlsKeyEventMethods on _PlexVideoControlsState {
     return _keyboardService!.handleVideoPlayerKeyEvent(
       event,
       widget.player,
-      _toggleFullscreen,
+      null,
       _toggleSubtitles,
       _nextAudioTrack,
       _nextSubtitleTrack,

@@ -255,12 +255,6 @@ class Translations$common$en {
 	/// en: 'Loading...'
 	String get loading => 'Loading...';
 
-	/// en: 'Fullscreen'
-	String get fullscreen => 'Fullscreen';
-
-	/// en: 'Exit fullscreen'
-	String get exitFullscreen => 'Exit fullscreen';
-
 	/// en: 'Press back again to exit'
 	String get pressBackAgainToExit => 'Press back again to exit';
 
@@ -1837,15 +1831,6 @@ class Translations$videoControls$en {
 
 	/// en: 'Ambient lighting'
 	String get ambientLighting => 'Ambient lighting';
-
-	/// en: 'Enter fullscreen'
-	String get fullscreenButton => 'Enter fullscreen';
-
-	/// en: 'Exit fullscreen'
-	String get exitFullscreenButton => 'Exit fullscreen';
-
-	/// en: 'Always on top'
-	String get alwaysOnTopButton => 'Always on top';
 
 	/// en: 'Rotation lock'
 	String get rotationLockButton => 'Rotation lock';
@@ -4921,8 +4906,6 @@ extension on Translations {
 			'common.connectingToServers' => 'Connecting to servers...',
 			'common.startingOfflineMode' => 'Starting offline mode...',
 			'common.loading' => 'Loading...',
-			'common.fullscreen' => 'Fullscreen',
-			'common.exitFullscreen' => 'Exit fullscreen',
 			'common.pressBackAgainToExit' => 'Press back again to exit',
 			'common.next' => 'Next',
 			'screens.licenses' => 'Licenses',
@@ -5385,10 +5368,10 @@ extension on Translations {
 			'tooltips.playTrailer' => 'Play trailer',
 			'tooltips.markAsWatched' => 'Mark as watched',
 			'tooltips.markAsUnwatched' => 'Mark as unwatched',
-			_ => null,
-		} ?? switch (path) {
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.subtitlesLabel' => 'Subtitles',
 			'videoControls.resetToZero' => 'Reset to 0ms',
 			'videoControls.addTime' => ({required Object amount, required Object unit}) => '+${amount}${unit}',
@@ -5439,9 +5422,6 @@ extension on Translations {
 			'videoControls.pipButton' => 'Picture-in-Picture mode',
 			'videoControls.aspectRatioButton' => 'Aspect ratio',
 			'videoControls.ambientLighting' => 'Ambient lighting',
-			'videoControls.fullscreenButton' => 'Enter fullscreen',
-			'videoControls.exitFullscreenButton' => 'Exit fullscreen',
-			'videoControls.alwaysOnTopButton' => 'Always on top',
 			'videoControls.rotationLockButton' => 'Rotation lock',
 			'videoControls.lockScreen' => 'Lock screen',
 			'videoControls.screenLockButton' => 'Screen lock',
@@ -5899,13 +5879,13 @@ extension on Translations {
 			'playlists.smartPlaylist' => 'Smart Playlist',
 			'playlists.itemCount' => ({required Object count}) => '${count} items',
 			'playlists.oneItem' => '1 item',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.emptyPlaylist' => 'This playlist is empty',
 			'playlists.deleteConfirm' => 'Delete Playlist?',
 			'playlists.deleteMessage' => ({required Object name}) => 'Are you sure you want to delete "${name}"?',
 			'playlists.created' => 'Playlist created',
 			'playlists.deleted' => 'Playlist deleted',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.itemAdded' => 'Added to playlist',
 			'playlists.itemRemoved' => 'Removed from playlist',
 			'playlists.selectPlaylist' => 'Select Playlist',

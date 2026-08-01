@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../utils/desktop_window_padding.dart';
-import '../services/fullscreen_state_manager.dart';
 import 'app_bar_back_button.dart';
 
 /// Configuration class for common app bar properties.
@@ -167,39 +166,31 @@ class DesktopTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: FullscreenStateManager(),
-      builder: (context, _) {
-        final isFullscreen = FullscreenStateManager().isFullscreen;
+    Widget? effectiveLeading = leading;
+    if (effectiveLeading == null && automaticallyImplyLeading) {
+      final parentRoute = ModalRoute.of(context);
+      final canPop = parentRoute?.canPop ?? false;
 
-        Widget? effectiveLeading = leading;
-        if (effectiveLeading == null && automaticallyImplyLeading) {
-          final parentRoute = ModalRoute.of(context);
-          final canPop = parentRoute?.canPop ?? false;
+      if (canPop) {
+        effectiveLeading = AppBarBackButton(style: BackButtonStyle.plain, onPressed: onBackPressed);
+      }
+    }
 
-          if (canPop) {
-            effectiveLeading = AppBarBackButton(style: BackButtonStyle.plain, onPressed: onBackPressed);
-          }
-        }
-
-        return DesktopSliverAppBar(
-          key: ValueKey('desktop_top_bar_$isFullscreen'),
-          title: config.title,
-          actions: config.actions,
-          leading: effectiveLeading,
-          automaticallyImplyLeading: false,
-          elevation: config.elevation,
-          backgroundColor: config.backgroundColor,
-          surfaceTintColor: config.surfaceTintColor,
-          shadowColor: config.shadowColor,
-          scrolledUnderElevation: config.scrolledUnderElevation,
-          floating: config.floating,
-          pinned: config.pinned,
-          expandedHeight: config.expandedHeight,
-          flexibleSpace: config.flexibleSpace,
-          bottom: config.bottom,
-        );
-      },
+    return DesktopSliverAppBar(
+      title: config.title,
+      actions: config.actions,
+      leading: effectiveLeading,
+      automaticallyImplyLeading: false,
+      elevation: config.elevation,
+      backgroundColor: config.backgroundColor,
+      surfaceTintColor: config.surfaceTintColor,
+      shadowColor: config.shadowColor,
+      scrolledUnderElevation: config.scrolledUnderElevation,
+      floating: config.floating,
+      pinned: config.pinned,
+      expandedHeight: config.expandedHeight,
+      flexibleSpace: config.flexibleSpace,
+      bottom: config.bottom,
     );
   }
 }

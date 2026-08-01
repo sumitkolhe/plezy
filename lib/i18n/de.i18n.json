@@ -52,8 +52,6 @@
     "connectingToServers": "Verbindung zu Servern wird hergestellt …",
     "startingOfflineMode": "Offlinemodus wird gestartet...",
     "loading": "Wird geladen …",
-    "fullscreen": "Vollbild",
-    "exitFullscreen": "Vollbild verlassen",
     "pressBackAgainToExit": "Zum Beenden erneut Zurück drücken",
     "next": "Weiter"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Bild-in-Bild-Modus",
     "aspectRatioButton": "Seitenverhältnis",
     "ambientLighting": "Umgebungsbeleuchtung",
-    "fullscreenButton": "Vollbild aktivieren",
-    "exitFullscreenButton": "Vollbild verlassen",
-    "alwaysOnTopButton": "Immer im Vordergrund",
     "rotationLockButton": "Drehsperre",
     "lockScreen": "Bildschirm sperren",
     "screenLockButton": "Bildschirmsperre",

@@ -157,8 +157,6 @@ class _Translations$common$ru extends Translations$common$en {
 	@override String get connectingToServers => 'Подключение к серверам...';
 	@override String get startingOfflineMode => 'Запуск автономного режима...';
 	@override String get loading => 'Загрузка...';
-	@override String get fullscreen => 'Полноэкранный режим';
-	@override String get exitFullscreen => 'Выйти из полноэкранного режима';
 	@override String get pressBackAgainToExit => 'Нажмите ещё раз для выхода';
 	@override String get next => 'Следующий';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$ru extends Translations$videoControls$en {
 	@override String get pipButton => 'Режим «картинка в картинке»';
 	@override String get aspectRatioButton => 'Соотношение сторон';
 	@override String get ambientLighting => 'Фоновая подсветка';
-	@override String get fullscreenButton => 'Полноэкранный режим';
-	@override String get exitFullscreenButton => 'Выйти из полноэкранного режима';
-	@override String get alwaysOnTopButton => 'Всегда поверх';
 	@override String get rotationLockButton => 'Блокировка поворота';
 	@override String get lockScreen => 'Заблокировать экран';
 	@override String get screenLockButton => 'Блокировка экрана';
@@ -1833,8 +1828,6 @@ extension on TranslationsRu {
 			'common.connectingToServers' => 'Подключение к серверам...',
 			'common.startingOfflineMode' => 'Запуск автономного режима...',
 			'common.loading' => 'Загрузка...',
-			'common.fullscreen' => 'Полноэкранный режим',
-			'common.exitFullscreen' => 'Выйти из полноэкранного режима',
 			'common.pressBackAgainToExit' => 'Нажмите ещё раз для выхода',
 			'common.next' => 'Следующий',
 			'screens.licenses' => 'Лицензии',
@@ -2252,9 +2245,6 @@ extension on TranslationsRu {
 			'videoControls.pipButton' => 'Режим «картинка в картинке»',
 			'videoControls.aspectRatioButton' => 'Соотношение сторон',
 			'videoControls.ambientLighting' => 'Фоновая подсветка',
-			'videoControls.fullscreenButton' => 'Полноэкранный режим',
-			'videoControls.exitFullscreenButton' => 'Выйти из полноэкранного режима',
-			'videoControls.alwaysOnTopButton' => 'Всегда поверх',
 			'videoControls.rotationLockButton' => 'Блокировка поворота',
 			'videoControls.lockScreen' => 'Заблокировать экран',
 			'videoControls.screenLockButton' => 'Блокировка экрана',
@@ -2297,13 +2287,13 @@ extension on TranslationsRu {
 			'messages.musicNotSupported' => 'Воспроизведение музыки пока не поддерживается',
 			'messages.noDescriptionAvailable' => 'Описание недоступно',
 			'messages.noProfilesAvailable' => 'Профили недоступны',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Обратитесь к администратору сервера для добавления профилей',
 			'messages.unableToDetermineLibrarySection' => 'Не удаётся определить раздел библиотеки для этого элемента',
 			'messages.logsCleared' => 'Логи очищены',
 			'messages.logsCopied' => 'Логи скопированы в буфер обмена',
 			'messages.noLogsAvailable' => 'Логи отсутствуют',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Обновление метаданных "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Обновление метаданных начато для "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Не удалось обновить метаданные: ${error}',
@@ -2811,13 +2801,13 @@ extension on TranslationsRu {
 			'externalPlayer.launchFailed' => 'Не удалось открыть внешний плеер',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} не установлен',
 			'externalPlayer.playInExternalPlayer' => 'Воспроизвести во внешнем плеере',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Редактировать...',
 			'metadataEdit.screenTitle' => 'Редактировать метаданные',
 			'metadataEdit.basicInfo' => 'Основная информация',
 			'metadataEdit.artwork' => 'Обложка',
 			'metadataEdit.title' => 'Название',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Название для сортировки',
 			'metadataEdit.originalTitle' => 'Оригинальное название',
 			'metadataEdit.releaseDate' => 'Дата выпуска',

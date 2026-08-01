@@ -52,8 +52,6 @@
     "connectingToServers": "Connexion aux serveurs...",
     "startingOfflineMode": "Démarrage en mode hors ligne…",
     "loading": "Chargement...",
-    "fullscreen": "Plein écran",
-    "exitFullscreen": "Quitter le plein écran",
     "pressBackAgainToExit": "Appuyez à nouveau sur retour pour quitter",
     "next": "Suivant"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Mode image dans l’image",
     "aspectRatioButton": "Format d'image",
     "ambientLighting": "Éclairage ambiant",
-    "fullscreenButton": "Passer en mode plein écran",
-    "exitFullscreenButton": "Quitter le mode plein écran",
-    "alwaysOnTopButton": "Toujours au premier plan",
     "rotationLockButton": "Verrouillage de rotation",
     "lockScreen": "Verrouiller l'écran",
     "screenLockButton": "Verrouillage de l'écran",

@@ -157,8 +157,6 @@ class _Translations$common$uz extends Translations$common$en {
 	@override String get connectingToServers => 'Serverlarga ulanmoqda...';
 	@override String get startingOfflineMode => 'Oflayn rejim ishga tushmoqda...';
 	@override String get loading => 'Yuklanmoqda...';
-	@override String get fullscreen => 'Toʻliq ekran';
-	@override String get exitFullscreen => 'Toʻliq ekrandan chiqish';
 	@override String get pressBackAgainToExit => 'Chiqish uchun orqaga tugmasini yana bir bor bosing';
 	@override String get next => 'Keyingi';
 }
@@ -663,9 +661,6 @@ class _Translations$videoControls$uz extends Translations$videoControls$en {
 	@override String get pipButton => 'Rasm ichida rasm rejimi';
 	@override String get aspectRatioButton => 'Tomonlar nisbati';
 	@override String get ambientLighting => 'Atrof-muhit yoritilishi';
-	@override String get fullscreenButton => 'Toʻliq ekranga oʻtish';
-	@override String get exitFullscreenButton => 'Toʻliq ekrandan chiqish';
-	@override String get alwaysOnTopButton => 'Har doim ustida';
 	@override String get rotationLockButton => 'Aylanish qulfi';
 	@override String get lockScreen => 'Ekranni qulflash';
 	@override String get screenLockButton => 'Ekran qulfi';
@@ -1838,8 +1833,6 @@ extension on TranslationsUz {
 			'common.connectingToServers' => 'Serverlarga ulanmoqda...',
 			'common.startingOfflineMode' => 'Oflayn rejim ishga tushmoqda...',
 			'common.loading' => 'Yuklanmoqda...',
-			'common.fullscreen' => 'Toʻliq ekran',
-			'common.exitFullscreen' => 'Toʻliq ekrandan chiqish',
 			'common.pressBackAgainToExit' => 'Chiqish uchun orqaga tugmasini yana bir bor bosing',
 			'common.next' => 'Keyingi',
 			'screens.licenses' => 'Litsenziyalar',
@@ -2260,9 +2253,6 @@ extension on TranslationsUz {
 			'videoControls.pipButton' => 'Rasm ichida rasm rejimi',
 			'videoControls.aspectRatioButton' => 'Tomonlar nisbati',
 			'videoControls.ambientLighting' => 'Atrof-muhit yoritilishi',
-			'videoControls.fullscreenButton' => 'Toʻliq ekranga oʻtish',
-			'videoControls.exitFullscreenButton' => 'Toʻliq ekrandan chiqish',
-			'videoControls.alwaysOnTopButton' => 'Har doim ustida',
 			'videoControls.rotationLockButton' => 'Aylanish qulfi',
 			'videoControls.lockScreen' => 'Ekranni qulflash',
 			'videoControls.screenLockButton' => 'Ekran qulfi',
@@ -2302,13 +2292,13 @@ extension on TranslationsUz {
 			'messages.playbackCancelled' => 'Ijro bekor qilindi.',
 			'messages.playbackFailed' => 'Ijroni ishga tushirishda xatolik.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl maʼlumotlarini yuklashda xatolik: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Serialni yuklashda xatolik',
 			'messages.musicNotSupported' => 'Musiqa ijrosi hali qoʻllab-quvvatlanmaydi',
 			'messages.noDescriptionAvailable' => 'Tavsif mavjud emas',
 			'messages.noProfilesAvailable' => 'Profillar yoʻq',
 			'messages.contactAdminForProfiles' => 'Profil qoʻshish uchun administratorga murojaat qiling',
+			_ => null,
+		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Kutubxona boʻlimini aniqlab boʻlmadi',
 			'messages.logsCleared' => 'Jurnallar tozalandi',
 			'messages.logsCopied' => 'Jurnallar nusxalandi',
@@ -2816,13 +2806,13 @@ extension on TranslationsUz {
 			'externalPlayer.useExternalPlayerDescription' => 'Videolarni boshqa ilovada ochish',
 			'externalPlayer.selectPlayer' => 'Pleyerni tanlash',
 			'externalPlayer.customPlayers' => 'Maxsus pleyerlar',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Tizim standarti',
 			'externalPlayer.addCustomPlayer' => 'Maxsus pleyer qoʻshish',
 			'externalPlayer.playerName' => 'Pleyer nomi',
 			'externalPlayer.playerNameHint' => 'Mening pleyerim',
 			'externalPlayer.playerCommand' => 'Buyruq',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paket nomi',
 			'externalPlayer.playerUrlScheme' => 'URL sxemasi',
 			'externalPlayer.off' => 'Oʻchirilgan',

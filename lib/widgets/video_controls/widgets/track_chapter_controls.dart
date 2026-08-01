@@ -357,42 +357,6 @@ class TrackChapterControls extends StatelessWidget {
         }
 
         // Always on top button (desktop only, not TV)
-        if (isDesktop && state.onToggleAlwaysOnTop != null) {
-          final currentIndex = buttonIndex;
-          buttons.add(
-            _buildTrackButton(
-              buttonIndex: currentIndex,
-              icon: Symbols.layers_rounded,
-              tooltip: t.videoControls.alwaysOnTopButton,
-              semanticLabel: t.videoControls.alwaysOnTopButton,
-              isActive: state.isAlwaysOnTop,
-              checked: state.isAlwaysOnTop,
-              isMobile: isMobile,
-              isDesktop: isDesktop,
-              onPressed: state.onToggleAlwaysOnTop,
-            ),
-          );
-          buttonIndex++;
-        }
-
-        // Fullscreen button (desktop only)
-        if (isDesktop) {
-          final currentIndex = buttonIndex;
-          buttons.add(
-            _buildTrackButton(
-              buttonIndex: currentIndex,
-              icon: state.isFullscreen ? Symbols.fullscreen_exit_rounded : Symbols.fullscreen_rounded,
-              tooltip: state.isFullscreen ? t.videoControls.exitFullscreenButton : t.videoControls.fullscreenButton,
-              semanticLabel: state.isFullscreen
-                  ? t.videoControls.exitFullscreenButton
-                  : t.videoControls.fullscreenButton,
-              checked: state.isFullscreen,
-              isMobile: isMobile,
-              isDesktop: isDesktop,
-              onPressed: state.onToggleFullscreen,
-            ),
-          );
-        }
 
         return IntrinsicHeight(
           child: Row(mainAxisSize: .min, crossAxisAlignment: .stretch, children: buttons),
@@ -468,8 +432,6 @@ class TrackChapterControls extends StatelessWidget {
     if (state.onTogglePIPMode != null) count++;
     if (state.onCycleBoxFitMode != null) count++;
     if (isMobile && !PlatformDetector.isTV()) count++; // Rotation lock (not on TV)
-    if (isDesktop && state.onToggleAlwaysOnTop != null) count++; // Always on top
-    if (isDesktop) count++; // Fullscreen
     return count;
   }
 

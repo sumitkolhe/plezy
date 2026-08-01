@@ -5,7 +5,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:universal_gamepad/universal_gamepad.dart';
-import 'package:window_manager/window_manager.dart';
 
 import '../utils/app_logger.dart';
 import '../utils/key_event_simulator.dart' as key_sim;
@@ -128,7 +127,7 @@ bool isTvosEngineOwnedGamepadButton({required bool isAppleTV, required GamepadBu
 /// Listens to gamepad events from the `universal_gamepad` package and translates
 /// them into focus navigation actions and key events that integrate with the
 /// existing keyboard navigation system.
-class GamepadService with WindowListener {
+class GamepadService {
   static final Map<GamepadButton, LogicalKeyboardKey> _syntheticKeyByButton = {
     GamepadButton.dpadUp: LogicalKeyboardKey.arrowUp,
     GamepadButton.dpadDown: LogicalKeyboardKey.arrowDown,
@@ -214,7 +213,7 @@ class GamepadService with WindowListener {
   final Set<GamepadButton> _pressedButtons = {};
   final Set<GamepadButton> _suppressedButtons = {};
   // Whether the app window is currently focused — ignore gamepad input when false
-  bool _windowFocused = true;
+  final bool _windowFocused = true;
   bool _nativeKeyHandlerRegistered = false;
   bool _nativeTextInputFocused = false;
 
@@ -243,7 +242,6 @@ class GamepadService with WindowListener {
 
   /// Start listening to gamepad events.
   /// Only active on desktop platforms (macOS, Windows, Linux).
-  static bool get _isDesktop => PlatformDetector.isDesktopOS();
 
   void start() async {
     appLogger.i('GamepadService: Starting on ${Platform.operatingSystem}');
@@ -258,12 +256,6 @@ class GamepadService with WindowListener {
       appLogger.e('GamepadService: Error listing gamepads', error: e);
     }
 
-    // Track window focus so we ignore gamepad input when another app is active
-    // (window_manager is desktop-only)
-    if (_isDesktop) {
-      windowManager.addListener(this);
-      _windowFocused = await windowManager.isFocused();
-    }
     _registerNativeKeyHandler();
 
     unawaited(_subscription?.cancel());
@@ -283,41 +275,7 @@ class GamepadService with WindowListener {
     _suppressedButtons.clear();
     _keyEventSimulator?.dispose();
     _keyEventSimulator = null;
-    if (_isDesktop) {
-      windowManager.removeListener(this);
-    }
     Gamepad.instance.dispose();
-  }
-
-  @override
-  void onWindowFocus() {
-    _windowFocused = true;
-    _duplicateInputGuard.clear();
-    Gamepad.instance.resume();
-  }
-
-  @override
-  void onWindowBlur() {
-    _windowFocused = false;
-    _stopDirectionRepeat();
-
-    // Release all face buttons in one frame so held widget state cannot stick.
-    _simulator.releaseKeys([
-      if (_pressedButtons.contains(GamepadButton.a)) LogicalKeyboardKey.enter,
-      if (_pressedButtons.contains(GamepadButton.x)) LogicalKeyboardKey.gameButtonX,
-    ]);
-    _pressedButtons.clear();
-    _suppressedButtons.clear();
-    _duplicateInputGuard.clear();
-
-    // Reset analog stick state so re-focus doesn't inherit stale direction
-    _leftStickUp = false;
-    _leftStickDown = false;
-    _leftStickLeft = false;
-    _leftStickRight = false;
-
-    // Release native device handles so other apps can use the gamepad.
-    Gamepad.instance.pause();
   }
 
   void _registerNativeKeyHandler() {

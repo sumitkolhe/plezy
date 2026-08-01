@@ -17,7 +17,6 @@ dependencies:
   http: ^1.2.0
   url_launcher: ^6.3.0
   uuid: ^4.4.0
-  window_manager: ^0.5.1
   logger: ^2.7.0
   package_info_plus: ^9.0.0
   device_info_plus: ^12.3.0
@@ -68,11 +67,6 @@ dependencies:
       url: https://github.com/edde746/background_downloader
       ref: 021e2075260e324b7440a5c81b57bf0242d35020
   sentry_flutter: ^9.25.0
-  auto_updater:
-    git:
-      url: https://github.com/edde746/auto_updater
-      path: packages/auto_updater
-      ref: 9e150f7
   cupertino_http: ^3.0.2
   cronet_http: ^1.6.0
   win_http: ^0.2.2
@@ -104,21 +98,6 @@ dev_dependencies:
   analyzer: 10.2.0
 
 dependency_overrides:
-  auto_updater_platform_interface:
-    git:
-      url: https://github.com/edde746/auto_updater
-      ref: 9e150f7
-      path: packages/auto_updater_platform_interface
-  auto_updater_macos:
-    git:
-      url: https://github.com/edde746/auto_updater
-      ref: 9e150f7
-      path: packages/auto_updater_macos
-  auto_updater_windows:
-    git:
-      url: https://github.com/edde746/auto_updater
-      ref: 9e150f7
-      path: packages/auto_updater_windows
 sentry:
   org: plezy
   project: plezy

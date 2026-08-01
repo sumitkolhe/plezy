@@ -50,10 +50,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     if (Platform.isAndroid && settingsService.read(SettingsService.matchContentFrameRate)) {
       await _applyFrameRateMatching();
     }
-
-    if (Platform.isWindows && _displayModeService != null) {
-      await _applyWindowsDisplayMatching();
-    }
   }
 
   Future<void> _wirePlayerStreams({

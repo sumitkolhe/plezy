@@ -31,12 +31,10 @@ import '../mixins/mounted_set_state_mixin.dart';
 import '../providers/download_provider.dart';
 import '../providers/multi_server_provider.dart';
 import '../providers/playback_state_provider.dart';
-import '../services/fullscreen_state_manager.dart';
 import '../services/driver_distraction.dart';
 import '../services/discord_rpc_service.dart';
 import '../services/trackers/tracker_coordinator.dart';
 import '../services/episode_navigation_service.dart';
-import '../services/apple_tv_remote_touch_service.dart';
 import '../services/media_controls_manager.dart';
 import '../services/playback_coordinator.dart';
 import '../services/playback_initialization_service.dart';
@@ -49,7 +47,6 @@ import '../services/playback_progress_tracker.dart';
 import '../services/playback_source_resolver.dart';
 import '../services/multi_server_manager.dart';
 import '../services/offline_watch_sync_service.dart';
-import '../services/display_mode_service.dart';
 import '../services/media_control_router.dart';
 import '../services/settings_service.dart';
 import '../services/sleep_timer_service.dart';
@@ -346,7 +343,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   StreamSubscription<bool>? _playingSubscription;
   StreamSubscription<bool>? _completedSubscription;
   StreamSubscription<dynamic>? _mediaControlSubscription;
-  StreamSubscription<AppleTvRemotePlayPauseAction>? _appleTvPlayPauseSubscription;
   StreamSubscription<bool>? _bufferingSubscription;
   StreamSubscription<Duration>? _positionSubscription;
   StreamSubscription<void>? _playbackRestartSubscription;
@@ -457,7 +453,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   bool _pipInitialized = false;
   ShaderService? _shaderService;
   AmbientLightingService? _ambientLightingService;
-  bool _fullscreenListenerAttached = false;
   Size? _lastVideoLayoutSize;
   Size? _pendingVideoLayoutSize;
   Player? _lastVideoLayoutPlayer;
@@ -670,14 +665,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       dismissPrompt: _dismissPlaybackPromptForBack,
       isChromePresented: () =>
           _isPlayerInitialized && player != null && _hasFirstFrame.value && _chromeController.controlsPresented,
-      exitFullscreenIfActive: FullscreenStateManager().exitFullscreenIfActive,
-      // macOS fullscreen belongs to the app window, while HTPC-style player
-      // navigation treats physical Escape as semantic Back. In both cases the
-      // player must leave native fullscreen alone.
-      physicalEscapeExitsFullscreen: () => shouldPhysicalEscapeExitFullscreen(
-        isMacOS: Platform.isMacOS,
-        videoPlayerNavigationEnabled: _videoPlayerNavigationEnabled,
-      ),
       exitPlayer: () => unawaited(_handleBackButton()),
       navigateHome: _handleHomeButton,
       isActive: () => mounted,
@@ -753,8 +740,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     }
 
     WidgetsBinding.instance.addObserver(this);
-
-    _setupAppleTvRemotePlaybackActions();
 
     _sleepTimerSubscription = SleepTimerService().onPrompt.listen((_) {
       if (mounted) _showStillWatchingDialog();
@@ -931,17 +916,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       final enableHardwareDecoding = settingsService.read(SettingsService.enableHardwareDecoding);
       final debugLoggingEnabled = settingsService.read(SettingsService.enableDebugLogging);
       final useExoPlayer = settingsService.read(SettingsService.useExoPlayer);
-
-      if (Platform.isWindows) {
-        initPhase = 'syncing display mode';
-        _displayModeService = DisplayModeService(settingsService, FullscreenStateManager());
-        await _displayModeService!.syncWithNative();
-        if (!_isPlayerInitializationCurrent(generation)) return;
-        if (!_fullscreenListenerAttached) {
-          FullscreenStateManager().addListener(_onFullscreenChanged);
-          _fullscreenListenerAttached = true;
-        }
-      }
 
       // One-native-instance rule: a live music session owns the only audio
       // core — stop it and wait for its dispose before constructing the
@@ -1265,9 +1239,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     }
   }
 
-  /// Windows display mode matching service.
-  DisplayModeService? _displayModeService;
-
   /// Android display frame-rate matching state (retry counter, applied
   /// latch, MediaSession pause-suppression window) — see [FrameRateMatcher].
   final FrameRateMatcher _frameRate = FrameRateMatcher();
@@ -1359,9 +1330,7 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   }
 
   Future<void> _restoreSystemUiAndOrientation() async {
-    if (PlatformDetector.isDesktopOS() && _exitFullscreenOnPlayerClose) {
-      unawaited(FullscreenStateManager().exitFullscreen());
-    }
+    if (PlatformDetector.isDesktopOS() && _exitFullscreenOnPlayerClose) {}
 
     try {
       await OrientationHelper.restoreSystemUI();
@@ -1438,7 +1407,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     _completedSubscription?.cancel();
     _errorSubscription?.cancel();
     _mediaControlSubscription?.cancel();
-    _appleTvPlayPauseSubscription?.cancel();
     _bufferingSubscription?.cancel();
     _trackManager?.dispose();
     _positionSubscription?.cancel();
@@ -1472,34 +1440,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
 
     DiscordRPCService.instance.stopPlayback();
     TrackerCoordinator.instance.stopPlayback();
-
-    if (_fullscreenListenerAttached) {
-      FullscreenStateManager().removeListener(_onFullscreenChanged);
-      _fullscreenListenerAttached = false;
-    }
-    // Not _restoreWindowsDisplayMode(): that helper waits 200ms after clearing
-    // the HDR hint before restoring, which dispose() cannot do. Fire the hint
-    // clear at the still-live player and restore immediately.
-    if (!isReplacingWithVideo &&
-        Platform.isWindows &&
-        _displayModeService != null &&
-        _displayModeService!.anyChangeApplied) {
-      if (_displayModeService!.hdrStateChanged && player != null) {
-        final currentPlayer = player!;
-        unawaited(() async {
-          try {
-            await currentPlayer.setProperty('target-colorspace-hint', 'no');
-          } catch (error, stackTrace) {
-            appLogger.w(
-              'Failed to clear the Windows HDR colorspace hint during teardown',
-              error: error,
-              stackTrace: stackTrace,
-            );
-          }
-        }());
-      }
-      _displayModeService!.restoreAll();
-    }
 
     // Clear frame rate matching and abandon audio focus before disposing player (Android only)
     if (Platform.isAndroid && player != null) {
@@ -1565,22 +1505,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       isAppleTV: PlatformDetector.isAppleTV(),
     );
     return false;
-  }
-
-  void _setupAppleTvRemotePlaybackActions() {
-    if (!PlatformDetector.isAppleTV()) return;
-
-    _appleTvPlayPauseSubscription = AppleTvRemoteTouchService.instance.playPauseActions.listen((action) {
-      unawaited(_handleAppleTvRemotePlayPause(action));
-    });
-  }
-
-  Future<void> _handleAppleTvRemotePlayPause(AppleTvRemotePlayPauseAction action) async {
-    appLogger.d(
-      'Apple TV remote play/pause received source=${action.source}'
-      '${action.detail == null ? '' : ' detail=${action.detail}'}',
-    );
-    await _remoteTransport(TransportCommand.toggle, source: 'Apple TV remote');
   }
 
   /// Announce an *accepted user transport command* with a centred transient disc.

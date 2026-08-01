@@ -157,8 +157,6 @@ class _Translations$common$pt extends Translations$common$en {
 	@override String get connectingToServers => 'Conectando aos servidores...';
 	@override String get startingOfflineMode => 'Iniciando modo offline...';
 	@override String get loading => 'Carregando...';
-	@override String get fullscreen => 'Tela cheia';
-	@override String get exitFullscreen => 'Sair da tela cheia';
 	@override String get pressBackAgainToExit => 'Pressione voltar novamente para sair';
 	@override String get next => 'Próximo';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$pt extends Translations$videoControls$en {
 	@override String get pipButton => 'Modo Picture-in-Picture';
 	@override String get aspectRatioButton => 'Proporção';
 	@override String get ambientLighting => 'Iluminação ambiente';
-	@override String get fullscreenButton => 'Entrar em tela cheia';
-	@override String get exitFullscreenButton => 'Sair da tela cheia';
-	@override String get alwaysOnTopButton => 'Sempre no topo';
 	@override String get rotationLockButton => 'Travar rotação';
 	@override String get lockScreen => 'Travar tela';
 	@override String get screenLockButton => 'Travar tela';
@@ -1827,8 +1822,6 @@ extension on TranslationsPt {
 			'common.connectingToServers' => 'Conectando aos servidores...',
 			'common.startingOfflineMode' => 'Iniciando modo offline...',
 			'common.loading' => 'Carregando...',
-			'common.fullscreen' => 'Tela cheia',
-			'common.exitFullscreen' => 'Sair da tela cheia',
 			'common.pressBackAgainToExit' => 'Pressione voltar novamente para sair',
 			'common.next' => 'Próximo',
 			'screens.licenses' => 'Licenças',
@@ -2246,9 +2239,6 @@ extension on TranslationsPt {
 			'videoControls.pipButton' => 'Modo Picture-in-Picture',
 			'videoControls.aspectRatioButton' => 'Proporção',
 			'videoControls.ambientLighting' => 'Iluminação ambiente',
-			'videoControls.fullscreenButton' => 'Entrar em tela cheia',
-			'videoControls.exitFullscreenButton' => 'Sair da tela cheia',
-			'videoControls.alwaysOnTopButton' => 'Sempre no topo',
 			'videoControls.rotationLockButton' => 'Travar rotação',
 			'videoControls.lockScreen' => 'Travar tela',
 			'videoControls.screenLockButton' => 'Travar tela',
@@ -2291,13 +2281,13 @@ extension on TranslationsPt {
 			'messages.musicNotSupported' => 'A reprodução de música ainda não é compatível',
 			'messages.noDescriptionAvailable' => 'Nenhuma descrição disponível',
 			'messages.noProfilesAvailable' => 'Nenhum perfil disponível',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Entre em contato com o administrador do servidor para adicionar perfis',
 			'messages.unableToDetermineLibrarySection' => 'Não foi possível determinar a seção da biblioteca deste item',
 			'messages.logsCleared' => 'Logs limpos',
 			'messages.logsCopied' => 'Logs copiados para a área de transferência',
 			'messages.noLogsAvailable' => 'Nenhum log disponível',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Atualizando metadados de "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Atualização de metadados iniciada para "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Falha ao atualizar metadados: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsPt {
 			'externalPlayer.launchFailed' => 'Falha ao abrir o reprodutor externo',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} não está instalado',
 			'externalPlayer.playInExternalPlayer' => 'Reproduzir no reprodutor externo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Editar...',
 			'metadataEdit.screenTitle' => 'Editar Metadados',
 			'metadataEdit.basicInfo' => 'Informações Básicas',
 			'metadataEdit.artwork' => 'Arte',
 			'metadataEdit.title' => 'Título',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Título para Ordenação',
 			'metadataEdit.originalTitle' => 'Título Original',
 			'metadataEdit.releaseDate' => 'Data de Lançamento',

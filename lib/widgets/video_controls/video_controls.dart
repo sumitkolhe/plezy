@@ -28,12 +28,9 @@ import 'package:flutter/services.dart'
         KeyUpEvent,
         KeyRepeatEvent,
         HardwareKeyboard;
-import '../../services/fullscreen_state_manager.dart';
-import '../../services/macos_window_service.dart';
 import '../../services/pip_service.dart';
 import '../../services/playback_initialization_types.dart';
 import '../../services/playback_subtitle_resolver.dart';
-import 'package:window_manager/window_manager.dart';
 
 import '../../mixins/settings_effect_mixin.dart';
 import '../../mixins/mounted_set_state_mixin.dart';
@@ -196,11 +193,7 @@ bool shouldShowSkipMarkerButton({
 
 enum PlayerNavigationKey { none, physicalEscape, back, home }
 
-enum PlayerBackDisposition { closeContentStrip, exitFullscreenIfActive, hideControls, exitPlayer }
-
-bool shouldPhysicalEscapeExitFullscreen({required bool isMacOS, required bool videoPlayerNavigationEnabled}) {
-  return !isMacOS && !videoPlayerNavigationEnabled;
-}
+enum PlayerBackDisposition { closeContentStrip, hideControls, exitPlayer }
 
 /// Coordinates the player-level stages shared by keyboard, controller, and
 /// companion navigation after descendants have handled local overlays.
@@ -209,29 +202,21 @@ class PlayerNavigationCoordinator {
   final bool Function() isPromptOpen;
   final VoidCallback dismissPrompt;
   final bool Function() isChromePresented;
-  final Future<bool> Function() exitFullscreenIfActive;
-  final bool Function() _physicalEscapeExitsFullscreen;
   final VoidCallback exitPlayer;
   final VoidCallback navigateHome;
   final bool Function() isActive;
-
-  bool _handlingPhysicalEscape = false;
 
   PlayerNavigationCoordinator({
     required this.chromeController,
     required this.isPromptOpen,
     required this.dismissPrompt,
     required this.isChromePresented,
-    required this.exitFullscreenIfActive,
-    bool Function()? physicalEscapeExitsFullscreen,
     required this.exitPlayer,
     required this.navigateHome,
     bool Function()? isActive,
-  }) : _physicalEscapeExitsFullscreen = physicalEscapeExitsFullscreen ?? _alwaysTrue,
-       isActive = isActive ?? _alwaysActive;
+  }) : isActive = isActive ?? _alwaysActive;
 
   static bool _alwaysActive() => true;
-  static bool _alwaysTrue() => true;
 
   void handle(PlayerNavigationKey navigationKey) {
     if (navigationKey == PlayerNavigationKey.home) {
@@ -246,7 +231,6 @@ class PlayerNavigationCoordinator {
       navigationKey: navigationKey,
       contentStripVisible: chromeController.contentStripVisible,
       controlsVisible: isChromePresented(),
-      physicalEscapeExitsFullscreen: _physicalEscapeExitsFullscreen(),
     );
     _applyDisposition(disposition);
   }
@@ -256,33 +240,12 @@ class PlayerNavigationCoordinator {
       case PlayerBackDisposition.closeContentStrip:
         chromeController.setContentStripVisible(false);
         return;
-      case PlayerBackDisposition.exitFullscreenIfActive:
-        unawaited(_handlePhysicalEscape());
-        return;
       case PlayerBackDisposition.hideControls:
         chromeController.hide();
         return;
       case PlayerBackDisposition.exitPlayer:
         exitPlayer();
         return;
-    }
-  }
-
-  Future<void> _handlePhysicalEscape() async {
-    if (_handlingPhysicalEscape) return;
-    _handlingPhysicalEscape = true;
-    final chromeWasPresented = isChromePresented();
-    try {
-      if (await exitFullscreenIfActive()) return;
-      if (!isActive()) return;
-      final disposition = resolvePlayerBackDisposition(
-        navigationKey: PlayerNavigationKey.back,
-        contentStripVisible: chromeController.contentStripVisible,
-        controlsVisible: chromeWasPresented || isChromePresented(),
-      );
-      _applyDisposition(disposition);
-    } finally {
-      _handlingPhysicalEscape = false;
     }
   }
 }
@@ -292,13 +255,9 @@ PlayerBackDisposition resolvePlayerBackDisposition({
   required PlayerNavigationKey navigationKey,
   required bool contentStripVisible,
   required bool controlsVisible,
-  bool physicalEscapeExitsFullscreen = true,
 }) {
   assert(navigationKey == PlayerNavigationKey.physicalEscape || navigationKey == PlayerNavigationKey.back);
   if (contentStripVisible) return PlayerBackDisposition.closeContentStrip;
-  if (navigationKey == PlayerNavigationKey.physicalEscape && physicalEscapeExitsFullscreen) {
-    return PlayerBackDisposition.exitFullscreenIfActive;
-  }
   return controlsVisible ? PlayerBackDisposition.hideControls : PlayerBackDisposition.exitPlayer;
 }
 
@@ -554,8 +513,7 @@ class PlexVideoControls extends StatefulWidget {
   State<PlexVideoControls> createState() => _PlexVideoControlsState();
 }
 
-class _PlexVideoControlsState extends State<PlexVideoControls>
-    with WindowListener, SettingsEffectMixin, MountedSetStateMixin {
+class _PlexVideoControlsState extends State<PlexVideoControls> with SettingsEffectMixin, MountedSetStateMixin {
   bool get _showControls => widget.chromeController.controlsVisible;
   bool get _hasRenderedFirstFrame => widget.hasFirstFrame?.value ?? true;
 
@@ -569,8 +527,6 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
   String? _extrasLoadKey;
   late List<MediaChapter> _chapters = widget.initialChapters ?? [];
   late bool _chaptersLoaded = widget.initialChapters != null;
-  bool _isFullscreen = false;
-  bool _isAlwaysOnTop = false;
   late final FocusNode _focusNode;
   KeyboardShortcutsService? _keyboardService;
   // Live settings — read through the service so a change anywhere in the app
@@ -587,7 +543,6 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
   Timer? _lockIconTimer;
   bool get _clickVideoTogglesPlayback => _settings.read(SettingsService.clickVideoTogglesPlayback);
   bool get _showChapterMarkersOnTimeline => _settings.read(SettingsService.showChapterMarkersOnTimeline);
-  int _trafficLightVisibilityGeneration = 0;
 
   // GlobalKey to access DesktopVideoControls state for focus management
   final GlobalKey<DesktopVideoControlsState> _desktopControlsKey = GlobalKey<DesktopVideoControlsState>();
@@ -748,17 +703,7 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
       onHide: _cancelEdgeAdjustmentGesture,
       onPause: _cancelEdgeAdjustmentGesture,
     );
-    // Add window listener for tracking fullscreen state (for button icon)
-    if (PlatformDetector.isDesktopOS()) {
-      if (Platform.isMacOS) {
-        _isFullscreen = FullscreenStateManager().isFullscreen;
-        FullscreenStateManager().addListener(_onFullscreenStateChanged);
-      }
-      windowManager.addListener(this);
-      _initAlwaysOnTopState();
-    }
-
-    // Register global key handler for focus-independent shortcuts (desktop only)
+    // Register global key handler for focus-independent shortcuts
     HardwareKeyboard.instance.addHandler(_handleGlobalKeyEvent);
     // Listen for first frame to start auto-hide timer
     widget.hasFirstFrame?.addListener(_onFirstFrameReady);
@@ -849,28 +794,7 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
     if (_isLongPressing && _rateBeforeLongPress != null) {
       widget.player.setRate(_rateBeforeLongPress!);
     }
-    // Remove window listener and reset always-on-top if it was enabled
-    if (PlatformDetector.isDesktopOS()) {
-      windowManager.removeListener(this);
-      if (_isAlwaysOnTop) {
-        windowManager.setAlwaysOnTop(false);
-      }
-    }
-    if (Platform.isMacOS) {
-      FullscreenStateManager().removeListener(_onFullscreenStateChanged);
-      _trafficLightVisibilityGeneration++;
-      unawaited(MacOSWindowService.setTrafficLightsVisible(true));
-    }
     super.dispose();
-  }
-
-  void _onFullscreenStateChanged() {
-    final isFullscreen = FullscreenStateManager().isFullscreen;
-    if (!mounted || _isFullscreen == isFullscreen) return;
-    setState(() {
-      _isFullscreen = isFullscreen;
-    });
-    _updateTrafficLightVisibility();
   }
 
   void _onEdgeAdjustmentPipChanged() {
@@ -885,48 +809,6 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
   }
 
   @override
-  void onWindowEnterFullScreen() {
-    if (mounted) {
-      setState(() {
-        _isFullscreen = true;
-      });
-    }
-  }
-
-  @override
-  void onWindowLeaveFullScreen() {
-    if (mounted) {
-      setState(() {
-        _isFullscreen = false;
-      });
-    }
-  }
-
-  @override
-  void onWindowMaximize() {
-    // On macOS, maximize is the same as fullscreen (green button)
-    if (mounted && Platform.isMacOS) {
-      setState(() {
-        _isFullscreen = true;
-      });
-    }
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    // On macOS, unmaximize means exiting fullscreen
-    if (mounted && Platform.isMacOS) {
-      setState(() {
-        _isFullscreen = false;
-      });
-    }
-  }
-
-  @override
-  // ignore: no-empty-block - required by WindowListener interface
-  void onWindowResize() {}
-
-  @override
   Widget build(BuildContext context) {
     final isMobile = PlatformDetector.isMobile(context) && !PlatformDetector.isTV();
 
@@ -934,7 +816,7 @@ class _PlexVideoControlsState extends State<PlexVideoControls>
     return ValueListenableBuilder<bool>(
       valueListenable: _pipService.isPipActive,
       builder: (context, isInPip, _) {
-        if (isInPip && !Platform.isMacOS) return const SizedBox.shrink();
+        if (isInPip) return const SizedBox.shrink();
         return Focus(
           focusNode: _focusNode,
           autofocus: true,

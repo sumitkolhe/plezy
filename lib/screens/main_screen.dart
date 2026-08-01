@@ -2,7 +2,7 @@ import 'dart:async';
 import '../media/ids.dart';
 import '../media/media_server_client.dart';
 import '../navigation/main_screen_scope.dart';
-import 'dart:io' show Platform, exit;
+import 'dart:io' show Platform;
 
 export '../navigation/main_screen_scope.dart'
     show MainScreenFocusScope, MainScreenScopeAspect, SideNavigationBleedBuilder;
@@ -12,7 +12,6 @@ import 'package:flutter/services.dart'
     show HardwareKeyboard, KeyDownEvent, KeyRepeatEvent, KeyUpEvent, LogicalKeyboardKey;
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
-import 'package:window_manager/window_manager.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
 import '../services/tvos_system_navigation_service.dart';
@@ -48,7 +47,6 @@ import '../services/multi_server_manager.dart';
 import '../services/offline_watch_sync_service.dart';
 import '../services/settings_service.dart';
 import '../providers/offline_mode_provider.dart';
-import '../services/fullscreen_state_manager.dart';
 import '../utils/desktop_window_padding.dart';
 import '../widgets/music/mini_player.dart';
 import '../widgets/side_navigation_rail.dart';
@@ -69,17 +67,6 @@ import '../services/system_shelf_service.dart';
 // MainScreenFocusScope and SideNavigationBleedBuilder live in
 // navigation/main_screen_scope.dart (re-exported above) so widgets like the
 // browse rail can import the scope without an import cycle through this file.
-
-@visibleForTesting
-bool shouldHandleMacOsRootEscape({
-  required bool isMacOS,
-  required bool isPhysicalKeyboardEvent,
-  required LogicalKeyboardKey logicalKey,
-  required bool isCurrentRoute,
-  required bool isHomeTab,
-}) {
-  return isMacOS && isPhysicalKeyboardEvent && logicalKey == LogicalKeyboardKey.escape && isCurrentRoute && isHomeTab;
-}
 
 @visibleForTesting
 ({double left, double width}) mainScreenSideNavigationContentLayout({
@@ -196,8 +183,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen>
-    with RouteAware, WindowListener, WidgetsBindingObserver, MountedSetStateMixin {
+class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBindingObserver, MountedSetStateMixin {
   NavigationTabId _currentTab = NavigationTabId.discover;
   String? _selectedLibraryGlobalKey;
 
@@ -305,11 +291,6 @@ class _MainScreenState extends State<MainScreen>
 
     WidgetsBinding.instance.addObserver(this);
     _contentFocusScope.addListener(_syncSidebarFocusWithContent);
-
-    if (PlatformDetector.isDesktopOS()) {
-      windowManager.addListener(this);
-      windowManager.setPreventClose(true);
-    }
 
     try {
       _lastHasExplore = context.read<CatalogSourcesProvider>().hasAnySource;
@@ -590,12 +571,6 @@ class _MainScreenState extends State<MainScreen>
     final settingsService = await SettingsService.getInstance();
     if (!settingsService.read(SettingsService.autoCheckUpdatesOnStartup)) return;
 
-    // Native updater (Sparkle/WinSparkle) handles everything — skip Flutter dialog
-    if (UpdateService.useNativeUpdater) {
-      await UpdateService.checkForUpdatesNative(inBackground: true);
-      return;
-    }
-
     try {
       final updateInfo = await UpdateService.checkForUpdatesOnStartup();
 
@@ -722,10 +697,6 @@ class _MainScreenState extends State<MainScreen>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _profileRouteObserver?.unsubscribe(this);
-    if (PlatformDetector.isDesktopOS()) {
-      windowManager.removeListener(this);
-      windowManager.setPreventClose(false);
-    }
     _offlineModeProvider?.removeListener(_handleOfflineStatusChanged);
     _catalogSourcesProvider?.removeListener(_handleCatalogSourcesChanged);
     if (_bindingSettleListener != null) {
@@ -747,24 +718,6 @@ class _MainScreenState extends State<MainScreen>
     }
 
     super.dispose();
-  }
-
-  @override
-  void onWindowClose() {
-    unawaited(_exitOnWindowClose());
-  }
-
-  /// `setPreventClose(true)` hands the window's close button to us, so the app
-  /// has to shut itself down. A bare `exit(0)` killed the process before the
-  /// app-level teardown could run — including the terminal playback report that
-  /// trackers owning their own watched semantics depend on.
-  Future<void> _exitOnWindowClose() async {
-    try {
-      await AppExitService.requestGracefulExit().timeout(const Duration(seconds: 5));
-    } catch (e, st) {
-      appLogger.w('Graceful window close failed; exiting immediately', error: e, stackTrace: st);
-    }
-    exit(0);
   }
 
   @override
@@ -1132,41 +1085,6 @@ class _MainScreenState extends State<MainScreen>
     return _handleMainBackKeyAction(event);
   }
 
-  /// F11 toggles OS fullscreen from anywhere in the main UI. The in-player
-  /// hotkey (default `f`) only works while the player is mounted; this is
-  /// the escape hatch when fullscreen persists after the player closes.
-  KeyEventResult _handleFullscreenShortcut(KeyEvent event) {
-    if (event is! KeyDownEvent) return KeyEventResult.ignored;
-    if (event.logicalKey != LogicalKeyboardKey.f11) return KeyEventResult.ignored;
-    if (!PlatformDetector.isDesktopOS()) return KeyEventResult.ignored;
-
-    unawaited(FullscreenStateManager().toggleFullscreen());
-    return KeyEventResult.handled;
-  }
-
-  /// On macOS, native fullscreen is window state shared by every route.
-  /// Player Escape therefore leaves it alone; only root Home owns the
-  /// conventional Escape-to-leave-fullscreen behavior.
-  KeyEventResult _handleMacOsRootEscape(KeyEvent event) {
-    final tabs = _getVisibleTabs(_isOffline);
-    final shouldHandle = shouldHandleMacOsRootEscape(
-      isMacOS: Platform.isMacOS,
-      isPhysicalKeyboardEvent: event.isPhysicalKeyboardEvent,
-      logicalKey: event.logicalKey,
-      isCurrentRoute: ModalRoute.of(context)?.isCurrent == true,
-      isHomeTab: tabs.isNotEmpty && _currentTab == tabs.first.id,
-    );
-    if (!shouldHandle) return KeyEventResult.ignored;
-
-    if (event is KeyUpEvent) {
-      BackKeyCoordinator.markHandled();
-      unawaited(FullscreenStateManager().exitFullscreenIfActive());
-    }
-    return event is KeyDownEvent || event is KeyRepeatEvent || event is KeyUpEvent
-        ? KeyEventResult.handled
-        : KeyEventResult.ignored;
-  }
-
   /// Handle Cmd+F (macOS) / Ctrl+F (Windows/Linux) to navigate to search.
   KeyEventResult _handleSearchShortcut(KeyEvent event) {
     if (event is! KeyDownEvent) return KeyEventResult.ignored;
@@ -1506,10 +1424,6 @@ class _MainScreenState extends State<MainScreen>
             canPop: false,
             child: Focus(
               onKeyEvent: (node, event) {
-                final rootEscapeResult = _handleMacOsRootEscape(event);
-                if (rootEscapeResult == KeyEventResult.handled) return rootEscapeResult;
-                final fullscreenResult = _handleFullscreenShortcut(event);
-                if (fullscreenResult == KeyEventResult.handled) return fullscreenResult;
                 final searchResult = _handleSearchShortcut(event);
                 if (searchResult == KeyEventResult.handled) return searchResult;
                 return _handleBackKey(event);

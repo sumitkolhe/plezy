@@ -52,8 +52,6 @@
     "connectingToServers": "Kobler til servere...",
     "startingOfflineMode": "Starter frakoblet modus...",
     "loading": "Laster...",
-    "fullscreen": "Fullskjerm",
-    "exitFullscreen": "Avslutt fullskjerm",
     "pressBackAgainToExit": "Trykk på Tilbake en gang til for å avslutte",
     "next": "Neste"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Bilde-i-bilde-modus",
     "aspectRatioButton": "Sideforhold",
     "ambientLighting": "Omgivelseslys",
-    "fullscreenButton": "Gå til fullskjerm",
-    "exitFullscreenButton": "Avslutt fullskjerm",
-    "alwaysOnTopButton": "Alltid øverst",
     "rotationLockButton": "Rotasjonslås",
     "lockScreen": "Lås skjerm",
     "screenLockButton": "Skjermlås",

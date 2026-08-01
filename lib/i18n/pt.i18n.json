@@ -52,8 +52,6 @@
     "connectingToServers": "Conectando aos servidores...",
     "startingOfflineMode": "Iniciando modo offline...",
     "loading": "Carregando...",
-    "fullscreen": "Tela cheia",
-    "exitFullscreen": "Sair da tela cheia",
     "pressBackAgainToExit": "Pressione voltar novamente para sair",
     "next": "Próximo"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Modo Picture-in-Picture",
     "aspectRatioButton": "Proporção",
     "ambientLighting": "Iluminação ambiente",
-    "fullscreenButton": "Entrar em tela cheia",
-    "exitFullscreenButton": "Sair da tela cheia",
-    "alwaysOnTopButton": "Sempre no topo",
     "rotationLockButton": "Travar rotação",
     "lockScreen": "Travar tela",
     "screenLockButton": "Travar tela",

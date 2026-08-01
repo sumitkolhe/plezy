@@ -52,8 +52,6 @@
     "connectingToServers": "Подключение к серверам...",
     "startingOfflineMode": "Запуск автономного режима...",
     "loading": "Загрузка...",
-    "fullscreen": "Полноэкранный режим",
-    "exitFullscreen": "Выйти из полноэкранного режима",
     "pressBackAgainToExit": "Нажмите ещё раз для выхода",
     "next": "Следующий"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Режим «картинка в картинке»",
     "aspectRatioButton": "Соотношение сторон",
     "ambientLighting": "Фоновая подсветка",
-    "fullscreenButton": "Полноэкранный режим",
-    "exitFullscreenButton": "Выйти из полноэкранного режима",
-    "alwaysOnTopButton": "Всегда поверх",
     "rotationLockButton": "Блокировка поворота",
     "lockScreen": "Заблокировать экран",
     "screenLockButton": "Блокировка экрана",

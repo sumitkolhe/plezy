@@ -52,8 +52,6 @@
     "connectingToServers": "Forbinder til servere...",
     "startingOfflineMode": "Starter offlinetilstand...",
     "loading": "Indlæser...",
-    "fullscreen": "Fuldskærm",
-    "exitFullscreen": "Forlad fuldskærm",
     "pressBackAgainToExit": "Tryk på tilbage igen for at afslutte",
     "next": "Næste"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Billede-i-billede-tilstand",
     "aspectRatioButton": "Billedformat",
     "ambientLighting": "Omgivelsesbelysning",
-    "fullscreenButton": "Fuldskærm",
-    "exitFullscreenButton": "Forlad fuldskærm",
-    "alwaysOnTopButton": "Altid øverst",
     "rotationLockButton": "Rotationslås",
     "lockScreen": "Lås skærm",
     "screenLockButton": "Skærmlås",

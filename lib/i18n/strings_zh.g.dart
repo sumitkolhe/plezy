@@ -157,8 +157,6 @@ class Translations$common$zh extends Translations$common$en {
 	@override String get connectingToServers => '正在连接服务器…';
 	@override String get startingOfflineMode => '正在启动离线模式…';
 	@override String get loading => '加载中…';
-	@override String get fullscreen => '全屏';
-	@override String get exitFullscreen => '退出全屏';
 	@override String get pressBackAgainToExit => '再按一次返回键退出';
 	@override String get next => '下一个';
 }
@@ -660,9 +658,6 @@ class Translations$videoControls$zh extends Translations$videoControls$en {
 	@override String get pipButton => '画中画';
 	@override String get aspectRatioButton => '宽高比';
 	@override String get ambientLighting => '氛围灯光';
-	@override String get fullscreenButton => '进入全屏';
-	@override String get exitFullscreenButton => '退出全屏';
-	@override String get alwaysOnTopButton => '窗口置顶';
 	@override String get rotationLockButton => '旋转锁定';
 	@override String get lockScreen => '锁定屏幕';
 	@override String get screenLockButton => '屏幕锁定';
@@ -1824,8 +1819,6 @@ extension on TranslationsZh {
 			'common.connectingToServers' => '正在连接服务器…',
 			'common.startingOfflineMode' => '正在启动离线模式…',
 			'common.loading' => '加载中…',
-			'common.fullscreen' => '全屏',
-			'common.exitFullscreen' => '退出全屏',
 			'common.pressBackAgainToExit' => '再按一次返回键退出',
 			'common.next' => '下一个',
 			'screens.licenses' => '许可证',
@@ -2243,9 +2236,6 @@ extension on TranslationsZh {
 			'videoControls.pipButton' => '画中画',
 			'videoControls.aspectRatioButton' => '宽高比',
 			'videoControls.ambientLighting' => '氛围灯光',
-			'videoControls.fullscreenButton' => '进入全屏',
-			'videoControls.exitFullscreenButton' => '退出全屏',
-			'videoControls.alwaysOnTopButton' => '窗口置顶',
 			'videoControls.rotationLockButton' => '旋转锁定',
 			'videoControls.lockScreen' => '锁定屏幕',
 			'videoControls.screenLockButton' => '屏幕锁定',
@@ -2288,13 +2278,13 @@ extension on TranslationsZh {
 			'messages.musicNotSupported' => '尚不支持播放音乐',
 			'messages.noDescriptionAvailable' => '暂无描述',
 			'messages.noProfilesAvailable' => '没有可用的用户资料',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => '请联系服务器管理员添加用户资料',
 			'messages.unableToDetermineLibrarySection' => '无法确定此项目所属的媒体库',
 			'messages.logsCleared' => '日志已清除',
 			'messages.logsCopied' => '日志已复制到剪贴板',
 			'messages.noLogsAvailable' => '没有可用日志',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '正在刷新“${title}”的元数据…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已开始刷新“${title}”的元数据',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '无法刷新元数据：${error}',
@@ -2802,13 +2792,13 @@ extension on TranslationsZh {
 			'externalPlayer.launchFailed' => '无法打开外部播放器',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} 未安装',
 			'externalPlayer.playInExternalPlayer' => '在外部播放器中播放',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '编辑…',
 			'metadataEdit.screenTitle' => '编辑元数据',
 			'metadataEdit.basicInfo' => '基本信息',
 			'metadataEdit.artwork' => '封面图片',
 			'metadataEdit.title' => '标题',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '排序标题',
 			'metadataEdit.originalTitle' => '原始标题',
 			'metadataEdit.releaseDate' => '上映日期',

@@ -52,8 +52,6 @@
     "connectingToServers": "Серверлерге қосылуда...",
     "startingOfflineMode": "Офлайн режим іске қосылуда...",
     "loading": "Жүктелуде...",
-    "fullscreen": "Толық экран",
-    "exitFullscreen": "Толық экраннан шығу",
     "pressBackAgainToExit": "Шығу үшін артқа түймесін қайтадан басыңыз",
     "next": "Келесі"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Суреттегі сурет режимі",
     "aspectRatioButton": "Тараптар қатынасы",
     "ambientLighting": "Фондық жарықтандыру",
-    "fullscreenButton": "Толық экранға өту",
-    "exitFullscreenButton": "Толық экраннан шығу",
-    "alwaysOnTopButton": "Әрдайым үстінде",
     "rotationLockButton": "Бұрылыс бұғаттауы",
     "lockScreen": "Экранды бұғаттау",
     "screenLockButton": "Экран бұғаттауы",

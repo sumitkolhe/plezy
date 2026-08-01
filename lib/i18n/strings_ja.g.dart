@@ -157,8 +157,6 @@ class _Translations$common$ja extends Translations$common$en {
 	@override String get connectingToServers => 'サーバーに接続中…';
 	@override String get startingOfflineMode => 'オフラインモードを開始中…';
 	@override String get loading => '読み込み中…';
-	@override String get fullscreen => 'フルスクリーン';
-	@override String get exitFullscreen => 'フルスクリーンを終了';
 	@override String get pressBackAgainToExit => 'もう一度押すと終了します';
 	@override String get next => '次へ';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$ja extends Translations$videoControls$en {
 	@override String get pipButton => 'ピクチャーインピクチャーモード';
 	@override String get aspectRatioButton => 'アスペクト比';
 	@override String get ambientLighting => 'アンビエントライティング';
-	@override String get fullscreenButton => 'フルスクリーンに入る';
-	@override String get exitFullscreenButton => 'フルスクリーンを終了';
-	@override String get alwaysOnTopButton => '常に前面に表示';
 	@override String get rotationLockButton => '回転ロック';
 	@override String get lockScreen => '画面をロック';
 	@override String get screenLockButton => '画面ロック';
@@ -1824,8 +1819,6 @@ extension on TranslationsJa {
 			'common.connectingToServers' => 'サーバーに接続中…',
 			'common.startingOfflineMode' => 'オフラインモードを開始中…',
 			'common.loading' => '読み込み中…',
-			'common.fullscreen' => 'フルスクリーン',
-			'common.exitFullscreen' => 'フルスクリーンを終了',
 			'common.pressBackAgainToExit' => 'もう一度押すと終了します',
 			'common.next' => '次へ',
 			'screens.licenses' => 'ライセンス',
@@ -2243,9 +2236,6 @@ extension on TranslationsJa {
 			'videoControls.pipButton' => 'ピクチャーインピクチャーモード',
 			'videoControls.aspectRatioButton' => 'アスペクト比',
 			'videoControls.ambientLighting' => 'アンビエントライティング',
-			'videoControls.fullscreenButton' => 'フルスクリーンに入る',
-			'videoControls.exitFullscreenButton' => 'フルスクリーンを終了',
-			'videoControls.alwaysOnTopButton' => '常に前面に表示',
 			'videoControls.rotationLockButton' => '回転ロック',
 			'videoControls.lockScreen' => '画面をロック',
 			'videoControls.screenLockButton' => '画面ロック',
@@ -2288,13 +2278,13 @@ extension on TranslationsJa {
 			'messages.musicNotSupported' => '音楽の再生はまだサポートされていません',
 			'messages.noDescriptionAvailable' => '説明はありません',
 			'messages.noProfilesAvailable' => '利用可能なプロフィールがありません',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'プロフィールを追加するには、サーバー管理者に連絡してください',
 			'messages.unableToDetermineLibrarySection' => 'このアイテムのライブラリセクションを判別できません',
 			'messages.logsCleared' => 'ログをクリアしました',
 			'messages.logsCopied' => 'ログをクリップボードにコピーしました',
 			'messages.noLogsAvailable' => 'ログがありません',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '「${title}」のメタデータを更新中…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}"のメタデータ更新を開始しました',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'メタデータの更新に失敗しました: ${error}',
@@ -2802,13 +2792,13 @@ extension on TranslationsJa {
 			'externalPlayer.launchFailed' => '外部プレーヤーの起動に失敗しました',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name}がインストールされていません',
 			'externalPlayer.playInExternalPlayer' => '外部プレーヤーで再生',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '編集…',
 			'metadataEdit.screenTitle' => 'メタデータを編集',
 			'metadataEdit.basicInfo' => '基本情報',
 			'metadataEdit.artwork' => 'アートワーク',
 			'metadataEdit.title' => 'タイトル',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'ソートタイトル',
 			'metadataEdit.originalTitle' => '原題',
 			'metadataEdit.releaseDate' => '公開日',

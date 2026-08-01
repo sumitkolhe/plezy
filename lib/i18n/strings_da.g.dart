@@ -157,8 +157,6 @@ class _Translations$common$da extends Translations$common$en {
 	@override String get connectingToServers => 'Forbinder til servere...';
 	@override String get startingOfflineMode => 'Starter offlinetilstand...';
 	@override String get loading => 'Indlæser...';
-	@override String get fullscreen => 'Fuldskærm';
-	@override String get exitFullscreen => 'Forlad fuldskærm';
 	@override String get pressBackAgainToExit => 'Tryk på tilbage igen for at afslutte';
 	@override String get next => 'Næste';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$da extends Translations$videoControls$en {
 	@override String get pipButton => 'Billede-i-billede-tilstand';
 	@override String get aspectRatioButton => 'Billedformat';
 	@override String get ambientLighting => 'Omgivelsesbelysning';
-	@override String get fullscreenButton => 'Fuldskærm';
-	@override String get exitFullscreenButton => 'Forlad fuldskærm';
-	@override String get alwaysOnTopButton => 'Altid øverst';
 	@override String get rotationLockButton => 'Rotationslås';
 	@override String get lockScreen => 'Lås skærm';
 	@override String get screenLockButton => 'Skærmlås';
@@ -1827,8 +1822,6 @@ extension on TranslationsDa {
 			'common.connectingToServers' => 'Forbinder til servere...',
 			'common.startingOfflineMode' => 'Starter offlinetilstand...',
 			'common.loading' => 'Indlæser...',
-			'common.fullscreen' => 'Fuldskærm',
-			'common.exitFullscreen' => 'Forlad fuldskærm',
 			'common.pressBackAgainToExit' => 'Tryk på tilbage igen for at afslutte',
 			'common.next' => 'Næste',
 			'screens.licenses' => 'Licenser',
@@ -2246,9 +2239,6 @@ extension on TranslationsDa {
 			'videoControls.pipButton' => 'Billede-i-billede-tilstand',
 			'videoControls.aspectRatioButton' => 'Billedformat',
 			'videoControls.ambientLighting' => 'Omgivelsesbelysning',
-			'videoControls.fullscreenButton' => 'Fuldskærm',
-			'videoControls.exitFullscreenButton' => 'Forlad fuldskærm',
-			'videoControls.alwaysOnTopButton' => 'Altid øverst',
 			'videoControls.rotationLockButton' => 'Rotationslås',
 			'videoControls.lockScreen' => 'Lås skærm',
 			'videoControls.screenLockButton' => 'Skærmlås',
@@ -2291,13 +2281,13 @@ extension on TranslationsDa {
 			'messages.musicNotSupported' => 'Musikafspilning understøttes endnu ikke',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivelse tilgængelig',
 			'messages.noProfilesAvailable' => 'Ingen profiler tilgængelige',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Kontakt din serveradministrator for at tilføje profiler',
 			'messages.unableToDetermineLibrarySection' => 'Kunne ikke finde bibliotekssektionen for dette element',
 			'messages.logsCleared' => 'Logfilerne blev ryddet',
 			'messages.logsCopied' => 'Logfilerne blev kopieret til udklipsholderen',
 			'messages.noLogsAvailable' => 'Ingen logfiler tilgængelige',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Opdaterer metadata for "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadataopdatering startet for "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Kunne ikke opdatere metadata: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsDa {
 			'externalPlayer.launchFailed' => 'Kunne ikke åbne ekstern afspiller',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} er ikke installeret',
 			'externalPlayer.playInExternalPlayer' => 'Afspil i ekstern afspiller',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Rediger...',
 			'metadataEdit.screenTitle' => 'Rediger metadata',
 			'metadataEdit.basicInfo' => 'Grundlæggende oplysninger',
 			'metadataEdit.artwork' => 'Grafik',
 			'metadataEdit.title' => 'Titel',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteringstitel',
 			'metadataEdit.originalTitle' => 'Originaltitel',
 			'metadataEdit.releaseDate' => 'Udgivelsesdato',

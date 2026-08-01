@@ -11,7 +11,6 @@ import '../../media/media_item.dart';
 import '../../media/stepped_seek.dart';
 import '../../mpv/mpv.dart';
 import '../../media/media_source_info.dart';
-import '../../services/fullscreen_state_manager.dart';
 import '../../services/scrub_preview_source.dart';
 import '../../services/video_volume_controller.dart';
 import '../../utils/desktop_window_padding.dart';
@@ -614,25 +613,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
     );
   }
 
-  Widget _buildTopBar(BuildContext _) {
-    // Use global fullscreen state for padding
-    return ListenableBuilder(
-      listenable: FullscreenStateManager(),
-      builder: (context, _) {
-        final isFullscreen = FullscreenStateManager().isFullscreen;
-        // In fullscreen on macOS, use less left padding since traffic lights auto-hide
-        // In normal mode on macOS, need more padding to avoid traffic lights
-        double leftPadding;
-        if (Platform.isMacOS) {
-          leftPadding = isFullscreen ? DesktopWindowPadding.macOSLeftFullscreen : DesktopWindowPadding.macOSLeft;
-        } else {
-          leftPadding = DesktopWindowPadding.macOSLeftFullscreen;
-        }
-
-        return _buildTopBarContent(context, leftPadding);
-      },
-    );
-  }
+  Widget _buildTopBar(BuildContext context) => _buildTopBarContent(context, 0);
 
   Widget _buildTopBarContent(BuildContext _, double leftPadding) {
     final topBar = Padding(

@@ -52,8 +52,6 @@
     "connectingToServers": "서버 연결 중...",
     "startingOfflineMode": "오프라인 모드 시작 중...",
     "loading": "로딩 중...",
-    "fullscreen": "전체 화면",
-    "exitFullscreen": "전체 화면 종료",
     "pressBackAgainToExit": "한 번 더 누르면 종료됩니다",
     "next": "다음"
   },
@@ -594,9 +592,6 @@
     "pipButton": "픽처 인 픽처 모드",
     "aspectRatioButton": "화면비율",
     "ambientLighting": "주변 조명",
-    "fullscreenButton": "전체 화면",
-    "exitFullscreenButton": "전체 화면 종료",
-    "alwaysOnTopButton": "창 최상위 고정",
     "rotationLockButton": "회전 잠금",
     "lockScreen": "화면 잠금",
     "screenLockButton": "화면 잠금",

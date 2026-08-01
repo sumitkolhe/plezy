@@ -9,7 +9,6 @@ import 'package:flutter/material.dart' as material show ThemeMode;
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -23,7 +22,6 @@ import 'profiles/profile_connection_cleanup.dart';
 import 'profiles/profile_connection_registry.dart';
 import 'profiles/profile_registry.dart';
 import 'profiles/profile_selection_policy.dart';
-import 'models/external_player_models.dart';
 import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
@@ -31,13 +29,8 @@ import 'screens/auth_screen.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
 import 'services/device_performance.dart';
-import 'services/macos_window_service.dart';
-import 'services/native_window_service.dart';
-import 'services/fullscreen_state_manager.dart';
 import 'services/settings_service.dart';
 import 'utils/platform_detector.dart';
-import 'services/apple_tv_remote_touch_service.dart';
-import 'services/discord_rpc_service.dart';
 import 'package:path_provider/path_provider.dart';
 import 'services/image_cache_service.dart';
 import 'services/gamepad_service.dart';
@@ -395,14 +388,6 @@ Future<_StartupDependencies> _initializeStartup(SettingsService settings) async 
     markStartupPhase('locale');
 
     final futures = <Future<void>>[];
-    if (PlatformDetector.isDesktopOS()) {
-      if (Platform.isMacOS) {
-        futures.add(windowManager.ensureInitialized().then((_) => MacOSWindowService.setupCustomTitlebar()));
-      } else {
-        futures.add(windowManager.ensureInitialized());
-      }
-    }
-
     // MainApp reads both synchronous facades during its first build.
     futures.add(TvDetectionService.getInstance(forceTv: settings.read(SettingsService.forceTvMode)));
     futures.add(DevicePerformance.getInstance(override: settings.read(SettingsService.visualEffects)));
@@ -464,27 +449,9 @@ void _startNonessentialInitialization(SettingsService settings) {
 
   bestEffort('Native window', () {
     if (Platform.isAndroid) PipService();
-    NativeWindowService.initialize();
   });
 
-  bestEffort('Fullscreen monitor', () async {
-    FullscreenStateManager().startMonitoring();
-    if (PlatformDetector.isDesktopOS() && settings.read(SettingsService.startInFullscreen)) {
-      await FullscreenStateManager().enterFullscreen();
-    }
-  });
-
-  bestEffort('Gamepad', () {
-    GamepadService.instance.start();
-    if (PlatformDetector.isAppleTV()) AppleTvRemoteTouchService.instance.start();
-  });
-
-  if (PlatformDetector.isDesktopOS()) {
-    bestEffort('Discord RPC', DiscordRPCService.instance.initialize);
-    // Detection forks helper processes; resolve it here so the External Player
-    // settings page never has to wait on a cold probe.
-    bestEffort('External player detection', KnownPlayers.getForCurrentPlatform);
-  }
+  bestEffort('Gamepad', GamepadService.instance.start);
 
   if (settings.read(SettingsService.crashReporting)) {
     unawaited(AndroidExitDiagnostics.logPreviousExit());

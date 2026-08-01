@@ -157,8 +157,6 @@ class _Translations$common$bg extends Translations$common$en {
 	@override String get connectingToServers => 'Свързване със сървърите...';
 	@override String get startingOfflineMode => 'Стартиране на офлайн режим...';
 	@override String get loading => 'Зареждане...';
-	@override String get fullscreen => 'На цял екран';
-	@override String get exitFullscreen => 'Изход от цял екран';
 	@override String get pressBackAgainToExit => 'Натиснете Назад отново, за да излезете';
 	@override String get next => 'Следващ';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$bg extends Translations$videoControls$en {
 	@override String get pipButton => 'Режим картина в картината';
 	@override String get aspectRatioButton => 'Съотношение на страните';
 	@override String get ambientLighting => 'Амбиентно осветление';
-	@override String get fullscreenButton => 'Влез на цял екран';
-	@override String get exitFullscreenButton => 'Излез от цял екран';
-	@override String get alwaysOnTopButton => 'Винаги отгоре';
 	@override String get rotationLockButton => 'Заключване на завъртането';
 	@override String get lockScreen => 'Заключи екрана';
 	@override String get screenLockButton => 'Заключване на екрана';
@@ -1827,8 +1822,6 @@ extension on TranslationsBg {
 			'common.connectingToServers' => 'Свързване със сървърите...',
 			'common.startingOfflineMode' => 'Стартиране на офлайн режим...',
 			'common.loading' => 'Зареждане...',
-			'common.fullscreen' => 'На цял екран',
-			'common.exitFullscreen' => 'Изход от цял екран',
 			'common.pressBackAgainToExit' => 'Натиснете Назад отново, за да излезете',
 			'common.next' => 'Следващ',
 			'screens.licenses' => 'Лицензи',
@@ -2246,9 +2239,6 @@ extension on TranslationsBg {
 			'videoControls.pipButton' => 'Режим картина в картината',
 			'videoControls.aspectRatioButton' => 'Съотношение на страните',
 			'videoControls.ambientLighting' => 'Амбиентно осветление',
-			'videoControls.fullscreenButton' => 'Влез на цял екран',
-			'videoControls.exitFullscreenButton' => 'Излез от цял екран',
-			'videoControls.alwaysOnTopButton' => 'Винаги отгоре',
 			'videoControls.rotationLockButton' => 'Заключване на завъртането',
 			'videoControls.lockScreen' => 'Заключи екрана',
 			'videoControls.screenLockButton' => 'Заключване на екрана',
@@ -2291,13 +2281,13 @@ extension on TranslationsBg {
 			'messages.musicNotSupported' => 'Възпроизвеждането на музика все още не се поддържа',
 			'messages.noDescriptionAvailable' => 'Няма налично описание',
 			'messages.noProfilesAvailable' => 'Няма налични профили',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Свържете се с администратора на сървъра, за да добави профили',
 			'messages.unableToDetermineLibrarySection' => 'Не може да се определи секцията на библиотеката за този елемент',
 			'messages.logsCleared' => 'Логовете са изчистени',
 			'messages.logsCopied' => 'Логовете са копирани в клипборда',
 			'messages.noLogsAvailable' => 'Няма налични логове',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Опресняване на метаданни за "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Опресняването на метаданни е стартирано за "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Неуспешно опресняване на метаданни: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsBg {
 			'externalPlayer.launchFailed' => 'Неуспешно отваряне на външен плеър',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} не е инсталиран',
 			'externalPlayer.playInExternalPlayer' => 'Пусни във външен плеър',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Редактирай...',
 			'metadataEdit.screenTitle' => 'Редактиране на метаданни',
 			'metadataEdit.basicInfo' => 'Основна информация',
 			'metadataEdit.artwork' => 'Обложка',
 			'metadataEdit.title' => 'Заглавие',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Заглавие за сортиране',
 			'metadataEdit.originalTitle' => 'Оригинално заглавие',
 			'metadataEdit.releaseDate' => 'Дата на излизане',

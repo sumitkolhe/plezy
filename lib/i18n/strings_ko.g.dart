@@ -157,8 +157,6 @@ class _Translations$common$ko extends Translations$common$en {
 	@override String get connectingToServers => '서버 연결 중...';
 	@override String get startingOfflineMode => '오프라인 모드 시작 중...';
 	@override String get loading => '로딩 중...';
-	@override String get fullscreen => '전체 화면';
-	@override String get exitFullscreen => '전체 화면 종료';
 	@override String get pressBackAgainToExit => '한 번 더 누르면 종료됩니다';
 	@override String get next => '다음';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$ko extends Translations$videoControls$en {
 	@override String get pipButton => '픽처 인 픽처 모드';
 	@override String get aspectRatioButton => '화면비율';
 	@override String get ambientLighting => '주변 조명';
-	@override String get fullscreenButton => '전체 화면';
-	@override String get exitFullscreenButton => '전체 화면 종료';
-	@override String get alwaysOnTopButton => '창 최상위 고정';
 	@override String get rotationLockButton => '회전 잠금';
 	@override String get lockScreen => '화면 잠금';
 	@override String get screenLockButton => '화면 잠금';
@@ -1824,8 +1819,6 @@ extension on TranslationsKo {
 			'common.connectingToServers' => '서버 연결 중...',
 			'common.startingOfflineMode' => '오프라인 모드 시작 중...',
 			'common.loading' => '로딩 중...',
-			'common.fullscreen' => '전체 화면',
-			'common.exitFullscreen' => '전체 화면 종료',
 			'common.pressBackAgainToExit' => '한 번 더 누르면 종료됩니다',
 			'common.next' => '다음',
 			'screens.licenses' => '라이선스',
@@ -2243,9 +2236,6 @@ extension on TranslationsKo {
 			'videoControls.pipButton' => '픽처 인 픽처 모드',
 			'videoControls.aspectRatioButton' => '화면비율',
 			'videoControls.ambientLighting' => '주변 조명',
-			'videoControls.fullscreenButton' => '전체 화면',
-			'videoControls.exitFullscreenButton' => '전체 화면 종료',
-			'videoControls.alwaysOnTopButton' => '창 최상위 고정',
 			'videoControls.rotationLockButton' => '회전 잠금',
 			'videoControls.lockScreen' => '화면 잠금',
 			'videoControls.screenLockButton' => '화면 잠금',
@@ -2288,13 +2278,13 @@ extension on TranslationsKo {
 			'messages.musicNotSupported' => '음악 재생 미지원',
 			'messages.noDescriptionAvailable' => '설명이 없습니다',
 			'messages.noProfilesAvailable' => '사용 가능한 프로필이 없습니다',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => '프로필을 추가하려면 서버 관리자에게 문의하세요',
 			'messages.unableToDetermineLibrarySection' => '이 항목의 라이브러리 섹션을 확인할 수 없습니다',
 			'messages.logsCleared' => '로그가 삭제되었습니다',
 			'messages.logsCopied' => '로그가 클립보드에 복사되었습니다',
 			'messages.noLogsAvailable' => '사용 가능한 로그가 없습니다',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '"${title}" 메타데이터 새로고침 중...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '"${title}" 메타데이터 새로고침 시작됨',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '메타데이터 새로고침 실패: ${error}',
@@ -2802,13 +2792,13 @@ extension on TranslationsKo {
 			'externalPlayer.launchFailed' => '외부 플레이어를 열 수 없습니다',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name}이(가) 설치되어 있지 않습니다',
 			'externalPlayer.playInExternalPlayer' => '외부 플레이어에서 재생',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '편집...',
 			'metadataEdit.screenTitle' => '메타데이터 편집',
 			'metadataEdit.basicInfo' => '기본 정보',
 			'metadataEdit.artwork' => '아트워크',
 			'metadataEdit.title' => '제목',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '정렬 제목',
 			'metadataEdit.originalTitle' => '원제',
 			'metadataEdit.releaseDate' => '출시일',

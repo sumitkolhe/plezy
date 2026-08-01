@@ -157,8 +157,6 @@ class _Translations$common$kk extends Translations$common$en {
 	@override String get connectingToServers => 'Серверлерге қосылуда...';
 	@override String get startingOfflineMode => 'Офлайн режим іске қосылуда...';
 	@override String get loading => 'Жүктелуде...';
-	@override String get fullscreen => 'Толық экран';
-	@override String get exitFullscreen => 'Толық экраннан шығу';
 	@override String get pressBackAgainToExit => 'Шығу үшін артқа түймесін қайтадан басыңыз';
 	@override String get next => 'Келесі';
 }
@@ -663,9 +661,6 @@ class _Translations$videoControls$kk extends Translations$videoControls$en {
 	@override String get pipButton => 'Суреттегі сурет режимі';
 	@override String get aspectRatioButton => 'Тараптар қатынасы';
 	@override String get ambientLighting => 'Фондық жарықтандыру';
-	@override String get fullscreenButton => 'Толық экранға өту';
-	@override String get exitFullscreenButton => 'Толық экраннан шығу';
-	@override String get alwaysOnTopButton => 'Әрдайым үстінде';
 	@override String get rotationLockButton => 'Бұрылыс бұғаттауы';
 	@override String get lockScreen => 'Экранды бұғаттау';
 	@override String get screenLockButton => 'Экран бұғаттауы';
@@ -1838,8 +1833,6 @@ extension on TranslationsKk {
 			'common.connectingToServers' => 'Серверлерге қосылуда...',
 			'common.startingOfflineMode' => 'Офлайн режим іске қосылуда...',
 			'common.loading' => 'Жүктелуде...',
-			'common.fullscreen' => 'Толық экран',
-			'common.exitFullscreen' => 'Толық экраннан шығу',
 			'common.pressBackAgainToExit' => 'Шығу үшін артқа түймесін қайтадан басыңыз',
 			'common.next' => 'Келесі',
 			'screens.licenses' => 'Лицензиялар',
@@ -2260,9 +2253,6 @@ extension on TranslationsKk {
 			'videoControls.pipButton' => 'Суреттегі сурет режимі',
 			'videoControls.aspectRatioButton' => 'Тараптар қатынасы',
 			'videoControls.ambientLighting' => 'Фондық жарықтандыру',
-			'videoControls.fullscreenButton' => 'Толық экранға өту',
-			'videoControls.exitFullscreenButton' => 'Толық экраннан шығу',
-			'videoControls.alwaysOnTopButton' => 'Әрдайым үстінде',
 			'videoControls.rotationLockButton' => 'Бұрылыс бұғаттауы',
 			'videoControls.lockScreen' => 'Экранды бұғаттау',
 			'videoControls.screenLockButton' => 'Экран бұғаттауы',
@@ -2302,13 +2292,13 @@ extension on TranslationsKk {
 			'messages.playbackCancelled' => 'Ойнатудан бас тартылды.',
 			'messages.playbackFailed' => 'Ойнатуды іске қосу қатесі.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Файл ақпаратын жүктеу қатесі: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Сериалды жүктеу қатесі',
 			'messages.musicNotSupported' => 'Музыка ойнату әлі қолдау таппайды',
 			'messages.noDescriptionAvailable' => 'Сипаттамасы жоқ',
 			'messages.noProfilesAvailable' => 'Профильдер жоқ',
 			'messages.contactAdminForProfiles' => 'Профиль қосу үшін администраторға хабарласыңыз',
+			_ => null,
+		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Кітапхана бөлімін анықтау мүмкін болмады',
 			'messages.logsCleared' => 'Журналдар тазаланды',
 			'messages.logsCopied' => 'Журналдар көшірілді',
@@ -2816,13 +2806,13 @@ extension on TranslationsKk {
 			'externalPlayer.useExternalPlayerDescription' => 'Видеоларды басқа қолданбада ашу',
 			'externalPlayer.selectPlayer' => 'Ойнатқышты таңдау',
 			'externalPlayer.customPlayers' => 'Арнайы ойнатқыштар',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Жүйелік әдепкі',
 			'externalPlayer.addCustomPlayer' => 'Арнайы ойнатқыш қосу',
 			'externalPlayer.playerName' => 'Ойнатқыш атауы',
 			'externalPlayer.playerNameHint' => 'Менің ойнатқышым',
 			'externalPlayer.playerCommand' => 'Пәрмен',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Пакет атауы',
 			'externalPlayer.playerUrlScheme' => 'URL схемасы',
 			'externalPlayer.off' => 'Өшірулі',

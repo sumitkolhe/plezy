@@ -52,8 +52,6 @@
     "connectingToServers": "Łączenie z serwerami...",
     "startingOfflineMode": "Uruchamianie trybu offline...",
     "loading": "Ładowanie...",
-    "fullscreen": "Pełny ekran",
-    "exitFullscreen": "Wyjdź z pełnego ekranu",
     "pressBackAgainToExit": "Naciśnij ponownie przycisk Wstecz, aby wyjść",
     "next": "Następny"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Tryb obraz w obrazie",
     "aspectRatioButton": "Proporcje",
     "ambientLighting": "Oświetlenie otoczenia",
-    "fullscreenButton": "Wejdź w pełny ekran",
-    "exitFullscreenButton": "Wyjdź z pełnego ekranu",
-    "alwaysOnTopButton": "Zawsze na wierzchu",
     "rotationLockButton": "Blokada obrotu",
     "lockScreen": "Zablokuj ekran",
     "screenLockButton": "Blokada ekranu",

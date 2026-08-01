@@ -132,7 +132,7 @@ void main() {
       _MigratedRow(
         title: t.settings.checkForUpdates,
         focusLabel: 'settings_check_for_updates',
-        isVisible: UpdateService.isUpdateCheckAvailable && UpdateService.useNativeUpdater,
+        isVisible: UpdateService.isUpdateCheckAvailable,
         hasSubtitle: false,
       ),
     ];
@@ -221,11 +221,6 @@ void main() {
 
     if (!UpdateService.isUpdateCheckAvailable) {
       expect(find.text(t.settings.checkForUpdates), findsNothing);
-      return;
-    }
-
-    if (UpdateService.useNativeUpdater) {
-      expect(_navigationTileFor(t.settings.checkForUpdates), findsOneWidget);
       return;
     }
 

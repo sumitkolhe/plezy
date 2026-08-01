@@ -52,8 +52,6 @@
     "connectingToServers": "Ansluter till servrar...",
     "startingOfflineMode": "Startar offlineläge...",
     "loading": "Laddar...",
-    "fullscreen": "Helskärm",
-    "exitFullscreen": "Avsluta helskärm",
     "pressBackAgainToExit": "Tryck bakåt igen för att avsluta",
     "next": "Nästa"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Bild-i-bild-läge",
     "aspectRatioButton": "Bildförhållande",
     "ambientLighting": "Ambientbelysning",
-    "fullscreenButton": "Aktivera helskärm",
-    "exitFullscreenButton": "Avsluta helskärm",
-    "alwaysOnTopButton": "Alltid överst",
     "rotationLockButton": "Rotationslås",
     "lockScreen": "Lås skärm",
     "screenLockButton": "Skärmlås",

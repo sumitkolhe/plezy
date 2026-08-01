@@ -1,10 +1,7 @@
-import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
-import '../services/fullscreen_state_manager.dart';
 
-/// InheritedWidget to indicate that a side navigation is present in the widget tree.
-/// When present, app bars should skip their left padding since the side nav
-/// already handles the macOS traffic lights area.
+/// Marks that a side navigation is present in the widget tree, so app bars
+/// nested under it can skip chrome the rail already provides.
 class SideNavigationScope extends InheritedWidget {
   const SideNavigationScope({super.key, required super.child});
 
@@ -16,114 +13,30 @@ class SideNavigationScope extends InheritedWidget {
   bool updateShouldNotify(SideNavigationScope oldWidget) => false;
 }
 
-/// Padding values for desktop window controls
-class DesktopWindowPadding {
-  /// Left padding for macOS traffic lights (normal window mode)
-  static const double macOSLeft = 80.0;
-
-  /// Left padding for macOS in fullscreen (reduced since traffic lights auto-hide)
-  static const double macOSLeftFullscreen = 0.0;
-
-  /// Right padding for macOS to prevent actions from being too close to edge
-  static const double macOSRight = 16.0;
-
-  /// Right padding for mobile devices to prevent actions from being too close to edge
-  static const double mobileRight = 6.0;
-
-  /// Left padding for macOS reflecting the current fullscreen state
-  static double get macOSLeftCurrent => FullscreenStateManager().isFullscreen ? macOSLeftFullscreen : macOSLeft;
+class AppBarPadding {
+  /// Keeps trailing actions off the screen edge.
+  static const double actionsRight = 6.0;
 }
 
-/// Helper class for adjusting app bar widgets to account for desktop window controls
+/// Helpers that keep app-bar edge padding consistent across screens.
 class DesktopAppBarHelper {
-  /// Builds actions list with appropriate right padding for macOS and mobile
   static List<Widget>? buildAdjustedActions(List<Widget>? actions) {
-    double? rightPadding;
-
-    if (Platform.isMacOS) {
-      rightPadding = DesktopWindowPadding.macOSRight;
-    } else if (Platform.isIOS || Platform.isAndroid) {
-      rightPadding = DesktopWindowPadding.mobileRight;
-    }
-
-    if (rightPadding == null) {
-      return actions;
-    }
-
-    return actions != null ? [...actions, SizedBox(width: rightPadding)] : [SizedBox(width: rightPadding)];
+    const trailing = SizedBox(width: AppBarPadding.actionsRight);
+    return actions != null ? [...actions, trailing] : const [trailing];
   }
 
-  /// Builds leading widget with appropriate left padding for macOS traffic lights
-  ///
-  /// [includeGestureDetector] - If true, wraps in GestureDetector to prevent window dragging
-  /// [context] - Required to check if side navigation is visible
-  static Widget? buildAdjustedLeading(Widget? leading, {bool includeGestureDetector = false, BuildContext? context}) {
-    if (!Platform.isMacOS || leading == null) {
-      return leading;
-    }
+  static Widget? buildAdjustedLeading(Widget? leading, {bool includeGestureDetector = false, BuildContext? context}) =>
+      leading;
 
-    if (context != null && SideNavigationScope.isPresent(context)) {
-      return includeGestureDetector ? wrapWithGestureDetector(leading, opaque: true) : leading;
-    }
+  static Widget? buildAdjustedFlexibleSpace(Widget? flexibleSpace) => flexibleSpace;
 
-    return ListenableBuilder(
-      listenable: FullscreenStateManager(),
-      builder: (context, _) {
-        final paddedWidget = Padding(
-          padding: .only(left: DesktopWindowPadding.macOSLeftCurrent),
-          child: leading,
-        );
+  static double? calculateLeadingWidth(Widget? leading, {BuildContext? context}) => null;
 
-        return includeGestureDetector ? wrapWithGestureDetector(paddedWidget, opaque: true) : paddedWidget;
-      },
-    );
-  }
-
-  /// Builds flexible space with gesture detector on macOS to prevent window dragging
-  static Widget? buildAdjustedFlexibleSpace(Widget? flexibleSpace) {
-    if (!Platform.isMacOS || flexibleSpace == null) {
-      return flexibleSpace;
-    }
-
-    return wrapWithGestureDetector(flexibleSpace);
-  }
-
-  /// Calculates the leading width for SliverAppBar to account for macOS traffic lights
-  /// [context] - Required to check if side navigation is visible
-  static double? calculateLeadingWidth(Widget? leading, {BuildContext? context}) {
-    if (!Platform.isMacOS || leading == null) {
-      return null;
-    }
-
-    if (context != null && SideNavigationScope.isPresent(context)) {
-      return null;
-    }
-
-    return DesktopWindowPadding.macOSLeftCurrent + kToolbarHeight;
-  }
-
-  /// Wraps a widget with GestureDetector on macOS to prevent window dragging
-  ///
-  /// [opaque] - If true, uses HitTestBehavior.opaque to fully consume gestures.
-  ///            If false (default), uses HitTestBehavior.translucent.
-  static Widget wrapWithGestureDetector(Widget child, {bool opaque = false}) {
-    if (!Platform.isMacOS) {
-      return child;
-    }
-
-    return GestureDetector(
-      behavior: opaque ? HitTestBehavior.opaque : HitTestBehavior.translucent,
-      // ignore: no-empty-block - consumes gesture to prevent macOS window dragging
-      onPanDown: (_) {},
-      child: child,
-    );
-  }
+  static Widget wrapWithGestureDetector(Widget child, {bool opaque = false}) => child;
 }
 
-/// A widget that adds padding to account for desktop window controls.
-/// On macOS, adds left padding for traffic lights (reduced in fullscreen).
-/// When side navigation is visible, left padding is skipped as the side nav
-/// already occupies the traffic lights area.
+/// Pads its child away from the window edges. Retained so callers that
+/// requested explicit insets keep them.
 class DesktopTitleBarPadding extends StatelessWidget {
   final Widget child;
   final double? leftPadding;
@@ -133,37 +46,12 @@ class DesktopTitleBarPadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!Platform.isMacOS) {
-      return child;
-    }
-
-    if (SideNavigationScope.isPresent(context)) {
-      final right = rightPadding ?? 0.0;
-      if (right == 0.0) {
-        return child;
-      }
-      return Padding(
-        padding: .only(right: right),
-        child: child,
-      );
-    }
-
-    return ListenableBuilder(
-      listenable: FullscreenStateManager(),
-      builder: (context, _) {
-        // In fullscreen, use minimal padding since traffic lights auto-hide
-        final left = leftPadding ?? DesktopWindowPadding.macOSLeftCurrent;
-        final right = rightPadding ?? 0.0;
-
-        if (left == 0.0 && right == 0.0) {
-          return child;
-        }
-
-        return Padding(
-          padding: .only(left: left, right: right),
-          child: child,
-        );
-      },
+    final left = leftPadding ?? 0.0;
+    final right = rightPadding ?? 0.0;
+    if (left == 0.0 && right == 0.0) return child;
+    return Padding(
+      padding: EdgeInsets.only(left: left, right: right),
+      child: child,
     );
   }
 }

@@ -158,8 +158,6 @@ class _Translations$common$zh_Hant extends Translations$common$zh {
 	@override String get connectingToServers => '正在連線伺服器…';
 	@override String get startingOfflineMode => '正在啟動離線模式…';
 	@override String get loading => '載入中…';
-	@override String get fullscreen => '全螢幕';
-	@override String get exitFullscreen => '退出全螢幕';
 	@override String get pressBackAgainToExit => '再按一次返回以退出';
 	@override String get next => '下一個';
 }
@@ -661,9 +659,6 @@ class _Translations$videoControls$zh_Hant extends Translations$videoControls$zh 
 	@override String get pipButton => '子母畫面模式';
 	@override String get aspectRatioButton => '寬高比';
 	@override String get ambientLighting => '氛圍燈光';
-	@override String get fullscreenButton => '進入全螢幕';
-	@override String get exitFullscreenButton => '退出全螢幕';
-	@override String get alwaysOnTopButton => '視窗置頂';
 	@override String get rotationLockButton => '旋轉鎖定';
 	@override String get lockScreen => '鎖定螢幕';
 	@override String get screenLockButton => '螢幕鎖定';
@@ -1825,8 +1820,6 @@ extension on TranslationsZhHant {
 			'common.connectingToServers' => '正在連線伺服器…',
 			'common.startingOfflineMode' => '正在啟動離線模式…',
 			'common.loading' => '載入中…',
-			'common.fullscreen' => '全螢幕',
-			'common.exitFullscreen' => '退出全螢幕',
 			'common.pressBackAgainToExit' => '再按一次返回以退出',
 			'common.next' => '下一個',
 			'screens.licenses' => '授權條款',
@@ -2244,9 +2237,6 @@ extension on TranslationsZhHant {
 			'videoControls.pipButton' => '子母畫面模式',
 			'videoControls.aspectRatioButton' => '寬高比',
 			'videoControls.ambientLighting' => '氛圍燈光',
-			'videoControls.fullscreenButton' => '進入全螢幕',
-			'videoControls.exitFullscreenButton' => '退出全螢幕',
-			'videoControls.alwaysOnTopButton' => '視窗置頂',
 			'videoControls.rotationLockButton' => '旋轉鎖定',
 			'videoControls.lockScreen' => '鎖定螢幕',
 			'videoControls.screenLockButton' => '螢幕鎖定',
@@ -2289,13 +2279,13 @@ extension on TranslationsZhHant {
 			'messages.musicNotSupported' => '目前不支援播放音樂',
 			'messages.noDescriptionAvailable' => '目前沒有描述',
 			'messages.noProfilesAvailable' => '沒有可用的使用者設定檔',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => '請聯絡伺服器管理員新增使用者設定檔',
 			'messages.unableToDetermineLibrarySection' => '無法確定此項目的媒體庫分區',
 			'messages.logsCleared' => '日誌已清除',
 			'messages.logsCopied' => '日誌已複製到剪貼簿',
 			'messages.noLogsAvailable' => '沒有可用的日誌',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => '正在重新整理「${title}」的中繼資料…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => '已開始重新整理「${title}」的中繼資料',
 			'messages.metadataRefreshFailed' => ({required Object error}) => '無法重新整理中繼資料：${error}',
@@ -2803,13 +2793,13 @@ extension on TranslationsZhHant {
 			'externalPlayer.launchFailed' => '無法啟動外部播放器',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} 未安裝',
 			'externalPlayer.playInExternalPlayer' => '在外部播放器播放',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '編輯…',
 			'metadataEdit.screenTitle' => '編輯中繼資料',
 			'metadataEdit.basicInfo' => '基本資訊',
 			'metadataEdit.artwork' => '海報與背景',
 			'metadataEdit.title' => '標題',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => '排序標題',
 			'metadataEdit.originalTitle' => '原始標題',
 			'metadataEdit.releaseDate' => '上映日期',

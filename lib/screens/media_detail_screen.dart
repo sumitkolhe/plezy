@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import '../navigation/profile_navigation_scope.dart';
 import '../services/device_performance.dart';
 import '../services/image_cache_service.dart';
-import '../services/fullscreen_state_manager.dart';
 import 'package:flutter/services.dart';
 import 'package:plezy/utils/platform_detector.dart';
 import 'package:plezy/widgets/app_icon.dart';
@@ -2968,20 +2967,14 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         onPressed: () => Navigator.pop(context, _watchStateChanged),
         focusNode: _backButtonFocusNode,
       );
-      final loading = ListenableBuilder(
-        listenable: FullscreenStateManager(),
-        builder: (context, _) => Focus(
-          onKeyEvent: _handleMediaDetailBackKey,
-          child: Scaffold(
-            appBar: AppBar(
-              leading: DesktopAppBarSections.buildLeadingSection(leading: backButton, context: context),
-              leadingWidth: DesktopAppBarSections.calculateLeadingWidthForSection(
-                leading: backButton,
-                context: context,
-              ),
-            ),
-            body: const Center(child: CircularProgressIndicator()),
+      final loading = Focus(
+        onKeyEvent: _handleMediaDetailBackKey,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: DesktopAppBarSections.buildLeadingSection(leading: backButton, context: context),
+            leadingWidth: DesktopAppBarSections.calculateLeadingWidthForSection(leading: backButton, context: context),
           ),
+          body: const Center(child: CircularProgressIndicator()),
         ),
       );
       final blockSystemBack = InputModeTracker.shouldBlockSystemBack(context);

@@ -157,8 +157,6 @@ class _Translations$common$it extends Translations$common$en {
 	@override String get connectingToServers => 'Connessione ai server...';
 	@override String get startingOfflineMode => 'Avvio modalità offline...';
 	@override String get loading => 'Caricamento...';
-	@override String get fullscreen => 'Schermo intero';
-	@override String get exitFullscreen => 'Esci dalla modalità a schermo intero';
 	@override String get pressBackAgainToExit => 'Premi di nuovo Indietro per uscire';
 	@override String get next => 'Successivo';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$it extends Translations$videoControls$en {
 	@override String get pipButton => 'Modalità Picture-in-Picture';
 	@override String get aspectRatioButton => 'Proporzioni';
 	@override String get ambientLighting => 'Illuminazione ambientale';
-	@override String get fullscreenButton => 'Attiva schermo intero';
-	@override String get exitFullscreenButton => 'Esci da schermo intero';
-	@override String get alwaysOnTopButton => 'Sempre in primo piano';
 	@override String get rotationLockButton => 'Blocco rotazione';
 	@override String get lockScreen => 'Blocca schermo';
 	@override String get screenLockButton => 'Blocco schermo';
@@ -1827,8 +1822,6 @@ extension on TranslationsIt {
 			'common.connectingToServers' => 'Connessione ai server...',
 			'common.startingOfflineMode' => 'Avvio modalità offline...',
 			'common.loading' => 'Caricamento...',
-			'common.fullscreen' => 'Schermo intero',
-			'common.exitFullscreen' => 'Esci dalla modalità a schermo intero',
 			'common.pressBackAgainToExit' => 'Premi di nuovo Indietro per uscire',
 			'common.next' => 'Successivo',
 			'screens.licenses' => 'Licenze',
@@ -2246,9 +2239,6 @@ extension on TranslationsIt {
 			'videoControls.pipButton' => 'Modalità Picture-in-Picture',
 			'videoControls.aspectRatioButton' => 'Proporzioni',
 			'videoControls.ambientLighting' => 'Illuminazione ambientale',
-			'videoControls.fullscreenButton' => 'Attiva schermo intero',
-			'videoControls.exitFullscreenButton' => 'Esci da schermo intero',
-			'videoControls.alwaysOnTopButton' => 'Sempre in primo piano',
 			'videoControls.rotationLockButton' => 'Blocco rotazione',
 			'videoControls.lockScreen' => 'Blocca schermo',
 			'videoControls.screenLockButton' => 'Blocco schermo',
@@ -2291,13 +2281,13 @@ extension on TranslationsIt {
 			'messages.musicNotSupported' => 'La riproduzione musicale non è ancora supportata',
 			'messages.noDescriptionAvailable' => 'Nessuna descrizione disponibile',
 			'messages.noProfilesAvailable' => 'Nessun profilo disponibile',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Contatta l\'amministratore del server per aggiungere profili',
 			'messages.unableToDetermineLibrarySection' => 'Impossibile determinare la sezione della libreria per questo elemento',
 			'messages.logsCleared' => 'Log eliminati',
 			'messages.logsCopied' => 'Log copiati negli appunti',
 			'messages.noLogsAvailable' => 'Nessun log disponibile',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Aggiornamento dei metadati di "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Aggiornamento dei metadati avviato per "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Impossibile aggiornare i metadati: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsIt {
 			'externalPlayer.launchFailed' => 'Impossibile aprire il lettore esterno',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} non è installato',
 			'externalPlayer.playInExternalPlayer' => 'Riproduci nel lettore esterno',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Modifica...',
 			'metadataEdit.screenTitle' => 'Modifica metadati',
 			'metadataEdit.basicInfo' => 'Informazioni di base',
 			'metadataEdit.artwork' => 'Immagini',
 			'metadataEdit.title' => 'Titolo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Titolo di ordinamento',
 			'metadataEdit.originalTitle' => 'Titolo originale',
 			'metadataEdit.releaseDate' => 'Data di uscita',

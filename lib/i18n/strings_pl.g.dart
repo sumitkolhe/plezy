@@ -157,8 +157,6 @@ class _Translations$common$pl extends Translations$common$en {
 	@override String get connectingToServers => 'Łączenie z serwerami...';
 	@override String get startingOfflineMode => 'Uruchamianie trybu offline...';
 	@override String get loading => 'Ładowanie...';
-	@override String get fullscreen => 'Pełny ekran';
-	@override String get exitFullscreen => 'Wyjdź z pełnego ekranu';
 	@override String get pressBackAgainToExit => 'Naciśnij ponownie przycisk Wstecz, aby wyjść';
 	@override String get next => 'Następny';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$pl extends Translations$videoControls$en {
 	@override String get pipButton => 'Tryb obraz w obrazie';
 	@override String get aspectRatioButton => 'Proporcje';
 	@override String get ambientLighting => 'Oświetlenie otoczenia';
-	@override String get fullscreenButton => 'Wejdź w pełny ekran';
-	@override String get exitFullscreenButton => 'Wyjdź z pełnego ekranu';
-	@override String get alwaysOnTopButton => 'Zawsze na wierzchu';
 	@override String get rotationLockButton => 'Blokada obrotu';
 	@override String get lockScreen => 'Zablokuj ekran';
 	@override String get screenLockButton => 'Blokada ekranu';
@@ -1833,8 +1828,6 @@ extension on TranslationsPl {
 			'common.connectingToServers' => 'Łączenie z serwerami...',
 			'common.startingOfflineMode' => 'Uruchamianie trybu offline...',
 			'common.loading' => 'Ładowanie...',
-			'common.fullscreen' => 'Pełny ekran',
-			'common.exitFullscreen' => 'Wyjdź z pełnego ekranu',
 			'common.pressBackAgainToExit' => 'Naciśnij ponownie przycisk Wstecz, aby wyjść',
 			'common.next' => 'Następny',
 			'screens.licenses' => 'Licencje',
@@ -2252,9 +2245,6 @@ extension on TranslationsPl {
 			'videoControls.pipButton' => 'Tryb obraz w obrazie',
 			'videoControls.aspectRatioButton' => 'Proporcje',
 			'videoControls.ambientLighting' => 'Oświetlenie otoczenia',
-			'videoControls.fullscreenButton' => 'Wejdź w pełny ekran',
-			'videoControls.exitFullscreenButton' => 'Wyjdź z pełnego ekranu',
-			'videoControls.alwaysOnTopButton' => 'Zawsze na wierzchu',
 			'videoControls.rotationLockButton' => 'Blokada obrotu',
 			'videoControls.lockScreen' => 'Zablokuj ekran',
 			'videoControls.screenLockButton' => 'Blokada ekranu',
@@ -2297,13 +2287,13 @@ extension on TranslationsPl {
 			'messages.musicNotSupported' => 'Odtwarzanie muzyki nie jest jeszcze obsługiwane',
 			'messages.noDescriptionAvailable' => 'Brak dostępnego opisu',
 			'messages.noProfilesAvailable' => 'Brak dostępnych profili',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Skontaktuj się z administratorem serwera, aby dodać profile',
 			'messages.unableToDetermineLibrarySection' => 'Nie można określić sekcji biblioteki dla tego elementu',
 			'messages.logsCleared' => 'Logi wyczyszczone',
 			'messages.logsCopied' => 'Logi skopiowane do schowka',
 			'messages.noLogsAvailable' => 'Brak dostępnych logów',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Odświeżanie metadanych "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Rozpoczęto odświeżanie metadanych "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nie udało się odświeżyć metadanych: ${error}',
@@ -2811,13 +2801,13 @@ extension on TranslationsPl {
 			'externalPlayer.launchFailed' => 'Nie udało się otworzyć zewnętrznego odtwarzacza',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} nie jest zainstalowany',
 			'externalPlayer.playInExternalPlayer' => 'Odtwórz w zewnętrznym odtwarzaczu',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Edytuj...',
 			'metadataEdit.screenTitle' => 'Edytuj metadane',
 			'metadataEdit.basicInfo' => 'Podstawowe informacje',
 			'metadataEdit.artwork' => 'Grafika',
 			'metadataEdit.title' => 'Tytuł',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Tytuł do sortowania',
 			'metadataEdit.originalTitle' => 'Tytuł oryginalny',
 			'metadataEdit.releaseDate' => 'Data premiery',

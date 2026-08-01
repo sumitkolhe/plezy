@@ -52,8 +52,6 @@
     "connectingToServers": "Serverlarga ulanmoqda...",
     "startingOfflineMode": "Oflayn rejim ishga tushmoqda...",
     "loading": "Yuklanmoqda...",
-    "fullscreen": "Toʻliq ekran",
-    "exitFullscreen": "Toʻliq ekrandan chiqish",
     "pressBackAgainToExit": "Chiqish uchun orqaga tugmasini yana bir bor bosing",
     "next": "Keyingi"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Rasm ichida rasm rejimi",
     "aspectRatioButton": "Tomonlar nisbati",
     "ambientLighting": "Atrof-muhit yoritilishi",
-    "fullscreenButton": "Toʻliq ekranga oʻtish",
-    "exitFullscreenButton": "Toʻliq ekrandan chiqish",
-    "alwaysOnTopButton": "Har doim ustida",
     "rotationLockButton": "Aylanish qulfi",
     "lockScreen": "Ekranni qulflash",
     "screenLockButton": "Ekran qulfi",

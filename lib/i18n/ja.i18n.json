@@ -52,8 +52,6 @@
     "connectingToServers": "サーバーに接続中…",
     "startingOfflineMode": "オフラインモードを開始中…",
     "loading": "読み込み中…",
-    "fullscreen": "フルスクリーン",
-    "exitFullscreen": "フルスクリーンを終了",
     "pressBackAgainToExit": "もう一度押すと終了します",
     "next": "次へ"
   },
@@ -594,9 +592,6 @@
     "pipButton": "ピクチャーインピクチャーモード",
     "aspectRatioButton": "アスペクト比",
     "ambientLighting": "アンビエントライティング",
-    "fullscreenButton": "フルスクリーンに入る",
-    "exitFullscreenButton": "フルスクリーンを終了",
-    "alwaysOnTopButton": "常に前面に表示",
     "rotationLockButton": "回転ロック",
     "lockScreen": "画面をロック",
     "screenLockButton": "画面ロック",

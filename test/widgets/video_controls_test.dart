@@ -491,9 +491,6 @@ void main() {
       bool Function()? isPromptOpen,
       VoidCallback? dismissPrompt,
       bool Function()? isChromePresented,
-      Future<bool> Function()? exitFullscreenIfActive,
-      bool physicalEscapeExitsFullscreen = true,
-      bool Function()? physicalEscapeExitsFullscreenProvider,
       VoidCallback? exitPlayer,
       VoidCallback? navigateHome,
       bool Function()? isActive,
@@ -503,8 +500,6 @@ void main() {
         isPromptOpen: isPromptOpen ?? () => false,
         dismissPrompt: dismissPrompt ?? () {},
         isChromePresented: isChromePresented ?? () => chromeController.controlsPresented,
-        exitFullscreenIfActive: exitFullscreenIfActive ?? () async => false,
-        physicalEscapeExitsFullscreen: physicalEscapeExitsFullscreenProvider ?? () => physicalEscapeExitsFullscreen,
         exitPlayer: exitPlayer ?? () {},
         navigateHome: navigateHome ?? () {},
         isActive: isActive,
@@ -557,147 +552,6 @@ void main() {
 
       expect(chromeController.controlsVisible, isTrue);
       expect(exits, 1);
-    });
-
-    testWidgets('physical Escape outside fullscreen hides presented chrome without exiting', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      var fullscreenChecks = 0;
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () async {
-          fullscreenChecks++;
-          return false;
-        },
-        exitPlayer: () => exits++,
-      );
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-      await tester.pump();
-
-      expect(fullscreenChecks, 1);
-      expect(chromeController.controlsVisible, isFalse);
-      expect(exits, 0);
-    });
-
-    testWidgets('physical Escape preserves event-time chrome presentation across fullscreen check', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      final fullscreenResult = Completer<bool>();
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () => fullscreenResult.future,
-        exitPlayer: () => exits++,
-      );
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-      chromeController.hide();
-      chromeController.markControlsHidden();
-      fullscreenResult.complete(false);
-      await tester.pump();
-
-      expect(chromeController.controlsVisible, isFalse);
-      expect(chromeController.controlsPresented, isFalse);
-      expect(exits, 0);
-    });
-
-    testWidgets('physical Escape exits native fullscreen before chrome', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () async => true,
-        exitPlayer: () => exits++,
-      );
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-      await tester.pump();
-
-      expect(chromeController.controlsVisible, isTrue);
-      expect(exits, 0);
-    });
-
-    testWidgets('enabling player navigation makes physical Escape preserve fullscreen', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      var physicalEscapeExitsFullscreen = true;
-      var fullscreenChecks = 0;
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () async {
-          fullscreenChecks++;
-          return true;
-        },
-        physicalEscapeExitsFullscreenProvider: () => physicalEscapeExitsFullscreen,
-        exitPlayer: () => exits++,
-      );
-      physicalEscapeExitsFullscreen = false;
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-
-      expect(fullscreenChecks, 0);
-      expect(chromeController.controlsVisible, isFalse);
-      expect(exits, 0);
-    });
-
-    testWidgets('macOS physical Escape stages through chrome and player without leaving fullscreen', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      var fullscreenChecks = 0;
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () async {
-          fullscreenChecks++;
-          return true;
-        },
-        physicalEscapeExitsFullscreen: false,
-        exitPlayer: () => exits++,
-      );
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-
-      expect(fullscreenChecks, 0);
-      expect(chromeController.controlsVisible, isFalse);
-      expect(exits, 0);
-
-      chromeController.markControlsHidden();
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-
-      expect(fullscreenChecks, 0);
-      expect(exits, 1);
-    });
-
-    testWidgets('physical Escape does nothing after its player route is disposed', (tester) async {
-      final chromeController = PlayerChromeController();
-      addTearDown(chromeController.dispose);
-      final fullscreenResult = Completer<bool>();
-      var active = true;
-      var exits = 0;
-      final coordinator = coordinatorFor(
-        chromeController,
-        exitFullscreenIfActive: () => fullscreenResult.future,
-        exitPlayer: () => exits++,
-        isActive: () => active,
-      );
-      await pumpNavigationFocus(tester, coordinator);
-
-      await tester.sendKeyEvent(LogicalKeyboardKey.escape);
-      active = false;
-      fullscreenResult.complete(false);
-      await tester.pump();
-
-      expect(chromeController.controlsVisible, isTrue);
-      expect(exits, 0);
     });
 
     testWidgets('Back closes the content strip without hiding chrome or exiting', (tester) async {
@@ -774,39 +628,6 @@ void main() {
         ),
         PlayerBackDisposition.closeContentStrip,
       );
-    });
-
-    test('checks fullscreen only for physical Escape', () {
-      expect(
-        resolvePlayerBackDisposition(
-          navigationKey: PlayerNavigationKey.physicalEscape,
-          contentStripVisible: false,
-          controlsVisible: false,
-        ),
-        PlayerBackDisposition.exitFullscreenIfActive,
-      );
-      expect(
-        resolvePlayerBackDisposition(
-          navigationKey: PlayerNavigationKey.back,
-          contentStripVisible: false,
-          controlsVisible: false,
-        ),
-        PlayerBackDisposition.exitPlayer,
-      );
-    });
-  });
-
-  group('shouldPhysicalEscapeExitFullscreen', () {
-    test('uses fullscreen-first behavior for normal Windows and Linux navigation', () {
-      expect(shouldPhysicalEscapeExitFullscreen(isMacOS: false, videoPlayerNavigationEnabled: false), isTrue);
-    });
-
-    test('preserves fullscreen when HTPC-style player navigation is enabled', () {
-      expect(shouldPhysicalEscapeExitFullscreen(isMacOS: false, videoPlayerNavigationEnabled: true), isFalse);
-    });
-
-    test('preserves native fullscreen inside the macOS player', () {
-      expect(shouldPhysicalEscapeExitFullscreen(isMacOS: true, videoPlayerNavigationEnabled: false), isFalse);
     });
   });
 

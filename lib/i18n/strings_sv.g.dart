@@ -157,8 +157,6 @@ class _Translations$common$sv extends Translations$common$en {
 	@override String get connectingToServers => 'Ansluter till servrar...';
 	@override String get startingOfflineMode => 'Startar offlineläge...';
 	@override String get loading => 'Laddar...';
-	@override String get fullscreen => 'Helskärm';
-	@override String get exitFullscreen => 'Avsluta helskärm';
 	@override String get pressBackAgainToExit => 'Tryck bakåt igen för att avsluta';
 	@override String get next => 'Nästa';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$sv extends Translations$videoControls$en {
 	@override String get pipButton => 'Bild-i-bild-läge';
 	@override String get aspectRatioButton => 'Bildförhållande';
 	@override String get ambientLighting => 'Ambientbelysning';
-	@override String get fullscreenButton => 'Aktivera helskärm';
-	@override String get exitFullscreenButton => 'Avsluta helskärm';
-	@override String get alwaysOnTopButton => 'Alltid överst';
 	@override String get rotationLockButton => 'Rotationslås';
 	@override String get lockScreen => 'Lås skärm';
 	@override String get screenLockButton => 'Skärmlås';
@@ -1827,8 +1822,6 @@ extension on TranslationsSv {
 			'common.connectingToServers' => 'Ansluter till servrar...',
 			'common.startingOfflineMode' => 'Startar offlineläge...',
 			'common.loading' => 'Laddar...',
-			'common.fullscreen' => 'Helskärm',
-			'common.exitFullscreen' => 'Avsluta helskärm',
 			'common.pressBackAgainToExit' => 'Tryck bakåt igen för att avsluta',
 			'common.next' => 'Nästa',
 			'screens.licenses' => 'Licenser',
@@ -2246,9 +2239,6 @@ extension on TranslationsSv {
 			'videoControls.pipButton' => 'Bild-i-bild-läge',
 			'videoControls.aspectRatioButton' => 'Bildförhållande',
 			'videoControls.ambientLighting' => 'Ambientbelysning',
-			'videoControls.fullscreenButton' => 'Aktivera helskärm',
-			'videoControls.exitFullscreenButton' => 'Avsluta helskärm',
-			'videoControls.alwaysOnTopButton' => 'Alltid överst',
 			'videoControls.rotationLockButton' => 'Rotationslås',
 			'videoControls.lockScreen' => 'Lås skärm',
 			'videoControls.screenLockButton' => 'Skärmlås',
@@ -2291,13 +2281,13 @@ extension on TranslationsSv {
 			'messages.musicNotSupported' => 'Musikuppspelning stöds inte ännu',
 			'messages.noDescriptionAvailable' => 'Ingen beskrivning tillgänglig',
 			'messages.noProfilesAvailable' => 'Inga profiler tillgängliga',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Kontakta din serveradministratör för att lägga till profiler',
 			'messages.unableToDetermineLibrarySection' => 'Kan inte avgöra biblioteksavdelningen för detta objekt',
 			'messages.logsCleared' => 'Loggar rensade',
 			'messages.logsCopied' => 'Loggar kopierade till urklipp',
 			'messages.noLogsAvailable' => 'Inga loggar tillgängliga',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Uppdaterar metadata för "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metadatauppdateringen har startat för "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Det gick inte att uppdatera metadata: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsSv {
 			'externalPlayer.launchFailed' => 'Kunde inte öppna extern spelare',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} är inte installerad',
 			'externalPlayer.playInExternalPlayer' => 'Spela i extern spelare',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Redigera...',
 			'metadataEdit.screenTitle' => 'Redigera metadata',
 			'metadataEdit.basicInfo' => 'Grundläggande information',
 			'metadataEdit.artwork' => 'Bildmaterial',
 			'metadataEdit.title' => 'Titel',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteringstitel',
 			'metadataEdit.originalTitle' => 'Originaltitel',
 			'metadataEdit.releaseDate' => 'Utgivningsdatum',

@@ -106,10 +106,7 @@ extension _PlexVideoControlsTrackMethods on _PlexVideoControlsState {
 
   void _previousChapter() => _seekToPreviousChapter();
 
-  TrackControlsState _buildTrackControlsState({
-    required PlaybackStateProvider playbackState,
-    required VoidCallback? onToggleAlwaysOnTop,
-  }) {
+  TrackControlsState _buildTrackControlsState({required PlaybackStateProvider playbackState}) {
     final versionQuality = effectiveVersionQualityControls(
       isOfflinePlayback: widget.isOfflinePlayback,
       availableVersions: widget.availableVersions,
@@ -144,16 +141,12 @@ extension _PlexVideoControlsTrackMethods on _PlexVideoControlsState {
       audioSyncOffset: _audioSyncOffset,
       subtitleSyncOffset: _subtitleSyncOffset,
       isRotationLocked: _isRotationLocked,
-      isFullscreen: _isFullscreen,
-      isAlwaysOnTop: _isAlwaysOnTop,
       onTogglePIPMode: (_isPipSupported && !PlatformDetector.isTV()) ? widget.onTogglePIPMode : null,
       onCycleBoxFitMode: widget.onCycleBoxFitMode,
       onVideoZoomChanged: widget.onVideoZoomChanged,
       onResetVideoZoom: widget.onResetVideoZoom,
       onToggleRotationLock: _toggleRotationLock,
       onToggleScreenLock: _toggleScreenLock,
-      onToggleFullscreen: _toggleFullscreen,
-      onToggleAlwaysOnTop: onToggleAlwaysOnTop,
       onSwitchVersion: versionQuality.canSwitch ? (i) => _switchVersionAndQuality(newMediaIndex: i) : null,
       onSwitchQualityPreset: versionQuality.canSwitch ? (p) => _switchVersionAndQuality(newPreset: p) : null,
       onSwitchAudioStreamId: versionQuality.canSwitch ? (id) => _switchVersionAndQuality(newAudioStreamId: id) : null,
@@ -186,10 +179,7 @@ extension _PlexVideoControlsTrackMethods on _PlexVideoControlsState {
 
   Widget _buildTrackChapterControlsWidget({bool hideChaptersAndQueue = false}) {
     final playbackState = context.watch<PlaybackStateProvider>();
-    final trackControlsState = _buildTrackControlsState(
-      playbackState: playbackState,
-      onToggleAlwaysOnTop: _toggleAlwaysOnTop,
-    );
+    final trackControlsState = _buildTrackControlsState(playbackState: playbackState);
 
     return TrackChapterControls(
       player: widget.player,

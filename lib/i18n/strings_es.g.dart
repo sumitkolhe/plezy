@@ -157,8 +157,6 @@ class _Translations$common$es extends Translations$common$en {
 	@override String get connectingToServers => 'Conectando a servidores...';
 	@override String get startingOfflineMode => 'Iniciando modo sin conexión...';
 	@override String get loading => 'Cargando...';
-	@override String get fullscreen => 'Pantalla completa';
-	@override String get exitFullscreen => 'Salir de pantalla completa';
 	@override String get pressBackAgainToExit => 'Pulsa Atrás de nuevo para salir';
 	@override String get next => 'Siguiente';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$es extends Translations$videoControls$en {
 	@override String get pipButton => 'Modo de imagen en imagen';
 	@override String get aspectRatioButton => 'Relación de aspecto';
 	@override String get ambientLighting => 'Iluminación ambiental';
-	@override String get fullscreenButton => 'Entrar en pantalla completa';
-	@override String get exitFullscreenButton => 'Salir de pantalla completa';
-	@override String get alwaysOnTopButton => 'Siempre visible';
 	@override String get rotationLockButton => 'Bloqueo de rotación';
 	@override String get lockScreen => 'Bloquear pantalla';
 	@override String get screenLockButton => 'Bloqueo de pantalla';
@@ -1827,8 +1822,6 @@ extension on TranslationsEs {
 			'common.connectingToServers' => 'Conectando a servidores...',
 			'common.startingOfflineMode' => 'Iniciando modo sin conexión...',
 			'common.loading' => 'Cargando...',
-			'common.fullscreen' => 'Pantalla completa',
-			'common.exitFullscreen' => 'Salir de pantalla completa',
 			'common.pressBackAgainToExit' => 'Pulsa Atrás de nuevo para salir',
 			'common.next' => 'Siguiente',
 			'screens.licenses' => 'Licencias',
@@ -2246,9 +2239,6 @@ extension on TranslationsEs {
 			'videoControls.pipButton' => 'Modo de imagen en imagen',
 			'videoControls.aspectRatioButton' => 'Relación de aspecto',
 			'videoControls.ambientLighting' => 'Iluminación ambiental',
-			'videoControls.fullscreenButton' => 'Entrar en pantalla completa',
-			'videoControls.exitFullscreenButton' => 'Salir de pantalla completa',
-			'videoControls.alwaysOnTopButton' => 'Siempre visible',
 			'videoControls.rotationLockButton' => 'Bloqueo de rotación',
 			'videoControls.lockScreen' => 'Bloquear pantalla',
 			'videoControls.screenLockButton' => 'Bloqueo de pantalla',
@@ -2291,13 +2281,13 @@ extension on TranslationsEs {
 			'messages.musicNotSupported' => 'La reproducción de música aún no es compatible',
 			'messages.noDescriptionAvailable' => 'No hay descripción disponible',
 			'messages.noProfilesAvailable' => 'No hay perfiles disponibles',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Contacta a tu administrador del servidor para añadir perfiles',
 			'messages.unableToDetermineLibrarySection' => 'No se puede determinar la sección de biblioteca para este elemento',
 			'messages.logsCleared' => 'Registros borrados',
 			'messages.logsCopied' => 'Registros copiados al portapapeles',
 			'messages.noLogsAvailable' => 'No hay registros disponibles',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Actualizando metadatos de "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Actualización de metadatos iniciada para "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Error al actualizar metadatos: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsEs {
 			'externalPlayer.launchFailed' => 'No se pudo abrir el reproductor externo',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} no está instalado',
 			'externalPlayer.playInExternalPlayer' => 'Reproducir en reproductor externo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Editar...',
 			'metadataEdit.screenTitle' => 'Editar metadatos',
 			'metadataEdit.basicInfo' => 'Información básica',
 			'metadataEdit.artwork' => 'Imágenes',
 			'metadataEdit.title' => 'Título',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Título de ordenación',
 			'metadataEdit.originalTitle' => 'Título original',
 			'metadataEdit.releaseDate' => 'Fecha de estreno',

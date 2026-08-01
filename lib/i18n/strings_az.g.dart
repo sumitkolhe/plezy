@@ -157,8 +157,6 @@ class _Translations$common$az extends Translations$common$en {
 	@override String get connectingToServers => 'Serverlərə qoşulunur...';
 	@override String get startingOfflineMode => 'Oflayn rejim başladılır...';
 	@override String get loading => 'Yüklənir...';
-	@override String get fullscreen => 'Tam ekran';
-	@override String get exitFullscreen => 'Tam ekrandan çıx';
 	@override String get pressBackAgainToExit => 'Çıxmaq üçün geri düyməsinə bir daha basın';
 	@override String get next => 'Növbəti';
 }
@@ -663,9 +661,6 @@ class _Translations$videoControls$az extends Translations$videoControls$en {
 	@override String get pipButton => 'Pəncərə daxilində pəncərə rejimi';
 	@override String get aspectRatioButton => 'Tərəf nisbəti';
 	@override String get ambientLighting => 'Ətraf işıqlandırması';
-	@override String get fullscreenButton => 'Tam ekrana keç';
-	@override String get exitFullscreenButton => 'Tam ekrandan çıx';
-	@override String get alwaysOnTopButton => 'Həmişə üstə';
 	@override String get rotationLockButton => 'Dönmə kilidi';
 	@override String get lockScreen => 'Ekranı kilidlə';
 	@override String get screenLockButton => 'Ekran kilidi';
@@ -1838,8 +1833,6 @@ extension on TranslationsAz {
 			'common.connectingToServers' => 'Serverlərə qoşulunur...',
 			'common.startingOfflineMode' => 'Oflayn rejim başladılır...',
 			'common.loading' => 'Yüklənir...',
-			'common.fullscreen' => 'Tam ekran',
-			'common.exitFullscreen' => 'Tam ekrandan çıx',
 			'common.pressBackAgainToExit' => 'Çıxmaq üçün geri düyməsinə bir daha basın',
 			'common.next' => 'Növbəti',
 			'screens.licenses' => 'Lisenziyalar',
@@ -2260,9 +2253,6 @@ extension on TranslationsAz {
 			'videoControls.pipButton' => 'Pəncərə daxilində pəncərə rejimi',
 			'videoControls.aspectRatioButton' => 'Tərəf nisbəti',
 			'videoControls.ambientLighting' => 'Ətraf işıqlandırması',
-			'videoControls.fullscreenButton' => 'Tam ekrana keç',
-			'videoControls.exitFullscreenButton' => 'Tam ekrandan çıx',
-			'videoControls.alwaysOnTopButton' => 'Həmişə üstə',
 			'videoControls.rotationLockButton' => 'Dönmə kilidi',
 			'videoControls.lockScreen' => 'Ekranı kilidlə',
 			'videoControls.screenLockButton' => 'Ekran kilidi',
@@ -2302,13 +2292,13 @@ extension on TranslationsAz {
 			'messages.playbackCancelled' => 'Oynatma ləğv edildi.',
 			'messages.playbackFailed' => 'Oynatma başladılarkən xəta.',
 			'messages.errorLoadingFileInfo' => ({required Object error}) => 'Fayl məlumatı yüklənərkən xəta: ${error}',
-			_ => null,
-		} ?? switch (path) {
 			'messages.errorLoadingSeries' => 'Serial yüklənərkən xəta',
 			'messages.musicNotSupported' => 'Musiqi oynatması hələ dəstəklənmir',
 			'messages.noDescriptionAvailable' => 'Təsvir əlçatan deyil',
 			'messages.noProfilesAvailable' => 'Profil yoxdur',
 			'messages.contactAdminForProfiles' => 'Profil əlavə etmək üçün server inzibatçınızla əlaqə saxlayın',
+			_ => null,
+		} ?? switch (path) {
 			'messages.unableToDetermineLibrarySection' => 'Bu element üçün kitabxana bölməsi müəyyən edilə bilmədi',
 			'messages.logsCleared' => 'Jurnallar təmizləndi',
 			'messages.logsCopied' => 'Jurnallar buferə kopyalandı',
@@ -2816,13 +2806,13 @@ extension on TranslationsAz {
 			'externalPlayer.useExternalPlayerDescription' => 'Videoları başqa tətbiqdə açın',
 			'externalPlayer.selectPlayer' => 'Oynadıcı seç',
 			'externalPlayer.customPlayers' => 'Xüsusi oynadıcılar',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Sistem defoltu',
 			'externalPlayer.addCustomPlayer' => 'Xüsusi oynadıcı əlavə et',
 			'externalPlayer.playerName' => 'Oynadıcı adı',
 			'externalPlayer.playerNameHint' => 'Mənim oynadıcım',
 			'externalPlayer.playerCommand' => 'Əmr',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paket adı',
 			'externalPlayer.playerUrlScheme' => 'URL sxemi',
 			'externalPlayer.off' => 'Söndürülüb',

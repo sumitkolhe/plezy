@@ -52,8 +52,6 @@
     "connectingToServers": "Verbinden met servers...",
     "startingOfflineMode": "Offlinemodus starten...",
     "loading": "Laden...",
-    "fullscreen": "Volledig scherm",
-    "exitFullscreen": "Volledig scherm verlaten",
     "pressBackAgainToExit": "Druk nogmaals op terug om af te sluiten",
     "next": "Volgende"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Beeld-in-beeldmodus",
     "aspectRatioButton": "Beeldverhouding",
     "ambientLighting": "Omgevingsverlichting",
-    "fullscreenButton": "Volledig scherm activeren",
-    "exitFullscreenButton": "Volledig scherm verlaten",
-    "alwaysOnTopButton": "Altijd bovenop",
     "rotationLockButton": "Rotatievergrendeling",
     "lockScreen": "Scherm vergrendelen",
     "screenLockButton": "Schermvergrendeling",

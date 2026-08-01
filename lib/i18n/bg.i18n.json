@@ -52,8 +52,6 @@
     "connectingToServers": "Свързване със сървърите...",
     "startingOfflineMode": "Стартиране на офлайн режим...",
     "loading": "Зареждане...",
-    "fullscreen": "На цял екран",
-    "exitFullscreen": "Изход от цял екран",
     "pressBackAgainToExit": "Натиснете Назад отново, за да излезете",
     "next": "Следващ"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Режим картина в картината",
     "aspectRatioButton": "Съотношение на страните",
     "ambientLighting": "Амбиентно осветление",
-    "fullscreenButton": "Влез на цял екран",
-    "exitFullscreenButton": "Излез от цял екран",
-    "alwaysOnTopButton": "Винаги отгоре",
     "rotationLockButton": "Заключване на завъртането",
     "lockScreen": "Заключи екрана",
     "screenLockButton": "Заключване на екрана",

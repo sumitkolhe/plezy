@@ -52,8 +52,6 @@
     "connectingToServers": "Csatlakozás a szerverekhez...",
     "startingOfflineMode": "Kapcsolat nélküli mód indítása...",
     "loading": "Betöltés...",
-    "fullscreen": "Teljes képernyő",
-    "exitFullscreen": "Kilépés a teljes képernyőből",
     "pressBackAgainToExit": "A kilépéshez nyomd meg újra a Vissza gombot",
     "next": "Következő"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Kép a képben mód",
     "aspectRatioButton": "Méretarány",
     "ambientLighting": "Környezeti megvilágítás",
-    "fullscreenButton": "Teljes képernyős mód bekapcsolása",
-    "exitFullscreenButton": "Teljes képernyős mód kikapcsolása",
-    "alwaysOnTopButton": "Mindig legfelül",
     "rotationLockButton": "Elforgatás zárolása",
     "lockScreen": "Képernyő zárolása",
     "screenLockButton": "Képernyőzár",

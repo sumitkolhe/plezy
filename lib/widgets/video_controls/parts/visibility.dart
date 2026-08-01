@@ -143,17 +143,6 @@ extension _PlexVideoControlsVisibilityMethods on _PlexVideoControlsState {
     widget.chromeController.show();
   }
 
-  void _updateTrafficLightVisibility() async {
-    final generation = ++_trafficLightVisibilityGeneration;
-    // When maximized or fullscreen, always keep traffic lights visible so the
-    // user can reach them without the controls-hide-on-mouse-leave race.
-    // In normal windowed mode, toggle with controls as before.
-    final isMaximizedOrFullscreen = await windowManager.isMaximized() || await MacOSWindowService.isFullscreen();
-    if (!mounted || generation != _trafficLightVisibilityGeneration) return;
-    final visible = isMaximizedOrFullscreen || _showControls;
-    await MacOSWindowService.setTrafficLightsVisible(visible);
-  }
-
   Future<void> _checkPipSupport() async {
     if (!PlatformDetector.supportsPictureInPicture()) {
       return;
@@ -169,33 +158,6 @@ extension _PlexVideoControlsVisibilityMethods on _PlexVideoControlsState {
     } catch (e) {
       return;
     }
-  }
-
-  Future<void> _toggleFullscreen() async {
-    if (!PlatformDetector.isDesktopOS()) return;
-    await FullscreenStateManager().toggleFullscreen();
-  }
-
-  /// Initialize always-on-top state from window manager (desktop only)
-  Future<void> _initAlwaysOnTopState() async {
-    final isOnTop = await windowManager.isAlwaysOnTop();
-    if (mounted && isOnTop != _isAlwaysOnTop) {
-      _setControlsState(() {
-        _isAlwaysOnTop = isOnTop;
-      });
-    }
-  }
-
-  /// Toggle always-on-top window mode (desktop only)
-  Future<void> _toggleAlwaysOnTop() async {
-    if (!PlatformDetector.isDesktopOS()) return;
-
-    final newValue = !_isAlwaysOnTop;
-    await windowManager.setAlwaysOnTop(newValue);
-    if (!mounted) return;
-    _setControlsState(() {
-      _isAlwaysOnTop = newValue;
-    });
   }
 
   /// Show controls and optionally focus play/pause on keyboard input (desktop only)
@@ -271,9 +233,7 @@ extension _PlexVideoControlsVisibilityMethods on _PlexVideoControlsState {
       });
     }
 
-    if (visibilityChanged && Platform.isMacOS) {
-      _updateTrafficLightVisibility();
-    }
+    if (visibilityChanged && Platform.isMacOS) {}
 
     if (focusTarget != null) {
       _requestFocusTarget(focusTarget);

@@ -560,21 +560,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   );
 
   Widget _buildUpdateSection() {
-    if (UpdateService.useNativeUpdater) {
-      return SettingsGroup(
-        title: t.settings.updates,
-        children: [
-          SettingNavigationTile(
-            focusNode: _focusTracker.get(_kCheckForUpdates),
-            icon: Symbols.system_update_rounded,
-            title: t.settings.checkForUpdates,
-            onTap: () => UpdateService.checkForUpdatesNative(inBackground: false),
-          ),
-          _buildAutoCheckUpdatesOnStartupTile(),
-        ],
-      );
-    }
-
     final hasUpdate = _updateInfo != null && _updateInfo!['hasUpdate'] == true;
 
     return SettingsGroup(

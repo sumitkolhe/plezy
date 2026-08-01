@@ -52,8 +52,6 @@
     "connectingToServers": "Sunuculara bağlanılıyor...",
     "startingOfflineMode": "Çevrimdışı mod başlatılıyor...",
     "loading": "Yükleniyor...",
-    "fullscreen": "Tam Ekran",
-    "exitFullscreen": "Tam Ekrandan Çık",
     "pressBackAgainToExit": "Çıkmak için tekrar geri tuşuna basın",
     "next": "Sonraki"
   },
@@ -594,9 +592,6 @@
     "pipButton": "Pencere İçinde Pencere modu",
     "aspectRatioButton": "En boy oranı",
     "ambientLighting": "Ortam aydınlatması",
-    "fullscreenButton": "Tam ekrana geç",
-    "exitFullscreenButton": "Tam ekrandan çık",
-    "alwaysOnTopButton": "Her zaman üstte",
     "rotationLockButton": "Döndürme kilidi",
     "lockScreen": "Ekranı kilitle",
     "screenLockButton": "Ekran kilidi",

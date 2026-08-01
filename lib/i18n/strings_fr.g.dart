@@ -157,8 +157,6 @@ class _Translations$common$fr extends Translations$common$en {
 	@override String get connectingToServers => 'Connexion aux serveurs...';
 	@override String get startingOfflineMode => 'Démarrage en mode hors ligne…';
 	@override String get loading => 'Chargement...';
-	@override String get fullscreen => 'Plein écran';
-	@override String get exitFullscreen => 'Quitter le plein écran';
 	@override String get pressBackAgainToExit => 'Appuyez à nouveau sur retour pour quitter';
 	@override String get next => 'Suivant';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$fr extends Translations$videoControls$en {
 	@override String get pipButton => 'Mode image dans l’image';
 	@override String get aspectRatioButton => 'Format d\'image';
 	@override String get ambientLighting => 'Éclairage ambiant';
-	@override String get fullscreenButton => 'Passer en mode plein écran';
-	@override String get exitFullscreenButton => 'Quitter le mode plein écran';
-	@override String get alwaysOnTopButton => 'Toujours au premier plan';
 	@override String get rotationLockButton => 'Verrouillage de rotation';
 	@override String get lockScreen => 'Verrouiller l\'écran';
 	@override String get screenLockButton => 'Verrouillage de l\'écran';
@@ -1827,8 +1822,6 @@ extension on TranslationsFr {
 			'common.connectingToServers' => 'Connexion aux serveurs...',
 			'common.startingOfflineMode' => 'Démarrage en mode hors ligne…',
 			'common.loading' => 'Chargement...',
-			'common.fullscreen' => 'Plein écran',
-			'common.exitFullscreen' => 'Quitter le plein écran',
 			'common.pressBackAgainToExit' => 'Appuyez à nouveau sur retour pour quitter',
 			'common.next' => 'Suivant',
 			'screens.licenses' => 'Licences',
@@ -2246,9 +2239,6 @@ extension on TranslationsFr {
 			'videoControls.pipButton' => 'Mode image dans l’image',
 			'videoControls.aspectRatioButton' => 'Format d\'image',
 			'videoControls.ambientLighting' => 'Éclairage ambiant',
-			'videoControls.fullscreenButton' => 'Passer en mode plein écran',
-			'videoControls.exitFullscreenButton' => 'Quitter le mode plein écran',
-			'videoControls.alwaysOnTopButton' => 'Toujours au premier plan',
 			'videoControls.rotationLockButton' => 'Verrouillage de rotation',
 			'videoControls.lockScreen' => 'Verrouiller l\'écran',
 			'videoControls.screenLockButton' => 'Verrouillage de l\'écran',
@@ -2291,13 +2281,13 @@ extension on TranslationsFr {
 			'messages.musicNotSupported' => 'La lecture de musique n\'est pas encore prise en charge',
 			'messages.noDescriptionAvailable' => 'Aucune description disponible',
 			'messages.noProfilesAvailable' => 'Aucun profil disponible',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Contactez votre administrateur serveur pour ajouter des profils',
 			'messages.unableToDetermineLibrarySection' => 'Impossible de déterminer la section de la bibliothèque pour cet élément',
 			'messages.logsCleared' => 'Journaux effacés',
 			'messages.logsCopied' => 'Journaux copiés dans le presse-papiers',
 			'messages.noLogsAvailable' => 'Aucun journal disponible',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Actualisation des métadonnées de « ${title} »…',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Actualisation des métadonnées lancée pour « ${title} »',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Échec de l’actualisation des métadonnées : ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsFr {
 			'externalPlayer.launchFailed' => 'Impossible d\'ouvrir le lecteur externe',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} n\'est pas installé',
 			'externalPlayer.playInExternalPlayer' => 'Lire dans un lecteur externe',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Modifier...',
 			'metadataEdit.screenTitle' => 'Modifier les métadonnées',
 			'metadataEdit.basicInfo' => 'Informations de base',
 			'metadataEdit.artwork' => 'Illustrations',
 			'metadataEdit.title' => 'Titre',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Titre de tri',
 			'metadataEdit.originalTitle' => 'Titre original',
 			'metadataEdit.releaseDate' => 'Date de sortie',

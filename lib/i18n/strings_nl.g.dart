@@ -157,8 +157,6 @@ class _Translations$common$nl extends Translations$common$en {
 	@override String get connectingToServers => 'Verbinden met servers...';
 	@override String get startingOfflineMode => 'Offlinemodus starten...';
 	@override String get loading => 'Laden...';
-	@override String get fullscreen => 'Volledig scherm';
-	@override String get exitFullscreen => 'Volledig scherm verlaten';
 	@override String get pressBackAgainToExit => 'Druk nogmaals op terug om af te sluiten';
 	@override String get next => 'Volgende';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$nl extends Translations$videoControls$en {
 	@override String get pipButton => 'Beeld-in-beeldmodus';
 	@override String get aspectRatioButton => 'Beeldverhouding';
 	@override String get ambientLighting => 'Omgevingsverlichting';
-	@override String get fullscreenButton => 'Volledig scherm activeren';
-	@override String get exitFullscreenButton => 'Volledig scherm verlaten';
-	@override String get alwaysOnTopButton => 'Altijd bovenop';
 	@override String get rotationLockButton => 'Rotatievergrendeling';
 	@override String get lockScreen => 'Scherm vergrendelen';
 	@override String get screenLockButton => 'Schermvergrendeling';
@@ -1827,8 +1822,6 @@ extension on TranslationsNl {
 			'common.connectingToServers' => 'Verbinden met servers...',
 			'common.startingOfflineMode' => 'Offlinemodus starten...',
 			'common.loading' => 'Laden...',
-			'common.fullscreen' => 'Volledig scherm',
-			'common.exitFullscreen' => 'Volledig scherm verlaten',
 			'common.pressBackAgainToExit' => 'Druk nogmaals op terug om af te sluiten',
 			'common.next' => 'Volgende',
 			'screens.licenses' => 'Licenties',
@@ -2246,9 +2239,6 @@ extension on TranslationsNl {
 			'videoControls.pipButton' => 'Beeld-in-beeldmodus',
 			'videoControls.aspectRatioButton' => 'Beeldverhouding',
 			'videoControls.ambientLighting' => 'Omgevingsverlichting',
-			'videoControls.fullscreenButton' => 'Volledig scherm activeren',
-			'videoControls.exitFullscreenButton' => 'Volledig scherm verlaten',
-			'videoControls.alwaysOnTopButton' => 'Altijd bovenop',
 			'videoControls.rotationLockButton' => 'Rotatievergrendeling',
 			'videoControls.lockScreen' => 'Scherm vergrendelen',
 			'videoControls.screenLockButton' => 'Schermvergrendeling',
@@ -2291,13 +2281,13 @@ extension on TranslationsNl {
 			'messages.musicNotSupported' => 'Muziek afspelen wordt nog niet ondersteund',
 			'messages.noDescriptionAvailable' => 'Geen beschrijving beschikbaar',
 			'messages.noProfilesAvailable' => 'Geen profielen beschikbaar',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Neem contact op met je serverbeheerder om profielen toe te voegen',
 			'messages.unableToDetermineLibrarySection' => 'Kan bibliotheeksectie voor dit item niet bepalen',
 			'messages.logsCleared' => 'Logbestanden gewist',
 			'messages.logsCopied' => 'Logbestanden naar het klembord gekopieerd',
 			'messages.noLogsAvailable' => 'Geen logbestanden beschikbaar',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metadata voor "${title}" vernieuwen...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Vernieuwen van metadata gestart voor "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Metadata vernieuwen mislukt: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsNl {
 			'externalPlayer.launchFailed' => 'Kan externe speler niet openen',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} is niet geïnstalleerd',
 			'externalPlayer.playInExternalPlayer' => 'Afspelen in externe speler',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Bewerken...',
 			'metadataEdit.screenTitle' => 'Metadata bewerken',
 			'metadataEdit.basicInfo' => 'Basisinformatie',
 			'metadataEdit.artwork' => 'Illustraties',
 			'metadataEdit.title' => 'Titel',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Sorteertitel',
 			'metadataEdit.originalTitle' => 'Oorspronkelijke titel',
 			'metadataEdit.releaseDate' => 'Releasedatum',

@@ -52,8 +52,6 @@
     "connectingToServers": "正在連線伺服器…",
     "startingOfflineMode": "正在啟動離線模式…",
     "loading": "載入中…",
-    "fullscreen": "全螢幕",
-    "exitFullscreen": "退出全螢幕",
     "pressBackAgainToExit": "再按一次返回以退出",
     "next": "下一個"
   },
@@ -594,9 +592,6 @@
     "pipButton": "子母畫面模式",
     "aspectRatioButton": "寬高比",
     "ambientLighting": "氛圍燈光",
-    "fullscreenButton": "進入全螢幕",
-    "exitFullscreenButton": "退出全螢幕",
-    "alwaysOnTopButton": "視窗置頂",
     "rotationLockButton": "旋轉鎖定",
     "lockScreen": "鎖定螢幕",
     "screenLockButton": "螢幕鎖定",

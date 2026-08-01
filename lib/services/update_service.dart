@@ -1,11 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
-import 'package:auto_updater/auto_updater.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:plezy/utils/app_logger.dart';
 import 'package:plezy/utils/media_server_http_client.dart';
-import 'package:plezy/utils/platform_detector.dart';
 import 'base_shared_preferences_service.dart';
 
 /// Service to check for new versions on GitHub
@@ -16,7 +12,6 @@ import 'base_shared_preferences_service.dart';
 /// On all other platforms: falls back to GitHub API check + browser link dialog.
 class UpdateService {
   static const String _githubRepo = 'edde746/plezy';
-  static const String _feedUrl = 'https://cdn.jsdelivr.net/gh/edde746/plezy@appcast/appcast.xml';
 
   static const String _keySkippedVersion = 'update_skipped_version';
   static const String _keyLastCheckTime = 'update_last_check_time';
@@ -24,91 +19,13 @@ class UpdateService {
   // Check cooldown: 6 hours
   static const Duration _checkCooldown = Duration(hours: 6);
 
-  static bool _nativeUpdaterInitialized = false;
-
   /// Check if update checking is enabled via build flag
   static bool get isUpdateCheckEnabled {
     return const bool.fromEnvironment('ENABLE_UPDATE_CHECK', defaultValue: false);
   }
 
   /// Whether any in-app update path applies to this install.
-  /// False inside a packaged (MSIX/Store) install: the Store owns updates and
-  /// the package directory is read-only, so neither WinSparkle nor the GitHub
-  /// fallback dialog has anything it can do. Gates the settings entry too, so
-  /// no dead affordance ships.
-  static bool get isUpdateCheckAvailable => isUpdateCheckEnabled && !PlatformDetector.isPackagedInstall();
-
-  /// Whether the native auto_updater (Sparkle/WinSparkle) should be used.
-  /// True on macOS (non-Homebrew) and installed Windows (has uninstaller).
-  static bool get useNativeUpdater {
-    if (!isUpdateCheckAvailable) return false;
-    if (Platform.isMacOS) return !_isHomebrewInstall();
-    if (Platform.isWindows) return _isInstalledApp() && !_isWingetInstall();
-    return false;
-  }
-
-  /// Initialize the native auto_updater (Sparkle/WinSparkle).
-  /// Call once at startup if [useNativeUpdater] is true.
-  static Future<void> initNativeUpdater() async {
-    if (_nativeUpdaterInitialized) return;
-
-    try {
-      await autoUpdater.setFeedURL(_feedUrl);
-      _nativeUpdaterInitialized = true;
-    } catch (error, stackTrace) {
-      appLogger.e('Failed to initialize native auto updater', error: error, stackTrace: stackTrace);
-    }
-  }
-
-  /// Trigger a background update check via Sparkle/WinSparkle.
-  /// Only shows UI if an update is found.
-  static Future<void> checkForUpdatesNative({bool inBackground = true}) async {
-    if (!_nativeUpdaterInitialized) {
-      await initNativeUpdater();
-      if (!_nativeUpdaterInitialized) return;
-    }
-    try {
-      await autoUpdater.checkForUpdates(inBackground: inBackground);
-    } catch (error, stackTrace) {
-      appLogger.e('Native update check failed', error: error, stackTrace: stackTrace);
-    }
-  }
-
-  /// Check if the macOS app was installed via Homebrew.
-  /// Homebrew casks live under /opt/homebrew/Caskroom/ or /usr/local/Caskroom/.
-  static bool _isHomebrewInstall() {
-    try {
-      final execPath = Platform.resolvedExecutable;
-      return execPath.contains('/Caskroom/') || execPath.contains('/homebrew/');
-    } catch (error, stackTrace) {
-      appLogger.e('Failed to determine Homebrew install status', error: error, stackTrace: stackTrace);
-      return false;
-    }
-  }
-
-  /// Check if the Windows app was installed via winget.
-  /// The Inno Setup installer writes a .winget marker file when invoked with /WINGET=1.
-  static bool _isWingetInstall() {
-    try {
-      final exeDir = File(Platform.resolvedExecutable).parent.path;
-      return File('$exeDir\\.winget').existsSync();
-    } catch (error, stackTrace) {
-      appLogger.e('Failed to determine winget install status', error: error, stackTrace: stackTrace);
-      return false;
-    }
-  }
-
-  /// Check if the Windows app is an installed copy (not portable).
-  /// The Inno Setup installer places unins000.exe next to the executable.
-  static bool _isInstalledApp() {
-    try {
-      final exeDir = File(Platform.resolvedExecutable).parent.path;
-      return File('$exeDir\\unins000.exe').existsSync();
-    } catch (error, stackTrace) {
-      appLogger.e('Failed to determine Windows installation status', error: error, stackTrace: stackTrace);
-      return false;
-    }
-  }
+  static bool get isUpdateCheckAvailable => isUpdateCheckEnabled;
 
   static Future<void> skipVersion(String version) async {
     final prefs = await BaseSharedPreferencesService.sharedCache();

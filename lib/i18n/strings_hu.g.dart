@@ -157,8 +157,6 @@ class _Translations$common$hu extends Translations$common$en {
 	@override String get connectingToServers => 'Csatlakozás a szerverekhez...';
 	@override String get startingOfflineMode => 'Kapcsolat nélküli mód indítása...';
 	@override String get loading => 'Betöltés...';
-	@override String get fullscreen => 'Teljes képernyő';
-	@override String get exitFullscreen => 'Kilépés a teljes képernyőből';
 	@override String get pressBackAgainToExit => 'A kilépéshez nyomd meg újra a Vissza gombot';
 	@override String get next => 'Következő';
 }
@@ -660,9 +658,6 @@ class _Translations$videoControls$hu extends Translations$videoControls$en {
 	@override String get pipButton => 'Kép a képben mód';
 	@override String get aspectRatioButton => 'Méretarány';
 	@override String get ambientLighting => 'Környezeti megvilágítás';
-	@override String get fullscreenButton => 'Teljes képernyős mód bekapcsolása';
-	@override String get exitFullscreenButton => 'Teljes képernyős mód kikapcsolása';
-	@override String get alwaysOnTopButton => 'Mindig legfelül';
 	@override String get rotationLockButton => 'Elforgatás zárolása';
 	@override String get lockScreen => 'Képernyő zárolása';
 	@override String get screenLockButton => 'Képernyőzár';
@@ -1827,8 +1822,6 @@ extension on TranslationsHu {
 			'common.connectingToServers' => 'Csatlakozás a szerverekhez...',
 			'common.startingOfflineMode' => 'Kapcsolat nélküli mód indítása...',
 			'common.loading' => 'Betöltés...',
-			'common.fullscreen' => 'Teljes képernyő',
-			'common.exitFullscreen' => 'Kilépés a teljes képernyőből',
 			'common.pressBackAgainToExit' => 'A kilépéshez nyomd meg újra a Vissza gombot',
 			'common.next' => 'Következő',
 			'screens.licenses' => 'Licencek',
@@ -2246,9 +2239,6 @@ extension on TranslationsHu {
 			'videoControls.pipButton' => 'Kép a képben mód',
 			'videoControls.aspectRatioButton' => 'Méretarány',
 			'videoControls.ambientLighting' => 'Környezeti megvilágítás',
-			'videoControls.fullscreenButton' => 'Teljes képernyős mód bekapcsolása',
-			'videoControls.exitFullscreenButton' => 'Teljes képernyős mód kikapcsolása',
-			'videoControls.alwaysOnTopButton' => 'Mindig legfelül',
 			'videoControls.rotationLockButton' => 'Elforgatás zárolása',
 			'videoControls.lockScreen' => 'Képernyő zárolása',
 			'videoControls.screenLockButton' => 'Képernyőzár',
@@ -2291,13 +2281,13 @@ extension on TranslationsHu {
 			'messages.musicNotSupported' => 'A zenelejátszás még nem támogatott',
 			'messages.noDescriptionAvailable' => 'Nincs elérhető leírás',
 			'messages.noProfilesAvailable' => 'Nincsenek elérhető profilok',
-			_ => null,
-		} ?? switch (path) {
 			'messages.contactAdminForProfiles' => 'Lépj kapcsolatba a szerver adminisztrátorával profilok hozzáadásához',
 			'messages.unableToDetermineLibrarySection' => 'Nem sikerült meghatározni az elem könyvtári részlegét',
 			'messages.logsCleared' => 'Naplók törölve',
 			'messages.logsCopied' => 'Naplók a vágólapra másolva',
 			'messages.noLogsAvailable' => 'Nincsenek elérhető naplók',
+			_ => null,
+		} ?? switch (path) {
 			'messages.metadataRefreshing' => ({required Object title}) => 'Metaadatok frissítése a következőhöz: "${title}"...',
 			'messages.metadataRefreshStarted' => ({required Object title}) => 'Metaadatok frissítése elindítva a következőhöz: "${title}"',
 			'messages.metadataRefreshFailed' => ({required Object error}) => 'Nem sikerült a metaadatok frissítése: ${error}',
@@ -2805,13 +2795,13 @@ extension on TranslationsHu {
 			'externalPlayer.launchFailed' => 'Nem sikerült megnyitni a külső lejátszót',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => 'A(z) ${name} nincs telepítve',
 			'externalPlayer.playInExternalPlayer' => 'Lejátszás külső lejátszóban',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Szerkesztés...',
 			'metadataEdit.screenTitle' => 'Metaadatok szerkesztése',
 			'metadataEdit.basicInfo' => 'Alapinformációk',
 			'metadataEdit.artwork' => 'Borítók és képek',
 			'metadataEdit.title' => 'Cím',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.sortTitle' => 'Rendezési cím',
 			'metadataEdit.originalTitle' => 'Eredeti cím',
 			'metadataEdit.releaseDate' => 'Bemutató dátuma',

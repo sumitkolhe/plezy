@@ -52,8 +52,6 @@
     "connectingToServers": "正在连接服务器…",
     "startingOfflineMode": "正在启动离线模式…",
     "loading": "加载中…",
-    "fullscreen": "全屏",
-    "exitFullscreen": "退出全屏",
     "pressBackAgainToExit": "再按一次返回键退出",
     "next": "下一个"
   },
@@ -594,9 +592,6 @@
     "pipButton": "画中画",
     "aspectRatioButton": "宽高比",
     "ambientLighting": "氛围灯光",
-    "fullscreenButton": "进入全屏",
-    "exitFullscreenButton": "退出全屏",
-    "alwaysOnTopButton": "窗口置顶",
     "rotationLockButton": "旋转锁定",
     "lockScreen": "锁定屏幕",
     "screenLockButton": "屏幕锁定",
