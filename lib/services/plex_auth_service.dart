@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'dart:io' show InternetAddress, InternetAddressType, Platform;
+import 'dart:io' show InternetAddress, InternetAddressType;
 import 'package:flutter/foundation.dart';
-import 'package:package_info_plus/package_info_plus.dart';
 import 'storage_service.dart';
 import 'plex_connection_probe.dart';
 import '../exceptions/media_server_exceptions.dart';
 import '../models/plex/plex_user_profile.dart';
 import '../models/plex/plex_home.dart';
 import '../models/plex/plex_home_user.dart';
-import '../models/plex/plex_switch_response.dart';
 import '../utils/app_logger.dart';
 import '../utils/device_identity.dart';
 import '../utils/endpoint_race.dart';
@@ -55,29 +53,18 @@ class PlexAuthService {
 
   final MediaServerHttpClient _http;
   final String _clientIdentifier;
-  final String _appVersion;
-  final String _platformVersion;
   final String _platform;
   final String? _deviceName;
 
-  PlexAuthService._(
-    this._http,
-    this._clientIdentifier,
-    this._appVersion,
-    this._platformVersion,
-    this._platform,
-    this._deviceName,
-  );
+  PlexAuthService._(this._http, this._clientIdentifier, this._platform, this._deviceName);
 
   @visibleForTesting
   PlexAuthService.forTesting({
     required MediaServerHttpClient http,
     String clientIdentifier = 'test-client',
-    String appVersion = 'test',
-    String platformVersion = 'test',
     String platform = 'Flutter',
     String? deviceName,
-  }) : this._(http, clientIdentifier, appVersion, platformVersion, platform, deviceName);
+  }) : this._(http, clientIdentifier, platform, deviceName);
 
   /// Close the underlying HTTP client. Call when the service is short-lived
   /// (created for a single API call) to avoid leaking sockets.
@@ -90,16 +77,8 @@ class PlexAuthService {
       receiveTimeout: MediaServerTimeouts.plexTvReceive,
     );
     final clientIdentifier = await storage.getOrCreateClientIdentifier();
-    final packageInfo = await PackageInfo.fromPlatform();
     final identity = await DeviceIdentityService.resolve();
-    return PlexAuthService._(
-      http,
-      clientIdentifier,
-      packageInfo.version,
-      Platform.operatingSystemVersion,
-      identity.platform,
-      sanitizeHeaderValue(identity.deviceName),
-    );
+    return PlexAuthService._(http, clientIdentifier, identity.platform, sanitizeHeaderValue(identity.deviceName));
   }
 
   String get clientIdentifier => _clientIdentifier;
@@ -260,34 +239,6 @@ class PlexAuthService {
     final response = await _getClientsApi('/home/users', headers: _getCommonHeaders(authToken: authToken));
     _checkStatus(response);
     return PlexHome.fromJson(response.data as Map<String, dynamic>);
-  }
-
-  /// Switch to a different user in the home, returning the freshly minted
-  /// user-level token
-  Future<String> switchToUser(String userUUID, String currentToken, {String? pin}) async {
-    final queryParams = {
-      'includeSubscriptions': '1',
-      'includeProviders': '1',
-      'includeSettings': '1',
-      'includeSharedSettings': '1',
-      'X-Plex-Product': _appName,
-      'X-Plex-Version': _appVersion,
-      'X-Plex-Client-Identifier': _clientIdentifier,
-      'X-Plex-Platform': _platform,
-      'X-Plex-Platform-Version': _platformVersion,
-      'X-Plex-Token': currentToken,
-      'X-Plex-Language': 'en',
-      'pin': ?pin,
-    };
-
-    final response = await _http.post(
-      '$_clientsApi/home/users/$userUUID/switch',
-      queryParameters: queryParams,
-      headers: {'Accept': 'application/json', 'Content-Length': '0'},
-    );
-
-    _checkStatus(response);
-    return parsePlexSwitchAuthToken(response.data as Map<String, dynamic>);
   }
 }
 
