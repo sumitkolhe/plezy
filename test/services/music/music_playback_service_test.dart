@@ -26,7 +26,7 @@ const _trackDuration = Duration(minutes: 3);
 
 MediaItem _track(String id) => testMediaItem(
   id: id,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.track,
   title: 'Track $id',
   parentTitle: 'Album',

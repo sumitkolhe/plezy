@@ -22,7 +22,6 @@ import 'package:plezy/services/download_manager_service.dart';
 import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/services/music/music_playback_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
@@ -66,7 +65,6 @@ void main() {
     await storageService.initialize(SettingsService.instance);
 
     db = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(db);
     JellyfinApiCache.initialize(db);
 
     downloadManager = DownloadManagerService(

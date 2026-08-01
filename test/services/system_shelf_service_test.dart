@@ -22,7 +22,7 @@ class _ShelfClient implements MediaServerClient {
   String get serverName => 'Server';
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;
@@ -142,7 +142,7 @@ void main() {
     service.beginProfileSession('owner-a');
     final item = testMediaItem(
       id: 'item-a',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       title: 'Private title',
       summary: 'Private summary',
       thumbPath: '/poster',

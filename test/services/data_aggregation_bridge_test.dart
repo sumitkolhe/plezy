@@ -16,7 +16,6 @@ import 'package:plezy/media/media_item.dart';
 import 'package:plezy/services/data_aggregation_service.dart';
 import 'package:plezy/services/jellyfin_client.dart';
 import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/utils/media_server_http_client.dart';
 
@@ -88,7 +87,6 @@ void main() {
     resetSharedPreferencesForTest();
     SettingsService.resetForTesting();
     db = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(db);
     manager = MultiServerManager();
     service = DataAggregationService(manager);
   });
@@ -124,7 +122,7 @@ void main() {
       manager.debugRegisterClientForTesting(
         _LibrariesClient(
           ServerId('ok'),
-          libraries: [MediaLibrary(id: '1', backend: MediaBackend.plex, title: 'Movies', serverId: ServerId('ok'))],
+          libraries: [MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies', serverId: ServerId('ok'))],
         ),
       );
       manager.debugRegisterClientForTesting(
@@ -150,7 +148,7 @@ void main() {
     test('search classifies successful, cancelled, and failed servers independently', () async {
       final item = testMediaItem(
         id: 'show-1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.show,
         title: 'Target',
         serverId: 'ok',

@@ -15,7 +15,7 @@ import 'music_playback_service_test.dart' as music_fakes;
 
 MediaItem _track(String id) => testMediaItem(
   id: id,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.track,
   title: 'Track $id',
   durationMs: const Duration(minutes: 3).inMilliseconds,

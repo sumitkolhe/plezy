@@ -37,7 +37,7 @@ MediaItem _episodeMeta({
   required String? parentId,
 }) => testMediaItem(
   id: id,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.episode,
   title: 'Ep $id',
   serverId: serverId,

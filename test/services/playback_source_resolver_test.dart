@@ -14,7 +14,7 @@ import 'package:plezy/services/playback_source_resolver.dart';
 import '../test_helpers/media_items.dart';
 
 class _PlaybackClient implements MediaServerClient {
-  _PlaybackClient({this.clientBackend = MediaBackend.plex, PlaybackInitializationResult? result})
+  _PlaybackClient({this.clientBackend = MediaBackend.jellyfin, PlaybackInitializationResult? result})
     : result =
           result ??
           PlaybackInitializationResult(availableVersions: const [], videoUrl: 'https://example.com/video.mp4');
@@ -58,7 +58,7 @@ void main() {
 
     final context = await PlaybackSourceResolver(serverManager: manager, database: db).resolve(
       PlaybackInitializationOptions(
-        metadata: testMediaItem(id: 'item-1', backend: MediaBackend.plex, kind: MediaKind.movie, serverId: 'srv'),
+        metadata: testMediaItem(id: 'item-1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, serverId: 'srv'),
         selectedMediaIndex: 0,
         qualityPreset: TranscodeQualityPreset.original,
       ),
@@ -68,32 +68,6 @@ void main() {
     expect(context.result.videoUrl, 'https://example.com/video.mp4');
     expect(context.reportingClient, same(client));
     expect(context.reportingMode, PlaybackReportingMode.online);
-  });
-
-  test('plex direct playback adds playback session header to stream headers', () async {
-    final db = AppDatabase.forTesting(NativeDatabase.memory());
-    final manager = MultiServerManager();
-    addTearDown(() async {
-      manager.dispose();
-      await db.close();
-    });
-
-    final client = _PlaybackClient();
-    manager.debugRegisterClientForTesting(client, online: true);
-
-    final context = await PlaybackSourceResolver(serverManager: manager, database: db).resolve(
-      PlaybackInitializationOptions(
-        metadata: testMediaItem(id: 'item-1', backend: MediaBackend.plex, kind: MediaKind.movie, serverId: 'srv'),
-        selectedMediaIndex: 0,
-        qualityPreset: TranscodeQualityPreset.original,
-        sessionIdentifier: 'playback-session-id',
-      ),
-      offlineLibraryMode: false,
-    );
-
-    expect(context.sourceKind, PlaybackSourceKind.remoteDirect);
-    expect(context.streamHeaders, containsPair('X-Test', 'token'));
-    expect(context.streamHeaders, containsPair('X-Plex-Session-Identifier', 'playback-session-id'));
   });
 
   test('non-plex direct playback does not add plex session header', () async {

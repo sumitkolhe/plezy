@@ -7,7 +7,7 @@ import 'package:plezy/screens/libraries/library_browse_grouping.dart';
 MediaLibrary _library({required MediaKind kind, bool isShared = false}) {
   return MediaLibrary(
     id: '1',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     title: 'Library',
     kind: kind,
     isShared: isShared,
@@ -53,18 +53,6 @@ void main() {
         browseGroupingFolders,
       ]);
     });
-
-    test('shared libraries expose all video groupings and never folders', () {
-      final library = _library(kind: MediaKind.movie, isShared: true);
-
-      expect(libraryBrowseGroupingOptions(library, canGroupByFolders: true), const [
-        browseGroupingAll,
-        browseGroupingMovies,
-        browseGroupingShows,
-        browseGroupingSeasons,
-        browseGroupingEpisodes,
-      ]);
-    });
   });
 
   group('normalizeLibraryBrowseGrouping', () {
@@ -93,21 +81,6 @@ void main() {
       expect(
         normalizeLibraryBrowseGrouping(library, browseGroupingTracks, canGroupByFolders: false),
         browseGroupingTracks,
-      );
-    });
-
-    test('shared libraries default to all', () {
-      final library = _library(kind: MediaKind.movie, isShared: true);
-
-      expect(normalizeLibraryBrowseGrouping(library, null, canGroupByFolders: true), browseGroupingAll);
-    });
-
-    test('shared libraries reject stale saved folder grouping', () {
-      final library = _library(kind: MediaKind.movie, isShared: true);
-
-      expect(
-        normalizeLibraryBrowseGrouping(library, browseGroupingFolders, canGroupByFolders: true),
-        browseGroupingAll,
       );
     });
 

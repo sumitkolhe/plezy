@@ -2,7 +2,6 @@ import '../media/media_file_info.dart';
 import '../media/media_source_info.dart';
 import '../media/media_version.dart' show bitrateKbpsFromBps;
 import '../utils/json_utils.dart';
-import 'plex_constants.dart';
 
 /// Backend-agnostic stream-array walker. Plex and Jellyfin both express the
 /// per-source stream list (video/audio/subtitle entries) as `List<dynamic>`
@@ -135,56 +134,6 @@ FileInfoStreams walkStreams(
     audioTracks: audioTracks,
     subtitleTracks: subtitleTracks,
   );
-}
-
-/// Reader for Plex's `Part.Stream[]` entries. Field naming follows Plex's
-/// camelCase: `streamType` (1=video, 2=audio, 3=subtitle), numeric `id`,
-/// `language`/`languageCode`, `selected`/`forced` arrive as bool-ish strings
-/// or 0/1 ints (handled by [flexibleBool]).
-class PlexFileInfoStreamReader implements FileInfoStreamReader {
-  const PlexFileInfoStreamReader();
-
-  @override
-  FileInfoStreamType? typeOf(Map<String, dynamic> stream) {
-    final t = flexibleInt(stream['streamType']);
-    return switch (t) {
-      PlexStreamType.video => FileInfoStreamType.video,
-      PlexStreamType.audio => FileInfoStreamType.audio,
-      PlexStreamType.subtitle => FileInfoStreamType.subtitle,
-      _ => null,
-    };
-  }
-
-  @override
-  MediaAudioTrack toAudioTrack(Map<String, dynamic> stream, int _) {
-    return MediaAudioTrack(
-      id: flexibleInt(stream['id']) ?? (throw const FormatException('Plex audio stream is missing a numeric id')),
-      index: flexibleInt(stream['index']),
-      codec: stream['codec'] as String?,
-      language: stream['language'] as String?,
-      languageCode: stream['languageCode'] as String?,
-      title: stream['title'] as String?,
-      displayTitle: stream['displayTitle'] as String?,
-      channels: flexibleInt(stream['channels']),
-      selected: flexibleBool(stream['selected']),
-    );
-  }
-
-  @override
-  MediaSubtitleTrack toSubtitleTrack(Map<String, dynamic> stream, int _) {
-    return MediaSubtitleTrack(
-      id: flexibleInt(stream['id']) ?? (throw const FormatException('Plex subtitle stream is missing a numeric id')),
-      index: flexibleInt(stream['index']),
-      codec: stream['codec'] as String?,
-      language: stream['language'] as String?,
-      languageCode: stream['languageCode'] as String?,
-      title: stream['title'] as String?,
-      displayTitle: stream['displayTitle'] as String?,
-      selected: flexibleBool(stream['selected']),
-      forced: flexibleBool(stream['forced']),
-      key: stream['key'] as String?,
-    );
-  }
 }
 
 /// Reader for Jellyfin's `MediaSources[].MediaStreams[]` entries. Field

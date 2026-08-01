@@ -35,7 +35,7 @@ void main() {
   testWidgets('custom item callbacks own pointer actions', (tester) async {
     final item = testMediaItem(
       id: 'pointer_item',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Pointer Movie',
     );
@@ -64,7 +64,7 @@ void main() {
   testWidgets('custom item callbacks own D-pad actions', (tester) async {
     final item = testMediaItem(
       id: 'dpad_item',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'D-pad Movie',
     );
@@ -102,7 +102,7 @@ void main() {
     await SettingsService.instance.write(SettingsService.cardOrientation, CardOrientation.portrait);
     final item = testMediaItem(
       id: 'poster_episode',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Poster Episode',
       parentIndex: 1,
@@ -139,7 +139,7 @@ void main() {
   testWidgets('shows a provider result count in the existing hub header only when supplied', (tester) async {
     final item = testMediaItem(
       id: 'counted_item',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Counted Movie',
     );
@@ -163,7 +163,7 @@ void main() {
   testWidgets('restores within one owner but resets for a fresh owner', (tester) async {
     final items = [
       for (var index = 0; index < 3; index++)
-        testMediaItem(id: 'item_$index', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Item $index'),
+        testMediaItem(id: 'item_$index', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Item $index'),
     ];
     MediaHub hub(String id) => MediaHub(id: id, title: id, type: 'movie', items: items, size: items.length);
 

@@ -45,7 +45,7 @@ import '../test_helpers/media_items.dart';
 // Fixtures
 // ============================================================
 
-MediaItem _meta({MediaBackend backend = MediaBackend.plex, String? audioLanguage, String? subtitleLanguage}) =>
+MediaItem _meta({MediaBackend backend = MediaBackend.jellyfin, String? audioLanguage, String? subtitleLanguage}) =>
     testMediaItem(
       id: 'rk1',
       backend: backend,
@@ -667,20 +667,6 @@ void main() {
       expect(result.track.language, 'fre');
     });
 
-    test('Priority 2: Plex media info has subs but none selected → off', () {
-      // Server's explicit decision: there ARE subs but the user opted out.
-      final tracks = [_sub('1', lang: 'eng'), _sub('2', lang: 'fre')];
-      final info = _info(
-        subs: [
-          _plexSub(10, language: 'eng'),
-          _plexSub(11, language: 'fre'),
-        ],
-      );
-      final result = _svc(info: info).selectSubtitleTrack(tracks, null, null)!;
-      expect(result.priority, TrackSelectionPriority.serverSelected);
-      expect(result.track.id, 'no');
-    });
-
     test('Jellyfin media info with subs but none selected falls through to default fallback', () {
       final tracks = [_sub('1', lang: 'eng'), _sub('2', lang: 'fre', isDefault: true)];
       final info = _info(
@@ -1189,18 +1175,6 @@ void main() {
       final result = _svc(info: info).selectSubtitleTrack(tracks, forcedIntent, null)!;
       expect(result.priority, TrackSelectionPriority.serverSelected);
       expect(result.track.id, '1');
-    });
-
-    test("a declined forced intent honors the server's subtitles-off state", () {
-      // #1717 headline: the next episode has no forced track and no selected
-      // stream — the server's own decision (off) wins over the full track.
-      final tracks = [_sub('1', lang: 'fre', codec: 'ass')];
-      final info = _info(
-        subs: [_plexSub(10, languageCode: 'fre', codec: 'ass')],
-      );
-      final result = _svc(info: info).selectSubtitleTrack(tracks, forcedIntent, null)!;
-      expect(result.priority, TrackSelectionPriority.serverSelected);
-      expect(result.track.id, 'no');
     });
 
     test('a servable intent stays pending until its native track arrives', () {

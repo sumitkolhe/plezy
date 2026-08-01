@@ -30,7 +30,7 @@ MediaItem _item(
   String serverId = 'server_1',
 }) => testMediaItem(
   id: id,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: kind,
   title: id,
   serverId: serverId,
@@ -135,7 +135,7 @@ class _FakeClient implements MediaServerClient {
   String? get serverName => serverNameValue;
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;
@@ -477,7 +477,8 @@ void main() {
     expect(provider.hubs.map((h) => h.id), ['hub-lib2', 'hub-lib1']);
     final hubCallsBefore = aggregation.hubCalls;
 
-    MediaLibrary lib(String id) => MediaLibrary(id: id, backend: MediaBackend.plex, title: id, serverId: 'server_1');
+    MediaLibrary lib(String id) =>
+        MediaLibrary(id: id, backend: MediaBackend.jellyfin, title: id, serverId: 'server_1');
     await libraries.updateLibraryOrder([lib('lib-1'), lib('lib-2')]);
     await pumpEventQueue();
 

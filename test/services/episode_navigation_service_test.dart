@@ -6,7 +6,6 @@ import 'package:plezy/media/media_item.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_client.dart';
 import 'package:plezy/media/play_queue.dart';
-import 'package:plezy/models/plex/play_queue_response.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/providers/playback_state_provider.dart';
 import 'package:plezy/services/data_aggregation_service.dart';
@@ -17,7 +16,7 @@ import '../test_helpers/media_items.dart';
 import '../test_helpers/multi_server_fixtures.dart';
 
 MediaItem _meta(String id, {String? title}) =>
-    testMediaItem(id: id, backend: MediaBackend.plex, kind: MediaKind.episode, title: title ?? 'Episode $id');
+    testMediaItem(id: id, backend: MediaBackend.jellyfin, kind: MediaKind.episode, title: title ?? 'Episode $id');
 
 MediaItem _jfEpisode(String id, {required String seriesId, ServerId? serverId}) => testMediaItem(
   id: id,
@@ -36,12 +35,9 @@ MediaItem _jfMovie(String id) => testMediaItem(
   serverId: ServerId('srv-jf'),
 );
 
-PlexMediaItem _plexMovie(String id, int playQueueItemId) =>
-    PlexMediaItem(id: id, kind: MediaKind.movie, title: 'Movie $id', playQueueItemId: playQueueItemId);
-
 MediaItem _plexEpisode(String id, {required String seriesId, int? viewCount}) => testMediaItem(
   id: id,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.episode,
   title: 'Episode $id',
   serverId: 'srv-plex',
@@ -238,71 +234,6 @@ void main() {
       expect(result!.hasPrevious, isTrue);
     });
 
-    testWidgets('extends a Plex movie queue window for adjacency', (tester) async {
-      final previous = _plexMovie('movie-1', 1001);
-      final current = _plexMovie('movie-2', 1002);
-      final next = _plexMovie('movie-3', 1003);
-      final playback = PlaybackStateProvider();
-      addTearDown(playback.dispose);
-      await playback.setPlaybackFromPlayQueue(
-        PlayQueueResponse(
-          playQueueID: 77,
-          playQueueSelectedItemID: 1002,
-          playQueueShuffled: false,
-          playQueueTotalCount: 3,
-          playQueueVersion: 1,
-          items: [current],
-        ),
-        'collection-movies',
-      );
-      var windowFetches = 0;
-      String? requestedCenter;
-      playback.setPlayQueueWindowFetcher((playQueueId, {center, window = 50}) async {
-        windowFetches++;
-        requestedCenter = center;
-        expect(playQueueId, 77);
-        return PlayQueueResponse(
-          playQueueID: playQueueId,
-          playQueueSelectedItemID: 1002,
-          playQueueShuffled: false,
-          playQueueTotalCount: 3,
-          playQueueVersion: 2,
-          items: [previous, current, next],
-        );
-      });
-      final manager = _StubManager(null);
-      final serverProvider = MultiServerProvider(manager, DataAggregationService(manager));
-      addTearDown(serverProvider.dispose);
-
-      AdjacentEpisodes? result;
-      await tester.pumpWidget(
-        MultiProvider(
-          providers: [
-            ChangeNotifierProvider<PlaybackStateProvider>.value(value: playback),
-            ChangeNotifierProvider<MultiServerProvider>.value(value: serverProvider),
-          ],
-          child: _ProbeWidget(metadata: current, onResult: (r) => result = r),
-        ),
-      );
-      await tester.pump();
-      await tester.pump();
-
-      expect(windowFetches, 1);
-      expect(requestedCenter, '1002');
-      expect(playback.isQueueActive, isTrue);
-      expect(playback.playQueueId, 77);
-      expect(playback.currentQueueItem, same(current));
-      expect(playback.currentPlayQueueItemID, 1002);
-      expect(playback.loadedItems, [previous, current, next]);
-      expect(result, isNotNull);
-      expect(result!.nextStatus, QueueNavigationStatus.found);
-      expect(result!.previousStatus, QueueNavigationStatus.found);
-      expect(result!.next, same(next));
-      expect(result!.previous, same(previous));
-      expect(result!.hasNext, isTrue);
-      expect(result!.hasPrevious, isTrue);
-    });
-
     testWidgets('does not use an unrelated active queue for a standalone movie', (tester) async {
       final queuedPrevious = _jfMovie('queued-1');
       final queuedCurrent = _jfMovie('queued-2');
@@ -428,7 +359,7 @@ void main() {
       final ep3 = _plexEpisode('ep3', seriesId: 'series-P', viewCount: 1);
       final playback = PlaybackStateProvider();
       addTearDown(playback.dispose);
-      final client = _RecordingClient(seriesEpisodes: [ep1, ep2, ep3], clientBackend: MediaBackend.plex);
+      final client = _RecordingClient(seriesEpisodes: [ep1, ep2, ep3], clientBackend: MediaBackend.jellyfin);
       final manager = _StubManager(client);
       final serverProvider = testMultiServerProvider(manager);
       addTearDown(serverProvider.dispose);
@@ -459,7 +390,7 @@ void main() {
       addTearDown(playback.dispose);
       final client = _RecordingClient(
         seriesEpisodes: const [],
-        clientBackend: MediaBackend.plex,
+        clientBackend: MediaBackend.jellyfin,
         fetchError: StateError('network unavailable'),
       );
       final manager = _StubManager(client);
@@ -489,7 +420,7 @@ void main() {
       final ep2 = _plexEpisode('ep2', seriesId: 'series-P', viewCount: 1);
       final playback = PlaybackStateProvider();
       addTearDown(playback.dispose);
-      final client = _RecordingClient(seriesEpisodes: [ep1, ep2], clientBackend: MediaBackend.plex);
+      final client = _RecordingClient(seriesEpisodes: [ep1, ep2], clientBackend: MediaBackend.jellyfin);
       final manager = _StubManager(client);
       final serverProvider = testMultiServerProvider(manager);
       addTearDown(serverProvider.dispose);

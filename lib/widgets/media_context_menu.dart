@@ -6,7 +6,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/watch_state_store.dart';
-import '../media/media_backend.dart';
 import '../media/media_item.dart';
 import '../media/media_item_types.dart';
 import '../media/media_kind.dart';
@@ -199,14 +198,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final mediaKind = mediaItem?.kind;
     final isCollection = mediaKind == MediaKind.collection;
 
-    // Backend-aware gate: a few menu items remain Plex-only because the
-    // server-side feature has no Jellyfin equivalent (match/unmatch).
-    // No fallback: items without a backend marker show only neutral actions —
-    // dispatching a Plex-only action against an unknown-backend item could
-    // crash or hit the wrong server.
-    final itemBackend = mediaItem?.backend ?? playlist?.backend;
-    final isPlex = itemBackend == MediaBackend.plex;
-
     final isPartiallyWatched = mediaItem?.isPartiallyWatched ?? false;
 
     final hasActiveProgress =
@@ -369,19 +360,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         );
       }
 
-      // Remove from Collection (only when viewing items within a collection).
-      // Plex-only — uses `removeFromCollection` API; Jellyfin's collection
-      // membership API isn't wired here yet.
-      if (isPlex && widget.collectionId != null) {
-        menuActions.add(
-          _MenuAction(
-            value: 'remove_from_collection',
-            icon: Symbols.delete_outline_rounded,
-            label: t.collections.removeFromCollection,
-          ),
-        );
-      }
-
       // Go to Series (for episodes and seasons) — hide if already on that series' detail screen
       final ancestorMediaDetail = context.findAncestorWidgetOfExactType<MediaDetailScreen>();
       final ancestorMeta = ancestorMediaDetail?.metadata;
@@ -424,12 +402,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         );
       }
 
-      // File Info (for episodes and movies). Backend-neutral — both
-      // PlexClient and JellyfinClient implement [getFileInfo], reading
-      // codec/stream metadata from `Media`/`MediaSources` respectively.
-      // Hidden when the item has no backend marker so we don't fan out
-      // to an arbitrary client.
-      if (itemBackend != null && (mediaKind == MediaKind.episode || mediaKind == MediaKind.movie)) {
+      // File Info (for episodes and movies).
+      if (mediaKind == MediaKind.episode || mediaKind == MediaKind.movie) {
         menuActions.add(_MenuAction(value: 'fileinfo', icon: Symbols.info_rounded, label: t.mediaMenu.fileInfo));
       }
 
@@ -493,21 +467,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         }
       }
 
-      // Add to... (for episodes, movies, shows, and seasons). Plex-only —
-      // uses `buildMetadataUri` + `addToPlaylist` / `addToCollection`. The
-      // Jellyfin item-add API is different and not wired here yet.
-      if (isPlex &&
-          (mediaKind == MediaKind.episode ||
-              mediaKind == MediaKind.movie ||
-              mediaKind == MediaKind.show ||
-              mediaKind == MediaKind.season)) {
-        menuActions.add(_MenuAction(value: 'add_to', icon: Symbols.add_rounded, label: t.common.addTo));
-      }
-
       // Delete media item (for episodes, movies, shows, and seasons) — admin
-      // only. Backend-neutral: routed through `MediaServerClient.deleteMediaItem`,
-      // which both Plex and Jellyfin implement (DELETE /library/metadata/{id}
-      // and DELETE /Items/{id} respectively).
+      // only. Routed through `MediaServerClient.deleteMediaItem`.
       if (isAdmin &&
           (mediaKind == MediaKind.episode ||
               mediaKind == MediaKind.movie ||

@@ -48,7 +48,6 @@ import '../utils/media_quality_labels.dart';
 import '../media/media_server_client.dart';
 import '../services/media_list_playback_launcher.dart';
 import '../utils/content_utils.dart';
-import '../utils/rating_utils.dart';
 import '../models/download_models.dart';
 import '../services/download_storage_service.dart';
 import '../utils/download_version_utils.dart';
@@ -1006,28 +1005,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   /// they are combined into a single badge.
   List<Widget> _buildRatingChips(MediaItem metadata) {
     final chips = <Widget>[];
-    // Plex-only fields (audienceRating / ratingImage / audienceRatingImage)
-    // — Jellyfin lacks rating-source attribution. Pull them via a typed
-    // narrow so the rest of the chip layout stays backend-neutral.
-    final plex = metadata is PlexMediaItem ? metadata : null;
-    final audienceRating = plex?.audienceRating;
-    final ratingImage = plex?.ratingImage;
-    final audienceRatingImage = plex?.audienceRatingImage;
-    final bothRT =
-        metadata.rating != null &&
-        audienceRating != null &&
-        isRottenTomatoes(ratingImage) &&
-        isRottenTomatoes(audienceRatingImage);
-
-    if (bothRT) {
-      chips.add(_buildCombinedRtChip(ratingImage, metadata.rating!, audienceRatingImage, audienceRating));
-    } else {
-      if (metadata.rating != null) {
-        chips.add(_buildRatingChip(ratingImage, metadata.rating!, Symbols.star_rounded));
-      }
-      if (audienceRating != null) {
-        chips.add(_buildRatingChip(audienceRatingImage, audienceRating, Symbols.people_rounded));
-      }
+    if (metadata.rating != null) {
+      chips.add(_buildRatingChip(null, metadata.rating!, Symbols.star_rounded));
     }
 
     // User rating chip (tappable)
@@ -1129,49 +1108,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
             _fullMetadata = (_fullMetadata ?? widget.metadata).copyWith(isFavorite: favorite);
           });
         },
-      ),
-    );
-  }
-
-  /// Build a combined RT chip showing critic + audience side by side.
-  Widget _buildCombinedRtChip(
-    String? criticImageUri,
-    double criticValue,
-    String? audienceImageUri,
-    double audienceValue,
-  ) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textStyle = TextStyle(color: colorScheme.onSecondaryContainer, fontSize: 13, fontWeight: .w500);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.8),
-        borderRadius: const BorderRadius.all(Radius.circular(100)),
-      ),
-      child: Row(
-        mainAxisSize: .min,
-        children: [
-          MediaRatingBadge.inline(
-            imageUri: criticImageUri,
-            value: criticValue,
-            fallbackIcon: Symbols.star_rounded,
-            foregroundColor: colorScheme.onSecondaryContainer,
-            iconSize: 16,
-            spacing: 4,
-            textStyle: textStyle,
-          ),
-          const SizedBox(width: 10),
-          MediaRatingBadge.inline(
-            imageUri: audienceImageUri,
-            value: audienceValue,
-            fallbackIcon: Symbols.people_rounded,
-            foregroundColor: colorScheme.onSecondaryContainer,
-            iconSize: 16,
-            spacing: 4,
-            textStyle: textStyle,
-          ),
-        ],
       ),
     );
   }
@@ -4362,18 +4298,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   MediaItem? _getPrimaryTrailer() {
     if (_extras == null || _extras!.isEmpty) return null;
 
-    // If there's a trailerKey (Plex `primaryExtraKey`), try to find that specific trailer
-    final metadata = _fullMetadata ?? _metadata;
-    if (metadata case PlexMediaItem(:final trailerKey?)) {
-      // Extract rating key from trailerKey (e.g., "/library/metadata/52601" -> "52601")
-      final primaryKey = trailerKey.split('/').last;
-      try {
-        return _extras!.firstWhere((extra) => extra.id == primaryKey);
-      } catch (_) {
-        // Primary key not found, fall through to find any trailer
-      }
-    }
-
     try {
       return _extras!.firstWhere(_isTrailerExtra);
     } catch (_) {
@@ -4383,9 +4307,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   }
 
   bool _isTrailerExtra(MediaItem extra) {
-    if (extra case PlexMediaItem(:final subtype?)) {
-      return subtype.toLowerCase() == 'trailer';
-    }
     final raw = extra.raw;
     final extraType = raw?['ExtraType'] as String?;
     final type = raw?['Type'] as String?;

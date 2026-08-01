@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/focus/focusable_action_bar.dart';
@@ -29,7 +28,6 @@ import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/offline_watch_sync_service.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/layout_constants.dart';
@@ -173,73 +171,6 @@ void main() {
     await tester.pump();
 
     expect(tester.widget<AnimatedOpacity>(revealGate).opacity, 1);
-  });
-
-  testWidgets('TV detail shows Rotten Tomatoes rating badge in metadata line', (tester) async {
-    await SettingsService.getInstance();
-    tester.view.physicalSize = const Size(1280, 720);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-
-    const movie = MediaItem.plex(
-      id: 'movie_1',
-      kind: MediaKind.movie,
-      title: 'Rotten Tomatoes Movie',
-      summary: 'The TV detail metadata line should use the rating source badge.',
-      rating: 6.2,
-      ratingImage: 'rottentomatoes://image.rating.ripe',
-    );
-
-    await tester.pumpWidget(
-      TranslationProvider(
-        child: MaterialApp(
-          theme: monoTheme(dark: true),
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
-        ),
-      ),
-    );
-
-    await tester.pump();
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
-
-    expect(find.text('62%'), findsOneWidget);
-    expect(find.byType(SvgPicture), findsOneWidget);
-    expect(find.textContaining('★ 6.2', findRichText: true), findsNothing);
-  });
-
-  testWidgets('TV detail falls back to Rotten Tomatoes audience rating in metadata line', (tester) async {
-    await SettingsService.getInstance();
-    tester.view.physicalSize = const Size(1280, 720);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-
-    const movie = MediaItem.plex(
-      id: 'movie_1',
-      kind: MediaKind.movie,
-      title: 'Audience Rating Movie',
-      summary: 'The TV detail metadata line should use the available audience source badge.',
-      audienceRating: 8.7,
-      audienceRatingImage: 'rottentomatoes://image.rating.upright',
-    );
-
-    await tester.pumpWidget(
-      TranslationProvider(
-        child: MaterialApp(
-          theme: monoTheme(dark: true),
-          home: withProfileNavigationScope(child: MediaDetailScreen(metadata: movie)),
-        ),
-      ),
-    );
-
-    await tester.pump();
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 200));
-
-    expect(find.text('87%'), findsOneWidget);
-    expect(find.byType(SvgPicture), findsOneWidget);
   });
 
   testWidgets('TV detail defaults to first regular season when specials precede it', (tester) async {
@@ -706,7 +637,6 @@ void main() {
       },
     );
     final database = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(database);
     JellyfinApiCache.initialize(database);
     final manager = MultiServerManager()..debugRegisterClientForTesting(client);
     final multiServerProvider = testMultiServerProvider(manager);
@@ -821,7 +751,6 @@ void main() {
       addTearDown(tester.view.resetDevicePixelRatio);
 
       final db = AppDatabase.forTesting(NativeDatabase.memory());
-      PlexApiCache.initialize(db);
       JellyfinApiCache.initialize(db);
       final downloadManager = DownloadManagerService(
         database: db,
@@ -908,7 +837,7 @@ void main() {
     testWidgets('shows directors when they are the only additional info', (tester) async {
       final movie = testMediaItem(
         id: 'director_only',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'Director-only metadata',
         directors: ['Jane Director'],
@@ -926,7 +855,7 @@ void main() {
     testWidgets('omits the director row for an empty list', (tester) async {
       final movie = testMediaItem(
         id: 'no_directors',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'No directors',
         studio: 'Example Studio',
@@ -945,7 +874,7 @@ void main() {
     testWidgets('portrait phone hero shows square art instead of the cropped backdrop', (tester) async {
       final movie = testMediaItem(
         id: 'square_hero',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'Square hero',
         artPath: '/library/metadata/square_hero/art',

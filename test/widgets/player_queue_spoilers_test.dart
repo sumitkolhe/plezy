@@ -327,14 +327,14 @@ PlaybackStateProvider _playbackWithQueue() {
   playback.setPlaybackFromLocalQueue(
     LocalPlayQueue(
       id: 'test-queue',
-      backendId: MediaBackend.plex.id,
+      backendId: MediaBackend.jellyfin.id,
       currentIndex: 0,
       items: [
         _episode('spoiler-episode', title: 'Spoiler Episode'),
         _episode('watched-episode', title: 'Watched Episode', viewCount: 1),
         testMediaItem(
           id: 'movie',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.movie,
           title: 'Movie',
           thumbPath: 'https://example.invalid/movie.jpg',
@@ -348,7 +348,7 @@ PlaybackStateProvider _playbackWithQueue() {
 MediaItem _episode(String id, {required String title, int? viewCount}) {
   return testMediaItem(
     id: id,
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.episode,
     title: title,
     grandparentTitle: 'Show',

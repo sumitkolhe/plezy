@@ -11,18 +11,13 @@ import 'package:plezy/services/external_player_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/offline_watch_sync_service.dart';
-import 'package:plezy/utils/active_client_scope.dart';
 import 'package:plezy/utils/watch_state_notifier.dart';
 import '../test_helpers/media_items.dart';
 import '../test_helpers/playback_report_fakes.dart';
 
 class _RecordingClient with PlaybackReportRecorder implements MediaServerClient, ScopedMediaServerClient {
-  _RecordingClient({this.backend = MediaBackend.plex, String? scopedServerId})
-    : scopedServerId =
-          scopedServerId ??
-          (backend == MediaBackend.plex
-              ? buildPlexProfileScopeId(serverId: ServerId('srv'), profileId: 'profile-a')
-              : 'srv/user-a');
+  _RecordingClient({this.backend = MediaBackend.jellyfin, String? scopedServerId})
+    : scopedServerId = scopedServerId ?? (backend == MediaBackend.jellyfin ? 'srv/user-profile-a' : 'srv/user-a');
 
   bool failStart = false;
   bool failStop = false;
@@ -74,7 +69,7 @@ class _RecordingClient with PlaybackReportRecorder implements MediaServerClient,
 MediaItem _item({int? durationMs}) {
   return testMediaItem(
     id: 'item-1',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.movie,
     serverId: 'srv',
     durationMs: durationMs,
@@ -133,7 +128,7 @@ void main() {
   });
 
   test('Android external progress emits the exact client cache scope', () async {
-    final scope = buildPlexProfileScopeId(serverId: ServerId('srv'), profileId: 'profile-a');
+    final scope = 'srv/user-profile-a';
     final client = _RecordingClient(scopedServerId: scope);
     final events = <WatchStateEvent>[];
     final subscription = WatchStateNotifier()
@@ -167,22 +162,6 @@ void main() {
 
     expect(client.started, isEmpty);
     expect(client.stopped, isEmpty);
-  });
-
-  test('Android external progress reports full duration for explicit completion', () async {
-    final client = _RecordingClient();
-
-    await ExternalPlayerService.reportAndroidExternalProgressForTesting(
-      positionMs: null,
-      durationMs: 100000,
-      playbackCompleted: true,
-      metadata: _item(durationMs: 100000),
-      client: client,
-    );
-
-    expect(client.started, [(positionMs: 100000, durationMs: 100000)]);
-    expect(client.stopped, [(positionMs: 100000, durationMs: 100000)]);
-    expect(client.watched, ['item-1']);
   });
 
   test('Android external completion on Jellyfin marks watched via the stop report, not markWatched (#1287)', () async {

@@ -97,7 +97,7 @@ class _FakeAnimeListsLookup implements AnimeListsMappingLookup {
 
 MediaItem _episode({int season = 23, int number = 6}) => testMediaItem(
   id: 'episode-$season-$number',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.episode,
   title: 'Episode $number',
   grandparentId: 'show-1',

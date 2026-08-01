@@ -16,7 +16,6 @@ import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/offline_watch_sync_service.dart';
 import 'package:plezy/services/playback_progress_tracker.dart';
 import 'package:plezy/utils/watch_state_notifier.dart';
-import 'package:plezy/utils/active_client_scope.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';
@@ -99,7 +98,7 @@ class _FakePlexClient with PlaybackReportRecorder implements MediaServerClient, 
   /// [serverId] after the transport call.
   @override
   ServerId get serverId => ServerId('scrobbler');
-  PlexProfileScopeId profileScopeId = buildPlexProfileScopeId(serverId: ServerId('scrobbler'), profileId: 'profile-a');
+  String profileScopeId = 'scrobbler/user-profile-a';
 
   @override
   String get scopedServerId => profileScopeId;
@@ -314,7 +313,7 @@ MediaItem _meta({
   int? viewOffsetMs,
 }) => testMediaItem(
   id: ratingKey,
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.fromString(type),
   title: 'Test Item',
   serverId: identical(serverId, _defaultServerId) ? ServerId('srv') : serverId as ServerId?,
@@ -1428,7 +1427,7 @@ class _ScrobblePreciseClient with PlaybackReportRecorder implements MediaServerC
   /// still registers as a failed scrobble.
   @override
   ServerId get serverId => ServerId('scrobbler');
-  PlexProfileScopeId profileScopeId = buildPlexProfileScopeId(serverId: ServerId('scrobbler'), profileId: 'profile-a');
+  String profileScopeId = 'scrobbler/user-profile-a';
 
   @override
   String get scopedServerId => profileScopeId;

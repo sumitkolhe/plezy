@@ -36,7 +36,7 @@ class _FakeMediaServerClient implements MediaServerClient {
     : serverId = ServerId('server-1');
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   Future<ExternalIds> fetchExternalIds(String itemId) async => externalIdsByItem[itemId] ?? const ExternalIds();
@@ -82,7 +82,7 @@ class _TraktRecorder {
 
 MediaItem _episode({int? viewOffsetMs, int? durationMs}) => testMediaItem(
   id: 'episode-1-3',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.episode,
   title: 'Episode 3',
   serverId: ServerId('server-1'),

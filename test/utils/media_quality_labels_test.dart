@@ -180,7 +180,7 @@ void main() {
     test('uses the same requested version index as quality labels', () {
       final item = testMediaItem(
         id: 'episode-1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode',
         mediaVersions: const [
@@ -204,7 +204,7 @@ void main() {
 MediaItem _episodeWithVersion(MediaVersion? version) {
   return testMediaItem(
     id: 'episode-1',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.episode,
     title: 'Episode',
     mediaVersions: version == null ? null : [version],

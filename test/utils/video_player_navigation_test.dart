@@ -27,14 +27,14 @@ void main() {
   group('video player launch identity', () {
     final plexA = testMediaItem(
       id: '123',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Plex A',
       serverId: 'plex-a',
     );
     final plexB = testMediaItem(
       id: '123',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Plex B',
       serverId: 'plex-b',
@@ -133,7 +133,7 @@ void main() {
 
     final episode = testMediaItem(
       id: 'ep-1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 1',
       serverId: 'srv-1',

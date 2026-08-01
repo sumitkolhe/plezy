@@ -55,7 +55,7 @@ void main() {
   });
 }
 
-const _album = MediaItem.plex(
+const _album = MediaItem.jellyfin(
   id: 'album_1',
   kind: MediaKind.album,
   title: 'Test Album',
@@ -70,7 +70,7 @@ List<MediaItem> _multiDiscTracks() {
   MediaItem track({required String id, required String title, required int disc, required int number}) {
     return testMediaItem(
       id: id,
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.track,
       title: title,
       parentId: 'album_1',
@@ -139,7 +139,7 @@ class _FakeMusicClient implements MediaServerClient {
   String? get serverName => 'Server';
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;

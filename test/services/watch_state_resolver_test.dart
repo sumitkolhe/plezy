@@ -89,7 +89,7 @@ void main() {
     const snapshot = WatchStateSnapshot(isWatched: true, hasViewOffsetMs: true, viewOffsetMs: 0);
     final season = testMediaItem(
       id: 'season-1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.season,
       leafCount: 8,
       viewedLeafCount: 2,

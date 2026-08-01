@@ -485,7 +485,7 @@ class CatalogItem {
   /// the image pipeline loads directly.
   MediaItem toMediaItem() => MediaItem(
     id: 'catalog:${source.name}:$identityKey',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: kind,
     title: title,
     summary: overview,

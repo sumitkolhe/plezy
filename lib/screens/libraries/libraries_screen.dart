@@ -38,10 +38,7 @@ import 'tabs/library_playlists_tab.dart';
 
 enum LibraryTabType { recommended, browse, collections, playlists }
 
-List<LibraryTabType> _getVisibleTabs(MediaLibrary library) {
-  if (library.isShared) return [LibraryTabType.browse, LibraryTabType.playlists];
-  return LibraryTabType.values;
-}
+List<LibraryTabType> _getVisibleTabs(MediaLibrary library) => LibraryTabType.values;
 
 class LibrariesScreen extends StatefulWidget {
   final VoidCallback? onLibraryOrderChanged;
@@ -784,7 +781,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final showBrowseOptionsAction =
         selectedLibrary != null && PlatformDetector.isMobile(context) && currentTabType == LibraryTabType.browse;
     final canSelectedLibraryGroupByFolders = context.select<MultiServerProvider, bool>((provider) {
-      if (selectedLibrary == null || selectedLibrary.isShared) return false;
+      if (selectedLibrary == null) return false;
       final serverId = serverIdOrNull(selectedLibrary.serverId);
       if (serverId == null) return false;
       return provider.getClientForServer(serverId)?.capabilities.folderGrouping ?? false;

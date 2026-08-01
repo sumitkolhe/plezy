@@ -69,7 +69,7 @@ void main() {
 
     final item = testMediaItem(
       id: 'movie_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Movie 1',
       serverId: 'server_1',
@@ -231,7 +231,7 @@ void main() {
 
     final recommendedItem = testMediaItem(
       id: 'recommended',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Recommended',
       serverId: 'server_1',
@@ -239,7 +239,7 @@ void main() {
     );
     final continueItem = testMediaItem(
       id: 'continue',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Continue Watching',
       serverId: 'server_1',
@@ -341,7 +341,7 @@ void main() {
       for (var i = 0; i < 3; i++)
         testMediaItem(
           id: 'movie_$i',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.movie,
           title: 'Movie $i',
           serverId: 'server_1',
@@ -471,7 +471,7 @@ class _FakeMediaServerClient implements MediaServerClient {
   String? get serverName => 'Server';
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;

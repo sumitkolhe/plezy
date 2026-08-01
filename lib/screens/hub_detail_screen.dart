@@ -357,12 +357,8 @@ class _HubDetailScreenState extends State<HubDetailScreen>
 
       _applySort();
       if (!usesCustomLoader && !_usesPaginatedLoader && client != null && loadedCount < totalCount) {
-        _replaceContinuationItems = client.backend == MediaBackend.plex;
-        if (_replaceContinuationItems) {
-          _continuation.setContinuation(startIndex: 0, totalCount: 1);
-        } else {
-          _continuation.setContinuation(startIndex: loadedCount, totalCount: totalCount);
-        }
+        _replaceContinuationItems = false;
+        _continuation.setContinuation(startIndex: loadedCount, totalCount: totalCount);
         unawaited(_continuation.loadRemaining());
       } else if (_usesPaginatedLoader && loadedCount < totalCount) {
         _scheduleNextHubPageCheck();

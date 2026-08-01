@@ -6,7 +6,6 @@ import '../media/ids.dart';
 
 import 'app_database.dart';
 import '../models/download_models.dart';
-import '../utils/active_client_scope.dart';
 
 enum QueueDownloadOutcome {
   /// A missing or retryable row was durably admitted to the queue.
@@ -227,22 +226,6 @@ extension DownloadDatabaseOperations on AppDatabase {
       if (!ownedKeys.contains(row.globalKey)) {
         if (isStillActive != null && !isStillActive()) return;
         final scopeId = row.clientScopeId;
-        final plexScope = PlexProfileScopeId.tryParse(scopeId ?? '');
-        final transferScope = PlexTransferScopeId.tryParse(scopeId ?? '');
-        // A scoped Plex row already identifies the Plezy profile whose token
-        // and cache namespace produced it. Logout first moves preserved rows
-        // through a sanitized transfer namespace so a new profile can adopt
-        // the physical file without inheriting the old profile's watch state.
-        if (plexScope != null && plexScope.profileId != profileId) continue;
-        if (plexScope != null || transferScope != null) {
-          await addDownloadOwner(
-            profileId: profileId,
-            globalKey: row.globalKey,
-            backendId: 'plex',
-            clientScopeId: scopeId,
-          );
-          continue;
-        }
 
         final jellyfinScopes = jellyfinScopesByProfileAndMachine[profileId]?[row.serverId] ?? const <String>{};
         if (jellyfinScopes.length == 1) {
@@ -260,7 +243,7 @@ extension DownloadDatabaseOperations on AppDatabase {
           continue;
         }
 
-        // A compound non-Plex scope is a legacy Jellyfin user namespace.
+        // A compound scope is a legacy Jellyfin user namespace.
         // Never attach it to another profile unless that profile has exactly
         // one matching Jellyfin binding. The same applies when persisted
         // Jellyfin connections identify the machine but the profile has zero

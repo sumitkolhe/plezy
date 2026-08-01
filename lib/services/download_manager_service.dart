@@ -22,7 +22,6 @@ import 'api_cache.dart';
 import 'download_artwork_helpers.dart';
 import 'download_artwork_service.dart';
 import 'jellyfin_cache_resolver.dart';
-import 'plex_api_cache.dart';
 import 'settings_service.dart';
 import 'saf_storage_service.dart';
 import 'package:saf_util/saf_util_platform_interface.dart' show SafDocumentFile;
@@ -465,9 +464,6 @@ class DownloadManagerService {
   Future<String?> profileClientScopeIdForServer(ServerId serverId, String? activeProfileId) async {
     if (activeProfileId == null || activeProfileId.isEmpty) return null;
     final backend = await _backendForServer(serverId);
-    if (backend == MediaBackend.plex) {
-      return buildPlexProfileScopeId(serverId: serverId, profileId: activeProfileId);
-    }
     if (backend != MediaBackend.jellyfin) return null;
     final persisted = await JellyfinCacheResolver(_database).findProfileScopeId(serverId, activeProfileId);
     return persisted ?? activeClientScopeIdForServer(serverId);
@@ -578,7 +574,6 @@ class DownloadManagerService {
     if (row == null) return null;
     return switch (row.kind) {
       'jellyfin' => MediaBackend.jellyfin,
-      'plex' => MediaBackend.plex,
       _ => null,
     };
   }
@@ -610,106 +605,6 @@ class DownloadManagerService {
       if (hit != null) return hit;
     }
     return null;
-  }
-
-  Set<String> _offlineMetadataIds(DownloadedMediaItem row) => {
-    row.ratingKey,
-    ?row.parentRatingKey,
-    ?row.grandparentRatingKey,
-  };
-
-  /// Preserve Plex metadata while full logout temporarily leaves downloads
-  /// without a profile owner.
-  ///
-  /// Available metadata is sanitized into the transfer cache, while the
-  /// durable download always moves to the neutral scope even when its leaf
-  /// cache row is missing. The cache and scope changes share one transaction.
-  Future<void> preparePlexMetadataForLogoutTransfer() async {
-    final rows = await getAllDownloads();
-    final cache = PlexApiCache.instance;
-    for (final row in rows) {
-      final publicServerId = ServerId(row.serverId);
-      final owners = await _database.getValidDownloadOwnersForKey(row.globalKey);
-      final rowScope = PlexProfileScopeId.tryParse(row.clientScopeId ?? '');
-      final ownerHasPlexScope = owners.any(
-        (owner) =>
-            owner.backend == MediaBackend.plex.id || PlexProfileScopeId.tryParse(owner.clientScopeId ?? '') != null,
-      );
-      if (rowScope == null && !ownerHasPlexScope && await _backendForServer(publicServerId) != MediaBackend.plex) {
-        continue;
-      }
-
-      final sourceScopes = <String, PlexProfileScopeId>{};
-      for (final owner in owners) {
-        final persistedScope = PlexProfileScopeId.tryParse(owner.clientScopeId ?? '');
-        if (persistedScope != null && persistedScope.publicServerId == publicServerId) {
-          sourceScopes[persistedScope] = persistedScope;
-        }
-        final derivedScope = buildPlexProfileScopeId(serverId: publicServerId, profileId: owner.profileId);
-        sourceScopes[derivedScope] = derivedScope;
-      }
-      if (rowScope != null && rowScope.publicServerId == publicServerId) {
-        sourceScopes[rowScope] = rowScope;
-      }
-
-      final transferScope = buildPlexTransferScopeId(publicServerId);
-      final metadataIds = _offlineMetadataIds(row);
-      await _database.transaction(() async {
-        for (final id in metadataIds) {
-          for (final sourceScope in sourceScopes.values) {
-            final copied = await cache.copyPinnedMetadata(
-              sourceServerId: sourceScope.cacheServerId,
-              destinationServerId: transferScope.cacheServerId,
-              ratingKey: id,
-              stripProfileState: true,
-            );
-            if (copied) break;
-          }
-        }
-        await _database.updateDownloadedMediaClientScope(row.globalKey, transferScope);
-        for (final id in metadataIds) {
-          await cache.deleteAllProfileRowsForItem(publicServerId, id);
-        }
-      });
-    }
-  }
-
-  /// Move ownerless full-logout metadata into the adopting profile's private
-  /// Plex namespace before profile-visible cache hydration runs.
-  Future<void> adoptTransferredPlexMetadataForProfile(String profileId, {bool Function()? isStillActive}) async {
-    if (profileId.isEmpty || isStillActive != null && !isStillActive()) return;
-    final owners = {for (final owner in await _database.getDownloadOwnersForProfile(profileId)) owner.globalKey: owner};
-    final rows = await getAllDownloads();
-    final cache = PlexApiCache.instance;
-    for (final row in rows) {
-      if (isStillActive != null && !isStillActive()) return;
-      final owner = owners[row.globalKey];
-      final transferScope =
-          PlexTransferScopeId.tryParse(row.clientScopeId ?? '') ??
-          PlexTransferScopeId.tryParse(owner?.clientScopeId ?? '');
-      if (owner == null || transferScope == null || transferScope.publicServerId != ServerId(row.serverId)) continue;
-      final destinationScope = buildPlexProfileScopeId(serverId: transferScope.publicServerId, profileId: profileId);
-      final metadataIds = _offlineMetadataIds(row);
-      await _database.transaction(() async {
-        for (final id in metadataIds) {
-          await cache.copyPinnedMetadata(
-            sourceServerId: transferScope.cacheServerId,
-            destinationServerId: destinationScope.cacheServerId,
-            ratingKey: id,
-          );
-        }
-        await _database.updateDownloadedMediaClientScope(row.globalKey, destinationScope);
-        await _database.updateDownloadOwnerScope(
-          profileId: profileId,
-          globalKey: row.globalKey,
-          backendId: MediaBackend.plex.id,
-          clientScopeId: destinationScope,
-        );
-        for (final id in metadataIds) {
-          await cache.deleteForItem(transferScope.cacheServerId, id);
-        }
-      });
-    }
   }
 
   /// Backend-aware "ensure cached & pin". Jellyfin loads playback extras so
@@ -754,10 +649,6 @@ class DownloadManagerService {
       final backend = MediaBackend.fromId(backendId);
       await ApiCache.forBackend(backend).deleteForItem(ServerId(scopeId), itemId);
       return;
-    }
-    if (backendId == null || backendId == MediaBackend.plex.id) {
-      final scope = buildPlexProfileScopeId(serverId: serverId, profileId: profileId);
-      await PlexApiCache.instance.deleteForItem(scope.cacheServerId, itemId);
     }
   }
 

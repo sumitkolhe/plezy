@@ -12,16 +12,6 @@ const browseGroupingTracks = 'tracks';
 const browseGroupingFolders = 'folders';
 
 List<String> libraryBrowseGroupingOptions(MediaLibrary library, {required bool canGroupByFolders}) {
-  if (library.isShared) {
-    return const [
-      browseGroupingAll,
-      browseGroupingMovies,
-      browseGroupingShows,
-      browseGroupingSeasons,
-      browseGroupingEpisodes,
-    ];
-  }
-
   return switch (library.kind) {
     MediaKind.show => [
       browseGroupingShows,
@@ -41,7 +31,6 @@ List<String> libraryBrowseGroupingOptions(MediaLibrary library, {required bool c
 }
 
 String defaultLibraryBrowseGrouping(MediaLibrary library, {required bool canGroupByFolders}) {
-  if (library.isShared) return browseGroupingAll;
   return switch (library.kind) {
     MediaKind.show => browseGroupingShows,
     MediaKind.movie => browseGroupingMovies,

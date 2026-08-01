@@ -8,7 +8,6 @@ import 'package:plezy/connection/connection.dart';
 import 'package:plezy/database/app_database.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 
 import '../test_helpers/backend_client_fixtures.dart';
 
@@ -32,7 +31,6 @@ void main() {
     // both backend caches need to be registered (PlexApiCache for any Plex
     // code paths the test setup happens to touch; JellyfinApiCache for the
     // shared MediaServerCacheMixin used by JellyfinClient.fetchItem).
-    PlexApiCache.initialize(db);
     JellyfinApiCache.initialize(db);
   });
 

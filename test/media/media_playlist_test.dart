@@ -12,7 +12,7 @@ import 'package:plezy/media/media_playlist.dart';
 /// identity behavior.
 MediaPlaylist _playlist({
   String id = 'pl1',
-  MediaBackend backend = MediaBackend.plex,
+  MediaBackend backend = MediaBackend.jellyfin,
   String title = 'My Playlist',
   String playlistType = 'video',
   bool smart = false,
@@ -140,7 +140,7 @@ void main() {
 
   group('MediaPlaylist construction', () {
     test('tolerates all-optional fields being null', () {
-      final minimal = MediaPlaylist(id: 'pl', backend: MediaBackend.plex, title: 'Min', playlistType: 'video');
+      final minimal = MediaPlaylist(id: 'pl', backend: MediaBackend.jellyfin, title: 'Min', playlistType: 'video');
       expect(minimal.summary, isNull);
       expect(minimal.guid, isNull);
       expect(minimal.smart, isFalse);

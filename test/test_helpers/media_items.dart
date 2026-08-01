@@ -11,7 +11,7 @@ import 'package:plezy/media/media_version.dart';
 /// watch-state, or library metadata that could influence derived getters.
 MediaItem testMediaItem({
   String id = 'item-1',
-  MediaBackend backend = MediaBackend.plex,
+  MediaBackend backend = MediaBackend.jellyfin,
   MediaKind kind = MediaKind.movie,
   String? guid,
   String? title,

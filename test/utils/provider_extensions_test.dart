@@ -8,7 +8,6 @@ import 'package:plezy/media/media_backend.dart';
 import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_library.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/utils/provider_extensions.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +16,7 @@ import '../test_helpers/multi_server_fixtures.dart';
 
 const _missingOwnerLibrary = MediaLibrary(
   id: '1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Missing owner',
   kind: MediaKind.movie,
   serverId: 'server-a',
@@ -30,7 +29,6 @@ void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.en));
   setUp(() {
     db = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(db);
   });
 
   tearDown(() => db.close());
@@ -71,7 +69,7 @@ void main() {
     for (final serverId in <String?>[null, '   ']) {
       final library = MediaLibrary(
         id: '1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         title: 'Unqualified',
         kind: MediaKind.movie,
         serverId: serverId,

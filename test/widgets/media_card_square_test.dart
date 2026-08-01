@@ -19,7 +19,7 @@ import '../test_helpers/media_items.dart';
 
 MediaItem _item(MediaKind kind, {String? parentTitle, int? durationMs}) => testMediaItem(
   id: '${kind.id}_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: kind,
   title: 'Test ${kind.id}',
   parentTitle: parentTitle,
@@ -165,7 +165,7 @@ void main() {
   testWidgets('music playlist override uses square artwork in list mode', (tester) async {
     const playlist = MediaPlaylist(
       id: 'playlist_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       title: 'Music playlist',
       playlistType: 'audio',
     );

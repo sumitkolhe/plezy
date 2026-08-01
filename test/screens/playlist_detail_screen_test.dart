@@ -25,7 +25,6 @@ import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/playlist_items_loader.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/media_navigation_helper.dart';
@@ -65,7 +64,7 @@ void main() {
       playlistItemsPageSize + 5,
       (index) => testMediaItem(
         id: 'item_$index',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'Item $index',
         serverId: 'server_1',
@@ -99,7 +98,7 @@ void main() {
     final harness = await _createHarness([
       testMediaItem(
         id: 'track_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.track,
         title: 'Track 1',
         serverId: 'server_1',
@@ -127,7 +126,7 @@ void main() {
     final harness = await _createHarness([
       testMediaItem(
         id: 'track_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.track,
         title: 'Track 1',
         serverId: 'server_1',
@@ -599,7 +598,7 @@ List<String> _visiblePlaylistItemIds(WidgetTester tester) {
 
 const _playlist = MediaPlaylist(
   id: 'playlist_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Long Playlist',
   playlistType: 'video',
   serverId: 'server_1',
@@ -617,7 +616,7 @@ const _jellyfinPlaylist = MediaPlaylist(
 
 const _audioPlaylist = MediaPlaylist(
   id: 'audio_playlist_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Audio Playlist',
   playlistType: 'audio',
   serverId: 'server_1',
@@ -626,7 +625,7 @@ const _audioPlaylist = MediaPlaylist(
 
 const _smartAudioPlaylist = MediaPlaylist(
   id: 'smart_audio_playlist_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Smart Audio Playlist',
   playlistType: 'audio',
   smart: true,
@@ -639,7 +638,7 @@ List<MediaItem> _mediaItems(int count) {
     count,
     (index) => testMediaItem(
       id: 'item_$index',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Item $index',
       serverId: 'server_1',
@@ -652,12 +651,11 @@ Future<_PlaylistHarness> _createHarness(
   List<MediaItem> items, {
   int? failOnceAt,
   bool deleteResult = false,
-  MediaBackend backend = MediaBackend.plex,
+  MediaBackend backend = MediaBackend.jellyfin,
 }) async {
   await SettingsService.getInstance();
 
   final db = AppDatabase.forTesting(NativeDatabase.memory());
-  PlexApiCache.initialize(db);
   JellyfinApiCache.initialize(db);
 
   final downloadManager = DownloadManagerService(
@@ -740,7 +738,7 @@ class _PagedPlaylistClient implements MediaServerClient {
     List<MediaItem> items, {
     int? failOnceAt,
     bool deleteResult = false,
-    MediaBackend backend = MediaBackend.plex,
+    MediaBackend backend = MediaBackend.jellyfin,
   }) => _PagedPlaylistClient._(items, failOnceAt, deleteResult, backend);
 
   _PagedPlaylistClient._(this.items, this.failOnceAt, this.deleteResult, this._backend);

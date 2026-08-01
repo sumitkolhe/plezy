@@ -72,7 +72,7 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
       _currentMediaInfo?.subtitleTracks ?? const <MediaSubtitleTrack>[],
       isTranscoding: _isTranscoding,
       sidecarSourceIds: sidecarSourceIds,
-      supportsEmbeddedTranscodeSelection: _currentMetadata.backend == MediaBackend.plex,
+      supportsEmbeddedTranscodeSelection: false,
     );
   }
 

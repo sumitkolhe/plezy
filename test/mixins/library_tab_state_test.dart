@@ -36,7 +36,7 @@ class _ProbeState extends State<_Probe> with LibraryTabStateMixin<_Probe> {
 }
 
 MediaLibrary _lib({ServerId? serverId, String key = '1'}) =>
-    MediaLibrary(id: key, backend: MediaBackend.plex, title: 'Movies', kind: MediaKind.movie, serverId: serverId);
+    MediaLibrary(id: key, backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie, serverId: serverId);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

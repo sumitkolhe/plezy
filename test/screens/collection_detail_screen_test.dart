@@ -17,7 +17,6 @@ import 'package:plezy/services/download_manager_service.dart';
 import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/media_server_http_client.dart';
@@ -47,7 +46,7 @@ void main() {
   testWidgets('music collection contents use square grid geometry and cards', (tester) async {
     final album = testMediaItem(
       id: 'album_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.album,
       title: 'Album 1',
       serverId: 'server_1',
@@ -73,7 +72,7 @@ void main() {
     final items = [
       testMediaItem(
         id: 'movie_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'First movie',
         serverId: 'server_1',
@@ -81,7 +80,7 @@ void main() {
       ),
       testMediaItem(
         id: 'movie_2',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'Second movie',
         serverId: 'server_1',
@@ -107,7 +106,7 @@ void main() {
 
 final _collection = MediaItem(
   id: 'collection_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.collection,
   title: 'Music Collection',
   libraryId: 'music',
@@ -119,7 +118,6 @@ Future<_CollectionHarness> _createHarness(List<MediaItem> items) async {
   await SettingsService.getInstance();
 
   final database = AppDatabase.forTesting(NativeDatabase.memory());
-  PlexApiCache.initialize(database);
   JellyfinApiCache.initialize(database);
 
   final downloadManager = DownloadManagerService(
@@ -176,7 +174,7 @@ class _CollectionClient implements MediaServerClient {
   String? get serverName => 'Server';
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;

@@ -22,7 +22,6 @@ import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/jellyfin_client.dart';
 import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:provider/provider.dart';
 
 import '../../test_helpers/prefs.dart';
@@ -57,7 +56,7 @@ JellyfinClient _jellyfinClient(JellyfinConnection connection) {
 MediaItem _show(ServerId serverId, String ratingKey, String title) {
   return testMediaItem(
     id: ratingKey,
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.show,
     title: title,
     serverId: serverId,
@@ -67,7 +66,7 @@ MediaItem _show(ServerId serverId, String ratingKey, String title) {
 MediaItem _playlist(ServerId serverId, String ratingKey, String title) {
   return testMediaItem(
     id: ratingKey,
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.playlist,
     title: title,
     serverId: serverId,
@@ -101,7 +100,6 @@ void main() {
   setUp(() async {
     resetSharedPreferencesForTest();
     db = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(db);
     JellyfinApiCache.initialize(db);
     downloadManager = DownloadManagerService(
       database: db,

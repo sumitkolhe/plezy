@@ -33,7 +33,7 @@ MediaLibrary _library({
 }) {
   return MediaLibrary(
     id: id,
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     title: title,
     kind: MediaKind.movie,
     serverId: serverId,

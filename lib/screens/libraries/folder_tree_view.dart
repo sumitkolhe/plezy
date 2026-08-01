@@ -265,11 +265,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
     return widget.libraryKind?.isMusic == true && (item.kind == MediaKind.artist || item.kind == MediaKind.album);
   }
 
-  bool _canPlayFolder(MediaItem item) {
-    if (item.backend == MediaBackend.plex) return true;
-    if (item.backend == MediaBackend.jellyfin) return widget.libraryKind?.isMusic != true;
-    return false;
-  }
+  bool _canPlayFolder(MediaItem item) => widget.libraryKind?.isMusic != true;
 
   Future<List<MediaItem>> _fetchRootFolders(
     MediaServerClient client, {

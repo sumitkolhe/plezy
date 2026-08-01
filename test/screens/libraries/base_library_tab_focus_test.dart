@@ -7,8 +7,8 @@ import 'package:plezy/media/media_library.dart';
 import 'package:plezy/screens/libraries/tabs/base_library_tab.dart';
 import 'package:plezy/utils/platform_detector.dart';
 
-const _library = MediaLibrary(id: '1', backend: MediaBackend.plex, title: 'Movies');
-const _libraryB = MediaLibrary(id: '2', backend: MediaBackend.plex, title: 'Shows');
+const _library = MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies');
+const _libraryB = MediaLibrary(id: '2', backend: MediaBackend.jellyfin, title: 'Shows');
 
 class _ProbeTab extends BaseLibraryTab<String> {
   const _ProbeTab({super.key, required this.loadedItems, required super.onBack})

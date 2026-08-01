@@ -1080,16 +1080,11 @@ class TrackSelectionService {
             return TrackSelectionResult(matchedMpvTrack, TrackSelectionPriority.serverSelected);
           }
         }
-      } else if (metadata.backend == MediaBackend.plex && info.subtitleTracks.isNotEmpty) {
-        if (availableTracks.isEmpty && waitForPendingSource) return null;
-        // Native tracks exist and none maps to a server-selected stream.
-        return TrackSelectionResult(SubtitleTrack.off, TrackSelectionPriority.serverSelected);
       }
       if (waitForPendingSource && availableTracks.isEmpty && info.subtitleTracks.isNotEmpty) return null;
     }
 
-    // Priority 3: Apply server profile subtitle mode when the backend exposes
-    // one (Jellyfin). Plex keeps using the selected-stream path above.
+    // Priority 3: Apply the server profile's subtitle mode.
     final profileSelectedTrack = _selectSubtitleTrackByProfile(availableTracks, selectedAudioTrack);
     if (profileSelectedTrack != null) return profileSelectedTrack;
 

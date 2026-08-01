@@ -2,7 +2,6 @@ import 'dart:async';
 import '../media/ids.dart';
 import 'package:flutter/foundation.dart';
 import '../i18n/strings.g.dart';
-import '../media/media_backend.dart';
 import '../media/media_item.dart';
 import '../media/media_item_merge.dart';
 import '../media/media_item_types.dart';
@@ -286,7 +285,6 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     _profileGeneration++;
     await _initFuture;
     await _profileScopedReloadFuture;
-    await _downloadManager.preparePlexMetadataForLogoutTransfer();
     await _database.clearAllDownloadOwners();
     _ownedDownloadKeys.clear();
     _syncRules.clear();
@@ -634,14 +632,8 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
             // Use stored show metadata (has year, summary, clearLogo)
             shows[showRatingKey] = storedShow;
           } else {
-            // Fallback: synthesize from episode metadata (missing year, summary)
-            // Only Plex consumers read `raw['key']` (library-section + folder
-            // navigation), so we synthesize the Plex URI for Plex shows and
-            // emit a Jellyfin-shaped item for Jellyfin (Id + Type=Series).
-            final synthesizedRaw = switch (meta.backend) {
-              MediaBackend.plex => <String, dynamic>{'key': '/library/metadata/$showRatingKey'},
-              MediaBackend.jellyfin => <String, dynamic>{'Id': showRatingKey, 'Type': 'Series'},
-            };
+            // Fallback: synthesize from episode metadata (missing year, summary).
+            final synthesizedRaw = <String, dynamic>{'Id': showRatingKey, 'Type': 'Series'};
             shows[showRatingKey] = MediaItem(
               id: showRatingKey,
               backend: meta.backend,
@@ -1638,9 +1630,7 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     _downloadManager.resumeQueuedDownloads(client);
   }
 
-  /// Backend-aware metadata lookup for offline UI. Routes through
-  /// [DownloadManagerService] which dispatches to [PlexApiCache] or
-  /// [JellyfinApiCache] based on the connection's `kind`.
+  /// Metadata lookup for offline UI, routed through [DownloadManagerService].
   Future<MediaItem?> lookupOfflineMetadata(ServerId serverId, String itemId) =>
       _downloadManager.lookupMetadata(serverId, itemId);
 
@@ -2154,7 +2144,6 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       }
       bool isStillActive() => _activeProfileId == profileId && _profileGeneration == generation;
       await _database.adoptLegacyDownloadsForProfile(profileId, isStillActive: isStillActive);
-      await _downloadManager.adoptTransferredPlexMetadataForProfile(profileId, isStillActive: isStillActive);
       if (!isStillActive()) return;
       final ownedKeys = await _database.getDownloadOwnerKeysForProfile(profileId);
       if (!isStillActive()) return;

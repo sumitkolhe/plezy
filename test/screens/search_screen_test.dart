@@ -50,7 +50,7 @@ void main() {
     final key = GlobalKey<State<SearchScreen>>();
     final item = testMediaItem(
       id: 'movie_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Movie 1',
       serverId: 'server_1',
@@ -287,7 +287,7 @@ void main() {
   testWidgets('card refresh stays server-qualified without restarting search', (tester) async {
     final serverOneItem = testMediaItem(
       id: 'shared-id',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Shared',
       serverId: 'server_1',
@@ -295,7 +295,7 @@ void main() {
     );
     final serverTwoItem = testMediaItem(
       id: 'shared-id',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Shared Alternate',
       serverId: 'server_2',
@@ -388,7 +388,7 @@ Future<(_FakeMediaServerClient, GlobalKey<State<SearchScreen>>)> _pumpTvSearchSc
         [
           testMediaItem(
             id: 'movie_1',
-            backend: MediaBackend.plex,
+            backend: MediaBackend.jellyfin,
             kind: MediaKind.movie,
             title: 'Movie 1',
             serverId: 'server_1',
@@ -467,7 +467,7 @@ class _FakeMediaServerClient implements MediaServerClient {
   String? get serverName => serverNameValue;
 
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   ServerCapabilities get capabilities => ServerCapabilities.plex;

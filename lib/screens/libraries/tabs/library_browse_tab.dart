@@ -16,7 +16,6 @@ import '../../../media/media_filter.dart';
 import '../../../media/media_sort.dart';
 import '../../../widgets/settings_builder.dart';
 import '../../../services/library_query_translator.dart';
-import '../../../services/plex_constants.dart';
 import '../../../utils/error_message_utils.dart';
 import '../../../utils/app_logger.dart';
 import '../../../utils/grid_size_calculator.dart';
@@ -269,8 +268,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     if (oldWidget.library.globalKey != widget.library.globalKey ||
         oldWidget.library.id != widget.library.id ||
         oldWidget.library.backend != widget.library.backend ||
-        oldWidget.library.serverId != widget.library.serverId ||
-        oldWidget.library.isShared != widget.library.isShared) {
+        oldWidget.library.serverId != widget.library.serverId) {
       _alphaStrategy = _createAlphaStrategy();
     }
     super.didUpdateWidget(oldWidget);
@@ -644,9 +642,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       if (typeId.isNotEmpty) {
         filterParams['type'] = typeId;
       }
-    } else if (_selectedGrouping == 'all' && widget.library.isShared) {
-      // Shared libraries: filter to video content only (exclude library section entries)
-      filterParams['type'] = PlexMetadataType.videoCsv;
     }
 
     // Add sort

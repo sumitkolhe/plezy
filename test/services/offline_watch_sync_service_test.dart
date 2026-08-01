@@ -355,7 +355,7 @@ void main() {
       });
       svc.setActiveProfileId('p1');
 
-      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.plex);
+      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.jellyfin);
       mgr.debugRegisterClientForTesting(client);
       await svc.queueProgressUpdate(serverId: ServerId('srv'), itemId: '42', viewOffset: 50000, duration: 100000);
       final queued = await db.getLatestWatchAction('srv:42');
@@ -381,7 +381,7 @@ void main() {
       });
       svc.setActiveProfileId('p1');
 
-      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.plex);
+      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.jellyfin);
       mgr.debugRegisterClientForTesting(client);
       await svc.queueProgressUpdate(serverId: ServerId('srv'), itemId: '42', viewOffset: 50000, duration: null);
 
@@ -394,33 +394,6 @@ void main() {
       expect(client.stopped.single.positionMs, 50000);
       expect(client.stopped.single.durationMs, isNull);
       expect(client.watched, isEmpty);
-      expect(await svc.getPendingSyncCount(), 0);
-    });
-
-    test('completed Plex offline progress replays at duration and marks watched', () async {
-      final (svc: svc, db: db, mgr: mgr) = _makeService();
-      addTearDown(() async {
-        svc.dispose();
-        mgr.dispose();
-        await db.close();
-      });
-      svc.setActiveProfileId('p1');
-
-      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.plex);
-      mgr.debugRegisterClientForTesting(client);
-      await svc.queueProgressUpdate(serverId: ServerId('srv'), itemId: '42', viewOffset: 95000, duration: 100000);
-      final queued = await db.getLatestWatchAction('srv:42');
-
-      await svc.syncPendingItems();
-
-      expect(client.started, isEmpty);
-      expect(client.stopped, hasLength(1));
-      expect(client.stopped.single.positionMs, 100000);
-      expect(client.stopped.single.durationMs, 100000);
-      expect(client.stopped.single.report.isOfflineReplay, isTrue);
-      expect(client.stopped.single.report.willContinue, isFalse);
-      expect(client.stopped.single.report.recordedAt?.millisecondsSinceEpoch, queued!.updatedAt);
-      expect(client.watched, ['42']);
       expect(await svc.getPendingSyncCount(), 0);
     });
 
@@ -464,7 +437,7 @@ void main() {
       });
 
       svc.setActiveProfileId('p1');
-      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.plex);
+      final client = _RecordingMediaClient(serverId: ServerId('srv'), backend: MediaBackend.jellyfin);
       mgr.debugRegisterClientForTesting(client);
       await svc.queueMarkWatched(serverId: ServerId('srv'), itemId: '42');
 

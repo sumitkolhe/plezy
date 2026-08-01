@@ -803,7 +803,6 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
       itemBuilder: (context, index) {
         final item = items[index];
         final keyId = switch (item) {
-          PlexMediaItem(:final playlistItemId?) => 'p:$playlistItemId',
           JellyfinMediaItem(:final playlistItemId?) => 'j:$playlistItemId',
           _ => item.id,
         };

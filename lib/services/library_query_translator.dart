@@ -1,6 +1,5 @@
 import '../media/library_query.dart';
 import '../media/media_kind.dart';
-import 'plex_constants.dart';
 
 /// Browse responses retain up to three backdrops so hero surfaces can rotate
 /// artwork without allowing image-tag payloads to grow without bound.
@@ -42,89 +41,12 @@ abstract class LibraryQueryTranslator {
   }
 }
 
-/// Plex's `/library/sections/{id}/all` accepts a flat `key=value` map.
-/// Numeric `type=` selects the result class (1=movie, 2=show, …);
-/// `sort=titleSort:asc` chains field+direction; filters are passed
-/// verbatim under their original Plex names.
-class PlexLibraryQueryTranslator implements LibraryQueryTranslator {
-  const PlexLibraryQueryTranslator();
-
-  @override
-  Map<String, String> toQueryParameters(LibraryQuery query) {
-    final filters = <String, String>{};
-    if (query.includeKinds.isNotEmpty) {
-      final kindNumbers = query.includeKinds.map(_plexTypeNumberFor).whereType<int>().join(',');
-      if (kindNumbers.isNotEmpty) {
-        filters['type'] = kindNumbers;
-      }
-    } else {
-      final kindNumber = _plexTypeNumberFor(query.kind);
-      if (kindNumber != null) {
-        filters['type'] = kindNumber.toString();
-      }
-    }
-    final sort = query.sort;
-    if (sort != null) {
-      final dir = sort.direction == LibrarySortDirection.descending ? ':desc' : ':asc';
-      filters['sort'] = '${sort.field}$dir';
-    }
-    if (query.search != null && query.search!.isNotEmpty) {
-      filters['title'] = query.search!;
-    }
-    if (!query.includeWatched) {
-      filters['unwatched'] = '1';
-    }
-    // Typed slots: emit under the Plex API names so a `LibraryQuery` built
-    // from the FiltersBottomSheet (which still hands the browse tab a
-    // `Map<String,String>`) round-trips back to the same wire query that the
-    // legacy `plexStyleFilters` parameter used to carry.
-    if (query.genres != null && query.genres!.isNotEmpty) {
-      filters['genre'] = query.genres!.join(',');
-    }
-    if (query.officialRatings != null && query.officialRatings!.isNotEmpty) {
-      filters['contentRating'] = query.officialRatings!.join(',');
-    }
-    if (query.years != null && query.years!.isNotEmpty) {
-      filters['year'] = query.years!.join(',');
-    }
-    if (query.tags != null && query.tags!.isNotEmpty) {
-      filters['tag'] = query.tags!.join(',');
-    }
-    if (query.nameStartsWith != null && query.nameStartsWith!.isNotEmpty) {
-      filters['alphaPrefix'] = query.nameStartsWith!;
-    }
-    for (final f in query.filters) {
-      filters[f.field] = f.values.join(',');
-    }
-    return filters;
-  }
-
-  static int? _plexTypeNumberFor(MediaKind? kind) {
-    if (kind == null) return null;
-    return switch (kind) {
-      MediaKind.movie => PlexMetadataType.movie,
-      MediaKind.show => PlexMetadataType.show,
-      MediaKind.season => PlexMetadataType.season,
-      MediaKind.episode => PlexMetadataType.episode,
-      MediaKind.artist => PlexMetadataType.artist,
-      MediaKind.album => PlexMetadataType.album,
-      MediaKind.track => PlexMetadataType.track,
-      _ => null,
-    };
-  }
-}
-
-/// Inverse of [PlexLibraryQueryTranslator.toQueryParameters]: build a neutral
-/// [LibraryQuery] from the legacy Plex-style `Map<String,String>` filter map.
-///
-/// Lives here so the round-trip stays in one file and the test that pins
-/// equivalence (`map → LibraryQuery → Plex map` byte-for-byte) can import a
-/// single symbol.
+/// Build a neutral [LibraryQuery] from the browse tab's flat
+/// `Map<String,String>` filter map.
 ///
 /// Recognised keys map to their typed [LibraryQuery] slots (genre/year/
 /// contentRating/tag/unwatched/sort/type/alphaPrefix). Anything else carries
-/// over as a generic [LibraryFilter] entry so Plex's verbatim-pass-through
-/// behaviour for ad-hoc keys (director, writer, label, …) is preserved.
+/// over as a generic [LibraryFilter] entry.
 ///
 /// `libraryKind` overrides any `type=` entry — both can be sources of truth
 /// in the existing browse tab and the explicit argument wins.
@@ -152,7 +74,7 @@ LibraryQuery libraryQueryFromPlexMap({
 
   // libraryKind has priority; otherwise derive from `type` (single numeric
   // value only — multi-value `type` like "1,4" stays in the generic filter
-  // bucket so Plex still receives it verbatim).
+  // bucket).
   final typeRaw = nonEmpty(map['type']);
   final kindFromMap = (typeRaw != null && !typeRaw.contains(',')) ? _plexTypeMediaKind(typeRaw) : null;
   final kind = libraryKind ?? kindFromMap;
@@ -163,7 +85,7 @@ LibraryQuery libraryQueryFromPlexMap({
     unknownFilters.add(LibraryFilter(field: entry.key, values: entry.value.split(',')));
   }
   // Multi-value `type` couldn't fold into `kind`; preserve it as a generic
-  // filter entry so Plex still gets it on the wire.
+  // filter entry.
   if (typeRaw != null && typeRaw.contains(',')) {
     unknownFilters.add(LibraryFilter(field: 'type', values: typeRaw.split(',')));
   }

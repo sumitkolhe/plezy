@@ -16,7 +16,7 @@ import '../utils/isolate_helper.dart';
 /// the same table.
 ///
 /// Plex- and Jellyfin-specific helpers (item-id pinning, metadata parsing)
-/// live on subclasses [PlexApiCache] / [JellyfinApiCache], which also
+/// live on the [JellyfinApiCache] subclass, which also
 /// implement the abstract [getMetadata] / [pinForOffline] / [deleteForItem]
 /// methods so callers can dispatch via [forBackend] instead of switching on
 /// the backend type at every call site.
@@ -75,10 +75,10 @@ abstract class ApiCache {
     _byBackend[backend] = cache;
   }
 
-  /// Pick the cache for [backend]. Plex is the legacy default — covers items
-  /// predating the Connections table where the backend can't be resolved.
+  /// Pick the cache for [backend], defaulting to Jellyfin for rows whose
+  /// backend can't be resolved.
   static ApiCache forBackend(MediaBackend? backend) {
-    final picked = _byBackend[backend ?? MediaBackend.plex] ?? _byBackend[MediaBackend.plex];
+    final picked = _byBackend[backend ?? MediaBackend.jellyfin];
     if (picked == null) {
       throw StateError('No ApiCache registered for backend $backend');
     }
@@ -226,11 +226,8 @@ abstract class ApiCache {
   ///
   /// **Drift discipline:** the inputs are backend-neutral but the JSON
   /// shape + units are not. Adding a new watch-state input here means
-  /// updating *both* concrete impls ([PlexApiCache.applyWatchState],
-  /// [JellyfinApiCache.applyWatchState]) — Plex stores epoch-seconds and
-  /// flat fields, Jellyfin stores ISO-8601 + ticks under `UserData`.
-  /// The mutations are too short (~3 lines per backend) for a shared
-  /// adapter to be a net win, so they live duplicated by design.
+  /// updating [JellyfinApiCache.applyWatchState], which writes ISO-8601 +
+  /// ticks under `UserData`.
   Future<void> applyWatchState({
     required ServerId serverId,
     required String itemId,

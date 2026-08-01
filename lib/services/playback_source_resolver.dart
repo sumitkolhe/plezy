@@ -1,6 +1,5 @@
 import '../database/app_database.dart';
 import '../media/ids.dart';
-import '../media/media_backend.dart';
 import '../media/media_server_client.dart';
 import 'multi_server_manager.dart';
 import 'playback_context.dart';
@@ -63,11 +62,7 @@ class PlaybackSourceResolver {
   }) {
     if (client == null || sourceKind == PlaybackSourceKind.localFile) return null;
 
-    final headers = Map<String, String>.from(client.streamHeaders);
-    if (client.backend == MediaBackend.plex && sessionIdentifier != null) {
-      headers['X-Plex-Session-Identifier'] = sessionIdentifier;
-    }
-    return headers;
+    return Map<String, String>.from(client.streamHeaders);
   }
 
   MediaServerClient? _playbackClient(ServerId? serverId, {required bool offlineLibraryMode}) {

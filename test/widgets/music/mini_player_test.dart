@@ -31,7 +31,7 @@ import '../../test_helpers/stub_music_playback_service.dart';
 
 final _track = testMediaItem(
   id: 'track_1',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   kind: MediaKind.track,
   title: 'Dawn',
   parentId: 'album_1',
@@ -213,7 +213,7 @@ void main() {
     service.advanceTo(
       testMediaItem(
         id: 'track_2',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.track,
         title: 'Noon',
         grandparentId: 'artist_2',
@@ -234,7 +234,7 @@ void main() {
   testWidgets('progress resets immediately when the current track changes', (tester) async {
     final nextTrack = testMediaItem(
       id: 'track_2',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.track,
       title: 'Noon',
       durationMs: 180000,

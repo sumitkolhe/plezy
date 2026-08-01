@@ -673,7 +673,7 @@ void main() {
         }),
       );
       addTearDown(localOnly.close);
-      const wrongBackend = PlexMediaItem(id: 'item-1', kind: MediaKind.movie);
+      const wrongBackend = JellyfinMediaItem(id: 'item-1', kind: MediaKind.movie);
       const missingEntry = JellyfinMediaItem(id: 'item-1', kind: MediaKind.movie);
       expect(
         await localOnly.movePlaylistItem(playlistId: 'playlist', item: wrongBackend, newIndex: 0, afterItem: null),

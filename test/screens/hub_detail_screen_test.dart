@@ -100,36 +100,6 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Item 449'), findsOneWidget);
   });
-
-  testWidgets('Plex hub replaces its preview with the full-hub response', (tester) async {
-    final items = List.generate(205, (index) => _item(index, backend: MediaBackend.plex));
-    final harness = await _createHarness(items, backend: MediaBackend.plex);
-
-    await tester.pumpWidget(
-      harness.wrap(
-        HubDetailScreen(
-          hub: MediaHub(
-            id: '/hubs/home/recentlyAdded',
-            title: 'Recently Added',
-            type: 'movie',
-            items: items.take(5).toList(),
-            size: items.length,
-            more: true,
-            serverId: 'server_1',
-          ),
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(harness.client.requestedStarts, [0]);
-    expect(harness.client.fullHubRequests, 1);
-    expect(find.text(t.common.retry), findsNothing);
-
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, -30000));
-    await tester.pumpAndSettle();
-    expect(find.text('Item 204'), findsOneWidget);
-  });
 }
 
 MediaItem _item(int index, {required MediaBackend backend, String? libraryId}) => testMediaItem(
@@ -187,7 +157,7 @@ class _PagedHubClient implements MediaServerClient {
 
   @override
   ServerCapabilities get capabilities =>
-      backend == MediaBackend.plex ? ServerCapabilities.plex : ServerCapabilities.jellyfin;
+      backend == MediaBackend.jellyfin ? ServerCapabilities.plex : ServerCapabilities.jellyfin;
 
   @override
   Future<LibraryPage<MediaItem>> fetchMoreHubItemsPage(

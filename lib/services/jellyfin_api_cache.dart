@@ -94,7 +94,7 @@ class JellyfinApiCache extends ApiCache {
   /// fail.
   ///
   /// Single-item path stays on the main isolate — decoding one BaseItemDto
-  /// is cheap and matches [PlexApiCache.getMetadata]'s shape. Bulk-load
+  /// is cheap. Bulk-load
   /// callers go through [getAllPinnedMetadata] which still parallelises.
   @override
   Future<MediaItem?> getMetadata(ServerId serverId, String itemId) async {
@@ -195,7 +195,7 @@ class JellyfinApiCache extends ApiCache {
   /// Load all pinned Jellyfin metadata in a single query.
   ///
   /// Returns a map keyed by `buildGlobalKey(ServerId(serverId), itemId)` for O(1)
-  /// lookups, mirroring [PlexApiCache.getAllPinnedMetadata] so callers can
+  /// lookups so callers can
   /// spread-merge the two results.
   @override
   Future<Map<String, MediaItem>> getAllPinnedMetadata({Set<ServerId>? cacheServerIds}) async {

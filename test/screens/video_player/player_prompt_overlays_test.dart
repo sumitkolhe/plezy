@@ -166,7 +166,7 @@ AnimatedPositioned _promptPosition(WidgetTester tester) {
 MediaItem _episode() {
   return testMediaItem(
     id: 'episode-2',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.episode,
     title: 'Episode 2',
     parentIndex: 1,

@@ -14,7 +14,6 @@ import 'package:plezy/providers/libraries_provider.dart';
 import 'package:plezy/providers/multi_server_provider.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/plex_api_cache.dart';
 import 'package:plezy/utils/platform_detector.dart';
 import 'package:plezy/widgets/library_management_sheet.dart';
 import 'package:plezy/widgets/overlay_sheet.dart';
@@ -26,7 +25,7 @@ import '../test_helpers/prefs.dart';
 
 const _qualifiedLibrary = MediaLibrary(
   id: 'shared-section',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Movies',
   kind: MediaKind.movie,
   serverId: 'server-a',
@@ -153,7 +152,6 @@ void main() {
     TvDetectionService.setForceTVSync(false);
     PlatformDetector.debugSetIsDesktopOSOverride(false);
     database = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(database);
   });
 
   tearDown(() {

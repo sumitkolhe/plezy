@@ -4,12 +4,10 @@ import '../media/ids.dart';
 import '../media/media_backend.dart';
 import '../media/media_source_info.dart';
 import '../utils/app_logger.dart';
-import '../utils/plex_cache_parser.dart';
 import 'api_cache.dart';
 import 'jellyfin_api_cache.dart';
 import 'jellyfin_cache_resolver.dart';
 import 'jellyfin_media_info_mapper.dart';
-import 'plex_mappers.dart';
 
 class CachedPlaybackMetadataService {
   const CachedPlaybackMetadataService._();
@@ -22,7 +20,6 @@ class CachedPlaybackMetadataService {
   }) async {
     try {
       return switch (backend) {
-        MediaBackend.plex => _fetchPlexMediaSourceInfo(ServerId(cacheServerId), itemId, mediaIndex: mediaIndex),
         MediaBackend.jellyfin => _fetchJellyfinMediaSourceInfo(cacheServerId, itemId, mediaIndex: mediaIndex),
       };
     } catch (e) {
@@ -41,13 +38,6 @@ class CachedPlaybackMetadataService {
   }) async {
     try {
       return switch (backend) {
-        MediaBackend.plex => _fetchPlexPlaybackExtras(
-          ServerId(cacheServerId),
-          itemId,
-          introPattern: introPattern,
-          creditsPattern: creditsPattern,
-          forceChapterFallback: forceChapterFallback,
-        ),
         MediaBackend.jellyfin => _fetchJellyfinPlaybackExtras(
           cacheServerId,
           itemId,
@@ -60,37 +50,6 @@ class CachedPlaybackMetadataService {
       appLogger.d('Cached playback extras unavailable for $cacheServerId:$itemId', error: e);
       return null;
     }
-  }
-
-  static Future<MediaSourceInfo?> _fetchPlexMediaSourceInfo(
-    ServerId serverId,
-    String itemId, {
-    required int mediaIndex,
-  }) async {
-    final metadata = await _plexMetadata(ServerId(serverId), itemId);
-    return metadata == null ? null : plexMediaSourceInfoFromCacheJson(metadata, mediaIndex: mediaIndex);
-  }
-
-  static Future<PlaybackExtras?> _fetchPlexPlaybackExtras(
-    ServerId serverId,
-    String itemId, {
-    String? introPattern,
-    String? creditsPattern,
-    bool forceChapterFallback = false,
-  }) async {
-    final metadata = await _plexMetadata(ServerId(serverId), itemId);
-    if (metadata == null) return null;
-    return plexPlaybackExtrasFromCacheJson(
-      metadata,
-      introPattern: introPattern,
-      creditsPattern: creditsPattern,
-      forceChapterFallback: forceChapterFallback,
-    );
-  }
-
-  static Future<Map<String, dynamic>?> _plexMetadata(ServerId serverId, String itemId) async {
-    final cached = await ApiCache.forBackend(MediaBackend.plex).get(serverId, '/library/metadata/$itemId');
-    return PlexCacheParser.extractFirstMetadata(cached);
   }
 
   static Future<MediaSourceInfo?> _fetchJellyfinMediaSourceInfo(

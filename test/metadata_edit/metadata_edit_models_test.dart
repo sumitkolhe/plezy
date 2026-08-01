@@ -8,7 +8,7 @@ import '../test_helpers/media_items.dart';
 
 void main() {
   test('adapter dirty tracking ignores immediate fields', () {
-    final item = testMediaItem(id: '1', backend: MediaBackend.plex, kind: MediaKind.movie);
+    final item = testMediaItem(id: '1', backend: MediaBackend.jellyfin, kind: MediaKind.movie);
     final adapter = _TestMetadataEditAdapter();
     final draft = MetadataEditDraft(
       sourceItem: item,
@@ -24,7 +24,7 @@ void main() {
   });
 
   test('adapter dirty tracking compares string lists as sets', () {
-    final item = testMediaItem(id: '1', backend: MediaBackend.plex, kind: MediaKind.movie);
+    final item = testMediaItem(id: '1', backend: MediaBackend.jellyfin, kind: MediaKind.movie);
     final adapter = _TestMetadataEditAdapter();
     final draft = MetadataEditDraft(
       sourceItem: item,
@@ -46,7 +46,7 @@ void main() {
 
 class _TestMetadataEditAdapter extends MetadataEditAdapter {
   @override
-  MediaBackend get backend => MediaBackend.plex;
+  MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
   MediaServerClient get mediaClient => throw UnimplementedError();

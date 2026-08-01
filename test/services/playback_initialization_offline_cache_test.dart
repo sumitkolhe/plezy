@@ -17,8 +17,6 @@ import 'package:plezy/services/download_storage_service.dart';
 import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/jellyfin_media_info_mapper.dart';
 import 'package:plezy/services/playback_initialization_service.dart';
-import 'package:plezy/services/plex_api_cache.dart';
-import 'package:plezy/services/plex_mappers.dart';
 import 'package:plezy/services/settings_service.dart';
 
 import '../test_helpers/io_fakes.dart';
@@ -40,7 +38,6 @@ void main() {
     previousPathProvider = PathProviderPlatform.instance;
     PathProviderPlatform.instance = FakePathProvider(tmpRoot);
     db = AppDatabase.forTesting(NativeDatabase.memory());
-    PlexApiCache.initialize(db);
     JellyfinApiCache.initialize(db);
   });
 
@@ -53,33 +50,6 @@ void main() {
     if (await tmpRoot.exists()) {
       await tmpRoot.delete(recursive: true);
     }
-  });
-
-  test('pure-offline playback loads cached Plex media source info without a client', () async {
-    await _insertDownloaded(
-      db,
-      serverId: ServerId('srv-1'),
-      ratingKey: 'movie-1',
-      videoFilePath: 'content://offline/movie-1',
-    );
-    await PlexApiCache.instance.put(ServerId('srv-1'), '/library/metadata/movie-1', _plexMetadataEnvelope());
-
-    final result = await PlaybackInitializationService(database: db).getPlaybackData(
-      PlaybackInitializationOptions(
-        metadata: testMediaItem(
-          id: 'movie-1',
-          backend: MediaBackend.plex,
-          kind: MediaKind.movie,
-          serverId: ServerId('srv-1'),
-        ),
-        selectedMediaIndex: 0,
-      ),
-      preferOffline: true,
-    );
-
-    expect(result.isOffline, isTrue);
-    expect(result.videoUrl, 'content://offline/movie-1');
-    expect(result.mediaInfo?.audioTracks.single.languageCode, 'eng');
   });
 
   test('downloaded track resolves to its local file through the offline path', () async {
@@ -99,7 +69,7 @@ void main() {
       PlaybackInitializationOptions(
         metadata: testMediaItem(
           id: 'track-1',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.track,
           serverId: ServerId('srv-1'),
         ),
@@ -112,104 +82,6 @@ void main() {
     expect(result.isOffline, isTrue);
     expect(result.videoUrl, 'content://offline/track-1');
     expect(result.playMethod, 'DirectPlay');
-  });
-
-  test('preferOffline uses cache without calling live client when local file exists', () async {
-    await _insertDownloaded(
-      db,
-      serverId: ServerId('srv-1'),
-      ratingKey: 'movie-1',
-      videoFilePath: 'content://offline/movie-1',
-    );
-    await PlexApiCache.instance.put(ServerId('srv-1'), '/library/metadata/movie-1', _plexMetadataEnvelope());
-    final client = _FailingPlaybackClient(serverId: ServerId('srv-1'));
-
-    final result = await PlaybackInitializationService(client: client, database: db).getPlaybackData(
-      PlaybackInitializationOptions(
-        metadata: testMediaItem(
-          id: 'movie-1',
-          backend: MediaBackend.plex,
-          kind: MediaKind.movie,
-          serverId: ServerId('srv-1'),
-        ),
-        selectedMediaIndex: 0,
-      ),
-      preferOffline: true,
-    );
-
-    expect(client.playbackInitializationCalls, 0);
-    expect(result.isOffline, isTrue);
-    expect(result.videoUrl, 'content://offline/movie-1');
-    expect(result.availableVersions, isEmpty);
-    expect(result.mediaInfo?.audioTracks.single.languageCode, 'eng');
-  });
-
-  test('pure-offline playback uses cached Plex media source for selected version', () async {
-    await _insertDownloaded(
-      db,
-      serverId: ServerId('srv-1'),
-      ratingKey: 'movie-1',
-      videoFilePath: 'content://offline/movie-1-v2',
-      mediaIndex: 1,
-    );
-    await PlexApiCache.instance.put(
-      ServerId('srv-1'),
-      '/library/metadata/movie-1',
-      _plexMetadataEnvelope(includeSecondVersion: true),
-    );
-
-    final result = await PlaybackInitializationService(database: db).getPlaybackData(
-      PlaybackInitializationOptions(
-        metadata: testMediaItem(
-          id: 'movie-1',
-          backend: MediaBackend.plex,
-          kind: MediaKind.movie,
-          serverId: ServerId('srv-1'),
-        ),
-        selectedMediaIndex: 1,
-      ),
-      preferOffline: true,
-    );
-
-    expect(result.videoUrl, 'content://offline/movie-1-v2');
-    expect(result.mediaInfo?.audioTracks.single.languageCode, 'fre');
-  });
-
-  test('no-client playback falls back to the downloaded version on a default request', () async {
-    // Issue #1440: only the non-default version (index 1) is downloaded, but
-    // plain Play requests the default (index 0). With no client to stream
-    // from, the downloaded copy must play — with its own version metadata.
-    await _insertDownloaded(
-      db,
-      serverId: ServerId('srv-1'),
-      ratingKey: 'movie-1',
-      videoFilePath: 'content://offline/movie-1-v2',
-      mediaIndex: 1,
-      mediaSourceId: 'source-b',
-    );
-    await PlexApiCache.instance.put(
-      ServerId('srv-1'),
-      '/library/metadata/movie-1',
-      _plexMetadataEnvelope(includeSecondVersion: true),
-    );
-
-    final result = await PlaybackInitializationService(database: db).getPlaybackData(
-      PlaybackInitializationOptions(
-        metadata: testMediaItem(
-          id: 'movie-1',
-          backend: MediaBackend.plex,
-          kind: MediaKind.movie,
-          serverId: ServerId('srv-1'),
-        ),
-        selectedMediaIndex: 0,
-      ),
-    );
-
-    expect(result.isOffline, isTrue);
-    expect(result.videoUrl, 'content://offline/movie-1-v2');
-    expect(result.selectedMediaIndex, 1);
-    expect(result.selectedMediaSourceId, 'source-b');
-    expect(result.mediaInfo?.audioTracks.single.languageCode, 'fre');
   });
 
   test('no-client playback plays the local copy even on an explicit version mismatch', () async {
@@ -226,7 +98,7 @@ void main() {
       PlaybackInitializationOptions(
         metadata: testMediaItem(
           id: 'movie-1',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.movie,
           serverId: ServerId('srv-1'),
         ),
@@ -258,7 +130,7 @@ void main() {
       PlaybackInitializationOptions(
         metadata: testMediaItem(
           id: 'movie-1',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.movie,
           serverId: ServerId('srv-1'),
         ),
@@ -344,7 +216,7 @@ void main() {
       PlaybackInitializationOptions(
         metadata: testMediaItem(
           id: 'movie-1',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.movie,
           serverId: ServerId('srv-1'),
         ),
@@ -356,57 +228,6 @@ void main() {
     expect(result.videoUrl, 'content://offline/movie-1');
     expect(result.externalSubtitles, hasLength(1));
     expect(result.externalSubtitles.single.uri, Uri.file(subtitlePath).toString());
-  });
-
-  test('cache-only playback extras fills missing Plex marker types from chapters', () async {
-    await PlexApiCache.instance.put(ServerId('srv-1'), '/library/metadata/movie-1', _plexMetadataEnvelope());
-
-    final extras = await CachedPlaybackMetadataService.fetchPlaybackExtras(
-      backend: MediaBackend.plex,
-      cacheServerId: 'srv-1',
-      itemId: 'movie-1',
-    );
-
-    expect(extras?.chapters.single.title, 'Intro');
-    expect(extras?.markers.map((m) => m.type), ['intro', 'credits']);
-  });
-
-  test('Plex extras parser skips malformed entries and keeps valid ones', () async {
-    await PlexApiCache.instance.put(
-      ServerId('srv-1'),
-      '/library/metadata/movie-1',
-      _plexMetadataEnvelope(malformedExtras: true),
-    );
-
-    final extras = await CachedPlaybackMetadataService.fetchPlaybackExtras(
-      backend: MediaBackend.plex,
-      cacheServerId: 'srv-1',
-      itemId: 'movie-1',
-    );
-
-    expect(extras?.chapters.map((c) => c.title), ['Intro']);
-    expect(extras?.markers.map((m) => m.type), ['intro', 'credits']);
-  });
-
-  test('Plex extras parser can force chapter fallback over native marker timings', () {
-    final extras = plexPlaybackExtrasFromCacheJson({
-      'Chapter': [
-        {'id': 1, 'index': 0, 'startTimeOffset': 5000, 'endTimeOffset': 45000, 'tag': 'Intro'},
-        {'id': 2, 'index': 1, 'startTimeOffset': 90000, 'endTimeOffset': 100000, 'tag': 'Credits'},
-      ],
-      'Marker': [
-        {'id': 10, 'type': 'intro', 'startTimeOffset': 12000, 'endTimeOffset': 30000},
-        {'id': 11, 'type': 'credits', 'startTimeOffset': 93000, 'endTimeOffset': 98000},
-      ],
-    }, forceChapterFallback: true);
-
-    final intro = extras.markers.firstWhere((m) => m.type == 'intro');
-    final credits = extras.markers.firstWhere((m) => m.type == 'credits');
-    expect(intro.startTimeOffset, 5000);
-    expect(intro.endTimeOffset, 45000);
-    expect(credits.startTimeOffset, 90000);
-    expect(credits.endTimeOffset, 100000);
-    expect(extras.markers.any((m) => m.id == 10 || m.id == 11), isFalse);
   });
 
   test('Jellyfin extras parser tolerates non-string chapter names', () {
@@ -533,47 +354,6 @@ Future<void> _insertDownloaded(
           mediaSourceId: Value(mediaSourceId),
         ),
       );
-}
-
-Map<String, dynamic> _plexMetadataEnvelope({bool includeSecondVersion = false, bool malformedExtras = false}) {
-  final chapters = <Map<String, dynamic>>[
-    if (malformedExtras) {'id': 'bad'},
-    {'id': 1, 'index': 0, 'startTimeOffset': 0, 'endTimeOffset': 10000, 'tag': 'Intro'},
-  ];
-  final markers = <Map<String, dynamic>>[
-    if (malformedExtras) {'id': 99, 'type': 'broken'},
-    {'id': 2, 'type': 'credits', 'startTimeOffset': 90000, 'endTimeOffset': 100000},
-  ];
-  final media = <Map<String, dynamic>>[
-    _plexMediaWithAudio('English', 'eng'),
-    if (includeSecondVersion) _plexMediaWithAudio('French', 'fre'),
-  ];
-  return {
-    'MediaContainer': {
-      'Metadata': [
-        {
-          'ratingKey': 'movie-1',
-          'type': 'movie',
-          'title': 'Movie',
-          'Chapter': chapters,
-          'Marker': markers,
-          'Media': media,
-        },
-      ],
-    },
-  };
-}
-
-Map<String, dynamic> _plexMediaWithAudio(String language, String languageCode) {
-  return {
-    'Part': [
-      {
-        'Stream': [
-          {'id': 10, 'streamType': 2, 'index': 1, 'language': language, 'languageCode': languageCode},
-        ],
-      },
-    ],
-  };
 }
 
 Map<String, dynamic> _jellyfinItemRaw() {

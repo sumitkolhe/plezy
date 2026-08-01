@@ -555,7 +555,7 @@ void main() {
 MediaItem _movie({required String title, int? year}) {
   return testMediaItem(
     id: 'm-${title.hashCode}',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.movie,
     title: title,
     year: year,
@@ -565,7 +565,7 @@ MediaItem _movie({required String title, int? year}) {
 MediaItem _show({required String title, int? year}) {
   return testMediaItem(
     id: 's-${title.hashCode}',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.show,
     title: title,
     year: year,
@@ -575,7 +575,7 @@ MediaItem _show({required String title, int? year}) {
 MediaItem _season({required String showTitle, int? showYear, required int seasonNumber}) {
   return testMediaItem(
     id: 'season-$showTitle-$seasonNumber',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.season,
     title: 'Season $seasonNumber',
     grandparentTitle: showTitle,
@@ -593,7 +593,7 @@ MediaItem _episode({
 }) {
   return testMediaItem(
     id: 'ep-$showTitle-$seasonNumber-$episodeNumber',
-    backend: MediaBackend.plex,
+    backend: MediaBackend.jellyfin,
     kind: MediaKind.episode,
     title: episodeTitle,
     grandparentTitle: showTitle,

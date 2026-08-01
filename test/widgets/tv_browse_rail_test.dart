@@ -31,7 +31,7 @@ void main() {
 
   group('TvBrowseRailLayout', () {
     test('density changes card width', () {
-      final item = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+      final item = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
       final hub = MediaHub(id: 'hub_1', title: 'Movies', type: 'movie', items: [item], size: 1);
 
       final compact = TvBrowseRailLayout.metricsForHub(
@@ -56,7 +56,7 @@ void main() {
     test('detail episode hubs can force episode thumbnails', () {
       final episode = testMediaItem(
         id: 'episode_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
@@ -98,10 +98,10 @@ void main() {
     test('estimated rail height is stable across mixed hub heights', () {
       // Square music artwork opts out of the orientation, so a music rail and
       // a landscape rail still differ in height for the estimate to reconcile.
-      final album = testMediaItem(id: 'album_1', backend: MediaBackend.plex, kind: MediaKind.album, title: 'Album');
+      final album = testMediaItem(id: 'album_1', backend: MediaBackend.jellyfin, kind: MediaKind.album, title: 'Album');
       final episode = testMediaItem(
         id: 'episode_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
@@ -165,7 +165,7 @@ void main() {
     });
 
     test('compact tall poster scale reduces browse rail height', () {
-      final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+      final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
       final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 1);
 
       const size = Size(1280, 720);
@@ -189,7 +189,7 @@ void main() {
     test('empty episode thumbnail hubs reserve thumbnail row height', () {
       final episode = testMediaItem(
         id: 'episode_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
@@ -227,7 +227,7 @@ void main() {
     test('full card layout removes label reserve and preserves episode poster mode', () {
       final episode = testMediaItem(
         id: 'episode_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
@@ -261,14 +261,14 @@ void main() {
     test('compact wide poster scale makes clips match compact episode thumbnails', () {
       final episode = testMediaItem(
         id: 'episode_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode 1',
         thumbPath: '/episode-thumb',
       );
       final clip = testMediaItem(
         id: 'clip_1',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.clip,
         title: 'Trailer',
         thumbPath: '/trailer-thumb',
@@ -299,7 +299,7 @@ void main() {
     });
 
     test('multi-hub estimate reserves next hub peek height', () {
-      final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+      final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
       final movieHub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 1);
       final showHub = MediaHub(id: 'shows', title: 'Shows', type: 'show', items: [movie], size: 1);
 
@@ -340,8 +340,8 @@ void main() {
 
     final serverManager = MultiServerManager();
     final items = [
-      testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'First Movie'),
-      testMediaItem(id: 'movie_2', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Second Movie'),
+      testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'First Movie'),
+      testMediaItem(id: 'movie_2', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Second Movie'),
     ];
     final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: items, size: items.length);
     String? activatedItemId;
@@ -411,7 +411,7 @@ void main() {
     final hubs = List.generate(6, (hubIndex) {
       final item = testMediaItem(
         id: 'movie_$hubIndex',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.movie,
         title: 'Movie $hubIndex',
       );
@@ -467,7 +467,7 @@ void main() {
     final theme = monoTheme(dark: false);
     final episode = testMediaItem(
       id: 'episode_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 1',
     );
@@ -508,8 +508,20 @@ void main() {
       serverId: serverId,
       size: 2,
       items: [
-        testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'A', serverId: serverId),
-        testMediaItem(id: 'movie_2', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'B', serverId: serverId),
+        testMediaItem(
+          id: 'movie_1',
+          backend: MediaBackend.jellyfin,
+          kind: MediaKind.movie,
+          title: 'A',
+          serverId: serverId,
+        ),
+        testMediaItem(
+          id: 'movie_2',
+          backend: MediaBackend.jellyfin,
+          kind: MediaKind.movie,
+          title: 'B',
+          serverId: serverId,
+        ),
       ],
     );
 
@@ -543,13 +555,13 @@ void main() {
     final serverManager = MultiServerManager();
     final movie = testMediaItem(
       id: 'movie_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Hidden Movie',
     );
     final actor = testMediaItem(
       id: 'actor_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.unknown,
       title: 'Actor Name',
       parentTitle: 'Character Name',
@@ -596,7 +608,7 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 1);
 
     await tester.pumpWidget(
@@ -676,13 +688,13 @@ void main() {
     final serverManager = MultiServerManager();
     final firstMovie = testMediaItem(
       id: 'movie_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Movie 1',
     );
     final secondMovie = testMediaItem(
       id: 'movie_2',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Movie 2',
     );
@@ -755,7 +767,7 @@ void main() {
     final serverManager = MultiServerManager();
     final movie = testMediaItem(
       id: 'movie_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Visible Movie',
       year: 2024,
@@ -819,7 +831,7 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 2, more: true);
 
     await tester.pumpWidget(
@@ -881,7 +893,7 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 2);
 
     await tester.pumpWidget(
@@ -933,7 +945,7 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final movie = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'movies', title: 'Movies', type: 'movie', items: [movie], size: 1);
     var trailing = TvRailTrailing.loading;
     var activations = 0;
@@ -991,10 +1003,15 @@ void main() {
 
   testWidgets('focused rail dims only inactive hub artwork', (tester) async {
     final serverManager = MultiServerManager();
-    final firstItem = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie 1');
+    final firstItem = testMediaItem(
+      id: 'movie_1',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.movie,
+      title: 'Movie 1',
+    );
     final secondItem = testMediaItem(
       id: 'movie_2',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Movie 2',
     );
@@ -1145,12 +1162,12 @@ void main() {
     addTearDown(multiServerProvider.dispose);
 
     final recentItems = [
-      testMediaItem(id: 'recent_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Recently Added 1'),
-      testMediaItem(id: 'recent_2', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Recently Added 2'),
+      testMediaItem(id: 'recent_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Recently Added 1'),
+      testMediaItem(id: 'recent_2', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Recently Added 2'),
     ];
     final continueItem = testMediaItem(
       id: 'continue_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.movie,
       title: 'Continue Watching',
     );
@@ -1240,13 +1257,13 @@ void main() {
 
     final episode1 = testMediaItem(
       id: 'episode_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 1',
     );
     final episode2 = testMediaItem(
       id: 'episode_2',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 2',
     );
@@ -1271,14 +1288,18 @@ void main() {
   testWidgets('scrolls remembered item after switching hubs', (tester) async {
     List<MediaItem> movieItems() => List.generate(
       12,
-      (index) =>
-          testMediaItem(id: 'movie_$index', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie $index'),
+      (index) => testMediaItem(
+        id: 'movie_$index',
+        backend: MediaBackend.jellyfin,
+        kind: MediaKind.movie,
+        title: 'Movie $index',
+      ),
     );
     List<MediaItem> episodeItems() => List.generate(
       12,
       (index) => testMediaItem(
         id: 'episode_$index',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode $index',
         thumbPath: '/episode_$index',
@@ -1390,17 +1411,22 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final tallItem = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie 1');
+    final tallItem = testMediaItem(
+      id: 'movie_1',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.movie,
+      title: 'Movie 1',
+    );
     final wideItem = testMediaItem(
       id: 'episode_1',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 1',
       thumbPath: '/episode_1',
     );
     final activeItem = testMediaItem(
       id: 'episode_2',
-      backend: MediaBackend.plex,
+      backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Episode 2',
       thumbPath: '/episode_2',
@@ -1471,7 +1497,13 @@ void main() {
     });
 
     MediaItem episode(String id) {
-      return testMediaItem(id: id, backend: MediaBackend.plex, kind: MediaKind.episode, title: id, thumbPath: '/$id');
+      return testMediaItem(
+        id: id,
+        backend: MediaBackend.jellyfin,
+        kind: MediaKind.episode,
+        title: id,
+        thumbPath: '/$id',
+      );
     }
 
     final serverManager = MultiServerManager();
@@ -1545,7 +1577,13 @@ void main() {
     });
 
     MediaItem episode(String id) {
-      return testMediaItem(id: id, backend: MediaBackend.plex, kind: MediaKind.episode, title: id, thumbPath: '/$id');
+      return testMediaItem(
+        id: id,
+        backend: MediaBackend.jellyfin,
+        kind: MediaKind.episode,
+        title: id,
+        thumbPath: '/$id',
+      );
     }
 
     final serverManager = MultiServerManager();
@@ -1645,14 +1683,18 @@ void main() {
   testWidgets('uses per-hub item focus instead of the owner last-column hint', (tester) async {
     List<MediaItem> movieItems() => List.generate(
       8,
-      (index) =>
-          testMediaItem(id: 'movie_$index', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie $index'),
+      (index) => testMediaItem(
+        id: 'movie_$index',
+        backend: MediaBackend.jellyfin,
+        kind: MediaKind.movie,
+        title: 'Movie $index',
+      ),
     );
     List<MediaItem> episodeItems() => List.generate(
       8,
       (index) => testMediaItem(
         id: 'episode_$index',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode $index',
         thumbPath: '/episode_$index',
@@ -1718,7 +1760,7 @@ void main() {
       for (var index = 0; index < 12; index++)
         testMediaItem(
           id: 'episode_$index',
-          backend: MediaBackend.plex,
+          backend: MediaBackend.jellyfin,
           kind: MediaKind.episode,
           title: 'Episode $index',
           thumbPath: '/episode_$index',
@@ -1726,7 +1768,7 @@ void main() {
     ];
     final extraItems = [
       for (var index = 0; index < 3; index++)
-        testMediaItem(id: 'extra_$index', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Extra $index'),
+        testMediaItem(id: 'extra_$index', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Extra $index'),
     ];
     final episodeHub = MediaHub(
       id: 'detail_episodes',
@@ -1824,7 +1866,7 @@ void main() {
       153,
       (index) => testMediaItem(
         id: 'episode_${index + 1}',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode ${index + 1}',
         parentIndex: 11,
@@ -1909,7 +1951,7 @@ void main() {
       episodeCount,
       (index) => testMediaItem(
         id: 'episode_${index + 1}',
-        backend: MediaBackend.plex,
+        backend: MediaBackend.jellyfin,
         kind: MediaKind.episode,
         title: 'Episode ${index + 1}',
         parentIndex: 11,
@@ -1994,7 +2036,12 @@ void main() {
     addTearDown(SelectKeyUpSuppressor.clearSuppression);
 
     var activations = 0;
-    final person = testMediaItem(id: 'person_1', backend: MediaBackend.plex, kind: MediaKind.unknown, title: 'Person');
+    final person = testMediaItem(
+      id: 'person_1',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.unknown,
+      title: 'Person',
+    );
     final hub = MediaHub(id: 'people', title: 'People', type: 'person', items: [person], size: 1);
     final serverManager = MultiServerManager();
 
@@ -2062,7 +2109,7 @@ void main() {
 
     Widget buildRail({required bool autofocus}) {
       final serverManager = MultiServerManager();
-      final item = testMediaItem(id: 'item_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+      final item = testMediaItem(id: 'item_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
       final hub = MediaHub(id: 'hub_1', title: 'Hub', type: 'movie', items: [item], size: 1);
       return ChangeNotifierProvider<MultiServerProvider>(
         create: (_) => testMultiServerProvider(serverManager),
@@ -2095,7 +2142,7 @@ void main() {
 
   testWidgets('lays out when bottom-positioned in a stack', (tester) async {
     final serverManager = MultiServerManager();
-    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'hub_1', title: 'Hub', type: 'movie', items: [item], size: 1);
 
     await tester.pumpWidget(
@@ -2140,7 +2187,7 @@ void main() {
     });
 
     final serverManager = MultiServerManager();
-    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'hub_1', title: 'Hub', type: 'movie', items: [item], size: 1);
 
     await tester.pumpWidget(
@@ -2181,7 +2228,7 @@ void main() {
 
     final focusedItemIds = <String>[];
     final activeHubIds = <String>[];
-    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.plex, kind: MediaKind.movie, title: 'Movie');
+    final item = testMediaItem(id: 'movie_1', backend: MediaBackend.jellyfin, kind: MediaKind.movie, title: 'Movie');
     final hub = MediaHub(id: 'hub_1', title: 'Hub', type: 'movie', items: [item], size: 1);
 
     Widget buildRail(double backgroundBleedLeft) {

@@ -58,7 +58,6 @@ import 'services/pip_service.dart';
 import 'services/download_storage_service.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'services/jellyfin_api_cache.dart';
-import 'services/plex_api_cache.dart';
 import 'database/app_database.dart';
 import 'database/download_operations.dart';
 import 'database/tvos_database_recovery_store.dart';
@@ -741,7 +740,6 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
     _aggregationService = DataAggregationService(_serverManager);
     _appDatabase = widget.appDatabase;
 
-    PlexApiCache.initialize(_appDatabase);
     JellyfinApiCache.initialize(_appDatabase);
 
     _downloadManager = DownloadManagerService(

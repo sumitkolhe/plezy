@@ -26,14 +26,14 @@ import '../../test_helpers/prefs.dart';
 
 const _libraryA = MediaLibrary(
   id: 'movies',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Library A',
   kind: MediaKind.movie,
   serverId: 'server',
 );
 const _libraryB = MediaLibrary(
   id: 'shows',
-  backend: MediaBackend.plex,
+  backend: MediaBackend.jellyfin,
   title: 'Library B',
   kind: MediaKind.show,
   serverId: 'server',

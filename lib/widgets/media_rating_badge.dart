@@ -81,28 +81,14 @@ class MediaRatingBadge extends StatelessWidget {
   }
 
   static _MediaRatingBadgeData? _ratingDataFor(MediaItem item) {
-    final plex = item is PlexMediaItem ? item : null;
     final rating = item.rating;
-    if (rating != null) {
-      return _MediaRatingBadgeData(
-        imageUri: plex?.ratingImage,
-        value: rating,
-        fallbackIcon: Symbols.star_rounded,
-        fallbackText: formatRating(rating),
-      );
-    }
-
-    final audienceRating = plex?.audienceRating;
-    if (audienceRating != null) {
-      return _MediaRatingBadgeData(
-        imageUri: plex?.audienceRatingImage,
-        value: audienceRating,
-        fallbackIcon: Symbols.people_rounded,
-        fallbackText: '${(audienceRating * 10).toStringAsFixed(0)}%',
-      );
-    }
-
-    return null;
+    if (rating == null) return null;
+    return _MediaRatingBadgeData(
+      imageUri: null,
+      value: rating,
+      fallbackIcon: Symbols.star_rounded,
+      fallbackText: formatRating(rating),
+    );
   }
 
   @override
