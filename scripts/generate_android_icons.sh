@@ -1,140 +1,98 @@
 #!/usr/bin/env bash
 
-# Android Icon Generator Script
-# Generates notification icons and monochrome launcher icons from SVG source
-# Usage: ./generate_android_icons.sh
+# Android raster icon generator.
+#
+# The adaptive launcher icon (mipmap-anydpi-v26) and its monochrome layer are
+# hand-maintained VectorDrawables in res/drawable — this script only produces
+# the bitmaps Android still requires:
+#   • mipmap-*/ic_launcher.png        legacy launcher, pre-API-26 (minSdk is 25)
+#   • drawable-*/ic_stat_notification.png  white silhouette; notification small
+#                                     icons stay bitmaps because VectorDrawable
+#                                     in RemoteViews is unreliable on older OEMs
+#   • drawable-*/tv_banner.png        Android TV home-screen banner
+#
+# Usage: ./scripts/generate_android_icons.sh
 
-set -e
+set -euo pipefail
 
-# Configuration
-SVG_SOURCE="assets/plezy.svg"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+SVG_SOURCE="assets/harbor.svg"
 ANDROID_RES="android/app/src/main/res"
-TEMP_DIR="/tmp/android_icons_$$"
+TEMP_DIR="$(mktemp -d)"
+trap 'rm -rf "$TEMP_DIR"' EXIT
 
-# Check if source SVG exists
-if [ ! -f "$SVG_SOURCE" ]; then
-    echo "Error: $SVG_SOURCE not found"
-    exit 1
-fi
+[ -f "$SVG_SOURCE" ] || { echo "Error: $SVG_SOURCE not found" >&2; exit 1; }
+command -v rsvg-convert >/dev/null || {
+  echo "Error: rsvg-convert not found. Install with: brew install librsvg" >&2; exit 1; }
 
-# Check for required tools
-if ! command -v rsvg-convert &> /dev/null; then
-    echo "Error: rsvg-convert not found. Install with: brew install librsvg"
-    exit 1
-fi
+# The mark's own path data, lifted from the source so the variants below stay
+# in sync with it. Everything is composed as SVG and rendered once — no raster
+# post-processing, so no ImageMagick dependency.
+TOWER=$(grep -o 'd="M7\.746[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
+BEAMS=$(grep -o 'd="M3\.293[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
 
-if command -v magick &> /dev/null; then
-    IMAGEMAGICK=magick
-elif command -v convert &> /dev/null; then
-    IMAGEMAGICK=convert
-else
-    echo "Error: ImageMagick not found. Install with: brew install imagemagick"
-    exit 1
-fi
-
-if ! command -v bc &> /dev/null; then
-    echo "Error: bc not found. Install with: brew install bc"
-    exit 1
-fi
-
-# Create temp directory
-mkdir -p "$TEMP_DIR"
-
-echo "🎨 Generating Android icons from $SVG_SOURCE..."
-
-# Function to generate white silhouette icon
-generate_white_icon() {
-    local size=$1
-    local output=$2
-
-    # Get SVG dimensions to detect if it's non-square
-    local svg_viewbox=$(grep -o 'viewBox="[^"]*"' "$SVG_SOURCE" | sed 's/viewBox="//;s/"//')
-    local svg_width=$(echo "$svg_viewbox" | awk '{print $3}')
-    local svg_height=$(echo "$svg_viewbox" | awk '{print $4}')
-
-    # Convert SVG to PNG, preserving aspect ratio
-    if (( $(echo "$svg_width != $svg_height" | bc -l) )); then
-        # Non-square SVG: render at size and add padding to center it
-        rsvg-convert --keep-aspect-ratio --background-color=transparent "$SVG_SOURCE" -o "$TEMP_DIR/temp_unpadded.png"
-
-        # Center the image in a square canvas with transparent padding
-        "$IMAGEMAGICK" "$TEMP_DIR/temp_unpadded.png" \
-            -resize "${size}x${size}" \
-            -gravity center \
-            -background transparent \
-            -extent "${size}x${size}" \
-            "$TEMP_DIR/temp.png"
-    else
-        # Square SVG: convert directly
-        rsvg-convert -w "$size" -h "$size" --background-color=transparent "$SVG_SOURCE" -o "$TEMP_DIR/temp.png"
-    fi
-
-    # Convert to white silhouette: extract alpha, fill with white, apply alpha
-    "$IMAGEMAGICK" "$TEMP_DIR/temp.png" \
-        -alpha extract \
-        "$TEMP_DIR/alpha_mask.png"
-
-    "$IMAGEMAGICK" -size "${size}x${size}" xc:white \
-        "$TEMP_DIR/alpha_mask.png" \
-        -alpha off \
-        -compose copy-opacity \
-        -composite \
-        -define png:color-type=6 \
-        "$output"
-
-    echo "  ✓ Generated $(basename $output) (${size}x${size}px)"
+emit_svg() {
+  # $1 tower fill, $2 beams fill, $3 optional <defs>
+  cat <<SVG
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+${3:-}
+  <path fill="$1" fill-rule="evenodd" clip-rule="evenodd" d="$TOWER"/>
+  <path fill="$2" d="$BEAMS"/>
+</svg>
+SVG
 }
 
-# Generate Notification Icons (24dp base)
-echo ""
-echo "📱 Generating notification icons (ic_stat_notification.png)..."
+BRAND_DEFS='  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#AB543A"/><stop offset="1" stop-color="#FF7E57"/>
+  </linearGradient></defs>'
 
-# Notification icon densities: 24dp base
-# mdpi=1x, hdpi=1.5x, xhdpi=2x, xxhdpi=3x, xxxhdpi=4x
-declare -A NOTIF_SIZES=(
-    ["mdpi"]=24
-    ["hdpi"]=36
-    ["xhdpi"]=48
-    ["xxhdpi"]=72
-    ["xxxhdpi"]=96
-)
+emit_svg 'url(#g)' 'url(#g)' "$BRAND_DEFS" > "$TEMP_DIR/brand.svg"
+emit_svg '#ffffff' '#ffffff' > "$TEMP_DIR/white.svg"
 
-for density in "${!NOTIF_SIZES[@]}"; do
-    size=${NOTIF_SIZES[$density]}
-    output_dir="$ANDROID_RES/drawable-$density"
-    mkdir -p "$output_dir"
-    generate_white_icon "$size" "$output_dir/ic_stat_notification.png"
+echo "Generating Android raster icons from $SVG_SOURCE"
+
+echo "  legacy launcher (mipmap-*/ic_launcher.png)"
+for pair in mdpi:48 hdpi:72 xhdpi:96 xxhdpi:144 xxxhdpi:192; do
+  density="${pair%%:*}"; size="${pair##*:}"
+  mkdir -p "$ANDROID_RES/mipmap-$density"
+  rsvg-convert -w "$size" -h "$size" "$TEMP_DIR/brand.svg" \
+    -o "$ANDROID_RES/mipmap-$density/ic_launcher.png"
 done
 
-# Generate Monochrome Launcher Icons (108dp base)
-echo ""
-echo "🚀 Generating monochrome launcher icons (ic_launcher_monochrome.png)..."
-
-# Monochrome launcher icon densities: 108dp base
-# mdpi=1x, hdpi=1.5x, xhdpi=2x, xxhdpi=3x, xxxhdpi=4x
-declare -A MONO_SIZES=(
-    ["mdpi"]=108
-    ["hdpi"]=162
-    ["xhdpi"]=216
-    ["xxhdpi"]=324
-    ["xxxhdpi"]=432
-)
-
-for density in "${!MONO_SIZES[@]}"; do
-    size=${MONO_SIZES[$density]}
-    output_dir="$ANDROID_RES/mipmap-$density"
-    mkdir -p "$output_dir"
-    generate_white_icon "$size" "$output_dir/ic_launcher_monochrome.png"
+echo "  notification (drawable-*/ic_stat_notification.png)"
+for pair in mdpi:24 hdpi:36 xhdpi:48 xxhdpi:72 xxxhdpi:96; do
+  density="${pair%%:*}"; size="${pair##*:}"
+  mkdir -p "$ANDROID_RES/drawable-$density"
+  rsvg-convert -w "$size" -h "$size" "$TEMP_DIR/white.svg" \
+    -o "$ANDROID_RES/drawable-$density/ic_stat_notification.png"
 done
 
-# Clean up
-rm -rf "$TEMP_DIR"
+echo "  TV banner (drawable-*/tv_banner.png)"
+# 16:9 with the mark centred, on the same dark gradient the banner used before.
+cat > "$TEMP_DIR/banner.svg" <<SVG
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191919"/><stop offset="1" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#AB543A"/><stop offset="1" stop-color="#FF7E57"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#bg)"/>
+  <g transform="translate(103.7 35.8) scale(4.7)">
+    <path fill="url(#g)" fill-rule="evenodd" clip-rule="evenodd" d="$TOWER"/>
+    <path fill="url(#g)" d="$BEAMS"/>
+  </g>
+</svg>
+SVG
+for pair in xhdpi:320x180 xxhdpi:480x270 xxxhdpi:640x360; do
+  density="${pair%%:*}"; dims="${pair##*:}"
+  mkdir -p "$ANDROID_RES/drawable-$density"
+  rsvg-convert -w "${dims%%x*}" -h "${dims##*x}" "$TEMP_DIR/banner.svg" \
+    -o "$ANDROID_RES/drawable-$density/tv_banner.png"
+done
 
-echo ""
-echo "✅ All icons generated successfully!"
-echo ""
-echo "Icon locations:"
-echo "  • Notification icons: $ANDROID_RES/drawable-*/ic_stat_notification.png"
-echo "  • Monochrome icons: $ANDROID_RES/mipmap-*/ic_launcher_monochrome.png"
-echo ""
-echo "To apply changes, rebuild the app: flutter clean && flutter build apk"
+echo "Done. Rebuild to apply: flutter clean && flutter build apk"

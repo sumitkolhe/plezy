@@ -10,6 +10,7 @@ import '../navigation/profile_session_screen.dart';
 import '../utils/navigation_transitions.dart';
 import '../widgets/backend_badge.dart';
 import 'settings/add_jellyfin_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key, this.initialErrorMessage, this.databaseRecoveryRequired = false});
@@ -110,7 +111,7 @@ class _AuthScreenState extends State<AuthScreen> {
       mainAxisAlignment: .center,
       crossAxisAlignment: .center,
       children: [
-        Image.asset('assets/plezy.png', width: 120, height: 120),
+        SvgPicture.asset('assets/harbor.svg', width: 120, height: 120),
         const SizedBox(height: 24),
         Text(
           t.app.title,

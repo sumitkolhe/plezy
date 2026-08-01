@@ -8,6 +8,7 @@ import '../../widgets/settings_section.dart';
 import '../../i18n/strings.g.dart';
 import '../../theme/mono_tokens.dart';
 import 'licenses_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -34,7 +35,7 @@ class AboutScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 24),
-                        Image.asset('assets/plezy.png', width: 80, height: 80),
+                        SvgPicture.asset('assets/harbor.svg', width: 80, height: 80),
                         const SizedBox(height: 16),
                         Text(appName, style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: .bold)),
                         const SizedBox(height: 8),

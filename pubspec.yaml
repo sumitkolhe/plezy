@@ -108,8 +108,7 @@ sentry:
 flutter:
   uses-material-design: true
   assets:
-    - assets/plezy.png
-    - assets/plezy_adaptive_foreground.svg
+    - assets/harbor.svg
     - assets/jellyfin_icon.svg
     - assets/trakt_circlemark.svg
     - assets/mal_mark.svg
