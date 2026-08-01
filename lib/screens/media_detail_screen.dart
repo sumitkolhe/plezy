@@ -119,6 +119,15 @@ const String _tvDetailActorPersonIdRawKey = 'tvDetailActorPersonId';
 
 enum _SyncRuleAction { edit, remove, delete }
 
+/// Genres the hero shows. Its layout reserves one row and clips the rest.
+const int _maxGenreChips = 3;
+
+/// How a metadata pill presents what it carries.
+///
+/// [solid] is a plain fact, [technical] a machine-reported capability,
+/// [certificate] a classification mark, [outline] recedes to context.
+enum _ChipStyle { solid, technical, certificate, outline }
+
 /// A watchlist-capable catalog source paired with this item's ids in that
 /// source's terms (see `_resolveWatchlistIds`).
 typedef WatchlistCandidate = ({CatalogSource source, CatalogItemIds ids});
@@ -929,19 +938,21 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Build action buttons row (play, shuffle, download, mark watched)
   /// Build a metadata chip with optional leading icon or widget
-  /// [filled] separates the two pill rows: facts about this file read as
-  /// solid, genres as outlines. Same geometry either way — the hero reserves
-  /// its rows by a fixed height.
-  Widget _buildMetadataChip(String text, {IconData? icon, Widget? leading, bool filled = true}) {
+  Widget _buildMetadataChip(String text, {IconData? icon, Widget? leading, _ChipStyle style = _ChipStyle.solid}) {
     final colorScheme = Theme.of(context).colorScheme;
     final isTv = PlatformDetector.isTV();
     final tokensRef = tokens(context);
+    final solid = style == _ChipStyle.solid || style == _ChipStyle.technical;
     final textWidget = Text(
       text,
       style: TextStyle(
-        color: filled ? colorScheme.onSecondaryContainer : tokensRef.textMuted,
+        color: solid ? colorScheme.onSecondaryContainer : tokensRef.textMuted,
         fontSize: isTv ? 16 : 13,
         fontWeight: .w600,
+        // The technical set reads as machine-reported capability rather than
+        // description, which is what the mono face is for.
+        fontFamily: style == _ChipStyle.technical ? MonoFonts.mono : null,
+        letterSpacing: style == _ChipStyle.certificate ? 0.5 : null,
       ),
     );
 
@@ -950,9 +961,13 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     return Container(
       padding: .symmetric(horizontal: isTv ? 14 : 12, vertical: isTv ? 8 : 6),
       decoration: BoxDecoration(
-        color: filled ? colorScheme.secondaryContainer.withValues(alpha: 0.8) : null,
-        border: filled ? null : Border.all(color: tokensRef.outline),
-        borderRadius: const BorderRadius.all(Radius.circular(100)),
+        color: solid ? colorScheme.secondaryContainer.withValues(alpha: 0.8) : null,
+        border: solid ? null : Border.all(color: tokensRef.outline),
+        // Certificates are squared marks in the wild; the pill radius is the
+        // one place a non-pill shape reads as more correct, not less.
+        borderRadius: style == _ChipStyle.certificate
+            ? BorderRadius.all(Radius.circular(tokensRef.radiusXs))
+            : const BorderRadius.all(Radius.circular(100)),
       ),
       child: hasLeading
           ? Row(
@@ -4254,17 +4269,25 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         const desiredLogoHeight = 120.0;
         const desiredLogoWidth = 400.0;
         const actionHeight = 48.0;
+        // Ordered by what should survive: the hero reserves a fixed height and
+        // clips, so whatever trails here is what a short hero drops. Year and
+        // runtime go last — the card that got you here already showed them.
         final chips = <Widget>[
-          if (metadata.year != null) _buildMetadataChip('${metadata.year}'),
-          if (metadata case PlexMediaItem(:final editionTitle?)) _buildMetadataChip(editionTitle),
-          if (metadata.contentRating != null) _buildMetadataChip(formatContentRating(metadata.contentRating!)),
-          if (metadata.durationMs != null) _buildMetadataChip(formatDurationTextual(metadata.durationMs!)),
-          for (final label in buildMediaQualityLabels(metadata)) _buildMetadataChip(label),
           ..._buildRatingChips(metadata),
+          if (metadata.contentRating != null)
+            _buildMetadataChip(formatContentRating(metadata.contentRating!), style: _ChipStyle.certificate),
+          for (final label in buildMediaQualityLabels(metadata)) _buildMetadataChip(label, style: _ChipStyle.technical),
+          if (metadata.year != null) _buildMetadataChip('${metadata.year}', style: _ChipStyle.outline),
+          if (metadata.durationMs != null)
+            _buildMetadataChip(formatDurationTextual(metadata.durationMs!), style: _ChipStyle.outline),
         ];
         // Genres render on their own line below the metadata chips.
+        // genreRowHeight reserves a single row and the hero clips, so anything
+        // past what fits was being dropped without a trace. Three is what a
+        // phone row holds, and the ones beyond it carry little.
         final genreChips = [
-          for (final genre in metadata.genres ?? const <String>[]) _buildMetadataChip(genre, filled: false),
+          for (final genre in (metadata.genres ?? const <String>[]).take(_maxGenreChips))
+            _buildMetadataChip(genre, style: _ChipStyle.outline),
         ];
 
         final showActions = availableHeight >= actionHeight;
