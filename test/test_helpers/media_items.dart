@@ -4,10 +4,10 @@ import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_role.dart';
 import 'package:plezy/media/media_version.dart';
 
-/// Canonical backend-neutral [MediaItem] fixture.
+/// Canonical [MediaItem] fixture.
 ///
 /// Tests should override only fields relevant to the behavior under test. The
-/// defaults deliberately form a valid Plex movie without inventing hierarchy,
+/// defaults deliberately form a valid movie without inventing hierarchy,
 /// watch-state, or library metadata that could influence derived getters.
 MediaItem testMediaItem({
   String id = 'item-1',
