@@ -1808,6 +1808,9 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   static const double _gridTopPadding = 6.0;
   static const double _gridTopPaddingPhone = 0.0;
 
+  /// Matches HubSection's rail inset so grid and rail cards line up.
+  static const double _gridHorizontalPadding = 12.0;
+
   /// Width of the alpha jump bar widget
   static const double _alphaJumpBarWidth = 20.0;
 
@@ -1873,7 +1876,8 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final isPhone = _isPhone(context);
     final topPadding = isPhone ? _gridTopPaddingPhone : _gridTopPadding;
     _effectiveTopPadding = topPadding;
-    final rightPadding = _shouldShowAlphaJumpBar && !isPhone ? _alphaJumpBarWidth : 8.0;
+    final hasAlphaBarReservation = _shouldShowAlphaJumpBar && !isPhone;
+    final rightPadding = hasAlphaBarReservation ? _alphaJumpBarWidth : _gridHorizontalPadding;
 
     final useWideRatio = orientation == CardOrientation.landscape;
     // Music groupings are homogeneous, so the whole grid shares the square
@@ -1892,17 +1896,16 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       _setListScrollMetrics(density: libraryDensity, usesWideAspectRatio: useWideRatio, shape: browseShape);
     }
 
-    final hasAlphaBarReservation = rightPadding > 8.0;
     return MediaCardSliverLayout(
       viewMode: viewMode,
       itemCount: itemCount,
       density: libraryDensity,
-      padding: EdgeInsets.fromLTRB(8, topPadding, rightPadding, 8),
+      padding: EdgeInsets.fromLTRB(_gridHorizontalPadding, topPadding, rightPadding, 8),
       useWideAspectRatio: useWideRatio,
       shape: browseShape,
       fullBleedImage: useFullCardLayout,
       crossAxisExtentForColumnCount: hasAlphaBarReservation
-          ? (crossAxisExtent) => crossAxisExtent + (rightPadding - 8.0)
+          ? (crossAxisExtent) => crossAxisExtent + (rightPadding - _gridHorizontalPadding)
           : null,
       onGridGeometry: (geometry) {
         _scrollMetrics = LibraryAlphaScrollMetrics(

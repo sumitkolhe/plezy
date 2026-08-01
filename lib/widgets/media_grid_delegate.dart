@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../media/media_item.dart' show CardShape;
 import '../utils/grid_size_calculator.dart';
 import '../utils/layout_constants.dart';
+import '../utils/platform_detector.dart';
+import 'media_card_grid_layout.dart';
 
 /// Shared grid delegate configuration for media item grids
 /// Maintains consistent aspect ratio and spacing across all media grids.
@@ -101,6 +103,32 @@ class MediaGridDelegate {
       CardShape.poster => GridLayoutConstants.posterAspectRatio,
     };
   }
+
+  /// Cell ratio for a captioned card of [itemWidth], matching what a rail of
+  /// the same width reserves.
+  ///
+  /// The constants above are a single ratio for every cell width, so they only
+  /// hold where the caption is small relative to the poster. On a phone they
+  /// leave the cell tens of pixels shorter than the card needs, and the poster
+  /// — an `Expanded` — silently absorbs the shortfall by cropping. Summing the
+  /// poster and caption the way `HubSection` does keeps a grid cell and a rail
+  /// card the same silhouette at any width.
+  static double captionedAspectRatioFor({
+    required double itemWidth,
+    required bool isTv,
+    bool useWideAspectRatio = false,
+    CardShape? shape,
+  }) {
+    final layout = MediaCardGridLayout.of(isTv: isTv);
+    final posterWidth = layout.posterWidth(itemWidth);
+    if (posterWidth <= 0) return aspectRatioFor(useWideAspectRatio: useWideAspectRatio, shape: shape);
+    final posterHeight = switch (_resolveShape(shape, useWideAspectRatio)) {
+      CardShape.wide => posterWidth * 9 / 16,
+      CardShape.square => posterWidth,
+      CardShape.poster => posterWidth * 1.5,
+    };
+    return itemWidth / (posterHeight + layout.captionHeight);
+  }
 }
 
 /// The grid layout a media grid will render for a given cross-axis extent:
@@ -145,11 +173,6 @@ class MediaGridGeometry {
     CardShape? shape,
   }) {
     final spacing = MediaGridDelegate.spacingFor(context: context, fullBleedImage: fullBleedImage);
-    final aspectRatio = MediaGridDelegate.aspectRatioFor(
-      useWideAspectRatio: useWideAspectRatio,
-      fullBleedImage: fullBleedImage,
-      shape: shape,
-    );
     final maxCrossAxisExtent = MediaGridDelegate._maxCrossAxisExtentFor(
       context: context,
       density: density,
@@ -169,6 +192,15 @@ class MediaGridGeometry {
       columnCount,
       crossAxisSpacing: spacing,
     );
+    // Full-bleed cards hide their caption, so the image ratio is the cell ratio.
+    final aspectRatio = fullBleedImage
+        ? MediaGridDelegate.aspectRatioFor(useWideAspectRatio: useWideAspectRatio, fullBleedImage: true, shape: shape)
+        : MediaGridDelegate.captionedAspectRatioFor(
+            itemWidth: itemWidth,
+            isTv: PlatformDetector.isTV(),
+            useWideAspectRatio: useWideAspectRatio,
+            shape: shape,
+          );
 
     return MediaGridGeometry._(
       columnCount: columnCount,

@@ -414,8 +414,15 @@ class _HubDetailScreenState extends State<HubDetailScreen>
   }
 
   void _scheduleNextHubPageCheck() {
+    // Two frames, not one: on the frame a merged page is applied the scroll
+    // metrics still describe the shorter pre-merge layout, so a single
+    // post-frame check reads an extent that is about to grow and pulls the
+    // next page nobody scrolled to.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _maybeLoadNextHubPage();
+      if (!mounted) return;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _maybeLoadNextHubPage();
+      });
     });
   }
 
@@ -427,6 +434,7 @@ class _HubDetailScreenState extends State<HubDetailScreen>
         !scrollController.hasClients) {
       return;
     }
+
     final position = scrollController.position;
     if (position.extentAfter <= position.viewportDimension) {
       _requestNextHubPage();
