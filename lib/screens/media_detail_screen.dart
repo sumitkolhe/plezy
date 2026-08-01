@@ -929,12 +929,20 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Build action buttons row (play, shuffle, download, mark watched)
   /// Build a metadata chip with optional leading icon or widget
-  Widget _buildMetadataChip(String text, {IconData? icon, Widget? leading}) {
+  /// [filled] separates the two pill rows: facts about this file read as
+  /// solid, genres as outlines. Same geometry either way — the hero reserves
+  /// its rows by a fixed height.
+  Widget _buildMetadataChip(String text, {IconData? icon, Widget? leading, bool filled = true}) {
     final colorScheme = Theme.of(context).colorScheme;
     final isTv = PlatformDetector.isTV();
+    final tokensRef = tokens(context);
     final textWidget = Text(
       text,
-      style: TextStyle(color: colorScheme.onSecondaryContainer, fontSize: isTv ? 16 : 13, fontWeight: .w600),
+      style: TextStyle(
+        color: filled ? colorScheme.onSecondaryContainer : tokensRef.textMuted,
+        fontSize: isTv ? 16 : 13,
+        fontWeight: .w600,
+      ),
     );
 
     final hasLeading = leading != null || icon != null;
@@ -942,7 +950,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     return Container(
       padding: .symmetric(horizontal: isTv ? 14 : 12, vertical: isTv ? 8 : 6),
       decoration: BoxDecoration(
-        color: colorScheme.secondaryContainer.withValues(alpha: 0.8),
+        color: filled ? colorScheme.secondaryContainer.withValues(alpha: 0.8) : null,
+        border: filled ? null : Border.all(color: tokensRef.outline),
         borderRadius: const BorderRadius.all(Radius.circular(100)),
       ),
       child: hasLeading
@@ -3023,7 +3032,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     // Matches HubSection's rail header so the app has one heading scale.
     final sectionTitleStyle = theme.textTheme.titleLarge?.copyWith(
       fontWeight: .w700,
-      fontSize: isTv ? 28 : 15,
+      fontSize: isTv ? 28 : HubLayoutConstants.sectionHeadingSize,
       letterSpacing: isTv ? null : -0.2,
     );
 
@@ -3142,6 +3151,22 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
+                              // Director and studio are top-of-page facts, so on touch they
+                              // follow the synopsis. TV keeps them in the trailing block below,
+                              // which its d-pad chain treats as the terminal section.
+                              if (!isTv && _hasInfoRows) ...[
+                                if (metadata.directors?.isNotEmpty == true)
+                                  _buildInfoRow(
+                                    metadata.directors!.length > 1 ? t.discover.directors : t.discover.director,
+                                    metadata.directors!.join(', '),
+                                  ),
+                                if (metadata.studio != null) ...[
+                                  if (metadata.directors?.isNotEmpty == true) const SizedBox(height: 12),
+                                  _buildInfoRow(t.discover.studio, metadata.studio!),
+                                ],
+                                const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
+                              ],
+
                               // Seasons / Episodes (for TV shows and seasons)
                               if (isShow && !_showEpisodesDirectly) ...[
                                 // Season tabs + inline episodes
@@ -3219,7 +3244,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
                               // Additional info — wrapped in Focus so DPAD DOWN from the
                               // last focusable section lands here and scrolls it into view.
-                              if (_hasInfoRows)
+                              if (isTv && _hasInfoRows)
                                 Focus(
                                   focusNode: _infoRowsFocusNode,
                                   onKeyEvent: _handleInfoRowsKeyEvent,
@@ -4238,7 +4263,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
           ..._buildRatingChips(metadata),
         ];
         // Genres render on their own line below the metadata chips.
-        final genreChips = [for (final genre in metadata.genres ?? const <String>[]) _buildMetadataChip(genre)];
+        final genreChips = [
+          for (final genre in metadata.genres ?? const <String>[]) _buildMetadataChip(genre, filled: false),
+        ];
 
         final showActions = availableHeight >= actionHeight;
         final remainingAfterActions = availableHeight - (showActions ? actionHeight : 0);

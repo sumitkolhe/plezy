@@ -417,8 +417,8 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
     final isTv = PlatformDetector.isTV();
     final leadingPadding = _leadingPaddingFor(isTv);
     final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-      fontSize: isTv ? 26 : 15,
-      fontWeight: isTv ? FontWeight.w700 : FontWeight.w700,
+      fontSize: isTv ? HubLayoutConstants.tvSectionHeadingSize : HubLayoutConstants.sectionHeadingSize,
+      fontWeight: FontWeight.w700,
       letterSpacing: isTv ? null : -0.2,
     );
 

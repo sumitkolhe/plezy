@@ -64,6 +64,11 @@ class HubLayoutConstants {
   static const double shelfVerticalGap = 20;
   static const double headerGap = 6;
 
+  /// Section heading size, shared by rail headers and the detail page so the
+  /// app reads at one heading scale.
+  static const double sectionHeadingSize = 18;
+  static const double tvSectionHeadingSize = 26;
+
   /// Between the hero's page indicator and the first rail header.
   static const double heroToRailGap = 16;
 }
