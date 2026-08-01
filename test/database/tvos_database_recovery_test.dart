@@ -1038,15 +1038,6 @@ void main() {
     await profiles.upsert(_profile('p1'));
     await profiles.upsert(_profile('p2'));
     await profiles.markUsed('p1', DateTime.fromMillisecondsSinceEpoch(9100));
-    await profiles.upsert(
-      Profile.plexHome(
-        id: 'legacy-home',
-        displayName: 'Legacy',
-        parentConnectionId: 'c1',
-        createdAt: DateTime.fromMillisecondsSinceEpoch(1),
-      ),
-    );
-    await profiles.dropAllPlexHomeRows();
     await joins.upsert(
       const ProfileConnection(profileId: 'p1', connectionId: 'c1', userToken: 'token-1', userIdentifier: 'u1'),
     );

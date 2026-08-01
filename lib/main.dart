@@ -1456,26 +1456,16 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
     if (mounted) {
       setState(() {
-        for (final conn in allConnections) {
-          if (conn is PlexAccountConnection) {
-            for (final s in conn.servers) {
-              _serverStatus[s.clientIdentifier] = (s.name, null);
-            }
-          } else if (conn is JellyfinConnection) {
-            _serverStatus[conn.serverMachineId] = (conn.serverName, null);
-          }
+        for (final conn in allConnections.whereType<JellyfinConnection>()) {
+          _serverStatus[conn.serverMachineId] = (conn.serverName, null);
         }
       });
     }
 
-    final plexCount = allConnections.whereType<PlexAccountConnection>().fold<int>(0, (n, c) => n + c.servers.length);
     final jellyfinCount = allConnections.whereType<JellyfinConnection>().length;
     unawaited(
       Sentry.addBreadcrumb(
-        Breadcrumb(
-          message: 'Handing off to MainScreen with $plexCount Plex server(s) + $jellyfinCount Jellyfin',
-          category: 'setup',
-        ),
+        Breadcrumb(message: 'Handing off to MainScreen with $jellyfinCount Jellyfin server(s)', category: 'setup'),
       ),
     );
     _setStatus(t.common.connectingToServers);

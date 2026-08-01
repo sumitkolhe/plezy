@@ -819,11 +819,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String get active => 'Faol';
 	@override String get manage => 'Boshqarish';
 	@override String get delete => 'Oʻchirish';
-	@override String get signOut => 'Chiqish';
-	@override String get signOutPlexTitle => 'Plex-dan chiqilsinmi?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} va barcha Plex Home foydalanuvchilari oʻchiriladi.';
-	@override String get signedOutPlex => 'Plex-dan chiqdingiz.';
-	@override String get signOutFailed => 'Chiqish amalga oshmadi.';
 	@override String get sectionTitle => 'Profillar';
 	@override String get summarySingle => 'Boshqariladigan foydalanuvchilarni birlashtirish uchun profillar qoʻshing';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profil · faol: ${activeName}';
@@ -846,7 +841,6 @@ class _Translations$profiles$uz extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Ulanishlar yoʻq — ushbu profildan foydalanish uchun ulanish qoʻshing.';
 	@override String get noConnections => 'Ulanishlar yoʻq';
 	@override String get connectionDefault => 'Standart';
-	@override String connectionAs({required Object displayName}) => '${displayName} sifatida';
 	@override String get makeDefault => 'Standart qilish';
 	@override String get removeConnection => 'Oʻchirish';
 	@override String get profileRenamed => 'Profil nomi oʻzgartirildi.';
@@ -2382,11 +2376,6 @@ extension on TranslationsUz {
 			'profiles.active' => 'Faol',
 			'profiles.manage' => 'Boshqarish',
 			'profiles.delete' => 'Oʻchirish',
-			'profiles.signOut' => 'Chiqish',
-			'profiles.signOutPlexTitle' => 'Plex-dan chiqilsinmi?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} va barcha Plex Home foydalanuvchilari oʻchiriladi.',
-			'profiles.signedOutPlex' => 'Plex-dan chiqdingiz.',
-			'profiles.signOutFailed' => 'Chiqish amalga oshmadi.',
 			'profiles.sectionTitle' => 'Profillar',
 			'profiles.summarySingle' => 'Boshqariladigan foydalanuvchilarni birlashtirish uchun profillar qoʻshing',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profil · faol: ${activeName}',
@@ -2409,7 +2398,6 @@ extension on TranslationsUz {
 			'profiles.noConnectionsHint' => 'Ulanishlar yoʻq — ushbu profildan foydalanish uchun ulanish qoʻshing.',
 			'profiles.noConnections' => 'Ulanishlar yoʻq',
 			'profiles.connectionDefault' => 'Standart',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} sifatida',
 			'profiles.makeDefault' => 'Standart qilish',
 			'profiles.removeConnection' => 'Oʻchirish',
 			'profiles.profileRenamed' => 'Profil nomi oʻzgartirildi.',
@@ -2822,14 +2810,14 @@ extension on TranslationsUz {
 			'performanceOverlay.speed' => 'Tezlik',
 			'performanceOverlay.player' => 'Pleyer',
 			'performanceOverlay.memory' => 'Xotira',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Interfeys (UI) FPS',
 			'externalPlayer.title' => 'Tashqi pleyer',
 			'externalPlayer.useExternalPlayer' => 'Tashqi pleyerdan foydalanish',
 			'externalPlayer.useExternalPlayerDescription' => 'Videolarni boshqa ilovada ochish',
 			'externalPlayer.selectPlayer' => 'Pleyerni tanlash',
 			'externalPlayer.customPlayers' => 'Maxsus pleyerlar',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Tizim standarti',
 			'externalPlayer.addCustomPlayer' => 'Maxsus pleyer qoʻshish',
 			'externalPlayer.playerName' => 'Pleyer nomi',

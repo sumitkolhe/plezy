@@ -814,11 +814,6 @@ class Translations$profiles$zh extends Translations$profiles$en {
 	@override String get active => '当前使用';
 	@override String get manage => '管理';
 	@override String get delete => '删除';
-	@override String get signOut => '退出登录';
-	@override String get signOutPlexTitle => '退出 Plex 登录？';
-	@override String signOutPlexMessage({required Object displayName}) => '要移除 ${displayName} 和所有 Plex Home 用户吗？可随时重新登录。';
-	@override String get signedOutPlex => '已退出 Plex 登录。';
-	@override String get signOutFailed => '退出登录失败。';
 	@override String get sectionTitle => '用户资料';
 	@override String get summarySingle => '添加用户资料，以便同时使用受管理用户和本地用户身份';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} 个用户资料 · 当前：${activeName}';
@@ -841,7 +836,6 @@ class Translations$profiles$zh extends Translations$profiles$en {
 	@override String get noConnectionsHint => '没有连接 — 请添加连接以使用此用户资料。';
 	@override String get noConnections => '没有连接';
 	@override String get connectionDefault => '默认';
-	@override String connectionAs({required Object displayName}) => '以 ${displayName} 身份';
 	@override String get makeDefault => '设为默认';
 	@override String get removeConnection => '移除';
 	@override String get profileRenamed => '用户资料已重命名。';
@@ -2364,11 +2358,6 @@ extension on TranslationsZh {
 			'profiles.active' => '当前使用',
 			'profiles.manage' => '管理',
 			'profiles.delete' => '删除',
-			'profiles.signOut' => '退出登录',
-			'profiles.signOutPlexTitle' => '退出 Plex 登录？',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '要移除 ${displayName} 和所有 Plex Home 用户吗？可随时重新登录。',
-			'profiles.signedOutPlex' => '已退出 Plex 登录。',
-			'profiles.signOutFailed' => '退出登录失败。',
 			'profiles.sectionTitle' => '用户资料',
 			'profiles.summarySingle' => '添加用户资料，以便同时使用受管理用户和本地用户身份',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} 个用户资料 · 当前：${activeName}',
@@ -2391,7 +2380,6 @@ extension on TranslationsZh {
 			'profiles.noConnectionsHint' => '没有连接 — 请添加连接以使用此用户资料。',
 			'profiles.noConnections' => '没有连接',
 			'profiles.connectionDefault' => '默认',
-			'profiles.connectionAs' => ({required Object displayName}) => '以 ${displayName} 身份',
 			'profiles.makeDefault' => '设为默认',
 			'profiles.removeConnection' => '移除',
 			'profiles.profileRenamed' => '用户资料已重命名。',
@@ -2808,14 +2796,14 @@ extension on TranslationsZh {
 			'externalPlayer.playerName' => '播放器名称',
 			'externalPlayer.playerNameHint' => '我的播放器',
 			'externalPlayer.playerCommand' => '命令',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => '包名',
 			'externalPlayer.playerUrlScheme' => 'URL 方案',
 			'externalPlayer.off' => '关闭',
 			'externalPlayer.launchFailed' => '无法打开外部播放器',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} 未安装',
 			'externalPlayer.playInExternalPlayer' => '在外部播放器中播放',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '编辑…',
 			'metadataEdit.screenTitle' => '编辑元数据',
 			'metadataEdit.basicInfo' => '基本信息',

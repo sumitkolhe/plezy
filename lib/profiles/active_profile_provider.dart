@@ -240,11 +240,9 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
     if (reservation != null && !reservation.isCompleted) reservation.complete();
   }
 
-  /// Activate [profile]. PIN-protected local profiles must supply a matching
-  /// PIN; for Plex Home profiles the binder enforces the PIN via
-  /// `/home/users/{uuid}/switch` after activation.
+  /// Activate [profile]. PIN-protected profiles must supply a matching PIN.
   Future<bool> activate(Profile profile, {String? pin}) async {
-    if (profile.isLocal && profile.isPinProtected) {
+    if (profile.isPinProtected) {
       final hash = profile.pinHash;
       if (pin == null || hash == null || !verifyPin(pin, hash)) {
         return false;
@@ -275,15 +273,13 @@ class ActiveProfileProvider extends ChangeNotifier with DisposableChangeNotifier
       _profiles = sortProfilesByLastUsed([for (final p in _profiles) p.id == profile.id ? activated : p]);
       safeNotifyListeners();
       appLogger.i('ActiveProfileProvider: activated ${profile.displayName} (${profile.id})');
-      if (profile.isLocal) {
-        // Local rows also bump the DB's lastUsedAt so the in-DB sortable column
-        // stays accurate — the in-memory mark above keeps the picker snappy.
-        unawaited(
-          _registry.markUsed(profile.id, now).catchError((Object e, StackTrace s) {
-            appLogger.w('markUsed failed for ${profile.id}', error: e, stackTrace: s);
-          }),
-        );
-      }
+      // The DB's lastUsedAt is bumped too so the sortable column stays
+      // accurate — the in-memory mark above keeps the picker snappy.
+      unawaited(
+        _registry.markUsed(profile.id, now).catchError((Object e, StackTrace s) {
+          appLogger.w('markUsed failed for ${profile.id}', error: e, stackTrace: s);
+        }),
+      );
       return true;
     });
   }

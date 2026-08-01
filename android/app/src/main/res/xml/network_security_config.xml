@@ -17,12 +17,6 @@
          behaviour. Every hard-coded https:// host in lib/ must appear here.
          Pinned by test/android/network_security_config_test.dart. -->
     <domain-config>
-        <!-- plex.tv, clients.plex.tv, app.plex.tv, discover.provider.plex.tv,
-             epg.provider.plex.tv (lib/services/plex_auth_service.dart:53-54,167,
-             lib/services/plex_discover_client.dart:57,
-             lib/services/plex_client/parts/live_tv.dart:3).
-             Does NOT match *.plex.direct — user PMS keeps base-config. -->
-        <domain includeSubdomains="true">plex.tv</domain>
         <!-- ice.plezy.app: relay + /auth OAuth proxy + /posters
              (lib/watch_together/services/watch_together_relay_endpoint.dart:8,
              lib/services/trackers/oauth_proxy_client.dart:22,

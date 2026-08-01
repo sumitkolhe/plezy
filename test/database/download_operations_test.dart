@@ -954,14 +954,6 @@ void main() {
       expect(await db.getDownloadOwnerCount('srv:100'), 1);
       expect(await db.hasDownloadOwner('srv:100'), isTrue);
     });
-
-    test('owner counts ignore Plex Home rows whose parent connection is gone', () async {
-      const plexHomeProfileId = 'plex-home-missing-account-00000000-0000-0000-0000-000000000001';
-      await db.addDownloadOwner(profileId: plexHomeProfileId, globalKey: 'srv:100');
-
-      expect(await db.getDownloadOwnerCount('srv:100'), 0);
-      expect(await db.hasDownloadOwner('srv:100'), isFalse);
-    });
   });
 
   // ============================================================

@@ -63,23 +63,21 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
     // Keep the snapshot live: the registry row can change underneath this
     // screen (rename from another surface, PIN cleared elsewhere) and the
     // header/PIN section would otherwise show stale state until reopened.
-    if (_profile.isLocal) {
-      _profileSub = context.read<ProfileRegistry>().watchProfiles().listen((locals) {
-        Profile? updated;
-        for (final p in locals) {
-          if (p.id == _profile.id) {
-            updated = p;
-            break;
-          }
+    _profileSub = context.read<ProfileRegistry>().watchProfiles().listen((locals) {
+      Profile? updated;
+      for (final p in locals) {
+        if (p.id == _profile.id) {
+          updated = p;
+          break;
         }
-        if (updated == null || updated == _profile || !mounted) return;
-        final namePristine = _nameController.text.trim() == _profile.displayName;
-        setState(() {
-          _profile = updated!;
-          if (namePristine) _nameController.text = updated.displayName;
-        });
+      }
+      if (updated == null || updated == _profile || !mounted) return;
+      final namePristine = _nameController.text.trim() == _profile.displayName;
+      setState(() {
+        _profile = updated!;
+        if (namePristine) _nameController.text = updated.displayName;
       });
-    }
+    });
   }
 
   @override
@@ -231,18 +229,8 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
   // ids and matched to download global keys, which carry the unparsed id.
   Set<String> _serverIdsForConnection(Connection conn) {
     return switch (conn) {
-      PlexAccountConnection(:final servers) => servers.map((s) => s.clientIdentifier).toSet(),
       JellyfinConnection(:final serverMachineId) => {serverMachineId},
     };
-  }
-
-  /// Sign out of this virtual profile's parent Plex account. The profile
-  /// ceases to exist with the account, so pop the detail screen — unless
-  /// the teardown already reset the stack to AuthScreen (unmounted here).
-  Future<void> _signOutParentAccount(Connection parentConn) async {
-    final signedOut = await confirmAndSignOutPlexAccount(context, accountConnectionId: parentConn.id);
-    if (!signedOut || !mounted) return;
-    Navigator.of(context).pop(true);
   }
 
   Future<void> _deleteProfile() async {
@@ -260,7 +248,6 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isLocal = _profile.isLocal;
 
     return FocusedScrollScaffold(
       title: Text(_profile.displayName),
@@ -273,33 +260,26 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
               const SizedBox(height: 24),
               Text(t.profiles.profileNameLabel, style: theme.textTheme.labelLarge),
               const SizedBox(height: 8),
-              if (isLocal)
-                ProfileNameField(
-                  controller: _nameController,
-                  focusNode: _nameFocusNode,
-                  onChanged: () => setState(() {}),
-                  onNavigateRight: _saveNameFocusNode.requestFocus,
-                  trailing: FocusableButton(
-                    focusNode: _saveNameFocusNode,
-                    onNavigateLeft: _nameFocusNode.requestFocus,
+              ProfileNameField(
+                controller: _nameController,
+                focusNode: _nameFocusNode,
+                onChanged: () => setState(() {}),
+                onNavigateRight: _saveNameFocusNode.requestFocus,
+                trailing: FocusableButton(
+                  focusNode: _saveNameFocusNode,
+                  onNavigateLeft: _nameFocusNode.requestFocus,
+                  onPressed: _nameController.text.trim().isEmpty || _nameController.text.trim() == _profile.displayName
+                      ? null
+                      : _saveName,
+                  child: FilledButton(
                     onPressed:
                         _nameController.text.trim().isEmpty || _nameController.text.trim() == _profile.displayName
                         ? null
                         : _saveName,
-                    child: FilledButton(
-                      onPressed:
-                          _nameController.text.trim().isEmpty || _nameController.text.trim() == _profile.displayName
-                          ? null
-                          : _saveName,
-                      child: Text(t.common.save),
-                    ),
+                    child: Text(t.common.save),
                   ),
-                )
-              else
-                Text(
-                  _profile.displayName,
-                  style: theme.textTheme.bodyLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant),
                 ),
+              ),
               const SizedBox(height: 24),
               Text(t.profiles.pinProtectionLabel, style: theme.textTheme.labelLarge),
               const SizedBox(height: 8),
@@ -331,23 +311,17 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                 ],
               ),
               const SizedBox(height: 8),
-              _ConnectionsList(
-                profile: _profile,
-                onRemove: _removeConnection,
-                onEdit: _editConnection,
-                onSignOutParent: _signOutParentAccount,
-              ),
+              _ConnectionsList(profile: _profile, onRemove: _removeConnection, onEdit: _editConnection),
               const SizedBox(height: 24),
-              if (isLocal)
-                FocusableButton(
-                  focusNode: _deleteProfileFocusNode,
+              FocusableButton(
+                focusNode: _deleteProfileFocusNode,
+                onPressed: _deleteProfile,
+                child: OutlinedButton.icon(
                   onPressed: _deleteProfile,
-                  child: OutlinedButton.icon(
-                    onPressed: _deleteProfile,
-                    icon: AppIcon(Symbols.delete_outline_rounded, fill: 1, color: theme.colorScheme.error),
-                    label: Text(t.profiles.deleteProfileButton, style: TextStyle(color: theme.colorScheme.error)),
-                  ),
+                  icon: AppIcon(Symbols.delete_outline_rounded, fill: 1, color: theme.colorScheme.error),
+                  label: Text(t.profiles.deleteProfileButton, style: TextStyle(color: theme.colorScheme.error)),
                 ),
+              ),
             ]),
           ),
         ),
@@ -360,14 +334,8 @@ class _ConnectionsList extends StatefulWidget {
   final Profile profile;
   final Future<void> Function(ProfileConnection pc, Connection conn) onRemove;
   final Future<void> Function(Connection conn) onEdit;
-  final Future<void> Function(Connection conn) onSignOutParent;
 
-  const _ConnectionsList({
-    required this.profile,
-    required this.onRemove,
-    required this.onEdit,
-    required this.onSignOutParent,
-  });
+  const _ConnectionsList({required this.profile, required this.onRemove, required this.onEdit});
 
   @override
   State<_ConnectionsList> createState() => _ConnectionsListState();

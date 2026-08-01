@@ -814,11 +814,6 @@ class _Translations$profiles$ja extends Translations$profiles$en {
 	@override String get active => 'アクティブ';
 	@override String get manage => '管理';
 	@override String get delete => '削除';
-	@override String get signOut => 'サインアウト';
-	@override String get signOutPlexTitle => 'Plexからサインアウトしますか？';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName}とすべてのPlex Homeユーザーを削除しますか？いつでも再度サインインできます。';
-	@override String get signedOutPlex => 'Plexからサインアウトしました。';
-	@override String get signOutFailed => 'サインアウトに失敗しました。';
 	@override String get sectionTitle => 'プロフィール';
 	@override String get summarySingle => 'プロフィールを追加すると、管理対象ユーザーとローカルユーザーを併用できます';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count}個のプロフィール · 使用中: ${activeName}';
@@ -841,7 +836,6 @@ class _Translations$profiles$ja extends Translations$profiles$en {
 	@override String get noConnectionsHint => '接続がありません — このプロフィールを使うには接続を追加してください。';
 	@override String get noConnections => '接続がありません';
 	@override String get connectionDefault => 'デフォルト';
-	@override String connectionAs({required Object displayName}) => '${displayName}として';
 	@override String get makeDefault => 'デフォルトに設定';
 	@override String get removeConnection => '削除';
 	@override String get profileRenamed => 'プロフィール名を変更しました。';
@@ -2364,11 +2358,6 @@ extension on TranslationsJa {
 			'profiles.active' => 'アクティブ',
 			'profiles.manage' => '管理',
 			'profiles.delete' => '削除',
-			'profiles.signOut' => 'サインアウト',
-			'profiles.signOutPlexTitle' => 'Plexからサインアウトしますか？',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName}とすべてのPlex Homeユーザーを削除しますか？いつでも再度サインインできます。',
-			'profiles.signedOutPlex' => 'Plexからサインアウトしました。',
-			'profiles.signOutFailed' => 'サインアウトに失敗しました。',
 			'profiles.sectionTitle' => 'プロフィール',
 			'profiles.summarySingle' => 'プロフィールを追加すると、管理対象ユーザーとローカルユーザーを併用できます',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count}個のプロフィール · 使用中: ${activeName}',
@@ -2391,7 +2380,6 @@ extension on TranslationsJa {
 			'profiles.noConnectionsHint' => '接続がありません — このプロフィールを使うには接続を追加してください。',
 			'profiles.noConnections' => '接続がありません',
 			'profiles.connectionDefault' => 'デフォルト',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName}として',
 			'profiles.makeDefault' => 'デフォルトに設定',
 			'profiles.removeConnection' => '削除',
 			'profiles.profileRenamed' => 'プロフィール名を変更しました。',
@@ -2808,14 +2796,14 @@ extension on TranslationsJa {
 			'externalPlayer.playerName' => 'プレーヤー名',
 			'externalPlayer.playerNameHint' => 'マイプレーヤー',
 			'externalPlayer.playerCommand' => 'コマンド',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'パッケージ名',
 			'externalPlayer.playerUrlScheme' => 'URLスキーム',
 			'externalPlayer.off' => 'オフ',
 			'externalPlayer.launchFailed' => '外部プレーヤーの起動に失敗しました',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name}がインストールされていません',
 			'externalPlayer.playInExternalPlayer' => '外部プレーヤーで再生',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '編集…',
 			'metadataEdit.screenTitle' => 'メタデータを編集',
 			'metadataEdit.basicInfo' => '基本情報',

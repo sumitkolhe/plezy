@@ -67,14 +67,6 @@ class ProfileRegistry {
     });
   }
 
-  /// One-shot cleanup: drop any `kind='plex_home'` rows left over from the
-  /// pre-refactor data model. Plex Home users are no longer persisted.
-  Future<int> dropAllPlexHomeRows() async {
-    return _db.runIdentityMutation(
-      () => (_db.delete(_db.profiles)..where((t) => t.kind.equals(ProfileKind.plexHome.id))).go(),
-    );
-  }
-
   Future<void> clear() async {
     await _db.runIdentityMutation(() async {
       await _db.delete(_db.profiles).go();

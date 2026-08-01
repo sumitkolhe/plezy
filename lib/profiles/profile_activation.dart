@@ -191,9 +191,7 @@ Future<bool> switchProfileFromUi(BuildContext context, Profile profile) async {
 /// Verify [pin] against [profile]'s stored PIN hash *without* activating it.
 /// Used by the borrow flow: we need to confirm the user knows the source
 /// profile's PIN before letting them copy a connection out of it.
-///
 bool verifyProfilePin(Profile profile, String pin) {
-  if (!profile.isLocal) return false;
   final hash = profile.pinHash;
   if (hash == null || hash.isEmpty) return true;
   return verifyPin(pin, hash);

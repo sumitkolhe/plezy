@@ -819,11 +819,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String get active => 'Aktif';
 	@override String get manage => 'Yönet';
 	@override String get delete => 'Sil';
-	@override String get signOut => 'Çıkış Yap';
-	@override String get signOutPlexTitle => 'Plex\'ten çıkış yapılsın mı?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} ve tüm Plex Ev kullanıcıları kaldırılsın mı? İstediğiniz zaman tekrar giriş yapabilirsiniz.';
-	@override String get signedOutPlex => 'Plex\'ten çıkış yapıldı.';
-	@override String get signOutFailed => 'Çıkış yapılamadı.';
 	@override String get sectionTitle => 'Profiller';
 	@override String get summarySingle => 'Yönetilen kullanıcıları ve yerel kimlikleri karıştırmak için profiller ekleyin';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profil · aktif: ${activeName}';
@@ -846,7 +841,6 @@ class _Translations$profiles$tr extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Bağlantı yok — bu profili kullanmak için bir tane ekleyin.';
 	@override String get noConnections => 'Bağlantı yok';
 	@override String get connectionDefault => 'Varsayılan';
-	@override String connectionAs({required Object displayName}) => '${displayName} olarak';
 	@override String get makeDefault => 'Varsayılan yap';
 	@override String get removeConnection => 'Kaldır';
 	@override String get profileRenamed => 'Profil yeniden adlandırıldı.';
@@ -2382,11 +2376,6 @@ extension on TranslationsTr {
 			'profiles.active' => 'Aktif',
 			'profiles.manage' => 'Yönet',
 			'profiles.delete' => 'Sil',
-			'profiles.signOut' => 'Çıkış Yap',
-			'profiles.signOutPlexTitle' => 'Plex\'ten çıkış yapılsın mı?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} ve tüm Plex Ev kullanıcıları kaldırılsın mı? İstediğiniz zaman tekrar giriş yapabilirsiniz.',
-			'profiles.signedOutPlex' => 'Plex\'ten çıkış yapıldı.',
-			'profiles.signOutFailed' => 'Çıkış yapılamadı.',
 			'profiles.sectionTitle' => 'Profiller',
 			'profiles.summarySingle' => 'Yönetilen kullanıcıları ve yerel kimlikleri karıştırmak için profiller ekleyin',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profil · aktif: ${activeName}',
@@ -2409,7 +2398,6 @@ extension on TranslationsTr {
 			'profiles.noConnectionsHint' => 'Bağlantı yok — bu profili kullanmak için bir tane ekleyin.',
 			'profiles.noConnections' => 'Bağlantı yok',
 			'profiles.connectionDefault' => 'Varsayılan',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} olarak',
 			'profiles.makeDefault' => 'Varsayılan yap',
 			'profiles.removeConnection' => 'Kaldır',
 			'profiles.profileRenamed' => 'Profil yeniden adlandırıldı.',
@@ -2822,14 +2810,14 @@ extension on TranslationsTr {
 			'performanceOverlay.speed' => 'Hız',
 			'performanceOverlay.player' => 'Oynatıcı',
 			'performanceOverlay.memory' => 'Bellek',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS',
 			'externalPlayer.title' => 'Harici Oynatıcı',
 			'externalPlayer.useExternalPlayer' => 'Harici Oynatıcı Kullan',
 			'externalPlayer.useExternalPlayerDescription' => 'Videoları başka bir uygulamada açın',
 			'externalPlayer.selectPlayer' => 'Oynatıcı Seç',
 			'externalPlayer.customPlayers' => 'Özel Oynatıcılar',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Sistem Varsayılanı',
 			'externalPlayer.addCustomPlayer' => 'Özel Oynatıcı Ekle',
 			'externalPlayer.playerName' => 'Oynatıcı Adı',

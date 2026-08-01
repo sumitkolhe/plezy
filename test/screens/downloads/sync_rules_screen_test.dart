@@ -23,34 +23,11 @@ import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/jellyfin_client.dart';
 import 'package:plezy/services/multi_server_manager.dart';
 import 'package:plezy/services/plex_api_cache.dart';
-import 'package:plezy/services/plex_auth_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../test_helpers/prefs.dart';
 import '../../test_helpers/media_items.dart';
 import '../../test_helpers/multi_server_fixtures.dart';
-
-PlexConnection _plexConnection() {
-  return PlexConnection(
-    protocol: 'http',
-    address: '127.0.0.1',
-    port: 32400,
-    uri: 'http://127.0.0.1:32400',
-    local: true,
-    relay: false,
-    ipv6: false,
-  );
-}
-
-PlexServer _plexServer(String id, String name) {
-  return PlexServer(
-    name: name,
-    clientIdentifier: id,
-    accessToken: 'token-$id',
-    connections: [_plexConnection()],
-    owned: true,
-  );
-}
 
 JellyfinConnection _jellyfinConnection({
   required String machineId,
@@ -165,7 +142,7 @@ void main() {
   Future<void> pumpScreen(WidgetTester tester, {bool keyboardMode = false}) async {
     downloadProvider.debugSeedState(
       metadata: {
-        'plex-srv:show-1': _show(ServerId('plex-srv'), 'show-1', 'Plex Show'),
+        'unbound-jf:show-1': _show(ServerId('unbound-jf'), 'show-1', 'Unbound Show'),
         'jf-machine:show-2': _show(ServerId('jf-machine'), 'show-2', 'Jellyfin Show'),
         'auth-jf:show-3': _show(ServerId('auth-jf'), 'show-3', 'Auth Show'),
         'unknown-srv:show-4': _show(ServerId('unknown-srv'), 'show-4', 'Unknown Show'),
@@ -208,16 +185,9 @@ void main() {
   String? primaryFocusLabel() => FocusManager.instance.primaryFocus?.debugLabel;
 
   testWidgets('shows server context and active-profile availability for device sync rules', (tester) async {
-    connections.add(
-      PlexAccountConnection(
-        id: 'plex-account',
-        accountToken: 'account-token',
-        clientIdentifier: 'client-id',
-        accountLabel: 'Plex Account',
-        servers: [_plexServer('plex-srv', 'Living Room Plex')],
-        createdAt: DateTime.fromMillisecondsSinceEpoch(0),
-      ),
-    );
+    // Known to the registry but never registered on the manager: the label
+    // resolves while availability does not.
+    connections.add(_jellyfinConnection(machineId: 'unbound-jf', userId: 'user-z', serverName: 'Living Room'));
 
     final availableJellyfin = _jellyfinConnection(
       machineId: 'jf-machine',
@@ -237,15 +207,15 @@ void main() {
     serverManager.debugMarkAuthErrorForTesting(ServerId('auth-jf'));
     multiServerProvider = testMultiServerProvider(serverManager);
 
-    await insertRule(ServerId('plex-srv'), 'show-1');
+    await insertRule(ServerId('unbound-jf'), 'show-1');
     await insertRule(ServerId('jf-machine'), 'show-2');
     await insertRule(ServerId('auth-jf'), 'show-3');
     await insertRule(ServerId('unknown-srv'), 'show-4');
 
     await pumpScreen(tester);
 
-    expect(find.text('Plex Show'), findsOneWidget);
-    expect(find.text('Server: Living Room Plex • Not available for current profile'), findsOneWidget);
+    expect(find.text('Unbound Show'), findsOneWidget);
+    expect(find.text('Server: Living Room • Not available for current profile'), findsOneWidget);
     expect(find.text('Jellyfin Show'), findsOneWidget);
     expect(find.text('Server: Shared Jellyfin • Available'), findsOneWidget);
     expect(find.text('Auth Show'), findsOneWidget);

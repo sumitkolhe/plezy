@@ -587,19 +587,6 @@ void main() {
       final svc = _service(handler: (_) => _status(401));
       expect(await svc.validate(_existingConn()), isFalse);
     });
-
-    test('returns false for non-Jellyfin connections', () async {
-      final svc = _service(handler: (_) => _ok({}));
-      // Use a Plex connection placeholder (any non-Jellyfin Connection works).
-      final notJellyfin = PlexAccountConnection(
-        id: 'plex-1',
-        accountToken: 'tok',
-        clientIdentifier: 'cid',
-        accountLabel: 'Plex',
-        createdAt: DateTime.fromMillisecondsSinceEpoch(0),
-      );
-      expect(await svc.validate(notJellyfin), isFalse);
-    });
   });
 
   group('JellyfinConnectionAuthService.refresh', () {
@@ -615,18 +602,6 @@ void main() {
       final svc = _service(handler: (_) => _status(401));
       final refreshed = await svc.refresh(_existingConn());
       expect((refreshed as JellyfinConnection).status, ConnectionStatus.authError);
-    });
-
-    test('returns the same Connection unchanged for non-Jellyfin', () async {
-      final svc = _service(handler: (_) => _ok({}));
-      final plex = PlexAccountConnection(
-        id: 'plex-1',
-        accountToken: 'tok',
-        clientIdentifier: 'cid',
-        accountLabel: 'Plex',
-        createdAt: DateTime.fromMillisecondsSinceEpoch(0),
-      );
-      expect(await svc.refresh(plex), same(plex));
     });
   });
 
@@ -651,26 +626,6 @@ void main() {
     test('does not throw when the server fails (best-effort)', () async {
       final svc = _service(handler: (_) => _status(500));
       await svc.signOut(_existingConn()); // expect: no throw
-    });
-
-    test('is a no-op for non-Jellyfin connections', () async {
-      var fired = false;
-      final svc = _service(
-        handler: (_) {
-          fired = true;
-          return _ok({});
-        },
-      );
-
-      final plex = PlexAccountConnection(
-        id: 'plex-1',
-        accountToken: 'tok',
-        clientIdentifier: 'cid',
-        accountLabel: 'Plex',
-        createdAt: DateTime.fromMillisecondsSinceEpoch(0),
-      );
-      await svc.signOut(plex);
-      expect(fired, isFalse);
     });
   });
 

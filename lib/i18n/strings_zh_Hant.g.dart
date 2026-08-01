@@ -815,11 +815,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String get active => '使用中';
 	@override String get manage => '管理';
 	@override String get delete => '刪除';
-	@override String get signOut => '登出';
-	@override String get signOutPlexTitle => '登出 Plex？';
-	@override String signOutPlexMessage({required Object displayName}) => '確定要移除 ${displayName} 與所有 Plex Home 使用者嗎？您可以隨時重新登入。';
-	@override String get signedOutPlex => '已登出 Plex。';
-	@override String get signOutFailed => '登出失敗。';
 	@override String get sectionTitle => '使用者設定檔';
 	@override String get summarySingle => '新增使用者設定檔，以同時管理託管使用者與本地身分';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} 個設定檔 · 使用中：${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$zh_Hant extends Translations$profiles$zh {
 	@override String get noConnectionsHint => '無連線 — 請新增一個連線以啟用此設定檔。';
 	@override String get noConnections => '無連線資訊';
 	@override String get connectionDefault => '預設';
-	@override String connectionAs({required Object displayName}) => '以 ${displayName} 身分';
 	@override String get makeDefault => '設為預設值';
 	@override String get removeConnection => '移除';
 	@override String get profileRenamed => '使用者設定檔已重新命名。';
@@ -2365,11 +2359,6 @@ extension on TranslationsZhHant {
 			'profiles.active' => '使用中',
 			'profiles.manage' => '管理',
 			'profiles.delete' => '刪除',
-			'profiles.signOut' => '登出',
-			'profiles.signOutPlexTitle' => '登出 Plex？',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '確定要移除 ${displayName} 與所有 Plex Home 使用者嗎？您可以隨時重新登入。',
-			'profiles.signedOutPlex' => '已登出 Plex。',
-			'profiles.signOutFailed' => '登出失敗。',
 			'profiles.sectionTitle' => '使用者設定檔',
 			'profiles.summarySingle' => '新增使用者設定檔，以同時管理託管使用者與本地身分',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} 個設定檔 · 使用中：${activeName}',
@@ -2392,7 +2381,6 @@ extension on TranslationsZhHant {
 			'profiles.noConnectionsHint' => '無連線 — 請新增一個連線以啟用此設定檔。',
 			'profiles.noConnections' => '無連線資訊',
 			'profiles.connectionDefault' => '預設',
-			'profiles.connectionAs' => ({required Object displayName}) => '以 ${displayName} 身分',
 			'profiles.makeDefault' => '設為預設值',
 			'profiles.removeConnection' => '移除',
 			'profiles.profileRenamed' => '使用者設定檔已重新命名。',
@@ -2809,14 +2797,14 @@ extension on TranslationsZhHant {
 			'externalPlayer.playerName' => '播放器名稱',
 			'externalPlayer.playerNameHint' => '我的播放器',
 			'externalPlayer.playerCommand' => '執行命令',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => '套件名稱',
 			'externalPlayer.playerUrlScheme' => 'URL 協定架構（Scheme）',
 			'externalPlayer.off' => '關閉',
 			'externalPlayer.launchFailed' => '無法啟動外部播放器',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} 未安裝',
 			'externalPlayer.playInExternalPlayer' => '在外部播放器播放',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '編輯…',
 			'metadataEdit.screenTitle' => '編輯中繼資料',
 			'metadataEdit.basicInfo' => '基本資訊',

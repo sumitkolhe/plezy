@@ -817,11 +817,6 @@ class _Translations$profiles$ru extends Translations$profiles$en {
 	@override String get active => 'Активный';
 	@override String get manage => 'Управление';
 	@override String get delete => 'Удалить';
-	@override String get signOut => 'Выйти';
-	@override String get signOutPlexTitle => 'Выйти из Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Удалить ${displayName} и всех пользователей Plex Home? Вы сможете войти снова в любое время.';
-	@override String get signedOutPlex => 'Вы вышли из Plex.';
-	@override String get signOutFailed => 'Не удалось выйти.';
 	@override String get sectionTitle => 'Профили';
 	@override String get summarySingle => 'Добавляйте профили, чтобы сочетать управляемых пользователей и локальные профили';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} профилей · активный: ${activeName}';
@@ -844,7 +839,6 @@ class _Translations$profiles$ru extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Нет соединений — добавьте одно, чтобы использовать этот профиль.';
 	@override String get noConnections => 'Нет соединений';
 	@override String get connectionDefault => 'По умолчанию';
-	@override String connectionAs({required Object displayName}) => 'как ${displayName}';
 	@override String get makeDefault => 'Сделать по умолчанию';
 	@override String get removeConnection => 'Удалить';
 	@override String get profileRenamed => 'Профиль переименован.';
@@ -2373,11 +2367,6 @@ extension on TranslationsRu {
 			'profiles.active' => 'Активный',
 			'profiles.manage' => 'Управление',
 			'profiles.delete' => 'Удалить',
-			'profiles.signOut' => 'Выйти',
-			'profiles.signOutPlexTitle' => 'Выйти из Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Удалить ${displayName} и всех пользователей Plex Home? Вы сможете войти снова в любое время.',
-			'profiles.signedOutPlex' => 'Вы вышли из Plex.',
-			'profiles.signOutFailed' => 'Не удалось выйти.',
 			'profiles.sectionTitle' => 'Профили',
 			'profiles.summarySingle' => 'Добавляйте профили, чтобы сочетать управляемых пользователей и локальные профили',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} профилей · активный: ${activeName}',
@@ -2400,7 +2389,6 @@ extension on TranslationsRu {
 			'profiles.noConnectionsHint' => 'Нет соединений — добавьте одно, чтобы использовать этот профиль.',
 			'profiles.noConnections' => 'Нет соединений',
 			'profiles.connectionDefault' => 'По умолчанию',
-			'profiles.connectionAs' => ({required Object displayName}) => 'как ${displayName}',
 			'profiles.makeDefault' => 'Сделать по умолчанию',
 			'profiles.removeConnection' => 'Удалить',
 			'profiles.profileRenamed' => 'Профиль переименован.',
@@ -2817,14 +2805,14 @@ extension on TranslationsRu {
 			'externalPlayer.playerName' => 'Название плеера',
 			'externalPlayer.playerNameHint' => 'Мой плеер',
 			'externalPlayer.playerCommand' => 'Команда',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Имя пакета',
 			'externalPlayer.playerUrlScheme' => 'URL-схема',
 			'externalPlayer.off' => 'Выкл.',
 			'externalPlayer.launchFailed' => 'Не удалось открыть внешний плеер',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} не установлен',
 			'externalPlayer.playInExternalPlayer' => 'Воспроизвести во внешнем плеере',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Редактировать...',
 			'metadataEdit.screenTitle' => 'Редактировать метаданные',
 			'metadataEdit.basicInfo' => 'Основная информация',

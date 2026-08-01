@@ -2209,21 +2209,6 @@ class Translations$profiles$en {
 	/// en: 'Delete'
 	String get delete => 'Delete';
 
-	/// en: 'Sign out'
-	String get signOut => 'Sign out';
-
-	/// en: 'Sign out of Plex?'
-	String get signOutPlexTitle => 'Sign out of Plex?';
-
-	/// en: 'Remove ${displayName} and all Plex Home users? Sign back in anytime.'
-	String signOutPlexMessage({required Object displayName}) => 'Remove ${displayName} and all Plex Home users? Sign back in anytime.';
-
-	/// en: 'Signed out of Plex.'
-	String get signedOutPlex => 'Signed out of Plex.';
-
-	/// en: 'Sign out failed.'
-	String get signOutFailed => 'Sign out failed.';
-
 	/// en: 'Profiles'
 	String get sectionTitle => 'Profiles';
 
@@ -2289,9 +2274,6 @@ class Translations$profiles$en {
 
 	/// en: 'Default'
 	String get connectionDefault => 'Default';
-
-	/// en: 'as ${displayName}'
-	String connectionAs({required Object displayName}) => 'as ${displayName}';
 
 	/// en: 'Make default'
 	String get makeDefault => 'Make default';
@@ -5571,11 +5553,6 @@ extension on Translations {
 			'profiles.active' => 'Active',
 			'profiles.manage' => 'Manage',
 			'profiles.delete' => 'Delete',
-			'profiles.signOut' => 'Sign out',
-			'profiles.signOutPlexTitle' => 'Sign out of Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Remove ${displayName} and all Plex Home users? Sign back in anytime.',
-			'profiles.signedOutPlex' => 'Signed out of Plex.',
-			'profiles.signOutFailed' => 'Sign out failed.',
 			'profiles.sectionTitle' => 'Profiles',
 			'profiles.summarySingle' => 'Add profiles to mix managed users and local identities',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profiles · active: ${activeName}',
@@ -5598,7 +5575,6 @@ extension on Translations {
 			'profiles.noConnectionsHint' => 'No connections — add one to use this profile.',
 			'profiles.noConnections' => 'No connections',
 			'profiles.connectionDefault' => 'Default',
-			'profiles.connectionAs' => ({required Object displayName}) => 'as ${displayName}',
 			'profiles.makeDefault' => 'Make default',
 			'profiles.removeConnection' => 'Remove',
 			'profiles.profileRenamed' => 'Profile renamed.',
@@ -5917,14 +5893,14 @@ extension on Translations {
 			'playlists.noPlaylists' => 'No playlists found',
 			'playlists.create' => 'Create Playlist',
 			'playlists.playlistName' => 'Playlist Name',
-			_ => null,
-		} ?? switch (path) {
 			'playlists.enterPlaylistName' => 'Enter playlist name',
 			'playlists.delete' => 'Delete Playlist',
 			'playlists.removeItem' => 'Remove from Playlist',
 			'playlists.smartPlaylist' => 'Smart Playlist',
 			'playlists.itemCount' => ({required Object count}) => '${count} items',
 			'playlists.oneItem' => '1 item',
+			_ => null,
+		} ?? switch (path) {
 			'playlists.emptyPlaylist' => 'This playlist is empty',
 			'playlists.deleteConfirm' => 'Delete Playlist?',
 			'playlists.deleteMessage' => ({required Object name}) => 'Are you sure you want to delete "${name}"?',

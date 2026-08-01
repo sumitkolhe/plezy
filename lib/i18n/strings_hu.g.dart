@@ -815,11 +815,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String get active => 'Aktív';
 	@override String get manage => 'Kezelés';
 	@override String get delete => 'Törlés';
-	@override String get signOut => 'Kijelentkezés';
-	@override String get signOutPlexTitle => 'Kijelentkezel a Plexből?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Eltávolítod a(z) ${displayName} profilt és az összes Plex Home-felhasználót? Bármikor visszajelentkezhetsz.';
-	@override String get signedOutPlex => 'Kijelentkezve a Plexből.';
-	@override String get signOutFailed => 'A kijelentkezés nem sikerült.';
 	@override String get sectionTitle => 'Profilok';
 	@override String get summarySingle => 'Adj hozzá profilokat a kezelt felhasználók és a helyi profilok együttes használatához';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profil · aktív: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$hu extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Nincsenek kapcsolatok — adj hozzá egyet a profil használatához.';
 	@override String get noConnections => 'Nincsenek kapcsolatok';
 	@override String get connectionDefault => 'Alapértelmezett';
-	@override String connectionAs({required Object displayName}) => 'mint ${displayName}';
 	@override String get makeDefault => 'Beállítás alapértelmezettként';
 	@override String get removeConnection => 'Eltávolítás';
 	@override String get profileRenamed => 'Profil átnevezve.';
@@ -2367,11 +2361,6 @@ extension on TranslationsHu {
 			'profiles.active' => 'Aktív',
 			'profiles.manage' => 'Kezelés',
 			'profiles.delete' => 'Törlés',
-			'profiles.signOut' => 'Kijelentkezés',
-			'profiles.signOutPlexTitle' => 'Kijelentkezel a Plexből?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Eltávolítod a(z) ${displayName} profilt és az összes Plex Home-felhasználót? Bármikor visszajelentkezhetsz.',
-			'profiles.signedOutPlex' => 'Kijelentkezve a Plexből.',
-			'profiles.signOutFailed' => 'A kijelentkezés nem sikerült.',
 			'profiles.sectionTitle' => 'Profilok',
 			'profiles.summarySingle' => 'Adj hozzá profilokat a kezelt felhasználók és a helyi profilok együttes használatához',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profil · aktív: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsHu {
 			'profiles.noConnectionsHint' => 'Nincsenek kapcsolatok — adj hozzá egyet a profil használatához.',
 			'profiles.noConnections' => 'Nincsenek kapcsolatok',
 			'profiles.connectionDefault' => 'Alapértelmezett',
-			'profiles.connectionAs' => ({required Object displayName}) => 'mint ${displayName}',
 			'profiles.makeDefault' => 'Beállítás alapértelmezettként',
 			'profiles.removeConnection' => 'Eltávolítás',
 			'profiles.profileRenamed' => 'Profil átnevezve.',
@@ -2811,14 +2799,14 @@ extension on TranslationsHu {
 			'externalPlayer.playerName' => 'Lejátszó neve',
 			'externalPlayer.playerNameHint' => 'Saját lejátszó',
 			'externalPlayer.playerCommand' => 'Parancs',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Csomagnév',
 			'externalPlayer.playerUrlScheme' => 'URL-séma',
 			'externalPlayer.off' => 'Ki',
 			'externalPlayer.launchFailed' => 'Nem sikerült megnyitni a külső lejátszót',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => 'A(z) ${name} nincs telepítve',
 			'externalPlayer.playInExternalPlayer' => 'Lejátszás külső lejátszóban',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Szerkesztés...',
 			'metadataEdit.screenTitle' => 'Metaadatok szerkesztése',
 			'metadataEdit.basicInfo' => 'Alapinformációk',

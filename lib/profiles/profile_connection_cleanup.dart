@@ -8,34 +8,6 @@ import 'profile_connection_registry.dart';
 import 'profile_merge.dart';
 import 'profile_registry.dart';
 
-/// Profile ids affected by a Plex account removal. Planning is read-only so
-/// callers can finish failure-prone cleanup before committing join/account
-/// deletion.
-typedef PlexAccountRemoval = ({
-  /// The account's virtual Plex Home profiles — they cease to exist.
-  Set<String> removedVirtualProfileIds,
-
-  /// Profiles that survive but had a join row onto the removed account
-  /// (locals that borrowed a home user).
-  Set<String> borrowerProfileIds,
-});
-
-Future<PlexAccountRemoval> planPlexAccountConnectionRemoval({
-  required PlexAccountConnection account,
-  required ProfileConnectionRegistry profileConnections,
-}) async {
-  final rows = await profileConnections.listAll();
-  final removedVirtualProfileIds = <String>{
-    for (final row in rows)
-      if (parsePlexHomeProfileId(row.profileId)?.accountConnectionId == account.id) row.profileId,
-  };
-  final borrowerProfileIds = <String>{
-    for (final row in rows)
-      if (row.connectionId == account.id && !removedVirtualProfileIds.contains(row.profileId)) row.profileId,
-  };
-  return (removedVirtualProfileIds: removedVirtualProfileIds, borrowerProfileIds: borrowerProfileIds);
-}
-
 /// Where the session should land after a profile or connection removal.
 enum PostRemovalRoute { signedOut, staySignedIn }
 
@@ -84,48 +56,6 @@ class ProfileConnectionCleanup {
       }
       await removeProfileConnection(profileId: profileId, connection: connection);
     }
-  }
-
-  /// Sign out of a Plex account: remove the account [Connection], every join
-  /// row referencing it, and everything owned by its virtual Plex Home
-  /// profiles — including borrowed Jellyfin connections left unreferenced,
-  /// which previously survived as orphans and wedged the session (#1423).
-  ///
-  /// Pass a read-only [plannedRemoval] from
-  /// [planPlexAccountConnectionRemoval] when failure-prone caller-owned cleanup
-  /// must finish before this destructive commit. Omitting it preserves the
-  /// atomic add/cancel-account cleanup path.
-  ///
-  /// All cleanup is explicit and completes before this returns; correctness
-  /// must not depend on [PlexHomeService]'s stream-driven `_onChange`, which
-  /// runs later and no-ops.
-  Future<PlexAccountRemoval> removePlexAccountConnection(
-    PlexAccountConnection account, {
-    PlexAccountRemoval? plannedRemoval,
-  }) async {
-    final removal =
-        plannedRemoval ??
-        await planPlexAccountConnectionRemoval(account: account, profileConnections: profileConnections);
-    final removedVirtualProfileIds = removal.removedVirtualProfileIds;
-    final borrowerProfileIds = removal.borrowerProfileIds;
-    final rows = await profileConnections.listAll();
-    // Remove direct join rows first so per-profile pref cleanup observes each
-    // row going away; the FK cascade from the connection delete is then a no-op.
-    for (final row in rows.where((r) => r.connectionId == account.id)) {
-      await removeProfileConnection(profileId: row.profileId, connection: account);
-    }
-    await connections.remove(account.id);
-    await storage.clearPlexHomeUsersCache(account.id);
-
-    // The account's virtual profiles die with the connection; their borrowed
-    // connections and per-profile prefs must go too.
-    for (final profileId in removedVirtualProfileIds) {
-      await removeAllProfileConnections(profileId);
-      await storage.clearProfileLastUsed(profileId);
-      await storage.clearUserScopedPreferencesForProfile(profileId);
-    }
-
-    return (removedVirtualProfileIds: removedVirtualProfileIds, borrowerProfileIds: borrowerProfileIds);
   }
 
   /// In-session mirror of the boot guard (`main.dart`: "stored connections
@@ -230,9 +160,6 @@ class ProfileConnectionCleanup {
 // differenced against download keys.
 Set<ServerId> _serverIdsForConnection(Connection connection) {
   return switch (connection) {
-    PlexAccountConnection(:final servers) => {
-      for (final server in servers) ?ServerId.tryParse(server.clientIdentifier),
-    },
     JellyfinConnection(:final serverMachineId) => {?ServerId.tryParse(serverMachineId)},
   };
 }

@@ -815,11 +815,6 @@ class _Translations$profiles$es extends Translations$profiles$en {
 	@override String get active => 'Activo';
 	@override String get manage => 'Administrar';
 	@override String get delete => 'Eliminar';
-	@override String get signOut => 'Cerrar sesión';
-	@override String get signOutPlexTitle => '¿Cerrar sesión de Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => '¿Eliminar ${displayName} y todos los usuarios de Plex Home? Puedes iniciar sesión de nuevo cuando quieras.';
-	@override String get signedOutPlex => 'Sesión de Plex cerrada.';
-	@override String get signOutFailed => 'Error al cerrar sesión.';
 	@override String get sectionTitle => 'Perfiles';
 	@override String get summarySingle => 'Añade perfiles para mezclar usuarios gestionados e identidades locales';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} perfiles · activo: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$es extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Sin conexiones — añade una para usar este perfil.';
 	@override String get noConnections => 'Sin conexiones';
 	@override String get connectionDefault => 'Predeterminada';
-	@override String connectionAs({required Object displayName}) => 'como ${displayName}';
 	@override String get makeDefault => 'Establecer como predeterminada';
 	@override String get removeConnection => 'Eliminar';
 	@override String get profileRenamed => 'Se cambió el nombre del perfil.';
@@ -2367,11 +2361,6 @@ extension on TranslationsEs {
 			'profiles.active' => 'Activo',
 			'profiles.manage' => 'Administrar',
 			'profiles.delete' => 'Eliminar',
-			'profiles.signOut' => 'Cerrar sesión',
-			'profiles.signOutPlexTitle' => '¿Cerrar sesión de Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '¿Eliminar ${displayName} y todos los usuarios de Plex Home? Puedes iniciar sesión de nuevo cuando quieras.',
-			'profiles.signedOutPlex' => 'Sesión de Plex cerrada.',
-			'profiles.signOutFailed' => 'Error al cerrar sesión.',
 			'profiles.sectionTitle' => 'Perfiles',
 			'profiles.summarySingle' => 'Añade perfiles para mezclar usuarios gestionados e identidades locales',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} perfiles · activo: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsEs {
 			'profiles.noConnectionsHint' => 'Sin conexiones — añade una para usar este perfil.',
 			'profiles.noConnections' => 'Sin conexiones',
 			'profiles.connectionDefault' => 'Predeterminada',
-			'profiles.connectionAs' => ({required Object displayName}) => 'como ${displayName}',
 			'profiles.makeDefault' => 'Establecer como predeterminada',
 			'profiles.removeConnection' => 'Eliminar',
 			'profiles.profileRenamed' => 'Se cambió el nombre del perfil.',
@@ -2811,14 +2799,14 @@ extension on TranslationsEs {
 			'externalPlayer.playerName' => 'Nombre del reproductor',
 			'externalPlayer.playerNameHint' => 'Mi reproductor',
 			'externalPlayer.playerCommand' => 'Comando',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Nombre del paquete',
 			'externalPlayer.playerUrlScheme' => 'Esquema URL',
 			'externalPlayer.off' => 'Desactivado',
 			'externalPlayer.launchFailed' => 'No se pudo abrir el reproductor externo',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} no está instalado',
 			'externalPlayer.playInExternalPlayer' => 'Reproducir en reproductor externo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Editar...',
 			'metadataEdit.screenTitle' => 'Editar metadatos',
 			'metadataEdit.basicInfo' => 'Información básica',

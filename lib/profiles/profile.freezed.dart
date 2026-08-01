@@ -14,7 +14,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Profile {
 
- String get id; String get displayName; String? get avatarThumbUrl; int get sortOrder; DateTime get createdAt; DateTime? get lastUsedAt;
+ String get id; String get displayName; String? get avatarThumbUrl;/// Hashed PIN if set. The raw PIN is never persisted; see [computePinHash].
+ String? get pinHash; int get sortOrder; DateTime get createdAt; DateTime? get lastUsedAt;
 /// Create a copy of Profile
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +26,16 @@ $ProfileCopyWith<Profile> get copyWith => _$ProfileCopyWithImpl<Profile>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Profile&&(identical(other.id, id) || other.id == id)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.avatarThumbUrl, avatarThumbUrl) || other.avatarThumbUrl == avatarThumbUrl)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.lastUsedAt, lastUsedAt) || other.lastUsedAt == lastUsedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Profile&&(identical(other.id, id) || other.id == id)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.avatarThumbUrl, avatarThumbUrl) || other.avatarThumbUrl == avatarThumbUrl)&&(identical(other.pinHash, pinHash) || other.pinHash == pinHash)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.lastUsedAt, lastUsedAt) || other.lastUsedAt == lastUsedAt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,id,displayName,avatarThumbUrl,sortOrder,createdAt,lastUsedAt);
+int get hashCode => Object.hash(runtimeType,id,displayName,avatarThumbUrl,pinHash,sortOrder,createdAt,lastUsedAt);
 
 @override
 String toString() {
-  return 'Profile(id: $id, displayName: $displayName, avatarThumbUrl: $avatarThumbUrl, sortOrder: $sortOrder, createdAt: $createdAt, lastUsedAt: $lastUsedAt)';
+  return 'Profile(id: $id, displayName: $displayName, avatarThumbUrl: $avatarThumbUrl, pinHash: $pinHash, sortOrder: $sortOrder, createdAt: $createdAt, lastUsedAt: $lastUsedAt)';
 }
 
 
@@ -45,7 +46,7 @@ abstract mixin class $ProfileCopyWith<$Res>  {
   factory $ProfileCopyWith(Profile value, $Res Function(Profile) _then) = _$ProfileCopyWithImpl;
 @useResult
 $Res call({
- String id, String displayName, String? avatarThumbUrl, int sortOrder, DateTime createdAt, DateTime? lastUsedAt
+ String id, String displayName, String? avatarThumbUrl, String? pinHash, int sortOrder, DateTime createdAt, DateTime? lastUsedAt
 });
 
 
@@ -62,11 +63,12 @@ class _$ProfileCopyWithImpl<$Res>
 
 /// Create a copy of Profile
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? displayName = null,Object? avatarThumbUrl = freezed,Object? sortOrder = null,Object? createdAt = null,Object? lastUsedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? displayName = null,Object? avatarThumbUrl = freezed,Object? pinHash = freezed,Object? sortOrder = null,Object? createdAt = null,Object? lastUsedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,displayName: null == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
 as String,avatarThumbUrl: freezed == avatarThumbUrl ? _self.avatarThumbUrl : avatarThumbUrl // ignore: cast_nullable_to_non_nullable
+as String?,pinHash: freezed == pinHash ? _self.pinHash : pinHash // ignore: cast_nullable_to_non_nullable
 as String?,sortOrder: null == sortOrder ? _self.sortOrder : sortOrder // ignore: cast_nullable_to_non_nullable
 as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,lastUsedAt: freezed == lastUsedAt ? _self.lastUsedAt : lastUsedAt // ignore: cast_nullable_to_non_nullable
@@ -91,12 +93,11 @@ extension ProfilePatterns on Profile {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LocalProfile value)?  local,TResult Function( PlexHomeProfile value)?  plexHome,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LocalProfile value)?  local,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case LocalProfile() when local != null:
-return local(_that);case PlexHomeProfile() when plexHome != null:
-return plexHome(_that);case _:
+return local(_that);case _:
   return orElse();
 
 }
@@ -114,12 +115,11 @@ return plexHome(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LocalProfile value)  local,required TResult Function( PlexHomeProfile value)  plexHome,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LocalProfile value)  local,}){
 final _that = this;
 switch (_that) {
 case LocalProfile():
-return local(_that);case PlexHomeProfile():
-return plexHome(_that);}
+return local(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -133,12 +133,11 @@ return plexHome(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LocalProfile value)?  local,TResult? Function( PlexHomeProfile value)?  plexHome,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LocalProfile value)?  local,}){
 final _that = this;
 switch (_that) {
 case LocalProfile() when local != null:
-return local(_that);case PlexHomeProfile() when plexHome != null:
-return plexHome(_that);case _:
+return local(_that);case _:
   return null;
 
 }
@@ -155,11 +154,10 @@ return plexHome(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  local,TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? parentConnectionId,  String? plexHomeUserUuid,  bool plexRestricted,  bool plexAdmin,  bool plexProtected,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  plexHome,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  local,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case LocalProfile() when local != null:
-return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case PlexHomeProfile() when plexHome != null:
-return plexHome(_that.id,_that.displayName,_that.avatarThumbUrl,_that.parentConnectionId,_that.plexHomeUserUuid,_that.plexRestricted,_that.plexAdmin,_that.plexProtected,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case _:
+return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case _:
   return orElse();
 
 }
@@ -177,11 +175,10 @@ return plexHome(_that.id,_that.displayName,_that.avatarThumbUrl,_that.parentConn
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)  local,required TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? parentConnectionId,  String? plexHomeUserUuid,  bool plexRestricted,  bool plexAdmin,  bool plexProtected,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)  plexHome,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)  local,}) {final _that = this;
 switch (_that) {
 case LocalProfile():
-return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case PlexHomeProfile():
-return plexHome(_that.id,_that.displayName,_that.avatarThumbUrl,_that.parentConnectionId,_that.plexHomeUserUuid,_that.plexRestricted,_that.plexAdmin,_that.plexProtected,_that.sortOrder,_that.createdAt,_that.lastUsedAt);}
+return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,11 +192,10 @@ return plexHome(_that.id,_that.displayName,_that.avatarThumbUrl,_that.parentConn
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  local,TResult? Function( String id,  String displayName,  String? avatarThumbUrl,  String? parentConnectionId,  String? plexHomeUserUuid,  bool plexRestricted,  bool plexAdmin,  bool plexProtected,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  plexHome,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String id,  String displayName,  String? avatarThumbUrl,  String? pinHash,  int sortOrder,  DateTime createdAt,  DateTime? lastUsedAt)?  local,}) {final _that = this;
 switch (_that) {
 case LocalProfile() when local != null:
-return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case PlexHomeProfile() when plexHome != null:
-return plexHome(_that.id,_that.displayName,_that.avatarThumbUrl,_that.parentConnectionId,_that.plexHomeUserUuid,_that.plexRestricted,_that.plexAdmin,_that.plexProtected,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case _:
+return local(_that.id,_that.displayName,_that.avatarThumbUrl,_that.pinHash,_that.sortOrder,_that.createdAt,_that.lastUsedAt);case _:
   return null;
 
 }
@@ -218,7 +214,7 @@ class LocalProfile extends Profile {
 @override final  String displayName;
 @override final  String? avatarThumbUrl;
 /// Hashed PIN if set. The raw PIN is never persisted; see [computePinHash].
- final  String? pinHash;
+@override final  String? pinHash;
 @override@JsonKey() final  int sortOrder;
 @override final  DateTime createdAt;
 @override final  DateTime? lastUsedAt;
@@ -277,97 +273,6 @@ as String,displayName: null == displayName ? _self.displayName : displayName // 
 as String,avatarThumbUrl: freezed == avatarThumbUrl ? _self.avatarThumbUrl : avatarThumbUrl // ignore: cast_nullable_to_non_nullable
 as String?,pinHash: freezed == pinHash ? _self.pinHash : pinHash // ignore: cast_nullable_to_non_nullable
 as String?,sortOrder: null == sortOrder ? _self.sortOrder : sortOrder // ignore: cast_nullable_to_non_nullable
-as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,lastUsedAt: freezed == lastUsedAt ? _self.lastUsedAt : lastUsedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
-  ));
-}
-
-
-}
-
-/// @nodoc
-
-
-class PlexHomeProfile extends Profile {
-  const PlexHomeProfile({required this.id, required this.displayName, this.avatarThumbUrl, this.parentConnectionId, this.plexHomeUserUuid, this.plexRestricted = false, this.plexAdmin = false, this.plexProtected = false, this.sortOrder = 0, required this.createdAt, this.lastUsedAt}): super._();
-  
-
-@override final  String id;
-@override final  String displayName;
-@override final  String? avatarThumbUrl;
-/// The parent Plex account's connection id.
- final  String? parentConnectionId;
-/// The Plex Home user UUID. Used by the active-profile binder to call
-/// `/home/users/{uuid}/switch`.
- final  String? plexHomeUserUuid;
-@JsonKey() final  bool plexRestricted;
-@JsonKey() final  bool plexAdmin;
-/// Plex's `protected` flag — true when the home user has a PIN that must
-/// be entered before `/home/users/{uuid}/switch` will succeed.
-@JsonKey() final  bool plexProtected;
-@override@JsonKey() final  int sortOrder;
-@override final  DateTime createdAt;
-@override final  DateTime? lastUsedAt;
-
-/// Create a copy of Profile
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$PlexHomeProfileCopyWith<PlexHomeProfile> get copyWith => _$PlexHomeProfileCopyWithImpl<PlexHomeProfile>(this, _$identity);
-
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlexHomeProfile&&(identical(other.id, id) || other.id == id)&&(identical(other.displayName, displayName) || other.displayName == displayName)&&(identical(other.avatarThumbUrl, avatarThumbUrl) || other.avatarThumbUrl == avatarThumbUrl)&&(identical(other.parentConnectionId, parentConnectionId) || other.parentConnectionId == parentConnectionId)&&(identical(other.plexHomeUserUuid, plexHomeUserUuid) || other.plexHomeUserUuid == plexHomeUserUuid)&&(identical(other.plexRestricted, plexRestricted) || other.plexRestricted == plexRestricted)&&(identical(other.plexAdmin, plexAdmin) || other.plexAdmin == plexAdmin)&&(identical(other.plexProtected, plexProtected) || other.plexProtected == plexProtected)&&(identical(other.sortOrder, sortOrder) || other.sortOrder == sortOrder)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.lastUsedAt, lastUsedAt) || other.lastUsedAt == lastUsedAt));
-}
-
-
-@override
-int get hashCode => Object.hash(runtimeType,id,displayName,avatarThumbUrl,parentConnectionId,plexHomeUserUuid,plexRestricted,plexAdmin,plexProtected,sortOrder,createdAt,lastUsedAt);
-
-@override
-String toString() {
-  return 'Profile.plexHome(id: $id, displayName: $displayName, avatarThumbUrl: $avatarThumbUrl, parentConnectionId: $parentConnectionId, plexHomeUserUuid: $plexHomeUserUuid, plexRestricted: $plexRestricted, plexAdmin: $plexAdmin, plexProtected: $plexProtected, sortOrder: $sortOrder, createdAt: $createdAt, lastUsedAt: $lastUsedAt)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $PlexHomeProfileCopyWith<$Res> implements $ProfileCopyWith<$Res> {
-  factory $PlexHomeProfileCopyWith(PlexHomeProfile value, $Res Function(PlexHomeProfile) _then) = _$PlexHomeProfileCopyWithImpl;
-@override @useResult
-$Res call({
- String id, String displayName, String? avatarThumbUrl, String? parentConnectionId, String? plexHomeUserUuid, bool plexRestricted, bool plexAdmin, bool plexProtected, int sortOrder, DateTime createdAt, DateTime? lastUsedAt
-});
-
-
-
-
-}
-/// @nodoc
-class _$PlexHomeProfileCopyWithImpl<$Res>
-    implements $PlexHomeProfileCopyWith<$Res> {
-  _$PlexHomeProfileCopyWithImpl(this._self, this._then);
-
-  final PlexHomeProfile _self;
-  final $Res Function(PlexHomeProfile) _then;
-
-/// Create a copy of Profile
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? displayName = null,Object? avatarThumbUrl = freezed,Object? parentConnectionId = freezed,Object? plexHomeUserUuid = freezed,Object? plexRestricted = null,Object? plexAdmin = null,Object? plexProtected = null,Object? sortOrder = null,Object? createdAt = null,Object? lastUsedAt = freezed,}) {
-  return _then(PlexHomeProfile(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,displayName: null == displayName ? _self.displayName : displayName // ignore: cast_nullable_to_non_nullable
-as String,avatarThumbUrl: freezed == avatarThumbUrl ? _self.avatarThumbUrl : avatarThumbUrl // ignore: cast_nullable_to_non_nullable
-as String?,parentConnectionId: freezed == parentConnectionId ? _self.parentConnectionId : parentConnectionId // ignore: cast_nullable_to_non_nullable
-as String?,plexHomeUserUuid: freezed == plexHomeUserUuid ? _self.plexHomeUserUuid : plexHomeUserUuid // ignore: cast_nullable_to_non_nullable
-as String?,plexRestricted: null == plexRestricted ? _self.plexRestricted : plexRestricted // ignore: cast_nullable_to_non_nullable
-as bool,plexAdmin: null == plexAdmin ? _self.plexAdmin : plexAdmin // ignore: cast_nullable_to_non_nullable
-as bool,plexProtected: null == plexProtected ? _self.plexProtected : plexProtected // ignore: cast_nullable_to_non_nullable
-as bool,sortOrder: null == sortOrder ? _self.sortOrder : sortOrder // ignore: cast_nullable_to_non_nullable
 as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,lastUsedAt: freezed == lastUsedAt ? _self.lastUsedAt : lastUsedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,

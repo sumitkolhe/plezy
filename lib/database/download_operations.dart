@@ -6,7 +6,6 @@ import '../media/ids.dart';
 
 import 'app_database.dart';
 import '../models/download_models.dart';
-import '../profiles/profile.dart';
 import '../utils/active_client_scope.dart';
 
 enum QueueDownloadOutcome {
@@ -689,8 +688,6 @@ bool _isValidDownloadOwner(
   required Set<String> connectionIds,
 }) {
   if (localProfileIds.contains(owner.profileId)) return true;
-  final plexHome = parsePlexHomeProfileId(owner.profileId);
-  if (plexHome != null) return connectionIds.contains(plexHome.accountConnectionId);
   return localProfileIds.isEmpty;
 }
 

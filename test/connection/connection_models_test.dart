@@ -20,7 +20,6 @@ void main() {
     });
 
     test('backend mapping is total', () {
-      expect(ConnectionKind.plex.backend, MediaBackend.plex);
       expect(ConnectionKind.jellyfin.backend, MediaBackend.jellyfin);
     });
   });
@@ -102,56 +101,6 @@ void main() {
     test('kind and backend match Jellyfin', () {
       expect(base.kind, ConnectionKind.jellyfin);
       expect(base.backend, MediaBackend.jellyfin);
-    });
-  });
-
-  group('PlexAccountConnection serialization', () {
-    final base = PlexAccountConnection(
-      id: 'plex.client-uuid',
-      accountToken: 'token-xyz',
-      clientIdentifier: 'client-uuid',
-      accountLabel: 'edde',
-      servers: const [],
-      activeProfile: null,
-      createdAt: DateTime.utc(2026, 1, 15),
-      lastAuthenticatedAt: DateTime.utc(2026, 4, 25),
-    );
-
-    test('toConfigJson + fromConfigJson round-trip preserves identity fields', () {
-      final json = base.toConfigJson();
-      final restored = PlexAccountConnection.fromConfigJson(
-        id: base.id,
-        json: json,
-        status: base.status,
-        createdAt: base.createdAt,
-        lastAuthenticatedAt: base.lastAuthenticatedAt,
-      );
-      expect(restored.id, base.id);
-      expect(restored.accountToken, base.accountToken);
-      expect(restored.clientIdentifier, base.clientIdentifier);
-      expect(restored.accountLabel, base.accountLabel);
-      expect(restored.servers, isEmpty);
-      expect(restored.activeProfile, isNull);
-      expect(restored.createdAt, base.createdAt);
-      expect(restored.lastAuthenticatedAt, base.lastAuthenticatedAt);
-    });
-
-    test('fromConfigJson with empty payload uses safe defaults (no NPE)', () {
-      final restored = PlexAccountConnection.fromConfigJson(
-        id: 'orphan',
-        json: const {},
-        status: ConnectionStatus.unknown,
-        createdAt: DateTime.utc(2026),
-      );
-      expect(restored.id, 'orphan');
-      expect(restored.accountToken, '');
-      expect(restored.accountLabel, 'Plex');
-      expect(restored.servers, isEmpty);
-    });
-
-    test('kind and backend match Plex', () {
-      expect(base.kind, ConnectionKind.plex);
-      expect(base.backend, MediaBackend.plex);
     });
   });
 }

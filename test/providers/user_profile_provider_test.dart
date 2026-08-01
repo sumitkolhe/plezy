@@ -51,11 +51,15 @@ void main() {
       });
 
       final profile = Profile.local(id: 'local-owner', displayName: 'Owner', createdAt: DateTime(2026, 1, 1));
-      final plex = PlexAccountConnection(
-        id: 'plex-a',
-        accountToken: 'plex-token',
-        clientIdentifier: 'client-a',
-        accountLabel: 'Plex',
+      final first = JellyfinConnection(
+        id: 'jf-first/user-a',
+        baseUrl: 'https://first.example.com',
+        serverName: 'First',
+        serverMachineId: 'jf-first',
+        userId: 'user-a',
+        userName: 'User A',
+        accessToken: 'first-token',
+        deviceId: 'device-a',
         createdAt: DateTime(2026, 1, 1),
       );
       final jellyfin = JellyfinConnection(
@@ -70,14 +74,14 @@ void main() {
         createdAt: DateTime(2026, 1, 1),
       );
       await stack.profiles.upsert(profile);
-      await stack.connections.upsert(plex);
+      await stack.connections.upsert(first);
       await stack.connections.upsert(jellyfin);
       await stack.profileConnections.upsert(
         ProfileConnection(
           profileId: profile.id,
-          connectionId: plex.id,
-          userToken: 'plex-user-token',
-          userIdentifier: 'plex-user',
+          connectionId: first.id,
+          userToken: 'first-user-token',
+          userIdentifier: 'user-a',
           isDefault: true,
         ),
         makeDefault: true,
@@ -97,11 +101,11 @@ void main() {
         );
       addTearDown(p.dispose);
 
-      expect(await p.debugResolveActiveSettingsConnectionForTesting(), isA<PlexAccountConnection>());
+      expect((await p.debugResolveActiveSettingsConnectionForTesting())?.id, first.id);
 
       await stack.profileConnections.setDefault(profile.id, jellyfin.id);
 
-      expect(await p.debugResolveActiveSettingsConnectionForTesting(), isA<JellyfinConnection>());
+      expect((await p.debugResolveActiveSettingsConnectionForTesting())?.id, jellyfin.id);
     });
   });
 }

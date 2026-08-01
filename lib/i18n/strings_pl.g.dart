@@ -817,11 +817,6 @@ class _Translations$profiles$pl extends Translations$profiles$en {
 	@override String get active => 'Aktywny';
 	@override String get manage => 'Zarządzaj';
 	@override String get delete => 'Usuń';
-	@override String get signOut => 'Wyloguj się';
-	@override String get signOutPlexTitle => 'Wylogować się z Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Usunąć ${displayName} i wszystkich użytkowników Plex Home? Możesz zalogować się ponownie w każdej chwili.';
-	@override String get signedOutPlex => 'Wylogowano z Plex.';
-	@override String get signOutFailed => 'Wylogowanie nie powiodło się.';
 	@override String get sectionTitle => 'Profile';
 	@override String get summarySingle => 'Dodaj profile, aby łączyć użytkowników zarządzanych z profilami lokalnymi';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => 'Liczba profili: ${count} · aktywny: ${activeName}';
@@ -844,7 +839,6 @@ class _Translations$profiles$pl extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Brak połączeń — dodaj jedno, aby używać tego profilu.';
 	@override String get noConnections => 'Brak połączeń';
 	@override String get connectionDefault => 'Domyślne';
-	@override String connectionAs({required Object displayName}) => 'jako ${displayName}';
 	@override String get makeDefault => 'Ustaw jako domyślne';
 	@override String get removeConnection => 'Usuń';
 	@override String get profileRenamed => 'Zmieniono nazwę profilu.';
@@ -2373,11 +2367,6 @@ extension on TranslationsPl {
 			'profiles.active' => 'Aktywny',
 			'profiles.manage' => 'Zarządzaj',
 			'profiles.delete' => 'Usuń',
-			'profiles.signOut' => 'Wyloguj się',
-			'profiles.signOutPlexTitle' => 'Wylogować się z Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Usunąć ${displayName} i wszystkich użytkowników Plex Home? Możesz zalogować się ponownie w każdej chwili.',
-			'profiles.signedOutPlex' => 'Wylogowano z Plex.',
-			'profiles.signOutFailed' => 'Wylogowanie nie powiodło się.',
 			'profiles.sectionTitle' => 'Profile',
 			'profiles.summarySingle' => 'Dodaj profile, aby łączyć użytkowników zarządzanych z profilami lokalnymi',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => 'Liczba profili: ${count} · aktywny: ${activeName}',
@@ -2400,7 +2389,6 @@ extension on TranslationsPl {
 			'profiles.noConnectionsHint' => 'Brak połączeń — dodaj jedno, aby używać tego profilu.',
 			'profiles.noConnections' => 'Brak połączeń',
 			'profiles.connectionDefault' => 'Domyślne',
-			'profiles.connectionAs' => ({required Object displayName}) => 'jako ${displayName}',
 			'profiles.makeDefault' => 'Ustaw jako domyślne',
 			'profiles.removeConnection' => 'Usuń',
 			'profiles.profileRenamed' => 'Zmieniono nazwę profilu.',
@@ -2817,14 +2805,14 @@ extension on TranslationsPl {
 			'externalPlayer.playerName' => 'Nazwa odtwarzacza',
 			'externalPlayer.playerNameHint' => 'Mój odtwarzacz',
 			'externalPlayer.playerCommand' => 'Polecenie',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Nazwa pakietu',
 			'externalPlayer.playerUrlScheme' => 'Schemat URL',
 			'externalPlayer.off' => 'Wyłączony',
 			'externalPlayer.launchFailed' => 'Nie udało się otworzyć zewnętrznego odtwarzacza',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} nie jest zainstalowany',
 			'externalPlayer.playInExternalPlayer' => 'Odtwórz w zewnętrznym odtwarzaczu',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Edytuj...',
 			'metadataEdit.screenTitle' => 'Edytuj metadane',
 			'metadataEdit.basicInfo' => 'Podstawowe informacje',

@@ -307,14 +307,6 @@ class _BorrowTile extends StatelessWidget {
                       ],
                     ],
                   ),
-                  if (candidate.connection is PlexAccountConnection)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                        t.profiles.connectionAs(displayName: candidate.source.displayName),
-                        style: theme.textTheme.bodySmall,
-                      ),
-                    ),
                 ],
               ),
             ),

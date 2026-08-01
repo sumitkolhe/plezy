@@ -815,11 +815,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String get active => 'Aktiv';
 	@override String get manage => 'Hantera';
 	@override String get delete => 'Ta bort';
-	@override String get signOut => 'Logga ut';
-	@override String get signOutPlexTitle => 'Logga ut från Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Ta bort ${displayName} och alla Plex Home-användare? Du kan logga in igen när som helst.';
-	@override String get signedOutPlex => 'Utloggad från Plex.';
-	@override String get signOutFailed => 'Utloggningen misslyckades.';
 	@override String get sectionTitle => 'Profiler';
 	@override String get summarySingle => 'Lägg till profiler för att kombinera hanterade användare och lokala identiteter';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profiler · aktiv: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$sv extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Inga anslutningar — lägg till en för att använda den här profilen.';
 	@override String get noConnections => 'Inga anslutningar';
 	@override String get connectionDefault => 'Standard';
-	@override String connectionAs({required Object displayName}) => 'som ${displayName}';
 	@override String get makeDefault => 'Gör till standard';
 	@override String get removeConnection => 'Ta bort';
 	@override String get profileRenamed => 'Profilen har bytt namn.';
@@ -2367,11 +2361,6 @@ extension on TranslationsSv {
 			'profiles.active' => 'Aktiv',
 			'profiles.manage' => 'Hantera',
 			'profiles.delete' => 'Ta bort',
-			'profiles.signOut' => 'Logga ut',
-			'profiles.signOutPlexTitle' => 'Logga ut från Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Ta bort ${displayName} och alla Plex Home-användare? Du kan logga in igen när som helst.',
-			'profiles.signedOutPlex' => 'Utloggad från Plex.',
-			'profiles.signOutFailed' => 'Utloggningen misslyckades.',
 			'profiles.sectionTitle' => 'Profiler',
 			'profiles.summarySingle' => 'Lägg till profiler för att kombinera hanterade användare och lokala identiteter',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profiler · aktiv: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsSv {
 			'profiles.noConnectionsHint' => 'Inga anslutningar — lägg till en för att använda den här profilen.',
 			'profiles.noConnections' => 'Inga anslutningar',
 			'profiles.connectionDefault' => 'Standard',
-			'profiles.connectionAs' => ({required Object displayName}) => 'som ${displayName}',
 			'profiles.makeDefault' => 'Gör till standard',
 			'profiles.removeConnection' => 'Ta bort',
 			'profiles.profileRenamed' => 'Profilen har bytt namn.',
@@ -2811,14 +2799,14 @@ extension on TranslationsSv {
 			'externalPlayer.playerName' => 'Spelarnamn',
 			'externalPlayer.playerNameHint' => 'Min spelare',
 			'externalPlayer.playerCommand' => 'Kommando',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paketnamn',
 			'externalPlayer.playerUrlScheme' => 'URL-schema',
 			'externalPlayer.off' => 'Av',
 			'externalPlayer.launchFailed' => 'Kunde inte öppna extern spelare',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} är inte installerad',
 			'externalPlayer.playInExternalPlayer' => 'Spela i extern spelare',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Redigera...',
 			'metadataEdit.screenTitle' => 'Redigera metadata',
 			'metadataEdit.basicInfo' => 'Grundläggande information',

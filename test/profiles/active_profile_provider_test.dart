@@ -75,12 +75,16 @@ final class _RecordingPreferencesPlatform extends SharedPreferencesAsyncPlatform
       delegate.getKeys(parameters, options);
 }
 
-PlexAccountConnection _account(String id) {
-  return PlexAccountConnection(
+JellyfinConnection _account(String id) {
+  return JellyfinConnection(
     id: id,
-    accountToken: 'token-$id',
-    clientIdentifier: 'client-$id',
-    accountLabel: 'Plex',
+    baseUrl: 'https://jf.example.com',
+    serverName: 'Jellyfin',
+    serverMachineId: id,
+    userId: 'user-$id',
+    userName: 'User',
+    accessToken: 'token-$id',
+    deviceId: 'device-$id',
     createdAt: DateTime(2026, 1, 1),
   );
 }

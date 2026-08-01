@@ -815,11 +815,6 @@ class _Translations$profiles$de extends Translations$profiles$en {
 	@override String get active => 'Aktiv';
 	@override String get manage => 'Verwalten';
 	@override String get delete => 'Löschen';
-	@override String get signOut => 'Abmelden';
-	@override String get signOutPlexTitle => 'Von Plex abmelden?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} und alle Plex Home-Benutzer entfernen? Du kannst dich jederzeit wieder anmelden.';
-	@override String get signedOutPlex => 'Von Plex abgemeldet.';
-	@override String get signOutFailed => 'Abmeldung fehlgeschlagen.';
 	@override String get sectionTitle => 'Profile';
 	@override String get summarySingle => 'Profile hinzufügen, um verwaltete Benutzer mit lokalen Identitäten zu kombinieren';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} Profile · aktiv: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$de extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Keine Verbindungen — füge eine hinzu, um dieses Profil zu nutzen.';
 	@override String get noConnections => 'Keine Verbindungen';
 	@override String get connectionDefault => 'Standard';
-	@override String connectionAs({required Object displayName}) => 'als ${displayName}';
 	@override String get makeDefault => 'Als Standard festlegen';
 	@override String get removeConnection => 'Entfernen';
 	@override String get profileRenamed => 'Profil umbenannt.';
@@ -2367,11 +2361,6 @@ extension on TranslationsDe {
 			'profiles.active' => 'Aktiv',
 			'profiles.manage' => 'Verwalten',
 			'profiles.delete' => 'Löschen',
-			'profiles.signOut' => 'Abmelden',
-			'profiles.signOutPlexTitle' => 'Von Plex abmelden?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} und alle Plex Home-Benutzer entfernen? Du kannst dich jederzeit wieder anmelden.',
-			'profiles.signedOutPlex' => 'Von Plex abgemeldet.',
-			'profiles.signOutFailed' => 'Abmeldung fehlgeschlagen.',
 			'profiles.sectionTitle' => 'Profile',
 			'profiles.summarySingle' => 'Profile hinzufügen, um verwaltete Benutzer mit lokalen Identitäten zu kombinieren',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} Profile · aktiv: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsDe {
 			'profiles.noConnectionsHint' => 'Keine Verbindungen — füge eine hinzu, um dieses Profil zu nutzen.',
 			'profiles.noConnections' => 'Keine Verbindungen',
 			'profiles.connectionDefault' => 'Standard',
-			'profiles.connectionAs' => ({required Object displayName}) => 'als ${displayName}',
 			'profiles.makeDefault' => 'Als Standard festlegen',
 			'profiles.removeConnection' => 'Entfernen',
 			'profiles.profileRenamed' => 'Profil umbenannt.',
@@ -2811,14 +2799,14 @@ extension on TranslationsDe {
 			'externalPlayer.playerName' => 'Playername',
 			'externalPlayer.playerNameHint' => 'Mein Player',
 			'externalPlayer.playerCommand' => 'Befehl',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Paketname',
 			'externalPlayer.playerUrlScheme' => 'URL-Schema',
 			'externalPlayer.off' => 'Aus',
 			'externalPlayer.launchFailed' => 'Externer Player konnte nicht geöffnet werden',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} ist nicht installiert',
 			'externalPlayer.playInExternalPlayer' => 'In externem Player abspielen',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Bearbeiten...',
 			'metadataEdit.screenTitle' => 'Metadaten bearbeiten',
 			'metadataEdit.basicInfo' => 'Grundinformationen',

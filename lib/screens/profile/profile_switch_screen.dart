@@ -253,7 +253,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
         // (e.g. a delete confirmation left open when the switch settles).
         final actionsEnabled = !widget.requireSelection && !_switching;
         final onManage = actionsEnabled ? () => _manageProfile(profile) : null;
-        final onDelete = profile.isLocal && actionsEnabled ? () => _deleteProfile(profile) : null;
+        final onDelete = actionsEnabled ? () => _deleteProfile(profile) : null;
         final hasMenu = onManage != null || onDelete != null;
 
         if (isFirstSelectable && !_focusRequested) {

@@ -3,7 +3,6 @@ import '../media/ids.dart';
 
 import 'package:uuid/uuid.dart';
 
-import '../profiles/profile.dart';
 import '../utils/log_redaction_manager.dart';
 import 'base_shared_preferences_service.dart';
 
@@ -46,63 +45,17 @@ class StorageService extends BaseSharedPreferencesService {
     // migration ran (after migration the slot is empty so this is a no-op).
     // ignore: deprecated_member_use_from_same_package
     LogRedactionManager.registerToken(getPlexToken());
-    await _migratePlexHomeUserScopes();
-  }
-
-  /// One-time repair for prefs scoped by a full `plex-home-…` profile id.
-  /// [parsePlexHomeProfileId] historically rejected real 16-hex home-user
-  /// uuids, so `_userPrefix` fell back to the full profile id and wrote
-  /// `user_plex-home-{acct}-{uuid}_*` keys instead of the intended
-  /// `user_{uuid}_*`. Move them onto the uuid scope. On conflict the
-  /// full-id value wins: it is the more recently written one (uuid-scoped
-  /// keys can only predate the profiles migration).
-  Future<void> _migratePlexHomeUserScopes() async {
-    const scopePrefix = 'user_plex-home-';
-    final keys = prefs.keys.where((k) => k.startsWith(scopePrefix)).toList(growable: false);
-    for (final key in keys) {
-      final withoutUserPrefix = key.substring('user_'.length);
-      // Profile ids contain no underscores, so the first `_` ends the scope.
-      final sep = withoutUserPrefix.indexOf('_');
-      if (sep <= 0) continue;
-      final parsed = parsePlexHomeProfileId(withoutUserPrefix.substring(0, sep));
-      if (parsed == null) continue;
-      final newKey = 'user_${parsed.homeUserUuid}_${withoutUserPrefix.substring(sep + 1)}';
-      switch (prefs.get(key)) {
-        case final List<Object?> v:
-          await prefs.setStringList(newKey, v.cast<String>());
-        case final String v:
-          await prefs.setString(newKey, v);
-        case final bool v:
-          await prefs.setBool(newKey, v);
-        case final int v:
-          await prefs.setInt(newKey, v);
-        case final double v:
-          await prefs.setDouble(newKey, v);
-        default:
-          continue; // Unknown shape — leave the old key untouched.
-      }
-      await prefs.remove(key);
-    }
   }
 
   // User-scoped storage for per-profile library settings
 
   /// Returns the scope identifier for the active profile, or `null` if no
   /// profile is active.
-  ///
-  /// For Plex Home profiles (id format `plex-home-{connId}-{homeUserUuid}`)
-  /// the scope is the home-user UUID — keeps per-user library prefs working
-  /// the same way the legacy `currentUserUUID` did. For local profiles, the
-  /// full profile id is the scope.
   String? activeUserScope() => _activeUserScope();
 
-  String userScopeForProfileId(String profileId) => profileUserScope(profileId);
+  String userScopeForProfileId(String profileId) => profileId;
 
-  String? _activeUserScope() {
-    final id = getActiveProfileId();
-    if (id == null) return null;
-    return profileUserScope(id);
-  }
+  String? _activeUserScope() => getActiveProfileId();
 
   /// Returns `'user_{scope}_'` for the active profile, or `''` if no
   /// profile is active.

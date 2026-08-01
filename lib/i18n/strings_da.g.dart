@@ -815,11 +815,6 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	@override String get active => 'Aktiv';
 	@override String get manage => 'Administrer';
 	@override String get delete => 'Slet';
-	@override String get signOut => 'Log ud';
-	@override String get signOutPlexTitle => 'Log ud af Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Fjern ${displayName} og alle Plex Home-brugere? Du kan altid logge ind igen.';
-	@override String get signedOutPlex => 'Logget ud af Plex.';
-	@override String get signOutFailed => 'Kunne ikke logge ud.';
 	@override String get sectionTitle => 'Profiler';
 	@override String get summarySingle => 'Tilføj profiler for at kombinere administrerede brugere med lokale identiteter';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profiler · aktiv: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$da extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Ingen forbindelser — tilføj en for at bruge denne profil.';
 	@override String get noConnections => 'Ingen forbindelser';
 	@override String get connectionDefault => 'Standard';
-	@override String connectionAs({required Object displayName}) => 'som ${displayName}';
 	@override String get makeDefault => 'Gør til standard';
 	@override String get removeConnection => 'Fjern';
 	@override String get profileRenamed => 'Profil omdøbt.';
@@ -2367,11 +2361,6 @@ extension on TranslationsDa {
 			'profiles.active' => 'Aktiv',
 			'profiles.manage' => 'Administrer',
 			'profiles.delete' => 'Slet',
-			'profiles.signOut' => 'Log ud',
-			'profiles.signOutPlexTitle' => 'Log ud af Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Fjern ${displayName} og alle Plex Home-brugere? Du kan altid logge ind igen.',
-			'profiles.signedOutPlex' => 'Logget ud af Plex.',
-			'profiles.signOutFailed' => 'Kunne ikke logge ud.',
 			'profiles.sectionTitle' => 'Profiler',
 			'profiles.summarySingle' => 'Tilføj profiler for at kombinere administrerede brugere med lokale identiteter',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profiler · aktiv: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsDa {
 			'profiles.noConnectionsHint' => 'Ingen forbindelser — tilføj en for at bruge denne profil.',
 			'profiles.noConnections' => 'Ingen forbindelser',
 			'profiles.connectionDefault' => 'Standard',
-			'profiles.connectionAs' => ({required Object displayName}) => 'som ${displayName}',
 			'profiles.makeDefault' => 'Gør til standard',
 			'profiles.removeConnection' => 'Fjern',
 			'profiles.profileRenamed' => 'Profil omdøbt.',
@@ -2811,14 +2799,14 @@ extension on TranslationsDa {
 			'externalPlayer.playerName' => 'Afspillernavn',
 			'externalPlayer.playerNameHint' => 'Min afspiller',
 			'externalPlayer.playerCommand' => 'Kommando',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Pakkenavn',
 			'externalPlayer.playerUrlScheme' => 'URL-skema',
 			'externalPlayer.off' => 'Fra',
 			'externalPlayer.launchFailed' => 'Kunne ikke åbne ekstern afspiller',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} er ikke installeret',
 			'externalPlayer.playInExternalPlayer' => 'Afspil i ekstern afspiller',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Rediger...',
 			'metadataEdit.screenTitle' => 'Rediger metadata',
 			'metadataEdit.basicInfo' => 'Grundlæggende oplysninger',

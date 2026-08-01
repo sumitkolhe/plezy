@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-import 'package:drift/drift.dart' show Value;
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plezy/connection/connection.dart';
 import 'package:plezy/connection/connection_registry.dart';
 import 'package:plezy/database/app_database.dart';
-import 'package:plezy/services/credential_vault.dart';
-import 'package:plezy/services/plex_auth_service.dart';
 
 import '../test_helpers/prefs.dart';
 
@@ -30,35 +25,6 @@ JellyfinConnection _jellyfin({String id = 'srv-1', String userName = 'edde'}) {
     userName: userName,
     accessToken: 'tok-$id',
     deviceId: 'dev-1',
-    createdAt: DateTime.fromMillisecondsSinceEpoch(1_000_000),
-  );
-}
-
-PlexAccountConnection _plex({String id = 'plex-1'}) {
-  return PlexAccountConnection(
-    id: id,
-    accountToken: 'tok-$id',
-    clientIdentifier: 'cid-$id',
-    accountLabel: 'me@example.com',
-    servers: [
-      PlexServer(
-        name: 'Server $id',
-        clientIdentifier: 'server-$id',
-        accessToken: 'server-token-$id',
-        connections: [
-          PlexConnection(
-            protocol: 'https',
-            address: 'plex.example.com',
-            port: 443,
-            uri: 'https://plex.example.com',
-            local: false,
-            relay: false,
-            ipv6: false,
-          ),
-        ],
-        owned: true,
-      ),
-    ],
     createdAt: DateTime.fromMillisecondsSinceEpoch(1_000_000),
   );
 }
@@ -92,56 +58,13 @@ void main() {
       expect(await _defaultConnectionId(db), 'a');
     });
 
-    test('upsert preserves type discriminator (Plex vs Jellyfin)', () async {
-      await registry.upsert(_plex(id: 'p'));
-      await registry.upsert(_jellyfin(id: 'j'));
-
-      final plex = await registry.get('p');
-      final jelly = await registry.get('j');
-      expect(plex, isA<PlexAccountConnection>());
-      expect(jelly, isA<JellyfinConnection>());
-
-      expect((plex as PlexAccountConnection).accountToken, 'tok-p');
-      expect((jelly as JellyfinConnection).baseUrl, 'https://jellyfin.local');
-    });
-
     test('upsert encrypts tokens at rest and decrypts on read', () async {
-      await registry.upsert(_plex(id: 'p'));
       await registry.upsert(_jellyfin(id: 'j'));
 
       final rows = await db.select(db.connections).get();
-      expect(rows.singleWhere((r) => r.id == 'p').configJson, isNot(contains('tok-p')));
-      expect(rows.singleWhere((r) => r.id == 'p').configJson, isNot(contains('server-token-p')));
       expect(rows.singleWhere((r) => r.id == 'j').configJson, isNot(contains('tok-j')));
 
-      expect((await registry.get('p') as PlexAccountConnection).accountToken, 'tok-p');
-      expect((await registry.get('p') as PlexAccountConnection).servers.single.accessToken, 'server-token-p');
       expect((await registry.get('j') as JellyfinConnection).accessToken, 'tok-j');
-    });
-
-    test('read migrates legacy plaintext Plex server tokens', () async {
-      final plex = _plex(id: 'legacy');
-      final config = plex.toConfigJson();
-      config['accountToken'] = await CredentialVault.protect(plex.accountToken);
-      await db
-          .into(db.connections)
-          .insert(
-            ConnectionsCompanion.insert(
-              id: plex.id,
-              kind: plex.kind.id,
-              displayName: plex.displayName,
-              configJson: jsonEncode(config),
-              createdAt: plex.createdAt.millisecondsSinceEpoch,
-              isDefault: const Value(true),
-            ),
-          );
-
-      final restored = await registry.get('legacy') as PlexAccountConnection;
-      expect(restored.accountToken, 'tok-legacy');
-      expect(restored.servers.single.accessToken, 'server-token-legacy');
-
-      final row = await (db.select(db.connections)..where((t) => t.id.equals('legacy'))).getSingle();
-      expect(row.configJson, isNot(contains('server-token-legacy')));
     });
 
     test('setDefault flips the flag and clears it on others', () async {

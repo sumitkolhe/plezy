@@ -258,7 +258,7 @@ class ActiveProfileBinder {
         connectionsById: connectionsById,
       );
       multiServerProvider.setExpectedVisibleServerIds(expectedServerIds);
-      final localProfileHasJoinRows = profile.isLocal && joinRows.isNotEmpty;
+      final hasJoinRows = joinRows.isNotEmpty;
 
       final results = await Future.wait([
         _bindJoinRows(
@@ -287,7 +287,7 @@ class ActiveProfileBinder {
       }
       multiServerProvider.setExpectedVisibleServerIds(expectedServerIds);
       multiServerProvider.setVisibleServerIds(visibleServerIds);
-      success = (profile.isLocal && !localProfileHasJoinRows) || visibleServerIds.isNotEmpty;
+      success = !hasJoinRows || visibleServerIds.isNotEmpty;
       // Once we've bound a profile with real servers in this session,
       // we've crossed the cold-start boundary — every subsequent rebind
       // is a user-initiated switch and must re-prompt for PIN where
@@ -327,8 +327,6 @@ class ActiveProfileBinder {
     final expected = <String>{};
     for (final pc in joinRows) {
       switch (connectionsById[pc.connectionId]) {
-        case PlexAccountConnection(:final servers):
-          expected.addAll(servers.map((server) => server.clientIdentifier));
         case JellyfinConnection(:final serverMachineId):
           expected.add(serverMachineId);
         case null:
@@ -353,9 +351,7 @@ class ActiveProfileBinder {
     required int generation,
   }) async {
     if (joinRows.isEmpty) {
-      if (profile.isLocal) {
-        appLogger.w('ActiveProfileBinder: ${profile.displayName} has no connections');
-      }
+      appLogger.w('ActiveProfileBinder: ${profile.displayName} has no connections');
       return const _ProfileBindResult.empty();
     }
     final visible = <String>{};

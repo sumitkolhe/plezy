@@ -815,11 +815,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String get active => 'Активен';
 	@override String get manage => 'Управление';
 	@override String get delete => 'Изтрий';
-	@override String get signOut => 'Изход';
-	@override String get signOutPlexTitle => 'Изход от Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => 'Премахване на ${displayName} и всички Plex Home потребители? Можете да влезете отново по всяко време.';
-	@override String get signedOutPlex => 'Излязохте от Plex.';
-	@override String get signOutFailed => 'Изходът е неуспешен.';
 	@override String get sectionTitle => 'Профили';
 	@override String get summarySingle => 'Добавете профили, за да комбинирате управлявани потребители и локални идентичности';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} профила · активен: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$bg extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Няма връзки — добавете такава, за да използвате този профил.';
 	@override String get noConnections => 'Няма връзки';
 	@override String get connectionDefault => 'По подразбиране';
-	@override String connectionAs({required Object displayName}) => 'като ${displayName}';
 	@override String get makeDefault => 'Направи по подразбиране';
 	@override String get removeConnection => 'Премахни';
 	@override String get profileRenamed => 'Профилът е преименуван.';
@@ -2367,11 +2361,6 @@ extension on TranslationsBg {
 			'profiles.active' => 'Активен',
 			'profiles.manage' => 'Управление',
 			'profiles.delete' => 'Изтрий',
-			'profiles.signOut' => 'Изход',
-			'profiles.signOutPlexTitle' => 'Изход от Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => 'Премахване на ${displayName} и всички Plex Home потребители? Можете да влезете отново по всяко време.',
-			'profiles.signedOutPlex' => 'Излязохте от Plex.',
-			'profiles.signOutFailed' => 'Изходът е неуспешен.',
 			'profiles.sectionTitle' => 'Профили',
 			'profiles.summarySingle' => 'Добавете профили, за да комбинирате управлявани потребители и локални идентичности',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} профила · активен: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsBg {
 			'profiles.noConnectionsHint' => 'Няма връзки — добавете такава, за да използвате този профил.',
 			'profiles.noConnections' => 'Няма връзки',
 			'profiles.connectionDefault' => 'По подразбиране',
-			'profiles.connectionAs' => ({required Object displayName}) => 'като ${displayName}',
 			'profiles.makeDefault' => 'Направи по подразбиране',
 			'profiles.removeConnection' => 'Премахни',
 			'profiles.profileRenamed' => 'Профилът е преименуван.',
@@ -2811,14 +2799,14 @@ extension on TranslationsBg {
 			'externalPlayer.playerName' => 'Име на плейъра',
 			'externalPlayer.playerNameHint' => 'Моят плеър',
 			'externalPlayer.playerCommand' => 'Команда',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Име на пакет',
 			'externalPlayer.playerUrlScheme' => 'URL схема',
 			'externalPlayer.off' => 'Изключено',
 			'externalPlayer.launchFailed' => 'Неуспешно отваряне на външен плеър',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} не е инсталиран',
 			'externalPlayer.playInExternalPlayer' => 'Пусни във външен плеър',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Редактирай...',
 			'metadataEdit.screenTitle' => 'Редактиране на метаданни',
 			'metadataEdit.basicInfo' => 'Основна информация',

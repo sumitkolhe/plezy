@@ -819,11 +819,6 @@ class _Translations$profiles$kk extends Translations$profiles$en {
 	@override String get active => 'Белсенді';
 	@override String get manage => 'Басқару';
 	@override String get delete => 'Өшіру';
-	@override String get signOut => 'Шығу';
-	@override String get signOutPlexTitle => 'Plex-тен шығу?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} мен барлық Plex Home пайдаланушылары өшіріледі.';
-	@override String get signedOutPlex => 'Plex-тен шықтыңыз.';
-	@override String get signOutFailed => 'Шығу мүмкін болмады.';
 	@override String get sectionTitle => 'Профильдер';
 	@override String get summarySingle => 'Басқарылатын пайдаланушыларды біріктіру үшін профильдер қосыңыз';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} профиль · белсенді: ${activeName}';
@@ -846,7 +841,6 @@ class _Translations$profiles$kk extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Қосылымдар жоқ — бұл профильді пайдалану үшін қосылым қосыңыз.';
 	@override String get noConnections => 'Қосылымдар жоқ';
 	@override String get connectionDefault => 'Әдепкі';
-	@override String connectionAs({required Object displayName}) => '${displayName} ретінде';
 	@override String get makeDefault => 'Әдепкі ету';
 	@override String get removeConnection => 'Өшіру';
 	@override String get profileRenamed => 'Профиль атауы өзгертілді.';
@@ -2382,11 +2376,6 @@ extension on TranslationsKk {
 			'profiles.active' => 'Белсенді',
 			'profiles.manage' => 'Басқару',
 			'profiles.delete' => 'Өшіру',
-			'profiles.signOut' => 'Шығу',
-			'profiles.signOutPlexTitle' => 'Plex-тен шығу?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} мен барлық Plex Home пайдаланушылары өшіріледі.',
-			'profiles.signedOutPlex' => 'Plex-тен шықтыңыз.',
-			'profiles.signOutFailed' => 'Шығу мүмкін болмады.',
 			'profiles.sectionTitle' => 'Профильдер',
 			'profiles.summarySingle' => 'Басқарылатын пайдаланушыларды біріктіру үшін профильдер қосыңыз',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} профиль · белсенді: ${activeName}',
@@ -2409,7 +2398,6 @@ extension on TranslationsKk {
 			'profiles.noConnectionsHint' => 'Қосылымдар жоқ — бұл профильді пайдалану үшін қосылым қосыңыз.',
 			'profiles.noConnections' => 'Қосылымдар жоқ',
 			'profiles.connectionDefault' => 'Әдепкі',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} ретінде',
 			'profiles.makeDefault' => 'Әдепкі ету',
 			'profiles.removeConnection' => 'Өшіру',
 			'profiles.profileRenamed' => 'Профиль атауы өзгертілді.',
@@ -2822,14 +2810,14 @@ extension on TranslationsKk {
 			'performanceOverlay.speed' => 'Жылдамдық',
 			'performanceOverlay.player' => 'Ойнатқыш',
 			'performanceOverlay.memory' => 'Жады',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Интерфейс (UI) FPS',
 			'externalPlayer.title' => 'Сыртқы ойнатқыш',
 			'externalPlayer.useExternalPlayer' => 'Сыртқы ойнатқышты пайдалану',
 			'externalPlayer.useExternalPlayerDescription' => 'Видеоларды басқа қолданбада ашу',
 			'externalPlayer.selectPlayer' => 'Ойнатқышты таңдау',
 			'externalPlayer.customPlayers' => 'Арнайы ойнатқыштар',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Жүйелік әдепкі',
 			'externalPlayer.addCustomPlayer' => 'Арнайы ойнатқыш қосу',
 			'externalPlayer.playerName' => 'Ойнатқыш атауы',

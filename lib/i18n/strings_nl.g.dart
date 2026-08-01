@@ -815,11 +815,6 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	@override String get active => 'Actief';
 	@override String get manage => 'Beheren';
 	@override String get delete => 'Verwijderen';
-	@override String get signOut => 'Afmelden';
-	@override String get signOutPlexTitle => 'Afmelden bij Plex?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} en alle Plex Home-gebruikers verwijderen? Je kunt altijd opnieuw inloggen.';
-	@override String get signedOutPlex => 'Afgemeld bij Plex.';
-	@override String get signOutFailed => 'Afmelden mislukt.';
 	@override String get sectionTitle => 'Profielen';
 	@override String get summarySingle => 'Voeg profielen toe om beheerde gebruikers en lokale identiteiten te combineren';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profielen · actief: ${activeName}';
@@ -842,7 +837,6 @@ class _Translations$profiles$nl extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Geen verbindingen — voeg er één toe om dit profiel te gebruiken.';
 	@override String get noConnections => 'Geen verbindingen';
 	@override String get connectionDefault => 'Standaard';
-	@override String connectionAs({required Object displayName}) => 'als ${displayName}';
 	@override String get makeDefault => 'Als standaard instellen';
 	@override String get removeConnection => 'Verwijderen';
 	@override String get profileRenamed => 'Profiel hernoemd.';
@@ -2367,11 +2361,6 @@ extension on TranslationsNl {
 			'profiles.active' => 'Actief',
 			'profiles.manage' => 'Beheren',
 			'profiles.delete' => 'Verwijderen',
-			'profiles.signOut' => 'Afmelden',
-			'profiles.signOutPlexTitle' => 'Afmelden bij Plex?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} en alle Plex Home-gebruikers verwijderen? Je kunt altijd opnieuw inloggen.',
-			'profiles.signedOutPlex' => 'Afgemeld bij Plex.',
-			'profiles.signOutFailed' => 'Afmelden mislukt.',
 			'profiles.sectionTitle' => 'Profielen',
 			'profiles.summarySingle' => 'Voeg profielen toe om beheerde gebruikers en lokale identiteiten te combineren',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profielen · actief: ${activeName}',
@@ -2394,7 +2383,6 @@ extension on TranslationsNl {
 			'profiles.noConnectionsHint' => 'Geen verbindingen — voeg er één toe om dit profiel te gebruiken.',
 			'profiles.noConnections' => 'Geen verbindingen',
 			'profiles.connectionDefault' => 'Standaard',
-			'profiles.connectionAs' => ({required Object displayName}) => 'als ${displayName}',
 			'profiles.makeDefault' => 'Als standaard instellen',
 			'profiles.removeConnection' => 'Verwijderen',
 			'profiles.profileRenamed' => 'Profiel hernoemd.',
@@ -2811,14 +2799,14 @@ extension on TranslationsNl {
 			'externalPlayer.playerName' => 'Spelernaam',
 			'externalPlayer.playerNameHint' => 'Mijn speler',
 			'externalPlayer.playerCommand' => 'Commando',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => 'Pakketnaam',
 			'externalPlayer.playerUrlScheme' => 'URL-schema',
 			'externalPlayer.off' => 'Uit',
 			'externalPlayer.launchFailed' => 'Kan externe speler niet openen',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name} is niet geïnstalleerd',
 			'externalPlayer.playInExternalPlayer' => 'Afspelen in externe speler',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => 'Bewerken...',
 			'metadataEdit.screenTitle' => 'Metadata bewerken',
 			'metadataEdit.basicInfo' => 'Basisinformatie',

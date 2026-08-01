@@ -814,11 +814,6 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	@override String get active => '활성';
 	@override String get manage => '관리';
 	@override String get delete => '삭제';
-	@override String get signOut => '로그아웃';
-	@override String get signOutPlexTitle => 'Plex에서 로그아웃하시겠습니까?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} 및 모든 Plex Home 사용자를 제거할까요? 언제든 다시 로그인할 수 있습니다.';
-	@override String get signedOutPlex => 'Plex에서 로그아웃되었습니다.';
-	@override String get signOutFailed => '로그아웃에 실패했습니다.';
 	@override String get sectionTitle => '프로필';
 	@override String get summarySingle => '관리되는 사용자와 로컬 ID를 혼합하려면 프로필을 추가하세요';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count}개 프로필 · 활성: ${activeName}';
@@ -841,7 +836,6 @@ class _Translations$profiles$ko extends Translations$profiles$en {
 	@override String get noConnectionsHint => '연결이 없습니다 — 이 프로필을 사용하려면 하나 추가하세요.';
 	@override String get noConnections => '연결 없음';
 	@override String get connectionDefault => '기본값';
-	@override String connectionAs({required Object displayName}) => '${displayName}(으)로';
 	@override String get makeDefault => '기본값으로 설정';
 	@override String get removeConnection => '제거';
 	@override String get profileRenamed => '프로필 이름이 변경되었습니다.';
@@ -2364,11 +2358,6 @@ extension on TranslationsKo {
 			'profiles.active' => '활성',
 			'profiles.manage' => '관리',
 			'profiles.delete' => '삭제',
-			'profiles.signOut' => '로그아웃',
-			'profiles.signOutPlexTitle' => 'Plex에서 로그아웃하시겠습니까?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} 및 모든 Plex Home 사용자를 제거할까요? 언제든 다시 로그인할 수 있습니다.',
-			'profiles.signedOutPlex' => 'Plex에서 로그아웃되었습니다.',
-			'profiles.signOutFailed' => '로그아웃에 실패했습니다.',
 			'profiles.sectionTitle' => '프로필',
 			'profiles.summarySingle' => '관리되는 사용자와 로컬 ID를 혼합하려면 프로필을 추가하세요',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count}개 프로필 · 활성: ${activeName}',
@@ -2391,7 +2380,6 @@ extension on TranslationsKo {
 			'profiles.noConnectionsHint' => '연결이 없습니다 — 이 프로필을 사용하려면 하나 추가하세요.',
 			'profiles.noConnections' => '연결 없음',
 			'profiles.connectionDefault' => '기본값',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName}(으)로',
 			'profiles.makeDefault' => '기본값으로 설정',
 			'profiles.removeConnection' => '제거',
 			'profiles.profileRenamed' => '프로필 이름이 변경되었습니다.',
@@ -2808,14 +2796,14 @@ extension on TranslationsKo {
 			'externalPlayer.playerName' => '플레이어 이름',
 			'externalPlayer.playerNameHint' => '내 플레이어',
 			'externalPlayer.playerCommand' => '명령어',
-			_ => null,
-		} ?? switch (path) {
 			'externalPlayer.playerPackage' => '패키지 이름',
 			'externalPlayer.playerUrlScheme' => 'URL 스킴',
 			'externalPlayer.off' => '꺼짐',
 			'externalPlayer.launchFailed' => '외부 플레이어를 열 수 없습니다',
 			'externalPlayer.appNotInstalled' => ({required Object name}) => '${name}이(가) 설치되어 있지 않습니다',
 			'externalPlayer.playInExternalPlayer' => '외부 플레이어에서 재생',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.editMetadata' => '편집...',
 			'metadataEdit.screenTitle' => '메타데이터 편집',
 			'metadataEdit.basicInfo' => '기본 정보',

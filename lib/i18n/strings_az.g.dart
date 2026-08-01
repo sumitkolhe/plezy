@@ -819,11 +819,6 @@ class _Translations$profiles$az extends Translations$profiles$en {
 	@override String get active => 'Aktiv';
 	@override String get manage => 'İdarə et';
 	@override String get delete => 'Sil';
-	@override String get signOut => 'Çıxış et';
-	@override String get signOutPlexTitle => 'Plex-dən çıxılsın?';
-	@override String signOutPlexMessage({required Object displayName}) => '${displayName} və bütün Plex Ev istifadəçiləri silinsin?';
-	@override String get signedOutPlex => 'Plex-dən çıxıldı.';
-	@override String get signOutFailed => 'Çıxış uğursuz oldu.';
 	@override String get sectionTitle => 'Profillər';
 	@override String get summarySingle => 'İdarə olunan istifadəçiləri və yerli kimlikləri qarışdırmaq üçün profillər əlavə edin';
 	@override String summaryMultipleWithActive({required Object count, required Object activeName}) => '${count} profil · aktiv: ${activeName}';
@@ -846,7 +841,6 @@ class _Translations$profiles$az extends Translations$profiles$en {
 	@override String get noConnectionsHint => 'Qoşulma yoxdur — bu profili istifadə etmək üçün birini əlavə edin.';
 	@override String get noConnections => 'Qoşulma yoxdur';
 	@override String get connectionDefault => 'Defolt';
-	@override String connectionAs({required Object displayName}) => '${displayName} olaraq';
 	@override String get makeDefault => 'Defolt et';
 	@override String get removeConnection => 'Sil';
 	@override String get profileRenamed => 'Profil adı dəyişdirildi.';
@@ -2382,11 +2376,6 @@ extension on TranslationsAz {
 			'profiles.active' => 'Aktiv',
 			'profiles.manage' => 'İdarə et',
 			'profiles.delete' => 'Sil',
-			'profiles.signOut' => 'Çıxış et',
-			'profiles.signOutPlexTitle' => 'Plex-dən çıxılsın?',
-			'profiles.signOutPlexMessage' => ({required Object displayName}) => '${displayName} və bütün Plex Ev istifadəçiləri silinsin?',
-			'profiles.signedOutPlex' => 'Plex-dən çıxıldı.',
-			'profiles.signOutFailed' => 'Çıxış uğursuz oldu.',
 			'profiles.sectionTitle' => 'Profillər',
 			'profiles.summarySingle' => 'İdarə olunan istifadəçiləri və yerli kimlikləri qarışdırmaq üçün profillər əlavə edin',
 			'profiles.summaryMultipleWithActive' => ({required Object count, required Object activeName}) => '${count} profil · aktiv: ${activeName}',
@@ -2409,7 +2398,6 @@ extension on TranslationsAz {
 			'profiles.noConnectionsHint' => 'Qoşulma yoxdur — bu profili istifadə etmək üçün birini əlavə edin.',
 			'profiles.noConnections' => 'Qoşulma yoxdur',
 			'profiles.connectionDefault' => 'Defolt',
-			'profiles.connectionAs' => ({required Object displayName}) => '${displayName} olaraq',
 			'profiles.makeDefault' => 'Defolt et',
 			'profiles.removeConnection' => 'Sil',
 			'profiles.profileRenamed' => 'Profil adı dəyişdirildi.',
@@ -2822,14 +2810,14 @@ extension on TranslationsAz {
 			'performanceOverlay.speed' => 'Sürət',
 			'performanceOverlay.player' => 'Oynadıcı',
 			'performanceOverlay.memory' => 'Yaddaş',
-			_ => null,
-		} ?? switch (path) {
 			'performanceOverlay.uiFps' => 'Arayüz (UI) FPS-i',
 			'externalPlayer.title' => 'Xarici oynadıcı',
 			'externalPlayer.useExternalPlayer' => 'Xarici oynadıcı istifadə et',
 			'externalPlayer.useExternalPlayerDescription' => 'Videoları başqa tətbiqdə açın',
 			'externalPlayer.selectPlayer' => 'Oynadıcı seç',
 			'externalPlayer.customPlayers' => 'Xüsusi oynadıcılar',
+			_ => null,
+		} ?? switch (path) {
 			'externalPlayer.systemDefault' => 'Sistem defoltu',
 			'externalPlayer.addCustomPlayer' => 'Xüsusi oynadıcı əlavə et',
 			'externalPlayer.playerName' => 'Oynadıcı adı',

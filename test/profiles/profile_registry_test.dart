@@ -38,27 +38,6 @@ void main() {
       expect(fetched.pinHash, profile.pinHash);
     });
 
-    test('upsert + get round-trips a plex_home profile', () async {
-      final profile = Profile.plexHome(
-        id: 'plex-home-acct-uuid',
-        displayName: 'Admin',
-        avatarThumbUrl: 'https://plex.tv/users/abc/avatar?',
-        parentConnectionId: 'acct',
-        plexAdmin: true,
-        plexProtected: true,
-        createdAt: DateTime(2026, 1, 1),
-      );
-      await registry.upsert(profile);
-
-      final fetched = await registry.get(profile.id);
-      expect(fetched, isNotNull);
-      expect(fetched!.kind, ProfileKind.plexHome);
-      expect(fetched.avatarThumbUrl, profile.avatarThumbUrl);
-      expect(fetched.parentConnectionId, 'acct');
-      expect(fetched.plexAdmin, isTrue);
-      expect(fetched.plexProtected, isTrue);
-    });
-
     test('list orders by sortOrder then createdAt', () async {
       await registry.upsert(Profile.local(id: 'a', displayName: 'A', sortOrder: 1, createdAt: DateTime(2026, 1, 1)));
       await registry.upsert(Profile.local(id: 'b', displayName: 'B', sortOrder: 0, createdAt: DateTime(2026, 1, 2)));

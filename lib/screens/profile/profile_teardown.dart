@@ -149,16 +149,6 @@ Future<void> resumeFreshSystemShelf(SessionTeardownScope scope, String profileId
   }
 }
 
-Future<String?> _activeProfileUsingConnection(SessionTeardownScope scope, String connectionId) async {
-  final active = scope.active.active;
-  if (active == null) return null;
-  final usesConnection = (await scope.profileConnections.listForProfile(
-    active.id,
-  )).any((row) => row.connectionId == connectionId);
-  if (!usesConnection || scope.active.activeId != active.id) return null;
-  return active.id;
-}
-
 Future<bool> confirmAndDeleteProfile(
   BuildContext context, {
   required Profile profile,
@@ -206,73 +196,6 @@ Future<void> deleteProfile(BuildContext context, Profile profile) async {
       await resumeFreshSystemShelf(scope, endedOwner);
     }
     rethrow;
-  }
-}
-
-/// Sign out of a Plex account after confirmation: the account connection,
-/// its virtual Plex Home profiles, and their borrowed connections are all
-/// removed (#1423); surviving borrower profiles release the account's
-/// server downloads. Plex exposes no reliable single-session revoke
-/// endpoint, so the server side is untouched — the user can revoke the
-/// device via plex.tv.
-///
-/// Returns true when the sign-out ran, false when cancelled or the account
-/// no longer exists.
-Future<bool> confirmAndSignOutPlexAccount(BuildContext context, {required String accountConnectionId}) async {
-  final account = await context.read<ConnectionRegistry>().getPlexAccount(accountConnectionId);
-  if (account == null || !context.mounted) return false;
-
-  final confirmed = await showDeleteConfirmation(
-    context,
-    title: t.profiles.signOutPlexTitle,
-    message: t.profiles.signOutPlexMessage(displayName: account.displayLabel),
-    confirmText: t.profiles.signOut,
-  );
-  if (!confirmed || !context.mounted) return false;
-
-  final scope = SessionTeardownScope.of(context);
-  String? endedOwner;
-  try {
-    final removal = await planPlexAccountConnectionRemoval(
-      account: account,
-      profileConnections: scope.profileConnections,
-    );
-    endedOwner = await _activeProfileUsingConnection(scope, accountConnectionId);
-    if (endedOwner != null) {
-      await scope.shelf.endProfileSession(endedOwner);
-    }
-
-    // Physical download cleanup can fail. Finish it while the account and
-    // every ownership join still exist so a retry can resolve the same plan
-    // instead of stranding files without an owner.
-    for (final profileId in removal.removedVirtualProfileIds) {
-      await scope.downloads.deleteDownloadsForProfile(profileId);
-    }
-    final accountServerIds = {for (final server in account.servers) server.clientIdentifier};
-    for (final profileId in removal.borrowerProfileIds) {
-      await scope.downloads.releaseDownloadsForProfileServers(profileId, accountServerIds);
-    }
-
-    await scope.cleanup.removePlexAccountConnection(account, plannedRemoval: removal);
-    for (final profileId in removal.removedVirtualProfileIds) {
-      await scope.database.deleteSyncRulesForProfile(profileId);
-      await scope.database.deleteWatchActionsForProfile(profileId);
-    }
-
-    final navigatedAway = await settleSessionAfterRemoval(scope, rebindIfActiveKept: true, endedShelfOwner: endedOwner);
-    if (!navigatedAway && context.mounted) {
-      showSuccessSnackBar(context, t.profiles.signedOutPlex);
-    }
-    return true;
-  } catch (e, st) {
-    if (endedOwner != null) {
-      await resumeFreshSystemShelf(scope, endedOwner);
-    }
-    appLogger.w('Plex sign-out failed for $accountConnectionId', error: e, stackTrace: st);
-    if (context.mounted) {
-      showErrorSnackBar(context, t.profiles.signOutFailed);
-    }
-    return false;
   }
 }
 
