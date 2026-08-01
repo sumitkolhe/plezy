@@ -29,10 +29,6 @@ class MediaLibrary {
   /// Whether the user has hidden this library from the home browser.
   final bool hidden;
 
-  /// True for individually-shared items presented as a virtual library
-  /// (Plex's "shared with me" surface). Jellyfin returns no such marker.
-  final bool isShared;
-
   final String? serverId;
   final String? serverName;
 
@@ -46,7 +42,6 @@ class MediaLibrary {
     this.updatedAt,
     this.createdAt,
     this.hidden = false,
-    this.isShared = false,
     this.serverId,
     this.serverName,
   });

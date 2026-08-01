@@ -4,13 +4,12 @@ import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_library.dart';
 import 'package:plezy/screens/libraries/library_browse_grouping.dart';
 
-MediaLibrary _library({required MediaKind kind, bool isShared = false}) {
+MediaLibrary _library({required MediaKind kind}) {
   return MediaLibrary(
     id: '1',
     backend: MediaBackend.jellyfin,
     title: 'Library',
     kind: kind,
-    isShared: isShared,
     serverId: 'server-1',
   );
 }

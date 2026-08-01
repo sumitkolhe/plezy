@@ -279,7 +279,6 @@ class JellyfinMappers {
       updatedAt: jellyfinIsoToEpochSeconds(view['DateLastSaved'] as String? ?? view['DateModified'] as String?),
       createdAt: jellyfinIsoToEpochSeconds(view['DateCreated'] as String?),
       hidden: false,
-      isShared: false,
       serverId: serverId,
       serverName: serverName,
     );
