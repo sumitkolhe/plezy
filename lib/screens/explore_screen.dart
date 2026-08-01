@@ -316,11 +316,14 @@ class ExploreScreenState extends State<ExploreScreen>
           key: _actionBarKey,
           onNavigateDown: searchFocusNode.requestFocus,
           actions: [
-            FocusableAction(
-              icon: Symbols.refresh_rounded,
-              tooltip: t.common.refresh,
-              onPressed: () => unawaited(_handleRefresh()),
-            ),
+            // The RefreshIndicator below calls _handleRefresh too, so on
+            // handheld the gesture already covers this.
+            if (!PlatformDetector.isHandheld(context))
+              FocusableAction(
+                icon: Symbols.refresh_rounded,
+                tooltip: t.common.refresh,
+                onPressed: () => unawaited(_handleRefresh()),
+              ),
           ],
         ),
       ],

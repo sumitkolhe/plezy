@@ -829,7 +829,15 @@ class _LibrariesScreenState extends State<LibrariesScreen>
                 )
               : null,
         ),
-      FocusableAction(icon: Symbols.refresh_rounded, tooltip: t.common.refresh, onPressed: _refreshSelectedLibraryTabs),
+      // Each tab wraps its content in a RefreshIndicator calling the same
+      // loadItems, so handheld reaches this by pulling. The button stays on
+      // TV/desktop, where it also refreshes every visible tab at once.
+      if (!PlatformDetector.isHandheld(context))
+        FocusableAction(
+          icon: Symbols.refresh_rounded,
+          tooltip: t.common.refresh,
+          onPressed: _refreshSelectedLibraryTabs,
+        ),
     ];
 
     Widget appBar({required bool floating}) => DesktopSliverAppBar(

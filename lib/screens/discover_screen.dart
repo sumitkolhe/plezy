@@ -639,7 +639,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
               onNavigateLeft: _navigateToSidebar,
               onNavigateDown: _focusContentFromAppBar,
               actions: [
-                FocusableAction(icon: Symbols.refresh_rounded, iconColor: foregroundColor, onPressed: _discover.load),
+                // Handheld pulls to refresh instead; a toolbar button for the
+                // same call is chrome the gesture already covers. TV and
+                // desktop keep it — neither has the gesture.
+                if (!PlatformDetector.isHandheld(context))
+                  FocusableAction(icon: Symbols.refresh_rounded, iconColor: foregroundColor, onPressed: _discover.load),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
@@ -696,114 +700,116 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       color: theme.scaffoldBackgroundColor,
       child: Stack(
         children: [
-          CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              // Hero Section (Continue Watching) - at top of screen
-              Builder(
-                builder: (context) {
-                  if (_onDeck.isNotEmpty && showHeroSection) {
-                    return _buildHeroSection();
-                  }
-                  // Add top padding when hero is not shown
-                  return SliverToBoxAdapter(
-                    child: SizedBox(height: kToolbarHeight + MediaQuery.paddingOf(context).top + 16),
-                  );
-                },
-              ),
-              // Separate the hero's page indicator from the first rail header.
-              // Only with the hero present: without it the branch above already
-              // supplies the top inset.
-              if (_onDeck.isNotEmpty && showHeroSection)
-                const SliverToBoxAdapter(child: SizedBox(height: HubLayoutConstants.heroToRailGap)),
-              if (_isLoading) LoadingIndicatorBox.sliver,
-              if (_errorMessage != null) SliverErrorState(message: _errorMessage!, onRetry: _discover.load),
-              if (!_isLoading && _errorMessage == null) ...[
-                // On Deck / Continue Watching
-                if (continueWatchingHub != null)
-                  SliverToBoxAdapter(
-                    child: HubSection(
-                      key: _continueWatchingHubKey,
-                      hub: continueWatchingHub,
-                      focusMemory: _hubFocusMemory,
-                      icon: hubIconFor(continueWatchingHub),
-                      onRefresh: _discover.updateItem,
-                      onRemoveFromContinueWatching: _discover.refreshContinueWatching,
-                      isInContinueWatching: true,
-                      loadMoreItems: _discover.loadAllContinueWatching,
-                      onVerticalNavigation: (isUp) => _handleVerticalNavigation(0, isUp),
-                      onNavigateUp: _focusTopBoundary,
-                      onNavigateToSidebar: _navigateToSidebar,
-                    ),
-                  ),
-
-                // Recommendation Hubs (Trending, Top in Genre, etc.)
-                for (int i = 0; i < _hubs.length; i++)
-                  SliverToBoxAdapter(
-                    child: HubSection(
-                      key: i < _orderedHubKeys.length ? _orderedHubKeys[i] : null,
-                      hub: _hubs[i],
-                      focusMemory: _hubFocusMemory,
-                      icon: hubIconFor(_hubs[i]),
-                      showServerName: showServerNameOnHubs || hubsSpanMultipleServers,
-                      onRefresh: _discover.updateItem,
-                      // Hub index is i + 1 if continue watching exists, otherwise i
-                      onVerticalNavigation: (isUp) => _handleVerticalNavigation(_onDeck.isNotEmpty ? i + 1 : i, isUp),
-                      onNavigateUp: (i == 0 && _onDeck.isEmpty) ? _focusTopBoundary : null,
-                      onNavigateToSidebar: _navigateToSidebar,
-                    ),
-                  ),
-
-                // Show loading skeleton for hubs while they're loading
-                if (_areHubsLoading && _hubs.isEmpty)
-                  for (int i = 0; i < 3; i++)
+          _wrapWithPullToRefresh(
+            CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                // Hero Section (Continue Watching) - at top of screen
+                Builder(
+                  builder: (context) {
+                    if (_onDeck.isNotEmpty && showHeroSection) {
+                      return _buildHeroSection();
+                    }
+                    // Add top padding when hero is not shown
+                    return SliverToBoxAdapter(
+                      child: SizedBox(height: kToolbarHeight + MediaQuery.paddingOf(context).top + 16),
+                    );
+                  },
+                ),
+                // Separate the hero's page indicator from the first rail header.
+                // Only with the hero present: without it the branch above already
+                // supplies the top inset.
+                if (_onDeck.isNotEmpty && showHeroSection)
+                  const SliverToBoxAdapter(child: SizedBox(height: HubLayoutConstants.heroToRailGap)),
+                if (_isLoading) LoadingIndicatorBox.sliver,
+                if (_errorMessage != null) SliverErrorState(message: _errorMessage!, onRetry: _discover.load),
+                if (!_isLoading && _errorMessage == null) ...[
+                  // On Deck / Continue Watching
+                  if (continueWatchingHub != null)
                     SliverToBoxAdapter(
-                      child: Container(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: .start,
-                          children: [
-                            Container(
-                              width: 200,
-                              height: 24,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.surfaceContainerHighest,
-                                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            SizedBox(
-                              height: 200,
-                              child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 5,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    margin: const EdgeInsets.only(right: 12),
-                                    width: 140,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                                      borderRadius: BorderRadius.circular(tokens(context).radiusSm),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
+                      child: HubSection(
+                        key: _continueWatchingHubKey,
+                        hub: continueWatchingHub,
+                        focusMemory: _hubFocusMemory,
+                        icon: hubIconFor(continueWatchingHub),
+                        onRefresh: _discover.updateItem,
+                        onRemoveFromContinueWatching: _discover.refreshContinueWatching,
+                        isInContinueWatching: true,
+                        loadMoreItems: _discover.loadAllContinueWatching,
+                        onVerticalNavigation: (isUp) => _handleVerticalNavigation(0, isUp),
+                        onNavigateUp: _focusTopBoundary,
+                        onNavigateToSidebar: _navigateToSidebar,
                       ),
                     ),
 
-                if (_onDeck.isEmpty && _hubs.isEmpty && !_areHubsLoading)
-                  SliverEmptyState(
-                    message: t.discover.noContentAvailable,
-                    subtitle: t.discover.addMediaToLibraries,
-                    icon: Symbols.movie_rounded,
-                  ),
+                  // Recommendation Hubs (Trending, Top in Genre, etc.)
+                  for (int i = 0; i < _hubs.length; i++)
+                    SliverToBoxAdapter(
+                      child: HubSection(
+                        key: i < _orderedHubKeys.length ? _orderedHubKeys[i] : null,
+                        hub: _hubs[i],
+                        focusMemory: _hubFocusMemory,
+                        icon: hubIconFor(_hubs[i]),
+                        showServerName: showServerNameOnHubs || hubsSpanMultipleServers,
+                        onRefresh: _discover.updateItem,
+                        // Hub index is i + 1 if continue watching exists, otherwise i
+                        onVerticalNavigation: (isUp) => _handleVerticalNavigation(_onDeck.isNotEmpty ? i + 1 : i, isUp),
+                        onNavigateUp: (i == 0 && _onDeck.isEmpty) ? _focusTopBoundary : null,
+                        onNavigateToSidebar: _navigateToSidebar,
+                      ),
+                    ),
 
-                SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
+                  // Show loading skeleton for hubs while they're loading
+                  if (_areHubsLoading && _hubs.isEmpty)
+                    for (int i = 0; i < 3; i++)
+                      SliverToBoxAdapter(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              Container(
+                                width: 200,
+                                height: 24,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.surfaceContainerHighest,
+                                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              SizedBox(
+                                height: 200,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 12),
+                                      width: 140,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                                        borderRadius: BorderRadius.circular(tokens(context).radiusSm),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                  if (_onDeck.isEmpty && _hubs.isEmpty && !_areHubsLoading)
+                    SliverEmptyState(
+                      message: t.discover.noContentAvailable,
+                      subtitle: t.discover.addMediaToLibraries,
+                      icon: Symbols.movie_rounded,
+                    ),
+
+                  SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
+                ],
               ],
-            ],
+            ),
           ),
           // Overlaid app bar — excluded from default focus traversal so that
           // initial/tab-switch focus lands on content (hero/hubs), not the toolbar.
@@ -887,6 +893,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         ],
       ),
     );
+  }
+
+  /// Pull-to-refresh on handheld only: TV has no touch, and on desktop the
+  /// gesture fights trackpad momentum scrolling.
+  Widget _wrapWithPullToRefresh(Widget child) {
+    if (!PlatformDetector.isHandheld(context)) return child;
+    return RefreshIndicator(onRefresh: _discover.load, child: child);
   }
 
   Widget _buildHeroSection() {
