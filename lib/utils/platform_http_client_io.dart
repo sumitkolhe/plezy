@@ -85,7 +85,7 @@ http.Client createPlatformClient() {
   return ManagedHttpClient(IOClient(), debugLabel: 'IOClient');
 }
 
-http.Client createPlexApiClient() {
+http.Client createPlainHttpClient() {
   if (Platform.isLinux) {
     _logPlatformClient('linux', 'IOClient (Plex API tuned)');
     return _createTunedIoClient('IOClient (Plex API tuned)');

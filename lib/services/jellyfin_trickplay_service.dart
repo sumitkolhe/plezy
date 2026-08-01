@@ -9,18 +9,18 @@ import 'jellyfin_client.dart';
 import 'scrub_preview_source.dart';
 
 /// Builds the [ImageProvider] for a sprite-sheet URL. Production uses
-/// [CachedNetworkImageProvider] backed by [PlexImageCacheManager]; tests
+/// [CachedNetworkImageProvider] backed by [ArtworkCacheManager]; tests
 /// inject a stub to avoid touching path_provider / platform channels.
 typedef TrickplaySheetImageBuilder = ImageProvider Function(String url);
 
 ImageProvider _defaultSheetImageBuilder(String url) =>
-    CachedNetworkImageProvider(url, cacheManager: PlexImageCacheManager.instance);
+    CachedNetworkImageProvider(url, cacheManager: ArtworkCacheManager.instance);
 
 /// Jellyfin sprite-sheet scrub thumbnails. Picks the best width from the
 /// per-source manifest at construction, then computes
 /// `(thumbnailIndex → sheetIndex, tileX, tileY)` on each [getFrame] call.
 ///
-/// Sheets are loaded lazily via [PlexImageCacheManager], so the second hover
+/// Sheets are loaded lazily via [ArtworkCacheManager], so the second hover
 /// over the same sheet hits the cache. Adjacent sheets are pre-fetched in
 /// the direction of motion to keep fast scrubs smooth.
 class JellyfinTrickplayService implements ScrubPreviewSource {
@@ -51,7 +51,7 @@ class JellyfinTrickplayService implements ScrubPreviewSource {
   /// largest available otherwise). Returns `null` when [manifest] is empty.
   ///
   /// [sheetImageBuilder] defaults to [CachedNetworkImageProvider] +
-  /// [PlexImageCacheManager]; tests can inject a stub to avoid touching
+  /// [ArtworkCacheManager]; tests can inject a stub to avoid touching
   /// the platform image-cache plumbing.
   static JellyfinTrickplayService? create({
     required JellyfinClient client,

@@ -76,7 +76,7 @@ LibraryQuery libraryQueryFromFilterMap({
   // value only — multi-value `type` like "1,4" stays in the generic filter
   // bucket).
   final typeRaw = nonEmpty(map['type']);
-  final kindFromMap = (typeRaw != null && !typeRaw.contains(',')) ? _plexTypeMediaKind(typeRaw) : null;
+  final kindFromMap = (typeRaw != null && !typeRaw.contains(',')) ? _mediaKindFromTypeNumber(typeRaw) : null;
   final kind = libraryKind ?? kindFromMap;
 
   final unknownFilters = <LibraryFilter>[];
@@ -112,7 +112,7 @@ LibraryQuery libraryQueryFromFilterMap({
   );
 }
 
-MediaKind? _plexTypeMediaKind(String typeNumber) {
+MediaKind? _mediaKindFromTypeNumber(String typeNumber) {
   return switch (typeNumber) {
     '1' => MediaKind.movie,
     '2' => MediaKind.show,

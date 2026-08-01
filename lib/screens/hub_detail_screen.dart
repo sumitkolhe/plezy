@@ -17,7 +17,7 @@ import '../utils/continuation_pagination_coordinator.dart';
 import '../utils/error_message_utils.dart';
 import '../utils/platform_detector.dart';
 import '../utils/media_server_http_client.dart';
-import '../utils/plex_library_section_utils.dart';
+import '../utils/library_section_utils.dart';
 import '../utils/provider_extensions.dart';
 import '../widgets/focusable_media_card.dart';
 import '../widgets/media_card_sliver_layout.dart';
@@ -153,7 +153,7 @@ class _HubDetailScreenState extends State<HubDetailScreen>
       final hubKey = widget.hub.id;
       appLogger.d('Hub key: $hubKey');
 
-      final sectionId = plexLibrarySectionIdFromString(hubKey);
+      final sectionId = librarySectionIdFromString(hubKey);
 
       if (sectionId != null) {
         appLogger.d('Loading sorts for section: $sectionId');

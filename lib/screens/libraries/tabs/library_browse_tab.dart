@@ -1333,7 +1333,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       targetIndex,
       _alphaHelper,
       currentJellyfinPrefix: _jellyfinAlphaPrefix,
-      onPlexJump: _scrollGridToIndex,
+      onSectionJump: _scrollGridToIndex,
       onJellyfinPrefixChange: _applyJellyfinAlphaPrefix,
     );
   }

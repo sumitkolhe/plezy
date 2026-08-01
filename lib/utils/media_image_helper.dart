@@ -318,7 +318,7 @@ class MediaImageHelper {
     final provider = CachedNetworkImageProvider(
       imageUrl,
       cacheKey: cacheKey ?? _serverArtworkCacheKey(imageUrl),
-      cacheManager: PlexImageCacheManager.instance,
+      cacheManager: ArtworkCacheManager.instance,
       headers: const {'User-Agent': 'Harbor'},
     );
     return boundedDecode(provider, memWidth: memWidth, memHeight: memHeight);

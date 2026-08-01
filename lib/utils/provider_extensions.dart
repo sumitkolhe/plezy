@@ -35,7 +35,7 @@ extension ProviderExtensions on BuildContext {
 
   /// Get a [MediaServerClient] for the given serverId. Throws when the
   /// server isn't registered or is offline. Mirrors the throwing variant of
-  /// the Plex-typed [getPlexClientForServer] helpers.
+  /// the backend-typed client helpers.
   MediaServerClient getMediaClientForServer(ServerId serverId) {
     final provider = Provider.of<MultiServerProvider>(this, listen: false);
     final c = provider.getClientForServer(serverId);

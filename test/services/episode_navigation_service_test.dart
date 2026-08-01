@@ -35,7 +35,7 @@ MediaItem _jfMovie(String id) => testMediaItem(
   serverId: ServerId('srv-jf'),
 );
 
-MediaItem _plexEpisode(String id, {required String seriesId, int? viewCount}) => testMediaItem(
+MediaItem _serverEpisode(String id, {required String seriesId, int? viewCount}) => testMediaItem(
   id: id,
   backend: MediaBackend.jellyfin,
   kind: MediaKind.episode,
@@ -354,9 +354,9 @@ void main() {
     });
 
     testWidgets('builds a Plex local fallback queue with watched episodes', (tester) async {
-      final ep1 = _plexEpisode('ep1', seriesId: 'series-P', viewCount: 1);
-      final ep2 = _plexEpisode('ep2', seriesId: 'series-P', viewCount: 1);
-      final ep3 = _plexEpisode('ep3', seriesId: 'series-P', viewCount: 1);
+      final ep1 = _serverEpisode('ep1', seriesId: 'series-P', viewCount: 1);
+      final ep2 = _serverEpisode('ep2', seriesId: 'series-P', viewCount: 1);
+      final ep3 = _serverEpisode('ep3', seriesId: 'series-P', viewCount: 1);
       final playback = PlaybackStateProvider();
       addTearDown(playback.dispose);
       final client = _RecordingClient(seriesEpisodes: [ep1, ep2, ep3], clientBackend: MediaBackend.jellyfin);
@@ -385,7 +385,7 @@ void main() {
     });
 
     testWidgets('distinguishes a fallback fetch failure from the end of a series', (tester) async {
-      final current = _plexEpisode('ep2', seriesId: 'series-P');
+      final current = _serverEpisode('ep2', seriesId: 'series-P');
       final playback = PlaybackStateProvider();
       addTearDown(playback.dispose);
       final client = _RecordingClient(
@@ -416,8 +416,8 @@ void main() {
     });
 
     testWidgets('confirms the end only after loading a queue containing the current episode', (tester) async {
-      final ep1 = _plexEpisode('ep1', seriesId: 'series-P', viewCount: 1);
-      final ep2 = _plexEpisode('ep2', seriesId: 'series-P', viewCount: 1);
+      final ep1 = _serverEpisode('ep1', seriesId: 'series-P', viewCount: 1);
+      final ep2 = _serverEpisode('ep2', seriesId: 'series-P', viewCount: 1);
       final playback = PlaybackStateProvider();
       addTearDown(playback.dispose);
       final client = _RecordingClient(seriesEpisodes: [ep1, ep2], clientBackend: MediaBackend.jellyfin);

@@ -4,4 +4,4 @@ import 'package:http/http.dart' as http;
 /// via conditional imports in `media_server_http_client.dart`.
 http.Client createPlatformClient() => throw UnsupportedError('No platform HTTP client available');
 
-http.Client createPlexApiClient() => throw UnsupportedError('No platform HTTP client available');
+http.Client createPlainHttpClient() => throw UnsupportedError('No platform HTTP client available');

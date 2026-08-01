@@ -87,7 +87,7 @@ void main() {
               body: SizedBox(
                 width: 1280,
                 height: 720,
-                child: PlexVideoControls(
+                child: PlayerControls(
                   player: player,
                   volumeController: volume,
                   metadata: testMediaItem(id: 'quiescence'),

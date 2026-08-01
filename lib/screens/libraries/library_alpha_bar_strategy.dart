@@ -40,7 +40,7 @@ abstract class LibraryAlphaBarStrategy {
   String currentLetter(int index, AlphaJumpHelper helper, {String? jellyfinAlphaPrefix});
 
   /// Handle a tap on the letter at [targetIndex]. Plex strategies invoke
-  /// [onPlexJump] with the cumulative item index for in-grid scrolling;
+  /// [onSectionJump] with the cumulative item index for in-grid scrolling;
   /// Jellyfin strategies invoke [onJellyfinPrefixChange] with the next
   /// `NameStartsWith` prefix (or `null` to clear the filter when the user
   /// re-taps the active letter). Each strategy ignores the callback that
@@ -49,7 +49,7 @@ abstract class LibraryAlphaBarStrategy {
     int targetIndex,
     AlphaJumpHelper helper, {
     required String? currentJellyfinPrefix,
-    required void Function(int index) onPlexJump,
+    required void Function(int index) onSectionJump,
     required void Function(String? nextPrefix) onJellyfinPrefixChange,
   });
 
@@ -129,7 +129,7 @@ class JellyfinAlphaBarStrategy implements LibraryAlphaBarStrategy {
     int targetIndex,
     AlphaJumpHelper helper, {
     required String? currentJellyfinPrefix,
-    required void Function(int index) onPlexJump,
+    required void Function(int index) onSectionJump,
     required void Function(String? nextPrefix) onJellyfinPrefixChange,
   }) {
     if (targetIndex < 0 || targetIndex >= helper.letters.length) return;

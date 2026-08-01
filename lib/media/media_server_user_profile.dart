@@ -21,7 +21,7 @@ enum SubtitlePlaybackMode {
 
 /// Backend-neutral subset of a server-stored user profile, scoped to the
 /// fields the player needs for auto-track selection. Each backend exposes
-/// these on its own concrete type ([PlexUserProfile], [JellyfinUserProfile]).
+/// these on its own concrete type ([JellyfinUserProfile]).
 ///
 /// Language strings are server-shaped (Plex returns 639-2/B like "fre",
 /// Jellyfin returns 639-2/T like "fra"); [LanguageCodes.getVariations]

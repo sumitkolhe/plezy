@@ -99,8 +99,8 @@ class MediaServerHttpClient {
     this.receiveTimeout = const Duration(seconds: 120),
     // Plex home loads fan out many HTTP/1.1 calls on Linux. Keep that tuning
     // opt-in so generic tracker/auth clients stay disposable and closeable.
-    bool usePlexApiClient = false,
-  }) : _client = client ?? (usePlexApiClient ? platform.createPlexApiClient() : platform.createPlatformClient()),
+    bool usePlainHttpClient = false,
+  }) : _client = client ?? (usePlainHttpClient ? platform.createPlainHttpClient() : platform.createPlatformClient()),
        defaultHeaders = Map.of(defaultHeaders);
 
   /// The underlying [http.Client] for direct streaming / multipart requests.

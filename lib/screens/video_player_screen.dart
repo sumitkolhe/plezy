@@ -1674,7 +1674,7 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
         }
       }
     }
-    sourceTrack ??= findPlexTrackForMpvSubtitle(
+    sourceTrack ??= findServerTrackForMpvSubtitle(
       track,
       info.subtitleTracks,
       allMpvTracks: currentPlayer.state.tracks.subtitle,

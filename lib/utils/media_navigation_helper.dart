@@ -14,7 +14,7 @@ import '../services/settings_service.dart';
 import '../utils/global_key_utils.dart';
 import 'catalog_navigation_helper.dart';
 import 'music_navigation.dart';
-import 'plex_library_section_utils.dart';
+import 'library_section_utils.dart';
 import 'video_player_navigation.dart';
 
 /// Result of media navigation indicating what action was taken
@@ -196,7 +196,7 @@ Future<MediaNavigationResult> navigateToMediaItem(
   // never appear inside a [MediaItem], so the gate never fires for them.
   final rawKey = mi.raw?['key'];
   if (rawKey is String && rawKey.startsWith('/library/sections/')) {
-    final sectionId = plexLibrarySectionIdFromString(rawKey);
+    final sectionId = librarySectionIdFromString(rawKey);
     if (sectionId != null && mi.serverId != null) {
       final libraryGlobalKey = buildGlobalKey(ServerId(mi.serverId!), '$sectionId');
       MainScreenFocusScope.of(context, listen: false)?.selectLibrary?.call(libraryGlobalKey);

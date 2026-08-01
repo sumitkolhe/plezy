@@ -89,7 +89,7 @@ void main() {
               body: SizedBox(
                 width: 1280,
                 height: 720,
-                child: PlexVideoControls(
+                child: PlayerControls(
                   player: player,
                   volumeController: volume,
                   metadata: testMediaItem(id: 'transient-feedback'),
@@ -405,7 +405,7 @@ void main() {
       );
       // Centred in the frame, clear of both subtitle bands.
       final disc = tester.getRect(find.byType(TransportFeedbackIndicator));
-      final surface = tester.getRect(find.byType(PlexVideoControls));
+      final surface = tester.getRect(find.byType(PlayerControls));
       expect(disc.center.dx, moreOrLessEquals(surface.center.dx, epsilon: 1));
       expect(disc.center.dy, moreOrLessEquals(surface.center.dy, epsilon: 1));
       // Still announced, so assistive tech and the E2E tree keep reading it.
@@ -510,7 +510,7 @@ void main() {
         reason: 'chevron and amount share one line',
       );
 
-      final surface = tester.getRect(find.byType(PlexVideoControls));
+      final surface = tester.getRect(find.byType(PlayerControls));
       expect(arrow.right, lessThan(surface.right), reason: 'inside the overscan-safe inset');
       expect(label.left, greaterThan(surface.center.dx), reason: 'anchored to the right half, not centred');
       expect(label.center.dy, moreOrLessEquals(surface.center.dy, epsilon: 2));
@@ -680,7 +680,7 @@ void main() {
               body: SizedBox(
                 width: 1280,
                 height: 720,
-                child: PlexVideoControls(
+                child: PlayerControls(
                   player: player,
                   volumeController: volume,
                   metadata: testMediaItem(id: 'desktop-keyboard-seek'),

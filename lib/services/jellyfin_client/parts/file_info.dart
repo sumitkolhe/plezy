@@ -19,7 +19,7 @@ mixin _JellyfinFileInfoMethods on _JellyfinClientInternals {
 /// Map every `MediaSources` entry of a Jellyfin item response. Jellyfin folds
 /// the file into the source, so each version yields exactly one part.
 ///
-/// Pure sibling of [parsePlexFileInfoFromJson]; kept top-level so the mapping
+/// Pure sibling of the shared file-info parser; kept top-level so the mapping
 /// is testable without a live client.
 MediaFileInfo? parseJellyfinFileInfoFromJson(Map<String, dynamic> json) {
   final sources = json['MediaSources'];

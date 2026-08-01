@@ -2178,7 +2178,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                               );
                               return CachedNetworkImage(
                                 imageUrl: imageUrl,
-                                cacheManager: PlexImageCacheManager.instance,
+                                cacheManager: ArtworkCacheManager.instance,
                                 fit: BoxFit.cover,
                                 memCacheWidth: memWidth,
                                 placeholder: (context, url) => const PlaceholderContainer(),

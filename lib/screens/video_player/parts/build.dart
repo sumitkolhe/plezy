@@ -253,7 +253,7 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
                     return Video(
                       player: player!,
                       hasFirstFrame: _hasFirstFrame,
-                      controls: (context) => PlexVideoControls(
+                      controls: (context) => PlayerControls(
                         player: player!,
                         volumeController: _volumeController!,
                         metadata: _currentMetadata,

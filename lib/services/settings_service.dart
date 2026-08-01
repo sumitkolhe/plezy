@@ -944,6 +944,6 @@ class SettingsService extends BaseSharedPreferencesService {
   Future<void> clearImageCache() async {
     PaintingBinding.instance.imageCache.clear();
     PaintingBinding.instance.imageCache.clearLiveImages();
-    await PlexImageCacheManager.instance.emptyCache();
+    await ArtworkCacheManager.instance.emptyCache();
   }
 }

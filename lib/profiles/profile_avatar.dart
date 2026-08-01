@@ -63,7 +63,7 @@ class ProfileAvatar extends StatelessWidget {
     if (thumb != null && thumb.isNotEmpty) {
       return CachedNetworkImage(
         imageUrl: thumb,
-        cacheManager: PlexImageCacheManager.instance,
+        cacheManager: ArtworkCacheManager.instance,
         fit: BoxFit.cover,
         placeholder: (_, _) => _initialFallback(theme, p),
         errorBuilder: (_, _, _) => _initialFallback(theme, p),

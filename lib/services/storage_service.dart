@@ -7,7 +7,6 @@ import '../utils/log_redaction_manager.dart';
 import 'base_shared_preferences_service.dart';
 
 class StorageService extends BaseSharedPreferencesService {
-  static const String _keyPlexToken = 'plex_token';
   static const String _keyClientId = 'client_identifier';
   static const String _keySelectedLibraryKey = 'selected_library_key';
   static const String _keyLibraryFilters = 'library_filters';
@@ -24,10 +23,9 @@ class StorageService extends BaseSharedPreferencesService {
   static const String _prefixLibrarySort = 'library_sort_';
   static const String _prefixLibraryGrouping = 'library_grouping_';
   static const String _prefixLibraryTab = 'library_tab_';
-  static const String _prefixPlexHomeUsers = 'plex_home_users_';
   static const String _prefixProfileLastUsed = 'profile_last_used_';
   // Key groups for bulk clearing
-  static const List<String> _credentialKeys = [_keyPlexToken, _keyClientId, _keyCurrentUserUUID];
+  static const List<String> _credentialKeys = [_keyClientId, _keyCurrentUserUUID];
 
   static const List<String> _libraryPreferenceKeys = [_keyLibraryFilters, _keyLibraryOrder, _keyHiddenLibraries];
 
@@ -44,7 +42,6 @@ class StorageService extends BaseSharedPreferencesService {
     // redaction-priming read for any tokens lingering from before the
     // migration ran (after migration the slot is empty so this is a no-op).
     // ignore: deprecated_member_use_from_same_package
-    LogRedactionManager.registerToken(getPlexToken());
   }
 
   // User-scoped storage for per-profile library settings
@@ -119,19 +116,6 @@ class StorageService extends BaseSharedPreferencesService {
     'Read PlexAccountConnection.accountToken from ConnectionRegistry instead. '
     'Only ConnectionBootstrap.migrateLegacyPlexAccount may use this.',
   )
-  String? getPlexToken() {
-    return prefs.getString(_keyPlexToken);
-  }
-
-  /// Drop the legacy `plex_token` slot. Called by
-  /// [ConnectionBootstrap.migrateLegacyPlexAccount] after the token has
-  /// been moved into a [PlexAccountConnection] row, so a later sign-out
-  /// doesn't get resurrected on next launch (the migration would
-  /// otherwise see the orphaned token and re-create the connection).
-  Future<void> clearLegacyPlexToken() async {
-    await prefs.remove(_keyPlexToken);
-  }
-
   /// Return the persisted device identifier, generating and saving a UUID on
   /// first call. Used by Plex's `X-Plex-Client-Identifier` header so plex.tv
   /// sees the same device across launches; not Plex-specific in itself —
@@ -395,27 +379,6 @@ class StorageService extends BaseSharedPreferencesService {
 
   Future<void> clearActiveProfileId() async {
     await prefs.remove(_keyActiveProfileId);
-  }
-
-  // Per-connection Plex Home users cache. Plex Home profiles are not
-  // persisted as Profile rows — they're fetched live by [PlexHomeService]
-  // and cached here so the picker can paint immediately on cold start.
-  // Stored as a JSON list of [PlexHomeUser] payloads, no TTL — the service
-  // refreshes in the background via stale-while-revalidate.
-  Future<void> savePlexHomeUsersCache(String connectionId, List<Map<String, dynamic>> users) async {
-    await prefs.setString('$_prefixPlexHomeUsers$connectionId', json.encode(users));
-  }
-
-  String? getPlexHomeUsersCacheJson(String connectionId) {
-    return prefs.getString('$_prefixPlexHomeUsers$connectionId');
-  }
-
-  Future<void> clearPlexHomeUsersCache(String connectionId) async {
-    await prefs.remove('$_prefixPlexHomeUsers$connectionId');
-  }
-
-  Future<void> clearAllPlexHomeUsersCache() async {
-    await _clearKeysWithPrefix(_prefixPlexHomeUsers);
   }
 
   // `lastUsedAt` for ordering and future filtering of profiles by recency

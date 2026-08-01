@@ -5,7 +5,6 @@ import 'package:plezy/media/media_kind.dart';
 import 'package:plezy/media/media_server_user_profile.dart';
 import 'package:plezy/media/media_source_info.dart';
 import 'package:plezy/models/jellyfin/jellyfin_user_profile.dart';
-import 'package:plezy/models/plex/plex_user_profile.dart';
 import 'package:plezy/mpv/mpv.dart';
 import 'package:plezy/services/subtitle_preference.dart';
 import 'package:plezy/services/track_selection_service.dart';
@@ -54,26 +53,45 @@ MediaItem _meta({MediaBackend backend = MediaBackend.jellyfin, String? audioLang
       subtitleLanguage: subtitleLanguage,
     );
 
-PlexUserProfile _profile({
+/// A [MediaServerUserProfile] that can carry the plural language lists.
+/// JellyfinUserProfile hardcodes those to null, so the selection ladder's
+/// multi-language rungs need a fixture that can express them.
+class _TestUserProfile implements MediaServerUserProfile {
+  const _TestUserProfile({
+    required this.autoSelectAudio,
+    this.defaultAudioLanguage,
+    this.defaultAudioLanguages,
+    this.defaultSubtitleLanguage,
+    this.defaultSubtitleLanguages,
+  });
+
+  @override
+  final bool autoSelectAudio;
+  @override
+  final String? defaultAudioLanguage;
+  @override
+  final List<String>? defaultAudioLanguages;
+  @override
+  final String? defaultSubtitleLanguage;
+  @override
+  final List<String>? defaultSubtitleLanguages;
+  @override
+  SubtitlePlaybackMode? get subtitleMode => null;
+}
+
+_TestUserProfile _profile({
   bool autoSelectAudio = true,
   String? defaultAudioLanguage,
   List<String>? defaultAudioLanguages,
   String? defaultSubtitleLanguage,
   List<String>? defaultSubtitleLanguages,
-  int autoSelectSubtitle = 0,
 }) {
-  return PlexUserProfile(
+  return _TestUserProfile(
     autoSelectAudio: autoSelectAudio,
-    defaultAudioAccessibility: 0,
     defaultAudioLanguage: defaultAudioLanguage,
     defaultAudioLanguages: defaultAudioLanguages,
     defaultSubtitleLanguage: defaultSubtitleLanguage,
     defaultSubtitleLanguages: defaultSubtitleLanguages,
-    autoSelectSubtitle: autoSelectSubtitle,
-    defaultSubtitleAccessibility: 0,
-    defaultSubtitleForced: 1,
-    watchedIndicator: 1,
-    mediaReviewsVisibility: 0,
   );
 }
 
@@ -113,7 +131,7 @@ SubtitleTrack _sub(
   isContainer: isContainer,
 );
 
-MediaAudioTrack _plexAudio(
+MediaAudioTrack _serverAudio(
   int id, {
   int? index,
   String? language,
@@ -135,7 +153,7 @@ MediaAudioTrack _plexAudio(
   );
 }
 
-MediaSubtitleTrack _plexSub(
+MediaSubtitleTrack _serverSub(
   int id, {
   int? index,
   String? language,
@@ -187,7 +205,7 @@ TrackSelectionService _svc({MediaItem? metadata, MediaServerUserProfile? profile
     player: _StubPlayer(),
     metadata: metadata ?? _meta(),
     profileSettings: profile,
-    plexMediaInfo: info,
+    serverMediaInfo: info,
   );
 }
 
@@ -356,8 +374,8 @@ void main() {
       final tracks = [_audio('A', lang: 'eng'), _audio('B', lang: 'fre')];
       final info = _info(
         audio: [
-          _plexAudio(1, language: 'eng', languageCode: 'eng', selected: false),
-          _plexAudio(2, language: 'fre', languageCode: 'fre', selected: true), // selected by Plex
+          _serverAudio(1, language: 'eng', languageCode: 'eng', selected: false),
+          _serverAudio(2, language: 'fre', languageCode: 'fre', selected: true), // selected by Plex
         ],
       );
       // No preferred → Priority 1 misses; per-media + profile not provided →
@@ -373,8 +391,8 @@ void main() {
       final info = _info(
         defaultAudioStreamIndex: 1,
         audio: [
-          _plexAudio(1, index: 1, language: 'eng', languageCode: 'eng'),
-          _plexAudio(2, index: 2, language: 'fre', languageCode: 'fre', selected: true),
+          _serverAudio(1, index: 1, language: 'eng', languageCode: 'eng'),
+          _serverAudio(2, index: 2, language: 'fre', languageCode: 'fre', selected: true),
         ],
       );
       final result = _svc(
@@ -391,8 +409,8 @@ void main() {
       final info = _info(
         defaultAudioStreamIndex: 2,
         audio: [
-          _plexAudio(1, index: 1, language: 'eng', languageCode: 'eng'),
-          _plexAudio(2, index: 2, language: 'fre', languageCode: 'fre'),
+          _serverAudio(1, index: 1, language: 'eng', languageCode: 'eng'),
+          _serverAudio(2, index: 2, language: 'fre', languageCode: 'fre'),
         ],
       );
       final result = _svc(
@@ -470,8 +488,8 @@ void main() {
       final tracks = [_sub('1', lang: 'eng'), _sub('2', lang: 'fre')];
       final info = _info(
         subs: [
-          _plexSub(10, language: 'eng', languageCode: 'eng'),
-          _plexSub(11, language: 'fre', languageCode: 'fre', selected: true),
+          _serverSub(10, language: 'eng', languageCode: 'eng'),
+          _serverSub(11, language: 'fre', languageCode: 'fre', selected: true),
         ],
       );
       final result = _svc(info: info).selectSubtitleTrack(tracks, null, null)!;
@@ -480,7 +498,7 @@ void main() {
     });
 
     test('complete metadata-free direct catalog selects its unique native subtitle', () {
-      final sourceTrack = _plexSub(20, codec: 'ass', selected: true);
+      final sourceTrack = _serverSub(20, codec: 'ass', selected: true);
       final info = _info(subs: [sourceTrack]);
       final nativeTrack = _sub('native-ass', codec: 'ass');
       final service = _svc(info: info);
@@ -496,31 +514,34 @@ void main() {
       expect(preferredResult.track, same(nativeTrack));
       expect(serverResult.priority, TrackSelectionPriority.serverSelected);
       expect(serverResult.track, same(nativeTrack));
-      expect(findMpvTrackForPlexSubtitle(sourceTrack, [nativeTrack], allPlexTracks: [sourceTrack]), same(nativeTrack));
-      expect(findPlexTrackForMpvSubtitle(nativeTrack, [sourceTrack], allMpvTracks: [nativeTrack]), same(sourceTrack));
+      expect(
+        findMpvTrackForServerSubtitle(sourceTrack, [nativeTrack], allServerTracks: [sourceTrack]),
+        same(nativeTrack),
+      );
+      expect(findServerTrackForMpvSubtitle(nativeTrack, [sourceTrack], allMpvTracks: [nativeTrack]), same(sourceTrack));
     });
 
     test('complete low-metadata direct catalog uses facts instead of ordinal order', () {
-      final sourceAss = _plexSub(30, codec: 'ass', selected: true);
-      final sourceSrt = _plexSub(31, codec: 'srt');
+      final sourceAss = _serverSub(30, codec: 'ass', selected: true);
+      final sourceSrt = _serverSub(31, codec: 'srt');
       final plexTracks = [sourceAss, sourceSrt];
       final nativeSrt = _sub('native-srt', codec: 'srt');
       final nativeAss = _sub('native-ass', codec: 'ass');
       final nativeTracks = [nativeSrt, nativeAss];
 
-      expect(findMpvTrackForPlexSubtitle(sourceAss, nativeTracks, allPlexTracks: plexTracks), same(nativeAss));
-      expect(findPlexTrackForMpvSubtitle(nativeAss, plexTracks, allMpvTracks: nativeTracks), same(sourceAss));
+      expect(findMpvTrackForServerSubtitle(sourceAss, nativeTracks, allServerTracks: plexTracks), same(nativeAss));
+      expect(findServerTrackForMpvSubtitle(nativeAss, plexTracks, allMpvTracks: nativeTracks), same(sourceAss));
     });
 
     test('ambiguous metadata-free direct catalog does not use ordinal fallback', () {
-      final selectedSource = _plexSub(40, codec: 'ass', selected: true);
-      final otherSource = _plexSub(41, codec: 'ass');
+      final selectedSource = _serverSub(40, codec: 'ass', selected: true);
+      final otherSource = _serverSub(41, codec: 'ass');
       final plexTracks = [selectedSource, otherSource];
       final nativeTracks = [_sub('native-second', codec: 'ass'), _sub('native-first', codec: 'ass')];
       final service = _svc(info: _info(subs: plexTracks));
 
-      expect(findMpvTrackForPlexSubtitle(selectedSource, nativeTracks, allPlexTracks: plexTracks), isNull);
-      expect(findPlexTrackForMpvSubtitle(nativeTracks.first, plexTracks, allMpvTracks: nativeTracks), isNull);
+      expect(findMpvTrackForServerSubtitle(selectedSource, nativeTracks, allServerTracks: plexTracks), isNull);
+      expect(findServerTrackForMpvSubtitle(nativeTracks.first, plexTracks, allMpvTracks: nativeTracks), isNull);
 
       final preferredResult = service.selectSubtitleTrack(
         nativeTracks,
@@ -536,7 +557,7 @@ void main() {
     });
 
     test('ambiguous complete direct catalog falls through to native default', () {
-      final plexTracks = [_plexSub(50, codec: 'ass', selected: true), _plexSub(51, codec: 'ass')];
+      final plexTracks = [_serverSub(50, codec: 'ass', selected: true), _serverSub(51, codec: 'ass')];
       final nativeTracks = [_sub('native-first', codec: 'ass'), _sub('native-default', codec: 'ass', isDefault: true)];
 
       final result = _svc(info: _info(subs: plexTracks)).selectSubtitleTrack(
@@ -550,7 +571,7 @@ void main() {
     });
 
     test('partial metadata-free direct catalog remains pending', () {
-      final plexTracks = [_plexSub(60, codec: 'ass', selected: true), _plexSub(61, codec: 'ass')];
+      final plexTracks = [_serverSub(60, codec: 'ass', selected: true), _serverSub(61, codec: 'ass')];
       final nativeTracks = [_sub('native-only', codec: 'ass', isDefault: true)];
       final service = _svc(info: _info(subs: plexTracks));
 
@@ -568,8 +589,8 @@ void main() {
     test('partial native catalog stays undetermined until the selected Plex track arrives', () {
       final info = _info(
         subs: [
-          _plexSub(10, language: 'eng', selected: true),
-          _plexSub(11, language: 'fre'),
+          _serverSub(10, language: 'eng', selected: true),
+          _serverSub(11, language: 'fre'),
         ],
       );
 
@@ -581,8 +602,8 @@ void main() {
     test('preferred source waits for its ordinal in a partial identical container catalog', () {
       final info = _info(
         subs: [
-          _plexSub(30, index: 0, language: 'eng', title: 'English', codec: 'ass'),
-          _plexSub(31, index: 1, language: 'eng', title: 'English', codec: 'ass', selected: true),
+          _serverSub(30, index: 0, language: 'eng', title: 'English', codec: 'ass'),
+          _serverSub(31, index: 1, language: 'eng', title: 'English', codec: 'ass', selected: true),
         ],
       );
       const preferred = SubtitleTrack(
@@ -624,8 +645,8 @@ void main() {
     test('preferred keyed source does not fuzzy-match an early same-language container track', () {
       final info = _info(
         subs: [
-          _plexSub(10, language: 'eng', codec: 'srt', external: true, key: '/library/streams/10'),
-          _plexSub(11, language: 'eng', codec: 'srt'),
+          _serverSub(10, language: 'eng', codec: 'srt', external: true, key: '/library/streams/10'),
+          _serverSub(11, language: 'eng', codec: 'srt'),
         ],
       );
       const preferred = SubtitleTrack(
@@ -655,8 +676,8 @@ void main() {
       final info = _info(
         defaultSubtitleStreamIndex: 10,
         subs: [
-          _plexSub(10, index: 10, language: 'eng', languageCode: 'eng'),
-          _plexSub(11, index: 11, language: 'fre', languageCode: 'fre', selected: true),
+          _serverSub(10, index: 10, language: 'eng', languageCode: 'eng'),
+          _serverSub(11, index: 11, language: 'fre', languageCode: 'fre', selected: true),
         ],
       );
       final result = _svc(
@@ -671,8 +692,8 @@ void main() {
       final tracks = [_sub('1', lang: 'eng'), _sub('2', lang: 'fre', isDefault: true)];
       final info = _info(
         subs: [
-          _plexSub(10, language: 'eng'),
-          _plexSub(11, language: 'fre'),
+          _serverSub(10, language: 'eng'),
+          _serverSub(11, language: 'fre'),
         ],
       );
       final result = _svc(
@@ -688,8 +709,8 @@ void main() {
       final info = _info(
         defaultSubtitleStreamIndex: 11,
         subs: [
-          _plexSub(10, index: 10, language: 'eng', languageCode: 'eng'),
-          _plexSub(11, index: 11, language: 'fre', languageCode: 'fre'),
+          _serverSub(10, index: 10, language: 'eng', languageCode: 'eng'),
+          _serverSub(11, index: 11, language: 'fre', languageCode: 'fre'),
         ],
       );
       final result = _svc(
@@ -706,7 +727,7 @@ void main() {
       MediaSourceInfo directPlayInfo() => _info(
         defaultSubtitleStreamIndex: 3,
         subs: [
-          _plexSub(
+          _serverSub(
             3,
             index: 3,
             languageCode: 'eng',
@@ -715,7 +736,7 @@ void main() {
             selected: true,
             forced: true,
           ),
-          _plexSub(4, index: 4, languageCode: 'eng', title: 'English', codec: 'ass'),
+          _serverSub(4, index: 4, languageCode: 'eng', title: 'English', codec: 'ass'),
         ],
       );
 
@@ -776,8 +797,8 @@ void main() {
         final info = _info(
           defaultSubtitleStreamIndex: 3,
           subs: [
-            _plexSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3', selected: true),
-            _plexSub(4, index: 4, languageCode: 'swe', codec: 'srt', key: '/Subtitles/4'),
+            _serverSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3', selected: true),
+            _serverSub(4, index: 4, languageCode: 'swe', codec: 'srt', key: '/Subtitles/4'),
           ],
         );
         final arrivedTracks = [_sub('sw', lang: 'swe', codec: 'srt', isDefault: true, isExternal: true)];
@@ -808,8 +829,8 @@ void main() {
         // stays pending until the caller gives up on it.
         final info = _info(
           subs: [
-            _plexSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3', selected: true),
-            _plexSub(4, index: 4, languageCode: 'swe', codec: 'srt', key: '/Subtitles/4'),
+            _serverSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3', selected: true),
+            _serverSub(4, index: 4, languageCode: 'swe', codec: 'srt', key: '/Subtitles/4'),
           ],
         );
         final nativeTracks = [_sub('1', lang: 'eng', codec: 'srt', isDefault: true)];
@@ -828,7 +849,7 @@ void main() {
 
       test('waitForPendingSource: false turns an empty native catalog into an explicit off', () {
         final info = _info(
-          subs: [_plexSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3')],
+          subs: [_serverSub(3, index: 3, languageCode: 'eng', codec: 'srt', key: '/Subtitles/3')],
         );
         final service = _svc(
           metadata: _meta(backend: MediaBackend.jellyfin),
@@ -848,8 +869,8 @@ void main() {
       final info = _info(
         defaultSubtitleStreamIndex: -1,
         subs: [
-          _plexSub(10, language: 'eng'),
-          _plexSub(11, language: 'fre'),
+          _serverSub(10, language: 'eng'),
+          _serverSub(11, language: 'fre'),
         ],
       );
       final result = _svc(
@@ -973,7 +994,7 @@ void main() {
     });
 
     test('empty native track list remains undetermined when Plex advertises subtitles', () {
-      final info = _info(subs: [_plexSub(10, language: 'eng', selected: true)]);
+      final info = _info(subs: [_serverSub(10, language: 'eng', selected: true)]);
 
       final result = _svc(info: info).selectSubtitleTrack(const [], null, null);
 
@@ -981,7 +1002,7 @@ void main() {
     });
 
     test('empty native track list is also undetermined when Plex selected no subtitle', () {
-      final info = _info(subs: [_plexSub(10, language: 'eng')]);
+      final info = _info(subs: [_serverSub(10, language: 'eng')]);
 
       final result = _svc(info: info).selectSubtitleTrack(const [], null, null);
 
@@ -990,7 +1011,7 @@ void main() {
 
     test('selected keyed sidecar remains pending when only a same-language container has arrived', () {
       final info = _info(
-        subs: [_plexSub(10, language: 'eng', selected: true, external: true, key: '/library/streams/10')],
+        subs: [_serverSub(10, language: 'eng', selected: true, external: true, key: '/library/streams/10')],
       );
       final earlyContainer = _sub('20', lang: 'eng', isExternal: true, isContainer: true);
 
@@ -1001,26 +1022,26 @@ void main() {
   });
 
   // ============================================================
-  // findPlexTrackForMpvSubtitle / findPlexTrackForMpvAudio — same-language
+  // findServerTrackForMpvSubtitle / findServerTrackForMpvAudio — same-language
   // disambiguation (regression for #1443). The player reports null titles for
   // MKV tracks that carry only a forced flag, so the forced flag (+2) and the
   // ordinal tiebreaker (+1) must separate two tracks that share a language.
   // ============================================================
 
-  group('findPlexTrackForMpvSubtitle - forced disambiguation', () {
+  group('findServerTrackForMpvSubtitle - forced disambiguation', () {
     // Disposition-flagged forced track: forced is set in the container, so both
     // Plex and the player carry forced=true on the forced track.
     test('disposition-flagged forced track maps via the forced flag', () {
       final plexTracks = [
-        _plexSub(10, index: 0, languageCode: 'fre', codec: 'ass', forced: false),
-        _plexSub(11, index: 1, languageCode: 'fre', codec: 'ass', forced: true),
+        _serverSub(10, index: 0, languageCode: 'fre', codec: 'ass', forced: false),
+        _serverSub(11, index: 1, languageCode: 'fre', codec: 'ass', forced: true),
       ];
       final mpvNonForced = _sub('2_0', lang: 'fre', codec: 'ass');
       final mpvForced = _sub('2_1', lang: 'fre', codec: 'ass', isForced: true);
       final allMpv = [mpvNonForced, mpvForced];
 
-      expect(findPlexTrackForMpvSubtitle(mpvForced, plexTracks, allMpvTracks: allMpv)?.id, 11);
-      expect(findPlexTrackForMpvSubtitle(mpvNonForced, plexTracks, allMpvTracks: allMpv)?.id, 10);
+      expect(findServerTrackForMpvSubtitle(mpvForced, plexTracks, allMpvTracks: allMpv)?.id, 11);
+      expect(findServerTrackForMpvSubtitle(mpvNonForced, plexTracks, allMpvTracks: allMpv)?.id, 10);
     });
 
     // Title-only "forced" track — the exact #1443 file (MKVToolNix screenshot):
@@ -1030,17 +1051,17 @@ void main() {
     // position (the empty-title regular sub).
     test('title-only forced track and empty-title regular track stay distinct (#1443)', () {
       final plexTracks = [
-        _plexSub(30, index: 0, languageCode: 'fre', title: 'Forced', codec: 'ass', forced: false),
-        _plexSub(31, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
-        _plexSub(32, index: 2, languageCode: 'eng', title: 'SDH', codec: 'ass', forced: false),
+        _serverSub(30, index: 0, languageCode: 'fre', title: 'Forced', codec: 'ass', forced: false),
+        _serverSub(31, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
+        _serverSub(32, index: 2, languageCode: 'eng', title: 'SDH', codec: 'ass', forced: false),
       ];
       final mpvForcedByName = _sub('2_0', lang: 'fre', title: 'Forced', codec: 'ass');
       final mpvRegular = _sub('2_1', lang: 'fre', codec: 'ass');
       final mpvSdh = _sub('2_2', lang: 'eng', title: 'SDH', codec: 'ass');
       final allMpv = [mpvForcedByName, mpvRegular, mpvSdh];
 
-      expect(findPlexTrackForMpvSubtitle(mpvForcedByName, plexTracks, allMpvTracks: allMpv)?.id, 30);
-      expect(findPlexTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 31);
+      expect(findServerTrackForMpvSubtitle(mpvForcedByName, plexTracks, allMpvTracks: allMpv)?.id, 30);
+      expect(findServerTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 31);
     });
 
     // Cross-form pairs: one side flags forced in the container, the other only
@@ -1048,28 +1069,28 @@ void main() {
     // as the same class, so the pair still gets the +2 agreement nudge.
     test('flag-forced native track maps to a title-only forced row', () {
       final plexTracks = [
-        _plexSub(50, index: 0, languageCode: 'fre', title: 'FR Forced', codec: 'ass', forced: false),
-        _plexSub(51, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
+        _serverSub(50, index: 0, languageCode: 'fre', title: 'FR Forced', codec: 'ass', forced: false),
+        _serverSub(51, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
       ];
       final mpvForced = _sub('2_0', lang: 'fre', codec: 'ass', isForced: true);
       final mpvRegular = _sub('2_1', lang: 'fre', codec: 'ass');
       final allMpv = [mpvForced, mpvRegular];
 
-      expect(findPlexTrackForMpvSubtitle(mpvForced, plexTracks, allMpvTracks: allMpv)?.id, 50);
-      expect(findPlexTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 51);
+      expect(findServerTrackForMpvSubtitle(mpvForced, plexTracks, allMpvTracks: allMpv)?.id, 50);
+      expect(findServerTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 51);
     });
 
     test('title-only forced native track maps to a flag-forced row', () {
       final plexTracks = [
-        _plexSub(60, index: 0, languageCode: 'fre', codec: 'ass', forced: true),
-        _plexSub(61, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
+        _serverSub(60, index: 0, languageCode: 'fre', codec: 'ass', forced: true),
+        _serverSub(61, index: 1, languageCode: 'fre', codec: 'ass', forced: false),
       ];
       final mpvForcedByName = _sub('2_0', lang: 'fre', title: 'FR Forced [ASS]', codec: 'ass');
       final mpvRegular = _sub('2_1', lang: 'fre', codec: 'ass');
       final allMpv = [mpvForcedByName, mpvRegular];
 
-      expect(findPlexTrackForMpvSubtitle(mpvForcedByName, plexTracks, allMpvTracks: allMpv)?.id, 60);
-      expect(findPlexTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 61);
+      expect(findServerTrackForMpvSubtitle(mpvForcedByName, plexTracks, allMpvTracks: allMpv)?.id, 60);
+      expect(findServerTrackForMpvSubtitle(mpvRegular, plexTracks, allMpvTracks: allMpv)?.id, 61);
     });
   });
 
@@ -1085,47 +1106,47 @@ void main() {
 
     test('forced intent picks the title-only forced row over the full row', () {
       final rows = [
-        _plexSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
-        _plexSub(2, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
+        _serverSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
+        _serverSub(2, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
       ];
       expect(findSourceTrackForIntent(forcedIntent, rows)?.id, 2);
     });
 
     test('forced intent picks a flag-forced row (cross-form)', () {
       final rows = [
-        _plexSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
-        _plexSub(2, languageCode: 'fre', codec: 'ass', forced: true),
+        _serverSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
+        _serverSub(2, languageCode: 'fre', codec: 'ass', forced: true),
       ];
       expect(findSourceTrackForIntent(forcedIntent, rows)?.id, 2);
     });
 
     test('forced intent declines when only full same-language rows exist', () {
       final rows = [
-        _plexSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
-        _plexSub(2, languageCode: 'eng', title: 'English', codec: 'srt'),
+        _serverSub(1, languageCode: 'fre', title: 'French', codec: 'srt'),
+        _serverSub(2, languageCode: 'eng', title: 'English', codec: 'srt'),
       ];
       expect(findSourceTrackForIntent(forcedIntent, rows), isNull);
     });
 
     test('full intent declines when only forced rows share the language', () {
       final rows = [
-        _plexSub(1, languageCode: 'fre', title: 'FR Forced', codec: 'srt'),
-        _plexSub(2, languageCode: 'fre', codec: 'ass', forced: true),
+        _serverSub(1, languageCode: 'fre', title: 'FR Forced', codec: 'srt'),
+        _serverSub(2, languageCode: 'fre', codec: 'ass', forced: true),
       ];
       expect(findSourceTrackForIntent(fullIntent, rows), isNull);
     });
 
     test('codec and title break ties between same-class rows', () {
       final rows = [
-        _plexSub(1, languageCode: 'fre', title: 'Commentary', codec: 'ass'),
-        _plexSub(2, languageCode: 'fre', title: 'French', codec: 'srt'),
+        _serverSub(1, languageCode: 'fre', title: 'Commentary', codec: 'ass'),
+        _serverSub(2, languageCode: 'fre', title: 'French', codec: 'srt'),
       ];
       expect(findSourceTrackForIntent(fullIntent, rows)?.id, 2);
     });
 
     test('language-less intents decline', () {
       const intent = SubtitleIntent(forced: false, title: 'French', codec: 'srt');
-      expect(findSourceTrackForIntent(intent, [_plexSub(1, languageCode: 'fre')]), isNull);
+      expect(findSourceTrackForIntent(intent, [_serverSub(1, languageCode: 'fre')]), isNull);
     });
   });
 
@@ -1170,7 +1191,7 @@ void main() {
     test('a declined forced intent falls to the server-selected full track', () {
       final tracks = [_sub('1', lang: 'fre', codec: 'ass')];
       final info = _info(
-        subs: [_plexSub(10, languageCode: 'fre', codec: 'ass', selected: true)],
+        subs: [_serverSub(10, languageCode: 'fre', codec: 'ass', selected: true)],
       );
       final result = _svc(info: info).selectSubtitleTrack(tracks, forcedIntent, null)!;
       expect(result.priority, TrackSelectionPriority.serverSelected);
@@ -1180,8 +1201,8 @@ void main() {
     test('a servable intent stays pending until its native track arrives', () {
       final info = _info(
         subs: [
-          _plexSub(10, languageCode: 'fre', codec: 'ass'),
-          _plexSub(11, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
+          _serverSub(10, languageCode: 'fre', codec: 'ass'),
+          _serverSub(11, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
         ],
       );
       final service = _svc(info: info);
@@ -1198,8 +1219,8 @@ void main() {
     test('a deadline pass resolves a pending intent through the ladder', () {
       final info = _info(
         subs: [
-          _plexSub(10, languageCode: 'fre', codec: 'ass', selected: true),
-          _plexSub(11, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
+          _serverSub(10, languageCode: 'fre', codec: 'ass', selected: true),
+          _serverSub(11, languageCode: 'fre', title: 'FR Forced', codec: 'ass'),
         ],
       );
       final arrived = [_sub('1', lang: 'fre', codec: 'ass', isDefault: true)];
@@ -1220,38 +1241,38 @@ void main() {
   });
 
   group('container-sidecar ordinal fallback', () {
-    final plexTracks = [_plexSub(40, index: 0), _plexSub(41, index: 1)];
+    final plexTracks = [_serverSub(40, index: 0), _serverSub(41, index: 1)];
     final nativeTracks = [
       _sub('2_0', isExternal: true, isContainer: true),
       _sub('2_1', isExternal: true, isContainer: true),
     ];
 
     test('maps a metadata-free Plex stream to its container track', () {
-      expect(findMpvTrackForPlexSubtitle(plexTracks[1], nativeTracks, allPlexTracks: plexTracks), nativeTracks[1]);
+      expect(findMpvTrackForServerSubtitle(plexTracks[1], nativeTracks, allServerTracks: plexTracks), nativeTracks[1]);
     });
 
     test('maps a metadata-free container track back to its Plex stream', () {
-      expect(findPlexTrackForMpvSubtitle(nativeTracks[0], plexTracks, allMpvTracks: nativeTracks)?.id, 40);
+      expect(findServerTrackForMpvSubtitle(nativeTracks[0], plexTracks, allMpvTracks: nativeTracks)?.id, 40);
     });
   });
 
-  group('findPlexTrackForMpvAudio - same-language disambiguation', () {
+  group('findServerTrackForMpvAudio - same-language disambiguation', () {
     // Two French audio tracks differing only by channel count, titles null.
     final plexTracks = [
-      _plexAudio(20, index: 0, languageCode: 'fre', codec: 'ac3', channels: 2),
-      _plexAudio(21, index: 1, languageCode: 'fre', codec: 'ac3', channels: 6),
+      _serverAudio(20, index: 0, languageCode: 'fre', codec: 'ac3', channels: 2),
+      _serverAudio(21, index: 1, languageCode: 'fre', codec: 'ac3', channels: 6),
     ];
     final mpvStereo = _audio('1_0', lang: 'fre', codec: 'ac3', channels: 2);
     final mpvSurround = _audio('1_1', lang: 'fre', codec: 'ac3', channels: 6);
     final allMpv = [mpvStereo, mpvSurround];
 
     test('surround player track maps to the 6-channel Plex stream', () {
-      final match = findPlexTrackForMpvAudio(mpvSurround, plexTracks, allMpvTracks: allMpv);
+      final match = findServerTrackForMpvAudio(mpvSurround, plexTracks, allMpvTracks: allMpv);
       expect(match?.id, 21);
     });
 
     test('stereo player track maps to the 2-channel Plex stream', () {
-      final match = findPlexTrackForMpvAudio(mpvStereo, plexTracks, allMpvTracks: allMpv);
+      final match = findServerTrackForMpvAudio(mpvStereo, plexTracks, allMpvTracks: allMpv);
       expect(match?.id, 20);
     });
   });

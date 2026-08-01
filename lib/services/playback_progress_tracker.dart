@@ -444,7 +444,7 @@ class PlaybackProgressTracker {
     final ordinal = playerAudioTracks.indexOf(track);
     if (ordinal >= 0 && ordinal < info.audioTracks.length) return info.audioTracks[ordinal].id;
 
-    final matched = findPlexTrackForMpvAudio(track, info.audioTracks, allMpvTracks: player.state.tracks.audio);
+    final matched = findServerTrackForMpvAudio(track, info.audioTracks, allMpvTracks: player.state.tracks.audio);
     if (matched != null) return matched.id;
 
     final parsedId = int.tryParse(track.id);
@@ -481,7 +481,11 @@ class PlaybackProgressTracker {
     final ordinal = player.state.tracks.subtitle.where((t) => t.id != 'auto' && t.id != 'no').toList().indexOf(track);
     if (ordinal >= 0 && ordinal < info.subtitleTracks.length) return info.subtitleTracks[ordinal].id;
 
-    final matched = findPlexTrackForMpvSubtitle(track, info.subtitleTracks, allMpvTracks: player.state.tracks.subtitle);
+    final matched = findServerTrackForMpvSubtitle(
+      track,
+      info.subtitleTracks,
+      allMpvTracks: player.state.tracks.subtitle,
+    );
     if (matched != null) return matched.id;
 
     final parsedId = int.tryParse(track.id);

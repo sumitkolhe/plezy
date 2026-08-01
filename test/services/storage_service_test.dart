@@ -60,14 +60,13 @@ void main() {
 
     test('reset rebuilds against current SharedPreferences', () async {
       final first = await StorageService.getInstance();
-      await first.prefs.setString('plex_token', 'token-1');
+      await first.prefs.setString('client_identifier', 'client-1');
       BaseSharedPreferencesService.resetForTesting();
 
       final second = await StorageService.getInstance();
       expect(identical(first, second), isFalse);
       // Reset only the cached singleton, not the underlying prefs — values survive.
-      // ignore: deprecated_member_use_from_same_package
-      expect(second.getPlexToken(), 'token-1');
+      expect(second.prefs.getString('client_identifier'), 'client-1');
     });
   });
 
@@ -76,15 +75,6 @@ void main() {
   // ============================================================
 
   group('PlexToken & ClientIdentifier (legacy migration slots)', () {
-    test('getPlexToken reads the legacy slot', () async {
-      final s = await StorageService.getInstance();
-      // ignore: deprecated_member_use_from_same_package
-      expect(s.getPlexToken(), isNull);
-      await s.prefs.setString('plex_token', 'abc-123');
-      // ignore: deprecated_member_use_from_same_package
-      expect(s.getPlexToken(), 'abc-123');
-    });
-
     test('getOrCreateClientIdentifier returns existing value when set', () async {
       final s = await StorageService.getInstance();
       await s.prefs.setString('client_identifier', 'preset-id');
@@ -410,8 +400,6 @@ void main() {
       await s.clearCredentials();
 
       // Credential-bucket keys all gone.
-      // ignore: deprecated_member_use_from_same_package
-      expect(s.getPlexToken(), isNull);
       expect(s.prefs.getString('client_identifier'), isNull);
       // ignore: deprecated_member_use_from_same_package
       expect(s.getCurrentUserUUID(), isNull);
@@ -577,15 +565,12 @@ void main() {
     test('combines credentials and library-preferences clear', () async {
       final s = await StorageService.getInstance();
 
-      await s.prefs.setString('plex_token', 'tok');
       await s.setActiveProfileId('local-user-1');
       await s.saveLibraryOrder(['lib-a']);
       await s.saveHiddenLibraries({'h-1'});
 
       await s.clearUserData();
 
-      // ignore: deprecated_member_use_from_same_package
-      expect(s.getPlexToken(), isNull);
       // setActiveProfileId is unaffected by clearCredentials, so the prefix
       // is still active — clearLibraryPreferences cleared the scoped values.
       expect(s.getLibraryOrder(), isNull);

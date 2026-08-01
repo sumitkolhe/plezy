@@ -2,7 +2,7 @@ part of '../video_controls.dart';
 
 final Expando<LatestAsyncWrite<String>> _subtitleVisibilityWrites = Expando<LatestAsyncWrite<String>>();
 
-extension _PlexVideoControlsTrackMethods on _PlexVideoControlsState {
+extension _PlayerControlsTrackMethods on _PlayerControlsState {
   void _toggleSubtitles() {
     final currentTrack = widget.player.state.track.subtitle;
     // No-op if no subtitle track is selected

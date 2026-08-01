@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import '../utils/media_server_http_client.dart';
 import 'device_performance.dart';
 
-final _artworkHttpClient = MediaServerHttpClient(usePlexApiClient: true);
+final _artworkHttpClient = MediaServerHttpClient(usePlainHttpClient: true);
 
 @visibleForTesting
 int artworkRequestConcurrencyForTier({required bool reduced}) => reduced ? 3 : 6;
@@ -34,10 +34,10 @@ Future<void> closeArtworkHttpClientGracefully({Duration drainTimeout = const Dur
 /// Android (CronetClient) benefit from HTTP/2, while the wrapper below keeps
 /// image fan-out bounded so weak TV devices don't decode a whole rail at once.
 /// On Linux this uses the same finite-connection tuning as Plex API traffic.
-class PlexImageCacheManager extends ce_cache.DefaultCacheManager {
-  static final PlexImageCacheManager instance = PlexImageCacheManager._();
+class ArtworkCacheManager extends ce_cache.DefaultCacheManager {
+  static final ArtworkCacheManager instance = ArtworkCacheManager._();
 
-  PlexImageCacheManager._()
+  ArtworkCacheManager._()
     : super(
         stalePeriod: const Duration(days: 14),
         maxNrOfCacheObjects: 3000,

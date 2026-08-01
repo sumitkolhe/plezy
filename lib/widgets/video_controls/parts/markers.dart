@@ -1,6 +1,6 @@
 part of '../video_controls.dart';
 
-extension _PlexVideoControlsMarkerMethods on _PlexVideoControlsState {
+extension _PlayerControlsMarkerMethods on _PlayerControlsState {
   void _listenToPosition() {
     _positionSubscription = widget.player.streams.position.listen((position) {
       _syncCurrentMarkerForPosition(position);

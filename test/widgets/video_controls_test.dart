@@ -1351,7 +1351,7 @@ void main() {
               body: SizedBox(
                 width: 1200,
                 height: 800,
-                child: PlexVideoControls(
+                child: PlayerControls(
                   player: player,
                   volumeController: volume,
                   metadata: testMediaItem(id: 'subtitle-visibility'),

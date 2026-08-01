@@ -73,16 +73,16 @@ void main() {
   const surface = Size(800, 600);
 
   Offset forwardZoneOf(WidgetTester tester) {
-    final rect = tester.getRect(find.byType(PlexVideoControls));
+    final rect = tester.getRect(find.byType(PlayerControls));
     return Offset(rect.right - rect.width * 0.1, rect.center.dy);
   }
 
   Offset backwardZoneOf(WidgetTester tester) {
-    final rect = tester.getRect(find.byType(PlexVideoControls));
+    final rect = tester.getRect(find.byType(PlayerControls));
     return Offset(rect.left + rect.width * 0.1, rect.center.dy);
   }
 
-  Offset neutralZoneOf(WidgetTester tester) => tester.getRect(find.byType(PlexVideoControls)).center;
+  Offset neutralZoneOf(WidgetTester tester) => tester.getRect(find.byType(PlayerControls)).center;
 
   Future<void> pumpControls(WidgetTester tester) async {
     await tester.pumpWidget(
@@ -97,7 +97,7 @@ void main() {
             body: SizedBox(
               width: surface.width,
               height: surface.height,
-              child: PlexVideoControls(
+              child: PlayerControls(
                 player: player,
                 volumeController: volume,
                 metadata: testMediaItem(id: 'mobile-skip-zones'),
