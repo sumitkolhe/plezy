@@ -40,11 +40,7 @@ void main() {
       await _pumpTrackSheet(
         tester,
         player: player,
-        trackControlsState: const TrackControlsState(
-          ratingKey: '123',
-          serverId: 'jellyfin-server',
-          subtitleSearchSupported: false,
-        ),
+        trackControlsState: const TrackControlsState(ratingKey: '123', serverId: 'jellyfin-server'),
       );
 
       expect(find.text('Search Subtitles'), findsNothing);
@@ -67,7 +63,6 @@ void main() {
           onSwitchSubtitle: (choice) async {
             switchedChoice = choice;
           },
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -112,7 +107,6 @@ void main() {
           onSwitchSubtitle: (choice) async {
             switchedSourceChoice = choice;
           },
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -160,7 +154,6 @@ void main() {
             ),
           ],
           onSwitchSubtitle: (_) async {},
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -210,7 +203,6 @@ void main() {
             ),
           ],
           onSwitchSubtitle: (_) async {},
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -272,7 +264,6 @@ void main() {
                 ),
               ],
               onSwitchSubtitle: (_) => selectionGate.future,
-              subtitleSearchSupported: false,
             ),
           ),
         ),
@@ -318,7 +309,6 @@ void main() {
           onSwitchSubtitle: (choice) async {
             switchedSourceChoice = choice;
           },
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -386,7 +376,6 @@ void main() {
             ),
           ],
           onSwitchSubtitle: (_) async {},
-          subtitleSearchSupported: false,
         ),
       );
 
@@ -416,11 +405,7 @@ void main() {
         ),
       );
 
-      await _pumpTrackSheet(
-        tester,
-        player: player,
-        trackControlsState: const TrackControlsState(subtitleSearchSupported: false),
-      );
+      await _pumpTrackSheet(tester, player: player, trackControlsState: const TrackControlsState());
 
       expect(find.text('English'), findsOneWidget);
       expect(find.text('AAC · Stereo'), findsOneWidget);
@@ -479,7 +464,7 @@ void main() {
     });
 
     test('ignores player subtitle placeholders', () {
-      const state = TrackControlsState(subtitleSearchSupported: false);
+      const state = TrackControlsState();
 
       expect(state.hasSubtitleControls(const Tracks(subtitle: [SubtitleTrack.auto, SubtitleTrack.off])), isFalse);
       expect(state.hasSubtitleControls(const Tracks(subtitle: [SubtitleTrack(id: 's1')])), isTrue);

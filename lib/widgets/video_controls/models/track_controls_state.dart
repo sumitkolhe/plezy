@@ -74,7 +74,6 @@ class TrackControlsState {
   /// server proxies the OpenSubtitles plugin; Jellyfin doesn't expose an
   /// equivalent. The track sheet hides the "Search subtitles" tile when
   /// this is false.
-  final bool subtitleSearchSupported;
 
   const TrackControlsState({
     this.availableVersions = const [],
@@ -128,7 +127,6 @@ class TrackControlsState {
     this.ratingKey = '',
     this.mediaTitle,
     this.onSubtitleDownloaded,
-    this.subtitleSearchSupported = true,
   });
 
   /// Transcoded subtitle choices must be negotiated with the server and
@@ -147,18 +145,12 @@ class TrackControlsState {
             .toList(growable: false)
       : const <MediaSubtitleTrack>[];
 
-  /// External subtitle search needs both a searchable media item and a server
-  /// that can proxy the OpenSubtitles request.
-  bool get canSearchSubtitles =>
-      ratingKey.isNotEmpty && serverId != null && serverId!.isNotEmpty && subtitleSearchSupported;
-
   /// Whether the track sheet should expose subtitle controls at all. This is
   /// the single source of truth shared by the toolbar icon and the sheet layout.
   bool hasSubtitleControls(Tracks? tracks) {
     final playerSubtitles = tracks?.subtitle ?? const <SubtitleTrack>[];
     return canUseSourceSubtitles ||
         directPlaySourceSidecars.isNotEmpty ||
-        TrackFilterHelper.hasTracks<SubtitleTrack>(playerSubtitles) ||
-        canSearchSubtitles;
+        TrackFilterHelper.hasTracks<SubtitleTrack>(playerSubtitles);
   }
 }

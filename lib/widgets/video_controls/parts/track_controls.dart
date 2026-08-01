@@ -181,28 +181,7 @@ extension _PlexVideoControlsTrackMethods on _PlexVideoControlsState {
       onQueueItemSelected: playbackState.isQueueActive && widget.canNavigateMediaItems ? _onQueueItemSelected : null,
       ratingKey: widget.metadata.id,
       mediaTitle: widget.metadata.title,
-      onSubtitleDownloaded: _onSubtitleDownloaded,
-      // Plex proxies OpenSubtitles via its server-side plugin; Jellyfin
-      // doesn't expose an equivalent so the Search Subtitles tile is hidden
-      // for Jellyfin items. The check uses the registered client type for
-      // this metadata's serverId.
-      subtitleSearchSupported: _isPlexBackedMetadata(),
     );
-  }
-
-  /// True when the active server supports external subtitle search (Plex
-  /// today). Requires a server id because the download callback needs the
-  /// Plex client/token for that server.
-  bool _isPlexBackedMetadata() {
-    try {
-      final serverId = widget.metadata.serverId;
-      if (serverId == null) return false;
-      final manager = context.read<MultiServerProvider>().serverManager;
-      final c = manager.getClient(ServerId(serverId));
-      return c?.capabilities.externalSubtitleSearch ?? false;
-    } catch (_) {
-      return false;
-    }
   }
 
   Widget _buildTrackChapterControlsWidget({bool hideChaptersAndQueue = false}) {

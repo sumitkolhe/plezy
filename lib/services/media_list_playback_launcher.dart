@@ -15,11 +15,10 @@ import '../utils/media_server_http_client.dart';
 import '../utils/snackbar_helper.dart';
 import '../utils/video_player_navigation.dart';
 import 'jellyfin_sequential_launcher.dart';
-import 'play_queue_launcher.dart';
 import '../widgets/dialog_action_button.dart';
 
 /// Result type for play queue launches. Same shape as the previous
-/// [PlexPlayQueueLauncher] result so existing call sites can keep their
+/// launcher result so existing call sites can keep their
 /// pattern matching unchanged.
 sealed class PlayQueueResult {
   const PlayQueueResult();

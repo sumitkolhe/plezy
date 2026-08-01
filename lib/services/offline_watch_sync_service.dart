@@ -18,7 +18,6 @@ import '../utils/global_key_utils.dart';
 import 'offline_mode_source.dart';
 import '../utils/watch_state_notifier.dart';
 import 'multi_server_manager.dart';
-import 'plex_client.dart';
 import 'settings_service.dart';
 import 'trackers/tracker_coordinator.dart';
 import 'watch_state_resolver.dart';
@@ -58,12 +57,9 @@ class OfflineWatchSyncService extends ChangeNotifier {
   /// 4. Default 90%
   double getWatchedThreshold(ServerId serverId) {
     final client = _serverManager.getClient(serverId);
-    if (client is PlexClient && client.serverPrefs.isNotEmpty) {
-      return client.watchedThreshold;
-    }
-    if (client != null && client.backend != MediaBackend.plex) {
-      // Jellyfin (and any future neutral backend) — the client exposes a
-      // fixed threshold that mirrors the wire-protocol behaviour.
+    if (client != null) {
+      // The client exposes a fixed threshold mirroring the wire-protocol
+      // behaviour.
       return client.watchedThreshold;
     }
     // No client bound (offline) or Plex prefs not loaded yet — use the

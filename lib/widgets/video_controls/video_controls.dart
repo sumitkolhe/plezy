@@ -42,10 +42,8 @@ import '../overlay_sheet.dart';
 import '../../focus/dpad_navigator.dart';
 
 import '../../database/app_database.dart';
-import '../../media/media_backend.dart';
 import '../../media/media_item.dart';
 import '../../media/stepped_seek.dart';
-import '../../providers/multi_server_provider.dart';
 import '../../media/media_source_info.dart';
 import '../../models/transcode_quality_preset.dart';
 import '../../media/media_version.dart';
@@ -127,26 +125,6 @@ List<MediaSubtitleTrack> selectableSourceSubtitleTracks(
             (supportsEmbeddedTranscodeSelection && CodecUtils.isTranscodableSubtitleCodec(track.codec)),
       )
       .toList(growable: false);
-}
-
-@visibleForTesting
-MediaSubtitleTrack? findNewExternalSubtitleTrack(List<MediaSubtitleTrack> tracks, Set<int> existingSourceIds) {
-  for (final track in tracks) {
-    if (track.isExternal && !existingSourceIds.contains(track.id)) return track;
-  }
-  return null;
-}
-
-@visibleForTesting
-SubtitleDownloadApplyOutcome subtitleDownloadApplyOutcomeFor(PlaybackSourceChangeOutcome outcome) {
-  return switch (outcome) {
-    PlaybackSourceChangeOutcome.applied ||
-    PlaybackSourceChangeOutcome.unchanged => SubtitleDownloadApplyOutcome.applied,
-    PlaybackSourceChangeOutcome.busy => SubtitleDownloadApplyOutcome.busy,
-    PlaybackSourceChangeOutcome.superseded => SubtitleDownloadApplyOutcome.superseded,
-    PlaybackSourceChangeOutcome.unavailable => SubtitleDownloadApplyOutcome.unavailable,
-    PlaybackSourceChangeOutcome.failed => SubtitleDownloadApplyOutcome.failed,
-  };
 }
 
 @visibleForTesting
