@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline verification for reviewed Linux native and vendored binding inputs."""
+"""Offline verification for reviewed vendored binding inputs."""
 
 from __future__ import annotations
 
@@ -13,7 +13,6 @@ from typing import Any
 
 HEX_256 = re.compile(r"^[0-9a-f]{64}$")
 HEX_COMMIT = re.compile(r"^[0-9a-f]{40}$")
-NATIVE_NAMES = {"ffmpeg", "shaderc", "libplacebo", "mpv", "simdutf"}
 BINDING_ARTIFACTS = {
     "pigeons/messages.dart",
     "android/src/main/kotlin/dev/fluttercommunity/plus/wakelock/WakelockPlusMessages.g.kt",
@@ -63,85 +62,6 @@ def _locked_package(lock_text: str, name: str) -> tuple[str, str] | None:
     if version is None or checksum is None:
         return None
     return version.group(1), checksum.group(1)
-
-
-def _validate_native(root: Path, errors: list[str]) -> None:
-    manifest_path = root / "linux/packaging/native-inputs.json"
-    manifest = _load_json(manifest_path, errors)
-    if manifest.get("formatVersion") != 1:
-        errors.append(f"{manifest_path}: formatVersion must be 1")
-
-
-    inputs = manifest.get("inputs")
-    if not isinstance(inputs, dict) or set(inputs) != NATIVE_NAMES:
-        errors.append(f"{manifest_path}: inputs must be exactly {sorted(NATIVE_NAMES)}")
-        return
-
-    for name, value in inputs.items():
-        label = f"{manifest_path}: inputs.{name}"
-        if not isinstance(value, dict):
-            errors.append(f"{label}: must be an object")
-            continue
-        kind = value.get("kind")
-        version = _require_text(value.get("version"), f"{label}.version", errors)
-        url = _require_text(value.get("url"), f"{label}.url", errors)
-        _require_text(value.get("provenance"), f"{label}.provenance", errors)
-        if url and not url.startswith("https://"):
-            errors.append(f"{label}.url: production source must use HTTPS")
-        if version and url and name in {"ffmpeg", "mpv", "simdutf"} and version not in url:
-            errors.append(f"{label}.url: must identify declared version {version}")
-        if kind == "archive":
-            checksum = value.get("sha256")
-            if not isinstance(checksum, str) or HEX_256.fullmatch(checksum) is None:
-                errors.append(f"{label}.sha256: must be a lowercase full SHA-256")
-        elif kind == "git":
-            ref = value.get("ref")
-            commit = value.get("commit")
-            if not isinstance(ref, str) or ref != f"v{version}":
-                errors.append(f"{label}.ref: must be v{version}")
-            if not isinstance(commit, str) or HEX_COMMIT.fullmatch(commit) is None:
-                errors.append(f"{label}.commit: must be a lowercase full Git commit")
-        else:
-            errors.append(f"{label}.kind: must be archive or git")
-
-    cmake_path = root / "linux/CMakeLists.txt"
-    try:
-        cmake = cmake_path.read_text(encoding="utf-8")
-    except OSError as error:
-        errors.append(f"{cmake_path}: cannot read: {error}")
-        cmake = ""
-    simdutf = inputs.get("simdutf")
-    if isinstance(simdutf, dict):
-        simdutf_url = simdutf.get("url")
-        simdutf_sha256 = simdutf.get("sha256")
-        if isinstance(simdutf_url, str) and simdutf_url and f"URL {simdutf_url}" not in cmake:
-            errors.append(f"{cmake_path}: simdutf URL differs from native-inputs.json")
-        if (
-            isinstance(simdutf_sha256, str)
-            and HEX_256.fullmatch(simdutf_sha256) is not None
-            and f"URL_HASH SHA256={simdutf_sha256}" not in cmake
-        ):
-            errors.append(f"{cmake_path}: simdutf SHA-256 differs from native-inputs.json")
-
-    builder_path = root / "linux/packaging/build-libmpv.sh"
-    try:
-        builder = builder_path.read_text(encoding="utf-8")
-    except OSError as error:
-        errors.append(f"{builder_path}: cannot read: {error}")
-        return
-    required_builder_contracts = (
-        "native-inputs.json",
-        'download_verified "$FFMPEG_URL" "$FFMPEG_SHA256"',
-        'download_verified "$MPV_URL" "$MPV_SHA256"',
-        '"$SHADERC_URL" "$SHADERC_REF" "$SHADERC_COMMIT"',
-        '"$LIBPLACEBO_URL" "$LIBPLACEBO_REF" "$LIBPLACEBO_COMMIT"',
-        'git submodule update --init --recursive',
-    )
-    for contract_text in required_builder_contracts:
-        if contract_text not in builder:
-            errors.append(f"{builder_path}: missing manifest-backed acquisition contract {contract_text!r}")
-    if re.search(r"curl[^\n]*\|[^\n]*tar", builder):
-        errors.append(f"{builder_path}: archive extraction must not consume a curl stream")
 
 
 def _validate_wakelock(root: Path, errors: list[str]) -> None:
@@ -233,7 +153,6 @@ def _validate_wakelock(root: Path, errors: list[str]) -> None:
 
 def validate(root: Path) -> list[str]:
     errors: list[str] = []
-    _validate_native(root, errors)
     _validate_wakelock(root, errors)
     return errors
 

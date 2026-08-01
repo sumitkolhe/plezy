@@ -183,9 +183,7 @@ append_native_files() {
     case "$file" in
       android/app/src/main/cpp/include/*) continue ;;
       android/app/src/main/java/io/flutter/plugins/*) continue ;;
-      ios/Flutter/*|macos/Flutter/*|tvos/Flutter/*) continue ;;
-      linux/flutter/*|windows/flutter/*) continue ;;
-      tvos/Runner/Plugins/*) continue ;;
+      ios/Flutter/*) continue ;;
       */GeneratedPluginRegistrant.*|*/generated_plugin_registrant.*) continue ;;
     esac
 
@@ -203,13 +201,9 @@ clang_files=()
 
 append_native_files \
   'android/**/*.kt' 'android/**/*.kts' \
-  'ios/**/*.swift' 'macos/**/*.swift' 'tvos/**/*.swift' 'shared/**/*.swift' \
+  'ios/**/*.swift' 'shared/**/*.swift' \
   'android/**/*.[ch]' 'android/**/*.cc' 'android/**/*.cpp' 'android/**/*.hpp' \
   'ios/**/*.[hm]' 'ios/**/*.mm' \
-  'macos/**/*.[hm]' 'macos/**/*.mm' \
-  'tvos/**/*.[hm]' 'tvos/**/*.mm' \
-  'linux/**/*.[ch]' 'linux/**/*.cc' 'linux/**/*.cpp' 'linux/**/*.hpp' \
-  'windows/**/*.[ch]' 'windows/**/*.cc' 'windows/**/*.cpp' 'windows/**/*.hpp' \
   'shared/**/*.[ch]' 'shared/**/*.cc' 'shared/**/*.cpp' 'shared/**/*.hpp'
 
 FAILED=0
