@@ -837,7 +837,10 @@ void main() {
       await tester.pump(const Duration(milliseconds: 300));
     }
 
-    Finder episodeCardFor(String title) => find.ancestor(of: find.text(title), matching: find.byType(EpisodeCard));
+    // textContaining, not text: the row heads its title with the episode
+    // number, so the fixture title is a suffix of what is rendered.
+    Finder episodeCardFor(String title) =>
+        find.ancestor(of: find.textContaining(title), matching: find.byType(EpisodeCard));
 
     bool episodeRowWatched(WidgetTester tester, String title) {
       final card = episodeCardFor(title);
@@ -1008,7 +1011,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200));
 
-      expect(find.text('Episode S2E1'), findsOneWidget);
+      expect(find.textContaining('Episode S2E1'), findsOneWidget);
       // The chip names the season on screen without needing a tap.
       expect(find.descendant(of: find.byType(SeasonPickerChip), matching: find.text('Season 2')), findsOneWidget);
     });
@@ -1038,7 +1041,7 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 200));
 
-      expect(find.text('Episode S2E2'), findsOneWidget);
+      expect(find.textContaining('Episode S2E2'), findsOneWidget);
       expect(FocusManager.instance.primaryFocus?.debugLabel, 'initial_episode');
     });
 
@@ -1069,7 +1072,7 @@ void main() {
 
       // The first row keeps _firstEpisodeFocusNode (so season-tab DOWN keeps
       // working) and the initial focus lands on that node instead.
-      expect(find.text('Episode S2E1'), findsOneWidget);
+      expect(find.textContaining('Episode S2E1'), findsOneWidget);
       expect(FocusManager.instance.primaryFocus?.debugLabel, 'first_episode');
     });
 

@@ -66,7 +66,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final tokensRef = tokens(context);
     final rating = episode.userRating;
     final spans = dotSeparatedSpans([
-      if (episode.index != null) TextSpan(text: 'E${episode.index}'),
       if (episode.durationMs != null)
         TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
       if (episode.originallyAvailableAt != null) TextSpan(text: formatAbbreviatedDate(episode.originallyAvailableAt!)),
@@ -234,14 +233,12 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
           }
         }
 
-        // The episode number lives on the meta line: as a sibling here it
-        // indents the title away from the left edge the meta line shares.
         return Row(
           crossAxisAlignment: .start,
           children: [
             Expanded(
               child: Text(
-                episode.title!,
+                episode.index == null ? episode.title! : 'E${episode.index}$dotSeparator${episode.title!}',
                 style: TextStyle(fontSize: 14, fontWeight: .w600, height: 1.3),
                 maxLines: 2,
                 overflow: .ellipsis,

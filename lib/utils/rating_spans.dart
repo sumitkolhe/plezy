@@ -26,10 +26,12 @@ InlineSpan ratingSpan(double rating, {required double iconSize, String suffix = 
 }
 
 /// Joins [parts] with ` • `, dropping nulls.
+const String dotSeparator = ' • ';
+
 List<InlineSpan> dotSeparatedSpans(List<InlineSpan?> parts) {
   final kept = parts.whereType<InlineSpan>().toList();
   return [
-    for (var i = 0; i < kept.length; i++) ...[if (i > 0) const TextSpan(text: ' • '), kept[i]],
+    for (var i = 0; i < kept.length; i++) ...[if (i > 0) const TextSpan(text: dotSeparator), kept[i]],
   ];
 }
 

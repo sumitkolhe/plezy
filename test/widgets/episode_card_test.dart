@@ -16,6 +16,7 @@ import 'package:harbor/services/download_storage_service.dart';
 import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/utils/rating_spans.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/episode_card.dart';
 import 'package:provider/provider.dart';
@@ -110,9 +111,12 @@ void main() {
     );
     expect(meta.maxLines, 2);
     final facts = meta.textSpan!.toPlainText();
-    for (final fact in ['E12', '52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
+    for (final fact in ['52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
       expect(facts, contains(fact));
     }
+    // The episode number heads the title instead.
+    expect(facts, isNot(contains('E12')));
+    expect(find.text('E12${dotSeparator}Aftermath'), findsOneWidget);
   });
 
   testWidgets('summary sits under the fact line in the text column', (tester) async {
@@ -129,7 +133,7 @@ void main() {
 
     await _pumpEpisodeCard(tester, episode);
 
-    final title = tester.getRect(find.text('Aftermath'));
+    final title = tester.getRect(find.text('E5${dotSeparator}Aftermath'));
     final summaryRect = tester.getRect(find.text(summary));
     final still = tester.getRect(find.byType(AspectRatio).first);
 
