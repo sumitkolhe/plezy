@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/focusable_action_bar.dart';
@@ -200,18 +200,18 @@ class ExploreScreenState extends State<ExploreScreen>
   }
 
   static IconData _rowIcon(CatalogRowId? row) => switch (row) {
-    null => Symbols.thumb_up_rounded,
-    CatalogRowId.watchlist => Symbols.bookmark_rounded,
+    null => PhosphorIconsDuotone.thumbsUp,
+    CatalogRowId.watchlist => PhosphorIconsDuotone.bookmark,
     CatalogRowId.recommendedMovies ||
     CatalogRowId.recommendedShows ||
-    CatalogRowId.suggestedAnime => Symbols.thumb_up_rounded,
+    CatalogRowId.suggestedAnime => PhosphorIconsDuotone.thumbsUp,
     CatalogRowId.trendingMovies ||
     CatalogRowId.trendingShows ||
     CatalogRowId.trendingAnime ||
     CatalogRowId.airingAnime ||
-    CatalogRowId.trending => Symbols.trending_up_rounded,
-    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => Symbols.whatshot_rounded,
-    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => Symbols.event_upcoming_rounded,
+    CatalogRowId.trending => PhosphorIconsDuotone.trendUp,
+    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => PhosphorIconsDuotone.fire,
+    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIconsDuotone.calendarPlus,
   };
 
   List<AppMenuEntry<CatalogSourceId>> _sourceMenuEntries(CatalogSourcesProvider sources, CatalogSource active) => [
@@ -240,7 +240,7 @@ class ExploreScreenState extends State<ExploreScreen>
           const SizedBox(width: 8),
           Text(active.displayName, style: textStyle ?? Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 4),
-          const AppIcon(Symbols.arrow_drop_down_rounded, fill: 1, size: 24),
+          const AppIcon(PhosphorIconsDuotone.caretDown, size: 24),
         ],
       ),
     );
@@ -320,7 +320,7 @@ class ExploreScreenState extends State<ExploreScreen>
             // handheld the gesture already covers this.
             if (!PlatformDetector.isHandheld(context))
               FocusableAction(
-                icon: Symbols.refresh_rounded,
+                icon: PhosphorIconsDuotone.arrowsClockwise,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_handleRefresh()),
               ),
@@ -361,7 +361,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: ErrorStateWidget(
             message: explore.errorMessage ?? t.explore.emptyTitle,
-            icon: Symbols.error_outline_rounded,
+            icon: PhosphorIconsDuotone.warningCircle,
             onRetry: () => unawaited(_explore.load()),
           ),
         ),
@@ -371,7 +371,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: EmptyStateWidget(
             message: t.explore.emptyMessage(source: explore.activeSource?.displayName ?? ''),
-            icon: Symbols.explore_rounded,
+            icon: PhosphorIconsDuotone.compass,
           ),
         ),
       ]);
@@ -415,7 +415,11 @@ class ExploreScreenState extends State<ExploreScreen>
     if (isSearching) return LoadingIndicatorBox.sliver;
     if (lastSearchFailed) {
       return SliverFillRemaining(
-        child: StateMessageWidget(message: t.explore.searchFailed, icon: Symbols.error_rounded, iconSize: 80),
+        child: StateMessageWidget(
+          message: t.explore.searchFailed,
+          icon: PhosphorIconsDuotone.warningCircle,
+          iconSize: 80,
+        ),
       );
     }
     // The debounce window right after the field goes from empty to typed: no
@@ -425,7 +429,7 @@ class ExploreScreenState extends State<ExploreScreen>
       return SliverFillRemaining(
         child: StateMessageWidget(
           message: t.explore.searchEmpty(query: lastSearchedQuery),
-          icon: Symbols.search_off_rounded,
+          icon: PhosphorIconsDuotone.magnifyingGlassMinus,
           iconSize: 80,
         ),
       );
@@ -482,7 +486,7 @@ class ExploreScreenState extends State<ExploreScreen>
                 ),
               if (active != null)
                 FocusableAction(
-                  icon: Symbols.search_rounded,
+                  icon: PhosphorIconsDuotone.magnifyingGlass,
                   iconColor: foregroundColor,
                   tooltip: t.common.search,
                   onPressed: () => Navigator.of(
@@ -490,7 +494,7 @@ class ExploreScreenState extends State<ExploreScreen>
                   ).push(MaterialPageRoute<void>(builder: (_) => CatalogSearchScreen(source: active))),
                 ),
               FocusableAction(
-                icon: Symbols.refresh_rounded,
+                icon: PhosphorIconsDuotone.arrowsClockwise,
                 iconColor: foregroundColor,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_explore.load()),
@@ -519,7 +523,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: ErrorStateWidget(
                 message: _explore.errorMessage ?? t.explore.emptyTitle,
-                icon: Symbols.error_outline_rounded,
+                icon: PhosphorIconsDuotone.warningCircle,
                 onRetry: () => unawaited(_explore.load()),
               ),
             )
@@ -527,7 +531,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: EmptyStateWidget(
                 message: t.explore.emptyMessage(source: _explore.activeSource?.displayName ?? ''),
-                icon: Symbols.explore_rounded,
+                icon: PhosphorIconsDuotone.compass,
               ),
             ),
           if (tvHubs.isNotEmpty)

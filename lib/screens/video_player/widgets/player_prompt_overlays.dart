@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart' show ValueListenable, listEquals;
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../focus/focusable_button.dart';
@@ -27,7 +27,7 @@ class VideoPlayerMacPipPlaceholder extends StatelessWidget {
               child: Column(
                 mainAxisSize: .min,
                 children: [
-                  AppIcon(Symbols.picture_in_picture_alt_rounded, size: 48, color: Colors.white.withValues(alpha: 0.5)),
+                  AppIcon(PhosphorIconsDuotone.pictureInpicture, size: 48, color: Colors.white.withValues(alpha: 0.5)),
                   const SizedBox(height: 12),
                   Text(
                     t.videoControls.pipActive,
@@ -148,7 +148,7 @@ class VideoPlayerPlayNextOverlay extends StatelessWidget {
             if (autoPlayCountdown > 0) ...[
               Text('$autoPlayCountdown'),
               const SizedBox(width: 4),
-              const AppIcon(Symbols.play_arrow_rounded, fill: 1, size: 18),
+              const AppIcon(PhosphorIconsDuotone.play, size: 18),
             ] else
               Text(t.videoControls.playNext),
           ],
@@ -182,7 +182,7 @@ class _PlayNextEpisodeHeader extends StatelessWidget {
                       ),
                       if (isShuffleActive) ...[
                         const SizedBox(width: 4),
-                        AppIcon(Symbols.shuffle_rounded, fill: 1, size: 12, color: Colors.white.withValues(alpha: 0.7)),
+                        AppIcon(PhosphorIconsDuotone.shuffle, size: 12, color: Colors.white.withValues(alpha: 0.7)),
                       ],
                     ],
                   );

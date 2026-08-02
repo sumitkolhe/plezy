@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../models/audio_quality_preset.dart';
@@ -98,7 +98,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
               title: t.settings.subtitlesAndConfig,
               children: [
                 SettingNavigationTile(
-                  icon: Symbols.subtitles_rounded,
+                  icon: PhosphorIconsDuotone.subtitles,
                   title: t.settings.subtitleStyling,
                   subtitle: t.settings.subtitleStylingDescription,
                   destinationBuilder: (_) => const SubtitleStylingScreen(),
@@ -122,7 +122,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     children: [
       SettingNumberTile(
         pref: SettingsService.seekTimeSmall,
-        icon: Symbols.replay_10_rounded,
+        icon: PhosphorIconsDuotone.arrowCounterClockwise,
         title: t.settings.smallSkipDuration,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -133,7 +133,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.seekTimeLarge,
-        icon: Symbols.replay_30_rounded,
+        icon: PhosphorIconsDuotone.arrowCounterClockwise,
         title: t.settings.largeSkipDuration,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -144,7 +144,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.rewindOnResume,
-        icon: Symbols.replay_rounded,
+        icon: PhosphorIconsDuotone.arrowCounterClockwise,
         title: t.settings.rewindOnResume,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -154,7 +154,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.sleepTimerDuration,
-        icon: Symbols.bedtime_rounded,
+        icon: PhosphorIconsDuotone.moon,
         title: t.settings.defaultSleepTimer,
         subtitleBuilder: (v) => t.settings.minutesUnit(minutes: v.toString()),
         labelText: t.settings.minutesLabel,
@@ -164,7 +164,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.maxVolume,
-        icon: Symbols.volume_up_rounded,
+        icon: PhosphorIconsDuotone.speakerHigh,
         title: t.settings.maxVolume,
         subtitleBuilder: (v) => t.settings.maxVolumePercent(percent: v.toString()),
         labelText: t.settings.maxVolumeDescription,
@@ -180,26 +180,26 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     children: [
       SettingSwitchTile(
         pref: SettingsService.rememberTrackSelections,
-        icon: Symbols.bookmark_rounded,
+        icon: PhosphorIconsDuotone.bookmark,
         title: t.settings.rememberTrackSelections,
         subtitle: t.settings.rememberTrackSelectionsDescription,
       ),
       SettingSwitchTile(
         pref: SettingsService.followServerTrackSelections,
-        icon: Symbols.dns_rounded,
+        icon: PhosphorIconsDuotone.hardDrives,
         title: t.settings.followServerTrackSelections,
         subtitle: t.settings.followServerTrackSelectionsDescription,
       ),
       SettingSwitchTile(
         pref: SettingsService.showChapterMarkersOnTimeline,
-        icon: Symbols.bookmarks_rounded,
+        icon: PhosphorIconsDuotone.bookmarks,
         title: t.settings.showChapterMarkersOnTimeline,
         subtitle: t.settings.showChapterMarkersOnTimelineDescription,
       ),
       if (!isMobile)
         SettingSwitchTile(
           pref: SettingsService.clickVideoTogglesPlayback,
-          icon: Symbols.play_pause_rounded,
+          icon: PhosphorIconsDuotone.playPause,
           title: t.settings.clickVideoTogglesPlayback,
           subtitle: t.settings.clickVideoTogglesPlaybackDescription,
         ),
@@ -211,25 +211,25 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     children: [
       SettingSwitchTile(
         pref: SettingsService.autoSkipIntro,
-        icon: Symbols.fast_forward_rounded,
+        icon: PhosphorIconsDuotone.fastForward,
         title: t.settings.autoSkipIntro,
         subtitle: t.settings.autoSkipIntroDescription,
       ),
       SettingSwitchTile(
         pref: SettingsService.autoSkipCredits,
-        icon: Symbols.skip_next_rounded,
+        icon: PhosphorIconsDuotone.skipForward,
         title: t.settings.autoSkipCredits,
         subtitle: t.settings.autoSkipCreditsDescription,
       ),
       SettingSwitchTile(
         pref: SettingsService.forceSkipMarkerFallback,
-        icon: Symbols.tune_rounded,
+        icon: PhosphorIconsDuotone.sliders,
         title: t.settings.forceSkipMarkerFallback,
         subtitle: t.settings.forceSkipMarkerFallbackDescription,
       ),
       SettingNumberTile(
         pref: SettingsService.autoSkipDelay,
-        icon: Symbols.timer_rounded,
+        icon: PhosphorIconsDuotone.timer,
         title: t.settings.autoSkipDelay,
         subtitleBuilder: (v) => t.settings.autoSkipDelayDescription(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -239,14 +239,14 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingRegexTile(
         pref: SettingsService.introPattern,
-        icon: Symbols.match_case_rounded,
+        icon: PhosphorIconsDuotone.textAa,
         title: t.settings.introPattern,
         subtitle: t.settings.introPatternDescription,
         defaultValue: SettingsService.defaultIntroPattern,
       ),
       SettingRegexTile(
         pref: SettingsService.creditsPattern,
-        icon: Symbols.match_case_rounded,
+        icon: PhosphorIconsDuotone.textAa,
         title: t.settings.creditsPattern,
         subtitle: t.settings.creditsPatternDescription,
         defaultValue: SettingsService.defaultCreditsPattern,
@@ -256,7 +256,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _playerBackendSelector() => SettingSegmentedTile<bool>(
     pref: SettingsService.useExoPlayer,
-    icon: Symbols.play_circle_rounded,
+    icon: PhosphorIconsDuotone.playCircle,
     title: t.settings.playerBackend,
     segments: [
       ButtonSegment(value: true, label: Text(t.settings.exoPlayer)),
@@ -271,7 +271,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       final useExt = svc.read(SettingsService.useExternalPlayer);
       final player = svc.read(SettingsService.selectedExternalPlayer);
       return SettingNavigationTile(
-        icon: Symbols.open_in_new_rounded,
+        icon: PhosphorIconsDuotone.arrowSquareOut,
         title: t.externalPlayer.title,
         subtitle: useExt
             ? (player.id == 'system_default' ? t.externalPlayer.systemDefault : player.name)
@@ -283,42 +283,42 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _hardwareDecodingTile() => SettingSwitchTile(
     pref: SettingsService.enableHardwareDecoding,
-    icon: Symbols.hardware_rounded,
+    icon: PhosphorIconsDuotone.cpu,
     title: t.settings.hardwareDecoding,
     subtitle: t.settings.hardwareDecodingDescription,
   );
 
   Widget _autoPipTile() => SettingSwitchTile(
     pref: SettingsService.autoPip,
-    icon: Symbols.picture_in_picture_alt_rounded,
+    icon: PhosphorIconsDuotone.pictureInpicture,
     title: t.settings.autoPip,
     subtitle: t.settings.autoPipDescription,
   );
 
   Widget _matchContentFrameRateTile() => SettingSwitchTile(
     pref: SettingsService.matchContentFrameRate,
-    icon: Symbols.display_settings_rounded,
+    icon: PhosphorIconsDuotone.monitor,
     title: t.settings.matchContentFrameRate,
     subtitle: t.settings.matchContentFrameRateDescription,
   );
 
   Widget _matchRefreshRateTile() => SettingSwitchTile(
     pref: SettingsService.matchRefreshRate,
-    icon: Symbols.display_settings_rounded,
+    icon: PhosphorIconsDuotone.monitor,
     title: t.settings.matchRefreshRate,
     subtitle: t.settings.matchRefreshRateDescription,
   );
 
   Widget _matchDynamicRangeTile() => SettingSwitchTile(
     pref: SettingsService.matchDynamicRange,
-    icon: Symbols.hdr_on_rounded,
+    icon: PhosphorIconsDuotone.highDefinition,
     title: t.settings.matchDynamicRange,
     subtitle: t.settings.matchDynamicRangeDescription,
   );
 
   Widget _audioPassthroughTile() => SettingSwitchTile(
     pref: SettingsService.audioPassthrough,
-    icon: Symbols.surround_sound_rounded,
+    icon: PhosphorIconsDuotone.speakerHigh,
     title: t.settings.audioPassthrough,
     subtitle: PlatformDetector.isAppleTV()
         ? t.settings.audioPassthroughDescriptionAppleTv
@@ -327,14 +327,14 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _audioDownmixTile() => SettingSwitchTile(
     pref: SettingsService.audioDownmix,
-    icon: Symbols.headphones_rounded,
+    icon: PhosphorIconsDuotone.headphones,
     title: t.settings.audioDownmix,
     subtitle: t.settings.audioDownmixDescription,
   );
 
   Widget _downmixCenterBoostTile() => SettingNumberTile(
     pref: SettingsService.downmixCenterBoost,
-    icon: Symbols.record_voice_over_rounded,
+    icon: PhosphorIconsDuotone.microphone,
     title: t.settings.downmixCenterBoost,
     subtitleBuilder: (v) => t.settings.downmixCenterBoostValue(db: v.toString()),
     labelText: t.settings.downmixCenterBoostLabel,
@@ -345,13 +345,13 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _downmixNormalizeTile() => SettingSwitchTile(
     pref: SettingsService.audioDownmixNormalize,
-    icon: Symbols.graphic_eq_rounded,
+    icon: PhosphorIconsDuotone.waveform,
     title: t.settings.audioDownmixNormalize,
     subtitle: t.settings.audioDownmixNormalizeDescription,
   );
 
   Widget _atmosDiagnosticsTile() => SettingNavigationTile(
-    icon: Symbols.spatial_audio_rounded,
+    icon: PhosphorIconsDuotone.waveform,
     title: t.settings.atmosDiagnostics,
     subtitle: t.settings.atmosDiagnosticsDescription,
     destinationBuilder: (_) => const AtmosDiagnosticsScreen(),
@@ -361,7 +361,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
   // SettingsBuilder in build().
   Widget _displaySwitchDelayTile() => SettingNumberTile(
     pref: SettingsService.displaySwitchDelay,
-    icon: Symbols.timer_rounded,
+    icon: PhosphorIconsDuotone.timer,
     title: t.settings.displaySwitchDelay,
     subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
     labelText: t.settings.secondsLabel,
@@ -372,14 +372,14 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _tunneledPlaybackTile() => SettingSwitchTile(
     pref: SettingsService.tunneledPlayback,
-    icon: Symbols.tv_options_input_settings_rounded,
+    icon: PhosphorIconsDuotone.gear,
     title: t.settings.tunneledPlayback,
     subtitle: t.settings.tunneledPlaybackDescription,
   );
 
   Widget _dvConversionModeTile() => SettingSelectionTile<DvConversionModePreference>(
     pref: SettingsService.dvConversionMode,
-    icon: Symbols.hdr_strong_rounded,
+    icon: PhosphorIconsDuotone.highDefinition,
     title: t.settings.dvConversionMode,
     subtitleBuilder: (mode) => '${_dvConversionModeLabel(mode)} · ${t.settings.dvConversionModeDescription}',
     options: DvConversionModePreference.values
@@ -398,7 +398,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     final bufferOptions = const [0, 64, 128, 256, 512, 1024];
     return SettingSelectionTile<int>(
       pref: SettingsService.bufferSize,
-      icon: Symbols.memory_rounded,
+      icon: PhosphorIconsDuotone.memory,
       title: t.settings.bufferSize,
       subtitleBuilder: (v) => v == 0 ? t.settings.bufferSizeAuto : t.settings.bufferSizeMB(size: v.toString()),
       options: bufferOptions
@@ -417,7 +417,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _defaultQualityTile() => SettingSelectionTile<TranscodeQualityPreset>(
     pref: SettingsService.defaultQualityPreset,
-    icon: Symbols.high_quality_rounded,
+    icon: PhosphorIconsDuotone.highDefinition,
     title: t.settings.defaultQualityTitle,
     subtitleBuilder: qualityPresetLabel,
     options: TranscodeQualityPreset.displayOrder
@@ -427,7 +427,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
 
   Widget _musicQualityTile() => SettingSelectionTile<AudioQualityPreset>(
     pref: SettingsService.musicQualityPreset,
-    icon: Symbols.music_note_rounded,
+    icon: PhosphorIconsDuotone.musicNote,
     title: t.settings.musicQualityTitle,
     subtitleBuilder: _musicQualityLabel,
     options: AudioQualityPreset.values.map((p) => DialogOption(value: p, title: _musicQualityLabel(p))).toList(),
@@ -437,7 +437,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       preset.isOriginal ? t.videoControls.qualityOriginal : '${preset.bitrateKbps} kbps';
 
   Widget _mpvConfigTile() => SettingNavigationTile(
-    icon: Symbols.tune_rounded,
+    icon: PhosphorIconsDuotone.sliders,
     title: t.mpvConfig.title,
     subtitle: t.mpvConfig.description,
     destinationBuilder: (_) => const MpvConfigScreen(),

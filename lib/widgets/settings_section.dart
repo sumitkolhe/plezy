@@ -118,7 +118,7 @@ class SegmentedSetting<T> extends StatelessWidget {
         children: [
           Row(
             children: [
-              AppIcon(icon, fill: 1),
+              AppIcon(icon),
               const SizedBox(width: 16),
               Text(title, style: settingsOptionTitleStyle(context)),
             ],

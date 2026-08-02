@@ -249,7 +249,6 @@ class _BrowseClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<List<MediaSort>> fetchSortOptions(String libraryId, {String? libraryType}) {
     sortRequestCount++;

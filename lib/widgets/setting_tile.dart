@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../screens/settings/settings_utils.dart';
 import '../services/settings_service.dart';
@@ -44,10 +44,10 @@ class _SettingRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return FocusableListTile(
       focusNode: focusNode,
-      leading: AppIcon(icon, fill: 1),
+      leading: AppIcon(icon),
       title: Text(title),
       subtitle: subtitle,
-      trailing: trailing ?? const AppIcon(Symbols.chevron_right_rounded, fill: 1),
+      trailing: trailing ?? const AppIcon(PhosphorIconsDuotone.caretRight),
       onTap: onTap,
     );
   }
@@ -80,7 +80,7 @@ class SettingSwitchTile extends StatelessWidget {
       valueListenable: SettingsService.instance.listenable(pref),
       builder: (_, value, _) => FocusableSwitchListTile(
         focusNode: focusNode,
-        secondary: AppIcon(icon, fill: 1),
+        secondary: AppIcon(icon),
         title: Text(title),
         subtitle: subtitle != null ? Text(subtitle!) : null,
         value: value,
@@ -108,7 +108,7 @@ class SettingNavigationTile extends StatelessWidget {
     this.destinationBuilder,
     this.onTap,
     this.focusNode,
-    this.trailingIcon = Symbols.chevron_right_rounded,
+    this.trailingIcon = PhosphorIconsDuotone.caretRight,
   }) : assert(destinationBuilder != null || onTap != null);
 
   @override
@@ -118,7 +118,7 @@ class SettingNavigationTile extends StatelessWidget {
       icon: icon,
       title: title,
       subtitle: subtitle != null ? Text(subtitle!) : null,
-      trailing: AppIcon(trailingIcon, fill: 1),
+      trailing: AppIcon(trailingIcon),
       onTap: onTap ?? () => Navigator.push(context, MaterialPageRoute(builder: destinationBuilder!)),
     );
   }

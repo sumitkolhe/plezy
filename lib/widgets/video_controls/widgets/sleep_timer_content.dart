@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../i18n/strings.g.dart';
 import '../../../mpv/mpv.dart';
@@ -99,11 +99,7 @@ class _SleepTimerEventColumn extends StatelessWidget {
           child: ListView(
             children: [
               FocusableListTile(
-                leading: AppIcon(
-                  Symbols.hourglass_bottom_rounded,
-                  fill: 1,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                leading: AppIcon(PhosphorIconsDuotone.hourglass, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: sleepTimer.isEndOfVideoMode,
                 onTap: () {
@@ -160,7 +156,7 @@ class _SleepTimerDurationColumn extends StatelessWidget {
               );
 
               return FocusableListTile(
-                leading: AppIcon(Symbols.timer_rounded, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                leading: AppIcon(PhosphorIconsDuotone.timer, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: minutes == activeMinutes,
                 onTap: () {

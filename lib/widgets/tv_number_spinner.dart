@@ -9,7 +9,7 @@ import '../focus/key_event_utils.dart';
 import '../focus/key_repeat_helper.dart';
 import 'app_icon.dart';
 import '../theme/mono_tokens.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 /// Size variant for [TvNumberSpinner].
 enum TvNumberSpinnerDensity {
@@ -213,7 +213,7 @@ class _TvNumberSpinnerState extends State<TvNumberSpinner> with KeyRepeatHelper<
               gap,
             ],
             _SpinnerButton(
-              icon: Symbols.remove_rounded,
+              icon: PhosphorIconsDuotone.minus,
               onPressed: canDecrement ? _decrement : null,
               onLongPressStart: !isCompact && canDecrement ? () => startRepeat(_decrement) : null,
               onLongPressEnd: isCompact ? null : stopRepeat,
@@ -233,7 +233,7 @@ class _TvNumberSpinnerState extends State<TvNumberSpinner> with KeyRepeatHelper<
             ),
             gap,
             _SpinnerButton(
-              icon: Symbols.add_rounded,
+              icon: PhosphorIconsDuotone.plus,
               onPressed: canIncrement ? _increment : null,
               onLongPressStart: !isCompact && canIncrement ? () => startRepeat(_increment) : null,
               onLongPressEnd: isCompact ? null : stopRepeat,
@@ -287,7 +287,6 @@ class _SpinnerButton extends StatelessWidget {
             child: AppIcon(
               icon,
               size: compact ? 18 : null,
-              fill: 1,
               color: isEnabled
                   ? theme.colorScheme.onPrimaryContainer
                   : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),

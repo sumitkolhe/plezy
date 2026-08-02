@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/dpad_navigator.dart';
@@ -30,12 +30,7 @@ class RatingBottomSheet extends StatefulWidget {
   final MediaServerClient? serverClient;
   final ValueChanged<bool>? onServerFavoriteChanged;
 
-  const RatingBottomSheet({
-    super.key,
-    required this.item,
-    required this.serverClient,
-    this.onServerFavoriteChanged,
-  });
+  const RatingBottomSheet({super.key, required this.item, required this.serverClient, this.onServerFavoriteChanged});
 
   @override
   State<RatingBottomSheet> createState() => _RatingBottomSheetState();
@@ -103,7 +98,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: Symbols.star_rounded),
+              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIconsDuotone.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),
@@ -640,8 +635,7 @@ class _TrailingStatus extends StatelessWidget {
     return Tooltip(
       message: status.text,
       child: AppIcon(
-        status.isError ? Symbols.error_rounded : Symbols.check_circle_rounded,
-        fill: 1,
+        status.isError ? PhosphorIconsDuotone.warningCircle : PhosphorIconsDuotone.checkCircle,
         color: color,
         size: 18,
       ),
@@ -698,8 +692,9 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     width: starWidth,
                     child: Center(
                       child: AppIcon(
-                        half ? Symbols.star_half_rounded : Symbols.star_rounded,
-                        fill: filled || half ? 1 : 0,
+                        half
+                            ? PhosphorIconsDuotone.starHalf
+                            : (filled ? PhosphorIconsDuotone.star : PhosphorIconsRegular.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),
@@ -750,8 +745,7 @@ class _FavoriteControl extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               AppIcon(
-                Symbols.favorite_rounded,
-                fill: value ? 1 : 0,
+                value ? PhosphorIconsDuotone.heart : PhosphorIconsRegular.heart,
                 color: value ? Colors.redAccent : (enabled ? scheme.onSurfaceVariant : theme.disabledColor),
                 size: 18,
               ),

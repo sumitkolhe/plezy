@@ -136,7 +136,6 @@ class _FakeClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<MediaItem?> fetchItem(String id, {bool useCache = true}) async {
     fetchedItemIds.add(id);

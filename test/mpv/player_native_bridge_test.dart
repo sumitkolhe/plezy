@@ -1027,7 +1027,12 @@ void main() {
 
   for (final channel in [
     (label: 'video', method: 'co.sumit.harbor/mpv_player', events: 'co.sumit.harbor/mpv_player/events', audio: false),
-    (label: 'audio', method: 'co.sumit.harbor/mpv_audio_player', events: 'co.sumit.harbor/mpv_audio_player/events', audio: true),
+    (
+      label: 'audio',
+      method: 'co.sumit.harbor/mpv_audio_player',
+      events: 'co.sumit.harbor/mpv_audio_player/events',
+      audio: true,
+    ),
   ]) {
     group('${channel.label} property bridge', () {
       test('propagates SET_PROPERTY_FAILED', () async {

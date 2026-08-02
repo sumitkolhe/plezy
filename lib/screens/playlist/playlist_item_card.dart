@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../media/media_item.dart';
 import '../../media/media_kind.dart';
 import '../../mixins/context_menu_tap_mixin.dart';
@@ -117,8 +117,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                                 )
                               : null,
                           child: AppIcon(
-                            widget.isMoving ? Symbols.swap_vert_rounded : Symbols.drag_indicator_rounded,
-                            fill: 1,
+                            widget.isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
                             color: (widget.isMoving || isDragHandleFocused) ? colorScheme.primary : textMuted,
                           ),
                         ),
@@ -175,7 +174,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                         )
                       : null,
                   child: IconButton(
-                    icon: const AppIcon(Symbols.close_rounded, fill: 1, size: 20),
+                    icon: const AppIcon(PhosphorIconsDuotone.x, size: 20),
                     onPressed: widget.onRemove,
                     tooltip: t.playlists.removeItem,
                     color: isRemoveButtonFocused ? colorScheme.primary : textMuted,
@@ -230,16 +229,16 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
       width: size.width,
       height: size.height,
       decoration: BoxDecoration(color: Colors.grey[850], borderRadius: const BorderRadius.all(Radius.circular(6))),
-      child: AppIcon(_fallbackIcon(item), fill: 1, color: Colors.grey, size: 24),
+      child: AppIcon(_fallbackIcon(item), color: Colors.grey, size: 24),
     );
   }
 
   IconData _fallbackIcon(MediaItem item) => switch (item.kind) {
-    MediaKind.artist => Symbols.artist_rounded,
-    MediaKind.album => Symbols.album_rounded,
-    MediaKind.track => Symbols.music_note_rounded,
-    MediaKind.show || MediaKind.season || MediaKind.episode => Symbols.tv_rounded,
-    _ => Symbols.movie_rounded,
+    MediaKind.artist => PhosphorIconsDuotone.microphoneStage,
+    MediaKind.album => PhosphorIconsDuotone.vinylRecord,
+    MediaKind.track => PhosphorIconsDuotone.musicNote,
+    MediaKind.show || MediaKind.season || MediaKind.episode => PhosphorIconsDuotone.television,
+    _ => PhosphorIconsDuotone.filmSlate,
   };
 
   String _buildSubtitle(MediaItem item) {

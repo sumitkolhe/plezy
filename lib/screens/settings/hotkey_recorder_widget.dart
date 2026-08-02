@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../models/hotkey_model.dart';
 import '../../widgets/hotkey_recorder.dart';
 import '../../i18n/strings.g.dart';
@@ -163,7 +163,7 @@ class _HotKeyRecorderWidgetState extends State<HotKeyRecorderWidget> {
                         onNavigateDown: _saveFocusNode.requestFocus,
                         autoScroll: false,
                         child: IconButton(
-                          icon: const AppIcon(Symbols.backspace_rounded, fill: 1, size: 18),
+                          icon: const AppIcon(PhosphorIconsDuotone.backspace, size: 18),
                           onPressed: canEdit ? _clearShortcut : null,
                           padding: .zero,
                           constraints: const BoxConstraints(minWidth: 24, minHeight: 24),

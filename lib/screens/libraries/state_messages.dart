@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../focus/focusable_button.dart';
 import '../../i18n/strings.g.dart';
@@ -78,12 +78,7 @@ class StateMessageWidget extends StatelessWidget {
           mainAxisAlignment: .center,
           children: [
             if (icon != null) ...[
-              AppIcon(
-                icon,
-                fill: 1,
-                size: iconSize,
-                color: iconColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.4),
-              ),
+              AppIcon(icon, size: iconSize, color: iconColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.4)),
               const SizedBox(height: 16),
             ],
             Text(
@@ -113,7 +108,7 @@ class StateMessageWidget extends StatelessWidget {
                 useBackgroundFocus: actionUseBackgroundFocus,
                 child: FilledButton.icon(
                   onPressed: onAction,
-                  icon: AppIcon(actionIcon ?? Symbols.refresh_rounded, fill: 1),
+                  icon: AppIcon(actionIcon ?? PhosphorIconsDuotone.arrowsClockwise),
                   label: Text(actionLabel!),
                 ),
               ),
@@ -176,7 +171,7 @@ class EmptyStateWidget extends StatelessWidget {
       iconSize: iconSize,
       onAction: onAction,
       actionLabel: actionLabel,
-      actionIcon: actionIcon ?? Symbols.add_rounded,
+      actionIcon: actionIcon ?? PhosphorIconsDuotone.plus,
       actionFocusNode: actionFocusNode,
       onActionNavigateUp: onActionNavigateUp,
       onActionNavigateLeft: onActionNavigateLeft,
@@ -232,7 +227,7 @@ class ErrorStateWidget extends StatelessWidget {
       textColor: Theme.of(context).colorScheme.error,
       onAction: onRetry,
       actionLabel: retryLabel ?? t.common.retry,
-      actionIcon: Symbols.refresh_rounded,
+      actionIcon: PhosphorIconsDuotone.arrowsClockwise,
       actionFocusNode: actionFocusNode,
       onActionNavigateUp: onActionNavigateUp,
       onActionNavigateLeft: onActionNavigateLeft,

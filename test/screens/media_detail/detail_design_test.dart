@@ -61,9 +61,7 @@ void main() {
     testWidgets('renders a label and value per entry', (tester) async {
       await pump(
         tester,
-        const DetailInfoTable(
-          entries: [DetailInfoEntry('Director', 'Someone'), DetailInfoEntry('Container', 'mkv')],
-        ),
+        const DetailInfoTable(entries: [DetailInfoEntry('Director', 'Someone'), DetailInfoEntry('Container', 'mkv')]),
       );
 
       expect(find.text('Director'), findsOneWidget);

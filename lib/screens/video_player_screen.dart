@@ -5,7 +5,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 import 'package:os_media_controls/os_media_controls.dart';
 import 'package:provider/provider.dart';
@@ -1498,7 +1498,7 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     // Visible chrome already renders the play/pause state.
     if (_chromeController.controlsVisible) return;
     _toastController.showTransport(
-      willPlay ? Symbols.play_arrow_rounded : Symbols.pause_rounded,
+      willPlay ? PhosphorIconsDuotone.play : PhosphorIconsDuotone.pause,
       willPlay ? t.videoControls.playbackResumed : t.videoControls.playbackPaused,
     );
   }

@@ -175,7 +175,6 @@ class _CollectionClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<LibraryPage<MediaItem>> fetchCollectionPage(
     String collectionId, {

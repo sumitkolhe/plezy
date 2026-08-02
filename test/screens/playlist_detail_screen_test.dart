@@ -753,7 +753,6 @@ class _PagedPlaylistClient implements MediaServerClient {
   @override
   MediaBackend get backend => _backend;
 
-
   @override
   Future<LibraryPage<MediaItem>> fetchPlaylistPage(String id, {int? start, int? size, AbortController? abort}) async {
     requestedStarts.add(start);

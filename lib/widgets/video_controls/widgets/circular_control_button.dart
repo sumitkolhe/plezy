@@ -31,12 +31,7 @@ class CircularControlButton extends StatelessWidget {
         onTap: onPressed,
         excludeSemantics: true,
         child: IconButton(
-          icon: AppIcon(
-            icon,
-            fill: 1,
-            color: isEnabled ? Colors.white : Colors.white.withValues(alpha: 0.3),
-            size: iconSize,
-          ),
+          icon: AppIcon(icon, color: isEnabled ? Colors.white : Colors.white.withValues(alpha: 0.3), size: iconSize),
           iconSize: iconSize,
           onPressed: onPressed,
         ),

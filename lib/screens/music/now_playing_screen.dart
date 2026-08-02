@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/dpad_navigator.dart';
@@ -206,20 +206,20 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         entries: [
           AppMenuItem(
             value: 'off',
-            icon: Symbols.timer_off_rounded,
+            icon: PhosphorIconsDuotone.timer,
             label: t.common.off,
             selected: !service.sleepTimerActive,
           ),
           for (final minutes in const [15, 30, 60])
             AppMenuItem(
               value: '$minutes',
-              icon: Symbols.timer_rounded,
+              icon: PhosphorIconsDuotone.timer,
               label: t.music.sleepTimerMinutes(n: minutes),
               selected: timed && service.sleepTimerDuration == Duration(minutes: minutes),
             ),
           AppMenuItem(
             value: 'end_of_track',
-            icon: Symbols.music_note_rounded,
+            icon: PhosphorIconsDuotone.musicNote,
             label: t.music.sleepTimerEndOfTrack,
             selected: service.sleepTimerEndOfTrack,
           ),
@@ -466,7 +466,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               FocusableButton(
                 onPressed: _pop,
                 child: IconButton(
-                  icon: AppIcon(Symbols.keyboard_arrow_down_rounded, fill: 1, color: tk.text),
+                  icon: AppIcon(PhosphorIconsDuotone.caretDown, color: tk.text),
                   tooltip: t.common.close,
                   onPressed: _pop,
                 ),
@@ -519,8 +519,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
           onPressed: _toggleLyrics,
           child: IconButton(
             icon: AppIcon(
-              Symbols.lyrics_rounded,
-              fill: 1,
+              PhosphorIconsDuotone.textAlignLeft,
               size: 22,
               color: _showLyrics ? colorScheme.primary : tk.textMuted,
             ),
@@ -555,14 +554,14 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       builder: (context, volume, _) {
         final tk = tokens(context);
         final icon = volume <= 0
-            ? Symbols.volume_off_rounded
+            ? PhosphorIconsDuotone.speakerX
             : volume < 50
-            ? Symbols.volume_down_rounded
-            : Symbols.volume_up_rounded;
+            ? PhosphorIconsDuotone.speakerLow
+            : PhosphorIconsDuotone.speakerHigh;
         return Row(
           mainAxisSize: .min,
           children: [
-            AppIcon(icon, fill: 1, size: 20, color: tk.textMuted),
+            AppIcon(icon, size: 20, color: tk.textMuted),
             SizedBox(
               width: 140,
               child: SliderTheme(
@@ -598,7 +597,11 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       key: contextMenuKey,
       item: track,
       extraEntries: [
-        MediaMenuExtraEntry(icon: Symbols.bedtime_rounded, label: t.music.sleepTimer, onSelected: _showSleepTimerSheet),
+        MediaMenuExtraEntry(
+          icon: PhosphorIconsDuotone.moon,
+          label: t.music.sleepTimer,
+          onSelected: _showSleepTimerSheet,
+        ),
       ],
       child: FocusableButton(
         focusNode: focusable ? _overflowFocusNode : null,
@@ -610,7 +613,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         onBack: focusable ? _pop : null,
         useBackgroundFocus: focusable,
         child: IconButton(
-          icon: AppIcon(Symbols.more_vert_rounded, fill: 1, color: tk.text),
+          icon: AppIcon(PhosphorIconsDuotone.dotsThreeVertical, color: tk.text),
           onPressed: showMenu,
           tooltip: MaterialLocalizations.of(context).showMenuTooltip,
         ),
@@ -706,7 +709,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         borderRadius: MonoTokens.radiusFull,
       ),
       child: IconButton(
-        icon: AppIcon(icon, fill: 1, size: size, color: active ? tk.text : tk.textMuted),
+        icon: AppIcon(icon, size: size, color: active ? tk.text : tk.textMuted),
         tooltip: tooltip,
         onPressed: onPressed,
       ),
@@ -733,7 +736,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: service.toggleShuffle,
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: Symbols.shuffle_rounded,
+                  icon: PhosphorIconsDuotone.shuffle,
                   active: service.shuffled,
                   tooltip: t.common.shuffle,
                   onPressed: service.toggleShuffle,
@@ -745,7 +748,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: () => unawaited(service.previous()),
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: Symbols.skip_previous_rounded,
+                  icon: PhosphorIconsDuotone.skipBack,
                   tooltip: t.music.previousTrack,
                   onPressed: () => unawaited(service.previous()),
                   size: 32,
@@ -764,7 +767,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: () => unawaited(service.next()),
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: Symbols.skip_next_rounded,
+                  icon: PhosphorIconsDuotone.skipForward,
                   tooltip: t.music.nextTrack,
                   onPressed: () => unawaited(service.next()),
                   size: 32,
@@ -805,7 +808,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
             onPressed: _toggleLyrics,
             builder: (context, state) => _transportIcon(
               state,
-              icon: Symbols.lyrics_rounded,
+              icon: PhosphorIconsDuotone.textAlignLeft,
               active: _showLyrics,
               tooltip: t.music.lyrics,
               onPressed: _toggleLyrics,
@@ -818,7 +821,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               onPressed: () => unawaited(showQueueSheet(_sheetContext)),
               builder: (context, state) => _transportIcon(
                 state,
-                icon: Symbols.queue_music_rounded,
+                icon: PhosphorIconsDuotone.queue,
                 active: false,
                 tooltip: t.music.queue,
                 onPressed: () => unawaited(showQueueSheet(_sheetContext)),
@@ -871,7 +874,7 @@ class _Artwork extends StatelessWidget {
               imageType: ImageType.square,
               width: side,
               height: side,
-              fallbackIcon: Symbols.music_note_rounded,
+              fallbackIcon: PhosphorIconsDuotone.musicNote,
             ),
           ),
         );
@@ -966,8 +969,7 @@ class _PlayPauseButton extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 2.5, color: colorScheme.onInverseSurface),
                     )
                   : AppIcon(
-                      isPlaying ? Symbols.pause_rounded : Symbols.play_arrow_rounded,
-                      fill: 1,
+                      isPlaying ? PhosphorIconsDuotone.pause : PhosphorIconsDuotone.play,
                       size: 36,
                       color: colorScheme.onInverseSurface,
                     ),

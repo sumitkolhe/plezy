@@ -448,7 +448,6 @@ class _AppDatabaseTestSuite {
     // Documents on X:, AppData on C:) used to throw an uncaught
     // FileSystemException out of _openConnection and strand the splash.
     // ============================================================
-
   }
 
   void _registerApiCacheTests() {

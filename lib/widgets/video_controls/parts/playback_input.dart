@@ -12,7 +12,7 @@ extension _PlayerControlsPlaybackInputMethods on _PlayerControlsState {
     final prev = _lastReportedRate;
     if (prev != null && (prev - newRate).abs() < 0.005) return;
     _lastReportedRate = newRate;
-    final icon = newRate >= 1.0 ? Symbols.fast_forward_rounded : Symbols.slow_motion_video_rounded;
+    final icon = newRate >= 1.0 ? PhosphorIconsDuotone.fastForward : PhosphorIconsDuotone.filmStrip;
     widget.toastController.show(icon, formatPlaybackRate(newRate));
   }
 
@@ -131,7 +131,7 @@ extension _PlayerControlsPlaybackInputMethods on _PlayerControlsState {
       // Only announce a jump that actually happens.
       final title = resolved.chapter?.title?.trim();
       widget.toastController.show(
-        forward ? Symbols.skip_next_rounded : Symbols.skip_previous_rounded,
+        forward ? PhosphorIconsDuotone.skipForward : PhosphorIconsDuotone.skipBack,
         title != null && title.isNotEmpty
             ? title
             : (forward ? t.videoControls.nextChapterButton : t.videoControls.previousChapterButton),
@@ -714,5 +714,5 @@ extension _PlayerControlsPlaybackInputMethods on _PlayerControlsState {
   /// Build the visual indicator for long-press 2x speed.
   /// Manual (persistent for duration of press) — separate from the stream-driven
   /// toast so it stays visible for the full long-press rather than auto-hiding.
-  Widget _buildSpeedIndicator() => const PlayerToastIndicator(icon: Symbols.fast_forward_rounded, text: '2x');
+  Widget _buildSpeedIndicator() => const PlayerToastIndicator(icon: PhosphorIconsDuotone.fastForward, text: '2x');
 }

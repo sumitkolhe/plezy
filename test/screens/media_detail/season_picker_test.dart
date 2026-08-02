@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_item.dart';
@@ -21,12 +21,7 @@ List<MediaItem> seasons(int count, {int from = 1}) => [
     ),
 ];
 
-Future<void> pump(
-  WidgetTester tester,
-  List<MediaItem> list, {
-  int selected = 0,
-  ValueChanged<int>? onSelected,
-}) {
+Future<void> pump(WidgetTester tester, List<MediaItem> list, {int selected = 0, ValueChanged<int>? onSelected}) {
   return tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
@@ -52,7 +47,7 @@ void main() {
 
     expect(find.text('Season 1'), findsOneWidget);
     expect(tester.widget<InkWell>(find.byType(InkWell)).onTap, isNull);
-    expect(find.byIcon(Symbols.expand_more_rounded), findsNothing);
+    expect(find.byIcon(PhosphorIconsDuotone.caretDown), findsNothing);
   });
 
   testWidgets('collapses when the show reports no seasons at all', (tester) async {

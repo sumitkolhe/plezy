@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../focus/focusable_action_bar.dart';
 import '../media/library_query.dart';
@@ -98,8 +98,8 @@ class _CollectionDetailScreenState extends BaseMediaListDetailScreen<CollectionD
 
     return [
       if (hasItems) ...[
-        FocusableAction(icon: Symbols.play_arrow_rounded, tooltip: t.common.play, onPressed: playItems),
-        FocusableAction(icon: Symbols.shuffle_rounded, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
+        FocusableAction(icon: PhosphorIconsDuotone.play, tooltip: t.common.play, onPressed: playItems),
+        FocusableAction(icon: PhosphorIconsDuotone.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
       ],
       // Emptiness is handled inside [_downloadCollection], so the download
       // entry stays visible for empty collections.
@@ -112,7 +112,7 @@ class _CollectionDetailScreenState extends BaseMediaListDetailScreen<CollectionD
         onDownload: _downloadCollection,
       ),
       FocusableAction(
-        icon: Symbols.delete_rounded,
+        icon: PhosphorIconsDuotone.trash,
         tooltip: t.common.delete,
         onPressed: _deleteCollection,
         iconColor: Colors.red,

@@ -306,7 +306,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
       // or no switch was needed and we need to start playback now that the
       // preparation gate has been cleared.
       await resumeAfterRefresh('post-open frame rate switch');
-
     } else if (plan.needsStartupRefresh && mounted && player == currentPlayer) {
       appLogger.d('Frame rate matching: waiting for Android MPV startup frame before decoder refresh');
       final startupFrameReady = plan._startupFrameReady;
@@ -321,7 +320,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
           await resumeAfterRefresh('startup frame timeout');
         }
       }
-
     }
   }
 

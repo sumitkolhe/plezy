@@ -86,7 +86,6 @@ class CredentialVault {
     return (config: copy, migrated: migrated);
   }
 
-
   static Future<SecretKey> _getSecretKey() {
     return _secretKey ??= () async {
       final prefs = await BaseSharedPreferencesService.sharedCache();

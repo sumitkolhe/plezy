@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -511,7 +511,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           // URL example — intentionally not localized.
           hintText: 'https://jellyfin.example.com',
           helperText: _serverInfo == null ? t.addServer.serverUrlsHelper : null,
-          prefixIcon: const AppIcon(Symbols.link_rounded, fill: 1),
+          prefixIcon: const AppIcon(PhosphorIconsDuotone.link),
         ),
         validator: (_) => _enteredUrls().isEmpty ? t.addServer.required : null,
       ),
@@ -525,7 +525,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onPressed: busy ? null : _probe,
           child: FilledButton.icon(
             onPressed: busy ? null : _probe,
-            icon: busy ? const LoadingIndicatorBox() : const AppIcon(Symbols.travel_explore_rounded, fill: 1),
+            icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.globe),
             label: Text(t.addServer.findServer),
           ),
         ),
@@ -544,7 +544,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
           decoration: InputDecoration(
             labelText: t.addServer.username,
-            prefixIcon: const AppIcon(Symbols.person_rounded, fill: 1),
+            prefixIcon: const AppIcon(PhosphorIconsDuotone.person),
           ),
           validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
         ),
@@ -558,7 +558,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onFieldSubmitted: busy ? null : (_) => _signIn(),
           decoration: InputDecoration(
             labelText: t.addServer.password,
-            prefixIcon: const AppIcon(Symbols.lock_rounded, fill: 1),
+            prefixIcon: const AppIcon(PhosphorIconsDuotone.lock),
           ),
           // Empty password is valid for some Jellyfin setups, so don't
           // require a value.
@@ -570,7 +570,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onPressed: busy ? null : _signIn,
           child: FilledButton.icon(
             onPressed: busy ? null : _signIn,
-            icon: busy ? const LoadingIndicatorBox() : const AppIcon(Symbols.login_rounded, fill: 1),
+            icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.signIn),
             label: Text(t.addServer.signIn),
           ),
         ),
@@ -582,7 +582,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
             onPressed: busy ? null : _startQuickConnect,
             child: OutlinedButton.icon(
               onPressed: busy ? null : _startQuickConnect,
-              icon: const AppIcon(Symbols.tap_and_play_rounded, fill: 1),
+              icon: const AppIcon(PhosphorIconsDuotone.broadcast),
               label: Text(t.auth.useQuickConnect),
             ),
           ),
@@ -601,7 +601,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
       ),
       child: Row(
         children: [
-          const AppIcon(Symbols.cloud_done_rounded, fill: 1),
+          const AppIcon(PhosphorIconsDuotone.cloudCheck),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -739,7 +739,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
             onPressed: _cancelQuickConnect,
             child: OutlinedButton.icon(
               onPressed: _cancelQuickConnect,
-              icon: const AppIcon(Symbols.close_rounded, fill: 1),
+              icon: const AppIcon(PhosphorIconsDuotone.x),
               label: Text(t.auth.quickConnectCancel),
             ),
           ),
@@ -792,7 +792,7 @@ class _DiscoveredJellyfinServerTile extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  const AppIcon(Symbols.dns_rounded, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.hardDrives),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -813,7 +813,7 @@ class _DiscoveredJellyfinServerTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const AppIcon(Symbols.chevron_right_rounded, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.caretRight),
                 ],
               ),
             ),

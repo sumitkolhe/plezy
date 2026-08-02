@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/card_focus_scope.dart';
 import '../focus/dpad_navigator.dart';
@@ -1290,7 +1290,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           alignment: .centerLeft,
           child: Row(
             children: [
-              AppIcon(widget.iconForHub(hub, hubIndex), fill: 1, size: 20 * scale, color: iconColor),
+              AppIcon(widget.iconForHub(hub, hubIndex), size: 20 * scale, color: iconColor),
               SizedBox(width: 8 * scale),
               Expanded(
                 child: Row(
@@ -1321,7 +1321,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
               ),
               if (_trailingFor(hub) == TvRailTrailing.viewAll) ...[
                 SizedBox(width: 8 * scale),
-                AppIcon(Symbols.chevron_right_rounded, fill: 1, size: 20 * scale, color: iconColor),
+                AppIcon(PhosphorIconsDuotone.caretRight, size: 20 * scale, color: iconColor),
                 SizedBox(width: 30 * scale),
               ],
             ],
@@ -1551,7 +1551,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: Symbols.person_rounded,
+                  fallbackIcon: PhosphorIconsDuotone.person,
                   artworkDim: artworkDim,
                 ),
                 RasterizedGradient(
@@ -1619,7 +1619,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: Symbols.person_rounded,
+                  fallbackIcon: PhosphorIconsDuotone.person,
                   artworkDim: artworkDim,
                 ),
               ),
@@ -1677,7 +1677,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           isFocused: isFocused,
           scale: scale,
           label: t.common.retry,
-          icon: Symbols.refresh_rounded,
+          icon: PhosphorIconsDuotone.arrowsClockwise,
           onTap: () {
             _selectHubItem(hub, hubIndex, itemIndex);
             widget.onRetryHub?.call(hub);
@@ -1736,7 +1736,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
     required double scale,
     required VoidCallback onTap,
     String? label,
-    IconData icon = Symbols.arrow_forward_rounded,
+    IconData icon = PhosphorIconsDuotone.arrowRight,
   }) {
     final theme = Theme.of(context);
     final duration = FocusTheme.getAnimationDuration(context);
@@ -1790,7 +1790,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   ),
                 ),
                 SizedBox(width: (5 * scale).clamp(4, 7).toDouble()),
-                AppIcon(icon, fill: 1, size: (18 * scale).clamp(16, 22).toDouble(), color: foreground),
+                AppIcon(icon, size: (18 * scale).clamp(16, 22).toDouble(), color: foreground),
               ],
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/card_focus_scope.dart';
 import '../focus/dpad_navigator.dart';
@@ -216,7 +216,7 @@ class CastMemberStripState extends State<CastMemberStrip> {
                                 height: imageSize,
                                 fit: BoxFit.cover,
                                 imageType: ImageType.square,
-                                fallbackIcon: Symbols.person_rounded,
+                                fallbackIcon: PhosphorIconsDuotone.person,
                               ),
                             ),
                           ),

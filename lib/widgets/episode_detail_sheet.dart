@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -98,17 +98,14 @@ class EpisodeDetailSheet extends StatelessWidget {
                     runSpacing: 6,
                     children: [
                       if (rating != null && rating > 0)
-                        _FactChip(value: formatRating(rating / 2), icon: Symbols.star_rounded),
+                        _FactChip(value: formatRating(rating / 2), icon: PhosphorIconsDuotone.star),
                       for (final fact in facts) _FactChip(label: fact.label, value: fact.value),
                     ],
                   ),
                 ],
                 if (summary != null && summary.isNotEmpty) ...[
                   const SizedBox(height: 18),
-                  Text(
-                    summary,
-                    style: TextStyle(fontSize: 14, color: tokensRef.textMuted, height: 1.55),
-                  ),
+                  Text(summary, style: TextStyle(fontSize: 14, color: tokensRef.textMuted, height: 1.55)),
                 ],
                 if (directors != null && directors.isNotEmpty) ...[
                   const SizedBox(height: 16),
@@ -131,7 +128,7 @@ class EpisodeDetailSheet extends StatelessWidget {
                 OverlaySheetController.closeAdaptive(context, null);
                 onPlay();
               },
-              icon: const AppIcon(Symbols.play_arrow_rounded, fill: 1, size: 20),
+              icon: const AppIcon(PhosphorIconsDuotone.play, size: 20),
               label: Text(t.common.play),
             ),
           ),
@@ -143,12 +140,7 @@ class EpisodeDetailSheet extends StatelessWidget {
   Widget _still(BuildContext context) {
     final fallback = PlaceholderContainer(
       color: tokens(context).text.withValues(alpha: 0.04),
-      child: AppIcon(
-        Symbols.movie_rounded,
-        fill: 1,
-        size: 24,
-        color: tokens(context).textMuted.withValues(alpha: 0.5),
-      ),
+      child: AppIcon(PhosphorIconsDuotone.filmSlate, size: 24, color: tokens(context).textMuted.withValues(alpha: 0.5)),
     );
 
     if (localPosterPath != null) {
@@ -191,7 +183,7 @@ class _FactChip extends StatelessWidget {
         mainAxisSize: .min,
         children: [
           if (icon != null) ...[
-            AppIcon(icon!, fill: 1, size: 13, color: tokensRef.text.withValues(alpha: 0.7)),
+            AppIcon(icon!, size: 13, color: tokensRef.text.withValues(alpha: 0.7)),
             const SizedBox(width: 5),
           ],
           if (label != null) ...[

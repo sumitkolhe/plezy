@@ -296,7 +296,7 @@ class DiscoverProvider extends ChangeNotifier with DisposableChangeNotifierMixin
           ? Future<HubAggregationResult?>.value()
           : aggregation.getHubsFromAllServers(
               hiddenLibraryKeys: _hiddenLibraries.hiddenLibraryKeys,
-                    includePlaybackHubs: false,
+              includePlaybackHubs: false,
               serverIds: hubIds,
             );
 

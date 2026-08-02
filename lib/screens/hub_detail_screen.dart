@@ -3,7 +3,7 @@ import '../media/catalog_item_ref.dart';
 import '../media/ids.dart';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../media/library_query.dart';
 import '../media/media_backend.dart';
 import '../media/media_hub.dart';
@@ -86,7 +86,11 @@ class _HubDetailScreenState extends State<HubDetailScreen>
   @override
   List<FocusableAction> getAppBarActions() {
     return [
-      FocusableAction(icon: Symbols.swap_vert_rounded, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet),
+      FocusableAction(
+        icon: PhosphorIconsDuotone.arrowsDownUp,
+        tooltip: t.libraries.sort,
+        onPressed: _showSortBottomSheet,
+      ),
     ];
   }
 

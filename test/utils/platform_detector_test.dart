@@ -135,5 +135,4 @@ void main() {
       expect(allowed(host: false, automotive: true), isFalse);
     });
   });
-
 }

@@ -114,7 +114,7 @@ class _TransportFeedbackIndicatorState extends State<TransportFeedbackIndicator>
               height: TransportFeedbackIndicator.diameter,
               decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.55), shape: BoxShape.circle),
               child: Center(
-                child: AppIcon(widget.icon, fill: 1, color: Colors.white, size: TransportFeedbackIndicator.iconSize),
+                child: AppIcon(widget.icon, color: Colors.white, size: TransportFeedbackIndicator.iconSize),
               ),
             ),
           ),

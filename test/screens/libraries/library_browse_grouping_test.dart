@@ -5,13 +5,7 @@ import 'package:harbor/media/media_library.dart';
 import 'package:harbor/screens/libraries/library_browse_grouping.dart';
 
 MediaLibrary _library({required MediaKind kind}) {
-  return MediaLibrary(
-    id: '1',
-    backend: MediaBackend.jellyfin,
-    title: 'Library',
-    kind: kind,
-    serverId: 'server-1',
-  );
+  return MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Library', kind: kind, serverId: 'server-1');
 }
 
 void main() {

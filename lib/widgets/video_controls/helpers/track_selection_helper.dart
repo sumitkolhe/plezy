@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../../i18n/strings.g.dart';
 import '../../../theme/mono_tokens.dart';
 import '../../../utils/track_label_builder.dart';
@@ -87,7 +87,7 @@ class TrackSelectionHelper {
     if (badge != null) {
       trailing = badge;
     } else if (isSelected) {
-      trailing = AppIcon(Symbols.check_rounded, fill: 1, color: primaryColor);
+      trailing = AppIcon(PhosphorIconsDuotone.check, color: primaryColor);
     }
 
     Widget tile = FocusableListTile(

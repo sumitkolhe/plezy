@@ -38,7 +38,7 @@ class PlayerToastIndicator extends StatelessWidget {
             child: Row(
               mainAxisSize: .min,
               children: [
-                AppIcon(icon, fill: 1, color: Colors.white, size: 16),
+                AppIcon(icon, color: Colors.white, size: 16),
                 const SizedBox(width: 4),
                 Flexible(
                   child: Text(

@@ -3,7 +3,7 @@ import '../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -164,7 +164,6 @@ class NavigationRailItem extends StatelessWidget {
                           iconWidget ??
                               AppIcon(
                                 isSelected && selectedIcon != null ? selectedIcon! : icon,
-                                fill: 1,
                                 size: iconSize,
                                 color: isSelected ? t.text : t.textMuted,
                               ),
@@ -728,8 +727,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                   ],
                                   if (!widget.isOfflineMode) ...[
                                     _buildNavItem(
-                                      icon: Symbols.home_rounded,
-                                      selectedIcon: Symbols.home_rounded,
+                                      icon: PhosphorIconsDuotone.house,
+                                      selectedIcon: PhosphorIconsDuotone.house,
                                       label: Translations.of(context).common.home,
                                       isSelected: widget.selectedTab == NavigationTabId.discover,
                                       onTap: () => widget.onDestinationSelected(NavigationTabId.discover),
@@ -753,8 +752,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                     const SizedBox(height: 8),
                                     if (hasExplore) ...[
                                       _buildNavItem(
-                                        icon: Symbols.explore_rounded,
-                                        selectedIcon: Symbols.explore_rounded,
+                                        icon: PhosphorIconsDuotone.compass,
+                                        selectedIcon: PhosphorIconsDuotone.compass,
                                         label: Translations.of(context).navigation.explore,
                                         isSelected: widget.selectedTab == NavigationTabId.explore,
                                         onTap: () => widget.onDestinationSelected(NavigationTabId.explore),
@@ -764,8 +763,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                       const SizedBox(height: 8),
                                     ],
                                     _buildNavItem(
-                                      icon: Symbols.search_rounded,
-                                      selectedIcon: Symbols.search_rounded,
+                                      icon: PhosphorIconsDuotone.magnifyingGlass,
+                                      selectedIcon: PhosphorIconsDuotone.magnifyingGlass,
                                       label: Translations.of(context).common.search,
                                       isSelected: false,
                                       onTap: widget.onOpenSearch,
@@ -778,8 +777,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                   // file storage)
                                   if (_showDownloads) ...[
                                     _buildNavItem(
-                                      icon: Symbols.download_rounded,
-                                      selectedIcon: Symbols.download_rounded,
+                                      icon: PhosphorIconsDuotone.download,
+                                      selectedIcon: PhosphorIconsDuotone.download,
                                       label: Translations.of(context).navigation.downloads,
                                       isSelected: widget.selectedTab == NavigationTabId.downloads,
                                       onTap: () => widget.onDestinationSelected(NavigationTabId.downloads),
@@ -789,8 +788,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                     const SizedBox(height: 8),
                                   ],
                                   _buildNavItem(
-                                    icon: Symbols.settings_rounded,
-                                    selectedIcon: Symbols.settings_rounded,
+                                    icon: PhosphorIconsDuotone.gear,
+                                    selectedIcon: PhosphorIconsDuotone.gear,
                                     label: Translations.of(context).common.settings,
                                     isSelected: widget.selectedTab == NavigationTabId.settings,
                                     onTap: () => widget.onDestinationSelected(NavigationTabId.settings),
@@ -859,7 +858,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
 
     return NavigationRailItem(
-      icon: Symbols.music_note_rounded,
+      icon: PhosphorIconsDuotone.musicNote,
       iconWidget: SizedBox(
         width: 22,
         child: Center(
@@ -899,7 +898,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
 
     return NavigationRailItem(
-      icon: widget.isReconnecting ? Symbols.sync_rounded : Symbols.wifi_rounded,
+      icon: widget.isReconnecting ? PhosphorIconsDuotone.arrowsClockwise : PhosphorIconsDuotone.wifiHigh,
       label: widget.isReconnecting
           ? SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: t.text))
           : Text(
@@ -935,7 +934,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
       crossAxisAlignment: .start,
       children: [
         NavigationRailItem(
-          icon: Symbols.video_library_rounded,
+          icon: PhosphorIconsDuotone.filmStrip,
           label: Text(
             Translations.of(context).navigation.libraries,
             style: TextStyle(
@@ -948,8 +947,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             opacity: isCollapsed ? 0.0 : 1.0,
             duration: tokens(context).fast,
             child: AppIcon(
-              _librariesExpanded ? Symbols.expand_less_rounded : Symbols.expand_more_rounded,
-              fill: 1,
+              _librariesExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
               size: 20,
               color: t.textMuted,
             ),
@@ -1056,7 +1054,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final backend = context.read<MultiServerProvider>().serverManager.getClient(serverId)?.backend;
     return _buildCollapsibleHeader(
       focusKey: _serverHeaderFocusKey(section, serverId),
-      icon: Symbols.dns_rounded,
+      icon: PhosphorIconsDuotone.hardDrives,
       iconSize: 14,
       leading: backend == null ? null : BackendBadge(backend: backend, size: 14, color: t.textMuted),
       label: serverName,
@@ -1080,7 +1078,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
   Widget _buildHiddenLibrariesHeader(int count, dynamic t) {
     return _buildCollapsibleHeader(
       focusKey: _kHiddenLibraries,
-      icon: Symbols.visibility_off_rounded,
+      icon: PhosphorIconsDuotone.eyeSlash,
       iconSize: 16,
       label: Translations.of(context).libraries.hiddenLibrariesCount(count: count),
       labelStyle: TextStyle(fontSize: 12, fontWeight: .w500, color: t.textMuted),
@@ -1138,14 +1136,13 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                       padding: .symmetric(vertical: verticalPadding, horizontal: 17),
                       child: Row(
                         children: [
-                          leading ?? AppIcon(icon, fill: 1, size: iconSize, color: t.textMuted),
+                          leading ?? AppIcon(icon, size: iconSize, color: t.textMuted),
                           const SizedBox(width: 11),
                           Expanded(
                             child: Text(label, style: labelStyle, overflow: .ellipsis),
                           ),
                           AppIcon(
-                            isExpanded ? Symbols.expand_less_rounded : Symbols.expand_more_rounded,
-                            fill: 1,
+                            isExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
                             size: 16,
                             color: t.textMuted,
                           ),

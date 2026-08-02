@@ -10,7 +10,7 @@ export '../navigation/main_screen_scope.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'
     show HardwareKeyboard, KeyDownEvent, KeyRepeatEvent, KeyUpEvent, LogicalKeyboardKey;
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
@@ -305,7 +305,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         _contentFocusScope.requestFocus();
       }
 
-  
       // Check for updates on startup
       unawaited(_checkForUpdatesOnStartup());
     });
@@ -907,7 +906,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         : SideNavigationRailState.collapsedWidthForContext(context);
   }
 
-
   /// Suppress stray back events after a child route pops.
   /// On Android TV the platform popRoute can arrive before the key events,
   /// so BackKeySuppressorObserver misses them and they leak into _handleBackKey.
@@ -1473,7 +1471,11 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                               ),
                             )
                           else
-                            AppIcon(Symbols.wifi_rounded, size: 18, color: Theme.of(context).colorScheme.primary),
+                            AppIcon(
+                              PhosphorIconsDuotone.wifiHigh,
+                              size: 18,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                           const SizedBox(width: 8),
                           Text(
                             t.common.reconnect,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/screens/profile/add_local_profile_screen.dart';
@@ -75,7 +75,7 @@ void main() {
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'TvVirtualKeyboard');
 
-    await tester.tap(find.byIcon(Symbols.check_rounded));
+    await tester.tap(find.byIcon(PhosphorIconsDuotone.check));
     await tester.pumpAndSettle();
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddLocalProfile:SetPin');

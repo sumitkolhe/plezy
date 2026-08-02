@@ -1,6 +1,6 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../services/image_cache_service.dart';
 import '../utils/initials_palette.dart';
@@ -43,8 +43,7 @@ class ProfileAvatar extends StatelessWidget {
                   border: Border.all(color: theme.colorScheme.surface, width: 1),
                 ),
                 child: AppIcon(
-                  Symbols.lock_rounded,
-                  fill: 1,
+                  PhosphorIconsDuotone.lock,
                   size: lockBadgeSize * 0.7,
                   color: theme.colorScheme.onSurface,
                 ),

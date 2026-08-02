@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../i18n/strings.g.dart';
 import '../utils/platform_detector.dart';
@@ -18,7 +18,7 @@ class NavigationTab {
   const NavigationTab({required this.id, required this.onlineOnly, required this.icon, required this.getLabel});
 
   NavigationDestination toDestination() {
-    return NavigationDestination(icon: AppIcon(icon, fill: 1), selectedIcon: AppIcon(icon, fill: 1), label: getLabel());
+    return NavigationDestination(icon: AppIcon(icon), selectedIcon: AppIcon(icon), label: getLabel());
   }
 
   /// Get tabs filtered by offline mode and feature availability
@@ -61,29 +61,34 @@ String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
 const allNavigationTabs = [
-  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: Symbols.home_rounded, getLabel: _getHomeLabel),
+  NavigationTab(
+    id: NavigationTabId.discover,
+    onlineOnly: true,
+    icon: PhosphorIconsDuotone.house,
+    getLabel: _getHomeLabel,
+  ),
   NavigationTab(
     id: NavigationTabId.libraries,
     onlineOnly: true,
-    icon: Symbols.video_library_rounded,
+    icon: PhosphorIconsDuotone.filmStrip,
     getLabel: _getLibrariesLabel,
   ),
   NavigationTab(
     id: NavigationTabId.explore,
     onlineOnly: true,
-    icon: Symbols.explore_rounded,
+    icon: PhosphorIconsDuotone.compass,
     getLabel: _getExploreLabel,
   ),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,
-    icon: Symbols.download_rounded,
+    icon: PhosphorIconsDuotone.download,
     getLabel: _getDownloadsLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,
     onlineOnly: false,
-    icon: Symbols.settings_rounded,
+    icon: PhosphorIconsDuotone.gear,
     getLabel: _getSettingsLabel,
   ),
 ];

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -261,14 +261,18 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                   actions: [
                     FocusableActionBar(
                       actions: [
-                        FocusableAction(icon: Symbols.refresh_rounded, tooltip: t.common.refresh, onPressed: _loadLogs),
                         FocusableAction(
-                          icon: Symbols.content_copy_rounded,
+                          icon: PhosphorIconsDuotone.arrowsClockwise,
+                          tooltip: t.common.refresh,
+                          onPressed: _loadLogs,
+                        ),
+                        FocusableAction(
+                          icon: PhosphorIconsDuotone.copy,
                           tooltip: t.logs.copyLogs,
                           onPressed: _logs.isNotEmpty ? _copyAllLogs : null,
                         ),
                         FocusableAction(
-                          icon: Symbols.delete_outline_rounded,
+                          icon: PhosphorIconsDuotone.trash,
                           tooltip: t.logs.clearLogs,
                           onPressed: _logs.isNotEmpty ? _clearLogs : null,
                         ),

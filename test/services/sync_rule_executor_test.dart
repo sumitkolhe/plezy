@@ -564,7 +564,6 @@ class _PlayableDescendantsClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   bool get isOfflineMode => false;
 
@@ -595,7 +594,6 @@ class _PlaylistPagingClient implements MediaServerClient {
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
 
   @override
   bool get isOfflineMode => false;
@@ -635,7 +633,6 @@ class _CollectionPagingClient implements MediaServerClient {
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
 
   @override
   bool get isOfflineMode => false;

@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material show ThemeMode;
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -257,7 +257,7 @@ class _StartupBootstrapState<T> extends State<StartupBootstrap<T>> {
                 key: startupBootstrapFailureKey,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppIcon(Symbols.error_rounded, size: 48),
+                  const AppIcon(PhosphorIconsDuotone.warningCircle, size: 48),
                   const SizedBox(height: 16),
                   Text(t.common.error, style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 16),
@@ -278,11 +278,7 @@ class _StartupBootstrapState<T> extends State<StartupBootstrap<T>> {
 }
 
 class _StartupDependencies {
-  const _StartupDependencies({
-    required this.settings,
-    required this.storage,
-    required this.appDatabase,
-  });
+  const _StartupDependencies({required this.settings, required this.storage, required this.appDatabase});
 
   final SettingsService settings;
   final StorageService storage;
@@ -365,11 +361,7 @@ Future<_StartupDependencies> _initializeStartup(SettingsService settings) async 
     await DownloadStorageService.instance.initialize(settings);
     markStartupPhase('download-storage');
 
-    return _StartupDependencies(
-      settings: settings,
-      storage: storage,
-      appDatabase: database,
-    );
+    return _StartupDependencies(settings: settings, storage: storage, appDatabase: database);
   } catch (_) {
     await openedDatabase?.close();
     rethrow;
@@ -420,11 +412,14 @@ Future<void> _logEnvironmentDiagnostics() async {
   }
 }
 
-
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
     final ofl = await rootBundle.loadString(MonoFonts.licenseAsset);
     yield LicenseEntryWithLineBreaks(MonoFonts.licenseePackages, ofl);
+  });
+  LicenseRegistry.addLicense(() async* {
+    final mit = await rootBundle.loadString(MonoFonts.iconLicenseAsset);
+    yield LicenseEntryWithLineBreaks(const ['Phosphor Icons'], mit);
   });
 }
 
@@ -492,12 +487,7 @@ class MainApp extends StatefulWidget {
   final SettingsService settings;
   final StorageService storage;
   final AppDatabase appDatabase;
-  const MainApp({
-    super.key,
-    required this.settings,
-    required this.storage,
-    required this.appDatabase,
-  });
+  const MainApp({super.key, required this.settings, required this.storage, required this.appDatabase});
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -1380,9 +1370,9 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
             child: CircularProgressIndicator(strokeWidth: 1.5, color: coralColor),
           );
         } else if (connected) {
-          statusIcon = const AppIcon(Symbols.check_circle_rounded, size: 14, color: successColor);
+          statusIcon = const AppIcon(PhosphorIconsDuotone.checkCircle, size: 14, color: successColor);
         } else {
-          statusIcon = const AppIcon(Symbols.cancel_rounded, size: 14, color: failColor);
+          statusIcon = const AppIcon(PhosphorIconsDuotone.xCircle, size: 14, color: failColor);
         }
         return Padding(
           key: ValueKey(entry.key),

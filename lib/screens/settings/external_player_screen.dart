@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../../widgets/dialog_action_button.dart';
@@ -31,7 +31,7 @@ class ExternalPlayerScreen extends StatelessWidget {
           children: [
             SettingSwitchTile(
               pref: SettingsService.useExternalPlayer,
-              icon: Symbols.open_in_new_rounded,
+              icon: PhosphorIconsDuotone.arrowSquareOut,
               title: t.externalPlayer.useExternalPlayer,
               subtitle: t.externalPlayer.useExternalPlayerDescription,
             ),
@@ -69,7 +69,7 @@ class ExternalPlayerScreen extends StatelessWidget {
                   children: [
                     for (final p in custom) _PlayerTile(player: p, selectedId: selected.id, isCustom: true),
                     FocusableListTile(
-                      leading: const AppIcon(Symbols.add_rounded, fill: 1),
+                      leading: const AppIcon(PhosphorIconsDuotone.plus),
                       title: Text(t.externalPlayer.addCustomPlayer),
                       onTap: () => _showAddCustomPlayerDialog(context),
                     ),
@@ -116,13 +116,13 @@ class _PlayerTile extends StatelessWidget {
                 player.iconAsset!,
                 width: 32,
                 height: 32,
-                errorBuilder: (_, _, _) => const AppIcon(Symbols.play_circle_rounded, fill: 1, size: 32),
+                errorBuilder: (_, _, _) => const AppIcon(PhosphorIconsDuotone.playCircle, size: 32),
               ),
       );
     } else if (player.id == 'system_default') {
-      leading = const AppIcon(Symbols.open_in_new_rounded, fill: 1, size: 32);
+      leading = const AppIcon(PhosphorIconsDuotone.arrowSquareOut, size: 32);
     } else {
-      leading = const AppIcon(Symbols.play_circle_rounded, fill: 1, size: 32);
+      leading = const AppIcon(PhosphorIconsDuotone.playCircle, size: 32);
     }
 
     return FocusableListTile(
@@ -136,13 +136,12 @@ class _PlayerTile extends StatelessWidget {
               onPressed: () => svc.removeCustomExternalPlayer(player.id),
               autoScroll: false,
               child: IconButton(
-                icon: const AppIcon(Symbols.delete_rounded, fill: 1, size: 20),
+                icon: const AppIcon(PhosphorIconsDuotone.trash, size: 20),
                 onPressed: () => svc.removeCustomExternalPlayer(player.id),
               ),
             ),
           AppIcon(
-            isSelected ? Symbols.radio_button_checked_rounded : Symbols.radio_button_unchecked_rounded,
-            fill: 1,
+            isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle,
             color: isSelected ? Theme.of(context).colorScheme.primary : null,
           ),
         ],

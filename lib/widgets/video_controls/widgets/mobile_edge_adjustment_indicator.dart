@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../helpers/mobile_edge_adjustment_tracker.dart';
@@ -14,7 +14,7 @@ class MobileEdgeAdjustmentIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final clampedValue = value.clamp(0.0, 1.0);
     final isLeft = side == MobileEdgeAdjustmentSide.left;
-    final icon = side == MobileEdgeAdjustmentSide.left ? Symbols.brightness_6_rounded : Symbols.volume_up_rounded;
+    final icon = side == MobileEdgeAdjustmentSide.left ? PhosphorIconsDuotone.sunDim : PhosphorIconsDuotone.speakerHigh;
     final alignment = isLeft ? Alignment.centerLeft : Alignment.centerRight;
     final margin = isLeft ? const EdgeInsets.only(left: 20) : const EdgeInsets.only(right: 20);
 
@@ -88,7 +88,7 @@ class _IndicatorContent extends StatelessWidget {
       child: Column(
         mainAxisSize: .min,
         children: [
-          AppIcon(icon, fill: 1, color: color, size: 24),
+          AppIcon(icon, color: color, size: 24),
           const SizedBox(height: 6),
           Text(
             '${(value * 100).round()}%',

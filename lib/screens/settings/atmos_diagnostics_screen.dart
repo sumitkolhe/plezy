@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../services/settings_service.dart';
@@ -115,7 +115,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
       icon: icon,
       title: title,
       subtitle: subtitle,
-      trailingIcon: active ? Symbols.graphic_eq_rounded : Symbols.play_arrow_rounded,
+      trailingIcon: active ? PhosphorIconsDuotone.waveform : PhosphorIconsDuotone.play,
       onTap: () => _start(mode),
     );
   }
@@ -131,56 +131,56 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
           children: [
             _testTile(
               mode: 'hlsAtmos',
-              icon: Symbols.spatial_audio_rounded,
+              icon: PhosphorIconsDuotone.waveform,
               title: t.settings.atmosTestHlsAtmos,
               subtitle: t.settings.atmosTestHlsAtmosDescription,
             ),
             _testTile(
               mode: 'hlsControl',
-              icon: Symbols.surround_sound_rounded,
+              icon: PhosphorIconsDuotone.speakerHigh,
               title: t.settings.atmosTestHlsControl,
               subtitle: t.settings.atmosTestHlsControlDescription,
             ),
             _testTile(
               mode: 'rawEc3',
-              icon: Symbols.stream_rounded,
+              icon: PhosphorIconsDuotone.broadcast,
               title: t.settings.atmosTestRawStream,
               subtitle: t.settings.atmosTestRawStreamDescription,
             ),
             _testTile(
               mode: 'rawEc3Finite',
-              icon: Symbols.audio_file_rounded,
+              icon: PhosphorIconsDuotone.fileAudio,
               title: t.settings.atmosTestRawFile,
               subtitle: t.settings.atmosTestRawFileDescription,
             ),
             _testTile(
               mode: 'asbarNative',
-              icon: Symbols.graphic_eq_rounded,
+              icon: PhosphorIconsDuotone.waveform,
               title: t.settings.atmosTestAsbarNative,
               subtitle: t.settings.atmosTestAsbarNativeDescription,
             ),
             _testTile(
               mode: 'asbarGenerated',
-              icon: Symbols.tune_rounded,
+              icon: PhosphorIconsDuotone.sliders,
               title: t.settings.atmosTestAsbarGenerated,
               subtitle: t.settings.atmosTestAsbarGeneratedDescription,
             ),
             SettingNavigationTile(
-              icon: Symbols.airplay_rounded,
+              icon: PhosphorIconsDuotone.airplay,
               title: _routePickerVisible ? t.settings.atmosTestHideRoutePicker : t.settings.atmosTestShowRoutePicker,
               subtitle: t.settings.atmosTestRoutePickerDescription,
               onTap: _toggleRoutePicker,
             ),
             SettingSwitchTile(
               pref: SettingsService.atmosProbeMoviePlaybackMode,
-              icon: Symbols.tv_options_input_settings_rounded,
+              icon: PhosphorIconsDuotone.gear,
               title: t.settings.atmosTestSessionMode,
               subtitle: t.settings.atmosTestSessionModeDescription,
             ),
             SettingNavigationTile(
-              icon: Symbols.stop_circle_rounded,
+              icon: PhosphorIconsDuotone.stopCircle,
               title: t.settings.atmosTestStop,
-              trailingIcon: Symbols.stop_rounded,
+              trailingIcon: PhosphorIconsDuotone.stop,
               onTap: _stop,
             ),
           ],
@@ -190,7 +190,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
             SettingValueBuilder<String>(
               pref: SettingsService.atmosProbeUrl,
               builder: (context, value, _) => SettingNavigationTile(
-                icon: Symbols.link_rounded,
+                icon: PhosphorIconsDuotone.link,
                 title: t.settings.atmosTestUrl,
                 subtitle: value.isEmpty ? t.settings.atmosTestUrlDescription : value,
                 onTap: () async {

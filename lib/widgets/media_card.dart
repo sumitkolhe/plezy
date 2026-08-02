@@ -5,7 +5,7 @@ import '../media/ids.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../focus/card_focus_scope.dart';
 import '../focus/focus_theme.dart';
@@ -938,11 +938,11 @@ Widget _buildPosterLoadingPlaceholder(BuildContext context, String _) {
 }
 
 IconData _mediaPosterFallbackIcon(MediaItem item) {
-  if (item.kind == MediaKind.artist) return Symbols.artist_rounded;
-  if (item.kind == MediaKind.album) return Symbols.album_rounded;
-  if (item.kind == MediaKind.track) return Symbols.music_note_rounded;
-  if (item.isShow || item.isSeason || item.isEpisode) return Symbols.tv_rounded;
-  return Symbols.movie_rounded;
+  if (item.kind == MediaKind.artist) return PhosphorIconsDuotone.microphoneStage;
+  if (item.kind == MediaKind.album) return PhosphorIconsDuotone.vinylRecord;
+  if (item.kind == MediaKind.track) return PhosphorIconsDuotone.musicNote;
+  if (item.isShow || item.isSeason || item.isEpisode) return PhosphorIconsDuotone.television;
+  return PhosphorIconsDuotone.filmSlate;
 }
 
 /// Oversized radius for circular focus borders: [CardFocusBorder] paints a
@@ -989,7 +989,7 @@ Widget _buildPosterImage(
       height: knownHeight ?? double.infinity,
       fit: BoxFit.cover,
       placeholder: _buildPosterLoadingPlaceholder,
-      fallbackIcon: Symbols.playlist_play_rounded,
+      fallbackIcon: PhosphorIconsDuotone.playlist,
       imageType: cardShapeOverride == CardShape.square ? ImageType.square : ImageType.poster,
       localFilePath: localPosterPath,
       artworkDim: artworkDim,
@@ -1092,7 +1092,7 @@ Widget _buildPosterImage(
   }
 
   return SkeletonLoader(
-    child: const Center(child: AppIcon(Symbols.movie_rounded, fill: 1, size: 40, color: Colors.white54)),
+    child: const Center(child: AppIcon(PhosphorIconsDuotone.filmSlate, size: 40, color: Colors.white54)),
   );
 }
 
@@ -1132,7 +1132,12 @@ class _MediaCardHelpers {
       final metadata = _buildMediaMetadataLine(mi, catalogItem: catalogItem, compact: true);
       if (metadata.isNotEmpty) {
         return ExcludeSemantics(
-          child: Text.rich(TextSpan(children: metadata), maxLines: 1, overflow: .ellipsis, style: subtitleStyle),
+          child: Text.rich(
+            TextSpan(children: metadata),
+            maxLines: 1,
+            overflow: .ellipsis,
+            style: subtitleStyle,
+          ),
         );
       }
     }

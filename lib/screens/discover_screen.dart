@@ -4,7 +4,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../focus/focusable_action_bar.dart';
 import '../focus/hub_vertical_navigation.dart';
@@ -614,7 +614,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         tooltip: t.profiles.sectionTitle,
         icon: active != null
             ? ProfileAvatar(profile: active, size: 32)
-            : const AppIcon(Symbols.account_circle_rounded, fill: 1, size: 32, color: Colors.white),
+            : const AppIcon(PhosphorIconsDuotone.userCircle, size: 32, color: Colors.white),
       ),
     );
   }
@@ -641,13 +641,17 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // same call is chrome the gesture already covers. TV and
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
-                  FocusableAction(icon: Symbols.refresh_rounded, iconColor: foregroundColor, onPressed: _discover.load),
+                  FocusableAction(
+                    icon: PhosphorIconsDuotone.arrowsClockwise,
+                    iconColor: foregroundColor,
+                    onPressed: _discover.load,
+                  ),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
                 // a permanently empty popover.
                 FocusableAction(
-                  icon: Symbols.search_rounded,
+                  icon: PhosphorIconsDuotone.magnifyingGlass,
                   iconColor: foregroundColor,
                   onPressed: () => unawaited(openSearchScreen(context)),
                 ),
@@ -795,7 +799,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     SliverEmptyState(
                       message: t.discover.noContentAvailable,
                       subtitle: t.discover.addMediaToLibraries,
-                      icon: Symbols.movie_rounded,
+                      icon: PhosphorIconsDuotone.filmSlate,
                     ),
 
                   SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
@@ -862,7 +866,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           if (_errorMessage != null)
             ErrorStateWidget(
               message: _errorMessage!,
-              icon: Symbols.error_outline_rounded,
+              icon: PhosphorIconsDuotone.warningCircle,
               onRetry: _discover.load,
               actionAutofocus: true,
               actionUseBackgroundFocus: true,
@@ -871,7 +875,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
             EmptyStateWidget(
               message: t.discover.noContentAvailable,
               subtitle: t.discover.addMediaToLibraries,
-              icon: Symbols.movie_rounded,
+              icon: PhosphorIconsDuotone.filmSlate,
             ),
           if (browseHubs.isNotEmpty)
             Positioned(
@@ -950,8 +954,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             }
                           },
                           child: AppIcon(
-                            _isAutoScrollPaused ? Symbols.play_arrow_rounded : Symbols.pause_rounded,
-                            fill: 1,
+                            _isAutoScrollPaused ? PhosphorIconsDuotone.play : PhosphorIconsDuotone.pause,
                             color: Theme.of(context).colorScheme.onSurface,
                             size: 18,
                             semanticLabel: '${_isAutoScrollPaused ? t.common.play : t.common.pause} auto-scroll',
@@ -1313,7 +1316,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 child: Row(
                   mainAxisSize: .min,
                   children: [
-                    AppIcon(Symbols.play_arrow_rounded, fill: 1, size: isTv ? 28 : 20, color: foregroundColor),
+                    AppIcon(PhosphorIconsDuotone.play, size: isTv ? 28 : 20, color: foregroundColor),
                     SizedBox(width: isTv ? 12 : 8),
                     if (hasProgress) ...[
                       // Progress bar

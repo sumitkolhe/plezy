@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../widgets/app_icon.dart';
 import '../widgets/clickable_cursor.dart';
@@ -29,7 +29,6 @@ class FocusableActionBuildState {
 class FocusableAction {
   final IconData icon;
   final Color? iconColor;
-  final double iconFill;
   final double iconSize;
 
   final String? debugLabel;
@@ -42,9 +41,8 @@ class FocusableAction {
   final FocusableActionBuilder? builder;
 
   const FocusableAction({
-    this.icon = Symbols.circle_rounded,
+    this.icon = PhosphorIconsDuotone.circle,
     this.iconColor,
-    this.iconFill = 1.0,
     this.iconSize = 24,
     this.debugLabel,
     this.focusNode,
@@ -265,7 +263,7 @@ class FocusableActionBarState extends State<FocusableActionBar> {
                 child:
                     action.child ??
                     IconButton(
-                      icon: AppIcon(action.icon, size: action.iconSize, fill: action.iconFill, color: action.iconColor),
+                      icon: AppIcon(action.icon, size: action.iconSize, color: action.iconColor),
                       tooltip: action.tooltip,
                       onPressed: action.onPressed,
                     ),

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/exceptions/media_server_exceptions.dart';
 import 'package:harbor/focus/dpad_navigator.dart';
 import 'package:harbor/focus/focusable_text_field.dart';
@@ -188,7 +188,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(client.queries, isEmpty);
-    expect(find.byIcon(Symbols.error_rounded), findsOneWidget);
+    expect(find.byIcon(PhosphorIconsDuotone.warningCircle), findsOneWidget);
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
     expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
@@ -467,7 +467,6 @@ class _FakeMediaServerClient implements MediaServerClient {
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
 
   @override
   Future<List<MediaItem>> searchItems(String query, {int limit = 100, AbortController? abort}) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../connection/connection.dart';
 import '../../connection/connection_registry.dart';
@@ -52,7 +52,11 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
               slivers: [
                 if (syncRules.isEmpty)
                   SliverFillRemaining(
-                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: Symbols.sync_rounded, iconSize: 80),
+                    child: EmptyStateWidget(
+                      message: t.downloads.noSyncRules,
+                      icon: PhosphorIconsDuotone.arrowsClockwise,
+                      iconSize: 80,
+                    ),
                   )
                 else
                   SliverList(
@@ -126,14 +130,14 @@ class _SyncRuleTileState extends State<_SyncRuleTile> {
   IconData _leadingIcon() {
     switch (rule.targetType) {
       case ContentTypes.playlist:
-        return Symbols.playlist_play_rounded;
+        return PhosphorIconsDuotone.playlist;
       case ContentTypes.collection:
-        return Symbols.collections_bookmark_rounded;
+        return PhosphorIconsDuotone.books;
       case ContentTypes.show:
       case ContentTypes.season:
-        return Symbols.tv_rounded;
+        return PhosphorIconsDuotone.television;
       default:
-        return Symbols.sync_rounded;
+        return PhosphorIconsDuotone.arrowsClockwise;
     }
   }
 
@@ -329,7 +333,7 @@ class _SwipeRevealDeleteActionState extends State<_SwipeRevealDeleteAction> {
                             child: Column(
                               mainAxisAlignment: .center,
                               children: [
-                                AppIcon(Symbols.delete_rounded, color: colorScheme.onError, size: 20),
+                                AppIcon(PhosphorIconsDuotone.trash, color: colorScheme.onError, size: 20),
                                 const SizedBox(height: 2),
                                 Text(
                                   t.common.delete,

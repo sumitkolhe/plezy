@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_button.dart';
@@ -176,7 +176,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
           // URL example — intentionally not localized.
           hintText: 'https://seerr.example.com',
           helperText: t.seerr.serverUrlHelper,
-          prefixIcon: const AppIcon(Symbols.link_rounded, fill: 1),
+          prefixIcon: const AppIcon(PhosphorIconsDuotone.link),
         ),
       ),
       const SizedBox(height: 16),
@@ -187,7 +187,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _probe,
         child: FilledButton.icon(
           onPressed: busy ? null : _probe,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(Symbols.travel_explore_rounded, fill: 1),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.globe),
           label: Text(t.seerr.checkServer),
         ),
       ),
@@ -256,7 +256,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
         decoration: InputDecoration(
           labelText: isLocal ? t.seerr.email : t.addServer.username,
-          prefixIcon: AppIcon(isLocal ? Symbols.mail_rounded : Symbols.person_rounded, fill: 1),
+          prefixIcon: AppIcon(isLocal ? PhosphorIconsDuotone.envelope : PhosphorIconsDuotone.person),
         ),
         validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
       ),
@@ -270,7 +270,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _signInWithCredentials(),
         decoration: InputDecoration(
           labelText: t.addServer.password,
-          prefixIcon: const AppIcon(Symbols.lock_rounded, fill: 1),
+          prefixIcon: const AppIcon(PhosphorIconsDuotone.lock),
         ),
         validator: (v) => v == null || v.isEmpty ? t.addServer.required : null,
       ),
@@ -280,7 +280,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _signInWithCredentials,
         child: FilledButton.icon(
           onPressed: busy ? null : _signInWithCredentials,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(Symbols.login_rounded, fill: 1),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.signIn),
           label: Text(t.addServer.signIn),
         ),
       ),
@@ -297,7 +297,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
       ),
       child: Row(
         children: [
-          const AppIcon(Symbols.cloud_done_rounded, fill: 1),
+          const AppIcon(PhosphorIconsDuotone.cloudCheck),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

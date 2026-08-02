@@ -3,7 +3,7 @@ import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../focus/dpad_navigator.dart';
@@ -568,7 +568,7 @@ class ContentStripState extends State<ContentStrip> {
       width: isTablet ? 200.0 : 120.0,
       height: isTablet ? 112.0 : 68.0,
       fit: BoxFit.cover,
-      errorWidget: (_, _, _) => const AppIcon(Symbols.image_rounded, fill: 1, color: Colors.white54, size: 34),
+      errorWidget: (_, _, _) => const AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: 34),
     );
   }
 

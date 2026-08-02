@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../media/ids.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../i18n/strings.g.dart';
@@ -89,7 +89,7 @@ class _QueueSheetState extends State<QueueSheet> {
                     maxLines: 1,
                     overflow: .ellipsis,
                   ),
-                  trailing: isCurrent ? AppIcon(Symbols.play_circle_rounded, fill: 1, color: primaryColor) : null,
+                  trailing: isCurrent ? AppIcon(PhosphorIconsDuotone.playCircle, color: primaryColor) : null,
                   onTap: () {
                     widget.onItemSelected(item);
                     OverlaySheetController.of(context).close();
@@ -99,7 +99,7 @@ class _QueueSheetState extends State<QueueSheet> {
             );
           }
 
-          return BaseVideoControlSheet(title: t.videoControls.queue, icon: Symbols.queue_rounded, child: content);
+          return BaseVideoControlSheet(title: t.videoControls.queue, icon: PhosphorIconsDuotone.queue, child: content);
         },
       ),
     );
@@ -121,7 +121,7 @@ class _QueueSheetState extends State<QueueSheet> {
         height: _kThumbHeight,
         fit: BoxFit.cover,
         errorWidget: (context, url, error) =>
-            AppIcon(Symbols.image_rounded, fill: 1, color: Colors.white54, size: _kThumbHeight),
+            AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: _kThumbHeight),
       ),
       isCurrent: isCurrent,
       borderColor: Theme.of(context).colorScheme.primary,
