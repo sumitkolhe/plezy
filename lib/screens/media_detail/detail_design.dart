@@ -84,8 +84,9 @@ class DetailGenreLine extends StatelessWidget {
 class DetailSectionHeader extends StatelessWidget {
   final String title;
   final String? trailing;
+  final Widget? action;
 
-  const DetailSectionHeader({super.key, required this.title, this.trailing});
+  const DetailSectionHeader({super.key, required this.title, this.trailing, this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -100,14 +101,17 @@ class DetailSectionHeader extends StatelessWidget {
         color: t.text,
       ),
     );
-    if (trailing == null || trailing!.isEmpty) return heading;
+    if (action == null && (trailing == null || trailing!.isEmpty)) return heading;
 
     return Row(
-      crossAxisAlignment: .baseline,
-      textBaseline: TextBaseline.alphabetic,
+      crossAxisAlignment: action != null ? .center : .baseline,
+      textBaseline: action != null ? null : TextBaseline.alphabetic,
       children: [
         Expanded(child: heading),
-        Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
+        if (action != null)
+          action!
+        else
+          Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
       ],
     );
   }

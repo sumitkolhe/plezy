@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:drift/native.dart';
 import 'package:harbor/media/ids.dart';
 
-import 'dart:ui' show Tristate;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
@@ -22,6 +21,7 @@ import 'package:harbor/providers/download_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/providers/watch_state_store.dart';
 import 'package:harbor/screens/media_detail/season_picker.dart';
+import 'package:harbor/widgets/focusable_list_tile.dart';
 import 'package:harbor/screens/media_detail_screen.dart';
 
 import '../test_helpers/paged_fakes.dart';
@@ -758,13 +758,15 @@ void main() {
       serverName: show.serverName,
     );
 
-    /// Switch seasons the way touch does: tap the season's pill in the row
-    /// under the Episodes heading. [label] is the compact form, e.g. `S2`.
+    /// Switch seasons the way touch does: tap the chip beside the Episodes
+    /// heading, then the season in the sheet it opens.
     Future<void> pickSeason(WidgetTester tester, String label) async {
-      final pill = find.descendant(of: find.byType(SeasonSelector), matching: find.text(label));
-      await tester.ensureVisible(pill);
+      final chip = find.byType(SeasonPickerChip);
+      await tester.ensureVisible(chip);
       await tester.pumpAndSettle();
-      await tester.tap(pill);
+      await tester.tap(chip);
+      await tester.pumpAndSettle();
+      await tester.tap(find.descendant(of: find.byType(FocusableListTile), matching: find.text(label)));
       await tester.pumpAndSettle();
     }
 
@@ -1007,13 +1009,8 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
 
       expect(find.text('Episode S2E1'), findsOneWidget);
-      // The row marks which season is showing without needing a tap.
-      final handle = tester.ensureSemantics();
-      final pill = tester.getSemantics(
-        find.descendant(of: find.byType(SeasonSelector), matching: find.text('S2')),
-      );
-      expect(pill.flagsCollection.isSelected, Tristate.isTrue);
-      handle.dispose();
+      // The chip names the season on screen without needing a tap.
+      expect(find.descendant(of: find.byType(SeasonPickerChip), matching: find.text('Season 2')), findsOneWidget);
     });
 
     testWidgets('phone detail focuses requested episode row', (tester) async {
@@ -1151,8 +1148,8 @@ void main() {
 
       // Round-trip through another season; the cached page restore must not
       // resurrect the dead progress offset.
-      await pickSeason(tester, 'S2');
-      await pickSeason(tester, 'S1');
+      await pickSeason(tester, 'Season 2');
+      await pickSeason(tester, 'Season 1');
 
       expect(episodeRowHasProgress(tester, 'Episode S1E1'), isFalse);
       expect(episodeRowWatched(tester, 'Episode S1E1'), isTrue);

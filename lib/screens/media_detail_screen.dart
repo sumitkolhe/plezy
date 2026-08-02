@@ -2923,27 +2923,29 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 else if (_seasons.isEmpty)
                                   _sectionEmpty(context, t.messages.noSeasonsFound)
                                 else ...[
+                                  // D-pad keeps the poster strip: it can walk
+                                  // that with left/right, and a sheet is a
+                                  // worse remote target than a row of tabs.
                                   KeyedSubtree(
                                     key: _seasonsSectionKey,
-                                    child: DetailSectionHeader(title: t.libraries.groupings.episodes),
+                                    child: DetailSectionHeader(
+                                      title: t.libraries.groupings.episodes,
+                                      action: useDpadSeasonTabs
+                                          ? null
+                                          : SeasonPickerChip(
+                                              seasons: _seasons,
+                                              selectedIndex: _selectedSeasonIndex,
+                                              onSelected: (index) {
+                                                if (index == _selectedSeasonIndex) return;
+                                                setState(() => _selectedSeasonIndex = index);
+                                                unawaited(_fetchSeasonEpisodes(index));
+                                              },
+                                            ),
+                                    ),
                                   ),
-                                  // D-pad keeps the poster strip: it can walk
-                                  // that with left/right, and the touch row's
-                                  // overflow sheet is a worse remote target.
                                   if (useDpadSeasonTabs) ...[
                                     const SizedBox(height: 12),
                                     _buildSeasonTabs(),
-                                  ] else if (_seasons.length > 1) ...[
-                                    const SizedBox(height: 12),
-                                    SeasonSelector(
-                                      seasons: _seasons,
-                                      selectedIndex: _selectedSeasonIndex,
-                                      onSelected: (index) {
-                                        if (index == _selectedSeasonIndex) return;
-                                        setState(() => _selectedSeasonIndex = index);
-                                        unawaited(_fetchSeasonEpisodes(index));
-                                      },
-                                    ),
                                   ],
                                   const SizedBox(height: 16),
                                   if (_isLoadingSeasonEpisodes)

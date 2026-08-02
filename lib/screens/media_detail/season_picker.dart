@@ -11,26 +11,21 @@ import '../../widgets/focusable_list_tile.dart';
 import '../../widgets/overlay_sheet.dart';
 import 'detail_design.dart';
 
-const double _pillHorizontalPadding = 13;
-const double _pillGap = 7;
-const double _pillHeight = 34;
-const double _overflowPillWidth = 40;
-
-class SeasonSelector extends StatefulWidget {
+class SeasonPickerChip extends StatelessWidget {
   final List<MediaItem> seasons;
   final int selectedIndex;
   final ValueChanged<int> onSelected;
+  final FocusNode? focusNode;
 
-  const SeasonSelector({super.key, required this.seasons, required this.selectedIndex, required this.onSelected});
+  const SeasonPickerChip({
+    super.key,
+    required this.seasons,
+    required this.selectedIndex,
+    required this.onSelected,
+    this.focusNode,
+  });
 
-  /// Index 0 is conventionally Specials, where `S0` would read as meaningless.
-  static String compactLabel(MediaItem season, int position) {
-    final index = season.index;
-    if (index != null && index > 0) return 'S$index';
-    return season.title ?? t.common.seasonNumber(number: '${position + 1}');
-  }
-
-  static String fullLabel(MediaItem season, int position) =>
+  static String label(MediaItem season, int position) =>
       season.title ?? t.common.seasonNumber(number: '${season.index ?? position + 1}');
 
   static String? seasonMeta(MediaItem season) {
@@ -39,197 +34,50 @@ class SeasonSelector extends StatefulWidget {
     return t.explore.episodeCount(n: total);
   }
 
-  @override
-  State<SeasonSelector> createState() => _SeasonSelectorState();
-}
-
-class _SeasonSelectorState extends State<SeasonSelector> {
-  final ScrollController _controller = ScrollController();
-  List<double>? _pillWidths;
-  double _viewport = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _revealSelected(animate: false));
-  }
-
-  @override
-  void didUpdateWidget(SeasonSelector oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (!identical(oldWidget.seasons, widget.seasons)) _pillWidths = null;
-    if (oldWidget.selectedIndex != widget.selectedIndex) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _revealSelected());
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  /// Widths depend only on the labels, so a resize must not re-measure.
-  List<double> _measurePills(TextStyle style) {
-    final cached = _pillWidths;
-    if (cached != null) return cached;
-    final widths = <double>[];
-    for (var i = 0; i < widget.seasons.length; i++) {
-      final painter = TextPainter(
-        text: TextSpan(text: SeasonSelector.compactLabel(widget.seasons[i], i), style: style),
-        maxLines: 1,
-        textDirection: Directionality.of(context),
-      )..layout();
-      widths.add(painter.width + _pillHorizontalPadding * 2);
-      painter.dispose();
-    }
-    return _pillWidths = widths;
-  }
-
-  /// Derived from the measured widths, not the built pills: a season far enough
-  /// down the row has no element to scroll to until it is already on screen.
-  void _revealSelected({bool animate = true}) {
-    final widths = _pillWidths;
-    if (!mounted || !_controller.hasClients || widths == null) return;
-    if (widget.selectedIndex < 0 || widget.selectedIndex >= widths.length) return;
-
-    var start = 0.0;
-    for (var i = 0; i < widget.selectedIndex; i++) {
-      start += widths[i] + _pillGap;
-    }
-    final target = (start + widths[widget.selectedIndex] / 2 - _viewport / 2).clamp(
-      0.0,
-      _controller.position.maxScrollExtent,
-    );
-    if (animate) {
-      unawaited(_controller.animateTo(target, duration: const Duration(milliseconds: 200), curve: Curves.easeOut));
-    } else {
-      _controller.jumpTo(target);
-    }
-  }
-
-  void _openSheet() {
+  void _showSheet(BuildContext context) {
     unawaited(
       OverlaySheetController.showAdaptive<int>(
         context,
         showDragHandle: true,
-        builder: (_) => _SeasonSheet(seasons: widget.seasons, selectedIndex: widget.selectedIndex),
+        builder: (_) => _SeasonSheet(seasons: seasons, selectedIndex: selectedIndex),
       ).then((picked) {
-        if (picked != null && picked != widget.selectedIndex) widget.onSelected(picked);
+        if (picked != null && picked != selectedIndex) onSelected(picked);
       }),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.seasons.length < 2) return const SizedBox.shrink();
-
+    if (seasons.isEmpty) return const SizedBox.shrink();
     final tokensRef = tokens(context);
-    final labelStyle = TextStyle(fontSize: 13.5, fontWeight: .w600, color: tokensRef.text);
-    final widths = _measurePills(labelStyle);
-    final rowWidth = widths.reduce((a, b) => a + b) + _pillGap * (widths.length - 1);
+    final index = selectedIndex.clamp(0, seasons.length - 1);
+    final choosable = seasons.length > 1;
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // A row that scrolls cannot be scanned, so overflow moves the full list
-        // into a sheet and leaves the row as a shortcut to nearby seasons.
-        final overflows = rowWidth > constraints.maxWidth;
-        _viewport = overflows ? constraints.maxWidth - _overflowPillWidth - _pillGap : constraints.maxWidth;
-        return SizedBox(
-          height: _pillHeight,
-          child: Row(
-            children: [
-              Expanded(
-                child: ListView.separated(
-                  controller: _controller,
-                  scrollDirection: Axis.horizontal,
-                  physics: overflows ? null : const NeverScrollableScrollPhysics(),
-                  padding: .zero,
-                  itemCount: widget.seasons.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: _pillGap),
-                  itemBuilder: (context, index) => _SeasonPill(
-                    label: SeasonSelector.compactLabel(widget.seasons[index], index),
-                    semanticLabel: SeasonSelector.fullLabel(widget.seasons[index], index),
-                    selected: index == widget.selectedIndex,
-                    onTap: () => widget.onSelected(index),
-                  ),
-                ),
-              ),
-              if (overflows) ...[const SizedBox(width: _pillGap), _OverflowPill(onTap: _openSheet)],
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _SeasonPill extends StatelessWidget {
-  final String label;
-  final String semanticLabel;
-  final bool selected;
-  final VoidCallback onTap;
-
-  const _SeasonPill({
-    required this.label,
-    required this.semanticLabel,
-    required this.selected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final tokensRef = tokens(context);
     return Semantics(
-      button: true,
-      selected: selected,
-      label: semanticLabel,
-      excludeSemantics: true,
+      button: choosable,
       child: InkWell(
-        onTap: onTap,
+        focusNode: focusNode,
         borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
-        child: AnimatedContainer(
-          duration: tokensRef.fast,
-          curve: Curves.easeOutCubic,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: _pillHorizontalPadding),
-          decoration: BoxDecoration(
-            color: selected ? tokensRef.text : tokensRef.text.withValues(alpha: 0.09),
-            borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
-          ),
-          child: Text(
-            label,
-            style: TextStyle(fontSize: 13.5, fontWeight: .w600, color: selected ? tokensRef.bg : tokensRef.text),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _OverflowPill extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _OverflowPill({required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final tokensRef = tokens(context);
-    return Semantics(
-      button: true,
-      label: t.libraries.groupings.seasons,
-      excludeSemantics: true,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
+        onTap: choosable ? () => _showSheet(context) : null,
         child: Container(
-          width: _overflowPillWidth,
-          alignment: Alignment.center,
+          padding: EdgeInsets.fromLTRB(14, 7, choosable ? 10 : 14, 7),
           decoration: BoxDecoration(
             color: tokensRef.text.withValues(alpha: 0.09),
             borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
           ),
-          child: AppIcon(Symbols.list_rounded, size: 18, color: tokensRef.text),
+          child: Row(
+            mainAxisSize: .min,
+            children: [
+              Text(
+                label(seasons[index], index),
+                style: TextStyle(fontSize: 13.5, fontWeight: .w500, color: tokensRef.text),
+              ),
+              if (choosable) ...[
+                const SizedBox(width: 4),
+                AppIcon(Symbols.expand_more_rounded, size: 16, color: tokensRef.text),
+              ],
+            ],
+          ),
         ),
       ),
     );
@@ -246,6 +94,8 @@ class _SeasonSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final tokensRef = tokens(context);
     final totalEpisodes = seasons.fold<int>(0, (sum, season) => sum + (season.leafCount ?? 0));
+    // ListTile's own default is 16, which would put the heading and the season
+    // names on different left edges.
     const inset = EdgeInsets.symmetric(horizontal: 20);
 
     return Column(
@@ -266,13 +116,13 @@ class _SeasonSheet extends StatelessWidget {
             itemCount: seasons.length,
             itemBuilder: (context, index) {
               final season = seasons[index];
-              final meta = SeasonSelector.seasonMeta(season);
+              final meta = SeasonPickerChip.seasonMeta(season);
               final selected = index == selectedIndex;
               return FocusableListTile(
                 autofocus: selected,
                 contentPadding: inset,
                 title: Text(
-                  SeasonSelector.fullLabel(season, index),
+                  SeasonPickerChip.label(season, index),
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: selected ? .w600 : .w500,

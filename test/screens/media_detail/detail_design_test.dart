@@ -92,7 +92,7 @@ void main() {
   });
 
   group('DetailSectionHeader', () {
-    testWidgets('shows a bare heading when it has no count', (tester) async {
+    testWidgets('shows a bare heading when it has neither count nor action', (tester) async {
       await pump(tester, const DetailSectionHeader(title: 'Episodes'));
 
       expect(find.text('Episodes'), findsOneWidget);
@@ -104,6 +104,13 @@ void main() {
 
       expect(find.text('Episodes'), findsOneWidget);
       expect(find.text('12'), findsOneWidget);
+    });
+
+    testWidgets('prefers the action over the count when given both', (tester) async {
+      await pump(tester, const DetailSectionHeader(title: 'Episodes', trailing: '12', action: Text('Season 2')));
+
+      expect(find.text('Season 2'), findsOneWidget);
+      expect(find.text('12'), findsNothing);
     });
   });
 }
