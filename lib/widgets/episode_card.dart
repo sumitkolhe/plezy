@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -17,11 +18,11 @@ import '../media/media_item_types.dart';
 import '../widgets/download_status_icon.dart';
 import '../widgets/watched_indicator.dart';
 import '../widgets/optimized_media_image.dart';
-import '../utils/formatters.dart';
-import '../utils/rating_spans.dart';
-import '../utils/media_quality_labels.dart';
+import '../utils/platform_detector.dart';
 import '../widgets/media_context_menu.dart';
 import '../widgets/placeholder_container.dart';
+import '../widgets/episode_detail_sheet.dart';
+import '../widgets/overlay_sheet.dart';
 import '../theme/mono_tokens.dart';
 import '../media/media_server_client.dart';
 
@@ -62,34 +63,30 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
-  Widget? _buildEpisodeMetaLine(BuildContext context, MediaItem episode, List<String> qualityLabels) {
-    final tokensRef = tokens(context);
-    final rating = episode.userRating;
-    final spans = dotSeparatedSpans([
-      if (episode.durationMs != null)
-        TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
-      if (episode.originallyAvailableAt != null) TextSpan(text: formatAbbreviatedDate(episode.originallyAvailableAt!)),
-      if (rating != null && rating > 0) ratingSpan(rating / 2, iconSize: 11),
-      for (final label in qualityLabels) TextSpan(text: label),
-    ]);
+  Widget? _buildEpisodeMetaLine(BuildContext context, MediaItem episode) {
+    final spans = episodeFactSpans(episode);
     if (spans.isEmpty) return null;
 
     return Text.rich(
       TextSpan(children: spans),
-      style: TextStyle(
-        fontSize: 11.5,
-        fontWeight: .w600,
-        // Brighter than the summary below it: same weight and family as the
-        // prose at the same 60% muted left the two greys reading as one block.
-        color: tokensRef.text.withValues(alpha: 0.78),
-        height: 1.4,
-        letterSpacing: 0.35,
-        // Digits keep a common advance, so the run of figures reads as data
-        // without setting it in the mono face.
-        fontFeatures: const [FontFeature.tabularFigures()],
-      ),
+      style: episodeFactStyle(context),
       maxLines: 2,
       overflow: .ellipsis,
+    );
+  }
+
+  void _openDetails(BuildContext context, MediaItem episode) {
+    unawaited(
+      OverlaySheetController.showAdaptive<void>(
+        context,
+        showDragHandle: true,
+        builder: (_) => EpisodeDetailSheet(
+          episode: episode,
+          client: widget.client,
+          localPosterPath: widget.localPosterPath,
+          onPlay: widget.onTap,
+        ),
+      ),
     );
   }
 
@@ -104,9 +101,11 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
   Widget _buildContent(BuildContext context, {required bool hideSpoilers}) {
     final episode = _effectiveEpisode(context);
     final shouldBlur = hideSpoilers && episode.shouldHideSpoiler;
-    final qualityLabels = [...buildMediaQualityLabels(episode), ?buildMediaSizeLabel(episode)];
     final tokensRef = tokens(context);
-    final metaLine = _buildEpisodeMetaLine(context, episode, qualityLabels);
+    final metaLine = _buildEpisodeMetaLine(context, episode);
+    // A remote cannot aim at a region, so D-pad keeps the whole row on play
+    // and reaches the rest through the long-press menu.
+    final splitTargets = !PlatformDetector.isTV();
     final summary = episode.summary;
     final showSummary = !shouldBlur && summary != null && summary.isNotEmpty;
 
@@ -131,7 +130,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
           child: InkWell(
             key: Key(episode.id),
             mouseCursor: SystemMouseCursors.click,
-            onTap: widget.onTap,
+            onTap: splitTargets ? () => _openDetails(context, episode) : widget.onTap,
             canRequestFocus: false,
             onTapDown: storeTapPosition,
             onLongPress: showContextMenuFromTap,
@@ -143,7 +142,14 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
               child: Row(
                 crossAxisAlignment: .start,
                 children: [
-                  SizedBox(width: _thumbWidth, child: _buildStill(context, episode, blurred: shouldBlur)),
+                  SizedBox(
+                    width: _thumbWidth,
+                    child: splitTargets
+                        // The badge already drawn on the still is what marks
+                        // this region as the one that plays.
+                        ? GestureDetector(onTap: widget.onTap, child: _buildStill(context, episode, blurred: shouldBlur))
+                        : _buildStill(context, episode, blurred: shouldBlur),
+                  ),
                   const SizedBox(width: _thumbGap),
                   Expanded(
                     child: Column(
@@ -240,7 +246,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
           children: [
             Expanded(
               child: Text(
-                episode.index == null ? episode.title! : 'E${episode.index}$dotSeparator${episode.title!}',
+                episodeHeadline(episode),
                 style: TextStyle(fontSize: 14, fontWeight: .w600, height: 1.3),
                 maxLines: 2,
                 overflow: .ellipsis,

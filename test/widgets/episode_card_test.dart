@@ -19,6 +19,7 @@ import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/rating_spans.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/episode_card.dart';
+import 'package:harbor/widgets/episode_detail_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../test_helpers/media_items.dart';
@@ -143,6 +144,54 @@ void main() {
     expect(summaryRect.left, greaterThan(still.right));
   });
 
+  testWidgets('the still plays and the rest of the row opens the details', (tester) async {
+    const summary = 'A quiet episode in which very little happens and everyone talks about it afterwards.';
+    var plays = 0;
+    final episode = testMediaItem(
+      id: 'split_target_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'Aftermath',
+      index: 5,
+      summary: summary,
+      durationMs: 42 * 60 * 1000,
+    );
+
+    await _pumpEpisodeCard(tester, episode, onTap: () => plays++);
+
+    await tester.tap(find.byType(AspectRatio).first);
+    await tester.pumpAndSettle();
+    expect(plays, 1);
+    expect(find.byType(EpisodeDetailSheet), findsNothing);
+
+    await tester.tap(find.text('E5${dotSeparator}Aftermath'));
+    await tester.pumpAndSettle();
+    expect(find.byType(EpisodeDetailSheet), findsOneWidget);
+    expect(plays, 1, reason: 'opening the details must not start playback');
+  });
+
+  testWidgets('the details sheet carries the summary the row had to clamp', (tester) async {
+    final summary = 'Long enough to clamp. ${'Detail sentence. ' * 20}';
+    final episode = testMediaItem(
+      id: 'sheet_summary_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'Aftermath',
+      index: 5,
+      summary: summary,
+      durationMs: 42 * 60 * 1000,
+    );
+
+    await _pumpEpisodeCard(tester, episode);
+    expect(tester.widget<Text>(find.text(summary)).maxLines, 2);
+
+    await tester.tap(find.text('E5${dotSeparator}Aftermath'));
+    await tester.pumpAndSettle();
+
+    final inSheet = find.descendant(of: find.byType(EpisodeDetailSheet), matching: find.text(summary));
+    expect(tester.widget<Text>(inSheet).maxLines, isNull);
+  });
+
   testWidgets('shows file size alongside media quality labels', (tester) async {
     final episode = testMediaItem(
       id: 'sized_episode',
@@ -179,7 +228,7 @@ void main() {
   });
 }
 
-Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode) async {
+Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode, {VoidCallback? onTap}) async {
   final db = AppDatabase.forTesting(NativeDatabase.memory());
   JellyfinApiCache.initialize(db);
   final downloadManager = DownloadManagerService(
@@ -205,7 +254,7 @@ Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode) async {
           home: Scaffold(
             body: SizedBox(
               width: 360,
-              child: EpisodeCard(episode: episode, isOffline: true, onTap: () {}),
+              child: EpisodeCard(episode: episode, isOffline: true, onTap: onTap ?? () {}),
             ),
           ),
         ),
