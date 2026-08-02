@@ -56,7 +56,7 @@ class EpisodeDetailSheet extends StatelessWidget {
       children: [
         Flexible(
           child: SingleChildScrollView(
-            padding: inset.add(const EdgeInsets.only(top: 4, bottom: 24)),
+            padding: inset.add(const EdgeInsets.only(top: 16, bottom: 28)),
             child: Column(
               mainAxisSize: .min,
               crossAxisAlignment: .start,
@@ -110,7 +110,7 @@ class EpisodeDetailSheet extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: inset.add(const EdgeInsets.only(bottom: 8)),
+          padding: inset.add(const EdgeInsets.only(bottom: 20)),
           child: SizedBox(
             width: double.infinity,
             height: 48,
