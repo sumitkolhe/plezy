@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:plezy/focus/card_focus_scope.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/media_image_helper.dart';
@@ -85,6 +86,25 @@ void main() {
     for (final image in images) {
       expect(image.imageType, ImageType.square);
     }
+  });
+
+  testWidgets('crops portraits to a circle and centres their labels', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(body: CastMemberStrip(members: _members)),
+      ),
+    );
+
+    expect(find.byType(ClipOval), findsNWidgets(_members.length));
+    // The focus ring is the one the wrapper delegates to, so it has to follow
+    // the crop rather than stay a rounded rectangle behind it.
+    final image = tester.widget<OptimizedMediaImage>(find.byType(OptimizedMediaImage).first);
+    final border = tester.widget<CardFocusBorder>(find.byType(CardFocusBorder).first);
+    expect(border.borderRadius, image.width! / 2);
+
+    expect(tester.widget<Text>(find.text('First Actor')).textAlign, TextAlign.center);
+    expect(tester.widget<Text>(find.text('Lead')).textAlign, TextAlign.center);
   });
 
   testWidgets('clamps its focus index when the member list changes', (tester) async {

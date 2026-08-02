@@ -202,12 +202,13 @@ class CastMemberStripState extends State<CastMemberStrip> {
                     child: SizedBox(
                       width: cardWidth,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CardFocusBorder(
-                            borderRadius: tokens(context).radiusSm,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(tokens(context).radiusSm),
+                            // Half the image box: the focus ring has to follow
+                            // the portrait's own shape, and it is the visible
+                            // ring here — the wrapper delegates to it.
+                            borderRadius: imageSize / 2,
+                            child: ClipOval(
                               child: OptimizedMediaImage(
                                 client: widget.imageClient,
                                 imagePath: member.imagePath,
@@ -220,16 +221,24 @@ class CastMemberStripState extends State<CastMemberStrip> {
                             ),
                           ),
                           const SizedBox(height: 8),
+                          // Centred under a circle; a left edge to align to is
+                          // exactly what the round crop removes.
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(member.name, style: nameStyle, maxLines: 2, overflow: TextOverflow.ellipsis),
+                                Text(
+                                  member.name,
+                                  style: nameStyle,
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                                 if (member.secondary != null) ...[
                                   const SizedBox(height: 2),
                                   Text(
                                     member.secondary!,
                                     style: secondaryStyle,
+                                    textAlign: TextAlign.center,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                   ),
