@@ -12,15 +12,14 @@ tags:
           permissions:
             all: allow
       - extendedWaitUntil:
-          visible: "(?s)^(?:Sign in with Plex|Wait).*"
+          visible: "(?s)^(?:Connect to Jellyfin|Wait).*"
           timeout: 30000
       - tapOn:
           text: "Wait"
           optional: true
       - extendedWaitUntil:
-          visible: "Sign in with Plex"
+          visible: "Connect to Jellyfin"
           timeout: 30000
-- assertVisible: "Show QR Code"
 - assertVisible: "Connect to Jellyfin"
 - tapOn: "Connect to Jellyfin"
 - extendedWaitUntil:
@@ -40,4 +39,4 @@ tags:
       - hideKeyboard:
           optional: true
       - back
-- assertVisible: "Sign in with Plex"
+- assertVisible: "Connect to Jellyfin"

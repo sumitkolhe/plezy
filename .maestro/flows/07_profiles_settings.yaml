@@ -35,7 +35,6 @@ tags:
 - extendedWaitUntil:
     visible: "Add to E2E Guest"
     timeout: 10000
-- assertVisible: "(?s)^Sign in with Plex.*"
 - assertVisible: "(?s)^Connect to Jellyfin.*"
 - runFlow:
     when:

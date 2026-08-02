@@ -16,7 +16,7 @@ appId: co.sumit.harbor
 # splash: "Discover" has not rendered yet, the guard reads it as absent, and
 # every flow pays for a full re-onboarding it did not need.
 - extendedWaitUntil:
-    visible: "(?s)^(?:Discover|Sign in with Plex|Connect to Jellyfin|Wait).*"
+    visible: "(?s)^(?:Discover|Connect to Jellyfin|Wait).*"
     timeout: 30000
 - runFlow:
     when:

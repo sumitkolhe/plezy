@@ -18,6 +18,5 @@ tags:
     below:
       text: "Are you sure you want to log out?"
 - extendedWaitUntil:
-    visible: "Sign in with Plex"
+    visible: "Connect to Jellyfin"
     timeout: 20000
-- assertVisible: "Connect to Jellyfin"
