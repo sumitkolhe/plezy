@@ -79,7 +79,9 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
       style: TextStyle(
         fontSize: 11.5,
         fontWeight: .w600,
-        color: tokensRef.textMuted,
+        // Brighter than the summary below it: same weight and family as the
+        // prose at the same 60% muted left the two greys reading as one block.
+        color: tokensRef.text.withValues(alpha: 0.78),
         height: 1.4,
         letterSpacing: 0.35,
         // Digits keep a common advance, so the run of figures reads as data
@@ -149,9 +151,9 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                       crossAxisAlignment: .start,
                       children: [
                         _buildTitleRow(context, episode),
-                        if (metaLine != null) ...[const SizedBox(height: 4), metaLine],
+                        if (metaLine != null) ...[const SizedBox(height: 3), metaLine],
                         if (showSummary) ...[
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 8),
                           Text(
                             summary,
                             style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
