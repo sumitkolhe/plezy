@@ -59,7 +59,7 @@ class PhosphorIconsDuotone {
   static const crop = IconData(0xe1d5, fontFamily: 'PhosphorDuotone');
   static const deviceRotate = IconData(0xedf3, fontFamily: 'PhosphorDuotone');
   static const dotsSixVertical = IconData(0xeae3, fontFamily: 'PhosphorDuotone');
-  static const dotsThreeVertical = IconData(0xe209, fontFamily: 'PhosphorDuotone');
+  static const dotsThreeOutlineVertical = IconData(0xe207, fontFamily: 'PhosphorDuotone');
   static const download = IconData(0xe20b, fontFamily: 'PhosphorDuotone');
   static const downloadSimple = IconData(0xe20d, fontFamily: 'PhosphorDuotone');
   static const drop = IconData(0xe211, fontFamily: 'PhosphorDuotone');
@@ -213,6 +213,7 @@ class PhosphorIconsRegular {
 /// The tinted layer a duotone glyph sits on. Held as const IconData so the
 /// icon tree shaker can still see every glyph the app reaches.
 const Map<int, IconData> phosphorDuotoneSecondary = {
+  0xe207: IconData(0xe206, fontFamily: 'PhosphorDuotone'),
   0xe005: IconData(0xe004, fontFamily: 'PhosphorDuotone'),
   0xe039: IconData(0xe038, fontFamily: 'PhosphorDuotone'),
   0xe52f: IconData(0xe52e, fontFamily: 'PhosphorDuotone'),
@@ -262,7 +263,6 @@ const Map<int, IconData> phosphorDuotoneSecondary = {
   0xe1d5: IconData(0xe1d4, fontFamily: 'PhosphorDuotone'),
   0xedf3: IconData(0xedf2, fontFamily: 'PhosphorDuotone'),
   0xeae3: IconData(0xeae2, fontFamily: 'PhosphorDuotone'),
-  0xe209: IconData(0xe208, fontFamily: 'PhosphorDuotone'),
   0xe20b: IconData(0xe20a, fontFamily: 'PhosphorDuotone'),
   0xe20d: IconData(0xe20c, fontFamily: 'PhosphorDuotone'),
   0xe211: IconData(0xe210, fontFamily: 'PhosphorDuotone'),

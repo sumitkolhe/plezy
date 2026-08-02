@@ -398,7 +398,7 @@ class _ConnectionsListState extends State<_ConnectionsList> {
                       title: Text(conn.displayLabel),
                       subtitle: _ConnectionSubtitle.build(pc: pc, theme: theme),
                       trailing: FocusablePopupMenuButton<String>(
-                        icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
+                        icon: const AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical),
                         tooltip: t.profiles.manage,
                         onSelected: (value) {
                           if (value == 'default') {

@@ -488,7 +488,7 @@ class _ProfileActionsButton extends StatelessWidget {
       focusNode: focusNode,
       semanticLabel: t.profiles.manage,
       onNavigateLeft: onNavigateLeft,
-      icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
+      icon: const AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical),
       tooltip: t.profiles.manage,
       onSelected: onSelected,
       itemBuilder: (_) => [for (final action in actions) AppMenuItem(value: action, label: action.label)],

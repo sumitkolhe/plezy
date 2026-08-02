@@ -613,7 +613,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         onBack: focusable ? _pop : null,
         useBackgroundFocus: focusable,
         child: IconButton(
-          icon: AppIcon(PhosphorIconsDuotone.dotsThreeVertical, color: tk.text),
+          icon: AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical, color: tk.text),
           onPressed: showMenu,
           tooltip: MaterialLocalizations.of(context).showMenuTooltip,
         ),

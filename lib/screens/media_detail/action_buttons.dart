@@ -430,7 +430,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
   }) {
     return IconButton.filledTonal(
       onPressed: () => unawaited(_handleWatchedTogglePressed(metadata)),
-      icon: AppIcon(metadata.isWatched ? PhosphorIconsDuotone.checkCircle : PhosphorIconsDuotone.check),
+      icon: AppIcon(PhosphorIconsDuotone.checkCircle),
       tooltip: metadata.isWatched ? t.tooltips.markAsUnwatched : t.tooltips.markAsWatched,
       iconSize: PlatformDetector.isTV() ? 21 * tvScale : 20,
       style: actionButtonStyle(showFocus: showFocus),
@@ -459,7 +459,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
               _contextMenuKey.currentState?.showContextMenu(buttonContext, position: position);
             }
           },
-          icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
+          icon: const AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical),
           iconSize: PlatformDetector.isTV() ? 21 * tvScale : 20,
           style: actionButtonStyle(showFocus: showFocus),
         ),

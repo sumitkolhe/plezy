@@ -438,7 +438,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             Container(
               decoration: FocusTheme.focusBackgroundDecoration(isFocused: isOptionsButtonFocused, borderRadius: 20),
               child: IconButton(
-                icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
+                icon: const AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical),
                 tooltip: t.libraries.libraryOptions,
                 onPressed: () => _showLibraryMenuBottomSheet(context, library),
               ),

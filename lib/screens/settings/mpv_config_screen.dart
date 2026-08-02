@@ -348,7 +348,7 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
                 leading: const AppIcon(PhosphorIconsDuotone.folder),
                 title: Text(preset.name),
                 trailing: FocusablePopupMenuButton<String>(
-                  icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
+                  icon: const AppIcon(PhosphorIconsDuotone.dotsThreeOutlineVertical),
                   onSelected: (value) {
                     if (value == 'load') {
                       _loadPreset(preset);
