@@ -57,7 +57,7 @@ class _CertificateMark extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: t.text.withValues(alpha: 0.78), height: 1.2),
+        style: TextStyle(fontSize: 11, fontWeight: .w600, color: t.text.withValues(alpha: 0.78), height: 1.2, letterSpacing: 0.3),
       ),
     );
   }

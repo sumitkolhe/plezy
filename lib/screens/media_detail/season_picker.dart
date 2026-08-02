@@ -134,12 +134,7 @@ class _SeasonSheet extends StatelessWidget {
                     ? null
                     : Text(
                         meta,
-                        style: TextStyle(
-                          fontFamily: MonoFonts.mono,
-                          fontSize: 11,
-                          color: tokensRef.textMuted,
-                          height: 1.3,
-                        ),
+                        style: TextStyle(fontSize: 12, color: tokensRef.textMuted, height: 1.3),
                       ),
                 trailing: selected ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text) : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
