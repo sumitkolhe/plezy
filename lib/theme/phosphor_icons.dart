@@ -44,7 +44,6 @@ class PhosphorIconsDuotone {
   static const caretUpDown = IconData(0xe141, fontFamily: 'PhosphorDuotone');
   static const cellTower = IconData(0xebab, fontFamily: 'PhosphorDuotone');
   static const chartLine = IconData(0xe155, fontFamily: 'PhosphorDuotone');
-  static const check = IconData(0xe183, fontFamily: 'PhosphorDuotone');
   static const checkCircle = IconData(0xe185, fontFamily: 'PhosphorDuotone');
   static const circle = IconData(0xe18b, fontFamily: 'PhosphorDuotone');
   static const circleHalf = IconData(0xe18d, fontFamily: 'PhosphorDuotone');
@@ -248,7 +247,6 @@ const Map<int, IconData> phosphorDuotoneSecondary = {
   0xe141: IconData(0xe140, fontFamily: 'PhosphorDuotone'),
   0xebab: IconData(0xebaa, fontFamily: 'PhosphorDuotone'),
   0xe155: IconData(0xe154, fontFamily: 'PhosphorDuotone'),
-  0xe183: IconData(0xe182, fontFamily: 'PhosphorDuotone'),
   0xe185: IconData(0xe184, fontFamily: 'PhosphorDuotone'),
   0xe18b: IconData(0xe18a, fontFamily: 'PhosphorDuotone'),
   0xe18d: IconData(0xe18c, fontFamily: 'PhosphorDuotone'),

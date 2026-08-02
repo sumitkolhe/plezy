@@ -231,7 +231,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
               onPressed: _hasChanges ? _save : null,
               child: IconButton(
                 onPressed: _hasChanges ? _save : null,
-                icon: const AppIcon(PhosphorIconsDuotone.check),
+                icon: const AppIcon(PhosphorIconsDuotone.checkCircle),
                 tooltip: t.common.save,
               ),
             ),
@@ -515,7 +515,7 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
                       child: AppIcon(
-                        PhosphorIconsDuotone.check,
+                        PhosphorIconsDuotone.checkCircle,
                         size: 16,
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),

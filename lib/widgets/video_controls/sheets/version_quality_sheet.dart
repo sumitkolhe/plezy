@@ -230,7 +230,7 @@ class _SelectionTile extends StatelessWidget {
             children: [
               if (hasText) Text(trailingText!, style: TextStyle(color: trailingColor)),
               if (hasText && isSelected) const SizedBox(width: 8),
-              if (isSelected) AppIcon(PhosphorIconsDuotone.check, color: primary),
+              if (isSelected) AppIcon(PhosphorIconsDuotone.checkCircle, color: primary),
             ],
           )
         : null;

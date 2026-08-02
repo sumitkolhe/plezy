@@ -338,7 +338,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       case TextInputAction.go:
         return PhosphorIconsDuotone.caretDoubleRight;
       default:
-        return PhosphorIconsDuotone.check;
+        return PhosphorIconsDuotone.checkCircle;
     }
   }
 

@@ -844,7 +844,7 @@ void main() {
     bool episodeRowWatched(WidgetTester tester, String title) {
       final card = episodeCardFor(title);
       expect(card, findsOneWidget, reason: 'episode row "$title" should be visible');
-      return tester.any(find.descendant(of: card, matching: find.byIcon(PhosphorIconsDuotone.check)));
+      return tester.any(find.descendant(of: card, matching: find.byIcon(PhosphorIconsDuotone.checkCircle)));
     }
 
     bool episodeRowHasProgress(WidgetTester tester, String title) {

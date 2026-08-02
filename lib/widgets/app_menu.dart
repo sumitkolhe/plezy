@@ -427,7 +427,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final background = _backgroundColor(context, active: active);
 
     final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, size: 20) : null);
-    final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIconsDuotone.check, size: 18) : null);
+    final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18) : null);
     final subtitle = item.subtitleWidget ?? (item.subtitle != null ? Text(item.subtitle!) : null);
 
     return Semantics(
