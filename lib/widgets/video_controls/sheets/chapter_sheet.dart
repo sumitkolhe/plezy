@@ -3,7 +3,7 @@ import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../i18n/strings.g.dart';
 import '../../../media/media_server_client.dart';
@@ -133,7 +133,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                           height: 34,
                           fit: BoxFit.cover,
                           errorWidget: (context, url, error) =>
-                              const AppIcon(Symbols.image_rounded, fill: 1, color: Colors.white54, size: 34),
+                              const AppIcon(PhosphorIconsFill.image, fill: 1, color: Colors.white54, size: 34),
                         ),
                         isCurrent: isCurrentChapter,
                         borderColor: Theme.of(context).colorScheme.primary,
@@ -156,7 +156,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                   ),
                 ),
                 trailing: isCurrentChapter
-                    ? AppIcon(Symbols.play_circle_rounded, fill: 1, color: Theme.of(context).colorScheme.primary)
+                    ? AppIcon(PhosphorIconsFill.playCircle, fill: 1, color: Theme.of(context).colorScheme.primary)
                     : null,
                 onTap: widget.canControl ? () => unawaited(_handleChapterTap(chapter.startTime)) : null,
               );
@@ -164,7 +164,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
           );
         }
 
-        return BaseVideoControlSheet(title: t.videoControls.chapters, icon: Symbols.bookmarks_rounded, child: content);
+        return BaseVideoControlSheet(title: t.videoControls.chapters, icon: PhosphorIconsFill.bookmarks, child: content);
       },
     );
   }

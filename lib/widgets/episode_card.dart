@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../focus/focusable_wrapper.dart';
 import '../mixins/context_menu_tap_mixin.dart';
 import '../models/download_models.dart';
@@ -207,7 +207,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
               width: 34,
               height: 34,
               decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5), shape: BoxShape.circle),
-              child: const AppIcon(Symbols.play_arrow_rounded, fill: 1, color: Colors.white, size: 18),
+              child: const AppIcon(PhosphorIconsFill.play, fill: 1, color: Colors.white, size: 18),
             ),
           ),
         ),
@@ -274,7 +274,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final tokensRef = tokens(context);
     return PlaceholderContainer(
       color: tokensRef.text.withValues(alpha: 0.04),
-      child: AppIcon(Symbols.movie_rounded, fill: 1, size: 18, color: tokensRef.textMuted.withValues(alpha: 0.5)),
+      child: AppIcon(PhosphorIconsFill.filmSlate, fill: 1, size: 18, color: tokensRef.textMuted.withValues(alpha: 0.5)),
     );
   }
 

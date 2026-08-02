@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../focus/focusable_slider.dart';
 import '../../../focus/focusable_button.dart';
@@ -280,7 +280,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
       child: Row(
         children: [
           _buildCompactStepButton(
-            icon: Symbols.remove_rounded,
+            icon: PhosphorIconsFill.minus,
             onTap: _decrementOffset,
             onLongPressStart: _startLongPressDecrement,
           ),
@@ -302,7 +302,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             ),
           ),
           _buildCompactStepButton(
-            icon: Symbols.add_rounded,
+            icon: PhosphorIconsFill.plus,
             onTap: _incrementOffset,
             onLongPressStart: _startLongPressIncrement,
           ),
@@ -329,7 +329,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
                 height: 36,
                 alignment: .center,
                 child: AppIcon(
-                  Symbols.restart_alt_rounded,
+                  PhosphorIconsFill.arrowCounterClockwise,
                   fill: 1,
                   color: _currentOffset != 0 ? tokens(context).text : tokens(context).textMuted,
                   size: 22,
@@ -361,7 +361,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             children: [
               // Decrement button
               _buildStepButton(
-                icon: Symbols.remove_rounded,
+                icon: PhosphorIconsFill.minus,
                 onTap: _decrementOffset,
                 onLongPressStart: _startLongPressDecrement,
               ),
@@ -399,7 +399,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
               const SizedBox(width: 12),
               // Increment button
               _buildStepButton(
-                icon: Symbols.add_rounded,
+                icon: PhosphorIconsFill.plus,
                 onTap: _incrementOffset,
                 onLongPressStart: _startLongPressIncrement,
               ),
@@ -412,7 +412,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             useBackgroundFocus: true,
             child: ElevatedButton.icon(
               onPressed: _currentOffset != 0 ? _resetOffset : null,
-              icon: const AppIcon(Symbols.restart_alt_rounded, fill: 1),
+              icon: const AppIcon(PhosphorIconsFill.arrowCounterClockwise, fill: 1),
               label: Text(t.videoControls.resetToZero),
               style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
             ),

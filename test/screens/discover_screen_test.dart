@@ -1,5 +1,5 @@
 import 'package:drift/native.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/media/ids.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -417,7 +417,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
 
     expect(find.byType(PageView), findsOneWidget);
-    expect(find.byIcon(Symbols.pause_rounded), findsOneWidget, reason: 'hero indicators render in pointer mode');
+    expect(find.byIcon(PhosphorIconsFill.pause), findsOneWidget, reason: 'hero indicators render in pointer mode');
 
     // Entering keyboard mode must not hide the indicators on non-TV devices
     // (regression: back-key/BT-keyboard events left them permanently hidden).
@@ -425,7 +425,7 @@ void main() {
     await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowDown);
     await tester.pump();
     expect(
-      find.byIcon(Symbols.pause_rounded),
+      find.byIcon(PhosphorIconsFill.pause),
       findsOneWidget,
       reason: 'hero indicators stay visible in keyboard mode on non-TV',
     );

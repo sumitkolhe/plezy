@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../widgets/app_icon.dart';
 import 'content_utils.dart';
@@ -17,7 +17,7 @@ InlineSpan ratingSpan(double rating, {required double iconSize, String suffix = 
         alignment: PlaceholderAlignment.middle,
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: AppIcon(Symbols.star_rounded, fill: 1, size: iconSize),
+          child: AppIcon(PhosphorIconsFill.star, fill: 1, size: iconSize),
         ),
       ),
       TextSpan(text: '${formatRating(rating)}$suffix'),

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../focus/dpad_navigator.dart';
 import '../../focus/focusable_text_field.dart';
 import '../../focus/key_event_utils.dart';
@@ -337,7 +337,7 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
         children: [
           FocusableListTile(
             focusNode: _savePresetFocusNode,
-            leading: const AppIcon(Symbols.save_rounded, fill: 1),
+            leading: const AppIcon(PhosphorIconsFill.floppyDisk, fill: 1),
             title: Text(t.mpvConfig.saveAsPreset),
             enabled: _textController.text.trim().isNotEmpty,
             onTap: _textController.text.trim().isNotEmpty ? _showSavePresetDialog : null,
@@ -345,10 +345,10 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
           if (presets.isNotEmpty)
             ...presets.map(
               (preset) => FocusableListTile(
-                leading: const AppIcon(Symbols.folder_rounded, fill: 1),
+                leading: const AppIcon(PhosphorIconsFill.folder, fill: 1),
                 title: Text(preset.name),
                 trailing: FocusablePopupMenuButton<String>(
-                  icon: const AppIcon(Symbols.more_vert_rounded, fill: 1),
+                  icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
                   onSelected: (value) {
                     if (value == 'load') {
                       _loadPreset(preset);

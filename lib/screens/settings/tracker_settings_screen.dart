@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../i18n/strings.g.dart';
@@ -152,7 +152,7 @@ class TrackerSettingsScreen extends StatelessWidget {
           toggles: [
             TrackerSettingsToggle(
               pref: config.scrobblePref,
-              icon: Symbols.auto_timer_rounded,
+              icon: PhosphorIconsFill.timer,
               title: t.services.scrobble,
               subtitle: t.services.scrobbleDescription,
               onAfterWrite: config.onScrobbleChanged,

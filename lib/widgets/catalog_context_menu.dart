@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -56,25 +56,25 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
     anchorRect: anchorRect,
     focusFirstItem: position == null,
     entries: [
-      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: Symbols.info_rounded),
+      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: PhosphorIconsFill.info),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),
           label: t.explore.detail.watchTrailer,
-          icon: Symbols.play_circle_rounded,
+          icon: PhosphorIconsFill.playCircle,
         ),
       for (final link in item.links ?? const [])
         if (link.label.isNotEmpty && link.url.isNotEmpty)
           AppMenuItem(
             value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: link.url),
             label: t.explore.detail.openOn(site: link.label),
-            icon: Symbols.open_in_new_rounded,
+            icon: PhosphorIconsFill.arrowSquareOut,
           ),
       if (onWatchlist != null)
         AppMenuItem(
           value: _CatalogMenuAction.toggleWatchlist,
           label: onWatchlist ? t.explore.removeFromWatchlist : t.explore.addToWatchlist,
-          icon: onWatchlist ? Symbols.bookmark_remove_rounded : Symbols.bookmark_add_rounded,
+          icon: onWatchlist ? PhosphorIconsFill.bookmarkSimple : PhosphorIconsFill.bookmarkSimple,
         ),
     ],
   );

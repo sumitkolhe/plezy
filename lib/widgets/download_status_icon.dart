@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../models/download_models.dart';
 import '../utils/platform_detector.dart';
@@ -60,12 +60,12 @@ class DownloadStatusIcon extends StatelessWidget {
 
     switch (s) {
       case DownloadStatus.queued:
-        return AppIcon(Symbols.schedule_rounded, fill: 1, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIconsFill.clock, fill: 1, size: size, color: _tint(Colors.orange));
       case DownloadStatus.downloading:
         // No progress value — render a static "downloading" icon (callers
         // without per-item progress, e.g. the download tree view).
         if (progress == null) {
-          return AppIcon(Symbols.downloading_rounded, fill: 1, size: size, color: _tint(overrideColor ?? Colors.blue));
+          return AppIcon(PhosphorIconsFill.downloadSimple, fill: 1, size: size, color: _tint(overrideColor ?? Colors.blue));
         }
         final primary = overrideColor ?? Theme.of(context).colorScheme.primary;
         final tinted = _tint(primary);
@@ -90,31 +90,31 @@ class DownloadStatusIcon extends StatelessWidget {
         );
       case DownloadStatus.paused:
         return AppIcon(
-          Symbols.pause_circle_outline_rounded,
+          PhosphorIconsFill.pauseCircle,
           fill: 1,
           size: size,
           color: _tint(variant == DownloadStatusIconVariant.muted ? Colors.amber : Colors.grey),
         );
       case DownloadStatus.failed:
         return AppIcon(
-          variant == DownloadStatusIconVariant.muted ? Symbols.error_outline_rounded : Symbols.error_rounded,
+          variant == DownloadStatusIconVariant.muted ? PhosphorIconsFill.warningCircle : PhosphorIconsFill.warningCircle,
           fill: 1,
           size: size,
           color: _tint(Colors.red),
         );
       case DownloadStatus.cancelled:
-        return AppIcon(Symbols.cancel_rounded, fill: 1, size: size, color: _tint(Colors.grey));
+        return AppIcon(PhosphorIconsFill.xCircle, fill: 1, size: size, color: _tint(Colors.grey));
       case DownloadStatus.completed:
         return AppIcon(
           variant == DownloadStatusIconVariant.muted
-              ? Symbols.file_download_done_rounded
-              : Symbols.check_circle_rounded,
+              ? PhosphorIconsFill.checkCircle
+              : PhosphorIconsFill.checkCircle,
           fill: 1,
           size: size,
           color: _tint(Colors.green),
         );
       case DownloadStatus.partial:
-        return AppIcon(Symbols.downloading_rounded, fill: 1, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIconsFill.downloadSimple, fill: 1, size: size, color: _tint(Colors.orange));
     }
   }
 }

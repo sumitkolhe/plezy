@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/dpad_navigator.dart';
@@ -103,7 +103,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: Symbols.star_rounded),
+              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIconsFill.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),
@@ -640,7 +640,7 @@ class _TrailingStatus extends StatelessWidget {
     return Tooltip(
       message: status.text,
       child: AppIcon(
-        status.isError ? Symbols.error_rounded : Symbols.check_circle_rounded,
+        status.isError ? PhosphorIconsFill.warningCircle : PhosphorIconsFill.checkCircle,
         fill: 1,
         color: color,
         size: 18,
@@ -698,8 +698,9 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     width: starWidth,
                     child: Center(
                       child: AppIcon(
-                        half ? Symbols.star_half_rounded : Symbols.star_rounded,
-                        fill: filled || half ? 1 : 0,
+                        half
+                            ? PhosphorIconsFill.starHalf
+                            : (filled ? PhosphorIconsFill.star : PhosphorIconsRegular.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),
@@ -750,8 +751,7 @@ class _FavoriteControl extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               AppIcon(
-                Symbols.favorite_rounded,
-                fill: value ? 1 : 0,
+                value ? PhosphorIconsFill.heart : PhosphorIconsRegular.heart,
                 color: value ? Colors.redAccent : (enabled ? scheme.onSurfaceVariant : theme.disabledColor),
                 size: 18,
               ),

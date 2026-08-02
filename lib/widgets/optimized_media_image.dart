@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../media/media_server_client.dart';
@@ -148,7 +148,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? Symbols.movie_rounded,
+         fallbackIcon: fallbackIcon ?? PhosphorIconsFill.filmSlate,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -186,7 +186,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? Symbols.video_library_rounded,
+         fallbackIcon: fallbackIcon ?? PhosphorIconsFill.filmStrip,
          imageType: ImageType.thumb,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -223,7 +223,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: Symbols.playlist_play_rounded,
+         fallbackIcon: PhosphorIconsFill.playlist,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -466,12 +466,12 @@ class OptimizedMediaImage extends StatelessWidget {
 
   Widget _buildErrorWidget(BuildContext context, dynamic _) => _surfacePlaceholder(
     context,
-    icon: fallbackIcon ?? Symbols.broken_image_rounded,
+    icon: fallbackIcon ?? PhosphorIconsFill.imageBroken,
     fillParent: !_hasKnownDimensions,
   );
 
   Widget _buildFallback(BuildContext context) =>
-      _surfacePlaceholder(context, icon: fallbackIcon ?? Symbols.image_not_supported_rounded);
+      _surfacePlaceholder(context, icon: fallbackIcon ?? PhosphorIconsFill.imageBroken);
 }
 
 /// Clear-logo artwork for hero and detail headers.

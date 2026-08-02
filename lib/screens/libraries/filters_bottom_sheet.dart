@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../focus/focusable_button.dart';
 import '../../focus/input_mode_tracker.dart';
 import '../../media/media_filter.dart';
@@ -223,14 +223,14 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
     final currentFilter = _currentFilter;
     return BottomSheetPageScaffold(
       title: currentFilter?.title ?? t.libraries.filters,
-      icon: Symbols.filter_alt_rounded,
+      icon: PhosphorIconsFill.funnel,
       onBack: currentFilter != null ? _goBack : widget.onBack,
       action: currentFilter == null && _tempSelectedFilters.isNotEmpty
           ? FocusableButton(
               onPressed: _clearFilters,
               child: TextButton.icon(
                 onPressed: _clearFilters,
-                icon: const AppIcon(Symbols.clear_all_rounded, fill: 1),
+                icon: const AppIcon(PhosphorIconsFill.eraser, fill: 1),
                 label: Text(t.libraries.clearAll),
               ),
             )
@@ -360,7 +360,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                   ),
                 ),
               if (displayValue != null) const SizedBox(width: 8),
-              const AppIcon(Symbols.chevron_right_rounded, fill: 1),
+              const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
             ],
           ),
           onTap: () => _loadFilterValues(filter),

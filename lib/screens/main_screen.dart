@@ -10,7 +10,7 @@ export '../navigation/main_screen_scope.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'
     show HardwareKeyboard, KeyDownEvent, KeyRepeatEvent, KeyUpEvent, LogicalKeyboardKey;
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
@@ -1473,7 +1473,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                               ),
                             )
                           else
-                            AppIcon(Symbols.wifi_rounded, size: 18, color: Theme.of(context).colorScheme.primary),
+                            AppIcon(PhosphorIconsFill.wifiHigh, size: 18, color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 8),
                           Text(
                             t.common.reconnect,

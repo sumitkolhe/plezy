@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../i18n/strings.g.dart';
@@ -60,7 +60,7 @@ class TrackerLibraryFilterScreen extends StatelessWidget {
 
             Widget libraryTile(MediaLibrary lib) => FocusableSwitchListTile(
               key: ValueKey('tracker-library-filter-${lib.globalKey}'),
-              secondary: const AppIcon(Symbols.folder_rounded, fill: 1),
+              secondary: const AppIcon(PhosphorIconsFill.folder, fill: 1),
               title: Text(lib.title),
               value: selectedIds.contains(lib.globalKey),
               onChanged: (v) async {
@@ -88,7 +88,7 @@ class TrackerLibraryFilterScreen extends StatelessWidget {
                 children: [
                   SettingSegmentedTile<TrackerLibraryFilterMode>(
                     pref: modePref,
-                    icon: Symbols.filter_list_rounded,
+                    icon: PhosphorIconsFill.funnelSimple,
                     title: t.services.libraryFilter.mode,
                     segments: [
                       ButtonSegment(

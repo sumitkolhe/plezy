@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import 'overlay_sheet.dart';
 
@@ -77,7 +77,7 @@ class BottomSheetHeader extends StatelessWidget {
         height: kMinInteractiveDimension,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: ExcludeSemantics(child: AppIcon(Symbols.arrow_back_rounded, fill: 1, color: iconColor)),
+          child: ExcludeSemantics(child: AppIcon(PhosphorIconsFill.arrowLeft, fill: 1, color: iconColor)),
         ),
       );
     } else if (icon != null) {
@@ -103,7 +103,7 @@ class BottomSheetHeader extends StatelessWidget {
               ExcludeFocusTraversal(
                 child: IconButton(
                   focusNode: closeFocusNode,
-                  icon: AppIcon(Symbols.close_rounded, fill: 1, color: iconColor),
+                  icon: AppIcon(PhosphorIconsFill.x, fill: 1, color: iconColor),
                   onPressed: onClose ?? () => OverlaySheetController.closeAdaptive(context),
                 ),
               ),

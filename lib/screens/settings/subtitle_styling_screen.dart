@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../services/settings_service.dart';
@@ -50,7 +50,7 @@ class SubtitleStylingScreen extends StatelessWidget {
           children: [
             SettingSelectionTile<SubAssOverride>(
               pref: SettingsService.subAssOverride,
-              icon: Symbols.subtitles_rounded,
+              icon: PhosphorIconsFill.subtitles,
               title: t.subtitlingStyling.assOverride,
               subtitleBuilder: _assOverrideLabel,
               options: SubAssOverride.values.map((v) => DialogOption(value: v, title: _assOverrideLabel(v))).toList(),
@@ -59,7 +59,7 @@ class SubtitleStylingScreen extends StatelessWidget {
             if (Platform.isIOS)
               SettingSelectionTile<SubtitleRenderResolution>(
                 pref: SettingsService.subtitleRenderResolution,
-                icon: Symbols.aspect_ratio_rounded,
+                icon: PhosphorIconsFill.frameCorners,
                 title: t.subtitlingStyling.renderResolution,
                 subtitleBuilder: _renderResolutionLabel,
                 options: const [
@@ -72,7 +72,7 @@ class SubtitleStylingScreen extends StatelessWidget {
             if (Platform.isAndroid)
               SettingSelectionTile<SubtitleRenderResolution>(
                 pref: SettingsService.subtitleRenderResolution,
-                icon: Symbols.aspect_ratio_rounded,
+                icon: PhosphorIconsFill.frameCorners,
                 title: t.subtitlingStyling.renderResolution,
                 subtitleBuilder: _renderResolutionLabel,
                 options: const [
@@ -85,7 +85,7 @@ class SubtitleStylingScreen extends StatelessWidget {
               ),
             SettingNumberTile(
               pref: SettingsService.subtitleFontSize,
-              icon: Symbols.format_size_rounded,
+              icon: PhosphorIconsFill.textAa,
               title: t.subtitlingStyling.fontSize,
               subtitleBuilder: (v) => '$v',
               labelText: t.subtitlingStyling.fontSize,
@@ -95,12 +95,12 @@ class SubtitleStylingScreen extends StatelessWidget {
             ),
             SettingColorTile(
               pref: SettingsService.subtitleTextColor,
-              icon: Symbols.format_color_text_rounded,
+              icon: PhosphorIconsFill.textAa,
               title: t.subtitlingStyling.textColor,
             ),
             SettingNumberTile(
               pref: SettingsService.subtitlePosition,
-              icon: Symbols.vertical_align_bottom_rounded,
+              icon: PhosphorIconsFill.arrowLineDown,
               title: t.subtitlingStyling.position,
               subtitleBuilder: _formatPosition,
               labelText: t.subtitlingStyling.position,
@@ -110,12 +110,12 @@ class SubtitleStylingScreen extends StatelessWidget {
             ),
             SettingSwitchTile(
               pref: SettingsService.subtitleBold,
-              icon: Symbols.format_bold_rounded,
+              icon: PhosphorIconsFill.textB,
               title: t.subtitlingStyling.bold,
             ),
             SettingSwitchTile(
               pref: SettingsService.subtitleItalic,
-              icon: Symbols.format_italic_rounded,
+              icon: PhosphorIconsFill.textItalic,
               title: t.subtitlingStyling.italic,
             ),
           ],
@@ -126,7 +126,7 @@ class SubtitleStylingScreen extends StatelessWidget {
           children: [
             SettingNumberTile(
               pref: SettingsService.subtitleBorderSize,
-              icon: Symbols.border_style_rounded,
+              icon: PhosphorIconsFill.squareHalf,
               title: t.subtitlingStyling.borderSize,
               subtitleBuilder: (v) => '$v',
               labelText: t.subtitlingStyling.borderSize,
@@ -136,7 +136,7 @@ class SubtitleStylingScreen extends StatelessWidget {
             ),
             SettingColorTile(
               pref: SettingsService.subtitleBorderColor,
-              icon: Symbols.border_color_rounded,
+              icon: PhosphorIconsFill.paintBrush,
               title: t.subtitlingStyling.borderColor,
             ),
           ],
@@ -147,7 +147,7 @@ class SubtitleStylingScreen extends StatelessWidget {
           children: [
             SettingNumberTile(
               pref: SettingsService.subtitleBackgroundOpacity,
-              icon: Symbols.opacity_rounded,
+              icon: PhosphorIconsFill.drop,
               title: t.subtitlingStyling.backgroundOpacity,
               subtitleBuilder: (v) => '$v%',
               labelText: t.subtitlingStyling.backgroundOpacity,
@@ -157,7 +157,7 @@ class SubtitleStylingScreen extends StatelessWidget {
             ),
             SettingColorTile(
               pref: SettingsService.subtitleBackgroundColor,
-              icon: Symbols.format_color_fill_rounded,
+              icon: PhosphorIconsFill.paintBucket,
               title: t.subtitlingStyling.backgroundColor,
             ),
           ],

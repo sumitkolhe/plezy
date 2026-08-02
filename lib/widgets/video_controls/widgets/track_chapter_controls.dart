@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 
 import '../../../focus/dpad_navigator.dart';
@@ -168,7 +168,7 @@ class TrackChapterControls extends StatelessWidget {
                   isZoomActive;
               return _buildTrackButton(
                 buttonIndex: 0,
-                icon: Symbols.tune_rounded,
+                icon: PhosphorIconsFill.sliders,
                 isActive: isActive,
                 checked: isActive,
                 tooltip: t.videoControls.settingsButton,
@@ -207,8 +207,8 @@ class TrackChapterControls extends StatelessWidget {
                 final hasActiveSubtitle = selectedSub != null && selectedSub.id != SubtitleTrack.off.id;
                 final isHidden = hasSubtitleControls && hasActiveSubtitle && !state.subtitlesVisible;
                 final icon = hasSubtitleControls
-                    ? (isHidden ? Symbols.subtitles_off_rounded : Symbols.subtitles_rounded)
-                    : Symbols.audiotrack_rounded;
+                    ? (isHidden ? PhosphorIconsFill.subtitlesSlash : PhosphorIconsFill.subtitles)
+                    : PhosphorIconsFill.musicNote;
                 return _buildTrackButton(
                   buttonIndex: currentIndex,
                   icon: icon,
@@ -238,7 +238,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: Symbols.bookmarks_rounded,
+              icon: PhosphorIconsFill.bookmarks,
               tooltip: t.videoControls.chaptersButton,
               semanticLabel: t.videoControls.chaptersButton,
               isMobile: isMobile,
@@ -270,7 +270,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: Symbols.queue_rounded,
+              icon: PhosphorIconsFill.queue,
               tooltip: t.videoControls.queue,
               semanticLabel: t.videoControls.queue,
               isMobile: isMobile,
@@ -292,7 +292,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: Symbols.picture_in_picture_alt_rounded,
+              icon: PhosphorIconsFill.pictureInpicture,
               tooltip: t.videoControls.pipButton,
               semanticLabel: t.videoControls.pipButton,
               isMobile: isMobile,
@@ -327,7 +327,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: state.isRotationLocked ? Symbols.screen_lock_rotation_rounded : Symbols.screen_rotation_rounded,
+              icon: state.isRotationLocked ? PhosphorIconsFill.deviceRotate : PhosphorIconsFill.deviceRotate,
               tooltip: state.isRotationLocked ? t.videoControls.unlockRotation : t.videoControls.lockRotation,
               semanticLabel: t.videoControls.rotationLockButton,
               checked: state.isRotationLocked,
@@ -345,7 +345,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: Symbols.lock_rounded,
+              icon: PhosphorIconsFill.lock,
               tooltip: t.videoControls.lockScreen,
               semanticLabel: t.videoControls.screenLockButton,
               isMobile: isMobile,
@@ -438,13 +438,13 @@ class TrackChapterControls extends StatelessWidget {
   IconData _getBoxFitIcon(int mode) {
     switch (mode) {
       case 0:
-        return Symbols.fit_screen_rounded; // contain (letterbox)
+        return PhosphorIconsFill.arrowsOut; // contain (letterbox)
       case 1:
-        return Symbols.aspect_ratio_rounded; // cover (fill screen)
+        return PhosphorIconsFill.frameCorners; // cover (fill screen)
       case 2:
-        return Symbols.settings_overscan_rounded; // fill (stretch)
+        return PhosphorIconsFill.arrowsOut; // fill (stretch)
       default:
-        return Symbols.fit_screen_rounded;
+        return PhosphorIconsFill.arrowsOut;
     }
   }
 

@@ -70,6 +70,7 @@ dependencies:
   xml: ^7.0.1
   string_similarity: ^2.2.0
   unorm_dart: ^0.3.2
+  phosphor_flutter: ^2.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 /// Get the replay icon based on the duration
 /// Returns numbered icons (replay_5, replay_10, replay_30) when available,
@@ -7,13 +7,13 @@ import 'package:material_symbols_icons/symbols.dart';
 IconData getReplayIcon(int seconds) {
   switch (seconds) {
     case 5:
-      return Symbols.replay_5_rounded;
+      return PhosphorIconsFill.arrowCounterClockwise;
     case 10:
-      return Symbols.replay_10_rounded;
+      return PhosphorIconsFill.arrowCounterClockwise;
     case 30:
-      return Symbols.replay_30_rounded;
+      return PhosphorIconsFill.arrowCounterClockwise;
     default:
-      return Symbols.replay_rounded;
+      return PhosphorIconsFill.arrowCounterClockwise;
   }
 }
 
@@ -23,12 +23,12 @@ IconData getReplayIcon(int seconds) {
 IconData getForwardIcon(int seconds) {
   switch (seconds) {
     case 5:
-      return Symbols.forward_5_rounded;
+      return PhosphorIconsFill.fastForward;
     case 10:
-      return Symbols.forward_10_rounded;
+      return PhosphorIconsFill.fastForward;
     case 30:
-      return Symbols.forward_30_rounded;
+      return PhosphorIconsFill.fastForward;
     default:
-      return Symbols.forward_media_rounded;
+      return PhosphorIconsFill.fastForward;
   }
 }

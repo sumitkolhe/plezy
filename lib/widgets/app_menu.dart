@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/dpad_navigator.dart';
 import '../focus/focusable_tile_mixin.dart';
@@ -427,7 +427,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final background = _backgroundColor(context, active: active);
 
     final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, fill: 1, size: 20) : null);
-    final trailing = item.trailing ?? (item.selected ? AppIcon(Symbols.check_rounded, size: 18) : null);
+    final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIconsFill.check, size: 18) : null);
     final subtitle = item.subtitleWidget ?? (item.subtitle != null ? Text(item.subtitle!) : null);
 
     return Semantics(

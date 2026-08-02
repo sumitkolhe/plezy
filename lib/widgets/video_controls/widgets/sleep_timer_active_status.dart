@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../../focus/focusable_button.dart';
 import '../../../services/sleep_timer_service.dart';
 import '../../../i18n/strings.g.dart';
@@ -52,7 +52,7 @@ class SleepTimerActiveStatus extends StatelessWidget {
                     sleepTimer.extendTimer(const Duration(minutes: 15));
                   },
                   child: OutlinedButton.icon(
-                    icon: const AppIcon(Symbols.add_rounded, fill: 1),
+                    icon: const AppIcon(PhosphorIconsFill.plus, fill: 1),
                     label: Text(t.videoControls.addTime(amount: "15", unit: " min")),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
@@ -72,7 +72,7 @@ class SleepTimerActiveStatus extends StatelessWidget {
                 },
                 useBackgroundFocus: true,
                 child: FilledButton.icon(
-                  icon: const AppIcon(Symbols.cancel_rounded, fill: 1),
+                  icon: const AppIcon(PhosphorIconsFill.xCircle, fill: 1),
                   label: Text(t.common.cancel),
                   style: FilledButton.styleFrom(backgroundColor: Colors.red),
                   onPressed: () {

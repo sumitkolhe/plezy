@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../media/media_item.dart';
@@ -74,7 +74,7 @@ class SeasonPickerChip extends StatelessWidget {
               ),
               if (choosable) ...[
                 const SizedBox(width: 4),
-                AppIcon(Symbols.expand_more_rounded, size: 16, color: tokensRef.text),
+                AppIcon(PhosphorIconsFill.caretDown, size: 16, color: tokensRef.text),
               ],
             ],
           ),
@@ -143,7 +143,7 @@ class _SeasonSheet extends StatelessWidget {
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
                       ),
-                trailing: selected ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text) : null,
+                trailing: selected ? AppIcon(PhosphorIconsFill.check, size: 18, color: tokensRef.text) : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
               );
             },

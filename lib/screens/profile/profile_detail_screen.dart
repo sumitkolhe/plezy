@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../connection/connection.dart';
@@ -289,7 +289,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                   onPressed: _setPin,
                   child: OutlinedButton.icon(
                     onPressed: _setPin,
-                    icon: const AppIcon(Symbols.lock_outline_rounded, fill: 1),
+                    icon: const AppIcon(PhosphorIconsFill.lock, fill: 1),
                     label: Text(t.profiles.setPin),
                   ),
                 )
@@ -304,7 +304,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                     onPressed: _addConnection,
                     child: TextButton.icon(
                       onPressed: _addConnection,
-                      icon: const AppIcon(Symbols.add_rounded, fill: 1),
+                      icon: const AppIcon(PhosphorIconsFill.plus, fill: 1),
                       label: Text(t.profiles.add),
                     ),
                   ),
@@ -318,7 +318,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                 onPressed: _deleteProfile,
                 child: OutlinedButton.icon(
                   onPressed: _deleteProfile,
-                  icon: AppIcon(Symbols.delete_outline_rounded, fill: 1, color: theme.colorScheme.error),
+                  icon: AppIcon(PhosphorIconsFill.trash, fill: 1, color: theme.colorScheme.error),
                   label: Text(t.profiles.deleteProfileButton, style: TextStyle(color: theme.colorScheme.error)),
                 ),
               ),
@@ -398,7 +398,7 @@ class _ConnectionsListState extends State<_ConnectionsList> {
                       title: Text(conn.displayLabel),
                       subtitle: _ConnectionSubtitle.build(pc: pc, theme: theme),
                       trailing: FocusablePopupMenuButton<String>(
-                        icon: const AppIcon(Symbols.more_vert_rounded, fill: 1),
+                        icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
                         tooltip: t.profiles.manage,
                         onSelected: (value) {
                           if (value == 'default') {

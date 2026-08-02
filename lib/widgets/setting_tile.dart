@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../screens/settings/settings_utils.dart';
 import '../services/settings_service.dart';
@@ -47,7 +47,7 @@ class _SettingRow extends StatelessWidget {
       leading: AppIcon(icon, fill: 1),
       title: Text(title),
       subtitle: subtitle,
-      trailing: trailing ?? const AppIcon(Symbols.chevron_right_rounded, fill: 1),
+      trailing: trailing ?? const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
       onTap: onTap,
     );
   }
@@ -108,7 +108,7 @@ class SettingNavigationTile extends StatelessWidget {
     this.destinationBuilder,
     this.onTap,
     this.focusNode,
-    this.trailingIcon = Symbols.chevron_right_rounded,
+    this.trailingIcon = PhosphorIconsFill.caretRight,
   }) : assert(destinationBuilder != null || onTap != null);
 
   @override

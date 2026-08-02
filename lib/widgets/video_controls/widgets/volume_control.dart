@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 
 import '../../../focus/dpad_navigator.dart';
@@ -133,7 +133,7 @@ class _VolumeControlState extends State<VolumeControl> {
               excludeSemantics: true,
               child: IconButton(
                 icon: AppIcon(
-                  isMuted ? Symbols.volume_off_rounded : Symbols.volume_up_rounded,
+                  isMuted ? PhosphorIconsFill.speakerX : PhosphorIconsFill.speakerHigh,
                   fill: 1,
                   color: Colors.white,
                 ),

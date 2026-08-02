@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../focus/focusable_action_bar.dart';
 import '../../media/library_query.dart';
 import '../../media/media_item.dart';
@@ -61,7 +61,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
   String get emptyMessage => t.playlists.emptyPlaylist;
 
   @override
-  IconData get emptyIcon => Symbols.playlist_play_rounded;
+  IconData get emptyIcon => PhosphorIconsFill.playlist;
 
   @override
   bool get hasItems => items.isNotEmpty;
@@ -115,8 +115,8 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
 
     return [
       if (items.isNotEmpty) ...[
-        FocusableAction(icon: Symbols.play_arrow_rounded, tooltip: t.common.play, onPressed: playItems),
-        FocusableAction(icon: Symbols.shuffle_rounded, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
+        FocusableAction(icon: PhosphorIconsFill.play, tooltip: t.common.play, onPressed: playItems),
+        FocusableAction(icon: PhosphorIconsFill.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
       ],
       ...buildSyncRuleActions(
         context,
@@ -132,7 +132,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
       // managed server-side via filter rules, not via DELETE.
       if (!widget.playlist.smart)
         FocusableAction(
-          icon: Symbols.delete_rounded,
+          icon: PhosphorIconsFill.trash,
           tooltip: t.playlists.delete,
           onPressed: _deletePlaylist,
           iconColor: Colors.red,
@@ -723,7 +723,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
                   mainAxisSize: .min,
                   children: [
                     AppIcon(
-                      Symbols.auto_awesome_rounded,
+                      PhosphorIconsFill.sparkle,
                       fill: 1,
                       size: 12,
                       color: Theme.of(context).colorScheme.primary,

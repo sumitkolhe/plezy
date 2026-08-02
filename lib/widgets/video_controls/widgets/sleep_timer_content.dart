@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../i18n/strings.g.dart';
 import '../../../mpv/mpv.dart';
@@ -100,7 +100,7 @@ class _SleepTimerEventColumn extends StatelessWidget {
             children: [
               FocusableListTile(
                 leading: AppIcon(
-                  Symbols.hourglass_bottom_rounded,
+                  PhosphorIconsFill.hourglass,
                   fill: 1,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
@@ -160,7 +160,7 @@ class _SleepTimerDurationColumn extends StatelessWidget {
               );
 
               return FocusableListTile(
-                leading: AppIcon(Symbols.timer_rounded, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                leading: AppIcon(PhosphorIconsFill.timer, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: minutes == activeMinutes,
                 onTap: () {

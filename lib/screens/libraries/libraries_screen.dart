@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../focus/focusable_action_bar.dart';
 import '../../focus/dpad_navigator.dart';
@@ -738,7 +738,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
             else
               Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(width: 4),
-            const AppIcon(Symbols.arrow_drop_down_rounded, fill: 1, size: 24),
+            const AppIcon(PhosphorIconsFill.caretDown, fill: 1, size: 24),
           ],
         ),
       ),
@@ -781,13 +781,13 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     List<FocusableAction> appBarActions() => [
       if (allLibraries.isNotEmpty)
         FocusableAction(
-          icon: Symbols.edit_rounded,
+          icon: PhosphorIconsFill.pencilSimple,
           tooltip: t.libraries.manageLibraries,
           onPressed: _showLibraryManagementSheet,
         ),
       if (showBrowseOptionsAction)
         FocusableAction(
-          icon: Symbols.tune_rounded,
+          icon: PhosphorIconsFill.sliders,
           tooltip: t.libraries.libraryOptions,
           onPressed: _showBrowseOptionsForCurrentTab,
           // Badge the icon with a dot while the browse tab has active filters
@@ -799,7 +799,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
                   icon: Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      const AppIcon(Symbols.tune_rounded, fill: 1),
+                      const AppIcon(PhosphorIconsFill.sliders, fill: 1),
                       Positioned(
                         top: -2,
                         right: -2,
@@ -822,7 +822,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       // TV/desktop, where it also refreshes every visible tab at once.
       if (!PlatformDetector.isHandheld(context))
         FocusableAction(
-          icon: Symbols.refresh_rounded,
+          icon: PhosphorIconsFill.arrowsClockwise,
           tooltip: t.common.refresh,
           onPressed: _refreshSelectedLibraryTabs,
         ),
@@ -890,7 +890,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       body = buildSimpleScroll(
         body: ErrorStateWidget(
           message: _errorMessage!,
-          icon: Symbols.error_outline_rounded,
+          icon: PhosphorIconsFill.warningCircle,
           onRetry: () {
             final librariesProvider = context.read<LibrariesProvider>();
             librariesProvider.refresh();
@@ -900,13 +900,13 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     } else if (visibleLibraries.isEmpty && selectedLibrary == null) {
       body = buildSimpleScroll(
         body: allLibraries.isEmpty
-            ? EmptyStateWidget(message: t.libraries.noLibrariesFound, icon: Symbols.video_library_rounded)
+            ? EmptyStateWidget(message: t.libraries.noLibrariesFound, icon: PhosphorIconsFill.filmStrip)
             : EmptyStateWidget(
                 message: t.libraries.allLibrariesHidden,
-                icon: Symbols.visibility_off_rounded,
+                icon: PhosphorIconsFill.eyeSlash,
                 onAction: _showLibraryManagementSheet,
                 actionLabel: t.libraries.manageLibraries,
-                actionIcon: Symbols.edit_rounded,
+                actionIcon: PhosphorIconsFill.pencilSimple,
               ),
       );
     } else if (selectedLibrary != null) {

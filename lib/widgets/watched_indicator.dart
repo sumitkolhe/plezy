@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../media/media_item.dart';
 import '../media/media_item_types.dart';
@@ -101,7 +101,7 @@ class WatchedIndicator extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4)],
               ),
-              child: AppIcon(Symbols.check_rounded, fill: 1, color: tokens(context).bg, size: size.checkIconSize),
+              child: AppIcon(PhosphorIconsFill.check, fill: 1, color: tokens(context).bg, size: size.checkIconSize),
             ),
           ),
         // Unwatched count for shows/seasons

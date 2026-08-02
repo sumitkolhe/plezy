@@ -5,7 +5,7 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/database/app_database.dart';
@@ -1365,17 +1365,17 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.byIcon(Symbols.subtitles_rounded), findsOneWidget);
+      expect(find.byIcon(PhosphorIconsFill.subtitles), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no']);
-      expect(find.byIcon(Symbols.subtitles_off_rounded), findsOneWidget);
+      expect(find.byIcon(PhosphorIconsFill.subtitlesSlash), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no'], reason: 'the latest toggle must wait for the in-flight native write');
-      expect(find.byIcon(Symbols.subtitles_rounded), findsOneWidget);
+      expect(find.byIcon(PhosphorIconsFill.subtitles), findsOneWidget);
 
       firstWrite.complete();
       await tester.pump();
@@ -1387,7 +1387,7 @@ void main() {
       await tester.pump();
 
       expect(tester.takeException(), isNull);
-      expect(find.byIcon(Symbols.subtitles_off_rounded), findsOneWidget);
+      expect(find.byIcon(PhosphorIconsFill.subtitlesSlash), findsOneWidget);
       chrome.cancelAutoHide();
       await tester.pumpWidget(const SizedBox.shrink());
     });

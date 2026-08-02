@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../media/media_item.dart';
 import '../utils/formatters.dart';
@@ -77,7 +77,7 @@ class MediaRatingBadge extends StatelessWidget {
   static _MediaRatingBadgeData? _ratingDataFor(MediaItem item) {
     final rating = item.rating;
     if (rating == null) return null;
-    return _MediaRatingBadgeData(value: rating, fallbackIcon: Symbols.star_rounded, fallbackText: formatRating(rating));
+    return _MediaRatingBadgeData(value: rating, fallbackIcon: PhosphorIconsFill.star, fallbackText: formatRating(rating));
   }
 
   @override

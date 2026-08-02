@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/focusable_wrapper.dart';
 import '../i18n/strings.g.dart';
@@ -51,7 +51,7 @@ class _FileInfoBottomSheetState extends State<FileInfoBottomSheet> {
       children: [
         BottomSheetHeader(
           title: t.fileInfo.title,
-          icon: Symbols.info_rounded,
+          icon: PhosphorIconsFill.info,
           closeFocusNode: _initialFocusNode,
           // Flat sheet: the tonal cards do the separating, so the header
           // keeps no rule under it.
@@ -159,7 +159,7 @@ class _VersionBlock extends StatelessWidget {
             padding: EdgeInsets.only(top: index == 0 ? 0 : 8, bottom: 10),
             child: Row(
               children: [
-                AppIcon(Symbols.layers_rounded, size: 18, fill: 1, color: theme.colorScheme.primary),
+                AppIcon(PhosphorIconsFill.stack, size: 18, fill: 1, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
                   t.fileInfo.versionCounter(index: index + 1, count: versionCount),
@@ -182,13 +182,13 @@ class _VersionBlock extends StatelessWidget {
             ),
           ),
         ],
-        _InfoSection(title: t.fileInfo.overview, icon: Symbols.movie_info_rounded, fields: _overviewFields(version)),
+        _InfoSection(title: t.fileInfo.overview, icon: PhosphorIconsFill.info, fields: _overviewFields(version)),
         for (var partIndex = 0; partIndex < version.parts.length; partIndex++)
           _PartBlock(part: version.parts[partIndex], index: partIndex, partCount: version.parts.length),
         if (version.attachments.isNotEmpty)
           _InfoSection(
             title: t.fileInfo.attachments,
-            icon: Symbols.attach_file_rounded,
+            icon: PhosphorIconsFill.paperclip,
             subtitle: '${version.attachments.length}',
             fields: [
               for (final attachment in version.attachments)
@@ -203,7 +203,7 @@ class _VersionBlock extends StatelessWidget {
           ),
         _InfoSection(
           title: t.fileInfo.delivery,
-          icon: Symbols.cell_tower_rounded,
+          icon: PhosphorIconsFill.cellTower,
           fields: _deliveryFields(context, version),
         ),
         if (!isLast) const SizedBox(height: 20),
@@ -307,7 +307,7 @@ class _PartBlock extends StatelessWidget {
       children: [
         _InfoSection(
           title: partCount > 1 ? t.fileInfo.fileCounter(index: index + 1, count: partCount) : t.fileInfo.file,
-          icon: Symbols.description_rounded,
+          icon: PhosphorIconsFill.fileText,
           fields: _fileFields(),
           leading: part.filePath == null ? null : _PathRow(path: part.filePath!),
         ),
@@ -398,7 +398,7 @@ class _PathRow extends StatelessWidget {
               const SizedBox(width: 8),
               Tooltip(
                 message: t.fileInfo.copyPath,
-                child: AppIcon(Symbols.content_copy_rounded, size: 18, color: theme.colorScheme.onSurfaceVariant),
+                child: AppIcon(PhosphorIconsFill.copy, size: 18, color: theme.colorScheme.onSurfaceVariant),
               ),
             ],
           ),
@@ -442,12 +442,12 @@ class _StreamGroup extends StatelessWidget {
   };
 
   IconData _groupIcon(MediaStreamKind kind) => switch (kind) {
-    MediaStreamKind.video => Symbols.movie_rounded,
-    MediaStreamKind.audio => Symbols.graphic_eq_rounded,
-    MediaStreamKind.subtitle => Symbols.subtitles_rounded,
-    MediaStreamKind.image => Symbols.image_rounded,
-    MediaStreamKind.lyric => Symbols.lyrics_rounded,
-    MediaStreamKind.data || MediaStreamKind.unknown => Symbols.data_object_rounded,
+    MediaStreamKind.video => PhosphorIconsFill.filmSlate,
+    MediaStreamKind.audio => PhosphorIconsFill.waveform,
+    MediaStreamKind.subtitle => PhosphorIconsFill.subtitles,
+    MediaStreamKind.image => PhosphorIconsFill.image,
+    MediaStreamKind.lyric => PhosphorIconsFill.textAlignLeft,
+    MediaStreamKind.data || MediaStreamKind.unknown => PhosphorIconsFill.bracketsCurly,
   };
 
   List<String> _flagChips(MediaStreamDetails stream) {

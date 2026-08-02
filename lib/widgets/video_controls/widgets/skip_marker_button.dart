@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show KeyDownEvent, LogicalKeyboardKey;
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../focus/focusable_wrapper.dart';
 import '../../../media/media_source_info.dart';
@@ -56,7 +56,7 @@ class SkipMarkerButton extends StatelessWidget {
     final buttonText = showAutoSkipCountdown && remainingSeconds > 0
         ? '$baseButtonText ($remainingSeconds)'
         : baseButtonText;
-    final buttonIcon = showNextEpisode ? Symbols.skip_next_rounded : Symbols.fast_forward_rounded;
+    final buttonIcon = showNextEpisode ? PhosphorIconsFill.skipForward : PhosphorIconsFill.fastForward;
 
     return FocusableWrapper(
       focusNode: focusNode,

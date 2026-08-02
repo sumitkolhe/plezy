@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -65,19 +65,19 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchPrompt(source: sourceName),
-              icon: Symbols.search_rounded,
+              icon: PhosphorIconsFill.magnifyingGlass,
               iconSize: 80,
             ),
           )
         else if (lastSearchFailed)
           SliverFillRemaining(
-            child: StateMessageWidget(message: t.explore.searchFailed, icon: Symbols.error_rounded, iconSize: 80),
+            child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIconsFill.warningCircle, iconSize: 80),
           )
         else if (searchResults.isEmpty)
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchEmpty(query: lastSearchedQuery),
-              icon: Symbols.search_off_rounded,
+              icon: PhosphorIconsFill.magnifyingGlassMinus,
               iconSize: 80,
             ),
           )

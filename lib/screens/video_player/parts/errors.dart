@@ -52,7 +52,7 @@ extension _VideoPlayerErrorMethods on VideoPlayerScreenState {
     _recordLifecycleState('backend_switched', action: 'mpv_fallback');
 
     _toastController.show(
-      Symbols.swap_horiz_rounded,
+      PhosphorIconsFill.arrowsLeftRight,
       t.messages.switchingToCompatiblePlayer,
       duration: const Duration(seconds: 2),
     );
