@@ -291,8 +291,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Klavye kısayollarını özelleştirin';
 	@override String get videoPlayerNavigation => 'Video Oynatıcı Gezinmesi';
 	@override String get videoPlayerNavigationDescription => 'Video oynatıcı kontrollerinde gezinmek için yön tuşlarını kullanın';
-	@override String get crashReporting => 'Çökme Bildirimi';
-	@override String get crashReportingDescription => 'Uygulamanın geliştirilmesine yardımcı olmak için çökme raporları gönder';
 	@override String get debugLogging => 'Hata Ayıklama Günlüğü';
 	@override String get debugLoggingDescription => 'Sorun giderme için ayrıntılı günlük kaydını etkinleştir';
 	@override String get viewLogs => 'Günlükleri Görüntüle';
@@ -1926,8 +1924,6 @@ extension on TranslationsTr {
 			'settings.keyboardShortcutsDescription' => 'Klavye kısayollarını özelleştirin',
 			'settings.videoPlayerNavigation' => 'Video Oynatıcı Gezinmesi',
 			'settings.videoPlayerNavigationDescription' => 'Video oynatıcı kontrollerinde gezinmek için yön tuşlarını kullanın',
-			'settings.crashReporting' => 'Çökme Bildirimi',
-			'settings.crashReportingDescription' => 'Uygulamanın geliştirilmesine yardımcı olmak için çökme raporları gönder',
 			'settings.debugLogging' => 'Hata Ayıklama Günlüğü',
 			'settings.debugLoggingDescription' => 'Sorun giderme için ayrıntılı günlük kaydını etkinleştir',
 			'settings.viewLogs' => 'Günlükleri Görüntüle',
@@ -2283,10 +2279,10 @@ extension on TranslationsTr {
 			'messages.seasonsLoadFailed' => 'Sezonlar yüklenemedi',
 			'messages.noEpisodesFound' => 'İlk sezonda bölüm bulunamadı',
 			'messages.noEpisodesFoundGeneral' => 'Bölüm bulunamadı',
-			_ => null,
-		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Bölümler yüklenemedi',
 			'messages.noResultsFound' => 'Sonuç bulunamadı',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyku zamanlayıcısı ${label} için ayarlandı',
 			'messages.noItemsAvailable' => 'Öge bulunmuyor',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma kuyruğu oluşturulamadı — öge yok',
@@ -2797,10 +2793,10 @@ extension on TranslationsTr {
 			'metadataEdit.sortTitle' => 'Sıralama Başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal Başlık',
 			'metadataEdit.releaseDate' => 'Yayınlanma Tarihi',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'İçerik Derecelendirmesi',
 			'metadataEdit.studio' => 'Stüdyo',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Özet',
 			'metadataEdit.poster' => 'Afiş',

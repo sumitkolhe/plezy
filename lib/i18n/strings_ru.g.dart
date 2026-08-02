@@ -291,8 +291,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Настроить горячие клавиши';
 	@override String get videoPlayerNavigation => 'Навигация видеоплеера';
 	@override String get videoPlayerNavigationDescription => 'Использовать клавиши стрелок для навигации по элементам управления плеером';
-	@override String get crashReporting => 'Отчёты об ошибках';
-	@override String get crashReportingDescription => 'Отправлять отчёты об ошибках для улучшения приложения';
 	@override String get debugLogging => 'Журнал отладки';
 	@override String get debugLoggingDescription => 'Включить подробное журналирование для устранения неполадок';
 	@override String get viewLogs => 'Просмотр логов';
@@ -1921,8 +1919,6 @@ extension on TranslationsRu {
 			'settings.keyboardShortcutsDescription' => 'Настроить горячие клавиши',
 			'settings.videoPlayerNavigation' => 'Навигация видеоплеера',
 			'settings.videoPlayerNavigationDescription' => 'Использовать клавиши стрелок для навигации по элементам управления плеером',
-			'settings.crashReporting' => 'Отчёты об ошибках',
-			'settings.crashReportingDescription' => 'Отправлять отчёты об ошибках для улучшения приложения',
 			'settings.debugLogging' => 'Журнал отладки',
 			'settings.debugLoggingDescription' => 'Включить подробное журналирование для устранения неполадок',
 			'settings.viewLogs' => 'Просмотр логов',
@@ -2278,10 +2274,10 @@ extension on TranslationsRu {
 			'messages.noResultsFound' => 'Результаты не найдены',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Таймер сна установлен на ${label}',
 			'messages.noItemsAvailable' => 'Нет доступных элементов',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Не удалось создать очередь воспроизведения — нет элементов',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Не удалось ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Переключение на совместимый плеер...',
 			'messages.serverLimitTitle' => 'Ошибка воспроизведения',
 			'messages.serverLimitBody' => 'Ошибка сервера (HTTP 500). Лимит пропускной способности/транскодирования, вероятно, отклонил сессию. Попросите владельца изменить настройки.',
@@ -2792,10 +2788,10 @@ extension on TranslationsRu {
 			'metadataEdit.selectPoster' => 'Выбрать постер',
 			'metadataEdit.selectBackground' => 'Выбрать фон',
 			'metadataEdit.selectLogo' => 'Выбрать логотип',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Выбрать квадратное изображение',
 			'metadataEdit.fromUrl' => 'По URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Загрузить файл',
 			'metadataEdit.enterImageUrl' => 'Введите URL изображения',
 			'metadataEdit.imageUrl' => 'URL изображения',

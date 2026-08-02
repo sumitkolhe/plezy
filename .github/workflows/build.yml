@@ -15,8 +15,8 @@ on:
 env:
   # Only place this workflow names the SDK; .github/actions/setup-flutter-git pins the same release.
   FLUTTER_VERSION: "3.44.0"
-  # Shared by every release build command; SENTRY_DIST stays per-platform.
-  RELEASE_DART_DEFINES: --dart-define=ENABLE_UPDATE_CHECK=true ${{ github.repository == 'edde746/plezy' && '--dart-define=ENABLE_SENTRY=true' || '' }} --dart-define=GIT_COMMIT=${{ github.sha }} --dart-define=SENTRY_ENVIRONMENT=github --dart-define=ENABLE_DONATIONS=true
+  # Shared by every release build command.
+  RELEASE_DART_DEFINES: --dart-define=ENABLE_UPDATE_CHECK=true --dart-define=GIT_COMMIT=${{ github.sha }} --dart-define=ENABLE_DONATIONS=true
   TRUSTED_BUILD_CACHE_VERSION: trusted-build-v1
 jobs:
   validate-trusted-ref:
@@ -89,14 +89,7 @@ jobs:
           EOF
 
       - name: Build APKs
-        run: flutter build apk --release --split-per-abi ${{ env.RELEASE_DART_DEFINES }} --dart-define=SENTRY_DIST=github-android-apk --obfuscate --split-debug-info=debug-info/android-apk --extra-gen-snapshot-options=--save-obfuscation-map=debug-info/android-apk/obfuscation.map.json
-
-      - name: Upload symbols to bugs.plezy.app
-        if: github.repository == 'edde746/plezy'
-        env:
-          BUGS_ADMIN_TOKEN: ${{ secrets.BUGS_ADMIN_TOKEN }}
-          SENTRY_DIST: github-android-apk
-        run: ./scripts/upload-symbols.sh android-apk
+        run: flutter build apk --release --split-per-abi ${{ env.RELEASE_DART_DEFINES }} --obfuscate --split-debug-info=debug-info/android-apk --extra-gen-snapshot-options=--save-obfuscation-map=debug-info/android-apk/obfuscation.map.json
 
       - name: Clean up keystore
         if: always()
@@ -167,14 +160,7 @@ jobs:
         run: flutter pub get --enforce-lockfile --no-example
 
       - name: Build iOS (no codesign)
-        run: flutter build ios --release --no-codesign ${{ env.RELEASE_DART_DEFINES }} --dart-define=SENTRY_DIST=github-ios --split-debug-info=debug-info/ios
-
-      - name: Upload symbols to bugs.plezy.app
-        if: github.repository == 'edde746/plezy'
-        env:
-          BUGS_ADMIN_TOKEN: ${{ secrets.BUGS_ADMIN_TOKEN }}
-          SENTRY_DIST: github-ios
-        run: ./scripts/upload-symbols.sh ios
+        run: flutter build ios --release --no-codesign ${{ env.RELEASE_DART_DEFINES }} --split-debug-info=debug-info/ios
 
       - name: Create IPA
         run: |

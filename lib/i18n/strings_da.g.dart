@@ -291,8 +291,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Tilpas tastaturgenveje';
 	@override String get videoPlayerNavigation => 'Videoafspillernavigation';
 	@override String get videoPlayerNavigationDescription => 'Brug piletaster til at navigere videoafspillerkontroller';
-	@override String get crashReporting => 'Fejlrapportering';
-	@override String get crashReportingDescription => 'Send fejlrapporter for at hjælpe med at forbedre appen';
 	@override String get debugLogging => 'Fejlfindingslogning';
 	@override String get debugLoggingDescription => 'Aktiver detaljeret logning til fejlfinding';
 	@override String get viewLogs => 'Vis logfiler';
@@ -1915,8 +1913,6 @@ extension on TranslationsDa {
 			'settings.keyboardShortcutsDescription' => 'Tilpas tastaturgenveje',
 			'settings.videoPlayerNavigation' => 'Videoafspillernavigation',
 			'settings.videoPlayerNavigationDescription' => 'Brug piletaster til at navigere videoafspillerkontroller',
-			'settings.crashReporting' => 'Fejlrapportering',
-			'settings.crashReportingDescription' => 'Send fejlrapporter for at hjælpe med at forbedre appen',
 			'settings.debugLogging' => 'Fejlfindingslogning',
 			'settings.debugLoggingDescription' => 'Aktiver detaljeret logning til fejlfinding',
 			'settings.viewLogs' => 'Vis logfiler',
@@ -2272,10 +2268,10 @@ extension on TranslationsDa {
 			'messages.noResultsFound' => 'Ingen resultater fundet',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sove-timer indstillet til ${label}',
 			'messages.noItemsAvailable' => 'Ingen elementer tilgængelige',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke oprette en afspilningskø — ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
 			'messages.serverLimitTitle' => 'Afspilning mislykkedes',
 			'messages.serverLimitBody' => 'Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.',
@@ -2786,10 +2782,10 @@ extension on TranslationsDa {
 			'metadataEdit.selectPoster' => 'Vælg plakat',
 			'metadataEdit.selectBackground' => 'Vælg baggrund',
 			'metadataEdit.selectLogo' => 'Vælg logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Vælg kvadratisk billede',
 			'metadataEdit.fromUrl' => 'Fra URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Upload fil',
 			'metadataEdit.enterImageUrl' => 'Indtast billed-URL',
 			'metadataEdit.imageUrl' => 'Billed-URL',

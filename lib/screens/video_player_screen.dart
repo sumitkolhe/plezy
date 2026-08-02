@@ -9,7 +9,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter/services.dart';
 import 'package:os_media_controls/os_media_controls.dart';
 import 'package:provider/provider.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 import '../mpv/mpv.dart';
 import '../mpv/player/platform/player_android.dart';
@@ -1440,7 +1439,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
       unawaited(_restoreSystemUiAndOrientation());
     }
 
-    Sentry.addBreadcrumb(Breadcrumb(message: 'Player dispose', category: 'player'));
     final volumeController = _volumeController;
     _volumeController = null;
     volumeController?.dispose();

@@ -291,8 +291,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Klaviatura qısayollarını özünüləşdirin';
 	@override String get videoPlayerNavigation => 'Video oynadıcı naviqasiyası';
 	@override String get videoPlayerNavigationDescription => 'Oynadıcı idarəetmələrində hərəkət etmək üçün ox düymələrini istifadə edin';
-	@override String get crashReporting => 'Xəta hesabatı';
-	@override String get crashReportingDescription => 'Tətbiqi təkmilləşdirməyə kömək etmək üçün xəta hesabatları göndərin';
 	@override String get debugLogging => 'Xəta saxlama jurnalı';
 	@override String get debugLoggingDescription => 'Problemləri həll etmək üçün ətraflı jurnal qeydiyyatını aktivləşdirin';
 	@override String get viewLogs => 'Jurnallara bax';
@@ -1926,8 +1924,6 @@ extension on TranslationsAz {
 			'settings.keyboardShortcutsDescription' => 'Klaviatura qısayollarını özünüləşdirin',
 			'settings.videoPlayerNavigation' => 'Video oynadıcı naviqasiyası',
 			'settings.videoPlayerNavigationDescription' => 'Oynadıcı idarəetmələrində hərəkət etmək üçün ox düymələrini istifadə edin',
-			'settings.crashReporting' => 'Xəta hesabatı',
-			'settings.crashReportingDescription' => 'Tətbiqi təkmilləşdirməyə kömək etmək üçün xəta hesabatları göndərin',
 			'settings.debugLogging' => 'Xəta saxlama jurnalı',
 			'settings.debugLoggingDescription' => 'Problemləri həll etmək üçün ətraflı jurnal qeydiyyatını aktivləşdirin',
 			'settings.viewLogs' => 'Jurnallara bax',
@@ -2283,10 +2279,10 @@ extension on TranslationsAz {
 			'messages.seasonsLoadFailed' => 'Mövsümlər yüklənə bilmədi',
 			'messages.noEpisodesFound' => 'Birinci mövsümdə seriya tapılmadı',
 			'messages.noEpisodesFoundGeneral' => 'Seriya tapılmadı',
-			_ => null,
-		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Seriyalar yüklənə bilmədi',
 			'messages.noResultsFound' => 'Nəticə tapılmadı',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Yuxu taymeri ${label} üçün təyin edildi',
 			'messages.noItemsAvailable' => 'Element yoxdur',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma növbəsi yaradıla bilmədi — element yoxdur',
@@ -2797,10 +2793,10 @@ extension on TranslationsAz {
 			'metadataEdit.sortTitle' => 'Sıralama başlığı',
 			'metadataEdit.originalTitle' => 'Orijinal başlıq',
 			'metadataEdit.releaseDate' => 'Buraxılış tarixi',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Məzmun reytinqi',
 			'metadataEdit.studio' => 'Studiya',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Deviz/Slogan',
 			'metadataEdit.summary' => 'Məzmun/Xülasə',
 			'metadataEdit.poster' => 'Poster',

@@ -291,8 +291,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Personalizar atalhos de teclado';
 	@override String get videoPlayerNavigation => 'Navegação do reprodutor de vídeo';
 	@override String get videoPlayerNavigationDescription => 'Usar as teclas de seta para navegar pelos controles do reprodutor';
-	@override String get crashReporting => 'Relatório de Erros';
-	@override String get crashReportingDescription => 'Enviar relatórios de erros para ajudar a melhorar o app';
 	@override String get debugLogging => 'Log de Depuração';
 	@override String get debugLoggingDescription => 'Ativar log detalhado para solução de problemas';
 	@override String get viewLogs => 'Ver Logs';
@@ -1915,8 +1913,6 @@ extension on TranslationsPt {
 			'settings.keyboardShortcutsDescription' => 'Personalizar atalhos de teclado',
 			'settings.videoPlayerNavigation' => 'Navegação do reprodutor de vídeo',
 			'settings.videoPlayerNavigationDescription' => 'Usar as teclas de seta para navegar pelos controles do reprodutor',
-			'settings.crashReporting' => 'Relatório de Erros',
-			'settings.crashReportingDescription' => 'Enviar relatórios de erros para ajudar a melhorar o app',
 			'settings.debugLogging' => 'Log de Depuração',
 			'settings.debugLoggingDescription' => 'Ativar log detalhado para solução de problemas',
 			'settings.viewLogs' => 'Ver Logs',
@@ -2272,10 +2268,10 @@ extension on TranslationsPt {
 			'messages.noResultsFound' => 'Nenhum resultado encontrado',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Temporizador de suspensão definido como ${label}',
 			'messages.noItemsAvailable' => 'Nenhum item disponível',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Falha ao criar a fila de reprodução — nenhum item',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Falha ao ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
 			'messages.serverLimitTitle' => 'Falha na reprodução',
 			'messages.serverLimitBody' => 'Erro do servidor (HTTP 500). Um limite de largura de banda ou transcodificação provavelmente rejeitou esta sessão. Peça ao proprietário do servidor para ajustá-lo.',
@@ -2786,10 +2782,10 @@ extension on TranslationsPt {
 			'metadataEdit.selectPoster' => 'Selecionar pôster',
 			'metadataEdit.selectBackground' => 'Selecionar Plano de Fundo',
 			'metadataEdit.selectLogo' => 'Selecionar Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Selecionar Imagem Quadrada',
 			'metadataEdit.fromUrl' => 'Da URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Enviar Arquivo',
 			'metadataEdit.enterImageUrl' => 'Insira a URL da imagem',
 			'metadataEdit.imageUrl' => 'URL da Imagem',

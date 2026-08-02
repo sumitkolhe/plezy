@@ -51,11 +51,6 @@ extension _VideoPlayerDisplayMatchingMethods on VideoPlayerScreenState {
         await _playWithPlaybackIntent(player!);
       }
 
-      unawaited(
-        Sentry.addBreadcrumb(
-          Breadcrumb(message: 'Frame rate matching: ${fps}fps, switched=$didSwitch', category: 'player'),
-        ),
-      );
       appLogger.d('Frame rate matching: Set display to ${fps}fps (duration: ${durationMs}ms, switched=$didSwitch)');
     } catch (e) {
       appLogger.w('Failed to apply frame rate matching', error: e);

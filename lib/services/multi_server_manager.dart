@@ -10,7 +10,6 @@ import '../media/media_server_client.dart';
 import 'jellyfin_client.dart';
 import 'jellyfin_endpoint_discovery.dart';
 import '../utils/app_logger.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'storage_service.dart';
 
 /// Manages multiple media-server connections simultaneously.
@@ -696,11 +695,6 @@ class MultiServerManager {
     if (offline.isEmpty) return;
 
     appLogger.d('Attempting reconnection for ${offline.length} offline servers');
-    unawaited(
-      Sentry.addBreadcrumb(
-        Breadcrumb(message: 'Reconnecting ${offline.length} offline server(s)', category: 'servers'),
-      ),
-    );
 
     if (forceRediscovery) {
       final storage = await StorageService.getInstance();

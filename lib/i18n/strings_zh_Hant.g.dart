@@ -292,8 +292,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get keyboardShortcutsDescription => '自訂鍵盤快速鍵';
 	@override String get videoPlayerNavigation => '影片播放器導覽';
 	@override String get videoPlayerNavigationDescription => '使用方向鍵導覽影片播放器控制項';
-	@override String get crashReporting => '當機報告';
-	@override String get crashReportingDescription => '傳送當機報告以協助改善應用程式';
 	@override String get debugLogging => '偵錯日誌';
 	@override String get debugLoggingDescription => '啟用詳細日誌記錄以便進行疑難排解';
 	@override String get viewLogs => '查看日誌';
@@ -1913,8 +1911,6 @@ extension on TranslationsZhHant {
 			'settings.keyboardShortcutsDescription' => '自訂鍵盤快速鍵',
 			'settings.videoPlayerNavigation' => '影片播放器導覽',
 			'settings.videoPlayerNavigationDescription' => '使用方向鍵導覽影片播放器控制項',
-			'settings.crashReporting' => '當機報告',
-			'settings.crashReportingDescription' => '傳送當機報告以協助改善應用程式',
 			'settings.debugLogging' => '偵錯日誌',
 			'settings.debugLoggingDescription' => '啟用詳細日誌記錄以便進行疑難排解',
 			'settings.viewLogs' => '查看日誌',
@@ -2270,10 +2266,10 @@ extension on TranslationsZhHant {
 			'messages.noResultsFound' => '找不到結果',
 			'messages.sleepTimerSet' => ({required Object label}) => '睡眠計時器已設定為 ${label}',
 			'messages.noItemsAvailable' => '沒有可用的項目',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '無法建立播放佇列 — 沒有項目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '無法${action}：${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
 			'messages.serverLimitTitle' => '播放失敗',
 			'messages.serverLimitBody' => '伺服器錯誤（HTTP 500）。伺服器的頻寬或轉碼限制可能拒絕此播放要求。請聯絡伺服器擁有者調整設定。',
@@ -2784,10 +2780,10 @@ extension on TranslationsZhHant {
 			'metadataEdit.selectPoster' => '選擇海報',
 			'metadataEdit.selectBackground' => '選擇背景圖',
 			'metadataEdit.selectLogo' => '選擇標誌',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '選擇方形圖片',
 			'metadataEdit.fromUrl' => '自訂網址',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '上傳檔案',
 			'metadataEdit.enterImageUrl' => '輸入圖片 URL',
 			'metadataEdit.imageUrl' => '圖片 URL',

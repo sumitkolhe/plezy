@@ -291,8 +291,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Anpassa tangentbordsgenvägar';
 	@override String get videoPlayerNavigation => 'Navigering i videospelaren';
 	@override String get videoPlayerNavigationDescription => 'Använd piltangenter för att navigera videospelarens kontroller';
-	@override String get crashReporting => 'Kraschrapportering';
-	@override String get crashReportingDescription => 'Skicka kraschrapporter för att förbättra appen';
 	@override String get debugLogging => 'Felsökningsloggning';
 	@override String get debugLoggingDescription => 'Aktivera detaljerad loggning för felsökning';
 	@override String get viewLogs => 'Visa loggar';
@@ -1915,8 +1913,6 @@ extension on TranslationsSv {
 			'settings.keyboardShortcutsDescription' => 'Anpassa tangentbordsgenvägar',
 			'settings.videoPlayerNavigation' => 'Navigering i videospelaren',
 			'settings.videoPlayerNavigationDescription' => 'Använd piltangenter för att navigera videospelarens kontroller',
-			'settings.crashReporting' => 'Kraschrapportering',
-			'settings.crashReportingDescription' => 'Skicka kraschrapporter för att förbättra appen',
 			'settings.debugLogging' => 'Felsökningsloggning',
 			'settings.debugLoggingDescription' => 'Aktivera detaljerad loggning för felsökning',
 			'settings.viewLogs' => 'Visa loggar',
@@ -2272,10 +2268,10 @@ extension on TranslationsSv {
 			'messages.noResultsFound' => 'Inga resultat hittades',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Sovtimer inställd för ${label}',
 			'messages.noItemsAvailable' => 'Inga objekt tillgängliga',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Det gick inte att skapa en uppspelningskö – inga objekt',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Det gick inte att ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
 			'messages.serverLimitTitle' => 'Uppspelningen misslyckades',
 			'messages.serverLimitBody' => 'Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.',
@@ -2786,10 +2782,10 @@ extension on TranslationsSv {
 			'metadataEdit.selectPoster' => 'Välj affisch',
 			'metadataEdit.selectBackground' => 'Välj bakgrund',
 			'metadataEdit.selectLogo' => 'Välj logotyp',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Välj kvadratisk bild',
 			'metadataEdit.fromUrl' => 'Från URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Ladda upp fil',
 			'metadataEdit.enterImageUrl' => 'Ange bild-URL',
 			'metadataEdit.imageUrl' => 'Bild-URL',

@@ -123,7 +123,6 @@ void main() {
       ),
       _MigratedRow(title: t.settings.clearImageCache, focusLabel: 'settings_clear_image_cache'),
       _MigratedRow(title: t.settings.resetSettings, focusLabel: 'settings_reset_settings'),
-      const _MigratedRow(title: 'Test Sentry', isVisible: kDebugMode),
       const _MigratedRow(title: 'Test ANR', isVisible: kDebugMode),
       _MigratedRow(title: t.settings.exportSettings, focusLabel: 'settings_export_settings'),
       _MigratedRow(title: t.settings.importSettings, focusLabel: 'settings_import_settings'),

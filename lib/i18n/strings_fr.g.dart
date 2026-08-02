@@ -291,8 +291,6 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Personnaliser les raccourcis clavier';
 	@override String get videoPlayerNavigation => 'Navigation dans le lecteur vidéo';
 	@override String get videoPlayerNavigationDescription => 'Utiliser les touches fléchées pour parcourir les commandes du lecteur vidéo';
-	@override String get crashReporting => 'Rapports de plantage';
-	@override String get crashReportingDescription => 'Envoyer des rapports de plantage pour améliorer l\'application';
 	@override String get debugLogging => 'Journalisation de débogage';
 	@override String get debugLoggingDescription => 'Activer la journalisation détaillée pour le dépannage';
 	@override String get viewLogs => 'Voir les journaux';
@@ -1915,8 +1913,6 @@ extension on TranslationsFr {
 			'settings.keyboardShortcutsDescription' => 'Personnaliser les raccourcis clavier',
 			'settings.videoPlayerNavigation' => 'Navigation dans le lecteur vidéo',
 			'settings.videoPlayerNavigationDescription' => 'Utiliser les touches fléchées pour parcourir les commandes du lecteur vidéo',
-			'settings.crashReporting' => 'Rapports de plantage',
-			'settings.crashReportingDescription' => 'Envoyer des rapports de plantage pour améliorer l\'application',
 			'settings.debugLogging' => 'Journalisation de débogage',
 			'settings.debugLoggingDescription' => 'Activer la journalisation détaillée pour le dépannage',
 			'settings.viewLogs' => 'Voir les journaux',
@@ -2272,10 +2268,10 @@ extension on TranslationsFr {
 			'messages.noResultsFound' => 'Aucun résultat trouvé',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Minuterie de mise en veille réglée sur ${label}',
 			'messages.noItemsAvailable' => 'Aucun élément disponible',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossible de créer la file d’attente de lecture : aucun élément',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Échec de ${action} : ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Passage au lecteur compatible...',
 			'messages.serverLimitTitle' => 'Échec de la lecture',
 			'messages.serverLimitBody' => 'Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l\'ajuster.',
@@ -2786,10 +2782,10 @@ extension on TranslationsFr {
 			'metadataEdit.selectPoster' => 'Sélectionner l\'affiche',
 			'metadataEdit.selectBackground' => 'Sélectionner l\'arrière-plan',
 			'metadataEdit.selectLogo' => 'Sélectionner le logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Sélectionner l\'image carrée',
 			'metadataEdit.fromUrl' => 'Depuis une URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Importer un fichier',
 			'metadataEdit.enterImageUrl' => 'Entrer l\'URL de l\'image',
 			'metadataEdit.imageUrl' => 'URL de l\'image',

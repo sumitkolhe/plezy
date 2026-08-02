@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Пернетақта пернелер тіркесін реттеу",
     "videoPlayerNavigation": "Видео ойнатқыш навигациясы",
     "videoPlayerNavigationDescription": "Ойнатқышты басқару үшін бағыттауыш пернелерді пайдалану",
-    "crashReporting": "Қателіктер туралы есеп",
-    "crashReportingDescription": "Қолданбаны жақсартуға көмектесу үшін қателіктер есебін жіберу",
     "debugLogging": "Жөндеу журналы",
     "debugLoggingDescription": "Мәселелерді шешу үшін толық журнал жүргізуді қосу",
     "viewLogs": "Журналдарды көру",

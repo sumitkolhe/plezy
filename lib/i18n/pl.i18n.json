@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Dostosuj skróty klawiszowe",
     "videoPlayerNavigation": "Nawigacja odtwarzacza wideo",
     "videoPlayerNavigationDescription": "Użyj klawiszy strzałek do nawigacji kontrolkami odtwarzacza",
-    "crashReporting": "Raportowanie błędów",
-    "crashReportingDescription": "Wysyłaj raporty o błędach, aby pomóc ulepszyć aplikację",
     "debugLogging": "Rejestrowanie diagnostyczne",
     "debugLoggingDescription": "Włącz szczegółowe rejestrowanie, aby ułatwić rozwiązywanie problemów",
     "viewLogs": "Pokaż logi",

@@ -291,8 +291,6 @@ class _Translations$settings$it extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Personalizza le scorciatoie da tastiera';
 	@override String get videoPlayerNavigation => 'Navigazione del lettore video';
 	@override String get videoPlayerNavigationDescription => 'Usa i tasti freccia per navigare nei controlli del lettore video';
-	@override String get crashReporting => 'Segnalazione degli arresti anomali';
-	@override String get crashReportingDescription => 'Invia segnalazioni sugli arresti anomali per contribuire a migliorare l\'app';
 	@override String get debugLogging => 'Registrazione di debug';
 	@override String get debugLoggingDescription => 'Abilita una registrazione dettagliata per la risoluzione dei problemi';
 	@override String get viewLogs => 'Visualizza i log';
@@ -1915,8 +1913,6 @@ extension on TranslationsIt {
 			'settings.keyboardShortcutsDescription' => 'Personalizza le scorciatoie da tastiera',
 			'settings.videoPlayerNavigation' => 'Navigazione del lettore video',
 			'settings.videoPlayerNavigationDescription' => 'Usa i tasti freccia per navigare nei controlli del lettore video',
-			'settings.crashReporting' => 'Segnalazione degli arresti anomali',
-			'settings.crashReportingDescription' => 'Invia segnalazioni sugli arresti anomali per contribuire a migliorare l\'app',
 			'settings.debugLogging' => 'Registrazione di debug',
 			'settings.debugLoggingDescription' => 'Abilita una registrazione dettagliata per la risoluzione dei problemi',
 			'settings.viewLogs' => 'Visualizza i log',
@@ -2272,10 +2268,10 @@ extension on TranslationsIt {
 			'messages.noResultsFound' => 'Nessun risultato',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Timer di spegnimento impostato su ${label}',
 			'messages.noItemsAvailable' => 'Nessun elemento disponibile',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossibile creare una coda di riproduzione: nessun elemento',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Impossibile eseguire l\'azione «${action}»: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Passaggio al lettore compatibile...',
 			'messages.serverLimitTitle' => 'Riproduzione non riuscita',
 			'messages.serverLimitBody' => 'Errore del server (HTTP 500). È probabile che un limite di banda o transcodifica abbia impedito questa sessione. Chiedi al proprietario di modificare il limite.',
@@ -2786,10 +2782,10 @@ extension on TranslationsIt {
 			'metadataEdit.selectPoster' => 'Seleziona poster',
 			'metadataEdit.selectBackground' => 'Seleziona sfondo',
 			'metadataEdit.selectLogo' => 'Seleziona logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Seleziona immagine quadrata',
 			'metadataEdit.fromUrl' => 'Da URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Carica file',
 			'metadataEdit.enterImageUrl' => 'Inserisci URL immagine',
 			'metadataEdit.imageUrl' => 'URL immagine',

@@ -291,8 +291,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Billentyűparancsok testreszabása';
 	@override String get videoPlayerNavigation => 'Videólejátszó-navigáció';
 	@override String get videoPlayerNavigationDescription => 'A nyílbillentyűk használata a videólejátszó vezérlői közötti navigáláshoz';
-	@override String get crashReporting => 'Összeomlási jelentések';
-	@override String get crashReportingDescription => 'Összeomlási jelentések küldése az alkalmazás fejlesztésének elősegítéséhez';
 	@override String get debugLogging => 'Hibakeresési naplózás';
 	@override String get debugLoggingDescription => 'Részletes naplózás engedélyezése a hibaelhárításhoz';
 	@override String get viewLogs => 'Naplók megtekintése';
@@ -1915,8 +1913,6 @@ extension on TranslationsHu {
 			'settings.keyboardShortcutsDescription' => 'Billentyűparancsok testreszabása',
 			'settings.videoPlayerNavigation' => 'Videólejátszó-navigáció',
 			'settings.videoPlayerNavigationDescription' => 'A nyílbillentyűk használata a videólejátszó vezérlői közötti navigáláshoz',
-			'settings.crashReporting' => 'Összeomlási jelentések',
-			'settings.crashReportingDescription' => 'Összeomlási jelentések küldése az alkalmazás fejlesztésének elősegítéséhez',
 			'settings.debugLogging' => 'Hibakeresési naplózás',
 			'settings.debugLoggingDescription' => 'Részletes naplózás engedélyezése a hibaelhárításhoz',
 			'settings.viewLogs' => 'Naplók megtekintése',
@@ -2272,10 +2268,10 @@ extension on TranslationsHu {
 			'messages.noResultsFound' => 'Nincs találat',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Elalvási időzítő beállítva: ${label}',
 			'messages.noItemsAvailable' => 'Nincsenek elérhető elemek',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Nem sikerült létrehozni a lejátszási sort — nincsenek elemek',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nem sikerült a művelet (${action}): ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
 			'messages.serverLimitTitle' => 'A lejátszás nem sikerült',
 			'messages.serverLimitBody' => 'Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.',
@@ -2786,10 +2782,10 @@ extension on TranslationsHu {
 			'metadataEdit.selectPoster' => 'Poszter kiválasztása',
 			'metadataEdit.selectBackground' => 'Háttér kiválasztása',
 			'metadataEdit.selectLogo' => 'Logó kiválasztása',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Négyzetes kép kiválasztása',
 			'metadataEdit.fromUrl' => 'URL-ről',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Fájl feltöltése',
 			'metadataEdit.enterImageUrl' => 'Add meg a kép URL-címét',
 			'metadataEdit.imageUrl' => 'Kép URL-címe',

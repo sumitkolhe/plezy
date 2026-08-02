@@ -291,8 +291,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Klaviatura tugmalarini moslashtiring';
 	@override String get videoPlayerNavigation => 'Video pleyer navigatsiyasi';
 	@override String get videoPlayerNavigationDescription => 'Pleyerni boshqarish uchun yoʻnalish tugmalaridan foydalaning';
-	@override String get crashReporting => 'Xatoliklar haqida hisobot';
-	@override String get crashReportingDescription => 'Ilovani takomillashtirishga yordam berish uchun xatoliklar hisobotini yuboring';
 	@override String get debugLogging => 'Nosozliklarni aniqlash jurnali';
 	@override String get debugLoggingDescription => 'Muammolarni hal qilish uchun batafsil jurnal yuritishni yoqing';
 	@override String get viewLogs => 'Jurnallarni koʻrish';
@@ -1926,8 +1924,6 @@ extension on TranslationsUz {
 			'settings.keyboardShortcutsDescription' => 'Klaviatura tugmalarini moslashtiring',
 			'settings.videoPlayerNavigation' => 'Video pleyer navigatsiyasi',
 			'settings.videoPlayerNavigationDescription' => 'Pleyerni boshqarish uchun yoʻnalish tugmalaridan foydalaning',
-			'settings.crashReporting' => 'Xatoliklar haqida hisobot',
-			'settings.crashReportingDescription' => 'Ilovani takomillashtirishga yordam berish uchun xatoliklar hisobotini yuboring',
 			'settings.debugLogging' => 'Nosozliklarni aniqlash jurnali',
 			'settings.debugLoggingDescription' => 'Muammolarni hal qilish uchun batafsil jurnal yuritishni yoqing',
 			'settings.viewLogs' => 'Jurnallarni koʻrish',
@@ -2283,10 +2279,10 @@ extension on TranslationsUz {
 			'messages.seasonsLoadFailed' => 'Mavsumlarni yuklab boʻlmadi',
 			'messages.noEpisodesFound' => 'Birinchi mavsumda qismlar topilmadi',
 			'messages.noEpisodesFoundGeneral' => 'Qismlar topilmadi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Qismlarni yuklab boʻlmadi',
 			'messages.noResultsFound' => 'Natijalar topilmadi',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyqu taymeri ${label} vaqtiga oʻrnatildi',
 			'messages.noItemsAvailable' => 'Elementlar yoʻq',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ijro navbatini yaratib boʻlmadi — elementlar yoʻq',
@@ -2797,10 +2793,10 @@ extension on TranslationsUz {
 			'metadataEdit.sortTitle' => 'Saralash nomi',
 			'metadataEdit.originalTitle' => 'Asl nomi',
 			'metadataEdit.releaseDate' => 'Chiqqan sanasi',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Kontent reytingi',
 			'metadataEdit.studio' => 'Studiya',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Shior/Slogan',
 			'metadataEdit.summary' => 'Tavsif/Qisqacha',
 			'metadataEdit.poster' => 'Poster',

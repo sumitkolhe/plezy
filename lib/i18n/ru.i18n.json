@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Настроить горячие клавиши",
     "videoPlayerNavigation": "Навигация видеоплеера",
     "videoPlayerNavigationDescription": "Использовать клавиши стрелок для навигации по элементам управления плеером",
-    "crashReporting": "Отчёты об ошибках",
-    "crashReportingDescription": "Отправлять отчёты об ошибках для улучшения приложения",
     "debugLogging": "Журнал отладки",
     "debugLoggingDescription": "Включить подробное журналирование для устранения неполадок",
     "viewLogs": "Просмотр логов",

@@ -291,8 +291,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Настройване на клавишните комбинации';
 	@override String get videoPlayerNavigation => 'Навигация във видео плейъра';
 	@override String get videoPlayerNavigationDescription => 'Използвай стрелките за навигация в контролите на видео плейъра';
-	@override String get crashReporting => 'Докладване на сривове';
-	@override String get crashReportingDescription => 'Изпращай доклади за сривове, за да помогнеш за подобряване на приложението';
 	@override String get debugLogging => 'Логове за отстраняване на грешки';
 	@override String get debugLoggingDescription => 'Включи подробни логове за диагностика';
 	@override String get viewLogs => 'Виж логовете';
@@ -1915,8 +1913,6 @@ extension on TranslationsBg {
 			'settings.keyboardShortcutsDescription' => 'Настройване на клавишните комбинации',
 			'settings.videoPlayerNavigation' => 'Навигация във видео плейъра',
 			'settings.videoPlayerNavigationDescription' => 'Използвай стрелките за навигация в контролите на видео плейъра',
-			'settings.crashReporting' => 'Докладване на сривове',
-			'settings.crashReportingDescription' => 'Изпращай доклади за сривове, за да помогнеш за подобряване на приложението',
 			'settings.debugLogging' => 'Логове за отстраняване на грешки',
 			'settings.debugLoggingDescription' => 'Включи подробни логове за диагностика',
 			'settings.viewLogs' => 'Виж логовете',
@@ -2272,10 +2268,10 @@ extension on TranslationsBg {
 			'messages.noResultsFound' => 'Няма намерени резултати',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Таймерът за заспиване е зададен за ${label}',
 			'messages.noItemsAvailable' => 'Няма налични елементи',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Неуспешно създаване на опашка за възпроизвеждане - няма елементи',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Неуспешно ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
 			'messages.serverLimitTitle' => 'Възпроизвеждането е неуспешно',
 			'messages.serverLimitBody' => 'Грешка на сървъра (HTTP 500). Вероятно лимит за пропускателна способност/транскодиране е отхвърлил тази сесия. Помолете собственика да го коригира.',
@@ -2786,10 +2782,10 @@ extension on TranslationsBg {
 			'metadataEdit.selectPoster' => 'Избери постер',
 			'metadataEdit.selectBackground' => 'Избери фон',
 			'metadataEdit.selectLogo' => 'Избери лого',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Избери квадратно изображение',
 			'metadataEdit.fromUrl' => 'От URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Качи файл',
 			'metadataEdit.enterImageUrl' => 'Въведете URL на изображение',
 			'metadataEdit.imageUrl' => 'URL на изображение',

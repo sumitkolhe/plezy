@@ -35,7 +35,6 @@ import '../utils/active_client_scope.dart';
 import '../utils/codec_utils.dart';
 import '../utils/global_key_utils.dart';
 import '../utils/storage_failure.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 typedef MediaClientResolver = MediaServerClient? Function(ServerId serverId, {String? clientScopeId});
 typedef _NativeTaskForId = Future<Task?> Function(String taskId);
@@ -718,7 +717,6 @@ class DownloadManagerService {
         await nativeRecoveryOverride();
         return;
       }
-      unawaited(Sentry.addBreadcrumb(Breadcrumb(message: 'Initializing FileDownloader', category: 'downloads')));
       await _initializeFileDownloader();
 
       final deletedTempFiles = await FileDownloader().cleanUpOrphanedTempFiles();
@@ -727,7 +725,6 @@ class DownloadManagerService {
       }
 
       // Let background_downloader re-enqueue tasks killed by the OS
-      unawaited(Sentry.addBreadcrumb(Breadcrumb(message: 'Rescheduling killed tasks', category: 'downloads')));
       final (rescheduled, _) = await FileDownloader().rescheduleKilledTasks();
       if (rescheduled.isNotEmpty) {
         appLogger.i('Rescheduled ${rescheduled.length} killed download task(s)');
@@ -776,7 +773,6 @@ class DownloadManagerService {
       }
 
       // Scan drift for orphaned items stuck in 'downloading'
-      unawaited(Sentry.addBreadcrumb(Breadcrumb(message: 'Scanning for orphaned downloads', category: 'downloads')));
       final allDownloads = await _database.select(_database.downloadedMedia).get();
       for (final item in allDownloads) {
         if (item.status == DownloadStatus.downloading.index) {

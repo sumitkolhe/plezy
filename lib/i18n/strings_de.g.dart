@@ -291,8 +291,6 @@ class _Translations$settings$de extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Tastenkürzel anpassen';
 	@override String get videoPlayerNavigation => 'Videoplayer-Navigation';
 	@override String get videoPlayerNavigationDescription => 'Mit den Pfeiltasten durch die Videoplayer-Steuerung navigieren';
-	@override String get crashReporting => 'Absturzberichte';
-	@override String get crashReportingDescription => 'Absturzberichte senden, um die App zu verbessern';
 	@override String get debugLogging => 'Debug-Protokollierung';
 	@override String get debugLoggingDescription => 'Detaillierte Protokolle zur Fehleranalyse aktivieren';
 	@override String get viewLogs => 'Protokolle anzeigen';
@@ -1915,8 +1913,6 @@ extension on TranslationsDe {
 			'settings.keyboardShortcutsDescription' => 'Tastenkürzel anpassen',
 			'settings.videoPlayerNavigation' => 'Videoplayer-Navigation',
 			'settings.videoPlayerNavigationDescription' => 'Mit den Pfeiltasten durch die Videoplayer-Steuerung navigieren',
-			'settings.crashReporting' => 'Absturzberichte',
-			'settings.crashReportingDescription' => 'Absturzberichte senden, um die App zu verbessern',
 			'settings.debugLogging' => 'Debug-Protokollierung',
 			'settings.debugLoggingDescription' => 'Detaillierte Protokolle zur Fehleranalyse aktivieren',
 			'settings.viewLogs' => 'Protokolle anzeigen',
@@ -2272,10 +2268,10 @@ extension on TranslationsDe {
 			'messages.noResultsFound' => 'Keine Ergebnisse gefunden',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Schlaftimer auf ${label} eingestellt',
 			'messages.noItemsAvailable' => 'Keine Elemente verfügbar',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Wiedergabewarteschlange konnte nicht erstellt werden – keine Elemente',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Wiedergabe für ${action} fehlgeschlagen: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Wechsel zu einem kompatiblen Player …',
 			'messages.serverLimitTitle' => 'Wiedergabe fehlgeschlagen',
 			'messages.serverLimitBody' => 'Serverfehler (HTTP 500). Vermutlich hat ein Bandbreiten- oder Transkodierungslimit diese Sitzung abgelehnt. Bitte den Besitzer, das Limit anzupassen.',
@@ -2786,10 +2782,10 @@ extension on TranslationsDe {
 			'metadataEdit.selectPoster' => 'Poster auswählen',
 			'metadataEdit.selectBackground' => 'Hintergrund auswählen',
 			'metadataEdit.selectLogo' => 'Logo auswählen',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Quadratisches Bild auswählen',
 			'metadataEdit.fromUrl' => 'Über URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Datei hochladen',
 			'metadataEdit.enterImageUrl' => 'Bild-URL eingeben',
 			'metadataEdit.imageUrl' => 'Bild-URL',

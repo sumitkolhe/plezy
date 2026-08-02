@@ -291,8 +291,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Пернетақта пернелер тіркесін реттеу';
 	@override String get videoPlayerNavigation => 'Видео ойнатқыш навигациясы';
 	@override String get videoPlayerNavigationDescription => 'Ойнатқышты басқару үшін бағыттауыш пернелерді пайдалану';
-	@override String get crashReporting => 'Қателіктер туралы есеп';
-	@override String get crashReportingDescription => 'Қолданбаны жақсартуға көмектесу үшін қателіктер есебін жіберу';
 	@override String get debugLogging => 'Жөндеу журналы';
 	@override String get debugLoggingDescription => 'Мәселелерді шешу үшін толық журнал жүргізуді қосу';
 	@override String get viewLogs => 'Журналдарды көру';
@@ -1926,8 +1924,6 @@ extension on TranslationsKk {
 			'settings.keyboardShortcutsDescription' => 'Пернетақта пернелер тіркесін реттеу',
 			'settings.videoPlayerNavigation' => 'Видео ойнатқыш навигациясы',
 			'settings.videoPlayerNavigationDescription' => 'Ойнатқышты басқару үшін бағыттауыш пернелерді пайдалану',
-			'settings.crashReporting' => 'Қателіктер туралы есеп',
-			'settings.crashReportingDescription' => 'Қолданбаны жақсартуға көмектесу үшін қателіктер есебін жіберу',
 			'settings.debugLogging' => 'Жөндеу журналы',
 			'settings.debugLoggingDescription' => 'Мәселелерді шешу үшін толық журнал жүргізуді қосу',
 			'settings.viewLogs' => 'Журналдарды көру',
@@ -2283,10 +2279,10 @@ extension on TranslationsKk {
 			'messages.seasonsLoadFailed' => 'Маусымдарды жүктеу мүмкін болмады',
 			'messages.noEpisodesFound' => 'Бірінші маусымда бөлімдер табылмады',
 			'messages.noEpisodesFoundGeneral' => 'Бөлімдер табылмады',
-			_ => null,
-		} ?? switch (path) {
 			'messages.episodesLoadFailed' => 'Бөлімдерді жүктеу мүмкін болмады',
 			'messages.noResultsFound' => 'Нәтижелер табылмады',
+			_ => null,
+		} ?? switch (path) {
 			'messages.sleepTimerSet' => ({required Object label}) => 'Ұйқы таймері ${label} уақытына орнатылды',
 			'messages.noItemsAvailable' => 'Элементтер жоқ',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ойнату кезегін жасау мүмкін болмады — элементтер жоқ',
@@ -2797,10 +2793,10 @@ extension on TranslationsKk {
 			'metadataEdit.sortTitle' => 'Сұрыптау атауы',
 			'metadataEdit.originalTitle' => 'Түпнұсқа атауы',
 			'metadataEdit.releaseDate' => 'Шыққан күні',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.contentRating' => 'Мазмұн рейтингі',
 			'metadataEdit.studio' => 'Студия',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Ұран/Слоган',
 			'metadataEdit.summary' => 'Сипаттамасы/Күйі',
 			'metadataEdit.poster' => 'Постер',

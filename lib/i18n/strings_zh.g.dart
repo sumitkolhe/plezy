@@ -291,8 +291,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => '自定义键盘快捷键';
 	@override String get videoPlayerNavigation => '视频播放器导航';
 	@override String get videoPlayerNavigationDescription => '使用方向键导航视频播放器控件';
-	@override String get crashReporting => '崩溃报告';
-	@override String get crashReportingDescription => '发送崩溃报告以帮助改进应用';
 	@override String get debugLogging => '调试日志';
 	@override String get debugLoggingDescription => '启用详细日志记录以便故障排除';
 	@override String get viewLogs => '查看日志';
@@ -1912,8 +1910,6 @@ extension on TranslationsZh {
 			'settings.keyboardShortcutsDescription' => '自定义键盘快捷键',
 			'settings.videoPlayerNavigation' => '视频播放器导航',
 			'settings.videoPlayerNavigationDescription' => '使用方向键导航视频播放器控件',
-			'settings.crashReporting' => '崩溃报告',
-			'settings.crashReportingDescription' => '发送崩溃报告以帮助改进应用',
 			'settings.debugLogging' => '调试日志',
 			'settings.debugLoggingDescription' => '启用详细日志记录以便故障排除',
 			'settings.viewLogs' => '查看日志',
@@ -2269,10 +2265,10 @@ extension on TranslationsZh {
 			'messages.noResultsFound' => '未找到结果',
 			'messages.sleepTimerSet' => ({required Object label}) => '睡眠定时器已设置为 ${label}',
 			'messages.noItemsAvailable' => '没有可用的项目',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '创建播放队列失败：没有可用项目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '无法执行“${action}”：${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
 			'messages.serverLimitTitle' => '播放失败',
 			'messages.serverLimitBody' => '服务器错误（HTTP 500）。此次会话可能因带宽或转码限制而被拒绝。请联系服务器所有者调整限制。',
@@ -2783,10 +2779,10 @@ extension on TranslationsZh {
 			'metadataEdit.selectPoster' => '选择海报',
 			'metadataEdit.selectBackground' => '选择背景',
 			'metadataEdit.selectLogo' => '选择标志',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '选择方形图片',
 			'metadataEdit.fromUrl' => '通过 URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '上传文件',
 			'metadataEdit.enterImageUrl' => '输入图片 URL',
 			'metadataEdit.imageUrl' => '图片 URL',

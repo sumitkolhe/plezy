@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "キーボードショートカットをカスタマイズ",
     "videoPlayerNavigation": "動画プレーヤーナビゲーション",
     "videoPlayerNavigationDescription": "矢印キーで動画プレーヤーコントロールを操作",
-    "crashReporting": "クラッシュレポート",
-    "crashReportingDescription": "アプリの改善に役立つクラッシュレポートを送信",
     "debugLogging": "デバッグログ",
     "debugLoggingDescription": "トラブルシューティング用の詳細なログを有効化",
     "viewLogs": "ログを表示",

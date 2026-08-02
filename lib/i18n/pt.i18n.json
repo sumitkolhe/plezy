@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Personalizar atalhos de teclado",
     "videoPlayerNavigation": "Navegação do reprodutor de vídeo",
     "videoPlayerNavigationDescription": "Usar as teclas de seta para navegar pelos controles do reprodutor",
-    "crashReporting": "Relatório de Erros",
-    "crashReportingDescription": "Enviar relatórios de erros para ajudar a melhorar o app",
     "debugLogging": "Log de Depuração",
     "debugLoggingDescription": "Ativar log detalhado para solução de problemas",
     "viewLogs": "Ver Logs",

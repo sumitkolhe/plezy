@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Personalizza le scorciatoie da tastiera",
     "videoPlayerNavigation": "Navigazione del lettore video",
     "videoPlayerNavigationDescription": "Usa i tasti freccia per navigare nei controlli del lettore video",
-    "crashReporting": "Segnalazione degli arresti anomali",
-    "crashReportingDescription": "Invia segnalazioni sugli arresti anomali per contribuire a migliorare l'app",
     "debugLogging": "Registrazione di debug",
     "debugLoggingDescription": "Abilita una registrazione dettagliata per la risoluzione dei problemi",
     "viewLogs": "Visualizza i log",

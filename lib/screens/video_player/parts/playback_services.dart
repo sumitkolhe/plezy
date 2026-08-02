@@ -41,7 +41,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
 
     _hasRenderedFirstFrame = true;
     _hasFirstFrame.value = true;
-    unawaited(Sentry.addBreadcrumb(Breadcrumb(message: 'First frame ready', category: 'player')));
     final progressTracker = _progressTracker;
     if (progressTracker != null && currentPlayer.state.isActive) {
       unawaited(progressTracker.sendProgress('playing'));
@@ -579,9 +578,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       // defence for `DD-2`: audio must not resume while the vehicle restricts
       // the app. Also catches any async open that raced the lifecycle pause.
       appLogger.w('Playback started while Android Automotive UX restrictions are active; pausing');
-      Sentry.addBreadcrumb(
-        Breadcrumb(message: 'Blocked automotive restricted playback start', category: 'player.driver_distraction'),
-      );
       final currentPlayer = player;
       if (currentPlayer != null) {
         unawaited(_pauseWithPlaybackIntent(currentPlayer));
@@ -592,9 +588,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
 
     if (isPlaying && _mediaControlsSuspendedForTvBackground) {
       appLogger.w('Playback started while Android TV background media controls are suspended; pausing');
-      Sentry.addBreadcrumb(
-        Breadcrumb(message: 'Blocked TV background playback start', category: 'player.media_controls'),
-      );
       final currentPlayer = player;
       if (currentPlayer != null) {
         unawaited(_pauseWithPlaybackIntent(currentPlayer));

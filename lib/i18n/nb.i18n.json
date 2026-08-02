@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Tilpass tastatursnarveier",
     "videoPlayerNavigation": "Videospillernavigering",
     "videoPlayerNavigationDescription": "Bruk piltaster for å navigere videospillerkontroller",
-    "crashReporting": "Krasjrapportering",
-    "crashReportingDescription": "Send krasjrapporter for å hjelpe med å forbedre appen",
     "debugLogging": "Feilsøkingslogging",
     "debugLoggingDescription": "Aktiver detaljert logging for feilsøking",
     "viewLogs": "Vis logger",

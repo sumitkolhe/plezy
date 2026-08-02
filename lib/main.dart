@@ -10,7 +10,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'connection/connection.dart';
 import 'connection/connection_registry.dart';
 import 'navigation/profile_navigation_scope.dart';
@@ -65,16 +64,11 @@ import 'focus/focusable_button.dart';
 import 'focus/key_event_utils.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'utils/navigation_transitions.dart';
-import 'utils/log_redaction_manager.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'utils/android_exit_diagnostics.dart';
 import 'utils/storage_failure.dart';
 
-const bool _enableSentry = bool.fromEnvironment('ENABLE_SENTRY', defaultValue: false);
-const String _sentryDsn = 'https://6a1a6ef8c72140099b2798973c1bfb2f@bugs.plezy.app/1';
 const String gitCommit = String.fromEnvironment('GIT_COMMIT');
-const String _sentryEnvironment = String.fromEnvironment('SENTRY_ENVIRONMENT');
-const String _sentryDist = String.fromEnvironment('SENTRY_DIST');
 
 // Workaround for Flutter bug #177992: iPadOS 26.1+ misinterprets fake touch events
 // at (0,0) as barrier taps, causing modals to dismiss immediately.
@@ -134,32 +128,10 @@ Future<_StartupDependencies> _initializeApplication() async {
 
   _StartupDependencies? dependencies;
   Future<void> initializeStartup() async {
-    AndroidExitDiagnostics.markTelemetryReady();
     dependencies = await _initializeStartup(settings);
   }
 
-  if (_enableSentry) {
-    final packageInfo = await PackageInfo.fromPlatform();
-    await SentryFlutter.init((options) {
-      options.dsn = _sentryDsn;
-      options.release = gitCommit.isNotEmpty
-          ? 'plezy@${gitCommit.substring(0, 7)}'
-          : 'plezy@${packageInfo.version}+${packageInfo.buildNumber}';
-      if (_sentryEnvironment.isNotEmpty) options.environment = _sentryEnvironment;
-      if (_sentryDist.isNotEmpty) options.dist = _sentryDist;
-      options.tracesSampleRate = 0;
-      options.attachStacktrace = true;
-      options.enableAutoSessionTracking = false;
-      options.recordHttpBreadcrumbs = false;
-      options.captureNativeFailedRequests = false;
-      options.enableAppHangTracking = !kDebugMode;
-      options.appHangTimeoutInterval = const Duration(seconds: 3);
-      options.beforeSend = _beforeSend;
-      options.beforeBreadcrumb = _beforeBreadcrumb;
-    }, appRunner: initializeStartup);
-  } else {
-    await initializeStartup();
-  }
+  await initializeStartup();
   return dependencies!;
 }
 
@@ -419,9 +391,7 @@ void _startNonessentialInitialization(SettingsService settings) {
 
   bestEffort('Gamepad', GamepadService.instance.start);
 
-  if (settings.read(SettingsService.crashReporting)) {
-    unawaited(AndroidExitDiagnostics.logPreviousExit());
-  }
+  unawaited(AndroidExitDiagnostics.logPreviousExit());
 
   bestEffort('Shader licenses', _registerShaderLicenses);
   bestEffort('Font licenses', _registerFontLicenses);
@@ -439,7 +409,6 @@ Future<void> _logEnvironmentDiagnostics() async {
   if (Platform.isAndroid) {
     final rendererName = await const MethodChannel('com.plezy/theme').invokeMethod<String>('getRenderer');
     renderer = ' [$rendererName]';
-    await Future.sync(() => Sentry.configureScope((scope) => scope.setTag('renderer', rendererName ?? 'unknown')));
   }
   appLogger.i(
     'Harbor v${packageInfo.version}+${packageInfo.buildNumber}$commitSuffix$renderer'
@@ -451,94 +420,6 @@ Future<void> _logEnvironmentDiagnostics() async {
   }
 }
 
-Breadcrumb? _beforeBreadcrumb(Breadcrumb? breadcrumb, Hint _) {
-  if (breadcrumb == null) return null;
-
-  final message = breadcrumb.message;
-  final data = breadcrumb.data;
-  if (message == null && (data == null || data.isEmpty)) return breadcrumb;
-
-  if (message != null) breadcrumb.message = LogRedactionManager.redact(message);
-  if (data != null) breadcrumb.data = data.map((k, v) => MapEntry(k, v is String ? LogRedactionManager.redact(v) : v));
-  return breadcrumb;
-}
-
-FutureOr<SentryEvent?> _beforeSend(SentryEvent event, Hint _) {
-  // Drop event if user opted out of crash reporting.
-  final instance = SettingsService.instanceOrNull;
-  if (instance != null && !instance.read(SettingsService.crashReporting)) return null;
-
-  // Drop unactionable errors
-  final exceptions = event.exceptions;
-  if (exceptions != null) {
-    bool shouldDrop(SentryException e) {
-      final v = e.value;
-      final lowerValue = v?.toLowerCase();
-      if (e.type == 'FileSystemException' &&
-          lowerValue != null &&
-          lowerValue.contains('cached_network_image_ce') &&
-          (lowerValue.contains('lock failed') || lowerValue.contains('writefrom failed'))) {
-        return true;
-      }
-      // Linux without DBus/NetworkManager
-      if (e.type == 'DBusServiceUnknownException' || (v != null && v.contains('system_bus_socket'))) {
-        return true;
-      }
-      // Device out of disk space
-      if (isStorageFullMessage(v)) return true;
-      // Native HTTP errors from CFNetwork (server errors, not actionable)
-      if (e.type == 'HTTPClientError') return true;
-      // Benign EventChannel teardown race: the engine replies this when a
-      // 'cancel' lands after the stream is already gone, and the framework
-      // reports it via FlutterError — nothing was ever wrong user-side.
-      if (e.type == 'PlatformException' && v != null && v.contains('No active stream to cancel')) return true;
-      return false;
-    }
-
-    if (exceptions.any(shouldDrop)) return null;
-
-    // Scrub Plex tokens and server URLs from exception messages
-    for (final e in exceptions) {
-      final value = e.value;
-      if (value != null) {
-        e.value = LogRedactionManager.redact(value);
-      }
-    }
-  }
-
-  // Enrich TimeoutException with operation name + duration as tags/fingerprint.
-  // value format: "TimeoutException after 0:00:05.000000: <operation> timed out"
-  if (exceptions != null) {
-    final timeoutException = exceptions.where((e) => e.type == 'TimeoutException').firstOrNull;
-    if (timeoutException != null) {
-      final value = timeoutException.value ?? '';
-      final colonIdx = value.indexOf(': ');
-      final message = colonIdx >= 0 ? value.substring(colonIdx + 2) : value;
-      final operation = message.endsWith(' timed out')
-          ? message.substring(0, message.length - ' timed out'.length)
-          : null;
-      final durationMatch = RegExp(r'after (\d+:\d{2}:\d{2}\.\d+)').firstMatch(value);
-
-      final tags = event.tags ??= {};
-      if (operation != null) tags['timeout.operation'] = operation;
-      if (durationMatch != null) tags['timeout.duration'] = durationMatch.group(1)!;
-      event.fingerprint = ['TimeoutException', ?operation];
-    }
-  }
-
-  // Scrub breadcrumb messages and data
-  final breadcrumbs = event.breadcrumbs;
-  if (breadcrumbs != null) {
-    for (final b in breadcrumbs) {
-      final message = b.message;
-      final data = b.data;
-      if (message != null) b.message = LogRedactionManager.redact(message);
-      if (data != null) b.data = data.map((k, v) => MapEntry(k, v is String ? LogRedactionManager.redact(v) : v));
-    }
-  }
-
-  return event;
-}
 
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
@@ -1283,7 +1164,6 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     // Check network connectivity early to fast-path airplane mode.
     // Timeout guards against connectivity_plus hanging on some Android TV devices after force-close.
     bool hasNetwork;
-    unawaited(Sentry.addBreadcrumb(Breadcrumb(message: 'Checking network connectivity', category: 'setup')));
     try {
       final connectivityResult = await Connectivity().checkConnectivity().timeout(
         const Duration(seconds: 3),
@@ -1294,10 +1174,6 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       // connectivity_plus throws DBusServiceUnknownException on Linux without NetworkManager
       hasNetwork = true;
     }
-
-    unawaited(
-      Sentry.addBreadcrumb(Breadcrumb(message: 'Network check done: hasNetwork=$hasNetwork', category: 'setup')),
-    );
 
     _setStatus(t.common.loadingServers);
 
@@ -1314,10 +1190,8 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     } catch (e, st) {
       // Defence-in-depth: a DB-open failure here used to propagate
       // uncaught and strand the splash forever (#1022). Route to auth so
-      // the user is never trapped, and surface to Sentry so an unknown
-      // regression doesn't go silent.
+      // the user is never trapped.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
-      unawaited(Sentry.captureException(e, stackTrace: st));
       if (mounted) {
         unawaited(Navigator.pushReplacement(context, fadeRoute(const AuthScreen())));
       }
@@ -1347,12 +1221,6 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       });
     }
 
-    final jellyfinCount = allConnections.whereType<JellyfinConnection>().length;
-    unawaited(
-      Sentry.addBreadcrumb(
-        Breadcrumb(message: 'Handing off to MainScreen with $jellyfinCount Jellyfin server(s)', category: 'setup'),
-      ),
-    );
     _setStatus(t.common.connectingToServers);
 
     // Snapshot Provider refs before further awaits.

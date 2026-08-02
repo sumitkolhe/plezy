@@ -307,11 +307,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
       // preparation gate has been cleared.
       await resumeAfterRefresh('post-open frame rate switch');
 
-      unawaited(
-        Sentry.addBreadcrumb(
-          Breadcrumb(message: 'Pre-playback frame rate: ${plan.fps}fps, switched=$didSwitch', category: 'player'),
-        ),
-      );
     } else if (plan.needsStartupRefresh && mounted && player == currentPlayer) {
       appLogger.d('Frame rate matching: waiting for Android MPV startup frame before decoder refresh');
       final startupFrameReady = plan._startupFrameReady;
@@ -327,14 +322,6 @@ extension _VideoPlayerOpenMethods on VideoPlayerScreenState {
         }
       }
 
-      unawaited(
-        Sentry.addBreadcrumb(
-          Breadcrumb(
-            message: 'Android MPV startup decoder refresh after pre-load frame-rate switch',
-            category: 'player',
-          ),
-        ),
-      );
     }
   }
 

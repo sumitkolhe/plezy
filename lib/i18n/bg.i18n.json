@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Настройване на клавишните комбинации",
     "videoPlayerNavigation": "Навигация във видео плейъра",
     "videoPlayerNavigationDescription": "Използвай стрелките за навигация в контролите на видео плейъра",
-    "crashReporting": "Докладване на сривове",
-    "crashReportingDescription": "Изпращай доклади за сривове, за да помогнеш за подобряване на приложението",
     "debugLogging": "Логове за отстраняване на грешки",
     "debugLoggingDescription": "Включи подробни логове за диагностика",
     "viewLogs": "Виж логовете",

@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Billentyűparancsok testreszabása",
     "videoPlayerNavigation": "Videólejátszó-navigáció",
     "videoPlayerNavigationDescription": "A nyílbillentyűk használata a videólejátszó vezérlői közötti navigáláshoz",
-    "crashReporting": "Összeomlási jelentések",
-    "crashReportingDescription": "Összeomlási jelentések küldése az alkalmazás fejlesztésének elősegítéséhez",
     "debugLogging": "Hibakeresési naplózás",
     "debugLoggingDescription": "Részletes naplózás engedélyezése a hibaelhárításhoz",
     "viewLogs": "Naplók megtekintése",

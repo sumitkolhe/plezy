@@ -291,8 +291,6 @@ class _Translations$settings$pl extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Dostosuj skróty klawiszowe';
 	@override String get videoPlayerNavigation => 'Nawigacja odtwarzacza wideo';
 	@override String get videoPlayerNavigationDescription => 'Użyj klawiszy strzałek do nawigacji kontrolkami odtwarzacza';
-	@override String get crashReporting => 'Raportowanie błędów';
-	@override String get crashReportingDescription => 'Wysyłaj raporty o błędach, aby pomóc ulepszyć aplikację';
 	@override String get debugLogging => 'Rejestrowanie diagnostyczne';
 	@override String get debugLoggingDescription => 'Włącz szczegółowe rejestrowanie, aby ułatwić rozwiązywanie problemów';
 	@override String get viewLogs => 'Pokaż logi';
@@ -1921,8 +1919,6 @@ extension on TranslationsPl {
 			'settings.keyboardShortcutsDescription' => 'Dostosuj skróty klawiszowe',
 			'settings.videoPlayerNavigation' => 'Nawigacja odtwarzacza wideo',
 			'settings.videoPlayerNavigationDescription' => 'Użyj klawiszy strzałek do nawigacji kontrolkami odtwarzacza',
-			'settings.crashReporting' => 'Raportowanie błędów',
-			'settings.crashReportingDescription' => 'Wysyłaj raporty o błędach, aby pomóc ulepszyć aplikację',
 			'settings.debugLogging' => 'Rejestrowanie diagnostyczne',
 			'settings.debugLoggingDescription' => 'Włącz szczegółowe rejestrowanie, aby ułatwić rozwiązywanie problemów',
 			'settings.viewLogs' => 'Pokaż logi',
@@ -2278,10 +2274,10 @@ extension on TranslationsPl {
 			'messages.noResultsFound' => 'Nie znaleziono wyników',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Wyłącznik czasowy ustawiony na ${label}',
 			'messages.noItemsAvailable' => 'Brak dostępnych elementów',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Nie udało się utworzyć kolejki odtwarzania — brak elementów',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nie udało się ${action}: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Przełączanie na kompatybilny odtwarzacz...',
 			'messages.serverLimitTitle' => 'Odtwarzanie nie powiodło się',
 			'messages.serverLimitBody' => 'Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę.',
@@ -2792,10 +2788,10 @@ extension on TranslationsPl {
 			'metadataEdit.selectPoster' => 'Wybierz plakat',
 			'metadataEdit.selectBackground' => 'Wybierz tło',
 			'metadataEdit.selectLogo' => 'Wybierz logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Wybierz kwadratowy obraz',
 			'metadataEdit.fromUrl' => 'Z URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Prześlij plik',
 			'metadataEdit.enterImageUrl' => 'Wprowadź URL obrazu',
 			'metadataEdit.imageUrl' => 'URL obrazu',

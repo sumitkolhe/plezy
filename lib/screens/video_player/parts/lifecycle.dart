@@ -37,10 +37,6 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
       breadcrumbData['action'] = action;
     }
 
-    Sentry.addBreadcrumb(
-      Breadcrumb(message: 'Player lifecycle $state', category: 'player.lifecycle', data: breadcrumbData),
-    );
-
     appLogger.d(
       'Player lifecycle: state=$state'
       '${action != null ? ' action=$action' : ''}'

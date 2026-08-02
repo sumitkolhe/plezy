@@ -291,8 +291,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => 'Pas de toetsenbordsneltoetsen aan';
 	@override String get videoPlayerNavigation => 'Videospelernavigatie';
 	@override String get videoPlayerNavigationDescription => 'Gebruik de pijltjestoetsen om door de videospelerbediening te navigeren';
-	@override String get crashReporting => 'Crashrapportage';
-	@override String get crashReportingDescription => 'Crashrapporten verzenden om de app te verbeteren';
 	@override String get debugLogging => 'Debuglogboek';
 	@override String get debugLoggingDescription => 'Schakel gedetailleerde logboekregistratie in om problemen op te lossen';
 	@override String get viewLogs => 'Logbestanden bekijken';
@@ -1915,8 +1913,6 @@ extension on TranslationsNl {
 			'settings.keyboardShortcutsDescription' => 'Pas de toetsenbordsneltoetsen aan',
 			'settings.videoPlayerNavigation' => 'Videospelernavigatie',
 			'settings.videoPlayerNavigationDescription' => 'Gebruik de pijltjestoetsen om door de videospelerbediening te navigeren',
-			'settings.crashReporting' => 'Crashrapportage',
-			'settings.crashReportingDescription' => 'Crashrapporten verzenden om de app te verbeteren',
 			'settings.debugLogging' => 'Debuglogboek',
 			'settings.debugLoggingDescription' => 'Schakel gedetailleerde logboekregistratie in om problemen op te lossen',
 			'settings.viewLogs' => 'Logbestanden bekijken',
@@ -2272,10 +2268,10 @@ extension on TranslationsNl {
 			'messages.noResultsFound' => 'Geen resultaten gevonden',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Slaaptimer ingesteld op ${label}',
 			'messages.noItemsAvailable' => 'Geen items beschikbaar',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => 'Afspeelwachtrij maken mislukt — geen items',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Afspelen van ${action} mislukt: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
 			'messages.serverLimitTitle' => 'Afspelen mislukt',
 			'messages.serverLimitBody' => 'Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.',
@@ -2786,10 +2782,10 @@ extension on TranslationsNl {
 			'metadataEdit.selectPoster' => 'Poster selecteren',
 			'metadataEdit.selectBackground' => 'Achtergrond selecteren',
 			'metadataEdit.selectLogo' => 'Logo selecteren',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Vierkante afbeelding selecteren',
 			'metadataEdit.fromUrl' => 'Vanaf URL',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Bestand uploaden',
 			'metadataEdit.enterImageUrl' => 'Voer de afbeeldings-URL in',
 			'metadataEdit.imageUrl' => 'Afbeeldings-URL',

@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "自訂鍵盤快速鍵",
     "videoPlayerNavigation": "影片播放器導覽",
     "videoPlayerNavigationDescription": "使用方向鍵導覽影片播放器控制項",
-    "crashReporting": "當機報告",
-    "crashReportingDescription": "傳送當機報告以協助改善應用程式",
     "debugLogging": "偵錯日誌",
     "debugLoggingDescription": "啟用詳細日誌記錄以便進行疑難排解",
     "viewLogs": "查看日誌",

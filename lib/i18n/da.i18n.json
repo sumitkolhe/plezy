@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Tilpas tastaturgenveje",
     "videoPlayerNavigation": "Videoafspillernavigation",
     "videoPlayerNavigationDescription": "Brug piletaster til at navigere videoafspillerkontroller",
-    "crashReporting": "Fejlrapportering",
-    "crashReportingDescription": "Send fejlrapporter for at hjælpe med at forbedre appen",
     "debugLogging": "Fejlfindingslogning",
     "debugLoggingDescription": "Aktiver detaljeret logning til fejlfinding",
     "viewLogs": "Vis logfiler",

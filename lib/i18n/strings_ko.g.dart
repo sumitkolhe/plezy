@@ -291,8 +291,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get keyboardShortcutsDescription => '키보드 단축키를 사용자 지정합니다';
 	@override String get videoPlayerNavigation => '비디오 플레이어 탐색';
 	@override String get videoPlayerNavigationDescription => '방향 키로 비디오 플레이어 컨트롤을 탐색합니다';
-	@override String get crashReporting => '충돌 보고';
-	@override String get crashReportingDescription => '앱 개선을 위해 충돌 보고서 전송';
 	@override String get debugLogging => '디버그 로깅';
 	@override String get debugLoggingDescription => '문제 해결을 위해 상세 로깅 활성화';
 	@override String get viewLogs => '로그 보기';
@@ -1912,8 +1910,6 @@ extension on TranslationsKo {
 			'settings.keyboardShortcutsDescription' => '키보드 단축키를 사용자 지정합니다',
 			'settings.videoPlayerNavigation' => '비디오 플레이어 탐색',
 			'settings.videoPlayerNavigationDescription' => '방향 키로 비디오 플레이어 컨트롤을 탐색합니다',
-			'settings.crashReporting' => '충돌 보고',
-			'settings.crashReportingDescription' => '앱 개선을 위해 충돌 보고서 전송',
 			'settings.debugLogging' => '디버그 로깅',
 			'settings.debugLoggingDescription' => '문제 해결을 위해 상세 로깅 활성화',
 			'settings.viewLogs' => '로그 보기',
@@ -2269,10 +2265,10 @@ extension on TranslationsKo {
 			'messages.noResultsFound' => '결과를 찾을 수 없습니다',
 			'messages.sleepTimerSet' => ({required Object label}) => '취침 타이머가 ${label}(으)로 설정되었습니다',
 			'messages.noItemsAvailable' => '사용 가능한 항목이 없습니다',
-			_ => null,
-		} ?? switch (path) {
 			'messages.failedToCreatePlayQueueNoItems' => '재생 대기열을 만들지 못했습니다 — 항목이 없습니다',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}을(를) 수행할 수 없습니다: ${error}',
+			_ => null,
+		} ?? switch (path) {
 			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
 			'messages.serverLimitTitle' => '재생 실패',
 			'messages.serverLimitBody' => '서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.',
@@ -2783,10 +2779,10 @@ extension on TranslationsKo {
 			'metadataEdit.selectPoster' => '포스터 선택',
 			'metadataEdit.selectBackground' => '배경 선택',
 			'metadataEdit.selectLogo' => '로고 선택',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => '정사각형 아트 선택',
 			'metadataEdit.fromUrl' => 'URL에서',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '파일 업로드',
 			'metadataEdit.enterImageUrl' => '이미지 URL 입력',
 			'metadataEdit.imageUrl' => '이미지 URL',

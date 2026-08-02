@@ -165,8 +165,6 @@
     "keyboardShortcutsDescription": "Klavye kısayollarını özelleştirin",
     "videoPlayerNavigation": "Video Oynatıcı Gezinmesi",
     "videoPlayerNavigationDescription": "Video oynatıcı kontrollerinde gezinmek için yön tuşlarını kullanın",
-    "crashReporting": "Çökme Bildirimi",
-    "crashReportingDescription": "Uygulamanın geliştirilmesine yardımcı olmak için çökme raporları gönder",
     "debugLogging": "Hata Ayıklama Günlüğü",
     "debugLoggingDescription": "Sorun giderme için ayrıntılı günlük kaydını etkinleştir",
     "viewLogs": "Günlükleri Görüntüle",

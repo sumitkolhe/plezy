@@ -299,7 +299,6 @@ class SettingsService extends BaseSharedPreferencesService {
   // application guide prescribes; on = the mode the audio output used before.
   // Not resettable, for the same reason as the URL above.
   static const atmosProbeMoviePlaybackMode = BoolPref('atmos_probe_movie_playback_mode');
-  static const crashReporting = BoolPref('crash_reporting', defaultValue: true);
   static const enableHardwareDecoding = BoolPref('enable_hardware_decoding', defaultValue: true);
   static const enableHDR = BoolPref('enable_hdr', defaultValue: true);
   static const preferredVideoCodec = StringPref('preferred_video_codec', defaultValue: 'auto');
