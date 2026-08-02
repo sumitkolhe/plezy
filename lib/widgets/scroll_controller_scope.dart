@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 /// Owns a [ScrollController] for a horizontally scrolling row and hands it to
 /// [builder], so callers that only need a controller for its lifetime do not
 /// each have to manage one.
-///
-/// This used to overlay hover-activated navigation arrows, which needed a
-/// mouse; on touch and TV there is none, so only the controller remains.
 class ScrollControllerScope extends StatefulWidget {
   final Widget Function(ScrollController) builder;
 

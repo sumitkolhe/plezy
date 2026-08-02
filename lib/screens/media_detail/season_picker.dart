@@ -15,16 +15,6 @@ const double _pillHorizontalPadding = 13;
 const double _pillGap = 7;
 const double _pillHeight = 34;
 
-/// Season chooser for the touch detail screen.
-///
-/// One control across the whole range rather than a threshold that swaps it out
-/// from under you: seasons are always pills, so switching is always a single tap
-/// and the row always answers which seasons exist.
-///
-/// A show with one season gets no control at all — there is nothing to choose.
-/// When the pills outgrow the row it scrolls and keeps the selected one in view;
-/// only then does a trailing button offer the full list as a sheet, which is the
-/// one case where scanning beats scrolling.
 class SeasonSelector extends StatefulWidget {
   final List<MediaItem> seasons;
   final int selectedIndex;
@@ -32,8 +22,7 @@ class SeasonSelector extends StatefulWidget {
 
   const SeasonSelector({super.key, required this.seasons, required this.selectedIndex, required this.onSelected});
 
-  /// `S8` for numbered seasons, the server's own title otherwise — index 0 is
-  /// conventionally Specials, which `S0` would render meaningless.
+  /// Index 0 is conventionally Specials, where `S0` would read as meaningless.
   static String compactLabel(MediaItem season, int position) {
     final index = season.index;
     if (index != null && index > 0) return 'S$index';
@@ -77,8 +66,6 @@ class _SeasonSelectorState extends State<SeasonSelector> {
     super.dispose();
   }
 
-  /// Opening on season 8 with the row scrolled to season 1 would put back the
-  /// "which one am I on" question the pills exist to answer.
   void _revealSelected({bool animate = true}) {
     if (!mounted || !_controller.hasClients) return;
     final pillContext = _pillKeys[widget.selectedIndex]?.currentContext;
@@ -105,8 +92,7 @@ class _SeasonSelectorState extends State<SeasonSelector> {
     );
   }
 
-  /// Whether every pill fits without scrolling, which is what decides if the row
-  /// needs the sheet as an escape hatch for jumping across a long run.
+  /// Drives whether the row offers the sheet; a scrolling row cannot be scanned.
   bool _fits(double maxWidth, TextStyle style) {
     var total = 0.0;
     for (var i = 0; i < widget.seasons.length; i++) {

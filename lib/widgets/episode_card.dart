@@ -59,9 +59,6 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
-  /// Runtime, air date, your rating and quality labels as one dim mono line —
-  /// reported values, not prose, and a fixed height so a long list of rows
-  /// stays scannable.
   Widget _buildEpisodeMetaLine(BuildContext context, MediaItem episode, List<String> qualityLabels) {
     final tokensRef = tokens(context);
     final rating = episode.userRating;
@@ -127,11 +124,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             onSecondaryTap: showContextMenuFromTap,
             hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
             child: Padding(
-              // Separated by space alone. A filled surface per row made the
-              // list read as a stack of tiles and put a second background
-              // behind every thumbnail; a rule between them read as borrowed
-              // from an app that structures everything that way, which this
-              // one does not.
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 crossAxisAlignment: .start,
@@ -213,11 +205,9 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                               // Note: No icon shown if not downloaded (null)
                             }
 
-                            // Title, summary and meta all start at the column's
-                            // left edge so the block reads straight down. The
-                            // episode number sits with the other reported
-                            // figures on the mono line rather than indenting
-                            // the title away from the two lines under it.
+                            // The episode number lives on the meta line: as a
+                            // sibling here it indents the title away from the
+                            // left edge the summary and meta share.
                             return Row(
                               crossAxisAlignment: .start,
                               children: [
@@ -240,9 +230,8 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
 
                         if (!shouldBlur && episode.summary != null && episode.summary!.isNotEmpty) ...[
                           const SizedBox(height: 3),
-                          // Clamped rather than expandable: uniform row heights
-                          // are what make a 20-episode season scannable, and
-                          // the full summary is one tap away on the episode.
+                          // Uniform row heights are what make a long season
+                          // scannable; the full summary is a tap away.
                           Text(
                             episode.summary!,
                             style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
@@ -265,11 +254,8 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     );
   }
 
-  /// Quiet stand-in for episodes whose art the server has not produced.
-  ///
-  /// A season of freshly-added episodes has no images until Jellyfin's
-  /// metadata refresh fetches them, and a filled box with a large glyph
-  /// repeated down the whole list reads as breakage rather than absence.
+  /// Deliberately faint: Jellyfin serves no image until its metadata refresh
+  /// fetches one, so a whole season can legitimately land here.
   Widget _missingThumbnail(BuildContext context) {
     return PlaceholderContainer(
       color: tokens(context).text.withValues(alpha: 0.04),

@@ -4,25 +4,11 @@ import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
 import '../../utils/rating_spans.dart';
 
-/// Shared presentation for the touch detail screen.
-///
-/// The screen used to describe a title with a cloud of filled pills — rating,
-/// certificate, quality, year, runtime, then genres in the same pill shape one
-/// row down. Every fact carried the same weight, and the genre pills read as
-/// buttons that do nothing when tapped. These replace that with one typographic
-/// hierarchy: a dot-separated fact line where only the score is emphasised, a
-/// plain muted genre line that no longer invites a tap, and hairline-separated
-/// rows for the long tail. Figures and codes set in the mono face so they read
-/// as reported values rather than prose.
-
-/// Dot-separated fact line: score first and emphasised, then the plain facts,
-/// with the certificate last as a bordered mark.
 class DetailFactLine extends StatelessWidget {
   final double? rating;
   final String? contentRating;
 
-  /// Year, season/episode count, runtime — whatever the caller has, in the
-  /// order it should survive truncation.
+  /// Ordered by what should survive truncation.
   final List<String> facts;
   final double fontSize;
 
@@ -59,8 +45,7 @@ class DetailFactLine extends StatelessWidget {
   }
 }
 
-/// Squared bordered mark — certificates are squared in the wild, so the pill
-/// radius the rest of the line avoids would read as less correct, not more.
+/// Squared rather than a pill: certificates are squared marks in the wild.
 class _CertificateMark extends StatelessWidget {
   final String label;
 
@@ -83,8 +68,7 @@ class _CertificateMark extends StatelessWidget {
   }
 }
 
-/// Genres as prose. They are description, not navigation, and the pill shape
-/// they used to wear promised a tap target the screen never wired up.
+/// Prose, not chips: genres are description here, and nothing navigates.
 class DetailGenreLine extends StatelessWidget {
   final List<String> genres;
   final double fontSize;
@@ -103,7 +87,6 @@ class DetailGenreLine extends StatelessWidget {
   }
 }
 
-/// Section heading with an optional muted count on the baseline opposite it.
 class DetailSectionHeader extends StatelessWidget {
   final String title;
   final String? trailing;
@@ -114,8 +97,7 @@ class DetailSectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = tokens(context);
-    // Same scale as HubSection's rail header — the related-hub rails sit on
-    // this page too, and two heading sizes on one screen reads as a mistake.
+    // Matches HubSection: its rails render on this same page.
     final heading = Text(
       title,
       style: TextStyle(
@@ -151,12 +133,7 @@ class DetailInfoEntry {
   const DetailInfoEntry(this.label, this.value, {this.mono = false});
 }
 
-/// Label/value rows sharing a fixed label column, which is what turns a list of
-/// facts into something you can scan down.
-///
-/// Deliberately unruled: the rest of the app separates content with surfaces
-/// rather than hairlines — the hub rails further down this same screen do — so
-/// ruled rows read as borrowed from another app rather than as structure.
+/// Unruled by choice: this app separates content with surfaces, not hairlines.
 class DetailInfoTable extends StatelessWidget {
   final List<DetailInfoEntry> entries;
   static const double _labelWidth = 72;
