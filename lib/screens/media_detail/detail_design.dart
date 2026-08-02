@@ -151,8 +151,12 @@ class DetailInfoEntry {
   const DetailInfoEntry(this.label, this.value, {this.mono = false});
 }
 
-/// Hairline-separated label/value rows. The fixed label column is what turns a
-/// list of facts into a table you can scan down.
+/// Label/value rows sharing a fixed label column, which is what turns a list of
+/// facts into something you can scan down.
+///
+/// Deliberately unruled: the rest of the app separates content with surfaces
+/// rather than hairlines — the hub rails further down this same screen do — so
+/// ruled rows read as borrowed from another app rather than as structure.
 class DetailInfoTable extends StatelessWidget {
   final List<DetailInfoEntry> entries;
   static const double _labelWidth = 92;
@@ -163,18 +167,13 @@ class DetailInfoTable extends StatelessWidget {
   Widget build(BuildContext context) {
     if (entries.isEmpty) return const SizedBox.shrink();
     final t = tokens(context);
-    final hairline = BorderSide(color: t.outline);
 
     return Column(
       crossAxisAlignment: .start,
       children: [
         for (var i = 0; i < entries.length; i++)
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 11),
-            decoration: BoxDecoration(
-              border: Border(top: hairline, bottom: i == entries.length - 1 ? hairline : BorderSide.none),
-            ),
+          Padding(
+            padding: EdgeInsets.only(top: i == 0 ? 0 : 10),
             child: Row(
               crossAxisAlignment: .start,
               children: [

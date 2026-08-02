@@ -125,12 +125,13 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             onSecondaryTapDown: storeTapPosition,
             onSecondaryTap: showContextMenuFromTap,
             hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
-            child: Container(
-              // A hairline instead of a filled card: with every row carrying
-              // its own surface the list read as a stack of tiles rather than
-              // one list, and the fill competed with the thumbnails.
-              decoration: BoxDecoration(border: Border(top: BorderSide(color: tokensRef.outline))),
-              padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Padding(
+              // Separated by space alone. A filled surface per row made the
+              // list read as a stack of tiles and put a second background
+              // behind every thumbnail; a rule between them read as borrowed
+              // from an app that structures everything that way, which this
+              // one does not.
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Row(
                 crossAxisAlignment: .start,
                 children: [

@@ -73,13 +73,17 @@ void main() {
       expect(tester.widget<Text>(find.text('Someone')).style?.fontFamily, isNull);
     });
 
-    testWidgets('closes the last row so the table has both edges', (tester) async {
-      await pump(tester, const DetailInfoTable(entries: [DetailInfoEntry('Studio', 'A24')]));
+    testWidgets('separates rows with space, not rules', (tester) async {
+      await pump(
+        tester,
+        const DetailInfoTable(entries: [DetailInfoEntry('Studio', 'A24'), DetailInfoEntry('Director', 'Someone')]),
+      );
 
-      final decorated = tester.widgetList<Container>(find.byType(Container)).first;
-      final border = (decorated.decoration! as BoxDecoration).border! as Border;
-      expect(border.top.style, BorderStyle.solid);
-      expect(border.bottom.style, BorderStyle.solid);
+      // The app structures content with surfaces, not hairlines; a ruled table
+      // here read as borrowed from a different app.
+      for (final container in tester.widgetList<Container>(find.byType(Container))) {
+        expect((container.decoration as BoxDecoration?)?.border, isNull);
+      }
     });
 
     testWidgets('collapses when there is nothing to tabulate', (tester) async {

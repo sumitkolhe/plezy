@@ -109,27 +109,24 @@ class _SeasonSheet extends StatelessWidget {
             itemBuilder: (context, index) {
               final season = seasons[index];
               final meta = SeasonPickerChip.seasonMeta(season);
-              return DecoratedBox(
-                decoration: BoxDecoration(border: Border(top: BorderSide(color: tokensRef.outline))),
-                child: FocusableListTile(
-                  autofocus: index == selectedIndex,
-                  title: Text(
-                    season.title ?? t.common.seasonNumber(number: '${season.index ?? index + 1}'),
-                    style: TextStyle(fontSize: 15.5, fontWeight: .w600, color: tokensRef.text),
-                  ),
-                  subtitle: meta == null
-                      ? null
-                      : Text(
-                          meta,
-                          style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted),
-                        ),
-                  trailing: index == selectedIndex
-                      ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text)
-                      : null,
-                  onTap: () => OverlaySheetController.closeAdaptive(context, index),
-                  dense: false,
-                  visualDensity: VisualDensity.standard,
+              return FocusableListTile(
+                autofocus: index == selectedIndex,
+                title: Text(
+                  season.title ?? t.common.seasonNumber(number: '${season.index ?? index + 1}'),
+                  style: TextStyle(fontSize: 15.5, fontWeight: .w600, color: tokensRef.text),
                 ),
+                subtitle: meta == null
+                    ? null
+                    : Text(
+                        meta,
+                        style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted),
+                      ),
+                trailing: index == selectedIndex
+                    ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text)
+                    : null,
+                onTap: () => OverlaySheetController.closeAdaptive(context, index),
+                dense: false,
+                visualDensity: VisualDensity.standard,
               );
             },
           ),
