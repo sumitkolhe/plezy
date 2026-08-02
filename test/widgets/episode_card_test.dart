@@ -180,13 +180,25 @@ void main() {
     await tester.tap(find.text('E4${dotSeparator}A Large Episode'));
     await tester.pumpAndSettle();
 
-    for (final fact in ['52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
+    final sheet = find.byType(EpisodeDetailSheet);
+    for (final labelled in [
+      (t.fileInfo.duration, '52:00'),
+      (t.fileInfo.video, '1080p'),
+      (t.fileInfo.audio, 'EAC3 5.1'),
+      (t.fileInfo.size, '1.50 GB'),
+    ]) {
       expect(
-        find.descendant(of: find.byType(EpisodeDetailSheet), matching: find.text(fact)),
+        find.descendant(of: sheet, matching: find.text(labelled.$2)),
         findsOneWidget,
-        reason: '"$fact" should have its own pill',
+        reason: '"${labelled.$2}" should have its own pill',
+      );
+      expect(
+        find.descendant(of: sheet, matching: find.text(labelled.$1)),
+        findsOneWidget,
+        reason: '"${labelled.$2}" should say what it is',
       );
     }
+    expect(find.descendant(of: sheet, matching: find.text(t.metadataEdit.releaseDate)), findsOneWidget);
   });
 }
 

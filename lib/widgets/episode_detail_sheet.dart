@@ -14,12 +14,23 @@ import 'overlay_sheet.dart';
 import 'placeholder_container.dart';
 import 'watched_indicator.dart';
 
-List<String> episodeFacts(MediaItem episode) {
+typedef EpisodeFact = ({String? label, String value});
+
+/// Labelled so a bare figure like `52:00` is not left to be guessed at.
+List<EpisodeFact> episodeFacts(MediaItem episode) {
+  final duration = episode.durationMs;
+  final aired = episode.originallyAvailableAt;
+  final video = buildVideoQualityLabels(episode);
+  final audio = buildAudioQualityLabel(episode);
+  final size = buildMediaSizeLabel(episode);
+
   return [
-    if (episode.durationMs != null) formatDurationTimestamp(Duration(milliseconds: episode.durationMs!)),
-    if (episode.originallyAvailableAt != null) formatAbbreviatedDate(episode.originallyAvailableAt!),
-    ...buildMediaQualityLabels(episode),
-    ?buildMediaSizeLabel(episode),
+    if (duration != null)
+      (label: t.fileInfo.duration, value: formatDurationTimestamp(Duration(milliseconds: duration))),
+    if (aired != null) (label: t.metadataEdit.releaseDate, value: formatAbbreviatedDate(aired)),
+    if (video.isNotEmpty) (label: t.fileInfo.video, value: video.join(dotSeparator)),
+    if (audio != null) (label: t.fileInfo.audio, value: audio),
+    if (size != null) (label: t.fileInfo.size, value: size),
   ];
 }
 
@@ -86,8 +97,9 @@ class EpisodeDetailSheet extends StatelessWidget {
                     spacing: 6,
                     runSpacing: 6,
                     children: [
-                      if (rating != null && rating > 0) _FactChip(label: formatRating(rating / 2), leading: true),
-                      for (final fact in facts) _FactChip(label: fact),
+                      if (rating != null && rating > 0)
+                        _FactChip(value: formatRating(rating / 2), icon: Symbols.star_rounded),
+                      for (final fact in facts) _FactChip(label: fact.label, value: fact.value),
                     ],
                   ),
                 ],
@@ -160,34 +172,41 @@ class EpisodeDetailSheet extends StatelessWidget {
 }
 
 class _FactChip extends StatelessWidget {
-  final String label;
-  final bool leading;
+  final String? label;
+  final String value;
+  final IconData? icon;
 
-  const _FactChip({required this.label, this.leading = false});
+  const _FactChip({required this.value, this.label, this.icon});
 
   @override
   Widget build(BuildContext context) {
     final tokensRef = tokens(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
       decoration: BoxDecoration(
-        color: tokensRef.text.withValues(alpha: 0.09),
+        color: tokensRef.text.withValues(alpha: 0.08),
         borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
       ),
       child: Row(
         mainAxisSize: .min,
         children: [
-          if (leading) ...[
-            AppIcon(Symbols.star_rounded, fill: 1, size: 13, color: tokensRef.text.withValues(alpha: 0.78)),
-            const SizedBox(width: 4),
+          if (icon != null) ...[
+            AppIcon(icon!, fill: 1, size: 13, color: tokensRef.text.withValues(alpha: 0.7)),
+            const SizedBox(width: 5),
+          ],
+          if (label != null) ...[
+            Text(
+              label!,
+              style: TextStyle(fontSize: 11.5, fontWeight: .w500, color: tokensRef.text.withValues(alpha: 0.5)),
+            ),
+            const SizedBox(width: 6),
           ],
           Text(
-            label,
+            value,
             style: TextStyle(
               fontSize: 12,
-              fontWeight: .w500,
-              color: tokensRef.text.withValues(alpha: 0.86),
-              letterSpacing: 0.1,
+              fontWeight: .w600,
+              color: tokensRef.text.withValues(alpha: 0.88),
               fontFeatures: const [FontFeature.tabularFigures()],
             ),
           ),

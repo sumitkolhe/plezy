@@ -5,7 +5,14 @@ import 'codec_utils.dart';
 import 'resolution_label.dart';
 import 'formatters.dart';
 
-List<String> buildMediaQualityLabels(MediaItem item, {int versionIndex = 0}) {
+List<String> buildMediaQualityLabels(MediaItem item, {int versionIndex = 0}) => [
+  ...buildVideoQualityLabels(item, versionIndex: versionIndex),
+  ?buildAudioQualityLabel(item, versionIndex: versionIndex),
+];
+
+/// Resolution and dynamic range, for callers that label the video track apart
+/// from the audio one.
+List<String> buildVideoQualityLabels(MediaItem item, {int versionIndex = 0}) {
   final version = _selectedVersion(item.mediaVersions, versionIndex);
   if (version == null) return const [];
 
@@ -20,11 +27,12 @@ List<String> buildMediaQualityLabels(MediaItem item, {int versionIndex = 0}) {
     labels.add('HDR');
   }
 
-  final audio = _selectedAudioStream(version);
-  final audioLabel = _formatAudio(audio);
-  if (audioLabel != null) labels.add(audioLabel);
-
   return labels;
+}
+
+String? buildAudioQualityLabel(MediaItem item, {int versionIndex = 0}) {
+  final version = _selectedVersion(item.mediaVersions, versionIndex);
+  return version == null ? null : _formatAudio(_selectedAudioStream(version));
 }
 
 String? buildMediaSizeLabel(MediaItem item, {int versionIndex = 0}) {
