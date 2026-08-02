@@ -77,7 +77,16 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
 
     return Text.rich(
       TextSpan(children: spans),
-      style: TextStyle(fontSize: 11.5, fontWeight: .w500, color: tokensRef.textMuted, height: 1.4, letterSpacing: 0.1),
+      style: TextStyle(
+        fontSize: 11.5,
+        fontWeight: .w600,
+        color: tokensRef.textMuted,
+        height: 1.4,
+        letterSpacing: 0.35,
+        // Digits keep a common advance, so the run of figures reads as data
+        // without setting it in the mono face.
+        fontFeatures: const [FontFeature.tabularFigures()],
+      ),
       maxLines: 2,
       overflow: .ellipsis,
     );
