@@ -14,28 +14,14 @@ import 'overlay_sheet.dart';
 import 'placeholder_container.dart';
 import 'watched_indicator.dart';
 
-/// Shared by the row and the sheet so the two cannot report different facts.
-List<InlineSpan> episodeFactSpans(MediaItem episode) {
-  final rating = episode.userRating;
-  final size = buildMediaSizeLabel(episode);
-  return dotSeparatedSpans([
-    if (episode.durationMs != null)
-      TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
-    if (episode.originallyAvailableAt != null) TextSpan(text: formatAbbreviatedDate(episode.originallyAvailableAt!)),
-    if (rating != null && rating > 0) ratingSpan(rating / 2, iconSize: 11),
-    for (final label in buildMediaQualityLabels(episode)) TextSpan(text: label),
-    if (size != null) TextSpan(text: size),
-  ]);
+List<String> episodeFacts(MediaItem episode) {
+  return [
+    if (episode.durationMs != null) formatDurationTimestamp(Duration(milliseconds: episode.durationMs!)),
+    if (episode.originallyAvailableAt != null) formatAbbreviatedDate(episode.originallyAvailableAt!),
+    ...buildMediaQualityLabels(episode),
+    ?buildMediaSizeLabel(episode),
+  ];
 }
-
-TextStyle episodeFactStyle(BuildContext context) => TextStyle(
-  fontSize: 11.5,
-  fontWeight: .w600,
-  color: tokens(context).text.withValues(alpha: 0.78),
-  height: 1.4,
-  letterSpacing: 0.35,
-  fontFeatures: const [FontFeature.tabularFigures()],
-);
 
 String episodeHeadline(MediaItem episode) =>
     episode.index == null ? episode.title ?? '' : 'E${episode.index}$dotSeparator${episode.title ?? ''}';
@@ -58,7 +44,8 @@ class EpisodeDetailSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tokensRef = tokens(context);
-    final facts = episodeFactSpans(episode);
+    final facts = episodeFacts(episode);
+    final rating = episode.userRating;
     final summary = episode.summary;
     final directors = episode.directors;
     const inset = EdgeInsets.symmetric(horizontal: 20);
@@ -69,13 +56,13 @@ class EpisodeDetailSheet extends StatelessWidget {
       children: [
         Flexible(
           child: SingleChildScrollView(
-            padding: inset,
+            padding: inset.add(const EdgeInsets.only(top: 4, bottom: 24)),
             child: Column(
               mainAxisSize: .min,
               crossAxisAlignment: .start,
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.all(Radius.circular(12)),
+                  borderRadius: const BorderRadius.all(Radius.circular(14)),
                   child: AspectRatio(
                     aspectRatio: 16 / 9,
                     child: Stack(
@@ -88,38 +75,45 @@ class EpisodeDetailSheet extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 18),
                 Text(
                   episodeHeadline(episode),
                   style: TextStyle(fontSize: 17, fontWeight: .w600, color: tokensRef.text, height: 1.3),
                 ),
-                if (facts.isNotEmpty) ...[
-                  const SizedBox(height: 6),
-                  Text.rich(TextSpan(children: facts), style: episodeFactStyle(context)),
+                if (facts.isNotEmpty || (rating != null && rating > 0)) ...[
+                  const SizedBox(height: 14),
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 6,
+                    children: [
+                      if (rating != null && rating > 0) _FactChip(label: formatRating(rating / 2), leading: true),
+                      for (final fact in facts) _FactChip(label: fact),
+                    ],
+                  ),
                 ],
                 if (summary != null && summary.isNotEmpty) ...[
-                  const SizedBox(height: 14),
+                  const SizedBox(height: 18),
                   Text(
                     summary,
                     style: TextStyle(fontSize: 14, color: tokensRef.textMuted, height: 1.55),
                   ),
                 ],
                 if (directors != null && directors.isNotEmpty) ...[
-                  const SizedBox(height: 14),
+                  const SizedBox(height: 16),
                   Text(
                     '${directors.length == 1 ? t.discover.director : t.discover.directors}  ${directors.join(', ')}',
                     style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
                   ),
                 ],
-                const SizedBox(height: 18),
               ],
             ),
           ),
         ),
         Padding(
-          padding: inset.add(const EdgeInsets.only(bottom: 4)),
+          padding: inset.add(const EdgeInsets.only(bottom: 8)),
           child: SizedBox(
             width: double.infinity,
+            height: 48,
             child: FilledButton.icon(
               onPressed: () {
                 OverlaySheetController.closeAdaptive(context, null);
@@ -161,6 +155,44 @@ class EpisodeDetailSheet extends StatelessWidget {
       fit: BoxFit.cover,
       placeholder: (context, url) => PlaceholderContainer(color: tokens(context).text.withValues(alpha: 0.04)),
       errorWidget: (context, url, error) => fallback,
+    );
+  }
+}
+
+class _FactChip extends StatelessWidget {
+  final String label;
+  final bool leading;
+
+  const _FactChip({required this.label, this.leading = false});
+
+  @override
+  Widget build(BuildContext context) {
+    final tokensRef = tokens(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(
+        color: tokensRef.text.withValues(alpha: 0.09),
+        borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
+      ),
+      child: Row(
+        mainAxisSize: .min,
+        children: [
+          if (leading) ...[
+            AppIcon(Symbols.star_rounded, fill: 1, size: 13, color: tokensRef.text.withValues(alpha: 0.78)),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: .w500,
+              color: tokensRef.text.withValues(alpha: 0.86),
+              letterSpacing: 0.1,
+              fontFeatures: const [FontFeature.tabularFigures()],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

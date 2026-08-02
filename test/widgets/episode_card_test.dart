@@ -59,7 +59,7 @@ void main() {
     // Clamped in place of the old expandable text: rows stay a uniform height,
     // and the full summary still reaches semantics.
     final summaryText = tester.widget<Text>(find.text(summary));
-    expect(summaryText.maxLines, 2);
+    expect(summaryText.maxLines, isNotNull);
     expect(summaryText.overflow, TextOverflow.ellipsis);
 
     final semanticNodes = <SemanticsNode>[];
@@ -79,69 +79,23 @@ void main() {
     semantics.dispose();
   });
 
-  testWidgets('the fact line wraps rather than hiding what does not fit', (tester) async {
+  testWidgets('the row is exactly as tall as its still, however long the text', (tester) async {
     final episode = testMediaItem(
-      id: 'wrapping_meta_episode',
+      id: 'clamped_episode',
       backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
-      title: 'Aftermath',
+      title: 'A Title Long Enough To Wrap Onto A Second Line On A Phone',
       index: 12,
-      durationMs: 52 * 60 * 1000,
-      originallyAvailableAt: '2019-04-14',
-      mediaVersions: const [
-        MediaVersion(
-          id: 'source',
-          videoResolution: '1080',
-          parts: [
-            MediaPart(
-              id: 'part-1',
-              sizeBytes: 1536 * 1024 * 1024,
-              streams: [
-                MediaStream(id: 'audio', kind: MediaStreamKind.audio, codec: 'eac3', channels: 6, selected: true),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-
-    await _pumpEpisodeCard(tester, episode);
-
-    final meta = tester.widgetList<Text>(find.byType(Text)).firstWhere(
-      (text) => (text.textSpan?.toPlainText() ?? '').contains('1.50 GB'),
-    );
-    expect(meta.maxLines, 2);
-    final facts = meta.textSpan!.toPlainText();
-    for (final fact in ['52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
-      expect(facts, contains(fact));
-    }
-    // The episode number heads the title instead.
-    expect(facts, isNot(contains('E12')));
-    expect(find.text('E12${dotSeparator}Aftermath'), findsOneWidget);
-  });
-
-  testWidgets('summary sits under the fact line in the text column', (tester) async {
-    const summary = 'A quiet episode in which very little happens and everyone talks about it afterwards.';
-    final episode = testMediaItem(
-      id: 'ordered_episode',
-      backend: MediaBackend.jellyfin,
-      kind: MediaKind.episode,
-      title: 'Aftermath',
-      index: 5,
-      summary: summary,
+      summary: 'C' * 600,
       durationMs: 42 * 60 * 1000,
     );
 
     await _pumpEpisodeCard(tester, episode);
 
-    final title = tester.getRect(find.text('E5${dotSeparator}Aftermath'));
-    final summaryRect = tester.getRect(find.text(summary));
-    final still = tester.getRect(find.byType(AspectRatio).first);
-
-    // Same column as the title, below it, and clear of the still.
-    expect(summaryRect.left, title.left);
-    expect(summaryRect.top, greaterThan(title.bottom));
-    expect(summaryRect.left, greaterThan(still.right));
+    final still = tester.getSize(find.byType(AspectRatio).first);
+    final row = tester.getSize(find.descendant(of: find.byType(EpisodeCard), matching: find.byType(Row)).first);
+    expect(row.height, still.height);
+    expect(tester.widget<Text>(find.text('C' * 600)).overflow, TextOverflow.ellipsis);
   });
 
   testWidgets('the still plays and the rest of the row opens the details', (tester) async {
@@ -192,14 +146,15 @@ void main() {
     expect(tester.widget<Text>(inSheet).maxLines, isNull);
   });
 
-  testWidgets('shows file size alongside media quality labels', (tester) async {
+  testWidgets('the sheet lists every fact as its own pill', (tester) async {
     final episode = testMediaItem(
-      id: 'sized_episode',
+      id: 'faceted_episode',
       backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'A Large Episode',
       index: 4,
       durationMs: 52 * 60 * 1000,
+      originallyAvailableAt: '2019-04-14',
       mediaVersions: const [
         MediaVersion(
           id: 'source',
@@ -219,12 +174,19 @@ void main() {
 
     await _pumpEpisodeCard(tester, episode);
 
-    // One mono line rather than a wrap of separate chips.
-    final meta = tester
-        .widgetList<Text>(find.byType(Text))
-        .map((text) => text.data ?? text.textSpan?.toPlainText() ?? '')
-        .firstWhere((value) => value.contains('1.50 GB'));
-    expect(meta, contains('EAC3 5.1'));
+    // The row itself no longer carries them.
+    expect(find.text('1.50 GB'), findsNothing);
+
+    await tester.tap(find.text('E4${dotSeparator}A Large Episode'));
+    await tester.pumpAndSettle();
+
+    for (final fact in ['52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
+      expect(
+        find.descendant(of: find.byType(EpisodeDetailSheet), matching: find.text(fact)),
+        findsOneWidget,
+        reason: '"$fact" should have its own pill',
+      );
+    }
   });
 }
 

@@ -27,7 +27,10 @@ import '../theme/mono_tokens.dart';
 import '../media/media_server_client.dart';
 
 const double _thumbWidth = 152;
+const double _thumbHeight = _thumbWidth * 9 / 16;
 const double _thumbGap = 14;
+const double _summaryFontSize = 13;
+const double _summaryLineHeight = 1.4;
 
 /// Episode card widget with D-pad long-press support
 class EpisodeCard extends StatefulWidget {
@@ -63,18 +66,6 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
-  Widget? _buildEpisodeMetaLine(BuildContext context, MediaItem episode) {
-    final spans = episodeFactSpans(episode);
-    if (spans.isEmpty) return null;
-
-    return Text.rich(
-      TextSpan(children: spans),
-      style: episodeFactStyle(context),
-      maxLines: 2,
-      overflow: .ellipsis,
-    );
-  }
-
   void _openDetails(BuildContext context, MediaItem episode) {
     unawaited(
       OverlaySheetController.showAdaptive<void>(
@@ -101,8 +92,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
   Widget _buildContent(BuildContext context, {required bool hideSpoilers}) {
     final episode = _effectiveEpisode(context);
     final shouldBlur = hideSpoilers && episode.shouldHideSpoiler;
-    final tokensRef = tokens(context);
-    final metaLine = _buildEpisodeMetaLine(context, episode);
     // A remote cannot aim at a region, so D-pad keeps the whole row on play
     // and reaches the rest through the long-press menu.
     final splitTargets = !PlatformDetector.isTV();
@@ -152,22 +141,18 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                   ),
                   const SizedBox(width: _thumbGap),
                   Expanded(
-                    child: Column(
-                      mainAxisSize: .min,
-                      crossAxisAlignment: .start,
-                      children: [
-                        _buildTitleRow(context, episode),
-                        if (metaLine != null) ...[const SizedBox(height: 3), metaLine],
-                        if (showSummary) ...[
-                          const SizedBox(height: 8),
-                          Text(
-                            summary,
-                            style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
-                            maxLines: 2,
-                            overflow: .ellipsis,
-                          ),
+                    child: SizedBox(
+                      height: _thumbHeight,
+                      child: Column(
+                        crossAxisAlignment: .start,
+                        children: [
+                          _buildTitleRow(context, episode),
+                          if (showSummary) ...[
+                            const SizedBox(height: 6),
+                            Flexible(child: _buildSummary(context, summary)),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
                 ],
@@ -176,6 +161,27 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
           ),
         ),
       ),
+    );
+  }
+
+  /// Takes as many lines as the still leaves after the title, so the row is
+  /// always exactly the height of its own image.
+  Widget _buildSummary(BuildContext context, String summary) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final lines = (constraints.maxHeight / (_summaryFontSize * _summaryLineHeight)).floor();
+        if (lines < 1) return const SizedBox.shrink();
+        return Text(
+          summary,
+          style: TextStyle(
+            fontSize: _summaryFontSize,
+            color: tokens(context).textMuted,
+            height: _summaryLineHeight,
+          ),
+          maxLines: lines,
+          overflow: .ellipsis,
+        );
+      },
     );
   }
 
