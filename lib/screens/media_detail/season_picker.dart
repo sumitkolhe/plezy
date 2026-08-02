@@ -103,7 +103,7 @@ class _SeasonSheet extends StatelessWidget {
       crossAxisAlignment: .start,
       children: [
         Padding(
-          padding: inset.add(const EdgeInsets.only(bottom: 10)),
+          padding: inset.add(const EdgeInsets.only(top: 14, bottom: 12)),
           child: DetailSectionHeader(
             title: t.libraries.groupings.seasons,
             trailing: totalEpisodes > 0 ? t.explore.episodeCount(n: totalEpisodes) : null,
@@ -112,7 +112,7 @@ class _SeasonSheet extends StatelessWidget {
         Flexible(
           child: ListView.builder(
             shrinkWrap: true,
-            padding: .zero,
+            padding: const EdgeInsets.only(bottom: 16),
             itemCount: seasons.length,
             itemBuilder: (context, index) {
               final season = seasons[index];
@@ -120,7 +120,10 @@ class _SeasonSheet extends StatelessWidget {
               final selected = index == selectedIndex;
               return FocusableListTile(
                 autofocus: selected,
-                contentPadding: inset,
+                // FocusableListTile is dense by default, which packs a long
+                // season list tighter than it can be read at a glance.
+                dense: false,
+                contentPadding: inset.add(const EdgeInsets.symmetric(vertical: 4)),
                 title: Text(
                   SeasonPickerChip.label(season, index),
                   style: TextStyle(
