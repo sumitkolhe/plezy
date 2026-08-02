@@ -14,6 +14,7 @@ import '../../mixins/context_menu_tap_mixin.dart';
 import '../../services/settings_service.dart';
 import '../../widgets/settings_builder.dart';
 import '../../utils/formatters.dart';
+import '../../utils/rating_spans.dart';
 import '../../utils/provider_extensions.dart';
 import '../../widgets/app_menu.dart';
 import '../../widgets/media_context_menu.dart';
@@ -194,24 +195,25 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     return _dedupeSubtitle(item.displaySubtitle);
   }
 
-  String _buildMetadataLine() {
+  /// The rating renders as an icon span: the literal star (U+2605) is absent
+  /// from the bundled font and came back from a platform fallback at a
+  /// different weight and size than the text around it.
+  List<InlineSpan> _buildMetadataLine() {
     final item = widget.item;
-    final parts = <String>[];
+    final parts = <InlineSpan>[];
 
     if (item.contentRating != null && item.contentRating!.isNotEmpty) {
-      parts.add(item.contentRating!);
+      parts.add(TextSpan(text: item.contentRating!));
     }
     if (item.year != null) {
-      parts.add(item.year.toString());
+      parts.add(TextSpan(text: item.year.toString()));
     }
     if (item.durationMs != null && item.durationMs! > 0) {
-      parts.add(formatDurationTextual(item.durationMs!));
+      parts.add(TextSpan(text: formatDurationTextual(item.durationMs!)));
     }
-    if (item.rating != null) {
-      parts.add('★ ${item.rating!.toStringAsFixed(1)}');
-    }
+    if (item.rating != null) parts.add(ratingSpan(item.rating!, iconSize: 10));
 
-    return parts.join(' · ');
+    return dotSeparatedSpans(parts);
   }
 
   Widget _buildFolderRow(BuildContext context) {
@@ -322,8 +324,8 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
                 ],
                 if (metadataLine.isNotEmpty) ...[
                   const SizedBox(height: 2),
-                  Text(
-                    metadataLine,
+                  Text.rich(
+                    TextSpan(children: metadataLine),
                     style: TextStyle(
                       fontSize: 10,
                       color: tokens(context).textMuted.withValues(alpha: 0.7),

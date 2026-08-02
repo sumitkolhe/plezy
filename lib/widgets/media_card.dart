@@ -31,6 +31,7 @@ import '../utils/media_image_helper.dart';
 import '../utils/platform_detector.dart';
 import '../utils/provider_extensions.dart';
 import '../utils/formatters.dart';
+import '../utils/rating_spans.dart';
 import '../utils/media_navigation_helper.dart';
 import '../utils/snackbar_helper.dart';
 import '../theme/mono_tokens.dart';
@@ -79,7 +80,11 @@ String _formatCatalogPercent(double value) {
   return _percentNumberFormatter!.format(value);
 }
 
-/// Composes the "PG-13 • 2006 • 2h 10min • 7.7★" line under a card.
+/// Composes the "PG-13 • 2006 • 2h 10min • ★7.7" line under a card.
+///
+/// The rating is an icon span, not the literal star (U+2605) — that glyph is
+/// absent from the bundled font and came back from a platform fallback at a
+/// different weight and size than the text around it.
 ///
 /// [compact] is for the poster grid, where the line is one ellipsized row a
 /// third of the screen wide. Measured on a Pixel 7, the full order spends the
@@ -87,52 +92,52 @@ String _formatCatalogPercent(double value) {
 /// the one value this line exists to show. The compact form therefore leads
 /// with the rating and drops certification, edition, genres and studio, all
 /// of which the detail screen and the search list still render in full.
-String _buildMediaMetadataLine(MediaItem item, {CatalogItem? catalogItem, bool compact = false}) {
-  final parts = <String>[];
+List<InlineSpan> _buildMediaMetadataLine(MediaItem item, {CatalogItem? catalogItem, bool compact = false}) {
+  final parts = <InlineSpan>[];
 
   if (item.kind == MediaKind.collection) {
     final count = item.childCount ?? item.leafCount;
     if (count != null && count > 0) {
-      parts.add(t.playlists.itemCount(count: count));
+      parts.add(TextSpan(text: t.playlists.itemCount(count: count)));
     }
-    return parts.join(' • ');
+    return dotSeparatedSpans(parts);
   }
 
-  String? ratingPart() {
+  InlineSpan? ratingPart() {
     if (item.rating case final rating?) {
       final votes = compact ? null : catalogItem?.votes;
       final voteSuffix = votes != null && votes > 0 ? ' (${_formatCompactCatalogNumber(votes)})' : '';
-      return '${formatRating(rating)}★$voteSuffix';
+      return ratingSpan(rating, iconSize: 11, suffix: voteSuffix);
     }
     return null;
   }
 
   if (compact) {
     if (ratingPart() case final rating?) parts.add(rating);
-    if (item.year case final year?) parts.add('$year');
-    if (item.durationMs case final durationMs?) parts.add(formatDurationTextual(durationMs));
-    return parts.join(' • ');
+    if (item.year case final year?) parts.add(TextSpan(text: '$year'));
+    if (item.durationMs case final durationMs?) parts.add(TextSpan(text: formatDurationTextual(durationMs)));
+    return dotSeparatedSpans(parts);
   }
 
   if (item.contentRating case final contentRating? when contentRating.isNotEmpty) {
     final formatted = formatContentRating(contentRating);
-    if (formatted.isNotEmpty) parts.add(formatted);
+    if (formatted.isNotEmpty) parts.add(TextSpan(text: formatted));
   }
-  if (item.year case final year?) parts.add('$year');
-  if (item.editionTitle case final editionTitle?) parts.add(editionTitle);
-  if (item.durationMs case final durationMs?) parts.add(formatDurationTextual(durationMs));
+  if (item.year case final year?) parts.add(TextSpan(text: '$year'));
+  if (item.editionTitle case final editionTitle?) parts.add(TextSpan(text: editionTitle));
+  if (item.durationMs case final durationMs?) parts.add(TextSpan(text: formatDurationTextual(durationMs)));
   if (ratingPart() case final rating?) parts.add(rating);
 
   if (catalogItem != null) {
     final genres = catalogItem.genres;
     if (genres != null && genres.isNotEmpty) {
-      parts.add(genres.length == 1 ? genres.first : '${genres.first}, ${genres[1]}');
+      parts.add(TextSpan(text: genres.length == 1 ? genres.first : '${genres.first}, ${genres[1]}'));
     }
   }
 
   final studio = item.studio ?? catalogItem?.network;
-  if (studio != null && studio.isNotEmpty) parts.add(studio);
-  return parts.join(' • ');
+  if (studio != null && studio.isNotEmpty) parts.add(TextSpan(text: studio));
+  return dotSeparatedSpans(parts);
 }
 
 /// The single announcement used for a media card.
@@ -710,20 +715,20 @@ class _MediaCardList extends StatelessWidget {
 
   int get _summaryMaxLines => density <= 2 ? 2 : density; // 2, 2, 3, 4, 5
 
-  String _buildMetadataLine() {
+  List<InlineSpan> _buildMetadataLine() {
     final current = item;
     if (current is MediaPlaylist) {
-      final parts = <String>[];
+      final parts = <InlineSpan>[];
       if (current.leafCount != null && current.leafCount! > 0) {
-        parts.add(t.playlists.itemCount(count: current.leafCount!));
+        parts.add(TextSpan(text: t.playlists.itemCount(count: current.leafCount!)));
       }
       if (current.durationMs case final durationMs?) {
-        parts.add(formatDurationTextual(durationMs));
+        parts.add(TextSpan(text: formatDurationTextual(durationMs)));
       }
-      if (current.smart) parts.add(t.playlists.smartPlaylist);
-      return parts.join(' • ');
+      if (current.smart) parts.add(TextSpan(text: t.playlists.smartPlaylist));
+      return dotSeparatedSpans(parts);
     }
-    return current is MediaItem ? _buildMediaMetadataLine(current, catalogItem: catalogItem) : '';
+    return current is MediaItem ? _buildMediaMetadataLine(current, catalogItem: catalogItem) : const [];
   }
 
   String? _buildSubtitleText() {
@@ -843,8 +848,8 @@ class _MediaCardList extends StatelessWidget {
                     const SizedBox(height: 4),
                     if (metadataLine.isNotEmpty) ...[
                       ExcludeSemantics(
-                        child: Text(
-                          metadataLine,
+                        child: Text.rich(
+                          TextSpan(children: metadataLine),
                           maxLines: 1,
                           overflow: .ellipsis,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -1127,7 +1132,7 @@ class _MediaCardHelpers {
       final metadata = _buildMediaMetadataLine(mi, catalogItem: catalogItem, compact: true);
       if (metadata.isNotEmpty) {
         return ExcludeSemantics(
-          child: Text(metadata, maxLines: 1, overflow: .ellipsis, style: subtitleStyle),
+          child: Text.rich(TextSpan(children: metadata), maxLines: 1, overflow: .ellipsis, style: subtitleStyle),
         );
       }
     }

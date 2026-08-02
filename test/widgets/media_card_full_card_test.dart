@@ -27,6 +27,17 @@ import 'package:plezy/widgets/optimized_media_image.dart';
 import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';
 
+/// The rating is an icon span now, so the metadata line is a `Text.rich` and
+/// its star contributes a placeholder rather than a character. Read the plain
+/// text with that placeholder stripped.
+String _metadataLineText(WidgetTester tester) {
+  final text = tester.widgetList<Text>(find.byType(Text)).firstWhere((widget) {
+    final plain = widget.textSpan?.toPlainText() ?? widget.data ?? '';
+    return plain.contains('8.6');
+  });
+  return (text.textSpan?.toPlainText() ?? text.data ?? '').replaceAll('\uFFFC', '');
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -144,15 +155,16 @@ void main() {
 
     await tester.pumpWidget(_catalogGridHarness(item));
 
-    final metadata = tester.widget<Text>(
-      find.byWidgetPredicate((widget) => widget is Text && (widget.data?.contains('8.6★') ?? false)),
+    final metadata = tester.widgetList<Text>(find.byType(Text)).firstWhere(
+      (widget) => (widget.textSpan?.toPlainText() ?? '').contains('8.6'),
     );
+    final line = _metadataLineText(tester);
     expect(metadata.maxLines, 1);
     expect(metadata.overflow, TextOverflow.ellipsis);
-    expect(metadata.data, '8.6★ • 2024 • 2h 5min');
-    expect(metadata.data, isNot(contains('PG-13')), reason: 'certification is detail/search only');
-    expect(metadata.data, isNot(contains('Drama')), reason: 'genres do not fit a shelf caption');
-    expect(metadata.data, isNot(contains('(')), reason: 'vote counts do not fit a shelf caption');
+    expect(line, '8.6 • 2024 • 2h 5min');
+    expect(line, isNot(contains('PG-13')), reason: 'certification is detail/search only');
+    expect(line, isNot(contains('Drama')), reason: 'genres do not fit a shelf caption');
+    expect(line, isNot(contains('(')), reason: 'vote counts do not fit a shelf caption');
   });
 
   testWidgets('plain library grid metadata remains year only', (tester) async {
@@ -381,12 +393,10 @@ void main() {
       ),
     );
 
-    final metadata = tester.widget<Text>(
-      find.byWidgetPredicate((widget) => widget is Text && (widget.data?.contains('8.6★') ?? false)),
-    );
-    expect(metadata.data, startsWith('PG-13 • 2024 • 2h 5m'));
-    expect(metadata.data, contains('8.6★ (12.3K)'));
-    expect(metadata.data, contains('Drama, Mystery'));
+    final line = _metadataLineText(tester);
+    expect(line, startsWith('PG-13 • 2024 • 2h 5m'));
+    expect(line, contains('8.6 (12.3K)'));
+    expect(line, contains('Drama, Mystery'));
   });
 
   testWidgets('full bleed focusable media card lifts the glow into an overlay above siblings', (tester) async {
