@@ -56,7 +56,11 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
     anchorRect: anchorRect,
     focusFirstItem: position == null,
     entries: [
-      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: PhosphorIconsDuotone.info),
+      AppMenuItem(
+        value: _CatalogMenuAction.viewDetails,
+        label: t.mediaMenu.viewDetails,
+        icon: PhosphorIconsDuotone.info,
+      ),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),

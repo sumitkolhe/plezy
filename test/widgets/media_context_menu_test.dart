@@ -462,7 +462,6 @@ class _AudioPlaylistClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<LibraryPage<MediaItem>> fetchPlaylistPage(String id, {int? start, int? size, AbortController? abort}) async {
     if (blockWithAbort) {
@@ -529,7 +528,6 @@ class _RelatedMusicClient implements MediaServerClient {
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
 
   @override
   Future<MediaItem?> fetchItem(String id) async => _items[id];

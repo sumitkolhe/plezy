@@ -57,12 +57,12 @@ class SeerrSettingsScreen extends StatelessWidget {
             SettingsGroup(
               children: [
                 ListTile(
-                  leading: const AppIcon(PhosphorIconsDuotone.userCircle, fill: 1),
+                  leading: const AppIcon(PhosphorIconsDuotone.userCircle),
                   title: Text(t.services.connectedAs(username: session.displayName)),
                   subtitle: Text(methodLabel),
                 ),
                 ListTile(
-                  leading: const AppIcon(PhosphorIconsDuotone.hardDrives, fill: 1),
+                  leading: const AppIcon(PhosphorIconsDuotone.hardDrives),
                   title: Text(session.instanceLabel.isNotEmpty ? session.instanceLabel : t.seerr.instance),
                   subtitle: Text(session.baseUrl),
                 ),
@@ -72,7 +72,7 @@ class SeerrSettingsScreen extends StatelessWidget {
             SettingsGroup(
               children: [
                 FocusableListTile(
-                  leading: AppIcon(PhosphorIconsDuotone.linkBreak, fill: 1, color: Theme.of(context).colorScheme.error),
+                  leading: AppIcon(PhosphorIconsDuotone.linkBreak, color: Theme.of(context).colorScheme.error),
                   title: Text(t.common.disconnect, style: TextStyle(color: Theme.of(context).colorScheme.error)),
                   onTap: () => unawaited(_disconnect(context, account)),
                 ),

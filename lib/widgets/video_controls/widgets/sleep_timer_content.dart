@@ -99,11 +99,7 @@ class _SleepTimerEventColumn extends StatelessWidget {
           child: ListView(
             children: [
               FocusableListTile(
-                leading: AppIcon(
-                  PhosphorIconsDuotone.hourglass,
-                  fill: 1,
-                  color: Theme.of(context).colorScheme.onSurfaceVariant,
-                ),
+                leading: AppIcon(PhosphorIconsDuotone.hourglass, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: sleepTimer.isEndOfVideoMode,
                 onTap: () {
@@ -160,7 +156,7 @@ class _SleepTimerDurationColumn extends StatelessWidget {
               );
 
               return FocusableListTile(
-                leading: AppIcon(PhosphorIconsDuotone.timer, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                leading: AppIcon(PhosphorIconsDuotone.timer, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: minutes == activeMinutes,
                 onTap: () {

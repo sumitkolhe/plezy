@@ -568,7 +568,7 @@ class ContentStripState extends State<ContentStrip> {
       width: isTablet ? 200.0 : 120.0,
       height: isTablet ? 112.0 : 68.0,
       fit: BoxFit.cover,
-      errorWidget: (_, _, _) => const AppIcon(PhosphorIconsDuotone.image, fill: 1, color: Colors.white54, size: 34),
+      errorWidget: (_, _, _) => const AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: 34),
     );
   }
 

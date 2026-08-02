@@ -887,7 +887,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
         button: true,
         excludeSemantics: true,
         child: IconButton(
-          icon: AppIcon(icon, fill: 1, color: color, size: iconSize),
+          icon: AppIcon(icon, color: color, size: iconSize),
           iconSize: iconSize,
           tooltip: tooltip,
           onPressed: onPressed,

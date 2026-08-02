@@ -41,7 +41,7 @@ class MediaSelectorThumbnail extends StatelessWidget {
         : Container(
             color: fallbackBackgroundColor,
             child: Center(
-              child: AppIcon(fallbackIcon, fill: 1, color: fallbackIconColor, size: fallbackIconSize),
+              child: AppIcon(fallbackIcon, color: fallbackIconColor, size: fallbackIconSize),
             ),
           );
 

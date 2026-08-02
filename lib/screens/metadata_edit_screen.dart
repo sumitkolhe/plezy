@@ -231,7 +231,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
               onPressed: _hasChanges ? _save : null,
               child: IconButton(
                 onPressed: _hasChanges ? _save : null,
-                icon: const AppIcon(PhosphorIconsDuotone.check, fill: 1),
+                icon: const AppIcon(PhosphorIconsDuotone.check),
                 tooltip: t.common.save,
               ),
             ),
@@ -339,7 +339,6 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
       visualDensity: VisualDensity.standard,
     );
   }
-
 }
 
 bool _sameMedia(MediaItem left, MediaItem right) {
@@ -515,7 +514,11 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
-                      child: AppIcon(PhosphorIconsDuotone.check, size: 16, color: Theme.of(context).colorScheme.onPrimary),
+                      child: AppIcon(
+                        PhosphorIconsDuotone.check,
+                        size: 16,
+                        color: Theme.of(context).colorScheme.onPrimary,
+                      ),
                     ),
                   ),
               ],

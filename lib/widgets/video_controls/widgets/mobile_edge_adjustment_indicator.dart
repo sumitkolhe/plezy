@@ -88,7 +88,7 @@ class _IndicatorContent extends StatelessWidget {
       child: Column(
         mainAxisSize: .min,
         children: [
-          AppIcon(icon, fill: 1, color: color, size: 24),
+          AppIcon(icon, color: color, size: 24),
           const SizedBox(height: 6),
           Text(
             '${(value * 100).round()}%',

@@ -155,7 +155,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
         Row(
           mainAxisSize: .min,
           children: [
-            AppIcon(icon, fill: 1, color: Colors.white70, size: 12),
+            AppIcon(icon, color: Colors.white70, size: 12),
             const SizedBox(width: 4),
             Text(
               title,

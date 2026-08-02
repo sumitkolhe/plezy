@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-
 import 'app_logger.dart';
 import 'device_channel.dart';
 

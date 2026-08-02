@@ -108,7 +108,11 @@ Future<DownloadResult?> showDownloadOptionsAndQueue(
     final options = <({IconData? icon, String label, _DownloadChoice value})>[
       (icon: PhosphorIconsDuotone.download, label: t.downloads.allEpisodes, value: _DownloadChoice.all),
       (icon: PhosphorIconsDuotone.eyeSlash, label: t.downloads.unwatchedOnly, value: _DownloadChoice.unwatched),
-      (icon: PhosphorIconsDuotone.numberFive, label: t.downloads.nextNUnwatched(count: 5), value: _DownloadChoice.next5),
+      (
+        icon: PhosphorIconsDuotone.numberFive,
+        label: t.downloads.nextNUnwatched(count: 5),
+        value: _DownloadChoice.next5,
+      ),
       (
         icon: PhosphorIconsDuotone.numberNine,
         label: t.downloads.nextNUnwatched(count: 10),

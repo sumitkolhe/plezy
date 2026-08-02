@@ -134,7 +134,6 @@ class _VolumeControlState extends State<VolumeControl> {
               child: IconButton(
                 icon: AppIcon(
                   isMuted ? PhosphorIconsDuotone.speakerX : PhosphorIconsDuotone.speakerHigh,
-                  fill: 1,
                   color: Colors.white,
                 ),
                 onPressed: widget.volumeController.toggleMute,

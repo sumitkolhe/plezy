@@ -148,7 +148,7 @@ class VideoPlayerPlayNextOverlay extends StatelessWidget {
             if (autoPlayCountdown > 0) ...[
               Text('$autoPlayCountdown'),
               const SizedBox(width: 4),
-              const AppIcon(PhosphorIconsDuotone.play, fill: 1, size: 18),
+              const AppIcon(PhosphorIconsDuotone.play, size: 18),
             ] else
               Text(t.videoControls.playNext),
           ],
@@ -182,7 +182,7 @@ class _PlayNextEpisodeHeader extends StatelessWidget {
                       ),
                       if (isShuffleActive) ...[
                         const SizedBox(width: 4),
-                        AppIcon(PhosphorIconsDuotone.shuffle, fill: 1, size: 12, color: Colors.white.withValues(alpha: 0.7)),
+                        AppIcon(PhosphorIconsDuotone.shuffle, size: 12, color: Colors.white.withValues(alpha: 0.7)),
                       ],
                     ],
                   );

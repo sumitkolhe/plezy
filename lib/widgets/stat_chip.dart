@@ -36,7 +36,7 @@ class StatChip extends StatelessWidget {
             leading,
             const SizedBox(width: 4),
           ] else if (icon != null) ...[
-            AppIcon(icon!, size: 14, fill: 1, color: iconColor),
+            AppIcon(icon!, size: 14, color: iconColor),
             const SizedBox(width: 4),
           ],
           Text(label, style: theme.textTheme.labelMedium),

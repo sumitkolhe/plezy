@@ -44,7 +44,6 @@ class ProfileAvatar extends StatelessWidget {
                 ),
                 child: AppIcon(
                   PhosphorIconsDuotone.lock,
-                  fill: 1,
                   size: lockBadgeSize * 0.7,
                   color: theme.colorScheme.onSurface,
                 ),

@@ -159,7 +159,7 @@ class _VersionBlock extends StatelessWidget {
             padding: EdgeInsets.only(top: index == 0 ? 0 : 8, bottom: 10),
             child: Row(
               children: [
-                AppIcon(PhosphorIconsDuotone.stack, size: 18, fill: 1, color: theme.colorScheme.primary),
+                AppIcon(PhosphorIconsDuotone.stack, size: 18, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
                   t.fileInfo.versionCounter(index: index + 1, count: versionCount),
@@ -617,7 +617,7 @@ class _InfoSection extends StatelessWidget {
         children: [
           Row(
             children: [
-              AppIcon(icon, size: 18, fill: 1, color: theme.colorScheme.primary),
+              AppIcon(icon, size: 18, color: theme.colorScheme.primary),
               const SizedBox(width: 8),
               Text(title, style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
               if (subtitle != null && subtitle!.isNotEmpty) ...[

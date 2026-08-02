@@ -289,7 +289,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                   onPressed: _setPin,
                   child: OutlinedButton.icon(
                     onPressed: _setPin,
-                    icon: const AppIcon(PhosphorIconsDuotone.lock, fill: 1),
+                    icon: const AppIcon(PhosphorIconsDuotone.lock),
                     label: Text(t.profiles.setPin),
                   ),
                 )
@@ -304,7 +304,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                     onPressed: _addConnection,
                     child: TextButton.icon(
                       onPressed: _addConnection,
-                      icon: const AppIcon(PhosphorIconsDuotone.plus, fill: 1),
+                      icon: const AppIcon(PhosphorIconsDuotone.plus),
                       label: Text(t.profiles.add),
                     ),
                   ),
@@ -318,7 +318,7 @@ class _ProfileDetailScreenState extends State<ProfileDetailScreen> with Controll
                 onPressed: _deleteProfile,
                 child: OutlinedButton.icon(
                   onPressed: _deleteProfile,
-                  icon: AppIcon(PhosphorIconsDuotone.trash, fill: 1, color: theme.colorScheme.error),
+                  icon: AppIcon(PhosphorIconsDuotone.trash, color: theme.colorScheme.error),
                   label: Text(t.profiles.deleteProfileButton, style: TextStyle(color: theme.colorScheme.error)),
                 ),
               ),
@@ -398,7 +398,7 @@ class _ConnectionsListState extends State<_ConnectionsList> {
                       title: Text(conn.displayLabel),
                       subtitle: _ConnectionSubtitle.build(pc: pc, theme: theme),
                       trailing: FocusablePopupMenuButton<String>(
-                        icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
+                        icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
                         tooltip: t.profiles.manage,
                         onSelected: (value) {
                           if (value == 'default') {

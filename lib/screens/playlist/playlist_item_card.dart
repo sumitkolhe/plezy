@@ -118,7 +118,6 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                               : null,
                           child: AppIcon(
                             widget.isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
-                            fill: 1,
                             color: (widget.isMoving || isDragHandleFocused) ? colorScheme.primary : textMuted,
                           ),
                         ),
@@ -175,7 +174,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                         )
                       : null,
                   child: IconButton(
-                    icon: const AppIcon(PhosphorIconsDuotone.x, fill: 1, size: 20),
+                    icon: const AppIcon(PhosphorIconsDuotone.x, size: 20),
                     onPressed: widget.onRemove,
                     tooltip: t.playlists.removeItem,
                     color: isRemoveButtonFocused ? colorScheme.primary : textMuted,
@@ -230,7 +229,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
       width: size.width,
       height: size.height,
       decoration: BoxDecoration(color: Colors.grey[850], borderRadius: const BorderRadius.all(Radius.circular(6))),
-      child: AppIcon(_fallbackIcon(item), fill: 1, color: Colors.grey, size: 24),
+      child: AppIcon(_fallbackIcon(item), color: Colors.grey, size: 24),
     );
   }
 

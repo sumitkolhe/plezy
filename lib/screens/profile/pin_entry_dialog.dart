@@ -161,7 +161,7 @@ class _PinEntryDialogState extends State<PinEntryDialog> with SingleTickerProvid
   Widget _buildTitle(ThemeData theme) {
     return Row(
       children: [
-        AppIcon(PhosphorIconsDuotone.lock, fill: 1, size: 24, color: theme.colorScheme.primary),
+        AppIcon(PhosphorIconsDuotone.lock, size: 24, color: theme.colorScheme.primary),
         const SizedBox(width: 12),
         Expanded(child: Text(widget.userName, overflow: .ellipsis)),
       ],

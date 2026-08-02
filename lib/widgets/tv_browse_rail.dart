@@ -1290,7 +1290,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           alignment: .centerLeft,
           child: Row(
             children: [
-              AppIcon(widget.iconForHub(hub, hubIndex), fill: 1, size: 20 * scale, color: iconColor),
+              AppIcon(widget.iconForHub(hub, hubIndex), size: 20 * scale, color: iconColor),
               SizedBox(width: 8 * scale),
               Expanded(
                 child: Row(
@@ -1321,7 +1321,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
               ),
               if (_trailingFor(hub) == TvRailTrailing.viewAll) ...[
                 SizedBox(width: 8 * scale),
-                AppIcon(PhosphorIconsDuotone.caretRight, fill: 1, size: 20 * scale, color: iconColor),
+                AppIcon(PhosphorIconsDuotone.caretRight, size: 20 * scale, color: iconColor),
                 SizedBox(width: 30 * scale),
               ],
             ],
@@ -1790,7 +1790,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   ),
                 ),
                 SizedBox(width: (5 * scale).clamp(4, 7).toDouble()),
-                AppIcon(icon, fill: 1, size: (18 * scale).clamp(16, 22).toDouble(), color: foreground),
+                AppIcon(icon, size: (18 * scale).clamp(16, 22).toDouble(), color: foreground),
               ],
             ),
           ),

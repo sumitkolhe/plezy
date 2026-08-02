@@ -20,8 +20,12 @@ void main() {
       ),
     );
 
-    final backArrow = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.arrowLeft);
-    final regularIcon = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.funnel);
+    final backArrow = find.byWidgetPredicate(
+      (widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.arrowLeft,
+    );
+    final regularIcon = find.byWidgetPredicate(
+      (widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.funnel,
+    );
 
     expect(backArrow, findsOneWidget);
     expect(regularIcon, findsOneWidget);

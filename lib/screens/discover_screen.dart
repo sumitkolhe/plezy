@@ -614,7 +614,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         tooltip: t.profiles.sectionTitle,
         icon: active != null
             ? ProfileAvatar(profile: active, size: 32)
-            : const AppIcon(PhosphorIconsDuotone.userCircle, fill: 1, size: 32, color: Colors.white),
+            : const AppIcon(PhosphorIconsDuotone.userCircle, size: 32, color: Colors.white),
       ),
     );
   }
@@ -641,7 +641,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // same call is chrome the gesture already covers. TV and
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
-                  FocusableAction(icon: PhosphorIconsDuotone.arrowsClockwise, iconColor: foregroundColor, onPressed: _discover.load),
+                  FocusableAction(
+                    icon: PhosphorIconsDuotone.arrowsClockwise,
+                    iconColor: foregroundColor,
+                    onPressed: _discover.load,
+                  ),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
@@ -951,7 +955,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                           },
                           child: AppIcon(
                             _isAutoScrollPaused ? PhosphorIconsDuotone.play : PhosphorIconsDuotone.pause,
-                            fill: 1,
                             color: Theme.of(context).colorScheme.onSurface,
                             size: 18,
                             semanticLabel: '${_isAutoScrollPaused ? t.common.play : t.common.pause} auto-scroll',
@@ -1313,7 +1316,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 child: Row(
                   mainAxisSize: .min,
                   children: [
-                    AppIcon(PhosphorIconsDuotone.play, fill: 1, size: isTv ? 28 : 20, color: foregroundColor),
+                    AppIcon(PhosphorIconsDuotone.play, size: isTv ? 28 : 20, color: foregroundColor),
                     SizedBox(width: isTv ? 12 : 8),
                     if (hasProgress) ...[
                       // Progress bar

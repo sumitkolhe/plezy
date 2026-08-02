@@ -401,7 +401,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                   value: _is4k,
                   onChanged: _submitting ? null : _toggle4k,
                   title: Text(t.seerr.request4k),
-                  secondary: const AppIcon(PhosphorIconsDuotone.fourK, fill: 1),
+                  secondary: const AppIcon(PhosphorIconsDuotone.fourK),
                   contentPadding: EdgeInsets.zero,
                 ),
               if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
@@ -416,7 +416,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                 onPressed: _canSubmit ? _submit : null,
                 child: FilledButton.icon(
                   onPressed: _canSubmit ? _submit : null,
-                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.download, fill: 1),
+                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.download),
                   label: Text(t.seerr.request),
                 ),
               ),
@@ -448,7 +448,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          AppIcon(PhosphorIconsDuotone.checkCircle, fill: 1, color: theme.colorScheme.primary),
+          AppIcon(PhosphorIconsDuotone.checkCircle, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
           Expanded(child: Text(label ?? t.seerr.nothingToRequest, style: theme.textTheme.bodyMedium)),
         ],
@@ -610,10 +610,10 @@ class _PickerTile<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FocusableListTile(
-      leading: AppIcon(icon, fill: 1),
+      leading: AppIcon(icon),
       title: Text(label),
       subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretUpDown, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretUpDown),
       contentPadding: EdgeInsets.zero,
       enabled: enabled,
       onTap: () => unawaited(_open(context)),

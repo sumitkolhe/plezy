@@ -722,12 +722,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
                 Row(
                   mainAxisSize: .min,
                   children: [
-                    AppIcon(
-                      PhosphorIconsDuotone.sparkle,
-                      fill: 1,
-                      size: 12,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+                    AppIcon(PhosphorIconsDuotone.sparkle, size: 12, color: Theme.of(context).colorScheme.primary),
                     const SizedBox(width: 4),
                     Text(
                       t.playlists.smartPlaylist,

@@ -163,7 +163,7 @@ class _HotKeyRecorderWidgetState extends State<HotKeyRecorderWidget> {
                         onNavigateDown: _saveFocusNode.requestFocus,
                         autoScroll: false,
                         child: IconButton(
-                          icon: const AppIcon(PhosphorIconsDuotone.backspace, fill: 1, size: 18),
+                          icon: const AppIcon(PhosphorIconsDuotone.backspace, size: 18),
                           onPressed: canEdit ? _clearShortcut : null,
                           padding: .zero,
                           constraints: const BoxConstraints(minWidth: 24, minHeight: 24),

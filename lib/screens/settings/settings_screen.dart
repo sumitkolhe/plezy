@@ -365,10 +365,10 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
               final currentPath = snapshot.data ?? '...';
               return FocusableListTile(
                 focusNode: _focusTracker.get(_kDownloadLocation),
-                leading: const AppIcon(PhosphorIconsDuotone.folder, fill: 1),
+                leading: const AppIcon(PhosphorIconsDuotone.folder),
                 title: Text(isCustom ? t.settings.downloadLocationCustom : t.settings.downloadLocationDefault),
                 subtitle: Text(currentPath, maxLines: 2, overflow: .ellipsis),
-                trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+                trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
                 onTap: () => _showDownloadLocationDialog(),
               );
             },
@@ -417,10 +417,10 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         };
         return FocusableListTile(
           focusNode: _focusTracker.get(_kBackgroundDownloads),
-          leading: AppIcon(icon, fill: 1, color: color),
+          leading: AppIcon(icon, color: color),
           title: Text(t.downloads.backgroundWarning.statusTile),
           subtitle: Text(summary),
-          trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+          trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
           onTap: () async {
             await diagnostics.refresh();
             if (!context.mounted) return;
@@ -551,14 +551,13 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           focusNode: _focusTracker.get(_kCheckForUpdates),
           leading: AppIcon(
             hasUpdate ? PhosphorIconsDuotone.downloadSimple : PhosphorIconsDuotone.checkCircle,
-            fill: 1,
             color: hasUpdate ? Colors.orange : null,
           ),
           title: Text(hasUpdate ? t.settings.updateAvailable : t.settings.checkForUpdates),
           subtitle: hasUpdate ? Text(t.update.versionAvailable(version: _updateInfo!['latestVersion'])) : null,
           trailing: _isCheckingForUpdate
               ? const LoadingIndicatorBox(size: 24)
-              : const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+              : const AppIcon(PhosphorIconsDuotone.caretRight),
           onTap: _isCheckingForUpdate
               ? null
               : () {

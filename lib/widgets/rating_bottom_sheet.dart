@@ -30,12 +30,7 @@ class RatingBottomSheet extends StatefulWidget {
   final MediaServerClient? serverClient;
   final ValueChanged<bool>? onServerFavoriteChanged;
 
-  const RatingBottomSheet({
-    super.key,
-    required this.item,
-    required this.serverClient,
-    this.onServerFavoriteChanged,
-  });
+  const RatingBottomSheet({super.key, required this.item, required this.serverClient, this.onServerFavoriteChanged});
 
   @override
   State<RatingBottomSheet> createState() => _RatingBottomSheetState();
@@ -641,7 +636,6 @@ class _TrailingStatus extends StatelessWidget {
       message: status.text,
       child: AppIcon(
         status.isError ? PhosphorIconsDuotone.warningCircle : PhosphorIconsDuotone.checkCircle,
-        fill: 1,
         color: color,
         size: 18,
       ),

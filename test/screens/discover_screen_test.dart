@@ -473,7 +473,6 @@ class _FakeMediaServerClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<List<MediaItem>> fetchContinueWatching({int? count = 20}) async => continueWatching;
 

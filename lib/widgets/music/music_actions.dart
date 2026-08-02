@@ -61,7 +61,7 @@ class _MusicPlayButton extends StatelessWidget {
               foregroundColor: colorScheme.onInverseSurface,
             )
           : null,
-      icon: const AppIcon(PhosphorIconsDuotone.play, fill: 1, size: 20),
+      icon: const AppIcon(PhosphorIconsDuotone.play, size: 20),
       label: Text(t.common.play, style: const TextStyle(fontWeight: .w700)),
     );
   }

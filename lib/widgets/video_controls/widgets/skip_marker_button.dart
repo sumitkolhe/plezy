@@ -95,7 +95,7 @@ class SkipMarkerButton extends StatelessWidget {
                       style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: .w600),
                     ),
                     const SizedBox(width: 8),
-                    AppIcon(buttonIcon, fill: 1, color: Colors.black, size: 20),
+                    AppIcon(buttonIcon, color: Colors.black, size: 20),
                   ],
                 ),
               ),

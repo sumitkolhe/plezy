@@ -456,7 +456,7 @@ class _DownloadedMusicContentState extends State<_DownloadedMusicContent> {
       width: 48,
       height: 48,
       color: tk.surface,
-      child: AppIcon(PhosphorIconsDuotone.vinylRecord, fill: 1, size: 24, color: tk.textMuted),
+      child: AppIcon(PhosphorIconsDuotone.vinylRecord, size: 24, color: tk.textMuted),
     );
 
     return Padding(

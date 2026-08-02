@@ -23,7 +23,6 @@ class _ShelfClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   String thumbnailUrl(String? path, {int? width, int? height, bool cover = true}) {
     if (throwOnThumbnail) throw StateError('conversion failed');

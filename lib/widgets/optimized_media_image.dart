@@ -434,7 +434,6 @@ class OptimizedMediaImage extends StatelessWidget {
             : Center(
                 child: AppIcon(
                   icon,
-                  fill: 1,
                   size: 40,
                   color: tint == null ? baseIconColor : Color.alphaBlend(tint, baseIconColor),
                 ),

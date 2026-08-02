@@ -77,7 +77,11 @@ class MediaRatingBadge extends StatelessWidget {
   static _MediaRatingBadgeData? _ratingDataFor(MediaItem item) {
     final rating = item.rating;
     if (rating == null) return null;
-    return _MediaRatingBadgeData(value: rating, fallbackIcon: PhosphorIconsDuotone.star, fallbackText: formatRating(rating));
+    return _MediaRatingBadgeData(
+      value: rating,
+      fallbackIcon: PhosphorIconsDuotone.star,
+      fallbackText: formatRating(rating),
+    );
   }
 
   @override
@@ -94,7 +98,7 @@ class MediaRatingBadge extends StatelessWidget {
     final content = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        AppIcon(fallbackIcon, fill: 1, color: foreground, size: size),
+        AppIcon(fallbackIcon, color: foreground, size: size),
         SizedBox(width: spacing ?? (isInline ? 4 : 4)),
         Text(label, maxLines: 1, overflow: TextOverflow.clip, style: style),
       ],

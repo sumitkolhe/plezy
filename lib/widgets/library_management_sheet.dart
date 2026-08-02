@@ -300,17 +300,14 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             appBar: AppBar(
               title: Row(
                 children: [
-                  const AppIcon(PhosphorIconsDuotone.pencilSimple, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.pencilSimple),
                   const SizedBox(width: 12),
                   Text(t.libraries.manageLibraries),
                 ],
               ),
               automaticallyImplyLeading: false,
               actions: [
-                IconButton(
-                  icon: const AppIcon(PhosphorIconsDuotone.x, fill: 1),
-                  onPressed: () => Navigator.pop(context),
-                ),
+                IconButton(icon: const AppIcon(PhosphorIconsDuotone.x), onPressed: () => Navigator.pop(context)),
               ],
             ),
             body: Focus(
@@ -410,12 +407,11 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
               index: index,
               child: AppIcon(
                 isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
-                fill: 1,
                 color: isMoving ? colorScheme.primary : IconTheme.of(context).color?.withValues(alpha: 0.5),
               ),
             ),
             const SizedBox(width: 8),
-            AppIcon(ContentTypeHelper.getLibraryIcon(library.kind.id), fill: 1),
+            AppIcon(ContentTypeHelper.getLibraryIcon(library.kind.id)),
           ],
         ),
         title: Text(library.title),
@@ -434,7 +430,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             Container(
               decoration: FocusTheme.focusBackgroundDecoration(isFocused: isVisibilityButtonFocused, borderRadius: 20),
               child: IconButton(
-                icon: AppIcon(isHidden ? PhosphorIconsDuotone.eyeSlash : PhosphorIconsDuotone.eye, fill: 1),
+                icon: AppIcon(isHidden ? PhosphorIconsDuotone.eyeSlash : PhosphorIconsDuotone.eye),
                 tooltip: isHidden ? t.libraries.showLibrary : t.libraries.hideLibrary,
                 onPressed: () => widget.onToggleVisibility(library),
               ),
@@ -442,7 +438,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             Container(
               decoration: FocusTheme.focusBackgroundDecoration(isFocused: isOptionsButtonFocused, borderRadius: 20),
               child: IconButton(
-                icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
+                icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical),
                 tooltip: t.libraries.libraryOptions,
                 onPressed: () => _showLibraryMenuBottomSheet(context, library),
               ),

@@ -426,7 +426,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final subtitleColor = foreground.withValues(alpha: active && item.stateLayerColor != null ? 0.86 : 0.68);
     final background = _backgroundColor(context, active: active);
 
-    final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, fill: 1, size: 20) : null);
+    final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, size: 20) : null);
     final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIconsDuotone.check, size: 18) : null);
     final subtitle = item.subtitleWidget ?? (item.subtitle != null ? Text(item.subtitle!) : null);
 

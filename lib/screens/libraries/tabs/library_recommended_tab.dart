@@ -325,5 +325,4 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
             ),
     );
   }
-
 }

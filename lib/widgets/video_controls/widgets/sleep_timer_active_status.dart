@@ -52,7 +52,7 @@ class SleepTimerActiveStatus extends StatelessWidget {
                     sleepTimer.extendTimer(const Duration(minutes: 15));
                   },
                   child: OutlinedButton.icon(
-                    icon: const AppIcon(PhosphorIconsDuotone.plus, fill: 1),
+                    icon: const AppIcon(PhosphorIconsDuotone.plus),
                     label: Text(t.videoControls.addTime(amount: "15", unit: " min")),
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Theme.of(context).colorScheme.onSurface,
@@ -72,7 +72,7 @@ class SleepTimerActiveStatus extends StatelessWidget {
                 },
                 useBackgroundFocus: true,
                 child: FilledButton.icon(
-                  icon: const AppIcon(PhosphorIconsDuotone.xCircle, fill: 1),
+                  icon: const AppIcon(PhosphorIconsDuotone.xCircle),
                   label: Text(t.common.cancel),
                   style: FilledButton.styleFrom(backgroundColor: Colors.red),
                   onPressed: () {

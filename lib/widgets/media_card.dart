@@ -1092,7 +1092,7 @@ Widget _buildPosterImage(
   }
 
   return SkeletonLoader(
-    child: const Center(child: AppIcon(PhosphorIconsDuotone.filmSlate, fill: 1, size: 40, color: Colors.white54)),
+    child: const Center(child: AppIcon(PhosphorIconsDuotone.filmSlate, size: 40, color: Colors.white54)),
   );
 }
 
@@ -1132,7 +1132,12 @@ class _MediaCardHelpers {
       final metadata = _buildMediaMetadataLine(mi, catalogItem: catalogItem, compact: true);
       if (metadata.isNotEmpty) {
         return ExcludeSemantics(
-          child: Text.rich(TextSpan(children: metadata), maxLines: 1, overflow: .ellipsis, style: subtitleStyle),
+          child: Text.rich(
+            TextSpan(children: metadata),
+            maxLines: 1,
+            overflow: .ellipsis,
+            style: subtitleStyle,
+          ),
         );
       }
     }

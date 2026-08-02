@@ -155,9 +155,9 @@ void main() {
 
     await tester.pumpWidget(_catalogGridHarness(item));
 
-    final metadata = tester.widgetList<Text>(find.byType(Text)).firstWhere(
-      (widget) => (widget.textSpan?.toPlainText() ?? '').contains('8.6'),
-    );
+    final metadata = tester
+        .widgetList<Text>(find.byType(Text))
+        .firstWhere((widget) => (widget.textSpan?.toPlainText() ?? '').contains('8.6'));
     final line = _metadataLineText(tester);
     expect(metadata.maxLines, 1);
     expect(metadata.overflow, TextOverflow.ellipsis);

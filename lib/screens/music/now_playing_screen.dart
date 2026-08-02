@@ -466,7 +466,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               FocusableButton(
                 onPressed: _pop,
                 child: IconButton(
-                  icon: AppIcon(PhosphorIconsDuotone.caretDown, fill: 1, color: tk.text),
+                  icon: AppIcon(PhosphorIconsDuotone.caretDown, color: tk.text),
                   tooltip: t.common.close,
                   onPressed: _pop,
                 ),
@@ -520,7 +520,6 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
           child: IconButton(
             icon: AppIcon(
               PhosphorIconsDuotone.textAlignLeft,
-              fill: 1,
               size: 22,
               color: _showLyrics ? colorScheme.primary : tk.textMuted,
             ),
@@ -562,7 +561,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         return Row(
           mainAxisSize: .min,
           children: [
-            AppIcon(icon, fill: 1, size: 20, color: tk.textMuted),
+            AppIcon(icon, size: 20, color: tk.textMuted),
             SizedBox(
               width: 140,
               child: SliderTheme(
@@ -598,7 +597,11 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       key: contextMenuKey,
       item: track,
       extraEntries: [
-        MediaMenuExtraEntry(icon: PhosphorIconsDuotone.moon, label: t.music.sleepTimer, onSelected: _showSleepTimerSheet),
+        MediaMenuExtraEntry(
+          icon: PhosphorIconsDuotone.moon,
+          label: t.music.sleepTimer,
+          onSelected: _showSleepTimerSheet,
+        ),
       ],
       child: FocusableButton(
         focusNode: focusable ? _overflowFocusNode : null,
@@ -610,7 +613,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         onBack: focusable ? _pop : null,
         useBackgroundFocus: focusable,
         child: IconButton(
-          icon: AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1, color: tk.text),
+          icon: AppIcon(PhosphorIconsDuotone.dotsThreeVertical, color: tk.text),
           onPressed: showMenu,
           tooltip: MaterialLocalizations.of(context).showMenuTooltip,
         ),
@@ -706,7 +709,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         borderRadius: MonoTokens.radiusFull,
       ),
       child: IconButton(
-        icon: AppIcon(icon, fill: 1, size: size, color: active ? tk.text : tk.textMuted),
+        icon: AppIcon(icon, size: size, color: active ? tk.text : tk.textMuted),
         tooltip: tooltip,
         onPressed: onPressed,
       ),
@@ -967,7 +970,6 @@ class _PlayPauseButton extends StatelessWidget {
                     )
                   : AppIcon(
                       isPlaying ? PhosphorIconsDuotone.pause : PhosphorIconsDuotone.play,
-                      fill: 1,
                       size: 36,
                       color: colorScheme.onInverseSurface,
                     ),

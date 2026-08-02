@@ -275,7 +275,6 @@ class _TrackRowState extends State<TrackRow> with ContextMenuTapMixin<TrackRow>,
                     builder: (buttonContext) => IconButton(
                       icon: AppIcon(
                         widget.trailingIcon ?? PhosphorIconsDuotone.dotsThreeVertical,
-                        fill: 1,
                         size: 20,
                         color: tk.textMuted,
                       ),

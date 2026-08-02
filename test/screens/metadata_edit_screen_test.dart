@@ -501,7 +501,6 @@ class _NoopMediaClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   ServerId get serverId => ServerId('server-1');
 

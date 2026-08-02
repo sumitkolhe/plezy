@@ -165,7 +165,7 @@ class _AppBarBackButtonState extends State<AppBarBackButton> with TickerProvider
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(color: currentColor, shape: BoxShape.circle),
-                  child: AppIcon(PhosphorIconsDuotone.arrowLeft, fill: 1, color: effectiveColor, size: 20),
+                  child: AppIcon(PhosphorIconsDuotone.arrowLeft, color: effectiveColor, size: 20),
                 );
               },
             ),

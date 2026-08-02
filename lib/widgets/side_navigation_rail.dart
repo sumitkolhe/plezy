@@ -164,7 +164,6 @@ class NavigationRailItem extends StatelessWidget {
                           iconWidget ??
                               AppIcon(
                                 isSelected && selectedIcon != null ? selectedIcon! : icon,
-                                fill: 1,
                                 size: iconSize,
                                 color: isSelected ? t.text : t.textMuted,
                               ),
@@ -949,7 +948,6 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             duration: tokens(context).fast,
             child: AppIcon(
               _librariesExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
-              fill: 1,
               size: 20,
               color: t.textMuted,
             ),
@@ -1138,14 +1136,13 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                       padding: .symmetric(vertical: verticalPadding, horizontal: 17),
                       child: Row(
                         children: [
-                          leading ?? AppIcon(icon, fill: 1, size: iconSize, color: t.textMuted),
+                          leading ?? AppIcon(icon, size: iconSize, color: t.textMuted),
                           const SizedBox(width: 11),
                           Expanded(
                             child: Text(label, style: labelStyle, overflow: .ellipsis),
                           ),
                           AppIcon(
                             isExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
-                            fill: 1,
                             size: 16,
                             color: t.textMuted,
                           ),

@@ -226,10 +226,10 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
         children: [
           SizedBox(
             width: 24,
-            child: widget.isLoading ? const LoadingIndicatorBox(size: 16) : AppIcon(expandIcon, fill: 1, size: 20),
+            child: widget.isLoading ? const LoadingIndicatorBox(size: 16) : AppIcon(expandIcon, size: 20),
           ),
           const SizedBox(width: 8),
-          AppIcon(_getIcon(), fill: 1, size: 20, color: Theme.of(context).colorScheme.primary),
+          AppIcon(_getIcon(), size: 20, color: Theme.of(context).colorScheme.primary),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
@@ -268,7 +268,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
           if (widget.isExpandable) ...[
             SizedBox(
               width: 24,
-              child: widget.isLoading ? const LoadingIndicatorBox(size: 16) : AppIcon(expandIcon, fill: 1, size: 20),
+              child: widget.isLoading ? const LoadingIndicatorBox(size: 16) : AppIcon(expandIcon, size: 20),
             ),
             const SizedBox(width: 8),
           ],
@@ -458,7 +458,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
               onPressed: playAll,
               icon: AppIcon(
                 PhosphorIconsDuotone.play,
-                fill: 1,
                 size: 18,
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -478,7 +477,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
               onPressed: shuffle,
               icon: AppIcon(
                 PhosphorIconsDuotone.shuffle,
-                fill: 1,
                 size: 18,
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),

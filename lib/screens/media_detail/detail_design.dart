@@ -57,7 +57,13 @@ class _CertificateMark extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(fontSize: 11, fontWeight: .w600, color: t.text.withValues(alpha: 0.78), height: 1.2, letterSpacing: 0.3),
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: .w600,
+          color: t.text.withValues(alpha: 0.78),
+          height: 1.2,
+          letterSpacing: 0.3,
+        ),
       ),
     );
   }
@@ -108,10 +114,7 @@ class DetailSectionHeader extends StatelessWidget {
       textBaseline: action != null ? null : TextBaseline.alphabetic,
       children: [
         Expanded(child: heading),
-        if (action != null)
-          action!
-        else
-          Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
+        if (action != null) action! else Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
       ],
     );
   }

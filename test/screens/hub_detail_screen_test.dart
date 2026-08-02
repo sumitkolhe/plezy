@@ -154,7 +154,6 @@ class _PagedHubClient implements MediaServerClient {
   @override
   String? get serverName => 'Server';
 
-
   @override
   Future<LibraryPage<MediaItem>> fetchMoreHubItemsPage(
     String hubId, {

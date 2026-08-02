@@ -78,12 +78,7 @@ class StateMessageWidget extends StatelessWidget {
           mainAxisAlignment: .center,
           children: [
             if (icon != null) ...[
-              AppIcon(
-                icon,
-                fill: 1,
-                size: iconSize,
-                color: iconColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.4),
-              ),
+              AppIcon(icon, size: iconSize, color: iconColor ?? theme.colorScheme.onSurface.withValues(alpha: 0.4)),
               const SizedBox(height: 16),
             ],
             Text(
@@ -113,7 +108,7 @@ class StateMessageWidget extends StatelessWidget {
                 useBackgroundFocus: actionUseBackgroundFocus,
                 child: FilledButton.icon(
                   onPressed: onAction,
-                  icon: AppIcon(actionIcon ?? PhosphorIconsDuotone.arrowsClockwise, fill: 1),
+                  icon: AppIcon(actionIcon ?? PhosphorIconsDuotone.arrowsClockwise),
                   label: Text(actionLabel!),
                 ),
               ),

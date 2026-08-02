@@ -21,12 +21,7 @@ List<MediaItem> seasons(int count, {int from = 1}) => [
     ),
 ];
 
-Future<void> pump(
-  WidgetTester tester,
-  List<MediaItem> list, {
-  int selected = 0,
-  ValueChanged<int>? onSelected,
-}) {
+Future<void> pump(WidgetTester tester, List<MediaItem> list, {int selected = 0, ValueChanged<int>? onSelected}) {
   return tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(

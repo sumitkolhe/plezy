@@ -2943,10 +2943,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                             ),
                                     ),
                                   ),
-                                  if (useDpadSeasonTabs) ...[
-                                    const SizedBox(height: 12),
-                                    _buildSeasonTabs(),
-                                  ],
+                                  if (useDpadSeasonTabs) ...[const SizedBox(height: 12), _buildSeasonTabs()],
                                   const SizedBox(height: 16),
                                   if (_isLoadingSeasonEpisodes)
                                     _sectionLoading
@@ -4110,7 +4107,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                         ),
                       if (showGenres) ...[
                         const SizedBox(height: genreGap),
-                        SizedBox(height: genreLineHeight, child: DetailGenreLine(genres: genres)),
+                        SizedBox(
+                          height: genreLineHeight,
+                          child: DetailGenreLine(genres: genres),
+                        ),
                       ],
                       if (factsGap > 0) SizedBox(height: factsGap),
                       if (showActions) SizedBox(height: actionHeight, child: _buildActionButtons(metadata)),

@@ -230,7 +230,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
               onPressed: _clearFilters,
               child: TextButton.icon(
                 onPressed: _clearFilters,
-                icon: const AppIcon(PhosphorIconsDuotone.eraser, fill: 1),
+                icon: const AppIcon(PhosphorIconsDuotone.eraser),
                 label: Text(t.libraries.clearAll),
               ),
             )
@@ -360,7 +360,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                   ),
                 ),
               if (displayValue != null) const SizedBox(width: 8),
-              const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+              const AppIcon(PhosphorIconsDuotone.caretRight),
             ],
           ),
           onTap: () => _loadFilterValues(filter),

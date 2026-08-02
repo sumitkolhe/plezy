@@ -698,7 +698,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       children: [
         // Expand/collapse icon
         if (canExpand)
-          AppIcon(widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight, fill: 1, size: 20)
+          AppIcon(widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight, size: 20)
         else
           const SizedBox(width: 20),
 
@@ -831,7 +831,11 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
     // Pause button for downloading items
     if (status == DownloadStatus.downloading && widget.onPause != null) {
-      actions.add((icon: PhosphorIconsDuotone.pause, tooltip: t.common.pause, onPressed: () => widget.onPause!(globalKey)));
+      actions.add((
+        icon: PhosphorIconsDuotone.pause,
+        tooltip: t.common.pause,
+        onPressed: () => widget.onPause!(globalKey),
+      ));
     }
 
     // Resume button for paused items
@@ -902,7 +906,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
         message: action.tooltip,
         child: GestureDetector(
           onTap: action.onPressed,
-          child: Padding(padding: const EdgeInsets.all(8.0), child: AppIcon(action.icon, fill: 1, size: 20)),
+          child: Padding(padding: const EdgeInsets.all(8.0), child: AppIcon(action.icon, size: 20)),
         ),
       ),
     );

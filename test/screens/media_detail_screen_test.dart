@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:drift/native.dart';
 import 'package:harbor/media/ids.dart';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
@@ -1185,7 +1184,6 @@ class _FakeMediaServerClient implements MediaServerClient {
 
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
-
 
   @override
   Future<({MediaItem? item, MediaItem? onDeckEpisode})> fetchItemWithOnDeck(String id) async {

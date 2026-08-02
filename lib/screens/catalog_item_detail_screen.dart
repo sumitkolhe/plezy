@@ -507,7 +507,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       // lookup doesn't, so fall back to the server name alone.
       title: Text(match.libraryTitle ?? match.serverName ?? match.backend.name),
       subtitle: match.libraryTitle != null && match.serverName != null ? Text(match.serverName!) : null,
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
       onTap: () => unawaited(navigateToMediaItemDetails(context, match)),
     );
   }
@@ -533,7 +533,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     if (matches.isEmpty) {
       return Row(
         children: [
-          AppIcon(PhosphorIconsDuotone.info, fill: 1, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+          AppIcon(PhosphorIconsDuotone.info, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
           const SizedBox(width: 8),
           Text(t.explore.notInLibrary, style: mutedStyle),
         ],
@@ -1015,7 +1015,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
             onNavigateDown: _linkFocusNodes.isNotEmpty ? () => _requestLinkFocus(0) : _focusSectionBelowDetailActions,
             child: OutlinedButton.icon(
               onPressed: _revealSpoilerTags,
-              icon: const AppIcon(PhosphorIconsDuotone.eye, fill: 1),
+              icon: const AppIcon(PhosphorIconsDuotone.eye),
               label: Text(t.explore.detail.revealSpoilerTags),
             ),
           ),
@@ -1066,7 +1066,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 onNavigateDown: () => _focusBelowLinkGroup(endIndex),
                 child: OutlinedButton.icon(
                   onPressed: () => unawaited(_openExternalUrl(links[localIndex].url)),
-                  icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut, fill: 1),
+                  icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut),
                   label: Text(t.explore.detail.openOn(site: links[localIndex].label)),
                 ),
               ),
@@ -1203,7 +1203,6 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
               ),
               AppIcon(
                 PhosphorIconsDuotone.caretRight,
-                fill: 1,
                 size: 18,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),

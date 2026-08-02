@@ -278,11 +278,7 @@ class _StartupBootstrapState<T> extends State<StartupBootstrap<T>> {
 }
 
 class _StartupDependencies {
-  const _StartupDependencies({
-    required this.settings,
-    required this.storage,
-    required this.appDatabase,
-  });
+  const _StartupDependencies({required this.settings, required this.storage, required this.appDatabase});
 
   final SettingsService settings;
   final StorageService storage;
@@ -365,11 +361,7 @@ Future<_StartupDependencies> _initializeStartup(SettingsService settings) async 
     await DownloadStorageService.instance.initialize(settings);
     markStartupPhase('download-storage');
 
-    return _StartupDependencies(
-      settings: settings,
-      storage: storage,
-      appDatabase: database,
-    );
+    return _StartupDependencies(settings: settings, storage: storage, appDatabase: database);
   } catch (_) {
     await openedDatabase?.close();
     rethrow;
@@ -420,11 +412,14 @@ Future<void> _logEnvironmentDiagnostics() async {
   }
 }
 
-
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
     final ofl = await rootBundle.loadString(MonoFonts.licenseAsset);
     yield LicenseEntryWithLineBreaks(MonoFonts.licenseePackages, ofl);
+  });
+  LicenseRegistry.addLicense(() async* {
+    final mit = await rootBundle.loadString(MonoFonts.iconLicenseAsset);
+    yield LicenseEntryWithLineBreaks(const ['Phosphor Icons'], mit);
   });
 }
 
@@ -492,12 +487,7 @@ class MainApp extends StatefulWidget {
   final SettingsService settings;
   final StorageService storage;
   final AppDatabase appDatabase;
-  const MainApp({
-    super.key,
-    required this.settings,
-    required this.storage,
-    required this.appDatabase,
-  });
+  const MainApp({super.key, required this.settings, required this.storage, required this.appDatabase});
 
   @override
   State<MainApp> createState() => _MainAppState();

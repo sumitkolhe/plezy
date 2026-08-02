@@ -287,7 +287,6 @@ class _SpinnerButton extends StatelessWidget {
             child: AppIcon(
               icon,
               size: compact ? 18 : null,
-              fill: 1,
               color: isEnabled
                   ? theme.colorScheme.onPrimaryContainer
                   : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),

@@ -468,7 +468,6 @@ class _FakeMediaServerClient implements MediaServerClient {
   @override
   MediaBackend get backend => MediaBackend.jellyfin;
 
-
   @override
   Future<List<MediaItem>> searchItems(String query, {int limit = 100, AbortController? abort}) async {
     queries.add(query);

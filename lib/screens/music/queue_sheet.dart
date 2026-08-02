@@ -232,7 +232,7 @@ class _QueueListState extends State<QueueList> {
               alignment: .centerRight,
               padding: const EdgeInsets.only(right: 20),
               color: Colors.red,
-              child: const AppIcon(PhosphorIconsDuotone.trash, fill: 1, color: Colors.white, size: 20),
+              child: const AppIcon(PhosphorIconsDuotone.trash, color: Colors.white, size: 20),
             ),
             onDismissed: (_) => service.removeAt(index),
             child: row,

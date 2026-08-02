@@ -17,7 +17,7 @@ InlineSpan ratingSpan(double rating, {required double iconSize, String suffix = 
         alignment: PlaceholderAlignment.middle,
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: AppIcon(PhosphorIconsDuotone.star, fill: 1, size: iconSize),
+          child: AppIcon(PhosphorIconsDuotone.star, size: iconSize),
         ),
       ),
       TextSpan(text: '${formatRating(rating)}$suffix'),

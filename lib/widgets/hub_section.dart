@@ -450,7 +450,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                   child: Row(
                     mainAxisSize: .min,
                     children: [
-                      AppIcon(widget.icon, fill: 1, size: isTv ? 28 : 16),
+                      AppIcon(widget.icon, size: isTv ? 28 : 16),
                       SizedBox(width: isTv ? 12 : 6),
                       Flexible(
                         child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
@@ -485,7 +485,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                       ],
                       if (widget.hub.more && !isKeyboardMode) ...[
                         const SizedBox(width: 4),
-                        AppIcon(PhosphorIconsDuotone.caretRight, fill: 1, size: isTv ? 26 : 20),
+                        AppIcon(PhosphorIconsDuotone.caretRight, size: isTv ? 26 : 20),
                       ],
                     ],
                   ),

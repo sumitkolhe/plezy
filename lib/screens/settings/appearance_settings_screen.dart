@@ -193,10 +193,10 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _languageSelector(BuildContext context) {
     return FocusableListTile(
-      leading: const AppIcon(PhosphorIconsDuotone.translate, fill: 1),
+      leading: const AppIcon(PhosphorIconsDuotone.translate),
       title: Text(t.settings.language),
       subtitle: Text(_getLanguageDisplayName(LocaleSettings.currentLocale)),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
       onTap: () async {
         final value = await showSelectionDialog<AppLocale>(
           context: context,
@@ -229,7 +229,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const AppIcon(PhosphorIconsDuotone.gridFour, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.gridFour),
                   const SizedBox(width: 16),
                   Text(t.settings.libraryDensity, style: settingsOptionTitleStyle(context)),
                 ],

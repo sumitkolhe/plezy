@@ -365,7 +365,7 @@ class _OptionPickerDialogState<T> extends State<_OptionPickerDialog<T>> {
               title: Row(
                 children: [
                   if (toggle.icon != null) ...[
-                    AppIcon(toggle.icon!, fill: 1, size: 24),
+                    AppIcon(toggle.icon!, size: 24),
                     const SizedBox(width: rowHorizontalTitleGap),
                   ],
                   Expanded(
@@ -391,7 +391,7 @@ class _OptionPickerDialogState<T> extends State<_OptionPickerDialog<T>> {
           final icon = option.icon;
           return FocusableListTile(
             focusNode: index == 0 && widget.focusFirstItem ? _initialFocusNode : null,
-            leading: icon != null ? AppIcon(icon, fill: 1, size: 24) : null,
+            leading: icon != null ? AppIcon(icon, size: 24) : null,
             title: Text(option.label, style: Theme.of(context).textTheme.bodyLarge),
             contentPadding: rowPadding,
             horizontalTitleGap: rowHorizontalTitleGap,

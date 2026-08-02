@@ -240,7 +240,7 @@ class ExploreScreenState extends State<ExploreScreen>
           const SizedBox(width: 8),
           Text(active.displayName, style: textStyle ?? Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 4),
-          const AppIcon(PhosphorIconsDuotone.caretDown, fill: 1, size: 24),
+          const AppIcon(PhosphorIconsDuotone.caretDown, size: 24),
         ],
       ),
     );
@@ -415,7 +415,11 @@ class ExploreScreenState extends State<ExploreScreen>
     if (isSearching) return LoadingIndicatorBox.sliver;
     if (lastSearchFailed) {
       return SliverFillRemaining(
-        child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIconsDuotone.warningCircle, iconSize: 80),
+        child: StateMessageWidget(
+          message: t.explore.searchFailed,
+          icon: PhosphorIconsDuotone.warningCircle,
+          iconSize: 80,
+        ),
       );
     }
     // The debounce window right after the field goes from empty to typed: no

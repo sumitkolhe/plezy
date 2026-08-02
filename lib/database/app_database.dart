@@ -66,10 +66,7 @@ class AppDatabase extends _$AppDatabase {
 
   /// Resolves and opens the production database, eagerly completing Drift
   /// setup and migrations before returning.
-  static Future<AppDatabase> open({
-    File? databaseFile,
-    QueryExecutor Function(File file)? executorFactory,
-  }) async {
+  static Future<AppDatabase> open({File? databaseFile, QueryExecutor Function(File file)? executorFactory}) async {
     final file = databaseFile ?? await _resolveProductionDatabaseFile();
     if (!await file.parent.exists()) {
       await file.parent.create(recursive: true);

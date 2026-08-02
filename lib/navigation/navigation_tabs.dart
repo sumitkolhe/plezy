@@ -18,7 +18,7 @@ class NavigationTab {
   const NavigationTab({required this.id, required this.onlineOnly, required this.icon, required this.getLabel});
 
   NavigationDestination toDestination() {
-    return NavigationDestination(icon: AppIcon(icon, fill: 1), selectedIcon: AppIcon(icon, fill: 1), label: getLabel());
+    return NavigationDestination(icon: AppIcon(icon), selectedIcon: AppIcon(icon), label: getLabel());
   }
 
   /// Get tabs filtered by offline mode and feature availability
@@ -61,7 +61,12 @@ String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
 const allNavigationTabs = [
-  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: PhosphorIconsDuotone.house, getLabel: _getHomeLabel),
+  NavigationTab(
+    id: NavigationTabId.discover,
+    onlineOnly: true,
+    icon: PhosphorIconsDuotone.house,
+    getLabel: _getHomeLabel,
+  ),
   NavigationTab(
     id: NavigationTabId.libraries,
     onlineOnly: true,

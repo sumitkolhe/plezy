@@ -89,7 +89,7 @@ class _QueueSheetState extends State<QueueSheet> {
                     maxLines: 1,
                     overflow: .ellipsis,
                   ),
-                  trailing: isCurrent ? AppIcon(PhosphorIconsDuotone.playCircle, fill: 1, color: primaryColor) : null,
+                  trailing: isCurrent ? AppIcon(PhosphorIconsDuotone.playCircle, color: primaryColor) : null,
                   onTap: () {
                     widget.onItemSelected(item);
                     OverlaySheetController.of(context).close();
@@ -121,7 +121,7 @@ class _QueueSheetState extends State<QueueSheet> {
         height: _kThumbHeight,
         fit: BoxFit.cover,
         errorWidget: (context, url, error) =>
-            AppIcon(PhosphorIconsDuotone.image, fill: 1, color: Colors.white54, size: _kThumbHeight),
+            AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: _kThumbHeight),
       ),
       isCurrent: isCurrent,
       borderColor: Theme.of(context).colorScheme.primary,

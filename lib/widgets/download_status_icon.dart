@@ -60,12 +60,12 @@ class DownloadStatusIcon extends StatelessWidget {
 
     switch (s) {
       case DownloadStatus.queued:
-        return AppIcon(PhosphorIconsDuotone.clock, fill: 1, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIconsDuotone.clock, size: size, color: _tint(Colors.orange));
       case DownloadStatus.downloading:
         // No progress value — render a static "downloading" icon (callers
         // without per-item progress, e.g. the download tree view).
         if (progress == null) {
-          return AppIcon(PhosphorIconsDuotone.downloadSimple, fill: 1, size: size, color: _tint(overrideColor ?? Colors.blue));
+          return AppIcon(PhosphorIconsDuotone.downloadSimple, size: size, color: _tint(overrideColor ?? Colors.blue));
         }
         final primary = overrideColor ?? Theme.of(context).colorScheme.primary;
         final tinted = _tint(primary);
@@ -91,30 +91,29 @@ class DownloadStatusIcon extends StatelessWidget {
       case DownloadStatus.paused:
         return AppIcon(
           PhosphorIconsDuotone.pauseCircle,
-          fill: 1,
           size: size,
           color: _tint(variant == DownloadStatusIconVariant.muted ? Colors.amber : Colors.grey),
         );
       case DownloadStatus.failed:
         return AppIcon(
-          variant == DownloadStatusIconVariant.muted ? PhosphorIconsDuotone.warningCircle : PhosphorIconsDuotone.warningCircle,
-          fill: 1,
+          variant == DownloadStatusIconVariant.muted
+              ? PhosphorIconsDuotone.warningCircle
+              : PhosphorIconsDuotone.warningCircle,
           size: size,
           color: _tint(Colors.red),
         );
       case DownloadStatus.cancelled:
-        return AppIcon(PhosphorIconsDuotone.xCircle, fill: 1, size: size, color: _tint(Colors.grey));
+        return AppIcon(PhosphorIconsDuotone.xCircle, size: size, color: _tint(Colors.grey));
       case DownloadStatus.completed:
         return AppIcon(
           variant == DownloadStatusIconVariant.muted
               ? PhosphorIconsDuotone.checkCircle
               : PhosphorIconsDuotone.checkCircle,
-          fill: 1,
           size: size,
           color: _tint(Colors.green),
         );
       case DownloadStatus.partial:
-        return AppIcon(PhosphorIconsDuotone.downloadSimple, fill: 1, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIconsDuotone.downloadSimple, size: size, color: _tint(Colors.orange));
     }
   }
 }

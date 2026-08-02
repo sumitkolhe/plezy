@@ -44,10 +44,10 @@ class _SettingRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return FocusableListTile(
       focusNode: focusNode,
-      leading: AppIcon(icon, fill: 1),
+      leading: AppIcon(icon),
       title: Text(title),
       subtitle: subtitle,
-      trailing: trailing ?? const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+      trailing: trailing ?? const AppIcon(PhosphorIconsDuotone.caretRight),
       onTap: onTap,
     );
   }
@@ -80,7 +80,7 @@ class SettingSwitchTile extends StatelessWidget {
       valueListenable: SettingsService.instance.listenable(pref),
       builder: (_, value, _) => FocusableSwitchListTile(
         focusNode: focusNode,
-        secondary: AppIcon(icon, fill: 1),
+        secondary: AppIcon(icon),
         title: Text(title),
         subtitle: subtitle != null ? Text(subtitle!) : null,
         value: value,
@@ -118,7 +118,7 @@ class SettingNavigationTile extends StatelessWidget {
       icon: icon,
       title: title,
       subtitle: subtitle != null ? Text(subtitle!) : null,
-      trailing: AppIcon(trailingIcon, fill: 1),
+      trailing: AppIcon(trailingIcon),
       onTap: onTap ?? () => Navigator.push(context, MaterialPageRoute(builder: destinationBuilder!)),
     );
   }

@@ -816,29 +816,29 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
           FocusableListTile(
-            leading: const AppIcon(PhosphorIconsDuotone.squaresFour, fill: 1),
+            leading: const AppIcon(PhosphorIconsDuotone.squaresFour),
             title: Text(t.libraries.groupings.title),
             subtitle: Text(_getGroupingLabel(_selectedGrouping)),
-            trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+            trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
             onTap: () => _showGroupingOptionsPage(controller),
           ),
           if (_isFiltersChipVisible)
             FocusableListTile(
-              leading: const AppIcon(PhosphorIconsDuotone.funnel, fill: 1),
+              leading: const AppIcon(PhosphorIconsDuotone.funnel),
               title: Text(
                 _selectedFilters.isEmpty
                     ? t.libraries.filters
                     : t.libraries.filtersWithCount(count: _selectedFilters.length),
               ),
-              trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+              trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
               onTap: () => _showFiltersOptionsPage(controller),
             ),
           if (_isSortChipVisible)
             FocusableListTile(
-              leading: const AppIcon(PhosphorIconsDuotone.sortAscending, fill: 1),
+              leading: const AppIcon(PhosphorIconsDuotone.sortAscending),
               title: Text(t.libraries.sort),
               subtitle: _selectedSort == null ? null : Text(_selectedSort!.title),
-              trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
+              trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
               onTap: () => _showSortOptionsPage(controller),
             ),
         ],
@@ -907,10 +907,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       return FocusableListTile(
         key: ValueKey(grouping),
         dense: true,
-        leading: AppIcon(
-          isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle,
-          fill: 1,
-        ),
+        leading: AppIcon(isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle),
         title: Text(_getGroupingLabel(grouping)),
         onTap: () => onSelected(grouping),
       );

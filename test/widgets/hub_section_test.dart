@@ -154,7 +154,12 @@ void main() {
 
     await tester.pumpWidget(
       _TestApp(
-        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsDuotone.filmSlate, totalResults: 237),
+        child: HubSection(
+          hub: hub,
+          focusMemory: HubFocusMemory(),
+          icon: PhosphorIconsDuotone.filmSlate,
+          totalResults: 237,
+        ),
       ),
     );
     expect(find.text(t.explore.totalResults(n: 237)), findsOneWidget);

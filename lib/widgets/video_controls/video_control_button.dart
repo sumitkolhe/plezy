@@ -66,7 +66,7 @@ class VideoControlButton extends StatelessWidget {
     final effectiveColor = color ?? (isActive ? Colors.amber : Colors.white);
 
     final button = IconButton(
-      icon: AppIcon(icon, fill: 1, color: effectiveColor),
+      icon: AppIcon(icon, color: effectiveColor),
       onPressed: onPressed,
       tooltip: tooltip,
       constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
