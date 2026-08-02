@@ -66,6 +66,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final tokensRef = tokens(context);
     final rating = episode.userRating;
     final spans = dotSeparatedSpans([
+      if (episode.index != null) TextSpan(text: 'E${episode.index}'),
       if (episode.durationMs != null)
         TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
       if (episode.originallyAvailableAt != null) TextSpan(text: formatFullDate(episode.originallyAvailableAt!)),
@@ -212,42 +213,33 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                               // Note: No icon shown if not downloaded (null)
                             }
 
+                            // Title, summary and meta all start at the column's
+                            // left edge so the block reads straight down. The
+                            // episode number sits with the other reported
+                            // figures on the mono line rather than indenting
+                            // the title away from the two lines under it.
                             return Row(
                               crossAxisAlignment: .start,
                               children: [
-                                if (episode.index != null) ...[
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 2),
-                                    child: Text(
-                                      'E${episode.index}',
-                                      style: TextStyle(
-                                        fontFamily: MonoFonts.mono,
-                                        fontSize: 11,
-                                        color: tokensRef.textMuted,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                ],
-                                if (downloadStatusIcon != null) ...[
-                                  Padding(padding: const EdgeInsets.only(top: 2), child: downloadStatusIcon),
-                                  const SizedBox(width: 6),
-                                ],
                                 Expanded(
                                   child: Text(
                                     episode.title!,
-                                    style: TextStyle(fontSize: 14.5, fontWeight: .w600, height: 1.25),
+                                    style: TextStyle(fontSize: 14.5, fontWeight: .w600, height: 1.3),
                                     maxLines: 2,
                                     overflow: .ellipsis,
                                   ),
                                 ),
+                                if (downloadStatusIcon != null) ...[
+                                  const SizedBox(width: 8),
+                                  Padding(padding: const EdgeInsets.only(top: 3), child: downloadStatusIcon),
+                                ],
                               ],
                             );
                           },
                         ),
 
                         if (!shouldBlur && episode.summary != null && episode.summary!.isNotEmpty) ...[
-                          const SizedBox(height: 4),
+                          const SizedBox(height: 3),
                           // Clamped rather than expandable: uniform row heights
                           // are what make a 20-episode season scannable, and
                           // the full summary is one tap away on the episode.
@@ -259,7 +251,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                           ),
                         ],
 
-                        const SizedBox(height: 5),
+                        const SizedBox(height: 4),
                         _buildEpisodeMetaLine(context, episode, qualityLabels),
                       ],
                     ),

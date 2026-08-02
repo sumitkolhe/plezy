@@ -91,12 +91,16 @@ class _SeasonSheet extends StatelessWidget {
     final tokensRef = tokens(context);
     final totalEpisodes = seasons.fold<int>(0, (sum, season) => sum + (season.leafCount ?? 0));
 
+    // One inset for the header and the rows. ListTile's own default is 16,
+    // which left the heading and the season names on different left edges.
+    const inset = EdgeInsets.symmetric(horizontal: 20);
+
     return Column(
       mainAxisSize: .min,
       crossAxisAlignment: .start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(20, 6, 20, 12),
+          padding: inset.add(const EdgeInsets.only(bottom: 10)),
           child: DetailSectionHeader(
             title: t.libraries.groupings.seasons,
             trailing: totalEpisodes > 0 ? t.explore.episodeCount(n: totalEpisodes) : null,
@@ -105,28 +109,37 @@ class _SeasonSheet extends StatelessWidget {
         Flexible(
           child: ListView.builder(
             shrinkWrap: true,
+            padding: .zero,
             itemCount: seasons.length,
             itemBuilder: (context, index) {
               final season = seasons[index];
               final meta = SeasonPickerChip.seasonMeta(season);
+              final selected = index == selectedIndex;
               return FocusableListTile(
-                autofocus: index == selectedIndex,
+                autofocus: selected,
+                contentPadding: inset,
                 title: Text(
                   season.title ?? t.common.seasonNumber(number: '${season.index ?? index + 1}'),
-                  style: TextStyle(fontSize: 15.5, fontWeight: .w600, color: tokensRef.text),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: selected ? .w600 : .w500,
+                    color: tokensRef.text,
+                    height: 1.3,
+                  ),
                 ),
                 subtitle: meta == null
                     ? null
                     : Text(
                         meta,
-                        style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted),
+                        style: TextStyle(
+                          fontFamily: MonoFonts.mono,
+                          fontSize: 11,
+                          color: tokensRef.textMuted,
+                          height: 1.3,
+                        ),
                       ),
-                trailing: index == selectedIndex
-                    ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text)
-                    : null,
+                trailing: selected ? AppIcon(Symbols.check_rounded, size: 18, color: tokensRef.text) : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
-                dense: false,
-                visualDensity: VisualDensity.standard,
               );
             },
           ),
