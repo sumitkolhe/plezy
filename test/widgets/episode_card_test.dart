@@ -17,7 +17,6 @@ import 'package:plezy/services/jellyfin_api_cache.dart';
 import 'package:plezy/services/settings_service.dart';
 import 'package:plezy/theme/mono_theme.dart';
 import 'package:plezy/utils/platform_detector.dart';
-import 'package:plezy/widgets/collapsible_text.dart';
 import 'package:plezy/widgets/episode_card.dart';
 import 'package:provider/provider.dart';
 
@@ -55,11 +54,11 @@ void main() {
 
     await _pumpEpisodeCard(tester, episode);
 
-    final summaryText = tester.widget<Text>(
-      find.descendant(of: find.byType(CollapsibleText), matching: find.byType(Text)).first,
-    );
-    expect(summaryText.textSpan, isNotNull);
-    expect(summaryText.textSpan!.toPlainText(), isNot(summary));
+    // Clamped in place of the old expandable text: rows stay a uniform height,
+    // and the full summary still reaches semantics.
+    final summaryText = tester.widget<Text>(find.text(summary));
+    expect(summaryText.maxLines, 2);
+    expect(summaryText.overflow, TextOverflow.ellipsis);
 
     final semanticNodes = <SemanticsNode>[];
     void collectSemantics(SemanticsNode node) {
@@ -105,9 +104,12 @@ void main() {
 
     await _pumpEpisodeCard(tester, episode);
 
-    final metadataWrap = find.ancestor(of: find.text('1.50 GB'), matching: find.byType(Wrap));
-    expect(metadataWrap, findsOneWidget);
-    expect(find.descendant(of: metadataWrap, matching: find.text('EAC3 5.1')), findsOneWidget);
+    // One mono line rather than a wrap of separate chips.
+    final meta = tester
+        .widgetList<Text>(find.byType(Text))
+        .map((text) => text.data ?? text.textSpan?.toPlainText() ?? '')
+        .firstWhere((value) => value.contains('1.50 GB'));
+    expect(meta, contains('EAC3 5.1'));
   });
 }
 

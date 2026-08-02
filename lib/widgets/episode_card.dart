@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:plezy/widgets/app_icon.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import '../focus/focus_theme.dart';
 import '../focus/focusable_wrapper.dart';
 import '../mixins/context_menu_tap_mixin.dart';
 import '../models/download_models.dart';
@@ -15,12 +14,11 @@ import '../services/settings_service.dart';
 import 'settings_builder.dart';
 import '../media/media_item.dart';
 import '../media/media_item_types.dart';
-import '../widgets/collapsible_text.dart';
 import '../widgets/download_status_icon.dart';
 import '../widgets/watched_indicator.dart';
 import '../widgets/optimized_media_image.dart';
-import '../utils/platform_detector.dart';
 import '../utils/formatters.dart';
+import '../utils/rating_spans.dart';
 import '../utils/media_quality_labels.dart';
 import '../widgets/media_context_menu.dart';
 import '../widgets/placeholder_container.dart';
@@ -61,57 +59,27 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
-  Widget _buildEpisodeMetaRow(BuildContext context, MediaItem episode, List<String> qualityLabels) {
-    final mutedStyle = Theme.of(context).textTheme.bodySmall?.copyWith(color: tokens(context).textMuted, fontSize: 12);
-    final children = <Widget>[];
+  /// Runtime, air date, your rating and quality labels as one dim mono line —
+  /// reported values, not prose, and a fixed height so a long list of rows
+  /// stays scannable.
+  Widget _buildEpisodeMetaLine(BuildContext context, MediaItem episode, List<String> qualityLabels) {
+    final tokensRef = tokens(context);
+    final rating = episode.userRating;
+    final spans = dotSeparatedSpans([
+      if (episode.durationMs != null)
+        TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
+      if (episode.originallyAvailableAt != null) TextSpan(text: formatFullDate(episode.originallyAvailableAt!)),
+      if (rating != null && rating > 0) ratingSpan(rating / 2, iconSize: 11),
+      for (final label in qualityLabels) TextSpan(text: label),
+    ]);
+    if (spans.isEmpty) return const SizedBox.shrink();
 
-    void addSeparator() {
-      if (children.isEmpty) return;
-      children.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 6),
-          child: Text('•', style: mutedStyle),
-        ),
-      );
-    }
-
-    if (episode.durationMs != null) {
-      children.add(Text(formatDurationTimestamp(Duration(milliseconds: episode.durationMs!)), style: mutedStyle));
-    }
-
-    if (episode.originallyAvailableAt != null) {
-      addSeparator();
-      children.add(Text(formatFullDate(episode.originallyAvailableAt!), style: mutedStyle));
-    }
-
-    if (episode.userRating != null && episode.userRating! > 0) {
-      addSeparator();
-      children.add(
-        Row(
-          mainAxisSize: .min,
-          children: [
-            const Padding(
-              padding: .only(top: 2),
-              child: AppIcon(Symbols.star_rounded, size: 12, fill: 1, color: Colors.amber),
-            ),
-            const SizedBox(width: 2),
-            Text(
-              (episode.userRating! / 2) == (episode.userRating! / 2).truncateToDouble()
-                  ? '${(episode.userRating! / 2).toInt()}'
-                  : formatRating(episode.userRating! / 2),
-              style: mutedStyle,
-            ),
-          ],
-        ),
-      );
-    }
-
-    for (final label in qualityLabels) {
-      addSeparator();
-      children.add(Text(label, style: mutedStyle));
-    }
-
-    return Wrap(crossAxisAlignment: .center, runSpacing: 4, children: children);
+    return Text.rich(
+      TextSpan(children: spans),
+      style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted, height: 1.35),
+      maxLines: 1,
+      overflow: .ellipsis,
+    );
   }
 
   @override
@@ -126,201 +94,176 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final episode = _effectiveEpisode(context);
     final shouldBlur = hideSpoilers && episode.shouldHideSpoiler;
     final qualityLabels = [...buildMediaQualityLabels(episode), ?buildMediaSizeLabel(episode)];
+    final tokensRef = tokens(context);
+    const thumbWidth = 116.0;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      // MergeSemantics: one node per card instead of one per text/progress —
-      // the per-frame semantics pass scales with node count (see MediaCard).
-      // The card has a single action, so merging is safe.
-      child: MergeSemantics(
-        child: FocusableWrapper(
-          focusNode: widget.focusNode,
-          autofocus: widget.autofocus,
-          enableLongPress: true,
-          onNavigateUp: widget.onNavigateUp,
-          onSelect: widget.onTap,
-          onLongPress: showContextMenuFromTap,
-          disableScale: true,
-          child: MediaContextMenu(
-            key: contextMenuKey,
-            item: episode,
-            onRefresh: widget.onRefresh,
-            onListRefresh: widget.onListRefresh,
+    // MergeSemantics: one node per card instead of one per text/progress —
+    // the per-frame semantics pass scales with node count (see MediaCard).
+    // The card has a single action, so merging is safe.
+    return MergeSemantics(
+      child: FocusableWrapper(
+        focusNode: widget.focusNode,
+        autofocus: widget.autofocus,
+        enableLongPress: true,
+        onNavigateUp: widget.onNavigateUp,
+        onSelect: widget.onTap,
+        onLongPress: showContextMenuFromTap,
+        disableScale: true,
+        child: MediaContextMenu(
+          key: contextMenuKey,
+          item: episode,
+          onRefresh: widget.onRefresh,
+          onListRefresh: widget.onListRefresh,
+          onTap: widget.onTap,
+          child: InkWell(
+            key: Key(episode.id),
+            mouseCursor: SystemMouseCursors.click,
             onTap: widget.onTap,
-            child: InkWell(
-              key: Key(episode.id),
-              mouseCursor: SystemMouseCursors.click,
-              borderRadius: BorderRadius.circular(FocusTheme.defaultBorderRadius),
-              onTap: widget.onTap,
-              canRequestFocus: false,
-              onTapDown: storeTapPosition,
-              onLongPress: showContextMenuFromTap,
-              onSecondaryTapDown: storeTapPosition,
-              onSecondaryTap: showContextMenuFromTap,
-              hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerLow,
-                  borderRadius: BorderRadius.circular(FocusTheme.defaultBorderRadius),
-                ),
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: Row(
-                  crossAxisAlignment: .start,
-                  children: [
-                    SizedBox(
-                      width: 144,
-                      child: Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.all(Radius.circular(6)),
-                            child: AspectRatio(
-                              aspectRatio: 16 / 9,
-                              child: shouldBlur
-                                  ? ClipRect(
-                                      child: ImageFiltered(
-                                        imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                                        child: _buildEpisodeThumbnail(episode),
-                                      ),
-                                    )
-                                  : _buildEpisodeThumbnail(episode),
-                            ),
+            canRequestFocus: false,
+            onTapDown: storeTapPosition,
+            onLongPress: showContextMenuFromTap,
+            onSecondaryTapDown: storeTapPosition,
+            onSecondaryTap: showContextMenuFromTap,
+            hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
+            child: Container(
+              // A hairline instead of a filled card: with every row carrying
+              // its own surface the list read as a stack of tiles rather than
+              // one list, and the fill competed with the thumbnails.
+              decoration: BoxDecoration(border: Border(top: BorderSide(color: tokensRef.outline))),
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Row(
+                crossAxisAlignment: .start,
+                children: [
+                  SizedBox(
+                    width: thumbWidth,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: const BorderRadius.all(Radius.circular(10)),
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: shouldBlur
+                                ? ClipRect(
+                                    child: ImageFiltered(
+                                      imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                                      child: _buildEpisodeThumbnail(episode),
+                                    ),
+                                  )
+                                : _buildEpisodeThumbnail(episode),
                           ),
+                        ),
 
-                          Positioned.fill(
+                        Positioned.fill(
+                          child: Center(
                             child: Container(
+                              width: 28,
+                              height: 28,
                               decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Colors.transparent, Colors.black.withValues(alpha: 0.2)],
-                                ),
+                                color: Colors.black.withValues(alpha: 0.5),
+                                shape: BoxShape.circle,
                               ),
-                              child: Center(
-                                child: Container(
-                                  padding: const EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withValues(alpha: 0.6),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const AppIcon(
-                                    Symbols.play_arrow_rounded,
-                                    fill: 1,
-                                    color: Colors.white,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
+                              child: const AppIcon(Symbols.play_arrow_rounded, fill: 1, color: Colors.white, size: 15),
                             ),
                           ),
+                        ),
 
-                          Positioned.fill(
-                            child: WatchedIndicator(
-                              item: episode,
-                              size: WatchedIndicatorSize.compact,
-                              // Progress isn't tracked offline.
-                              progressAvailable: !widget.isOffline,
-                            ),
+                        Positioned.fill(
+                          child: WatchedIndicator(
+                            item: episode,
+                            size: WatchedIndicatorSize.compact,
+                            // Progress isn't tracked offline.
+                            progressAvailable: !widget.isOffline,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
+                  ),
 
-                    const SizedBox(width: 10),
+                  const SizedBox(width: 13),
 
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: .start,
-                        children: [
-                          Selector<DownloadProvider, _DownloadSlice>(
-                            selector: (_, p) =>
-                                _DownloadSlice.from(p.getProgress(episode.globalKey), p.isQueueing(episode.globalKey)),
-                            builder: (context, slice, _) {
-                              Widget? downloadStatusIcon;
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: .start,
+                      children: [
+                        Selector<DownloadProvider, _DownloadSlice>(
+                          selector: (_, p) =>
+                              _DownloadSlice.from(p.getProgress(episode.globalKey), p.isQueueing(episode.globalKey)),
+                          builder: (context, slice, _) {
+                            Widget? downloadStatusIcon;
 
-                              // Only show download status in online mode
-                              if (!widget.isOffline && episode.serverId != null) {
-                                final status = slice.status;
-                                final mutedBase = tokens(context).textMuted;
+                            // Only show download status in online mode
+                            if (!widget.isOffline && episode.serverId != null) {
+                              final status = slice.status;
+                              final mutedBase = tokensRef.textMuted;
 
-                                if (slice.isQueueing) {
-                                  downloadStatusIcon = DownloadQueueingSpinner(size: 12, color: mutedBase);
-                                } else if (status != null) {
-                                  final iconSize = status == DownloadStatus.downloading ? 14.0 : 12.0;
-                                  downloadStatusIcon = DownloadStatusIcon(
-                                    status: status,
-                                    size: iconSize,
-                                    variant: DownloadStatusIconVariant.muted,
-                                    mutedBase: mutedBase,
-                                    progress: slice.progressPercent,
-                                  );
-                                }
-                                // Note: No icon shown if not downloaded (null)
+                              if (slice.isQueueing) {
+                                downloadStatusIcon = DownloadQueueingSpinner(size: 12, color: mutedBase);
+                              } else if (status != null) {
+                                final iconSize = status == DownloadStatus.downloading ? 14.0 : 12.0;
+                                downloadStatusIcon = DownloadStatusIcon(
+                                  status: status,
+                                  size: iconSize,
+                                  variant: DownloadStatusIconVariant.muted,
+                                  mutedBase: mutedBase,
+                                  progress: slice.progressPercent,
+                                );
                               }
+                              // Note: No icon shown if not downloaded (null)
+                            }
 
-                              return Row(
-                                children: [
-                                  if (episode.index != null)
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).colorScheme.primaryContainer,
-                                        borderRadius: const BorderRadius.all(Radius.circular(3)),
-                                      ),
-                                      child: Text(
-                                        'E${episode.index}',
-                                        style: TextStyle(
-                                          color: Theme.of(context).colorScheme.onPrimaryContainer,
-                                          fontSize: 11,
-                                          fontWeight: .w600,
-                                        ),
-                                      ),
-                                    ),
-                                  if (downloadStatusIcon != null) ...[const SizedBox(width: 6), downloadStatusIcon],
-                                  const SizedBox(width: 8),
-                                  Expanded(
+                            return Row(
+                              crossAxisAlignment: .start,
+                              children: [
+                                if (episode.index != null) ...[
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2),
                                     child: Text(
-                                      episode.title!,
-                                      style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: .bold),
-                                      maxLines: 2,
-                                      overflow: .ellipsis,
+                                      'E${episode.index}',
+                                      style: TextStyle(
+                                        fontFamily: MonoFonts.mono,
+                                        fontSize: 11,
+                                        color: tokensRef.textMuted,
+                                      ),
                                     ),
                                   ),
+                                  const SizedBox(width: 8),
                                 ],
-                              );
-                            },
+                                if (downloadStatusIcon != null) ...[
+                                  Padding(padding: const EdgeInsets.only(top: 2), child: downloadStatusIcon),
+                                  const SizedBox(width: 6),
+                                ],
+                                Expanded(
+                                  child: Text(
+                                    episode.title!,
+                                    style: TextStyle(fontSize: 14.5, fontWeight: .w600, height: 1.25),
+                                    maxLines: 2,
+                                    overflow: .ellipsis,
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+
+                        if (!shouldBlur && episode.summary != null && episode.summary!.isNotEmpty) ...[
+                          const SizedBox(height: 4),
+                          // Clamped rather than expandable: uniform row heights
+                          // are what make a 20-episode season scannable, and
+                          // the full summary is one tap away on the episode.
+                          Text(
+                            episode.summary!,
+                            style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
+                            maxLines: 2,
+                            overflow: .ellipsis,
                           ),
-
-                          if (!shouldBlur && episode.summary != null && episode.summary!.isNotEmpty) ...[
-                            const SizedBox(height: 4),
-                            if (PlatformDetector.isTV())
-                              Text(
-                                episode.summary!,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodySmall?.copyWith(color: tokens(context).textMuted, height: 1.3),
-                                maxLines: 3,
-                                overflow: .ellipsis,
-                              )
-                            else
-                              CollapsibleText(
-                                text: episode.summary!,
-                                maxLines: 3,
-                                small: true,
-                                suppressExpandSemantics: true,
-                                style: Theme.of(
-                                  context,
-                                ).textTheme.bodySmall?.copyWith(color: tokens(context).textMuted, height: 1.3),
-                              ),
-                          ],
-
-                          const SizedBox(height: 6),
-                          _buildEpisodeMetaRow(context, episode, qualityLabels),
                         ],
-                      ),
+
+                        const SizedBox(height: 5),
+                        _buildEpisodeMetaLine(context, episode, qualityLabels),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
