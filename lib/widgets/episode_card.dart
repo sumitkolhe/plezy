@@ -69,7 +69,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
       if (episode.index != null) TextSpan(text: 'E${episode.index}'),
       if (episode.durationMs != null)
         TextSpan(text: formatDurationTimestamp(Duration(milliseconds: episode.durationMs!))),
-      if (episode.originallyAvailableAt != null) TextSpan(text: formatFullDate(episode.originallyAvailableAt!)),
+      if (episode.originallyAvailableAt != null) TextSpan(text: formatAbbreviatedDate(episode.originallyAvailableAt!)),
       if (rating != null && rating > 0) ratingSpan(rating / 2, iconSize: 11),
       for (final label in qualityLabels) TextSpan(text: label),
     ]);
@@ -148,10 +148,10 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                                 ? ClipRect(
                                     child: ImageFiltered(
                                       imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                                      child: _buildEpisodeThumbnail(episode),
+                                      child: _buildEpisodeThumbnail(context, episode),
                                     ),
                                   )
-                                : _buildEpisodeThumbnail(episode),
+                                : _buildEpisodeThumbnail(context, episode),
                           ),
                         ),
 
@@ -265,15 +265,26 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     );
   }
 
-  Widget _buildEpisodeThumbnail(MediaItem episode) {
+  /// Quiet stand-in for episodes whose art the server has not produced.
+  ///
+  /// A season of freshly-added episodes has no images until Jellyfin's
+  /// metadata refresh fetches them, and a filled box with a large glyph
+  /// repeated down the whole list reads as breakage rather than absence.
+  Widget _missingThumbnail(BuildContext context) {
+    return PlaceholderContainer(
+      color: tokens(context).text.withValues(alpha: 0.04),
+      child: AppIcon(Symbols.movie_rounded, fill: 1, size: 18, color: tokens(context).textMuted.withValues(alpha: 0.5)),
+    );
+  }
+
+  Widget _buildEpisodeThumbnail(BuildContext context, MediaItem episode) {
     if (widget.isOffline && widget.localPosterPath != null) {
       return OptimizedMediaImage.thumb(
         client: null,
         imagePath: null,
         localFilePath: widget.localPosterPath,
         fit: BoxFit.cover,
-        errorWidget: (context, url, error) =>
-            const PlaceholderContainer(child: AppIcon(Symbols.movie_rounded, fill: 1, size: 32)),
+        errorWidget: (context, url, error) => _missingThumbnail(context),
       );
     }
     if (episode.thumbPath != null) {
@@ -282,12 +293,11 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
         imagePath: episode.thumbPath,
         filterQuality: FilterQuality.medium,
         fit: BoxFit.cover,
-        placeholder: (context, url) => const PlaceholderContainer(),
-        errorWidget: (context, url, error) =>
-            const PlaceholderContainer(child: AppIcon(Symbols.movie_rounded, fill: 1, size: 32)),
+        placeholder: (context, url) => PlaceholderContainer(color: tokens(context).text.withValues(alpha: 0.04)),
+        errorWidget: (context, url, error) => _missingThumbnail(context),
       );
     }
-    return const PlaceholderContainer(child: AppIcon(Symbols.movie_rounded, fill: 1, size: 32));
+    return _missingThumbnail(context);
   }
 }
 

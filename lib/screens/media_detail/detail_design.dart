@@ -159,7 +159,7 @@ class DetailInfoEntry {
 /// ruled rows read as borrowed from another app rather than as structure.
 class DetailInfoTable extends StatelessWidget {
   final List<DetailInfoEntry> entries;
-  static const double _labelWidth = 92;
+  static const double _labelWidth = 72;
 
   const DetailInfoTable({super.key, required this.entries});
 
@@ -181,7 +181,7 @@ class DetailInfoTable extends StatelessWidget {
                   width: _labelWidth,
                   child: Text(entries[i].label, style: TextStyle(fontSize: 13, color: t.textMuted)),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     entries[i].value,

@@ -235,6 +235,24 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
             ),
           );
 
+    // Rate/favourite used to be a pill in the hero's fact line, where a 32px
+    // chip was clipped by the 20px line it shared with the facts. It is an
+    // action, so it belongs in the action row with the others.
+    final rateAction = widget.isOffline
+        ? null
+        : FocusableAction(
+            debugLabel: 'detail_rate',
+            focusNode: _ratingChipFocusNode,
+            onPressed: () => _showRatingDialog(context, metadata),
+            builder: (context, state) => iconActionButton(
+              state,
+              onPressed: () => _showRatingDialog(context, metadata),
+              icon: AppIcon(Symbols.favorite_rounded, fill: metadata.isFavorite == true ? 1 : 0),
+              tooltip: t.mediaMenu.rate,
+              foregroundColor: metadata.isFavorite == true ? Colors.redAccent : null,
+            ),
+          );
+
     void showMoreActions() => _contextMenuKey.currentState?.showContextMenu(context);
 
     final moreActionsAction = widget.isOffline
@@ -257,6 +275,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
       ?shuffleAction,
       ?downloadAction,
       watchedAction,
+      ?rateAction,
       ?watchlistAction,
       ?moreActionsAction,
     ];

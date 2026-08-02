@@ -20,7 +20,6 @@ import '../widgets/rating_bottom_sheet.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/dpad_select_long_press_controller.dart';
 import '../focus/focusable_action_bar.dart';
-import '../focus/focusable_wrapper.dart';
 import '../focus/hub_vertical_navigation.dart';
 import '../focus/locked_hub_controller.dart';
 import '../focus/key_event_utils.dart';
@@ -929,73 +928,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Build action buttons row (play, shuffle, download, mark watched)
   /// Build a metadata chip with optional leading icon or widget
-  Widget _buildUserRatingChip(MediaItem metadata) {
-    final active = metadata.isFavorite == true;
-    const iconData = Symbols.favorite_rounded;
-    const activeIconColor = Colors.redAccent;
-    final label = t.mediaMenu.rate;
-
-    return ListenableBuilder(
-      listenable: _ratingChipFocusNode,
-      builder: (context, _) {
-        void activate() => _showRatingDialog(context, metadata);
-        final colorScheme = Theme.of(context).colorScheme;
-        final isKeyboardMode = InputModeTracker.isKeyboardMode(context);
-        final showFocus = _ratingChipFocusNode.hasFocus && isKeyboardMode;
-        final bgColor = showFocus ? colorScheme.inverseSurface : colorScheme.secondaryContainer.withValues(alpha: 0.8);
-        final fgColor = showFocus ? colorScheme.onInverseSurface : colorScheme.onSecondaryContainer;
-
-        return FocusableWrapper(
-          focusNode: _ratingChipFocusNode,
-          onSelect: activate,
-          borderRadius: 100,
-          disableScale: true,
-          useBackgroundFocus: true,
-          onKeyEvent: (_, event) {
-            if (!event.isActionable) return KeyEventResult.ignored;
-            final key = event.logicalKey;
-            if (key.isDownKey) {
-              _playButtonFocusNode.requestFocus();
-              return KeyEventResult.handled;
-            }
-            if (key.isUpKey) {
-              return KeyEventResult.handled; // consume — nothing above
-            }
-            if (key.isLeftKey || key.isRightKey) {
-              return KeyEventResult.handled; // consume — single chip, nothing beside it (#1181)
-            }
-            return KeyEventResult.ignored;
-          },
-          child: GestureDetector(
-            onTap: activate,
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              curve: Curves.easeOutCubic,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(color: bgColor, borderRadius: const BorderRadius.all(Radius.circular(100))),
-              child: Row(
-                mainAxisSize: .min,
-                children: [
-                  AppIcon(
-                    iconData,
-                    fill: active ? 1 : 0,
-                    color: showFocus ? fgColor : (active ? activeIconColor : fgColor),
-                    size: 16,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    label,
-                    style: TextStyle(color: fgColor, fontSize: 13, fontWeight: .w500),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   void _showRatingDialog(BuildContext sheetContext, MediaItem metadata) {
     OverlaySheetController.of(sheetContext).show(
       showDragHandle: true,
@@ -4109,7 +4041,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         final facts = <String>[
           if (metadata.year != null) '${metadata.year}',
           ?_seasonCountLabel(metadata),
-          if (metadata.durationMs != null) formatDurationTextual(metadata.durationMs!),
+          // Shows report a zero runtime rather than omitting it, which
+          // rendered as a literal "0min" beside the real facts.
+          if (metadata.durationMs case final ms? when ms > 0) formatDurationTextual(ms),
           ...buildMediaQualityLabels(metadata),
         ];
         final genres = (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
@@ -4169,25 +4103,12 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                       if (showFacts)
                         SizedBox(
                           height: factLineHeight,
-                          child: Row(
-                            crossAxisAlignment: .center,
-                            children: [
-                              Flexible(
-                                child: DetailFactLine(
-                                  rating: metadata.rating,
-                                  contentRating: metadata.contentRating == null
-                                      ? null
-                                      : formatContentRating(metadata.contentRating!),
-                                  facts: facts,
-                                ),
-                              ),
-                              // Your rating is an action, not one of the facts
-                              // beside it, so it sits apart at the row's end.
-                              if (!widget.isOffline) ...[
-                                const SizedBox(width: 10),
-                                _buildUserRatingChip(metadata),
-                              ],
-                            ],
+                          child: DetailFactLine(
+                            rating: metadata.rating,
+                            contentRating: metadata.contentRating == null
+                                ? null
+                                : formatContentRating(metadata.contentRating!),
+                            facts: facts,
                           ),
                         ),
                       if (showGenres) ...[
