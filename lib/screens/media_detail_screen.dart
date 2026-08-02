@@ -2923,32 +2923,27 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 else if (_seasons.isEmpty)
                                   _sectionEmpty(context, t.messages.noSeasonsFound)
                                 else ...[
-                                  // Touch swaps the horizontal season strip for
-                                  // a chip beside the heading: it states which
-                                  // season is showing instead of leaving that to
-                                  // scroll position, and gives the episode rows
-                                  // back the width the strip was using. D-pad
-                                  // keeps the strip — a sheet is a worse target
-                                  // for it than a row of tabs.
                                   KeyedSubtree(
                                     key: _seasonsSectionKey,
-                                    child: DetailSectionHeader(
-                                      title: t.libraries.groupings.episodes,
-                                      action: useDpadSeasonTabs
-                                          ? null
-                                          : SeasonPickerChip(
-                                              seasons: _seasons,
-                                              selectedIndex: _selectedSeasonIndex,
-                                              onSelected: (index) {
-                                                setState(() => _selectedSeasonIndex = index);
-                                                unawaited(_fetchSeasonEpisodes(index));
-                                              },
-                                            ),
-                                    ),
+                                    child: DetailSectionHeader(title: t.libraries.groupings.episodes),
                                   ),
+                                  // D-pad keeps the poster strip: it can walk
+                                  // that with left/right, and the touch row's
+                                  // overflow sheet is a worse remote target.
                                   if (useDpadSeasonTabs) ...[
                                     const SizedBox(height: 12),
                                     _buildSeasonTabs(),
+                                  ] else if (_seasons.length > 1) ...[
+                                    const SizedBox(height: 12),
+                                    SeasonSelector(
+                                      seasons: _seasons,
+                                      selectedIndex: _selectedSeasonIndex,
+                                      onSelected: (index) {
+                                        if (index == _selectedSeasonIndex) return;
+                                        setState(() => _selectedSeasonIndex = index);
+                                        unawaited(_fetchSeasonEpisodes(index));
+                                      },
+                                    ),
                                   ],
                                   const SizedBox(height: 16),
                                   if (_isLoadingSeasonEpisodes)
