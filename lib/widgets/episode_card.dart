@@ -77,8 +77,8 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
 
     return Text.rich(
       TextSpan(children: spans),
-      style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted, height: 1.35),
-      maxLines: 1,
+      style: TextStyle(fontFamily: MonoFonts.mono, fontSize: 11, color: tokensRef.textMuted, height: 1.4),
+      maxLines: 2,
       overflow: .ellipsis,
     );
   }
@@ -130,42 +130,30 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Column(
-                mainAxisSize: .min,
+              child: Row(
                 crossAxisAlignment: .start,
                 children: [
-                  Row(
-                    children: [
-                      SizedBox(width: _thumbWidth, child: _buildStill(context, episode, blurred: shouldBlur)),
-                      const SizedBox(width: _thumbGap),
-                      // Title and meta are capped at three lines between them,
-                      // which is shorter than the still beside them at every
-                      // width this list is used at.
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: .min,
-                          crossAxisAlignment: .start,
-                          children: [
-                            _buildTitleRow(context, episode),
-                            if (metaLine != null) ...[const SizedBox(height: 5), metaLine],
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  // Below the still rather than beside it: at phone widths a
-                  // column narrow enough to sit next to a 16:9 image fits about
-                  // thirty characters a line.
-                  if (showSummary) ...[
-                    const SizedBox(height: 8),
-                    Text(
-                      summary,
-                      style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
-                      maxLines: 2,
-                      overflow: .ellipsis,
+                  SizedBox(width: _thumbWidth, child: _buildStill(context, episode, blurred: shouldBlur)),
+                  const SizedBox(width: _thumbGap),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: .min,
+                      crossAxisAlignment: .start,
+                      children: [
+                        _buildTitleRow(context, episode),
+                        if (metaLine != null) ...[const SizedBox(height: 4), metaLine],
+                        if (showSummary) ...[
+                          const SizedBox(height: 5),
+                          Text(
+                            summary,
+                            style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
+                            maxLines: 2,
+                            overflow: .ellipsis,
+                          ),
+                        ],
+                      ],
                     ),
-                  ],
+                  ),
                 ],
               ),
             ),
@@ -245,7 +233,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             Expanded(
               child: Text(
                 episode.title!,
-                style: TextStyle(fontSize: 15, fontWeight: .w600, height: 1.3),
+                style: TextStyle(fontSize: 14, fontWeight: .w600, height: 1.3),
                 maxLines: 2,
                 overflow: .ellipsis,
               ),

@@ -77,29 +77,48 @@ void main() {
     semantics.dispose();
   });
 
-  testWidgets('title and meta stay within the height of the still', (tester) async {
+  testWidgets('the fact line wraps rather than hiding what does not fit', (tester) async {
     final episode = testMediaItem(
-      id: 'tall_episode',
+      id: 'wrapping_meta_episode',
       backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
-      title: 'A Title Long Enough To Wrap Onto A Second Line On A Phone',
+      title: 'Aftermath',
       index: 12,
-      summary: 'C' * 400,
-      durationMs: 42 * 60 * 1000,
+      durationMs: 52 * 60 * 1000,
       originallyAvailableAt: '2019-04-14',
+      mediaVersions: const [
+        MediaVersion(
+          id: 'source',
+          videoResolution: '1080',
+          parts: [
+            MediaPart(
+              id: 'part-1',
+              sizeBytes: 1536 * 1024 * 1024,
+              streams: [
+                MediaStream(id: 'audio', kind: MediaStreamKind.audio, codec: 'eac3', channels: 6, selected: true),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
 
     await _pumpEpisodeCard(tester, episode);
 
-    final still = tester.getSize(find.byType(AspectRatio).first);
-    final row = tester.getSize(find.descendant(of: find.byType(EpisodeCard), matching: find.byType(Row)).first);
-    expect(row.height, still.height);
+    final meta = tester.widgetList<Text>(find.byType(Text)).firstWhere(
+      (text) => (text.textSpan?.toPlainText() ?? '').contains('1.50 GB'),
+    );
+    expect(meta.maxLines, 2);
+    final facts = meta.textSpan!.toPlainText();
+    for (final fact in ['E12', '52:00', '1080p', 'EAC3 5.1', '1.50 GB']) {
+      expect(facts, contains(fact));
+    }
   });
 
-  testWidgets('summary runs the full width under the still, not beside it', (tester) async {
+  testWidgets('summary sits under the fact line in the text column', (tester) async {
     const summary = 'A quiet episode in which very little happens and everyone talks about it afterwards.';
     final episode = testMediaItem(
-      id: 'wide_summary_episode',
+      id: 'ordered_episode',
       backend: MediaBackend.jellyfin,
       kind: MediaKind.episode,
       title: 'Aftermath',
@@ -110,11 +129,14 @@ void main() {
 
     await _pumpEpisodeCard(tester, episode);
 
-    final still = tester.getRect(find.byType(AspectRatio).first);
+    final title = tester.getRect(find.text('Aftermath'));
     final summaryRect = tester.getRect(find.text(summary));
-    expect(summaryRect.left, still.left);
-    expect(summaryRect.top, greaterThanOrEqualTo(still.bottom));
-    expect(summaryRect.width, greaterThan(still.width));
+    final still = tester.getRect(find.byType(AspectRatio).first);
+
+    // Same column as the title, below it, and clear of the still.
+    expect(summaryRect.left, title.left);
+    expect(summaryRect.top, greaterThan(title.bottom));
+    expect(summaryRect.left, greaterThan(still.right));
   });
 
   testWidgets('shows file size alongside media quality labels', (tester) async {
