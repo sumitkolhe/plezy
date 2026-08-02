@@ -649,10 +649,7 @@
     "failedPlayback": "Failed to ${action}: ${error}",
     "switchingToCompatiblePlayer": "Switching to compatible player...",
     "serverLimitTitle": "Playback failed",
-    "serverLimitBody": "Server error (HTTP 500). A bandwidth/transcoding limit likely rejected this session. Ask the owner to adjust it.",
-    "logsUploaded": "Logs uploaded",
-    "logsUploadFailed": "Failed to upload logs",
-    "logId": "Log ID"
+    "serverLimitBody": "Server error (HTTP 500). A bandwidth/transcoding limit likely rejected this session. Ask the owner to adjust it."
   },
   "subtitlingStyling": {
     "text": "Text",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Clear Logs",
-    "copyLogs": "Copy Logs",
-    "uploadLogs": "Upload Logs"
+    "copyLogs": "Copy Logs"
   },
   "licenses": {
     "relatedPackages": "Related Packages",

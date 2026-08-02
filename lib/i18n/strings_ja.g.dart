@@ -713,9 +713,6 @@ class _Translations$messages$ja extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => '互換性のあるプレーヤーに切り替え中…';
 	@override String get serverLimitTitle => '再生に失敗しました';
 	@override String get serverLimitBody => 'サーバーエラー（HTTP 500）。帯域幅/トランスコード制限により拒否された可能性があります。所有者に調整を依頼してください。';
-	@override String get logsUploaded => 'ログをアップロードしました';
-	@override String get logsUploadFailed => 'ログのアップロードに失敗しました';
-	@override String get logId => 'ログID';
 }
 
 // Path: subtitlingStyling
@@ -979,7 +976,6 @@ class _Translations$logs$ja extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'ログをクリア';
 	@override String get copyLogs => 'ログをコピー';
-	@override String get uploadLogs => 'ログをアップロード';
 }
 
 // Path: licenses
@@ -2272,9 +2268,6 @@ extension on TranslationsJa {
 			'messages.switchingToCompatiblePlayer' => '互換性のあるプレーヤーに切り替え中…',
 			'messages.serverLimitTitle' => '再生に失敗しました',
 			'messages.serverLimitBody' => 'サーバーエラー（HTTP 500）。帯域幅/トランスコード制限により拒否された可能性があります。所有者に調整を依頼してください。',
-			'messages.logsUploaded' => 'ログをアップロードしました',
-			'messages.logsUploadFailed' => 'ログのアップロードに失敗しました',
-			'messages.logId' => 'ログID',
 			'subtitlingStyling.text' => 'テキスト',
 			'subtitlingStyling.border' => '枠線',
 			'subtitlingStyling.background' => '背景',
@@ -2471,7 +2464,6 @@ extension on TranslationsJa {
 			'hubDetail.noItemsFound' => 'アイテムが見つかりません',
 			'logs.clearLogs' => 'ログをクリア',
 			'logs.copyLogs' => 'ログをコピー',
-			'logs.uploadLogs' => 'ログをアップロード',
 			'licenses.relatedPackages' => '関連パッケージ',
 			'licenses.license' => 'ライセンス',
 			'licenses.licenseNumber' => ({required Object number}) => 'ライセンス ${number}',
@@ -2781,12 +2773,12 @@ extension on TranslationsJa {
 			'metadataEdit.selectLogo' => 'ロゴを選択',
 			'metadataEdit.selectSquareArt' => '正方形アートを選択',
 			'metadataEdit.fromUrl' => 'URLから',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'ファイルをアップロード',
 			'metadataEdit.enterImageUrl' => '画像URLを入力',
 			'metadataEdit.imageUrl' => '画像URL',
 			'metadataEdit.metadataUpdated' => 'メタデータを更新しました',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'メタデータの更新に失敗しました',
 			'metadataEdit.artworkUpdated' => 'アートワークを更新しました',
 			'metadataEdit.artworkUpdateFailed' => 'アートワークの更新に失敗しました',

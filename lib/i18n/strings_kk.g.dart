@@ -718,9 +718,6 @@ class _Translations$messages$kk extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Үйлесімді ойнатқышқа ауысуда...';
 	@override String get serverLimitTitle => 'Ойнату қатесі';
 	@override String get serverLimitBody => 'Сервер қатесі (HTTP 500). Шектеу бұл сеансты қабылдамады.';
-	@override String get logsUploaded => 'Журналдар жүктелді';
-	@override String get logsUploadFailed => 'Журналдарды жүктеу мүмкін болмады';
-	@override String get logId => 'Журнал ID-сі';
 }
 
 // Path: subtitlingStyling
@@ -985,7 +982,6 @@ class _Translations$logs$kk extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Журналдарды тазалау';
 	@override String get copyLogs => 'Журналдарды көшіру';
-	@override String get uploadLogs => 'Журналдарды жүктеу';
 }
 
 // Path: licenses
@@ -2290,9 +2286,6 @@ extension on TranslationsKk {
 			'messages.switchingToCompatiblePlayer' => 'Үйлесімді ойнатқышқа ауысуда...',
 			'messages.serverLimitTitle' => 'Ойнату қатесі',
 			'messages.serverLimitBody' => 'Сервер қатесі (HTTP 500). Шектеу бұл сеансты қабылдамады.',
-			'messages.logsUploaded' => 'Журналдар жүктелді',
-			'messages.logsUploadFailed' => 'Журналдарды жүктеу мүмкін болмады',
-			'messages.logId' => 'Журнал ID-сі',
 			'subtitlingStyling.text' => 'Мәтін',
 			'subtitlingStyling.border' => 'Жиек',
 			'subtitlingStyling.background' => 'Фон',
@@ -2490,7 +2483,6 @@ extension on TranslationsKk {
 			'hubDetail.noItemsFound' => 'Элементтер табылмады',
 			'logs.clearLogs' => 'Журналдарды тазалау',
 			'logs.copyLogs' => 'Журналдарды көшіру',
-			'logs.uploadLogs' => 'Журналдарды жүктеу',
 			'licenses.relatedPackages' => 'Байланысты пакеттер',
 			'licenses.license' => 'Лицензия',
 			'licenses.licenseNumber' => ({required Object number}) => 'Лицензия ${number}',
@@ -2795,12 +2787,12 @@ extension on TranslationsKk {
 			'metadataEdit.releaseDate' => 'Шыққан күні',
 			'metadataEdit.contentRating' => 'Мазмұн рейтингі',
 			'metadataEdit.studio' => 'Студия',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Ұран/Слоган',
 			'metadataEdit.summary' => 'Сипаттамасы/Күйі',
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.logo' => 'Логотип',
 			'metadataEdit.squareArt' => 'Шаршы сурет',
 			'metadataEdit.selectPoster' => 'Постерді таңдау',

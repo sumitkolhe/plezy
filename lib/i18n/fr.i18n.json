@@ -649,10 +649,7 @@
     "failedPlayback": "Échec de ${action} : ${error}",
     "switchingToCompatiblePlayer": "Passage au lecteur compatible...",
     "serverLimitTitle": "Échec de la lecture",
-    "serverLimitBody": "Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l'ajuster.",
-    "logsUploaded": "Journaux envoyés",
-    "logsUploadFailed": "Échec de l’envoi des journaux",
-    "logId": "Identifiant du journal"
+    "serverLimitBody": "Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l'ajuster."
   },
   "subtitlingStyling": {
     "text": "Texte",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Effacer les journaux",
-    "copyLogs": "Copier les journaux",
-    "uploadLogs": "Envoyer les journaux"
+    "copyLogs": "Copier les journaux"
   },
   "licenses": {
     "relatedPackages": "Paquets associés",

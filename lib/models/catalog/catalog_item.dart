@@ -147,7 +147,7 @@ class CatalogItemIds {
 class CatalogItem {
   /// Key under [MediaItem.raw] where a synthesized rendering item stashes its
   /// backing [CatalogItem] (see [toMediaItem]).
-  static const String rawKey = 'plezyCatalog';
+  static const String rawKey = 'harborCatalog';
 
   final CatalogSourceId source;
 

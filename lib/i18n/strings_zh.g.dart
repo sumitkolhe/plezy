@@ -713,9 +713,6 @@ class Translations$messages$zh extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => '正在切换到兼容的播放器…';
 	@override String get serverLimitTitle => '播放失败';
 	@override String get serverLimitBody => '服务器错误（HTTP 500）。此次会话可能因带宽或转码限制而被拒绝。请联系服务器所有者调整限制。';
-	@override String get logsUploaded => '日志已上传';
-	@override String get logsUploadFailed => '上传日志失败';
-	@override String get logId => '日志 ID';
 }
 
 // Path: subtitlingStyling
@@ -979,7 +976,6 @@ class Translations$logs$zh extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => '清除日志';
 	@override String get copyLogs => '复制日志';
-	@override String get uploadLogs => '上传日志';
 }
 
 // Path: licenses
@@ -2272,9 +2268,6 @@ extension on TranslationsZh {
 			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
 			'messages.serverLimitTitle' => '播放失败',
 			'messages.serverLimitBody' => '服务器错误（HTTP 500）。此次会话可能因带宽或转码限制而被拒绝。请联系服务器所有者调整限制。',
-			'messages.logsUploaded' => '日志已上传',
-			'messages.logsUploadFailed' => '上传日志失败',
-			'messages.logId' => '日志 ID',
 			'subtitlingStyling.text' => '文本',
 			'subtitlingStyling.border' => '边框',
 			'subtitlingStyling.background' => '背景',
@@ -2471,7 +2464,6 @@ extension on TranslationsZh {
 			'hubDetail.noItemsFound' => '未找到项目',
 			'logs.clearLogs' => '清除日志',
 			'logs.copyLogs' => '复制日志',
-			'logs.uploadLogs' => '上传日志',
 			'licenses.relatedPackages' => '相关软件包',
 			'licenses.license' => '许可证',
 			'licenses.licenseNumber' => ({required Object number}) => '许可证 ${number}',
@@ -2781,12 +2773,12 @@ extension on TranslationsZh {
 			'metadataEdit.selectLogo' => '选择标志',
 			'metadataEdit.selectSquareArt' => '选择方形图片',
 			'metadataEdit.fromUrl' => '通过 URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '上传文件',
 			'metadataEdit.enterImageUrl' => '输入图片 URL',
 			'metadataEdit.imageUrl' => '图片 URL',
 			'metadataEdit.metadataUpdated' => '元数据已更新',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => '元数据更新失败',
 			'metadataEdit.artworkUpdated' => '封面图片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面图片更新失败',

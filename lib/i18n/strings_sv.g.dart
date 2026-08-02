@@ -714,9 +714,6 @@ class _Translations$messages$sv extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Byter till kompatibel spelare...';
 	@override String get serverLimitTitle => 'Uppspelningen misslyckades';
 	@override String get serverLimitBody => 'Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.';
-	@override String get logsUploaded => 'Loggarna har laddats upp';
-	@override String get logsUploadFailed => 'Det gick inte att ladda upp loggarna';
-	@override String get logId => 'Logg-ID';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$sv extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Rensa loggar';
 	@override String get copyLogs => 'Kopiera loggar';
-	@override String get uploadLogs => 'Ladda upp loggar';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsSv {
 			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
 			'messages.serverLimitTitle' => 'Uppspelningen misslyckades',
 			'messages.serverLimitBody' => 'Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.',
-			'messages.logsUploaded' => 'Loggarna har laddats upp',
-			'messages.logsUploadFailed' => 'Det gick inte att ladda upp loggarna',
-			'messages.logId' => 'Logg-ID',
 			'subtitlingStyling.text' => 'Text',
 			'subtitlingStyling.border' => 'Kantlinje',
 			'subtitlingStyling.background' => 'Bakgrund',
@@ -2474,7 +2467,6 @@ extension on TranslationsSv {
 			'hubDetail.noItemsFound' => 'Inga objekt hittades',
 			'logs.clearLogs' => 'Rensa loggar',
 			'logs.copyLogs' => 'Kopiera loggar',
-			'logs.uploadLogs' => 'Ladda upp loggar',
 			'licenses.relatedPackages' => 'Relaterade paket',
 			'licenses.license' => 'Licens',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licens ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsSv {
 			'metadataEdit.selectLogo' => 'Välj logotyp',
 			'metadataEdit.selectSquareArt' => 'Välj kvadratisk bild',
 			'metadataEdit.fromUrl' => 'Från URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Ladda upp fil',
 			'metadataEdit.enterImageUrl' => 'Ange bild-URL',
 			'metadataEdit.imageUrl' => 'Bild-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata har uppdaterats',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Det gick inte att uppdatera metadata',
 			'metadataEdit.artworkUpdated' => 'Bildmaterialet har uppdaterats',
 			'metadataEdit.artworkUpdateFailed' => 'Det gick inte att uppdatera bildmaterialet',

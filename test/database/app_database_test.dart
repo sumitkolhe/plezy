@@ -123,8 +123,8 @@ class _AppDatabaseTestSuite {
 
       test('retried v14 migration tolerates existing indices', () async {
         await db.close();
-        final tempDir = await Directory.systemTemp.createTemp('plezy_db_migration_test_');
-        final file = File('${tempDir.path}/plezy_downloads.db');
+        final tempDir = await Directory.systemTemp.createTemp('harbor_db_migration_test_');
+        final file = File('${tempDir.path}/harbor_downloads.db');
         AppDatabase? seeded;
         AppDatabase? reopened;
 
@@ -150,8 +150,8 @@ class _AppDatabaseTestSuite {
       });
       test('v18 migration preserves v17 downloads and adds nullable SAF roots', () async {
         await db.close();
-        final tempDir = await Directory.systemTemp.createTemp('plezy_db_v18_migration_test_');
-        final file = File('${tempDir.path}/plezy_downloads.db');
+        final tempDir = await Directory.systemTemp.createTemp('harbor_db_v18_migration_test_');
+        final file = File('${tempDir.path}/harbor_downloads.db');
         AppDatabase? seeded;
         AppDatabase? reopened;
 
@@ -222,8 +222,8 @@ class _AppDatabaseTestSuite {
 
       test('v19 migration derives cache scope independently for every download owner', () async {
         await db.close();
-        final tempDir = await Directory.systemTemp.createTemp('plezy_db_v19_migration_test_');
-        final file = File('${tempDir.path}/plezy_downloads.db');
+        final tempDir = await Directory.systemTemp.createTemp('harbor_db_v19_migration_test_');
+        final file = File('${tempDir.path}/harbor_downloads.db');
         AppDatabase? seeded;
         AppDatabase? reopened;
 
@@ -389,8 +389,8 @@ class _AppDatabaseTestSuite {
       });
       test('v20 migration creates sync download associations without claiming legacy rules', () async {
         await db.close();
-        final tempDir = await Directory.systemTemp.createTemp('plezy_db_v20_migration_test_');
-        final file = File('${tempDir.path}/plezy_downloads.db');
+        final tempDir = await Directory.systemTemp.createTemp('harbor_db_v20_migration_test_');
+        final file = File('${tempDir.path}/harbor_downloads.db');
         AppDatabase? seeded;
         AppDatabase? reopened;
 

@@ -649,10 +649,7 @@
     "failedPlayback": "${action} uğursuz oldu: ${error}",
     "switchingToCompatiblePlayer": "Uyğun oynadıcıya keçilir...",
     "serverLimitTitle": "Oynatma uğursuz oldu",
-    "serverLimitBody": "Server xətası (HTTP 500). Məhdudiyyət bu seansı rədd etdi.",
-    "logsUploaded": "Jurnallar yükləndi",
-    "logsUploadFailed": "Jurnallar yüklənə bilmədi",
-    "logId": "Jurnal ID-si"
+    "serverLimitBody": "Server xətası (HTTP 500). Məhdudiyyət bu seansı rədd etdi."
   },
   "subtitlingStyling": {
     "text": "Mətn",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Jurnalları təmizlə",
-    "copyLogs": "Jurnalları kopyala",
-    "uploadLogs": "Jurnalları yüklə"
+    "copyLogs": "Jurnalları kopyala"
   },
   "licenses": {
     "relatedPackages": "Əlaqəli paketlər",

@@ -649,10 +649,7 @@
     "failedPlayback": "Nem sikerült a művelet (${action}): ${error}",
     "switchingToCompatiblePlayer": "Váltás kompatibilis lejátszóra...",
     "serverLimitTitle": "A lejátszás nem sikerült",
-    "serverLimitBody": "Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.",
-    "logsUploaded": "Naplók feltöltve",
-    "logsUploadFailed": "Nem sikerült a naplók feltöltése",
-    "logId": "Naplóazonosító"
+    "serverLimitBody": "Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására."
   },
   "subtitlingStyling": {
     "text": "Szöveg",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Naplók törlése",
-    "copyLogs": "Naplók másolása",
-    "uploadLogs": "Naplók feltöltése"
+    "copyLogs": "Naplók másolása"
   },
   "licenses": {
     "relatedPackages": "Kapcsolódó csomagok",

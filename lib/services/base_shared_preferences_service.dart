@@ -85,7 +85,7 @@ abstract class BaseSharedPreferencesService {
     await migrateLegacySharedPreferencesToSharedPreferencesAsyncIfNecessary(
       legacySharedPreferencesInstance: legacy,
       sharedPreferencesAsyncOptions: const SharedPreferencesOptions(),
-      migrationCompletedKey: 'plezy_legacy_prefs_migrated_v1',
+      migrationCompletedKey: 'harbor_legacy_prefs_migrated_v1',
     );
     return SharedPreferencesWithCache.create(cacheOptions: const SharedPreferencesWithCacheOptions());
   }

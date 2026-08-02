@@ -649,10 +649,7 @@
     "failedPlayback": "${action} başarısız oldu: ${error}",
     "switchingToCompatiblePlayer": "Uyumlu oynatıcıya geçiliyor...",
     "serverLimitTitle": "Oynatma başarısız oldu",
-    "serverLimitBody": "Sunucu hatası (HTTP 500). Muhtemelen bir bant genişliği/kod dönüştürme sınırı bu oturumu reddetti. Sunucu sahibinden bunu ayarlamasını isteyin.",
-    "logsUploaded": "Günlükler yüklendi",
-    "logsUploadFailed": "Günlükler yüklenemedi",
-    "logId": "Günlük Kimliği (ID)"
+    "serverLimitBody": "Sunucu hatası (HTTP 500). Muhtemelen bir bant genişliği/kod dönüştürme sınırı bu oturumu reddetti. Sunucu sahibinden bunu ayarlamasını isteyin."
   },
   "subtitlingStyling": {
     "text": "Metin",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Günlükleri Temizle",
-    "copyLogs": "Günlükleri Kopyala",
-    "uploadLogs": "Günlükleri Yükle"
+    "copyLogs": "Günlükleri Kopyala"
   },
   "licenses": {
     "relatedPackages": "İlgili Paketler",

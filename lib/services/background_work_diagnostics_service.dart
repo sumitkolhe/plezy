@@ -300,7 +300,7 @@ class BackgroundWorkDiagnosticsService extends ChangeNotifier
 
   static final BackgroundWorkDiagnosticsService instance = BackgroundWorkDiagnosticsService._();
 
-  static const MethodChannel _deviceChannel = MethodChannel('com.plezy/device');
+  static const MethodChannel _deviceChannel = MethodChannel('co.sumit.harbor/device');
 
   final MethodChannel? _channelOverride;
   final DateTime Function()? _clockOverride;

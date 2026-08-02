@@ -24,8 +24,8 @@ void main() {
   group('player open', () {
     test('ExoPlayer clears stale Dart track state before opening new media', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         testBody: () async {
           final player = PlayerAndroid();
           try {
@@ -52,8 +52,8 @@ void main() {
       Duration? durationAtNativeOpen;
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           switch (call.method) {
             case 'initialize':
@@ -88,8 +88,8 @@ void main() {
 
     test('ExoPlayer restores the previous timeline when native open is rejected', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           if (call.method == 'initialize') return Future.value(true);
           if (call.method == 'open') {
@@ -162,8 +162,8 @@ void main() {
     test('ExoPlayer applies audio settings queued before initialization', () async {
       final calls = <MethodCall>[];
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) async {
           calls.add(call);
           if (call.method == 'initialize') return true;
@@ -195,8 +195,8 @@ void main() {
     test('ExoPlayer leaves the mpv passthrough codec list to the native fallback', () async {
       final calls = <MethodCall>[];
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) async {
           calls.add(call);
           if (call.method == 'initialize') return true;
@@ -229,8 +229,8 @@ void main() {
     test('ExoPlayer retries initialization after a recoverable native failure', () async {
       var initializeAttempts = 0;
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) async {
           if (call.method == 'initialize') return ++initializeAttempts > 1;
           if (call.method == 'requestAudioFocus') return true;
@@ -253,8 +253,8 @@ void main() {
       final initialize = Completer<bool>();
       final calls = <MethodCall>[];
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           if (call.method == 'initialize') return initialize.future;
@@ -282,8 +282,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           return call.method == 'initialize' ? Future.value(true) : Future.value(null);
@@ -352,8 +352,8 @@ void main() {
 
     test('ExoPlayer backend switch clears stale tracks before fallback tracks arrive', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         testBody: () async {
           final player = PlayerAndroid();
           try {
@@ -391,8 +391,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -437,8 +437,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -488,8 +488,8 @@ void main() {
       late PlayerAndroid player;
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -532,8 +532,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/exo_player',
-        eventChannelName: 'com.plezy/exo_player/events',
+        methodChannelName: 'co.sumit.harbor/exo_player',
+        eventChannelName: 'co.sumit.harbor/exo_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -561,8 +561,8 @@ void main() {
 
     test('MPV clears stale Dart track state before opening new media', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         testBody: () async {
           final player = PlayerNative();
           try {
@@ -587,8 +587,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -625,8 +625,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -669,8 +669,8 @@ void main() {
     test('MPV restores per-stream metadata while loading a shared container once', () async {
       final calls = <MethodCall>[];
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           return call.method == 'initialize' ? Future.value(true) : Future.value(null);
@@ -752,8 +752,8 @@ void main() {
 
     test('MPV keeps native metadata fallbacks for non-container subtitles', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) => call.method == 'initialize' ? Future.value(true) : Future.value(null),
         testBody: () async {
           final player = PlayerNative();
@@ -790,8 +790,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -824,8 +824,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -856,8 +856,8 @@ void main() {
 
     test('MPV exposes file-loaded events through PlayerStreams', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         testBody: () async {
           final player = PlayerNative();
           try {
@@ -875,8 +875,8 @@ void main() {
 
     test('MPV exposes load-scoped start and terminal failure events', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         testBody: () async {
           final player = PlayerNative();
           try {
@@ -896,8 +896,8 @@ void main() {
 
     test('MPV exposes primary media readiness before external subtitles finish', () async {
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         testBody: () async {
           final player = PlayerNative();
           var emissionCount = 0;
@@ -942,8 +942,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -984,8 +984,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           switch (call.method) {
@@ -1023,8 +1023,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           return Future.value(null);
@@ -1045,8 +1045,8 @@ void main() {
       final calls = <MethodCall>[];
 
       await withMockPlayerChannels(
-        methodChannelName: 'com.plezy/mpv_player',
-        eventChannelName: 'com.plezy/mpv_player/events',
+        methodChannelName: 'co.sumit.harbor/mpv_player',
+        eventChannelName: 'co.sumit.harbor/mpv_player/events',
         methodHandler: (call) {
           calls.add(call);
           return Future.value(null);

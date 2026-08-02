@@ -59,7 +59,7 @@ void main() {
     resetSharedPreferencesForTest();
     SettingsService.resetForTesting();
     DownloadStorageService.resetForTesting();
-    temporaryDirectory = await Directory.systemTemp.createTemp('plezy_settings_screen_test_');
+    temporaryDirectory = await Directory.systemTemp.createTemp('harbor_settings_screen_test_');
     PathProviderPlatform.instance = FakePathProvider(temporaryDirectory);
     TvDetectionService.debugSetAppleTVOverride(false);
     directoryPicker = _FakeDirectoryPicker();
@@ -243,7 +243,7 @@ void main() {
   });
 
   testWidgets('background downloads tile renders and opens the injected blocked status', (tester) async {
-    const channel = MethodChannel('com.plezy/device.settings-background-test');
+    const channel = MethodChannel('co.sumit.harbor/device.settings-background-test');
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, (call) async {
       return switch (call.method) {
         'getBackgroundWorkSignals' => {

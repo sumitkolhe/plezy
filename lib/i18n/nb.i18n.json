@@ -649,10 +649,7 @@
     "failedPlayback": "Kunne ikke ${action}: ${error}",
     "switchingToCompatiblePlayer": "Bytter til kompatibel spiller...",
     "serverLimitTitle": "Avspilling mislyktes",
-    "serverLimitBody": "Serverfeil (HTTP 500). En båndbredde-/transkodingsgrense avviste trolig økten. Be eieren justere den.",
-    "logsUploaded": "Logger lastet opp",
-    "logsUploadFailed": "Kunne ikke laste opp logger",
-    "logId": "Logg-ID"
+    "serverLimitBody": "Serverfeil (HTTP 500). En båndbredde-/transkodingsgrense avviste trolig økten. Be eieren justere den."
   },
   "subtitlingStyling": {
     "text": "Tekst",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Tøm logger",
-    "copyLogs": "Kopier logger",
-    "uploadLogs": "Last opp logger"
+    "copyLogs": "Kopier logger"
   },
   "licenses": {
     "relatedPackages": "Relaterte pakker",

@@ -25,7 +25,7 @@ void main() {
   group('insertQueuedDownload', () {
     test('atomically persists media identity, scope, policy, and queue state', () async {
       await db.close();
-      final tempDir = await Directory.systemTemp.createTemp('plezy_atomic_queue_');
+      final tempDir = await Directory.systemTemp.createTemp('harbor_atomic_queue_');
       final databaseFile = File(path.join(tempDir.path, 'downloads.sqlite'));
       try {
         db = AppDatabase.forTesting(NativeDatabase(databaseFile));
@@ -269,7 +269,7 @@ void main() {
 
     test('rolls back both new and replacement media rows when queue insertion fails', () async {
       await db.close();
-      final tempDir = await Directory.systemTemp.createTemp('plezy_atomic_rollback_');
+      final tempDir = await Directory.systemTemp.createTemp('harbor_atomic_rollback_');
       final databaseFile = File(path.join(tempDir.path, 'downloads.sqlite'));
       try {
         db = AppDatabase.forTesting(NativeDatabase(databaseFile));

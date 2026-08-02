@@ -13,7 +13,7 @@ import '../../test_helpers/prefs.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const channel = MethodChannel('plezy/atmos_probe');
+  const channel = MethodChannel('co.sumit.harbor/atmos_probe');
   final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
   setUp(() async {

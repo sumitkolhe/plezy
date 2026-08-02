@@ -714,9 +714,6 @@ class _Translations$messages$nl extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Overschakelen naar compatibele speler...';
 	@override String get serverLimitTitle => 'Afspelen mislukt';
 	@override String get serverLimitBody => 'Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.';
-	@override String get logsUploaded => 'Logbestanden geüpload';
-	@override String get logsUploadFailed => 'Uploaden van logbestanden mislukt';
-	@override String get logId => 'Logboek-ID';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$nl extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Logbestanden wissen';
 	@override String get copyLogs => 'Logbestanden kopiëren';
-	@override String get uploadLogs => 'Logbestanden uploaden';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsNl {
 			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
 			'messages.serverLimitTitle' => 'Afspelen mislukt',
 			'messages.serverLimitBody' => 'Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.',
-			'messages.logsUploaded' => 'Logbestanden geüpload',
-			'messages.logsUploadFailed' => 'Uploaden van logbestanden mislukt',
-			'messages.logId' => 'Logboek-ID',
 			'subtitlingStyling.text' => 'Tekst',
 			'subtitlingStyling.border' => 'Rand',
 			'subtitlingStyling.background' => 'Achtergrond',
@@ -2474,7 +2467,6 @@ extension on TranslationsNl {
 			'hubDetail.noItemsFound' => 'Geen items gevonden',
 			'logs.clearLogs' => 'Logbestanden wissen',
 			'logs.copyLogs' => 'Logbestanden kopiëren',
-			'logs.uploadLogs' => 'Logbestanden uploaden',
 			'licenses.relatedPackages' => 'Gerelateerde pakketten',
 			'licenses.license' => 'Licentie',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licentie ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsNl {
 			'metadataEdit.selectLogo' => 'Logo selecteren',
 			'metadataEdit.selectSquareArt' => 'Vierkante afbeelding selecteren',
 			'metadataEdit.fromUrl' => 'Vanaf URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Bestand uploaden',
 			'metadataEdit.enterImageUrl' => 'Voer de afbeeldings-URL in',
 			'metadataEdit.imageUrl' => 'Afbeeldings-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata bijgewerkt',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Metadata bijwerken mislukt',
 			'metadataEdit.artworkUpdated' => 'Illustraties bijgewerkt',
 			'metadataEdit.artworkUpdateFailed' => 'Illustraties bijwerken mislukt',

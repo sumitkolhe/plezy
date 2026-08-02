@@ -718,9 +718,6 @@ class _Translations$messages$tr extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Uyumlu oynatıcıya geçiliyor...';
 	@override String get serverLimitTitle => 'Oynatma başarısız oldu';
 	@override String get serverLimitBody => 'Sunucu hatası (HTTP 500). Muhtemelen bir bant genişliği/kod dönüştürme sınırı bu oturumu reddetti. Sunucu sahibinden bunu ayarlamasını isteyin.';
-	@override String get logsUploaded => 'Günlükler yüklendi';
-	@override String get logsUploadFailed => 'Günlükler yüklenemedi';
-	@override String get logId => 'Günlük Kimliği (ID)';
 }
 
 // Path: subtitlingStyling
@@ -985,7 +982,6 @@ class _Translations$logs$tr extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Günlükleri Temizle';
 	@override String get copyLogs => 'Günlükleri Kopyala';
-	@override String get uploadLogs => 'Günlükleri Yükle';
 }
 
 // Path: licenses
@@ -2290,9 +2286,6 @@ extension on TranslationsTr {
 			'messages.switchingToCompatiblePlayer' => 'Uyumlu oynatıcıya geçiliyor...',
 			'messages.serverLimitTitle' => 'Oynatma başarısız oldu',
 			'messages.serverLimitBody' => 'Sunucu hatası (HTTP 500). Muhtemelen bir bant genişliği/kod dönüştürme sınırı bu oturumu reddetti. Sunucu sahibinden bunu ayarlamasını isteyin.',
-			'messages.logsUploaded' => 'Günlükler yüklendi',
-			'messages.logsUploadFailed' => 'Günlükler yüklenemedi',
-			'messages.logId' => 'Günlük Kimliği (ID)',
 			'subtitlingStyling.text' => 'Metin',
 			'subtitlingStyling.border' => 'Kenarlık',
 			'subtitlingStyling.background' => 'Arka Plan',
@@ -2490,7 +2483,6 @@ extension on TranslationsTr {
 			'hubDetail.noItemsFound' => 'Öge bulunamadı',
 			'logs.clearLogs' => 'Günlükleri Temizle',
 			'logs.copyLogs' => 'Günlükleri Kopyala',
-			'logs.uploadLogs' => 'Günlükleri Yükle',
 			'licenses.relatedPackages' => 'İlgili Paketler',
 			'licenses.license' => 'Lisans',
 			'licenses.licenseNumber' => ({required Object number}) => 'Lisans ${number}',
@@ -2795,12 +2787,12 @@ extension on TranslationsTr {
 			'metadataEdit.releaseDate' => 'Yayınlanma Tarihi',
 			'metadataEdit.contentRating' => 'İçerik Derecelendirmesi',
 			'metadataEdit.studio' => 'Stüdyo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Slogan',
 			'metadataEdit.summary' => 'Özet',
 			'metadataEdit.poster' => 'Afiş',
 			'metadataEdit.background' => 'Arka Plan',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.logo' => 'Logo',
 			'metadataEdit.squareArt' => 'Kare Görsel',
 			'metadataEdit.selectPoster' => 'Afiş Seç',

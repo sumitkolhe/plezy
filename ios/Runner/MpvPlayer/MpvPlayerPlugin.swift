@@ -30,15 +30,15 @@ class MpvPlayerPlugin: NSObject, FlutterPlugin, FlutterStreamHandler, MpvPluginS
 
   static func register(with registrar: FlutterPluginRegistrar) {
     let methodChannel = FlutterMethodChannel(
-      name: "com.plezy/mpv_player",
+      name: "co.sumit.harbor/mpv_player",
       binaryMessenger: registrar.messenger()
     )
     let eventChannel = FlutterEventChannel(
-      name: "com.plezy/mpv_player/events",
+      name: "co.sumit.harbor/mpv_player/events",
       binaryMessenger: registrar.messenger()
     )
     let pipChannel = FlutterMethodChannel(
-      name: "com.plezy/pip",
+      name: "co.sumit.harbor/pip",
       binaryMessenger: registrar.messenger()
     )
 

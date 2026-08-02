@@ -8,7 +8,7 @@ import '../utils/platform_detector.dart';
 typedef AppExitApplication = Future<ui.AppExitResponse> Function(ui.AppExitType exitType, int exitCode);
 
 class AppExitService {
-  static const MethodChannel _channel = MethodChannel('com.plezy/app_exit');
+  static const MethodChannel _channel = MethodChannel('co.sumit.harbor/app_exit');
 
   /// Requests that the host platform closes or backgrounds the app.
   ///

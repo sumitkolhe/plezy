@@ -231,7 +231,7 @@ void main() {
   group('BackgroundWorkDiagnosticsService', () {
     late List<MethodCall> calls;
     late Map<String, Object?> signals;
-    const channel = MethodChannel('com.plezy/device.test');
+    const channel = MethodChannel('co.sumit.harbor/device.test');
 
     BackgroundWorkDiagnosticsService buildService({
       DownloadStallDetector? stallDetector,

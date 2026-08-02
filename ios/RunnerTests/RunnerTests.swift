@@ -205,7 +205,7 @@ final class MpvPlayerContractTests: XCTestCase {
     XCTAssertTrue(core.isPaused, "A rejected raw pause write must not change the cache")
 
     XCTAssertFailure(
-      awaitProperty(core, name: "plezy-property-does-not-exist", value: "ignored")
+      awaitProperty(core, name: "harbor-property-does-not-exist", value: "ignored")
     )
     XCTAssertTrue(core.isPaused)
 

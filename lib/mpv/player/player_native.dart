@@ -26,8 +26,8 @@ typedef _AudioStateGenerations = ({int passthrough, int normalization, int downm
 class PlayerNative extends PlayerBase {
   /// Video player on the default mpv channels/core.
   PlayerNative()
-    : methodChannel = const MethodChannel('com.plezy/mpv_player'),
-      eventChannel = const EventChannel('com.plezy/mpv_player/events'),
+    : methodChannel = const MethodChannel('co.sumit.harbor/mpv_player'),
+      eventChannel = const EventChannel('co.sumit.harbor/mpv_player/events'),
       audioOnly = false;
 
   /// Audio-only player on the dedicated music channels/core (see
@@ -35,8 +35,8 @@ class PlayerNative extends PlayerBase {
   /// ([setVisible] no-ops via [audioOnly]), no subtitle plumbing, no
   /// display-mode handling.
   PlayerNative.audio()
-    : methodChannel = const MethodChannel('com.plezy/mpv_audio_player'),
-      eventChannel = const EventChannel('com.plezy/mpv_audio_player/events'),
+    : methodChannel = const MethodChannel('co.sumit.harbor/mpv_audio_player'),
+      eventChannel = const EventChannel('co.sumit.harbor/mpv_audio_player/events'),
       audioOnly = true;
 
   String _dvConversionMode = 'auto';

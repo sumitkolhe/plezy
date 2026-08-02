@@ -31,8 +31,8 @@ void main() {
     final eventCalls = <MethodCall>[];
 
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         return switch (call.method) {

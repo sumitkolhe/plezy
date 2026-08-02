@@ -714,9 +714,6 @@ class _Translations$messages$nb extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Bytter til kompatibel spiller...';
 	@override String get serverLimitTitle => 'Avspilling mislyktes';
 	@override String get serverLimitBody => 'Serverfeil (HTTP 500). En båndbredde-/transkodingsgrense avviste trolig økten. Be eieren justere den.';
-	@override String get logsUploaded => 'Logger lastet opp';
-	@override String get logsUploadFailed => 'Kunne ikke laste opp logger';
-	@override String get logId => 'Logg-ID';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$nb extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Tøm logger';
 	@override String get copyLogs => 'Kopier logger';
-	@override String get uploadLogs => 'Last opp logger';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsNb {
 			'messages.switchingToCompatiblePlayer' => 'Bytter til kompatibel spiller...',
 			'messages.serverLimitTitle' => 'Avspilling mislyktes',
 			'messages.serverLimitBody' => 'Serverfeil (HTTP 500). En båndbredde-/transkodingsgrense avviste trolig økten. Be eieren justere den.',
-			'messages.logsUploaded' => 'Logger lastet opp',
-			'messages.logsUploadFailed' => 'Kunne ikke laste opp logger',
-			'messages.logId' => 'Logg-ID',
 			'subtitlingStyling.text' => 'Tekst',
 			'subtitlingStyling.border' => 'Kantlinje',
 			'subtitlingStyling.background' => 'Bakgrunn',
@@ -2474,7 +2467,6 @@ extension on TranslationsNb {
 			'hubDetail.noItemsFound' => 'Ingen elementer funnet',
 			'logs.clearLogs' => 'Tøm logger',
 			'logs.copyLogs' => 'Kopier logger',
-			'logs.uploadLogs' => 'Last opp logger',
 			'licenses.relatedPackages' => 'Relaterte pakker',
 			'licenses.license' => 'Lisens',
 			'licenses.licenseNumber' => ({required Object number}) => 'Lisens ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsNb {
 			'metadataEdit.selectLogo' => 'Velg logo',
 			'metadataEdit.selectSquareArt' => 'Velg kvadratisk bilde',
 			'metadataEdit.fromUrl' => 'Fra URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Last opp fil',
 			'metadataEdit.enterImageUrl' => 'Skriv inn bilde-URL',
 			'metadataEdit.imageUrl' => 'Bilde-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata oppdatert',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke oppdatere metadata',
 			'metadataEdit.artworkUpdated' => 'Grafikk oppdatert',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke oppdatere grafikken',

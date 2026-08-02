@@ -28,7 +28,7 @@ class PlayerInstallProbe {
   /// Spotlight is deliberately not consulted: an empty `mdfind` result also
   /// means indexing is off or incomplete, which would hide installed players.
   Future<bool> applicationInstalled(String bundleId) async {
-    const channel = MethodChannel('com.plezy/app_lookup');
+    const channel = MethodChannel('co.sumit.harbor/app_lookup');
     return await channel.invokeMethod<bool>('isApplicationInstalled', {'bundleId': bundleId}) ?? false;
   }
 

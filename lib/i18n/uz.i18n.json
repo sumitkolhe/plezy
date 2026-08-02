@@ -649,10 +649,7 @@
     "failedPlayback": "${action} muvaffaqiyatsiz tugadi: ${error}",
     "switchingToCompatiblePlayer": "Mos keluvchi pleyerga oʻtilmoqda...",
     "serverLimitTitle": "Ijro etishda xatolik",
-    "serverLimitBody": "Server xatoligi (HTTP 500). Cheklov ushbu seansni rad etdi.",
-    "logsUploaded": "Jurnallar yuklandi",
-    "logsUploadFailed": "Jurnallarni yuklab boʻlmadi",
-    "logId": "Jurnal ID-si"
+    "serverLimitBody": "Server xatoligi (HTTP 500). Cheklov ushbu seansni rad etdi."
   },
   "subtitlingStyling": {
     "text": "Matn",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Jurnallarni tozalash",
-    "copyLogs": "Jurnallarni nusxalash",
-    "uploadLogs": "Jurnallarni yuklash"
+    "copyLogs": "Jurnallarni nusxalash"
   },
   "licenses": {
     "relatedPackages": "Bogʻliq paketlar",

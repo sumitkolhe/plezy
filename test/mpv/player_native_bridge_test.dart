@@ -30,8 +30,8 @@ void main() {
     final calls = <MethodCall>[];
 
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         if (call.method == 'initialize') return initialize.future;
@@ -70,8 +70,8 @@ void main() {
     var nativeDisposeCount = 0;
 
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         calls.add(call);
         if (call.method == 'initialize') return true;
@@ -156,8 +156,8 @@ void main() {
     final calls = <MethodCall>[];
 
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         if (call.method == 'initialize') return Future.value(true);
@@ -192,8 +192,8 @@ void main() {
     final calls = <MethodCall>[];
 
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         if (call.method == 'initialize') return Future.value(true);
@@ -232,8 +232,8 @@ void main() {
     final initialize = Completer<bool>();
     final calls = <MethodCall>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         if (call.method == 'initialize') return initialize.future;
@@ -262,8 +262,8 @@ void main() {
     final releaseSpeed = Completer<void>();
     final calls = <MethodCall>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         calls.add(call);
         if (call.method == 'initialize') return true;
@@ -327,8 +327,8 @@ void main() {
     final ready = Completer<void>();
     final calls = <MethodCall>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) {
         calls.add(call);
         if (call.method == 'initialize') return Future.value(73);
@@ -365,8 +365,8 @@ void main() {
     addTearDown(() => PlayerNative.debugUseLinuxVideoBootstrap = null);
     final ready = Completer<void>();
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return 73;
         if (call.method == 'waitForVideoReady') {
@@ -404,8 +404,8 @@ void main() {
     var initializeCount = 0;
     var readinessCount = 0;
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return 80 + initializeCount++;
         if (call.method == 'waitForVideoReady' && readinessCount++ == 0) {
@@ -437,8 +437,8 @@ void main() {
     PlayerNative.debugUseLinuxVideoBootstrap = true;
     addTearDown(() => PlayerNative.debugUseLinuxVideoBootstrap = null);
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return 73;
         return null;
@@ -462,8 +462,8 @@ void main() {
     addTearDown(() => PlayerNative.debugUseLinuxVideoBootstrap = null);
     final calls = <MethodCall>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         calls.add(call);
         if (call.method == 'initialize') return 91;
@@ -488,8 +488,8 @@ void main() {
   test('MPV accepts nested node observations and null unsupported values', () async {
     final observations = <String, int>{};
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'observeProperty') {
@@ -508,7 +508,7 @@ void main() {
           Future<void> sendEvent(Object? event) async {
             final done = Completer<void>();
             await messenger.handlePlatformMessage(
-              'com.plezy/mpv_player/events',
+              'co.sumit.harbor/mpv_player/events',
               codec.encodeSuccessEnvelope(event),
               (_) => done.complete(),
             );
@@ -613,8 +613,8 @@ void main() {
 
   test('Android command failure reaches seek recovery', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'command') {
@@ -636,8 +636,8 @@ void main() {
 
   test('Android setLogLevel failure is exposed to Dart', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setLogLevel') {
@@ -662,8 +662,8 @@ void main() {
   test('audio setLogLevel uses the dedicated native channel', () async {
     MethodCall? logLevelCall;
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_audio_player',
-      eventChannelName: 'com.plezy/mpv_audio_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_audio_player',
+      eventChannelName: 'co.sumit.harbor/mpv_audio_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setLogLevel') logLevelCall = call;
@@ -683,8 +683,8 @@ void main() {
 
   test('Android mpv end-file error preserves native diagnostic message', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       testBody: () async {
         final player = PlayerNative();
         final error = player.streams.error.first;
@@ -710,8 +710,8 @@ void main() {
 
   test('Android mpv legacy end-file error keeps playback error fallback', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       testBody: () async {
         final player = PlayerNative();
         final error = player.streams.error.first;
@@ -734,8 +734,8 @@ void main() {
     final firstSpeedStarted = Completer<void>();
     final speedValues = <String>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -772,8 +772,8 @@ void main() {
     final speedValues = <String>[];
     var nativeRate = 1.0;
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -806,8 +806,8 @@ void main() {
     final writes = <(String, String)>[];
     var rejectNextStereo = false;
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -863,8 +863,8 @@ void main() {
     final speedValues = <String>[];
     var normalizationAttempts = 0;
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -906,8 +906,8 @@ void main() {
 
   test('failed passthrough write does not publish speculative active state', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty' && (call.arguments as Map)['name'] == 'audio-spdif') {
@@ -930,8 +930,8 @@ void main() {
   test('failed passthrough restores requested normalization', () async {
     final propertyWrites = <(String, String)>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -963,8 +963,8 @@ void main() {
 
   test('exclusive-audio hint failure does not reject accepted passthrough', () async {
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty' && (call.arguments as Map)['name'] == 'audio-exclusive') {
@@ -988,8 +988,8 @@ void main() {
     var rejectSpeed = false;
     final propertyWrites = <(String, String)>[];
     await withMockPlayerChannels(
-      methodChannelName: 'com.plezy/mpv_player',
-      eventChannelName: 'com.plezy/mpv_player/events',
+      methodChannelName: 'co.sumit.harbor/mpv_player',
+      eventChannelName: 'co.sumit.harbor/mpv_player/events',
       methodHandler: (call) async {
         if (call.method == 'initialize') return true;
         if (call.method == 'setProperty') {
@@ -1026,8 +1026,8 @@ void main() {
   });
 
   for (final channel in [
-    (label: 'video', method: 'com.plezy/mpv_player', events: 'com.plezy/mpv_player/events', audio: false),
-    (label: 'audio', method: 'com.plezy/mpv_audio_player', events: 'com.plezy/mpv_audio_player/events', audio: true),
+    (label: 'video', method: 'co.sumit.harbor/mpv_player', events: 'co.sumit.harbor/mpv_player/events', audio: false),
+    (label: 'audio', method: 'co.sumit.harbor/mpv_audio_player', events: 'co.sumit.harbor/mpv_audio_player/events', audio: true),
   ]) {
     group('${channel.label} property bridge', () {
       test('propagates SET_PROPERTY_FAILED', () async {

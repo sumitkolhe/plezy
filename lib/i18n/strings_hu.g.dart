@@ -714,9 +714,6 @@ class _Translations$messages$hu extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Váltás kompatibilis lejátszóra...';
 	@override String get serverLimitTitle => 'A lejátszás nem sikerült';
 	@override String get serverLimitBody => 'Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.';
-	@override String get logsUploaded => 'Naplók feltöltve';
-	@override String get logsUploadFailed => 'Nem sikerült a naplók feltöltése';
-	@override String get logId => 'Naplóazonosító';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$hu extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Naplók törlése';
 	@override String get copyLogs => 'Naplók másolása';
-	@override String get uploadLogs => 'Naplók feltöltése';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsHu {
 			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
 			'messages.serverLimitTitle' => 'A lejátszás nem sikerült',
 			'messages.serverLimitBody' => 'Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.',
-			'messages.logsUploaded' => 'Naplók feltöltve',
-			'messages.logsUploadFailed' => 'Nem sikerült a naplók feltöltése',
-			'messages.logId' => 'Naplóazonosító',
 			'subtitlingStyling.text' => 'Szöveg',
 			'subtitlingStyling.border' => 'Keret',
 			'subtitlingStyling.background' => 'Háttér',
@@ -2474,7 +2467,6 @@ extension on TranslationsHu {
 			'hubDetail.noItemsFound' => 'Nem találhatók elemek',
 			'logs.clearLogs' => 'Naplók törlése',
 			'logs.copyLogs' => 'Naplók másolása',
-			'logs.uploadLogs' => 'Naplók feltöltése',
 			'licenses.relatedPackages' => 'Kapcsolódó csomagok',
 			'licenses.license' => 'Licenc',
 			'licenses.licenseNumber' => ({required Object number}) => '${number}. licenc',
@@ -2784,12 +2776,12 @@ extension on TranslationsHu {
 			'metadataEdit.selectLogo' => 'Logó kiválasztása',
 			'metadataEdit.selectSquareArt' => 'Négyzetes kép kiválasztása',
 			'metadataEdit.fromUrl' => 'URL-ről',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Fájl feltöltése',
 			'metadataEdit.enterImageUrl' => 'Add meg a kép URL-címét',
 			'metadataEdit.imageUrl' => 'Kép URL-címe',
 			'metadataEdit.metadataUpdated' => 'Metaadatok frissítve',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Nem sikerült a metaadatok frissítése',
 			'metadataEdit.artworkUpdated' => 'Képek frissítve',
 			'metadataEdit.artworkUpdateFailed' => 'Nem sikerült a képek frissítése',

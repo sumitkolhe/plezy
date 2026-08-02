@@ -17,7 +17,7 @@ void main() {
 
   setUp(() async {
     originalPathProvider = PathProviderPlatform.instance;
-    root = await Directory.systemTemp.createTemp('plezy_shader_service_test_');
+    root = await Directory.systemTemp.createTemp('harbor_shader_service_test_');
     PathProviderPlatform.instance = FakePathProvider(root);
   });
 

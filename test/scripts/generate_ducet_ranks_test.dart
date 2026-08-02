@@ -11,7 +11,7 @@ void main() {
   late Directory temporaryDirectory;
 
   setUp(() async {
-    temporaryDirectory = await Directory.systemTemp.createTemp('plezy_ducet_test_');
+    temporaryDirectory = await Directory.systemTemp.createTemp('harbor_ducet_test_');
   });
 
   tearDown(() async {

@@ -649,10 +649,7 @@
     "failedPlayback": "Wiedergabe für ${action} fehlgeschlagen: ${error}",
     "switchingToCompatiblePlayer": "Wechsel zu einem kompatiblen Player …",
     "serverLimitTitle": "Wiedergabe fehlgeschlagen",
-    "serverLimitBody": "Serverfehler (HTTP 500). Vermutlich hat ein Bandbreiten- oder Transkodierungslimit diese Sitzung abgelehnt. Bitte den Besitzer, das Limit anzupassen.",
-    "logsUploaded": "Protokolle hochgeladen",
-    "logsUploadFailed": "Protokolle konnten nicht hochgeladen werden",
-    "logId": "Protokoll-ID"
+    "serverLimitBody": "Serverfehler (HTTP 500). Vermutlich hat ein Bandbreiten- oder Transkodierungslimit diese Sitzung abgelehnt. Bitte den Besitzer, das Limit anzupassen."
   },
   "subtitlingStyling": {
     "text": "Text",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Protokolle löschen",
-    "copyLogs": "Protokolle kopieren",
-    "uploadLogs": "Protokolle hochladen"
+    "copyLogs": "Protokolle kopieren"
   },
   "licenses": {
     "relatedPackages": "Verwandte Pakete",

@@ -1025,7 +1025,7 @@ Future<File> _resolveProductionDatabaseFile() async {
   final dbFolder = (Platform.isAndroid || Platform.isIOS)
       ? await getApplicationDocumentsDirectory()
       : await getApplicationSupportDirectory();
-  return File(p.join(dbFolder.path, 'plezy_downloads.db'));
+  return File(p.join(dbFolder.path, 'harbor_downloads.db'));
 }
 
 QueryExecutor _createNativeDatabase(File file) {

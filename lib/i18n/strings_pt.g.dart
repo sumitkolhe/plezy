@@ -714,9 +714,6 @@ class _Translations$messages$pt extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Alternando para um reprodutor compatível...';
 	@override String get serverLimitTitle => 'Falha na reprodução';
 	@override String get serverLimitBody => 'Erro do servidor (HTTP 500). Um limite de largura de banda ou transcodificação provavelmente rejeitou esta sessão. Peça ao proprietário do servidor para ajustá-lo.';
-	@override String get logsUploaded => 'Logs enviados';
-	@override String get logsUploadFailed => 'Falha ao enviar logs';
-	@override String get logId => 'ID do log';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$pt extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Limpar Logs';
 	@override String get copyLogs => 'Copiar Logs';
-	@override String get uploadLogs => 'Enviar Logs';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsPt {
 			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
 			'messages.serverLimitTitle' => 'Falha na reprodução',
 			'messages.serverLimitBody' => 'Erro do servidor (HTTP 500). Um limite de largura de banda ou transcodificação provavelmente rejeitou esta sessão. Peça ao proprietário do servidor para ajustá-lo.',
-			'messages.logsUploaded' => 'Logs enviados',
-			'messages.logsUploadFailed' => 'Falha ao enviar logs',
-			'messages.logId' => 'ID do log',
 			'subtitlingStyling.text' => 'Texto',
 			'subtitlingStyling.border' => 'Borda',
 			'subtitlingStyling.background' => 'Fundo',
@@ -2474,7 +2467,6 @@ extension on TranslationsPt {
 			'hubDetail.noItemsFound' => 'Nenhum item encontrado',
 			'logs.clearLogs' => 'Limpar Logs',
 			'logs.copyLogs' => 'Copiar Logs',
-			'logs.uploadLogs' => 'Enviar Logs',
 			'licenses.relatedPackages' => 'Pacotes Relacionados',
 			'licenses.license' => 'Licença',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licença ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsPt {
 			'metadataEdit.selectLogo' => 'Selecionar Logo',
 			'metadataEdit.selectSquareArt' => 'Selecionar Imagem Quadrada',
 			'metadataEdit.fromUrl' => 'Da URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Enviar Arquivo',
 			'metadataEdit.enterImageUrl' => 'Insira a URL da imagem',
 			'metadataEdit.imageUrl' => 'URL da Imagem',
 			'metadataEdit.metadataUpdated' => 'Metadados atualizados',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Falha ao atualizar metadados',
 			'metadataEdit.artworkUpdated' => 'Arte atualizada',
 			'metadataEdit.artworkUpdateFailed' => 'Falha ao atualizar arte',

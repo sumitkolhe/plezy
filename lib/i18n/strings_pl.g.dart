@@ -716,9 +716,6 @@ class _Translations$messages$pl extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Przełączanie na kompatybilny odtwarzacz...';
 	@override String get serverLimitTitle => 'Odtwarzanie nie powiodło się';
 	@override String get serverLimitBody => 'Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę.';
-	@override String get logsUploaded => 'Logi przesłane';
-	@override String get logsUploadFailed => 'Nie udało się przesłać logów';
-	@override String get logId => 'ID logu';
 }
 
 // Path: subtitlingStyling
@@ -982,7 +979,6 @@ class _Translations$logs$pl extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Wyczyść logi';
 	@override String get copyLogs => 'Kopiuj logi';
-	@override String get uploadLogs => 'Prześlij logi';
 }
 
 // Path: licenses
@@ -2281,9 +2277,6 @@ extension on TranslationsPl {
 			'messages.switchingToCompatiblePlayer' => 'Przełączanie na kompatybilny odtwarzacz...',
 			'messages.serverLimitTitle' => 'Odtwarzanie nie powiodło się',
 			'messages.serverLimitBody' => 'Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę.',
-			'messages.logsUploaded' => 'Logi przesłane',
-			'messages.logsUploadFailed' => 'Nie udało się przesłać logów',
-			'messages.logId' => 'ID logu',
 			'subtitlingStyling.text' => 'Tekst',
 			'subtitlingStyling.border' => 'Obramowanie',
 			'subtitlingStyling.background' => 'Tło',
@@ -2480,7 +2473,6 @@ extension on TranslationsPl {
 			'hubDetail.noItemsFound' => 'Nie znaleziono elementów',
 			'logs.clearLogs' => 'Wyczyść logi',
 			'logs.copyLogs' => 'Kopiuj logi',
-			'logs.uploadLogs' => 'Prześlij logi',
 			'licenses.relatedPackages' => 'Powiązane pakiety',
 			'licenses.license' => 'Licencja',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licencja ${number}',
@@ -2790,12 +2782,12 @@ extension on TranslationsPl {
 			'metadataEdit.selectLogo' => 'Wybierz logo',
 			'metadataEdit.selectSquareArt' => 'Wybierz kwadratowy obraz',
 			'metadataEdit.fromUrl' => 'Z URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Prześlij plik',
 			'metadataEdit.enterImageUrl' => 'Wprowadź URL obrazu',
 			'metadataEdit.imageUrl' => 'URL obrazu',
 			'metadataEdit.metadataUpdated' => 'Metadane zaktualizowane',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Nie udało się zaktualizować metadanych',
 			'metadataEdit.artworkUpdated' => 'Grafika zaktualizowana',
 			'metadataEdit.artworkUpdateFailed' => 'Nie udało się zaktualizować grafiki',

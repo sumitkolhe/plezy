@@ -183,7 +183,7 @@ void main() {
 
     test('refreshes a stable merged catalog when custom presets change', () async {
       final originalPathProvider = PathProviderPlatform.instance;
-      final root = await Directory.systemTemp.createTemp('plezy_shader_provider_test_');
+      final root = await Directory.systemTemp.createTemp('harbor_shader_provider_test_');
       PathProviderPlatform.instance = FakePathProvider(root);
       addTearDown(() async {
         PathProviderPlatform.instance = originalPathProvider;

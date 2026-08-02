@@ -649,10 +649,7 @@
     "failedPlayback": "Det gick inte att ${action}: ${error}",
     "switchingToCompatiblePlayer": "Byter till kompatibel spelare...",
     "serverLimitTitle": "Uppspelningen misslyckades",
-    "serverLimitBody": "Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.",
-    "logsUploaded": "Loggarna har laddats upp",
-    "logsUploadFailed": "Det gick inte att ladda upp loggarna",
-    "logId": "Logg-ID"
+    "serverLimitBody": "Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den."
   },
   "subtitlingStyling": {
     "text": "Text",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Rensa loggar",
-    "copyLogs": "Kopiera loggar",
-    "uploadLogs": "Ladda upp loggar"
+    "copyLogs": "Kopiera loggar"
   },
   "licenses": {
     "relatedPackages": "Relaterade paket",

@@ -151,8 +151,8 @@ void main() {
 
   test('storage-full lazy database open discards native work before retrying', () async {
     resetSharedPreferencesForTest();
-    final tempDir = await Directory.systemTemp.createTemp('plezy_startup_storage_full_');
-    final file = File('${tempDir.path}/plezy_downloads.db');
+    final tempDir = await Directory.systemTemp.createTemp('harbor_startup_storage_full_');
+    final file = File('${tempDir.path}/harbor_downloads.db');
     final failedOpen = _OpenTrackingInterceptor(
       failure: const FileSystemException('write failed: No space left on device'),
     );
@@ -223,8 +223,8 @@ void main() {
 
   test('post-recovery download failure closes the reopened database before rethrowing', () async {
     resetSharedPreferencesForTest();
-    final tempDir = await Directory.systemTemp.createTemp('plezy_startup_recovery_update_failure_');
-    final file = File('${tempDir.path}/plezy_downloads.db');
+    final tempDir = await Directory.systemTemp.createTemp('harbor_startup_recovery_update_failure_');
+    final file = File('${tempDir.path}/harbor_downloads.db');
     final failedOpen = _OpenTrackingInterceptor(
       failure: const FileSystemException('write failed: No space left on device'),
     );
@@ -271,8 +271,8 @@ void main() {
 
   test('non-storage lazy database-open errors bypass download recovery', () async {
     resetSharedPreferencesForTest();
-    final tempDir = await Directory.systemTemp.createTemp('plezy_startup_open_error_');
-    final file = File('${tempDir.path}/plezy_downloads.db');
+    final tempDir = await Directory.systemTemp.createTemp('harbor_startup_open_error_');
+    final file = File('${tempDir.path}/harbor_downloads.db');
     final error = StateError('injected database setup failure');
     final failedOpen = _OpenTrackingInterceptor(failure: error);
     var openAttempts = 0;

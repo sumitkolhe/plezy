@@ -19,7 +19,7 @@ void main() {
 
   setUp(() async {
     originalPathProvider = PathProviderPlatform.instance;
-    root = await Directory.systemTemp.createTemp('plezy_shader_asset_loader_test_');
+    root = await Directory.systemTemp.createTemp('harbor_shader_asset_loader_test_');
     PathProviderPlatform.instance = FakePathProvider(root);
     supportDirectory = Directory(path.join(root.path, 'support'))..createSync(recursive: true);
     sentinel = File(path.join(supportDirectory.path, 'sentinel.glsl'))..writeAsStringSync('sentinel');

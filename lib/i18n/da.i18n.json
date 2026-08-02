@@ -649,10 +649,7 @@
     "failedPlayback": "Kunne ikke ${action}: ${error}",
     "switchingToCompatiblePlayer": "Skifter til kompatibel afspiller...",
     "serverLimitTitle": "Afspilning mislykkedes",
-    "serverLimitBody": "Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.",
-    "logsUploaded": "Logfilerne blev uploadet",
-    "logsUploadFailed": "Logfilerne kunne ikke uploades",
-    "logId": "Log-ID"
+    "serverLimitBody": "Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den."
   },
   "subtitlingStyling": {
     "text": "Tekst",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Ryd logfiler",
-    "copyLogs": "Kopiér logfiler",
-    "uploadLogs": "Upload logfiler"
+    "copyLogs": "Kopiér logfiler"
   },
   "licenses": {
     "relatedPackages": "Relaterede pakker",

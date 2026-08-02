@@ -648,10 +648,7 @@
     "failedPlayback": "${action}을(를) 수행할 수 없습니다: ${error}",
     "switchingToCompatiblePlayer": "호환되는 플레이어로 전환 중...",
     "serverLimitTitle": "재생 실패",
-    "serverLimitBody": "서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.",
-    "logsUploaded": "로그 업로드 완료",
-    "logsUploadFailed": "로그 업로드 실패",
-    "logId": "로그 ID"
+    "serverLimitBody": "서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요."
   },
   "subtitlingStyling": {
     "text": "텍스트",
@@ -878,8 +875,7 @@
   },
   "logs": {
     "clearLogs": "로그 지우기",
-    "copyLogs": "로그 복사",
-    "uploadLogs": "로그 업로드"
+    "copyLogs": "로그 복사"
   },
   "licenses": {
     "relatedPackages": "관련 소프트웨어 패키지",

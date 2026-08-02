@@ -649,10 +649,7 @@
     "failedPlayback": "Afspelen van ${action} mislukt: ${error}",
     "switchingToCompatiblePlayer": "Overschakelen naar compatibele speler...",
     "serverLimitTitle": "Afspelen mislukt",
-    "serverLimitBody": "Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.",
-    "logsUploaded": "Logbestanden geüpload",
-    "logsUploadFailed": "Uploaden van logbestanden mislukt",
-    "logId": "Logboek-ID"
+    "serverLimitBody": "Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen."
   },
   "subtitlingStyling": {
     "text": "Tekst",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Logbestanden wissen",
-    "copyLogs": "Logbestanden kopiëren",
-    "uploadLogs": "Logbestanden uploaden"
+    "copyLogs": "Logbestanden kopiëren"
   },
   "licenses": {
     "relatedPackages": "Gerelateerde pakketten",

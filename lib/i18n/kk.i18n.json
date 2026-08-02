@@ -649,10 +649,7 @@
     "failedPlayback": "${action} сәтсіз аяқталды: ${error}",
     "switchingToCompatiblePlayer": "Үйлесімді ойнатқышқа ауысуда...",
     "serverLimitTitle": "Ойнату қатесі",
-    "serverLimitBody": "Сервер қатесі (HTTP 500). Шектеу бұл сеансты қабылдамады.",
-    "logsUploaded": "Журналдар жүктелді",
-    "logsUploadFailed": "Журналдарды жүктеу мүмкін болмады",
-    "logId": "Журнал ID-сі"
+    "serverLimitBody": "Сервер қатесі (HTTP 500). Шектеу бұл сеансты қабылдамады."
   },
   "subtitlingStyling": {
     "text": "Мәтін",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Журналдарды тазалау",
-    "copyLogs": "Журналдарды көшіру",
-    "uploadLogs": "Журналдарды жүктеу"
+    "copyLogs": "Журналдарды көшіру"
   },
   "licenses": {
     "relatedPackages": "Байланысты пакеттер",

@@ -714,9 +714,6 @@ class _Translations$messages$fr extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Passage au lecteur compatible...';
 	@override String get serverLimitTitle => 'Échec de la lecture';
 	@override String get serverLimitBody => 'Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l\'ajuster.';
-	@override String get logsUploaded => 'Journaux envoyés';
-	@override String get logsUploadFailed => 'Échec de l’envoi des journaux';
-	@override String get logId => 'Identifiant du journal';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$fr extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Effacer les journaux';
 	@override String get copyLogs => 'Copier les journaux';
-	@override String get uploadLogs => 'Envoyer les journaux';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsFr {
 			'messages.switchingToCompatiblePlayer' => 'Passage au lecteur compatible...',
 			'messages.serverLimitTitle' => 'Échec de la lecture',
 			'messages.serverLimitBody' => 'Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l\'ajuster.',
-			'messages.logsUploaded' => 'Journaux envoyés',
-			'messages.logsUploadFailed' => 'Échec de l’envoi des journaux',
-			'messages.logId' => 'Identifiant du journal',
 			'subtitlingStyling.text' => 'Texte',
 			'subtitlingStyling.border' => 'Bordure',
 			'subtitlingStyling.background' => 'Arrière-plan',
@@ -2474,7 +2467,6 @@ extension on TranslationsFr {
 			'hubDetail.noItemsFound' => 'Aucun élément trouvé',
 			'logs.clearLogs' => 'Effacer les journaux',
 			'logs.copyLogs' => 'Copier les journaux',
-			'logs.uploadLogs' => 'Envoyer les journaux',
 			'licenses.relatedPackages' => 'Paquets associés',
 			'licenses.license' => 'Licence',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licence ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsFr {
 			'metadataEdit.selectLogo' => 'Sélectionner le logo',
 			'metadataEdit.selectSquareArt' => 'Sélectionner l\'image carrée',
 			'metadataEdit.fromUrl' => 'Depuis une URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Importer un fichier',
 			'metadataEdit.enterImageUrl' => 'Entrer l\'URL de l\'image',
 			'metadataEdit.imageUrl' => 'URL de l\'image',
 			'metadataEdit.metadataUpdated' => 'Métadonnées mises à jour',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Échec de la mise à jour des métadonnées',
 			'metadataEdit.artworkUpdated' => 'Illustrations mises à jour',
 			'metadataEdit.artworkUpdateFailed' => 'Échec de la mise à jour des illustrations',

@@ -1977,15 +1977,6 @@ class Translations$messages$en {
 
 	/// en: 'Server error (HTTP 500). A bandwidth/transcoding limit likely rejected this session. Ask the owner to adjust it.'
 	String get serverLimitBody => 'Server error (HTTP 500). A bandwidth/transcoding limit likely rejected this session. Ask the owner to adjust it.';
-
-	/// en: 'Logs uploaded'
-	String get logsUploaded => 'Logs uploaded';
-
-	/// en: 'Failed to upload logs'
-	String get logsUploadFailed => 'Failed to upload logs';
-
-	/// en: 'Log ID'
-	String get logId => 'Log ID';
 }
 
 // Path: subtitlingStyling
@@ -2573,9 +2564,6 @@ class Translations$logs$en {
 
 	/// en: 'Copy Logs'
 	String get copyLogs => 'Copy Logs';
-
-	/// en: 'Upload Logs'
-	String get uploadLogs => 'Upload Logs';
 }
 
 // Path: licenses
@@ -5431,9 +5419,6 @@ extension on Translations {
 			'messages.switchingToCompatiblePlayer' => 'Switching to compatible player...',
 			'messages.serverLimitTitle' => 'Playback failed',
 			'messages.serverLimitBody' => 'Server error (HTTP 500). A bandwidth/transcoding limit likely rejected this session. Ask the owner to adjust it.',
-			'messages.logsUploaded' => 'Logs uploaded',
-			'messages.logsUploadFailed' => 'Failed to upload logs',
-			'messages.logId' => 'Log ID',
 			'subtitlingStyling.text' => 'Text',
 			'subtitlingStyling.border' => 'Border',
 			'subtitlingStyling.background' => 'Background',
@@ -5631,7 +5616,6 @@ extension on Translations {
 			'hubDetail.noItemsFound' => 'No items found',
 			'logs.clearLogs' => 'Clear Logs',
 			'logs.copyLogs' => 'Copy Logs',
-			'logs.uploadLogs' => 'Upload Logs',
 			'licenses.relatedPackages' => 'Related Packages',
 			'licenses.license' => 'License',
 			'licenses.licenseNumber' => ({required Object number}) => 'License ${number}',
@@ -5842,12 +5826,12 @@ extension on Translations {
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
-			_ => null,
-		} ?? switch (path) {
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
+			_ => null,
+		} ?? switch (path) {
 			'music.queue' => 'Queue',
 			'music.clearQueue' => 'Clear queue',
 			'music.lyrics' => 'Lyrics',

@@ -12,7 +12,7 @@ import '../test_helpers/prefs.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  const channel = MethodChannel('com.plezy/device.background-warning-test');
+  const channel = MethodChannel('co.sumit.harbor/device.background-warning-test');
   late Map<String, Object?> signals;
   late List<MethodCall> calls;
 

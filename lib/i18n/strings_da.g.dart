@@ -714,9 +714,6 @@ class _Translations$messages$da extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Skifter til kompatibel afspiller...';
 	@override String get serverLimitTitle => 'Afspilning mislykkedes';
 	@override String get serverLimitBody => 'Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.';
-	@override String get logsUploaded => 'Logfilerne blev uploadet';
-	@override String get logsUploadFailed => 'Logfilerne kunne ikke uploades';
-	@override String get logId => 'Log-ID';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$da extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Ryd logfiler';
 	@override String get copyLogs => 'Kopiér logfiler';
-	@override String get uploadLogs => 'Upload logfiler';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsDa {
 			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
 			'messages.serverLimitTitle' => 'Afspilning mislykkedes',
 			'messages.serverLimitBody' => 'Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.',
-			'messages.logsUploaded' => 'Logfilerne blev uploadet',
-			'messages.logsUploadFailed' => 'Logfilerne kunne ikke uploades',
-			'messages.logId' => 'Log-ID',
 			'subtitlingStyling.text' => 'Tekst',
 			'subtitlingStyling.border' => 'Kant',
 			'subtitlingStyling.background' => 'Baggrund',
@@ -2474,7 +2467,6 @@ extension on TranslationsDa {
 			'hubDetail.noItemsFound' => 'Ingen elementer fundet',
 			'logs.clearLogs' => 'Ryd logfiler',
 			'logs.copyLogs' => 'Kopiér logfiler',
-			'logs.uploadLogs' => 'Upload logfiler',
 			'licenses.relatedPackages' => 'Relaterede pakker',
 			'licenses.license' => 'Licens',
 			'licenses.licenseNumber' => ({required Object number}) => 'Licens ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsDa {
 			'metadataEdit.selectLogo' => 'Vælg logo',
 			'metadataEdit.selectSquareArt' => 'Vælg kvadratisk billede',
 			'metadataEdit.fromUrl' => 'Fra URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Upload fil',
 			'metadataEdit.enterImageUrl' => 'Indtast billed-URL',
 			'metadataEdit.imageUrl' => 'Billed-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata opdateret',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke opdatere metadata',
 			'metadataEdit.artworkUpdated' => 'Grafik opdateret',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke opdatere grafik',

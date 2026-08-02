@@ -713,9 +713,6 @@ class _Translations$messages$ko extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => '호환되는 플레이어로 전환 중...';
 	@override String get serverLimitTitle => '재생 실패';
 	@override String get serverLimitBody => '서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.';
-	@override String get logsUploaded => '로그 업로드 완료';
-	@override String get logsUploadFailed => '로그 업로드 실패';
-	@override String get logId => '로그 ID';
 }
 
 // Path: subtitlingStyling
@@ -979,7 +976,6 @@ class _Translations$logs$ko extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => '로그 지우기';
 	@override String get copyLogs => '로그 복사';
-	@override String get uploadLogs => '로그 업로드';
 }
 
 // Path: licenses
@@ -2272,9 +2268,6 @@ extension on TranslationsKo {
 			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
 			'messages.serverLimitTitle' => '재생 실패',
 			'messages.serverLimitBody' => '서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.',
-			'messages.logsUploaded' => '로그 업로드 완료',
-			'messages.logsUploadFailed' => '로그 업로드 실패',
-			'messages.logId' => '로그 ID',
 			'subtitlingStyling.text' => '텍스트',
 			'subtitlingStyling.border' => '테두리',
 			'subtitlingStyling.background' => '배경',
@@ -2471,7 +2464,6 @@ extension on TranslationsKo {
 			'hubDetail.noItemsFound' => '항목이 없습니다',
 			'logs.clearLogs' => '로그 지우기',
 			'logs.copyLogs' => '로그 복사',
-			'logs.uploadLogs' => '로그 업로드',
 			'licenses.relatedPackages' => '관련 소프트웨어 패키지',
 			'licenses.license' => '라이선스',
 			'licenses.licenseNumber' => ({required Object number}) => '라이선스 ${number}',
@@ -2781,12 +2773,12 @@ extension on TranslationsKo {
 			'metadataEdit.selectLogo' => '로고 선택',
 			'metadataEdit.selectSquareArt' => '정사각형 아트 선택',
 			'metadataEdit.fromUrl' => 'URL에서',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '파일 업로드',
 			'metadataEdit.enterImageUrl' => '이미지 URL 입력',
 			'metadataEdit.imageUrl' => '이미지 URL',
 			'metadataEdit.metadataUpdated' => '메타데이터가 업데이트되었습니다',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => '메타데이터 업데이트 실패',
 			'metadataEdit.artworkUpdated' => '아트워크가 업데이트되었습니다',
 			'metadataEdit.artworkUpdateFailed' => '아트워크 업데이트 실패',

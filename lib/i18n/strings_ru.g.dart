@@ -716,9 +716,6 @@ class _Translations$messages$ru extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Переключение на совместимый плеер...';
 	@override String get serverLimitTitle => 'Ошибка воспроизведения';
 	@override String get serverLimitBody => 'Ошибка сервера (HTTP 500). Лимит пропускной способности/транскодирования, вероятно, отклонил сессию. Попросите владельца изменить настройки.';
-	@override String get logsUploaded => 'Логи загружены';
-	@override String get logsUploadFailed => 'Не удалось загрузить логи';
-	@override String get logId => 'ID лога';
 }
 
 // Path: subtitlingStyling
@@ -982,7 +979,6 @@ class _Translations$logs$ru extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Очистить логи';
 	@override String get copyLogs => 'Скопировать логи';
-	@override String get uploadLogs => 'Загрузить логи';
 }
 
 // Path: licenses
@@ -2281,9 +2277,6 @@ extension on TranslationsRu {
 			'messages.switchingToCompatiblePlayer' => 'Переключение на совместимый плеер...',
 			'messages.serverLimitTitle' => 'Ошибка воспроизведения',
 			'messages.serverLimitBody' => 'Ошибка сервера (HTTP 500). Лимит пропускной способности/транскодирования, вероятно, отклонил сессию. Попросите владельца изменить настройки.',
-			'messages.logsUploaded' => 'Логи загружены',
-			'messages.logsUploadFailed' => 'Не удалось загрузить логи',
-			'messages.logId' => 'ID лога',
 			'subtitlingStyling.text' => 'Текст',
 			'subtitlingStyling.border' => 'Обводка',
 			'subtitlingStyling.background' => 'Фон',
@@ -2480,7 +2473,6 @@ extension on TranslationsRu {
 			'hubDetail.noItemsFound' => 'Элементы не найдены',
 			'logs.clearLogs' => 'Очистить логи',
 			'logs.copyLogs' => 'Скопировать логи',
-			'logs.uploadLogs' => 'Загрузить логи',
 			'licenses.relatedPackages' => 'Связанные пакеты',
 			'licenses.license' => 'Лицензия',
 			'licenses.licenseNumber' => ({required Object number}) => 'Лицензия ${number}',
@@ -2790,12 +2782,12 @@ extension on TranslationsRu {
 			'metadataEdit.selectLogo' => 'Выбрать логотип',
 			'metadataEdit.selectSquareArt' => 'Выбрать квадратное изображение',
 			'metadataEdit.fromUrl' => 'По URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Загрузить файл',
 			'metadataEdit.enterImageUrl' => 'Введите URL изображения',
 			'metadataEdit.imageUrl' => 'URL изображения',
 			'metadataEdit.metadataUpdated' => 'Метаданные обновлены',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Не удалось обновить метаданные',
 			'metadataEdit.artworkUpdated' => 'Обложка обновлена',
 			'metadataEdit.artworkUpdateFailed' => 'Не удалось обновить обложку',

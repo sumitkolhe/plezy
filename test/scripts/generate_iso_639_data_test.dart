@@ -59,7 +59,7 @@ void main() {
   });
 
   test('invalid input fails before the existing output is replaced', () async {
-    final directory = await Directory.systemTemp.createTemp('plezy_iso_generator_test.');
+    final directory = await Directory.systemTemp.createTemp('harbor_iso_generator_test.');
     addTearDown(() => directory.delete(recursive: true));
     final input = File('${directory.path}/invalid.json');
     final output = File('${directory.path}/output.dart');
@@ -71,7 +71,7 @@ void main() {
   });
 
   test('atomic writer replaces the complete destination', () async {
-    final directory = await Directory.systemTemp.createTemp('plezy_iso_atomic_test.');
+    final directory = await Directory.systemTemp.createTemp('harbor_iso_atomic_test.');
     addTearDown(() => directory.delete(recursive: true));
     final output = File('${directory.path}/output.dart');
     await output.writeAsString('old');

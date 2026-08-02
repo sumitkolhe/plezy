@@ -36,7 +36,7 @@ void main() {
 
   test('a synthesized end of file completes the item at its duration', () async {
     final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
-    const channel = MethodChannel('com.plezy/exo_player');
+    const channel = MethodChannel('co.sumit.harbor/exo_player');
     messenger.setMockMethodCallHandler(channel, (_) async => null);
     addTearDown(() => messenger.setMockMethodCallHandler(channel, null));
 

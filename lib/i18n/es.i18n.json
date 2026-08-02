@@ -649,10 +649,7 @@
     "failedPlayback": "Error al ${action}: ${error}",
     "switchingToCompatiblePlayer": "Cambiando a reproductor compatible...",
     "serverLimitTitle": "Error de reproducción",
-    "serverLimitBody": "Error del servidor (HTTP 500). Un límite de ancho de banda/transcodificación probablemente rechazó esta sesión. Pide al propietario que lo ajuste.",
-    "logsUploaded": "Registros subidos",
-    "logsUploadFailed": "Error al subir registros",
-    "logId": "ID de registro"
+    "serverLimitBody": "Error del servidor (HTTP 500). Un límite de ancho de banda/transcodificación probablemente rechazó esta sesión. Pide al propietario que lo ajuste."
   },
   "subtitlingStyling": {
     "text": "Texto",
@@ -879,8 +876,7 @@
   },
   "logs": {
     "clearLogs": "Borrar registros",
-    "copyLogs": "Copiar registros",
-    "uploadLogs": "Subir registros"
+    "copyLogs": "Copiar registros"
   },
   "licenses": {
     "relatedPackages": "Paquetes relacionados",

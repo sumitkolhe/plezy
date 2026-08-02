@@ -407,7 +407,7 @@ Future<void> _logEnvironmentDiagnostics() async {
   final commitSuffix = gitCommit.isNotEmpty ? ' (${gitCommit.substring(0, 7)})' : '';
   String renderer = '';
   if (Platform.isAndroid) {
-    final rendererName = await const MethodChannel('com.plezy/theme').invokeMethod<String>('getRenderer');
+    final rendererName = await const MethodChannel('co.sumit.harbor/theme').invokeMethod<String>('getRenderer');
     renderer = ' [$rendererName]';
   }
   appLogger.i(

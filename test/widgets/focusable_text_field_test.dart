@@ -997,7 +997,7 @@ void main() {
     TvDetectionService.debugSetAppleTVOverride(null);
     await TvDetectionService.getInstance(forceTv: true);
     TvDetectionService.setForceTVSync(true);
-    const channel = MethodChannel('com.plezy/text_input');
+    const channel = MethodChannel('co.sumit.harbor/text_input');
     final calls = <MethodCall>[];
     final gamepadFocusStates = <bool>[];
     GamepadService.debugNativeTextInputFocusHandler = (focused) async {

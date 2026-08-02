@@ -1,21 +1,16 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:harbor/utils/media_server_http_client.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:flutter/services.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../focus/focusable_action_bar.dart';
-import '../../widgets/dialog_action_button.dart';
-import '../../widgets/app_icon.dart';
 import '../../focus/key_event_utils.dart';
 import '../../i18n/strings.g.dart';
 import '../../mixins/mounted_set_state_mixin.dart';
-import '../../utils/dialogs.dart';
 import '../../main.dart' show gitCommit;
 import '../../services/background_work_diagnostics_service.dart';
 import '../../services/device_performance.dart';
@@ -27,42 +22,9 @@ import '../../widgets/desktop_app_bar.dart';
 import '../../widgets/ios_status_bar_tap_scroll_to_top.dart';
 import '../../theme/mono_tokens.dart';
 
-/// Relay `/logs` accepts 1 MiB. The in-memory buffer intentionally remains
-/// larger for local viewing and copying; uploads retain the device header and
-/// newest log lines within this transport contract.
-const int maxLogUploadBytes = 1 * 1024 * 1024;
-
-String constrainLogUploadPayload({required String header, required String logs, int maxBytes = maxLogUploadBytes}) {
-  if (maxBytes <= 0) return '';
-
-  final headerBytes = utf8.encode(header);
-  if (headerBytes.length >= maxBytes) {
-    var end = maxBytes;
-    while (end > 0 && end < headerBytes.length && (headerBytes[end] & 0xC0) == 0x80) {
-      end--;
-    }
-    return utf8.decode(headerBytes.sublist(0, end));
-  }
-
-  final logBytes = utf8.encode(logs);
-  final availableLogBytes = maxBytes - headerBytes.length;
-  if (logBytes.length <= availableLogBytes) return '$header$logs';
-
-  var start = logBytes.length - availableLogBytes;
-  while (start < logBytes.length && (logBytes[start] & 0xC0) == 0x80) {
-    start++;
-  }
-  final nextLine = logBytes.indexOf(0x0A, start);
-  if (nextLine >= 0 && nextLine + 1 < logBytes.length) {
-    start = nextLine + 1;
-  }
-  return header + utf8.decode(logBytes.sublist(start));
-}
-
 class LogsScreen extends StatefulWidget {
-  const LogsScreen({super.key, this.httpClient, this.deviceInfoPlugin});
+  const LogsScreen({super.key, this.deviceInfoPlugin});
 
-  final MediaServerHttpClient? httpClient;
   final DeviceInfoPlugin? deviceInfoPlugin;
 
   @override
@@ -73,8 +35,6 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
   List<LogEntry> _logs = [];
   String _deviceInfo = '';
   final ScrollController _scrollController = ScrollController();
-
-  MediaServerHttpClient get _httpClient => widget.httpClient ?? httpClient;
 
   @override
   void initState() {
@@ -103,7 +63,7 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
       // device" into something answerable from any uploaded log (#1349).
       String renderer;
       try {
-        renderer = await const MethodChannel('com.plezy/theme').invokeMethod<String>('getRenderer') ?? 'unknown';
+        renderer = await const MethodChannel('co.sumit.harbor/theme').invokeMethod<String>('getRenderer') ?? 'unknown';
       } catch (_) {
         renderer = 'unknown';
       }
@@ -161,7 +121,7 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
     showSuccessSnackBar(context, t.messages.logsCleared);
   }
 
-  String _formatAllLogs({int? maxBytes}) {
+  String _formatAllLogs() {
     final header = _deviceInfo.isEmpty ? '' : '$_deviceInfo\n---\n';
     final logs = StringBuffer();
     var isFirst = true;
@@ -179,77 +139,12 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
         logs.write('\nStack trace:\n${log.stackTrace}');
       }
     }
-    final logText = logs.toString();
-    return maxBytes == null
-        ? '$header$logText'
-        : constrainLogUploadPayload(header: header, logs: logText, maxBytes: maxBytes);
+    return '$header${logs.toString()}';
   }
 
   void _copyAllLogs() {
     Clipboard.setData(ClipboardData(text: _formatAllLogs()));
     showSuccessSnackBar(context, t.messages.logsCopied);
-  }
-
-  Future<void> _uploadLogs() async {
-    final logText = _formatAllLogs(maxBytes: maxLogUploadBytes);
-
-    showLoadingDialog(context);
-
-    try {
-      final response = await _httpClient.post(
-        'https://ice.plezy.app/logs',
-        body: logText,
-        headers: {'Content-Type': 'text/plain'},
-      );
-
-      if (!mounted) return;
-      Navigator.of(context).pop(); // dismiss loading
-
-      final data = response.data is String ? jsonDecode(response.data) : response.data;
-      final id = (data as Map<String, dynamic>)['id'] as String;
-
-      unawaited(
-        showScopedDialog<void>(
-          context: context,
-          builder: (ctx) => AlertDialog(
-            title: Text(t.messages.logsUploaded),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('${t.messages.logId}:'),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    Expanded(
-                      child: SelectableText(
-                        id,
-                        style: const TextStyle(fontWeight: .bold, fontFamily: MonoFonts.mono, fontSize: 18),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    IconButton(
-                      icon: const AppIcon(Symbols.content_copy_rounded, size: 20),
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: id));
-                        showSuccessSnackBar(context, t.messages.logsCopied);
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            actions: [
-              DialogActionButton(autofocus: true, onPressed: () => Navigator.of(ctx).pop(), label: t.common.close),
-            ],
-          ),
-        ),
-      );
-    } catch (_) {
-      if (!mounted) return;
-      Navigator.of(context).pop(); // dismiss loading
-      showErrorSnackBar(context, t.messages.logsUploadFailed);
-    }
   }
 
   Color _getLevelColor(Level level) {
@@ -367,11 +262,6 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                     FocusableActionBar(
                       actions: [
                         FocusableAction(icon: Symbols.refresh_rounded, tooltip: t.common.refresh, onPressed: _loadLogs),
-                        FocusableAction(
-                          icon: Symbols.upload_rounded,
-                          tooltip: t.logs.uploadLogs,
-                          onPressed: _logs.isNotEmpty ? _uploadLogs : null,
-                        ),
                         FocusableAction(
                           icon: Symbols.content_copy_rounded,
                           tooltip: t.logs.copyLogs,

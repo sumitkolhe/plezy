@@ -25,7 +25,7 @@ class AtmosDiagnosticsScreen extends StatefulWidget {
 }
 
 class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
-  static const _channel = MethodChannel('plezy/atmos_probe');
+  static const _channel = MethodChannel('co.sumit.harbor/atmos_probe');
 
   Timer? _poll;
   Map<Object?, Object?> _status = const {};

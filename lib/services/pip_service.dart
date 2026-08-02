@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:harbor/i18n/strings.g.dart';
 
 class PipService {
-  static const MethodChannel _channel = MethodChannel('com.plezy/pip');
+  static const MethodChannel _channel = MethodChannel('co.sumit.harbor/pip');
 
   /// PiP is only implemented natively on Android, iOS, and macOS.
   static bool get _isAvailable => Platform.isAndroid || Platform.isIOS || Platform.isMacOS;

@@ -718,9 +718,6 @@ class _Translations$messages$uz extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Mos keluvchi pleyerga oʻtilmoqda...';
 	@override String get serverLimitTitle => 'Ijro etishda xatolik';
 	@override String get serverLimitBody => 'Server xatoligi (HTTP 500). Cheklov ushbu seansni rad etdi.';
-	@override String get logsUploaded => 'Jurnallar yuklandi';
-	@override String get logsUploadFailed => 'Jurnallarni yuklab boʻlmadi';
-	@override String get logId => 'Jurnal ID-si';
 }
 
 // Path: subtitlingStyling
@@ -985,7 +982,6 @@ class _Translations$logs$uz extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Jurnallarni tozalash';
 	@override String get copyLogs => 'Jurnallarni nusxalash';
-	@override String get uploadLogs => 'Jurnallarni yuklash';
 }
 
 // Path: licenses
@@ -2290,9 +2286,6 @@ extension on TranslationsUz {
 			'messages.switchingToCompatiblePlayer' => 'Mos keluvchi pleyerga oʻtilmoqda...',
 			'messages.serverLimitTitle' => 'Ijro etishda xatolik',
 			'messages.serverLimitBody' => 'Server xatoligi (HTTP 500). Cheklov ushbu seansni rad etdi.',
-			'messages.logsUploaded' => 'Jurnallar yuklandi',
-			'messages.logsUploadFailed' => 'Jurnallarni yuklab boʻlmadi',
-			'messages.logId' => 'Jurnal ID-si',
 			'subtitlingStyling.text' => 'Matn',
 			'subtitlingStyling.border' => 'Hoshiya',
 			'subtitlingStyling.background' => 'Fon',
@@ -2490,7 +2483,6 @@ extension on TranslationsUz {
 			'hubDetail.noItemsFound' => 'Elementlar topilmadi',
 			'logs.clearLogs' => 'Jurnallarni tozalash',
 			'logs.copyLogs' => 'Jurnallarni nusxalash',
-			'logs.uploadLogs' => 'Jurnallarni yuklash',
 			'licenses.relatedPackages' => 'Bogʻliq paketlar',
 			'licenses.license' => 'Litsenziya',
 			'licenses.licenseNumber' => ({required Object number}) => 'Litsenziya ${number}',
@@ -2795,12 +2787,12 @@ extension on TranslationsUz {
 			'metadataEdit.releaseDate' => 'Chiqqan sanasi',
 			'metadataEdit.contentRating' => 'Kontent reytingi',
 			'metadataEdit.studio' => 'Studiya',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Shior/Slogan',
 			'metadataEdit.summary' => 'Tavsif/Qisqacha',
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Fon',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.logo' => 'Logotip',
 			'metadataEdit.squareArt' => 'Kvadrat rasm',
 			'metadataEdit.selectPoster' => 'Posterni tanlash',

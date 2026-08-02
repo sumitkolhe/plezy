@@ -714,9 +714,6 @@ class _Translations$messages$bg extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Превключване към съвместим плейър...';
 	@override String get serverLimitTitle => 'Възпроизвеждането е неуспешно';
 	@override String get serverLimitBody => 'Грешка на сървъра (HTTP 500). Вероятно лимит за пропускателна способност/транскодиране е отхвърлил тази сесия. Помолете собственика да го коригира.';
-	@override String get logsUploaded => 'Логовете са качени';
-	@override String get logsUploadFailed => 'Неуспешно качване на логовете';
-	@override String get logId => 'ID на лога';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$bg extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Изчисти логовете';
 	@override String get copyLogs => 'Копирай логовете';
-	@override String get uploadLogs => 'Качи логовете';
 }
 
 // Path: licenses
@@ -2275,9 +2271,6 @@ extension on TranslationsBg {
 			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
 			'messages.serverLimitTitle' => 'Възпроизвеждането е неуспешно',
 			'messages.serverLimitBody' => 'Грешка на сървъра (HTTP 500). Вероятно лимит за пропускателна способност/транскодиране е отхвърлил тази сесия. Помолете собственика да го коригира.',
-			'messages.logsUploaded' => 'Логовете са качени',
-			'messages.logsUploadFailed' => 'Неуспешно качване на логовете',
-			'messages.logId' => 'ID на лога',
 			'subtitlingStyling.text' => 'Текст',
 			'subtitlingStyling.border' => 'Контур',
 			'subtitlingStyling.background' => 'Фон',
@@ -2474,7 +2467,6 @@ extension on TranslationsBg {
 			'hubDetail.noItemsFound' => 'Няма намерени елементи',
 			'logs.clearLogs' => 'Изчисти логовете',
 			'logs.copyLogs' => 'Копирай логовете',
-			'logs.uploadLogs' => 'Качи логовете',
 			'licenses.relatedPackages' => 'Свързани пакети',
 			'licenses.license' => 'Лиценз',
 			'licenses.licenseNumber' => ({required Object number}) => 'Лиценз ${number}',
@@ -2784,12 +2776,12 @@ extension on TranslationsBg {
 			'metadataEdit.selectLogo' => 'Избери лого',
 			'metadataEdit.selectSquareArt' => 'Избери квадратно изображение',
 			'metadataEdit.fromUrl' => 'От URL',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Качи файл',
 			'metadataEdit.enterImageUrl' => 'Въведете URL на изображение',
 			'metadataEdit.imageUrl' => 'URL на изображение',
 			'metadataEdit.metadataUpdated' => 'Метаданните са обновени',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => 'Неуспешно обновяване на метаданни',
 			'metadataEdit.artworkUpdated' => 'Обложката е обновена',
 			'metadataEdit.artworkUpdateFailed' => 'Неуспешно обновяване на обложката',

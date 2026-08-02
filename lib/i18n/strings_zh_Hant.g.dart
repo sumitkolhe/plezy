@@ -714,9 +714,6 @@ class _Translations$messages$zh_Hant extends Translations$messages$zh {
 	@override String get switchingToCompatiblePlayer => '正在切換至相容的播放器…';
 	@override String get serverLimitTitle => '播放失敗';
 	@override String get serverLimitBody => '伺服器錯誤（HTTP 500）。伺服器的頻寬或轉碼限制可能拒絕此播放要求。請聯絡伺服器擁有者調整設定。';
-	@override String get logsUploaded => '日誌已上傳';
-	@override String get logsUploadFailed => '上傳日誌失敗';
-	@override String get logId => '日誌 ID';
 }
 
 // Path: subtitlingStyling
@@ -980,7 +977,6 @@ class _Translations$logs$zh_Hant extends Translations$logs$zh {
 	// Translations
 	@override String get clearLogs => '清除日誌';
 	@override String get copyLogs => '複製日誌';
-	@override String get uploadLogs => '上傳日誌';
 }
 
 // Path: licenses
@@ -2273,9 +2269,6 @@ extension on TranslationsZhHant {
 			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
 			'messages.serverLimitTitle' => '播放失敗',
 			'messages.serverLimitBody' => '伺服器錯誤（HTTP 500）。伺服器的頻寬或轉碼限制可能拒絕此播放要求。請聯絡伺服器擁有者調整設定。',
-			'messages.logsUploaded' => '日誌已上傳',
-			'messages.logsUploadFailed' => '上傳日誌失敗',
-			'messages.logId' => '日誌 ID',
 			'subtitlingStyling.text' => '文字',
 			'subtitlingStyling.border' => '邊框',
 			'subtitlingStyling.background' => '背景',
@@ -2472,7 +2465,6 @@ extension on TranslationsZhHant {
 			'hubDetail.noItemsFound' => '找不到項目',
 			'logs.clearLogs' => '清除日誌',
 			'logs.copyLogs' => '複製日誌',
-			'logs.uploadLogs' => '上傳日誌',
 			'licenses.relatedPackages' => '相關套件',
 			'licenses.license' => '授權',
 			'licenses.licenseNumber' => ({required Object number}) => '授權條款 ${number}',
@@ -2782,12 +2774,12 @@ extension on TranslationsZhHant {
 			'metadataEdit.selectLogo' => '選擇標誌',
 			'metadataEdit.selectSquareArt' => '選擇方形圖片',
 			'metadataEdit.fromUrl' => '自訂網址',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.uploadFile' => '上傳檔案',
 			'metadataEdit.enterImageUrl' => '輸入圖片 URL',
 			'metadataEdit.imageUrl' => '圖片 URL',
 			'metadataEdit.metadataUpdated' => '中繼資料已更新',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.metadataUpdateFailed' => '中繼資料更新失敗',
 			'metadataEdit.artworkUpdated' => '封面圖片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面圖片更新失敗',

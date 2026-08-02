@@ -718,9 +718,6 @@ class _Translations$messages$az extends Translations$messages$en {
 	@override String get switchingToCompatiblePlayer => 'Uyğun oynadıcıya keçilir...';
 	@override String get serverLimitTitle => 'Oynatma uğursuz oldu';
 	@override String get serverLimitBody => 'Server xətası (HTTP 500). Məhdudiyyət bu seansı rədd etdi.';
-	@override String get logsUploaded => 'Jurnallar yükləndi';
-	@override String get logsUploadFailed => 'Jurnallar yüklənə bilmədi';
-	@override String get logId => 'Jurnal ID-si';
 }
 
 // Path: subtitlingStyling
@@ -985,7 +982,6 @@ class _Translations$logs$az extends Translations$logs$en {
 	// Translations
 	@override String get clearLogs => 'Jurnalları təmizlə';
 	@override String get copyLogs => 'Jurnalları kopyala';
-	@override String get uploadLogs => 'Jurnalları yüklə';
 }
 
 // Path: licenses
@@ -2290,9 +2286,6 @@ extension on TranslationsAz {
 			'messages.switchingToCompatiblePlayer' => 'Uyğun oynadıcıya keçilir...',
 			'messages.serverLimitTitle' => 'Oynatma uğursuz oldu',
 			'messages.serverLimitBody' => 'Server xətası (HTTP 500). Məhdudiyyət bu seansı rədd etdi.',
-			'messages.logsUploaded' => 'Jurnallar yükləndi',
-			'messages.logsUploadFailed' => 'Jurnallar yüklənə bilmədi',
-			'messages.logId' => 'Jurnal ID-si',
 			'subtitlingStyling.text' => 'Mətn',
 			'subtitlingStyling.border' => 'Haşiyə',
 			'subtitlingStyling.background' => 'Arxa fon',
@@ -2490,7 +2483,6 @@ extension on TranslationsAz {
 			'hubDetail.noItemsFound' => 'Element tapılmadı',
 			'logs.clearLogs' => 'Jurnalları təmizlə',
 			'logs.copyLogs' => 'Jurnalları kopyala',
-			'logs.uploadLogs' => 'Jurnalları yüklə',
 			'licenses.relatedPackages' => 'Əlaqəli paketlər',
 			'licenses.license' => 'Lisenziya',
 			'licenses.licenseNumber' => ({required Object number}) => 'Lisenziya ${number}',
@@ -2795,12 +2787,12 @@ extension on TranslationsAz {
 			'metadataEdit.releaseDate' => 'Buraxılış tarixi',
 			'metadataEdit.contentRating' => 'Məzmun reytinqi',
 			'metadataEdit.studio' => 'Studiya',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.tagline' => 'Deviz/Slogan',
 			'metadataEdit.summary' => 'Məzmun/Xülasə',
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Arxa fon',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.logo' => 'Loqo',
 			'metadataEdit.squareArt' => 'Kvadrat şəkil',
 			'metadataEdit.selectPoster' => 'Poster seç',

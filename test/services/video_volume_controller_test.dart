@@ -283,14 +283,14 @@ void main() {
   for (final adapter in <({String name, String methodChannel, String eventChannel, Player Function() create})>[
     (
       name: 'PlayerNative',
-      methodChannel: 'com.plezy/mpv_player',
-      eventChannel: 'com.plezy/mpv_player/events',
+      methodChannel: 'co.sumit.harbor/mpv_player',
+      eventChannel: 'co.sumit.harbor/mpv_player/events',
       create: PlayerNative.new,
     ),
     (
       name: 'PlayerAndroid',
-      methodChannel: 'com.plezy/exo_player',
-      eventChannel: 'com.plezy/exo_player/events',
+      methodChannel: 'co.sumit.harbor/exo_player',
+      eventChannel: 'co.sumit.harbor/exo_player/events',
       create: PlayerAndroid.new,
     ),
   ]) {

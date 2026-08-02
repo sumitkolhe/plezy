@@ -651,10 +651,7 @@
     "failedPlayback": "Nie udało się ${action}: ${error}",
     "switchingToCompatiblePlayer": "Przełączanie na kompatybilny odtwarzacz...",
     "serverLimitTitle": "Odtwarzanie nie powiodło się",
-    "serverLimitBody": "Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę.",
-    "logsUploaded": "Logi przesłane",
-    "logsUploadFailed": "Nie udało się przesłać logów",
-    "logId": "ID logu"
+    "serverLimitBody": "Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę."
   },
   "subtitlingStyling": {
     "text": "Tekst",
@@ -881,8 +878,7 @@
   },
   "logs": {
     "clearLogs": "Wyczyść logi",
-    "copyLogs": "Kopiuj logi",
-    "uploadLogs": "Prześlij logi"
+    "copyLogs": "Kopiuj logi"
   },
   "licenses": {
     "relatedPackages": "Powiązane pakiety",
