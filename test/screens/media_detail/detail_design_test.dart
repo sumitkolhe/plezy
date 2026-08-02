@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/screens/media_detail/detail_design.dart';
 import 'package:harbor/theme/mono_theme.dart';
-import 'package:harbor/theme/mono_tokens.dart';
 
 void main() {
   Future<void> pump(WidgetTester tester, Widget child) {
@@ -33,7 +32,7 @@ void main() {
     });
 
     testWidgets('collapses to nothing when the item carries none of them', (tester) async {
-      await pump(tester, const DetailFactLine());
+      await pump(tester, const DetailFactLine(facts: []));
       expect(find.byType(Text), findsNothing);
     });
 
@@ -63,14 +62,14 @@ void main() {
       await pump(
         tester,
         const DetailInfoTable(
-          entries: [DetailInfoEntry('Director', 'Someone'), DetailInfoEntry('Container', 'mkv', mono: true)],
+          entries: [DetailInfoEntry('Director', 'Someone'), DetailInfoEntry('Container', 'mkv')],
         ),
       );
 
       expect(find.text('Director'), findsOneWidget);
       expect(find.text('Someone'), findsOneWidget);
-      expect(tester.widget<Text>(find.text('mkv')).style?.fontFamily, MonoFonts.mono);
-      expect(tester.widget<Text>(find.text('Someone')).style?.fontFamily, isNull);
+      expect(find.text('Container'), findsOneWidget);
+      expect(find.text('mkv'), findsOneWidget);
     });
 
     testWidgets('separates rows with space, not rules', (tester) async {
@@ -93,21 +92,18 @@ void main() {
   });
 
   group('DetailSectionHeader', () {
-    testWidgets('shows a bare heading when it has neither count nor action', (tester) async {
+    testWidgets('shows a bare heading when it has no count', (tester) async {
       await pump(tester, const DetailSectionHeader(title: 'Episodes'));
 
       expect(find.text('Episodes'), findsOneWidget);
       expect(find.byType(Row), findsNothing);
     });
 
-    testWidgets('prefers the action over the count when given both', (tester) async {
-      await pump(
-        tester,
-        const DetailSectionHeader(title: 'Episodes', trailing: '12', action: Text('Season 2')),
-      );
+    testWidgets('sets the count beside the heading', (tester) async {
+      await pump(tester, const DetailSectionHeader(title: 'Episodes', trailing: '12'));
 
-      expect(find.text('Season 2'), findsOneWidget);
-      expect(find.text('12'), findsNothing);
+      expect(find.text('Episodes'), findsOneWidget);
+      expect(find.text('12'), findsOneWidget);
     });
   });
 }

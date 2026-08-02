@@ -75,6 +75,15 @@ void main() {
     expect(find.text('Season 1'), findsOneWidget);
   });
 
+  testWidgets('a selected season far down the row is scrolled into view', (tester) async {
+    await pump(tester, seasons(24), selected: 20);
+    await tester.pumpAndSettle();
+
+    final offset = tester.widget<ListView>(find.byType(ListView)).controller!.offset;
+    expect(offset, greaterThan(0));
+    expect(find.text('S21'), findsOneWidget);
+  });
+
   testWidgets('numbering follows the server, not the position in the list', (tester) async {
     await pump(tester, seasons(3, from: 7));
 

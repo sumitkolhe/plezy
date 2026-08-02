@@ -14,6 +14,7 @@ import 'detail_design.dart';
 const double _pillHorizontalPadding = 13;
 const double _pillGap = 7;
 const double _pillHeight = 34;
+const double _overflowPillWidth = 40;
 
 class SeasonSelector extends StatefulWidget {
   final List<MediaItem> seasons;
@@ -44,7 +45,8 @@ class SeasonSelector extends StatefulWidget {
 
 class _SeasonSelectorState extends State<SeasonSelector> {
   final ScrollController _controller = ScrollController();
-  final Map<int, GlobalKey> _pillKeys = {};
+  List<double>? _pillWidths;
+  double _viewport = 0;
 
   @override
   void initState() {
@@ -55,6 +57,7 @@ class _SeasonSelectorState extends State<SeasonSelector> {
   @override
   void didUpdateWidget(SeasonSelector oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.seasons, widget.seasons)) _pillWidths = null;
     if (oldWidget.selectedIndex != widget.selectedIndex) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _revealSelected());
     }
@@ -66,18 +69,43 @@ class _SeasonSelectorState extends State<SeasonSelector> {
     super.dispose();
   }
 
+  /// Widths depend only on the labels, so a resize must not re-measure.
+  List<double> _measurePills(TextStyle style) {
+    final cached = _pillWidths;
+    if (cached != null) return cached;
+    final widths = <double>[];
+    for (var i = 0; i < widget.seasons.length; i++) {
+      final painter = TextPainter(
+        text: TextSpan(text: SeasonSelector.compactLabel(widget.seasons[i], i), style: style),
+        maxLines: 1,
+        textDirection: Directionality.of(context),
+      )..layout();
+      widths.add(painter.width + _pillHorizontalPadding * 2);
+      painter.dispose();
+    }
+    return _pillWidths = widths;
+  }
+
+  /// Derived from the measured widths, not the built pills: a season far enough
+  /// down the row has no element to scroll to until it is already on screen.
   void _revealSelected({bool animate = true}) {
-    if (!mounted || !_controller.hasClients) return;
-    final pillContext = _pillKeys[widget.selectedIndex]?.currentContext;
-    if (pillContext == null) return;
-    unawaited(
-      Scrollable.ensureVisible(
-        pillContext,
-        alignment: 0.5,
-        duration: animate ? const Duration(milliseconds: 200) : Duration.zero,
-        curve: Curves.easeOut,
-      ),
+    final widths = _pillWidths;
+    if (!mounted || !_controller.hasClients || widths == null) return;
+    if (widget.selectedIndex < 0 || widget.selectedIndex >= widths.length) return;
+
+    var start = 0.0;
+    for (var i = 0; i < widget.selectedIndex; i++) {
+      start += widths[i] + _pillGap;
+    }
+    final target = (start + widths[widget.selectedIndex] / 2 - _viewport / 2).clamp(
+      0.0,
+      _controller.position.maxScrollExtent,
     );
+    if (animate) {
+      unawaited(_controller.animateTo(target, duration: const Duration(milliseconds: 200), curve: Curves.easeOut));
+    } else {
+      _controller.jumpTo(target);
+    }
   }
 
   void _openSheet() {
@@ -92,31 +120,21 @@ class _SeasonSelectorState extends State<SeasonSelector> {
     );
   }
 
-  /// Drives whether the row offers the sheet; a scrolling row cannot be scanned.
-  bool _fits(double maxWidth, TextStyle style) {
-    var total = 0.0;
-    for (var i = 0; i < widget.seasons.length; i++) {
-      final painter = TextPainter(
-        text: TextSpan(text: SeasonSelector.compactLabel(widget.seasons[i], i), style: style),
-        maxLines: 1,
-        textDirection: Directionality.of(context),
-      )..layout();
-      total += painter.width + _pillHorizontalPadding * 2 + _pillGap;
-      painter.dispose();
-    }
-    return total <= maxWidth;
-  }
-
   @override
   Widget build(BuildContext context) {
     if (widget.seasons.length < 2) return const SizedBox.shrink();
 
     final tokensRef = tokens(context);
     final labelStyle = TextStyle(fontSize: 13.5, fontWeight: .w600, color: tokensRef.text);
+    final widths = _measurePills(labelStyle);
+    final rowWidth = widths.reduce((a, b) => a + b) + _pillGap * (widths.length - 1);
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final overflows = !_fits(constraints.maxWidth, labelStyle);
+        // A row that scrolls cannot be scanned, so overflow moves the full list
+        // into a sheet and leaves the row as a shortcut to nearby seasons.
+        final overflows = rowWidth > constraints.maxWidth;
+        _viewport = overflows ? constraints.maxWidth - _overflowPillWidth - _pillGap : constraints.maxWidth;
         return SizedBox(
           height: _pillHeight,
           child: Row(
@@ -130,7 +148,6 @@ class _SeasonSelectorState extends State<SeasonSelector> {
                   itemCount: widget.seasons.length,
                   separatorBuilder: (_, _) => const SizedBox(width: _pillGap),
                   itemBuilder: (context, index) => _SeasonPill(
-                    key: _pillKeys.putIfAbsent(index, GlobalKey.new),
                     label: SeasonSelector.compactLabel(widget.seasons[index], index),
                     semanticLabel: SeasonSelector.fullLabel(widget.seasons[index], index),
                     selected: index == widget.selectedIndex,
@@ -154,7 +171,6 @@ class _SeasonPill extends StatelessWidget {
   final VoidCallback onTap;
 
   const _SeasonPill({
-    super.key,
     required this.label,
     required this.semanticLabel,
     required this.selected,
@@ -207,7 +223,7 @@ class _OverflowPill extends StatelessWidget {
         onTap: onTap,
         borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
         child: Container(
-          width: 40,
+          width: _overflowPillWidth,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: tokensRef.text.withValues(alpha: 0.09),

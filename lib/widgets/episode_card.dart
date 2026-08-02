@@ -59,7 +59,7 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
-  Widget _buildEpisodeMetaLine(BuildContext context, MediaItem episode, List<String> qualityLabels) {
+  Widget? _buildEpisodeMetaLine(BuildContext context, MediaItem episode, List<String> qualityLabels) {
     final tokensRef = tokens(context);
     final rating = episode.userRating;
     final spans = dotSeparatedSpans([
@@ -70,7 +70,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
       if (rating != null && rating > 0) ratingSpan(rating / 2, iconSize: 11),
       for (final label in qualityLabels) TextSpan(text: label),
     ]);
-    if (spans.isEmpty) return const SizedBox.shrink();
+    if (spans.isEmpty) return null;
 
     return Text.rich(
       TextSpan(children: spans),
@@ -93,6 +93,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final shouldBlur = hideSpoilers && episode.shouldHideSpoiler;
     final qualityLabels = [...buildMediaQualityLabels(episode), ?buildMediaSizeLabel(episode)];
     final tokensRef = tokens(context);
+    final metaLine = _buildEpisodeMetaLine(context, episode, qualityLabels);
     const thumbWidth = 116.0;
 
     // MergeSemantics: one node per card instead of one per text/progress —
@@ -185,7 +186,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                           builder: (context, slice, _) {
                             Widget? downloadStatusIcon;
 
-                            // Only show download status in online mode
                             if (!widget.isOffline && episode.serverId != null) {
                               final status = slice.status;
                               final mutedBase = tokensRef.textMuted;
@@ -202,7 +202,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                                   progress: slice.progressPercent,
                                 );
                               }
-                              // Note: No icon shown if not downloaded (null)
                             }
 
                             // The episode number lives on the meta line: as a
@@ -240,8 +239,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                           ),
                         ],
 
-                        const SizedBox(height: 4),
-                        _buildEpisodeMetaLine(context, episode, qualityLabels),
+                        if (metaLine != null) ...[const SizedBox(height: 4), metaLine],
                       ],
                     ),
                   ),
@@ -257,9 +255,10 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
   /// Deliberately faint: Jellyfin serves no image until its metadata refresh
   /// fetches one, so a whole season can legitimately land here.
   Widget _missingThumbnail(BuildContext context) {
+    final tokensRef = tokens(context);
     return PlaceholderContainer(
-      color: tokens(context).text.withValues(alpha: 0.04),
-      child: AppIcon(Symbols.movie_rounded, fill: 1, size: 18, color: tokens(context).textMuted.withValues(alpha: 0.5)),
+      color: tokensRef.text.withValues(alpha: 0.04),
+      child: AppIcon(Symbols.movie_rounded, fill: 1, size: 18, color: tokensRef.textMuted.withValues(alpha: 0.5)),
     );
   }
 

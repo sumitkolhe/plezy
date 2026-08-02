@@ -4,21 +4,16 @@ import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
 import '../../utils/rating_spans.dart';
 
+const double _fontSize = 13.5;
+
 class DetailFactLine extends StatelessWidget {
   final double? rating;
   final String? contentRating;
 
   /// Ordered by what should survive truncation.
   final List<String> facts;
-  final double fontSize;
 
-  const DetailFactLine({
-    super.key,
-    this.rating,
-    this.contentRating,
-    this.facts = const [],
-    this.fontSize = 13.5,
-  });
+  const DetailFactLine({super.key, this.rating, this.contentRating, required this.facts});
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +26,14 @@ class DetailFactLine extends StatelessWidget {
         children: dotSeparatedSpans([
           if (rating != null)
             TextSpan(
-              children: [ratingSpan(rating!, iconSize: fontSize)],
+              children: [ratingSpan(rating!, iconSize: _fontSize)],
               style: TextStyle(color: t.text, fontWeight: .w600),
             ),
           for (final fact in facts) TextSpan(text: fact),
           if (cert != null && cert.isNotEmpty) WidgetSpan(alignment: .middle, child: _CertificateMark(cert)),
         ]),
       ),
-      style: TextStyle(fontSize: fontSize, color: t.text.withValues(alpha: 0.78), height: 1.3),
+      style: TextStyle(fontSize: _fontSize, color: t.text.withValues(alpha: 0.78), height: 1.3),
       maxLines: 2,
       overflow: .ellipsis,
     );
@@ -71,16 +66,15 @@ class _CertificateMark extends StatelessWidget {
 /// Prose, not chips: genres are description here, and nothing navigates.
 class DetailGenreLine extends StatelessWidget {
   final List<String> genres;
-  final double fontSize;
 
-  const DetailGenreLine({super.key, required this.genres, this.fontSize = 13.5});
+  const DetailGenreLine({super.key, required this.genres});
 
   @override
   Widget build(BuildContext context) {
     if (genres.isEmpty) return const SizedBox.shrink();
     return Text(
       genres.join(' · '),
-      style: TextStyle(fontSize: fontSize, color: tokens(context).textMuted, height: 1.3),
+      style: TextStyle(fontSize: _fontSize, color: tokens(context).textMuted, height: 1.3),
       maxLines: 1,
       overflow: .ellipsis,
     );
@@ -90,9 +84,8 @@ class DetailGenreLine extends StatelessWidget {
 class DetailSectionHeader extends StatelessWidget {
   final String title;
   final String? trailing;
-  final Widget? action;
 
-  const DetailSectionHeader({super.key, required this.title, this.trailing, this.action});
+  const DetailSectionHeader({super.key, required this.title, this.trailing});
 
   @override
   Widget build(BuildContext context) {
@@ -107,17 +100,14 @@ class DetailSectionHeader extends StatelessWidget {
         color: t.text,
       ),
     );
-    if (action == null && (trailing == null || trailing!.isEmpty)) return heading;
+    if (trailing == null || trailing!.isEmpty) return heading;
 
     return Row(
-      crossAxisAlignment: action != null ? .center : .baseline,
-      textBaseline: action != null ? null : TextBaseline.alphabetic,
+      crossAxisAlignment: .baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
         Expanded(child: heading),
-        if (action != null)
-          action!
-        else
-          Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
+        Text(trailing!, style: TextStyle(fontSize: 13, color: t.textMuted)),
       ],
     );
   }
@@ -127,10 +117,7 @@ class DetailInfoEntry {
   final String label;
   final String value;
 
-  /// Verbatim technical text — file names, containers, codecs.
-  final bool mono;
-
-  const DetailInfoEntry(this.label, this.value, {this.mono = false});
+  const DetailInfoEntry(this.label, this.value);
 }
 
 /// Unruled by choice: this app separates content with surfaces, not hairlines.
@@ -162,9 +149,7 @@ class DetailInfoTable extends StatelessWidget {
                 Expanded(
                   child: Text(
                     entries[i].value,
-                    style: entries[i].mono
-                        ? TextStyle(fontFamily: MonoFonts.mono, fontSize: 12.5, color: t.text.withValues(alpha: 0.78))
-                        : TextStyle(fontSize: 14.5, fontWeight: .w500, color: t.text),
+                    style: TextStyle(fontSize: 14.5, fontWeight: .w500, color: t.text),
                   ),
                 ),
               ],
