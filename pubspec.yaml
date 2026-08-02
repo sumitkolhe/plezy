@@ -49,7 +49,6 @@ dependencies:
     # Vendored upstream 3.1.0 with a pending Result lifecycle fix (CHANGELOG) —
     # upstream still double-replies MethodChannel results and crashes the Activity.
     path: packages/saf_util
-  material_symbols_icons: ^4.2951.0
   flutter_svg: ^2.2.3
   # Fork note: 41c16be creates the desktop temp parent before opening the
   # partial file, independently fixing upstream #649's missing-directory case.
