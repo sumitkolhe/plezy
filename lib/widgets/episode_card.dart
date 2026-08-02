@@ -25,6 +25,9 @@ import '../widgets/placeholder_container.dart';
 import '../theme/mono_tokens.dart';
 import '../media/media_server_client.dart';
 
+const double _thumbWidth = 152;
+const double _thumbGap = 14;
+
 /// Episode card widget with D-pad long-press support
 class EpisodeCard extends StatefulWidget {
   final MediaItem episode;
@@ -94,7 +97,8 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final qualityLabels = [...buildMediaQualityLabels(episode), ?buildMediaSizeLabel(episode)];
     final tokensRef = tokens(context);
     final metaLine = _buildEpisodeMetaLine(context, episode, qualityLabels);
-    const thumbWidth = 116.0;
+    final summary = episode.summary;
+    final showSummary = !shouldBlur && summary != null && summary.isNotEmpty;
 
     // MergeSemantics: one node per card instead of one per text/progress —
     // the per-frame semantics pass scales with node count (see MediaCard).
@@ -125,130 +129,134 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             onSecondaryTap: showContextMenuFromTap,
             hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Row(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Column(
+                mainAxisSize: .min,
                 crossAxisAlignment: .start,
                 children: [
-                  SizedBox(
-                    width: thumbWidth,
-                    child: Stack(
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          child: AspectRatio(
-                            aspectRatio: 16 / 9,
-                            child: shouldBlur
-                                ? ClipRect(
-                                    child: ImageFiltered(
-                                      imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-                                      child: _buildEpisodeThumbnail(context, episode),
-                                    ),
-                                  )
-                                : _buildEpisodeThumbnail(context, episode),
-                          ),
+                  Row(
+                    children: [
+                      SizedBox(width: _thumbWidth, child: _buildStill(context, episode, blurred: shouldBlur)),
+                      const SizedBox(width: _thumbGap),
+                      // Title and meta are capped at three lines between them,
+                      // which is shorter than the still beside them at every
+                      // width this list is used at.
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: .min,
+                          crossAxisAlignment: .start,
+                          children: [
+                            _buildTitleRow(context, episode),
+                            if (metaLine != null) ...[const SizedBox(height: 5), metaLine],
+                          ],
                         ),
-
-                        Positioned.fill(
-                          child: Center(
-                            child: Container(
-                              width: 28,
-                              height: 28,
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.5),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const AppIcon(Symbols.play_arrow_rounded, fill: 1, color: Colors.white, size: 15),
-                            ),
-                          ),
-                        ),
-
-                        Positioned.fill(
-                          child: WatchedIndicator(
-                            item: episode,
-                            size: WatchedIndicatorSize.compact,
-                            // Progress isn't tracked offline.
-                            progressAvailable: !widget.isOffline,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
 
-                  const SizedBox(width: 13),
-
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: .start,
-                      children: [
-                        Selector<DownloadProvider, _DownloadSlice>(
-                          selector: (_, p) =>
-                              _DownloadSlice.from(p.getProgress(episode.globalKey), p.isQueueing(episode.globalKey)),
-                          builder: (context, slice, _) {
-                            Widget? downloadStatusIcon;
-
-                            if (!widget.isOffline && episode.serverId != null) {
-                              final status = slice.status;
-                              final mutedBase = tokensRef.textMuted;
-
-                              if (slice.isQueueing) {
-                                downloadStatusIcon = DownloadQueueingSpinner(size: 12, color: mutedBase);
-                              } else if (status != null) {
-                                final iconSize = status == DownloadStatus.downloading ? 14.0 : 12.0;
-                                downloadStatusIcon = DownloadStatusIcon(
-                                  status: status,
-                                  size: iconSize,
-                                  variant: DownloadStatusIconVariant.muted,
-                                  mutedBase: mutedBase,
-                                  progress: slice.progressPercent,
-                                );
-                              }
-                            }
-
-                            // The episode number lives on the meta line: as a
-                            // sibling here it indents the title away from the
-                            // left edge the summary and meta share.
-                            return Row(
-                              crossAxisAlignment: .start,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    episode.title!,
-                                    style: TextStyle(fontSize: 14.5, fontWeight: .w600, height: 1.3),
-                                    maxLines: 2,
-                                    overflow: .ellipsis,
-                                  ),
-                                ),
-                                if (downloadStatusIcon != null) ...[
-                                  const SizedBox(width: 8),
-                                  Padding(padding: const EdgeInsets.only(top: 3), child: downloadStatusIcon),
-                                ],
-                              ],
-                            );
-                          },
-                        ),
-
-                        if (!shouldBlur && episode.summary != null && episode.summary!.isNotEmpty) ...[
-                          const SizedBox(height: 3),
-                          // Uniform row heights are what make a long season
-                          // scannable; the full summary is a tap away.
-                          Text(
-                            episode.summary!,
-                            style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
-                            maxLines: 2,
-                            overflow: .ellipsis,
-                          ),
-                        ],
-
-                        if (metaLine != null) ...[const SizedBox(height: 4), metaLine],
-                      ],
+                  // Below the still rather than beside it: at phone widths a
+                  // column narrow enough to sit next to a 16:9 image fits about
+                  // thirty characters a line.
+                  if (showSummary) ...[
+                    const SizedBox(height: 8),
+                    Text(
+                      summary,
+                      style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.4),
+                      maxLines: 2,
+                      overflow: .ellipsis,
                     ),
-                  ),
+                  ],
                 ],
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildStill(BuildContext context, MediaItem episode, {required bool blurred}) {
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: blurred
+                ? ImageFiltered(
+                    imageFilter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+                    child: _buildEpisodeThumbnail(context, episode),
+                  )
+                : _buildEpisodeThumbnail(context, episode),
+          ),
+        ),
+
+        Positioned.fill(
+          child: Center(
+            child: Container(
+              width: 34,
+              height: 34,
+              decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5), shape: BoxShape.circle),
+              child: const AppIcon(Symbols.play_arrow_rounded, fill: 1, color: Colors.white, size: 18),
+            ),
+          ),
+        ),
+
+        Positioned.fill(
+          child: WatchedIndicator(
+            item: episode,
+            size: WatchedIndicatorSize.compact,
+            // Progress isn't tracked offline.
+            progressAvailable: !widget.isOffline,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTitleRow(BuildContext context, MediaItem episode) {
+    return Selector<DownloadProvider, _DownloadSlice>(
+      selector: (_, p) => _DownloadSlice.from(p.getProgress(episode.globalKey), p.isQueueing(episode.globalKey)),
+      builder: (context, slice, _) {
+        Widget? downloadStatusIcon;
+
+        if (!widget.isOffline && episode.serverId != null) {
+          final status = slice.status;
+          final mutedBase = tokens(context).textMuted;
+
+          if (slice.isQueueing) {
+            downloadStatusIcon = DownloadQueueingSpinner(size: 12, color: mutedBase);
+          } else if (status != null) {
+            downloadStatusIcon = DownloadStatusIcon(
+              status: status,
+              size: status == DownloadStatus.downloading ? 14.0 : 12.0,
+              variant: DownloadStatusIconVariant.muted,
+              mutedBase: mutedBase,
+              progress: slice.progressPercent,
+            );
+          }
+        }
+
+        // The episode number lives on the meta line: as a sibling here it
+        // indents the title away from the left edge the meta line shares.
+        return Row(
+          crossAxisAlignment: .start,
+          children: [
+            Expanded(
+              child: Text(
+                episode.title!,
+                style: TextStyle(fontSize: 15, fontWeight: .w600, height: 1.3),
+                maxLines: 2,
+                overflow: .ellipsis,
+              ),
+            ),
+            if (downloadStatusIcon != null) ...[
+              const SizedBox(width: 8),
+              Padding(padding: const EdgeInsets.only(top: 3), child: downloadStatusIcon),
+            ],
+          ],
+        );
+      },
     );
   }
 

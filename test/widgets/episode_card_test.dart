@@ -77,6 +77,46 @@ void main() {
     semantics.dispose();
   });
 
+  testWidgets('title and meta stay within the height of the still', (tester) async {
+    final episode = testMediaItem(
+      id: 'tall_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'A Title Long Enough To Wrap Onto A Second Line On A Phone',
+      index: 12,
+      summary: 'C' * 400,
+      durationMs: 42 * 60 * 1000,
+      originallyAvailableAt: '2019-04-14',
+    );
+
+    await _pumpEpisodeCard(tester, episode);
+
+    final still = tester.getSize(find.byType(AspectRatio).first);
+    final row = tester.getSize(find.descendant(of: find.byType(EpisodeCard), matching: find.byType(Row)).first);
+    expect(row.height, still.height);
+  });
+
+  testWidgets('summary runs the full width under the still, not beside it', (tester) async {
+    const summary = 'A quiet episode in which very little happens and everyone talks about it afterwards.';
+    final episode = testMediaItem(
+      id: 'wide_summary_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'Aftermath',
+      index: 5,
+      summary: summary,
+      durationMs: 42 * 60 * 1000,
+    );
+
+    await _pumpEpisodeCard(tester, episode);
+
+    final still = tester.getRect(find.byType(AspectRatio).first);
+    final summaryRect = tester.getRect(find.text(summary));
+    expect(summaryRect.left, still.left);
+    expect(summaryRect.top, greaterThanOrEqualTo(still.bottom));
+    expect(summaryRect.width, greaterThan(still.width));
+  });
+
   testWidgets('shows file size alongside media quality labels', (tester) async {
     final episode = testMediaItem(
       id: 'sized_episode',
