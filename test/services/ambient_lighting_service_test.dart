@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     originalPathProvider = PathProviderPlatform.instance;
-    temporaryRoot = Directory.systemTemp.createTempSync('plezy_ambient_test_');
+    temporaryRoot = Directory.systemTemp.createTempSync('harbor_ambient_test_');
     PathProviderPlatform.instance = FakePathProvider(temporaryRoot);
   });
 

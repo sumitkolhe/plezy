@@ -16,7 +16,7 @@ void main() {
   setUp(resetSharedPreferencesForTest);
   PackageInfo.setMockInitialValues(
     appName: 'Harbor',
-    packageName: 'com.plezy.test',
+    packageName: 'co.sumit.harbor.test',
     version: '1.0.0',
     buildNumber: '1',
     buildSignature: '',

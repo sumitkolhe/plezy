@@ -208,7 +208,7 @@ void main() {
       expect(page.totalResults, 37);
     });
 
-    test('adds the current Plezy locale to every catalog GET', () async {
+    test('adds the current Harbor locale to every catalog GET', () async {
       final urls = <Uri>[];
       final client = clientWith(
         MockClient((request) async {

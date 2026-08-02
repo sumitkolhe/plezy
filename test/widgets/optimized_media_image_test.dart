@@ -247,7 +247,7 @@ void main() {
     tester.view.physicalSize = const Size(1280, 720);
     addTearDown(tester.view.resetDevicePixelRatio);
     addTearDown(tester.view.resetPhysicalSize);
-    final directory = Directory.systemTemp.createTempSync('plezy-image-test');
+    final directory = Directory.systemTemp.createTempSync('harbor-image-test');
     addTearDown(() => directory.deleteSync(recursive: true));
     final file = File('${directory.path}/poster.png');
     late StateSetter rebuild;

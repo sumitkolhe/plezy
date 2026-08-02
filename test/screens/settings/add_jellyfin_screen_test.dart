@@ -287,7 +287,7 @@ Future<List<DiscoveredJellyfinServer>> _noLocalServers() async => const [];
 void main() {
   group('resolveJellyfinClientVersion', () {
     PackageInfo packageInfo(String version) =>
-        PackageInfo(appName: 'Harbor', packageName: 'com.example.plezy', version: version, buildNumber: '1');
+        PackageInfo(appName: 'Harbor', packageName: 'co.sumit.harbor', version: version, buildNumber: '1');
 
     test('uses a non-empty package version', () async {
       final version = await resolveJellyfinClientVersion(packageInfoLoader: () async => packageInfo(' 2.9.1 '));

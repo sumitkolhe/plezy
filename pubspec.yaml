@@ -55,7 +55,7 @@ dependencies:
   # partial file, independently fixing upstream #649's missing-directory case.
   # Upstream's later target-directory fallback is unnecessary while this fork
   # retains its same-filesystem move and resume-data cleanup implementation.
-  # No per-host trust bypass is carried: Plezy has no app-wide certificate
+  # No per-host trust bypass is carried: Harbor has no app-wide certificate
   # exception policy, and weakening only background downloads would make API
   # and playback behavior inconsistent. Revisit only with an explicit,
   # host-scoped trust setting shared by every media-server HTTP client.
