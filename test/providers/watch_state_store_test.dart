@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/media/media_backend.dart';
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/media/media_backend.dart';
 
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/providers/watch_state_store.dart';
-import 'package:plezy/services/watch_state_resolver.dart';
-import 'package:plezy/utils/watch_state_notifier.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/providers/watch_state_store.dart';
+import 'package:harbor/services/watch_state_resolver.dart';
+import 'package:harbor/utils/watch_state_notifier.dart';
 import '../test_helpers/media_items.dart';
 
 Future<void> _emit(WatchStateEvent event) async {

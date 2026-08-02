@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/jellyfin_auth_header.dart';
+import 'package:harbor/services/jellyfin_auth_header.dart';
 
 /// Every field value Jellyfin reads back out of the header, mirroring the
 /// server's own parse: split on the top-level commas, strip the quotes, then

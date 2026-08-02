@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/settings_binding_owner.dart';
-import 'package:plezy/services/settings_service.dart';
+import 'package:harbor/services/settings_binding_owner.dart';
+import 'package:harbor/services/settings_service.dart';
 
 import '../test_helpers/prefs.dart';
 

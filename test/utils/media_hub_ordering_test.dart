@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_hub.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_library.dart';
-import 'package:plezy/utils/media_hub_ordering.dart';
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_hub.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_library.dart';
+import 'package:harbor/utils/media_hub_ordering.dart';
 import '../test_helpers/media_items.dart';
 
 const Object _defaultServerId = Object();

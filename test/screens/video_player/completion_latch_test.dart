@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/providers/playback_state_provider.dart';
-import 'package:plezy/screens/video_player/completion_latch.dart';
+import 'package:harbor/providers/playback_state_provider.dart';
+import 'package:harbor/screens/video_player/completion_latch.dart';
 
 void main() {
   CompletionLatch latch() => CompletionLatch(rearmWindowMs: 2000);

@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/providers/download_provider.dart';
-import 'package:plezy/services/download_manager_service.dart';
-import 'package:plezy/services/download_storage_service.dart';
-import 'package:plezy/utils/smart_deletion_handler.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/providers/download_provider.dart';
+import 'package:harbor/services/download_manager_service.dart';
+import 'package:harbor/services/download_storage_service.dart';
+import 'package:harbor/utils/smart_deletion_handler.dart';
 import 'package:provider/provider.dart';
 
 void main() {

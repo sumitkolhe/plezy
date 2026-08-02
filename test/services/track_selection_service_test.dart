@@ -1,13 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_server_user_profile.dart';
-import 'package:plezy/media/media_source_info.dart';
-import 'package:plezy/models/jellyfin/jellyfin_user_profile.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/services/subtitle_preference.dart';
-import 'package:plezy/services/track_selection_service.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_server_user_profile.dart';
+import 'package:harbor/media/media_source_info.dart';
+import 'package:harbor/models/jellyfin/jellyfin_user_profile.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/services/subtitle_preference.dart';
+import 'package:harbor/services/track_selection_service.dart';
 import '../test_helpers/media_items.dart';
 
 // NOTE on coverage scope:

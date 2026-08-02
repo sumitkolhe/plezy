@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/card_focus_scope.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/theme/mono_theme.dart';
-import 'package:plezy/utils/media_image_helper.dart';
-import 'package:plezy/utils/platform_detector.dart';
-import 'package:plezy/widgets/cast_member_strip.dart';
-import 'package:plezy/widgets/optimized_media_image.dart';
+import 'package:harbor/focus/card_focus_scope.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/utils/media_image_helper.dart';
+import 'package:harbor/utils/platform_detector.dart';
+import 'package:harbor/widgets/cast_member_strip.dart';
+import 'package:harbor/widgets/optimized_media_image.dart';
 
 import '../test_helpers/prefs.dart';
 

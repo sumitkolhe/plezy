@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_part.dart';
-import 'package:plezy/media/media_version.dart';
-import 'package:plezy/media/play_queue.dart';
-import 'package:plezy/providers/playback_state_provider.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_part.dart';
+import 'package:harbor/media/media_version.dart';
+import 'package:harbor/media/play_queue.dart';
+import 'package:harbor/providers/playback_state_provider.dart';
 import '../test_helpers/media_items.dart';
 
 JellyfinMediaItem _item(String ratingKey) =>

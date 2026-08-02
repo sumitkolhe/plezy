@@ -1,4 +1,4 @@
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 class DonationService {
   static const String donationUrl = 'https://liberapay.com/edde746';

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/widgets/card_inflation_budget.dart';
+import 'package:harbor/widgets/card_inflation_budget.dart';
 
 class _UpgradeHost extends StatefulWidget {
   const _UpgradeHost();

@@ -1,12 +1,12 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/media/ids.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/providers/offline_mode_provider.dart';
-import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/providers/offline_mode_provider.dart';
+import 'package:harbor/services/jellyfin_client.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 import '../test_helpers/multi_server_fixtures.dart';
 import '../test_helpers/prefs.dart';

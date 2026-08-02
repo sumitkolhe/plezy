@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/media/media_backend.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/media/media_backend.dart';
 
 /// Backend-agnostic [Connection] sealed-class tests. The
 /// `connection_registry_test` already covers DB persistence; these focus on

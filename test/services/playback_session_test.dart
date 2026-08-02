@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
+import 'package:harbor/media/media_backend.dart';
 
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_version.dart';
-import 'package:plezy/models/transcode_quality_preset.dart';
-import 'package:plezy/services/playback_context.dart';
-import 'package:plezy/services/playback_initialization_types.dart';
-import 'package:plezy/services/playback_session.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_version.dart';
+import 'package:harbor/models/transcode_quality_preset.dart';
+import 'package:harbor/services/playback_context.dart';
+import 'package:harbor/services/playback_initialization_types.dart';
+import 'package:harbor/services/playback_session.dart';
 import '../test_helpers/media_items.dart';
 
 PlaybackContext _context(PlaybackInitializationResult result) {

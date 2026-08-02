@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/library_query.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/mixins/paginated_item_loader.dart';
-import 'package:plezy/mixins/standard_paginated_view.dart';
-import 'package:plezy/utils/media_server_http_client.dart';
-import 'package:plezy/exceptions/media_server_exceptions.dart';
+import 'package:harbor/media/library_query.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/mixins/paginated_item_loader.dart';
+import 'package:harbor/mixins/standard_paginated_view.dart';
+import 'package:harbor/utils/media_server_http_client.dart';
+import 'package:harbor/exceptions/media_server_exceptions.dart';
 import '../test_helpers/media_items.dart';
 
 /// Test probe wired with a controllable `fetchPage` so individual tests can

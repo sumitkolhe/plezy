@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/widgets/media_card_sliver_layout.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/widgets/media_card_sliver_layout.dart';
 
 void main() {
   Widget host({

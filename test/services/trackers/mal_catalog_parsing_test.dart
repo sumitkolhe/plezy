@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/models/mal/mal_anime.dart';
-import 'package:plezy/services/trackers/mal/mal_page.dart';
+import 'package:harbor/models/mal/mal_anime.dart';
+import 'package:harbor/services/trackers/mal/mal_page.dart';
 
 void main() {
   group('MalPage.fromJson', () {

@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/media_controls_manager.dart';
+import 'package:harbor/services/media_controls_manager.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

@@ -1,11 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/input_mode_tracker.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_library.dart';
-import 'package:plezy/screens/libraries/tabs/base_library_tab.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_library.dart';
+import 'package:harbor/screens/libraries/tabs/base_library_tab.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 const _library = MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies');
 const _libraryB = MediaLibrary(id: '2', backend: MediaBackend.jellyfin, title: 'Shows');

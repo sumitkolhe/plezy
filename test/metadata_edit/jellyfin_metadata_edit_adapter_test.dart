@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/media/media_backend.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/media/media_backend.dart';
 
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/metadata_edit/jellyfin_metadata_edit_adapter.dart';
-import 'package:plezy/metadata_edit/metadata_edit_models.dart';
-import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/utils/media_image_helper.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/metadata_edit/jellyfin_metadata_edit_adapter.dart';
+import 'package:harbor/metadata_edit/metadata_edit_models.dart';
+import 'package:harbor/services/jellyfin_client.dart';
+import 'package:harbor/utils/media_image_helper.dart';
 import '../test_helpers/media_items.dart';
 
 void main() {

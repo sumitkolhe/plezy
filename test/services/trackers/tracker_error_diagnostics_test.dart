@@ -3,21 +3,21 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/models/trackers/device_code.dart';
-import 'package:plezy/services/trackers/anilist/anilist_client.dart';
-import 'package:plezy/services/trackers/mal/mal_auth_service.dart';
-import 'package:plezy/services/trackers/mal/mal_client.dart';
-import 'package:plezy/services/trackers/oauth_proxy_client.dart';
-import 'package:plezy/services/trackers/simkl/simkl_auth_service.dart';
-import 'package:plezy/services/trackers/simkl/simkl_client.dart';
-import 'package:plezy/services/trackers/tracker_connect_runner.dart';
-import 'package:plezy/services/trackers/tracker_exceptions.dart';
-import 'package:plezy/services/trackers/tracker_constants.dart';
-import 'package:plezy/services/trackers/tracker_session.dart';
-import 'package:plezy/services/trackers/trakt/trakt_auth_service.dart';
-import 'package:plezy/services/trackers/trakt/trakt_client.dart';
-import 'package:plezy/utils/app_logger.dart';
-import 'package:plezy/utils/log_redaction_manager.dart';
+import 'package:harbor/models/trackers/device_code.dart';
+import 'package:harbor/services/trackers/anilist/anilist_client.dart';
+import 'package:harbor/services/trackers/mal/mal_auth_service.dart';
+import 'package:harbor/services/trackers/mal/mal_client.dart';
+import 'package:harbor/services/trackers/oauth_proxy_client.dart';
+import 'package:harbor/services/trackers/simkl/simkl_auth_service.dart';
+import 'package:harbor/services/trackers/simkl/simkl_client.dart';
+import 'package:harbor/services/trackers/tracker_connect_runner.dart';
+import 'package:harbor/services/trackers/tracker_exceptions.dart';
+import 'package:harbor/services/trackers/tracker_constants.dart';
+import 'package:harbor/services/trackers/tracker_session.dart';
+import 'package:harbor/services/trackers/trakt/trakt_auth_service.dart';
+import 'package:harbor/services/trackers/trakt/trakt_client.dart';
+import 'package:harbor/utils/app_logger.dart';
+import 'package:harbor/utils/log_redaction_manager.dart';
 
 const _canaries = <String>[
   'fint-access-Q7w9',

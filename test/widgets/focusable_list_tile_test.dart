@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/widgets/focusable_list_tile.dart';
+import 'package:harbor/widgets/focusable_list_tile.dart';
 
 void main() {
   testWidgets('switch tile toggles once from SELECT', (tester) async {

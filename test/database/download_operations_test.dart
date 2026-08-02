@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:drift/drift.dart' hide isNull, isNotNull;
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/media/ids.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/database/download_operations.dart';
-import 'package:plezy/models/download_models.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/database/download_operations.dart';
+import 'package:harbor/models/download_models.dart';
 
 import '../test_helpers/download_fixtures.dart';
 

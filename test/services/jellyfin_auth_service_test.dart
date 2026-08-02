@@ -5,12 +5,12 @@ import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/exceptions/media_server_exceptions.dart';
-import 'package:plezy/services/jellyfin_auth_service.dart';
-import 'package:plezy/services/jellyfin_endpoint_discovery.dart';
-import 'package:plezy/utils/log_redaction_manager.dart';
-import 'package:plezy/utils/media_server_timeouts.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/exceptions/media_server_exceptions.dart';
+import 'package:harbor/services/jellyfin_auth_service.dart';
+import 'package:harbor/services/jellyfin_endpoint_discovery.dart';
+import 'package:harbor/utils/log_redaction_manager.dart';
+import 'package:harbor/utils/media_server_timeouts.dart';
 
 import '../test_helpers/backend_client_fixtures.dart';
 

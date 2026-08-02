@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/models/download_models.dart';
-import 'package:plezy/utils/downloaded_version_match.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/models/download_models.dart';
+import 'package:harbor/utils/downloaded_version_match.dart';
 
 DownloadedMediaItem _row({int mediaIndex = 0, String? mediaSourceId}) {
   return DownloadedMediaItem(

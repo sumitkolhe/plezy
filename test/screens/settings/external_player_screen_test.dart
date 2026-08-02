@@ -2,16 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/focusable_button.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/models/external_player_models.dart';
-import 'package:plezy/screens/settings/external_player_screen.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/theme/mono_theme.dart';
-import 'package:plezy/widgets/focusable_list_tile.dart';
+import 'package:harbor/focus/focusable_button.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/models/external_player_models.dart';
+import 'package:harbor/screens/settings/external_player_screen.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/widgets/focusable_list_tile.dart';
 
 import '../../test_helpers/prefs.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 void main() {
   late SettingsService settings;

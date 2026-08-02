@@ -114,7 +114,7 @@ final _productionFilter = ProductionFilter();
 ///
 /// Usage:
 /// ```dart
-/// import 'package:plezy/utils/app_logger.dart';
+/// import 'package:harbor/utils/app_logger.dart';
 ///
 /// appLogger.d('Debug message');
 /// appLogger.i('Info message');

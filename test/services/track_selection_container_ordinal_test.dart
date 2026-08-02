@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_source_info.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/services/track_selection_service.dart';
+import 'package:harbor/media/media_source_info.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/services/track_selection_service.dart';
 
 // The container-ordinal guards in `findMpvTrackForServerSubtitle` and
 // `findServerTrackForMpvSubtitle` look like mirrors but are not: when the probe

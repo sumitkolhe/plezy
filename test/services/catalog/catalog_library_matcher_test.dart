@@ -1,12 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/models/catalog/catalog_item.dart';
-import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/services/catalog/catalog_library_matcher.dart';
-import 'package:plezy/services/data_aggregation_service.dart';
-import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/utils/external_ids.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/models/catalog/catalog_item.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/services/catalog/catalog_library_matcher.dart';
+import 'package:harbor/services/data_aggregation_service.dart';
+import 'package:harbor/services/multi_server_manager.dart';
+import 'package:harbor/utils/external_ids.dart';
 
 import '../../test_helpers/media_items.dart';
 

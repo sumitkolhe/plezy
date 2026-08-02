@@ -1,12 +1,12 @@
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/services/device_performance.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/utils/media_image_helper.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_server_client.dart';
+import 'package:harbor/services/device_performance.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/utils/media_image_helper.dart';
 
 import '../test_helpers/media_items.dart';
 

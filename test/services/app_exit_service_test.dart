@@ -1,7 +1,7 @@
 import 'dart:ui' as ui;
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/app_exit_service.dart';
+import 'package:harbor/services/app_exit_service.dart';
 
 void main() {
   // The window's close button must run the registered onExitRequested handlers

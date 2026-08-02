@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/mpv/player/player_native.dart';
-import 'package:plezy/providers/playback_state_provider.dart';
-import 'package:plezy/screens/video_player_screen.dart';
-import 'package:plezy/services/settings_service.dart';
+import 'package:harbor/mpv/player/player_native.dart';
+import 'package:harbor/providers/playback_state_provider.dart';
+import 'package:harbor/screens/video_player_screen.dart';
+import 'package:harbor/services/settings_service.dart';
 import 'package:provider/provider.dart';
 
 import '../../test_helpers/media_items.dart';

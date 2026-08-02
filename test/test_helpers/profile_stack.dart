@@ -1,10 +1,10 @@
 import 'package:drift/native.dart';
-import 'package:plezy/connection/connection_registry.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/profiles/active_profile_provider.dart';
-import 'package:plezy/profiles/profile_connection_registry.dart';
-import 'package:plezy/profiles/profile_registry.dart';
-import 'package:plezy/services/storage_service.dart';
+import 'package:harbor/connection/connection_registry.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/profiles/active_profile_provider.dart';
+import 'package:harbor/profiles/profile_connection_registry.dart';
+import 'package:harbor/profiles/profile_registry.dart';
+import 'package:harbor/services/storage_service.dart';
 
 /// The profile dependency graph wired the way production wires it: database →
 /// registries → [ActiveProfileProvider].

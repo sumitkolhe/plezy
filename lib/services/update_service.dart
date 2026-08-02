@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:plezy/utils/app_logger.dart';
-import 'package:plezy/utils/media_server_http_client.dart';
+import 'package:harbor/utils/app_logger.dart';
+import 'package:harbor/utils/media_server_http_client.dart';
 import 'base_shared_preferences_service.dart';
 
 /// Service to check for new versions on GitHub

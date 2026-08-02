@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/screens/media_detail/detail_design.dart';
-import 'package:plezy/theme/mono_theme.dart';
-import 'package:plezy/theme/mono_tokens.dart';
+import 'package:harbor/screens/media_detail/detail_design.dart';
+import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/theme/mono_tokens.dart';
 
 void main() {
   Future<void> pump(WidgetTester tester, Widget child) {

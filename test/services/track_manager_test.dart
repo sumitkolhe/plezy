@@ -2,17 +2,17 @@ import 'dart:async';
 
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_source_info.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/mpv/player/player_stream_controllers.dart';
-import 'package:plezy/screens/video_player_screen.dart';
-import 'package:plezy/services/playback_initialization_types.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/services/subtitle_preference.dart';
-import 'package:plezy/services/track_manager.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_source_info.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/mpv/player/player_stream_controllers.dart';
+import 'package:harbor/screens/video_player_screen.dart';
+import 'package:harbor/services/playback_initialization_types.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/services/subtitle_preference.dart';
+import 'package:harbor/services/track_manager.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';

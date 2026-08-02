@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/file_info_parser.dart';
+import 'package:harbor/services/file_info_parser.dart';
 
 /// Unit tests for the stream walker: its accounting (single video pointer,
 /// every audio + sub tracked, raw video stream retained once) and the

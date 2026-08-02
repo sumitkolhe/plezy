@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/mixins/grid_focus_node_mixin.dart';
+import 'package:harbor/mixins/grid_focus_node_mixin.dart';
 
 void main() {
   testWidgets('focused distant nodes retain ownership until a later eviction', (tester) async {

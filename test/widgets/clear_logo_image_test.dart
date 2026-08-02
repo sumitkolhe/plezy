@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/utils/layout_constants.dart';
-import 'package:plezy/widgets/optimized_media_image.dart';
+import 'package:harbor/utils/layout_constants.dart';
+import 'package:harbor/widgets/optimized_media_image.dart';
 
 void main() {
   Widget buildLogo({String? logoPath, double width = 400, double height = 120, double devicePixelRatio = 3}) {

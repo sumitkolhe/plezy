@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/data/hid_key_labels.dart';
-import 'package:plezy/models/hotkey_model.dart';
+import 'package:harbor/data/hid_key_labels.dart';
+import 'package:harbor/models/hotkey_model.dart';
 
 void main() {
   test('catalog preserves all 325 unique keys in canonical numeric order', () {

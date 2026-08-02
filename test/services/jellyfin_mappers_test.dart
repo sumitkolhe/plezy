@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_stream.dart';
-import 'package:plezy/services/jellyfin_mappers.dart';
-import 'package:plezy/services/settings_service.dart' show EpisodePosterMode;
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_stream.dart';
+import 'package:harbor/services/jellyfin_mappers.dart';
+import 'package:harbor/services/settings_service.dart' show EpisodePosterMode;
 
 const _serverId = 'jf-machine-1';
 

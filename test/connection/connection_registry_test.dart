@@ -1,8 +1,8 @@
 import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/connection/connection_registry.dart';
-import 'package:plezy/database/app_database.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/connection/connection_registry.dart';
+import 'package:harbor/database/app_database.dart';
 
 import '../test_helpers/prefs.dart';
 

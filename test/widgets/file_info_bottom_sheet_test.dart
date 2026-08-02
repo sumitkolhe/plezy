@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/focusable_wrapper.dart';
-import 'package:plezy/focus/input_mode_tracker.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/media/media_file_info.dart';
-import 'package:plezy/widgets/file_info_bottom_sheet.dart';
+import 'package:harbor/focus/focusable_wrapper.dart';
+import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/media/media_file_info.dart';
+import 'package:harbor/widgets/file_info_bottom_sheet.dart';
 
 import '../test_helpers/theme.dart';
 

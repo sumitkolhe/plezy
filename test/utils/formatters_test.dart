@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/i18n/app_locale_utils.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/utils/formatters.dart';
+import 'package:harbor/i18n/app_locale_utils.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/utils/formatters.dart';
 
 void main() {
   setUp(() => LocaleSettings.setLocaleSync(AppLocale.en));

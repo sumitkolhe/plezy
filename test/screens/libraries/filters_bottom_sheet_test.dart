@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_filter.dart';
-import 'package:plezy/screens/libraries/filters_bottom_sheet.dart';
-import 'package:plezy/screens/libraries/state_messages.dart';
-import 'package:plezy/widgets/bottom_sheet_header.dart';
-import 'package:plezy/widgets/overlay_sheet.dart';
+import 'package:harbor/media/media_filter.dart';
+import 'package:harbor/screens/libraries/filters_bottom_sheet.dart';
+import 'package:harbor/screens/libraries/state_messages.dart';
+import 'package:harbor/widgets/bottom_sheet_header.dart';
+import 'package:harbor/widgets/overlay_sheet.dart';
 
 final _filters = [
   MediaFilter(filter: 'genre', filterType: 'string', key: 'genre', title: 'Genre', type: 'filter'),

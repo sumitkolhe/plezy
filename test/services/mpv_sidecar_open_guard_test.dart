@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/services/mpv_sidecar_open_guard.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/services/mpv_sidecar_open_guard.dart';
 
 class _StreamPlayer implements Player {
   @override

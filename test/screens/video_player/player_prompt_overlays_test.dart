@@ -2,13 +2,13 @@ import 'dart:ui' show PointerDeviceKind;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/providers/playback_state_provider.dart';
-import 'package:plezy/screens/video_player/widgets/player_prompt_overlays.dart';
-import 'package:plezy/services/pip_service.dart';
-import 'package:plezy/widgets/video_controls/player_chrome_controller.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/providers/playback_state_provider.dart';
+import 'package:harbor/screens/video_player/widgets/player_prompt_overlays.dart';
+import 'package:harbor/services/pip_service.dart';
+import 'package:harbor/widgets/video_controls/player_chrome_controller.dart';
 import 'package:provider/provider.dart';
 import '../../test_helpers/media_items.dart';
 

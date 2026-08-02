@@ -3,16 +3,16 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/i18n/app_locale_utils.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/models/seerr/seerr_page.dart';
-import 'package:plezy/models/seerr/seerr_request.dart';
-import 'package:plezy/models/seerr/seerr_session.dart';
-import 'package:plezy/services/seerr/seerr_auth_service.dart';
-import 'package:plezy/services/seerr/seerr_client.dart';
-import 'package:plezy/services/seerr/seerr_constants.dart';
-import 'package:plezy/services/seerr/seerr_exceptions.dart';
-import 'package:plezy/services/seerr/seerr_http_client.dart';
+import 'package:harbor/i18n/app_locale_utils.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/models/seerr/seerr_page.dart';
+import 'package:harbor/models/seerr/seerr_request.dart';
+import 'package:harbor/models/seerr/seerr_session.dart';
+import 'package:harbor/services/seerr/seerr_auth_service.dart';
+import 'package:harbor/services/seerr/seerr_client.dart';
+import 'package:harbor/services/seerr/seerr_constants.dart';
+import 'package:harbor/services/seerr/seerr_exceptions.dart';
+import 'package:harbor/services/seerr/seerr_http_client.dart';
 
 SeerrSession _session({SeerrAuthMethod method = SeerrAuthMethod.jellyfin, String secret = 'hunter2'}) => SeerrSession(
   baseUrl: 'https://seerr.example.com',

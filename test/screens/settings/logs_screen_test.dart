@@ -7,11 +7,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:plezy/focus/input_mode_tracker.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/screens/settings/logs_screen.dart';
-import 'package:plezy/utils/app_logger.dart';
-import 'package:plezy/utils/media_server_http_client.dart';
+import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/screens/settings/logs_screen.dart';
+import 'package:harbor/utils/app_logger.dart';
+import 'package:harbor/utils/media_server_http_client.dart';
 
 void main() {
   setUpAll(() {

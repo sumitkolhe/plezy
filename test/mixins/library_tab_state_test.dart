@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/media/ids.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_library.dart';
-import 'package:plezy/mixins/library_tab_state.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_library.dart';
+import 'package:harbor/mixins/library_tab_state.dart';
 import 'package:provider/provider.dart';
-import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 import '../test_helpers/multi_server_fixtures.dart';
 

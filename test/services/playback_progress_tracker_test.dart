@@ -1,21 +1,21 @@
 import 'dart:async';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/media/ids.dart';
 
 import 'package:drift/native.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_source_info.dart';
-import 'package:plezy/media/playback_report_metadata.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/offline_watch_sync_service.dart';
-import 'package:plezy/services/playback_progress_tracker.dart';
-import 'package:plezy/utils/watch_state_notifier.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_server_client.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_source_info.dart';
+import 'package:harbor/media/playback_report_metadata.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/services/multi_server_manager.dart';
+import 'package:harbor/services/offline_watch_sync_service.dart';
+import 'package:harbor/services/playback_progress_tracker.dart';
+import 'package:harbor/utils/watch_state_notifier.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';

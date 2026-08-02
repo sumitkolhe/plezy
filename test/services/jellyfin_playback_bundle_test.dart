@@ -4,10 +4,10 @@ import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/services/jellyfin_api_cache.dart';
-import 'package:plezy/services/jellyfin_client.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/services/jellyfin_api_cache.dart';
+import 'package:harbor/services/jellyfin_client.dart';
 
 import '../test_helpers/backend_client_fixtures.dart';
 

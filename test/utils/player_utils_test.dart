@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/mpv/mpv.dart' show Player, PlayerState;
-import 'package:plezy/utils/player_utils.dart';
+import 'package:harbor/mpv/mpv.dart' show Player, PlayerState;
+import 'package:harbor/utils/player_utils.dart';
 
 void main() {
   group('shouldRestartBeforePreviousItem', () {

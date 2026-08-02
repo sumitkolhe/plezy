@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/utils/title_match_candidates.dart';
+import 'package:harbor/utils/title_match_candidates.dart';
 
 void main() {
   group('stripSeasonSuffix', () {

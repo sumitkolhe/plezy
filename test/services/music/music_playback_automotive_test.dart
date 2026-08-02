@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:os_media_controls/os_media_controls.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/services/multi_server_manager.dart';
-import 'package:plezy/services/music/music_playback_service.dart';
-import 'package:plezy/services/music/music_playback_service_impl.dart';
-import 'package:plezy/utils/notification_permission.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/services/multi_server_manager.dart';
+import 'package:harbor/services/music/music_playback_service.dart';
+import 'package:harbor/services/music/music_playback_service_impl.dart';
+import 'package:harbor/utils/notification_permission.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 import '../../test_helpers/media_items.dart';
 import 'music_playback_service_test.dart' as music_fakes;

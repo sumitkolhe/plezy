@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/media/ids.dart';
 
 /// Seeds `downloaded_media` rows at an arbitrary [status] so tests can start
 /// from completed, downloading, or paused state.

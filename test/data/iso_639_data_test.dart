@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/data/iso_639_data.dart';
-import 'package:plezy/utils/language_codes.dart';
+import 'package:harbor/data/iso_639_data.dart';
+import 'package:harbor/utils/language_codes.dart';
 
 void main() {
   test('catalog preserves 184 canonical entries and globally unique codes', () {

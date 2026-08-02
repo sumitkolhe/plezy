@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/services/data_aggregation_service.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/services/data_aggregation_service.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

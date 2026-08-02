@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:plezy/focus/focusable_text_field.dart';
-import 'package:plezy/services/gamepad_service.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/focus/focusable_text_field.dart';
+import 'package:harbor/services/gamepad_service.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 void main() {
   tearDown(() {

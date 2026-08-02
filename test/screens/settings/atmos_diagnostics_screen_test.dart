@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/screens/settings/atmos_diagnostics_screen.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/theme/mono_theme.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/screens/settings/atmos_diagnostics_screen.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_theme.dart';
 
 import '../../test_helpers/prefs.dart';
 

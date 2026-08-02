@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/services/jellyfin_client.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/services/jellyfin_client.dart';
 
 JellyfinConnection testJellyfinConnection({
   String machineId = 'srv-1',

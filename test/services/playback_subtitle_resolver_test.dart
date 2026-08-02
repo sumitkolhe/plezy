@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_source_info.dart';
-import 'package:plezy/mpv/mpv.dart';
-import 'package:plezy/services/playback_initialization_types.dart';
-import 'package:plezy/services/playback_subtitle_resolver.dart';
-import 'package:plezy/services/subtitle_preference.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_source_info.dart';
+import 'package:harbor/mpv/mpv.dart';
+import 'package:harbor/services/playback_initialization_types.dart';
+import 'package:harbor/services/playback_subtitle_resolver.dart';
+import 'package:harbor/services/subtitle_preference.dart';
 
 import '../test_helpers/media_items.dart';
 

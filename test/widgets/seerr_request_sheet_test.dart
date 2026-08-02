@@ -5,15 +5,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/focus/focusable_button.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/models/seerr/seerr_session.dart';
-import 'package:plezy/services/catalog/seerr_catalog_source.dart';
-import 'package:plezy/services/seerr/seerr_client.dart';
-import 'package:plezy/services/seerr/seerr_constants.dart';
-import 'package:plezy/widgets/overlay_sheet.dart';
-import 'package:plezy/widgets/seerr_request_sheet.dart';
+import 'package:harbor/focus/focusable_button.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/models/seerr/seerr_session.dart';
+import 'package:harbor/services/catalog/seerr_catalog_source.dart';
+import 'package:harbor/services/seerr/seerr_client.dart';
+import 'package:harbor/services/seerr/seerr_constants.dart';
+import 'package:harbor/widgets/overlay_sheet.dart';
+import 'package:harbor/widgets/seerr_request_sheet.dart';
 
 http.Response _json(Object body, {int status = 200}) =>
     http.Response(jsonEncode(body), status, headers: {'content-type': 'application/json'});

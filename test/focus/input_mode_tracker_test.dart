@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/input_mode_tracker.dart';
-import 'package:plezy/services/gamepad_service.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/services/gamepad_service.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

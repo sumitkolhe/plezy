@@ -1,8 +1,8 @@
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_role.dart';
-import 'package:plezy/media/media_version.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_role.dart';
+import 'package:harbor/media/media_version.dart';
 
 /// Canonical [MediaItem] fixture.
 ///

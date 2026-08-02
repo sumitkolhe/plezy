@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/models/trakt/trakt_catalog_entry.dart';
-import 'package:plezy/models/trakt/trakt_catalog_media.dart';
-import 'package:plezy/models/trakt/trakt_images.dart';
-import 'package:plezy/services/trackers/tracker_session.dart';
-import 'package:plezy/services/trackers/trakt/trakt_client.dart';
-import 'package:plezy/services/trackers/trakt/trakt_constants.dart';
+import 'package:harbor/models/trakt/trakt_catalog_entry.dart';
+import 'package:harbor/models/trakt/trakt_catalog_media.dart';
+import 'package:harbor/models/trakt/trakt_images.dart';
+import 'package:harbor/services/trackers/tracker_session.dart';
+import 'package:harbor/services/trackers/trakt/trakt_client.dart';
+import 'package:harbor/services/trackers/trakt/trakt_constants.dart';
 
 int _now() => DateTime.now().millisecondsSinceEpoch ~/ 1000;
 

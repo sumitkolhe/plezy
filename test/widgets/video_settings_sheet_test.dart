@@ -2,21 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/mpv/models.dart';
-import 'package:plezy/mpv/player/player.dart';
-import 'package:plezy/mpv/player/player_state.dart';
-import 'package:plezy/mpv/player/player_streams.dart';
-import 'package:plezy/screens/settings/subtitle_styling_screen.dart';
-import 'package:plezy/services/sleep_timer_service.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/widgets/overlay_sheet.dart';
-import 'package:plezy/widgets/video_controls/models/track_controls_state.dart';
-import 'package:plezy/widgets/video_controls/sheets/video_settings_sheet.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/mpv/models.dart';
+import 'package:harbor/mpv/player/player.dart';
+import 'package:harbor/mpv/player/player_state.dart';
+import 'package:harbor/mpv/player/player_streams.dart';
+import 'package:harbor/screens/settings/subtitle_styling_screen.dart';
+import 'package:harbor/services/sleep_timer_service.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/widgets/overlay_sheet.dart';
+import 'package:harbor/widgets/video_controls/models/track_controls_state.dart';
+import 'package:harbor/widgets/video_controls/sheets/video_settings_sheet.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/theme.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 void main() {
   setUpAll(() async {

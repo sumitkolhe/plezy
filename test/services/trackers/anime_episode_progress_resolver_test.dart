@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/models/trackers/anime_lists_mapping.dart';
-import 'package:plezy/services/trackers/anime_episode_progress_resolver.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_server_client.dart';
+import 'package:harbor/models/trackers/anime_lists_mapping.dart';
+import 'package:harbor/services/trackers/anime_episode_progress_resolver.dart';
 import '../../test_helpers/media_items.dart';
 
 class _FakeMediaServerClient implements MediaServerClient {

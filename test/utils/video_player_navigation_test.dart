@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_backend.dart';
+import 'package:harbor/media/media_backend.dart';
 
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_version.dart';
-import 'package:plezy/models/transcode_quality_preset.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/utils/video_player_navigation.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_version.dart';
+import 'package:harbor/models/transcode_quality_preset.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/utils/video_player_navigation.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';

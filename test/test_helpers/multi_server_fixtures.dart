@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/services/data_aggregation_service.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/media/media_server_client.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/services/data_aggregation_service.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 /// Wires [manager] into the provider widget tests read servers from. The caller
 /// owns disposal of the returned provider.

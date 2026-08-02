@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:plezy/widgets/app_icon.dart';
+import 'package:harbor/widgets/app_icon.dart';
 
 import '../media/media_server_client.dart';
 import '../services/device_performance.dart';

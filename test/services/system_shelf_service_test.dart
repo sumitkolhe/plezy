@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/ids.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_server_client.dart';
-import 'package:plezy/services/system_shelf_service.dart';
+import 'package:harbor/media/ids.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_server_client.dart';
+import 'package:harbor/services/system_shelf_service.dart';
 
 import '../test_helpers/media_items.dart';
 

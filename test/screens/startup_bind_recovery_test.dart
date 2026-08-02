@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/main.dart';
-import 'package:plezy/navigation/navigation_tabs.dart';
-import 'package:plezy/screens/main_screen.dart';
+import 'package:harbor/main.dart';
+import 'package:harbor/navigation/navigation_tabs.dart';
+import 'package:harbor/screens/main_screen.dart';
 
 List<NavigationTabId> _ids(List<NavigationTab> tabs) => tabs.map((tab) => tab.id).toList();
 

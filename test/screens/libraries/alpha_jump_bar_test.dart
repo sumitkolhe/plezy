@@ -3,12 +3,12 @@ import 'dart:ui' show SemanticsAction, Tristate;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/dpad_navigator.dart';
-import 'package:plezy/focus/key_event_utils.dart';
-import 'package:plezy/i18n/strings.g.dart';
-import 'package:plezy/media/library_first_character.dart';
-import 'package:plezy/screens/libraries/alpha_jump_bar.dart';
-import 'package:plezy/utils/platform_detector.dart';
+import 'package:harbor/focus/dpad_navigator.dart';
+import 'package:harbor/focus/key_event_utils.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/media/library_first_character.dart';
+import 'package:harbor/screens/libraries/alpha_jump_bar.dart';
+import 'package:harbor/utils/platform_detector.dart';
 
 const _backKeys = [
   _BackKeyCase('Escape', LogicalKeyboardKey.escape, PhysicalKeyboardKey.escape),

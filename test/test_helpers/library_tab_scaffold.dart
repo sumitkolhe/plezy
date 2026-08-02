@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/input_mode_tracker.dart';
-import 'package:plezy/navigation/main_screen_scope.dart';
-import 'package:plezy/providers/multi_server_provider.dart';
-import 'package:plezy/theme/mono_theme.dart';
+import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/navigation/main_screen_scope.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/theme/mono_theme.dart';
 import 'package:provider/provider.dart';
 
 /// Pumps [tab] under the ancestors every library tab requires: [provider], an

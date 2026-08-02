@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/theme/mono_theme.dart';
-import 'package:plezy/theme/mono_tokens.dart';
+import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/theme/mono_tokens.dart';
 
 /// Geometry themes such as [Typography.englishLike2021] declare their styles
 /// `inherit: false`, and [TextStyle.merge] returns those verbatim — so a family

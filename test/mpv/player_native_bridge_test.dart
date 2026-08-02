@@ -3,11 +3,11 @@ import 'dart:async' show Completer;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/mpv/models.dart';
-import 'package:plezy/mpv/player/player_native.dart';
-import 'package:plezy/mpv/player/player_base.dart';
-import 'package:plezy/mpv/video.dart';
-import 'package:plezy/services/settings_service.dart';
+import 'package:harbor/mpv/models.dart';
+import 'package:harbor/mpv/player/player_native.dart';
+import 'package:harbor/mpv/player/player_base.dart';
+import 'package:harbor/mpv/video.dart';
+import 'package:harbor/services/settings_service.dart';
 
 import '../test_helpers/mock_player_channels.dart';
 import '../test_helpers/prefs.dart';

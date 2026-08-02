@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/focusable_action_bar.dart';
-import 'package:plezy/focus/key_event_utils.dart';
-import 'package:plezy/mixins/grid_focus_node_mixin.dart';
-import 'package:plezy/screens/focusable_detail_screen_mixin.dart';
-import 'package:plezy/theme/mono_theme.dart';
-import 'package:plezy/utils/platform_detector.dart';
-import 'package:plezy/widgets/overlay_sheet.dart';
+import 'package:harbor/focus/focusable_action_bar.dart';
+import 'package:harbor/focus/key_event_utils.dart';
+import 'package:harbor/mixins/grid_focus_node_mixin.dart';
+import 'package:harbor/screens/focusable_detail_screen_mixin.dart';
+import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/utils/platform_detector.dart';
+import 'package:harbor/widgets/overlay_sheet.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

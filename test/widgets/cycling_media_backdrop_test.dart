@@ -4,12 +4,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/services/settings_service.dart';
-import 'package:plezy/utils/media_image_helper.dart';
-import 'package:plezy/widgets/cycling_media_backdrop.dart';
-import 'package:plezy/widgets/tv_spotlight_background.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/utils/media_image_helper.dart';
+import 'package:harbor/widgets/cycling_media_backdrop.dart';
+import 'package:harbor/widgets/tv_spotlight_background.dart';
 
 import '../test_helpers/prefs.dart';
 

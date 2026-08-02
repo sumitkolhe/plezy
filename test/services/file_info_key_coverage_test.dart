@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_file_info.dart';
-import 'package:plezy/services/jellyfin_client.dart';
+import 'package:harbor/media/media_file_info.dart';
+import 'package:harbor/services/jellyfin_client.dart';
 
 /// Guards the file-info sheet's promise that nothing the server reports is
 /// silently dropped.

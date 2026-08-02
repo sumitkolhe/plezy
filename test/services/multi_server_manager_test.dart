@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/media/ids.dart';
 
 import 'package:drift/native.dart';
 import 'package:fake_async/fake_async.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/connection/connection_registry.dart';
-import 'package:plezy/database/app_database.dart';
-import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/connection/connection_registry.dart';
+import 'package:harbor/database/app_database.dart';
+import 'package:harbor/services/jellyfin_client.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 import '../test_helpers/backend_client_fixtures.dart';
 import '../test_helpers/prefs.dart';

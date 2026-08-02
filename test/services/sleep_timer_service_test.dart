@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fake_async/fake_async.dart';
-import 'package:plezy/services/sleep_timer_service.dart';
+import 'package:harbor/services/sleep_timer_service.dart';
 
 // Duration-based transitions use an injected clock with fake_async so timer
 // ticks and wall-clock arithmetic advance together. The production singleton

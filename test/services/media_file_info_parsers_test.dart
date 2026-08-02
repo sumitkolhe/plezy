@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/media_file_info.dart';
-import 'package:plezy/services/jellyfin_client.dart';
+import 'package:harbor/media/media_file_info.dart';
+import 'package:harbor/services/jellyfin_client.dart';
 
 void main() {
   group('parseJellyfinFileInfoFromJson', () {

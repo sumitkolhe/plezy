@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/models/mpv_config_models.dart';
-import 'package:plezy/models/trakt/trakt_ids.dart';
+import 'package:harbor/models/mpv_config_models.dart';
+import 'package:harbor/models/trakt/trakt_ids.dart';
 
 void main() {
   group('JSON model round trips', () {

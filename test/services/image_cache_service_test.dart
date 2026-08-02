@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:plezy/services/image_cache_service.dart';
+import 'package:harbor/services/image_cache_service.dart';
 
 /// Pins the artwork request limiter's permit lifecycle. CE's cache manager
 /// abandons non-200/202 responses without listening to the body, so the

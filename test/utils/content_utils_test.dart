@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_item_types.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/utils/content_utils.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_item_types.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/utils/content_utils.dart';
 import '../test_helpers/media_items.dart';
 
 MediaItem _episode({int? viewOffsetMs, int? durationMs, int? viewCount, int? leafCount, int? viewedLeafCount}) {

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/models/external_player_models.dart';
+import 'package:harbor/models/external_player_models.dart';
 
 void main() {
   setUp(KnownPlayers.resetForTesting);

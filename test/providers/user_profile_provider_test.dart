@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/connection/connection.dart';
-import 'package:plezy/profiles/profile.dart';
-import 'package:plezy/profiles/profile_connection.dart';
-import 'package:plezy/providers/user_profile_provider.dart';
-import 'package:plezy/services/multi_server_manager.dart';
+import 'package:harbor/connection/connection.dart';
+import 'package:harbor/profiles/profile.dart';
+import 'package:harbor/profiles/profile_connection.dart';
+import 'package:harbor/providers/user_profile_provider.dart';
+import 'package:harbor/services/multi_server_manager.dart';
 
 import '../test_helpers/prefs.dart';
 import '../test_helpers/profile_stack.dart';

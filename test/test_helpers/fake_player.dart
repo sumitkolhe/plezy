@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:plezy/mpv/mpv.dart';
+import 'package:harbor/mpv/mpv.dart';
 
 /// Rich fake [Player] for playback and video-controls tests.
 ///

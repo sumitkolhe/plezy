@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/services/base_shared_preferences_service.dart';
+import 'package:harbor/services/base_shared_preferences_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../test_helpers/prefs.dart';
 

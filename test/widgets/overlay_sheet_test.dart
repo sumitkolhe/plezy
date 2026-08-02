@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/focus/key_event_utils.dart';
-import 'package:plezy/utils/platform_detector.dart';
-import 'package:plezy/widgets/overlay_sheet.dart';
+import 'package:harbor/focus/key_event_utils.dart';
+import 'package:harbor/utils/platform_detector.dart';
+import 'package:harbor/widgets/overlay_sheet.dart';
 
 void main() {
   testWidgets('scrollable sheet does not attach to parent primary controller', (tester) async {

@@ -1,22 +1,22 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:plezy/exceptions/media_server_exceptions.dart';
-import 'package:plezy/media/ids.dart';
+import 'package:harbor/exceptions/media_server_exceptions.dart';
+import 'package:harbor/media/ids.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:plezy/media/library_query.dart';
-import 'package:plezy/media/media_backend.dart';
-import 'package:plezy/media/media_item.dart';
-import 'package:plezy/media/media_kind.dart';
-import 'package:plezy/media/media_playlist.dart';
-import 'package:plezy/providers/playback_state_provider.dart';
-import 'package:plezy/services/jellyfin_client.dart';
-import 'package:plezy/services/jellyfin_sequential_launcher.dart';
-import 'package:plezy/services/media_list_playback_launcher.dart';
-import 'package:plezy/services/playlist_items_loader.dart';
-import 'package:plezy/utils/media_server_http_client.dart';
-import 'package:plezy/widgets/dialog_action_button.dart';
-import 'package:plezy/i18n/strings.g.dart';
+import 'package:harbor/media/library_query.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_item.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_playlist.dart';
+import 'package:harbor/providers/playback_state_provider.dart';
+import 'package:harbor/services/jellyfin_client.dart';
+import 'package:harbor/services/jellyfin_sequential_launcher.dart';
+import 'package:harbor/services/media_list_playback_launcher.dart';
+import 'package:harbor/services/playlist_items_loader.dart';
+import 'package:harbor/utils/media_server_http_client.dart';
+import 'package:harbor/widgets/dialog_action_button.dart';
+import 'package:harbor/i18n/strings.g.dart';
 
 import '../test_helpers/paged_fakes.dart';
 import '../test_helpers/media_items.dart';
