@@ -209,7 +209,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
                   children: [
                     SettingNavigationTile(
                       focusNode: _focusTracker.get(_kAbout),
-                      icon: PhosphorIconsFill.info,
+                      icon: PhosphorIconsDuotone.info,
                       title: t.settings.about,
                       subtitle: t.settings.aboutDescription,
                       destinationBuilder: (context) => const AboutScreen(),
@@ -228,10 +228,10 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   Widget _buildDonateTile() {
     return SettingNavigationTile(
       focusNode: _focusTracker.get(_kDonate),
-      icon: PhosphorIconsFill.heart,
+      icon: PhosphorIconsDuotone.heart,
       title: t.settings.supportDeveloper,
       subtitle: t.settings.supportDeveloperDescription,
-      trailingIcon: PhosphorIconsFill.arrowSquareOut,
+      trailingIcon: PhosphorIconsDuotone.arrowSquareOut,
       onTap: () async {
         final url = Uri.parse(DonationService.donationUrl);
         if (await canLaunchUrl(url)) {
@@ -249,7 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           final summary = '${themeModeLabel(themeProvider.themeMode)} · ${t.settings.libraryDensity} $libraryDensity';
           return SettingNavigationTile(
             focusNode: _focusTracker.get(_kAppearance),
-            icon: PhosphorIconsFill.palette,
+            icon: PhosphorIconsDuotone.palette,
             title: t.settings.appearance,
             subtitle: summary,
             destinationBuilder: (context) => const AppearanceSettingsScreen(),
@@ -262,7 +262,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   Widget _buildPlaybackTile() {
     return SettingNavigationTile(
       focusNode: _focusTracker.get(_kPlayback),
-      icon: PhosphorIconsFill.playCircle,
+      icon: PhosphorIconsDuotone.playCircle,
       title: t.settings.videoPlayback,
       subtitle: t.settings.videoPlaybackDescription,
       destinationBuilder: (context) => const PlaybackSettingsScreen(),
@@ -272,7 +272,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   Widget _buildManageLibrariesTile(BuildContext context) {
     return SettingNavigationTile(
       focusNode: _focusTracker.get(_kManageLibraries),
-      icon: PhosphorIconsFill.filmStrip,
+      icon: PhosphorIconsDuotone.filmStrip,
       title: t.libraries.manageLibraries,
       subtitle: t.settings.manageLibrariesDescription,
       onTap: () => showLibraryManagementSheet(context),
@@ -291,7 +291,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         final subtitle = connectedNames.isEmpty ? t.settings.servicesDescription : connectedNames.join(' · ');
         return SettingNavigationTile(
           focusNode: _focusTracker.get(_kServices),
-          icon: PhosphorIconsFill.arrowsClockwise,
+          icon: PhosphorIconsDuotone.arrowsClockwise,
           title: t.settings.services,
           subtitle: subtitle,
           destinationBuilder: (_) => const ServicesSettingsScreen(),
@@ -314,7 +314,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         // the picker scoped to the active profile so users can add a Plex
         // account, Jellyfin server, or borrow from another profile.
         SettingNavigationTile(
-          icon: PhosphorIconsFill.linkSimple,
+          icon: PhosphorIconsDuotone.linkSimple,
           title: t.connections.addConnection,
           subtitle: subtitle,
           onTap: () {
@@ -341,7 +341,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
               ? t.profiles.summaryMultipleWithActive(count: count, activeName: activeName)
               : t.profiles.summaryMultiple(count: count));
     return SettingNavigationTile(
-      icon: PhosphorIconsFill.users,
+      icon: PhosphorIconsDuotone.users,
       title: t.profiles.sectionTitle,
       subtitle: subtitle,
       onTap: () => Navigator.of(
@@ -365,10 +365,10 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
               final currentPath = snapshot.data ?? '...';
               return FocusableListTile(
                 focusNode: _focusTracker.get(_kDownloadLocation),
-                leading: const AppIcon(PhosphorIconsFill.folder, fill: 1),
+                leading: const AppIcon(PhosphorIconsDuotone.folder, fill: 1),
                 title: Text(isCustom ? t.settings.downloadLocationCustom : t.settings.downloadLocationDefault),
                 subtitle: Text(currentPath, maxLines: 2, overflow: .ellipsis),
-                trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+                trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
                 onTap: () => _showDownloadLocationDialog(),
               );
             },
@@ -376,14 +376,14 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         SettingSwitchTile(
           focusNode: _focusTracker.get(_kDownloadOnWifiOnly),
           pref: settings.SettingsService.downloadOnWifiOnly,
-          icon: PhosphorIconsFill.wifiHigh,
+          icon: PhosphorIconsDuotone.wifiHigh,
           title: t.settings.downloadOnWifiOnly,
           subtitle: t.settings.downloadOnWifiOnlyDescription,
         ),
         SettingSwitchTile(
           focusNode: _focusTracker.get(_kAutoRemoveWatchedDownloads),
           pref: settings.SettingsService.autoRemoveWatchedDownloads,
-          icon: PhosphorIconsFill.trash,
+          icon: PhosphorIconsDuotone.trash,
           title: t.settings.autoRemoveWatchedDownloads,
           subtitle: t.settings.autoRemoveWatchedDownloadsDescription,
         ),
@@ -402,25 +402,25 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         final status = diagnostics.status;
         final scheme = Theme.of(context).colorScheme;
         final (icon, color, summary) = switch (status) {
-          _ when !status.probed => (PhosphorIconsFill.question, null, t.downloads.backgroundWarning.statusUnknown),
+          _ when !status.probed => (PhosphorIconsDuotone.question, null, t.downloads.backgroundWarning.statusUnknown),
           _ when status.isBlocked => (
-            PhosphorIconsFill.batteryWarning,
+            PhosphorIconsDuotone.batteryWarning,
             scheme.error,
             t.downloads.backgroundWarning.statusBlocked,
           ),
           _ when !status.isHealthy => (
-            PhosphorIconsFill.info,
+            PhosphorIconsDuotone.info,
             scheme.tertiary,
             t.downloads.backgroundWarning.statusDegraded,
           ),
-          _ => (PhosphorIconsFill.checkCircle, null, t.downloads.backgroundWarning.statusOk),
+          _ => (PhosphorIconsDuotone.checkCircle, null, t.downloads.backgroundWarning.statusOk),
         };
         return FocusableListTile(
           focusNode: _focusTracker.get(_kBackgroundDownloads),
           leading: AppIcon(icon, fill: 1, color: color),
           title: Text(t.downloads.backgroundWarning.statusTile),
           subtitle: Text(summary),
-          trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+          trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
           onTap: () async {
             await diagnostics.refresh();
             if (!context.mounted) return;
@@ -443,7 +443,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
       children: [
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kVideoPlayerControls),
-          icon: PhosphorIconsFill.keyboard,
+          icon: PhosphorIconsDuotone.keyboard,
           title: t.settings.videoPlayerControls,
           subtitle: t.settings.keyboardShortcutsDescription,
           onTap: () {
@@ -456,7 +456,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         SettingSwitchTile(
           focusNode: _focusTracker.get(_kVideoPlayerNavigation),
           pref: settings.SettingsService.videoPlayerNavigationEnabled,
-          icon: PhosphorIconsFill.gameController,
+          icon: PhosphorIconsDuotone.gameController,
           title: t.settings.videoPlayerNavigation,
           subtitle: t.settings.videoPlayerNavigationDescription,
         ),
@@ -471,34 +471,34 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         SettingSwitchTile(
           focusNode: _focusTracker.get(_kDebugLogging),
           pref: settings.SettingsService.enableDebugLogging,
-          icon: PhosphorIconsFill.bug,
+          icon: PhosphorIconsDuotone.bug,
           title: t.settings.debugLogging,
           subtitle: t.settings.debugLoggingDescription,
         ),
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kViewLogs),
-          icon: PhosphorIconsFill.article,
+          icon: PhosphorIconsDuotone.article,
           title: t.settings.viewLogs,
           subtitle: t.settings.viewLogsDescription,
           destinationBuilder: (context) => const LogsScreen(),
         ),
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kClearImageCache),
-          icon: PhosphorIconsFill.broom,
+          icon: PhosphorIconsDuotone.broom,
           title: t.settings.clearImageCache,
           subtitle: t.settings.clearImageCacheDescription,
           onTap: () => _showClearImageCacheDialog(),
         ),
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kResetSettings),
-          icon: PhosphorIconsFill.clockCounterClockwise,
+          icon: PhosphorIconsDuotone.clockCounterClockwise,
           title: t.settings.resetSettings,
           subtitle: t.settings.resetSettingsDescription,
           onTap: () => _showResetSettingsDialog(),
         ),
         if (kDebugMode)
           SettingNavigationTile(
-            icon: PhosphorIconsFill.timer,
+            icon: PhosphorIconsDuotone.timer,
             title: 'Test ANR',
             subtitle: 'Block the main thread for 10 seconds',
             onTap: () {
@@ -517,14 +517,14 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
       children: [
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kExportSettings),
-          icon: PhosphorIconsFill.upload,
+          icon: PhosphorIconsDuotone.upload,
           title: t.settings.exportSettings,
           subtitle: t.settings.exportSettingsDescription,
           onTap: _handleExportSettings,
         ),
         SettingNavigationTile(
           focusNode: _focusTracker.get(_kImportSettings),
-          icon: PhosphorIconsFill.download,
+          icon: PhosphorIconsDuotone.download,
           title: t.settings.importSettings,
           subtitle: t.settings.importSettingsDescription,
           onTap: _showImportSettingsDialog,
@@ -536,7 +536,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   Widget _buildAutoCheckUpdatesOnStartupTile() => SettingSwitchTile(
     focusNode: _focusTracker.get(_kAutoCheckUpdatesOnStartup),
     pref: settings.SettingsService.autoCheckUpdatesOnStartup,
-    icon: PhosphorIconsFill.bellRinging,
+    icon: PhosphorIconsDuotone.bellRinging,
     title: t.settings.autoCheckUpdatesOnStartup,
     subtitle: t.settings.autoCheckUpdatesOnStartupDescription,
   );
@@ -550,7 +550,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         FocusableListTile(
           focusNode: _focusTracker.get(_kCheckForUpdates),
           leading: AppIcon(
-            hasUpdate ? PhosphorIconsFill.downloadSimple : PhosphorIconsFill.checkCircle,
+            hasUpdate ? PhosphorIconsDuotone.downloadSimple : PhosphorIconsDuotone.checkCircle,
             fill: 1,
             color: hasUpdate ? Colors.orange : null,
           ),
@@ -558,7 +558,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           subtitle: hasUpdate ? Text(t.update.versionAvailable(version: _updateInfo!['latestVersion'])) : null,
           trailing: _isCheckingForUpdate
               ? const LoadingIndicatorBox(size: 24)
-              : const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+              : const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
           onTap: _isCheckingForUpdate
               ? null
               : () {

@@ -226,8 +226,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('1'), findsOneWidget);
-    expect(find.byIcon(PhosphorIconsFill.x), findsOneWidget);
-    expect(find.byIcon(PhosphorIconsFill.backspace), findsOneWidget);
+    expect(find.byIcon(PhosphorIconsDuotone.x), findsOneWidget);
+    expect(find.byIcon(PhosphorIconsDuotone.backspace), findsOneWidget);
     expect(find.byType(TextField), findsNothing);
     expect(find.widgetWithText(TextButton, 'Cancel'), findsNothing);
     expect(find.byType(FilledButton), findsNothing);

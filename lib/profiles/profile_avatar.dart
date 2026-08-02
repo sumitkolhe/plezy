@@ -43,7 +43,7 @@ class ProfileAvatar extends StatelessWidget {
                   border: Border.all(color: theme.colorScheme.surface, width: 1),
                 ),
                 child: AppIcon(
-                  PhosphorIconsFill.lock,
+                  PhosphorIconsDuotone.lock,
                   fill: 1,
                   size: lockBadgeSize * 0.7,
                   color: theme.colorScheme.onSurface,

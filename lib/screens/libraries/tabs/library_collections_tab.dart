@@ -34,7 +34,7 @@ class _LibraryCollectionsTabState extends PaginatedCardGridTabState<MediaItem, L
   String get focusNodeDebugLabel => 'collections_first_item';
 
   @override
-  IconData get emptyIcon => PhosphorIconsFill.images;
+  IconData get emptyIcon => PhosphorIconsDuotone.images;
 
   @override
   String get emptyMessage => t.libraries.noCollections;

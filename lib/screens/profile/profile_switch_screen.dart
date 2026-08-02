@@ -132,7 +132,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                           : EmptyStateWidget(
                               message: t.messages.noProfilesAvailable,
                               subtitle: t.messages.contactAdminForProfiles,
-                              icon: PhosphorIconsFill.userMinus,
+                              icon: PhosphorIconsDuotone.userMinus,
                             ),
                     )
                   else
@@ -148,7 +148,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                         onSelect: _switching ? null : _addLocalProfile,
                         child: OutlinedButton.icon(
                           onPressed: _switching ? null : _addLocalProfile,
-                          icon: const AppIcon(PhosphorIconsFill.userPlus, fill: 1),
+                          icon: const AppIcon(PhosphorIconsDuotone.userPlus, fill: 1),
                           label: Text(t.profiles.addLocalProfile),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                         child: OutlinedButton.icon(
                           onPressed: _switching ? null : _logout,
                           style: OutlinedButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
-                          icon: const AppIcon(PhosphorIconsFill.signOut, fill: 1),
+                          icon: const AppIcon(PhosphorIconsDuotone.signOut, fill: 1),
                           label: Text(t.common.logout),
                         ),
                       ),
@@ -445,7 +445,7 @@ class _ProfileTile extends StatelessWidget {
                 actions: [if (onManage != null) _TileAction.manage, if (onDelete != null) _TileAction.delete],
               )
             else if (!isActive)
-              const Padding(padding: .only(left: 8), child: AppIcon(PhosphorIconsFill.caretRight, fill: 1)),
+              const Padding(padding: .only(left: 8), child: AppIcon(PhosphorIconsDuotone.caretRight, fill: 1)),
           ],
         ),
       ),
@@ -488,7 +488,7 @@ class _ProfileActionsButton extends StatelessWidget {
       focusNode: focusNode,
       semanticLabel: t.profiles.manage,
       onNavigateLeft: onNavigateLeft,
-      icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
+      icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
       tooltip: t.profiles.manage,
       onSelected: onSelected,
       itemBuilder: (_) => [for (final action in actions) AppMenuItem(value: action, label: action.label)],

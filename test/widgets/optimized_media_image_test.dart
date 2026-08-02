@@ -126,7 +126,7 @@ void main() {
                   width: 96,
                   height: 96,
                   imageType: ImageType.avatar,
-                  fallbackIcon: PhosphorIconsFill.person,
+                  fallbackIcon: PhosphorIconsDuotone.person,
                 ),
                 const SizedBox(height: 8),
                 const Text('Actor Name'),
@@ -139,7 +139,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.byIcon(PhosphorIconsFill.person), findsOneWidget);
+    expect(find.byIcon(PhosphorIconsDuotone.person), findsOneWidget);
 
     final placeholder = find.descendant(of: find.byType(OptimizedMediaImage), matching: find.byType(Container));
     expect(placeholder, findsOneWidget);
@@ -262,17 +262,17 @@ void main() {
               localFilePath: file.path,
               width: 80,
               height: 120,
-              fallbackIcon: PhosphorIconsFill.imageBroken,
+              fallbackIcon: PhosphorIconsDuotone.imageBroken,
             );
           },
         ),
       ),
     );
 
-    expect(find.byIcon(PhosphorIconsFill.imageBroken), findsNothing);
+    expect(find.byIcon(PhosphorIconsDuotone.imageBroken), findsNothing);
     await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pump();
-    expect(find.byIcon(PhosphorIconsFill.imageBroken), findsOneWidget);
+    expect(find.byIcon(PhosphorIconsDuotone.imageBroken), findsOneWidget);
 
     file.writeAsBytesSync(
       base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='),
@@ -281,12 +281,12 @@ void main() {
     rebuild(() {});
     await tester.pump();
 
-    expect(find.byIcon(PhosphorIconsFill.imageBroken), findsNothing);
+    expect(find.byIcon(PhosphorIconsDuotone.imageBroken), findsNothing);
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 20)));
     await tester.pump();
     await tester.pump();
     expect(file.existsSync(), isTrue);
-    expect(find.byIcon(PhosphorIconsFill.imageBroken), findsNothing);
+    expect(find.byIcon(PhosphorIconsDuotone.imageBroken), findsNothing);
     expect(find.byType(Image), findsOneWidget);
     final localImage = tester.widget<Image>(find.byType(Image));
     final localResize = localImage.image as ResizeImage;

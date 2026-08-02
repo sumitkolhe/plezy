@@ -14,7 +14,7 @@ class MobileEdgeAdjustmentIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final clampedValue = value.clamp(0.0, 1.0);
     final isLeft = side == MobileEdgeAdjustmentSide.left;
-    final icon = side == MobileEdgeAdjustmentSide.left ? PhosphorIconsFill.sunDim : PhosphorIconsFill.speakerHigh;
+    final icon = side == MobileEdgeAdjustmentSide.left ? PhosphorIconsDuotone.sunDim : PhosphorIconsDuotone.speakerHigh;
     final alignment = isLeft ? Alignment.centerLeft : Alignment.centerRight;
     final margin = isLeft ? const EdgeInsets.only(left: 20) : const EdgeInsets.only(right: 20);
 

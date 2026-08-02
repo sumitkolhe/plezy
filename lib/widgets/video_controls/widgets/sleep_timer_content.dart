@@ -100,7 +100,7 @@ class _SleepTimerEventColumn extends StatelessWidget {
             children: [
               FocusableListTile(
                 leading: AppIcon(
-                  PhosphorIconsFill.hourglass,
+                  PhosphorIconsDuotone.hourglass,
                   fill: 1,
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
@@ -160,7 +160,7 @@ class _SleepTimerDurationColumn extends StatelessWidget {
               );
 
               return FocusableListTile(
-                leading: AppIcon(PhosphorIconsFill.timer, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                leading: AppIcon(PhosphorIconsDuotone.timer, fill: 1, color: Theme.of(context).colorScheme.onSurfaceVariant),
                 title: Text(label),
                 selected: minutes == activeMinutes,
                 onTap: () {

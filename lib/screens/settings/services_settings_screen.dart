@@ -103,7 +103,7 @@ class _ServiceHubRow extends StatelessWidget {
       leading: leading,
       title: Text(title),
       subtitle: Text(username != null ? t.services.connectedAs(username: username!) : t.services.notConnected),
-      trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
       onTap: onTap,
     );
   }

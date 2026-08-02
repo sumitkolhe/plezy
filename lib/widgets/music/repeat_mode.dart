@@ -7,9 +7,9 @@ import '../../services/music/music_playback_service.dart';
 /// Shared repeat-mode presentation for the now-playing transport row and the
 /// queue sheet header: icon, accessibility label, and the off→all→one cycle.
 IconData repeatModeIcon(MusicRepeatMode mode) => switch (mode) {
-  MusicRepeatMode.off => PhosphorIconsFill.repeat,
-  MusicRepeatMode.all => PhosphorIconsFill.repeat,
-  MusicRepeatMode.one => PhosphorIconsFill.repeatOnce,
+  MusicRepeatMode.off => PhosphorIconsDuotone.repeat,
+  MusicRepeatMode.all => PhosphorIconsDuotone.repeat,
+  MusicRepeatMode.one => PhosphorIconsDuotone.repeatOnce,
 };
 
 String repeatModeLabel(MusicRepeatMode mode) => switch (mode) {

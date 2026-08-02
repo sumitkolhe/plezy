@@ -337,7 +337,7 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
         children: [
           FocusableListTile(
             focusNode: _savePresetFocusNode,
-            leading: const AppIcon(PhosphorIconsFill.floppyDisk, fill: 1),
+            leading: const AppIcon(PhosphorIconsDuotone.floppyDisk, fill: 1),
             title: Text(t.mpvConfig.saveAsPreset),
             enabled: _textController.text.trim().isNotEmpty,
             onTap: _textController.text.trim().isNotEmpty ? _showSavePresetDialog : null,
@@ -345,10 +345,10 @@ class _MpvConfigScreenState extends State<MpvConfigScreen> with SettingsEffectMi
           if (presets.isNotEmpty)
             ...presets.map(
               (preset) => FocusableListTile(
-                leading: const AppIcon(PhosphorIconsFill.folder, fill: 1),
+                leading: const AppIcon(PhosphorIconsDuotone.folder, fill: 1),
                 title: Text(preset.name),
                 trailing: FocusablePopupMenuButton<String>(
-                  icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
+                  icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
                   onSelected: (value) {
                     if (value == 'load') {
                       _loadPreset(preset);

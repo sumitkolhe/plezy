@@ -507,7 +507,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       // lookup doesn't, so fall back to the server name alone.
       title: Text(match.libraryTitle ?? match.serverName ?? match.backend.name),
       subtitle: match.libraryTitle != null && match.serverName != null ? Text(match.serverName!) : null,
-      trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
       onTap: () => unawaited(navigateToMediaItemDetails(context, match)),
     );
   }
@@ -533,7 +533,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     if (matches.isEmpty) {
       return Row(
         children: [
-          AppIcon(PhosphorIconsFill.info, fill: 1, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+          AppIcon(PhosphorIconsDuotone.info, fill: 1, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
           const SizedBox(width: 8),
           Text(t.explore.notInLibrary, style: mutedStyle),
         ],
@@ -726,7 +726,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       if (item.votes case final votes?) {
         score = '$score (${t.explore.stats.votes(n: compact.format(votes))})';
       }
-      add(score, icon: PhosphorIconsFill.star, iconColor: Colors.amber);
+      add(score, icon: PhosphorIconsDuotone.star, iconColor: Colors.amber);
     }
     if (item.airStatus case final status?) add(_statusLabel(status));
     if (item.episodeCount case final count?) add(t.explore.episodeCount(n: count));
@@ -805,7 +805,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       }
       chips.add(
         badge == null
-            ? StatChip(icon: PhosphorIconsFill.star, iconColor: Colors.amber, label: label)
+            ? StatChip(icon: PhosphorIconsDuotone.star, iconColor: Colors.amber, label: label)
             : StatChip(
                 leading: SvgPicture.asset(badge.assetPath, width: 14, height: 14, semanticsLabel: source),
                 label: label,
@@ -1015,7 +1015,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
             onNavigateDown: _linkFocusNodes.isNotEmpty ? () => _requestLinkFocus(0) : _focusSectionBelowDetailActions,
             child: OutlinedButton.icon(
               onPressed: _revealSpoilerTags,
-              icon: const AppIcon(PhosphorIconsFill.eye, fill: 1),
+              icon: const AppIcon(PhosphorIconsDuotone.eye, fill: 1),
               label: Text(t.explore.detail.revealSpoilerTags),
             ),
           ),
@@ -1066,7 +1066,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 onNavigateDown: () => _focusBelowLinkGroup(endIndex),
                 child: OutlinedButton.icon(
                   onPressed: () => unawaited(_openExternalUrl(links[localIndex].url)),
-                  icon: const AppIcon(PhosphorIconsFill.arrowSquareOut, fill: 1),
+                  icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut, fill: 1),
                   label: Text(t.explore.detail.openOn(site: links[localIndex].label)),
                 ),
               ),
@@ -1202,7 +1202,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 ),
               ),
               AppIcon(
-                PhosphorIconsFill.caretRight,
+                PhosphorIconsDuotone.caretRight,
                 fill: 1,
                 size: 18,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
@@ -1227,7 +1227,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
         size: related.length,
       ),
       focusMemory: _hubFocusMemory,
-      icon: PhosphorIconsFill.thumbsUp,
+      icon: PhosphorIconsDuotone.thumbsUp,
       inset: true,
       onNavigateUp: _focusSectionAboveRelated,
       cardSizing: HubCardSizing.grid,
@@ -1352,8 +1352,8 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                             if (_watchlistSource != null)
                                               FocusableAction(
                                                 icon: onWatchlist ?? false
-                                                    ? PhosphorIconsFill.bookmark
-                                                    : PhosphorIconsFill.bookmarkSimple,
+                                                    ? PhosphorIconsDuotone.bookmark
+                                                    : PhosphorIconsDuotone.bookmarkSimple,
                                                 tooltip: onWatchlist ?? false
                                                     ? t.explore.removeFromWatchlist
                                                     : t.explore.addToWatchlist,
@@ -1361,7 +1361,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                               ),
                                             if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null)
                                               FocusableAction(
-                                                icon: PhosphorIconsFill.download,
+                                                icon: PhosphorIconsDuotone.download,
                                                 tooltip: t.seerr.request,
                                                 onPressed: () => unawaited(
                                                   showSeerrRequestSheet(
@@ -1375,7 +1375,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                               ),
                                             if (item.trailerUrl?.trim() case final trailer? when trailer.isNotEmpty)
                                               FocusableAction(
-                                                icon: PhosphorIconsFill.playCircle,
+                                                icon: PhosphorIconsDuotone.playCircle,
                                                 tooltip: t.explore.detail.watchTrailer,
                                                 onPressed: () => unawaited(_openExternalUrl(trailer)),
                                               ),

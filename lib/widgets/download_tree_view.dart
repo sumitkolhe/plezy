@@ -698,7 +698,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       children: [
         // Expand/collapse icon
         if (canExpand)
-          AppIcon(widget.isExpanded ? PhosphorIconsFill.caretDown : PhosphorIconsFill.caretRight, fill: 1, size: 20)
+          AppIcon(widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight, fill: 1, size: 20)
         else
           const SizedBox(width: 20),
 
@@ -798,7 +798,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Pause all button
       if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onPause != null) {
         actions.add((
-          icon: PhosphorIconsFill.pause,
+          icon: PhosphorIconsDuotone.pause,
           tooltip: t.downloads.pauseAll,
           onPressed: () => widget.pauseAllChildren(widget.node),
         ));
@@ -807,7 +807,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Resume all button
       if (status == DownloadStatus.paused && widget.onResume != null) {
         actions.add((
-          icon: PhosphorIconsFill.play,
+          icon: PhosphorIconsDuotone.play,
           tooltip: t.downloads.resumeAll,
           onPressed: () => widget.resumeAllChildren(widget.node),
         ));
@@ -816,7 +816,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Delete all button
       if (widget.onDelete != null) {
         actions.add((
-          icon: PhosphorIconsFill.trash,
+          icon: PhosphorIconsDuotone.trash,
           tooltip: t.downloads.deleteAll,
           onPressed: () async {
             if (await _confirmDelete()) widget.deleteAllChildren(widget.node);
@@ -831,13 +831,13 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
     // Pause button for downloading items
     if (status == DownloadStatus.downloading && widget.onPause != null) {
-      actions.add((icon: PhosphorIconsFill.pause, tooltip: t.common.pause, onPressed: () => widget.onPause!(globalKey)));
+      actions.add((icon: PhosphorIconsDuotone.pause, tooltip: t.common.pause, onPressed: () => widget.onPause!(globalKey)));
     }
 
     // Resume button for paused items
     if (status == DownloadStatus.paused && widget.onResume != null) {
       actions.add((
-        icon: PhosphorIconsFill.play,
+        icon: PhosphorIconsDuotone.play,
         tooltip: t.common.resume,
         onPressed: () => widget.onResume!(globalKey),
       ));
@@ -846,7 +846,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Cancel button for downloading/queued items
     if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onCancel != null) {
       actions.add((
-        icon: PhosphorIconsFill.x,
+        icon: PhosphorIconsDuotone.x,
         tooltip: t.common.cancel,
         onPressed: () => widget.onCancel!(globalKey),
       ));
@@ -855,7 +855,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Retry button for failed items
     if (status == DownloadStatus.failed && widget.onRetry != null) {
       actions.add((
-        icon: PhosphorIconsFill.arrowsClockwise,
+        icon: PhosphorIconsDuotone.arrowsClockwise,
         tooltip: t.downloads.retryDownload,
         onPressed: () => widget.onRetry!(globalKey),
       ));
@@ -865,7 +865,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     if ((status == DownloadStatus.completed || status == DownloadStatus.failed || status == DownloadStatus.cancelled) &&
         widget.onDelete != null) {
       actions.add((
-        icon: PhosphorIconsFill.trash,
+        icon: PhosphorIconsDuotone.trash,
         tooltip: t.common.delete,
         onPressed: () async {
           if (await _confirmDelete()) widget.onDelete!(globalKey);

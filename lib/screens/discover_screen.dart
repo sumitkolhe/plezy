@@ -614,7 +614,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         tooltip: t.profiles.sectionTitle,
         icon: active != null
             ? ProfileAvatar(profile: active, size: 32)
-            : const AppIcon(PhosphorIconsFill.userCircle, fill: 1, size: 32, color: Colors.white),
+            : const AppIcon(PhosphorIconsDuotone.userCircle, fill: 1, size: 32, color: Colors.white),
       ),
     );
   }
@@ -641,13 +641,13 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // same call is chrome the gesture already covers. TV and
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
-                  FocusableAction(icon: PhosphorIconsFill.arrowsClockwise, iconColor: foregroundColor, onPressed: _discover.load),
+                  FocusableAction(icon: PhosphorIconsDuotone.arrowsClockwise, iconColor: foregroundColor, onPressed: _discover.load),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
                 // a permanently empty popover.
                 FocusableAction(
-                  icon: PhosphorIconsFill.magnifyingGlass,
+                  icon: PhosphorIconsDuotone.magnifyingGlass,
                   iconColor: foregroundColor,
                   onPressed: () => unawaited(openSearchScreen(context)),
                 ),
@@ -795,7 +795,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     SliverEmptyState(
                       message: t.discover.noContentAvailable,
                       subtitle: t.discover.addMediaToLibraries,
-                      icon: PhosphorIconsFill.filmSlate,
+                      icon: PhosphorIconsDuotone.filmSlate,
                     ),
 
                   SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
@@ -862,7 +862,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           if (_errorMessage != null)
             ErrorStateWidget(
               message: _errorMessage!,
-              icon: PhosphorIconsFill.warningCircle,
+              icon: PhosphorIconsDuotone.warningCircle,
               onRetry: _discover.load,
               actionAutofocus: true,
               actionUseBackgroundFocus: true,
@@ -871,7 +871,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
             EmptyStateWidget(
               message: t.discover.noContentAvailable,
               subtitle: t.discover.addMediaToLibraries,
-              icon: PhosphorIconsFill.filmSlate,
+              icon: PhosphorIconsDuotone.filmSlate,
             ),
           if (browseHubs.isNotEmpty)
             Positioned(
@@ -950,7 +950,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             }
                           },
                           child: AppIcon(
-                            _isAutoScrollPaused ? PhosphorIconsFill.play : PhosphorIconsFill.pause,
+                            _isAutoScrollPaused ? PhosphorIconsDuotone.play : PhosphorIconsDuotone.pause,
                             fill: 1,
                             color: Theme.of(context).colorScheme.onSurface,
                             size: 18,
@@ -1313,7 +1313,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 child: Row(
                   mainAxisSize: .min,
                   children: [
-                    AppIcon(PhosphorIconsFill.play, fill: 1, size: isTv ? 28 : 20, color: foregroundColor),
+                    AppIcon(PhosphorIconsDuotone.play, fill: 1, size: isTv ? 28 : 20, color: foregroundColor),
                     SizedBox(width: isTv ? 12 : 8),
                     if (hasProgress) ...[
                       // Progress bar

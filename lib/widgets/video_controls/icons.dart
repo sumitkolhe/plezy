@@ -7,13 +7,13 @@ import 'package:harbor/theme/phosphor_icons.dart';
 IconData getReplayIcon(int seconds) {
   switch (seconds) {
     case 5:
-      return PhosphorIconsFill.arrowCounterClockwise;
+      return PhosphorIconsDuotone.arrowCounterClockwise;
     case 10:
-      return PhosphorIconsFill.arrowCounterClockwise;
+      return PhosphorIconsDuotone.arrowCounterClockwise;
     case 30:
-      return PhosphorIconsFill.arrowCounterClockwise;
+      return PhosphorIconsDuotone.arrowCounterClockwise;
     default:
-      return PhosphorIconsFill.arrowCounterClockwise;
+      return PhosphorIconsDuotone.arrowCounterClockwise;
   }
 }
 
@@ -23,12 +23,12 @@ IconData getReplayIcon(int seconds) {
 IconData getForwardIcon(int seconds) {
   switch (seconds) {
     case 5:
-      return PhosphorIconsFill.fastForward;
+      return PhosphorIconsDuotone.fastForward;
     case 10:
-      return PhosphorIconsFill.fastForward;
+      return PhosphorIconsDuotone.fastForward;
     case 30:
-      return PhosphorIconsFill.fastForward;
+      return PhosphorIconsDuotone.fastForward;
     default:
-      return PhosphorIconsFill.fastForward;
+      return PhosphorIconsDuotone.fastForward;
   }
 }

@@ -938,11 +938,11 @@ Widget _buildPosterLoadingPlaceholder(BuildContext context, String _) {
 }
 
 IconData _mediaPosterFallbackIcon(MediaItem item) {
-  if (item.kind == MediaKind.artist) return PhosphorIconsFill.microphoneStage;
-  if (item.kind == MediaKind.album) return PhosphorIconsFill.vinylRecord;
-  if (item.kind == MediaKind.track) return PhosphorIconsFill.musicNote;
-  if (item.isShow || item.isSeason || item.isEpisode) return PhosphorIconsFill.television;
-  return PhosphorIconsFill.filmSlate;
+  if (item.kind == MediaKind.artist) return PhosphorIconsDuotone.microphoneStage;
+  if (item.kind == MediaKind.album) return PhosphorIconsDuotone.vinylRecord;
+  if (item.kind == MediaKind.track) return PhosphorIconsDuotone.musicNote;
+  if (item.isShow || item.isSeason || item.isEpisode) return PhosphorIconsDuotone.television;
+  return PhosphorIconsDuotone.filmSlate;
 }
 
 /// Oversized radius for circular focus borders: [CardFocusBorder] paints a
@@ -989,7 +989,7 @@ Widget _buildPosterImage(
       height: knownHeight ?? double.infinity,
       fit: BoxFit.cover,
       placeholder: _buildPosterLoadingPlaceholder,
-      fallbackIcon: PhosphorIconsFill.playlist,
+      fallbackIcon: PhosphorIconsDuotone.playlist,
       imageType: cardShapeOverride == CardShape.square ? ImageType.square : ImageType.poster,
       localFilePath: localPosterPath,
       artworkDim: artworkDim,
@@ -1092,7 +1092,7 @@ Widget _buildPosterImage(
   }
 
   return SkeletonLoader(
-    child: const Center(child: AppIcon(PhosphorIconsFill.filmSlate, fill: 1, size: 40, color: Colors.white54)),
+    child: const Center(child: AppIcon(PhosphorIconsDuotone.filmSlate, fill: 1, size: 40, color: Colors.white54)),
   );
 }
 

@@ -122,7 +122,7 @@ class LibraryQuickPickerSheet extends StatelessWidget {
         style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400, color: foregroundColor),
       ),
       subtitle: showServerName ? _buildServerSubtitle(context, library) : null,
-      trailing: isSelected ? AppIcon(PhosphorIconsFill.check, fill: 1, color: colorScheme.primary) : null,
+      trailing: isSelected ? AppIcon(PhosphorIconsDuotone.check, fill: 1, color: colorScheme.primary) : null,
       onTap: () => onSelected(library.globalKey),
     );
   }

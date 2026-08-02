@@ -223,9 +223,9 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final menuActions = <_MenuAction>[];
 
     if (isCollection || isPlaylist) {
-      menuActions.add(_MenuAction(value: 'play', icon: PhosphorIconsFill.play, label: t.common.play));
+      menuActions.add(_MenuAction(value: 'play', icon: PhosphorIconsDuotone.play, label: t.common.play));
 
-      menuActions.add(_MenuAction(value: 'shuffle', icon: PhosphorIconsFill.shuffle, label: t.mediaMenu.shufflePlay));
+      menuActions.add(_MenuAction(value: 'shuffle', icon: PhosphorIconsDuotone.shuffle, label: t.mediaMenu.shufflePlay));
 
       // Download + sync-rule management. Video and audio playlists and any
       // collection qualify — collections can contain movies, episodes,
@@ -236,16 +236,16 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         final hasRule = Provider.of<DownloadProvider>(context, listen: false).hasSyncRule(_itemSyncRuleKey(context));
         if (hasRule) {
           menuActions.add(
-            _MenuAction(value: 'manage_sync', icon: PhosphorIconsFill.arrowsClockwise, label: t.downloads.manageSyncRule),
+            _MenuAction(value: 'manage_sync', icon: PhosphorIconsDuotone.arrowsClockwise, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
-            _MenuAction(value: 'remove_sync', icon: PhosphorIconsFill.cloudSlash, label: t.downloads.removeSyncRule),
+            _MenuAction(value: 'remove_sync', icon: PhosphorIconsDuotone.cloudSlash, label: t.downloads.removeSyncRule),
           );
         } else {
           menuActions.add(
             _MenuAction(
               value: isPlaylist ? 'download_playlist' : 'download_collection',
-              icon: PhosphorIconsFill.download,
+              icon: PhosphorIconsDuotone.download,
               label: t.downloads.downloadNow,
             ),
           );
@@ -253,29 +253,29 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       }
 
       menuActions.add(
-        _MenuAction(value: 'delete', icon: PhosphorIconsFill.trash, label: t.common.delete, destructive: true),
+        _MenuAction(value: 'delete', icon: PhosphorIconsDuotone.trash, label: t.common.delete, destructive: true),
       );
     } else {
       // Music (artist/album/track) playback + navigation actions. Queue
       // insertion only exists where a playback session is bound.
       final isMusicKind = mediaKind != null && mediaKind.isMusic;
       if (isMusicKind) {
-        menuActions.add(_MenuAction(value: 'music_play', icon: PhosphorIconsFill.play, label: t.common.play));
+        menuActions.add(_MenuAction(value: 'music_play', icon: PhosphorIconsDuotone.play, label: t.common.play));
 
         final musicAvailable = context.read<MusicPlaybackService?>() != null;
         if (musicAvailable) {
           menuActions.add(
-            _MenuAction(value: 'music_play_next', icon: PhosphorIconsFill.playlist, label: t.music.playNext),
+            _MenuAction(value: 'music_play_next', icon: PhosphorIconsDuotone.playlist, label: t.music.playNext),
           );
           menuActions.add(
-            _MenuAction(value: 'music_add_queue', icon: PhosphorIconsFill.queue, label: t.music.addToQueue),
+            _MenuAction(value: 'music_add_queue', icon: PhosphorIconsDuotone.queue, label: t.music.addToQueue),
           );
         }
 
         // Instant Mix — only while the server is reachable.
         if (itemServerOnline) {
           menuActions.add(
-            _MenuAction(value: 'music_instant_mix', icon: PhosphorIconsFill.slidersHorizontal, label: t.music.instantMix),
+            _MenuAction(value: 'music_instant_mix', icon: PhosphorIconsDuotone.slidersHorizontal, label: t.music.instantMix),
           );
         }
 
@@ -283,7 +283,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         // detail screen, mirroring the Go to Series ancestor check.
         final ancestorAlbumId = context.findAncestorWidgetOfExactType<AlbumDetailScreen>()?.album.id;
         if (mediaKind == MediaKind.track && mediaItem!.parentId != null && ancestorAlbumId != mediaItem.parentId) {
-          menuActions.add(_MenuAction(value: 'music_album', icon: PhosphorIconsFill.vinylRecord, label: t.music.goToAlbum));
+          menuActions.add(_MenuAction(value: 'music_album', icon: PhosphorIconsDuotone.vinylRecord, label: t.music.goToAlbum));
         }
 
         // Go to Artist — album: parent, track: grandparent; hidden when
@@ -295,13 +295,13 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         };
         final ancestorArtistId = context.findAncestorWidgetOfExactType<ArtistDetailScreen>()?.artist.id;
         if (musicArtistId != null && ancestorArtistId != musicArtistId) {
-          menuActions.add(_MenuAction(value: 'music_artist', icon: PhosphorIconsFill.microphoneStage, label: t.music.goToArtist));
+          menuActions.add(_MenuAction(value: 'music_artist', icon: PhosphorIconsDuotone.microphoneStage, label: t.music.goToArtist));
         }
       }
 
       if (hasActiveProgress) {
         menuActions.add(
-          _MenuAction(value: 'play_from_beginning', icon: PhosphorIconsFill.arrowCounterClockwise, label: t.mediaMenu.playFromBeginning),
+          _MenuAction(value: 'play_from_beginning', icon: PhosphorIconsDuotone.arrowCounterClockwise, label: t.mediaMenu.playFromBeginning),
         );
       }
 
@@ -309,13 +309,13 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       // screens, so surface it here whenever the screen wires up onPlayTrailer.
       if (widget.onPlayTrailer != null) {
         menuActions.add(
-          _MenuAction(value: 'play_trailer', icon: PhosphorIconsFill.filmSlate, label: t.tooltips.playTrailer),
+          _MenuAction(value: 'play_trailer', icon: PhosphorIconsDuotone.filmSlate, label: t.tooltips.playTrailer),
         );
       }
 
       if (!mediaItem!.isWatched || isPartiallyWatched || hasActiveProgress) {
         menuActions.add(
-          _MenuAction(value: 'watch', icon: PhosphorIconsFill.checkCircle, label: t.mediaMenu.markAsWatched),
+          _MenuAction(value: 'watch', icon: PhosphorIconsDuotone.checkCircle, label: t.mediaMenu.markAsWatched),
         );
       }
 
@@ -323,7 +323,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(
             value: 'unwatch',
-            icon: PhosphorIconsFill.minusCircle,
+            icon: PhosphorIconsDuotone.minusCircle,
             label: t.mediaMenu.markAsUnwatched,
           ),
         );
@@ -332,17 +332,17 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       final isVideoKind = mediaItem.isVideoContent;
 
       if (widget.isInContinueWatching && isVideoKind) {
-        menuActions.add(_MenuAction(value: 'details', icon: PhosphorIconsFill.info, label: t.mediaMenu.viewDetails));
+        menuActions.add(_MenuAction(value: 'details', icon: PhosphorIconsDuotone.info, label: t.mediaMenu.viewDetails));
       }
 
       if (isVideoKind) {
-        menuActions.add(_MenuAction(value: 'rate', icon: PhosphorIconsFill.star, label: t.mediaMenu.rate));
+        menuActions.add(_MenuAction(value: 'rate', icon: PhosphorIconsDuotone.star, label: t.mediaMenu.rate));
       }
 
       // Edit Metadata — admin-only and backend-capability gated.
       if (canEditMetadata) {
         menuActions.add(
-          _MenuAction(value: 'edit_metadata', icon: PhosphorIconsFill.pencilSimple, label: t.metadataEdit.editMetadata),
+          _MenuAction(value: 'edit_metadata', icon: PhosphorIconsDuotone.pencilSimple, label: t.metadataEdit.editMetadata),
         );
       }
 
@@ -358,12 +358,12 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           itemSeriesKey != null &&
           !widget.isInContinueWatching &&
           ancestorSeriesKey != itemSeriesKey) {
-        menuActions.add(_MenuAction(value: 'series', icon: PhosphorIconsFill.television, label: t.mediaMenu.goToSeries));
+        menuActions.add(_MenuAction(value: 'series', icon: PhosphorIconsDuotone.television, label: t.mediaMenu.goToSeries));
       }
 
       if (mediaKind == MediaKind.show || mediaKind == MediaKind.season) {
         menuActions.add(
-          _MenuAction(value: 'shuffle_play', icon: PhosphorIconsFill.shuffle, label: t.mediaMenu.shufflePlay),
+          _MenuAction(value: 'shuffle_play', icon: PhosphorIconsDuotone.shuffle, label: t.mediaMenu.shufflePlay),
         );
       }
 
@@ -384,13 +384,13 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           (hasVersionChoice || canTranscode) &&
           itemServerOnline) {
         menuActions.add(
-          _MenuAction(value: 'play_version', icon: PhosphorIconsFill.fileVideo, label: t.mediaMenu.playVersion),
+          _MenuAction(value: 'play_version', icon: PhosphorIconsDuotone.fileVideo, label: t.mediaMenu.playVersion),
         );
       }
 
       // File Info (for episodes and movies).
       if (mediaKind == MediaKind.episode || mediaKind == MediaKind.movie) {
-        menuActions.add(_MenuAction(value: 'fileinfo', icon: PhosphorIconsFill.info, label: t.mediaMenu.fileInfo));
+        menuActions.add(_MenuAction(value: 'fileinfo', icon: PhosphorIconsDuotone.info, label: t.mediaMenu.fileInfo));
       }
 
       if (PlatformDetector.supportsExternalPlayers() &&
@@ -398,7 +398,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(
             value: 'play_external',
-            icon: PhosphorIconsFill.arrowSquareOut,
+            icon: PhosphorIconsDuotone.arrowSquareOut,
             label: t.externalPlayer.playInExternalPlayer,
           ),
         );
@@ -422,16 +422,16 @@ class MediaContextMenuState extends State<MediaContextMenu> {
 
         if (hasSyncRule) {
           menuActions.add(
-            _MenuAction(value: 'manage_sync', icon: PhosphorIconsFill.arrowsClockwise, label: t.downloads.manageSyncRule),
+            _MenuAction(value: 'manage_sync', icon: PhosphorIconsDuotone.arrowsClockwise, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
-            _MenuAction(value: 'remove_sync', icon: PhosphorIconsFill.cloudSlash, label: t.downloads.removeSyncRule),
+            _MenuAction(value: 'remove_sync', icon: PhosphorIconsDuotone.cloudSlash, label: t.downloads.removeSyncRule),
           );
           if (hasAnyDownload) {
             menuActions.add(
               _MenuAction(
                 value: 'delete_download',
-                icon: PhosphorIconsFill.trash,
+                icon: PhosphorIconsDuotone.trash,
                 label: t.downloads.deleteDownload,
                 destructive: true,
               ),
@@ -441,14 +441,14 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           menuActions.add(
             _MenuAction(
               value: 'delete_download',
-              icon: PhosphorIconsFill.trash,
+              icon: PhosphorIconsDuotone.trash,
               label: t.downloads.deleteDownload,
               destructive: true,
             ),
           );
         } else {
           menuActions.add(
-            _MenuAction(value: 'download', icon: PhosphorIconsFill.download, label: t.downloads.downloadNow),
+            _MenuAction(value: 'download', icon: PhosphorIconsDuotone.download, label: t.downloads.downloadNow),
           );
         }
       }
@@ -463,7 +463,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(
             value: 'delete_media',
-            icon: PhosphorIconsFill.trashSimple,
+            icon: PhosphorIconsDuotone.trashSimple,
             label: t.mediaMenu.deleteFromServer,
             destructive: true,
           ),
@@ -942,8 +942,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       context,
       title: t.common.addTo,
       options: [
-        (icon: PhosphorIconsFill.playlist, label: t.playlists.playlist, value: 'playlist'),
-        (icon: PhosphorIconsFill.images, label: t.collections.collection, value: 'collection'),
+        (icon: PhosphorIconsDuotone.playlist, label: t.playlists.playlist, value: 'playlist'),
+        (icon: PhosphorIconsDuotone.images, label: t.collections.collection, value: 'collection'),
       ],
     );
 
@@ -1726,7 +1726,7 @@ class _PickerDialogScaffoldState<T> extends State<_PickerDialogScaffold<T>> {
                   decoration: pillInputDecoration(
                     context,
                     hintText: widget.searchHint,
-                    prefixIcon: const AppIcon(PhosphorIconsFill.magnifyingGlass, size: 20),
+                    prefixIcon: const AppIcon(PhosphorIconsDuotone.magnifyingGlass, size: 20),
                   ),
                   onChanged: _onFilterChanged,
                 ),
@@ -1741,7 +1741,7 @@ class _PickerDialogScaffoldState<T> extends State<_PickerDialogScaffold<T>> {
                     if (index == 0) {
                       return FocusableListTile(
                         focusNode: _firstItemFocusNode,
-                        leading: const AppIcon(PhosphorIconsFill.plus, fill: 1),
+                        leading: const AppIcon(PhosphorIconsDuotone.plus, fill: 1),
                         title: Text(t.common.createNew),
                         onTap: () => Navigator.pop(context, '_create_new'),
                       );
@@ -1753,7 +1753,7 @@ class _PickerDialogScaffoldState<T> extends State<_PickerDialogScaffold<T>> {
 
                     if (_errorMessage != null) {
                       return FocusableListTile(
-                        leading: const AppIcon(PhosphorIconsFill.warningCircle, fill: 1),
+                        leading: const AppIcon(PhosphorIconsDuotone.warningCircle, fill: 1),
                         title: Text(t.messages.errorLoading(error: _errorMessage!)),
                         onTap: _loadNextPage,
                       );
@@ -1805,8 +1805,8 @@ class _PlaylistSelectionDialog extends StatelessWidget {
         final subtitleText = leafCount == 1 ? t.playlists.oneItem : t.playlists.itemCount(count: leafCount ?? 0);
         return FocusableListTile(
           leading: playlist.smart
-              ? const AppIcon(PhosphorIconsFill.sparkle, fill: 1)
-              : const AppIcon(PhosphorIconsFill.playlist, fill: 1),
+              ? const AppIcon(PhosphorIconsDuotone.sparkle, fill: 1)
+              : const AppIcon(PhosphorIconsDuotone.playlist, fill: 1),
           title: Text(playlist.title),
           subtitle: playlist.leafCount != null ? Text(subtitleText) : null,
           onTap: playlist.smart
@@ -1835,7 +1835,7 @@ class _CollectionSelectionDialog extends StatelessWidget {
       loadPage: (start, size, abort) => client.fetchCollectionsPage(libraryId, start: start, size: size, abort: abort),
       itemTitle: (collection) => collection.title ?? '',
       itemBuilder: (context, collection) => FocusableListTile(
-        leading: const AppIcon(PhosphorIconsFill.images, fill: 1),
+        leading: const AppIcon(PhosphorIconsDuotone.images, fill: 1),
         title: Text(collection.title ?? ''),
         subtitle: collection.childCount != null ? Text(t.playlists.itemCount(count: collection.childCount!)) : null,
         onTap: () => Navigator.pop(context, collection.id),

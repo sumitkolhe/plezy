@@ -247,7 +247,7 @@ class _LyricsViewState extends State<LyricsView> {
     }
     final lyrics = _lyrics;
     if (lyrics == null || lyrics.isEmpty) {
-      return StateMessageWidget(icon: PhosphorIconsFill.textAlignLeft, message: t.music.noLyrics, iconSize: 48);
+      return StateMessageWidget(icon: PhosphorIconsDuotone.textAlignLeft, message: t.music.noLyrics, iconSize: 48);
     }
 
     final showFocus = _paneFocused && InputModeTracker.isKeyboardMode(context);

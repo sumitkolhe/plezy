@@ -29,17 +29,17 @@ class ContentTypeHelper {
   static IconData getLibraryIcon(String type) {
     switch (type.toLowerCase()) {
       case ContentTypes.movie:
-        return PhosphorIconsFill.filmSlate;
+        return PhosphorIconsDuotone.filmSlate;
       case ContentTypes.show:
-        return PhosphorIconsFill.television;
+        return PhosphorIconsDuotone.television;
       case ContentTypes.artist:
-        return PhosphorIconsFill.musicNote;
+        return PhosphorIconsDuotone.musicNote;
       case 'photo':
-        return PhosphorIconsFill.image;
+        return PhosphorIconsDuotone.image;
       case 'mixed':
-        return PhosphorIconsFill.share;
+        return PhosphorIconsDuotone.share;
       default:
-        return PhosphorIconsFill.folder;
+        return PhosphorIconsDuotone.folder;
     }
   }
 }

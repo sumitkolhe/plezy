@@ -47,7 +47,7 @@ class _SettingRow extends StatelessWidget {
       leading: AppIcon(icon, fill: 1),
       title: Text(title),
       subtitle: subtitle,
-      trailing: trailing ?? const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+      trailing: trailing ?? const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
       onTap: onTap,
     );
   }
@@ -108,7 +108,7 @@ class SettingNavigationTile extends StatelessWidget {
     this.destinationBuilder,
     this.onTap,
     this.focusNode,
-    this.trailingIcon = PhosphorIconsFill.caretRight,
+    this.trailingIcon = PhosphorIconsDuotone.caretRight,
   }) : assert(destinationBuilder != null || onTap != null);
 
   @override

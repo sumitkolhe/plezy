@@ -213,7 +213,7 @@ class _TvNumberSpinnerState extends State<TvNumberSpinner> with KeyRepeatHelper<
               gap,
             ],
             _SpinnerButton(
-              icon: PhosphorIconsFill.minus,
+              icon: PhosphorIconsDuotone.minus,
               onPressed: canDecrement ? _decrement : null,
               onLongPressStart: !isCompact && canDecrement ? () => startRepeat(_decrement) : null,
               onLongPressEnd: isCompact ? null : stopRepeat,
@@ -233,7 +233,7 @@ class _TvNumberSpinnerState extends State<TvNumberSpinner> with KeyRepeatHelper<
             ),
             gap,
             _SpinnerButton(
-              icon: PhosphorIconsFill.plus,
+              icon: PhosphorIconsDuotone.plus,
               onPressed: canIncrement ? _increment : null,
               onLongPressStart: !isCompact && canIncrement ? () => startRepeat(_increment) : null,
               onLongPressEnd: isCompact ? null : stopRepeat,

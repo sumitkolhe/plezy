@@ -101,7 +101,7 @@ class WatchedIndicator extends StatelessWidget {
                 shape: BoxShape.circle,
                 boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4)],
               ),
-              child: AppIcon(PhosphorIconsFill.check, fill: 1, color: tokens(context).bg, size: size.checkIconSize),
+              child: AppIcon(PhosphorIconsDuotone.check, fill: 1, color: tokens(context).bg, size: size.checkIconSize),
             ),
           ),
         // Unwatched count for shows/seasons

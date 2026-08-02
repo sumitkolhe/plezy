@@ -51,7 +51,7 @@ class _FileInfoBottomSheetState extends State<FileInfoBottomSheet> {
       children: [
         BottomSheetHeader(
           title: t.fileInfo.title,
-          icon: PhosphorIconsFill.info,
+          icon: PhosphorIconsDuotone.info,
           closeFocusNode: _initialFocusNode,
           // Flat sheet: the tonal cards do the separating, so the header
           // keeps no rule under it.
@@ -159,7 +159,7 @@ class _VersionBlock extends StatelessWidget {
             padding: EdgeInsets.only(top: index == 0 ? 0 : 8, bottom: 10),
             child: Row(
               children: [
-                AppIcon(PhosphorIconsFill.stack, size: 18, fill: 1, color: theme.colorScheme.primary),
+                AppIcon(PhosphorIconsDuotone.stack, size: 18, fill: 1, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
                   t.fileInfo.versionCounter(index: index + 1, count: versionCount),
@@ -182,13 +182,13 @@ class _VersionBlock extends StatelessWidget {
             ),
           ),
         ],
-        _InfoSection(title: t.fileInfo.overview, icon: PhosphorIconsFill.info, fields: _overviewFields(version)),
+        _InfoSection(title: t.fileInfo.overview, icon: PhosphorIconsDuotone.info, fields: _overviewFields(version)),
         for (var partIndex = 0; partIndex < version.parts.length; partIndex++)
           _PartBlock(part: version.parts[partIndex], index: partIndex, partCount: version.parts.length),
         if (version.attachments.isNotEmpty)
           _InfoSection(
             title: t.fileInfo.attachments,
-            icon: PhosphorIconsFill.paperclip,
+            icon: PhosphorIconsDuotone.paperclip,
             subtitle: '${version.attachments.length}',
             fields: [
               for (final attachment in version.attachments)
@@ -203,7 +203,7 @@ class _VersionBlock extends StatelessWidget {
           ),
         _InfoSection(
           title: t.fileInfo.delivery,
-          icon: PhosphorIconsFill.cellTower,
+          icon: PhosphorIconsDuotone.cellTower,
           fields: _deliveryFields(context, version),
         ),
         if (!isLast) const SizedBox(height: 20),
@@ -307,7 +307,7 @@ class _PartBlock extends StatelessWidget {
       children: [
         _InfoSection(
           title: partCount > 1 ? t.fileInfo.fileCounter(index: index + 1, count: partCount) : t.fileInfo.file,
-          icon: PhosphorIconsFill.fileText,
+          icon: PhosphorIconsDuotone.fileText,
           fields: _fileFields(),
           leading: part.filePath == null ? null : _PathRow(path: part.filePath!),
         ),
@@ -398,7 +398,7 @@ class _PathRow extends StatelessWidget {
               const SizedBox(width: 8),
               Tooltip(
                 message: t.fileInfo.copyPath,
-                child: AppIcon(PhosphorIconsFill.copy, size: 18, color: theme.colorScheme.onSurfaceVariant),
+                child: AppIcon(PhosphorIconsDuotone.copy, size: 18, color: theme.colorScheme.onSurfaceVariant),
               ),
             ],
           ),
@@ -442,12 +442,12 @@ class _StreamGroup extends StatelessWidget {
   };
 
   IconData _groupIcon(MediaStreamKind kind) => switch (kind) {
-    MediaStreamKind.video => PhosphorIconsFill.filmSlate,
-    MediaStreamKind.audio => PhosphorIconsFill.waveform,
-    MediaStreamKind.subtitle => PhosphorIconsFill.subtitles,
-    MediaStreamKind.image => PhosphorIconsFill.image,
-    MediaStreamKind.lyric => PhosphorIconsFill.textAlignLeft,
-    MediaStreamKind.data || MediaStreamKind.unknown => PhosphorIconsFill.bracketsCurly,
+    MediaStreamKind.video => PhosphorIconsDuotone.filmSlate,
+    MediaStreamKind.audio => PhosphorIconsDuotone.waveform,
+    MediaStreamKind.subtitle => PhosphorIconsDuotone.subtitles,
+    MediaStreamKind.image => PhosphorIconsDuotone.image,
+    MediaStreamKind.lyric => PhosphorIconsDuotone.textAlignLeft,
+    MediaStreamKind.data || MediaStreamKind.unknown => PhosphorIconsDuotone.bracketsCurly,
   };
 
   List<String> _flagChips(MediaStreamDetails stream) {

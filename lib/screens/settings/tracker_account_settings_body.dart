@@ -56,7 +56,7 @@ class TrackerAccountSettingsBody extends StatelessWidget {
         SettingsGroup(
           children: [
             ListTile(
-              leading: const AppIcon(PhosphorIconsFill.userCircle, fill: 1),
+              leading: const AppIcon(PhosphorIconsDuotone.userCircle, fill: 1),
               title: Text(accountTitle),
               subtitle: accountSubtitle != null ? Text(accountSubtitle!) : null,
             ),
@@ -78,10 +78,10 @@ class TrackerAccountSettingsBody extends StatelessWidget {
               builder: (context) {
                 final settings = SettingsService.instance;
                 return FocusableListTile(
-                  leading: const AppIcon(PhosphorIconsFill.funnelSimple, fill: 1),
+                  leading: const AppIcon(PhosphorIconsDuotone.funnelSimple, fill: 1),
                   title: Text(t.services.libraryFilter.title),
                   subtitle: Text(TrackerLibraryFilterScreen.subtitleFor(settings, service)),
-                  trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+                  trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
                   onTap: () => Navigator.of(
                     context,
                   ).push(MaterialPageRoute<void>(builder: (_) => TrackerLibraryFilterScreen(service: service))),
@@ -94,7 +94,7 @@ class TrackerAccountSettingsBody extends StatelessWidget {
         SettingsGroup(
           children: [
             FocusableListTile(
-              leading: AppIcon(PhosphorIconsFill.linkBreak, fill: 1, color: Theme.of(context).colorScheme.error),
+              leading: AppIcon(PhosphorIconsDuotone.linkBreak, fill: 1, color: Theme.of(context).colorScheme.error),
               title: Text(t.common.disconnect, style: TextStyle(color: Theme.of(context).colorScheme.error)),
               onTap: () => unawaited(Future<void>.sync(onDisconnect)),
             ),

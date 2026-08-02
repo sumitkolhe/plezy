@@ -738,7 +738,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
             else
               Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(width: 4),
-            const AppIcon(PhosphorIconsFill.caretDown, fill: 1, size: 24),
+            const AppIcon(PhosphorIconsDuotone.caretDown, fill: 1, size: 24),
           ],
         ),
       ),
@@ -781,13 +781,13 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     List<FocusableAction> appBarActions() => [
       if (allLibraries.isNotEmpty)
         FocusableAction(
-          icon: PhosphorIconsFill.pencilSimple,
+          icon: PhosphorIconsDuotone.pencilSimple,
           tooltip: t.libraries.manageLibraries,
           onPressed: _showLibraryManagementSheet,
         ),
       if (showBrowseOptionsAction)
         FocusableAction(
-          icon: PhosphorIconsFill.sliders,
+          icon: PhosphorIconsDuotone.sliders,
           tooltip: t.libraries.libraryOptions,
           onPressed: _showBrowseOptionsForCurrentTab,
           // Badge the icon with a dot while the browse tab has active filters
@@ -799,7 +799,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
                   icon: Stack(
                     clipBehavior: Clip.none,
                     children: [
-                      const AppIcon(PhosphorIconsFill.sliders, fill: 1),
+                      const AppIcon(PhosphorIconsDuotone.sliders, fill: 1),
                       Positioned(
                         top: -2,
                         right: -2,
@@ -822,7 +822,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       // TV/desktop, where it also refreshes every visible tab at once.
       if (!PlatformDetector.isHandheld(context))
         FocusableAction(
-          icon: PhosphorIconsFill.arrowsClockwise,
+          icon: PhosphorIconsDuotone.arrowsClockwise,
           tooltip: t.common.refresh,
           onPressed: _refreshSelectedLibraryTabs,
         ),
@@ -890,7 +890,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       body = buildSimpleScroll(
         body: ErrorStateWidget(
           message: _errorMessage!,
-          icon: PhosphorIconsFill.warningCircle,
+          icon: PhosphorIconsDuotone.warningCircle,
           onRetry: () {
             final librariesProvider = context.read<LibrariesProvider>();
             librariesProvider.refresh();
@@ -900,13 +900,13 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     } else if (visibleLibraries.isEmpty && selectedLibrary == null) {
       body = buildSimpleScroll(
         body: allLibraries.isEmpty
-            ? EmptyStateWidget(message: t.libraries.noLibrariesFound, icon: PhosphorIconsFill.filmStrip)
+            ? EmptyStateWidget(message: t.libraries.noLibrariesFound, icon: PhosphorIconsDuotone.filmStrip)
             : EmptyStateWidget(
                 message: t.libraries.allLibrariesHidden,
-                icon: PhosphorIconsFill.eyeSlash,
+                icon: PhosphorIconsDuotone.eyeSlash,
                 onAction: _showLibraryManagementSheet,
                 actionLabel: t.libraries.manageLibraries,
-                actionIcon: PhosphorIconsFill.pencilSimple,
+                actionIcon: PhosphorIconsDuotone.pencilSimple,
               ),
       );
     } else if (selectedLibrary != null) {

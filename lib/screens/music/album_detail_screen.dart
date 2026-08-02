@@ -142,7 +142,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
           builder: (buttonContext) => Container(
             decoration: FocusTheme.focusBackgroundDecoration(isFocused: state.showFocus, borderRadius: 20),
             child: IconButton(
-              icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
+              icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
               onPressed: () => _showOverflowMenuAt(buttonContext),
             ),
           ),
@@ -216,7 +216,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
             icon = const DownloadQueueingSpinner(size: 20);
             tooltip = t.downloads.downloadingTooltip;
           } else if (status == DownloadStatus.queued) {
-            icon = const AppIcon(PhosphorIconsFill.clock, fill: 1);
+            icon = const AppIcon(PhosphorIconsDuotone.clock, fill: 1);
             tooltip = t.downloads.queuedTooltip;
           } else if (status == DownloadStatus.downloading) {
             icon = DownloadStatusIcon(
@@ -226,13 +226,13 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
             );
             tooltip = t.downloads.downloadingTooltip;
           } else if (status == DownloadStatus.completed) {
-            icon = const AppIcon(PhosphorIconsFill.checkCircle, fill: 1);
+            icon = const AppIcon(PhosphorIconsDuotone.checkCircle, fill: 1);
             tooltip = t.downloads.deleteDownload;
           } else if (status == DownloadStatus.partial) {
-            icon = const AppIcon(PhosphorIconsFill.downloadSimple, fill: 1);
+            icon = const AppIcon(PhosphorIconsDuotone.downloadSimple, fill: 1);
             tooltip = t.downloads.partialDownloadClickToComplete;
           } else {
-            icon = const AppIcon(PhosphorIconsFill.download, fill: 1);
+            icon = const AppIcon(PhosphorIconsDuotone.download, fill: 1);
             tooltip = t.downloads.downloadNow;
           }
 
@@ -278,7 +278,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
         imageType: ImageType.square,
         width: size,
         height: size,
-        fallbackIcon: PhosphorIconsFill.vinylRecord,
+        fallbackIcon: PhosphorIconsDuotone.vinylRecord,
       ),
     );
 

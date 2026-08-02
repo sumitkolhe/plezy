@@ -13,15 +13,15 @@ void main() {
           body: Column(
             children: [
               BottomSheetHeader(title: 'Back', onBack: () => backPressed = true),
-              const BottomSheetHeader(title: 'Icon', icon: PhosphorIconsFill.funnel),
+              const BottomSheetHeader(title: 'Icon', icon: PhosphorIconsDuotone.funnel),
             ],
           ),
         ),
       ),
     );
 
-    final backArrow = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsFill.arrowLeft);
-    final regularIcon = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsFill.funnel);
+    final backArrow = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.arrowLeft);
+    final regularIcon = find.byWidgetPredicate((widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.funnel);
 
     expect(backArrow, findsOneWidget);
     expect(regularIcon, findsOneWidget);

@@ -314,7 +314,7 @@ class _MiniPlayerCardState extends State<_MiniPlayerCard> with ContextMenuTapMix
                                 imageType: ImageType.square,
                                 width: 48,
                                 height: 48,
-                                fallbackIcon: PhosphorIconsFill.musicNote,
+                                fallbackIcon: PhosphorIconsDuotone.musicNote,
                               ),
                             ),
                             const SizedBox(width: 10),
@@ -349,26 +349,26 @@ class _MiniPlayerCardState extends State<_MiniPlayerCard> with ContextMenuTapMix
                       actions: [
                         if (widget.desktop)
                           FocusableAction(
-                            icon: PhosphorIconsFill.skipBack,
+                            icon: PhosphorIconsDuotone.skipBack,
                             iconColor: tk.text,
                             tooltip: t.music.previousTrack,
                             onPressed: () => unawaited(service.previous()),
                           ),
                         FocusableAction(
-                          icon: isPlaying ? PhosphorIconsFill.pause : PhosphorIconsFill.play,
+                          icon: isPlaying ? PhosphorIconsDuotone.pause : PhosphorIconsDuotone.play,
                           iconColor: tk.text,
                           tooltip: isPlaying ? t.common.pause : t.common.play,
                           onPressed: () => unawaited(service.togglePlayPause()),
                         ),
                         FocusableAction(
-                          icon: PhosphorIconsFill.skipForward,
+                          icon: PhosphorIconsDuotone.skipForward,
                           iconColor: tk.text,
                           tooltip: t.music.nextTrack,
                           onPressed: () => unawaited(service.next()),
                         ),
                         if (widget.desktop)
                           FocusableAction(
-                            icon: PhosphorIconsFill.x,
+                            icon: PhosphorIconsDuotone.x,
                             iconColor: tk.textMuted,
                             iconSize: 20,
                             tooltip: t.music.stopPlayback,

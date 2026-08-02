@@ -261,14 +261,14 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                   actions: [
                     FocusableActionBar(
                       actions: [
-                        FocusableAction(icon: PhosphorIconsFill.arrowsClockwise, tooltip: t.common.refresh, onPressed: _loadLogs),
+                        FocusableAction(icon: PhosphorIconsDuotone.arrowsClockwise, tooltip: t.common.refresh, onPressed: _loadLogs),
                         FocusableAction(
-                          icon: PhosphorIconsFill.copy,
+                          icon: PhosphorIconsDuotone.copy,
                           tooltip: t.logs.copyLogs,
                           onPressed: _logs.isNotEmpty ? _copyAllLogs : null,
                         ),
                         FocusableAction(
-                          icon: PhosphorIconsFill.trash,
+                          icon: PhosphorIconsDuotone.trash,
                           tooltip: t.logs.clearLogs,
                           onPressed: _logs.isNotEmpty ? _clearLogs : null,
                         ),

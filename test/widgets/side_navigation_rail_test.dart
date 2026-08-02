@@ -514,7 +514,7 @@ void main() {
               builder: (context) {
                 parentBuilds++;
                 return NavigationRailItem(
-                  icon: PhosphorIconsFill.house,
+                  icon: PhosphorIconsDuotone.house,
                   label: const Text('Home'),
                   isSelected: false,
                   onTap: () {},

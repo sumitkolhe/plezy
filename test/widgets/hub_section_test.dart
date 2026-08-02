@@ -47,7 +47,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIconsFill.television,
+          icon: PhosphorIconsDuotone.television,
           onItemTap: (value) => tappedItem = value,
           onItemLongPress: (value) => longPressedItem = value,
         ),
@@ -79,7 +79,7 @@ void main() {
             key: hubKey,
             hub: _hubWith(item),
             focusMemory: HubFocusMemory(),
-            icon: PhosphorIconsFill.television,
+            icon: PhosphorIconsDuotone.television,
             onItemTap: (value) => tappedItem = value,
             onItemLongPress: (value) => longPressedItem = value,
           ),
@@ -116,7 +116,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIconsFill.television,
+          icon: PhosphorIconsDuotone.television,
           cardSizing: HubCardSizing.grid,
           episodePosterModeOverride: EpisodePosterMode.seriesPoster,
         ),
@@ -147,14 +147,14 @@ void main() {
 
     await tester.pumpWidget(
       _TestApp(
-        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsFill.filmSlate),
+        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsDuotone.filmSlate),
       ),
     );
     expect(find.text(t.explore.totalResults(n: 237)), findsNothing);
 
     await tester.pumpWidget(
       _TestApp(
-        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsFill.filmSlate, totalResults: 237),
+        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsDuotone.filmSlate, totalResults: 237),
       ),
     );
     expect(find.text(t.explore.totalResults(n: 237)), findsOneWidget);
@@ -182,7 +182,7 @@ void main() {
             key: key,
             hub: hub(hubId),
             focusMemory: owner,
-            icon: PhosphorIconsFill.filmSlate,
+            icon: PhosphorIconsDuotone.filmSlate,
             onFocusedItemChanged: (item) => focusedItemId = item.id,
           ),
         ),

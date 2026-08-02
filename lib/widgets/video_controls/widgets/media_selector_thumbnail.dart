@@ -29,7 +29,7 @@ class MediaSelectorThumbnail extends StatelessWidget {
     this.fallbackBackgroundColor = Colors.white10,
     this.fallbackIconColor = Colors.white38,
     this.fallbackIconSize = 28,
-    this.fallbackIcon = PhosphorIconsFill.filmSlate,
+    this.fallbackIcon = PhosphorIconsDuotone.filmSlate,
     this.blurThumbnail = false,
   });
 

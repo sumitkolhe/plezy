@@ -52,7 +52,7 @@ void main() {
 
     expect(find.text('Season 1'), findsOneWidget);
     expect(tester.widget<InkWell>(find.byType(InkWell)).onTap, isNull);
-    expect(find.byIcon(PhosphorIconsFill.caretDown), findsNothing);
+    expect(find.byIcon(PhosphorIconsDuotone.caretDown), findsNothing);
   });
 
   testWidgets('collapses when the show reports no seasons at all', (tester) async {

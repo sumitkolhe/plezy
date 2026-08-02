@@ -52,7 +52,7 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
               slivers: [
                 if (syncRules.isEmpty)
                   SliverFillRemaining(
-                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: PhosphorIconsFill.arrowsClockwise, iconSize: 80),
+                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: PhosphorIconsDuotone.arrowsClockwise, iconSize: 80),
                   )
                 else
                   SliverList(
@@ -126,14 +126,14 @@ class _SyncRuleTileState extends State<_SyncRuleTile> {
   IconData _leadingIcon() {
     switch (rule.targetType) {
       case ContentTypes.playlist:
-        return PhosphorIconsFill.playlist;
+        return PhosphorIconsDuotone.playlist;
       case ContentTypes.collection:
-        return PhosphorIconsFill.books;
+        return PhosphorIconsDuotone.books;
       case ContentTypes.show:
       case ContentTypes.season:
-        return PhosphorIconsFill.television;
+        return PhosphorIconsDuotone.television;
       default:
-        return PhosphorIconsFill.arrowsClockwise;
+        return PhosphorIconsDuotone.arrowsClockwise;
     }
   }
 
@@ -329,7 +329,7 @@ class _SwipeRevealDeleteActionState extends State<_SwipeRevealDeleteAction> {
                             child: Column(
                               mainAxisAlignment: .center,
                               children: [
-                                AppIcon(PhosphorIconsFill.trash, color: colorScheme.onError, size: 20),
+                                AppIcon(PhosphorIconsDuotone.trash, color: colorScheme.onError, size: 20),
                                 const SizedBox(height: 2),
                                 Text(
                                   t.common.delete,

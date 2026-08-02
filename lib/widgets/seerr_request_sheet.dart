@@ -401,7 +401,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                   value: _is4k,
                   onChanged: _submitting ? null : _toggle4k,
                   title: Text(t.seerr.request4k),
-                  secondary: const AppIcon(PhosphorIconsFill.fourK, fill: 1),
+                  secondary: const AppIcon(PhosphorIconsDuotone.fourK, fill: 1),
                   contentPadding: EdgeInsets.zero,
                 ),
               if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
@@ -416,7 +416,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                 onPressed: _canSubmit ? _submit : null,
                 child: FilledButton.icon(
                   onPressed: _canSubmit ? _submit : null,
-                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsFill.download, fill: 1),
+                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.download, fill: 1),
                   label: Text(t.seerr.request),
                 ),
               ),
@@ -448,7 +448,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          AppIcon(PhosphorIconsFill.checkCircle, fill: 1, color: theme.colorScheme.primary),
+          AppIcon(PhosphorIconsDuotone.checkCircle, fill: 1, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
           Expanded(child: Text(label ?? t.seerr.nothingToRequest, style: theme.textTheme.bodyMedium)),
         ],
@@ -521,7 +521,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       ),
       if (servers.length > 1)
         _PickerTile<SeerrServiceInstance>(
-          icon: PhosphorIconsFill.hardDrives,
+          icon: PhosphorIconsDuotone.hardDrives,
           label: t.seerr.destinationServer,
           value: _server?.name ?? '',
           options: servers,
@@ -532,7 +532,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (profiles.isNotEmpty)
         _PickerTile<SeerrServiceProfile>(
-          icon: PhosphorIconsFill.highDefinition,
+          icon: PhosphorIconsDuotone.highDefinition,
           label: t.seerr.qualityProfile,
           value: profiles.firstWhereOrNull((p) => p.id == _profileId)?.name ?? '',
           options: profiles,
@@ -543,7 +543,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (folders.isNotEmpty)
         _PickerTile<SeerrRootFolder>(
-          icon: PhosphorIconsFill.folder,
+          icon: PhosphorIconsDuotone.folder,
           label: t.seerr.rootFolder,
           value: _rootFolder ?? '',
           options: folders,
@@ -554,7 +554,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (languages.isNotEmpty)
         _PickerTile<SeerrServiceProfile>(
-          icon: PhosphorIconsFill.translate,
+          icon: PhosphorIconsDuotone.translate,
           label: t.seerr.languageProfile,
           value: languages.firstWhereOrNull((p) => p.id == _languageProfileId)?.name ?? '',
           options: languages,
@@ -613,7 +613,7 @@ class _PickerTile<T> extends StatelessWidget {
       leading: AppIcon(icon, fill: 1),
       title: Text(label),
       subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: const AppIcon(PhosphorIconsFill.caretUpDown, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretUpDown, fill: 1),
       contentPadding: EdgeInsets.zero,
       enabled: enabled,
       onTap: () => unawaited(_open(context)),

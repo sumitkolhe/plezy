@@ -317,8 +317,8 @@ void main() {
         .toList();
 
     expect(icons, hasLength(4));
-    expect(icons.singleWhere((icon) => icon.icon == PhosphorIconsFill.x).size, 20);
-    expect(icons.where((icon) => icon.icon != PhosphorIconsFill.x).map((icon) => icon.size), everyElement(24));
+    expect(icons.singleWhere((icon) => icon.icon == PhosphorIconsDuotone.x).size, 20);
+    expect(icons.where((icon) => icon.icon != PhosphorIconsDuotone.x).map((icon) => icon.size), everyElement(24));
   });
 
   testWidgets('keyboard long-press anchors the context menu to the focused card instead of a stale pointer', (
@@ -358,7 +358,7 @@ void main() {
     await tester.pumpAndSettle();
 
     final playMenuIcon = find.byWidgetPredicate(
-      (widget) => widget is AppIcon && widget.icon == PhosphorIconsFill.play,
+      (widget) => widget is AppIcon && widget.icon == PhosphorIconsDuotone.play,
     );
     expect(playMenuIcon, findsOneWidget);
     final menuSurface = find.ancestor(of: playMenuIcon, matching: find.byType(BottomSheet));

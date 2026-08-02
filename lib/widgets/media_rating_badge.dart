@@ -77,7 +77,7 @@ class MediaRatingBadge extends StatelessWidget {
   static _MediaRatingBadgeData? _ratingDataFor(MediaItem item) {
     final rating = item.rating;
     if (rating == null) return null;
-    return _MediaRatingBadgeData(value: rating, fallbackIcon: PhosphorIconsFill.star, fallbackText: formatRating(rating));
+    return _MediaRatingBadgeData(value: rating, fallbackIcon: PhosphorIconsDuotone.star, fallbackText: formatRating(rating));
   }
 
   @override

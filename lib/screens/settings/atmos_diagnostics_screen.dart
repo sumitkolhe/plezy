@@ -115,7 +115,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
       icon: icon,
       title: title,
       subtitle: subtitle,
-      trailingIcon: active ? PhosphorIconsFill.waveform : PhosphorIconsFill.play,
+      trailingIcon: active ? PhosphorIconsDuotone.waveform : PhosphorIconsDuotone.play,
       onTap: () => _start(mode),
     );
   }
@@ -131,56 +131,56 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
           children: [
             _testTile(
               mode: 'hlsAtmos',
-              icon: PhosphorIconsFill.waveform,
+              icon: PhosphorIconsDuotone.waveform,
               title: t.settings.atmosTestHlsAtmos,
               subtitle: t.settings.atmosTestHlsAtmosDescription,
             ),
             _testTile(
               mode: 'hlsControl',
-              icon: PhosphorIconsFill.speakerHigh,
+              icon: PhosphorIconsDuotone.speakerHigh,
               title: t.settings.atmosTestHlsControl,
               subtitle: t.settings.atmosTestHlsControlDescription,
             ),
             _testTile(
               mode: 'rawEc3',
-              icon: PhosphorIconsFill.broadcast,
+              icon: PhosphorIconsDuotone.broadcast,
               title: t.settings.atmosTestRawStream,
               subtitle: t.settings.atmosTestRawStreamDescription,
             ),
             _testTile(
               mode: 'rawEc3Finite',
-              icon: PhosphorIconsFill.fileAudio,
+              icon: PhosphorIconsDuotone.fileAudio,
               title: t.settings.atmosTestRawFile,
               subtitle: t.settings.atmosTestRawFileDescription,
             ),
             _testTile(
               mode: 'asbarNative',
-              icon: PhosphorIconsFill.waveform,
+              icon: PhosphorIconsDuotone.waveform,
               title: t.settings.atmosTestAsbarNative,
               subtitle: t.settings.atmosTestAsbarNativeDescription,
             ),
             _testTile(
               mode: 'asbarGenerated',
-              icon: PhosphorIconsFill.sliders,
+              icon: PhosphorIconsDuotone.sliders,
               title: t.settings.atmosTestAsbarGenerated,
               subtitle: t.settings.atmosTestAsbarGeneratedDescription,
             ),
             SettingNavigationTile(
-              icon: PhosphorIconsFill.airplay,
+              icon: PhosphorIconsDuotone.airplay,
               title: _routePickerVisible ? t.settings.atmosTestHideRoutePicker : t.settings.atmosTestShowRoutePicker,
               subtitle: t.settings.atmosTestRoutePickerDescription,
               onTap: _toggleRoutePicker,
             ),
             SettingSwitchTile(
               pref: SettingsService.atmosProbeMoviePlaybackMode,
-              icon: PhosphorIconsFill.gear,
+              icon: PhosphorIconsDuotone.gear,
               title: t.settings.atmosTestSessionMode,
               subtitle: t.settings.atmosTestSessionModeDescription,
             ),
             SettingNavigationTile(
-              icon: PhosphorIconsFill.stopCircle,
+              icon: PhosphorIconsDuotone.stopCircle,
               title: t.settings.atmosTestStop,
-              trailingIcon: PhosphorIconsFill.stop,
+              trailingIcon: PhosphorIconsDuotone.stop,
               onTap: _stop,
             ),
           ],
@@ -190,7 +190,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
             SettingValueBuilder<String>(
               pref: SettingsService.atmosProbeUrl,
               builder: (context, value, _) => SettingNavigationTile(
-                icon: PhosphorIconsFill.link,
+                icon: PhosphorIconsDuotone.link,
                 title: t.settings.atmosTestUrl,
                 subtitle: value.isEmpty ? t.settings.atmosTestUrlDescription : value,
                 onTap: () async {

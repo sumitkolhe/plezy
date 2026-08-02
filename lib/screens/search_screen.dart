@@ -268,14 +268,14 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.search.searchYourMedia,
                   subtitle: t.search.enterTitleActorOrKeyword,
-                  icon: PhosphorIconsFill.magnifyingGlass,
+                  icon: PhosphorIconsDuotone.magnifyingGlass,
                   iconSize: 80,
                 ),
               )
             else if (lastSearchFailed)
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIconsFill.warningCircle, iconSize: 80),
+                child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIconsDuotone.warningCircle, iconSize: 80),
               )
             else if (searchResults.isEmpty)
               SliverFillRemaining(
@@ -283,7 +283,7 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.messages.noResultsFound,
                   subtitle: t.search.tryDifferentTerm,
-                  icon: PhosphorIconsFill.magnifyingGlassMinus,
+                  icon: PhosphorIconsDuotone.magnifyingGlassMinus,
                   iconSize: 80,
                 ),
               )

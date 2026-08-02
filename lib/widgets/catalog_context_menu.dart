@@ -56,25 +56,25 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
     anchorRect: anchorRect,
     focusFirstItem: position == null,
     entries: [
-      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: PhosphorIconsFill.info),
+      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: PhosphorIconsDuotone.info),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),
           label: t.explore.detail.watchTrailer,
-          icon: PhosphorIconsFill.playCircle,
+          icon: PhosphorIconsDuotone.playCircle,
         ),
       for (final link in item.links ?? const [])
         if (link.label.isNotEmpty && link.url.isNotEmpty)
           AppMenuItem(
             value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: link.url),
             label: t.explore.detail.openOn(site: link.label),
-            icon: PhosphorIconsFill.arrowSquareOut,
+            icon: PhosphorIconsDuotone.arrowSquareOut,
           ),
       if (onWatchlist != null)
         AppMenuItem(
           value: _CatalogMenuAction.toggleWatchlist,
           label: onWatchlist ? t.explore.removeFromWatchlist : t.explore.addToWatchlist,
-          icon: onWatchlist ? PhosphorIconsFill.bookmarkSimple : PhosphorIconsFill.bookmarkSimple,
+          icon: onWatchlist ? PhosphorIconsDuotone.bookmarkSimple : PhosphorIconsDuotone.bookmarkSimple,
         ),
     ],
   );

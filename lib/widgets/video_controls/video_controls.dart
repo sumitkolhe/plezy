@@ -1125,7 +1125,7 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
                               child: Row(
                                 mainAxisSize: .min,
                                 children: [
-                                  const AppIcon(PhosphorIconsFill.lock, fill: 1, color: Colors.white, size: 20),
+                                  const AppIcon(PhosphorIconsDuotone.lock, fill: 1, color: Colors.white, size: 20),
                                   const SizedBox(width: 8),
                                   Text(
                                     t.videoControls.longPressToUnlock,

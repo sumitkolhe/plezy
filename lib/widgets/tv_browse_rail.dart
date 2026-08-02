@@ -1321,7 +1321,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
               ),
               if (_trailingFor(hub) == TvRailTrailing.viewAll) ...[
                 SizedBox(width: 8 * scale),
-                AppIcon(PhosphorIconsFill.caretRight, fill: 1, size: 20 * scale, color: iconColor),
+                AppIcon(PhosphorIconsDuotone.caretRight, fill: 1, size: 20 * scale, color: iconColor),
                 SizedBox(width: 30 * scale),
               ],
             ],
@@ -1551,7 +1551,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: PhosphorIconsFill.person,
+                  fallbackIcon: PhosphorIconsDuotone.person,
                   artworkDim: artworkDim,
                 ),
                 RasterizedGradient(
@@ -1619,7 +1619,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: PhosphorIconsFill.person,
+                  fallbackIcon: PhosphorIconsDuotone.person,
                   artworkDim: artworkDim,
                 ),
               ),
@@ -1677,7 +1677,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           isFocused: isFocused,
           scale: scale,
           label: t.common.retry,
-          icon: PhosphorIconsFill.arrowsClockwise,
+          icon: PhosphorIconsDuotone.arrowsClockwise,
           onTap: () {
             _selectHubItem(hub, hubIndex, itemIndex);
             widget.onRetryHub?.call(hub);
@@ -1736,7 +1736,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
     required double scale,
     required VoidCallback onTap,
     String? label,
-    IconData icon = PhosphorIconsFill.arrowRight,
+    IconData icon = PhosphorIconsDuotone.arrowRight,
   }) {
     final theme = Theme.of(context);
     final duration = FocusTheme.getAnimationDuration(context);

@@ -77,7 +77,7 @@ class LicensesScreen extends StatelessWidget {
                       subtitle: mergedLicense.licenseEntries.length > 1
                           ? Text(t.licenses.licensesCount(count: mergedLicense.licenseEntries.length))
                           : null,
-                      trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+                      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
                       onTap: () => _showLicenseDetail(context, mergedLicense),
                     ),
                   );

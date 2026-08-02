@@ -153,7 +153,7 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
   }
 
   @override
-  IconData get emptyIcon => PhosphorIconsFill.thumbsUp;
+  IconData get emptyIcon => PhosphorIconsDuotone.thumbsUp;
 
   @override
   String get emptyMessage => t.libraries.noRecommendations;

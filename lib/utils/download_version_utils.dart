@@ -87,7 +87,7 @@ Future<int?> showVersionPickerDialog(BuildContext context, List<MediaVersion> ve
     title: title,
     options: List.generate(
       versions.length,
-      (index) => (icon: PhosphorIconsFill.fileVideo, label: versions[index].displayLabel, value: index),
+      (index) => (icon: PhosphorIconsDuotone.fileVideo, label: versions[index].displayLabel, value: index),
     ),
   );
 }

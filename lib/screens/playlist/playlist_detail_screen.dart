@@ -61,7 +61,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
   String get emptyMessage => t.playlists.emptyPlaylist;
 
   @override
-  IconData get emptyIcon => PhosphorIconsFill.playlist;
+  IconData get emptyIcon => PhosphorIconsDuotone.playlist;
 
   @override
   bool get hasItems => items.isNotEmpty;
@@ -115,8 +115,8 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
 
     return [
       if (items.isNotEmpty) ...[
-        FocusableAction(icon: PhosphorIconsFill.play, tooltip: t.common.play, onPressed: playItems),
-        FocusableAction(icon: PhosphorIconsFill.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
+        FocusableAction(icon: PhosphorIconsDuotone.play, tooltip: t.common.play, onPressed: playItems),
+        FocusableAction(icon: PhosphorIconsDuotone.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
       ],
       ...buildSyncRuleActions(
         context,
@@ -132,7 +132,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
       // managed server-side via filter rules, not via DELETE.
       if (!widget.playlist.smart)
         FocusableAction(
-          icon: PhosphorIconsFill.trash,
+          icon: PhosphorIconsDuotone.trash,
           tooltip: t.playlists.delete,
           onPressed: _deletePlaylist,
           iconColor: Colors.red,
@@ -723,7 +723,7 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
                   mainAxisSize: .min,
                   children: [
                     AppIcon(
-                      PhosphorIconsFill.sparkle,
+                      PhosphorIconsDuotone.sparkle,
                       fill: 1,
                       size: 12,
                       color: Theme.of(context).colorScheme.primary,

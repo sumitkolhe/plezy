@@ -148,7 +148,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? PhosphorIconsFill.filmSlate,
+         fallbackIcon: fallbackIcon ?? PhosphorIconsDuotone.filmSlate,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -186,7 +186,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? PhosphorIconsFill.filmStrip,
+         fallbackIcon: fallbackIcon ?? PhosphorIconsDuotone.filmStrip,
          imageType: ImageType.thumb,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -223,7 +223,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: PhosphorIconsFill.playlist,
+         fallbackIcon: PhosphorIconsDuotone.playlist,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -466,12 +466,12 @@ class OptimizedMediaImage extends StatelessWidget {
 
   Widget _buildErrorWidget(BuildContext context, dynamic _) => _surfacePlaceholder(
     context,
-    icon: fallbackIcon ?? PhosphorIconsFill.imageBroken,
+    icon: fallbackIcon ?? PhosphorIconsDuotone.imageBroken,
     fillParent: !_hasKnownDimensions,
   );
 
   Widget _buildFallback(BuildContext context) =>
-      _surfacePlaceholder(context, icon: fallbackIcon ?? PhosphorIconsFill.imageBroken);
+      _surfacePlaceholder(context, icon: fallbackIcon ?? PhosphorIconsDuotone.imageBroken);
 }
 
 /// Clear-logo artwork for hero and detail headers.

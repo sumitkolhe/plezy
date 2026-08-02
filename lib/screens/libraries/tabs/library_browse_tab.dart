@@ -364,7 +364,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
 
   // Required abstract implementations from base class
   @override
-  IconData get emptyIcon => PhosphorIconsFill.folderOpen;
+  IconData get emptyIcon => PhosphorIconsDuotone.folderOpen;
 
   @override
   String get emptyMessage => t.libraries.thisLibraryIsEmpty;
@@ -808,7 +808,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final controller = OverlaySheetController.of(sheetContext);
     return BottomSheetPageScaffold(
       title: t.libraries.libraryOptions,
-      icon: PhosphorIconsFill.sliders,
+      icon: PhosphorIconsDuotone.sliders,
       shrinkWrap: true,
       child: ListView(
         primary: false,
@@ -816,29 +816,29 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
           FocusableListTile(
-            leading: const AppIcon(PhosphorIconsFill.squaresFour, fill: 1),
+            leading: const AppIcon(PhosphorIconsDuotone.squaresFour, fill: 1),
             title: Text(t.libraries.groupings.title),
             subtitle: Text(_getGroupingLabel(_selectedGrouping)),
-            trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+            trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
             onTap: () => _showGroupingOptionsPage(controller),
           ),
           if (_isFiltersChipVisible)
             FocusableListTile(
-              leading: const AppIcon(PhosphorIconsFill.funnel, fill: 1),
+              leading: const AppIcon(PhosphorIconsDuotone.funnel, fill: 1),
               title: Text(
                 _selectedFilters.isEmpty
                     ? t.libraries.filters
                     : t.libraries.filtersWithCount(count: _selectedFilters.length),
               ),
-              trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+              trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
               onTap: () => _showFiltersOptionsPage(controller),
             ),
           if (_isSortChipVisible)
             FocusableListTile(
-              leading: const AppIcon(PhosphorIconsFill.sortAscending, fill: 1),
+              leading: const AppIcon(PhosphorIconsDuotone.sortAscending, fill: 1),
               title: Text(t.libraries.sort),
               subtitle: _selectedSort == null ? null : Text(_selectedSort!.title),
-              trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+              trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
               onTap: () => _showSortOptionsPage(controller),
             ),
         ],
@@ -888,7 +888,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   Widget _buildGroupingBottomSheet({required ValueChanged<String> onSelected, VoidCallback? onBack}) {
     return BottomSheetPageScaffold(
       title: t.libraries.groupings.title,
-      icon: PhosphorIconsFill.squaresFour,
+      icon: PhosphorIconsDuotone.squaresFour,
       onBack: onBack,
       shrinkWrap: true,
       child: ListView(
@@ -908,7 +908,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         key: ValueKey(grouping),
         dense: true,
         leading: AppIcon(
-          isSelected ? PhosphorIconsFill.radioButton : PhosphorIconsFill.circle,
+          isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle,
           fill: 1,
         ),
         title: Text(_getGroupingLabel(grouping)),
@@ -1659,7 +1659,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           // Grouping chip
           FocusableFilterChip(
             focusNode: _groupingChipFocusNode,
-            icon: PhosphorIconsFill.squaresFour,
+            icon: PhosphorIconsDuotone.squaresFour,
             label: _getGroupingLabel(_selectedGrouping),
             onPressed: _showGroupingBottomSheet,
             onNavigateDown: _navigateToGrid,
@@ -1673,7 +1673,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           if (_isFiltersChipVisible)
             FocusableFilterChip(
               focusNode: _filtersChipFocusNode,
-              icon: PhosphorIconsFill.funnel,
+              icon: PhosphorIconsDuotone.funnel,
               label: _selectedFilters.isEmpty
                   ? t.libraries.filters
                   : t.libraries.filtersWithCount(count: _selectedFilters.length),
@@ -1689,7 +1689,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           if (_isSortChipVisible)
             FocusableFilterChip(
               focusNode: _sortChipFocusNode,
-              icon: PhosphorIconsFill.sortAscending,
+              icon: PhosphorIconsDuotone.sortAscending,
               label: _selectedSort?.title ?? t.libraries.sort,
               onPressed: _showSortBottomSheet,
               onNavigateDown: _navigateToGrid,
@@ -1746,10 +1746,10 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         return [
           SliverEmptyState(
             message: t.libraries.noItemsMatchFilters,
-            icon: PhosphorIconsFill.funnelX,
+            icon: PhosphorIconsDuotone.funnelX,
             onAction: _resetFilters,
             actionLabel: t.libraries.resetFilters,
-            actionIcon: PhosphorIconsFill.eraser,
+            actionIcon: PhosphorIconsDuotone.eraser,
             actionFocusNode: firstItemFocusNode,
             onActionNavigateUp: _navigateToChips,
             onActionNavigateLeft: _navigateToSidebar,
@@ -1757,7 +1757,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           ),
         ];
       }
-      return [SliverEmptyState(message: t.libraries.thisLibraryIsEmpty, icon: PhosphorIconsFill.folderOpen)];
+      return [SliverEmptyState(message: t.libraries.thisLibraryIsEmpty, icon: PhosphorIconsDuotone.folderOpen)];
     }
 
     return [

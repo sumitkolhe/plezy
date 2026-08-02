@@ -15,7 +15,7 @@ IconData hubIconFor(MediaHub hub) {
   final title = hub.title.toLowerCase();
 
   if (hub.isContinueWatchingHub || title.contains('continue watching') || title.contains('on deck')) {
-    return PhosphorIconsFill.playCircle;
+    return PhosphorIconsDuotone.playCircle;
   }
   for (final (keywords, icon) in _titleKeywordIcons) {
     if (keywords.any(title.contains)) return icon;
@@ -23,44 +23,44 @@ IconData hubIconFor(MediaHub hub) {
   return _defaultHubIcon;
 }
 
-const _defaultHubIcon = PhosphorIconsFill.sparkle;
+const _defaultHubIcon = PhosphorIconsDuotone.sparkle;
 
 /// Title keywords in match order — see [hubIconFor].
 const _titleKeywordIcons = <(List<String>, IconData)>[
   // Trending/Popular
-  (['trending'], PhosphorIconsFill.trendUp),
-  (['popular', 'imdb'], PhosphorIconsFill.fire),
+  (['trending'], PhosphorIconsDuotone.trendUp),
+  (['popular', 'imdb'], PhosphorIconsDuotone.fire),
   // Seasonal/Time-based
-  (['seasonal'], PhosphorIconsFill.calendarBlank),
-  (['newly', 'new release'], PhosphorIconsFill.sparkle),
-  (['recently released', 'recent'], PhosphorIconsFill.clock),
+  (['seasonal'], PhosphorIconsDuotone.calendarBlank),
+  (['newly', 'new release'], PhosphorIconsDuotone.sparkle),
+  (['recently released', 'recent'], PhosphorIconsDuotone.clock),
   // Top/Rated
-  (['top rated', 'highest rated'], PhosphorIconsFill.star),
-  (['top '], PhosphorIconsFill.medal),
+  (['top rated', 'highest rated'], PhosphorIconsDuotone.star),
+  (['top '], PhosphorIconsDuotone.medal),
   // Genre-specific
-  (['thriller'], PhosphorIconsFill.warning),
-  (['comedy', 'comedier'], PhosphorIconsFill.smiley),
-  (['action'], PhosphorIconsFill.lightning),
-  (['drama'], PhosphorIconsFill.maskHappy),
-  (['fantasy'], PhosphorIconsFill.magicWand),
-  (['science', 'sci-fi'], PhosphorIconsFill.rocketLaunch),
-  (['horror', 'skräck'], PhosphorIconsFill.moonStars),
-  (['romance', 'romantic'], PhosphorIconsFill.heart),
-  (['adventure', 'äventyr'], PhosphorIconsFill.compass),
+  (['thriller'], PhosphorIconsDuotone.warning),
+  (['comedy', 'comedier'], PhosphorIconsDuotone.smiley),
+  (['action'], PhosphorIconsDuotone.lightning),
+  (['drama'], PhosphorIconsDuotone.maskHappy),
+  (['fantasy'], PhosphorIconsDuotone.magicWand),
+  (['science', 'sci-fi'], PhosphorIconsDuotone.rocketLaunch),
+  (['horror', 'skräck'], PhosphorIconsDuotone.moonStars),
+  (['romance', 'romantic'], PhosphorIconsDuotone.heart),
+  (['adventure', 'äventyr'], PhosphorIconsDuotone.compass),
   // Watchlist/Playlists
-  (['playlist', 'watchlist'], PhosphorIconsFill.playlist),
-  (['unwatched', 'unplayed'], PhosphorIconsFill.eyeSlash),
-  (['watched', 'played'], PhosphorIconsFill.eye),
+  (['playlist', 'watchlist'], PhosphorIconsDuotone.playlist),
+  (['unwatched', 'unplayed'], PhosphorIconsDuotone.eyeSlash),
+  (['watched', 'played'], PhosphorIconsDuotone.eye),
   // Network/Studio
-  (['network', 'more from'], PhosphorIconsFill.television),
+  (['network', 'more from'], PhosphorIconsDuotone.television),
   // Actor/Director
-  (['actor', 'director'], PhosphorIconsFill.person),
+  (['actor', 'director'], PhosphorIconsDuotone.person),
   // Decades (80s, 90s, etc.)
-  (['80', '90', '00'], PhosphorIconsFill.clockCounterClockwise),
+  (['80', '90', '00'], PhosphorIconsDuotone.clockCounterClockwise),
   // Rediscover/Start Watching
-  (['rediscover', 'start watching'], PhosphorIconsFill.play),
+  (['rediscover', 'start watching'], PhosphorIconsDuotone.play),
   // Broad library-hub keywords, last so the specific rows above keep their icons.
-  (['rated'], PhosphorIconsFill.star),
-  (['recommended'], PhosphorIconsFill.thumbsUp),
-  (['genre'], PhosphorIconsFill.squaresFour),
+  (['rated'], PhosphorIconsDuotone.star),
+  (['recommended'], PhosphorIconsDuotone.thumbsUp),
+  (['genre'], PhosphorIconsDuotone.squaresFour),
 ];

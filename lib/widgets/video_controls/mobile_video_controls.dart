@@ -252,7 +252,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                                   _buildBottomBar(context),
                                 ],
                               ),
-                              const ContentStripHint(PhosphorIconsFill.caretUp),
+                              const ContentStripHint(PhosphorIconsDuotone.caretUp),
                             ],
                           ),
                         ),
@@ -269,7 +269,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                             opacity: (t * 2).clamp(0.0, 1.0),
                             child: ContentStripPanel(
                               padding: const EdgeInsets.only(top: 32),
-                              chevron: PhosphorIconsFill.caretDown,
+                              chevron: PhosphorIconsDuotone.caretDown,
                               child: ContentStrip(
                                 player: widget.player,
                                 chapters: widget.chapters,
@@ -338,14 +338,14 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
             // Previous episode button (greyed out when unavailable)
             CircularControlButton(
               semanticLabel: t.videoControls.previousButton,
-              icon: PhosphorIconsFill.skipBack,
+              icon: PhosphorIconsDuotone.skipBack,
               iconSize: 48,
               onPressed: widget.onPrevious,
             ),
             const SizedBox(width: 24),
             CircularControlButton(
               semanticLabel: isPlaying ? t.videoControls.pauseButton : t.videoControls.playButton,
-              icon: isPlaying ? PhosphorIconsFill.pause : PhosphorIconsFill.play,
+              icon: isPlaying ? PhosphorIconsDuotone.pause : PhosphorIconsDuotone.play,
               iconSize: 72,
               onPressed: () {
                 widget.onPlayPause();
@@ -360,7 +360,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
             // Next episode button (greyed out when unavailable)
             CircularControlButton(
               semanticLabel: t.videoControls.nextButton,
-              icon: PhosphorIconsFill.skipForward,
+              icon: PhosphorIconsDuotone.skipForward,
               iconSize: 48,
               onPressed: widget.onNext,
             ),

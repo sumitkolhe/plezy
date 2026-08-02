@@ -61,29 +61,29 @@ String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
 const allNavigationTabs = [
-  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: PhosphorIconsFill.house, getLabel: _getHomeLabel),
+  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: PhosphorIconsDuotone.house, getLabel: _getHomeLabel),
   NavigationTab(
     id: NavigationTabId.libraries,
     onlineOnly: true,
-    icon: PhosphorIconsFill.filmStrip,
+    icon: PhosphorIconsDuotone.filmStrip,
     getLabel: _getLibrariesLabel,
   ),
   NavigationTab(
     id: NavigationTabId.explore,
     onlineOnly: true,
-    icon: PhosphorIconsFill.compass,
+    icon: PhosphorIconsDuotone.compass,
     getLabel: _getExploreLabel,
   ),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,
-    icon: PhosphorIconsFill.download,
+    icon: PhosphorIconsDuotone.download,
     getLabel: _getDownloadsLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,
     onlineOnly: false,
-    icon: PhosphorIconsFill.gear,
+    icon: PhosphorIconsDuotone.gear,
     getLabel: _getSettingsLabel,
   ),
 ];

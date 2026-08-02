@@ -45,35 +45,35 @@ class AppearanceSettingsScreen extends StatelessWidget {
             if (PlatformDetector.isTV())
               SettingSwitchTile(
                 pref: SettingsService.tvFullCardLayout,
-                icon: PhosphorIconsFill.image,
+                icon: PhosphorIconsDuotone.image,
                 title: t.settings.tvFullCardLayout,
                 subtitle: t.settings.tvFullCardLayoutDescription,
               ),
             if (PlatformDetector.isTV())
               SettingSwitchTile(
                 pref: SettingsService.tvCornerSpotlightBackdrop,
-                icon: PhosphorIconsFill.pictureInpicture,
+                icon: PhosphorIconsDuotone.pictureInpicture,
                 title: t.settings.tvCornerSpotlightBackdrop,
                 subtitle: t.settings.tvCornerSpotlightBackdropDescription,
               ),
             if (PlatformDetector.isTV())
               SettingSwitchTile(
                 pref: SettingsService.focusGlow,
-                icon: PhosphorIconsFill.lightbulb,
+                icon: PhosphorIconsDuotone.lightbulb,
                 title: t.settings.focusGlow,
                 subtitle: t.settings.focusGlowDescription,
               ),
             if (Platform.isAndroid) _visualEffectsSelector(context),
             SettingSwitchTile(
               pref: SettingsService.showEpisodeNumberOnCards,
-              icon: PhosphorIconsFill.tag,
+              icon: PhosphorIconsDuotone.tag,
               title: t.settings.showEpisodeNumberOnCards,
               subtitle: t.settings.showEpisodeNumberOnCardsDescription,
             ),
             if (!PlatformDetector.isTV())
               SettingSwitchTile(
                 pref: SettingsService.showSeasonPostersOnTabs,
-                icon: PhosphorIconsFill.image,
+                icon: PhosphorIconsDuotone.image,
                 title: t.settings.showSeasonPostersOnTabs,
                 subtitle: t.settings.showSeasonPostersOnTabsDescription,
               ),
@@ -86,14 +86,14 @@ class AppearanceSettingsScreen extends StatelessWidget {
             if (!PlatformDetector.isTV())
               SettingSwitchTile(
                 pref: SettingsService.showHeroSection,
-                icon: PhosphorIconsFill.playlist,
+                icon: PhosphorIconsDuotone.playlist,
                 title: t.settings.showHeroSection,
                 subtitle: t.settings.showHeroSectionDescription,
               ),
             _continueWatchingActionSelector(),
             SettingSwitchTile(
               pref: SettingsService.showServerNameOnHubs,
-              icon: PhosphorIconsFill.hardDrives,
+              icon: PhosphorIconsDuotone.hardDrives,
               title: t.settings.showServerNameOnHubs,
               subtitle: t.settings.showServerNameOnHubsDescription,
             ),
@@ -107,7 +107,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
             if (Platform.isAndroid)
               SettingSwitchTile(
                 pref: SettingsService.forceTvMode,
-                icon: PhosphorIconsFill.television,
+                icon: PhosphorIconsDuotone.television,
                 title: t.settings.forceTvMode,
                 subtitle: t.settings.forceTvModeDescription,
                 onAfterWrite: (value) {
@@ -118,27 +118,27 @@ class AppearanceSettingsScreen extends StatelessWidget {
             if (PlatformDetector.shouldUseSideNavigation(context))
               SettingSwitchTile(
                 pref: SettingsService.alwaysKeepSidebarOpen,
-                icon: PhosphorIconsFill.sidebar,
+                icon: PhosphorIconsDuotone.sidebar,
                 title: t.settings.alwaysKeepSidebarOpen,
                 subtitle: t.settings.alwaysKeepSidebarOpenDescription,
               ),
             if (PlatformDetector.shouldUseSideNavigation(context))
               SettingSwitchTile(
                 pref: SettingsService.groupLibrariesByServer,
-                icon: PhosphorIconsFill.hardDrives,
+                icon: PhosphorIconsDuotone.hardDrives,
                 title: t.settings.groupLibrariesByServer,
                 subtitle: t.settings.groupLibrariesByServerDescription,
               ),
             if (!PlatformDetector.shouldUseSideNavigation(context))
               SettingSwitchTile(
                 pref: SettingsService.showNavBarLabels,
-                icon: PhosphorIconsFill.tag,
+                icon: PhosphorIconsDuotone.tag,
                 title: t.settings.showNavBarLabels,
                 subtitle: t.settings.showNavBarLabelsDescription,
               ),
             SettingSwitchTile(
               pref: SettingsService.showUnwatchedCount,
-              icon: PhosphorIconsFill.numberOne,
+              icon: PhosphorIconsDuotone.numberOne,
               title: t.settings.showUnwatchedCount,
               subtitle: t.settings.showUnwatchedCountDescription,
             ),
@@ -150,7 +150,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
           children: [
             SettingSwitchTile(
               pref: SettingsService.hideSpoilers,
-              icon: PhosphorIconsFill.eyeSlash,
+              icon: PhosphorIconsDuotone.eyeSlash,
               title: t.settings.hideSpoilers,
               subtitle: t.settings.hideSpoilersDescription,
             ),
@@ -158,13 +158,13 @@ class AppearanceSettingsScreen extends StatelessWidget {
             if (hasMultipleProfiles)
               SettingSwitchTile(
                 pref: SettingsService.requireProfileSelectionOnOpen,
-                icon: PhosphorIconsFill.person,
+                icon: PhosphorIconsDuotone.person,
                 title: t.settings.requireProfileSelectionOnOpen,
                 subtitle: t.settings.requireProfileSelectionOnOpenDescription,
               ),
             SettingSwitchTile(
               pref: SettingsService.autoHidePerformanceOverlay,
-              icon: PhosphorIconsFill.gauge,
+              icon: PhosphorIconsDuotone.gauge,
               title: t.settings.autoHidePerformanceOverlay,
               subtitle: t.settings.autoHidePerformanceOverlayDescription,
             ),
@@ -193,10 +193,10 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _languageSelector(BuildContext context) {
     return FocusableListTile(
-      leading: const AppIcon(PhosphorIconsFill.translate, fill: 1),
+      leading: const AppIcon(PhosphorIconsDuotone.translate, fill: 1),
       title: Text(t.settings.language),
       subtitle: Text(_getLanguageDisplayName(LocaleSettings.currentLocale)),
-      trailing: const AppIcon(PhosphorIconsFill.caretRight, fill: 1),
+      trailing: const AppIcon(PhosphorIconsDuotone.caretRight, fill: 1),
       onTap: () async {
         final value = await showSelectionDialog<AppLocale>(
           context: context,
@@ -229,7 +229,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const AppIcon(PhosphorIconsFill.gridFour, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.gridFour, fill: 1),
                   const SizedBox(width: 16),
                   Text(t.settings.libraryDensity, style: settingsOptionTitleStyle(context)),
                 ],
@@ -258,7 +258,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _viewModeSelector() => SettingSegmentedTile<ViewMode>(
     pref: SettingsService.viewMode,
-    icon: PhosphorIconsFill.list,
+    icon: PhosphorIconsDuotone.list,
     title: t.settings.viewMode,
     segments: [
       ButtonSegment(value: ViewMode.grid, label: Text(t.settings.gridView)),
@@ -268,7 +268,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _cardOrientationSelector() => SettingSegmentedTile<CardOrientation>(
     pref: SettingsService.cardOrientation,
-    icon: PhosphorIconsFill.crop,
+    icon: PhosphorIconsDuotone.crop,
     title: t.settings.cardOrientation,
     segments: [
       ButtonSegment(value: CardOrientation.portrait, label: Text(t.settings.cardPortrait)),
@@ -278,7 +278,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _episodePosterModeSelector() => SettingSegmentedTile<EpisodePosterMode>(
     pref: SettingsService.episodePosterMode,
-    icon: PhosphorIconsFill.image,
+    icon: PhosphorIconsDuotone.image,
     title: t.settings.episodePosterMode,
     segments: [
       ButtonSegment(value: EpisodePosterMode.seriesPoster, label: Text(t.settings.seriesPoster)),
@@ -289,7 +289,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _continueWatchingActionSelector() => SettingSegmentedTile<ContinueWatchingAction>(
     pref: SettingsService.continueWatchingAction,
-    icon: PhosphorIconsFill.playCircle,
+    icon: PhosphorIconsDuotone.playCircle,
     title: t.settings.continueWatchingAction,
     segments: [
       ButtonSegment(value: ContinueWatchingAction.play, label: Text(t.settings.continueWatchingPlay)),
@@ -299,7 +299,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _episodeActionSelector() => SettingSegmentedTile<EpisodeAction>(
     pref: SettingsService.episodeAction,
-    icon: PhosphorIconsFill.television,
+    icon: PhosphorIconsDuotone.television,
     title: t.settings.episodeAction,
     segments: [
       ButtonSegment(value: EpisodeAction.play, label: Text(t.settings.episodePlay)),
@@ -315,7 +315,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _startupSectionSelector() => SettingSelectionTile<NavigationTabId>(
     pref: SettingsService.startupSection,
-    icon: PhosphorIconsFill.play,
+    icon: PhosphorIconsDuotone.play,
     title: t.settings.startupSection,
     subtitleBuilder: _startupSectionLabel,
     options: _startupSectionOptions.map((id) => DialogOption(value: id, title: _startupSectionLabel(id))).toList(),
@@ -329,7 +329,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
 
   Widget _visualEffectsSelector(BuildContext context) => SettingSelectionTile<VisualEffectsSetting>(
     pref: SettingsService.visualEffects,
-    icon: PhosphorIconsFill.circlesThree,
+    icon: PhosphorIconsDuotone.circlesThree,
     title: t.settings.visualEffects,
     subtitleBuilder: _visualEffectsLabel,
     options: [

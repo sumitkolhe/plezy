@@ -133,7 +133,7 @@ class _VolumeControlState extends State<VolumeControl> {
               excludeSemantics: true,
               child: IconButton(
                 icon: AppIcon(
-                  isMuted ? PhosphorIconsFill.speakerX : PhosphorIconsFill.speakerHigh,
+                  isMuted ? PhosphorIconsDuotone.speakerX : PhosphorIconsDuotone.speakerHigh,
                   fill: 1,
                   color: Colors.white,
                 ),

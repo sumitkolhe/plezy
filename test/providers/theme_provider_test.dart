@@ -112,19 +112,19 @@ void main() {
 
       await p.setThemeMode(settings.ThemeMode.light);
       expect(themeModeLabel(p.themeMode), t.settings.lightTheme);
-      expect(p.themeModeIcon, PhosphorIconsFill.sun);
+      expect(p.themeModeIcon, PhosphorIconsDuotone.sun);
 
       await p.setThemeMode(settings.ThemeMode.dark);
       expect(themeModeLabel(p.themeMode), t.settings.darkTheme);
-      expect(p.themeModeIcon, PhosphorIconsFill.moon);
+      expect(p.themeModeIcon, PhosphorIconsDuotone.moon);
 
       await p.setThemeMode(settings.ThemeMode.oled);
       expect(themeModeLabel(p.themeMode), t.settings.oledTheme);
-      expect(p.themeModeIcon, PhosphorIconsFill.circleHalf);
+      expect(p.themeModeIcon, PhosphorIconsDuotone.circleHalf);
 
       await p.setThemeMode(settings.ThemeMode.system);
       expect(themeModeLabel(p.themeMode), t.settings.systemTheme);
-      expect(p.themeModeIcon, PhosphorIconsFill.sun);
+      expect(p.themeModeIcon, PhosphorIconsDuotone.sun);
 
       p.dispose();
     });

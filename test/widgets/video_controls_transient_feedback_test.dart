@@ -393,7 +393,7 @@ void main() {
     testWidgets('an accepted transport command shows a centred disc, not the top pill', (tester) async {
       await pumpControls(tester);
 
-      toast.showTransport(PhosphorIconsFill.pause, 'Paused');
+      toast.showTransport(PhosphorIconsDuotone.pause, 'Paused');
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 520));
 
@@ -433,14 +433,14 @@ void main() {
     testWidgets('a repeated identical transport command replays the pop', (tester) async {
       await pumpControls(tester);
 
-      toast.showTransport(PhosphorIconsFill.pause, 'Paused');
+      toast.showTransport(PhosphorIconsDuotone.pause, 'Paused');
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 520));
       final settled = discScale(tester);
 
       // Same icon and same label: without a per-command pulse this reuses the
       // State and the pop would never run again.
-      toast.showTransport(PhosphorIconsFill.pause, 'Paused');
+      toast.showTransport(PhosphorIconsDuotone.pause, 'Paused');
       await tester.pump();
 
       expect(
@@ -462,7 +462,7 @@ void main() {
           .opacity
           .value;
 
-      toast.showTransport(PhosphorIconsFill.pause, 'Paused');
+      toast.showTransport(PhosphorIconsDuotone.pause, 'Paused');
       await tester.pump();
 
       // Grows and fades in from 0.8/0.

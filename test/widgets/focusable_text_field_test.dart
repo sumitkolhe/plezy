@@ -1402,7 +1402,7 @@ void main() {
     rebuild(() => onNavigateDown = () => navigateDownCalls++);
     await tester.pump();
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsFill.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsDuotone.magnifyingGlass));
     await tester.pumpAndSettle();
 
     expect(navigateDownCalls, 1);
@@ -1454,7 +1454,7 @@ void main() {
     });
     await tester.pump();
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsFill.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsDuotone.magnifyingGlass));
     await tester.pumpAndSettle();
 
     expect(submitted, 'query');
@@ -1488,7 +1488,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsOneWidget);
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsFill.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(PhosphorIconsDuotone.magnifyingGlass));
     await tester.pumpAndSettle();
     await tester.pump();
 

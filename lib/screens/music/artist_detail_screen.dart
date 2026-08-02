@@ -114,7 +114,7 @@ class _ArtistDetailScreenState extends BaseMediaListDetailScreen<ArtistDetailScr
         imageType: ImageType.square,
         width: size,
         height: size,
-        fallbackIcon: PhosphorIconsFill.microphoneStage,
+        fallbackIcon: PhosphorIconsDuotone.microphoneStage,
       ),
     );
 

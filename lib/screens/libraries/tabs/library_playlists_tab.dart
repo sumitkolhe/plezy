@@ -35,7 +35,7 @@ class _LibraryPlaylistsTabState extends PaginatedCardGridTabState<MediaPlaylist,
   String get focusNodeDebugLabel => 'playlists_first_item';
 
   @override
-  IconData get emptyIcon => PhosphorIconsFill.playlist;
+  IconData get emptyIcon => PhosphorIconsDuotone.playlist;
 
   @override
   String get emptyMessage => t.playlists.noPlaylists;

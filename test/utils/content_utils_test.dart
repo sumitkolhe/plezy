@@ -96,12 +96,12 @@ void main() {
     });
 
     test('getLibraryIcon normalizes type and falls back to folder', () {
-      expect(ContentTypeHelper.getLibraryIcon('MOVIE'), PhosphorIconsFill.filmSlate);
-      expect(ContentTypeHelper.getLibraryIcon('show'), PhosphorIconsFill.television);
-      expect(ContentTypeHelper.getLibraryIcon('artist'), PhosphorIconsFill.musicNote);
-      expect(ContentTypeHelper.getLibraryIcon('photo'), PhosphorIconsFill.image);
-      expect(ContentTypeHelper.getLibraryIcon('mixed'), PhosphorIconsFill.share);
-      expect(ContentTypeHelper.getLibraryIcon('unknown'), PhosphorIconsFill.folder);
+      expect(ContentTypeHelper.getLibraryIcon('MOVIE'), PhosphorIconsDuotone.filmSlate);
+      expect(ContentTypeHelper.getLibraryIcon('show'), PhosphorIconsDuotone.television);
+      expect(ContentTypeHelper.getLibraryIcon('artist'), PhosphorIconsDuotone.musicNote);
+      expect(ContentTypeHelper.getLibraryIcon('photo'), PhosphorIconsDuotone.image);
+      expect(ContentTypeHelper.getLibraryIcon('mixed'), PhosphorIconsDuotone.share);
+      expect(ContentTypeHelper.getLibraryIcon('unknown'), PhosphorIconsDuotone.folder);
     });
   });
 }

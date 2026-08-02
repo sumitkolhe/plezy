@@ -176,7 +176,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
           // URL example — intentionally not localized.
           hintText: 'https://seerr.example.com',
           helperText: t.seerr.serverUrlHelper,
-          prefixIcon: const AppIcon(PhosphorIconsFill.link, fill: 1),
+          prefixIcon: const AppIcon(PhosphorIconsDuotone.link, fill: 1),
         ),
       ),
       const SizedBox(height: 16),
@@ -187,7 +187,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _probe,
         child: FilledButton.icon(
           onPressed: busy ? null : _probe,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsFill.globe, fill: 1),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.globe, fill: 1),
           label: Text(t.seerr.checkServer),
         ),
       ),
@@ -256,7 +256,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
         decoration: InputDecoration(
           labelText: isLocal ? t.seerr.email : t.addServer.username,
-          prefixIcon: AppIcon(isLocal ? PhosphorIconsFill.envelope : PhosphorIconsFill.person, fill: 1),
+          prefixIcon: AppIcon(isLocal ? PhosphorIconsDuotone.envelope : PhosphorIconsDuotone.person, fill: 1),
         ),
         validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
       ),
@@ -270,7 +270,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _signInWithCredentials(),
         decoration: InputDecoration(
           labelText: t.addServer.password,
-          prefixIcon: const AppIcon(PhosphorIconsFill.lock, fill: 1),
+          prefixIcon: const AppIcon(PhosphorIconsDuotone.lock, fill: 1),
         ),
         validator: (v) => v == null || v.isEmpty ? t.addServer.required : null,
       ),
@@ -280,7 +280,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _signInWithCredentials,
         child: FilledButton.icon(
           onPressed: busy ? null : _signInWithCredentials,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsFill.signIn, fill: 1),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.signIn, fill: 1),
           label: Text(t.addServer.signIn),
         ),
       ),
@@ -297,7 +297,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
       ),
       child: Row(
         children: [
-          const AppIcon(PhosphorIconsFill.cloudCheck, fill: 1),
+          const AppIcon(PhosphorIconsDuotone.cloudCheck, fill: 1),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

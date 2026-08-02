@@ -117,7 +117,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                                 )
                               : null,
                           child: AppIcon(
-                            widget.isMoving ? PhosphorIconsFill.arrowsDownUp : PhosphorIconsFill.dotsSixVertical,
+                            widget.isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
                             fill: 1,
                             color: (widget.isMoving || isDragHandleFocused) ? colorScheme.primary : textMuted,
                           ),
@@ -175,7 +175,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                         )
                       : null,
                   child: IconButton(
-                    icon: const AppIcon(PhosphorIconsFill.x, fill: 1, size: 20),
+                    icon: const AppIcon(PhosphorIconsDuotone.x, fill: 1, size: 20),
                     onPressed: widget.onRemove,
                     tooltip: t.playlists.removeItem,
                     color: isRemoveButtonFocused ? colorScheme.primary : textMuted,
@@ -235,11 +235,11 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
   }
 
   IconData _fallbackIcon(MediaItem item) => switch (item.kind) {
-    MediaKind.artist => PhosphorIconsFill.microphoneStage,
-    MediaKind.album => PhosphorIconsFill.vinylRecord,
-    MediaKind.track => PhosphorIconsFill.musicNote,
-    MediaKind.show || MediaKind.season || MediaKind.episode => PhosphorIconsFill.television,
-    _ => PhosphorIconsFill.filmSlate,
+    MediaKind.artist => PhosphorIconsDuotone.microphoneStage,
+    MediaKind.album => PhosphorIconsDuotone.vinylRecord,
+    MediaKind.track => PhosphorIconsDuotone.musicNote,
+    MediaKind.show || MediaKind.season || MediaKind.episode => PhosphorIconsDuotone.television,
+    _ => PhosphorIconsDuotone.filmSlate,
   };
 
   String _buildSubtitle(MediaItem item) {

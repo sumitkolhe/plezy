@@ -1473,7 +1473,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                               ),
                             )
                           else
-                            AppIcon(PhosphorIconsFill.wifiHigh, size: 18, color: Theme.of(context).colorScheme.primary),
+                            AppIcon(PhosphorIconsDuotone.wifiHigh, size: 18, color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 8),
                           Text(
                             t.common.reconnect,

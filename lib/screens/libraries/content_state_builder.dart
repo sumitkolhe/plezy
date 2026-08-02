@@ -33,7 +33,7 @@ class SliverErrorState extends StatelessWidget {
   Widget build(BuildContext context) => SliverFillRemaining(
     child: ErrorStateWidget(
       message: message,
-      icon: PhosphorIconsFill.warningCircle,
+      icon: PhosphorIconsDuotone.warningCircle,
       onRetry: onRetry,
       retryLabel: retryLabel,
       actionFocusNode: actionFocusNode,
@@ -185,7 +185,7 @@ class ContentStateBuilder<T> extends StatelessWidget {
     if (errorMessage != null && items.isEmpty) {
       return ErrorStateWidget(
         message: errorMessage!,
-        icon: PhosphorIconsFill.warningCircle,
+        icon: PhosphorIconsDuotone.warningCircle,
         onRetry: onRetry,
         retryLabel: t.common.retry,
       );

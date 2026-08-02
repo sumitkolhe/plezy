@@ -26,14 +26,14 @@ List<FocusableAction> buildMusicActions({
     ),
     FocusableAction(
       debugLabel: 'music_shuffle',
-      icon: PhosphorIconsFill.shuffle,
+      icon: PhosphorIconsDuotone.shuffle,
       tooltip: t.common.shuffle,
       onPressed: onShuffle,
     ),
     if (onInstantMix != null)
       FocusableAction(
         debugLabel: 'music_instant_mix',
-        icon: PhosphorIconsFill.slidersHorizontal,
+        icon: PhosphorIconsDuotone.slidersHorizontal,
         tooltip: t.music.instantMix,
         onPressed: onInstantMix,
       ),
@@ -61,7 +61,7 @@ class _MusicPlayButton extends StatelessWidget {
               foregroundColor: colorScheme.onInverseSurface,
             )
           : null,
-      icon: const AppIcon(PhosphorIconsFill.play, fill: 1, size: 20),
+      icon: const AppIcon(PhosphorIconsDuotone.play, fill: 1, size: 20),
       label: Text(t.common.play, style: const TextStyle(fontWeight: .w700)),
     );
   }

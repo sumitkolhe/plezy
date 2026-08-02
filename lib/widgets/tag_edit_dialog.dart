@@ -80,7 +80,7 @@ class _TagEditDialogState extends State<TagEditDialog> with ControllerDisposerMi
                 labelText: t.metadataEdit.addTag,
                 suffixIcon: FocusableButton(
                   onPressed: _addTag,
-                  child: IconButton(icon: const AppIcon(PhosphorIconsFill.plus), onPressed: _addTag),
+                  child: IconButton(icon: const AppIcon(PhosphorIconsDuotone.plus), onPressed: _addTag),
                 ),
               ),
               textInputAction: TextInputAction.done,
@@ -95,7 +95,7 @@ class _TagEditDialogState extends State<TagEditDialog> with ControllerDisposerMi
                   itemCount: _tags.length,
                   itemBuilder: (context, index) => FocusableListTile(
                     title: Text(_tags[index]),
-                    trailing: const AppIcon(PhosphorIconsFill.x),
+                    trailing: const AppIcon(PhosphorIconsDuotone.x),
                     onTap: () => _removeTag(index),
                   ),
                 ),

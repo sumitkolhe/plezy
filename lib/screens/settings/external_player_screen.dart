@@ -31,7 +31,7 @@ class ExternalPlayerScreen extends StatelessWidget {
           children: [
             SettingSwitchTile(
               pref: SettingsService.useExternalPlayer,
-              icon: PhosphorIconsFill.arrowSquareOut,
+              icon: PhosphorIconsDuotone.arrowSquareOut,
               title: t.externalPlayer.useExternalPlayer,
               subtitle: t.externalPlayer.useExternalPlayerDescription,
             ),
@@ -69,7 +69,7 @@ class ExternalPlayerScreen extends StatelessWidget {
                   children: [
                     for (final p in custom) _PlayerTile(player: p, selectedId: selected.id, isCustom: true),
                     FocusableListTile(
-                      leading: const AppIcon(PhosphorIconsFill.plus, fill: 1),
+                      leading: const AppIcon(PhosphorIconsDuotone.plus, fill: 1),
                       title: Text(t.externalPlayer.addCustomPlayer),
                       onTap: () => _showAddCustomPlayerDialog(context),
                     ),
@@ -116,13 +116,13 @@ class _PlayerTile extends StatelessWidget {
                 player.iconAsset!,
                 width: 32,
                 height: 32,
-                errorBuilder: (_, _, _) => const AppIcon(PhosphorIconsFill.playCircle, fill: 1, size: 32),
+                errorBuilder: (_, _, _) => const AppIcon(PhosphorIconsDuotone.playCircle, fill: 1, size: 32),
               ),
       );
     } else if (player.id == 'system_default') {
-      leading = const AppIcon(PhosphorIconsFill.arrowSquareOut, fill: 1, size: 32);
+      leading = const AppIcon(PhosphorIconsDuotone.arrowSquareOut, fill: 1, size: 32);
     } else {
-      leading = const AppIcon(PhosphorIconsFill.playCircle, fill: 1, size: 32);
+      leading = const AppIcon(PhosphorIconsDuotone.playCircle, fill: 1, size: 32);
     }
 
     return FocusableListTile(
@@ -136,12 +136,12 @@ class _PlayerTile extends StatelessWidget {
               onPressed: () => svc.removeCustomExternalPlayer(player.id),
               autoScroll: false,
               child: IconButton(
-                icon: const AppIcon(PhosphorIconsFill.trash, fill: 1, size: 20),
+                icon: const AppIcon(PhosphorIconsDuotone.trash, fill: 1, size: 20),
                 onPressed: () => svc.removeCustomExternalPlayer(player.id),
               ),
             ),
           AppIcon(
-            isSelected ? PhosphorIconsFill.radioButton : PhosphorIconsFill.circle,
+            isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle,
             fill: 1,
             color: isSelected ? Theme.of(context).colorScheme.primary : null,
           ),

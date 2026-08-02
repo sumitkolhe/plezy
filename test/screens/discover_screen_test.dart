@@ -417,7 +417,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
 
     expect(find.byType(PageView), findsOneWidget);
-    expect(find.byIcon(PhosphorIconsFill.pause), findsOneWidget, reason: 'hero indicators render in pointer mode');
+    expect(find.byIcon(PhosphorIconsDuotone.pause), findsOneWidget, reason: 'hero indicators render in pointer mode');
 
     // Entering keyboard mode must not hide the indicators on non-TV devices
     // (regression: back-key/BT-keyboard events left them permanently hidden).
@@ -425,7 +425,7 @@ void main() {
     await tester.sendKeyUpEvent(LogicalKeyboardKey.arrowDown);
     await tester.pump();
     expect(
-      find.byIcon(PhosphorIconsFill.pause),
+      find.byIcon(PhosphorIconsDuotone.pause),
       findsOneWidget,
       reason: 'hero indicators stay visible in keyboard mode on non-TV',
     );

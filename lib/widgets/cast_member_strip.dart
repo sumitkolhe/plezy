@@ -216,7 +216,7 @@ class CastMemberStripState extends State<CastMemberStrip> {
                                 height: imageSize,
                                 fit: BoxFit.cover,
                                 imageType: ImageType.square,
-                                fallbackIcon: PhosphorIconsFill.person,
+                                fallbackIcon: PhosphorIconsDuotone.person,
                               ),
                             ),
                           ),

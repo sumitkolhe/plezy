@@ -103,7 +103,7 @@ List<ContextMenuItem> _getLibraryMenuItems(MediaLibrary library) {
   // `/Items/{id}/Refresh` (the library view is itself an item).
   final refresh = ContextMenuItem(
     value: 'refresh',
-    icon: PhosphorIconsFill.arrowsClockwise,
+    icon: PhosphorIconsDuotone.arrowsClockwise,
     label: t.libraries.refreshMetadata,
     requiresConfirmation: true,
     confirmationTitle: t.libraries.refreshMetadata,
@@ -300,7 +300,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             appBar: AppBar(
               title: Row(
                 children: [
-                  const AppIcon(PhosphorIconsFill.pencilSimple, fill: 1),
+                  const AppIcon(PhosphorIconsDuotone.pencilSimple, fill: 1),
                   const SizedBox(width: 12),
                   Text(t.libraries.manageLibraries),
                 ],
@@ -308,7 +308,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
               automaticallyImplyLeading: false,
               actions: [
                 IconButton(
-                  icon: const AppIcon(PhosphorIconsFill.x, fill: 1),
+                  icon: const AppIcon(PhosphorIconsDuotone.x, fill: 1),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
@@ -327,7 +327,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
 
     return Column(
       children: [
-        BottomSheetHeader(title: t.libraries.manageLibraries, icon: PhosphorIconsFill.pencilSimple),
+        BottomSheetHeader(title: t.libraries.manageLibraries, icon: PhosphorIconsDuotone.pencilSimple),
         Flexible(
           child: Focus(
             focusNode: _listFocusNode,
@@ -409,7 +409,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             ReorderableDragStartListener(
               index: index,
               child: AppIcon(
-                isMoving ? PhosphorIconsFill.arrowsDownUp : PhosphorIconsFill.dotsSixVertical,
+                isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
                 fill: 1,
                 color: isMoving ? colorScheme.primary : IconTheme.of(context).color?.withValues(alpha: 0.5),
               ),
@@ -434,7 +434,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             Container(
               decoration: FocusTheme.focusBackgroundDecoration(isFocused: isVisibilityButtonFocused, borderRadius: 20),
               child: IconButton(
-                icon: AppIcon(isHidden ? PhosphorIconsFill.eyeSlash : PhosphorIconsFill.eye, fill: 1),
+                icon: AppIcon(isHidden ? PhosphorIconsDuotone.eyeSlash : PhosphorIconsDuotone.eye, fill: 1),
                 tooltip: isHidden ? t.libraries.showLibrary : t.libraries.hideLibrary,
                 onPressed: () => widget.onToggleVisibility(library),
               ),
@@ -442,7 +442,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             Container(
               decoration: FocusTheme.focusBackgroundDecoration(isFocused: isOptionsButtonFocused, borderRadius: 20),
               child: IconButton(
-                icon: const AppIcon(PhosphorIconsFill.dotsThreeVertical, fill: 1),
+                icon: const AppIcon(PhosphorIconsDuotone.dotsThreeVertical, fill: 1),
                 tooltip: t.libraries.libraryOptions,
                 onPressed: () => _showLibraryMenuBottomSheet(context, library),
               ),
