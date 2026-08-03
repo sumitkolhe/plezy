@@ -203,7 +203,7 @@ void main() {
     expect(find.descendant(of: sheet, matching: find.text(t.metadataEdit.releaseDate)), findsOneWidget);
   });
 
-  testWidgets('the details sheet offers the long-press actions as pills under Play', (tester) async {
+  testWidgets('the details sheet offers the primary actions as circles under Play', (tester) async {
     final episode = testMediaItem(
       id: 'action_pill_episode',
       backend: MediaBackend.jellyfin,
@@ -218,18 +218,21 @@ void main() {
     await tester.pumpAndSettle();
 
     final sheet = find.byType(EpisodeDetailSheet);
-    for (final label in [t.mediaMenu.markAsWatched, t.mediaMenu.rate, t.mediaMenu.fileInfo]) {
-      expect(find.descendant(of: sheet, matching: find.text(label)), findsOneWidget, reason: label);
+    // Unlabelled, so the label has to survive as the tooltip.
+    for (final label in [t.mediaMenu.markAsWatched, t.downloads.downloadNow, t.mediaMenu.rate]) {
+      expect(find.descendant(of: sheet, matching: find.byTooltip(label)), findsOneWidget, reason: label);
     }
+    // Left long-press-only: too rare to guess from a bare glyph.
+    expect(find.descendant(of: sheet, matching: find.byTooltip(t.mediaMenu.fileInfo)), findsNothing);
 
     // Below Play, not above it.
     expect(
-      tester.getTopLeft(find.text(t.mediaMenu.markAsWatched)).dy,
+      tester.getTopLeft(find.byTooltip(t.mediaMenu.markAsWatched)).dy,
       greaterThan(tester.getBottomLeft(find.text(t.common.play)).dy),
     );
 
     // Selecting one closes the sheet, the way choosing from the menu does.
-    await tester.tap(find.text(t.mediaMenu.fileInfo));
+    await tester.tap(find.byTooltip(t.mediaMenu.rate));
     await tester.pumpAndSettle();
     expect(sheet, findsNothing);
   });
