@@ -119,9 +119,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/GoogleSans-Bold.ttf
           weight: 700
-    - family: PhosphorBold
+    - family: PhosphorRegular
       fonts:
-        - asset: assets/fonts/Phosphor-Bold.ttf
+        - asset: assets/fonts/Phosphor.ttf
     - family: GoogleSansCode
       fonts:
         - asset: assets/fonts/GoogleSansCode-Regular.ttf
