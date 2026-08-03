@@ -4,13 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/trackers/device_code.dart';
-import '../services/trackers/anilist/anilist_auth_service.dart';
-import '../services/trackers/anilist/anilist_client.dart';
-import '../services/trackers/anilist/anilist_tracker.dart';
-import '../services/trackers/mal/mal_auth_service.dart';
-import '../services/trackers/mal/mal_client.dart';
-import '../services/trackers/mal/mal_tracker.dart';
-import '../services/trackers/oauth_proxy_client.dart';
 import '../services/trackers/simkl/simkl_auth_service.dart';
 import '../services/trackers/simkl/simkl_client.dart';
 import '../services/trackers/simkl/simkl_tracker.dart';
@@ -52,34 +45,13 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   }) : this._(connectPipeline, httpClientFactory);
 
   TrackersProvider._(this._connectPipeline, http.Client Function()? httpClientFactory)
-    : _malAuth = httpClientFactory == null
-          ? MalAuthService()
-          : MalAuthService(
-              proxy: OAuthProxyClient(httpClient: httpClientFactory()),
-              httpClient: httpClientFactory(),
-            ),
-      _anilistAuth = httpClientFactory == null
-          ? AnilistAuthService()
-          : AnilistAuthService(proxy: OAuthProxyClient(httpClient: httpClientFactory())),
-      _simklAuth = httpClientFactory == null ? SimklAuthService() : SimklAuthService(httpClient: httpClientFactory()),
+    : _simklAuth = httpClientFactory == null ? SimklAuthService() : SimklAuthService(httpClient: httpClientFactory()),
       _traktAuth = httpClientFactory == null ? TraktAuthService() : TraktAuthService(httpClient: httpClientFactory());
 
   final TrackerSessionConnectPipeline _connectPipeline;
-  final MalAuthService _malAuth;
-  final AnilistAuthService _anilistAuth;
   final SimklAuthService _simklAuth;
   final TraktAuthService _traktAuth;
 
-  final _TrackerSlot _mal = _TrackerSlot(
-    TrackerService.mal,
-    (session, {required onInvalidated, onUpdated}) =>
-        MalTracker.instance.rebindSession(session, onSessionInvalidated: onInvalidated, onSessionUpdated: onUpdated),
-  );
-  final _TrackerSlot _anilist = _TrackerSlot(
-    TrackerService.anilist,
-    (session, {required onInvalidated, onUpdated}) =>
-        AnilistTracker.instance.rebindSession(session, onSessionInvalidated: onInvalidated),
-  );
   final _TrackerSlot _simkl = _TrackerSlot(
     TrackerService.simkl,
     (session, {required onInvalidated, onUpdated}) =>
@@ -90,7 +62,7 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     (session, {required onInvalidated, onUpdated}) =>
         TraktTracker.instance.rebindSession(session, onSessionInvalidated: onInvalidated, onSessionUpdated: onUpdated),
   );
-  late final List<_TrackerSlot> _slots = [_mal, _anilist, _simkl, _trakt];
+  late final List<_TrackerSlot> _slots = [_simkl, _trakt];
 
   String _activeUserUuid = '';
   int _profileBindingGeneration = 0;
@@ -98,38 +70,22 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   Completer<void>? _cancelCompleter;
   int _connectGeneration = 0;
 
-  TrackerSession? get mal => _mal.session;
-  TrackerSession? get anilist => _anilist.session;
   TrackerSession? get simkl => _simkl.session;
   TrackerSession? get trakt => _trakt.session;
 
-  bool get isMalConnected => _mal.session != null;
-  bool get isAnilistConnected => _anilist.session != null;
   bool get isSimklConnected => _simkl.session != null;
   bool get isTraktConnected => _trakt.session != null;
 
-  /// The live MAL client for the Explore catalog, shared with the scrobble
-  /// tracker so both ride one session (MAL rotates refresh tokens — a second
-  /// client would race refreshes and log the user out). Gated on this
-  /// provider's own session so a freshly-mounted profile subtree never sees
-  /// the previous profile's client while its sessions are still loading;
-  /// every rebind is followed by a notify, so proxy consumers track identity.
-  MalClient? get malCatalogClient => _mal.session == null ? null : MalTracker.instance.client;
-
   /// The live Trakt client for the Explore catalog, shared with the tracker so
   /// both ride one session (Trakt rotates refresh tokens — a second client
-  /// would race refreshes and log the user out). Like [malCatalogClient], this
-  /// is gated on the provider's profile-bound session.
+  /// would race refreshes and log the user out). Gated on the provider's
+  /// profile-bound session.
   TraktClient? get traktCatalogClient => _trakt.session == null ? null : TraktTracker.instance.client;
 
-  /// Live AniList and Simkl clients for Explore. Like [malCatalogClient],
-  /// these are gated on this provider's profile-bound sessions so a fresh
-  /// profile subtree cannot observe clients still bound to the prior profile.
-  AnilistClient? get anilistCatalogClient => _anilist.session == null ? null : AnilistTracker.instance.client;
+  /// Gated on this provider's profile-bound session so a fresh profile
+  /// subtree cannot observe a client still bound to the prior profile.
   SimklClient? get simklCatalogClient => _simkl.session == null ? null : SimklTracker.instance.client;
 
-  String? get malUsername => _mal.session?.username;
-  String? get anilistUsername => _anilist.session?.username;
   String? get simklUsername => _simkl.session?.username;
   String? get traktUsername => _trakt.session?.username;
 
@@ -181,29 +137,7 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     safeNotifyListeners();
   }
 
-  Future<bool> connectMal({required void Function(OAuthProxyStart) onCodeReady}) => _runConnect(
-    _mal,
-    authorize: () => _malAuth.authorize(
-      onCodeReady: onCodeReady,
-      shouldCancel: _isConnectCancelled,
-      onCancel: _cancelCompleter!.future,
-    ),
-    enrich: _enrichMal,
-  );
 
-  Future<void> disconnectMal() => _clearAndRebind(_mal);
-
-  Future<bool> connectAnilist({required void Function(OAuthProxyStart) onCodeReady}) => _runConnect(
-    _anilist,
-    authorize: () => _anilistAuth.authorize(
-      onCodeReady: onCodeReady,
-      shouldCancel: _isConnectCancelled,
-      onCancel: _cancelCompleter!.future,
-    ),
-    enrich: _enrichAnilist,
-  );
-
-  Future<void> disconnectAnilist() => _clearAndRebind(_anilist);
 
   Future<bool> connectSimkl({required void Function(DeviceCode code) onCodeReady}) => _runConnect(
     _simkl,
@@ -321,20 +255,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     return !isDisposed && userUuid == _activeUserUuid && generation == _profileBindingGeneration;
   }
 
-  Future<TrackerSession> _enrichMal(TrackerSession raw) => enrichTrackerSessionUsername(
-    session: raw,
-    failureMessage: 'MAL: getMyUser failed (non-fatal)',
-    createClient: () => MalClient(raw, onSessionInvalidated: () {}),
-    fetchUsername: (client) async => (await client.getMyUser())?['name'] as String?,
-  );
-
-  Future<TrackerSession> _enrichAnilist(TrackerSession raw) => enrichTrackerSessionUsername(
-    session: raw,
-    failureMessage: 'AniList: getViewerName failed (non-fatal)',
-    createClient: () => AnilistClient(raw, onSessionInvalidated: () {}),
-    fetchUsername: (client) => client.getViewerName(),
-  );
-
   Future<TrackerSession> _enrichSimkl(TrackerSession raw) => enrichTrackerSessionUsername(
     session: raw,
     failureMessage: 'Simkl: getUserSettings failed (non-fatal)',
@@ -382,8 +302,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   @override
   void dispose() {
     _invalidateConnect();
-    _malAuth.dispose();
-    _anilistAuth.dispose();
     _simklAuth.dispose();
     _traktAuth.dispose();
     super.dispose();

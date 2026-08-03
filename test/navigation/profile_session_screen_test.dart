@@ -54,7 +54,7 @@ void main() {
     final trackerHttpClients = <FakeHttpClient>[];
     // TrackersProvider owns five eager auth HTTP clients across the four
     // services (MAL's proxy and token exchange use separate clients).
-    const trackerAuthClientsPerProfile = 5;
+    const trackerAuthClientsPerProfile = 2;
     FakeHttpClient trackerHttpClientFactory() {
       final client = FakeHttpClient(200, const <int>[]);
       trackerHttpClients.add(client);

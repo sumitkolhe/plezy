@@ -1439,8 +1439,6 @@
     "disconnectConfirmBody": "Harbor 将停止更新 ${service}。可随时重新连接。",
     "connectFailed": "无法连接到 ${service}。请重试。",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1451,13 +1449,6 @@
       "copyCode": "复制激活代码",
       "waitingForAuthorization": "等待授权…",
       "codeCopied": "代码已复制"
-    },
-    "oauthProxy": {
-      "title": "登录 ${service}",
-      "body": "扫描此二维码，或在任意设备上打开 URL。",
-      "openToSignIn": "打开 ${service} 以登录",
-      "copyUrl": "复制登录 URL",
-      "urlCopied": "URL 已复制"
     },
     "libraryFilter": {
       "title": "媒体库筛选",

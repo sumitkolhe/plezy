@@ -1455,7 +1455,6 @@ class _Translations$services$bg extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Неуспешно свързване с ${service}. Опитайте отново.';
 	@override late final _Translations$services$names$bg names = _Translations$services$names$bg._(_root);
 	@override late final _Translations$services$deviceCode$bg deviceCode = _Translations$services$deviceCode$bg._(_root);
-	@override late final _Translations$services$oauthProxy$bg oauthProxy = _Translations$services$oauthProxy$bg._(_root);
 	@override late final _Translations$services$libraryFilter$bg libraryFilter = _Translations$services$libraryFilter$bg._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$bg extends Translations$services$names$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$bg extends Translations$services$deviceC
 	@override String get copyCode => 'Копирай кода за активиране';
 	@override String get waitingForAuthorization => 'Изчакване на оторизация…';
 	@override String get codeCopied => 'Кодът е копиран';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$bg extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Вход в ${service}';
-	@override String get body => 'Сканирайте този QR код или отворете URL-а на което и да е устройство.';
-	@override String openToSignIn({required Object service}) => 'Отворете ${service}, за да влезете';
-	@override String get copyUrl => 'Копирай URL адреса за вход';
-	@override String get urlCopied => 'URL адресът е копиран';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsBg {
 			'services.disconnectConfirm' => ({required Object service}) => 'Да се прекъсне ли ${service}?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ще спре да обновява ${service}. Можете да се свържете отново по всяко време.',
 			'services.connectFailed' => ({required Object service}) => 'Неуспешно свързване с ${service}. Опитайте отново.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Активиране на Harbor в ${service}',
@@ -2855,11 +2836,6 @@ extension on TranslationsBg {
 			'services.deviceCode.copyCode' => 'Копирай кода за активиране',
 			'services.deviceCode.waitingForAuthorization' => 'Изчакване на оторизация…',
 			'services.deviceCode.codeCopied' => 'Кодът е копиран',
-			'services.oauthProxy.title' => ({required Object service}) => 'Вход в ${service}',
-			'services.oauthProxy.body' => 'Сканирайте този QR код или отворете URL-а на което и да е устройство.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Отворете ${service}, за да влезете',
-			'services.oauthProxy.copyUrl' => 'Копирай URL адреса за вход',
-			'services.oauthProxy.urlCopied' => 'URL адресът е копиран',
 			'services.libraryFilter.title' => 'Филтър на библиотеките',
 			'services.libraryFilter.subtitleAllSyncing' => 'Синхронизират се всички библиотеки',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Нищо не се синхронизира',

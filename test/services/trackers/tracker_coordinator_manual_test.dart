@@ -8,12 +8,6 @@ import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
-import 'package:harbor/models/trackers/anime_lists_mapping.dart';
-import 'package:harbor/models/trackers/fribb_mapping_row.dart';
-import 'package:harbor/services/trackers/anime_lists_mapping_store.dart';
-import 'package:harbor/services/trackers/anilist/anilist_tracker.dart';
-import 'package:harbor/services/trackers/fribb_mapping_store.dart';
-import 'package:harbor/services/trackers/mal/mal_tracker.dart';
 import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_coordinator.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
@@ -60,35 +54,6 @@ class _FakeMediaServerClient implements MediaServerClient {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-class _FakeFribbLookup implements FribbMappingLookup {
-  final List<FribbMappingRow> rows;
-
-  const _FakeFribbLookup(this.rows);
-
-  @override
-  Future<List<FribbMappingRow>> lookup({int? tvdbId, int? tmdbId, String? imdbId}) async => rows;
-
-  @override
-  Future<FribbMappingRow?> lookupByMal(int malId) async => rows.where((row) => row.malId == malId).firstOrNull;
-}
-
-class _FakeAnimeListsLookup implements AnimeListsMappingLookup {
-  final Map<String, AnimeEpisodeMatch> matches;
-
-  const _FakeAnimeListsLookup({this.matches = const {}});
-
-  @override
-  Future<AnimeEpisodeMatch?> lookupEpisode({int? tvdbId, int? tmdbId, int? season, int? episodeNumber}) async {
-    return matches['$season-$episodeNumber'];
-  }
-
-  @override
-  Future<Set<int>> lookupAnimeIdsForSeason({int? tvdbId, int? tmdbId, required int season}) async => const <int>{};
-
-  @override
-  Future<Set<int>> lookupAnimeIdsForShow({int? tvdbId, int? tmdbId}) async => const <int>{};
-}
-
 MediaItem _season() => testMediaItem(
   id: 'season-1',
   backend: MediaBackend.jellyfin,
@@ -111,15 +76,6 @@ MediaItem _episode(int number, {int season = 1}) => testMediaItem(
   index: number,
 );
 
-MediaItem _show() => testMediaItem(
-  id: 'show-1',
-  backend: MediaBackend.jellyfin,
-  kind: MediaKind.show,
-  title: 'Show 1',
-  serverId: ServerId('server-1'),
-  libraryId: 'lib-1',
-);
-
 MediaItem _movie() => testMediaItem(
   id: 'movie-1',
   backend: MediaBackend.jellyfin,
@@ -129,53 +85,23 @@ MediaItem _movie() => testMediaItem(
   libraryId: 'lib-1',
 );
 
-AnimeEpisodeMatch _match({required int anidbId, required int serverEpisode, required int animeEpisode}) =>
-    AnimeEpisodeMatch(
-      anidbId: anidbId,
-      anidbSeason: 1,
-      anidbEpisode: animeEpisode,
-      provider: AnimeListProvider.tvdb,
-      externalSeason: 1,
-      externalEpisode: serverEpisode,
-      kind: AnimeListMatchKind.range,
-    );
-
 TrackerSession _simklSession() {
   final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
   return TrackerSession(accessToken: 'token', createdAt: now);
-}
-
-TrackerSession _malSession() {
-  final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-  return TrackerSession(accessToken: 'token', refreshToken: 'refresh', expiresAt: now + 86400, createdAt: now);
-}
-
-TrackerSession _anilistSession() {
-  final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-  return TrackerSession(accessToken: 'token', expiresAt: now + 86400, createdAt: now);
 }
 
 void main() {
   group('TrackerCoordinator manual watched sync', () {
     final coordinator = TrackerCoordinator.instance;
     final simkl = SimklTracker.instance;
-    final mal = MalTracker.instance;
-    final anilist = AnilistTracker.instance;
 
     setUp(() async {
-      await mal.setEnabled(false);
-      await anilist.setEnabled(false);
       await simkl.setEnabled(true);
     });
 
     tearDown(() async {
       coordinator.cancelInFlight();
-      coordinator.debugUseResolverDependencies();
-      mal.rebindSession(null, onSessionInvalidated: () {});
-      anilist.rebindSession(null, onSessionInvalidated: () {});
       simkl.rebindSession(null, onSessionInvalidated: () {});
-      await mal.setEnabled(false);
-      await anilist.setEnabled(false);
       await simkl.setEnabled(false);
     });
 
@@ -229,153 +155,6 @@ void main() {
       ]);
     });
 
-    test('groups manually watched split seasons into separate anime entries', () async {
-      await simkl.setEnabled(false);
-      await mal.setEnabled(true);
-      await anilist.setEnabled(true);
-      coordinator.debugUseResolverDependencies(
-        store: const _FakeFribbLookup([
-          FribbMappingRow(tvdbId: 12345, malId: 101, anilistId: 201, tvdbSeason: 1, type: 'TV'),
-          FribbMappingRow(tvdbId: 12345, malId: 102, anilistId: 202, tvdbSeason: 2, type: 'TV'),
-        ]),
-        animeLists: const _FakeAnimeListsLookup(),
-      );
-
-      final malUpdates = <int, Map<String, String>>{};
-      final malHttp = MockClient((request) async {
-        final malId = int.parse(request.url.pathSegments[2]);
-        if (request.method == 'GET') {
-          return http.Response(json.encode({'num_episodes': 2}), 200);
-        }
-        expect(request.method, 'PUT');
-        malUpdates[malId] = Uri.splitQueryString(request.body);
-        return http.Response('{}', 200);
-      });
-      mal.rebindSession(_malSession(), onSessionInvalidated: () {}, httpClient: malHttp);
-
-      final anilistSaves = <Map<String, dynamic>>[];
-      final anilistHttp = MockClient((request) async {
-        final body = json.decode(request.body) as Map<String, dynamic>;
-        final query = body['query'] as String;
-        if (query.contains('Media(id:')) {
-          return http.Response(
-            json.encode({
-              'data': {
-                'Media': {'episodes': 2},
-              },
-            }),
-            200,
-          );
-        }
-        if (query.contains('SaveMediaListEntry')) {
-          anilistSaves.add((body['variables'] as Map).cast<String, dynamic>());
-          return http.Response(
-            json.encode({
-              'data': {
-                'SaveMediaListEntry': {'id': 1},
-              },
-            }),
-            200,
-          );
-        }
-        fail('Unexpected AniList query: $query');
-      });
-      anilist.rebindSession(_anilistSession(), onSessionInvalidated: () {}, httpClient: anilistHttp);
-
-      final client = _FakeMediaServerClient(
-        externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
-        descendantsByParent: {
-          'show-1': [_episode(1, season: 1), _episode(2, season: 1), _episode(1, season: 2), _episode(2, season: 2)],
-        },
-      );
-
-      await coordinator.markWatched(_show(), client);
-
-      expect(malUpdates, {
-        101: {'status': 'completed', 'num_watched_episodes': '2'},
-        102: {'status': 'completed', 'num_watched_episodes': '2'},
-      });
-      expect(anilistSaves, contains(equals({'mediaId': 201, 'progress': 2, 'status': 'COMPLETED'})));
-      expect(anilistSaves, contains(equals({'mediaId': 202, 'progress': 2, 'status': 'COMPLETED'})));
-    });
-
-    test('groups manually watched same-season split cours by Anime-Lists ranges', () async {
-      await simkl.setEnabled(false);
-      await mal.setEnabled(true);
-      await anilist.setEnabled(true);
-      coordinator.debugUseResolverDependencies(
-        store: const _FakeFribbLookup([
-          FribbMappingRow(anidbId: 111, tvdbId: 12345, malId: 101, anilistId: 201, tvdbSeason: 1, type: 'TV'),
-          FribbMappingRow(anidbId: 222, tvdbId: 12345, malId: 102, anilistId: 202, tvdbSeason: 1, type: 'TV'),
-        ]),
-        animeLists: _FakeAnimeListsLookup(
-          matches: {
-            '1-1': _match(anidbId: 111, serverEpisode: 1, animeEpisode: 1),
-            '1-2': _match(anidbId: 111, serverEpisode: 2, animeEpisode: 2),
-            '1-13': _match(anidbId: 222, serverEpisode: 13, animeEpisode: 1),
-            '1-14': _match(anidbId: 222, serverEpisode: 14, animeEpisode: 2),
-          },
-        ),
-      );
-
-      final malUpdates = <int, Map<String, String>>{};
-      final malHttp = MockClient((request) async {
-        final malId = int.parse(request.url.pathSegments[2]);
-        if (request.method == 'GET') {
-          return http.Response(json.encode({'num_episodes': 2}), 200);
-        }
-        expect(request.method, 'PUT');
-        malUpdates[malId] = Uri.splitQueryString(request.body);
-        return http.Response('{}', 200);
-      });
-      mal.rebindSession(_malSession(), onSessionInvalidated: () {}, httpClient: malHttp);
-
-      final anilistSaves = <Map<String, dynamic>>[];
-      final anilistHttp = MockClient((request) async {
-        final body = json.decode(request.body) as Map<String, dynamic>;
-        final query = body['query'] as String;
-        if (query.contains('Media(id:')) {
-          return http.Response(
-            json.encode({
-              'data': {
-                'Media': {'episodes': 2},
-              },
-            }),
-            200,
-          );
-        }
-        if (query.contains('SaveMediaListEntry')) {
-          anilistSaves.add((body['variables'] as Map).cast<String, dynamic>());
-          return http.Response(
-            json.encode({
-              'data': {
-                'SaveMediaListEntry': {'id': 1},
-              },
-            }),
-            200,
-          );
-        }
-        fail('Unexpected AniList query: $query');
-      });
-      anilist.rebindSession(_anilistSession(), onSessionInvalidated: () {}, httpClient: anilistHttp);
-
-      final client = _FakeMediaServerClient(
-        externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
-        descendantsByParent: {
-          'show-1': [_episode(1), _episode(2), _episode(13), _episode(14)],
-        },
-      );
-
-      await coordinator.markWatched(_show(), client);
-
-      expect(malUpdates, {
-        101: {'status': 'completed', 'num_watched_episodes': '2'},
-        102: {'status': 'completed', 'num_watched_episodes': '2'},
-      });
-      expect(anilistSaves, contains(equals({'mediaId': 201, 'progress': 2, 'status': 'COMPLETED'})));
-      expect(anilistSaves, contains(equals({'mediaId': 202, 'progress': 2, 'status': 'COMPLETED'})));
-    });
-
     test('removes manually unwatched season episodes from Simkl history', () async {
       final bodies = <Map<String, dynamic>>[];
       final httpClient = MockClient((request) async {
@@ -410,79 +189,6 @@ void main() {
           ],
         },
       ]);
-    });
-
-    test('removes manually unwatched split seasons from MAL and AniList lists', () async {
-      await simkl.setEnabled(false);
-      await mal.setEnabled(true);
-      await anilist.setEnabled(true);
-      coordinator.debugUseResolverDependencies(
-        store: const _FakeFribbLookup([
-          FribbMappingRow(anidbId: 111, tvdbId: 12345, malId: 101, anilistId: 201, tvdbSeason: 1, type: 'TV'),
-          FribbMappingRow(anidbId: 222, tvdbId: 12345, malId: 102, anilistId: 202, tvdbSeason: 1, type: 'TV'),
-        ]),
-        animeLists: _FakeAnimeListsLookup(
-          matches: {
-            '1-1': _match(anidbId: 111, serverEpisode: 1, animeEpisode: 1),
-            '1-2': _match(anidbId: 111, serverEpisode: 2, animeEpisode: 2),
-            '1-13': _match(anidbId: 222, serverEpisode: 13, animeEpisode: 1),
-            '1-14': _match(anidbId: 222, serverEpisode: 14, animeEpisode: 2),
-          },
-        ),
-      );
-
-      final malDeletes = <int>[];
-      final malHttp = MockClient((request) async {
-        expect(request.method, 'DELETE');
-        malDeletes.add(int.parse(request.url.pathSegments[2]));
-        return http.Response('{}', 200);
-      });
-      mal.rebindSession(_malSession(), onSessionInvalidated: () {}, httpClient: malHttp);
-
-      final anilistDeletes = <int>[];
-      final anilistHttp = MockClient((request) async {
-        final body = json.decode(request.body) as Map<String, dynamic>;
-        final query = body['query'] as String;
-        final variables = (body['variables'] as Map).cast<String, dynamic>();
-        if (query.contains('mediaListEntry')) {
-          final mediaId = variables['mediaId'] as int;
-          return http.Response(
-            json.encode({
-              'data': {
-                'Media': {
-                  'mediaListEntry': {'id': mediaId + 100},
-                },
-              },
-            }),
-            200,
-          );
-        }
-        if (query.contains('DeleteMediaListEntry')) {
-          anilistDeletes.add(variables['id'] as int);
-          return http.Response(
-            json.encode({
-              'data': {
-                'DeleteMediaListEntry': {'deleted': true},
-              },
-            }),
-            200,
-          );
-        }
-        fail('Unexpected AniList query: $query');
-      });
-      anilist.rebindSession(_anilistSession(), onSessionInvalidated: () {}, httpClient: anilistHttp);
-
-      final client = _FakeMediaServerClient(
-        externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
-        descendantsByParent: {
-          'show-1': [_episode(1), _episode(2), _episode(13), _episode(14)],
-        },
-      );
-
-      await coordinator.markUnwatched(_show(), client);
-
-      expect(malDeletes, unorderedEquals([101, 102]));
-      expect(anilistDeletes, unorderedEquals([301, 302]));
     });
 
     test('playback resolver is recreated when the server client changes', () async {
@@ -520,61 +226,16 @@ void main() {
   group('TrackerCoordinator playback threshold', () {
     final coordinator = TrackerCoordinator.instance;
     final simkl = SimklTracker.instance;
-    final mal = MalTracker.instance;
-    final anilist = AnilistTracker.instance;
 
     setUp(() async {
       // MAL is a threshold tracker: the crossing owns its watched write. Simkl
       // is excluded from that fan-out (it reports playback in real time), so it
       // stays off here — see simkl_scrobble_test.dart.
       await simkl.setEnabled(false);
-      await anilist.setEnabled(false);
-      await mal.setEnabled(true);
     });
 
     tearDown(() async {
       coordinator.cancelInFlight();
-      coordinator.debugUseResolverDependencies();
-      mal.rebindSession(null, onSessionInvalidated: () {});
-      await mal.setEnabled(false);
-    });
-
-    test('marks watched at the server threshold, not the tracker default', () async {
-      coordinator.debugUseResolverDependencies(
-        store: const _FakeFribbLookup([FribbMappingRow(tvdbId: 12345, malId: 101, tvdbSeason: 1, type: 'TV')]),
-        animeLists: const _FakeAnimeListsLookup(),
-      );
-
-      final updates = <Map<String, String>>[];
-      final httpClient = MockClient((request) async {
-        if (request.method == 'GET') return http.Response(json.encode({'num_episodes': 1}), 200);
-        expect(request.method, 'PUT');
-        updates.add(Uri.splitQueryString(request.body));
-        return http.Response('{}', 200);
-      });
-      mal.rebindSession(_malSession(), onSessionInvalidated: () {}, httpClient: httpClient);
-
-      final client = _FakeMediaServerClient(
-        externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
-        descendantsByParent: const {},
-        watchedThreshold: 0.95,
-      );
-
-      // The player always hands the coordinator an episode carrying its show
-      // link; container paths fill it in from the parent instead.
-      await coordinator.startPlayback(_episode(1).copyWith(grandparentId: 'show-1'), client);
-      coordinator.updateDuration(const Duration(seconds: 100));
-
-      // 90% — past the old hardcoded 80% tracker default but below the server's 95%.
-      coordinator.updatePosition(const Duration(seconds: 90));
-      await pumpEventQueue();
-      expect(updates, isEmpty);
-
-      // 95% — crosses the server threshold; fires exactly once.
-      coordinator.updatePosition(const Duration(seconds: 95));
-      await pumpEventQueue();
-      expect(updates, hasLength(1));
-      expect(updates.single['num_watched_episodes'], '1');
     });
 
     test('leaves real-time trackers out of the threshold watched write', () async {
@@ -583,7 +244,6 @@ void main() {
         requests.add(request.url.path);
         return http.Response('{}', 200);
       });
-      await mal.setEnabled(false);
       await simkl.setEnabled(true);
       simkl.rebindSession(_simklSession(), onSessionInvalidated: () {}, httpClient: httpClient);
       addTearDown(() async {

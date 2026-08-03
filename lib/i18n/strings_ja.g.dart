@@ -1452,7 +1452,6 @@ class _Translations$services$ja extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '${service} に接続できませんでした。もう一度お試しください。';
 	@override late final _Translations$services$names$ja names = _Translations$services$names$ja._(_root);
 	@override late final _Translations$services$deviceCode$ja deviceCode = _Translations$services$deviceCode$ja._(_root);
-	@override late final _Translations$services$oauthProxy$ja oauthProxy = _Translations$services$oauthProxy$ja._(_root);
 	@override late final _Translations$services$libraryFilter$ja libraryFilter = _Translations$services$libraryFilter$ja._(_root);
 }
 
@@ -1687,8 +1686,6 @@ class _Translations$services$names$ja extends Translations$services$names$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1706,20 +1703,6 @@ class _Translations$services$deviceCode$ja extends Translations$services$deviceC
 	@override String get copyCode => 'アクティベーションコードをコピー';
 	@override String get waitingForAuthorization => '認証を待っています…';
 	@override String get codeCopied => 'コードをコピーしました';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$ja extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$ja._(TranslationsJa root) : this._root = root, super.internal(root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '${service} にサインイン';
-	@override String get body => 'このQRコードをスキャンするか、任意のデバイスでURLを開いてください。';
-	@override String openToSignIn({required Object service}) => '${service} を開いてサインイン';
-	@override String get copyUrl => 'サインインURLをコピー';
-	@override String get urlCopied => 'URLをコピーしました';
 }
 
 // Path: services.libraryFilter
@@ -2842,8 +2825,6 @@ extension on TranslationsJa {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} の接続を解除しますか？',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harborは${service}の更新を停止します。いつでも再接続できます。',
 			'services.connectFailed' => ({required Object service}) => '${service} に接続できませんでした。もう一度お試しください。',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '${service} で Harbor を有効化',
@@ -2852,11 +2833,6 @@ extension on TranslationsJa {
 			'services.deviceCode.copyCode' => 'アクティベーションコードをコピー',
 			'services.deviceCode.waitingForAuthorization' => '認証を待っています…',
 			'services.deviceCode.codeCopied' => 'コードをコピーしました',
-			'services.oauthProxy.title' => ({required Object service}) => '${service} にサインイン',
-			'services.oauthProxy.body' => 'このQRコードをスキャンするか、任意のデバイスでURLを開いてください。',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => '${service} を開いてサインイン',
-			'services.oauthProxy.copyUrl' => 'サインインURLをコピー',
-			'services.oauthProxy.urlCopied' => 'URLをコピーしました',
 			'services.libraryFilter.title' => 'ライブラリフィルター',
 			'services.libraryFilter.subtitleAllSyncing' => 'すべてのライブラリを同期中',
 			'services.libraryFilter.subtitleNoneSyncing' => '同期なし',

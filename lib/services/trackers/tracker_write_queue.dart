@@ -509,13 +509,11 @@ class TrackerWriteQueue {
     final ctx = json['kind'] == 'movie'
         ? TrackerContext.movie(
             external: external,
-            anime: null,
             ratingKey: ratingKey,
             libraryGlobalKey: libraryGlobalKey,
           )
         : TrackerContext.episode(
             external: external,
-            anime: null,
             ratingKey: ratingKey,
             libraryGlobalKey: libraryGlobalKey,
             season: (json['season'] as num).toInt(),

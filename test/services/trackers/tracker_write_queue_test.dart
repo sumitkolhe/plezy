@@ -20,7 +20,6 @@ TrackerContext _episode({
   int episodeNumber = 2,
 }) => TrackerContext.episode(
   external: external,
-  anime: null,
   ratingKey: ratingKey,
   libraryGlobalKey: libraryGlobalKey,
   season: season,
@@ -31,7 +30,7 @@ TrackerContext _movie({
   String ratingKey = 'movie-1',
   String? libraryGlobalKey = 'server-1:8',
   ExternalIds external = const ExternalIds(tmdb: 456),
-}) => TrackerContext.movie(external: external, anime: null, ratingKey: ratingKey, libraryGlobalKey: libraryGlobalKey);
+}) => TrackerContext.movie(external: external, ratingKey: ratingKey, libraryGlobalKey: libraryGlobalKey);
 
 TrackerWriteQueueItem _item({
   required TrackerContext ctx,
@@ -136,12 +135,12 @@ void main() {
   test('series progress coalescing retains the greatest monotonic claim', () async {
     final queue = TrackerWriteQueue();
     final ctx = _episode();
-    final key = trackerSeriesCoalesceKey(TrackerService.mal, 42);
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.mal, progressClaim: 5));
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.mal, progressClaim: 6));
+    final key = trackerSeriesCoalesceKey(TrackerService.simkl, 42);
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 5));
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 6));
     expect((await queue.load('user-a')).single.progressClaim, 6);
 
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.mal, progressClaim: 5));
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 5));
     final remaining = await queue.load('user-a');
     expect(remaining, hasLength(1));
     expect(remaining.single.progressClaim, 6);
@@ -150,9 +149,9 @@ void main() {
   test('invalidate drops outright or only claims covered by applied progress', () async {
     final queue = TrackerWriteQueue();
     final ctx = _episode();
-    final key = trackerSeriesCoalesceKey(TrackerService.anilist, 42);
+    final key = trackerSeriesCoalesceKey(TrackerService.trakt, 42);
     TrackerWriteQueueItem claim(int progress) =>
-        _item(ctx: ctx, coalesceKey: key, service: TrackerService.anilist, progressClaim: progress);
+        _item(ctx: ctx, coalesceKey: key, service: TrackerService.trakt, progressClaim: progress);
 
     await queue.enqueue('user-a', claim(5));
     await queue.invalidate('user-a', key);

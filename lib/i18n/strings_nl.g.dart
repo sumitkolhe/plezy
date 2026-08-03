@@ -1455,7 +1455,6 @@ class _Translations$services$nl extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.';
 	@override late final _Translations$services$names$nl names = _Translations$services$names$nl._(_root);
 	@override late final _Translations$services$deviceCode$nl deviceCode = _Translations$services$deviceCode$nl._(_root);
-	@override late final _Translations$services$oauthProxy$nl oauthProxy = _Translations$services$oauthProxy$nl._(_root);
 	@override late final _Translations$services$libraryFilter$nl libraryFilter = _Translations$services$libraryFilter$nl._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$nl extends Translations$services$names$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$nl extends Translations$services$deviceC
 	@override String get copyCode => 'Activeringscode kopiëren';
 	@override String get waitingForAuthorization => 'Wachten op autorisatie…';
 	@override String get codeCopied => 'Code gekopieerd';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$nl extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$nl._(TranslationsNl root) : this._root = root, super.internal(root);
-
-	final TranslationsNl _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Aanmelden bij ${service}';
-	@override String get body => 'Scan deze QR-code of open de URL op een apparaat.';
-	@override String openToSignIn({required Object service}) => '${service} openen om aan te melden';
-	@override String get copyUrl => 'Aanmeldings-URL kopiëren';
-	@override String get urlCopied => 'URL gekopieerd';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsNl {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} loskoppelen?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.',
 			'services.connectFailed' => ({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor activeren op ${service}',
@@ -2855,11 +2836,6 @@ extension on TranslationsNl {
 			'services.deviceCode.copyCode' => 'Activeringscode kopiëren',
 			'services.deviceCode.waitingForAuthorization' => 'Wachten op autorisatie…',
 			'services.deviceCode.codeCopied' => 'Code gekopieerd',
-			'services.oauthProxy.title' => ({required Object service}) => 'Aanmelden bij ${service}',
-			'services.oauthProxy.body' => 'Scan deze QR-code of open de URL op een apparaat.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => '${service} openen om aan te melden',
-			'services.oauthProxy.copyUrl' => 'Aanmeldings-URL kopiëren',
-			'services.oauthProxy.urlCopied' => 'URL gekopieerd',
 			'services.libraryFilter.title' => 'Bibliotheekfilter',
 			'services.libraryFilter.subtitleAllSyncing' => 'Alle bibliotheken synchroniseren',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Niets wordt gesynchroniseerd',

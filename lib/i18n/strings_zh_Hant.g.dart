@@ -1453,7 +1453,6 @@ class _Translations$services$zh_Hant extends Translations$services$zh {
 	@override String connectFailed({required Object service}) => '無法連線至 ${service}。請重試。';
 	@override late final _Translations$services$names$zh_Hant names = _Translations$services$names$zh_Hant._(_root);
 	@override late final _Translations$services$deviceCode$zh_Hant deviceCode = _Translations$services$deviceCode$zh_Hant._(_root);
-	@override late final _Translations$services$oauthProxy$zh_Hant oauthProxy = _Translations$services$oauthProxy$zh_Hant._(_root);
 	@override late final _Translations$services$libraryFilter$zh_Hant libraryFilter = _Translations$services$libraryFilter$zh_Hant._(_root);
 }
 
@@ -1688,8 +1687,6 @@ class _Translations$services$names$zh_Hant extends Translations$services$names$z
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1707,20 +1704,6 @@ class _Translations$services$deviceCode$zh_Hant extends Translations$services$de
 	@override String get copyCode => '複製啟用代碼';
 	@override String get waitingForAuthorization => '等待授權中…';
 	@override String get codeCopied => '代碼已複製';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$zh_Hant extends Translations$services$oauthProxy$zh {
-	_Translations$services$oauthProxy$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '登入 ${service}';
-	@override String get body => '掃描 QR 碼，或在任何裝置上開啟該網址。';
-	@override String openToSignIn({required Object service}) => '開啟 ${service} 進行登入';
-	@override String get copyUrl => '複製登入 URL';
-	@override String get urlCopied => 'URL 已複製';
 }
 
 // Path: services.libraryFilter
@@ -2843,8 +2826,6 @@ extension on TranslationsZhHant {
 			'services.disconnectConfirm' => ({required Object service}) => '中斷與 ${service} 的連線？',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor 將停止更新 ${service}。您可以隨時重新連線。',
 			'services.connectFailed' => ({required Object service}) => '無法連線至 ${service}。請重試。',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 啟用 Harbor',
@@ -2853,11 +2834,6 @@ extension on TranslationsZhHant {
 			'services.deviceCode.copyCode' => '複製啟用代碼',
 			'services.deviceCode.waitingForAuthorization' => '等待授權中…',
 			'services.deviceCode.codeCopied' => '代碼已複製',
-			'services.oauthProxy.title' => ({required Object service}) => '登入 ${service}',
-			'services.oauthProxy.body' => '掃描 QR 碼，或在任何裝置上開啟該網址。',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => '開啟 ${service} 進行登入',
-			'services.oauthProxy.copyUrl' => '複製登入 URL',
-			'services.oauthProxy.urlCopied' => 'URL 已複製',
 			'services.libraryFilter.title' => '媒體庫篩選',
 			'services.libraryFilter.subtitleAllSyncing' => '同步所有媒體庫',
 			'services.libraryFilter.subtitleNoneSyncing' => '不同步任何內容',

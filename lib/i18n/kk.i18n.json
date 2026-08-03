@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor ${service} жаңартуды тоқтатады.",
     "connectFailed": "${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Белсендіру кодын көшіру",
       "waitingForAuthorization": "Авторизация күтілуде…",
       "codeCopied": "Код көшірілді"
-    },
-    "oauthProxy": {
-      "title": "${service} қызметіне кіру",
-      "body": "Осы QR кодты сканерлеңіз немесе URL-ді ашыңыз.",
-      "openToSignIn": "Кіру үшін ${service} ашу",
-      "copyUrl": "Кіру URL-ін көшіру",
-      "urlCopied": "URL көшірілді"
     },
     "libraryFilter": {
       "title": "Кітапхана фильтрі",

@@ -8,14 +8,10 @@ import '../models/catalog/catalog_item.dart';
 import '../profiles/profile.dart';
 import '../services/base_shared_preferences_service.dart';
 import '../services/catalog/catalog_source.dart';
-import '../services/catalog/anilist_catalog_source.dart';
-import '../services/catalog/mal_catalog_source.dart';
 import '../services/catalog/seerr_catalog_source.dart';
 import '../services/catalog/simkl_catalog_source.dart';
 import '../services/catalog/trakt_catalog_source.dart';
 import '../services/seerr/seerr_client.dart';
-import '../services/trackers/anilist/anilist_client.dart';
-import '../services/trackers/mal/mal_client.dart';
 import '../services/trackers/simkl/simkl_client.dart';
 import '../services/trackers/trakt/trakt_client.dart';
 import 'seerr_account_provider.dart';
@@ -55,10 +51,6 @@ class _CatalogSourceBinding<Client extends Object, Source extends CatalogSource>
 /// owning account connection (which also drives the Explore tab's visibility).
 class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   final _CatalogSourceBinding<TraktClient, TraktCatalogSource> _trakt = _CatalogSourceBinding(TraktCatalogSource.new);
-  final _CatalogSourceBinding<MalClient, MalCatalogSource> _mal = _CatalogSourceBinding(MalCatalogSource.new);
-  final _CatalogSourceBinding<AnilistClient, AnilistCatalogSource> _anilist = _CatalogSourceBinding(
-    AnilistCatalogSource.new,
-  );
   final _CatalogSourceBinding<SimklClient, SimklCatalogSource> _simkl = _CatalogSourceBinding(SimklCatalogSource.new);
   final _CatalogSourceBinding<SeerrClient, SeerrCatalogSource> _seerr = _CatalogSourceBinding(SeerrCatalogSource.new);
   int _profileBindingGeneration = 0;
@@ -68,8 +60,6 @@ class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifie
 
   List<CatalogSource> get connectedSources => [
     ?_trakt.source,
-    ?_mal.source,
-    ?_anilist.source,
     ?_simkl.source,
     ?_seerr.source,
   ];
@@ -135,8 +125,6 @@ class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifie
   void update(TrackersProvider trackers, SeerrAccountProvider seerr) {
     var changed = false;
     changed = _trakt.update(trackers.traktCatalogClient) || changed;
-    changed = _mal.update(trackers.malCatalogClient) || changed;
-    changed = _anilist.update(trackers.anilistCatalogClient) || changed;
     changed = _simkl.update(trackers.simklCatalogClient) || changed;
     changed = _seerr.update(seerr.catalogClient) || changed;
     if (changed) safeNotifyListeners();
@@ -145,8 +133,6 @@ class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifie
   @override
   void dispose() {
     _trakt.dispose();
-    _mal.dispose();
-    _anilist.dispose();
     _simkl.dispose();
     _seerr.dispose();
     super.dispose();

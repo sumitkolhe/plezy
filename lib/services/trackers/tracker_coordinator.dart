@@ -7,11 +7,6 @@ import '../../media/playback_timeline.dart';
 import '../../models/trackers/tracker_context.dart';
 import '../../utils/app_logger.dart';
 import '../../media/episode_collection.dart';
-import 'anime_episode_progress_resolver.dart';
-import 'anime_lists_mapping_store.dart';
-import 'anilist/anilist_tracker.dart';
-import 'fribb_mapping_store.dart';
-import 'mal/mal_tracker.dart';
 import 'simkl/simkl_tracker.dart';
 import 'tracker.dart';
 import 'tracker_constants.dart';
@@ -47,8 +42,6 @@ class TrackerCoordinator {
   /// The registry. Everything below partitions this list by capability rather
   /// than naming services, so adding one means adding it here and nowhere else.
   late final List<Tracker> _trackers = [
-    MalTracker.instance,
-    AnilistTracker.instance,
     SimklTracker.instance,
     TraktTracker.instance,
   ];
@@ -77,10 +70,6 @@ class TrackerCoordinator {
   /// same show reuse the cached IDs. Cleared only on profile switch.
   TrackerIdResolver? _resolver;
   String? _resolverClientKey;
-  String? _activeLibraryGlobalKey;
-  FribbMappingLookup? _debugFribbStore;
-  AnimeListsMappingLookup? _debugAnimeListsStore;
-  AnimeEpisodeProgressLookup? _debugAnimeProgress;
 
   TrackerContext? _ctx;
 
@@ -166,11 +155,10 @@ class TrackerCoordinator {
       return;
     }
 
-    _activeLibraryGlobalKey = libraryGlobalKey;
     final clientKey = client.cacheServerId;
     if (_resolver == null || _resolverClientKey != clientKey) {
       _resolver?.clearCache();
-      _resolver = _newResolver(client, needsFribb: _anyTrackerNeedsFribb);
+      _resolver = TrackerIdResolver(client);
       _resolverClientKey = clientKey;
     }
     final ctx = await _buildContext(metadata, _resolver!);
@@ -200,8 +188,6 @@ class TrackerCoordinator {
     unawaited(_scrobble(TrackerScrobbleState.start));
   }
 
-  bool _anyTrackerNeedsFribb() => _anyTrackerNeedsFribbForLibrary(_activeLibraryGlobalKey);
-
   /// True when at least one tracker would act on this playback — either by
   /// receiving reports or by recording the watch when progress crosses over.
   /// Trakt can be in the second group without being in the first: its scrobble
@@ -212,27 +198,6 @@ class TrackerCoordinator {
 
   bool _hasWatchedInterest(String? libraryGlobalKey) => _trackers.any((t) => _canWrite(t, libraryGlobalKey));
 
-  bool _anyTrackerNeedsFribbForLibrary(String? libraryGlobalKey) =>
-      _trackers.any((t) => t.needsFribb && _canWrite(t, libraryGlobalKey));
-
-  void debugUseResolverDependencies({
-    FribbMappingLookup? store,
-    AnimeListsMappingLookup? animeLists,
-    AnimeEpisodeProgressLookup? animeProgress,
-  }) {
-    _debugFribbStore = store;
-    _debugAnimeListsStore = animeLists;
-    _debugAnimeProgress = animeProgress;
-    invalidateResolverCache();
-  }
-
-  TrackerIdResolver _newResolver(MediaServerClient client, {required bool Function() needsFribb}) => TrackerIdResolver(
-    client,
-    needsFribb: needsFribb,
-    store: _debugFribbStore,
-    animeLists: _debugAnimeListsStore,
-    animeProgress: _debugAnimeProgress,
-  );
 
   Future<void> markWatched(MediaItem item, MediaServerClient client) => _markManual(item, client, watched: true);
 
@@ -255,7 +220,7 @@ class TrackerCoordinator {
     final libraryGlobalKey = item.libraryGlobalKey;
     if (!_hasWatchedInterest(libraryGlobalKey)) return;
 
-    final resolver = _newResolver(client, needsFribb: () => _anyTrackerNeedsFribbForLibrary(libraryGlobalKey));
+    final resolver = TrackerIdResolver(client);
 
     final scope = _currentScope;
     if (kind == MediaKind.movie || kind == MediaKind.episode) {
@@ -283,7 +248,7 @@ class TrackerCoordinator {
     var resolved = 0;
 
     for (final episode in episodes) {
-      final ctx = await _buildContext(episode, resolver, includeAnimeProgress: false);
+      final ctx = await _buildContext(episode, resolver);
       if (!_isCurrent(scope)) return;
       if (ctx == null) continue;
       resolved++;
@@ -318,8 +283,6 @@ class TrackerCoordinator {
       final ctx = await _buildContext(
         episode,
         resolver,
-        includeAnimeProgress: false,
-        fallbackToAnimeEpisodeNumber: false,
       );
       if (!_isCurrent(scope)) return;
       if (ctx == null) continue;
@@ -397,7 +360,7 @@ class TrackerCoordinator {
   }
 
   Future<void> _markSingleUnwatched(MediaItem item, TrackerIdResolver resolver, _WriteScope scope) async {
-    final ctx = await _buildContext(item, resolver, includeAnimeProgress: false, fallbackToAnimeEpisodeNumber: false);
+    final ctx = await _buildContext(item, resolver);
     if (ctx == null) {
       appLogger.d('Trackers: no external IDs for manually unwatched ${item.id}');
       return;
@@ -500,12 +463,10 @@ class TrackerCoordinator {
 
   /// Drop the resolver's ID cache without touching in-flight playback state.
   /// Called after a tracker is connected/disconnected so cached lookups
-  /// re-evaluate the `needsFribb` predicate.
   void invalidateResolverCache() => _resolver?.clearCache();
 
   void _reset() {
     _ctx = null;
-    _activeLibraryGlobalKey = null;
     _timeline.reset(watchedThreshold: _fallbackWatchedThreshold);
     _thresholdCrossed = false;
     // Per-playback report bookkeeping lives on the targets, so dropping them
@@ -858,13 +819,7 @@ class TrackerCoordinator {
   /// caller (screen teardown, app shutdown) moves on.
   Future<void> _settleScrobbles() => Future.wait(_channels.map((channel) => channel.settle()));
 
-  Future<TrackerContext?> _buildContext(
-    MediaItem metadata,
-    TrackerIdResolver resolver, {
-    bool includeAnimeProgress = true,
-    bool includeCurrentEpisode = true,
-    bool fallbackToAnimeEpisodeNumber = true,
-  }) async {
+  Future<TrackerContext?> _buildContext(MediaItem metadata, TrackerIdResolver resolver) async {
     final libraryKey = metadata.libraryGlobalKey;
 
     if (metadata.kind == MediaKind.movie) {
@@ -872,7 +827,6 @@ class TrackerCoordinator {
       if (ids == null) return null;
       return TrackerContext.movie(
         external: ids.external,
-        anime: ids.anime,
         ratingKey: metadata.id,
         libraryGlobalKey: libraryKey,
       );
@@ -882,25 +836,14 @@ class TrackerCoordinator {
     final number = metadata.index;
     if (season == null || number == null) return null;
 
-    final ids = await resolver.resolveShowForEpisode(
-      metadata,
-      includeAnimeProgress: includeAnimeProgress,
-      includeCurrentEpisode: includeCurrentEpisode,
-    );
+    final ids = await resolver.resolveShowForEpisode(metadata);
     if (ids == null) return null;
-    final animeProgress = includeAnimeProgress
-        ? ids.animeProgress ?? (fallbackToAnimeEpisodeNumber ? ids.animeEpisodeNumber : null)
-        : fallbackToAnimeEpisodeNumber
-        ? ids.animeEpisodeNumber
-        : null;
     return TrackerContext.episode(
       external: ids.external,
-      anime: ids.anime,
       ratingKey: metadata.id,
       libraryGlobalKey: libraryKey,
       season: season,
       episodeNumber: number,
-      animeProgress: animeProgress,
     );
   }
 }
@@ -1050,31 +993,22 @@ class _ManualSeriesProgress {
   final TrackerContext _base;
   final bool _fallbackToCount;
   int _count = 0;
-  int? _maxMappedProgress;
 
   _ManualSeriesProgress(this._base, {required this._fallbackToCount});
 
-  void add(TrackerContext ctx) {
-    _count++;
-    final mapped = ctx.animeProgress;
-    if (mapped != null && (_maxMappedProgress == null || mapped > _maxMappedProgress!)) {
-      _maxMappedProgress = mapped;
-    }
-  }
+  void add(TrackerContext ctx) => _count++;
 
-  int? get progress => _maxMappedProgress ?? (_fallbackToCount ? _count : null);
+  int? get progress => _fallbackToCount ? _count : null;
 
   TrackerContext? get context {
     final progress = this.progress;
     if (progress == null) return null;
     return TrackerContext.episode(
       external: _base.external,
-      anime: _base.anime,
       ratingKey: _base.ratingKey,
       libraryGlobalKey: _base.libraryGlobalKey,
       season: _base.season!,
       episodeNumber: progress,
-      animeProgress: progress,
     );
   }
 }

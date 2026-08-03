@@ -1455,7 +1455,6 @@ class _Translations$services$hu extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.';
 	@override late final _Translations$services$names$hu names = _Translations$services$names$hu._(_root);
 	@override late final _Translations$services$deviceCode$hu deviceCode = _Translations$services$deviceCode$hu._(_root);
-	@override late final _Translations$services$oauthProxy$hu oauthProxy = _Translations$services$oauthProxy$hu._(_root);
 	@override late final _Translations$services$libraryFilter$hu libraryFilter = _Translations$services$libraryFilter$hu._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$hu extends Translations$services$names$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$hu extends Translations$services$deviceC
 	@override String get copyCode => 'Aktiválási kód másolása';
 	@override String get waitingForAuthorization => 'Várakozás az engedélyezésre…';
 	@override String get codeCopied => 'Kód másolva';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$hu extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Bejelentkezés ide: ${service}';
-	@override String get body => 'Olvasd be ezt a QR-kódot vagy nyisd meg az URL-t bármelyik eszközön.';
-	@override String openToSignIn({required Object service}) => 'Nyisd meg a(z) ${service} oldalt a bejelentkezéshez';
-	@override String get copyUrl => 'Bejelentkezési URL másolása';
-	@override String get urlCopied => 'URL másolva';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsHu {
 			'services.disconnectConfirm' => ({required Object service}) => 'Leválasztod a(z) ${service} szolgáltatást?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.',
 			'services.connectFailed' => ({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor aktiválása a következőn: ${service}',
@@ -2855,11 +2836,6 @@ extension on TranslationsHu {
 			'services.deviceCode.copyCode' => 'Aktiválási kód másolása',
 			'services.deviceCode.waitingForAuthorization' => 'Várakozás az engedélyezésre…',
 			'services.deviceCode.codeCopied' => 'Kód másolva',
-			'services.oauthProxy.title' => ({required Object service}) => 'Bejelentkezés ide: ${service}',
-			'services.oauthProxy.body' => 'Olvasd be ezt a QR-kódot vagy nyisd meg az URL-t bármelyik eszközön.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Nyisd meg a(z) ${service} oldalt a bejelentkezéshez',
-			'services.oauthProxy.copyUrl' => 'Bejelentkezési URL másolása',
-			'services.oauthProxy.urlCopied' => 'URL másolva',
 			'services.libraryFilter.title' => 'Könyvtárszűrő',
 			'services.libraryFilter.subtitleAllSyncing' => 'Minden könyvtár szinkronizálása',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Nincs szinkronizálás',

@@ -550,8 +550,8 @@ class _SettingsHarness {
     seerr.dispose();
     activeProfile.dispose();
     await database.close();
-    expect(trackerHttpClients, hasLength(5));
-    expect(trackerHttpClients.toSet(), hasLength(5));
+    expect(trackerHttpClients, hasLength(2));
+    expect(trackerHttpClients.toSet(), hasLength(2));
     for (final client in trackerHttpClients) {
       expect(client.closeCount, 1);
     }

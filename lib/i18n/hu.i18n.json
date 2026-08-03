@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.",
     "connectFailed": "Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Aktiválási kód másolása",
       "waitingForAuthorization": "Várakozás az engedélyezésre…",
       "codeCopied": "Kód másolva"
-    },
-    "oauthProxy": {
-      "title": "Bejelentkezés ide: ${service}",
-      "body": "Olvasd be ezt a QR-kódot vagy nyisd meg az URL-t bármelyik eszközön.",
-      "openToSignIn": "Nyisd meg a(z) ${service} oldalt a bejelentkezéshez",
-      "copyUrl": "Bejelentkezési URL másolása",
-      "urlCopied": "URL másolva"
     },
     "libraryFilter": {
       "title": "Könyvtárszűrő",

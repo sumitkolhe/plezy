@@ -1457,8 +1457,6 @@
     "disconnectConfirmBody": "Harbor перестанет обновлять ${service}. Подключите снова в любое время.",
     "connectFailed": "Не удалось подключиться к ${service}. Попробуйте ещё раз.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1469,13 +1467,6 @@
       "copyCode": "Скопировать код активации",
       "waitingForAuthorization": "Ожидание авторизации…",
       "codeCopied": "Код скопирован"
-    },
-    "oauthProxy": {
-      "title": "Войти в ${service}",
-      "body": "Отсканируйте этот QR-код или откройте URL на любом устройстве.",
-      "openToSignIn": "Открыть ${service} для входа",
-      "copyUrl": "Скопировать URL для входа",
-      "urlCopied": "URL скопирован"
     },
     "libraryFilter": {
       "title": "Фильтр библиотек",

@@ -1466,7 +1466,6 @@ class _Translations$services$tr extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '${service} ile bağlantı kurulamadı. Tekrar deneyin.';
 	@override late final _Translations$services$names$tr names = _Translations$services$names$tr._(_root);
 	@override late final _Translations$services$deviceCode$tr deviceCode = _Translations$services$deviceCode$tr._(_root);
-	@override late final _Translations$services$oauthProxy$tr oauthProxy = _Translations$services$oauthProxy$tr._(_root);
 	@override late final _Translations$services$libraryFilter$tr libraryFilter = _Translations$services$libraryFilter$tr._(_root);
 }
 
@@ -1701,8 +1700,6 @@ class _Translations$services$names$tr extends Translations$services$names$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1720,20 +1717,6 @@ class _Translations$services$deviceCode$tr extends Translations$services$deviceC
 	@override String get copyCode => 'Etkinleştirme kodunu kopyala';
 	@override String get waitingForAuthorization => 'Yetkilendirme bekleniyor…';
 	@override String get codeCopied => 'Kod kopyalandı';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$tr extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '${service} servisine giriş yapın';
-	@override String get body => 'Bu QR kodunu tarayın veya URL\'yi herhangi bir cihazda açın.';
-	@override String openToSignIn({required Object service}) => 'Giriş yapmak için ${service} servisini açın';
-	@override String get copyUrl => 'Giriş URL\'sini kopyala';
-	@override String get urlCopied => 'URL kopyalandı';
 }
 
 // Path: services.libraryFilter
@@ -2867,8 +2850,6 @@ extension on TranslationsTr {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} bağlantısı kesilsin mi?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.',
 			'services.connectFailed' => ({required Object service}) => '${service} ile bağlantı kurulamadı. Tekrar deneyin.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor\'yi ${service} üzerinde etkinleştirin',
@@ -2877,11 +2858,6 @@ extension on TranslationsTr {
 			'services.deviceCode.copyCode' => 'Etkinleştirme kodunu kopyala',
 			'services.deviceCode.waitingForAuthorization' => 'Yetkilendirme bekleniyor…',
 			'services.deviceCode.codeCopied' => 'Kod kopyalandı',
-			'services.oauthProxy.title' => ({required Object service}) => '${service} servisine giriş yapın',
-			'services.oauthProxy.body' => 'Bu QR kodunu tarayın veya URL\'yi herhangi bir cihazda açın.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Giriş yapmak için ${service} servisini açın',
-			'services.oauthProxy.copyUrl' => 'Giriş URL\'sini kopyala',
-			'services.oauthProxy.urlCopied' => 'URL kopyalandı',
 			'services.libraryFilter.title' => 'Kitaplık filtresi',
 			'services.libraryFilter.subtitleAllSyncing' => 'Tüm kitaplıklar eşitleniyor',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Hiçbir şey eşitlenmiyor',

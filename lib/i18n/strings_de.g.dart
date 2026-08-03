@@ -1455,7 +1455,6 @@ class _Translations$services$de extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Verbindung zu ${service} fehlgeschlagen. Versuche es erneut.';
 	@override late final _Translations$services$names$de names = _Translations$services$names$de._(_root);
 	@override late final _Translations$services$deviceCode$de deviceCode = _Translations$services$deviceCode$de._(_root);
-	@override late final _Translations$services$oauthProxy$de oauthProxy = _Translations$services$oauthProxy$de._(_root);
 	@override late final _Translations$services$libraryFilter$de libraryFilter = _Translations$services$libraryFilter$de._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$de extends Translations$services$names$en {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$de extends Translations$services$deviceC
 	@override String get copyCode => 'Aktivierungscode kopieren';
 	@override String get waitingForAuthorization => 'Warte auf Autorisierung…';
 	@override String get codeCopied => 'Code kopiert';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$de extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$de._(TranslationsDe root) : this._root = root, super.internal(root);
-
-	final TranslationsDe _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Bei ${service} anmelden';
-	@override String get body => 'Scanne diesen QR-Code oder öffne die URL auf einem beliebigen Gerät.';
-	@override String openToSignIn({required Object service}) => '${service} zum Anmelden öffnen';
-	@override String get copyUrl => 'Anmelde-URL kopieren';
-	@override String get urlCopied => 'URL kopiert';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsDe {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} trennen?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor aktualisiert ${service} nicht mehr. Jederzeit erneut verbinden.',
 			'services.connectFailed' => ({required Object service}) => 'Verbindung zu ${service} fehlgeschlagen. Versuche es erneut.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor auf ${service} aktivieren',
@@ -2855,11 +2836,6 @@ extension on TranslationsDe {
 			'services.deviceCode.copyCode' => 'Aktivierungscode kopieren',
 			'services.deviceCode.waitingForAuthorization' => 'Warte auf Autorisierung…',
 			'services.deviceCode.codeCopied' => 'Code kopiert',
-			'services.oauthProxy.title' => ({required Object service}) => 'Bei ${service} anmelden',
-			'services.oauthProxy.body' => 'Scanne diesen QR-Code oder öffne die URL auf einem beliebigen Gerät.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => '${service} zum Anmelden öffnen',
-			'services.oauthProxy.copyUrl' => 'Anmelde-URL kopieren',
-			'services.oauthProxy.urlCopied' => 'URL kopiert',
 			'services.libraryFilter.title' => 'Mediatheksfilter',
 			'services.libraryFilter.subtitleAllSyncing' => 'Alle Mediatheken werden synchronisiert',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Nichts wird synchronisiert',

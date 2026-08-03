@@ -6,7 +6,6 @@ import '../../../models/trackers/device_code.dart';
 import '../../../utils/abortable_http_request.dart';
 import '../../../utils/app_logger.dart';
 import '../device_code_auth_service.dart';
-import '../oauth_proxy_client.dart';
 import '../tracker_constants.dart';
 import '../tracker_session.dart';
 import 'simkl_constants.dart';
@@ -22,9 +21,9 @@ class SimklAuthService extends DeviceCodeAuthServiceBase {
 
   @override
   Future<DeviceCode> createDeviceCode() async {
-    final uri = Uri.parse(
-      SimklConstants.pinUrl,
-    ).replace(queryParameters: SimklConstants.queryParameters({'redirect': '${OAuthProxyClient.baseUrl}/auth/done'}));
+    // No redirect: Simkl's own completion page ends the flow, rather than
+    // bouncing the browser through a host this app does not run.
+    final uri = Uri.parse(SimklConstants.pinUrl).replace(queryParameters: SimklConstants.queryParameters({}));
     final res = await sendAbortableHttpRequest(
       httpClient,
       'GET',

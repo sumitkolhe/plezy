@@ -1,4 +1,3 @@
-import 'oauth_proxy_client.dart';
 import 'tracker_constants.dart';
 import 'tracker_exceptions.dart';
 import 'tracker_session_utils.dart';
@@ -80,44 +79,17 @@ class TrackerSession {
     }
 
     switch (service) {
-      case TrackerService.mal:
       case TrackerService.trakt:
         _validateRefreshToken(service, refreshToken);
-        requireExpiry();
-      case TrackerService.anilist:
         requireExpiry();
       case TrackerService.simkl:
         return;
     }
   }
 
-  factory TrackerSession.fromOAuthProxyResult(TrackerService service, OAuthProxyResult result) {
-    final createdAt = trackerSessionNowEpochSeconds();
-    return switch (service) {
-      TrackerService.anilist => TrackerSession(
-        accessToken: result.accessToken,
-        expiresAt: createdAt + (result.expiresIn ?? 365 * 24 * 60 * 60),
-        createdAt: createdAt,
-      ),
-      TrackerService.mal => TrackerSession(
-        accessToken: result.accessToken,
-        refreshToken: _requireRefreshToken(service, result.refreshToken),
-        expiresAt: createdAt + (result.expiresIn ?? 31 * 24 * 60 * 60),
-        createdAt: createdAt,
-      ),
-      _ => throw ArgumentError('OAuth proxy sessions are not supported for ${service.name}'),
-    };
-  }
-
   factory TrackerSession.fromTokenResponse(TrackerService service, Map<String, dynamic> json) {
     final createdAt = (json['created_at'] as num?)?.toInt() ?? trackerSessionNowEpochSeconds();
     return switch (service) {
-      TrackerService.mal => TrackerSession(
-        accessToken: json['access_token'] as String,
-        refreshToken: _requireRefreshToken(service, json['refresh_token'] as String?),
-        expiresAt: createdAt + (json['expires_in'] as num).toInt(),
-        createdAt: createdAt,
-      ),
       TrackerService.simkl => TrackerSession(accessToken: json['access_token'] as String, createdAt: createdAt),
       TrackerService.trakt => TrackerSession(
         accessToken: json['access_token'] as String,
@@ -126,7 +98,6 @@ class TrackerSession {
         scope: json['scope'] as String? ?? 'public',
         createdAt: createdAt,
       ),
-      _ => throw ArgumentError('Token-response sessions are not supported for ${service.name}'),
     };
   }
 

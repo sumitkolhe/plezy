@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor aktualisiert ${service} nicht mehr. Jederzeit erneut verbinden.",
     "connectFailed": "Verbindung zu ${service} fehlgeschlagen. Versuche es erneut.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Aktivierungscode kopieren",
       "waitingForAuthorization": "Warte auf Autorisierung…",
       "codeCopied": "Code kopiert"
-    },
-    "oauthProxy": {
-      "title": "Bei ${service} anmelden",
-      "body": "Scanne diesen QR-Code oder öffne die URL auf einem beliebigen Gerät.",
-      "openToSignIn": "${service} zum Anmelden öffnen",
-      "copyUrl": "Anmelde-URL kopieren",
-      "urlCopied": "URL kopiert"
     },
     "libraryFilter": {
       "title": "Mediatheksfilter",

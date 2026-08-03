@@ -1461,7 +1461,6 @@ class _Translations$services$ru extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Не удалось подключиться к ${service}. Попробуйте ещё раз.';
 	@override late final _Translations$services$names$ru names = _Translations$services$names$ru._(_root);
 	@override late final _Translations$services$deviceCode$ru deviceCode = _Translations$services$deviceCode$ru._(_root);
-	@override late final _Translations$services$oauthProxy$ru oauthProxy = _Translations$services$oauthProxy$ru._(_root);
 	@override late final _Translations$services$libraryFilter$ru libraryFilter = _Translations$services$libraryFilter$ru._(_root);
 }
 
@@ -1696,8 +1695,6 @@ class _Translations$services$names$ru extends Translations$services$names$en {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1715,20 +1712,6 @@ class _Translations$services$deviceCode$ru extends Translations$services$deviceC
 	@override String get copyCode => 'Скопировать код активации';
 	@override String get waitingForAuthorization => 'Ожидание авторизации…';
 	@override String get codeCopied => 'Код скопирован';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$ru extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$ru._(TranslationsRu root) : this._root = root, super.internal(root);
-
-	final TranslationsRu _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Войти в ${service}';
-	@override String get body => 'Отсканируйте этот QR-код или откройте URL на любом устройстве.';
-	@override String openToSignIn({required Object service}) => 'Открыть ${service} для входа';
-	@override String get copyUrl => 'Скопировать URL для входа';
-	@override String get urlCopied => 'URL скопирован';
 }
 
 // Path: services.libraryFilter
@@ -2851,8 +2834,6 @@ extension on TranslationsRu {
 			'services.disconnectConfirm' => ({required Object service}) => 'Отключить ${service}?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor перестанет обновлять ${service}. Подключите снова в любое время.',
 			'services.connectFailed' => ({required Object service}) => 'Не удалось подключиться к ${service}. Попробуйте ещё раз.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Активируйте Harbor в ${service}',
@@ -2861,11 +2842,6 @@ extension on TranslationsRu {
 			'services.deviceCode.copyCode' => 'Скопировать код активации',
 			'services.deviceCode.waitingForAuthorization' => 'Ожидание авторизации…',
 			'services.deviceCode.codeCopied' => 'Код скопирован',
-			'services.oauthProxy.title' => ({required Object service}) => 'Войти в ${service}',
-			'services.oauthProxy.body' => 'Отсканируйте этот QR-код или откройте URL на любом устройстве.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Открыть ${service} для входа',
-			'services.oauthProxy.copyUrl' => 'Скопировать URL для входа',
-			'services.oauthProxy.urlCopied' => 'URL скопирован',
 			'services.libraryFilter.title' => 'Фильтр библиотек',
 			'services.libraryFilter.subtitleAllSyncing' => 'Синхронизация всех библиотек',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Ничего не синхронизируется',

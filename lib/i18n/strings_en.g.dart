@@ -3757,7 +3757,6 @@ class Translations$services$en {
 
 	late final Translations$services$names$en names = Translations$services$names$en.internal(_root);
 	late final Translations$services$deviceCode$en deviceCode = Translations$services$deviceCode$en.internal(_root);
-	late final Translations$services$oauthProxy$en oauthProxy = Translations$services$oauthProxy$en.internal(_root);
 	late final Translations$services$libraryFilter$en libraryFilter = Translations$services$libraryFilter$en.internal(_root);
 }
 
@@ -4687,12 +4686,6 @@ class Translations$services$names$en {
 
 	// Translations
 
-	/// en: 'MyAnimeList'
-	String get mal => 'MyAnimeList';
-
-	/// en: 'AniList'
-	String get anilist => 'AniList';
-
 	/// en: 'Simkl'
 	String get simkl => 'Simkl';
 
@@ -4725,30 +4718,6 @@ class Translations$services$deviceCode$en {
 
 	/// en: 'Code copied'
 	String get codeCopied => 'Code copied';
-}
-
-// Path: services.oauthProxy
-class Translations$services$oauthProxy$en {
-	Translations$services$oauthProxy$en.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'Sign in to ${service}'
-	String title({required Object service}) => 'Sign in to ${service}';
-
-	/// en: 'Scan this QR code or open the URL on any device.'
-	String get body => 'Scan this QR code or open the URL on any device.';
-
-	/// en: 'Open ${service} to sign in'
-	String openToSignIn({required Object service}) => 'Open ${service} to sign in';
-
-	/// en: 'Copy sign-in URL'
-	String get copyUrl => 'Copy sign-in URL';
-
-	/// en: 'URL copied'
-	String get urlCopied => 'URL copied';
 }
 
 // Path: services.libraryFilter
@@ -6117,8 +6086,6 @@ extension on Translations {
 			'services.disconnectConfirm' => ({required Object service}) => 'Disconnect ${service}?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor will stop updating ${service}. Reconnect any time.',
 			'services.connectFailed' => ({required Object service}) => 'Couldn\'t connect to ${service}. Try again.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Activate Harbor on ${service}',
@@ -6127,11 +6094,6 @@ extension on Translations {
 			'services.deviceCode.copyCode' => 'Copy activation code',
 			'services.deviceCode.waitingForAuthorization' => 'Waiting for authorization…',
 			'services.deviceCode.codeCopied' => 'Code copied',
-			'services.oauthProxy.title' => ({required Object service}) => 'Sign in to ${service}',
-			'services.oauthProxy.body' => 'Scan this QR code or open the URL on any device.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Open ${service} to sign in',
-			'services.oauthProxy.copyUrl' => 'Copy sign-in URL',
-			'services.oauthProxy.urlCopied' => 'URL copied',
 			'services.libraryFilter.title' => 'Library filter',
 			'services.libraryFilter.subtitleAllSyncing' => 'Syncing all libraries',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Nothing syncing',

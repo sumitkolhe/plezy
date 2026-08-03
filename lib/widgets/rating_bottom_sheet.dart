@@ -47,11 +47,9 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
   final Map<String, Timer> _autoSaveTimers = {};
   final Map<String, _TrackerRatingSource> _trackerSourcesByKey = {};
   final Set<String> _pendingAutoSaves = {};
-  final Set<TrackerService> _hiddenTrackers = {};
   final Set<String> _loading = {};
   final Map<String, _SectionStatus> _statuses = {};
   TrackerIdResolver? _resolver;
-  bool _resolverNeedsFribb = false;
   String? _trackerLoadKey;
 
   @override
@@ -80,11 +78,9 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
     // Trakt's account provider is watched by [_trackerSources] via `context`.
     return Consumer<TrackersProvider>(
       builder: (context, trackers, _) {
-        final allTrackerSources = _trackerSources(context);
-        final trackerSources = allTrackerSources.where((source) => !_hiddenTrackers.contains(source.service)).toList();
+        final trackerSources = _trackerSources(context);
         _updateTrackerSourceMap(trackerSources);
-        _resolverNeedsFribb = trackers.isMalConnected || trackers.isAnilistConnected;
-        _queueTrackerScoreLoad(allTrackerSources);
+        _queueTrackerScoreLoad(trackerSources);
 
         final showServerRow = widget.serverClient != null;
         final focusNodes = <FocusNode>[
@@ -119,7 +115,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                         onNavigateUp: _navTo(focusNodes, focusIndex - 1),
                         onNavigateDown: _navTo(focusNodes, focusIndex++ + 1),
                       ),
-                    if (allTrackerSources.isEmpty)
+                    if (trackerSources.isEmpty)
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
                         child: Text(
@@ -256,12 +252,8 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
       if (!mounted) return;
       setState(() {
         for (final source in sources) {
-          if (_hidesWhenUnavailable(source)) {
-            _hideTrackerSource(source);
-          } else {
-            _loading.remove(source.service.name);
-            _statuses[source.service.name] = _SectionStatus(t.rateSheet.notAvailable, isError: true);
-          }
+          _loading.remove(source.service.name);
+          _statuses[source.service.name] = _SectionStatus(t.rateSheet.notAvailable, isError: true);
         }
       });
       return;
@@ -280,12 +272,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
         } on TrackerRatingUnavailableException catch (e) {
           appLogger.d('Rating unavailable', error: e);
           if (!mounted) return;
-          if (_hidesWhenUnavailable(source)) {
-            setState(() {
-              _hideTrackerSource(source);
-            });
-            return;
-          }
           setState(() {
             _statuses[key] = _SectionStatus(t.rateSheet.notAvailable, isError: true);
           });
@@ -304,21 +290,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
         }
       }),
     );
-  }
-
-  bool _hidesWhenUnavailable(_TrackerRatingSource source) {
-    return source.service == TrackerService.mal || source.service == TrackerService.anilist;
-  }
-
-  void _hideTrackerSource(_TrackerRatingSource source) {
-    final key = source.service.name;
-    _hiddenTrackers.add(source.service);
-    _loading.remove(key);
-    _statuses.remove(key);
-    _trackerScores.remove(source.service);
-    _autoSaveTimers.remove(key)?.cancel();
-    _pendingAutoSaves.remove(key);
-    _trackerSourcesByKey.remove(key);
   }
 
   void _setServerFavorite(bool value) {
@@ -376,7 +347,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
   Future<TrackerRatingContext> _resolveTrackerContext() async {
     final client = widget.serverClient;
     if (client == null) throw const TrackerRatingUnavailableException('tracker');
-    _resolver ??= TrackerIdResolver(client, needsFribb: () => _resolverNeedsFribb);
+    _resolver ??= TrackerIdResolver(client);
     final ctx = await _resolver!.resolveForRating(widget.item);
     if (ctx == null) throw const TrackerRatingUnavailableException('tracker');
     return ctx;

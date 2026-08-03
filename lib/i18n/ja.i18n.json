@@ -1439,8 +1439,6 @@
     "disconnectConfirmBody": "Harborは${service}の更新を停止します。いつでも再接続できます。",
     "connectFailed": "${service} に接続できませんでした。もう一度お試しください。",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1451,13 +1449,6 @@
       "copyCode": "アクティベーションコードをコピー",
       "waitingForAuthorization": "認証を待っています…",
       "codeCopied": "コードをコピーしました"
-    },
-    "oauthProxy": {
-      "title": "${service} にサインイン",
-      "body": "このQRコードをスキャンするか、任意のデバイスでURLを開いてください。",
-      "openToSignIn": "${service} を開いてサインイン",
-      "copyUrl": "サインインURLをコピー",
-      "urlCopied": "URLをコピーしました"
     },
     "libraryFilter": {
       "title": "ライブラリフィルター",

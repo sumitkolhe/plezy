@@ -1466,7 +1466,6 @@ class _Translations$services$az extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '${service} qoşula bilmədi. Təzədən cəhd edin.';
 	@override late final _Translations$services$names$az names = _Translations$services$names$az._(_root);
 	@override late final _Translations$services$deviceCode$az deviceCode = _Translations$services$deviceCode$az._(_root);
-	@override late final _Translations$services$oauthProxy$az oauthProxy = _Translations$services$oauthProxy$az._(_root);
 	@override late final _Translations$services$libraryFilter$az libraryFilter = _Translations$services$libraryFilter$az._(_root);
 }
 
@@ -1701,8 +1700,6 @@ class _Translations$services$names$az extends Translations$services$names$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1720,20 +1717,6 @@ class _Translations$services$deviceCode$az extends Translations$services$deviceC
 	@override String get copyCode => 'Aktivləşdirmə kodunu kopyala';
 	@override String get waitingForAuthorization => 'Səlahiyyət gözlənilir…';
 	@override String get codeCopied => 'Kod kopyalandı';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$az extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$az._(TranslationsAz root) : this._root = root, super.internal(root);
-
-	final TranslationsAz _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '${service} xidmətinə daxil olun';
-	@override String get body => 'Bu QR kodu skan edin və ya URL-i açın.';
-	@override String openToSignIn({required Object service}) => 'Daxil olmaq üçün ${service} açın';
-	@override String get copyUrl => 'Daxil olma URL-ini kopyala';
-	@override String get urlCopied => 'URL kopyalandı';
 }
 
 // Path: services.libraryFilter
@@ -2867,8 +2850,6 @@ extension on TranslationsAz {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} ayırılsın?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ${service} yeniləməyi dayandıracaq.',
 			'services.connectFailed' => ({required Object service}) => '${service} qoşula bilmədi. Təzədən cəhd edin.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor-ni ${service} üzərində aktivləşdirin',
@@ -2877,11 +2858,6 @@ extension on TranslationsAz {
 			'services.deviceCode.copyCode' => 'Aktivləşdirmə kodunu kopyala',
 			'services.deviceCode.waitingForAuthorization' => 'Səlahiyyət gözlənilir…',
 			'services.deviceCode.codeCopied' => 'Kod kopyalandı',
-			'services.oauthProxy.title' => ({required Object service}) => '${service} xidmətinə daxil olun',
-			'services.oauthProxy.body' => 'Bu QR kodu skan edin və ya URL-i açın.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Daxil olmaq üçün ${service} açın',
-			'services.oauthProxy.copyUrl' => 'Daxil olma URL-ini kopyala',
-			'services.oauthProxy.urlCopied' => 'URL kopyalandı',
 			'services.libraryFilter.title' => 'Kitabxana filtri',
 			'services.libraryFilter.subtitleAllSyncing' => 'Bütün kitabxanalar eyniləşdirilir',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Heç nə eyniləşdirilmir',

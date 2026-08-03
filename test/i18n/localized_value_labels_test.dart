@@ -11,7 +11,6 @@ void main() {
         'accessibility.expandText': translations.accessibility.expandText,
         'accessibility.collapseText': translations.accessibility.collapseText,
         'services.deviceCode.copyCode': translations.services.deviceCode.copyCode,
-        'services.oauthProxy.copyUrl': translations.services.oauthProxy.copyUrl,
       };
 
       for (final MapEntry(key: key, value: value) in labels.entries) {

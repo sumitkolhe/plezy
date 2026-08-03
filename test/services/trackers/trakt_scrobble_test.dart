@@ -10,8 +10,6 @@ import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
 import 'package:harbor/services/settings_service.dart';
-import 'package:harbor/services/trackers/anilist/anilist_tracker.dart';
-import 'package:harbor/services/trackers/mal/mal_tracker.dart';
 import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_coordinator.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
@@ -106,8 +104,6 @@ void main() {
   final coordinator = TrackerCoordinator.instance;
   final trakt = TraktTracker.instance;
   final simkl = SimklTracker.instance;
-  final mal = MalTracker.instance;
-  final anilist = AnilistTracker.instance;
 
   late _TraktRecorder recorder;
   late DateTime now;
@@ -122,13 +118,9 @@ void main() {
     coordinator.debugUseScrobbleClock(() => now);
 
     simkl.rebindSession(null, onSessionInvalidated: () {});
-    mal.rebindSession(null, onSessionInvalidated: () {});
-    anilist.rebindSession(null, onSessionInvalidated: () {});
     trakt.rebindSession(_session(), onSessionInvalidated: () {}, httpClient: recorder.client);
 
     await simkl.setEnabled(false);
-    await mal.setEnabled(false);
-    await anilist.setEnabled(false);
     await trakt.setEnabled(true);
     await trakt.setWatchedSyncEnabled(true);
   });
@@ -136,19 +128,14 @@ void main() {
   tearDown(() async {
     if (recorder.gate?.isCompleted == false) recorder.gate!.complete();
     coordinator.cancelInFlight();
-    coordinator.debugUseResolverDependencies();
     coordinator.debugUseScrobbleClock(null);
 
     trakt.rebindSession(null, onSessionInvalidated: () {});
     simkl.rebindSession(null, onSessionInvalidated: () {});
-    mal.rebindSession(null, onSessionInvalidated: () {});
-    anilist.rebindSession(null, onSessionInvalidated: () {});
 
     await trakt.setEnabled(false);
     await trakt.setWatchedSyncEnabled(false);
     await simkl.setEnabled(false);
-    await mal.setEnabled(false);
-    await anilist.setEnabled(false);
     SettingsService.resetForTesting();
   });
 

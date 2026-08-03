@@ -1455,7 +1455,6 @@ class _Translations$services$nb extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Kunne ikke koble til ${service}. Prøv igjen.';
 	@override late final _Translations$services$names$nb names = _Translations$services$names$nb._(_root);
 	@override late final _Translations$services$deviceCode$nb deviceCode = _Translations$services$deviceCode$nb._(_root);
-	@override late final _Translations$services$oauthProxy$nb oauthProxy = _Translations$services$oauthProxy$nb._(_root);
 	@override late final _Translations$services$libraryFilter$nb libraryFilter = _Translations$services$libraryFilter$nb._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$nb extends Translations$services$names$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$nb extends Translations$services$deviceC
 	@override String get copyCode => 'Kopier aktiveringskode';
 	@override String get waitingForAuthorization => 'Venter på godkjenning…';
 	@override String get codeCopied => 'Kode kopiert';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$nb extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$nb._(TranslationsNb root) : this._root = root, super.internal(root);
-
-	final TranslationsNb _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Logg inn på ${service}';
-	@override String get body => 'Skann denne QR-koden eller åpne URL-en på en enhet.';
-	@override String openToSignIn({required Object service}) => 'Åpne ${service} for å logge inn';
-	@override String get copyUrl => 'Kopier URL for pålogging';
-	@override String get urlCopied => 'URL kopiert';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsNb {
 			'services.disconnectConfirm' => ({required Object service}) => 'Koble fra ${service}?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor slutter å oppdatere ${service}. Koble til igjen når som helst.',
 			'services.connectFailed' => ({required Object service}) => 'Kunne ikke koble til ${service}. Prøv igjen.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Aktiver Harbor på ${service}',
@@ -2855,11 +2836,6 @@ extension on TranslationsNb {
 			'services.deviceCode.copyCode' => 'Kopier aktiveringskode',
 			'services.deviceCode.waitingForAuthorization' => 'Venter på godkjenning…',
 			'services.deviceCode.codeCopied' => 'Kode kopiert',
-			'services.oauthProxy.title' => ({required Object service}) => 'Logg inn på ${service}',
-			'services.oauthProxy.body' => 'Skann denne QR-koden eller åpne URL-en på en enhet.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Åpne ${service} for å logge inn',
-			'services.oauthProxy.copyUrl' => 'Kopier URL for pålogging',
-			'services.oauthProxy.urlCopied' => 'URL kopiert',
 			'services.libraryFilter.title' => 'Biblioteksfilter',
 			'services.libraryFilter.subtitleAllSyncing' => 'Synkroniserer alle biblioteker',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Ingenting synkroniseres',

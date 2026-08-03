@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.",
     "connectFailed": "Verbinding maken met ${service} is mislukt. Probeer het opnieuw.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Activeringscode kopiëren",
       "waitingForAuthorization": "Wachten op autorisatie…",
       "codeCopied": "Code gekopieerd"
-    },
-    "oauthProxy": {
-      "title": "Aanmelden bij ${service}",
-      "body": "Scan deze QR-code of open de URL op een apparaat.",
-      "openToSignIn": "${service} openen om aan te melden",
-      "copyUrl": "Aanmeldings-URL kopiëren",
-      "urlCopied": "URL gekopieerd"
     },
     "libraryFilter": {
       "title": "Bibliotheekfilter",

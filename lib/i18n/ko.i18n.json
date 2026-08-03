@@ -1439,8 +1439,6 @@
     "disconnectConfirmBody": "Harbor가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.",
     "connectFailed": "${service}에 연결할 수 없습니다. 다시 시도하세요.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1451,13 +1449,6 @@
       "copyCode": "활성화 코드 복사",
       "waitingForAuthorization": "인증을 기다리는 중…",
       "codeCopied": "코드가 복사되었습니다"
-    },
-    "oauthProxy": {
-      "title": "${service}에 로그인",
-      "body": "이 QR 코드를 스캔하거나 아무 기기에서 URL을 여세요.",
-      "openToSignIn": "로그인하려면 ${service} 열기",
-      "copyUrl": "로그인 URL 복사",
-      "urlCopied": "URL이 복사되었습니다"
     },
     "libraryFilter": {
       "title": "라이브러리 필터",

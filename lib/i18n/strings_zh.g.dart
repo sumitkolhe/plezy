@@ -1452,7 +1452,6 @@ class Translations$services$zh extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '无法连接到 ${service}。请重试。';
 	@override late final Translations$services$names$zh names = Translations$services$names$zh.internal(_root);
 	@override late final Translations$services$deviceCode$zh deviceCode = Translations$services$deviceCode$zh.internal(_root);
-	@override late final Translations$services$oauthProxy$zh oauthProxy = Translations$services$oauthProxy$zh.internal(_root);
 	@override late final Translations$services$libraryFilter$zh libraryFilter = Translations$services$libraryFilter$zh.internal(_root);
 }
 
@@ -1687,8 +1686,6 @@ class Translations$services$names$zh extends Translations$services$names$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1706,20 +1703,6 @@ class Translations$services$deviceCode$zh extends Translations$services$deviceCo
 	@override String get copyCode => '复制激活代码';
 	@override String get waitingForAuthorization => '等待授权…';
 	@override String get codeCopied => '代码已复制';
-}
-
-// Path: services.oauthProxy
-class Translations$services$oauthProxy$zh extends Translations$services$oauthProxy$en {
-	Translations$services$oauthProxy$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '登录 ${service}';
-	@override String get body => '扫描此二维码，或在任意设备上打开 URL。';
-	@override String openToSignIn({required Object service}) => '打开 ${service} 以登录';
-	@override String get copyUrl => '复制登录 URL';
-	@override String get urlCopied => 'URL 已复制';
 }
 
 // Path: services.libraryFilter
@@ -2842,8 +2825,6 @@ extension on TranslationsZh {
 			'services.disconnectConfirm' => ({required Object service}) => '断开 ${service} 连接？',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor 将停止更新 ${service}。可随时重新连接。',
 			'services.connectFailed' => ({required Object service}) => '无法连接到 ${service}。请重试。',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 上激活 Harbor',
@@ -2852,11 +2833,6 @@ extension on TranslationsZh {
 			'services.deviceCode.copyCode' => '复制激活代码',
 			'services.deviceCode.waitingForAuthorization' => '等待授权…',
 			'services.deviceCode.codeCopied' => '代码已复制',
-			'services.oauthProxy.title' => ({required Object service}) => '登录 ${service}',
-			'services.oauthProxy.body' => '扫描此二维码，或在任意设备上打开 URL。',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => '打开 ${service} 以登录',
-			'services.oauthProxy.copyUrl' => '复制登录 URL',
-			'services.oauthProxy.urlCopied' => 'URL 已复制',
 			'services.libraryFilter.title' => '媒体库筛选',
 			'services.libraryFilter.subtitleAllSyncing' => '同步所有媒体库',
 			'services.libraryFilter.subtitleNoneSyncing' => '不同步任何内容',

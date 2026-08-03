@@ -5,24 +5,15 @@ import 'package:xml/xml.dart';
 
 const _configPath = 'android/app/src/main/res/xml/network_security_config.xml';
 const _expectedDomains = <String>{
-  'plezy.app',
   'trakt.tv',
-  'myanimelist.net',
-  'anilist.co',
   'simkl.com',
   'simkl.in',
-  'jsdelivr.net',
   'api.github.com',
   'image.tmdb.org',
 };
 const _fixedEndpointSourcePaths = <String>[
   'lib/services/trackers/trakt/trakt_constants.dart',
-  'lib/services/trackers/mal/mal_constants.dart',
-  'lib/services/trackers/anilist/anilist_constants.dart',
   'lib/services/trackers/simkl/simkl_constants.dart',
-  'lib/services/trackers/oauth_proxy_client.dart',
-  'lib/services/trackers/anime_lists_mapping_store.dart',
-  'lib/services/trackers/fribb_mapping_store.dart',
   'lib/services/catalog/seerr_catalog_source.dart',
   'lib/services/update_service.dart',
   'lib/main.dart',

@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 
-import '../../../models/trackers/anime_ids.dart';
 import '../../../models/trackers/tracker_context.dart';
 import '../../../utils/app_logger.dart';
 import '../../../utils/external_ids.dart';
@@ -68,10 +67,7 @@ class SimklTracker extends TrackerBase
   /// only appears once an anime mapping has been downloaded.
   @override
   String? historyRowIdentity(TrackerContext ctx) {
-    final external = trackerExternalRowIdentity(ctx.external);
-    if (external != null) return external;
-    final simklId = ctx.anime?.simkl;
-    return simklId == null ? null : 'simkl=$simklId';
+    return trackerExternalRowIdentity(ctx.external);
   }
 
   void rebindSession(
@@ -93,7 +89,7 @@ class SimklTracker extends TrackerBase
     final client = this.client;
     if (client == null) return;
 
-    final ids = _buildIds(external: ctx.external, anime: ctx.anime);
+    final ids = _buildIds(ctx.external);
     if (ids.isEmpty) return;
 
     final body = _historyBody(ctx, ids);
@@ -107,7 +103,7 @@ class SimklTracker extends TrackerBase
     final client = this.client;
     if (client == null) return;
 
-    final ids = _buildIds(external: ctx.external, anime: ctx.anime);
+    final ids = _buildIds(ctx.external);
     if (ids.isEmpty) return;
 
     await client.removeFromHistory(_historyBody(ctx, ids));
@@ -119,7 +115,7 @@ class SimklTracker extends TrackerBase
     final client = this.client;
     if (client == null) return;
 
-    final ids = _buildIds(external: ctx.external, anime: ctx.anime);
+    final ids = _buildIds(ctx.external);
     if (ids.isEmpty) return;
 
     final action = switch (state) {
@@ -194,7 +190,7 @@ class SimklTracker extends TrackerBase
   (SimklClient, Map<String, Object>) _ratingTarget(TrackerRatingContext ctx) {
     final activeClient = client;
     if (activeClient == null) throw const TrackerRatingUnavailableException('Simkl');
-    final ids = _buildIds(external: ctx.ids.external, anime: ctx.ids.anime);
+    final ids = _buildIds(ctx.ids.external);
     if (ids.isEmpty) throw const TrackerRatingUnavailableException('Simkl');
     return (activeClient, ids);
   }
@@ -244,12 +240,9 @@ class SimklTracker extends TrackerBase
           };
   }
 
-  /// Prefer Fribb's simkl_id for precision; otherwise send whatever Plex
-  /// exposes. Simkl accepts tvdb/imdb/tmdb in both movie and show shapes.
-  Map<String, Object> _buildIds({required ExternalIds external, required AnimeIds? anime}) {
+  /// Simkl accepts tvdb/imdb/tmdb in both movie and show shapes.
+  Map<String, Object> _buildIds(ExternalIds external) {
     final ids = <String, Object>{};
-    final simklId = anime?.simkl;
-    if (simklId != null) ids['simkl'] = simklId;
     final tvdb = external.tvdb;
     if (tvdb != null) ids['tvdb'] = tvdb;
     final tmdb = external.tmdb;

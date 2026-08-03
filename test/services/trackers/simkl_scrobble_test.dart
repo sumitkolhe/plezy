@@ -9,8 +9,6 @@ import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
-import 'package:harbor/services/trackers/anilist/anilist_tracker.dart';
-import 'package:harbor/services/trackers/mal/mal_tracker.dart';
 import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_coordinator.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
@@ -110,8 +108,6 @@ _FakeMediaServerClient _client({double watchedThreshold = 0.9}) => _FakeMediaSer
 void main() {
   final coordinator = TrackerCoordinator.instance;
   final simkl = SimklTracker.instance;
-  final mal = MalTracker.instance;
-  final anilist = AnilistTracker.instance;
 
   late _SimklRecorder recorder;
   late DateTime now;
@@ -120,8 +116,6 @@ void main() {
     recorder = _SimklRecorder();
     now = DateTime(2026, 7, 30, 12);
     coordinator.debugUseScrobbleClock(() => now);
-    await mal.setEnabled(false);
-    await anilist.setEnabled(false);
     await simkl.setEnabled(true);
     simkl.rebindSession(_session(), onSessionInvalidated: () {}, httpClient: recorder.client);
   });
@@ -129,7 +123,6 @@ void main() {
   tearDown(() async {
     if (recorder.gate?.isCompleted == false) recorder.gate!.complete();
     coordinator.cancelInFlight();
-    coordinator.debugUseResolverDependencies();
     coordinator.debugUseScrobbleClock(null);
     simkl.rebindSession(null, onSessionInvalidated: () {});
     await simkl.setEnabled(false);

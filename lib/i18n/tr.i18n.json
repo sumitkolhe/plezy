@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor, ${service} güncellemeyi durduracak. İstediğiniz zaman yeniden bağlanabilirsiniz.",
     "connectFailed": "${service} ile bağlantı kurulamadı. Tekrar deneyin.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Etkinleştirme kodunu kopyala",
       "waitingForAuthorization": "Yetkilendirme bekleniyor…",
       "codeCopied": "Kod kopyalandı"
-    },
-    "oauthProxy": {
-      "title": "${service} servisine giriş yapın",
-      "body": "Bu QR kodunu tarayın veya URL'yi herhangi bir cihazda açın.",
-      "openToSignIn": "Giriş yapmak için ${service} servisini açın",
-      "copyUrl": "Giriş URL'sini kopyala",
-      "urlCopied": "URL kopyalandı"
     },
     "libraryFilter": {
       "title": "Kitaplık filtresi",

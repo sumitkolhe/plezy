@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.",
     "connectFailed": "Kunne ikke forbinde til ${service}. Prøv igen.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Kopiér aktiveringskode",
       "waitingForAuthorization": "Venter på godkendelse…",
       "codeCopied": "Kode kopieret"
-    },
-    "oauthProxy": {
-      "title": "Log ind på ${service}",
-      "body": "Scan denne QR-kode, eller åbn URL'en på en enhed.",
-      "openToSignIn": "Åbn ${service} for at logge ind",
-      "copyUrl": "Kopiér login-URL",
-      "urlCopied": "URL kopieret"
     },
     "libraryFilter": {
       "title": "Bibliotekfilter",

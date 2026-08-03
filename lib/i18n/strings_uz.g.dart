@@ -1466,7 +1466,6 @@ class _Translations$services$uz extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '${service} ulana olmadi. Qaytadan urinib koʻring.';
 	@override late final _Translations$services$names$uz names = _Translations$services$names$uz._(_root);
 	@override late final _Translations$services$deviceCode$uz deviceCode = _Translations$services$deviceCode$uz._(_root);
-	@override late final _Translations$services$oauthProxy$uz oauthProxy = _Translations$services$oauthProxy$uz._(_root);
 	@override late final _Translations$services$libraryFilter$uz libraryFilter = _Translations$services$libraryFilter$uz._(_root);
 }
 
@@ -1701,8 +1700,6 @@ class _Translations$services$names$uz extends Translations$services$names$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1720,20 +1717,6 @@ class _Translations$services$deviceCode$uz extends Translations$services$deviceC
 	@override String get copyCode => 'Faollashtirish kodini nusxalash';
 	@override String get waitingForAuthorization => 'Avtorizatsiya kutilmoqda…';
 	@override String get codeCopied => 'Kod nusxalandi';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$uz extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '${service} xizmatiga kiring';
-	@override String get body => 'Ushbu QR kodni skanerlang yoki URL-ni oching.';
-	@override String openToSignIn({required Object service}) => 'Kirish uchun ${service} xizmatini oching';
-	@override String get copyUrl => 'Kirish URL-ini nusxalash';
-	@override String get urlCopied => 'URL nusxalandi';
 }
 
 // Path: services.libraryFilter
@@ -2867,8 +2850,6 @@ extension on TranslationsUz {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} uzilsinmi?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ${service} yangilanishini toʻxtatadi.',
 			'services.connectFailed' => ({required Object service}) => '${service} ulana olmadi. Qaytadan urinib koʻring.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor-ni ${service} xizmatida faollashtiring',
@@ -2877,11 +2858,6 @@ extension on TranslationsUz {
 			'services.deviceCode.copyCode' => 'Faollashtirish kodini nusxalash',
 			'services.deviceCode.waitingForAuthorization' => 'Avtorizatsiya kutilmoqda…',
 			'services.deviceCode.codeCopied' => 'Kod nusxalandi',
-			'services.oauthProxy.title' => ({required Object service}) => '${service} xizmatiga kiring',
-			'services.oauthProxy.body' => 'Ushbu QR kodni skanerlang yoki URL-ni oching.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Kirish uchun ${service} xizmatini oching',
-			'services.oauthProxy.copyUrl' => 'Kirish URL-ini nusxalash',
-			'services.oauthProxy.urlCopied' => 'URL nusxalandi',
 			'services.libraryFilter.title' => 'Kutubxona filtri',
 			'services.libraryFilter.subtitleAllSyncing' => 'Barcha kutubxonalar sinxronlanmoqda',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Hech narsa sinxronlanmaydi',

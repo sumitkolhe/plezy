@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import '../../i18n/strings.g.dart';
 import '../../models/catalog/catalog_item.dart';
 import '../../providers/trackers_provider.dart';
-import '../../services/trackers/anilist/anilist_tracker.dart';
-import '../../services/trackers/mal/mal_tracker.dart';
 import '../../services/trackers/simkl/simkl_tracker.dart';
 import '../../services/trackers/tracker.dart';
 import '../../services/trackers/tracker_constants.dart';
@@ -57,31 +55,26 @@ class TrackerServiceInfo {
        username = ((context) => config.username(context.watch<TrackersProvider>())),
        buildSettingsScreen = (() => TrackerSettingsScreen(config: config));
 
+  /// Trakt is off by default: its client id and secret belong to the upstream
+  /// project's registered application, so connecting spends someone else's API
+  /// quota. Build with `--dart-define=HARBOR_TRAKT=true` once this app has a
+  /// registration of its own.
+  static const bool showTrakt = bool.fromEnvironment('HARBOR_TRAKT');
+
   /// Display order shared by every list. Built per call because [displayName]
   /// reads the active locale.
   static List<TrackerServiceInfo> get all => [
-    TrackerServiceInfo(
-      service: TrackerService.trakt,
-      displayName: t.trakt.title,
-      logoSource: CatalogSourceId.trakt,
-      ratingSource: TraktTracker.instance,
-      isConnected: (context) => context.watch<TrackersProvider>().isTraktConnected,
-      username: (context) => context.watch<TrackersProvider>().traktUsername,
-      startConnection: startTraktConnection,
-      buildSettingsScreen: () => const TraktSettingsScreen(),
-    ),
-    TrackerServiceInfo.shared(
-      TrackerConfig.mal(),
-      logoSource: CatalogSourceId.mal,
-      ratingSource: MalTracker.instance,
-      startConnection: startMalConnection,
-    ),
-    TrackerServiceInfo.shared(
-      TrackerConfig.anilist(),
-      logoSource: CatalogSourceId.anilist,
-      ratingSource: AnilistTracker.instance,
-      startConnection: startAnilistConnection,
-    ),
+    if (showTrakt)
+      TrackerServiceInfo(
+        service: TrackerService.trakt,
+        displayName: t.trakt.title,
+        logoSource: CatalogSourceId.trakt,
+        ratingSource: TraktTracker.instance,
+        isConnected: (context) => context.watch<TrackersProvider>().isTraktConnected,
+        username: (context) => context.watch<TrackersProvider>().traktUsername,
+        startConnection: startTraktConnection,
+        buildSettingsScreen: () => const TraktSettingsScreen(),
+      ),
     TrackerServiceInfo.shared(
       TrackerConfig.simkl(),
       logoSource: CatalogSourceId.simkl,

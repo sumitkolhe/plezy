@@ -1455,7 +1455,6 @@ class _Translations$services$sv extends Translations$services$en {
 	@override String connectFailed({required Object service}) => 'Kunde inte ansluta till ${service}. Försök igen.';
 	@override late final _Translations$services$names$sv names = _Translations$services$names$sv._(_root);
 	@override late final _Translations$services$deviceCode$sv deviceCode = _Translations$services$deviceCode$sv._(_root);
-	@override late final _Translations$services$oauthProxy$sv oauthProxy = _Translations$services$oauthProxy$sv._(_root);
 	@override late final _Translations$services$libraryFilter$sv libraryFilter = _Translations$services$libraryFilter$sv._(_root);
 }
 
@@ -1690,8 +1689,6 @@ class _Translations$services$names$sv extends Translations$services$names$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1709,20 +1706,6 @@ class _Translations$services$deviceCode$sv extends Translations$services$deviceC
 	@override String get copyCode => 'Kopiera aktiveringskod';
 	@override String get waitingForAuthorization => 'Väntar på auktorisering…';
 	@override String get codeCopied => 'Kod kopierad';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$sv extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => 'Logga in på ${service}';
-	@override String get body => 'Skanna den här QR-koden eller öppna URL:en på valfri enhet.';
-	@override String openToSignIn({required Object service}) => 'Öppna ${service} för att logga in';
-	@override String get copyUrl => 'Kopiera inloggnings-URL';
-	@override String get urlCopied => 'URL kopierad';
 }
 
 // Path: services.libraryFilter
@@ -2845,8 +2828,6 @@ extension on TranslationsSv {
 			'services.disconnectConfirm' => ({required Object service}) => 'Koppla från ${service}?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor slutar uppdatera ${service}. Återanslut när som helst.',
 			'services.connectFailed' => ({required Object service}) => 'Kunde inte ansluta till ${service}. Försök igen.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Aktivera Harbor på ${service}',
@@ -2855,11 +2836,6 @@ extension on TranslationsSv {
 			'services.deviceCode.copyCode' => 'Kopiera aktiveringskod',
 			'services.deviceCode.waitingForAuthorization' => 'Väntar på auktorisering…',
 			'services.deviceCode.codeCopied' => 'Kod kopierad',
-			'services.oauthProxy.title' => ({required Object service}) => 'Logga in på ${service}',
-			'services.oauthProxy.body' => 'Skanna den här QR-koden eller öppna URL:en på valfri enhet.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Öppna ${service} för att logga in',
-			'services.oauthProxy.copyUrl' => 'Kopiera inloggnings-URL',
-			'services.oauthProxy.urlCopied' => 'URL kopierad',
 			'services.libraryFilter.title' => 'Biblioteksfilter',
 			'services.libraryFilter.subtitleAllSyncing' => 'Synkroniserar alla bibliotek',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Ingenting synkroniseras',

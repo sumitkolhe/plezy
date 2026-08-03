@@ -1466,7 +1466,6 @@ class _Translations$services$kk extends Translations$services$en {
 	@override String connectFailed({required Object service}) => '${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.';
 	@override late final _Translations$services$names$kk names = _Translations$services$names$kk._(_root);
 	@override late final _Translations$services$deviceCode$kk deviceCode = _Translations$services$deviceCode$kk._(_root);
-	@override late final _Translations$services$oauthProxy$kk oauthProxy = _Translations$services$oauthProxy$kk._(_root);
 	@override late final _Translations$services$libraryFilter$kk libraryFilter = _Translations$services$libraryFilter$kk._(_root);
 }
 
@@ -1701,8 +1700,6 @@ class _Translations$services$names$kk extends Translations$services$names$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get mal => 'MyAnimeList';
-	@override String get anilist => 'AniList';
 	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
@@ -1720,20 +1717,6 @@ class _Translations$services$deviceCode$kk extends Translations$services$deviceC
 	@override String get copyCode => 'Белсендіру кодын көшіру';
 	@override String get waitingForAuthorization => 'Авторизация күтілуде…';
 	@override String get codeCopied => 'Код көшірілді';
-}
-
-// Path: services.oauthProxy
-class _Translations$services$oauthProxy$kk extends Translations$services$oauthProxy$en {
-	_Translations$services$oauthProxy$kk._(TranslationsKk root) : this._root = root, super.internal(root);
-
-	final TranslationsKk _root; // ignore: unused_field
-
-	// Translations
-	@override String title({required Object service}) => '${service} қызметіне кіру';
-	@override String get body => 'Осы QR кодты сканерлеңіз немесе URL-ді ашыңыз.';
-	@override String openToSignIn({required Object service}) => 'Кіру үшін ${service} ашу';
-	@override String get copyUrl => 'Кіру URL-ін көшіру';
-	@override String get urlCopied => 'URL көшірілді';
 }
 
 // Path: services.libraryFilter
@@ -2867,8 +2850,6 @@ extension on TranslationsKk {
 			'services.disconnectConfirm' => ({required Object service}) => '${service} ажыратылсын ба?',
 			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ${service} жаңартуды тоқтатады.',
 			'services.connectFailed' => ({required Object service}) => '${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.',
-			'services.names.mal' => 'MyAnimeList',
-			'services.names.anilist' => 'AniList',
 			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor-ді ${service} қызметінде белсендіру',
@@ -2877,11 +2858,6 @@ extension on TranslationsKk {
 			'services.deviceCode.copyCode' => 'Белсендіру кодын көшіру',
 			'services.deviceCode.waitingForAuthorization' => 'Авторизация күтілуде…',
 			'services.deviceCode.codeCopied' => 'Код көшірілді',
-			'services.oauthProxy.title' => ({required Object service}) => '${service} қызметіне кіру',
-			'services.oauthProxy.body' => 'Осы QR кодты сканерлеңіз немесе URL-ді ашыңыз.',
-			'services.oauthProxy.openToSignIn' => ({required Object service}) => 'Кіру үшін ${service} ашу',
-			'services.oauthProxy.copyUrl' => 'Кіру URL-ін көшіру',
-			'services.oauthProxy.urlCopied' => 'URL көшірілді',
 			'services.libraryFilter.title' => 'Кітапхана фильтрі',
 			'services.libraryFilter.subtitleAllSyncing' => 'Барлық кітапханалар синхрондалуда',
 			'services.libraryFilter.subtitleNoneSyncing' => 'Ештеңе синхрондалмайды',

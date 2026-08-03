@@ -1445,8 +1445,6 @@
     "disconnectConfirmBody": "Harbor ${service} yangilanishini toʻxtatadi.",
     "connectFailed": "${service} ulana olmadi. Qaytadan urinib koʻring.",
     "names": {
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "simkl": "Simkl",
       "seerr": "Seerr"
     },
@@ -1457,13 +1455,6 @@
       "copyCode": "Faollashtirish kodini nusxalash",
       "waitingForAuthorization": "Avtorizatsiya kutilmoqda…",
       "codeCopied": "Kod nusxalandi"
-    },
-    "oauthProxy": {
-      "title": "${service} xizmatiga kiring",
-      "body": "Ushbu QR kodni skanerlang yoki URL-ni oching.",
-      "openToSignIn": "Kirish uchun ${service} xizmatini oching",
-      "copyUrl": "Kirish URL-ini nusxalash",
-      "urlCopied": "URL nusxalandi"
     },
     "libraryFilter": {
       "title": "Kutubxona filtri",
