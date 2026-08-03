@@ -110,6 +110,38 @@ void main() {
     expect(calls, ['HapticFeedbackType.selectionClick'], reason: 'the card has no InkWell to route through');
   });
 
+  testWidgets('a long press asks for the platform effect, not the tick', (tester) async {
+    await SettingsService.instance.write(SettingsService.hapticFeedback, true);
+    var menus = 0;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(
+          body: Center(
+            child: SizedBox(
+              width: 120,
+              height: 180,
+              child: MediaCard(
+                item: testMediaItem(id: 'm1', title: 'Poster'),
+                onTap: () {},
+                onLongPress: () => menus++,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.longPress(find.byType(MediaCard));
+    await tester.pump();
+
+    expect(menus, 1, reason: 'the menu still opens');
+    // vibrate is Android's LONG_PRESS constant — firmer than a selection tick.
+    expect(calls, contains('vibrate'));
+    expect(calls, isNot(contains('HapticFeedbackType.selectionClick')));
+  });
+
   test('the platform is never asked while the setting is off', () async {
     await SettingsService.instance.write(SettingsService.hapticFeedback, false);
 

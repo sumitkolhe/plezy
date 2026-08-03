@@ -108,7 +108,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
         enableLongPress: true,
         onNavigateUp: widget.onNavigateUp,
         onSelect: widget.onTap,
-        onLongPress: showContextMenuFromTap,
+        onLongPress: handleLongPress,
         disableScale: true,
         child: MediaContextMenu(
           key: contextMenuKey,
@@ -122,7 +122,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             onTap: splitTargets ? () => _openDetails(context, episode) : widget.onTap,
             canRequestFocus: false,
             onTapDown: storeTapPosition,
-            onLongPress: showContextMenuFromTap,
+            onLongPress: handleLongPress,
             onSecondaryTapDown: storeTapPosition,
             onSecondaryTap: showContextMenuFromTap,
             hoverColor: Theme.of(context).colorScheme.surface.withValues(alpha: 0.05),

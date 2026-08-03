@@ -208,7 +208,7 @@ class _TrackRowState extends State<TrackRow> with ContextMenuTapMixin<TrackRow>,
           mouseCursor: SystemMouseCursors.click,
           onTap: widget.onTap,
           onTapDown: withContextMenu ? storeTapPosition : null,
-          onLongPress: withContextMenu ? showContextMenuFromTap : null,
+          onLongPress: withContextMenu ? handleLongPress : null,
           onSecondaryTapDown: withContextMenu ? storeTapPosition : null,
           onSecondaryTap: withContextMenu ? showContextMenuFromTap : null,
           child: Container(

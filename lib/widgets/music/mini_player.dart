@@ -279,7 +279,7 @@ class _MiniPlayerCardState extends State<_MiniPlayerCard> with ContextMenuTapMix
         mouseCursor: SystemMouseCursors.click,
         onTap: () => unawaited(openNowPlaying(context)),
         onTapDown: storeTapPosition,
-        onLongPress: showContextMenuFromTap,
+        onLongPress: handleLongPress,
         onSecondaryTapDown: storeTapPosition,
         onSecondaryTap: showContextMenuFromTap,
         child: SizedBox(

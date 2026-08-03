@@ -90,7 +90,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
           mouseCursor: SystemMouseCursors.click,
           onTap: widget.onTap,
           onTapDown: storeTapPosition,
-          onLongPress: showContextMenuFromTap,
+          onLongPress: handleLongPress,
           onSecondaryTapDown: storeTapPosition,
           onSecondaryTap: showContextMenuFromTap,
           child: Padding(

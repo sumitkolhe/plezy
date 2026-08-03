@@ -118,6 +118,11 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     }
   }
 
+  void _handleLongPressRow() {
+    Haptics.longPress();
+    _showRowMenu();
+  }
+
   void _showRowMenu() {
     if (_isMediaRow) {
       showContextMenuFromTap();
@@ -415,7 +420,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     Widget gesture = GestureDetector(
       onTap: _handleTap,
       onTapDown: hasMenu ? storeTapPosition : null,
-      onLongPress: hasMenu ? _showRowMenu : null,
+      onLongPress: hasMenu ? _handleLongPressRow : null,
       onSecondaryTapDown: hasMenu ? storeTapPosition : null,
       onSecondaryTap: hasMenu ? _showRowMenu : null,
       behavior: HitTestBehavior.opaque,
@@ -440,7 +445,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
             focusNode: widget.focusNode,
             onSelect: _handleTap,
             enableLongPress: hasMenu,
-            onLongPress: hasMenu ? _showRowMenu : null,
+            onLongPress: hasMenu ? _handleLongPressRow : null,
             onNavigateUp: widget.onNavigateUp,
             onNavigateLeft: widget.onNavigateLeft,
             useBackgroundFocus: true,

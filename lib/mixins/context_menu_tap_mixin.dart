@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/haptics.dart';
+
 import '../widgets/media_context_menu.dart';
 
 /// Tracks tap position and exposes show-context-menu helpers for media cards
@@ -17,6 +19,14 @@ mixin ContextMenuTapMixin<T extends StatefulWidget> on State<T> {
   Offset? get lastTapPosition => _tapPosition;
 
   bool get isContextMenuOpen => contextMenuKey.currentState?.isContextMenuOpen ?? false;
+
+  /// The long-press seam. Separate from [showContextMenuFromTap] because
+  /// subclasses override that and return before `super`, and because a
+  /// right-click reaches the same menu without a finger to answer.
+  void handleLongPress() {
+    Haptics.longPress();
+    showContextMenuFromTap();
+  }
 
   /// Show at the last tap position (long-press, mouse).
   void showContextMenuFromTap() {

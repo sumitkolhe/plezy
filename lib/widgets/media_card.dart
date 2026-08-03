@@ -423,7 +423,7 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
             item: item,
             onTap: () => _handleTap(context, item),
             onTapDown: storeTapPosition,
-            onLongPress: showContextMenuFromTap,
+            onLongPress: handleLongPress,
             onSecondaryTapDown: storeTapPosition,
             onSecondaryTap: showContextMenuFromTap,
             density: SettingsService.instance.read(SettingsService.libraryDensity),
@@ -523,7 +523,7 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
       child: _CardTapRegion(
         onTap: () => _handleTap(context, item),
         onTapDown: storeTapPosition,
-        onLongPress: showContextMenuFromTap,
+        onLongPress: handleLongPress,
         onSecondaryTapDown: storeTapPosition,
         onSecondaryTap: showContextMenuFromTap,
         borderRadius: BorderRadius.circular(tokens(context).radiusSm),
@@ -607,7 +607,7 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
       child: _CardTapRegion(
         onTap: () => _handleTap(context, item),
         onTapDown: storeTapPosition,
-        onLongPress: showContextMenuFromTap,
+        onLongPress: handleLongPress,
         onSecondaryTapDown: storeTapPosition,
         onSecondaryTap: showContextMenuFromTap,
         borderRadius: BorderRadius.circular(tokens(context).radiusSm),

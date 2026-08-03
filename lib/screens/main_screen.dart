@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
 import '../services/update_service.dart';
+import '../utils/haptics.dart';
 import '../utils/app_logger.dart';
 import '../widgets/auth_error_banner.dart';
 import '../widgets/app_icon.dart';
@@ -1274,7 +1275,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                 behavior: HitTestBehavior.translucent,
                 excludeFromSemantics: true,
                 onLongPress: () {
-                  Feedback.forLongPress(context);
+                  Haptics.longPress();
                   _showLibraryQuickPicker(context);
                 },
                 child: const SizedBox.expand(),

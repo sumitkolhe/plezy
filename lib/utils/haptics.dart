@@ -16,4 +16,10 @@ abstract final class Haptics {
   static void selection() {
     if (_enabled) unawaited(HapticFeedback.selectionClick());
   }
+
+  /// Android's own long-press effect, which is firmer than [selection] and is
+  /// what a held press feels like everywhere else on the device.
+  static void longPress() {
+    if (_enabled) unawaited(HapticFeedback.vibrate());
+  }
 }
