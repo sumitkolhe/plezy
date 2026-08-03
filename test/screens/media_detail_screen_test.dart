@@ -286,7 +286,7 @@ void main() {
 
     expect(find.text('Season 1'), findsOneWidget);
     expect(find.text('Specials'), findsNothing);
-    expect(find.text('S1E1'), findsOneWidget);
+    expect(find.text('${t.common.play} S1E1'), findsOneWidget);
   });
 
   testWidgets('TV detail summary uses light theme foreground color', (tester) async {
@@ -1155,6 +1155,28 @@ void main() {
 
       expect(episodeRowHasProgress(tester, 'Episode S1E1'), isFalse);
       expect(episodeRowWatched(tester, 'Episode S1E1'), isTrue);
+    });
+
+    testWidgets('the play button names the episode, and says resume once it has progress', (tester) async {
+      final show = buildShow();
+      final season1 = buildSeason(show, 1);
+      final episode1 = buildEpisode(show, season1, 1);
+      final client = _FakeMediaServerClient(
+        show: show,
+        childrenByParent: {
+          show.id: [season1],
+          season1.id: [episode1, buildEpisode(show, season1, 2)],
+        },
+      );
+
+      await pumpPhoneDetail(tester, client, show);
+      expect(find.text('${t.common.play} S1E1'), findsOneWidget);
+
+      await emit(
+        tester,
+        () => WatchStateNotifier().notifyProgress(item: episode1, viewOffset: 600000, duration: 1800000),
+      );
+      expect(find.text('${t.common.resume} S1E1'), findsOneWidget);
     });
   });
 }

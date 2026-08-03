@@ -6,12 +6,12 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
     final tvScale = TvLayoutConstants.scaleOf(context);
     final actionSize = isTv ? _tvDetailActionSize * tvScale : 48.0;
     final playButtonLabel = _getPlayButtonLabel(metadata);
-    final playIcon = _getPlayButtonIcon(metadata);
-    final playActionLabel = playIcon == PhosphorIcons.play ? t.common.resume : t.common.play;
-    final playSemanticsLabel = playButtonLabel.isEmpty ? playActionLabel : '$playActionLabel $playButtonLabel';
     final playIconSize = isTv ? 22 * tvScale : 20.0;
     final playTextStyle = TextStyle(fontSize: isTv ? 17 * tvScale : 16, fontWeight: .w700);
-    final playButtonIcon = AppIcon(playIcon, size: playIconSize);
+    final playButtonIcon = AppIcon(PhosphorIcons.play, size: playIconSize);
+    // Wider than the label needs, so the primary action carries visible weight
+    // next to a row of same-sized icon buttons. TV sizes off its own scale.
+    final minPlayWidth = isTv ? 0.0 : MediaQuery.sizeOf(context).width * 0.3;
 
     Future<void> onPlayPressed() async {
       // For TV shows, play the OnDeck episode if available
@@ -106,28 +106,26 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
 
     Widget playButton(FocusableActionBuildState state) {
       return Semantics(
-        label: playSemanticsLabel,
+        label: playButtonLabel,
         button: true,
         onTap: onPlayPressed,
         excludeSemantics: true,
-        child: SizedBox(
-          height: actionSize,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minWidth: minPlayWidth, minHeight: actionSize, maxHeight: actionSize),
           child: FilledButton(
             onPressed: onPlayPressed,
             style: actionButtonStyle(
               showFocus: state.showFocus,
               padding: .symmetric(horizontal: isTv ? 17 * tvScale : 16, vertical: isTv ? 9 * tvScale : 0),
             ),
-            child: playButtonLabel.isNotEmpty
-                ? Row(
-                    mainAxisSize: .min,
-                    children: [
-                      playButtonIcon,
-                      SizedBox(width: isTv ? 7 * tvScale : 8),
-                      Text(playButtonLabel, style: playTextStyle),
-                    ],
-                  )
-                : playButtonIcon,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                playButtonIcon,
+                SizedBox(width: isTv ? 7 * tvScale : 8),
+                Text(playButtonLabel, style: playTextStyle),
+              ],
+            ),
           ),
         ),
       );
@@ -275,7 +273,6 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
     ];
 
     double playButtonWidthEstimate() {
-      if (playButtonLabel.isEmpty) return 64.0;
       final textPainter = TextPainter(
         text: TextSpan(text: playButtonLabel, style: playTextStyle),
         maxLines: 1,
@@ -285,7 +282,8 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
       textPainter.dispose();
       final horizontalPadding = isTv ? 34.0 * tvScale : 32.0;
       final iconGap = isTv ? 7.0 * tvScale : 8.0;
-      return (horizontalPadding + playIconSize + iconGap + textWidth).clamp(64.0, double.infinity).toDouble();
+      final natural = horizontalPadding + playIconSize + iconGap + textWidth;
+      return math.max(natural, math.max(64.0, minPlayWidth));
     }
 
     final estimatedPlayWidth = playButtonWidthEstimate();

@@ -4250,44 +4250,22 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     );
   }
 
+  /// Says what pressing it does — which needs the episode too, since for a show
+  /// the answer is a specific one rather than "this".
   String _getPlayButtonLabel(MediaItem metadata) {
-    // For TV shows - use compact S1E1 format
-    if (metadata.isShow) {
-      if (_onDeckEpisode != null) {
-        final episode = _onDeckEpisode!;
-        final seasonNum = episode.parentIndex ?? 0;
-        final episodeNum = episode.index ?? 0;
+    final word = _isResuming(metadata) ? t.common.resume : t.common.play;
+    if (!metadata.isShow) return word;
 
-        // Use the same format for both play and resume
-        // (icon will indicate the difference)
-        return t.discover.playEpisode(season: seasonNum.toString(), episode: episodeNum.toString());
-      } else {
-        final seasonNum = defaultPlaybackSeason(_seasons)?.index ?? 1;
-        return t.discover.playEpisode(season: seasonNum.toString(), episode: '1');
-      }
-    }
-
-    // For movies or episodes - NO TEXT, just icon
-    return '';
+    final onDeck = _onDeckEpisode;
+    final season = onDeck != null ? onDeck.parentIndex ?? 0 : defaultPlaybackSeason(_seasons)?.index ?? 1;
+    final episode = onDeck != null ? onDeck.index ?? 0 : 1;
+    return '$word ${t.discover.playEpisode(season: '$season', episode: '$episode')}';
   }
 
-  IconData _getPlayButtonIcon(MediaItem metadata) {
-    // For TV shows
-    if (metadata.isShow) {
-      if (_onDeckEpisode != null) {
-        final episode = _fresh(_onDeckEpisode!);
-        // Check if episode has been partially watched
-        if (episode.viewOffsetMs != null && episode.viewOffsetMs! > 0) {
-          return PhosphorIcons.play; // Resume icon
-        }
-      }
-    } else {
-      // For movies or episodes
-      if (metadata.viewOffsetMs != null && metadata.viewOffsetMs! > 0) {
-        return PhosphorIcons.play; // Resume icon
-      }
-    }
-
-    return PhosphorIcons.play; // Default play icon
+  /// A show resumes on its on-deck episode's progress, not its own.
+  bool _isResuming(MediaItem metadata) {
+    final onDeck = _onDeckEpisode;
+    final item = metadata.isShow ? (onDeck == null ? null : _fresh(onDeck)) : metadata;
+    return (item?.viewOffsetMs ?? 0) > 0;
   }
 }
