@@ -213,6 +213,11 @@ void main() {
       durationMs: 30 * 60 * 1000,
     );
 
+    // Narrow enough that the preferred diameter cannot fit, since the sheet
+    // spans the surface rather than the card.
+    await tester.binding.setSurfaceSize(const Size(300, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
     await _pumpEpisodeCard(tester, episode);
     await tester.tap(find.text('E7${dotSeparator}Downstream'));
     await tester.pumpAndSettle();
@@ -230,6 +235,15 @@ void main() {
       tester.getTopLeft(find.byTooltip(t.mediaMenu.rate)).dy,
       greaterThan(tester.getBottomLeft(find.text(t.common.play)).dy),
     );
+
+    // One row: at the preferred diameter these overrun a phone's width, and a
+    // lone wrapped circle reads as a mistake.
+    final tops = [
+      for (final label in [t.mediaMenu.rate, t.downloads.downloadNow, t.mediaMenu.fileInfo, t.tooltips.moreOptions])
+        tester.getTopLeft(find.byTooltip(label)).dy,
+    ];
+    expect(tops, everyElement(closeTo(tops.first, 0.01)));
+    expect(tester.getSize(find.byTooltip(t.tooltips.moreOptions)).width, lessThan(58));
 
     // Selecting one closes the sheet, the way choosing from the menu does.
     await tester.tap(find.byTooltip(t.mediaMenu.rate));

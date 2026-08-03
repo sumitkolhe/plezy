@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 
@@ -154,18 +156,15 @@ class EpisodeDetailSheet extends StatelessWidget {
               ),
               if (actions.isNotEmpty) ...[
                 const SizedBox(height: 18),
-                Wrap(
-                  alignment: .center,
-                  spacing: 18,
-                  runSpacing: 14,
-                  children: [
+                _ActionCircleRow(
+                  circles: [
                     for (final action in primary)
-                      _ActionCircle(
+                      (
                         icon: action.icon,
                         label: action.label,
                         onTap: () => OverlaySheetController.closeAdaptive(context, action.value),
                       ),
-                    _ActionCircle(
+                    (
                       icon: PhosphorIcons.dotsThreeOutlineVertical,
                       label: t.tooltips.moreOptions,
                       onTap: () {
@@ -209,30 +208,56 @@ class EpisodeDetailSheet extends StatelessWidget {
   }
 }
 
+typedef _Circle = ({IconData icon, String label, VoidCallback onTap});
+
+/// Always one row: at the preferred diameter five circles and their gaps
+/// overrun a phone, and a lone wrapped circle reads as a mistake.
+class _ActionCircleRow extends StatelessWidget {
+  final List<_Circle> circles;
+
+  const _ActionCircleRow({required this.circles});
+
+  static const _preferredDiameter = 58.0;
+  static const _minGap = 14.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final available = constraints.maxWidth - _minGap * (circles.length - 1);
+        final diameter = math.min(_preferredDiameter, available / circles.length);
+        return Row(
+          mainAxisAlignment: .spaceEvenly,
+          children: [for (final circle in circles) _ActionCircle(circle: circle, diameter: diameter)],
+        );
+      },
+    );
+  }
+}
+
 /// The label carries on doing its work as the tooltip and the semantic name,
 /// since the glyph alone is what is on screen.
 class _ActionCircle extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
+  final _Circle circle;
+  final double diameter;
 
-  const _ActionCircle({required this.icon, required this.label, required this.onTap});
+  const _ActionCircle({required this.circle, required this.diameter});
 
   @override
   Widget build(BuildContext context) {
     final foreground = tokens(context).text;
 
     return Tooltip(
-      message: label,
+      message: circle.label,
       child: Material(
         color: foreground.withValues(alpha: 0.08),
         shape: const CircleBorder(),
         child: InkWell(
           customBorder: const CircleBorder(),
-          onTap: onTap,
+          onTap: circle.onTap,
           child: SizedBox.square(
-            dimension: 58,
-            child: AppIcon(icon, size: 24, color: foreground, semanticLabel: label),
+            dimension: diameter,
+            child: AppIcon(circle.icon, size: 24, color: foreground, semanticLabel: circle.label),
           ),
         ),
       ),
