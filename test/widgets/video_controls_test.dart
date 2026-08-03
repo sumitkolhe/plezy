@@ -5,7 +5,7 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/database/app_database.dart';
@@ -41,7 +41,7 @@ import '../test_helpers/theme.dart';
 /// Either face of the subtitle button: filled while subtitles show, outline
 /// while they are hidden.
 Finder _subtitleButton() => find.byWidgetPredicate(
-  (w) => w is Icon && (w.icon == TablerIcons.badgeCc || w.icon == TablerIcons.badgeCcFilled),
+  (w) => w is Icon && (w.icon == PhosphorIcons.subtitles || w.icon == PhosphorIconsFill.subtitles),
 );
 
 void main() {
@@ -775,8 +775,6 @@ void main() {
                 onSeekToNextChapter: () {},
                 onSeek: (_) {},
                 onSeekEnd: (_) {},
-                getReplayIcon: (_) => Icons.replay,
-                getForwardIcon: (_) => Icons.forward_10,
                 trackControlsState: const TrackControlsState(canControl: true),
               ),
             ),

@@ -15,7 +15,7 @@ import 'package:flutter/gestures.dart'
         kDoubleTapTimeout;
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:rate_limiter/rate_limiter.dart';
 import 'package:flutter/services.dart'
     show
@@ -59,7 +59,6 @@ import '../../theme/mono_tokens.dart';
 import '../../utils/provider_extensions.dart';
 import '../../utils/snackbar_helper.dart';
 import '../../utils/latest_async_write.dart';
-import 'icons.dart';
 import 'player_chrome_controller.dart';
 import 'playback_extras_loader.dart';
 import 'widgets/player_toast_indicator.dart';
@@ -1121,7 +1120,7 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
                               child: Row(
                                 mainAxisSize: .min,
                                 children: [
-                                  const AppIcon(TablerIcons.lock, color: Colors.white, size: 20),
+                                  const AppIcon(PhosphorIcons.lock, color: Colors.white, size: 20),
                                   const SizedBox(width: 8),
                                   Text(
                                     t.videoControls.longPressToUnlock,
