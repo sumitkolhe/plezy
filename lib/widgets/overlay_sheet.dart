@@ -104,10 +104,14 @@ class OverlaySheetController {
 
   /// Sizing applied when a caller supplies no explicit constraints: capped
   /// width on desktop, three quarters of the screen height everywhere.
-  static BoxConstraints _defaultSheetConstraints(BuildContext context) {
+  ///
+  /// [heightFraction] is how much of the screen the sheet may fill before its
+  /// content starts to scroll. An action list that scrolls hides its own tail,
+  /// so menus ask for more than the default.
+  static BoxConstraints sheetConstraints(BuildContext context, {double heightFraction = 0.75}) {
     final size = MediaQuery.sizeOf(context);
     final isDesktop = size.width > 600;
-    return BoxConstraints(maxWidth: isDesktop ? 700 : double.infinity, maxHeight: size.height * 0.75);
+    return BoxConstraints(maxWidth: isDesktop ? 700 : double.infinity, maxHeight: size.height * heightFraction);
   }
 
   /// Show a sheet using the overlay system if available, otherwise fall back
@@ -137,7 +141,7 @@ class OverlaySheetController {
     }
     // Apply the same default constraints the overlay system uses so sheets
     // shown without an OverlaySheetHost still have sensible sizing on desktop.
-    final effectiveConstraints = constraints ?? _defaultSheetConstraints(context);
+    final effectiveConstraints = constraints ?? sheetConstraints(context);
     openSheetCount.value++;
     try {
       return await showModalBottomSheet<T>(
@@ -614,7 +618,7 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
     final isTV = PlatformDetector.isTV();
     final showHandle = _showDragHandle && !isTV && !isTop;
 
-    final effectiveConstraints = _constraints ?? OverlaySheetController._defaultSheetConstraints(context);
+    final effectiveConstraints = _constraints ?? OverlaySheetController.sheetConstraints(context);
 
     // Slide direction depends on alignment: bottom sheets slide up, top sheets slide down.
     // Use a pixel transform instead of FractionalTranslation so mouse-tracker

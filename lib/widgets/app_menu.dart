@@ -140,6 +140,9 @@ Future<T?> showAdaptiveAppMenu<T>(
       context,
       showDragHandle: true,
       isScrollControlled: isScrollControlled,
+      // A list of actions that scrolls hides its own tail, so let it stand
+      // taller than the default before it has to.
+      constraints: OverlaySheetController.sheetConstraints(context, heightFraction: 0.9),
       builder: (context) => AppMenuSheet<T>(title: title, entries: entries, focusFirstItem: focusFirstItem),
     );
   }
