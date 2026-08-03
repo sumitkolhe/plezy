@@ -1241,6 +1241,11 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
 
   /// Fades the page out behind the bar rather than cutting it off at a hard
   /// edge, which is what an opaque bar did before content ran underneath.
+  ///
+  /// The fade finishes in the top fifth, above where the icons sit, so a label
+  /// never lands on artwork. It cannot be given its own height instead: this
+  /// subtree is what [_bottomBarKey] measures for the mini player's offset, and
+  /// a taller box would lift the mini player off the bar.
   Widget _navigationScrim(BuildContext context, {required Widget child}) {
     final bg = tokens(context).bg;
     return DecoratedBox(
@@ -1248,8 +1253,8 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.92), bg],
-          stops: const [0, 0.55, 1],
+          colors: [bg.withValues(alpha: 0), bg, bg],
+          stops: const [0, 0.22, 1],
         ),
       ),
       child: child,
