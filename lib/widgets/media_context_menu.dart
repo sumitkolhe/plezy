@@ -225,9 +225,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     if (isCollection || isPlaylist) {
       menuActions.add(_MenuAction(value: 'play', icon: TablerIcons.playerPlay, label: t.common.play));
 
-      menuActions.add(
-        _MenuAction(value: 'shuffle', icon: TablerIcons.arrowsShuffle, label: t.mediaMenu.shufflePlay),
-      );
+      menuActions.add(_MenuAction(value: 'shuffle', icon: TablerIcons.arrowsShuffle, label: t.mediaMenu.shufflePlay));
 
       // Download + sync-rule management. Video and audio playlists and any
       // collection qualify — collections can contain movies, episodes,
@@ -238,11 +236,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         final hasRule = Provider.of<DownloadProvider>(context, listen: false).hasSyncRule(_itemSyncRuleKey(context));
         if (hasRule) {
           menuActions.add(
-            _MenuAction(
-              value: 'manage_sync',
-              icon: TablerIcons.refresh,
-              label: t.downloads.manageSyncRule,
-            ),
+            _MenuAction(value: 'manage_sync', icon: TablerIcons.refresh, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
             _MenuAction(value: 'remove_sync', icon: TablerIcons.cloudOff, label: t.downloads.removeSyncRule),
@@ -258,9 +252,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         }
       }
 
-      menuActions.add(
-        _MenuAction(value: 'delete', icon: TablerIcons.trash, label: t.common.delete, destructive: true),
-      );
+      menuActions.add(_MenuAction(value: 'delete', icon: TablerIcons.trash, label: t.common.delete, destructive: true));
     } else {
       // Music (artist/album/track) playback + navigation actions. Queue
       // insertion only exists where a playback session is bound.
@@ -270,9 +262,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
 
         final musicAvailable = context.read<MusicPlaybackService?>() != null;
         if (musicAvailable) {
-          menuActions.add(
-            _MenuAction(value: 'music_play_next', icon: TablerIcons.playlist, label: t.music.playNext),
-          );
+          menuActions.add(_MenuAction(value: 'music_play_next', icon: TablerIcons.playlist, label: t.music.playNext));
           menuActions.add(
             _MenuAction(value: 'music_add_queue', icon: TablerIcons.listNumbers, label: t.music.addToQueue),
           );
@@ -281,11 +271,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         // Instant Mix — only while the server is reachable.
         if (itemServerOnline) {
           menuActions.add(
-            _MenuAction(
-              value: 'music_instant_mix',
-              icon: TablerIcons.adjustmentsHorizontal,
-              label: t.music.instantMix,
-            ),
+            _MenuAction(value: 'music_instant_mix', icon: TablerIcons.adjustmentsHorizontal, label: t.music.instantMix),
           );
         }
 
@@ -293,9 +279,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         // detail screen, mirroring the Go to Series ancestor check.
         final ancestorAlbumId = context.findAncestorWidgetOfExactType<AlbumDetailScreen>()?.album.id;
         if (mediaKind == MediaKind.track && mediaItem!.parentId != null && ancestorAlbumId != mediaItem.parentId) {
-          menuActions.add(
-            _MenuAction(value: 'music_album', icon: TablerIcons.disc, label: t.music.goToAlbum),
-          );
+          menuActions.add(_MenuAction(value: 'music_album', icon: TablerIcons.disc, label: t.music.goToAlbum));
         }
 
         // Go to Artist — album: parent, track: grandparent; hidden when
@@ -307,34 +291,24 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         };
         final ancestorArtistId = context.findAncestorWidgetOfExactType<ArtistDetailScreen>()?.artist.id;
         if (musicArtistId != null && ancestorArtistId != musicArtistId) {
-          menuActions.add(
-            _MenuAction(value: 'music_artist', icon: TablerIcons.microphone2, label: t.music.goToArtist),
-          );
+          menuActions.add(_MenuAction(value: 'music_artist', icon: TablerIcons.microphone2, label: t.music.goToArtist));
         }
       }
 
       if (hasActiveProgress) {
         menuActions.add(
-          _MenuAction(
-            value: 'play_from_beginning',
-            icon: TablerIcons.rotate2,
-            label: t.mediaMenu.playFromBeginning,
-          ),
+          _MenuAction(value: 'play_from_beginning', icon: TablerIcons.rotate2, label: t.mediaMenu.playFromBeginning),
         );
       }
 
       // Trailer playback. The detail row may hide its trailer button on small
       // screens, so surface it here whenever the screen wires up onPlayTrailer.
       if (widget.onPlayTrailer != null) {
-        menuActions.add(
-          _MenuAction(value: 'play_trailer', icon: TablerIcons.movie, label: t.tooltips.playTrailer),
-        );
+        menuActions.add(_MenuAction(value: 'play_trailer', icon: TablerIcons.movie, label: t.tooltips.playTrailer));
       }
 
       if (!mediaItem!.isWatched || isPartiallyWatched || hasActiveProgress) {
-        menuActions.add(
-          _MenuAction(value: 'watch', icon: TablerIcons.circleCheck, label: t.mediaMenu.markAsWatched),
-        );
+        menuActions.add(_MenuAction(value: 'watch', icon: TablerIcons.circleCheck, label: t.mediaMenu.markAsWatched));
       }
 
       if (mediaItem.isWatched || isPartiallyWatched || hasActiveProgress) {
@@ -356,11 +330,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       // Edit Metadata — admin-only and backend-capability gated.
       if (canEditMetadata) {
         menuActions.add(
-          _MenuAction(
-            value: 'edit_metadata',
-            icon: TablerIcons.pencil,
-            label: t.metadataEdit.editMetadata,
-          ),
+          _MenuAction(value: 'edit_metadata', icon: TablerIcons.pencil, label: t.metadataEdit.editMetadata),
         );
       }
 
@@ -376,9 +346,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           itemSeriesKey != null &&
           !widget.isInContinueWatching &&
           ancestorSeriesKey != itemSeriesKey) {
-        menuActions.add(
-          _MenuAction(value: 'series', icon: TablerIcons.deviceTv, label: t.mediaMenu.goToSeries),
-        );
+        menuActions.add(_MenuAction(value: 'series', icon: TablerIcons.deviceTv, label: t.mediaMenu.goToSeries));
       }
 
       if (mediaKind == MediaKind.show || mediaKind == MediaKind.season) {
@@ -403,9 +371,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       if ((mediaKind == MediaKind.episode || mediaKind == MediaKind.movie) &&
           (hasVersionChoice || canTranscode) &&
           itemServerOnline) {
-        menuActions.add(
-          _MenuAction(value: 'play_version', icon: TablerIcons.video, label: t.mediaMenu.playVersion),
-        );
+        menuActions.add(_MenuAction(value: 'play_version', icon: TablerIcons.video, label: t.mediaMenu.playVersion));
       }
 
       // File Info (for episodes and movies).
@@ -442,11 +408,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
 
         if (hasSyncRule) {
           menuActions.add(
-            _MenuAction(
-              value: 'manage_sync',
-              icon: TablerIcons.refresh,
-              label: t.downloads.manageSyncRule,
-            ),
+            _MenuAction(value: 'manage_sync', icon: TablerIcons.refresh, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
             _MenuAction(value: 'remove_sync', icon: TablerIcons.cloudOff, label: t.downloads.removeSyncRule),
@@ -471,9 +433,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
             ),
           );
         } else {
-          menuActions.add(
-            _MenuAction(value: 'download', icon: TablerIcons.download, label: t.downloads.downloadNow),
-          );
+          menuActions.add(_MenuAction(value: 'download', icon: TablerIcons.download, label: t.downloads.downloadNow));
         }
       }
 
@@ -1820,9 +1780,7 @@ class _PlaylistSelectionDialog extends StatelessWidget {
         final leafCount = playlist.leafCount;
         final subtitleText = leafCount == 1 ? t.playlists.oneItem : t.playlists.itemCount(count: leafCount ?? 0);
         return FocusableListTile(
-          leading: playlist.smart
-              ? const AppIcon(TablerIcons.sparkles)
-              : const AppIcon(TablerIcons.playlist),
+          leading: playlist.smart ? const AppIcon(TablerIcons.sparkles) : const AppIcon(TablerIcons.playlist),
           title: Text(playlist.title),
           subtitle: playlist.leafCount != null ? Text(subtitleText) : null,
           onTap: playlist.smart

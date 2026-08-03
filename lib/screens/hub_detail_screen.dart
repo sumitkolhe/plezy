@@ -85,13 +85,7 @@ class _HubDetailScreenState extends State<HubDetailScreen>
 
   @override
   List<FocusableAction> getAppBarActions() {
-    return [
-      FocusableAction(
-        icon: TablerIcons.arrowsSort,
-        tooltip: t.libraries.sort,
-        onPressed: _showSortBottomSheet,
-      ),
-    ];
+    return [FocusableAction(icon: TablerIcons.arrowsSort, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet)];
   }
 
   /// Override to add bounds check for filtered items (sorting can change item order)

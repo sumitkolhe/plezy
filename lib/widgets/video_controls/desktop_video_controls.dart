@@ -577,8 +577,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     children: [
                       _buildBottomControlsContent(context, hasFrame: true),
                       // Down arrow hint when strip content is available
-                      if (widget.useDpadNavigation && _hasStripContent)
-                        const ContentStripHint(TablerIcons.chevronDown),
+                      if (widget.useDpadNavigation && _hasStripContent) const ContentStripHint(TablerIcons.chevronDown),
                     ],
                   ),
                 // Content strip (TV/dpad only) — replaces normal controls

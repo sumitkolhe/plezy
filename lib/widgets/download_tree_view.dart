@@ -839,11 +839,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     }
 
     if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onCancel != null) {
-      actions.add((
-        icon: TablerIcons.x,
-        tooltip: t.common.cancel,
-        onPressed: () => widget.onCancel!(globalKey),
-      ));
+      actions.add((icon: TablerIcons.x, tooltip: t.common.cancel, onPressed: () => widget.onCancel!(globalKey)));
     }
 
     // Retry button for failed items

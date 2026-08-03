@@ -131,10 +131,7 @@ class _VolumeControlState extends State<VolumeControl> {
               onTap: widget.volumeController.toggleMute,
               excludeSemantics: true,
               child: IconButton(
-                icon: AppIcon(
-                  isMuted ? TablerIcons.volumeOff : TablerIcons.volume,
-                  color: Colors.white,
-                ),
+                icon: AppIcon(isMuted ? TablerIcons.volumeOff : TablerIcons.volume, color: Colors.white),
                 onPressed: widget.volumeController.toggleMute,
               ),
             );

@@ -226,9 +226,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
               child: iconActionButton(
                 state,
                 onPressed: onWatchlist == null ? null : () => unawaited(_handleWatchlistTogglePressed(metadata)),
-                icon: AppIcon(
-                  (onWatchlist ?? false) ? TablerIcons.bookmarkFilled : TablerIcons.bookmark,
-                ),
+                icon: AppIcon((onWatchlist ?? false) ? TablerIcons.bookmarkFilled : TablerIcons.bookmark),
                 tooltip: (onWatchlist ?? false) ? t.explore.removeFromWatchlist : t.explore.addToWatchlist,
               ),
             ),

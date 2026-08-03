@@ -518,11 +518,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         FocusableButton(
           onPressed: _toggleLyrics,
           child: IconButton(
-            icon: AppIcon(
-              TablerIcons.alignLeft,
-              size: 22,
-              color: _showLyrics ? colorScheme.primary : tk.textMuted,
-            ),
+            icon: AppIcon(TablerIcons.alignLeft, size: 22, color: _showLyrics ? colorScheme.primary : tk.textMuted),
             tooltip: t.music.lyrics,
             onPressed: _toggleLyrics,
           ),
@@ -597,11 +593,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       key: contextMenuKey,
       item: track,
       extraEntries: [
-        MediaMenuExtraEntry(
-          icon: TablerIcons.moon,
-          label: t.music.sleepTimer,
-          onSelected: _showSleepTimerSheet,
-        ),
+        MediaMenuExtraEntry(icon: TablerIcons.moon, label: t.music.sleepTimer, onSelected: _showSleepTimerSheet),
       ],
       child: FocusableButton(
         focusNode: focusable ? _overflowFocusNode : null,

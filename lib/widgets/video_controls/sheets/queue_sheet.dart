@@ -120,8 +120,7 @@ class _QueueSheetState extends State<QueueSheet> {
         width: _kThumbWidth,
         height: _kThumbHeight,
         fit: BoxFit.cover,
-        errorWidget: (context, url, error) =>
-            AppIcon(TablerIcons.photo, color: Colors.white54, size: _kThumbHeight),
+        errorWidget: (context, url, error) => AppIcon(TablerIcons.photo, color: Colors.white54, size: _kThumbHeight),
       ),
       isCurrent: isCurrent,
       borderColor: Theme.of(context).colorScheme.primary,

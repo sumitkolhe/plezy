@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
 import '../services/update_service.dart';
+import '../theme/mono_tokens.dart';
 import '../utils/haptics.dart';
 import '../utils/app_logger.dart';
 import '../widgets/auth_error_banner.dart';
@@ -1238,6 +1239,23 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     }
   }
 
+  /// Fades the page out behind the bar rather than cutting it off at a hard
+  /// edge, which is what an opaque bar did before content ran underneath.
+  Widget _navigationScrim(BuildContext context, {required Widget child}) {
+    final bg = tokens(context).bg;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.92), bg],
+          stops: const [0, 0.55, 1],
+        ),
+      ),
+      child: child,
+    );
+  }
+
   Widget _buildBottomNavigationBar(BuildContext context, {required bool hideLabels}) {
     final tabs = _getBottomNavigationTabs(context);
     final selectedIndex = tabs.indexWhere((tab) => tab.id == _currentTab);
@@ -1440,6 +1458,10 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
       child: ScaffoldMessenger(
         key: ProfileNavigationScope.of(context).mainScaffoldMessengerKey,
         child: Scaffold(
+          // Content runs to the bottom of the screen and under the bar. Scaffold
+          // adds the bar's height to the body's MediaQuery padding, which the
+          // tab scroll views read so their last row still clears it.
+          extendBody: true,
           body: _buildTickerAwareStack(),
           bottomNavigationBar: Column(
             key: _bottomBarKey,
@@ -1466,11 +1488,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                               ),
                             )
                           else
-                            AppIcon(
-                              TablerIcons.wifi,
-                              size: 18,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                            AppIcon(TablerIcons.wifi, size: 18, color: Theme.of(context).colorScheme.primary),
                           const SizedBox(width: 8),
                           Text(
                             t.common.reconnect,
@@ -1495,7 +1513,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                   _scheduleBottomBarMeasure();
                   return NavigationBarTheme(
                     data: NavigationBarTheme.of(context).copyWith(height: hideLabels ? 56 : null),
-                    child: _buildBottomNavigationBar(context, hideLabels: hideLabels),
+                    child: _navigationScrim(context, child: _buildBottomNavigationBar(context, hideLabels: hideLabels)),
                   );
                 },
               ),

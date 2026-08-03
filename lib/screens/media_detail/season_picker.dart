@@ -144,9 +144,7 @@ class _SeasonSheet extends StatelessWidget {
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
                       ),
-                trailing: selected
-                    ? AppIcon(TablerIcons.circleCheck, size: 18, color: tokensRef.accent)
-                    : null,
+                trailing: selected ? AppIcon(TablerIcons.circleCheck, size: 18, color: tokensRef.accent) : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
               );
             },

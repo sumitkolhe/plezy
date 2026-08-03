@@ -55,6 +55,7 @@ import 'services_settings_screen.dart';
 import 'settings_utils.dart';
 import 'tracker_service_info.dart';
 import '../../widgets/loading_indicator_box.dart';
+import '../../widgets/sliver_navigation_inset.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
@@ -218,6 +219,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
                 const SizedBox(height: 24),
               ]),
             ),
+            const SliverNavigationInset(),
           ],
         ),
       ),

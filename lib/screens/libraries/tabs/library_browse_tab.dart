@@ -62,6 +62,7 @@ import '../../../utils/platform_detector.dart';
 import '../../../i18n/strings.g.dart';
 import '../../main_screen.dart';
 import 'base_library_tab.dart';
+import '../../../widgets/sliver_navigation_inset.dart';
 
 /// Browse tab for library screen
 /// Shows library items with grouping, filtering, and sorting
@@ -1503,6 +1504,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
                 delegate: _ChipsBarDelegate(builder: (_) => _buildChipsBar(), height: _chipsBarHeight),
               ),
             ..._buildContentSlivers(),
+            const SliverNavigationInset(),
           ],
         ),
       ),

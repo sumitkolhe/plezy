@@ -71,11 +71,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           )
         else if (lastSearchFailed)
           SliverFillRemaining(
-            child: StateMessageWidget(
-              message: t.explore.searchFailed,
-              icon: TablerIcons.alertCircle,
-              iconSize: 80,
-            ),
+            child: StateMessageWidget(message: t.explore.searchFailed, icon: TablerIcons.alertCircle, iconSize: 80),
           )
         else if (searchResults.isEmpty)
           SliverFillRemaining(

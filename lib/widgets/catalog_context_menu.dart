@@ -56,11 +56,7 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
     anchorRect: anchorRect,
     focusFirstItem: position == null,
     entries: [
-      AppMenuItem(
-        value: _CatalogMenuAction.viewDetails,
-        label: t.mediaMenu.viewDetails,
-        icon: TablerIcons.infoCircle,
-      ),
+      AppMenuItem(value: _CatalogMenuAction.viewDetails, label: t.mediaMenu.viewDetails, icon: TablerIcons.infoCircle),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),

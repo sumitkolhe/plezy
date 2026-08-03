@@ -95,19 +95,11 @@ class DownloadStatusIcon extends StatelessWidget {
           color: _tint(variant == DownloadStatusIconVariant.muted ? Colors.amber : Colors.grey),
         );
       case DownloadStatus.failed:
-        return AppIcon(
-          TablerIcons.alertCircle,
-          size: size,
-          color: _tint(Colors.red),
-        );
+        return AppIcon(TablerIcons.alertCircle, size: size, color: _tint(Colors.red));
       case DownloadStatus.cancelled:
         return AppIcon(TablerIcons.circleX, size: size, color: _tint(Colors.grey));
       case DownloadStatus.completed:
-        return AppIcon(
-          TablerIcons.circleCheck,
-          size: size,
-          color: _tint(Colors.green),
-        );
+        return AppIcon(TablerIcons.circleCheck, size: size, color: _tint(Colors.green));
       case DownloadStatus.partial:
         return AppIcon(TablerIcons.download, size: size, color: _tint(Colors.orange));
     }

@@ -514,11 +514,7 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
-                      child: AppIcon(
-                        TablerIcons.circleCheck,
-                        size: 16,
-                        color: Theme.of(context).colorScheme.onPrimary,
-                      ),
+                      child: AppIcon(TablerIcons.circleCheck, size: 16, color: Theme.of(context).colorScheme.onPrimary),
                     ),
                   ),
               ],

@@ -37,6 +37,7 @@ import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_scaffold.dart';
 import 'catalog_search_screen.dart';
 import 'libraries/state_messages.dart';
+import '../widgets/sliver_navigation_inset.dart';
 
 /// The Explore tab: watchlist + discover rows from the active external
 /// catalog source (Trakt). Only mounted when a source is connected (the tab
@@ -348,7 +349,7 @@ class ExploreScreenState extends State<ExploreScreen>
       // content, killing pull-to-refresh in the loading/empty/error
       // states without this.
       physics: const AlwaysScrollableScrollPhysics(),
-      slivers: [appBar(), searchField(), ...body],
+      slivers: [appBar(), searchField(), ...body, const SliverNavigationInset()],
     );
 
     Widget content;
@@ -415,11 +416,7 @@ class ExploreScreenState extends State<ExploreScreen>
     if (isSearching) return LoadingIndicatorBox.sliver;
     if (lastSearchFailed) {
       return SliverFillRemaining(
-        child: StateMessageWidget(
-          message: t.explore.searchFailed,
-          icon: TablerIcons.alertCircle,
-          iconSize: 80,
-        ),
+        child: StateMessageWidget(message: t.explore.searchFailed, icon: TablerIcons.alertCircle, iconSize: 80),
       );
     }
     // The debounce window right after the field goes from empty to typed: no

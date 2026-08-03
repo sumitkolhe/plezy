@@ -305,9 +305,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
                 ],
               ),
               automaticallyImplyLeading: false,
-              actions: [
-                IconButton(icon: const AppIcon(TablerIcons.x), onPressed: () => Navigator.pop(context)),
-              ],
+              actions: [IconButton(icon: const AppIcon(TablerIcons.x), onPressed: () => Navigator.pop(context))],
             ),
             body: Focus(
               focusNode: _listFocusNode,

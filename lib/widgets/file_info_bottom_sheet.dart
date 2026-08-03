@@ -201,11 +201,7 @@ class _VersionBlock extends StatelessWidget {
                 ),
             ],
           ),
-        _InfoSection(
-          title: t.fileInfo.delivery,
-          icon: TablerIcons.antenna,
-          fields: _deliveryFields(context, version),
-        ),
+        _InfoSection(title: t.fileInfo.delivery, icon: TablerIcons.antenna, fields: _deliveryFields(context, version)),
         if (!isLast) const SizedBox(height: 20),
       ],
     );

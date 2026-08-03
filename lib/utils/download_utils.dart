@@ -108,16 +108,8 @@ Future<DownloadResult?> showDownloadOptionsAndQueue(
     final options = <({IconData? icon, String label, _DownloadChoice value})>[
       (icon: TablerIcons.download, label: t.downloads.allEpisodes, value: _DownloadChoice.all),
       (icon: TablerIcons.eyeOff, label: t.downloads.unwatchedOnly, value: _DownloadChoice.unwatched),
-      (
-        icon: TablerIcons.number5,
-        label: t.downloads.nextNUnwatched(count: 5),
-        value: _DownloadChoice.next5,
-      ),
-      (
-        icon: TablerIcons.number9,
-        label: t.downloads.nextNUnwatched(count: 10),
-        value: _DownloadChoice.next10,
-      ),
+      (icon: TablerIcons.number5, label: t.downloads.nextNUnwatched(count: 5), value: _DownloadChoice.next5),
+      (icon: TablerIcons.number9, label: t.downloads.nextNUnwatched(count: 10), value: _DownloadChoice.next10),
       (icon: TablerIcons.adjustments, label: t.downloads.customAmount, value: _DownloadChoice.custom),
     ];
     // Already-downloaded show/season: offer deletion as the last row.

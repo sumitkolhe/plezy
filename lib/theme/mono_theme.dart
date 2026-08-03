@@ -170,7 +170,9 @@ ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? pale
       textColor: c.text,
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: c.bg,
+      // Transparent so content passes under it; MainScreen lays a scrim behind
+      // the bar to keep the icons legible over whatever scrolls past.
+      backgroundColor: Colors.transparent,
       elevation: 0,
       indicatorColor: Colors.transparent,
       labelTextStyle: WidgetStatePropertyAll(TextStyle(color: c.textMuted, fontFamily: MonoFonts.sans, fontSize: 11)),

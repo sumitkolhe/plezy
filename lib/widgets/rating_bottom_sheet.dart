@@ -605,11 +605,7 @@ class _TrailingStatus extends StatelessWidget {
     final color = status.isError ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.primary;
     return Tooltip(
       message: status.text,
-      child: AppIcon(
-        status.isError ? TablerIcons.alertCircle : TablerIcons.circleCheck,
-        color: color,
-        size: 18,
-      ),
+      child: AppIcon(status.isError ? TablerIcons.alertCircle : TablerIcons.circleCheck, color: color, size: 18),
     );
   }
 }
@@ -663,9 +659,7 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     width: starWidth,
                     child: Center(
                       child: AppIcon(
-                        half
-                            ? TablerIcons.starHalf
-                            : (filled ? TablerIcons.starFilled : TablerIcons.star),
+                        half ? TablerIcons.starHalf : (filled ? TablerIcons.starFilled : TablerIcons.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),

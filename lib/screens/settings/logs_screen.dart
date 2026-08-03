@@ -261,11 +261,7 @@ class _LogsScreenState extends State<LogsScreen> with MountedSetStateMixin {
                   actions: [
                     FocusableActionBar(
                       actions: [
-                        FocusableAction(
-                          icon: TablerIcons.refresh,
-                          tooltip: t.common.refresh,
-                          onPressed: _loadLogs,
-                        ),
+                        FocusableAction(icon: TablerIcons.refresh, tooltip: t.common.refresh, onPressed: _loadLogs),
                         FocusableAction(
                           icon: TablerIcons.copy,
                           tooltip: t.logs.copyLogs,

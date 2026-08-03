@@ -542,10 +542,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onNavigateUp: () => _changeServerFocus.requestFocus(),
           textInputAction: TextInputAction.next,
           onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
-          decoration: InputDecoration(
-            labelText: t.addServer.username,
-            prefixIcon: const AppIcon(TablerIcons.user),
-          ),
+          decoration: InputDecoration(labelText: t.addServer.username, prefixIcon: const AppIcon(TablerIcons.user)),
           validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
         ),
         const SizedBox(height: 12),
@@ -556,10 +553,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           enabled: !busy,
           textInputAction: TextInputAction.done,
           onFieldSubmitted: busy ? null : (_) => _signIn(),
-          decoration: InputDecoration(
-            labelText: t.addServer.password,
-            prefixIcon: const AppIcon(TablerIcons.lock),
-          ),
+          decoration: InputDecoration(labelText: t.addServer.password, prefixIcon: const AppIcon(TablerIcons.lock)),
           // Empty password is valid for some Jellyfin setups, so don't
           // require a value.
         ),

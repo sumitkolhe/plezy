@@ -61,24 +61,9 @@ String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
 const allNavigationTabs = [
-  NavigationTab(
-    id: NavigationTabId.discover,
-    onlineOnly: true,
-    icon: TablerIcons.home,
-    getLabel: _getHomeLabel,
-  ),
-  NavigationTab(
-    id: NavigationTabId.libraries,
-    onlineOnly: true,
-    icon: TablerIcons.movie,
-    getLabel: _getLibrariesLabel,
-  ),
-  NavigationTab(
-    id: NavigationTabId.explore,
-    onlineOnly: true,
-    icon: TablerIcons.compass,
-    getLabel: _getExploreLabel,
-  ),
+  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: TablerIcons.home, getLabel: _getHomeLabel),
+  NavigationTab(id: NavigationTabId.libraries, onlineOnly: true, icon: TablerIcons.movie, getLabel: _getLibrariesLabel),
+  NavigationTab(id: NavigationTabId.explore, onlineOnly: true, icon: TablerIcons.compass, getLabel: _getExploreLabel),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,

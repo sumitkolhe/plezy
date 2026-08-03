@@ -268,10 +268,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         enabled: !busy,
         textInputAction: TextInputAction.done,
         onFieldSubmitted: busy ? null : (_) => _signInWithCredentials(),
-        decoration: InputDecoration(
-          labelText: t.addServer.password,
-          prefixIcon: const AppIcon(TablerIcons.lock),
-        ),
+        decoration: InputDecoration(labelText: t.addServer.password, prefixIcon: const AppIcon(TablerIcons.lock)),
         validator: (v) => v == null || v.isEmpty ? t.addServer.required : null,
       ),
       const SizedBox(height: 16),

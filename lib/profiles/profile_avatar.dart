@@ -42,11 +42,7 @@ class ProfileAvatar extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: theme.colorScheme.surface, width: 1),
                 ),
-                child: AppIcon(
-                  TablerIcons.lock,
-                  size: lockBadgeSize * 0.7,
-                  color: theme.colorScheme.onSurface,
-                ),
+                child: AppIcon(TablerIcons.lock, size: lockBadgeSize * 0.7, color: theme.colorScheme.onSurface),
               ),
             ),
         ],

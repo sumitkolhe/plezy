@@ -51,6 +51,7 @@ import 'libraries/content_state_builder.dart';
 import 'libraries/state_messages.dart';
 import 'main_screen.dart';
 import 'search_screen.dart';
+import '../widgets/sliver_navigation_inset.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -639,11 +640,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // same call is chrome the gesture already covers. TV and
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
-                  FocusableAction(
-                    icon: TablerIcons.refresh,
-                    iconColor: foregroundColor,
-                    onPressed: _discover.load,
-                  ),
+                  FocusableAction(icon: TablerIcons.refresh, iconColor: foregroundColor, onPressed: _discover.load),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show
@@ -801,6 +798,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
 
                   SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
                 ],
+                const SliverNavigationInset(),
               ],
             ),
           ),

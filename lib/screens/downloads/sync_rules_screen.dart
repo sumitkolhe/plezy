@@ -52,11 +52,7 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
               slivers: [
                 if (syncRules.isEmpty)
                   SliverFillRemaining(
-                    child: EmptyStateWidget(
-                      message: t.downloads.noSyncRules,
-                      icon: TablerIcons.refresh,
-                      iconSize: 80,
-                    ),
+                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: TablerIcons.refresh, iconSize: 80),
                   )
                 else
                   SliverList(

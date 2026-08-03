@@ -164,11 +164,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
           );
         }
 
-        return BaseVideoControlSheet(
-          title: t.videoControls.chapters,
-          icon: TablerIcons.bookmarks,
-          child: content,
-        );
+        return BaseVideoControlSheet(title: t.videoControls.chapters, icon: TablerIcons.bookmarks, child: content);
       },
     );
   }

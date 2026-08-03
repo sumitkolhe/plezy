@@ -1201,11 +1201,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                   ],
                 ),
               ),
-              AppIcon(
-                TablerIcons.chevronRight,
-                size: 18,
-                color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-              ),
+              AppIcon(TablerIcons.chevronRight, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
             ],
           ),
         ),

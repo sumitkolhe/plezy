@@ -463,11 +463,8 @@ class OptimizedMediaImage extends StatelessWidget {
     );
   }
 
-  Widget _buildErrorWidget(BuildContext context, dynamic _) => _surfacePlaceholder(
-    context,
-    icon: fallbackIcon ?? TablerIcons.photoOff,
-    fillParent: !_hasKnownDimensions,
-  );
+  Widget _buildErrorWidget(BuildContext context, dynamic _) =>
+      _surfacePlaceholder(context, icon: fallbackIcon ?? TablerIcons.photoOff, fillParent: !_hasKnownDimensions);
 
   Widget _buildFallback(BuildContext context) =>
       _surfacePlaceholder(context, icon: fallbackIcon ?? TablerIcons.photoOff);
