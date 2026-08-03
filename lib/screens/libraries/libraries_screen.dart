@@ -677,9 +677,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     );
   }
 
-  /// The same sheet the Libraries tab offers on long-press. An anchored menu
-  /// here covered the shelves it filters and sat at the far top of the screen,
-  /// while every other one-of-many choice in the app is a sheet.
   void _showLibraryPicker(List<MediaLibrary> visibleLibraries, {required bool groupByServer}) {
     final controller = OverlaySheetController.of(context);
     unawaited(

@@ -46,8 +46,6 @@ class TrackerIdResolver {
     return _resolve(showId);
   }
 
-  /// Ratings can be attached to a movie, show, season, or episode from the
-  /// detail screen and the context menu.
   Future<TrackerRatingContext?> resolveForRating(MediaItem item) async {
     switch (item.kind) {
       case MediaKind.movie:

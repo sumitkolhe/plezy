@@ -120,8 +120,7 @@ class _SeasonSheet extends StatelessWidget {
               final selected = index == selectedIndex;
               return FocusableListTile(
                 autofocus: selected,
-                // FocusableListTile is dense by default, which packs a long
-                // season list tighter than it can be read at a glance.
+                // FocusableListTile is dense by default.
                 dense: false,
                 contentPadding: inset.add(const EdgeInsets.symmetric(vertical: 4)),
                 title: Text(
