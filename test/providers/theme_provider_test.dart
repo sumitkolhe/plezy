@@ -7,7 +7,11 @@ import 'package:harbor/screens/settings/settings_utils.dart';
 import 'package:harbor/services/base_shared_preferences_service.dart';
 import 'package:harbor/services/settings_service.dart' as settings;
 
+import 'package:harbor/theme/mono_tokens.dart';
+
 import '../test_helpers/prefs.dart';
+
+MonoTokens monoTokensOf(material.ThemeData theme) => theme.extension<MonoTokens>()!;
 
 void main() {
   setUp(resetSharedPreferencesForTest);
@@ -71,6 +75,9 @@ void main() {
       await p.setThemeMode(settings.ThemeMode.system);
       expect(p.materialThemeMode, material.ThemeMode.system);
 
+      await p.setThemeMode(settings.ThemeMode.materialYou);
+      expect(p.materialThemeMode, material.ThemeMode.system);
+
       p.dispose();
     });
 
@@ -126,6 +133,10 @@ void main() {
       expect(themeModeLabel(p.themeMode), t.settings.systemTheme);
       expect(p.themeModeIcon, PhosphorIconsDuotone.sun);
 
+      await p.setThemeMode(settings.ThemeMode.materialYou);
+      expect(themeModeLabel(p.themeMode), t.settings.materialYouTheme);
+      expect(p.themeModeIcon, PhosphorIconsDuotone.palette);
+
       p.dispose();
     });
 
@@ -139,6 +150,64 @@ void main() {
       } finally {
         LocaleSettings.setLocaleSync(AppLocale.en);
       }
+    });
+
+    test('material you falls back to the mono theme when the platform has no palette', () async {
+      final p = ThemeProvider();
+      await Future.delayed(Duration.zero);
+      await p.setThemeMode(settings.ThemeMode.materialYou);
+
+      // No channel answers in tests, so the palette stays null and the theme
+      // must be identical to plain system rather than half-applied.
+      expect(p.darkTheme.colorScheme.primary, ThemeProvider().darkTheme.colorScheme.primary);
+      expect(p.materialThemeMode, material.ThemeMode.system);
+
+      p.dispose();
+    });
+
+    test('a cached palette paints wallpaper colours without waiting on the channel', () async {
+      final service = await settings.SettingsService.getInstance();
+      await service.write(settings.SettingsService.themeMode, settings.ThemeMode.materialYou);
+      await service.write(settings.SettingsService.dynamicPalette, const {
+        'neutralDark': 0xFF1B1B2F,
+        'neutralLight': 0xFFF2EFF7,
+        'neutralWhite': 0xFFFFFFFF,
+        'accentDark': 0xFFB9C3FF,
+        'accentLight': 0xFF4355B9,
+      });
+
+      final p = ThemeProvider();
+      expect(p.themeMode, settings.ThemeMode.materialYou);
+      expect(p.darkTheme.colorScheme.primary, const material.Color(0xFFB9C3FF));
+      expect(p.lightTheme.colorScheme.primary, const material.Color(0xFF4355B9));
+
+      // The tinted neutrals sit behind everything, and dark stays darker than
+      // the tone Android publishes.
+      final darkTokens = monoTokensOf(p.darkTheme);
+      expect(darkTokens.bg.toARGB32(), lessThan(0xFF1B1B2F));
+      expect(darkTokens.accent, const material.Color(0xFFB9C3FF));
+      expect(monoTokensOf(p.lightTheme).surface, const material.Color(0xFFFFFFFF));
+
+      p.dispose();
+    });
+
+    test('oled ignores the palette so pure black stays pure black', () async {
+      final service = await settings.SettingsService.getInstance();
+      await service.write(settings.SettingsService.dynamicPalette, const {
+        'neutralDark': 0xFF1B1B2F,
+        'neutralLight': 0xFFF2EFF7,
+        'neutralWhite': 0xFFFFFFFF,
+        'accentDark': 0xFFB9C3FF,
+        'accentLight': 0xFF4355B9,
+      });
+      final p = ThemeProvider();
+      await Future.delayed(Duration.zero);
+      await p.setThemeMode(settings.ThemeMode.oled);
+
+      expect(monoTokensOf(p.darkTheme).bg, const material.Color(0xFF000000));
+      expect(monoTokensOf(p.darkTheme).accent, const material.Color(0xFFEDEDED));
+
+      p.dispose();
     });
 
     test('reload re-reads after external mutation', () async {

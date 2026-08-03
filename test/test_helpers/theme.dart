@@ -21,6 +21,7 @@ const testMonoTokens = MonoTokens(
   outline: Colors.white24,
   text: Colors.white,
   textMuted: Colors.white70,
+  accent: Colors.white,
   splashFactory: NoSplash.splashFactory,
 );
 
@@ -42,5 +43,6 @@ const testMonoTokensAnimated = MonoTokens(
   outline: Color(0xFF333333),
   text: Colors.white,
   textMuted: Color(0xFFAAAAAA),
+  accent: Colors.white,
   splashFactory: NoSplash.splashFactory,
 );

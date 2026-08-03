@@ -638,6 +638,23 @@ class MainActivity : FlutterActivity() {
     MethodChannel(flutterEngine.dartExecutor.binaryMessenger, THEME_CHANNEL).setMethodCallHandler { call, result ->
       when (call.method) {
         "getRenderer" -> result.success(selectedFlutterRenderer.diagnosticName)
+        "getDynamicPalette" -> {
+          // Wallpaper tones arrived in Android 12. The resource suffixes count
+          // down from white, so neutral1_900 is M3 tone 10 and _50 is tone 95.
+          if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
+            result.success(null)
+          } else {
+            result.success(
+              mapOf(
+                "neutralDark" to resources.getColor(android.R.color.system_neutral1_900, theme),
+                "neutralLight" to resources.getColor(android.R.color.system_neutral1_50, theme),
+                "neutralWhite" to resources.getColor(android.R.color.system_neutral1_0, theme),
+                "accentDark" to resources.getColor(android.R.color.system_accent1_200, theme),
+                "accentLight" to resources.getColor(android.R.color.system_accent1_600, theme),
+              )
+            )
+          }
+        }
         "setSplashTheme" -> {
           val mode = call.argument<String>("mode")
 

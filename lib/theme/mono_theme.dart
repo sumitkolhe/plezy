@@ -1,17 +1,40 @@
 import 'package:flutter/material.dart';
+import 'dynamic_palette.dart';
 import 'gapped_track_shape.dart';
 import 'mono_tokens.dart';
 
-ThemeData monoTheme({required bool dark, bool oled = false}) {
+ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? palette}) {
   // neutral greys tuned for crisp contrast
-  final ({Color bg, Color surface, Color outline, Color text, Color textMuted}) c;
-  if (oled) {
+  final ({Color bg, Color surface, Color outline, Color text, Color textMuted, Color accent}) c;
+  if (palette != null) {
+    // Android publishes tone 10 as its darkest tinted neutral, which is lighter
+    // than this app sits. Pulling it toward black keeps the wallpaper's hue at
+    // the depth the other dark themes use.
+    c = dark
+        ? (
+            bg: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.55)!,
+            surface: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.25)!,
+            outline: const Color(0x1FFFFFFF),
+            text: palette.neutralLight,
+            textMuted: palette.neutralLight.withValues(alpha: 0.6),
+            accent: palette.accentDark,
+          )
+        : (
+            bg: palette.neutralLight,
+            surface: palette.neutralWhite,
+            outline: const Color(0x19000000),
+            text: palette.neutralDark,
+            textMuted: palette.neutralDark.withValues(alpha: 0.6),
+            accent: palette.accentLight,
+          );
+  } else if (oled) {
     c = (
       bg: const Color(0xFF000000), // Pure black for OLED
       surface: const Color(0xFF0A0A0A), // Very dark gray
       outline: const Color(0x1FFFFFFF),
       text: const Color(0xFFEDEDED),
       textMuted: const Color(0x99EDEDED),
+      accent: const Color(0xFFEDEDED),
     );
   } else if (dark) {
     c = (
@@ -20,6 +43,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
       outline: const Color(0x1FFFFFFF),
       text: const Color(0xFFEDEDED),
       textMuted: const Color(0x99EDEDED),
+      accent: const Color(0xFFEDEDED),
     );
   } else {
     c = (
@@ -28,6 +52,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
       outline: const Color(0x19000000),
       text: const Color(0xFF111111),
       textMuted: const Color(0x99111111),
+      accent: const Color(0xFF111111),
     );
   }
 
@@ -40,7 +65,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
     mouseCursor: clickableCursor,
     padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 18, vertical: 14)),
     elevation: const WidgetStatePropertyAll(0),
-    backgroundColor: WidgetStatePropertyAll(c.text),
+    backgroundColor: WidgetStatePropertyAll(c.accent),
     foregroundColor: WidgetStatePropertyAll(isDark ? c.bg : Colors.white),
     shape: const WidgetStatePropertyAll(StadiumBorder()),
   );
@@ -51,9 +76,9 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
     brightness: isDark ? Brightness.dark : Brightness.light,
     colorScheme: ColorScheme(
       brightness: isDark ? Brightness.dark : Brightness.light,
-      primary: c.text,
+      primary: c.accent,
       onPrimary: isDark ? c.bg : Colors.white,
-      secondary: c.text,
+      secondary: c.accent,
       onSecondary: c.bg,
       surface: c.surface,
       onSurface: c.text,
@@ -81,7 +106,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
     highlightColor: Colors.transparent,
     // Explicit mono-derived tile highlights: ListTile's native focus/hover
     // fill is the dpad focus visual inside M3E grouped-list cards.
-    focusColor: c.text.withValues(alpha: 0.12),
+    focusColor: c.accent.withValues(alpha: 0.12),
     hoverColor: c.text.withValues(alpha: 0.05),
     dividerColor: c.outline,
     scaffoldBackgroundColor: c.bg,
@@ -182,6 +207,7 @@ ThemeData monoTheme({required bool dark, bool oled = false}) {
         outline: c.outline,
         text: c.text,
         textMuted: c.textMuted,
+        accent: c.accent,
         splashFactory: NoSplash.splashFactory,
       ),
     ],

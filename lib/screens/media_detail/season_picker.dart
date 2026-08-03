@@ -145,7 +145,9 @@ class _SeasonSheet extends StatelessWidget {
                           fontFeatures: const [FontFeature.tabularFigures()],
                         ),
                       ),
-                trailing: selected ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18, color: tokensRef.text) : null,
+                trailing: selected
+                    ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18, color: tokensRef.accent)
+                    : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
               );
             },

@@ -6,12 +6,14 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../services/settings_binding_owner.dart';
 import '../services/settings_service.dart' as settings;
+import '../theme/dynamic_palette.dart';
 import '../theme/mono_theme.dart';
 
 class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, WidgetsBindingObserver {
   late final SettingsBindingOwner _settingsBinding;
   settings.ThemeMode _themeMode = settings.ThemeMode.system;
   late Brightness _systemBrightness;
+  DynamicPalette? _palette;
 
   ThemeProvider() {
     _systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
@@ -19,19 +21,32 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
     // them before runApp) so the first frame paints the persisted theme; the
     // async path below lands a microtask too late for the first build.
     final loaded = settings.SettingsService.instanceOrNull;
-    if (loaded != null) _themeMode = loaded.read(settings.SettingsService.themeMode);
+    if (loaded != null) {
+      _themeMode = loaded.read(settings.SettingsService.themeMode);
+      _palette = DynamicPalette.fromJson(loaded.read(settings.SettingsService.dynamicPalette));
+    }
     _settingsBinding = SettingsBindingOwner(
       prefs: const [settings.SettingsService.themeMode],
       onRefresh: (service) => _syncThemeMode(service.read(settings.SettingsService.themeMode)),
     );
     unawaited(_settingsBinding.bind());
     WidgetsBinding.instance.addObserver(this);
+    if (_themeMode == settings.ThemeMode.materialYou) unawaited(_refreshPalette());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // The wallpaper can change while the app is away, and Android does not tell
+    // Flutter when it does.
+    if (state == AppLifecycleState.resumed && _themeMode == settings.ThemeMode.materialYou) {
+      unawaited(_refreshPalette());
+    }
   }
 
   @override
   void didChangePlatformBrightness() {
     _systemBrightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    if (_themeMode == settings.ThemeMode.system) {
+    if (_themeMode == settings.ThemeMode.system || _themeMode == settings.ThemeMode.materialYou) {
       safeNotifyListeners();
     }
   }
@@ -47,17 +62,42 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
     final changed = _themeMode != mode;
     _themeMode = mode;
     _updateSplashTheme(mode);
+    if (changed && mode == settings.ThemeMode.materialYou) unawaited(_refreshPalette());
     if (changed || forceNotify) safeNotifyListeners();
   }
 
+  /// Reads Android's wallpaper tones. Returns without touching the theme when
+  /// the platform has none to give (below Android 12, or not Android at all),
+  /// which leaves Material You rendering as the plain system theme.
+  Future<void> _refreshPalette() async {
+    if (!Platform.isAndroid) return;
+    try {
+      final raw = await _themeChannel.invokeMethod<Map<Object?, Object?>>('getDynamicPalette');
+      final palette = DynamicPalette.fromChannel(raw);
+      if (palette == null || palette == _palette || isDisposed) return;
+      _palette = palette;
+      final service = _settingsBinding.settings ?? settings.SettingsService.instanceOrNull;
+      if (service != null) {
+        unawaited(service.write(settings.SettingsService.dynamicPalette, palette.toJson()));
+      }
+      safeNotifyListeners();
+    } on PlatformException {
+      return;
+    } on MissingPluginException {
+      return;
+    }
+  }
+
+  DynamicPalette? get _activePalette => _themeMode == settings.ThemeMode.materialYou ? _palette : null;
+
   settings.ThemeMode get themeMode => _themeMode;
 
-  ThemeData get lightTheme => monoTheme(dark: false);
+  ThemeData get lightTheme => monoTheme(dark: false, palette: _activePalette);
   ThemeData get darkTheme {
     if (_themeMode == settings.ThemeMode.oled) {
       return monoTheme(dark: true, oled: true);
     }
-    return monoTheme(dark: true);
+    return monoTheme(dark: true, palette: _activePalette);
   }
 
   ThemeMode get materialThemeMode {
@@ -69,6 +109,7 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
       case settings.ThemeMode.oled:
         return ThemeMode.dark;
       case settings.ThemeMode.system:
+      case settings.ThemeMode.materialYou:
         return ThemeMode.system;
     }
   }
@@ -82,6 +123,7 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
       case settings.ThemeMode.oled:
         return true;
       case settings.ThemeMode.system:
+      case settings.ThemeMode.materialYou:
         return _systemBrightness == Brightness.dark;
     }
   }
@@ -109,6 +151,8 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
       settings.ThemeMode.oled => 'oled',
       settings.ThemeMode.light => 'light',
       settings.ThemeMode.system => 'system',
+      // Material You follows the OS, and so does the default splash.
+      settings.ThemeMode.materialYou => 'system',
     };
     _themeChannel.invokeMethod('setSplashTheme', {'mode': name});
   }
@@ -123,6 +167,8 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
         return PhosphorIconsDuotone.circleHalf;
       case settings.ThemeMode.system:
         return PhosphorIconsDuotone.sun;
+      case settings.ThemeMode.materialYou:
+        return PhosphorIconsDuotone.palette;
     }
   }
 }

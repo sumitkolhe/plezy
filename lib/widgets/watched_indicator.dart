@@ -97,7 +97,7 @@ class WatchedIndicator extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(size.checkPadding),
               decoration: BoxDecoration(
-                color: tokens(context).text,
+                color: tokens(context).accent,
                 shape: BoxShape.circle,
                 boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4)],
               ),

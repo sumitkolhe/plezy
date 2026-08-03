@@ -25,7 +25,7 @@ import '../utils/platform_detector.dart';
 import 'trackers/tracker_constants.dart';
 import '../profiles/profile.dart';
 
-enum ThemeMode { system, light, dark, oled }
+enum ThemeMode { system, light, dark, oled, materialYou }
 
 /// Library density is now an int 1–5 (1 = most compact, 5 = most comfortable).
 /// Default is 3.
@@ -440,6 +440,15 @@ class SettingsService extends BaseSharedPreferencesService {
   static final displaySwitchDelay = IntPref('display_switch_delay', transform: (v) => v.clamp(0, 10));
 
   static ThemeMode _tvAwareThemeModeDefault() => TvDetectionService.isTVSync() ? ThemeMode.oled : ThemeMode.system;
+  /// Last palette read from Android, so a cold start in Material You paints
+  /// wallpaper colours on the first frame instead of a mono frame then a swap.
+  static final dynamicPalette = JsonPref<Map<String, Object?>>(
+    'dynamic_palette',
+    defaultValue: const <String, Object?>{},
+    encode: json.encode,
+    decode: (raw) => (raw as Map).cast<String, Object?>(),
+  );
+
   static const themeMode = EnumPref<ThemeMode>(
     'theme_mode',
     values: ThemeMode.values,

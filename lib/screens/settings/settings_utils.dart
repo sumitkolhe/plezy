@@ -23,6 +23,7 @@ String themeModeLabel(settings.ThemeMode mode) => switch (mode) {
   settings.ThemeMode.light => t.settings.lightTheme,
   settings.ThemeMode.dark => t.settings.darkTheme,
   settings.ThemeMode.oled => t.settings.oledTheme,
+  settings.ThemeMode.materialYou => t.settings.materialYouTheme,
 };
 
 /// Model for option selection dialogs.
