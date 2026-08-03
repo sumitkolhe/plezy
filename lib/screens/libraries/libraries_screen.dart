@@ -16,10 +16,10 @@ import '../../providers/libraries_provider.dart';
 import '../../services/settings_service.dart';
 import '../../widgets/settings_builder.dart';
 import '../../utils/app_logger.dart';
-import '../../utils/library_grouping.dart';
 import '../../utils/platform_detector.dart';
 import '../../utils/content_utils.dart';
-import '../../widgets/app_menu.dart';
+import '../../widgets/overlay_sheet.dart';
+import 'library_quick_picker_sheet.dart';
 import '../../widgets/backend_badge.dart';
 import '../../widgets/desktop_app_bar.dart';
 import '../../widgets/focusable_tab_chip.dart';
@@ -77,7 +77,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   bool _browseFiltersActive = false;
 
   /// Key for the library dropdown menu button.
-  final _libraryDropdownKey = GlobalKey<AppMenuButtonState<String>>();
 
   // Dynamic visible tabs and their focus nodes
   List<LibraryTabType> _visibleTabs = LibraryTabType.values;
@@ -600,71 +599,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     );
   }
 
-  AppMenuHeader<String> _buildLibraryServerHeaderMenuItem(MediaLibrary library, String serverKey) {
-    final style = Theme.of(context).textTheme.labelSmall?.copyWith(
-      fontWeight: .w600,
-      letterSpacing: 0.4,
-      color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.65),
-    );
-    return AppMenuHeader<String>(
-      child: _buildLibraryServerLabel(
-        library,
-        style,
-        badgeSize: 12,
-        constrainText: true,
-        fallbackServerName: serverKey,
-      ),
-    );
-  }
-
-  AppMenuItem<String> _buildLibraryMenuItem(MediaLibrary library, {required bool showServerName}) {
-    final isSelected = library.globalKey == _selectedLibraryGlobalKey;
-    return AppMenuItem<String>(
-      value: library.globalKey,
-      icon: ContentTypeHelper.getLibraryIcon(library.kind.id),
-      label: library.title,
-      selected: isSelected,
-      subtitleWidget: showServerName
-          ? _buildLibraryServerLabel(
-              library,
-              TextStyle(fontSize: 11, color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6)),
-              badgeSize: 10,
-              constrainText: true,
-            )
-          : null,
-    );
-  }
-
-  /// Build dropdown menu items with server subtitle when needed for clarity.
-  List<AppMenuEntry<String>> _buildGroupedLibraryMenuItems(
-    List<MediaLibrary> visibleLibraries, {
-    required bool showServerHeaders,
-  }) {
-    if (!showServerHeaders) {
-      // With multiple servers connected (but not grouped under headers), show the
-      // server name on every library so its origin is always clear — not only when
-      // two libraries happen to share a title.
-      final showServerNames = _hasMultipleServers(visibleLibraries);
-      return visibleLibraries.map((library) {
-        final showServerName = library.serverName != null && showServerNames;
-        return _buildLibraryMenuItem(library, showServerName: showServerName);
-      }).toList();
-    }
-
-    final grouped = groupLibrariesByFirstAppearance(visibleLibraries);
-    final menuItems = <AppMenuEntry<String>>[];
-    for (final serverKey in grouped.serverOrder) {
-      final bucket = grouped.byServer[serverKey]!;
-      if (serverKey.isNotEmpty) {
-        menuItems.add(_buildLibraryServerHeaderMenuItem(bucket.first, serverKey));
-      }
-      for (final library in bucket) {
-        menuItems.add(_buildLibraryMenuItem(library, showServerName: false));
-      }
-    }
-    return menuItems;
-  }
-
   /// Build the app bar title - either dropdown on mobile or simple title on desktop
   Widget _buildAppBarTitle(
     List<MediaLibrary> visibleLibraries,
@@ -703,45 +637,68 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         visibleLibraries.where((lib) => lib.globalKey == _selectedLibraryGlobalKey).firstOrNull ??
         visibleLibraries.firstOrNull;
     if (selectedLibrary == null) return Text(t.libraries.title);
-    final showServerHeaders = _hasMultipleServers(visibleLibraries) && groupByServer;
 
-    return AppMenuButton<String>(
-      key: _libraryDropdownKey,
-      tooltip: t.libraries.selectLibrary,
-      onSelected: (libraryGlobalKey) {
-        _loadLibraryContent(libraryGlobalKey);
-      },
-      entriesBuilder: (context) =>
-          _buildGroupedLibraryMenuItems(visibleLibraries, showServerHeaders: showServerHeaders),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        child: Row(
-          mainAxisSize: .min,
-          children: [
-            AppIcon(ContentTypeHelper.getLibraryIcon(selectedLibrary.kind.id), size: 20),
-            const SizedBox(width: 8),
-            if (_hasMultipleServers(visibleLibraries) && selectedLibrary.serverName != null)
-              Column(
-                crossAxisAlignment: .start,
-                mainAxisSize: .min,
-                children: [
-                  Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleMedium),
-                  _buildLibraryServerLabel(
-                    selectedLibrary,
-                    Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+    return Semantics(
+      button: true,
+      label: t.libraries.selectLibrary,
+      child: InkWell(
+        onTap: () => _showLibraryPicker(visibleLibraries, groupByServer: groupByServer),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Row(
+            mainAxisSize: .min,
+            children: [
+              AppIcon(ContentTypeHelper.getLibraryIcon(selectedLibrary.kind.id), size: 20),
+              const SizedBox(width: 8),
+              if (_hasMultipleServers(visibleLibraries) && selectedLibrary.serverName != null)
+                Column(
+                  crossAxisAlignment: .start,
+                  mainAxisSize: .min,
+                  children: [
+                    Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleMedium),
+                    _buildLibraryServerLabel(
+                      selectedLibrary,
+                      Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6),
+                      ),
+                      badgeSize: 10,
                     ),
-                    badgeSize: 10,
-                  ),
-                ],
-              )
-            else
-              Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(width: 4),
-            const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
-          ],
+                  ],
+                )
+              else
+                Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(width: 4),
+              const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  /// The same sheet the Libraries tab offers on long-press. An anchored menu
+  /// here covered the shelves it filters and sat at the far top of the screen,
+  /// while every other one-of-many choice in the app is a sheet.
+  void _showLibraryPicker(List<MediaLibrary> visibleLibraries, {required bool groupByServer}) {
+    final controller = OverlaySheetController.of(context);
+    unawaited(
+      controller
+          .show<String>(
+            showDragHandle: true,
+            constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.62),
+            builder: (_) => LibraryQuickPickerSheet(
+              libraries: visibleLibraries,
+              selectedLibraryKey: _selectedLibraryGlobalKey,
+              isLoading: false,
+              groupByServer: groupByServer,
+              emptyMessage: t.libraries.noLibrariesFound,
+              onSelected: controller.close,
+            ),
+          )
+          .then((libraryGlobalKey) {
+            if (libraryGlobalKey != null) _loadLibraryContent(libraryGlobalKey);
+          }),
     );
   }
 
