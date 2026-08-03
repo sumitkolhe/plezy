@@ -27,6 +27,10 @@ typedef CastStripMember = ({String name, String? secondary, String? imagePath});
 class CastMemberStrip extends StatefulWidget {
   static const double _innerPadding = 3;
 
+  /// The grid cell width is sized for 2:3 posters; taken whole it makes a
+  /// circle a third of the screen across. A face needs far less than a poster.
+  static const double _avatarScale = 0.72;
+
   final List<CastStripMember> members;
 
   /// Resolves server-relative image paths; null when [members] carry
@@ -52,7 +56,7 @@ class CastMemberStrip extends StatefulWidget {
   static double responsiveCardWidth(BuildContext context) {
     final density = SettingsService.instance.read(SettingsService.libraryDensity);
     final availableWidth = MediaQuery.sizeOf(context).width;
-    return GridSizeCalculator.getCellWidth(availableWidth, context, density);
+    return GridSizeCalculator.getCellWidth(availableWidth, context, density) * _avatarScale;
   }
 
   /// The strip's fixed height for a given card width:
