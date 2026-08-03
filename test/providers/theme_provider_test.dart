@@ -191,6 +191,28 @@ void main() {
       p.dispose();
     });
 
+    test('material you inks, and the mono themes still do not', () async {
+      final service = await settings.SettingsService.getInstance();
+      await service.write(settings.SettingsService.themeMode, settings.ThemeMode.materialYou);
+      await service.write(settings.SettingsService.dynamicPalette, const {
+        'neutralDark': 0xFF1B1B2F,
+        'neutralLight': 0xFFF2EFF7,
+        'neutralWhite': 0xFFFFFFFF,
+        'accentDark': 0xFFB9C3FF,
+        'accentLight': 0xFF4355B9,
+      });
+
+      final p = ThemeProvider();
+      expect(p.darkTheme.splashFactory, material.InkSparkle.splashFactory);
+      expect(p.darkTheme.highlightColor, isNot(material.Colors.transparent));
+
+      await p.setThemeMode(settings.ThemeMode.dark);
+      expect(p.darkTheme.splashFactory, material.NoSplash.splashFactory);
+      expect(p.darkTheme.highlightColor, material.Colors.transparent);
+
+      p.dispose();
+    });
+
     test('oled ignores the palette so pure black stays pure black', () async {
       final service = await settings.SettingsService.getInstance();
       await service.write(settings.SettingsService.dynamicPalette, const {

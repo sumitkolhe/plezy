@@ -57,6 +57,7 @@ ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? pale
   }
 
   final isDark = dark || oled;
+  final materialYou = palette != null;
   final clickableCursor = WidgetStateProperty.resolveWith<MouseCursor>(
     (states) => states.contains(WidgetState.disabled) ? MouseCursor.defer : SystemMouseCursors.click,
   );
@@ -101,9 +102,11 @@ ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? pale
       onInverseSurface: c.bg,
       inversePrimary: c.bg,
     ),
-    // remove "Material feel"
-    splashFactory: NoSplash.splashFactory,
-    highlightColor: Colors.transparent,
+    // The mono themes deliberately have no ink; Material You is Material, and
+    // the sparkle is half of what people recognise it by.
+    splashFactory: materialYou ? InkSparkle.splashFactory : NoSplash.splashFactory,
+    splashColor: materialYou ? c.accent.withValues(alpha: 0.14) : null,
+    highlightColor: materialYou ? c.accent.withValues(alpha: 0.08) : Colors.transparent,
     // Explicit mono-derived tile highlights: ListTile's native focus/hover
     // fill is the dpad focus visual inside M3E grouped-list cards.
     focusColor: c.accent.withValues(alpha: 0.12),
@@ -208,7 +211,7 @@ ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? pale
         text: c.text,
         textMuted: c.textMuted,
         accent: c.accent,
-        splashFactory: NoSplash.splashFactory,
+        splashFactory: materialYou ? InkSparkle.splashFactory : NoSplash.splashFactory,
       ),
     ],
   );
