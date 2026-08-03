@@ -11,6 +11,7 @@ import 'package:harbor/media/media_part.dart';
 import 'package:harbor/media/media_stream.dart';
 import 'package:harbor/media/media_version.dart';
 import 'package:harbor/providers/download_provider.dart';
+import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/services/download_manager_service.dart';
 import 'package:harbor/services/download_storage_service.dart';
 import 'package:harbor/services/jellyfin_api_cache.dart';
@@ -23,6 +24,7 @@ import 'package:harbor/widgets/episode_detail_sheet.dart';
 import 'package:provider/provider.dart';
 
 import '../test_helpers/media_items.dart';
+import '../test_helpers/multi_server_fixtures.dart';
 import '../test_helpers/prefs.dart';
 
 void main() {
@@ -200,6 +202,37 @@ void main() {
     }
     expect(find.descendant(of: sheet, matching: find.text(t.metadataEdit.releaseDate)), findsOneWidget);
   });
+
+  testWidgets('the details sheet offers the long-press actions as pills under Play', (tester) async {
+    final episode = testMediaItem(
+      id: 'action_pill_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'Downstream',
+      index: 7,
+      durationMs: 30 * 60 * 1000,
+    );
+
+    await _pumpEpisodeCard(tester, episode);
+    await tester.tap(find.text('E7${dotSeparator}Downstream'));
+    await tester.pumpAndSettle();
+
+    final sheet = find.byType(EpisodeDetailSheet);
+    for (final label in [t.mediaMenu.markAsWatched, t.mediaMenu.rate, t.mediaMenu.fileInfo]) {
+      expect(find.descendant(of: sheet, matching: find.text(label)), findsOneWidget, reason: label);
+    }
+
+    // Below Play, not above it.
+    expect(
+      tester.getTopLeft(find.text(t.mediaMenu.markAsWatched)).dy,
+      greaterThan(tester.getBottomLeft(find.text(t.common.play)).dy),
+    );
+
+    // Selecting one closes the sheet, the way choosing from the menu does.
+    await tester.tap(find.text(t.mediaMenu.fileInfo));
+    await tester.pumpAndSettle();
+    expect(sheet, findsNothing);
+  });
 }
 
 Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode, {VoidCallback? onTap}) async {
@@ -221,8 +254,13 @@ Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode, {VoidCallb
 
   await tester.pumpWidget(
     TranslationProvider(
-      child: ChangeNotifierProvider<DownloadProvider>.value(
-        value: downloadProvider,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<DownloadProvider>.value(value: downloadProvider),
+          // The details sheet offers the long-press action set, which is gated
+          // on the item's server.
+          ChangeNotifierProvider<MultiServerProvider>.value(value: testMultiServer().provider),
+        ],
         child: MaterialApp(
           theme: monoTheme(dark: true),
           home: Scaffold(

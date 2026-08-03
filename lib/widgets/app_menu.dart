@@ -566,7 +566,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final colorScheme = Theme.of(context).colorScheme;
     if (active && item.stateLayerColor != null) return colorScheme.onError;
     if (item.foregroundColor != null) return item.foregroundColor!;
-    if (item.destructive) return _destructiveMenuForeground(context);
+    if (item.destructive) return destructiveMenuForeground(context);
     if (item.selected) return colorScheme.primary;
     return colorScheme.onSurface;
   }
@@ -786,7 +786,7 @@ double _estimateMenuHeight<T>(List<AppMenuEntry<T>> entries) {
   return height;
 }
 
-Color _destructiveMenuForeground(BuildContext context) {
+Color destructiveMenuForeground(BuildContext context) {
   return Theme.of(context).colorScheme.brightness == Brightness.dark
       ? const Color(0xFFFF453A)
       : const Color(0xFFFF3B30);

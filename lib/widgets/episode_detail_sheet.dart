@@ -9,6 +9,8 @@ import '../utils/formatters.dart';
 import '../utils/media_quality_labels.dart';
 import '../utils/rating_spans.dart';
 import 'app_icon.dart';
+import 'app_menu.dart';
+import 'media_context_menu.dart';
 import 'optimized_media_image.dart';
 import 'overlay_sheet.dart';
 import 'placeholder_container.dart';
@@ -44,12 +46,17 @@ class EpisodeDetailSheet extends StatelessWidget {
   final String? localPosterPath;
   final VoidCallback onPlay;
 
+  /// The long-press menu's set for this episode. Closing with an action's
+  /// value is how it gets dispatched.
+  final List<MediaMenuAction> actions;
+
   const EpisodeDetailSheet({
     super.key,
     required this.episode,
     required this.client,
     required this.localPosterPath,
     required this.onPlay,
+    this.actions = const [],
   });
 
   @override
@@ -120,17 +127,29 @@ class EpisodeDetailSheet extends StatelessWidget {
         ),
         Padding(
           padding: inset.add(const EdgeInsets.only(bottom: 20)),
-          child: SizedBox(
-            width: double.infinity,
-            height: 48,
-            child: FilledButton.icon(
-              onPressed: () {
-                OverlaySheetController.closeAdaptive(context, null);
-                onPlay();
-              },
-              icon: const AppIcon(PhosphorIcons.play, size: 20),
-              label: Text(t.common.play),
-            ),
+          child: Column(
+            crossAxisAlignment: .stretch,
+            children: [
+              SizedBox(
+                height: 48,
+                child: FilledButton.icon(
+                  onPressed: () {
+                    OverlaySheetController.closeAdaptive(context, null);
+                    onPlay();
+                  },
+                  icon: const AppIcon(PhosphorIcons.play, size: 20),
+                  label: Text(t.common.play),
+                ),
+              ),
+              if (actions.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [for (final action in actions) _ActionPill(action: action)],
+                ),
+              ],
+            ],
           ),
         ),
       ],
@@ -159,6 +178,39 @@ class EpisodeDetailSheet extends StatelessWidget {
       fit: BoxFit.cover,
       placeholder: (context, url) => PlaceholderContainer(color: tokens(context).text.withValues(alpha: 0.04)),
       errorWidget: (context, url, error) => fallback,
+    );
+  }
+}
+
+class _ActionPill extends StatelessWidget {
+  final MediaMenuAction action;
+
+  const _ActionPill({required this.action});
+
+  @override
+  Widget build(BuildContext context) {
+    final tokensRef = tokens(context);
+    final foreground = action.destructive ? destructiveMenuForeground(context) : tokensRef.text;
+    const shape = BorderRadius.all(Radius.circular(MonoTokens.radiusFull));
+
+    return Material(
+      color: foreground.withValues(alpha: 0.08),
+      borderRadius: shape,
+      child: InkWell(
+        borderRadius: shape,
+        onTap: () => OverlaySheetController.closeAdaptive(context, action.value),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+          child: Row(
+            mainAxisSize: .min,
+            children: [
+              AppIcon(action.icon, size: 15, color: foreground),
+              const SizedBox(width: 7),
+              Text(action.label, style: TextStyle(fontSize: 12.5, fontWeight: .w500, color: foreground)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

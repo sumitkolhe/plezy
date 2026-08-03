@@ -58,14 +58,19 @@ import '../widgets/overlay_sheet.dart';
 import '../widgets/rating_bottom_sheet.dart';
 import '../i18n/strings.g.dart';
 
-class _MenuAction {
+class MediaMenuAction {
   final String value;
   final IconData icon;
   final String label;
   final bool destructive;
 
-  _MenuAction({required this.value, required this.icon, required this.label, this.destructive = false});
+  MediaMenuAction({required this.value, required this.icon, required this.label, this.destructive = false});
 }
+
+/// Presents [actions] however the caller likes and returns the chosen value.
+/// Lets a surface that is already open offer the same set the long-press menu
+/// does without restating which actions an item qualifies for.
+typedef MediaMenuPresenter = Future<String?> Function(List<MediaMenuAction> actions);
 
 /// A reusable wrapper widget that adds a context menu (long press / right click)
 /// to any media item with appropriate actions based on the item type.
@@ -166,6 +171,8 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     _showContextMenu(menuContext);
   }
 
+  Future<void> showActionsVia(MediaMenuPresenter present) => _showContextMenu(context, present: present);
+
   /// Get the serverId from the typed item.
   String? get _itemServerId => switch (widget.item) {
     MediaItem(:final serverId) => serverId,
@@ -183,7 +190,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
   /// Backend-neutral client for the active item's server.
   MediaServerClient _getMediaClientForItem() => context.getMediaClientWithFallback(serverIdOrNull(_itemServerId));
 
-  void _showContextMenu(BuildContext context) async {
+  Future<void> _showContextMenu(BuildContext context, {MediaMenuPresenter? present}) async {
     if (_isContextMenuOpen) return;
     _isContextMenuOpen = true;
 
@@ -220,12 +227,12 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         _itemServerId != null && multiServerProvider.serverManager.isClientOnline(ServerId(_itemServerId!));
     final canEditMetadata = isAdmin && supportsMetadataEdit(mediaClient, mediaKind);
 
-    final menuActions = <_MenuAction>[];
+    final menuActions = <MediaMenuAction>[];
 
     if (isCollection || isPlaylist) {
-      menuActions.add(_MenuAction(value: 'play', icon: PhosphorIcons.play, label: t.common.play));
+      menuActions.add(MediaMenuAction(value: 'play', icon: PhosphorIcons.play, label: t.common.play));
 
-      menuActions.add(_MenuAction(value: 'shuffle', icon: PhosphorIcons.shuffle, label: t.mediaMenu.shufflePlay));
+      menuActions.add(MediaMenuAction(value: 'shuffle', icon: PhosphorIcons.shuffle, label: t.mediaMenu.shufflePlay));
 
       // Download + sync-rule management. Video and audio playlists and any
       // collection qualify — collections can contain movies, episodes,
@@ -236,14 +243,14 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         final hasRule = Provider.of<DownloadProvider>(context, listen: false).hasSyncRule(_itemSyncRuleKey(context));
         if (hasRule) {
           menuActions.add(
-            _MenuAction(value: 'manage_sync', icon: PhosphorIcons.arrowsClockwise, label: t.downloads.manageSyncRule),
+            MediaMenuAction(value: 'manage_sync', icon: PhosphorIcons.arrowsClockwise, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
-            _MenuAction(value: 'remove_sync', icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule),
+            MediaMenuAction(value: 'remove_sync', icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule),
           );
         } else {
           menuActions.add(
-            _MenuAction(
+            MediaMenuAction(
               value: isPlaylist ? 'download_playlist' : 'download_collection',
               icon: PhosphorIcons.download,
               label: t.downloads.downloadNow,
@@ -252,26 +259,26 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         }
       }
 
-      menuActions.add(_MenuAction(value: 'delete', icon: PhosphorIcons.trash, label: t.common.delete, destructive: true));
+      menuActions.add(MediaMenuAction(value: 'delete', icon: PhosphorIcons.trash, label: t.common.delete, destructive: true));
     } else {
       // Music (artist/album/track) playback + navigation actions. Queue
       // insertion only exists where a playback session is bound.
       final isMusicKind = mediaKind != null && mediaKind.isMusic;
       if (isMusicKind) {
-        menuActions.add(_MenuAction(value: 'music_play', icon: PhosphorIcons.play, label: t.common.play));
+        menuActions.add(MediaMenuAction(value: 'music_play', icon: PhosphorIcons.play, label: t.common.play));
 
         final musicAvailable = context.read<MusicPlaybackService?>() != null;
         if (musicAvailable) {
-          menuActions.add(_MenuAction(value: 'music_play_next', icon: PhosphorIcons.playlist, label: t.music.playNext));
+          menuActions.add(MediaMenuAction(value: 'music_play_next', icon: PhosphorIcons.playlist, label: t.music.playNext));
           menuActions.add(
-            _MenuAction(value: 'music_add_queue', icon: PhosphorIcons.queue, label: t.music.addToQueue),
+            MediaMenuAction(value: 'music_add_queue', icon: PhosphorIcons.queue, label: t.music.addToQueue),
           );
         }
 
         // Instant Mix — only while the server is reachable.
         if (itemServerOnline) {
           menuActions.add(
-            _MenuAction(value: 'music_instant_mix', icon: PhosphorIcons.slidersHorizontal, label: t.music.instantMix),
+            MediaMenuAction(value: 'music_instant_mix', icon: PhosphorIcons.slidersHorizontal, label: t.music.instantMix),
           );
         }
 
@@ -279,7 +286,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         // detail screen, mirroring the Go to Series ancestor check.
         final ancestorAlbumId = context.findAncestorWidgetOfExactType<AlbumDetailScreen>()?.album.id;
         if (mediaKind == MediaKind.track && mediaItem!.parentId != null && ancestorAlbumId != mediaItem.parentId) {
-          menuActions.add(_MenuAction(value: 'music_album', icon: PhosphorIcons.vinylRecord, label: t.music.goToAlbum));
+          menuActions.add(MediaMenuAction(value: 'music_album', icon: PhosphorIcons.vinylRecord, label: t.music.goToAlbum));
         }
 
         // Go to Artist — album: parent, track: grandparent; hidden when
@@ -291,46 +298,46 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         };
         final ancestorArtistId = context.findAncestorWidgetOfExactType<ArtistDetailScreen>()?.artist.id;
         if (musicArtistId != null && ancestorArtistId != musicArtistId) {
-          menuActions.add(_MenuAction(value: 'music_artist', icon: PhosphorIcons.microphoneStage, label: t.music.goToArtist));
+          menuActions.add(MediaMenuAction(value: 'music_artist', icon: PhosphorIcons.microphoneStage, label: t.music.goToArtist));
         }
       }
 
       if (hasActiveProgress) {
         menuActions.add(
-          _MenuAction(value: 'play_from_beginning', icon: PhosphorIcons.arrowCounterClockwise, label: t.mediaMenu.playFromBeginning),
+          MediaMenuAction(value: 'play_from_beginning', icon: PhosphorIcons.arrowCounterClockwise, label: t.mediaMenu.playFromBeginning),
         );
       }
 
       // Trailer playback. The detail row may hide its trailer button on small
       // screens, so surface it here whenever the screen wires up onPlayTrailer.
       if (widget.onPlayTrailer != null) {
-        menuActions.add(_MenuAction(value: 'play_trailer', icon: PhosphorIcons.filmSlate, label: t.tooltips.playTrailer));
+        menuActions.add(MediaMenuAction(value: 'play_trailer', icon: PhosphorIcons.filmSlate, label: t.tooltips.playTrailer));
       }
 
       if (!mediaItem!.isWatched || isPartiallyWatched || hasActiveProgress) {
-        menuActions.add(_MenuAction(value: 'watch', icon: PhosphorIcons.check, label: t.mediaMenu.markAsWatched));
+        menuActions.add(MediaMenuAction(value: 'watch', icon: PhosphorIcons.check, label: t.mediaMenu.markAsWatched));
       }
 
       if (mediaItem.isWatched || isPartiallyWatched || hasActiveProgress) {
         menuActions.add(
-          _MenuAction(value: 'unwatch', icon: PhosphorIcons.minusCircle, label: t.mediaMenu.markAsUnwatched),
+          MediaMenuAction(value: 'unwatch', icon: PhosphorIcons.minusCircle, label: t.mediaMenu.markAsUnwatched),
         );
       }
 
       final isVideoKind = mediaItem.isVideoContent;
 
       if (widget.isInContinueWatching && isVideoKind) {
-        menuActions.add(_MenuAction(value: 'details', icon: PhosphorIcons.info, label: t.mediaMenu.viewDetails));
+        menuActions.add(MediaMenuAction(value: 'details', icon: PhosphorIcons.info, label: t.mediaMenu.viewDetails));
       }
 
       if (isVideoKind) {
-        menuActions.add(_MenuAction(value: 'rate', icon: PhosphorIcons.star, label: t.mediaMenu.rate));
+        menuActions.add(MediaMenuAction(value: 'rate', icon: PhosphorIcons.star, label: t.mediaMenu.rate));
       }
 
       // Edit Metadata — admin-only and backend-capability gated.
       if (canEditMetadata) {
         menuActions.add(
-          _MenuAction(value: 'edit_metadata', icon: PhosphorIcons.pencilSimple, label: t.metadataEdit.editMetadata),
+          MediaMenuAction(value: 'edit_metadata', icon: PhosphorIcons.pencilSimple, label: t.metadataEdit.editMetadata),
         );
       }
 
@@ -346,12 +353,12 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           itemSeriesKey != null &&
           !widget.isInContinueWatching &&
           ancestorSeriesKey != itemSeriesKey) {
-        menuActions.add(_MenuAction(value: 'series', icon: PhosphorIcons.television, label: t.mediaMenu.goToSeries));
+        menuActions.add(MediaMenuAction(value: 'series', icon: PhosphorIcons.television, label: t.mediaMenu.goToSeries));
       }
 
       if (mediaKind == MediaKind.show || mediaKind == MediaKind.season) {
         menuActions.add(
-          _MenuAction(value: 'shuffle_play', icon: PhosphorIcons.shuffle, label: t.mediaMenu.shufflePlay),
+          MediaMenuAction(value: 'shuffle_play', icon: PhosphorIcons.shuffle, label: t.mediaMenu.shufflePlay),
         );
       }
 
@@ -371,18 +378,18 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       if ((mediaKind == MediaKind.episode || mediaKind == MediaKind.movie) &&
           (hasVersionChoice || canTranscode) &&
           itemServerOnline) {
-        menuActions.add(_MenuAction(value: 'play_version', icon: PhosphorIcons.videoCamera, label: t.mediaMenu.playVersion));
+        menuActions.add(MediaMenuAction(value: 'play_version', icon: PhosphorIcons.videoCamera, label: t.mediaMenu.playVersion));
       }
 
       // File Info (for episodes and movies).
       if (mediaKind == MediaKind.episode || mediaKind == MediaKind.movie) {
-        menuActions.add(_MenuAction(value: 'fileinfo', icon: PhosphorIcons.info, label: t.mediaMenu.fileInfo));
+        menuActions.add(MediaMenuAction(value: 'fileinfo', icon: PhosphorIcons.info, label: t.mediaMenu.fileInfo));
       }
 
       if (PlatformDetector.supportsExternalPlayers() &&
           (mediaKind == MediaKind.episode || mediaKind == MediaKind.movie)) {
         menuActions.add(
-          _MenuAction(
+          MediaMenuAction(
             value: 'play_external',
             icon: PhosphorIcons.arrowSquareOut,
             label: t.externalPlayer.playInExternalPlayer,
@@ -408,14 +415,14 @@ class MediaContextMenuState extends State<MediaContextMenu> {
 
         if (hasSyncRule) {
           menuActions.add(
-            _MenuAction(value: 'manage_sync', icon: PhosphorIcons.arrowsClockwise, label: t.downloads.manageSyncRule),
+            MediaMenuAction(value: 'manage_sync', icon: PhosphorIcons.arrowsClockwise, label: t.downloads.manageSyncRule),
           );
           menuActions.add(
-            _MenuAction(value: 'remove_sync', icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule),
+            MediaMenuAction(value: 'remove_sync', icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule),
           );
           if (hasAnyDownload) {
             menuActions.add(
-              _MenuAction(
+              MediaMenuAction(
                 value: 'delete_download',
                 icon: PhosphorIcons.trash,
                 label: t.downloads.deleteDownload,
@@ -425,7 +432,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           }
         } else if (hasAnyDownload) {
           menuActions.add(
-            _MenuAction(
+            MediaMenuAction(
               value: 'delete_download',
               icon: PhosphorIcons.trash,
               label: t.downloads.deleteDownload,
@@ -433,7 +440,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
             ),
           );
         } else {
-          menuActions.add(_MenuAction(value: 'download', icon: PhosphorIcons.download, label: t.downloads.downloadNow));
+          menuActions.add(MediaMenuAction(value: 'download', icon: PhosphorIcons.download, label: t.downloads.downloadNow));
         }
       }
 
@@ -445,7 +452,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
               mediaKind == MediaKind.show ||
               mediaKind == MediaKind.season)) {
         menuActions.add(
-          _MenuAction(
+          MediaMenuAction(
             value: 'delete_media',
             icon: PhosphorIcons.trash,
             label: t.mediaMenu.deleteFromServer,
@@ -457,31 +464,36 @@ class MediaContextMenuState extends State<MediaContextMenu> {
 
     for (var i = 0; i < widget.extraEntries.length; i++) {
       final entry = widget.extraEntries[i];
-      menuActions.add(_MenuAction(value: 'extra_$i', icon: entry.icon, label: entry.label));
+      menuActions.add(MediaMenuAction(value: 'extra_$i', icon: entry.icon, label: entry.label));
     }
 
     final openedFromKeyboard = _openedFromKeyboard;
     _openedFromKeyboard = false;
 
-    var position = _tapPosition;
-    if (position == null) {
-      final RenderBox? overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
-      final RenderBox renderBox = context.findRenderObject() as RenderBox;
-      position = renderBox.localToGlobal(Offset.zero, ancestor: overlay);
-    }
+    final String? selected;
+    if (present != null) {
+      selected = await present(menuActions);
+    } else {
+      var position = _tapPosition;
+      if (position == null) {
+        final RenderBox? overlay = Overlay.of(context).context.findRenderObject() as RenderBox?;
+        final RenderBox renderBox = context.findRenderObject() as RenderBox;
+        position = renderBox.localToGlobal(Offset.zero, ancestor: overlay);
+      }
 
-    // Present from the menu's own context: it sits at the trigger widget,
-    // below any screen-level OverlaySheetHost, while callers often pass a
-    // screen context from ABOVE its host (which would skip the host and
-    // fall back to a hostless modal sheet).
-    final selected = await showAdaptiveAppMenu<String>(
-      this.context,
-      title: _itemDisplayTitle(),
-      entries: _menuEntries(menuActions),
-      position: position,
-      focusFirstItem: openedFromKeyboard,
-      isScrollControlled: true,
-    );
+      // Present from the menu's own context: it sits at the trigger widget,
+      // below any screen-level OverlaySheetHost, while callers often pass a
+      // screen context from ABOVE its host (which would skip the host and
+      // fall back to a hostless modal sheet).
+      selected = await showAdaptiveAppMenu<String>(
+        this.context,
+        title: _itemDisplayTitle(),
+        entries: _menuEntries(menuActions),
+        position: position,
+        focusFirstItem: openedFromKeyboard,
+        isScrollControlled: true,
+      );
+    }
 
     try {
       if (!context.mounted) return;
@@ -700,7 +712,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     }
   }
 
-  List<AppMenuEntry<String>> _menuEntries(List<_MenuAction> actions) {
+  List<AppMenuEntry<String>> _menuEntries(List<MediaMenuAction> actions) {
     return [
       for (final action in actions)
         AppMenuItem<String>(

@@ -66,16 +66,23 @@ class EpisodeCard extends StatefulWidget {
 class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<EpisodeCard> {
   MediaItem _effectiveEpisode(BuildContext context) => context.withFreshWatchState(widget.episode);
 
+  /// The sheet is another presentation of the long-press menu, so its buttons
+  /// come from that action set and dispatch through the same handlers.
   void _openDetails(BuildContext context, MediaItem episode) {
+    final menu = contextMenuKey.currentState;
+    if (menu == null) return;
     unawaited(
-      OverlaySheetController.showAdaptive<void>(
-        context,
-        showDragHandle: true,
-        builder: (_) => EpisodeDetailSheet(
-          episode: episode,
-          client: widget.client,
-          localPosterPath: widget.localPosterPath,
-          onPlay: widget.onTap,
+      menu.showActionsVia(
+        (actions) => OverlaySheetController.showAdaptive<String>(
+          context,
+          showDragHandle: true,
+          builder: (_) => EpisodeDetailSheet(
+            episode: episode,
+            client: widget.client,
+            localPosterPath: widget.localPosterPath,
+            onPlay: widget.onTap,
+            actions: actions,
+          ),
         ),
       ),
     );
