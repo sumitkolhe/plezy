@@ -125,7 +125,7 @@ class EpisodeDetailSheet extends StatelessWidget {
                 ],
                 if (summary != null && summary.isNotEmpty) ...[
                   const SizedBox(height: 18),
-                  Text(summary, style: TextStyle(fontSize: 14, color: tokensRef.textMuted, height: 1.55)),
+                  Text(summary, style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.55)),
                 ],
                 if (directors != null && directors.isNotEmpty) ...[
                   const SizedBox(height: 16),
