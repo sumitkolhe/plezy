@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../models/download_models.dart';
 import '../utils/platform_detector.dart';
@@ -60,12 +60,12 @@ class DownloadStatusIcon extends StatelessWidget {
 
     switch (s) {
       case DownloadStatus.queued:
-        return AppIcon(TablerIcons.clock, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIcons.clock, size: size, color: _tint(Colors.orange));
       case DownloadStatus.downloading:
         // No progress value — render a static "downloading" icon (callers
         // without per-item progress, e.g. the download tree view).
         if (progress == null) {
-          return AppIcon(TablerIcons.download, size: size, color: _tint(overrideColor ?? Colors.blue));
+          return AppIcon(PhosphorIcons.download, size: size, color: _tint(overrideColor ?? Colors.blue));
         }
         final primary = overrideColor ?? Theme.of(context).colorScheme.primary;
         final tinted = _tint(primary);
@@ -90,18 +90,18 @@ class DownloadStatusIcon extends StatelessWidget {
         );
       case DownloadStatus.paused:
         return AppIcon(
-          TablerIcons.playerPause,
+          PhosphorIcons.pause,
           size: size,
           color: _tint(variant == DownloadStatusIconVariant.muted ? Colors.amber : Colors.grey),
         );
       case DownloadStatus.failed:
-        return AppIcon(TablerIcons.alertCircle, size: size, color: _tint(Colors.red));
+        return AppIcon(PhosphorIcons.warningCircle, size: size, color: _tint(Colors.red));
       case DownloadStatus.cancelled:
-        return AppIcon(TablerIcons.circleX, size: size, color: _tint(Colors.grey));
+        return AppIcon(PhosphorIcons.xCircle, size: size, color: _tint(Colors.grey));
       case DownloadStatus.completed:
-        return AppIcon(TablerIcons.circleCheck, size: size, color: _tint(Colors.green));
+        return AppIcon(PhosphorIcons.checkCircle, size: size, color: _tint(Colors.green));
       case DownloadStatus.partial:
-        return AppIcon(TablerIcons.download, size: size, color: _tint(Colors.orange));
+        return AppIcon(PhosphorIcons.download, size: size, color: _tint(Colors.orange));
     }
   }
 }

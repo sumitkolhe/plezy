@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../media/media_item.dart';
 import '../../media/media_kind.dart';
 import '../../mixins/context_menu_tap_mixin.dart';
@@ -117,7 +117,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                                 )
                               : null,
                           child: AppIcon(
-                            widget.isMoving ? TablerIcons.arrowsSort : TablerIcons.gripVertical,
+                            widget.isMoving ? PhosphorIcons.arrowsDownUp : PhosphorIcons.dotsSixVertical,
                             color: (widget.isMoving || isDragHandleFocused) ? colorScheme.primary : textMuted,
                           ),
                         ),
@@ -173,7 +173,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                         )
                       : null,
                   child: IconButton(
-                    icon: const AppIcon(TablerIcons.x, size: 20),
+                    icon: const AppIcon(PhosphorIcons.x, size: 20),
                     onPressed: widget.onRemove,
                     tooltip: t.playlists.removeItem,
                     color: isRemoveButtonFocused ? colorScheme.primary : textMuted,
@@ -233,11 +233,11 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
   }
 
   IconData _fallbackIcon(MediaItem item) => switch (item.kind) {
-    MediaKind.artist => TablerIcons.microphone2,
-    MediaKind.album => TablerIcons.disc,
-    MediaKind.track => TablerIcons.music,
-    MediaKind.show || MediaKind.season || MediaKind.episode => TablerIcons.deviceTv,
-    _ => TablerIcons.movie,
+    MediaKind.artist => PhosphorIcons.microphoneStage,
+    MediaKind.album => PhosphorIcons.vinylRecord,
+    MediaKind.track => PhosphorIcons.musicNote,
+    MediaKind.show || MediaKind.season || MediaKind.episode => PhosphorIcons.television,
+    _ => PhosphorIcons.filmSlate,
   };
 
   String _buildSubtitle(MediaItem item) {

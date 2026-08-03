@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as material show ThemeMode;
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -257,7 +257,7 @@ class _StartupBootstrapState<T> extends State<StartupBootstrap<T>> {
                 key: startupBootstrapFailureKey,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppIcon(TablerIcons.alertCircle, size: 48),
+                  const AppIcon(PhosphorIcons.warningCircle, size: 48),
                   const SizedBox(height: 16),
                   Text(t.common.error, style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 16),
@@ -416,6 +416,10 @@ void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
     final ofl = await rootBundle.loadString(MonoFonts.licenseAsset);
     yield LicenseEntryWithLineBreaks(MonoFonts.licenseePackages, ofl);
+  });
+  LicenseRegistry.addLicense(() async* {
+    final mit = await rootBundle.loadString(MonoFonts.iconLicenseAsset);
+    yield LicenseEntryWithLineBreaks(const ['Phosphor Icons'], mit);
   });
 }
 
@@ -1365,9 +1369,9 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
             child: CircularProgressIndicator(strokeWidth: 1.5, color: coralColor),
           );
         } else if (connected) {
-          statusIcon = const AppIcon(TablerIcons.circleCheck, size: 14, color: successColor);
+          statusIcon = const AppIcon(PhosphorIcons.checkCircle, size: 14, color: successColor);
         } else {
-          statusIcon = const AppIcon(TablerIcons.circleX, size: 14, color: failColor);
+          statusIcon = const AppIcon(PhosphorIcons.xCircle, size: 14, color: failColor);
         }
         return Padding(
           key: ValueKey(entry.key),

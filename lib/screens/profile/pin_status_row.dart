@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../focus/focusable_button.dart';
 import '../../i18n/strings.g.dart';
@@ -28,7 +28,7 @@ class PinStatusRow extends StatelessWidget {
           child: Row(
             mainAxisSize: .min,
             children: [
-              AppIcon(TablerIcons.lock, color: theme.colorScheme.onPrimaryContainer, size: 18),
+              AppIcon(PhosphorIcons.lock, color: theme.colorScheme.onPrimaryContainer, size: 18),
               const SizedBox(width: 6),
               Text(
                 t.profiles.pinSet,

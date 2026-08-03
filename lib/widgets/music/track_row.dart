@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_tile_mixin.dart';
@@ -273,7 +273,7 @@ class _TrackRowState extends State<TrackRow> with ContextMenuTapMixin<TrackRow>,
                   ),
                   child: Builder(
                     builder: (buttonContext) => IconButton(
-                      icon: AppIcon(widget.trailingIcon ?? TablerIcons.dotsVertical, size: 20, color: tk.textMuted),
+                      icon: AppIcon(widget.trailingIcon ?? PhosphorIcons.dotsThreeOutlineVertical, size: 20, color: tk.textMuted),
                       onPressed: widget.onTrailingTap ?? () => _showMenuAt(buttonContext),
                     ),
                   ),

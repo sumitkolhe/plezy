@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/focusable_action_bar.dart';
@@ -201,18 +201,18 @@ class ExploreScreenState extends State<ExploreScreen>
   }
 
   static IconData _rowIcon(CatalogRowId? row) => switch (row) {
-    null => TablerIcons.thumbUp,
-    CatalogRowId.watchlist => TablerIcons.bookmark,
+    null => PhosphorIcons.thumbsUp,
+    CatalogRowId.watchlist => PhosphorIcons.bookmark,
     CatalogRowId.recommendedMovies ||
     CatalogRowId.recommendedShows ||
-    CatalogRowId.suggestedAnime => TablerIcons.thumbUp,
+    CatalogRowId.suggestedAnime => PhosphorIcons.thumbsUp,
     CatalogRowId.trendingMovies ||
     CatalogRowId.trendingShows ||
     CatalogRowId.trendingAnime ||
     CatalogRowId.airingAnime ||
-    CatalogRowId.trending => TablerIcons.trendingUp,
-    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => TablerIcons.flame,
-    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => TablerIcons.calendarPlus,
+    CatalogRowId.trending => PhosphorIcons.trendUp,
+    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => PhosphorIcons.fire,
+    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIcons.calendarPlus,
   };
 
   List<AppMenuEntry<CatalogSourceId>> _sourceMenuEntries(CatalogSourcesProvider sources, CatalogSource active) => [
@@ -241,7 +241,7 @@ class ExploreScreenState extends State<ExploreScreen>
           const SizedBox(width: 8),
           Text(active.displayName, style: textStyle ?? Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 4),
-          const AppIcon(TablerIcons.chevronDown, size: 24),
+          const AppIcon(PhosphorIcons.caretDown, size: 24),
         ],
       ),
     );
@@ -321,7 +321,7 @@ class ExploreScreenState extends State<ExploreScreen>
             // handheld the gesture already covers this.
             if (!PlatformDetector.isHandheld(context))
               FocusableAction(
-                icon: TablerIcons.refresh,
+                icon: PhosphorIcons.arrowsClockwise,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_handleRefresh()),
               ),
@@ -362,7 +362,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: ErrorStateWidget(
             message: explore.errorMessage ?? t.explore.emptyTitle,
-            icon: TablerIcons.alertCircle,
+            icon: PhosphorIcons.warningCircle,
             onRetry: () => unawaited(_explore.load()),
           ),
         ),
@@ -372,7 +372,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: EmptyStateWidget(
             message: t.explore.emptyMessage(source: explore.activeSource?.displayName ?? ''),
-            icon: TablerIcons.compass,
+            icon: PhosphorIcons.compass,
           ),
         ),
       ]);
@@ -416,7 +416,7 @@ class ExploreScreenState extends State<ExploreScreen>
     if (isSearching) return LoadingIndicatorBox.sliver;
     if (lastSearchFailed) {
       return SliverFillRemaining(
-        child: StateMessageWidget(message: t.explore.searchFailed, icon: TablerIcons.alertCircle, iconSize: 80),
+        child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIcons.warningCircle, iconSize: 80),
       );
     }
     // The debounce window right after the field goes from empty to typed: no
@@ -426,7 +426,7 @@ class ExploreScreenState extends State<ExploreScreen>
       return SliverFillRemaining(
         child: StateMessageWidget(
           message: t.explore.searchEmpty(query: lastSearchedQuery),
-          icon: TablerIcons.zoomOut,
+          icon: PhosphorIcons.magnifyingGlassMinus,
           iconSize: 80,
         ),
       );
@@ -483,7 +483,7 @@ class ExploreScreenState extends State<ExploreScreen>
                 ),
               if (active != null)
                 FocusableAction(
-                  icon: TablerIcons.search,
+                  icon: PhosphorIcons.magnifyingGlass,
                   iconColor: foregroundColor,
                   tooltip: t.common.search,
                   onPressed: () => Navigator.of(
@@ -491,7 +491,7 @@ class ExploreScreenState extends State<ExploreScreen>
                   ).push(MaterialPageRoute<void>(builder: (_) => CatalogSearchScreen(source: active))),
                 ),
               FocusableAction(
-                icon: TablerIcons.refresh,
+                icon: PhosphorIcons.arrowsClockwise,
                 iconColor: foregroundColor,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_explore.load()),
@@ -520,7 +520,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: ErrorStateWidget(
                 message: _explore.errorMessage ?? t.explore.emptyTitle,
-                icon: TablerIcons.alertCircle,
+                icon: PhosphorIcons.warningCircle,
                 onRetry: () => unawaited(_explore.load()),
               ),
             )
@@ -528,7 +528,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: EmptyStateWidget(
                 message: t.explore.emptyMessage(source: _explore.activeSource?.displayName ?? ''),
-                icon: TablerIcons.compass,
+                icon: PhosphorIcons.compass,
               ),
             ),
           if (tvHubs.isNotEmpty)

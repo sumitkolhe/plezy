@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 
 import '../../../focus/dpad_navigator.dart';
@@ -131,7 +131,7 @@ class _VolumeControlState extends State<VolumeControl> {
               onTap: widget.volumeController.toggleMute,
               excludeSemantics: true,
               child: IconButton(
-                icon: AppIcon(isMuted ? TablerIcons.volumeOff : TablerIcons.volume, color: Colors.white),
+                icon: AppIcon(isMuted ? PhosphorIcons.speakerX : PhosphorIcons.speakerHigh, color: Colors.white),
                 onPressed: widget.volumeController.toggleMute,
               ),
             );

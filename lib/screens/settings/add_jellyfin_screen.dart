@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -511,7 +511,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           // URL example — intentionally not localized.
           hintText: 'https://jellyfin.example.com',
           helperText: _serverInfo == null ? t.addServer.serverUrlsHelper : null,
-          prefixIcon: const AppIcon(TablerIcons.link),
+          prefixIcon: const AppIcon(PhosphorIcons.link),
         ),
         validator: (_) => _enteredUrls().isEmpty ? t.addServer.required : null,
       ),
@@ -525,7 +525,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onPressed: busy ? null : _probe,
           child: FilledButton.icon(
             onPressed: busy ? null : _probe,
-            icon: busy ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.world),
+            icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.globe),
             label: Text(t.addServer.findServer),
           ),
         ),
@@ -542,7 +542,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onNavigateUp: () => _changeServerFocus.requestFocus(),
           textInputAction: TextInputAction.next,
           onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
-          decoration: InputDecoration(labelText: t.addServer.username, prefixIcon: const AppIcon(TablerIcons.user)),
+          decoration: InputDecoration(labelText: t.addServer.username, prefixIcon: const AppIcon(PhosphorIcons.person)),
           validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
         ),
         const SizedBox(height: 12),
@@ -553,7 +553,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           enabled: !busy,
           textInputAction: TextInputAction.done,
           onFieldSubmitted: busy ? null : (_) => _signIn(),
-          decoration: InputDecoration(labelText: t.addServer.password, prefixIcon: const AppIcon(TablerIcons.lock)),
+          decoration: InputDecoration(labelText: t.addServer.password, prefixIcon: const AppIcon(PhosphorIcons.lock)),
           // Empty password is valid for some Jellyfin setups, so don't
           // require a value.
         ),
@@ -564,7 +564,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           onPressed: busy ? null : _signIn,
           child: FilledButton.icon(
             onPressed: busy ? null : _signIn,
-            icon: busy ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.login),
+            icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.signIn),
             label: Text(t.addServer.signIn),
           ),
         ),
@@ -576,7 +576,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
             onPressed: busy ? null : _startQuickConnect,
             child: OutlinedButton.icon(
               onPressed: busy ? null : _startQuickConnect,
-              icon: const AppIcon(TablerIcons.broadcast),
+              icon: const AppIcon(PhosphorIcons.broadcast),
               label: Text(t.auth.useQuickConnect),
             ),
           ),
@@ -595,7 +595,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
       ),
       child: Row(
         children: [
-          const AppIcon(TablerIcons.cloudCheck),
+          const AppIcon(PhosphorIcons.cloudCheck),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -733,7 +733,7 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
             onPressed: _cancelQuickConnect,
             child: OutlinedButton.icon(
               onPressed: _cancelQuickConnect,
-              icon: const AppIcon(TablerIcons.x),
+              icon: const AppIcon(PhosphorIcons.x),
               label: Text(t.auth.quickConnectCancel),
             ),
           ),
@@ -786,7 +786,7 @@ class _DiscoveredJellyfinServerTile extends StatelessWidget {
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  const AppIcon(TablerIcons.server),
+                  const AppIcon(PhosphorIcons.hardDrives),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -807,7 +807,7 @@ class _DiscoveredJellyfinServerTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const AppIcon(TablerIcons.chevronRight),
+                  const AppIcon(PhosphorIcons.caretRight),
                 ],
               ),
             ),

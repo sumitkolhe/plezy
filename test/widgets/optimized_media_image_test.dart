@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:cached_network_image_ce/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/utils/media_image_helper.dart';
 import 'package:harbor/widgets/optimized_media_image.dart';
 
@@ -126,7 +126,7 @@ void main() {
                   width: 96,
                   height: 96,
                   imageType: ImageType.avatar,
-                  fallbackIcon: TablerIcons.user,
+                  fallbackIcon: PhosphorIcons.person,
                 ),
                 const SizedBox(height: 8),
                 const Text('Actor Name'),
@@ -139,7 +139,7 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.byIcon(TablerIcons.user), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.person), findsOneWidget);
 
     final placeholder = find.descendant(of: find.byType(OptimizedMediaImage), matching: find.byType(Container));
     expect(placeholder, findsOneWidget);
@@ -262,17 +262,17 @@ void main() {
               localFilePath: file.path,
               width: 80,
               height: 120,
-              fallbackIcon: TablerIcons.photoOff,
+              fallbackIcon: PhosphorIcons.imageBroken,
             );
           },
         ),
       ),
     );
 
-    expect(find.byIcon(TablerIcons.photoOff), findsNothing);
+    expect(find.byIcon(PhosphorIcons.imageBroken), findsNothing);
     await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pump();
-    expect(find.byIcon(TablerIcons.photoOff), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.imageBroken), findsOneWidget);
 
     file.writeAsBytesSync(
       base64Decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='),
@@ -281,12 +281,12 @@ void main() {
     rebuild(() {});
     await tester.pump();
 
-    expect(find.byIcon(TablerIcons.photoOff), findsNothing);
+    expect(find.byIcon(PhosphorIcons.imageBroken), findsNothing);
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 20)));
     await tester.pump();
     await tester.pump();
     expect(file.existsSync(), isTrue);
-    expect(find.byIcon(TablerIcons.photoOff), findsNothing);
+    expect(find.byIcon(PhosphorIcons.imageBroken), findsNothing);
     expect(find.byType(Image), findsOneWidget);
     final localImage = tester.widget<Image>(find.byType(Image));
     final localResize = localImage.image as ResizeImage;

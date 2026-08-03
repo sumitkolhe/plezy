@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../connection/connection_registry.dart';
@@ -132,7 +132,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                           : EmptyStateWidget(
                               message: t.messages.noProfilesAvailable,
                               subtitle: t.messages.contactAdminForProfiles,
-                              icon: TablerIcons.userMinus,
+                              icon: PhosphorIcons.userMinus,
                             ),
                     )
                   else
@@ -148,7 +148,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                         onSelect: _switching ? null : _addLocalProfile,
                         child: OutlinedButton.icon(
                           onPressed: _switching ? null : _addLocalProfile,
-                          icon: const AppIcon(TablerIcons.userPlus),
+                          icon: const AppIcon(PhosphorIcons.userPlus),
                           label: Text(t.profiles.addLocalProfile),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _ProfileSwitchScreenState extends State<ProfileSwitchScreen> with MountedS
                         child: OutlinedButton.icon(
                           onPressed: _switching ? null : _logout,
                           style: OutlinedButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
-                          icon: const AppIcon(TablerIcons.logout),
+                          icon: const AppIcon(PhosphorIcons.signOut),
                           label: Text(t.common.logout),
                         ),
                       ),
@@ -445,7 +445,7 @@ class _ProfileTile extends StatelessWidget {
                 actions: [if (onManage != null) _TileAction.manage, if (onDelete != null) _TileAction.delete],
               )
             else if (!isActive)
-              const Padding(padding: .only(left: 8), child: AppIcon(TablerIcons.chevronRight)),
+              const Padding(padding: .only(left: 8), child: AppIcon(PhosphorIcons.caretRight)),
           ],
         ),
       ),
@@ -488,7 +488,7 @@ class _ProfileActionsButton extends StatelessWidget {
       focusNode: focusNode,
       semanticLabel: t.profiles.manage,
       onNavigateLeft: onNavigateLeft,
-      icon: const AppIcon(TablerIcons.dotsVertical),
+      icon: const AppIcon(PhosphorIcons.dotsThreeOutlineVertical),
       tooltip: t.profiles.manage,
       onSelected: onSelected,
       itemBuilder: (_) => [for (final action in actions) AppMenuItem(value: action, label: action.label)],

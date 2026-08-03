@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../media/ids.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../../i18n/strings.g.dart';
@@ -89,7 +89,7 @@ class _QueueSheetState extends State<QueueSheet> {
                     maxLines: 1,
                     overflow: .ellipsis,
                   ),
-                  trailing: isCurrent ? AppIcon(TablerIcons.playerPlay, color: primaryColor) : null,
+                  trailing: isCurrent ? AppIcon(PhosphorIcons.play, color: primaryColor) : null,
                   onTap: () {
                     widget.onItemSelected(item);
                     OverlaySheetController.of(context).close();
@@ -99,7 +99,7 @@ class _QueueSheetState extends State<QueueSheet> {
             );
           }
 
-          return BaseVideoControlSheet(title: t.videoControls.queue, icon: TablerIcons.listNumbers, child: content);
+          return BaseVideoControlSheet(title: t.videoControls.queue, icon: PhosphorIcons.queue, child: content);
         },
       ),
     );
@@ -120,7 +120,7 @@ class _QueueSheetState extends State<QueueSheet> {
         width: _kThumbWidth,
         height: _kThumbHeight,
         fit: BoxFit.cover,
-        errorWidget: (context, url, error) => AppIcon(TablerIcons.photo, color: Colors.white54, size: _kThumbHeight),
+        errorWidget: (context, url, error) => AppIcon(PhosphorIcons.image, color: Colors.white54, size: _kThumbHeight),
       ),
       isCurrent: isCurrent,
       borderColor: Theme.of(context).colorScheme.primary,

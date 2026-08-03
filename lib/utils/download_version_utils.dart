@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../media/media_item.dart';
 import '../media/media_kind.dart';
 import '../media/media_server_client.dart';
@@ -87,7 +87,7 @@ Future<int?> showVersionPickerDialog(BuildContext context, List<MediaVersion> ve
     title: title,
     options: List.generate(
       versions.length,
-      (index) => (icon: TablerIcons.video, label: versions[index].displayLabel, value: index),
+      (index) => (icon: PhosphorIcons.videoCamera, label: versions[index].displayLabel, value: index),
     ),
   );
 }

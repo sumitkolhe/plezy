@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/dpad_navigator.dart';
 import '../focus/key_event_utils.dart';
@@ -222,12 +222,12 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
         _characters('456'),
         _characters('789'),
         [
-          _TvKey.action(t.common.clear, _TvKeyType.clear, icon: TablerIcons.eraser),
+          _TvKey.action(t.common.clear, _TvKeyType.clear, icon: PhosphorIcons.eraser),
           const _TvKey.character('0'),
-          const _TvKey.action('Del', _TvKeyType.backspace, icon: TablerIcons.backspace),
+          const _TvKey.action('Del', _TvKeyType.backspace, icon: PhosphorIcons.backspace),
         ],
         [
-          _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: TablerIcons.x),
+          _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: PhosphorIcons.x),
           const _TvKey.character('.'),
           _TvKey.action(_doneLabel(), _TvKeyType.done, icon: _doneIcon()),
         ],
@@ -235,7 +235,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
     }
 
     final actionRow = [
-      const _TvKey.action('Space', _TvKeyType.space, icon: TablerIcons.keyboard),
+      const _TvKey.action('Space', _TvKeyType.space, icon: PhosphorIcons.keyboard),
       const _TvKey.character('@'),
       const _TvKey.character('#'),
       const _TvKey.character('_'),
@@ -243,10 +243,10 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       const _TvKey.character(':'),
       const _TvKey.character('='),
       _isMultiline
-          ? const _TvKey.action('Line', _TvKeyType.newline, icon: TablerIcons.cornerDownLeft)
+          ? const _TvKey.action('Line', _TvKeyType.newline, icon: PhosphorIcons.keyReturn)
           : const _TvKey.character('&'),
-      _TvKey.action(t.common.clear, _TvKeyType.clear, icon: TablerIcons.eraser),
-      _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: TablerIcons.x),
+      _TvKey.action(t.common.clear, _TvKeyType.clear, icon: PhosphorIcons.eraser),
+      _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: PhosphorIcons.x),
       _TvKey.action(_doneLabel(), _TvKeyType.done, icon: _doneIcon()),
     ];
 
@@ -255,10 +255,10 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       [const _TvKey.spacer(), ..._characters('qwertyuiop'), const _TvKey.spacer()],
       [const _TvKey.spacer(), ..._characters('asdfghjkl'), const _TvKey.character("'"), const _TvKey.spacer()],
       [
-        const _TvKey.action('', _TvKeyType.symbols, icon: TablerIcons.math),
-        _TvKey.action('Shift', _TvKeyType.shift, icon: TablerIcons.arrowBigUp),
+        const _TvKey.action('', _TvKeyType.symbols, icon: PhosphorIcons.mathOperations),
+        _TvKey.action('Shift', _TvKeyType.shift, icon: PhosphorIcons.arrowFatUp),
         ..._characters('zxcvbnm.-'),
-        const _TvKey.action('Del', _TvKeyType.backspace, icon: TablerIcons.backspace),
+        const _TvKey.action('Del', _TvKeyType.backspace, icon: PhosphorIcons.backspace),
       ],
       [const _TvKey.spacer(), ...actionRow],
     ];
@@ -269,7 +269,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       [
         const _TvKey.action('ABC', _TvKeyType.symbols),
         ..._symbols(['!', '?', r'$', '%', '^', '*', '+', '=', '~']),
-        const _TvKey.action('Del', _TvKeyType.backspace, icon: TablerIcons.backspace),
+        const _TvKey.action('Del', _TvKeyType.backspace, icon: PhosphorIcons.backspace),
         const _TvKey.spacer(),
       ],
       [
@@ -287,13 +287,13 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       [
         const _TvKey.spacer(),
         const _TvKey.spacer(),
-        const _TvKey.action('Space', _TvKeyType.space, icon: TablerIcons.keyboard),
+        const _TvKey.action('Space', _TvKeyType.space, icon: PhosphorIcons.keyboard),
         const _TvKey.character('@'),
         const _TvKey.character('#'),
         const _TvKey.character('_'),
         const _TvKey.character('/'),
-        _TvKey.action(t.common.clear, _TvKeyType.clear, icon: TablerIcons.eraser),
-        _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: TablerIcons.x),
+        _TvKey.action(t.common.clear, _TvKeyType.clear, icon: PhosphorIcons.eraser),
+        _TvKey.action(t.common.cancel, _TvKeyType.cancel, icon: PhosphorIcons.x),
         _TvKey.action(_doneLabel(), _TvKeyType.done, icon: _doneIcon()),
         const _TvKey.spacer(),
         const _TvKey.spacer(),
@@ -332,13 +332,13 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
   IconData _doneIcon() {
     switch (widget.textInputAction) {
       case TextInputAction.search:
-        return TablerIcons.search;
+        return PhosphorIcons.magnifyingGlass;
       case TextInputAction.next:
-        return TablerIcons.arrowRight;
+        return PhosphorIcons.arrowRight;
       case TextInputAction.go:
-        return TablerIcons.chevronsRight;
+        return PhosphorIcons.caretDoubleRight;
       default:
-        return TablerIcons.circleCheck;
+        return PhosphorIcons.checkCircle;
     }
   }
 

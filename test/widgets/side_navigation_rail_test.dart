@@ -4,7 +4,7 @@ import 'package:harbor/media/ids.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_backend.dart';
@@ -514,7 +514,7 @@ void main() {
               builder: (context) {
                 parentBuilds++;
                 return NavigationRailItem(
-                  icon: TablerIcons.home,
+                  icon: PhosphorIcons.house,
                   label: const Text('Home'),
                   isSelected: false,
                   onTap: () {},

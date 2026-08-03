@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../exceptions/media_server_exceptions.dart';
@@ -268,14 +268,14 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.search.searchYourMedia,
                   subtitle: t.search.enterTitleActorOrKeyword,
-                  icon: TablerIcons.search,
+                  icon: PhosphorIcons.magnifyingGlass,
                   iconSize: 80,
                 ),
               )
             else if (lastSearchFailed)
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: StateMessageWidget(message: t.explore.searchFailed, icon: TablerIcons.alertCircle, iconSize: 80),
+                child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIcons.warningCircle, iconSize: 80),
               )
             else if (searchResults.isEmpty)
               SliverFillRemaining(
@@ -283,7 +283,7 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.messages.noResultsFound,
                   subtitle: t.search.tryDifferentTerm,
-                  icon: TablerIcons.zoomOut,
+                  icon: PhosphorIcons.magnifyingGlassMinus,
                   iconSize: 80,
                 ),
               )

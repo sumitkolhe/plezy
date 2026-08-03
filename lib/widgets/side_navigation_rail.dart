@@ -3,7 +3,7 @@ import '../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -727,8 +727,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                   ],
                                   if (!widget.isOfflineMode) ...[
                                     _buildNavItem(
-                                      icon: TablerIcons.home,
-                                      selectedIcon: TablerIcons.home,
+                                      icon: PhosphorIcons.house,
+                                      selectedIcon: PhosphorIcons.house,
                                       label: Translations.of(context).common.home,
                                       isSelected: widget.selectedTab == NavigationTabId.discover,
                                       onTap: () => widget.onDestinationSelected(NavigationTabId.discover),
@@ -752,8 +752,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                     const SizedBox(height: 8),
                                     if (hasExplore) ...[
                                       _buildNavItem(
-                                        icon: TablerIcons.compass,
-                                        selectedIcon: TablerIcons.compass,
+                                        icon: PhosphorIcons.compass,
+                                        selectedIcon: PhosphorIcons.compass,
                                         label: Translations.of(context).navigation.explore,
                                         isSelected: widget.selectedTab == NavigationTabId.explore,
                                         onTap: () => widget.onDestinationSelected(NavigationTabId.explore),
@@ -763,8 +763,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                       const SizedBox(height: 8),
                                     ],
                                     _buildNavItem(
-                                      icon: TablerIcons.search,
-                                      selectedIcon: TablerIcons.search,
+                                      icon: PhosphorIcons.magnifyingGlass,
+                                      selectedIcon: PhosphorIcons.magnifyingGlass,
                                       label: Translations.of(context).common.search,
                                       isSelected: false,
                                       onTap: widget.onOpenSearch,
@@ -777,8 +777,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                   // file storage)
                                   if (_showDownloads) ...[
                                     _buildNavItem(
-                                      icon: TablerIcons.download,
-                                      selectedIcon: TablerIcons.download,
+                                      icon: PhosphorIcons.download,
+                                      selectedIcon: PhosphorIcons.download,
                                       label: Translations.of(context).navigation.downloads,
                                       isSelected: widget.selectedTab == NavigationTabId.downloads,
                                       onTap: () => widget.onDestinationSelected(NavigationTabId.downloads),
@@ -788,8 +788,8 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                                     const SizedBox(height: 8),
                                   ],
                                   _buildNavItem(
-                                    icon: TablerIcons.settings,
-                                    selectedIcon: TablerIcons.settings,
+                                    icon: PhosphorIcons.gear,
+                                    selectedIcon: PhosphorIcons.gear,
                                     label: Translations.of(context).common.settings,
                                     isSelected: widget.selectedTab == NavigationTabId.settings,
                                     onTap: () => widget.onDestinationSelected(NavigationTabId.settings),
@@ -858,7 +858,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
 
     return NavigationRailItem(
-      icon: TablerIcons.music,
+      icon: PhosphorIcons.musicNote,
       iconWidget: SizedBox(
         width: 22,
         child: Center(
@@ -898,7 +898,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
 
     return NavigationRailItem(
-      icon: widget.isReconnecting ? TablerIcons.refresh : TablerIcons.wifi,
+      icon: widget.isReconnecting ? PhosphorIcons.arrowsClockwise : PhosphorIcons.wifiHigh,
       label: widget.isReconnecting
           ? SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: t.text))
           : Text(
@@ -934,7 +934,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
       crossAxisAlignment: .start,
       children: [
         NavigationRailItem(
-          icon: TablerIcons.movie,
+          icon: PhosphorIcons.filmSlate,
           label: Text(
             Translations.of(context).navigation.libraries,
             style: TextStyle(
@@ -947,7 +947,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             opacity: isCollapsed ? 0.0 : 1.0,
             duration: tokens(context).fast,
             child: AppIcon(
-              _librariesExpanded ? TablerIcons.chevronUp : TablerIcons.chevronDown,
+              _librariesExpanded ? PhosphorIcons.caretUp : PhosphorIcons.caretDown,
               size: 20,
               color: t.textMuted,
             ),
@@ -1054,7 +1054,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final backend = context.read<MultiServerProvider>().serverManager.getClient(serverId)?.backend;
     return _buildCollapsibleHeader(
       focusKey: _serverHeaderFocusKey(section, serverId),
-      icon: TablerIcons.server,
+      icon: PhosphorIcons.hardDrives,
       iconSize: 14,
       leading: backend == null ? null : BackendBadge(backend: backend, size: 14, color: t.textMuted),
       label: serverName,
@@ -1078,7 +1078,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
   Widget _buildHiddenLibrariesHeader(int count, dynamic t) {
     return _buildCollapsibleHeader(
       focusKey: _kHiddenLibraries,
-      icon: TablerIcons.eyeOff,
+      icon: PhosphorIcons.eyeSlash,
       iconSize: 16,
       label: Translations.of(context).libraries.hiddenLibrariesCount(count: count),
       labelStyle: TextStyle(fontSize: 12, fontWeight: .w500, color: t.textMuted),
@@ -1142,7 +1142,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                             child: Text(label, style: labelStyle, overflow: .ellipsis),
                           ),
                           AppIcon(
-                            isExpanded ? TablerIcons.chevronUp : TablerIcons.chevronDown,
+                            isExpanded ? PhosphorIcons.caretUp : PhosphorIcons.caretDown,
                             size: 16,
                             color: t.textMuted,
                           ),

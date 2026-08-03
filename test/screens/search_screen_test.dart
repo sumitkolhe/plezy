@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/exceptions/media_server_exceptions.dart';
 import 'package:harbor/focus/dpad_navigator.dart';
 import 'package:harbor/focus/focusable_text_field.dart';
@@ -188,7 +188,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(client.queries, isEmpty);
-    expect(find.byIcon(TablerIcons.alertCircle), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.warningCircle), findsOneWidget);
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
     expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);

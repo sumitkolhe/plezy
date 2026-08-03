@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../../media/library_query.dart';
 import '../../../media/media_kind.dart';
 import '../../../media/media_playlist.dart';
@@ -35,7 +35,7 @@ class _LibraryPlaylistsTabState extends PaginatedCardGridTabState<MediaPlaylist,
   String get focusNodeDebugLabel => 'playlists_first_item';
 
   @override
-  IconData get emptyIcon => TablerIcons.playlist;
+  IconData get emptyIcon => PhosphorIcons.playlist;
 
   @override
   String get emptyMessage => t.playlists.noPlaylists;

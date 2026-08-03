@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../services/settings_service.dart';
@@ -115,7 +115,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
       icon: icon,
       title: title,
       subtitle: subtitle,
-      trailingIcon: active ? TablerIcons.waveSine : TablerIcons.playerPlay,
+      trailingIcon: active ? PhosphorIcons.waveform : PhosphorIcons.play,
       onTap: () => _start(mode),
     );
   }
@@ -131,56 +131,56 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
           children: [
             _testTile(
               mode: 'hlsAtmos',
-              icon: TablerIcons.waveSine,
+              icon: PhosphorIcons.waveform,
               title: t.settings.atmosTestHlsAtmos,
               subtitle: t.settings.atmosTestHlsAtmosDescription,
             ),
             _testTile(
               mode: 'hlsControl',
-              icon: TablerIcons.volume,
+              icon: PhosphorIcons.speakerHigh,
               title: t.settings.atmosTestHlsControl,
               subtitle: t.settings.atmosTestHlsControlDescription,
             ),
             _testTile(
               mode: 'rawEc3',
-              icon: TablerIcons.broadcast,
+              icon: PhosphorIcons.broadcast,
               title: t.settings.atmosTestRawStream,
               subtitle: t.settings.atmosTestRawStreamDescription,
             ),
             _testTile(
               mode: 'rawEc3Finite',
-              icon: TablerIcons.fileMusic,
+              icon: PhosphorIcons.fileAudio,
               title: t.settings.atmosTestRawFile,
               subtitle: t.settings.atmosTestRawFileDescription,
             ),
             _testTile(
               mode: 'asbarNative',
-              icon: TablerIcons.waveSine,
+              icon: PhosphorIcons.waveform,
               title: t.settings.atmosTestAsbarNative,
               subtitle: t.settings.atmosTestAsbarNativeDescription,
             ),
             _testTile(
               mode: 'asbarGenerated',
-              icon: TablerIcons.adjustments,
+              icon: PhosphorIcons.sliders,
               title: t.settings.atmosTestAsbarGenerated,
               subtitle: t.settings.atmosTestAsbarGeneratedDescription,
             ),
             SettingNavigationTile(
-              icon: TablerIcons.cast,
+              icon: PhosphorIcons.airplay,
               title: _routePickerVisible ? t.settings.atmosTestHideRoutePicker : t.settings.atmosTestShowRoutePicker,
               subtitle: t.settings.atmosTestRoutePickerDescription,
               onTap: _toggleRoutePicker,
             ),
             SettingSwitchTile(
               pref: SettingsService.atmosProbeMoviePlaybackMode,
-              icon: TablerIcons.settings,
+              icon: PhosphorIcons.gear,
               title: t.settings.atmosTestSessionMode,
               subtitle: t.settings.atmosTestSessionModeDescription,
             ),
             SettingNavigationTile(
-              icon: TablerIcons.playerStop,
+              icon: PhosphorIcons.stop,
               title: t.settings.atmosTestStop,
-              trailingIcon: TablerIcons.playerStop,
+              trailingIcon: PhosphorIcons.stop,
               onTap: _stop,
             ),
           ],
@@ -190,7 +190,7 @@ class _AtmosDiagnosticsScreenState extends State<AtmosDiagnosticsScreen> {
             SettingValueBuilder<String>(
               pref: SettingsService.atmosProbeUrl,
               builder: (context, value, _) => SettingNavigationTile(
-                icon: TablerIcons.link,
+                icon: PhosphorIcons.link,
                 title: t.settings.atmosTestUrl,
                 subtitle: value.isEmpty ? t.settings.atmosTestUrlDescription : value,
                 onTap: () async {

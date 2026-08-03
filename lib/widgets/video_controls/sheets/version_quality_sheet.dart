@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../../../i18n/strings.g.dart';
@@ -230,7 +230,7 @@ class _SelectionTile extends StatelessWidget {
             children: [
               if (hasText) Text(trailingText!, style: TextStyle(color: trailingColor)),
               if (hasText && isSelected) const SizedBox(width: 8),
-              if (isSelected) AppIcon(TablerIcons.circleCheck, color: primary),
+              if (isSelected) AppIcon(PhosphorIcons.checkCircle, color: primary),
             ],
           )
         : null;

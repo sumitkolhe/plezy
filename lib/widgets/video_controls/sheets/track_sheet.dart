@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../media/media_source_info.dart';
 import '../../../mpv/mpv.dart';
@@ -47,13 +47,13 @@ class TrackSheet extends StatelessWidget {
         final IconData icon;
         if (showAudio && showSubtitles) {
           title = t.videoControls.tracksButton;
-          icon = TablerIcons.badgeCc;
+          icon = PhosphorIcons.subtitles;
         } else if (showAudio) {
           title = t.videoControls.audioLabel;
-          icon = TablerIcons.music;
+          icon = PhosphorIcons.musicNote;
         } else {
           title = t.videoControls.subtitlesLabel;
-          icon = TablerIcons.badgeCc;
+          icon = PhosphorIcons.subtitles;
         }
 
         return BaseVideoControlSheet(

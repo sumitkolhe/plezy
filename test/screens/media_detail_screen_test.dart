@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/database/app_database.dart';
 import 'package:harbor/focus/focusable_action_bar.dart';
 import 'package:harbor/i18n/strings.g.dart';
@@ -844,7 +844,7 @@ void main() {
     bool episodeRowWatched(WidgetTester tester, String title) {
       final card = episodeCardFor(title);
       expect(card, findsOneWidget, reason: 'episode row "$title" should be visible');
-      return tester.any(find.descendant(of: card, matching: find.byIcon(TablerIcons.circleCheck)));
+      return tester.any(find.descendant(of: card, matching: find.byIcon(PhosphorIcons.checkCircle)));
     }
 
     bool episodeRowHasProgress(WidgetTester tester, String title) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/focusable_button.dart';
 import '../focus/focusable_text_field.dart';
@@ -78,7 +78,7 @@ class _SearchInputFieldState extends State<SearchInputField> {
             decoration: pillInputDecoration(
               context,
               hintText: widget.hintText,
-              prefixIcon: const AppIcon(TablerIcons.search),
+              prefixIcon: const AppIcon(PhosphorIcons.magnifyingGlass),
               suffixIcon: hasText ? const SizedBox(width: 48) : null,
             ),
           ),
@@ -89,7 +89,7 @@ class _SearchInputFieldState extends State<SearchInputField> {
               onNavigateLeft: widget.focusNode.requestFocus,
               onNavigateDown: widget.onNavigateDown,
               autoScroll: false,
-              child: IconButton(icon: const AppIcon(TablerIcons.x), onPressed: _clearSearch),
+              child: IconButton(icon: const AppIcon(PhosphorIcons.x), onPressed: _clearSearch),
             ),
         ],
       ),

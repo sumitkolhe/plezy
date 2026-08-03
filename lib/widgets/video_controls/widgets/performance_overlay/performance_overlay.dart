@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../../i18n/strings.g.dart';
 import '../../../../mpv/mpv.dart';
@@ -52,7 +52,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
     final isMpv = _stats.playerType == 'mpv';
 
     final sections = <Widget>[
-      _buildSection(TablerIcons.video, t.fileInfo.video, [
+      _buildSection(PhosphorIcons.videoCamera, t.fileInfo.video, [
         _metric(t.fileInfo.codec, _stats.videoCodec ?? 'N/A'),
         _metric(t.fileInfo.resolution, _stats.resolution),
         if (_stats.hasValidVideoFps) _metric('FPS', _stats.videoFpsFormatted),
@@ -67,7 +67,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
         if (_stats.dvPlaybackPath != null) _metric(t.performanceOverlay.dvPath, _stats.dvPlaybackPathFormatted),
         if (_stats.dvConversionActive) _metric(t.performanceOverlay.p7Conversion, _stats.dvConversionFormatted),
       ]),
-      _buildSection(TablerIcons.volume, t.fileInfo.audio, [
+      _buildSection(PhosphorIcons.speakerHigh, t.fileInfo.audio, [
         if (_stats.audioCodec != null) _metric(t.fileInfo.codec, _stats.audioCodec!),
         _metric(t.performanceOverlay.sampleRate, _stats.sampleRateFormatted),
         _metric(t.fileInfo.channels, _stats.audioChannels ?? 'N/A'),
@@ -76,7 +76,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
           _metric(t.performanceOverlay.decoder, _stats.audioDecoderFormatted),
       ]),
       if (isMpv)
-        _buildSection(TablerIcons.palette, t.performanceOverlay.color, [
+        _buildSection(PhosphorIcons.palette, t.performanceOverlay.color, [
           _metric(t.performanceOverlay.pixelFormat, _stats.pixelformat ?? 'N/A'),
           if (_stats.hwPixelformat != null && _stats.hwPixelformat != _stats.pixelformat)
             _metric(t.performanceOverlay.hwFormat, _stats.hwPixelformat!),
@@ -84,7 +84,7 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
           _metric(t.performanceOverlay.primaries, _stats.primaries ?? 'N/A'),
           _metric(t.performanceOverlay.transfer, _stats.gamma ?? 'N/A'),
         ]),
-      _buildSection(TablerIcons.gauge, t.performanceOverlay.performance, [
+      _buildSection(PhosphorIcons.gauge, t.performanceOverlay.performance, [
         if (isMpv) _metric(t.performanceOverlay.renderFps, _stats.actualFpsFormatted),
         if (isMpv) _metric(t.performanceOverlay.displayFps, _stats.displayFpsFormatted),
         if (isMpv) _metric(t.performanceOverlay.avSync, _stats.avsyncFormatted),
@@ -95,19 +95,19 @@ class _PlayerPerformanceOverlayState extends State<PlayerPerformanceOverlay> {
           _metric(t.performanceOverlay.dvSampleAverage, _stats.dvAvgSampleProcessingFormatted),
       ]),
       if (_stats.hasHdrMetadata)
-        _buildSection(TablerIcons.badgeHd, 'HDR', [
+        _buildSection(PhosphorIcons.highDefinition, 'HDR', [
           if (_stats.maxLuma != null) _metric(t.performanceOverlay.maxLuma, _stats.maxLumaFormatted),
           if (_stats.minLuma != null) _metric(t.performanceOverlay.minLuma, _stats.minLumaFormatted),
           if (_stats.maxCll != null) _metric(t.performanceOverlay.maxCll, _stats.maxCllFormatted),
           if (_stats.maxFall != null) _metric(t.performanceOverlay.maxFall, _stats.maxFallFormatted),
         ]),
-      _buildSection(TablerIcons.cpu2, t.performanceOverlay.buffer, [
+      _buildSection(PhosphorIcons.memory, t.performanceOverlay.buffer, [
         _metric(t.fileInfo.duration, _stats.cacheDurationFormatted),
         if (isMpv) _metric(t.performanceOverlay.cacheUsed, _stats.cacheUsedFormatted),
         if (isMpv) _metric(t.performanceOverlay.cacheLimit, _stats.cacheLimitFormatted),
         if (isMpv) _metric(t.performanceOverlay.speed, _stats.cacheSpeedFormatted),
       ]),
-      _buildSection(TablerIcons.layoutGrid, t.performanceOverlay.app, [
+      _buildSection(PhosphorIcons.squaresFour, t.performanceOverlay.app, [
         _metric(t.performanceOverlay.player, _stats.playerTypeFormatted),
         _metric(t.performanceOverlay.memory, _stats.appMemoryFormatted),
         _metric(t.performanceOverlay.uiFps, _stats.uiFpsFormatted),

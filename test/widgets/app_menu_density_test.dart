@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/theme/mono_theme.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
 import 'package:harbor/widgets/overlay_sheet.dart';
@@ -12,7 +12,7 @@ Future<void> _pump(WidgetTester tester, Widget body) => tester.pumpWidget(
 
 Widget _menu(AppMenuDensity density, String label) => AppMenuList<String>(
   density: density,
-  entries: [AppMenuItem<String>(value: 'a', label: label, icon: TablerIcons.playerPlay)],
+  entries: [AppMenuItem<String>(value: 'a', label: label, icon: PhosphorIcons.play)],
   onSelected: (_) {},
 );
 
@@ -104,7 +104,7 @@ void main() {
             child: AppMenuSheet<String>(
               title: 'A Film With Quite A Long Title',
               entries: [
-                for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: TablerIcons.playerPlay),
+                for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: PhosphorIcons.play),
               ],
               onSelected: (_) {},
             ),

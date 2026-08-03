@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
@@ -46,7 +46,7 @@ void main() {
     final indicator = find.byType(WatchedIndicator);
     expect(indicator, findsOneWidget);
     expect(tester.widget<WatchedIndicator>(indicator).size, WatchedIndicatorSize.compact);
-    expect(find.descendant(of: indicator, matching: find.byIcon(TablerIcons.circleCheck)), findsOneWidget);
+    expect(find.descendant(of: indicator, matching: find.byIcon(PhosphorIcons.checkCircle)), findsOneWidget);
     expect(find.byType(MediaProgressBar), findsNothing);
 
     await tester.tap(find.text('Watched movie'));
@@ -70,7 +70,7 @@ void main() {
 
     expect(find.byType(WatchedIndicator), findsOneWidget);
     expect(find.byType(MediaProgressBar), findsOneWidget);
-    expect(find.byIcon(TablerIcons.circleCheck), findsNothing);
+    expect(find.byIcon(PhosphorIcons.checkCircle), findsNothing);
   });
 
   testWidgets('zero, terminal, and past-end offsets do not render a progress bar', (tester) async {
@@ -135,14 +135,14 @@ void main() {
 
     await _pumpCard(tester, store: store, item: item);
     expect(find.byType(MediaProgressBar), findsNothing);
-    expect(find.byIcon(TablerIcons.circleCheck), findsNothing);
+    expect(find.byIcon(PhosphorIcons.checkCircle), findsNothing);
 
     WatchStateNotifier().notifyProgress(item: item, viewOffset: 30000, duration: 120000);
     await tester.pump();
     await tester.pump();
 
     expect(find.byType(MediaProgressBar), findsOneWidget);
-    expect(find.byIcon(TablerIcons.circleCheck), findsNothing);
+    expect(find.byIcon(PhosphorIcons.checkCircle), findsNothing);
     expect(item.viewOffsetMs, isNull);
     expect(item.isWatched, isFalse);
 
@@ -151,7 +151,7 @@ void main() {
     await tester.pump();
 
     expect(find.byType(MediaProgressBar), findsNothing);
-    expect(find.byIcon(TablerIcons.circleCheck), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.checkCircle), findsOneWidget);
     expect(item.viewOffsetMs, isNull);
     expect(item.isWatched, isFalse);
   });

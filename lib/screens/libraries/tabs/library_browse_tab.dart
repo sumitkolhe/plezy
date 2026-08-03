@@ -2,7 +2,7 @@ import 'dart:async';
 import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../../media/library_first_character.dart';
 import '../../../media/library_query.dart';
 import '../../../media/media_backend.dart';
@@ -365,7 +365,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
 
   // Required abstract implementations from base class
   @override
-  IconData get emptyIcon => TablerIcons.folderOpen;
+  IconData get emptyIcon => PhosphorIcons.folderOpen;
 
   @override
   String get emptyMessage => t.libraries.thisLibraryIsEmpty;
@@ -809,7 +809,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final controller = OverlaySheetController.of(sheetContext);
     return BottomSheetPageScaffold(
       title: t.libraries.libraryOptions,
-      icon: TablerIcons.adjustments,
+      icon: PhosphorIcons.sliders,
       shrinkWrap: true,
       child: ListView(
         primary: false,
@@ -817,29 +817,29 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
           FocusableListTile(
-            leading: const AppIcon(TablerIcons.layoutGrid),
+            leading: const AppIcon(PhosphorIcons.squaresFour),
             title: Text(t.libraries.groupings.title),
             subtitle: Text(_getGroupingLabel(_selectedGrouping)),
-            trailing: const AppIcon(TablerIcons.chevronRight),
+            trailing: const AppIcon(PhosphorIcons.caretRight),
             onTap: () => _showGroupingOptionsPage(controller),
           ),
           if (_isFiltersChipVisible)
             FocusableListTile(
-              leading: const AppIcon(TablerIcons.filter),
+              leading: const AppIcon(PhosphorIcons.funnel),
               title: Text(
                 _selectedFilters.isEmpty
                     ? t.libraries.filters
                     : t.libraries.filtersWithCount(count: _selectedFilters.length),
               ),
-              trailing: const AppIcon(TablerIcons.chevronRight),
+              trailing: const AppIcon(PhosphorIcons.caretRight),
               onTap: () => _showFiltersOptionsPage(controller),
             ),
           if (_isSortChipVisible)
             FocusableListTile(
-              leading: const AppIcon(TablerIcons.sortAscending),
+              leading: const AppIcon(PhosphorIcons.sortAscending),
               title: Text(t.libraries.sort),
               subtitle: _selectedSort == null ? null : Text(_selectedSort!.title),
-              trailing: const AppIcon(TablerIcons.chevronRight),
+              trailing: const AppIcon(PhosphorIcons.caretRight),
               onTap: () => _showSortOptionsPage(controller),
             ),
         ],
@@ -889,7 +889,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   Widget _buildGroupingBottomSheet({required ValueChanged<String> onSelected, VoidCallback? onBack}) {
     return BottomSheetPageScaffold(
       title: t.libraries.groupings.title,
-      icon: TablerIcons.layoutGrid,
+      icon: PhosphorIcons.squaresFour,
       onBack: onBack,
       shrinkWrap: true,
       child: ListView(
@@ -908,7 +908,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       return FocusableListTile(
         key: ValueKey(grouping),
         dense: true,
-        leading: AppIcon(isSelected ? TablerIcons.circleDot : TablerIcons.circle),
+        leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
         title: Text(_getGroupingLabel(grouping)),
         onTap: () => onSelected(grouping),
       );
@@ -1658,7 +1658,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           // Grouping chip
           FocusableFilterChip(
             focusNode: _groupingChipFocusNode,
-            icon: TablerIcons.layoutGrid,
+            icon: PhosphorIcons.squaresFour,
             label: _getGroupingLabel(_selectedGrouping),
             onPressed: _showGroupingBottomSheet,
             onNavigateDown: _navigateToGrid,
@@ -1671,7 +1671,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           if (_isFiltersChipVisible)
             FocusableFilterChip(
               focusNode: _filtersChipFocusNode,
-              icon: TablerIcons.filter,
+              icon: PhosphorIcons.funnel,
               label: _selectedFilters.isEmpty
                   ? t.libraries.filters
                   : t.libraries.filtersWithCount(count: _selectedFilters.length),
@@ -1686,7 +1686,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           if (_isSortChipVisible)
             FocusableFilterChip(
               focusNode: _sortChipFocusNode,
-              icon: TablerIcons.sortAscending,
+              icon: PhosphorIcons.sortAscending,
               label: _selectedSort?.title ?? t.libraries.sort,
               onPressed: _showSortBottomSheet,
               onNavigateDown: _navigateToGrid,
@@ -1743,10 +1743,10 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         return [
           SliverEmptyState(
             message: t.libraries.noItemsMatchFilters,
-            icon: TablerIcons.filterOff,
+            icon: PhosphorIcons.funnelX,
             onAction: _resetFilters,
             actionLabel: t.libraries.resetFilters,
-            actionIcon: TablerIcons.eraser,
+            actionIcon: PhosphorIcons.eraser,
             actionFocusNode: firstItemFocusNode,
             onActionNavigateUp: _navigateToChips,
             onActionNavigateLeft: _navigateToSidebar,
@@ -1754,7 +1754,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           ),
         ];
       }
-      return [SliverEmptyState(message: t.libraries.thisLibraryIsEmpty, icon: TablerIcons.folderOpen)];
+      return [SliverEmptyState(message: t.libraries.thisLibraryIsEmpty, icon: PhosphorIcons.folderOpen)];
     }
 
     return [

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -386,7 +386,7 @@ class TvSpotlightBackground extends StatelessWidget {
         child: Row(
           mainAxisSize: .min,
           children: [
-            AppIcon(TablerIcons.playerPlay, size: (compact ? 24 : 28) * scale, color: Colors.black),
+            AppIcon(PhosphorIcons.play, size: (compact ? 24 : 28) * scale, color: Colors.black),
             SizedBox(width: (compact ? 10 : 12) * scale),
             Text(
               hasProgress ? t.discover.minutesLeft(minutes: minutesLeft) : t.common.play,

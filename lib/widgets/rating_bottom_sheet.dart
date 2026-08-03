@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/dpad_navigator.dart';
@@ -94,7 +94,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: TablerIcons.star),
+              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIcons.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),
@@ -605,7 +605,7 @@ class _TrailingStatus extends StatelessWidget {
     final color = status.isError ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.primary;
     return Tooltip(
       message: status.text,
-      child: AppIcon(status.isError ? TablerIcons.alertCircle : TablerIcons.circleCheck, color: color, size: 18),
+      child: AppIcon(status.isError ? PhosphorIcons.warningCircle : PhosphorIcons.checkCircle, color: color, size: 18),
     );
   }
 }
@@ -659,7 +659,7 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     width: starWidth,
                     child: Center(
                       child: AppIcon(
-                        half ? TablerIcons.starHalf : (filled ? TablerIcons.starFilled : TablerIcons.star),
+                        half ? PhosphorIcons.starHalf : (filled ? PhosphorIconsFill.star : PhosphorIcons.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),
@@ -710,7 +710,7 @@ class _FavoriteControl extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               AppIcon(
-                value ? TablerIcons.heartFilled : TablerIcons.heart,
+                value ? PhosphorIconsFill.heart : PhosphorIcons.heart,
                 color: value ? Colors.redAccent : (enabled ? scheme.onSurfaceVariant : theme.disabledColor),
                 size: 18,
               ),

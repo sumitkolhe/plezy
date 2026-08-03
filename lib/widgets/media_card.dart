@@ -5,7 +5,7 @@ import '../media/ids.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../focus/card_focus_scope.dart';
 import '../focus/focus_theme.dart';
@@ -938,11 +938,11 @@ Widget _buildPosterLoadingPlaceholder(BuildContext context, String _) {
 }
 
 IconData _mediaPosterFallbackIcon(MediaItem item) {
-  if (item.kind == MediaKind.artist) return TablerIcons.microphone2;
-  if (item.kind == MediaKind.album) return TablerIcons.disc;
-  if (item.kind == MediaKind.track) return TablerIcons.music;
-  if (item.isShow || item.isSeason || item.isEpisode) return TablerIcons.deviceTv;
-  return TablerIcons.movie;
+  if (item.kind == MediaKind.artist) return PhosphorIcons.microphoneStage;
+  if (item.kind == MediaKind.album) return PhosphorIcons.vinylRecord;
+  if (item.kind == MediaKind.track) return PhosphorIcons.musicNote;
+  if (item.isShow || item.isSeason || item.isEpisode) return PhosphorIcons.television;
+  return PhosphorIcons.filmSlate;
 }
 
 /// Oversized radius for circular focus borders: [CardFocusBorder] paints a
@@ -989,7 +989,7 @@ Widget _buildPosterImage(
       height: knownHeight ?? double.infinity,
       fit: BoxFit.cover,
       placeholder: _buildPosterLoadingPlaceholder,
-      fallbackIcon: TablerIcons.playlist,
+      fallbackIcon: PhosphorIcons.playlist,
       imageType: cardShapeOverride == CardShape.square ? ImageType.square : ImageType.poster,
       localFilePath: localPosterPath,
       artworkDim: artworkDim,
@@ -1092,7 +1092,7 @@ Widget _buildPosterImage(
   }
 
   return SkeletonLoader(
-    child: const Center(child: AppIcon(TablerIcons.movie, size: 40, color: Colors.white54)),
+    child: const Center(child: AppIcon(PhosphorIcons.filmSlate, size: 40, color: Colors.white54)),
   );
 }
 

@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/widgets/background_download_warning_banner.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../widgets/collapsible_text.dart';
 import '../widgets/rating_bottom_sheet.dart';
@@ -1043,9 +1043,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       context,
       title: t.downloads.manageSyncRule,
       options: [
-        (icon: TablerIcons.pencil, label: t.downloads.editSyncRule, value: _SyncRuleAction.edit),
-        (icon: TablerIcons.cloudOff, label: t.downloads.removeSyncRule, value: _SyncRuleAction.remove),
-        (icon: TablerIcons.trash, label: t.downloads.deleteDownload, value: _SyncRuleAction.delete),
+        (icon: PhosphorIcons.pencilSimple, label: t.downloads.editSyncRule, value: _SyncRuleAction.edit),
+        (icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule, value: _SyncRuleAction.remove),
+        (icon: PhosphorIcons.trash, label: t.downloads.deleteDownload, value: _SyncRuleAction.delete),
       ],
     );
 
@@ -2246,11 +2246,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   IconData _getRelatedHubIcon(MediaHub hub) {
     final lower = hub.title.toLowerCase();
-    if (lower.contains('collection')) return TablerIcons.movie;
-    if (lower.contains('similar')) return TablerIcons.sparkles;
-    if (lower.contains('more from') || lower.contains('more with')) return TablerIcons.user;
-    if (lower.contains('genre') || lower.contains('director')) return TablerIcons.movie;
-    return TablerIcons.thumbUp;
+    if (lower.contains('collection')) return PhosphorIcons.filmSlate;
+    if (lower.contains('similar')) return PhosphorIcons.sparkle;
+    if (lower.contains('more from') || lower.contains('more with')) return PhosphorIcons.person;
+    if (lower.contains('genre') || lower.contains('director')) return PhosphorIcons.filmSlate;
+    return PhosphorIcons.thumbsUp;
   }
 
   static const Widget _sectionLoading = Center(
@@ -2274,7 +2274,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       padding: const EdgeInsets.all(16),
       child: ErrorStateWidget(
         message: message,
-        icon: TablerIcons.alertCircle,
+        icon: PhosphorIcons.warningCircle,
         onRetry: onRetry,
         retryLabel: t.common.retry,
       ),
@@ -2390,7 +2390,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         padding: const EdgeInsets.all(16),
         child: ErrorStateWidget(
           message: t.messages.episodesLoadFailed,
-          icon: TablerIcons.alertCircle,
+          icon: PhosphorIcons.warningCircle,
           onRetry: () => unawaited(_loadMoreEpisodeList()),
           retryLabel: t.common.retry,
         ),
@@ -3883,11 +3883,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   }
 
   IconData _getTvDetailHubIcon(MediaHub hub, int index) {
-    if (hub.id == _tvDetailSeasonsErrorHubId) return TablerIcons.alertCircle;
-    if (hub.id.startsWith(_tvDetailSeasonHubIdPrefix)) return TablerIcons.deviceTv;
-    if (hub.id == 'detail_episodes') return TablerIcons.deviceTv;
-    if (hub.id == _tvDetailExtrasHubId) return TablerIcons.movie;
-    if (hub.id == _tvDetailActorsHubId) return TablerIcons.users;
+    if (hub.id == _tvDetailSeasonsErrorHubId) return PhosphorIcons.warningCircle;
+    if (hub.id.startsWith(_tvDetailSeasonHubIdPrefix)) return PhosphorIcons.television;
+    if (hub.id == 'detail_episodes') return PhosphorIcons.television;
+    if (hub.id == _tvDetailExtrasHubId) return PhosphorIcons.filmSlate;
+    if (hub.id == _tvDetailActorsHubId) return PhosphorIcons.users;
     return _getRelatedHubIcon(hub);
   }
 
@@ -4278,16 +4278,16 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         final episode = _fresh(_onDeckEpisode!);
         // Check if episode has been partially watched
         if (episode.viewOffsetMs != null && episode.viewOffsetMs! > 0) {
-          return TablerIcons.playerPlay; // Resume icon
+          return PhosphorIcons.play; // Resume icon
         }
       }
     } else {
       // For movies or episodes
       if (metadata.viewOffsetMs != null && metadata.viewOffsetMs! > 0) {
-        return TablerIcons.playerPlay; // Resume icon
+        return PhosphorIcons.play; // Resume icon
       }
     }
 
-    return TablerIcons.playerPlay; // Default play icon
+    return PhosphorIcons.play; // Default play icon
   }
 }

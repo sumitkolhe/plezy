@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../focus/focusable_slider.dart';
 import '../../../focus/focusable_button.dart';
@@ -280,7 +280,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
       child: Row(
         children: [
           _buildCompactStepButton(
-            icon: TablerIcons.minus,
+            icon: PhosphorIcons.minus,
             onTap: _decrementOffset,
             onLongPressStart: _startLongPressDecrement,
           ),
@@ -302,7 +302,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             ),
           ),
           _buildCompactStepButton(
-            icon: TablerIcons.plus,
+            icon: PhosphorIcons.plus,
             onTap: _incrementOffset,
             onLongPressStart: _startLongPressIncrement,
           ),
@@ -329,7 +329,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
                 height: 36,
                 alignment: .center,
                 child: AppIcon(
-                  TablerIcons.rotate2,
+                  PhosphorIcons.arrowCounterClockwise,
                   color: _currentOffset != 0 ? tokens(context).text : tokens(context).textMuted,
                   size: 22,
                 ),
@@ -359,7 +359,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             children: [
               // Decrement button
               _buildStepButton(
-                icon: TablerIcons.minus,
+                icon: PhosphorIcons.minus,
                 onTap: _decrementOffset,
                 onLongPressStart: _startLongPressDecrement,
               ),
@@ -397,7 +397,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
               const SizedBox(width: 12),
               // Increment button
               _buildStepButton(
-                icon: TablerIcons.plus,
+                icon: PhosphorIcons.plus,
                 onTap: _incrementOffset,
                 onLongPressStart: _startLongPressIncrement,
               ),
@@ -410,7 +410,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             useBackgroundFocus: true,
             child: ElevatedButton.icon(
               onPressed: _currentOffset != 0 ? _resetOffset : null,
-              icon: const AppIcon(TablerIcons.rotate2),
+              icon: const AppIcon(PhosphorIcons.arrowCounterClockwise),
               label: Text(t.videoControls.resetToZero),
               style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
             ),

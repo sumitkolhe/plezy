@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
 import '../../widgets/loading_indicator_box.dart';
 import '../../i18n/strings.g.dart';
@@ -77,7 +77,7 @@ class LicensesScreen extends StatelessWidget {
                       subtitle: mergedLicense.licenseEntries.length > 1
                           ? Text(t.licenses.licensesCount(count: mergedLicense.licenseEntries.length))
                           : null,
-                      trailing: const AppIcon(TablerIcons.chevronRight),
+                      trailing: const AppIcon(PhosphorIcons.caretRight),
                       onTap: () => _showLicenseDetail(context, mergedLicense),
                     ),
                   );

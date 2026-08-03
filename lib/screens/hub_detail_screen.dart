@@ -3,7 +3,7 @@ import '../media/catalog_item_ref.dart';
 import '../media/ids.dart';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../media/library_query.dart';
 import '../media/media_backend.dart';
 import '../media/media_hub.dart';
@@ -85,7 +85,7 @@ class _HubDetailScreenState extends State<HubDetailScreen>
 
   @override
   List<FocusableAction> getAppBarActions() {
-    return [FocusableAction(icon: TablerIcons.arrowsSort, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet)];
+    return [FocusableAction(icon: PhosphorIcons.arrowsDownUp, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet)];
   }
 
   /// Override to add bounds check for filtered items (sorting can change item order)

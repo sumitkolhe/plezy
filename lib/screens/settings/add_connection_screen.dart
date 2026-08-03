@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../focus/focusable_wrapper.dart';
 import '../../i18n/strings.g.dart';
@@ -62,7 +62,7 @@ class AddConnectionScreen extends StatelessWidget {
                   borderRadius: groupItemRadii(context, i, options.length),
                   leading: options[i].backend != null
                       ? BackendBadge(backend: options[i].backend!, size: 28)
-                      : const AppIcon(TablerIcons.share, size: 28),
+                      : const AppIcon(PhosphorIcons.share, size: 28),
                   title: options[i].title,
                   subtitle: options[i].subtitle,
                   onTap: () async {
@@ -141,7 +141,7 @@ class _BackendCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const AppIcon(TablerIcons.chevronRight),
+                const AppIcon(PhosphorIcons.caretRight),
               ],
             ),
           ),

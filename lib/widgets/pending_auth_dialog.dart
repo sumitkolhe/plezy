@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../focus/focusable_button.dart';
@@ -57,7 +57,7 @@ class PendingAuthDialog extends StatelessWidget {
               onPressed: _open,
               useBackgroundFocus: true,
               child: FilledButton.icon(
-                icon: const AppIcon(TablerIcons.externalLink),
+                icon: const AppIcon(PhosphorIcons.arrowSquareOut),
                 label: Text(openLabel),
                 onPressed: _open,
               ),

@@ -2,7 +2,7 @@ import 'dart:async';
 import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../../focus/hub_vertical_navigation.dart';
 import '../../../focus/locked_hub_controller.dart';
@@ -153,7 +153,7 @@ class _LibraryRecommendedTabState extends BaseLibraryTabState<MediaHub, LibraryR
   }
 
   @override
-  IconData get emptyIcon => TablerIcons.thumbUp;
+  IconData get emptyIcon => PhosphorIcons.thumbsUp;
 
   @override
   String get emptyMessage => t.libraries.noRecommendations;

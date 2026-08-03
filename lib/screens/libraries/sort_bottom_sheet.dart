@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../../focus/dpad_navigator.dart';
 import '../../focus/focusable_button.dart';
 import '../../focus/input_mode_tracker.dart';
@@ -147,7 +147,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                   focusNode: (widget.selectedSort?.key == sort.key || (widget.selectedSort == null && index == 0))
                       ? _initialFocusNode
                       : null,
-                  leading: AppIcon(isSelected ? TablerIcons.circleDot : TablerIcons.circle),
+                  leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
                   title: Text(sort.title),
                   trailing: Visibility(
                     visible: isSelected,

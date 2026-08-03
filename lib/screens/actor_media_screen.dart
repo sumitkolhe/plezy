@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../media/ids.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../media/library_query.dart';
 import '../media/media_backend.dart';
 import '../media/media_item.dart';
@@ -122,7 +122,7 @@ class _ActorMediaScreenState extends BaseMediaListDetailScreen<ActorMediaScreen>
                 height: 80,
                 fit: BoxFit.cover,
                 imageType: ImageType.avatar,
-                fallbackIcon: TablerIcons.user,
+                fallbackIcon: PhosphorIcons.person,
               ),
             ),
             const SizedBox(width: 16),

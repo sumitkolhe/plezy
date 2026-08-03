@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../connection/connection.dart';
@@ -104,7 +104,7 @@ class _EditJellyfinConnectionScreenState extends State<EditJellyfinConnectionScr
                     onNavigateDown: () => _saveFocus.requestFocus(),
                     decoration: InputDecoration(
                       labelText: t.addServer.serverUrls,
-                      prefixIcon: const AppIcon(TablerIcons.link),
+                      prefixIcon: const AppIcon(PhosphorIcons.link),
                     ),
                     validator: (_) => _enteredUrls().isEmpty ? t.addServer.required : null,
                   ),
@@ -115,7 +115,7 @@ class _EditJellyfinConnectionScreenState extends State<EditJellyfinConnectionScr
                     onPressed: busy ? null : _save,
                     child: FilledButton.icon(
                       onPressed: busy ? null : _save,
-                      icon: busy ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.deviceFloppy),
+                      icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.floppyDisk),
                       label: Text(t.common.save),
                     ),
                   ),

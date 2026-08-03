@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/focusable_button.dart';
 import '../focus/focusable_text_field.dart';
@@ -80,7 +80,7 @@ class _TagEditDialogState extends State<TagEditDialog> with ControllerDisposerMi
                 labelText: t.metadataEdit.addTag,
                 suffixIcon: FocusableButton(
                   onPressed: _addTag,
-                  child: IconButton(icon: const AppIcon(TablerIcons.plus), onPressed: _addTag),
+                  child: IconButton(icon: const AppIcon(PhosphorIcons.plus), onPressed: _addTag),
                 ),
               ),
               textInputAction: TextInputAction.done,
@@ -95,7 +95,7 @@ class _TagEditDialogState extends State<TagEditDialog> with ControllerDisposerMi
                   itemCount: _tags.length,
                   itemBuilder: (context, index) => FocusableListTile(
                     title: Text(_tags[index]),
-                    trailing: const AppIcon(TablerIcons.x),
+                    trailing: const AppIcon(PhosphorIcons.x),
                     onTap: () => _removeTag(index),
                   ),
                 ),

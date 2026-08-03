@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/dpad_navigator.dart';
 import '../focus/focusable_button.dart';
@@ -401,7 +401,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                   value: _is4k,
                   onChanged: _submitting ? null : _toggle4k,
                   title: Text(t.seerr.request4k),
-                  secondary: const AppIcon(TablerIcons.badge4k),
+                  secondary: const AppIcon(PhosphorIcons.fourK),
                   contentPadding: EdgeInsets.zero,
                 ),
               if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
@@ -416,7 +416,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                 onPressed: _canSubmit ? _submit : null,
                 child: FilledButton.icon(
                   onPressed: _canSubmit ? _submit : null,
-                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.download),
+                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.download),
                   label: Text(t.seerr.request),
                 ),
               ),
@@ -448,7 +448,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          AppIcon(TablerIcons.circleCheck, color: theme.colorScheme.primary),
+          AppIcon(PhosphorIcons.checkCircle, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
           Expanded(child: Text(label ?? t.seerr.nothingToRequest, style: theme.textTheme.bodyMedium)),
         ],
@@ -521,7 +521,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       ),
       if (servers.length > 1)
         _PickerTile<SeerrServiceInstance>(
-          icon: TablerIcons.server,
+          icon: PhosphorIcons.hardDrives,
           label: t.seerr.destinationServer,
           value: _server?.name ?? '',
           options: servers,
@@ -532,7 +532,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (profiles.isNotEmpty)
         _PickerTile<SeerrServiceProfile>(
-          icon: TablerIcons.badgeHd,
+          icon: PhosphorIcons.highDefinition,
           label: t.seerr.qualityProfile,
           value: profiles.firstWhereOrNull((p) => p.id == _profileId)?.name ?? '',
           options: profiles,
@@ -543,7 +543,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (folders.isNotEmpty)
         _PickerTile<SeerrRootFolder>(
-          icon: TablerIcons.folder,
+          icon: PhosphorIcons.folder,
           label: t.seerr.rootFolder,
           value: _rootFolder ?? '',
           options: folders,
@@ -554,7 +554,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         ),
       if (languages.isNotEmpty)
         _PickerTile<SeerrServiceProfile>(
-          icon: TablerIcons.language,
+          icon: PhosphorIcons.translate,
           label: t.seerr.languageProfile,
           value: languages.firstWhereOrNull((p) => p.id == _languageProfileId)?.name ?? '',
           options: languages,
@@ -613,7 +613,7 @@ class _PickerTile<T> extends StatelessWidget {
       leading: AppIcon(icon),
       title: Text(label),
       subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: const AppIcon(TablerIcons.selector),
+      trailing: const AppIcon(PhosphorIcons.caretUpDown),
       contentPadding: EdgeInsets.zero,
       enabled: enabled,
       onTap: () => unawaited(_open(context)),

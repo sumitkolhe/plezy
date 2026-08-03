@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../connection/connection.dart';
 import '../../connection/connection_registry.dart';
@@ -52,7 +52,7 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
               slivers: [
                 if (syncRules.isEmpty)
                   SliverFillRemaining(
-                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: TablerIcons.refresh, iconSize: 80),
+                    child: EmptyStateWidget(message: t.downloads.noSyncRules, icon: PhosphorIcons.arrowsClockwise, iconSize: 80),
                   )
                 else
                   SliverList(
@@ -126,14 +126,14 @@ class _SyncRuleTileState extends State<_SyncRuleTile> {
   IconData _leadingIcon() {
     switch (rule.targetType) {
       case ContentTypes.playlist:
-        return TablerIcons.playlist;
+        return PhosphorIcons.playlist;
       case ContentTypes.collection:
-        return TablerIcons.books;
+        return PhosphorIcons.books;
       case ContentTypes.show:
       case ContentTypes.season:
-        return TablerIcons.deviceTv;
+        return PhosphorIcons.television;
       default:
-        return TablerIcons.refresh;
+        return PhosphorIcons.arrowsClockwise;
     }
   }
 
@@ -329,7 +329,7 @@ class _SwipeRevealDeleteActionState extends State<_SwipeRevealDeleteAction> {
                             child: Column(
                               mainAxisAlignment: .center,
                               children: [
-                                AppIcon(TablerIcons.trash, color: colorScheme.onError, size: 20),
+                                AppIcon(PhosphorIcons.trash, color: colorScheme.onError, size: 20),
                                 const SizedBox(height: 2),
                                 Text(
                                   t.common.delete,

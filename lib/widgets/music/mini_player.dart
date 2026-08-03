@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_action_bar.dart';
@@ -314,7 +314,7 @@ class _MiniPlayerCardState extends State<_MiniPlayerCard> with ContextMenuTapMix
                                 imageType: ImageType.square,
                                 width: 48,
                                 height: 48,
-                                fallbackIcon: TablerIcons.music,
+                                fallbackIcon: PhosphorIcons.musicNote,
                               ),
                             ),
                             const SizedBox(width: 10),
@@ -349,26 +349,26 @@ class _MiniPlayerCardState extends State<_MiniPlayerCard> with ContextMenuTapMix
                       actions: [
                         if (widget.desktop)
                           FocusableAction(
-                            icon: TablerIcons.playerSkipBack,
+                            icon: PhosphorIcons.skipBack,
                             iconColor: tk.text,
                             tooltip: t.music.previousTrack,
                             onPressed: () => unawaited(service.previous()),
                           ),
                         FocusableAction(
-                          icon: isPlaying ? TablerIcons.playerPause : TablerIcons.playerPlay,
+                          icon: isPlaying ? PhosphorIcons.pause : PhosphorIcons.play,
                           iconColor: tk.text,
                           tooltip: isPlaying ? t.common.pause : t.common.play,
                           onPressed: () => unawaited(service.togglePlayPause()),
                         ),
                         FocusableAction(
-                          icon: TablerIcons.playerSkipForward,
+                          icon: PhosphorIcons.skipForward,
                           iconColor: tk.text,
                           tooltip: t.music.nextTrack,
                           onPressed: () => unawaited(service.next()),
                         ),
                         if (widget.desktop)
                           FocusableAction(
-                            icon: TablerIcons.x,
+                            icon: PhosphorIcons.x,
                             iconColor: tk.textMuted,
                             iconSize: 20,
                             tooltip: t.music.stopPlayback,

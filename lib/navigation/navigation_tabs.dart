@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../i18n/strings.g.dart';
 import '../utils/platform_detector.dart';
@@ -61,19 +61,19 @@ String _getSettingsLabel() => t.common.settings;
 
 /// All navigation tabs in display order
 const allNavigationTabs = [
-  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: TablerIcons.home, getLabel: _getHomeLabel),
-  NavigationTab(id: NavigationTabId.libraries, onlineOnly: true, icon: TablerIcons.movie, getLabel: _getLibrariesLabel),
-  NavigationTab(id: NavigationTabId.explore, onlineOnly: true, icon: TablerIcons.compass, getLabel: _getExploreLabel),
+  NavigationTab(id: NavigationTabId.discover, onlineOnly: true, icon: PhosphorIcons.house, getLabel: _getHomeLabel),
+  NavigationTab(id: NavigationTabId.libraries, onlineOnly: true, icon: PhosphorIcons.filmSlate, getLabel: _getLibrariesLabel),
+  NavigationTab(id: NavigationTabId.explore, onlineOnly: true, icon: PhosphorIcons.compass, getLabel: _getExploreLabel),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,
-    icon: TablerIcons.download,
+    icon: PhosphorIcons.download,
     getLabel: _getDownloadsLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,
     onlineOnly: false,
-    icon: TablerIcons.settings,
+    icon: PhosphorIcons.gear,
     getLabel: _getSettingsLabel,
   ),
 ];

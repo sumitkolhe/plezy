@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/focus/focusable_action_bar.dart';
 import 'package:harbor/focus/focusable_wrapper.dart';
 import 'package:harbor/i18n/strings.g.dart';
@@ -317,8 +317,8 @@ void main() {
         .toList();
 
     expect(icons, hasLength(4));
-    expect(icons.singleWhere((icon) => icon.icon == TablerIcons.x).size, 20);
-    expect(icons.where((icon) => icon.icon != TablerIcons.x).map((icon) => icon.size), everyElement(24));
+    expect(icons.singleWhere((icon) => icon.icon == PhosphorIcons.x).size, 20);
+    expect(icons.where((icon) => icon.icon != PhosphorIcons.x).map((icon) => icon.size), everyElement(24));
   });
 
   testWidgets('keyboard long-press anchors the context menu to the focused card instead of a stale pointer', (
@@ -358,7 +358,7 @@ void main() {
     await tester.pumpAndSettle();
 
     final playMenuIcon = find.byWidgetPredicate(
-      (widget) => widget is AppIcon && widget.icon == TablerIcons.playerPlay,
+      (widget) => widget is AppIcon && widget.icon == PhosphorIcons.play,
     );
     expect(playMenuIcon, findsOneWidget);
     final menuSurface = find.ancestor(of: playMenuIcon, matching: find.byType(BottomSheet));

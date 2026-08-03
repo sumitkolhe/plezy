@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import '../media/ids.dart';
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/focusable_wrapper.dart';
 import '../focus/focusable_button.dart';
@@ -231,7 +231,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
               onPressed: _hasChanges ? _save : null,
               child: IconButton(
                 onPressed: _hasChanges ? _save : null,
-                icon: const AppIcon(TablerIcons.circleCheck),
+                icon: const AppIcon(PhosphorIcons.checkCircle),
                 tooltip: t.common.save,
               ),
             ),
@@ -304,7 +304,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
             ? TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5))
             : null,
       ),
-      trailing: const AppIcon(TablerIcons.chevronRight),
+      trailing: const AppIcon(PhosphorIcons.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : onTap,
       dense: false,
@@ -332,7 +332,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
         ),
       ),
       title: Text(field.label),
-      trailing: const AppIcon(TablerIcons.chevronRight),
+      trailing: const AppIcon(PhosphorIcons.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : () => _openArtworkPicker(field),
       dense: false,
@@ -448,12 +448,12 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
           DialogActionButton(
             onPressed: _isApplying ? null : _addFromUrl,
             label: t.metadataEdit.fromUrl,
-            icon: const AppIcon(TablerIcons.link, size: 18),
+            icon: const AppIcon(PhosphorIcons.link, size: 18),
           ),
           DialogActionButton(
             onPressed: _isApplying ? null : _uploadFile,
             label: t.metadataEdit.uploadFile,
-            icon: const AppIcon(TablerIcons.upload, size: 18),
+            icon: const AppIcon(PhosphorIcons.upload, size: 18),
           ),
           DialogActionButton(
             autofocus: true,
@@ -514,7 +514,7 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
                     child: Container(
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
-                      child: AppIcon(TablerIcons.circleCheck, size: 16, color: Theme.of(context).colorScheme.onPrimary),
+                      child: AppIcon(PhosphorIcons.checkCircle, size: 16, color: Theme.of(context).colorScheme.onPrimary),
                     ),
                   ),
               ],

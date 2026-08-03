@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/dpad_navigator.dart';
 import '../focus/focusable_tile_mixin.dart';
@@ -461,7 +461,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final background = _backgroundColor(context, active: active);
 
     final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, size: 24) : null);
-    final trailing = item.trailing ?? (item.selected ? AppIcon(TablerIcons.circleCheck, size: 18) : null);
+    final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIcons.checkCircle, size: 18) : null);
     final subtitle = item.subtitleWidget ?? (item.subtitle != null ? Text(item.subtitle!) : null);
 
     return Semantics(

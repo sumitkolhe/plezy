@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focus_theme.dart';
@@ -247,7 +247,7 @@ class _LyricsViewState extends State<LyricsView> {
     }
     final lyrics = _lyrics;
     if (lyrics == null || lyrics.isEmpty) {
-      return StateMessageWidget(icon: TablerIcons.alignLeft, message: t.music.noLyrics, iconSize: 48);
+      return StateMessageWidget(icon: PhosphorIcons.textAlignLeft, message: t.music.noLyrics, iconSize: 48);
     }
 
     final showFocus = _paneFocused && InputModeTracker.isKeyboardMode(context);

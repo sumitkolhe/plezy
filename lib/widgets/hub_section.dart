@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/dpad_select_long_press_controller.dart';
 import '../focus/focus_theme.dart';
@@ -485,7 +485,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                       ],
                       if (widget.hub.more && !isKeyboardMode) ...[
                         const SizedBox(width: 4),
-                        AppIcon(TablerIcons.chevronRight, size: isTv ? 26 : 20),
+                        AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
                       ],
                     ],
                   ),
@@ -601,7 +601,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                                         mainAxisSize: .min,
                                         children: [
                                           AppIcon(
-                                            TablerIcons.arrowRight,
+                                            PhosphorIcons.arrowRight,
                                             size: isTv ? 42 : 32,
                                             color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                                           ),

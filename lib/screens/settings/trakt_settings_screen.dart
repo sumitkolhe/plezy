@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 
 import '../../i18n/strings.g.dart';
@@ -71,14 +71,14 @@ class TraktSettingsScreen extends StatelessWidget {
           toggles: [
             TrackerSettingsToggle(
               pref: SettingsService.scrobblePref(TrackerService.trakt),
-              icon: TablerIcons.clockHour4,
+              icon: PhosphorIcons.timer,
               title: t.trakt.scrobble,
               subtitle: t.trakt.scrobbleDescription,
               onAfterWrite: TraktTracker.instance.setEnabled,
             ),
             TrackerSettingsToggle(
               pref: SettingsService.enableTraktWatchedSync,
-              icon: TablerIcons.circleCheck,
+              icon: PhosphorIcons.checkCircle,
               title: t.trakt.watchedSync,
               subtitle: t.trakt.watchedSyncDescription,
               onAfterWrite: TraktTracker.instance.setWatchedSyncEnabled,

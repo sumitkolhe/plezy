@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/screens/profile/pin_entry_dialog.dart';
 import 'package:harbor/utils/platform_detector.dart';
 
@@ -226,8 +226,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('1'), findsOneWidget);
-    expect(find.byIcon(TablerIcons.x), findsOneWidget);
-    expect(find.byIcon(TablerIcons.backspace), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.x), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.backspace), findsOneWidget);
     expect(find.byType(TextField), findsNothing);
     expect(find.widgetWithText(TextButton, 'Cancel'), findsNothing);
     expect(find.byType(FilledButton), findsNothing);

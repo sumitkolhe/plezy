@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../focus/focusable_action_bar.dart';
 import '../../media/media_item.dart';
@@ -154,7 +154,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
                 onNavigateDown: _focusCurrentTab,
                 actions: [
                   FocusableAction(
-                    icon: TablerIcons.listCheck,
+                    icon: PhosphorIcons.listChecks,
                     tooltip: t.downloads.activeSyncRules,
                     onPressed: () =>
                         Navigator.push(context, MaterialPageRoute(builder: (_) => const SyncRulesScreen())),
@@ -359,7 +359,7 @@ class _DownloadsGridContentState extends State<_DownloadsGridContent> {
     return EmptyStateWidget(
       message: t.downloads.noDownloads,
       subtitle: t.downloads.noDownloadsDescription,
-      icon: TablerIcons.download,
+      icon: PhosphorIcons.download,
       iconSize: 80,
     );
   }
@@ -455,7 +455,7 @@ class _DownloadedMusicContentState extends State<_DownloadedMusicContent> {
       width: 48,
       height: 48,
       color: tk.surface,
-      child: AppIcon(TablerIcons.disc, size: 24, color: tk.textMuted),
+      child: AppIcon(PhosphorIcons.vinylRecord, size: 24, color: tk.textMuted),
     );
 
     return Padding(
@@ -518,7 +518,7 @@ class _DownloadedMusicContentState extends State<_DownloadedMusicContent> {
           return EmptyStateWidget(
             message: t.downloads.noDownloads,
             subtitle: t.downloads.noDownloadsDescription,
-            icon: TablerIcons.music,
+            icon: PhosphorIcons.musicNote,
             iconSize: 80,
           );
         }

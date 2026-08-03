@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tabler_icons_plus/tabler_icons_plus.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/providers/theme_provider.dart';
 import 'package:harbor/screens/settings/settings_utils.dart';
@@ -120,23 +120,23 @@ void main() {
 
       await p.setThemeMode(settings.ThemeMode.light);
       expect(themeModeLabel(p.themeMode), t.settings.lightTheme);
-      expect(p.themeModeIcon, TablerIcons.sun);
+      expect(p.themeModeIcon, PhosphorIcons.sun);
 
       await p.setThemeMode(settings.ThemeMode.dark);
       expect(themeModeLabel(p.themeMode), t.settings.darkTheme);
-      expect(p.themeModeIcon, TablerIcons.moon);
+      expect(p.themeModeIcon, PhosphorIcons.moon);
 
       await p.setThemeMode(settings.ThemeMode.oled);
       expect(themeModeLabel(p.themeMode), t.settings.oledTheme);
-      expect(p.themeModeIcon, TablerIcons.contrast);
+      expect(p.themeModeIcon, PhosphorIcons.circleHalf);
 
       await p.setThemeMode(settings.ThemeMode.system);
       expect(themeModeLabel(p.themeMode), t.settings.systemTheme);
-      expect(p.themeModeIcon, TablerIcons.sun);
+      expect(p.themeModeIcon, PhosphorIcons.sun);
 
       await p.setThemeMode(settings.ThemeMode.materialYou);
       expect(themeModeLabel(p.themeMode), t.settings.materialYouTheme);
-      expect(p.themeModeIcon, TablerIcons.palette);
+      expect(p.themeModeIcon, PhosphorIcons.palette);
 
       p.dispose();
     });
