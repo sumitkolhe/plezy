@@ -1239,27 +1239,47 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     }
   }
 
-  /// Fades the page out behind the bar rather than cutting it off at a hard
-  /// edge, which is what an opaque bar did before content ran underneath.
+  /// Height the page fades over before it meets the bar. Long enough to read as
+  /// a dissolve rather than a band.
+  static const double _navigationFadeHeight = 84;
+
+  /// Lays the fade over the page rather than behind the bar.
   ///
-  /// The fade finishes in the top fifth, above where the icons sit, so a label
-  /// never lands on artwork. It cannot be given its own height instead: this
-  /// subtree is what [_bottomBarKey] measures for the mini player's offset, and
-  /// a taller box would lift the mini player off the bar.
-  Widget _navigationScrim(BuildContext context, {required Widget child}) {
+  /// Behind the bar it could only ever be as tall as the bar, and that height is
+  /// what the mini player measures for its own offset. Over the page it is free
+  /// to run as far up as it needs, and the bar — transparent by theme — draws
+  /// its icons on top.
+  Widget _withNavigationFade(BuildContext context, Widget child) {
     final bg = tokens(context).bg;
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          // Short of opaque, so artwork reads faintly through the bar. Any
-          // further and an 11pt muted label starts to lose a bright poster.
-          colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.88), bg.withValues(alpha: 0.88)],
-          stops: const [0, 0.22, 1],
+    // extendBody puts the bar's height here, so the fade ends where the bar
+    // begins whatever the label setting or gesture inset.
+    final total = MediaQuery.paddingOf(context).bottom + _navigationFadeHeight;
+
+    return Stack(
+      children: [
+        child,
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: total,
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  // Short of opaque behind the bar so artwork still reads
+                  // through; any further and an 11pt muted label loses a bright
+                  // poster.
+                  colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.88), bg.withValues(alpha: 0.88)],
+                  stops: [0, _navigationFadeHeight / total, 1],
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-      child: child,
+      ],
     );
   }
 
@@ -1469,7 +1489,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
           // adds the bar's height to the body's MediaQuery padding, which the
           // tab scroll views read so their last row still clears it.
           extendBody: true,
-          body: _buildTickerAwareStack(),
+          body: _withNavigationFade(context, _buildTickerAwareStack()),
           bottomNavigationBar: Column(
             key: _bottomBarKey,
             mainAxisSize: .min,
@@ -1520,7 +1540,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                   _scheduleBottomBarMeasure();
                   return NavigationBarTheme(
                     data: NavigationBarTheme.of(context).copyWith(height: hideLabels ? 56 : null),
-                    child: _navigationScrim(context, child: _buildBottomNavigationBar(context, hideLabels: hideLabels)),
+                    child: _buildBottomNavigationBar(context, hideLabels: hideLabels),
                   );
                 },
               ),
