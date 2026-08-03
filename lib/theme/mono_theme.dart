@@ -176,7 +176,9 @@ ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? pale
       labelTextStyle: WidgetStatePropertyAll(TextStyle(color: c.textMuted, fontFamily: MonoFonts.sans, fontSize: 11)),
       iconTheme: WidgetStateProperty.resolveWith((states) {
         final active = states.contains(WidgetState.selected);
-        return IconThemeData(opacity: active ? 1 : 0.6, size: 22, color: c.text);
+        // 24 is both what M3 asks of a navigation icon and the grid Tabler is
+        // drawn on, so strokes land on whole pixels instead of between them.
+        return IconThemeData(opacity: active ? 1 : 0.6, size: 24, color: c.text);
       }),
     ),
     // Floating snackbars auto-offset above the Scaffold's bottom NavigationBar,
