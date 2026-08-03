@@ -75,7 +75,7 @@ void main() {
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'TvVirtualKeyboard');
 
-    await tester.tap(find.byIcon(PhosphorIcons.checkCircle));
+    await tester.tap(find.byIcon(PhosphorIcons.check));
     await tester.pumpAndSettle();
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddLocalProfile:SetPin');

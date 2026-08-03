@@ -87,7 +87,7 @@ class TrackSelectionHelper {
     if (badge != null) {
       trailing = badge;
     } else if (isSelected) {
-      trailing = AppIcon(PhosphorIcons.checkCircle, color: primaryColor);
+      trailing = AppIcon(PhosphorIcons.check, color: primaryColor);
     }
 
     Widget tile = FocusableListTile(

@@ -1369,7 +1369,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
             child: CircularProgressIndicator(strokeWidth: 1.5, color: coralColor),
           );
         } else if (connected) {
-          statusIcon = const AppIcon(PhosphorIcons.checkCircle, size: 14, color: successColor);
+          statusIcon = const AppIcon(PhosphorIcons.check, size: 14, color: successColor);
         } else {
           statusIcon = const AppIcon(PhosphorIcons.xCircle, size: 14, color: failColor);
         }

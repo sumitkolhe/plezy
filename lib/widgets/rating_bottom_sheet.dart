@@ -605,7 +605,7 @@ class _TrailingStatus extends StatelessWidget {
     final color = status.isError ? Theme.of(context).colorScheme.error : Theme.of(context).colorScheme.primary;
     return Tooltip(
       message: status.text,
-      child: AppIcon(status.isError ? PhosphorIcons.warningCircle : PhosphorIcons.checkCircle, color: color, size: 18),
+      child: AppIcon(status.isError ? PhosphorIcons.warningCircle : PhosphorIcons.check, color: color, size: 18),
     );
   }
 }

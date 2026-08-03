@@ -759,7 +759,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           FocusableListTile(
             title: Text(mode.title, style: TextStyle(color: _dvConversionMode == mode.value ? primary : null)),
             subtitle: Text(mode.subtitle, style: TextStyle(color: tokens(context).textMuted, fontSize: 12)),
-            trailing: _dvConversionMode == mode.value ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+            trailing: _dvConversionMode == mode.value ? AppIcon(PhosphorIcons.check, color: primary) : null,
             onTap: () => _setDebugDvConversionMode(mode.value),
           ),
       ],
@@ -803,7 +803,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             final primary = Theme.of(context).colorScheme.primary;
             return FocusableListTile(
               title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-              trailing: isSelected ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+              trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
               onTap: () async {
                 await widget.player.setRate(speed);
                 await SettingsService.instance.write(SettingsService.defaultPlaybackSpeed, speed);
@@ -835,7 +835,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               _formatZoomScale(scale),
               style: TextStyle(color: (_zoomScale - scale).abs() < 0.005 ? primary : null),
             ),
-            trailing: (_zoomScale - scale).abs() < 0.005 ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+            trailing: (_zoomScale - scale).abs() < 0.005 ? AppIcon(PhosphorIcons.check, color: primary) : null,
             onTap: () => _setZoomScale(scale),
           ),
       ],
@@ -956,7 +956,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     final primary = Theme.of(context).colorScheme.primary;
     return FocusableListTile(
       title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-      trailing: isSelected ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+      trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
       onTap: () {
         widget.player.setAudioDevice(device);
         OverlaySheetController.of(context).close();
@@ -997,7 +997,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               trailing: Row(
                 mainAxisSize: .min,
                 children: [
-                  if (isSelected) const AppIcon(PhosphorIcons.checkCircle, color: Colors.amber),
+                  if (isSelected) const AppIcon(PhosphorIcons.check, color: Colors.amber),
                   if (isCustom) ...[
                     if (isSelected) const SizedBox(width: 8),
                     GestureDetector(

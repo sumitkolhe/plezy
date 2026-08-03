@@ -308,7 +308,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       }
 
       if (!mediaItem!.isWatched || isPartiallyWatched || hasActiveProgress) {
-        menuActions.add(_MenuAction(value: 'watch', icon: PhosphorIcons.checkCircle, label: t.mediaMenu.markAsWatched));
+        menuActions.add(_MenuAction(value: 'watch', icon: PhosphorIcons.check, label: t.mediaMenu.markAsWatched));
       }
 
       if (mediaItem.isWatched || isPartiallyWatched || hasActiveProgress) {

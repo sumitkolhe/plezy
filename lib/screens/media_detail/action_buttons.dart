@@ -428,7 +428,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
   }) {
     return IconButton.filledTonal(
       onPressed: () => unawaited(_handleWatchedTogglePressed(metadata)),
-      icon: AppIcon(PhosphorIcons.checkCircle),
+      icon: AppIcon(PhosphorIcons.check),
       tooltip: metadata.isWatched ? t.tooltips.markAsUnwatched : t.tooltips.markAsWatched,
       iconSize: PlatformDetector.isTV() ? 21 * tvScale : 20,
       style: actionButtonStyle(showFocus: showFocus),

@@ -448,7 +448,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          AppIcon(PhosphorIcons.checkCircle, color: theme.colorScheme.primary),
+          AppIcon(PhosphorIcons.check, color: theme.colorScheme.primary),
           const SizedBox(width: 10),
           Expanded(child: Text(label ?? t.seerr.nothingToRequest, style: theme.textTheme.bodyMedium)),
         ],

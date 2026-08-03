@@ -414,7 +414,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
             scheme.tertiary,
             t.downloads.backgroundWarning.statusDegraded,
           ),
-          _ => (PhosphorIcons.checkCircle, null, t.downloads.backgroundWarning.statusOk),
+          _ => (PhosphorIcons.check, null, t.downloads.backgroundWarning.statusOk),
         };
         return FocusableListTile(
           focusNode: _focusTracker.get(_kBackgroundDownloads),
@@ -551,7 +551,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         FocusableListTile(
           focusNode: _focusTracker.get(_kCheckForUpdates),
           leading: AppIcon(
-            hasUpdate ? PhosphorIcons.download : PhosphorIcons.checkCircle,
+            hasUpdate ? PhosphorIcons.download : PhosphorIcons.check,
             color: hasUpdate ? Colors.orange : null,
           ),
           title: Text(hasUpdate ? t.settings.updateAvailable : t.settings.checkForUpdates),

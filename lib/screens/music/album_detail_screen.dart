@@ -226,7 +226,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
             );
             tooltip = t.downloads.downloadingTooltip;
           } else if (status == DownloadStatus.completed) {
-            icon = const AppIcon(PhosphorIcons.checkCircle);
+            icon = const AppIcon(PhosphorIcons.check);
             tooltip = t.downloads.deleteDownload;
           } else if (status == DownloadStatus.partial) {
             icon = const AppIcon(PhosphorIcons.download);
