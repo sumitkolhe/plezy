@@ -1253,7 +1253,9 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [bg.withValues(alpha: 0), bg, bg],
+          // Short of opaque, so artwork reads faintly through the bar. Any
+          // further and an 11pt muted label starts to lose a bright poster.
+          colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.88), bg.withValues(alpha: 0.88)],
           stops: const [0, 0.22, 1],
         ),
       ),
