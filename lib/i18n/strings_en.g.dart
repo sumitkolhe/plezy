@@ -393,6 +393,12 @@ class Translations$settings$en {
 	/// en: 'Material You'
 	String get materialYouTheme => 'Material You';
 
+	/// en: 'Haptic feedback'
+	String get hapticFeedback => 'Haptic feedback';
+
+	/// en: 'Vibrate when choosing an item, switching tabs, or flipping a switch'
+	String get hapticFeedbackDescription => 'Vibrate when choosing an item, switching tabs, or flipping a switch';
+
 	/// en: 'Library Density'
 	String get libraryDensity => 'Library Density';
 
@@ -4861,6 +4867,8 @@ extension on Translations {
 			'settings.darkTheme' => 'Dark',
 			'settings.oledTheme' => 'OLED',
 			'settings.materialYouTheme' => 'Material You',
+			'settings.hapticFeedback' => 'Haptic feedback',
+			'settings.hapticFeedbackDescription' => 'Vibrate when choosing an item, switching tabs, or flipping a switch',
 			'settings.libraryDensity' => 'Library Density',
 			'settings.compact' => 'Compact',
 			'settings.comfortable' => 'Comfortable',
@@ -5286,10 +5294,10 @@ extension on Translations {
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
 			'videoControls.stretch' => 'Stretch',
-			'videoControls.lockRotation' => 'Lock rotation',
-			'videoControls.unlockRotation' => 'Unlock rotation',
 			_ => null,
 		} ?? switch (path) {
+			'videoControls.lockRotation' => 'Lock rotation',
+			'videoControls.unlockRotation' => 'Unlock rotation',
 			'videoControls.timerActive' => 'Timer Active',
 			'videoControls.playbackWillPauseIn' => ({required Object duration}) => 'Playback will pause in ${duration}',
 			'videoControls.sleepTimerEndOfVideo' => 'End of current video',
@@ -5800,10 +5808,10 @@ extension on Translations {
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
-			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
-			'music.nowPlaying' => 'Now Playing',
 			_ => null,
 		} ?? switch (path) {
+			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
+			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',
 			'music.clearQueue' => 'Clear queue',

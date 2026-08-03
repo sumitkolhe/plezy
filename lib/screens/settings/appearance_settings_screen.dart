@@ -64,6 +64,13 @@ class AppearanceSettingsScreen extends StatelessWidget {
                 subtitle: t.settings.focusGlowDescription,
               ),
             if (Platform.isAndroid) _visualEffectsSelector(context),
+            if (!PlatformDetector.isTV())
+              SettingSwitchTile(
+                pref: SettingsService.hapticFeedback,
+                icon: PhosphorIconsDuotone.waveform,
+                title: t.settings.hapticFeedback,
+                subtitle: t.settings.hapticFeedbackDescription,
+              ),
             SettingSwitchTile(
               pref: SettingsService.showEpisodeNumberOnCards,
               icon: PhosphorIconsDuotone.tag,

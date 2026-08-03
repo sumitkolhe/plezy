@@ -454,6 +454,11 @@ class SettingsService extends BaseSharedPreferencesService {
     values: ThemeMode.values,
     defaultValueProvider: _tvAwareThemeModeDefault,
   );
+  /// Off on TV, which has no vibrator to speak of.
+  static final hapticFeedback = BoolPref(
+    'haptic_feedback',
+    defaultValueProvider: () => !TvDetectionService.isTVSync(),
+  );
   static const videoPlayerNavigationEnabled = BoolPref(
     'video_player_navigation_enabled',
     defaultValueProvider: TvDetectionService.isTVSync,

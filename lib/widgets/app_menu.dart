@@ -3,6 +3,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/haptics.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../focus/dpad_navigator.dart';
@@ -215,6 +217,7 @@ class AppMenuButtonState<T> extends State<AppMenuButton<T>> {
       maxWidth: widget.maxWidth,
     );
     if (!mounted || selected == null) return selected;
+    Haptics.selection();
     widget.onSelected?.call(selected);
     return selected;
   }

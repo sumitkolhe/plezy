@@ -95,6 +95,8 @@
     "darkTheme": "Dark",
     "oledTheme": "OLED",
     "materialYouTheme": "Material You",
+    "hapticFeedback": "Haptic feedback",
+    "hapticFeedbackDescription": "Vibrate when choosing an item, switching tabs, or flipping a switch",
     "libraryDensity": "Library Density",
     "compact": "Compact",
     "comfortable": "Comfortable",

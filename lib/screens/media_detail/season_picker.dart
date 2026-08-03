@@ -6,6 +6,7 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import '../../i18n/strings.g.dart';
 import '../../media/media_item.dart';
 import '../../theme/mono_tokens.dart';
+import '../../utils/haptics.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/focusable_list_tile.dart';
 import '../../widgets/overlay_sheet.dart';
@@ -148,7 +149,10 @@ class _SeasonSheet extends StatelessWidget {
                 trailing: selected
                     ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18, color: tokensRef.accent)
                     : null,
-                onTap: () => OverlaySheetController.closeAdaptive(context, index),
+                onTap: () {
+                  Haptics.selection();
+                  OverlaySheetController.closeAdaptive(context, index);
+                },
               );
             },
           ),

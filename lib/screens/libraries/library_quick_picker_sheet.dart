@@ -4,6 +4,7 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import '../../i18n/strings.g.dart';
 import '../../media/media_library.dart';
 import '../../utils/content_utils.dart';
+import '../../utils/haptics.dart';
 import '../../utils/library_grouping.dart';
 import '../../widgets/app_icon.dart';
 import '../../widgets/backend_badge.dart';
@@ -123,7 +124,10 @@ class LibraryQuickPickerSheet extends StatelessWidget {
       ),
       subtitle: showServerName ? _buildServerSubtitle(context, library) : null,
       trailing: isSelected ? AppIcon(PhosphorIconsDuotone.checkCircle, color: colorScheme.primary) : null,
-      onTap: () => onSelected(library.globalKey),
+      onTap: () {
+        Haptics.selection();
+        onSelected(library.globalKey);
+      },
     );
   }
 
