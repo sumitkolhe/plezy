@@ -7,13 +7,13 @@ import 'package:harbor/theme/phosphor_icons.dart';
 IconData getReplayIcon(int seconds) {
   switch (seconds) {
     case 5:
-      return PhosphorIconsDuotone.arrowCounterClockwise;
+      return PhosphorIconsRegular.arrowCounterClockwise;
     case 10:
-      return PhosphorIconsDuotone.arrowCounterClockwise;
+      return PhosphorIconsRegular.arrowCounterClockwise;
     case 30:
-      return PhosphorIconsDuotone.arrowCounterClockwise;
+      return PhosphorIconsRegular.arrowCounterClockwise;
     default:
-      return PhosphorIconsDuotone.arrowCounterClockwise;
+      return PhosphorIconsRegular.arrowCounterClockwise;
   }
 }
 

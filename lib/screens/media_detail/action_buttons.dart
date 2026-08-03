@@ -735,7 +735,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
             return IconButton.filledTonal(
               onPressed: () => unawaited(_handleDownloadButtonPressed(metadata)),
               tooltip: tooltip,
-              icon: AppIcon(isEnabled ? PhosphorIconsDuotone.arrowsClockwise : PhosphorIconsDuotone.cloudSlash),
+              icon: AppIcon(isEnabled ? PhosphorIconsRegular.arrowsClockwise : PhosphorIconsDuotone.cloudSlash),
               iconSize: iconSize,
               style: actionButtonStyle(foregroundColor: isEnabled ? Colors.teal : Colors.grey, showFocus: showFocus),
             );
@@ -764,7 +764,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
             final isEnabled = syncRule?.enabled ?? true;
             return IconButton.filledTonal(
               onPressed: () => unawaited(_handleDownloadButtonPressed(metadata)),
-              icon: AppIcon(isEnabled ? PhosphorIconsDuotone.arrowsClockwise : PhosphorIconsDuotone.cloudSlash),
+              icon: AppIcon(isEnabled ? PhosphorIconsRegular.arrowsClockwise : PhosphorIconsDuotone.cloudSlash),
               tooltip: t.downloads.keepNUnwatched(count: syncRule?.episodeCount.toString() ?? '?'),
               iconSize: iconSize,
               style: actionButtonStyle(foregroundColor: isEnabled ? Colors.teal : Colors.grey, showFocus: showFocus),

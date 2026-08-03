@@ -31,7 +31,7 @@ class ExternalPlayerScreen extends StatelessWidget {
           children: [
             SettingSwitchTile(
               pref: SettingsService.useExternalPlayer,
-              icon: PhosphorIconsDuotone.arrowSquareOut,
+              icon: PhosphorIconsRegular.arrowSquareOut,
               title: t.externalPlayer.useExternalPlayer,
               subtitle: t.externalPlayer.useExternalPlayerDescription,
             ),
@@ -120,7 +120,7 @@ class _PlayerTile extends StatelessWidget {
               ),
       );
     } else if (player.id == 'system_default') {
-      leading = const AppIcon(PhosphorIconsDuotone.arrowSquareOut, size: 32);
+      leading = const AppIcon(PhosphorIconsRegular.arrowSquareOut, size: 32);
     } else {
       leading = const AppIcon(PhosphorIconsDuotone.playCircle, size: 32);
     }

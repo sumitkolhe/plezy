@@ -240,7 +240,7 @@ class ExploreScreenState extends State<ExploreScreen>
           const SizedBox(width: 8),
           Text(active.displayName, style: textStyle ?? Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 4),
-          const AppIcon(PhosphorIconsDuotone.caretDown, size: 24),
+          const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
         ],
       ),
     );
@@ -320,7 +320,7 @@ class ExploreScreenState extends State<ExploreScreen>
             // handheld the gesture already covers this.
             if (!PlatformDetector.isHandheld(context))
               FocusableAction(
-                icon: PhosphorIconsDuotone.arrowsClockwise,
+                icon: PhosphorIconsRegular.arrowsClockwise,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_handleRefresh()),
               ),
@@ -494,7 +494,7 @@ class ExploreScreenState extends State<ExploreScreen>
                   ).push(MaterialPageRoute<void>(builder: (_) => CatalogSearchScreen(source: active))),
                 ),
               FocusableAction(
-                icon: PhosphorIconsDuotone.arrowsClockwise,
+                icon: PhosphorIconsRegular.arrowsClockwise,
                 iconColor: foregroundColor,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_explore.load()),

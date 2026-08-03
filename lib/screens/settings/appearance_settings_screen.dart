@@ -196,7 +196,7 @@ class AppearanceSettingsScreen extends StatelessWidget {
       leading: const AppIcon(PhosphorIconsDuotone.translate),
       title: Text(t.settings.language),
       subtitle: Text(_getLanguageDisplayName(LocaleSettings.currentLocale)),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
       onTap: () async {
         final value = await showSelectionDialog<AppLocale>(
           context: context,

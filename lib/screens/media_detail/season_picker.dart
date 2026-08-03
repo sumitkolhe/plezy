@@ -74,7 +74,7 @@ class SeasonPickerChip extends StatelessWidget {
               ),
               if (choosable) ...[
                 const SizedBox(width: 4),
-                AppIcon(PhosphorIconsDuotone.caretDown, size: 16, color: tokensRef.text),
+                AppIcon(PhosphorIconsRegular.caretDown, size: 16, color: tokensRef.text),
               ],
             ],
           ),

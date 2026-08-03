@@ -445,7 +445,7 @@ class _ProfileTile extends StatelessWidget {
                 actions: [if (onManage != null) _TileAction.manage, if (onDelete != null) _TileAction.delete],
               )
             else if (!isActive)
-              const Padding(padding: .only(left: 8), child: AppIcon(PhosphorIconsDuotone.caretRight)),
+              const Padding(padding: .only(left: 8), child: AppIcon(PhosphorIconsRegular.caretRight)),
           ],
         ),
       ),

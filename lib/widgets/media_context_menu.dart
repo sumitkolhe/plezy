@@ -240,7 +240,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           menuActions.add(
             _MenuAction(
               value: 'manage_sync',
-              icon: PhosphorIconsDuotone.arrowsClockwise,
+              icon: PhosphorIconsRegular.arrowsClockwise,
               label: t.downloads.manageSyncRule,
             ),
           );
@@ -317,7 +317,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(
             value: 'play_from_beginning',
-            icon: PhosphorIconsDuotone.arrowCounterClockwise,
+            icon: PhosphorIconsRegular.arrowCounterClockwise,
             label: t.mediaMenu.playFromBeginning,
           ),
         );
@@ -418,7 +418,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         menuActions.add(
           _MenuAction(
             value: 'play_external',
-            icon: PhosphorIconsDuotone.arrowSquareOut,
+            icon: PhosphorIconsRegular.arrowSquareOut,
             label: t.externalPlayer.playInExternalPlayer,
           ),
         );
@@ -444,7 +444,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
           menuActions.add(
             _MenuAction(
               value: 'manage_sync',
-              icon: PhosphorIconsDuotone.arrowsClockwise,
+              icon: PhosphorIconsRegular.arrowsClockwise,
               label: t.downloads.manageSyncRule,
             ),
           );

@@ -1321,7 +1321,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
               ),
               if (_trailingFor(hub) == TvRailTrailing.viewAll) ...[
                 SizedBox(width: 8 * scale),
-                AppIcon(PhosphorIconsDuotone.caretRight, size: 20 * scale, color: iconColor),
+                AppIcon(PhosphorIconsRegular.caretRight, size: 20 * scale, color: iconColor),
                 SizedBox(width: 30 * scale),
               ],
             ],
@@ -1677,7 +1677,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           isFocused: isFocused,
           scale: scale,
           label: t.common.retry,
-          icon: PhosphorIconsDuotone.arrowsClockwise,
+          icon: PhosphorIconsRegular.arrowsClockwise,
           onTap: () {
             _selectHubItem(hub, hubIndex, itemIndex);
             widget.onRetryHub?.call(hub);
@@ -1736,7 +1736,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
     required double scale,
     required VoidCallback onTap,
     String? label,
-    IconData icon = PhosphorIconsDuotone.arrowRight,
+    IconData icon = PhosphorIconsRegular.arrowRight,
   }) {
     final theme = Theme.of(context);
     final duration = FocusTheme.getAnimationDuration(context);

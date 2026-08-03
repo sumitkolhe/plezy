@@ -252,7 +252,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                                   _buildBottomBar(context),
                                 ],
                               ),
-                              const ContentStripHint(PhosphorIconsDuotone.caretUp),
+                              const ContentStripHint(PhosphorIconsRegular.caretUp),
                             ],
                           ),
                         ),
@@ -269,7 +269,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                             opacity: (t * 2).clamp(0.0, 1.0),
                             child: ContentStripPanel(
                               padding: const EdgeInsets.only(top: 32),
-                              chevron: PhosphorIconsDuotone.caretDown,
+                              chevron: PhosphorIconsRegular.caretDown,
                               child: ContentStrip(
                                 player: widget.player,
                                 chapters: widget.chapters,

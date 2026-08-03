@@ -642,7 +642,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
                   FocusableAction(
-                    icon: PhosphorIconsDuotone.arrowsClockwise,
+                    icon: PhosphorIconsRegular.arrowsClockwise,
                     iconColor: foregroundColor,
                     onPressed: _discover.load,
                   ),

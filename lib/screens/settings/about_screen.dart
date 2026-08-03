@@ -63,7 +63,7 @@ class AboutScreen extends StatelessWidget {
                         leading: const AppIcon(PhosphorIconsDuotone.fileText),
                         title: Text(t.about.openSourceLicenses),
                         subtitle: Text(t.about.viewLicensesDescription),
-                        trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+                        trailing: const AppIcon(PhosphorIconsRegular.caretRight),
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LicensesScreen()));
                         },

@@ -819,7 +819,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
             leading: const AppIcon(PhosphorIconsDuotone.squaresFour),
             title: Text(t.libraries.groupings.title),
             subtitle: Text(_getGroupingLabel(_selectedGrouping)),
-            trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+            trailing: const AppIcon(PhosphorIconsRegular.caretRight),
             onTap: () => _showGroupingOptionsPage(controller),
           ),
           if (_isFiltersChipVisible)
@@ -830,7 +830,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
                     ? t.libraries.filters
                     : t.libraries.filtersWithCount(count: _selectedFilters.length),
               ),
-              trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+              trailing: const AppIcon(PhosphorIconsRegular.caretRight),
               onTap: () => _showFiltersOptionsPage(controller),
             ),
           if (_isSortChipVisible)
@@ -838,7 +838,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
               leading: const AppIcon(PhosphorIconsDuotone.sortAscending),
               title: Text(t.libraries.sort),
               subtitle: _selectedSort == null ? null : Text(_selectedSort!.title),
-              trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+              trailing: const AppIcon(PhosphorIconsRegular.caretRight),
               onTap: () => _showSortOptionsPage(controller),
             ),
         ],

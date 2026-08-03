@@ -218,7 +218,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
 
   Widget _buildFolderRow(BuildContext context) {
     final indentation = widget.depth * 24.0;
-    final expandIcon = widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight;
+    final expandIcon = widget.isExpanded ? PhosphorIconsRegular.caretDown : PhosphorIconsRegular.caretRight;
 
     return Container(
       padding: .only(left: 16.0 + indentation, right: 8.0, top: 8.0, bottom: 8.0),
@@ -250,7 +250,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     final episodePosterMode = svc.read(SettingsService.episodePosterMode);
     final hideSpoilers = svc.read(SettingsService.hideSpoilers);
     final showUnwatchedCount = svc.read(SettingsService.showUnwatchedCount);
-    final expandIcon = widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight;
+    final expandIcon = widget.isExpanded ? PhosphorIconsRegular.caretDown : PhosphorIconsRegular.caretRight;
 
     final orientation = svc.read(SettingsService.cardOrientation);
     final isWide = widget.item.usesWideAspectRatio(orientation);

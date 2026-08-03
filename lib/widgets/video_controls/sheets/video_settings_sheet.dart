@@ -84,7 +84,7 @@ class _SettingsMenuItem extends StatelessWidget {
         children: [
           if (allowValueOverflow) Flexible(child: valueWidget) else valueWidget,
           const SizedBox(width: 8),
-          AppIcon(PhosphorIconsDuotone.caretRight, color: t.textMuted),
+          AppIcon(PhosphorIconsRegular.caretRight, color: t.textMuted),
         ],
       ),
       onTap: onTap,
@@ -344,7 +344,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
     final isSubtitle = view == _SettingsView.subtitleSync;
     final title = isSubtitle ? t.videoSettings.subtitleSync : t.videoSettings.audioSync;
-    final icon = isSubtitle ? PhosphorIconsDuotone.subtitles : PhosphorIconsDuotone.arrowsClockwise;
+    final icon = isSubtitle ? PhosphorIconsDuotone.subtitles : PhosphorIconsRegular.arrowsClockwise;
     final propertyName = isSubtitle ? 'sub-delay' : 'audio-delay';
     final initialOffset = isSubtitle ? _subtitleSyncOffset : _audioSyncOffset;
 
@@ -434,7 +434,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
       case _SettingsView.sleep:
         return PhosphorIconsDuotone.moon;
       case _SettingsView.audioSync:
-        return PhosphorIconsDuotone.arrowsClockwise;
+        return PhosphorIconsRegular.arrowsClockwise;
       case _SettingsView.subtitleSync:
         return PhosphorIconsDuotone.subtitles;
       case _SettingsView.audioDevice:
@@ -577,7 +577,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         // Audio Sync
         _SettingsMenuItem(
-          icon: PhosphorIconsDuotone.arrowsClockwise,
+          icon: PhosphorIconsRegular.arrowsClockwise,
           title: t.videoSettings.audioSync,
           valueText: formatSyncOffset(_audioSyncOffset.toDouble()),
           isHighlighted: _audioSyncOffset != 0,
@@ -716,7 +716,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Debug: Trigger MPV Fallback (Android ExoPlayer only)
         if (kDebugMode && Platform.isAndroid && widget.player.playerType == 'exoplayer')
           FocusableListTile(
-            leading: AppIcon(PhosphorIconsDuotone.arrowsLeftRight, color: tokens(context).textMuted),
+            leading: AppIcon(PhosphorIconsRegular.arrowsLeftRight, color: tokens(context).textMuted),
             title: const Text('Trigger MPV Fallback'),
             onTap: () {
               const MethodChannel('co.sumit.harbor/exo_player').invokeMethod('triggerFallback');
@@ -826,7 +826,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     return ListView(
       children: [
         FocusableListTile(
-          leading: AppIcon(PhosphorIconsDuotone.arrowCounterClockwise, color: tokens(context).textMuted),
+          leading: AppIcon(PhosphorIconsRegular.arrowCounterClockwise, color: tokens(context).textMuted),
           title: Text(t.common.reset),
           onTap: _resetZoomScale,
         ),

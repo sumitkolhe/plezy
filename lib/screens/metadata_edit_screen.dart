@@ -304,7 +304,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
             ? TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5))
             : null,
       ),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : onTap,
       dense: false,
@@ -332,7 +332,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
         ),
       ),
       title: Text(field.label),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : () => _openArtworkPicker(field),
       dense: false,

@@ -72,7 +72,7 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
           AppMenuItem(
             value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: link.url),
             label: t.explore.detail.openOn(site: link.label),
-            icon: PhosphorIconsDuotone.arrowSquareOut,
+            icon: PhosphorIconsRegular.arrowSquareOut,
           ),
       if (onWatchlist != null)
         AppMenuItem(

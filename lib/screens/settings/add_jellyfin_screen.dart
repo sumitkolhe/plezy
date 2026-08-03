@@ -813,7 +813,7 @@ class _DiscoveredJellyfinServerTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const AppIcon(PhosphorIconsDuotone.caretRight),
+                  const AppIcon(PhosphorIconsRegular.caretRight),
                 ],
               ),
             ),

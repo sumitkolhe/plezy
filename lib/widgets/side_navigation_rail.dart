@@ -898,7 +898,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
     final itemHorizontalPadding = itemHorizontalPaddingForContext(context, isCollapsed: isCollapsed);
 
     return NavigationRailItem(
-      icon: widget.isReconnecting ? PhosphorIconsDuotone.arrowsClockwise : PhosphorIconsDuotone.wifiHigh,
+      icon: widget.isReconnecting ? PhosphorIconsRegular.arrowsClockwise : PhosphorIconsDuotone.wifiHigh,
       label: widget.isReconnecting
           ? SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: t.text))
           : Text(
@@ -947,7 +947,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
             opacity: isCollapsed ? 0.0 : 1.0,
             duration: tokens(context).fast,
             child: AppIcon(
-              _librariesExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
+              _librariesExpanded ? PhosphorIconsRegular.caretUp : PhosphorIconsRegular.caretDown,
               size: 20,
               color: t.textMuted,
             ),
@@ -1142,7 +1142,7 @@ class SideNavigationRailState extends State<SideNavigationRail> with MountedSetS
                             child: Text(label, style: labelStyle, overflow: .ellipsis),
                           ),
                           AppIcon(
-                            isExpanded ? PhosphorIconsDuotone.caretUp : PhosphorIconsDuotone.caretDown,
+                            isExpanded ? PhosphorIconsRegular.caretUp : PhosphorIconsRegular.caretDown,
                             size: 16,
                             color: t.textMuted,
                           ),

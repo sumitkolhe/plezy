@@ -141,7 +141,7 @@ class _BackendCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const AppIcon(PhosphorIconsDuotone.caretRight),
+                const AppIcon(PhosphorIconsRegular.caretRight),
               ],
             ),
           ),

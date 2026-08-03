@@ -256,7 +256,7 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       [const _TvKey.spacer(), ..._characters('asdfghjkl'), const _TvKey.character("'"), const _TvKey.spacer()],
       [
         const _TvKey.action('', _TvKeyType.symbols, icon: PhosphorIconsDuotone.mathOperations),
-        _TvKey.action('Shift', _TvKeyType.shift, icon: PhosphorIconsDuotone.arrowFatUp),
+        _TvKey.action('Shift', _TvKeyType.shift, icon: PhosphorIconsRegular.arrowFatUp),
         ..._characters('zxcvbnm.-'),
         const _TvKey.action('Del', _TvKeyType.backspace, icon: PhosphorIconsDuotone.backspace),
       ],
@@ -334,9 +334,9 @@ class _TvVirtualKeyboardDialogState extends State<_TvVirtualKeyboardDialog> {
       case TextInputAction.search:
         return PhosphorIconsDuotone.magnifyingGlass;
       case TextInputAction.next:
-        return PhosphorIconsDuotone.arrowRight;
+        return PhosphorIconsRegular.arrowRight;
       case TextInputAction.go:
-        return PhosphorIconsDuotone.caretDoubleRight;
+        return PhosphorIconsRegular.caretDoubleRight;
       default:
         return PhosphorIconsDuotone.checkCircle;
     }

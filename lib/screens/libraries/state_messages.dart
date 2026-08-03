@@ -108,7 +108,7 @@ class StateMessageWidget extends StatelessWidget {
                 useBackgroundFocus: actionUseBackgroundFocus,
                 child: FilledButton.icon(
                   onPressed: onAction,
-                  icon: AppIcon(actionIcon ?? PhosphorIconsDuotone.arrowsClockwise),
+                  icon: AppIcon(actionIcon ?? PhosphorIconsRegular.arrowsClockwise),
                   label: Text(actionLabel!),
                 ),
               ),
@@ -227,7 +227,7 @@ class ErrorStateWidget extends StatelessWidget {
       textColor: Theme.of(context).colorScheme.error,
       onAction: onRetry,
       actionLabel: retryLabel ?? t.common.retry,
-      actionIcon: PhosphorIconsDuotone.arrowsClockwise,
+      actionIcon: PhosphorIconsRegular.arrowsClockwise,
       actionFocusNode: actionFocusNode,
       onActionNavigateUp: onActionNavigateUp,
       onActionNavigateLeft: onActionNavigateLeft,

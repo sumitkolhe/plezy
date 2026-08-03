@@ -466,7 +466,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               FocusableButton(
                 onPressed: _pop,
                 child: IconButton(
-                  icon: AppIcon(PhosphorIconsDuotone.caretDown, color: tk.text),
+                  icon: AppIcon(PhosphorIconsRegular.caretDown, color: tk.text),
                   tooltip: t.common.close,
                   onPressed: _pop,
                 ),

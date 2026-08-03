@@ -122,7 +122,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
     children: [
       SettingNumberTile(
         pref: SettingsService.seekTimeSmall,
-        icon: PhosphorIconsDuotone.arrowCounterClockwise,
+        icon: PhosphorIconsRegular.arrowCounterClockwise,
         title: t.settings.smallSkipDuration,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -133,7 +133,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.seekTimeLarge,
-        icon: PhosphorIconsDuotone.arrowCounterClockwise,
+        icon: PhosphorIconsRegular.arrowCounterClockwise,
         title: t.settings.largeSkipDuration,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -144,7 +144,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       ),
       SettingNumberTile(
         pref: SettingsService.rewindOnResume,
-        icon: PhosphorIconsDuotone.arrowCounterClockwise,
+        icon: PhosphorIconsRegular.arrowCounterClockwise,
         title: t.settings.rewindOnResume,
         subtitleBuilder: (v) => t.settings.secondsUnit(seconds: v.toString()),
         labelText: t.settings.secondsLabel,
@@ -271,7 +271,7 @@ class _PlaybackSettingsScreenState extends State<PlaybackSettingsScreen> {
       final useExt = svc.read(SettingsService.useExternalPlayer);
       final player = svc.read(SettingsService.selectedExternalPlayer);
       return SettingNavigationTile(
-        icon: PhosphorIconsDuotone.arrowSquareOut,
+        icon: PhosphorIconsRegular.arrowSquareOut,
         title: t.externalPlayer.title,
         subtitle: useExt
             ? (player.id == 'system_default' ? t.externalPlayer.systemDefault : player.name)

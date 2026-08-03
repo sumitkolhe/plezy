@@ -57,7 +57,7 @@ class PendingAuthDialog extends StatelessWidget {
               onPressed: _open,
               useBackgroundFocus: true,
               child: FilledButton.icon(
-                icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut),
+                icon: const AppIcon(PhosphorIconsRegular.arrowSquareOut),
                 label: Text(openLabel),
                 onPressed: _open,
               ),

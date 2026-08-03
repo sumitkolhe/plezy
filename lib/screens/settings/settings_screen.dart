@@ -231,7 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
       icon: PhosphorIconsDuotone.heart,
       title: t.settings.supportDeveloper,
       subtitle: t.settings.supportDeveloperDescription,
-      trailingIcon: PhosphorIconsDuotone.arrowSquareOut,
+      trailingIcon: PhosphorIconsRegular.arrowSquareOut,
       onTap: () async {
         final url = Uri.parse(DonationService.donationUrl);
         if (await canLaunchUrl(url)) {
@@ -291,7 +291,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
         final subtitle = connectedNames.isEmpty ? t.settings.servicesDescription : connectedNames.join(' · ');
         return SettingNavigationTile(
           focusNode: _focusTracker.get(_kServices),
-          icon: PhosphorIconsDuotone.arrowsClockwise,
+          icon: PhosphorIconsRegular.arrowsClockwise,
           title: t.settings.services,
           subtitle: subtitle,
           destinationBuilder: (_) => const ServicesSettingsScreen(),
@@ -368,7 +368,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
                 leading: const AppIcon(PhosphorIconsDuotone.folder),
                 title: Text(isCustom ? t.settings.downloadLocationCustom : t.settings.downloadLocationDefault),
                 subtitle: Text(currentPath, maxLines: 2, overflow: .ellipsis),
-                trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+                trailing: const AppIcon(PhosphorIconsRegular.caretRight),
                 onTap: () => _showDownloadLocationDialog(),
               );
             },
@@ -420,7 +420,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           leading: AppIcon(icon, color: color),
           title: Text(t.downloads.backgroundWarning.statusTile),
           subtitle: Text(summary),
-          trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+          trailing: const AppIcon(PhosphorIconsRegular.caretRight),
           onTap: () async {
             await diagnostics.refresh();
             if (!context.mounted) return;
@@ -557,7 +557,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           subtitle: hasUpdate ? Text(t.update.versionAvailable(version: _updateInfo!['latestVersion'])) : null,
           trailing: _isCheckingForUpdate
               ? const LoadingIndicatorBox(size: 24)
-              : const AppIcon(PhosphorIconsDuotone.caretRight),
+              : const AppIcon(PhosphorIconsRegular.caretRight),
           onTap: _isCheckingForUpdate
               ? null
               : () {

@@ -613,7 +613,7 @@ class _PickerTile<T> extends StatelessWidget {
       leading: AppIcon(icon),
       title: Text(label),
       subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: const AppIcon(PhosphorIconsDuotone.caretUpDown),
+      trailing: const AppIcon(PhosphorIconsRegular.caretUpDown),
       contentPadding: EdgeInsets.zero,
       enabled: enabled,
       onTap: () => unawaited(_open(context)),

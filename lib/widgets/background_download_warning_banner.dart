@@ -162,7 +162,7 @@ Future<bool> showBackgroundDownloadWarningDialog(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
-                      child: const AppIcon(PhosphorIconsDuotone.caretRight, size: 18),
+                      child: const AppIcon(PhosphorIconsRegular.caretRight, size: 18),
                     ),
                     const SizedBox(width: 8),
                     Expanded(child: Text(_describeReason(reason))),
@@ -180,7 +180,7 @@ Future<bool> showBackgroundDownloadWarningDialog(
                   onPressed: () => _openDontKillMyApp(dialogContext, launcher: externalUrlLauncher),
                   child: TextButton.icon(
                     onPressed: () => _openDontKillMyApp(dialogContext, launcher: externalUrlLauncher),
-                    icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut, size: 18),
+                    icon: const AppIcon(PhosphorIconsRegular.arrowSquareOut, size: 18),
                     label: const Text('dontkillmyapp.com'),
                   ),
                 ),

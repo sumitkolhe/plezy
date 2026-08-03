@@ -54,7 +54,7 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
                   SliverFillRemaining(
                     child: EmptyStateWidget(
                       message: t.downloads.noSyncRules,
-                      icon: PhosphorIconsDuotone.arrowsClockwise,
+                      icon: PhosphorIconsRegular.arrowsClockwise,
                       iconSize: 80,
                     ),
                   )
@@ -137,7 +137,7 @@ class _SyncRuleTileState extends State<_SyncRuleTile> {
       case ContentTypes.season:
         return PhosphorIconsDuotone.television;
       default:
-        return PhosphorIconsDuotone.arrowsClockwise;
+        return PhosphorIconsRegular.arrowsClockwise;
     }
   }
 

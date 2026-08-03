@@ -100,7 +100,7 @@ class SubtitleStylingScreen extends StatelessWidget {
             ),
             SettingNumberTile(
               pref: SettingsService.subtitlePosition,
-              icon: PhosphorIconsDuotone.arrowLineDown,
+              icon: PhosphorIconsRegular.arrowLineDown,
               title: t.subtitlingStyling.position,
               subtitleBuilder: _formatPosition,
               labelText: t.subtitlingStyling.position,

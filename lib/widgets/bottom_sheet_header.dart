@@ -77,7 +77,7 @@ class BottomSheetHeader extends StatelessWidget {
         height: kMinInteractiveDimension,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: ExcludeSemantics(child: AppIcon(PhosphorIconsDuotone.arrowLeft, color: iconColor)),
+          child: ExcludeSemantics(child: AppIcon(PhosphorIconsRegular.arrowLeft, color: iconColor)),
         ),
       );
     } else if (icon != null) {

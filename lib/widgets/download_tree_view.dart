@@ -698,7 +698,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       children: [
         // Expand/collapse icon
         if (canExpand)
-          AppIcon(widget.isExpanded ? PhosphorIconsDuotone.caretDown : PhosphorIconsDuotone.caretRight, size: 20)
+          AppIcon(widget.isExpanded ? PhosphorIconsRegular.caretDown : PhosphorIconsRegular.caretRight, size: 20)
         else
           const SizedBox(width: 20),
 
@@ -859,7 +859,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Retry button for failed items
     if (status == DownloadStatus.failed && widget.onRetry != null) {
       actions.add((
-        icon: PhosphorIconsDuotone.arrowsClockwise,
+        icon: PhosphorIconsRegular.arrowsClockwise,
         tooltip: t.downloads.retryDownload,
         onPressed: () => widget.onRetry!(globalKey),
       ));

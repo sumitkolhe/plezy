@@ -738,7 +738,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
             else
               Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(width: 4),
-            const AppIcon(PhosphorIconsDuotone.caretDown, size: 24),
+            const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
           ],
         ),
       ),
@@ -822,7 +822,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       // TV/desktop, where it also refreshes every visible tab at once.
       if (!PlatformDetector.isHandheld(context))
         FocusableAction(
-          icon: PhosphorIconsDuotone.arrowsClockwise,
+          icon: PhosphorIconsRegular.arrowsClockwise,
           tooltip: t.common.refresh,
           onPressed: _refreshSelectedLibraryTabs,
         ),

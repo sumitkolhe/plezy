@@ -438,13 +438,13 @@ class TrackChapterControls extends StatelessWidget {
   IconData _getBoxFitIcon(int mode) {
     switch (mode) {
       case 0:
-        return PhosphorIconsDuotone.arrowsOut; // contain (letterbox)
+        return PhosphorIconsRegular.arrowsOut; // contain (letterbox)
       case 1:
         return PhosphorIconsDuotone.frameCorners; // cover (fill screen)
       case 2:
-        return PhosphorIconsDuotone.arrowsOut; // fill (stretch)
+        return PhosphorIconsRegular.arrowsOut; // fill (stretch)
       default:
-        return PhosphorIconsDuotone.arrowsOut;
+        return PhosphorIconsRegular.arrowsOut;
     }
   }
 

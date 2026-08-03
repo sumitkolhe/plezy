@@ -296,7 +296,7 @@ Future<_SyncChoice?> _showSyncChoiceDialog(BuildContext context) => showOptionPi
   title: t.downloads.downloadNow,
   options: [
     (icon: PhosphorIconsDuotone.download, label: t.downloads.downloadOnce, value: _SyncChoice.downloadOnce),
-    (icon: PhosphorIconsDuotone.arrowsClockwise, label: t.downloads.keepSynced, value: _SyncChoice.keepSynced),
+    (icon: PhosphorIconsRegular.arrowsClockwise, label: t.downloads.keepSynced, value: _SyncChoice.keepSynced),
   ],
 );
 
@@ -549,7 +549,7 @@ List<FocusableAction> buildSyncRuleActions(
   return [
     if (showDownload)
       FocusableAction(
-        icon: hasRule ? PhosphorIconsDuotone.arrowsClockwise : PhosphorIconsDuotone.download,
+        icon: hasRule ? PhosphorIconsRegular.arrowsClockwise : PhosphorIconsDuotone.download,
         tooltip: hasRule ? t.downloads.manageSyncRule : t.downloads.downloadNow,
         onPressed: hasRule
             ? () => manageSyncRule(context, downloadProvider: context.read<DownloadProvider>(), globalKey: ruleKey)

@@ -329,7 +329,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
                 height: 36,
                 alignment: .center,
                 child: AppIcon(
-                  PhosphorIconsDuotone.arrowCounterClockwise,
+                  PhosphorIconsRegular.arrowCounterClockwise,
                   color: _currentOffset != 0 ? tokens(context).text : tokens(context).textMuted,
                   size: 22,
                 ),
@@ -411,7 +411,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             useBackgroundFocus: true,
             child: ElevatedButton.icon(
               onPressed: _currentOffset != 0 ? _resetOffset : null,
-              icon: const AppIcon(PhosphorIconsDuotone.arrowCounterClockwise),
+              icon: const AppIcon(PhosphorIconsRegular.arrowCounterClockwise),
               label: Text(t.videoControls.resetToZero),
               style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
             ),

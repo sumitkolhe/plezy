@@ -103,7 +103,7 @@ List<ContextMenuItem> _getLibraryMenuItems(MediaLibrary library) {
   // `/Items/{id}/Refresh` (the library view is itself an item).
   final refresh = ContextMenuItem(
     value: 'refresh',
-    icon: PhosphorIconsDuotone.arrowsClockwise,
+    icon: PhosphorIconsRegular.arrowsClockwise,
     label: t.libraries.refreshMetadata,
     requiresConfirmation: true,
     confirmationTitle: t.libraries.refreshMetadata,
@@ -406,7 +406,7 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
             ReorderableDragStartListener(
               index: index,
               child: AppIcon(
-                isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
+                isMoving ? PhosphorIconsRegular.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
                 color: isMoving ? colorScheme.primary : IconTheme.of(context).color?.withValues(alpha: 0.5),
               ),
             ),

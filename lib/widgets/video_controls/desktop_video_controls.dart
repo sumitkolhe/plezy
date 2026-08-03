@@ -581,14 +581,14 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       _buildBottomControlsContent(context, hasFrame: true),
                       // Down arrow hint when strip content is available
                       if (widget.useDpadNavigation && _hasStripContent)
-                        const ContentStripHint(PhosphorIconsDuotone.caretDown),
+                        const ContentStripHint(PhosphorIconsRegular.caretDown),
                     ],
                   ),
                 // Content strip (TV/dpad only) — replaces normal controls
                 if (_contentStripVisible && widget.useDpadNavigation)
                   ContentStripPanel(
                     padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 32),
-                    chevron: PhosphorIconsDuotone.caretUp,
+                    chevron: PhosphorIconsRegular.caretUp,
                     child: ContentStrip(
                       key: _contentStripKey,
                       player: widget.player,

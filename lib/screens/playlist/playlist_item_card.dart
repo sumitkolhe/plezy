@@ -117,7 +117,7 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                                 )
                               : null,
                           child: AppIcon(
-                            widget.isMoving ? PhosphorIconsDuotone.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
+                            widget.isMoving ? PhosphorIconsRegular.arrowsDownUp : PhosphorIconsDuotone.dotsSixVertical,
                             color: (widget.isMoving || isDragHandleFocused) ? colorScheme.primary : textMuted,
                           ),
                         ),

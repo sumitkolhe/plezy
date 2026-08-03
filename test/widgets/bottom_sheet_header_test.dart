@@ -21,7 +21,7 @@ void main() {
     );
 
     final backArrow = find.byWidgetPredicate(
-      (widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.arrowLeft,
+      (widget) => widget is Icon && widget.icon == PhosphorIconsRegular.arrowLeft,
     );
     final regularIcon = find.byWidgetPredicate(
       (widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.funnel,

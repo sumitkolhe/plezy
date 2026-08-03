@@ -360,7 +360,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                   ),
                 ),
               if (displayValue != null) const SizedBox(width: 8),
-              const AppIcon(PhosphorIconsDuotone.caretRight),
+              const AppIcon(PhosphorIconsRegular.caretRight),
             ],
           ),
           onTap: () => _loadFilterValues(filter),

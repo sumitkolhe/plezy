@@ -507,7 +507,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       // lookup doesn't, so fall back to the server name alone.
       title: Text(match.libraryTitle ?? match.serverName ?? match.backend.name),
       subtitle: match.libraryTitle != null && match.serverName != null ? Text(match.serverName!) : null,
-      trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
       onTap: () => unawaited(navigateToMediaItemDetails(context, match)),
     );
   }
@@ -1066,7 +1066,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 onNavigateDown: () => _focusBelowLinkGroup(endIndex),
                 child: OutlinedButton.icon(
                   onPressed: () => unawaited(_openExternalUrl(links[localIndex].url)),
-                  icon: const AppIcon(PhosphorIconsDuotone.arrowSquareOut),
+                  icon: const AppIcon(PhosphorIconsRegular.arrowSquareOut),
                   label: Text(t.explore.detail.openOn(site: links[localIndex].label)),
                 ),
               ),
@@ -1202,7 +1202,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 ),
               ),
               AppIcon(
-                PhosphorIconsDuotone.caretRight,
+                PhosphorIconsRegular.caretRight,
                 size: 18,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),

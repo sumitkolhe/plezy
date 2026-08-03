@@ -81,7 +81,7 @@ class TrackerAccountSettingsBody extends StatelessWidget {
                   leading: const AppIcon(PhosphorIconsDuotone.funnelSimple),
                   title: Text(t.services.libraryFilter.title),
                   subtitle: Text(TrackerLibraryFilterScreen.subtitleFor(settings, service)),
-                  trailing: const AppIcon(PhosphorIconsDuotone.caretRight),
+                  trailing: const AppIcon(PhosphorIconsRegular.caretRight),
                   onTap: () => Navigator.of(
                     context,
                   ).push(MaterialPageRoute<void>(builder: (_) => TrackerLibraryFilterScreen(service: service))),
