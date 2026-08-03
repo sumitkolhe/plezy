@@ -227,7 +227,8 @@ class _ActionCircleRow extends StatelessWidget {
         final available = constraints.maxWidth - _minGap * (circles.length - 1);
         final diameter = math.min(_preferredDiameter, available / circles.length);
         return Row(
-          mainAxisAlignment: .spaceEvenly,
+          // Flush with the Play button above, which spans the same inset.
+          mainAxisAlignment: .spaceBetween,
           children: [for (final circle in circles) _ActionCircle(circle: circle, diameter: diameter)],
         );
       },

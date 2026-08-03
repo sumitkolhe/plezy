@@ -245,6 +245,14 @@ void main() {
     expect(tops, everyElement(closeTo(tops.first, 0.01)));
     expect(tester.getSize(find.byTooltip(t.tooltips.moreOptions)).width, lessThan(58));
 
+    // Flush with Play at both ends.
+    final play = find.ancestor(of: find.text(t.common.play), matching: find.byType(FilledButton));
+    expect(tester.getTopLeft(find.byTooltip(t.mediaMenu.rate)).dx, closeTo(tester.getTopLeft(play).dx, 0.01));
+    expect(
+      tester.getTopRight(find.byTooltip(t.tooltips.moreOptions)).dx,
+      closeTo(tester.getTopRight(play).dx, 0.01),
+    );
+
     // Selecting one closes the sheet, the way choosing from the menu does.
     await tester.tap(find.byTooltip(t.mediaMenu.rate));
     await tester.pumpAndSettle();
