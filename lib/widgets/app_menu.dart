@@ -300,11 +300,29 @@ class AppMenuSheet<T> extends StatelessWidget {
   }
 }
 
+/// Row metrics, chosen by the surface rather than the caller. A sheet is
+/// touched, so its rows are M3 list items; an anchored popup is pointed at, so
+/// its rows are M3 menu items.
+enum AppMenuDensity {
+  /// M3 list item. The 48dp touch-target floor lives here.
+  touch(rowHeight: 56, rowHeightWithSubtitle: 72),
+
+  /// Denser, because a cursor does not need a finger's target and Material's
+  /// own desktop menus sit around this height.
+  pointer(rowHeight: 40, rowHeightWithSubtitle: 52);
+
+  const AppMenuDensity({required this.rowHeight, required this.rowHeightWithSubtitle});
+
+  final double rowHeight;
+  final double rowHeightWithSubtitle;
+}
+
 class AppMenuList<T> extends StatefulWidget {
   final List<AppMenuEntry<T>> entries;
   final bool focusFirstItem;
   final ValueChanged<T> onSelected;
   final EdgeInsetsGeometry padding;
+  final AppMenuDensity density;
 
   const AppMenuList({
     super.key,
@@ -312,6 +330,7 @@ class AppMenuList<T> extends StatefulWidget {
     required this.onSelected,
     this.focusFirstItem = false,
     this.padding = const EdgeInsets.symmetric(vertical: 5),
+    this.density = AppMenuDensity.touch,
   });
 
   @override
@@ -367,6 +386,7 @@ class _AppMenuListState<T> extends State<AppMenuList<T>> {
   Widget _buildItem(AppMenuItem<T> item, {required bool initialFocusAssigned}) {
     return AppMenuItemTile<T>(
       item: item,
+      density: widget.density,
       focusNode: initialFocusAssigned ? _initialFocusNode : null,
       onPressed: item.enabled ? () => widget.onSelected(item.value) : null,
     );
@@ -377,8 +397,15 @@ class AppMenuItemTile<T> extends StatefulWidget {
   final AppMenuItem<T> item;
   final VoidCallback? onPressed;
   final FocusNode? focusNode;
+  final AppMenuDensity density;
 
-  const AppMenuItemTile({super.key, required this.item, this.onPressed, this.focusNode});
+  const AppMenuItemTile({
+    super.key,
+    required this.item,
+    this.onPressed,
+    this.focusNode,
+    this.density = AppMenuDensity.touch,
+  });
 
   @override
   State<AppMenuItemTile<T>> createState() => _AppMenuItemTileState<T>();
@@ -430,7 +457,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final subtitleColor = foreground.withValues(alpha: active && item.stateLayerColor != null ? 0.86 : 0.68);
     final background = _backgroundColor(context, active: active);
 
-    final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, size: 20) : null);
+    final leading = item.leading ?? (item.icon != null ? AppIcon(item.icon!, size: 24) : null);
     final trailing = item.trailing ?? (item.selected ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18) : null);
     final subtitle = item.subtitleWidget ?? (item.subtitle != null ? Text(item.subtitle!) : null);
 
@@ -469,8 +496,10 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                       color: background,
                       borderRadius: BorderRadius.circular(tokens(context).radiusSm),
                     ),
-                    constraints: BoxConstraints(minHeight: subtitle == null ? 40 : 52),
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    constraints: BoxConstraints(
+                      minHeight: subtitle == null ? widget.density.rowHeight : widget.density.rowHeightWithSubtitle,
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: Row(
                       children: [
                         if (leading != null) ...[
@@ -481,7 +510,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                               child: leading,
                             ),
                           ),
-                          const SizedBox(width: 12),
+                          const SizedBox(width: 16),
                         ],
                         Expanded(
                           child: Column(
@@ -727,6 +756,7 @@ class _AppMenuSurface<T> extends StatelessWidget {
             child: AppMenuList<T>(
               entries: entries,
               focusFirstItem: focusFirstItem,
+              density: AppMenuDensity.pointer,
               onSelected: (value) => Navigator.pop(context, value),
             ),
           ),

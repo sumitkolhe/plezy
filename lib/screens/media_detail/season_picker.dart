@@ -120,9 +120,8 @@ class _SeasonSheet extends StatelessWidget {
               final selected = index == selectedIndex;
               return FocusableListTile(
                 autofocus: selected,
-                // FocusableListTile is dense by default.
-                dense: false,
-                contentPadding: inset.add(const EdgeInsets.symmetric(vertical: 4)),
+                listItemMetrics: true,
+                contentPadding: inset,
                 title: Text(
                   SeasonPickerChip.label(season, index),
                   style: TextStyle(

@@ -21,6 +21,10 @@ class FocusableListTile extends StatefulWidget {
 
   final VoidCallback? onLongPress;
 
+  /// M3 one-line list-item metrics (56dp) instead of the compact default,
+  /// for rows a finger picks from rather than scans past.
+  final bool listItemMetrics;
+
   final bool dense;
 
   final bool enabled;
@@ -57,6 +61,7 @@ class FocusableListTile extends StatefulWidget {
     this.trailing,
     this.onTap,
     this.onLongPress,
+    this.listItemMetrics = false,
     this.dense = true,
     this.enabled = true,
     this.selected = false,
@@ -104,11 +109,14 @@ class _FocusableListTileState extends State<FocusableListTile> with FocusableTil
         trailing: widget.trailing,
         onTap: widget.onTap,
         onLongPress: widget.onLongPress,
-        dense: widget.dense,
+        dense: widget.listItemMetrics ? false : widget.dense,
         enabled: widget.enabled,
         selected: widget.selected,
-        contentPadding: widget.contentPadding,
-        visualDensity: widget.visualDensity,
+        // The theme pads list tiles vertically, which would carry a one-line row
+        // past the 56 this asks for.
+        contentPadding:
+            widget.contentPadding ?? (widget.listItemMetrics ? const EdgeInsets.symmetric(horizontal: 16) : null),
+        visualDensity: widget.listItemMetrics ? VisualDensity.standard : widget.visualDensity,
         focusNode: widget.suppressInitialSelect ? null : effectiveFocusNode,
         autofocus: widget.suppressInitialSelect ? false : widget.autofocus,
         hoverColor: widget.hoverColor,

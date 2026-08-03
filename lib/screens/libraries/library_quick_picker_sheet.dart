@@ -110,10 +110,9 @@ class LibraryQuickPickerSheet extends StatelessWidget {
 
     return FocusableListTile(
       key: ValueKey('library_quick_picker_${library.globalKey}'),
-      dense: false,
-      visualDensity: VisualDensity.standard,
+      listItemMetrics: true,
       selected: isSelected,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       leading: AppIcon(ContentTypeHelper.getLibraryIcon(library.kind.id), size: 22, color: foregroundColor),
       title: Text(
         library.title,
