@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:provider/provider.dart';
@@ -84,7 +84,7 @@ class _SettingsMenuItem extends StatelessWidget {
         children: [
           if (allowValueOverflow) Flexible(child: valueWidget) else valueWidget,
           const SizedBox(width: 8),
-          AppIcon(PhosphorIcons.caretRight, color: t.textMuted),
+          AppIcon(TablerIcons.chevronRight, color: t.textMuted),
         ],
       ),
       onTap: onTap,
@@ -230,7 +230,7 @@ class _AudioRenderingModeItemState extends State<_AudioRenderingModeItem> {
     };
     final highlighted = mode.isDolbyAtmos || mode.isDolbyAudio;
     return FocusableListTile(
-      leading: AppIcon(PhosphorIcons.waveform, color: highlighted ? Colors.amber : tokens(context).textMuted),
+      leading: AppIcon(TablerIcons.waveSine, color: highlighted ? Colors.amber : tokens(context).textMuted),
       title: Text(t.videoSettings.audioOutput),
       trailing: Text(label, style: TextStyle(color: tokens(context).textMuted)),
     );
@@ -344,7 +344,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
     final isSubtitle = view == _SettingsView.subtitleSync;
     final title = isSubtitle ? t.videoSettings.subtitleSync : t.videoSettings.audioSync;
-    final icon = isSubtitle ? PhosphorIcons.subtitles : PhosphorIcons.arrowsClockwise;
+    final icon = isSubtitle ? TablerIcons.badgeCc : TablerIcons.refresh;
     final propertyName = isSubtitle ? 'sub-delay' : 'audio-delay';
     final initialOffset = isSubtitle ? _subtitleSyncOffset : _audioSyncOffset;
 
@@ -424,25 +424,25 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
   IconData _getIcon() {
     switch (_currentView) {
       case _SettingsView.menu:
-        return PhosphorIcons.sliders;
+        return TablerIcons.adjustments;
       case _SettingsView.speed:
-        return PhosphorIcons.gauge;
+        return TablerIcons.gauge;
       case _SettingsView.zoom:
-        return PhosphorIcons.magnifyingGlassPlus;
+        return TablerIcons.zoomIn;
       case _SettingsView.versionQuality:
-        return PhosphorIcons.imageSquare;
+        return TablerIcons.photo;
       case _SettingsView.sleep:
-        return PhosphorIcons.moon;
+        return TablerIcons.moon;
       case _SettingsView.audioSync:
-        return PhosphorIcons.arrowsClockwise;
+        return TablerIcons.refresh;
       case _SettingsView.subtitleSync:
-        return PhosphorIcons.subtitles;
+        return TablerIcons.badgeCc;
       case _SettingsView.audioDevice:
-        return PhosphorIcons.speakerHigh;
+        return TablerIcons.volume;
       case _SettingsView.shader:
-        return PhosphorIcons.magicWand;
+        return TablerIcons.wand;
       case _SettingsView.dvConversion:
-        return PhosphorIcons.highDefinition;
+        return TablerIcons.badgeHd;
     }
   }
 
@@ -534,7 +534,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             builder: (context, snapshot) {
               final currentRate = snapshot.data ?? 1.0;
               return _SettingsMenuItem(
-                icon: PhosphorIcons.gauge,
+                icon: TablerIcons.gauge,
                 title: t.videoSettings.playbackSpeed,
                 valueText: formatPlaybackRate(currentRate, normalAtOne: true),
                 onTap: () => _navigateTo(_SettingsView.speed),
@@ -544,7 +544,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         if (_state.onVideoZoomChanged != null || _state.onResetVideoZoom != null)
           _SettingsMenuItem(
-            icon: PhosphorIcons.magnifyingGlassPlus,
+            icon: TablerIcons.zoomIn,
             title: t.videoSettings.zoom,
             valueText: _formatZoomScale(_zoomScale),
             isHighlighted: (_zoomScale - 1.0).abs() > 0.0001,
@@ -553,7 +553,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         if (_hasVersionQuality)
           _SettingsMenuItem(
-            icon: PhosphorIcons.imageSquare,
+            icon: TablerIcons.photo,
             title: _versionQualityTitle(),
             valueText: _versionQualityValueText(),
             allowValueOverflow: true,
@@ -566,7 +566,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           builder: (context, _) {
             final isActive = sleepTimer.isActive;
             return _SettingsMenuItem(
-              icon: PhosphorIcons.moon,
+              icon: TablerIcons.moon,
               title: t.videoSettings.sleepTimer,
               valueText: _formatSleepTimer(sleepTimer),
               isHighlighted: isActive,
@@ -577,7 +577,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         // Audio Sync
         _SettingsMenuItem(
-          icon: PhosphorIcons.arrowsClockwise,
+          icon: TablerIcons.refresh,
           title: t.videoSettings.audioSync,
           valueText: formatSyncOffset(_audioSyncOffset.toDouble()),
           isHighlighted: _audioSyncOffset != 0,
@@ -586,7 +586,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         // Subtitle Sync
         _SettingsMenuItem(
-          icon: PhosphorIcons.subtitles,
+          icon: TablerIcons.badgeCc,
           title: t.videoSettings.subtitleSync,
           valueText: formatSyncOffset(_subtitleSyncOffset.toDouble()),
           isHighlighted: _subtitleSyncOffset != 0,
@@ -597,7 +597,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         if (_supportsHdrControl)
           _SettingsToggleItem(
             pref: SettingsService.enableHDR,
-            icon: PhosphorIcons.highDefinition,
+            icon: TablerIcons.badgeHd,
             title: t.videoSettings.hdr,
             onAfterWrite: (value) => widget.player.setProperty('hdr-enabled', value ? 'yes' : 'no'),
           ),
@@ -605,7 +605,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Auto-Play Next Episode Toggle
         _SettingsToggleItem(
           pref: SettingsService.autoPlayNextEpisode,
-          icon: PhosphorIcons.skipForward,
+          icon: TablerIcons.playerSkipForward,
           title: t.videoControls.autoPlayNext,
         ),
 
@@ -619,7 +619,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               final deviceLabel = currentDevice.description.isEmpty ? currentDevice.name : currentDevice.description;
 
               return _SettingsMenuItem(
-                icon: PhosphorIcons.speakerHigh,
+                icon: TablerIcons.volume,
                 title: t.videoSettings.audioOutput,
                 valueText: deviceLabel,
                 allowValueOverflow: true,
@@ -632,7 +632,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         if (PlatformDetector.supportsAudioPassthrough())
           _SettingsToggleItem(
             pref: SettingsService.audioPassthrough,
-            icon: PhosphorIcons.speakerHigh,
+            icon: TablerIcons.volume,
             title: t.videoSettings.audioPassthrough,
             onAfterWrite: widget.player.setAudioPassthrough,
           ),
@@ -646,7 +646,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Audio Normalization
         _SettingsToggleItem(
           pref: SettingsService.audioNormalization,
-          icon: PhosphorIcons.waveform,
+          icon: TablerIcons.waveSine,
           title: t.videoSettings.audioNormalization,
           onAfterWrite: widget.player.setAudioNormalization,
         ),
@@ -654,7 +654,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Stereo Downmix
         _SettingsToggleItem(
           pref: SettingsService.audioDownmix,
-          icon: PhosphorIcons.headphones,
+          icon: TablerIcons.headphones,
           title: t.videoSettings.audioDownmix,
           onAfterWrite: (enabled) => widget.player.setAudioDownmix(
             enabled: enabled,
@@ -666,7 +666,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Shader Preset (MPV only)
         if (_state.shaderService != null && _state.shaderService!.isSupported)
           _SettingsMenuItem(
-            icon: PhosphorIcons.magicWand,
+            icon: TablerIcons.wand,
             title: t.shaders.title,
             valueText: _state.shaderService!.currentPreset.id == ShaderPreset.none.id
                 ? t.common.off
@@ -679,7 +679,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         if (_state.onToggleAmbientLighting != null)
           FocusableListTile(
             leading: AppIcon(
-              PhosphorIcons.drop,
+              TablerIcons.droplet,
               color: _state.isAmbientLightingEnabled ? Colors.amber : tokens(context).textMuted,
             ),
             title: Text(t.videoControls.ambientLighting),
@@ -700,13 +700,13 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Performance Overlay Toggle
         _SettingsToggleItem(
           pref: SettingsService.showPerformanceOverlay,
-          icon: PhosphorIcons.chartLine,
+          icon: TablerIcons.chartLine,
           title: t.videoSettings.performanceOverlay,
         ),
 
         if (_showDebugDvConversionMode)
           _SettingsMenuItem(
-            icon: PhosphorIcons.highDefinition,
+            icon: TablerIcons.badgeHd,
             title: t.settings.dvConversionMode,
             valueText: _formatDvConversionMode(_dvConversionMode),
             isHighlighted: _dvConversionMode != 'auto',
@@ -716,7 +716,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // Debug: Trigger MPV Fallback (Android ExoPlayer only)
         if (kDebugMode && Platform.isAndroid && widget.player.playerType == 'exoplayer')
           FocusableListTile(
-            leading: AppIcon(PhosphorIcons.arrowsLeftRight, color: tokens(context).textMuted),
+            leading: AppIcon(TablerIcons.arrowsLeftRight, color: tokens(context).textMuted),
             title: const Text('Trigger MPV Fallback'),
             onTap: () {
               const MethodChannel('co.sumit.harbor/exo_player').invokeMethod('triggerFallback');
@@ -726,7 +726,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         if (kDebugMode)
           FocusableListTile(
-            leading: AppIcon(PhosphorIcons.bug, color: tokens(context).textMuted),
+            leading: AppIcon(TablerIcons.bug, color: tokens(context).textMuted),
             title: const Text('Simulate HTTP 500 from server'),
             onTap: () {
               final player = widget.player;
@@ -760,7 +760,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             title: Text(mode.title, style: TextStyle(color: _dvConversionMode == mode.value ? primary : null)),
             subtitle: Text(mode.subtitle, style: TextStyle(color: tokens(context).textMuted, fontSize: 12)),
             trailing: _dvConversionMode == mode.value
-                ? AppIcon(PhosphorIcons.checkCircle, color: primary)
+                ? AppIcon(TablerIcons.circleCheck, color: primary)
                 : null,
             onTap: () => _setDebugDvConversionMode(mode.value),
           ),
@@ -805,7 +805,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             final primary = Theme.of(context).colorScheme.primary;
             return FocusableListTile(
               title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-              trailing: isSelected ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+              trailing: isSelected ? AppIcon(TablerIcons.circleCheck, color: primary) : null,
               onTap: () async {
                 await widget.player.setRate(speed);
                 await SettingsService.instance.write(SettingsService.defaultPlaybackSpeed, speed);
@@ -827,7 +827,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     return ListView(
       children: [
         FocusableListTile(
-          leading: AppIcon(PhosphorIcons.arrowCounterClockwise, color: tokens(context).textMuted),
+          leading: AppIcon(TablerIcons.rotate2, color: tokens(context).textMuted),
           title: Text(t.common.reset),
           onTap: _resetZoomScale,
         ),
@@ -838,7 +838,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               style: TextStyle(color: (_zoomScale - scale).abs() < 0.005 ? primary : null),
             ),
             trailing: (_zoomScale - scale).abs() < 0.005
-                ? AppIcon(PhosphorIcons.checkCircle, color: primary)
+                ? AppIcon(TablerIcons.circleCheck, color: primary)
                 : null,
             onTap: () => _setZoomScale(scale),
           ),
@@ -960,7 +960,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     final primary = Theme.of(context).colorScheme.primary;
     return FocusableListTile(
       title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-      trailing: isSelected ? AppIcon(PhosphorIcons.checkCircle, color: primary) : null,
+      trailing: isSelected ? AppIcon(TablerIcons.circleCheck, color: primary) : null,
       onTap: () {
         widget.player.setAudioDevice(device);
         OverlaySheetController.of(context).close();
@@ -982,7 +982,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           itemBuilder: (context, index) {
             if (index == presets.length) {
               return FocusableListTile(
-                leading: AppIcon(PhosphorIcons.plus, color: tokens(context).textMuted),
+                leading: AppIcon(TablerIcons.plus, color: tokens(context).textMuted),
                 title: Text(t.shaders.importShader),
                 onTap: () => _importCustomShader(shaderProvider),
               );
@@ -1001,12 +1001,12 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               trailing: Row(
                 mainAxisSize: .min,
                 children: [
-                  if (isSelected) const AppIcon(PhosphorIcons.checkCircle, color: Colors.amber),
+                  if (isSelected) const AppIcon(TablerIcons.circleCheck, color: Colors.amber),
                   if (isCustom) ...[
                     if (isSelected) const SizedBox(width: 8),
                     GestureDetector(
                       onTap: () => _deleteCustomShader(shaderProvider, preset),
-                      child: AppIcon(PhosphorIcons.trash, color: tokens(context).textMuted, size: 20),
+                      child: AppIcon(TablerIcons.trash, color: tokens(context).textMuted, size: 20),
                     ),
                   ],
                 ],
@@ -1219,7 +1219,7 @@ class _CompactSyncBarState extends State<_CompactSyncBar> {
               width: 36,
               height: 36,
               alignment: .center,
-              child: AppIcon(PhosphorIcons.x, color: tokens(context).textMuted, size: 22),
+              child: AppIcon(TablerIcons.x, color: tokens(context).textMuted, size: 22),
             ),
           ),
         ),

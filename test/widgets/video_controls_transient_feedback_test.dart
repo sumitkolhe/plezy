@@ -19,7 +19,7 @@ import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/widgets/video_controls/video_controls.dart';
 import 'package:harbor/widgets/video_controls/widgets/double_tap_feedback.dart';
 import 'package:harbor/widgets/video_controls/widgets/player_toast_indicator.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/widgets/video_controls/widgets/transport_feedback_indicator.dart';
 
 import '../test_helpers/media_items.dart';
@@ -393,7 +393,7 @@ void main() {
     testWidgets('an accepted transport command shows a centred disc, not the top pill', (tester) async {
       await pumpControls(tester);
 
-      toast.showTransport(PhosphorIcons.pause, 'Paused');
+      toast.showTransport(TablerIcons.playerPause, 'Paused');
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 520));
 
@@ -433,14 +433,14 @@ void main() {
     testWidgets('a repeated identical transport command replays the pop', (tester) async {
       await pumpControls(tester);
 
-      toast.showTransport(PhosphorIcons.pause, 'Paused');
+      toast.showTransport(TablerIcons.playerPause, 'Paused');
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 520));
       final settled = discScale(tester);
 
       // Same icon and same label: without a per-command pulse this reuses the
       // State and the pop would never run again.
-      toast.showTransport(PhosphorIcons.pause, 'Paused');
+      toast.showTransport(TablerIcons.playerPause, 'Paused');
       await tester.pump();
 
       expect(
@@ -462,7 +462,7 @@ void main() {
           .opacity
           .value;
 
-      toast.showTransport(PhosphorIcons.pause, 'Paused');
+      toast.showTransport(TablerIcons.playerPause, 'Paused');
       await tester.pump();
 
       // Grows and fades in from 0.8/0.

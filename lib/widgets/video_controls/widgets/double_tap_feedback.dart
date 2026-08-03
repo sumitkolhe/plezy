@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../../i18n/strings.g.dart';
 import '../../../utils/formatters.dart';
@@ -108,7 +108,7 @@ class _DoubleTapFeedbackState extends State<DoubleTapFeedback> with SingleTicker
         );
       },
       child: AppIcon(
-        widget.isForward ? PhosphorIcons.caretRight : PhosphorIcons.caretLeft,
+        widget.isForward ? TablerIcons.chevronRight : TablerIcons.chevronLeft,
         color: Colors.white,
         size: DoubleTapFeedback._chevronSize(context),
         shadows: _legibility,

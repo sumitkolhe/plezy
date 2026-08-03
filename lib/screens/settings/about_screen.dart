@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
 import '../../widgets/focusable_list_tile.dart';
@@ -60,10 +60,10 @@ class AboutScreen extends StatelessWidget {
                     margin: EdgeInsets.zero,
                     children: [
                       FocusableListTile(
-                        leading: const AppIcon(PhosphorIcons.fileText),
+                        leading: const AppIcon(TablerIcons.fileText),
                         title: Text(t.about.openSourceLicenses),
                         subtitle: Text(t.about.viewLicensesDescription),
-                        trailing: const AppIcon(PhosphorIcons.caretRight),
+                        trailing: const AppIcon(TablerIcons.chevronRight),
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LicensesScreen()));
                         },

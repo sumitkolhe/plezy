@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/dpad_navigator.dart';
@@ -206,20 +206,20 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         entries: [
           AppMenuItem(
             value: 'off',
-            icon: PhosphorIcons.timer,
+            icon: TablerIcons.clockHour4,
             label: t.common.off,
             selected: !service.sleepTimerActive,
           ),
           for (final minutes in const [15, 30, 60])
             AppMenuItem(
               value: '$minutes',
-              icon: PhosphorIcons.timer,
+              icon: TablerIcons.clockHour4,
               label: t.music.sleepTimerMinutes(n: minutes),
               selected: timed && service.sleepTimerDuration == Duration(minutes: minutes),
             ),
           AppMenuItem(
             value: 'end_of_track',
-            icon: PhosphorIcons.musicNote,
+            icon: TablerIcons.music,
             label: t.music.sleepTimerEndOfTrack,
             selected: service.sleepTimerEndOfTrack,
           ),
@@ -466,7 +466,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               FocusableButton(
                 onPressed: _pop,
                 child: IconButton(
-                  icon: AppIcon(PhosphorIcons.caretDown, color: tk.text),
+                  icon: AppIcon(TablerIcons.chevronDown, color: tk.text),
                   tooltip: t.common.close,
                   onPressed: _pop,
                 ),
@@ -519,7 +519,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
           onPressed: _toggleLyrics,
           child: IconButton(
             icon: AppIcon(
-              PhosphorIcons.textAlignLeft,
+              TablerIcons.alignLeft,
               size: 22,
               color: _showLyrics ? colorScheme.primary : tk.textMuted,
             ),
@@ -554,10 +554,10 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       builder: (context, volume, _) {
         final tk = tokens(context);
         final icon = volume <= 0
-            ? PhosphorIcons.speakerX
+            ? TablerIcons.volumeOff
             : volume < 50
-            ? PhosphorIcons.speakerLow
-            : PhosphorIcons.speakerHigh;
+            ? TablerIcons.volume2
+            : TablerIcons.volume;
         return Row(
           mainAxisSize: .min,
           children: [
@@ -598,7 +598,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
       item: track,
       extraEntries: [
         MediaMenuExtraEntry(
-          icon: PhosphorIcons.moon,
+          icon: TablerIcons.moon,
           label: t.music.sleepTimer,
           onSelected: _showSleepTimerSheet,
         ),
@@ -613,7 +613,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         onBack: focusable ? _pop : null,
         useBackgroundFocus: focusable,
         child: IconButton(
-          icon: AppIcon(PhosphorIcons.dotsThreeOutlineVertical, color: tk.text),
+          icon: AppIcon(TablerIcons.dotsVertical, color: tk.text),
           onPressed: showMenu,
           tooltip: MaterialLocalizations.of(context).showMenuTooltip,
         ),
@@ -736,7 +736,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: service.toggleShuffle,
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: PhosphorIcons.shuffle,
+                  icon: TablerIcons.arrowsShuffle,
                   active: service.shuffled,
                   tooltip: t.common.shuffle,
                   onPressed: service.toggleShuffle,
@@ -748,7 +748,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: () => unawaited(service.previous()),
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: PhosphorIcons.skipBack,
+                  icon: TablerIcons.playerSkipBack,
                   tooltip: t.music.previousTrack,
                   onPressed: () => unawaited(service.previous()),
                   size: 32,
@@ -767,7 +767,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
                 onPressed: () => unawaited(service.next()),
                 builder: (context, state) => _transportIcon(
                   state,
-                  icon: PhosphorIcons.skipForward,
+                  icon: TablerIcons.playerSkipForward,
                   tooltip: t.music.nextTrack,
                   onPressed: () => unawaited(service.next()),
                   size: 32,
@@ -808,7 +808,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
             onPressed: _toggleLyrics,
             builder: (context, state) => _transportIcon(
               state,
-              icon: PhosphorIcons.textAlignLeft,
+              icon: TablerIcons.alignLeft,
               active: _showLyrics,
               tooltip: t.music.lyrics,
               onPressed: _toggleLyrics,
@@ -821,7 +821,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
               onPressed: () => unawaited(showQueueSheet(_sheetContext)),
               builder: (context, state) => _transportIcon(
                 state,
-                icon: PhosphorIcons.queue,
+                icon: TablerIcons.listNumbers,
                 active: false,
                 tooltip: t.music.queue,
                 onPressed: () => unawaited(showQueueSheet(_sheetContext)),
@@ -874,7 +874,7 @@ class _Artwork extends StatelessWidget {
               imageType: ImageType.square,
               width: side,
               height: side,
-              fallbackIcon: PhosphorIcons.musicNote,
+              fallbackIcon: TablerIcons.music,
             ),
           ),
         );
@@ -969,7 +969,7 @@ class _PlayPauseButton extends StatelessWidget {
                       child: CircularProgressIndicator(strokeWidth: 2.5, color: colorScheme.onInverseSurface),
                     )
                   : AppIcon(
-                      isPlaying ? PhosphorIcons.pause : PhosphorIcons.play,
+                      isPlaying ? TablerIcons.playerPause : TablerIcons.playerPlay,
                       size: 36,
                       color: colorScheme.onInverseSurface,
                     ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../media/ids.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import '../focus/focusable_wrapper.dart';
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -691,7 +691,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       children: [
         // Expand/collapse icon
         if (canExpand)
-          AppIcon(widget.isExpanded ? PhosphorIcons.caretDown : PhosphorIcons.caretRight, size: 20)
+          AppIcon(widget.isExpanded ? TablerIcons.chevronDown : TablerIcons.chevronRight, size: 20)
         else
           const SizedBox(width: 20),
 
@@ -789,7 +789,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Pause all button
       if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onPause != null) {
         actions.add((
-          icon: PhosphorIcons.pause,
+          icon: TablerIcons.playerPause,
           tooltip: t.downloads.pauseAll,
           onPressed: () => widget.pauseAllChildren(widget.node),
         ));
@@ -798,7 +798,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Resume all button
       if (status == DownloadStatus.paused && widget.onResume != null) {
         actions.add((
-          icon: PhosphorIcons.play,
+          icon: TablerIcons.playerPlay,
           tooltip: t.downloads.resumeAll,
           onPressed: () => widget.resumeAllChildren(widget.node),
         ));
@@ -807,7 +807,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       // Delete all button
       if (widget.onDelete != null) {
         actions.add((
-          icon: PhosphorIcons.trash,
+          icon: TablerIcons.trash,
           tooltip: t.downloads.deleteAll,
           onPressed: () async {
             if (await _confirmDelete()) widget.deleteAllChildren(widget.node);
@@ -823,7 +823,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Pause button for downloading items
     if (status == DownloadStatus.downloading && widget.onPause != null) {
       actions.add((
-        icon: PhosphorIcons.pause,
+        icon: TablerIcons.playerPause,
         tooltip: t.common.pause,
         onPressed: () => widget.onPause!(globalKey),
       ));
@@ -832,7 +832,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Resume button for paused items
     if (status == DownloadStatus.paused && widget.onResume != null) {
       actions.add((
-        icon: PhosphorIcons.play,
+        icon: TablerIcons.playerPlay,
         tooltip: t.common.resume,
         onPressed: () => widget.onResume!(globalKey),
       ));
@@ -840,7 +840,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
     if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onCancel != null) {
       actions.add((
-        icon: PhosphorIcons.x,
+        icon: TablerIcons.x,
         tooltip: t.common.cancel,
         onPressed: () => widget.onCancel!(globalKey),
       ));
@@ -849,7 +849,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     // Retry button for failed items
     if (status == DownloadStatus.failed && widget.onRetry != null) {
       actions.add((
-        icon: PhosphorIcons.arrowsClockwise,
+        icon: TablerIcons.refresh,
         tooltip: t.downloads.retryDownload,
         onPressed: () => widget.onRetry!(globalKey),
       ));
@@ -859,7 +859,7 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     if ((status == DownloadStatus.completed || status == DownloadStatus.failed || status == DownloadStatus.cancelled) &&
         widget.onDelete != null) {
       actions.add((
-        icon: PhosphorIcons.trash,
+        icon: TablerIcons.trash,
         tooltip: t.common.delete,
         onPressed: () async {
           if (await _confirmDelete()) widget.onDelete!(globalKey);

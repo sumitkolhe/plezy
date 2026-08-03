@@ -15,7 +15,7 @@ import 'package:flutter/gestures.dart'
         kDoubleTapTimeout;
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:rate_limiter/rate_limiter.dart';
 import 'package:flutter/services.dart'
     show
@@ -1121,7 +1121,7 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
                               child: Row(
                                 mainAxisSize: .min,
                                 children: [
-                                  const AppIcon(PhosphorIcons.lock, color: Colors.white, size: 20),
+                                  const AppIcon(TablerIcons.lock, color: Colors.white, size: 20),
                                   const SizedBox(width: 8),
                                   Text(
                                     t.videoControls.longPressToUnlock,

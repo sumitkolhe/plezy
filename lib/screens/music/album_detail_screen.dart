@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focus_theme.dart';
@@ -142,7 +142,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
           builder: (buttonContext) => Container(
             decoration: FocusTheme.focusBackgroundDecoration(isFocused: state.showFocus, borderRadius: 20),
             child: IconButton(
-              icon: const AppIcon(PhosphorIcons.dotsThreeOutlineVertical),
+              icon: const AppIcon(TablerIcons.dotsVertical),
               onPressed: () => _showOverflowMenuAt(buttonContext),
             ),
           ),
@@ -216,7 +216,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
             icon = const DownloadQueueingSpinner(size: 20);
             tooltip = t.downloads.downloadingTooltip;
           } else if (status == DownloadStatus.queued) {
-            icon = const AppIcon(PhosphorIcons.clock);
+            icon = const AppIcon(TablerIcons.clock);
             tooltip = t.downloads.queuedTooltip;
           } else if (status == DownloadStatus.downloading) {
             icon = DownloadStatusIcon(
@@ -226,13 +226,13 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
             );
             tooltip = t.downloads.downloadingTooltip;
           } else if (status == DownloadStatus.completed) {
-            icon = const AppIcon(PhosphorIcons.checkCircle);
+            icon = const AppIcon(TablerIcons.circleCheck);
             tooltip = t.downloads.deleteDownload;
           } else if (status == DownloadStatus.partial) {
-            icon = const AppIcon(PhosphorIcons.downloadSimple);
+            icon = const AppIcon(TablerIcons.download);
             tooltip = t.downloads.partialDownloadClickToComplete;
           } else {
-            icon = const AppIcon(PhosphorIcons.download);
+            icon = const AppIcon(TablerIcons.download);
             tooltip = t.downloads.downloadNow;
           }
 
@@ -278,7 +278,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
         imageType: ImageType.square,
         width: size,
         height: size,
-        fallbackIcon: PhosphorIcons.vinylRecord,
+        fallbackIcon: TablerIcons.disc,
       ),
     );
 

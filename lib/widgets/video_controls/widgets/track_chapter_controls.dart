@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:flutter/services.dart';
 
 import '../../../focus/dpad_navigator.dart';
@@ -168,7 +168,7 @@ class TrackChapterControls extends StatelessWidget {
                   isZoomActive;
               return _buildTrackButton(
                 buttonIndex: 0,
-                icon: PhosphorIcons.sliders,
+                icon: TablerIcons.adjustments,
                 isActive: isActive,
                 checked: isActive,
                 tooltip: t.videoControls.settingsButton,
@@ -207,8 +207,8 @@ class TrackChapterControls extends StatelessWidget {
                 final hasActiveSubtitle = selectedSub != null && selectedSub.id != SubtitleTrack.off.id;
                 final isHidden = hasSubtitleControls && hasActiveSubtitle && !state.subtitlesVisible;
                 final icon = hasSubtitleControls
-                    ? (isHidden ? PhosphorIcons.subtitlesSlash : PhosphorIcons.subtitles)
-                    : PhosphorIcons.musicNote;
+                    ? (isHidden ? TablerIcons.badgeCc : TablerIcons.badgeCcFilled)
+                    : TablerIcons.music;
                 return _buildTrackButton(
                   buttonIndex: currentIndex,
                   icon: icon,
@@ -238,7 +238,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIcons.bookmarks,
+              icon: TablerIcons.bookmarks,
               tooltip: t.videoControls.chaptersButton,
               semanticLabel: t.videoControls.chaptersButton,
               isMobile: isMobile,
@@ -270,7 +270,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIcons.queue,
+              icon: TablerIcons.listNumbers,
               tooltip: t.videoControls.queue,
               semanticLabel: t.videoControls.queue,
               isMobile: isMobile,
@@ -292,7 +292,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIcons.pictureInpicture,
+              icon: TablerIcons.pictureInPicture,
               tooltip: t.videoControls.pipButton,
               semanticLabel: t.videoControls.pipButton,
               isMobile: isMobile,
@@ -327,7 +327,9 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: state.isRotationLocked ? PhosphorIcons.deviceRotate : PhosphorIcons.deviceRotate,
+              // Tabler has no rotation-lock glyph, so the lock carries the state
+              // and the rotate frame means it is free to turn.
+              icon: state.isRotationLocked ? TablerIcons.lock : TablerIcons.rotateRectangle,
               tooltip: state.isRotationLocked ? t.videoControls.unlockRotation : t.videoControls.lockRotation,
               semanticLabel: t.videoControls.rotationLockButton,
               checked: state.isRotationLocked,
@@ -345,7 +347,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIcons.lock,
+              icon: TablerIcons.lock,
               tooltip: t.videoControls.lockScreen,
               semanticLabel: t.videoControls.screenLockButton,
               isMobile: isMobile,
@@ -438,13 +440,13 @@ class TrackChapterControls extends StatelessWidget {
   IconData _getBoxFitIcon(int mode) {
     switch (mode) {
       case 0:
-        return PhosphorIcons.arrowsOut; // contain (letterbox)
+        return TablerIcons.arrowsMaximize; // contain (letterbox)
       case 1:
-        return PhosphorIcons.frameCorners; // cover (fill screen)
+        return TablerIcons.aspectRatio; // cover (fill screen)
       case 2:
-        return PhosphorIcons.arrowsOut; // fill (stretch)
+        return TablerIcons.arrowsMaximize; // fill (stretch)
       default:
-        return PhosphorIcons.arrowsOut;
+        return TablerIcons.arrowsMaximize;
     }
   }
 

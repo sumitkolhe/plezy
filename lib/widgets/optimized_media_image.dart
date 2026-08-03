@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../media/media_server_client.dart';
@@ -148,7 +148,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? PhosphorIcons.filmSlate,
+         fallbackIcon: fallbackIcon ?? TablerIcons.movie,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -186,7 +186,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: fallbackIcon ?? PhosphorIcons.filmStrip,
+         fallbackIcon: fallbackIcon ?? TablerIcons.movie,
          imageType: ImageType.thumb,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -223,7 +223,7 @@ class OptimizedMediaImage extends StatelessWidget {
          enableTranscoding: enableTranscoding,
          cacheKey: cacheKey,
          alignment: alignment,
-         fallbackIcon: PhosphorIcons.playlist,
+         fallbackIcon: TablerIcons.playlist,
          imageType: ImageType.poster,
          localFilePath: localFilePath,
          artworkDim: artworkDim,
@@ -465,12 +465,12 @@ class OptimizedMediaImage extends StatelessWidget {
 
   Widget _buildErrorWidget(BuildContext context, dynamic _) => _surfacePlaceholder(
     context,
-    icon: fallbackIcon ?? PhosphorIcons.imageBroken,
+    icon: fallbackIcon ?? TablerIcons.photoOff,
     fillParent: !_hasKnownDimensions,
   );
 
   Widget _buildFallback(BuildContext context) =>
-      _surfacePlaceholder(context, icon: fallbackIcon ?? PhosphorIcons.imageBroken);
+      _surfacePlaceholder(context, icon: fallbackIcon ?? TablerIcons.photoOff);
 }
 
 /// Clear-logo artwork for hero and detail headers.

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../media/media_item.dart';
 import '../utils/formatters.dart';
@@ -79,7 +79,7 @@ class MediaRatingBadge extends StatelessWidget {
     if (rating == null) return null;
     return _MediaRatingBadgeData(
       value: rating,
-      fallbackIcon: PhosphorIcons.star,
+      fallbackIcon: TablerIcons.star,
       fallbackText: formatRating(rating),
     );
   }

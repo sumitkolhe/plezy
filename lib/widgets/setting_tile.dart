@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../screens/settings/settings_utils.dart';
 import '../services/settings_service.dart';
@@ -47,7 +47,7 @@ class _SettingRow extends StatelessWidget {
       leading: AppIcon(icon),
       title: Text(title),
       subtitle: subtitle,
-      trailing: trailing ?? const AppIcon(PhosphorIcons.caretRight),
+      trailing: trailing ?? const AppIcon(TablerIcons.chevronRight),
       onTap: onTap,
     );
   }
@@ -108,7 +108,7 @@ class SettingNavigationTile extends StatelessWidget {
     this.destinationBuilder,
     this.onTap,
     this.focusNode,
-    this.trailingIcon = PhosphorIcons.caretRight,
+    this.trailingIcon = TablerIcons.chevronRight,
   }) : assert(destinationBuilder != null || onTap != null);
 
   @override

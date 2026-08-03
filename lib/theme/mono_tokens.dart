@@ -15,7 +15,6 @@ class MonoFonts {
 
   /// Bundled license text, surfaced on the Licenses screen.
   static const String licenseAsset = 'assets/fonts/GOOGLE-SANS-OFL.txt';
-  static const String iconLicenseAsset = 'assets/fonts/PHOSPHOR-MIT.txt';
 
   static const List<String> licenseePackages = ['Google Sans', 'Google Sans Code'];
 }

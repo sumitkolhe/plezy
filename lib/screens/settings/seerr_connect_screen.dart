@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_button.dart';
@@ -176,7 +176,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
           // URL example — intentionally not localized.
           hintText: 'https://seerr.example.com',
           helperText: t.seerr.serverUrlHelper,
-          prefixIcon: const AppIcon(PhosphorIcons.link),
+          prefixIcon: const AppIcon(TablerIcons.link),
         ),
       ),
       const SizedBox(height: 16),
@@ -187,7 +187,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _probe,
         child: FilledButton.icon(
           onPressed: busy ? null : _probe,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.globe),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.world),
           label: Text(t.seerr.checkServer),
         ),
       ),
@@ -256,7 +256,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _passwordFocus.requestFocus(),
         decoration: InputDecoration(
           labelText: isLocal ? t.seerr.email : t.addServer.username,
-          prefixIcon: AppIcon(isLocal ? PhosphorIcons.envelope : PhosphorIcons.person),
+          prefixIcon: AppIcon(isLocal ? TablerIcons.mail : TablerIcons.user),
         ),
         validator: (v) => v == null || v.trim().isEmpty ? t.addServer.required : null,
       ),
@@ -270,7 +270,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onFieldSubmitted: busy ? null : (_) => _signInWithCredentials(),
         decoration: InputDecoration(
           labelText: t.addServer.password,
-          prefixIcon: const AppIcon(PhosphorIcons.lock),
+          prefixIcon: const AppIcon(TablerIcons.lock),
         ),
         validator: (v) => v == null || v.isEmpty ? t.addServer.required : null,
       ),
@@ -280,7 +280,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
         onPressed: busy ? null : _signInWithCredentials,
         child: FilledButton.icon(
           onPressed: busy ? null : _signInWithCredentials,
-          icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.signIn),
+          icon: busy ? const LoadingIndicatorBox() : const AppIcon(TablerIcons.login),
           label: Text(t.addServer.signIn),
         ),
       ),
@@ -297,7 +297,7 @@ class _SeerrConnectScreenState extends State<SeerrConnectScreen> with AsyncFormS
       ),
       child: Row(
         children: [
-          const AppIcon(PhosphorIcons.cloudCheck),
+          const AppIcon(TablerIcons.cloudCheck),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

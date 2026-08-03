@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../focus/focusable_button.dart';
@@ -57,7 +57,7 @@ class BackgroundDownloadWarningBanner extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
             child: Row(
               children: [
-                AppIcon(blocked ? PhosphorIcons.batteryWarning : PhosphorIcons.info, color: foreground),
+                AppIcon(blocked ? TablerIcons.batteryOff : TablerIcons.infoCircle, color: foreground),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -162,7 +162,7 @@ Future<bool> showBackgroundDownloadWarningDialog(
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
-                      child: const AppIcon(PhosphorIcons.caretRight, size: 18),
+                      child: const AppIcon(TablerIcons.chevronRight, size: 18),
                     ),
                     const SizedBox(width: 8),
                     Expanded(child: Text(_describeReason(reason))),
@@ -180,7 +180,7 @@ Future<bool> showBackgroundDownloadWarningDialog(
                   onPressed: () => _openDontKillMyApp(dialogContext, launcher: externalUrlLauncher),
                   child: TextButton.icon(
                     onPressed: () => _openDontKillMyApp(dialogContext, launcher: externalUrlLauncher),
-                    icon: const AppIcon(PhosphorIcons.arrowSquareOut, size: 18),
+                    icon: const AppIcon(TablerIcons.externalLink, size: 18),
                     label: const Text('dontkillmyapp.com'),
                   ),
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../i18n/strings.g.dart';
@@ -103,7 +103,7 @@ class _ServiceHubRow extends StatelessWidget {
       leading: leading,
       title: Text(title),
       subtitle: Text(username != null ? t.services.connectedAs(username: username!) : t.services.notConnected),
-      trailing: const AppIcon(PhosphorIcons.caretRight),
+      trailing: const AppIcon(TablerIcons.chevronRight),
       onTap: onTap,
     );
   }

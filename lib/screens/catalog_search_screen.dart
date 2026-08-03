@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -65,7 +65,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchPrompt(source: sourceName),
-              icon: PhosphorIcons.magnifyingGlass,
+              icon: TablerIcons.search,
               iconSize: 80,
             ),
           )
@@ -73,7 +73,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchFailed,
-              icon: PhosphorIcons.warningCircle,
+              icon: TablerIcons.alertCircle,
               iconSize: 80,
             ),
           )
@@ -81,7 +81,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchEmpty(query: lastSearchedQuery),
-              icon: PhosphorIcons.magnifyingGlassMinus,
+              icon: TablerIcons.zoomOut,
               iconSize: 80,
             ),
           )

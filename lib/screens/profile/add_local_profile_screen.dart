@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -124,7 +124,7 @@ class _AddLocalProfileScreenState extends State<AddLocalProfileScreen> with Cont
                   onPressed: _setPin,
                   child: OutlinedButton.icon(
                     onPressed: _setPin,
-                    icon: const AppIcon(PhosphorIcons.lock),
+                    icon: const AppIcon(TablerIcons.lock),
                     label: Text(t.profiles.setPin),
                   ),
                 )

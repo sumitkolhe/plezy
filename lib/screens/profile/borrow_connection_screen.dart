@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../connection/connection.dart';
@@ -148,7 +148,7 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
               child: EmptyStateWidget(
                 message: t.profiles.borrowEmpty,
                 subtitle: t.profiles.borrowEmptySubtitle,
-                icon: PhosphorIcons.share,
+                icon: TablerIcons.share,
                 iconSize: 48,
               ),
             );
@@ -303,14 +303,14 @@ class _BorrowTile extends StatelessWidget {
                       ),
                       if (candidate.source.isPinProtected) ...[
                         const SizedBox(width: 6),
-                        AppIcon(PhosphorIcons.lock, size: 12, color: theme.colorScheme.onSurfaceVariant),
+                        AppIcon(TablerIcons.lock, size: 12, color: theme.colorScheme.onSurfaceVariant),
                       ],
                     ],
                   ),
                 ],
               ),
             ),
-            const Padding(padding: .only(left: 8, top: 4), child: AppIcon(PhosphorIcons.plus)),
+            const Padding(padding: .only(left: 8, top: 4), child: AppIcon(TablerIcons.plus)),
           ],
         ),
       ),

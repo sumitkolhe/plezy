@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_item.dart';
@@ -47,7 +47,7 @@ void main() {
 
     expect(find.text('Season 1'), findsOneWidget);
     expect(tester.widget<InkWell>(find.byType(InkWell)).onTap, isNull);
-    expect(find.byIcon(PhosphorIcons.caretDown), findsNothing);
+    expect(find.byIcon(TablerIcons.chevronDown), findsNothing);
   });
 
   testWidgets('collapses when the show reports no seasons at all', (tester) async {

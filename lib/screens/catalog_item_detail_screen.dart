@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -507,7 +507,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       // lookup doesn't, so fall back to the server name alone.
       title: Text(match.libraryTitle ?? match.serverName ?? match.backend.name),
       subtitle: match.libraryTitle != null && match.serverName != null ? Text(match.serverName!) : null,
-      trailing: const AppIcon(PhosphorIcons.caretRight),
+      trailing: const AppIcon(TablerIcons.chevronRight),
       onTap: () => unawaited(navigateToMediaItemDetails(context, match)),
     );
   }
@@ -533,7 +533,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     if (matches.isEmpty) {
       return Row(
         children: [
-          AppIcon(PhosphorIcons.info, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
+          AppIcon(TablerIcons.infoCircle, size: 18, color: theme.colorScheme.onSurface.withValues(alpha: 0.5)),
           const SizedBox(width: 8),
           Text(t.explore.notInLibrary, style: mutedStyle),
         ],
@@ -726,7 +726,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       if (item.votes case final votes?) {
         score = '$score (${t.explore.stats.votes(n: compact.format(votes))})';
       }
-      add(score, icon: PhosphorIcons.star, iconColor: Colors.amber);
+      add(score, icon: TablerIcons.star, iconColor: Colors.amber);
     }
     if (item.airStatus case final status?) add(_statusLabel(status));
     if (item.episodeCount case final count?) add(t.explore.episodeCount(n: count));
@@ -805,7 +805,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       }
       chips.add(
         badge == null
-            ? StatChip(icon: PhosphorIcons.star, iconColor: Colors.amber, label: label)
+            ? StatChip(icon: TablerIcons.star, iconColor: Colors.amber, label: label)
             : StatChip(
                 leading: SvgPicture.asset(badge.assetPath, width: 14, height: 14, semanticsLabel: source),
                 label: label,
@@ -1015,7 +1015,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
             onNavigateDown: _linkFocusNodes.isNotEmpty ? () => _requestLinkFocus(0) : _focusSectionBelowDetailActions,
             child: OutlinedButton.icon(
               onPressed: _revealSpoilerTags,
-              icon: const AppIcon(PhosphorIcons.eye),
+              icon: const AppIcon(TablerIcons.eye),
               label: Text(t.explore.detail.revealSpoilerTags),
             ),
           ),
@@ -1066,7 +1066,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 onNavigateDown: () => _focusBelowLinkGroup(endIndex),
                 child: OutlinedButton.icon(
                   onPressed: () => unawaited(_openExternalUrl(links[localIndex].url)),
-                  icon: const AppIcon(PhosphorIcons.arrowSquareOut),
+                  icon: const AppIcon(TablerIcons.externalLink),
                   label: Text(t.explore.detail.openOn(site: links[localIndex].label)),
                 ),
               ),
@@ -1202,7 +1202,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                 ),
               ),
               AppIcon(
-                PhosphorIcons.caretRight,
+                TablerIcons.chevronRight,
                 size: 18,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
               ),
@@ -1226,7 +1226,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
         size: related.length,
       ),
       focusMemory: _hubFocusMemory,
-      icon: PhosphorIcons.thumbsUp,
+      icon: TablerIcons.thumbUp,
       inset: true,
       onNavigateUp: _focusSectionAboveRelated,
       cardSizing: HubCardSizing.grid,
@@ -1351,8 +1351,8 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                             if (_watchlistSource != null)
                                               FocusableAction(
                                                 icon: onWatchlist ?? false
-                                                    ? PhosphorIcons.bookmark
-                                                    : PhosphorIcons.bookmarkSimple,
+                                                    ? TablerIcons.bookmarkFilled
+                                                    : TablerIcons.bookmark,
                                                 tooltip: onWatchlist ?? false
                                                     ? t.explore.removeFromWatchlist
                                                     : t.explore.addToWatchlist,
@@ -1360,7 +1360,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                               ),
                                             if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null)
                                               FocusableAction(
-                                                icon: PhosphorIcons.download,
+                                                icon: TablerIcons.download,
                                                 tooltip: t.seerr.request,
                                                 onPressed: () => unawaited(
                                                   showSeerrRequestSheet(
@@ -1374,7 +1374,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                               ),
                                             if (item.trailerUrl?.trim() case final trailer? when trailer.isNotEmpty)
                                               FocusableAction(
-                                                icon: PhosphorIcons.playCircle,
+                                                icon: TablerIcons.playerPlay,
                                                 tooltip: t.explore.detail.watchTrailer,
                                                 onPressed: () => unawaited(_openExternalUrl(trailer)),
                                               ),

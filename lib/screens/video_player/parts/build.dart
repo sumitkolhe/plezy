@@ -111,7 +111,7 @@ extension _VideoPlayerBuildMethods on VideoPlayerScreenState {
             child: Column(
               mainAxisSize: .min,
               children: [
-                const AppIcon(PhosphorIcons.warningCircle, color: Colors.white70, size: 44),
+                const AppIcon(TablerIcons.alertCircle, color: Colors.white70, size: 44),
                 const SizedBox(height: 16),
                 Text(
                   message,

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../i18n/strings.g.dart';
@@ -57,12 +57,12 @@ class SeerrSettingsScreen extends StatelessWidget {
             SettingsGroup(
               children: [
                 ListTile(
-                  leading: const AppIcon(PhosphorIcons.userCircle),
+                  leading: const AppIcon(TablerIcons.userCircle),
                   title: Text(t.services.connectedAs(username: session.displayName)),
                   subtitle: Text(methodLabel),
                 ),
                 ListTile(
-                  leading: const AppIcon(PhosphorIcons.hardDrives),
+                  leading: const AppIcon(TablerIcons.server),
                   title: Text(session.instanceLabel.isNotEmpty ? session.instanceLabel : t.seerr.instance),
                   subtitle: Text(session.baseUrl),
                 ),
@@ -72,7 +72,7 @@ class SeerrSettingsScreen extends StatelessWidget {
             SettingsGroup(
               children: [
                 FocusableListTile(
-                  leading: AppIcon(PhosphorIcons.linkBreak, color: Theme.of(context).colorScheme.error),
+                  leading: AppIcon(TablerIcons.unlink, color: Theme.of(context).colorScheme.error),
                   title: Text(t.common.disconnect, style: TextStyle(color: Theme.of(context).colorScheme.error)),
                   onTap: () => unawaited(_disconnect(context, account)),
                 ),

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_action_bar.dart';
@@ -52,7 +52,7 @@ class QueueSheet extends StatelessWidget {
               FocusableActionBar(
                 actions: [
                   FocusableAction(
-                    icon: PhosphorIcons.shuffle,
+                    icon: TablerIcons.arrowsShuffle,
                     iconColor: service.shuffled ? colorScheme.primary : tk.textMuted,
                     iconSize: 20,
                     tooltip: t.common.shuffle,
@@ -66,7 +66,7 @@ class QueueSheet extends StatelessWidget {
                     onPressed: () => service.setRepeatMode(nextRepeatMode(service.repeatMode)),
                   ),
                   FocusableAction(
-                    icon: PhosphorIcons.eraser,
+                    icon: TablerIcons.eraser,
                     iconColor: tk.textMuted,
                     iconSize: 20,
                     tooltip: t.music.clearQueue,
@@ -218,7 +218,7 @@ class _QueueListState extends State<QueueList> {
           dimmed: index < currentIndex,
           showTrackNumber: false,
           focusNode: isCurrent ? _currentRowFocusNode : null,
-          trailingIcon: PhosphorIcons.x,
+          trailingIcon: TablerIcons.x,
           onTrailingTap: () => service.removeAt(index),
           onTap: () => unawaited(service.jumpTo(index)),
         );
@@ -232,7 +232,7 @@ class _QueueListState extends State<QueueList> {
               alignment: .centerRight,
               padding: const EdgeInsets.only(right: 20),
               color: Colors.red,
-              child: const AppIcon(PhosphorIcons.trash, color: Colors.white, size: 20),
+              child: const AppIcon(TablerIcons.trash, color: Colors.white, size: 20),
             ),
             onDismissed: (_) => service.removeAt(index),
             child: row,

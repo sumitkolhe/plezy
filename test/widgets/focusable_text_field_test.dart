@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/focus/focusable_text_field.dart';
 import 'package:harbor/services/gamepad_service.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -1402,7 +1402,7 @@ void main() {
     rebuild(() => onNavigateDown = () => navigateDownCalls++);
     await tester.pump();
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIcons.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(TablerIcons.search));
     await tester.pumpAndSettle();
 
     expect(navigateDownCalls, 1);
@@ -1454,7 +1454,7 @@ void main() {
     });
     await tester.pump();
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIcons.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(TablerIcons.search));
     await tester.pumpAndSettle();
 
     expect(submitted, 'query');
@@ -1488,7 +1488,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsOneWidget);
 
-    await tester.tap(_tvKeyboardDoneKey(PhosphorIcons.magnifyingGlass));
+    await tester.tap(_tvKeyboardDoneKey(TablerIcons.search));
     await tester.pumpAndSettle();
     await tester.pump();
 

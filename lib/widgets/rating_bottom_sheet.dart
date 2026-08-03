@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../focus/dpad_navigator.dart';
@@ -94,7 +94,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIcons.star),
+              BottomSheetHeader(title: t.rateSheet.title, icon: TablerIcons.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),
@@ -606,7 +606,7 @@ class _TrailingStatus extends StatelessWidget {
     return Tooltip(
       message: status.text,
       child: AppIcon(
-        status.isError ? PhosphorIcons.warningCircle : PhosphorIcons.checkCircle,
+        status.isError ? TablerIcons.alertCircle : TablerIcons.circleCheck,
         color: color,
         size: 18,
       ),
@@ -664,8 +664,8 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     child: Center(
                       child: AppIcon(
                         half
-                            ? PhosphorIcons.starHalf
-                            : (filled ? PhosphorIcons.star : PhosphorIcons.star),
+                            ? TablerIcons.starHalf
+                            : (filled ? TablerIcons.starFilled : TablerIcons.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),
@@ -716,7 +716,7 @@ class _FavoriteControl extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               AppIcon(
-                value ? PhosphorIcons.heart : PhosphorIcons.heart,
+                value ? TablerIcons.heartFilled : TablerIcons.heart,
                 color: value ? Colors.redAccent : (enabled ? scheme.onSurfaceVariant : theme.disabledColor),
                 size: 18,
               ),

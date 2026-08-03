@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
 import 'package:harbor/focus/locked_hub_controller.dart';
 import 'package:harbor/i18n/strings.g.dart';
@@ -47,7 +47,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIcons.television,
+          icon: TablerIcons.deviceTv,
           onItemTap: (value) => tappedItem = value,
           onItemLongPress: (value) => longPressedItem = value,
         ),
@@ -79,7 +79,7 @@ void main() {
             key: hubKey,
             hub: _hubWith(item),
             focusMemory: HubFocusMemory(),
-            icon: PhosphorIcons.television,
+            icon: TablerIcons.deviceTv,
             onItemTap: (value) => tappedItem = value,
             onItemLongPress: (value) => longPressedItem = value,
           ),
@@ -116,7 +116,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIcons.television,
+          icon: TablerIcons.deviceTv,
           cardSizing: HubCardSizing.grid,
           episodePosterModeOverride: EpisodePosterMode.seriesPoster,
         ),
@@ -147,7 +147,7 @@ void main() {
 
     await tester.pumpWidget(
       _TestApp(
-        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIcons.filmSlate),
+        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: TablerIcons.movie),
       ),
     );
     expect(find.text(t.explore.totalResults(n: 237)), findsNothing);
@@ -157,7 +157,7 @@ void main() {
         child: HubSection(
           hub: hub,
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIcons.filmSlate,
+          icon: TablerIcons.movie,
           totalResults: 237,
         ),
       ),
@@ -187,7 +187,7 @@ void main() {
             key: key,
             hub: hub(hubId),
             focusMemory: owner,
-            icon: PhosphorIcons.filmSlate,
+            icon: TablerIcons.movie,
             onFocusedItemChanged: (item) => focusedItemId = item.id,
           ),
         ),

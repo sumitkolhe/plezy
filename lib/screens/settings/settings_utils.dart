@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../focus/focusable_text_field.dart';
 import '../../focus/input_mode_tracker.dart';
@@ -181,7 +181,7 @@ Future<T?> showSelectionDialog<T>({
             return FocusableListTile(
               key: ValueKey(option.value),
               leading: AppIcon(
-                selected ? PhosphorIcons.radioButton : PhosphorIcons.circle,
+                selected ? TablerIcons.circleDot : TablerIcons.circle,
                 color: selected ? Theme.of(dialogContext).colorScheme.primary : null,
               ),
               title: Text(option.title),

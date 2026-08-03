@@ -69,6 +69,7 @@ dependencies:
   xml: ^7.0.1
   string_similarity: ^2.2.0
   unorm_dart: ^0.3.2
+  tabler_icons_plus: ^3.44.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -119,9 +120,6 @@ flutter:
           weight: 600
         - asset: assets/fonts/GoogleSans-Bold.ttf
           weight: 700
-    - family: PhosphorRegular
-      fonts:
-        - asset: assets/fonts/Phosphor.ttf
     - family: GoogleSansCode
       fonts:
         - asset: assets/fonts/GoogleSansCode-Regular.ttf

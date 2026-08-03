@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../focus/focusable_button.dart';
 import '../../i18n/strings.g.dart';
@@ -108,7 +108,7 @@ class StateMessageWidget extends StatelessWidget {
                 useBackgroundFocus: actionUseBackgroundFocus,
                 child: FilledButton.icon(
                   onPressed: onAction,
-                  icon: AppIcon(actionIcon ?? PhosphorIcons.arrowsClockwise),
+                  icon: AppIcon(actionIcon ?? TablerIcons.refresh),
                   label: Text(actionLabel!),
                 ),
               ),
@@ -171,7 +171,7 @@ class EmptyStateWidget extends StatelessWidget {
       iconSize: iconSize,
       onAction: onAction,
       actionLabel: actionLabel,
-      actionIcon: actionIcon ?? PhosphorIcons.plus,
+      actionIcon: actionIcon ?? TablerIcons.plus,
       actionFocusNode: actionFocusNode,
       onActionNavigateUp: onActionNavigateUp,
       onActionNavigateLeft: onActionNavigateLeft,
@@ -227,7 +227,7 @@ class ErrorStateWidget extends StatelessWidget {
       textColor: Theme.of(context).colorScheme.error,
       onAction: onRetry,
       actionLabel: retryLabel ?? t.common.retry,
-      actionIcon: PhosphorIcons.arrowsClockwise,
+      actionIcon: TablerIcons.refresh,
       actionFocusNode: actionFocusNode,
       onActionNavigateUp: onActionNavigateUp,
       onActionNavigateLeft: onActionNavigateLeft,

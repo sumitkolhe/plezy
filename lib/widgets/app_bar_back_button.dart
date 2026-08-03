@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/haptics.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../focus/focusable_wrapper.dart';
 import '../i18n/strings.g.dart';
@@ -168,7 +168,7 @@ class _AppBarBackButtonState extends State<AppBarBackButton> with TickerProvider
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(color: currentColor, shape: BoxShape.circle),
-                  child: AppIcon(PhosphorIcons.arrowLeft, color: effectiveColor, size: 20),
+                  child: AppIcon(TablerIcons.arrowLeft, color: effectiveColor, size: 20),
                 );
               },
             ),

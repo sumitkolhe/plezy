@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../media/media_hub.dart';
 
@@ -15,7 +15,7 @@ IconData hubIconFor(MediaHub hub) {
   final title = hub.title.toLowerCase();
 
   if (hub.isContinueWatchingHub || title.contains('continue watching') || title.contains('on deck')) {
-    return PhosphorIcons.playCircle;
+    return TablerIcons.playerPlay;
   }
   for (final (keywords, icon) in _titleKeywordIcons) {
     if (keywords.any(title.contains)) return icon;
@@ -23,41 +23,41 @@ IconData hubIconFor(MediaHub hub) {
   return _defaultHubIcon;
 }
 
-const _defaultHubIcon = PhosphorIcons.sparkle;
+const _defaultHubIcon = TablerIcons.sparkles;
 
 /// Title keywords in match order — see [hubIconFor].
 const _titleKeywordIcons = <(List<String>, IconData)>[
   // Trending/Popular
-  (['trending'], PhosphorIcons.trendUp),
-  (['popular', 'imdb'], PhosphorIcons.fire),
+  (['trending'], TablerIcons.trendingUp),
+  (['popular', 'imdb'], TablerIcons.flame),
   // Seasonal/Time-based
-  (['seasonal'], PhosphorIcons.calendarBlank),
-  (['newly', 'new release'], PhosphorIcons.sparkle),
-  (['recently released', 'recent'], PhosphorIcons.clock),
-  (['top rated', 'highest rated'], PhosphorIcons.star),
-  (['top '], PhosphorIcons.medal),
+  (['seasonal'], TablerIcons.calendar),
+  (['newly', 'new release'], TablerIcons.sparkles),
+  (['recently released', 'recent'], TablerIcons.clock),
+  (['top rated', 'highest rated'], TablerIcons.star),
+  (['top '], TablerIcons.medal),
   // Genre-specific
-  (['thriller'], PhosphorIcons.warning),
-  (['comedy', 'comedier'], PhosphorIcons.smiley),
-  (['action'], PhosphorIcons.lightning),
-  (['drama'], PhosphorIcons.maskHappy),
-  (['fantasy'], PhosphorIcons.magicWand),
-  (['science', 'sci-fi'], PhosphorIcons.rocketLaunch),
-  (['horror', 'skräck'], PhosphorIcons.moonStars),
-  (['romance', 'romantic'], PhosphorIcons.heart),
-  (['adventure', 'äventyr'], PhosphorIcons.compass),
+  (['thriller'], TablerIcons.alertTriangle),
+  (['comedy', 'comedier'], TablerIcons.moodSmile),
+  (['action'], TablerIcons.bolt),
+  (['drama'], TablerIcons.mask),
+  (['fantasy'], TablerIcons.wand),
+  (['science', 'sci-fi'], TablerIcons.rocket),
+  (['horror', 'skräck'], TablerIcons.moonStars),
+  (['romance', 'romantic'], TablerIcons.heart),
+  (['adventure', 'äventyr'], TablerIcons.compass),
   // Watchlist/Playlists
-  (['playlist', 'watchlist'], PhosphorIcons.playlist),
-  (['unwatched', 'unplayed'], PhosphorIcons.eyeSlash),
-  (['watched', 'played'], PhosphorIcons.eye),
+  (['playlist', 'watchlist'], TablerIcons.playlist),
+  (['unwatched', 'unplayed'], TablerIcons.eyeOff),
+  (['watched', 'played'], TablerIcons.eye),
   // Network/Studio
-  (['network', 'more from'], PhosphorIcons.television),
-  (['actor', 'director'], PhosphorIcons.person),
+  (['network', 'more from'], TablerIcons.deviceTv),
+  (['actor', 'director'], TablerIcons.user),
   // Decades (80s, 90s, etc.)
-  (['80', '90', '00'], PhosphorIcons.clockCounterClockwise),
-  (['rediscover', 'start watching'], PhosphorIcons.play),
+  (['80', '90', '00'], TablerIcons.history),
+  (['rediscover', 'start watching'], TablerIcons.playerPlay),
   // Broad library-hub keywords, last so the specific rows above keep their icons.
-  (['rated'], PhosphorIcons.star),
-  (['recommended'], PhosphorIcons.thumbsUp),
-  (['genre'], PhosphorIcons.squaresFour),
+  (['rated'], TablerIcons.star),
+  (['recommended'], TablerIcons.thumbUp),
+  (['genre'], TablerIcons.layoutGrid),
 ];

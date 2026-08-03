@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../media/media_item.dart';
 import '../../mpv/mpv.dart';
@@ -252,7 +252,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                                   _buildBottomBar(context),
                                 ],
                               ),
-                              const ContentStripHint(PhosphorIcons.caretUp),
+                              const ContentStripHint(TablerIcons.chevronUp),
                             ],
                           ),
                         ),
@@ -269,7 +269,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
                             opacity: (t * 2).clamp(0.0, 1.0),
                             child: ContentStripPanel(
                               padding: const EdgeInsets.only(top: 32),
-                              chevron: PhosphorIcons.caretDown,
+                              chevron: TablerIcons.chevronDown,
                               child: ContentStrip(
                                 player: widget.player,
                                 chapters: widget.chapters,
@@ -338,14 +338,14 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
             // Previous episode button (greyed out when unavailable)
             CircularControlButton(
               semanticLabel: t.videoControls.previousButton,
-              icon: PhosphorIcons.skipBack,
+              icon: TablerIcons.playerSkipBack,
               iconSize: 48,
               onPressed: widget.onPrevious,
             ),
             const SizedBox(width: 24),
             CircularControlButton(
               semanticLabel: isPlaying ? t.videoControls.pauseButton : t.videoControls.playButton,
-              icon: isPlaying ? PhosphorIcons.pause : PhosphorIcons.play,
+              icon: isPlaying ? TablerIcons.playerPause : TablerIcons.playerPlay,
               iconSize: 72,
               onPressed: () {
                 widget.onPlayPause();
@@ -360,7 +360,7 @@ class _MobileVideoControlsState extends State<MobileVideoControls> with SingleTi
             // Next episode button (greyed out when unavailable)
             CircularControlButton(
               semanticLabel: t.videoControls.nextButton,
-              icon: PhosphorIcons.skipForward,
+              icon: TablerIcons.playerSkipForward,
               iconSize: 48,
               onPressed: widget.onNext,
             ),

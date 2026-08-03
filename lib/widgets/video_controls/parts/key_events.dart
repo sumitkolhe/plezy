@@ -6,7 +6,7 @@ extension _PlayerControlsKeyEventMethods on _PlayerControlsState {
   }
 
   void _showScreenshotToast() {
-    widget.toastController.show(PhosphorIcons.camera, t.videoControls.screenshotSaved);
+    widget.toastController.show(TablerIcons.camera, t.videoControls.screenshotSaved);
   }
 
   bool _isDirectionalKey(LogicalKeyboardKey key) {

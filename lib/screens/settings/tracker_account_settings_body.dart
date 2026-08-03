@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../services/settings_service.dart';
@@ -56,7 +56,7 @@ class TrackerAccountSettingsBody extends StatelessWidget {
         SettingsGroup(
           children: [
             ListTile(
-              leading: const AppIcon(PhosphorIcons.userCircle),
+              leading: const AppIcon(TablerIcons.userCircle),
               title: Text(accountTitle),
               subtitle: accountSubtitle != null ? Text(accountSubtitle!) : null,
             ),
@@ -78,10 +78,10 @@ class TrackerAccountSettingsBody extends StatelessWidget {
               builder: (context) {
                 final settings = SettingsService.instance;
                 return FocusableListTile(
-                  leading: const AppIcon(PhosphorIcons.funnelSimple),
+                  leading: const AppIcon(TablerIcons.filter2),
                   title: Text(t.services.libraryFilter.title),
                   subtitle: Text(TrackerLibraryFilterScreen.subtitleFor(settings, service)),
-                  trailing: const AppIcon(PhosphorIcons.caretRight),
+                  trailing: const AppIcon(TablerIcons.chevronRight),
                   onTap: () => Navigator.of(
                     context,
                   ).push(MaterialPageRoute<void>(builder: (_) => TrackerLibraryFilterScreen(service: service))),
@@ -94,7 +94,7 @@ class TrackerAccountSettingsBody extends StatelessWidget {
         SettingsGroup(
           children: [
             FocusableListTile(
-              leading: AppIcon(PhosphorIcons.linkBreak, color: Theme.of(context).colorScheme.error),
+              leading: AppIcon(TablerIcons.unlink, color: Theme.of(context).colorScheme.error),
               title: Text(t.common.disconnect, style: TextStyle(color: Theme.of(context).colorScheme.error)),
               onTap: () => unawaited(Future<void>.sync(onDisconnect)),
             ),

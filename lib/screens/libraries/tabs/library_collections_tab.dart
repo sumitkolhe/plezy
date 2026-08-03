@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import '../../../media/library_query.dart';
 import '../../../media/media_item.dart';
 import '../../../utils/library_refresh_notifier.dart';
@@ -34,7 +34,7 @@ class _LibraryCollectionsTabState extends PaginatedCardGridTabState<MediaItem, L
   String get focusNodeDebugLabel => 'collections_first_item';
 
   @override
-  IconData get emptyIcon => PhosphorIcons.images;
+  IconData get emptyIcon => TablerIcons.photoPlus;
 
   @override
   String get emptyMessage => t.libraries.noCollections;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/widgets/bottom_sheet_header.dart';
 
 void main() {
@@ -13,7 +13,7 @@ void main() {
           body: Column(
             children: [
               BottomSheetHeader(title: 'Back', onBack: () => backPressed = true),
-              const BottomSheetHeader(title: 'Icon', icon: PhosphorIcons.funnel),
+              const BottomSheetHeader(title: 'Icon', icon: TablerIcons.filter),
             ],
           ),
         ),
@@ -21,10 +21,10 @@ void main() {
     );
 
     final backArrow = find.byWidgetPredicate(
-      (widget) => widget is Icon && widget.icon == PhosphorIcons.arrowLeft,
+      (widget) => widget is Icon && widget.icon == TablerIcons.arrowLeft,
     );
     final regularIcon = find.byWidgetPredicate(
-      (widget) => widget is Icon && widget.icon == PhosphorIcons.funnel,
+      (widget) => widget is Icon && widget.icon == TablerIcons.filter,
     );
 
     expect(backArrow, findsOneWidget);

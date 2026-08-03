@@ -5,7 +5,7 @@ import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/database/app_database.dart';
@@ -37,6 +37,12 @@ import '../test_helpers/fake_player.dart';
 import '../test_helpers/media_items.dart';
 import '../test_helpers/prefs.dart';
 import '../test_helpers/theme.dart';
+
+/// Either face of the subtitle button: filled while subtitles show, outline
+/// while they are hidden.
+Finder _subtitleButton() => find.byWidgetPredicate(
+  (w) => w is Icon && (w.icon == TablerIcons.badgeCc || w.icon == TablerIcons.badgeCcFilled),
+);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -1365,17 +1371,17 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.byIcon(PhosphorIcons.subtitles), findsOneWidget);
+      expect(_subtitleButton(), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no']);
-      expect(find.byIcon(PhosphorIcons.subtitlesSlash), findsOneWidget);
+      expect(_subtitleButton(), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no'], reason: 'the latest toggle must wait for the in-flight native write');
-      expect(find.byIcon(PhosphorIcons.subtitles), findsOneWidget);
+      expect(_subtitleButton(), findsOneWidget);
 
       firstWrite.complete();
       await tester.pump();
@@ -1387,7 +1393,7 @@ void main() {
       await tester.pump();
 
       expect(tester.takeException(), isNull);
-      expect(find.byIcon(PhosphorIcons.subtitlesSlash), findsOneWidget);
+      expect(_subtitleButton(), findsOneWidget);
       chrome.cancelAutoHide();
       await tester.pumpWidget(const SizedBox.shrink());
     });

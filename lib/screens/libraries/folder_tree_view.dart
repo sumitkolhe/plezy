@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import '../../media/media_backend.dart';
 import '../../media/media_item.dart';
 import '../../media/media_kind.dart';
@@ -318,7 +318,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
         hasScrollBody: false,
         child: ErrorStateWidget(
           message: _errorMessage!,
-          icon: PhosphorIcons.warningCircle,
+          icon: TablerIcons.alertCircle,
           onRetry: _loadRootFolders,
           retryLabel: t.common.retry,
           actionFocusNode: widget.firstItemFocusNode,
@@ -332,7 +332,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
     if (_rootFolders.isEmpty) {
       return SliverFillRemaining(
         hasScrollBody: false,
-        child: EmptyStateWidget(message: t.libraries.noFoldersFound, icon: PhosphorIcons.folderOpen),
+        child: EmptyStateWidget(message: t.libraries.noFoldersFound, icon: TablerIcons.folderOpen),
       );
     }
 

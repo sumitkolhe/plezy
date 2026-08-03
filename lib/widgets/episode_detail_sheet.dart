@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../i18n/strings.g.dart';
 import '../media/media_item.dart';
@@ -98,7 +98,7 @@ class EpisodeDetailSheet extends StatelessWidget {
                     runSpacing: 6,
                     children: [
                       if (rating != null && rating > 0)
-                        _FactChip(value: formatRating(rating / 2), icon: PhosphorIcons.star),
+                        _FactChip(value: formatRating(rating / 2), icon: TablerIcons.star),
                       for (final fact in facts) _FactChip(label: fact.label, value: fact.value),
                     ],
                   ),
@@ -128,7 +128,7 @@ class EpisodeDetailSheet extends StatelessWidget {
                 OverlaySheetController.closeAdaptive(context, null);
                 onPlay();
               },
-              icon: const AppIcon(PhosphorIcons.play, size: 20),
+              icon: const AppIcon(TablerIcons.playerPlay, size: 20),
               label: Text(t.common.play),
             ),
           ),
@@ -140,7 +140,7 @@ class EpisodeDetailSheet extends StatelessWidget {
   Widget _still(BuildContext context) {
     final fallback = PlaceholderContainer(
       color: tokens(context).text.withValues(alpha: 0.04),
-      child: AppIcon(PhosphorIcons.filmSlate, size: 24, color: tokens(context).textMuted.withValues(alpha: 0.5)),
+      child: AppIcon(TablerIcons.movie, size: 24, color: tokens(context).textMuted.withValues(alpha: 0.5)),
     );
 
     if (localPosterPath != null) {

@@ -3,7 +3,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:flutter/services.dart';
 
 import '../../focus/dpad_navigator.dart';
@@ -578,14 +578,14 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       _buildBottomControlsContent(context, hasFrame: true),
                       // Down arrow hint when strip content is available
                       if (widget.useDpadNavigation && _hasStripContent)
-                        const ContentStripHint(PhosphorIcons.caretDown),
+                        const ContentStripHint(TablerIcons.chevronDown),
                     ],
                   ),
                 // Content strip (TV/dpad only) — replaces normal controls
                 if (_contentStripVisible && widget.useDpadNavigation)
                   ContentStripPanel(
                     padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 32),
-                    chevron: PhosphorIcons.caretUp,
+                    chevron: TablerIcons.chevronUp,
                     child: ContentStrip(
                       key: _contentStripKey,
                       player: widget.player,
@@ -669,7 +669,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                   child: _buildFocusableButton(
                     focusNode: _prevItemFocusNode,
                     index: 0,
-                    icon: PhosphorIcons.skipBack,
+                    icon: TablerIcons.playerSkipBack,
                     color: widget.onPrevious != null && _canControl ? Colors.white : Colors.white54,
                     onPressed: _canControl ? widget.onPrevious : null,
                     semanticLabel: t.videoControls.previousButton,
@@ -686,7 +686,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       child: _buildFocusableButton(
                         focusNode: _prevChapterFocusNode,
                         index: 1,
-                        icon: PhosphorIcons.rewind,
+                        icon: TablerIcons.playerTrackPrev,
                         color: widget.chapters.isNotEmpty && _canControl ? Colors.white : Colors.white54,
                         onPressed: _canControl && widget.chapters.isNotEmpty ? widget.onSeekToPreviousChapter : null,
                         semanticLabel: t.videoControls.previousChapterButton,
@@ -715,7 +715,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       return _buildFocusableButton(
                         focusNode: _playPauseFocusNode,
                         index: 3,
-                        icon: isPlaying ? PhosphorIcons.pause : PhosphorIcons.play,
+                        icon: isPlaying ? TablerIcons.playerPause : TablerIcons.playerPlay,
                         iconSize: 32,
                         onPressed: _canControl ? widget.onPlayPause : null,
                         semanticLabel: isPlaying ? t.videoControls.pauseButton : t.videoControls.playButton,
@@ -746,7 +746,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       child: _buildFocusableButton(
                         focusNode: _nextChapterFocusNode,
                         index: 5,
-                        icon: PhosphorIcons.fastForward,
+                        icon: TablerIcons.playerTrackNext,
                         color: widget.chapters.isNotEmpty && _canControl ? Colors.white : Colors.white54,
                         onPressed: _canControl && widget.chapters.isNotEmpty ? widget.onSeekToNextChapter : null,
                         semanticLabel: t.videoControls.nextChapterButton,
@@ -761,7 +761,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                   child: _buildFocusableButton(
                     focusNode: _nextItemFocusNode,
                     index: 6,
-                    icon: PhosphorIcons.skipForward,
+                    icon: TablerIcons.playerSkipForward,
                     color: widget.onNext != null && _canControl ? Colors.white : Colors.white54,
                     onPressed: _canControl ? widget.onNext : null,
                     semanticLabel: t.videoControls.nextButton,

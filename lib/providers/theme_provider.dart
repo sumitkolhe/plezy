@@ -2,7 +2,7 @@ import 'dart:async' show unawaited;
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../services/settings_binding_owner.dart';
 import '../services/settings_service.dart' as settings;
@@ -160,15 +160,15 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
   IconData get themeModeIcon {
     switch (_themeMode) {
       case settings.ThemeMode.light:
-        return PhosphorIcons.sun;
+        return TablerIcons.sun;
       case settings.ThemeMode.dark:
-        return PhosphorIcons.moon;
+        return TablerIcons.moon;
       case settings.ThemeMode.oled:
-        return PhosphorIcons.circleHalf;
+        return TablerIcons.contrast;
       case settings.ThemeMode.system:
-        return PhosphorIcons.sun;
+        return TablerIcons.sun;
       case settings.ThemeMode.materialYou:
-        return PhosphorIcons.palette;
+        return TablerIcons.palette;
     }
   }
 }

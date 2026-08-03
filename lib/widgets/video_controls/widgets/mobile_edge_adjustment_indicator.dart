@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/widgets/app_icon.dart';
 
 import '../helpers/mobile_edge_adjustment_tracker.dart';
@@ -14,7 +14,7 @@ class MobileEdgeAdjustmentIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     final clampedValue = value.clamp(0.0, 1.0);
     final isLeft = side == MobileEdgeAdjustmentSide.left;
-    final icon = side == MobileEdgeAdjustmentSide.left ? PhosphorIcons.sunDim : PhosphorIcons.speakerHigh;
+    final icon = side == MobileEdgeAdjustmentSide.left ? TablerIcons.sunLow : TablerIcons.volume;
     final alignment = isLeft ? Alignment.centerLeft : Alignment.centerRight;
     final margin = isLeft ? const EdgeInsets.only(left: 20) : const EdgeInsets.only(right: 20);
 

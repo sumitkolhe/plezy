@@ -3,7 +3,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../focus/card_focus_scope.dart';
 import '../focus/dpad_navigator.dart';
@@ -1321,7 +1321,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
               ),
               if (_trailingFor(hub) == TvRailTrailing.viewAll) ...[
                 SizedBox(width: 8 * scale),
-                AppIcon(PhosphorIcons.caretRight, size: 20 * scale, color: iconColor),
+                AppIcon(TablerIcons.chevronRight, size: 20 * scale, color: iconColor),
                 SizedBox(width: 30 * scale),
               ],
             ],
@@ -1551,7 +1551,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: PhosphorIcons.person,
+                  fallbackIcon: TablerIcons.user,
                   artworkDim: artworkDim,
                 ),
                 RasterizedGradient(
@@ -1619,7 +1619,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
                   height: imageSize,
                   fit: BoxFit.cover,
                   imageType: ImageType.square,
-                  fallbackIcon: PhosphorIcons.person,
+                  fallbackIcon: TablerIcons.user,
                   artworkDim: artworkDim,
                 ),
               ),
@@ -1677,7 +1677,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
           isFocused: isFocused,
           scale: scale,
           label: t.common.retry,
-          icon: PhosphorIcons.arrowsClockwise,
+          icon: TablerIcons.refresh,
           onTap: () {
             _selectHubItem(hub, hubIndex, itemIndex);
             widget.onRetryHub?.call(hub);
@@ -1736,7 +1736,7 @@ class TvBrowseRailState extends State<TvBrowseRail> with TickerProviderStateMixi
     required double scale,
     required VoidCallback onTap,
     String? label,
-    IconData icon = PhosphorIcons.arrowRight,
+    IconData icon = TablerIcons.arrowRight,
   }) {
     final theme = Theme.of(context);
     final duration = FocusTheme.getAnimationDuration(context);

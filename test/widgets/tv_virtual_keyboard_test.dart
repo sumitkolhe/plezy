@@ -3,7 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/focus/dpad_navigator.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/tv_virtual_keyboard.dart';
@@ -187,9 +187,9 @@ void main() {
     await _pumpKeyboard(tester, controller: controller);
 
     expect(find.text('='), findsOneWidget);
-    expect(find.byIcon(PhosphorIcons.mathOperations), findsOneWidget);
+    expect(find.byIcon(TablerIcons.math), findsOneWidget);
 
-    await tester.tap(find.byIcon(PhosphorIcons.mathOperations));
+    await tester.tap(find.byIcon(TablerIcons.math));
     await tester.pumpAndSettle();
 
     expect(find.text('ABC'), findsOneWidget);
@@ -260,7 +260,7 @@ void main() {
       );
       await _pumpKeyboard(tester, controller: controller);
 
-      await tester.tap(find.byIcon(PhosphorIcons.backspace));
+      await tester.tap(find.byIcon(TablerIcons.backspace));
       await tester.pump();
 
       expect(controller.text, 'AB');
@@ -313,7 +313,7 @@ void main() {
       onChanged: changes.add,
     );
 
-    await tester.tap(find.byIcon(PhosphorIcons.backspace));
+    await tester.tap(find.byIcon(TablerIcons.backspace));
     await tester.pump();
 
     expect(formatterCandidates.single.text, 'AB');

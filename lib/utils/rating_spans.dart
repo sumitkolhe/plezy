@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../widgets/app_icon.dart';
 import 'content_utils.dart';
@@ -17,7 +17,7 @@ InlineSpan ratingSpan(double rating, {required double iconSize, String suffix = 
         alignment: PlaceholderAlignment.middle,
         child: Padding(
           padding: const EdgeInsets.only(right: 3),
-          child: AppIcon(PhosphorIcons.star, size: iconSize),
+          child: AppIcon(TablerIcons.star, size: iconSize),
         ),
       ),
       TextSpan(text: '${formatRating(rating)}$suffix'),

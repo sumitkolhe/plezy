@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 class ContentTypes {
   ContentTypes._();
@@ -29,17 +29,17 @@ class ContentTypeHelper {
   static IconData getLibraryIcon(String type) {
     switch (type.toLowerCase()) {
       case ContentTypes.movie:
-        return PhosphorIcons.filmSlate;
+        return TablerIcons.movie;
       case ContentTypes.show:
-        return PhosphorIcons.television;
+        return TablerIcons.deviceTv;
       case ContentTypes.artist:
-        return PhosphorIcons.musicNote;
+        return TablerIcons.music;
       case 'photo':
-        return PhosphorIcons.image;
+        return TablerIcons.photo;
       case 'mixed':
-        return PhosphorIcons.share;
+        return TablerIcons.share;
       default:
-        return PhosphorIcons.folder;
+        return TablerIcons.folder;
     }
   }
 }

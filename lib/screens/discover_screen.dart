@@ -4,7 +4,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import '../focus/focusable_action_bar.dart';
 import '../focus/hub_vertical_navigation.dart';
@@ -612,7 +612,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
         tooltip: t.profiles.sectionTitle,
         icon: active != null
             ? ProfileAvatar(profile: active, size: 32)
-            : const AppIcon(PhosphorIcons.userCircle, size: 32, color: Colors.white),
+            : const AppIcon(TablerIcons.userCircle, size: 32, color: Colors.white),
       ),
     );
   }
@@ -640,7 +640,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
                   FocusableAction(
-                    icon: PhosphorIcons.arrowsClockwise,
+                    icon: TablerIcons.refresh,
                     iconColor: foregroundColor,
                     onPressed: _discover.load,
                   ),
@@ -649,7 +649,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // Jellyfin-only profiles so the chrome doesn't show
                 // a permanently empty popover.
                 FocusableAction(
-                  icon: PhosphorIcons.magnifyingGlass,
+                  icon: TablerIcons.search,
                   iconColor: foregroundColor,
                   onPressed: () => unawaited(openSearchScreen(context)),
                 ),
@@ -796,7 +796,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     SliverEmptyState(
                       message: t.discover.noContentAvailable,
                       subtitle: t.discover.addMediaToLibraries,
-                      icon: PhosphorIcons.filmSlate,
+                      icon: TablerIcons.movie,
                     ),
 
                   SliverToBoxAdapter(child: SizedBox(height: 24 + bottomPadding)),
@@ -863,7 +863,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
           if (_errorMessage != null)
             ErrorStateWidget(
               message: _errorMessage!,
-              icon: PhosphorIcons.warningCircle,
+              icon: TablerIcons.alertCircle,
               onRetry: _discover.load,
               actionAutofocus: true,
               actionUseBackgroundFocus: true,
@@ -872,7 +872,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
             EmptyStateWidget(
               message: t.discover.noContentAvailable,
               subtitle: t.discover.addMediaToLibraries,
-              icon: PhosphorIcons.filmSlate,
+              icon: TablerIcons.movie,
             ),
           if (browseHubs.isNotEmpty)
             Positioned(
@@ -951,7 +951,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                             }
                           },
                           child: AppIcon(
-                            _isAutoScrollPaused ? PhosphorIcons.play : PhosphorIcons.pause,
+                            _isAutoScrollPaused ? TablerIcons.playerPlay : TablerIcons.playerPause,
                             color: Theme.of(context).colorScheme.onSurface,
                             size: 18,
                             semanticLabel: '${_isAutoScrollPaused ? t.common.play : t.common.pause} auto-scroll',
@@ -1311,7 +1311,7 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 child: Row(
                   mainAxisSize: .min,
                   children: [
-                    AppIcon(PhosphorIcons.play, size: isTv ? 28 : 20, color: foregroundColor),
+                    AppIcon(TablerIcons.playerPlay, size: isTv ? 28 : 20, color: foregroundColor),
                     SizedBox(width: isTv ? 12 : 8),
                     if (hasProgress) ...[
                       // Progress bar

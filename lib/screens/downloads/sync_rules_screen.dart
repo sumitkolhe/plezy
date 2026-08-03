@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../media/ids.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import '../../connection/connection.dart';
 import '../../connection/connection_registry.dart';
@@ -54,7 +54,7 @@ class _SyncRulesScreenState extends State<SyncRulesScreen> {
                   SliverFillRemaining(
                     child: EmptyStateWidget(
                       message: t.downloads.noSyncRules,
-                      icon: PhosphorIcons.arrowsClockwise,
+                      icon: TablerIcons.refresh,
                       iconSize: 80,
                     ),
                   )
@@ -130,14 +130,14 @@ class _SyncRuleTileState extends State<_SyncRuleTile> {
   IconData _leadingIcon() {
     switch (rule.targetType) {
       case ContentTypes.playlist:
-        return PhosphorIcons.playlist;
+        return TablerIcons.playlist;
       case ContentTypes.collection:
-        return PhosphorIcons.books;
+        return TablerIcons.books;
       case ContentTypes.show:
       case ContentTypes.season:
-        return PhosphorIcons.television;
+        return TablerIcons.deviceTv;
       default:
-        return PhosphorIcons.arrowsClockwise;
+        return TablerIcons.refresh;
     }
   }
 
@@ -333,7 +333,7 @@ class _SwipeRevealDeleteActionState extends State<_SwipeRevealDeleteAction> {
                             child: Column(
                               mainAxisAlignment: .center,
                               children: [
-                                AppIcon(PhosphorIcons.trash, color: colorScheme.onError, size: 20),
+                                AppIcon(TablerIcons.trash, color: colorScheme.onError, size: 20),
                                 const SizedBox(height: 2),
                                 Text(
                                   t.common.delete,

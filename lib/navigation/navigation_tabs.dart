@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../i18n/strings.g.dart';
 import '../utils/platform_detector.dart';
@@ -64,31 +64,31 @@ const allNavigationTabs = [
   NavigationTab(
     id: NavigationTabId.discover,
     onlineOnly: true,
-    icon: PhosphorIcons.house,
+    icon: TablerIcons.home,
     getLabel: _getHomeLabel,
   ),
   NavigationTab(
     id: NavigationTabId.libraries,
     onlineOnly: true,
-    icon: PhosphorIcons.filmStrip,
+    icon: TablerIcons.movie,
     getLabel: _getLibrariesLabel,
   ),
   NavigationTab(
     id: NavigationTabId.explore,
     onlineOnly: true,
-    icon: PhosphorIcons.compass,
+    icon: TablerIcons.compass,
     getLabel: _getExploreLabel,
   ),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,
-    icon: PhosphorIcons.download,
+    icon: TablerIcons.download,
     getLabel: _getDownloadsLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,
     onlineOnly: false,
-    icon: PhosphorIcons.gear,
+    icon: TablerIcons.settings,
     getLabel: _getSettingsLabel,
   ),
 ];

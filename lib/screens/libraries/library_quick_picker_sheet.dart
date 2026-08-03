@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../media/media_library.dart';
@@ -121,7 +121,7 @@ class LibraryQuickPickerSheet extends StatelessWidget {
         style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400, color: foregroundColor),
       ),
       subtitle: showServerName ? _buildServerSubtitle(context, library) : null,
-      trailing: isSelected ? AppIcon(PhosphorIcons.checkCircle, color: colorScheme.primary) : null,
+      trailing: isSelected ? AppIcon(TablerIcons.circleCheck, color: colorScheme.primary) : null,
       onTap: () => onSelected(library.globalKey),
     );
   }

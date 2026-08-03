@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -59,26 +59,26 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
       AppMenuItem(
         value: _CatalogMenuAction.viewDetails,
         label: t.mediaMenu.viewDetails,
-        icon: PhosphorIcons.info,
+        icon: TablerIcons.infoCircle,
       ),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),
           label: t.explore.detail.watchTrailer,
-          icon: PhosphorIcons.playCircle,
+          icon: TablerIcons.playerPlay,
         ),
       for (final link in item.links ?? const [])
         if (link.label.isNotEmpty && link.url.isNotEmpty)
           AppMenuItem(
             value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: link.url),
             label: t.explore.detail.openOn(site: link.label),
-            icon: PhosphorIcons.arrowSquareOut,
+            icon: TablerIcons.externalLink,
           ),
       if (onWatchlist != null)
         AppMenuItem(
           value: _CatalogMenuAction.toggleWatchlist,
           label: onWatchlist ? t.explore.removeFromWatchlist : t.explore.addToWatchlist,
-          icon: onWatchlist ? PhosphorIcons.bookmarkSimple : PhosphorIcons.bookmarkSimple,
+          icon: onWatchlist ? TablerIcons.bookmarkFilled : TablerIcons.bookmark,
         ),
     ],
   );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../media/ids.dart';
 import 'package:flutter/services.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 import '../focus/focusable_action_bar.dart';
 import '../i18n/strings.g.dart';
@@ -106,23 +106,23 @@ Future<DownloadResult?> showDownloadOptionsAndQueue(
   if (kind == MediaKind.show || kind == MediaKind.season) {
     int? customCount;
     final options = <({IconData? icon, String label, _DownloadChoice value})>[
-      (icon: PhosphorIcons.download, label: t.downloads.allEpisodes, value: _DownloadChoice.all),
-      (icon: PhosphorIcons.eyeSlash, label: t.downloads.unwatchedOnly, value: _DownloadChoice.unwatched),
+      (icon: TablerIcons.download, label: t.downloads.allEpisodes, value: _DownloadChoice.all),
+      (icon: TablerIcons.eyeOff, label: t.downloads.unwatchedOnly, value: _DownloadChoice.unwatched),
       (
-        icon: PhosphorIcons.numberFive,
+        icon: TablerIcons.number5,
         label: t.downloads.nextNUnwatched(count: 5),
         value: _DownloadChoice.next5,
       ),
       (
-        icon: PhosphorIcons.numberNine,
+        icon: TablerIcons.number9,
         label: t.downloads.nextNUnwatched(count: 10),
         value: _DownloadChoice.next10,
       ),
-      (icon: PhosphorIcons.sliders, label: t.downloads.customAmount, value: _DownloadChoice.custom),
+      (icon: TablerIcons.adjustments, label: t.downloads.customAmount, value: _DownloadChoice.custom),
     ];
     // Already-downloaded show/season: offer deletion as the last row.
     if (onDelete != null) {
-      options.add((icon: PhosphorIcons.trash, label: t.downloads.deleteDownload, value: _DownloadChoice.delete));
+      options.add((icon: TablerIcons.trash, label: t.downloads.deleteDownload, value: _DownloadChoice.delete));
     }
     final selected = await showOptionPickerDialog<_DownloadChoice>(
       context,
@@ -131,7 +131,7 @@ Future<DownloadResult?> showDownloadOptionsAndQueue(
       toggle: kind == MediaKind.show
           ? (
               label: t.downloads.includeSpecials,
-              icon: PhosphorIcons.star,
+              icon: TablerIcons.star,
               value: includeSpecials,
               onChanged: (value) => includeSpecials = value,
             )
@@ -286,8 +286,8 @@ Future<DownloadResult?> showListDownloadOptionsAndQueue(
 /// The all/unwatched option rows, shared by the pickers that differ only in
 /// how they spell those two values.
 List<({IconData? icon, String label, T value})> _filterOptions<T>(T all, T unwatched) => [
-  (icon: PhosphorIcons.download, label: t.downloads.allEpisodes, value: all),
-  (icon: PhosphorIcons.eyeSlash, label: t.downloads.unwatchedOnly, value: unwatched),
+  (icon: TablerIcons.download, label: t.downloads.allEpisodes, value: all),
+  (icon: TablerIcons.eyeOff, label: t.downloads.unwatchedOnly, value: unwatched),
 ];
 
 /// Asks whether to download once or keep the target synced.
@@ -295,8 +295,8 @@ Future<_SyncChoice?> _showSyncChoiceDialog(BuildContext context) => showOptionPi
   context,
   title: t.downloads.downloadNow,
   options: [
-    (icon: PhosphorIcons.download, label: t.downloads.downloadOnce, value: _SyncChoice.downloadOnce),
-    (icon: PhosphorIcons.arrowsClockwise, label: t.downloads.keepSynced, value: _SyncChoice.keepSynced),
+    (icon: TablerIcons.download, label: t.downloads.downloadOnce, value: _SyncChoice.downloadOnce),
+    (icon: TablerIcons.refresh, label: t.downloads.keepSynced, value: _SyncChoice.keepSynced),
   ],
 );
 
@@ -549,7 +549,7 @@ List<FocusableAction> buildSyncRuleActions(
   return [
     if (showDownload)
       FocusableAction(
-        icon: hasRule ? PhosphorIcons.arrowsClockwise : PhosphorIcons.download,
+        icon: hasRule ? TablerIcons.refresh : TablerIcons.download,
         tooltip: hasRule ? t.downloads.manageSyncRule : t.downloads.downloadNow,
         onPressed: hasRule
             ? () => manageSyncRule(context, downloadProvider: context.read<DownloadProvider>(), globalKey: ruleKey)
@@ -558,7 +558,7 @@ List<FocusableAction> buildSyncRuleActions(
       ),
     if (hasRule)
       FocusableAction(
-        icon: PhosphorIcons.cloudSlash,
+        icon: TablerIcons.cloudOff,
         tooltip: t.downloads.removeSyncRule,
         onPressed: () => removeSyncRuleAndSnack(
           context,

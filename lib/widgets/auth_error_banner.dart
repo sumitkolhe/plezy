@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../media/ids.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../i18n/strings.g.dart';
@@ -43,7 +43,7 @@ class AuthErrorBanner extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
           child: Row(
             children: [
-              AppIcon(PhosphorIcons.lock, color: scheme.onErrorContainer),
+              AppIcon(TablerIcons.lock, color: scheme.onErrorContainer),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(

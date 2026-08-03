@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../../focus/focusable_action_bar.dart';
@@ -114,7 +114,7 @@ class _ArtistDetailScreenState extends BaseMediaListDetailScreen<ArtistDetailScr
         imageType: ImageType.square,
         width: size,
         height: size,
-        fallbackIcon: PhosphorIcons.microphoneStage,
+        fallbackIcon: TablerIcons.microphone2,
       ),
     );
 

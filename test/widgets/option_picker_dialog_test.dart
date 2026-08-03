@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 import 'package:harbor/utils/dialogs.dart';
 
 void main() {
@@ -26,13 +26,13 @@ void main() {
                     title: 'Download',
                     toggle: (
                       label: 'Include Specials',
-                      icon: PhosphorIcons.star,
+                      icon: TablerIcons.star,
                       value: includeSpecials,
                       onChanged: (value) => includeSpecials = value,
                     ),
                     options: [
-                      (icon: PhosphorIcons.download, label: 'All Episodes', value: 'all'),
-                      (icon: PhosphorIcons.eyeSlash, label: 'Unwatched Only', value: 'unwatched'),
+                      (icon: TablerIcons.download, label: 'All Episodes', value: 'all'),
+                      (icon: TablerIcons.eyeOff, label: 'Unwatched Only', value: 'unwatched'),
                     ],
                   );
                 },

@@ -3,7 +3,7 @@ import '../../../media/ids.dart';
 
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../../../i18n/strings.g.dart';
 import '../../../media/media_server_client.dart';
@@ -133,7 +133,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                           height: 34,
                           fit: BoxFit.cover,
                           errorWidget: (context, url, error) =>
-                              const AppIcon(PhosphorIcons.image, color: Colors.white54, size: 34),
+                              const AppIcon(TablerIcons.photo, color: Colors.white54, size: 34),
                         ),
                         isCurrent: isCurrentChapter,
                         borderColor: Theme.of(context).colorScheme.primary,
@@ -156,7 +156,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                   ),
                 ),
                 trailing: isCurrentChapter
-                    ? AppIcon(PhosphorIcons.playCircle, color: Theme.of(context).colorScheme.primary)
+                    ? AppIcon(TablerIcons.playerPlay, color: Theme.of(context).colorScheme.primary)
                     : null,
                 onTap: widget.canControl ? () => unawaited(_handleChapterTap(chapter.startTime)) : null,
               );
@@ -166,7 +166,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
 
         return BaseVideoControlSheet(
           title: t.videoControls.chapters,
-          icon: PhosphorIcons.bookmarks,
+          icon: TablerIcons.bookmarks,
           child: content,
         );
       },

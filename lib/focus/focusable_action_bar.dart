@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
+import 'package:tabler_icons_plus/tabler_icons_plus.dart';
 
 import '../widgets/app_icon.dart';
 import '../widgets/clickable_cursor.dart';
@@ -41,7 +41,7 @@ class FocusableAction {
   final FocusableActionBuilder? builder;
 
   const FocusableAction({
-    this.icon = PhosphorIcons.circle,
+    this.icon = TablerIcons.circle,
     this.iconColor,
     this.iconSize = 24,
     this.debugLabel,
