@@ -662,9 +662,9 @@ class _LibrariesScreenState extends State<LibrariesScreen>
                   ],
                 )
               else
-                Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge),
+                Text(selectedLibrary.title, style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 19)),
               const SizedBox(width: 4),
-              const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
+              const AppIcon(PhosphorIconsRegular.caretDown, size: 20),
             ],
           ),
         ),
