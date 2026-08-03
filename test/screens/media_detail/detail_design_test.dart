@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/screens/media_detail/detail_design.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/theme/mono_theme.dart';
 
 void main() {
@@ -21,26 +22,39 @@ void main() {
     return buffer.toString();
   }
 
-  group('DetailFactLine', () {
-    testWidgets('joins facts with a separator and keeps the certificate out of the run', (tester) async {
-      await pump(tester, const DetailFactLine(rating: 8.4, contentRating: 'TV-MA', facts: ['2019', '3 seasons']));
+  group('DetailFactStrip', () {
+    testWidgets('gives every fact its own pill', (tester) async {
+      await pump(tester, const DetailFactStrip(rating: 8.4, contentRating: 'TV-MA', facts: ['2019', '3 seasons']));
 
-      // Dots join the facts...
-      expect(renderedText(tester), contains('2019 • 3 seasons'));
-      // ...while the score sits beside that run as a mark, not inside it.
-      expect(renderedText(tester), isNot(contains('8.4 •')));
-      // The certificate is a bordered mark, not another dot-separated word.
-      expect(find.text('TV-MA'), findsOneWidget);
+      // A pill each, so nothing is strung together by a separator.
+      expect(renderedText(tester), isNot(contains('•')));
+      for (final value in ['2019', '3 seasons', 'TV-MA']) {
+        expect(find.text(value), findsOneWidget, reason: value);
+      }
+      expect(renderedText(tester), contains('8.4'));
     });
 
     testWidgets('collapses to nothing when the item carries none of them', (tester) async {
-      await pump(tester, const DetailFactLine(facts: []));
+      await pump(tester, const DetailFactStrip(facts: []));
       expect(find.byType(Text), findsNothing);
     });
 
-    testWidgets('drops an empty certificate rather than drawing an empty mark', (tester) async {
-      await pump(tester, const DetailFactLine(contentRating: '', facts: ['2019']));
+    testWidgets('drops an empty certificate rather than drawing an empty pill', (tester) async {
+      await pump(tester, const DetailFactStrip(contentRating: '', facts: ['2019']));
       expect(renderedText(tester), '2019');
+    });
+
+    testWidgets('the rating only offers a link when there is one to follow', (tester) async {
+      await pump(tester, const DetailFactStrip(rating: 8.4, facts: ['2019']));
+      expect(find.byType(InkWell), findsNothing);
+      expect(find.byIcon(PhosphorIcons.arrowSquareOut), findsNothing);
+
+      var taps = 0;
+      await pump(tester, DetailFactStrip(rating: 8.4, facts: const ['2019'], onRatingTap: () => taps++));
+      expect(find.byIcon(PhosphorIcons.arrowSquareOut), findsOneWidget);
+
+      await tester.tap(find.byType(InkWell));
+      expect(taps, 1);
     });
   });
 

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:harbor/theme/phosphor_icons.dart';
+
+import '../../widgets/app_icon.dart';
 
 import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
@@ -6,79 +9,102 @@ import '../../utils/rating_spans.dart';
 
 const double _fontSize = 13.5;
 
-class DetailFactLine extends StatelessWidget {
+/// Facts as pills, the same idiom the episode sheet uses. They sit on the
+/// scrim's solid end rather than over the backdrop, so they take the page's own
+/// surface treatment instead of a glass one.
+class DetailFactStrip extends StatelessWidget {
   final double? rating;
   final String? contentRating;
 
   /// Ordered by what should survive truncation.
   final List<String> facts;
 
-  const DetailFactLine({super.key, this.rating, this.contentRating, required this.facts});
+  /// Opens the item's IMDb page. Null when the server reported no IMDb id, so
+  /// the pill never offers a link it cannot follow.
+  final VoidCallback? onRatingTap;
+
+  const DetailFactStrip({super.key, this.rating, this.contentRating, required this.facts, this.onRatingTap});
+
+  static const double height = 32;
+  static const double _gap = 9;
 
   @override
   Widget build(BuildContext context) {
     final t = tokens(context);
     final cert = contentRating;
-    if (rating == null && facts.isEmpty && (cert == null || cert.isEmpty)) return const SizedBox.shrink();
+    final hasCert = cert != null && cert.isNotEmpty;
+    if (rating == null && facts.isEmpty && !hasCert) return const SizedBox.shrink();
 
-    // Score and certificate read as marks, the facts between them as a run, so
-    // they are grouped by space and separated by dots respectively.
-    final groups = <InlineSpan>[
-      if (rating != null)
-        TextSpan(
-          children: [ratingSpan(rating!, iconSize: _fontSize)],
-          style: TextStyle(color: t.text, fontWeight: .w600),
-        ),
-      if (facts.isNotEmpty) TextSpan(children: dotSeparatedSpans([for (final fact in facts) TextSpan(text: fact)])),
-      if (cert != null && cert.isNotEmpty) WidgetSpan(alignment: .middle, child: _CertificateMark(cert)),
-    ];
+    final valueStyle = TextStyle(
+      fontSize: 12.5,
+      fontWeight: .w600,
+      color: t.text.withValues(alpha: 0.88),
+      height: 1.2,
+      fontFeatures: const [FontFeature.tabularFigures()],
+    );
 
-    return Text.rich(
-      TextSpan(
+    // Scales down rather than wrapping: the hero budgets one row, and a clipped
+    // second row is worse than a slightly smaller first one.
+    return FittedBox(
+      fit: .scaleDown,
+      alignment: .centerLeft,
+      child: Row(
+        spacing: _gap,
         children: [
-          for (var i = 0; i < groups.length; i++) ...[
-            if (i > 0) const WidgetSpan(child: SizedBox(width: 10)),
-            groups[i],
-          ],
+          if (rating != null)
+            _FactPill(
+              onTap: onRatingTap,
+              child: Row(
+                spacing: 6,
+                children: [
+                  Text.rich(
+                    TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
+                    style: valueStyle.copyWith(color: t.text),
+                  ),
+                  // Says the pill leaves the app, rather than leaving the tap to
+                  // be discovered.
+                  if (onRatingTap != null)
+                    AppIcon(PhosphorIcons.arrowSquareOut, size: 11, color: t.text.withValues(alpha: 0.5)),
+                ],
+              ),
+            ),
+          for (final fact in facts) _FactPill(child: Text(fact, style: valueStyle)),
+          // One pill like the rest: a squared outline made the certificate shout
+          // over facts that matter more.
+          if (hasCert) _FactPill(child: Text(cert, style: valueStyle.copyWith(letterSpacing: 0.4))),
         ],
       ),
-      style: TextStyle(fontSize: _fontSize, color: t.text.withValues(alpha: 0.78), height: 1.3),
-      maxLines: 2,
-      overflow: .ellipsis,
     );
   }
 }
 
-/// Squared rather than a pill: certificates are squared marks in the wild.
-class _CertificateMark extends StatelessWidget {
-  final String label;
+class _FactPill extends StatelessWidget {
+  final Widget child;
+  final VoidCallback? onTap;
 
-  const _CertificateMark(this.label);
+  const _FactPill({required this.child, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final t = tokens(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-      decoration: BoxDecoration(
-        border: Border.all(color: t.outline),
-        borderRadius: BorderRadius.all(Radius.circular(t.radiusXs)),
-      ),
-      child: Text(
-        label,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: .w600,
-          color: t.text.withValues(alpha: 0.78),
-          height: 1.2,
-          letterSpacing: 0.3,
-        ),
-      ),
+    const shape = BorderRadius.all(Radius.circular(MonoTokens.radiusFull));
+    final body = Container(
+      height: DetailFactStrip.height,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      alignment: .center,
+      child: child,
+    );
+
+    return Material(
+      color: tokens(context).text.withValues(alpha: 0.08),
+      borderRadius: shape,
+      child: onTap == null ? body : InkWell(borderRadius: shape, onTap: onTap, child: body),
     );
   }
 }
 
-/// Prose, not chips: genres are description here, and nothing navigates.
+/// Prose, not chips: genres are description here, and nothing navigates. The
+/// strip above owns the pill treatment, so a second row of them would flatten
+/// the difference between an item's facts and its description.
 class DetailGenreLine extends StatelessWidget {
   final List<String> genres;
 
@@ -88,8 +114,6 @@ class DetailGenreLine extends StatelessWidget {
   Widget build(BuildContext context) {
     if (genres.isEmpty) return const SizedBox.shrink();
     return Text(
-      // Commas, not dots: the fact line above owns that separator, and two dotted
-      // greys of the same size read as one wrapped paragraph.
       genres.join(', '),
       style: TextStyle(fontSize: _fontSize, color: tokens(context).textMuted, height: 1.3),
       maxLines: 1,

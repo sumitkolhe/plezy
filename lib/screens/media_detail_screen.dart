@@ -92,6 +92,9 @@ import '../widgets/focusable_tab_chip.dart';
 import '../widgets/hub_section.dart';
 import '../widgets/ios_status_bar_tap_scroll_to_top.dart';
 import '../widgets/loading_indicator_box.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../utils/external_ids.dart';
 import '../widgets/rasterized_gradient.dart';
 import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_background.dart';
@@ -321,6 +324,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   // comes from each source's session snapshot, so opening details never
   // costs a provider call. Multiple candidates → the toggle opens a chooser.
   List<WatchlistCandidate> _watchlistCandidates = const [];
+  Future<ExternalIds?>? _externalIdsLoad;
+  String? _imdbId;
   List<CatalogSource> _watchlistListenedSources = const [];
   final GlobalKey _watchlistButtonKey = GlobalKey();
   bool _watchlistMutationInFlight = false;
@@ -672,6 +677,35 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     _infoRowsFocusNode = FocusNode(debugLabel: 'info_rows');
     _loadFullMetadata();
     _initWatchlistState();
+    unawaited(_resolveImdbId());
+  }
+
+  /// Memoized: the server only reports ids on request, and both the watchlist
+  /// action and the rating's IMDb link want the same answer.
+  Future<ExternalIds?> _ensureExternalIds() {
+    return _externalIdsLoad ??= _getMediaClientForMetadata(context)?.fetchExternalIds(_metadata.id) ?? Future.value();
+  }
+
+  Future<void> _openImdb(String imdbId) async {
+    final uri = Uri.parse('https://www.imdb.com/title/$imdbId/');
+    try {
+      if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+        appLogger.d('IMDb page could not be opened for $imdbId');
+      }
+    } catch (e) {
+      appLogger.d('IMDb page failed to open for $imdbId', error: e);
+    }
+  }
+
+  Future<void> _resolveImdbId() async {
+    if (widget.isOffline) return;
+    try {
+      final imdb = (await _ensureExternalIds())?.imdb;
+      if (!mounted || imdb == null || imdb.isEmpty) return;
+      setState(() => _imdbId = imdb);
+    } catch (e) {
+      appLogger.d('IMDb id resolution failed', error: e);
+    }
   }
 
   /// Hook up the watchlist action's data: every watchlist-capable catalog
@@ -691,7 +725,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   Future<void> _resolveWatchlistIds(List<CatalogSource> sources) async {
     try {
-      final ids = await _getMediaClientForMetadata(context)?.fetchExternalIds(_metadata.id);
+      final ids = await _ensureExternalIds();
       if (!mounted || ids == null || !ids.hasAny) return;
       // Sources can require their own id forms (MAL maps external ids to an
       // anime id via Fribb); null means the item is outside that source's
@@ -4022,7 +4056,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         const desiredLogoHeight = 120.0;
         const desiredLogoWidth = 400.0;
         const actionHeight = 48.0;
-        const factLineHeight = 20.0;
+        const factLineHeight = DetailFactStrip.height;
         const genreLineHeight = 18.0;
 
         // Ordered by what should survive truncation: the card that got you here
@@ -4041,13 +4075,13 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         var remaining = availableHeight - (showActions ? actionHeight : 0);
         final hasFacts = metadata.rating != null || facts.isNotEmpty || metadata.contentRating != null;
         final showFacts = hasFacts && remaining >= factLineHeight + 24;
-        final factsGap = showFacts && showActions ? 14.0 : 0.0;
+        final factsGap = showFacts && showActions ? 18.0 : 0.0;
         remaining -= showFacts ? factLineHeight + factsGap : 0;
         final showGenres = showFacts && genres.isNotEmpty && remaining >= genreLineHeight + 40;
-        const genreGap = 5.0;
+        const genreGap = 10.0;
         remaining -= showGenres ? genreLineHeight + genreGap : 0;
 
-        final logoGap = remaining >= 52 && (showFacts || showActions) ? 12.0 : 0.0;
+        final logoGap = remaining >= 52 && (showFacts || showActions) ? 24.0 : 0.0;
         final logoHeight = (remaining - logoGap).clamp(0.0, desiredLogoHeight).toDouble();
         final showLogo = logoHeight >= 24;
         final effectiveLogoGap = showLogo ? logoGap : 0.0;
@@ -4092,12 +4126,13 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                       if (showFacts)
                         SizedBox(
                           height: factLineHeight,
-                          child: DetailFactLine(
+                          child: DetailFactStrip(
                             rating: metadata.rating,
                             contentRating: metadata.contentRating == null
                                 ? null
                                 : formatContentRating(metadata.contentRating!),
                             facts: facts,
+                            onRatingTap: _imdbId == null ? null : () => unawaited(_openImdb(_imdbId!)),
                           ),
                         ),
                       if (showGenres) ...[
