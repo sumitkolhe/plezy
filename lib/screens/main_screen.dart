@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
 import '../services/update_service.dart';
-import '../utils/haptics.dart';
 import '../utils/app_logger.dart';
 import '../widgets/auth_error_banner.dart';
 import '../widgets/app_icon.dart';
@@ -1244,9 +1243,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     final navigationBar = NavigationBar(
       selectedIndex: selectedIndex >= 0 ? selectedIndex : 0,
       onDestinationSelected: (i) {
-        if (i < 0 || i >= tabs.length) return;
-        Haptics.selection();
-        _selectTab(tabs[i].id);
+        if (i >= 0 && i < tabs.length) _selectTab(tabs[i].id);
       },
       labelBehavior: hideLabels
           ? NavigationDestinationLabelBehavior.alwaysHide

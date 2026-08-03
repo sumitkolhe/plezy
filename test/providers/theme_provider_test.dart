@@ -7,6 +7,7 @@ import 'package:harbor/screens/settings/settings_utils.dart';
 import 'package:harbor/services/base_shared_preferences_service.dart';
 import 'package:harbor/services/settings_service.dart' as settings;
 
+import 'package:harbor/theme/haptic_ink_factory.dart';
 import 'package:harbor/theme/mono_tokens.dart';
 
 import '../test_helpers/prefs.dart';
@@ -203,11 +204,11 @@ void main() {
       });
 
       final p = ThemeProvider();
-      expect(p.darkTheme.splashFactory, material.InkSparkle.splashFactory);
+      expect(p.darkTheme.splashFactory, hapticSparkle);
       expect(p.darkTheme.highlightColor, isNot(material.Colors.transparent));
 
       await p.setThemeMode(settings.ThemeMode.dark);
-      expect(p.darkTheme.splashFactory, material.NoSplash.splashFactory);
+      expect(p.darkTheme.splashFactory, hapticNoSplash);
       expect(p.darkTheme.highlightColor, material.Colors.transparent);
 
       p.dispose();

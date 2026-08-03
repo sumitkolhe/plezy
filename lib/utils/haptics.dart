@@ -17,8 +17,4 @@ abstract final class Haptics {
     if (_enabled) unawaited(HapticFeedback.selectionClick());
   }
 
-  /// Firmer, for an action that changed state rather than a choice made.
-  static void impact() {
-    if (_enabled) unawaited(HapticFeedback.lightImpact());
-  }
 }

@@ -440,6 +440,7 @@ class SettingsService extends BaseSharedPreferencesService {
   static final displaySwitchDelay = IntPref('display_switch_delay', transform: (v) => v.clamp(0, 10));
 
   static ThemeMode _tvAwareThemeModeDefault() => TvDetectionService.isTVSync() ? ThemeMode.oled : ThemeMode.system;
+
   /// Last palette read from Android, so a cold start in Material You paints
   /// wallpaper colours on the first frame instead of a mono frame then a swap.
   static final dynamicPalette = JsonPref<Map<String, Object?>>(
@@ -454,11 +455,9 @@ class SettingsService extends BaseSharedPreferencesService {
     values: ThemeMode.values,
     defaultValueProvider: _tvAwareThemeModeDefault,
   );
+
   /// Off on TV, which has no vibrator to speak of.
-  static final hapticFeedback = BoolPref(
-    'haptic_feedback',
-    defaultValueProvider: () => !TvDetectionService.isTVSync(),
-  );
+  static final hapticFeedback = BoolPref('haptic_feedback', defaultValueProvider: () => !TvDetectionService.isTVSync());
   static const videoPlayerNavigationEnabled = BoolPref(
     'video_player_navigation_enabled',
     defaultValueProvider: TvDetectionService.isTVSync,

@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/haptics.dart';
 
 import '../test_helpers/prefs.dart';
@@ -40,20 +42,50 @@ void main() {
     expect(calls, ['HapticFeedbackType.selectionClick']);
   });
 
-  test('an impact asks for something firmer than a selection', () async {
+  testWidgets('any Material press ticks, through the theme rather than a call site', (tester) async {
     await SettingsService.instance.write(SettingsService.hapticFeedback, true);
 
-    Haptics.impact();
-    await Future<void>.delayed(Duration.zero);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(
+          body: Center(
+            child: FilledButton(onPressed: () {}, child: const Text('Play')),
+          ),
+        ),
+      ),
+    );
 
-    expect(calls, ['HapticFeedbackType.lightImpact']);
+    await tester.tap(find.text('Play'));
+    await tester.pump();
+
+    expect(calls, ['HapticFeedbackType.selectionClick']);
+  });
+
+  testWidgets('a press stays silent while the setting is off', (tester) async {
+    await SettingsService.instance.write(SettingsService.hapticFeedback, false);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(
+          body: Center(
+            child: FilledButton(onPressed: () {}, child: const Text('Play')),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Play'));
+    await tester.pump();
+
+    expect(calls, isEmpty);
   });
 
   test('the platform is never asked while the setting is off', () async {
     await SettingsService.instance.write(SettingsService.hapticFeedback, false);
 
     Haptics.selection();
-    Haptics.impact();
     await Future<void>.delayed(Duration.zero);
 
     expect(calls, isEmpty);

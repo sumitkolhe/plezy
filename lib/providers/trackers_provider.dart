@@ -137,8 +137,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     safeNotifyListeners();
   }
 
-
-
   Future<bool> connectSimkl({required void Function(DeviceCode code) onCodeReady}) => _runConnect(
     _simkl,
     authorize: () => _simklAuth.authorize(

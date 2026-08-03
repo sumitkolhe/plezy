@@ -41,10 +41,7 @@ class TrackerCoordinator {
 
   /// The registry. Everything below partitions this list by capability rather
   /// than naming services, so adding one means adding it here and nowhere else.
-  late final List<Tracker> _trackers = [
-    SimklTracker.instance,
-    TraktTracker.instance,
-  ];
+  late final List<Tracker> _trackers = [SimklTracker.instance, TraktTracker.instance];
 
   /// One transport per real-time tracker, created once and outliving individual
   /// playbacks: an episode swap stops the old item and starts the new one back
@@ -198,7 +195,6 @@ class TrackerCoordinator {
 
   bool _hasWatchedInterest(String? libraryGlobalKey) => _trackers.any((t) => _canWrite(t, libraryGlobalKey));
 
-
   Future<void> markWatched(MediaItem item, MediaServerClient client) => _markManual(item, client, watched: true);
 
   Future<void> markUnwatched(MediaItem item, MediaServerClient client) => _markManual(item, client, watched: false);
@@ -280,10 +276,7 @@ class TrackerCoordinator {
     var resolved = 0;
 
     for (final episode in episodes) {
-      final ctx = await _buildContext(
-        episode,
-        resolver,
-      );
+      final ctx = await _buildContext(episode, resolver);
       if (!_isCurrent(scope)) return;
       if (ctx == null) continue;
       resolved++;
@@ -825,11 +818,7 @@ class TrackerCoordinator {
     if (metadata.kind == MediaKind.movie) {
       final ids = await resolver.resolveForMovie(metadata.id);
       if (ids == null) return null;
-      return TrackerContext.movie(
-        external: ids.external,
-        ratingKey: metadata.id,
-        libraryGlobalKey: libraryKey,
-      );
+      return TrackerContext.movie(external: ids.external, ratingKey: metadata.id, libraryGlobalKey: libraryKey);
     }
 
     final season = metadata.parentIndex;

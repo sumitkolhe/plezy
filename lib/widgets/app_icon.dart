@@ -10,15 +10,7 @@ const double _duotoneTint = 0.24;
 /// Duotone glyphs are two glyphs, not one, so they cannot be handed straight to
 /// [Icon]; everything renders through here so no call site has to know that.
 class AppIcon extends StatelessWidget {
-  const AppIcon(
-    this.icon, {
-    super.key,
-    this.size,
-    this.color,
-    this.shadows,
-    this.semanticLabel,
-    this.textDirection,
-  });
+  const AppIcon(this.icon, {super.key, this.size, this.color, this.shadows, this.semanticLabel, this.textDirection});
 
   final IconData? icon;
   final double? size;

@@ -58,11 +58,7 @@ class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifie
   CatalogSourceId? _preferredSourceId;
   String _activeUserUuid = '';
 
-  List<CatalogSource> get connectedSources => [
-    ?_trakt.source,
-    ?_simkl.source,
-    ?_seerr.source,
-  ];
+  List<CatalogSource> get connectedSources => [?_trakt.source, ?_simkl.source, ?_seerr.source];
 
   bool get hasAnySource => connectedSources.isNotEmpty;
 

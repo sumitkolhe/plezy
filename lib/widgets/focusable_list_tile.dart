@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../utils/haptics.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/focusable_tile_mixin.dart';
 import 'clickable_cursor.dart';
@@ -217,12 +216,7 @@ class _FocusableSwitchListTileState extends State<FocusableSwitchListTile>
         subtitle: widget.subtitle,
         secondary: widget.secondary,
         value: widget.value,
-        onChanged: widget.onChanged == null
-            ? null
-            : (value) {
-                Haptics.selection();
-                widget.onChanged!(value);
-              },
+        onChanged: widget.onChanged,
         dense: widget.dense,
         visualDensity: widget.visualDensity,
         contentPadding: widget.contentPadding,

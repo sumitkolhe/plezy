@@ -759,7 +759,9 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           FocusableListTile(
             title: Text(mode.title, style: TextStyle(color: _dvConversionMode == mode.value ? primary : null)),
             subtitle: Text(mode.subtitle, style: TextStyle(color: tokens(context).textMuted, fontSize: 12)),
-            trailing: _dvConversionMode == mode.value ? AppIcon(PhosphorIconsDuotone.checkCircle, color: primary) : null,
+            trailing: _dvConversionMode == mode.value
+                ? AppIcon(PhosphorIconsDuotone.checkCircle, color: primary)
+                : null,
             onTap: () => _setDebugDvConversionMode(mode.value),
           ),
       ],
@@ -835,7 +837,9 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               _formatZoomScale(scale),
               style: TextStyle(color: (_zoomScale - scale).abs() < 0.005 ? primary : null),
             ),
-            trailing: (_zoomScale - scale).abs() < 0.005 ? AppIcon(PhosphorIconsDuotone.checkCircle, color: primary) : null,
+            trailing: (_zoomScale - scale).abs() < 0.005
+                ? AppIcon(PhosphorIconsDuotone.checkCircle, color: primary)
+                : null,
             onTap: () => _setZoomScale(scale),
           ),
       ],

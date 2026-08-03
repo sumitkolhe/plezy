@@ -507,11 +507,7 @@ class TrackerWriteQueue {
     final ratingKey = json['ratingKey'] as String;
     final libraryGlobalKey = json['libraryGlobalKey'] as String?;
     final ctx = json['kind'] == 'movie'
-        ? TrackerContext.movie(
-            external: external,
-            ratingKey: ratingKey,
-            libraryGlobalKey: libraryGlobalKey,
-          )
+        ? TrackerContext.movie(external: external, ratingKey: ratingKey, libraryGlobalKey: libraryGlobalKey)
         : TrackerContext.episode(
             external: external,
             ratingKey: ratingKey,
