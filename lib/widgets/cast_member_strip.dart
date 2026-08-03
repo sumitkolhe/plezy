@@ -31,6 +31,10 @@ class CastMemberStrip extends StatefulWidget {
   /// circle a third of the screen across. A face needs far less than a poster.
   static const double _avatarScale = 0.72;
 
+  /// Clear space between one circle and the next, on top of the inner padding
+  /// each card already carries on both sides.
+  static const double _cardGap = 10;
+
   final List<CastStripMember> members;
 
   /// Resolves server-relative image paths; null when [members] carry
@@ -63,7 +67,7 @@ class CastMemberStrip extends StatefulWidget {
   /// image + inner padding + text area + list padding + focus scale headroom.
   static double heightForCardWidth(double cardWidth) => cardWidth + _innerPadding * 2 + 66 + 10;
 
-  static double _itemExtentForCardWidth(double cardWidth) => cardWidth + _innerPadding * 2 + 4;
+  static double _itemExtentForCardWidth(double cardWidth) => cardWidth + _innerPadding * 2 + _cardGap;
 
   @override
   State<CastMemberStrip> createState() => CastMemberStripState();
