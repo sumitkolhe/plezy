@@ -109,7 +109,6 @@ class _VolumeControlState extends State<VolumeControl> {
   }
 
   void _handleFocusChange(bool hasFocus) {
-    // Exit adjust mode when focus is lost
     if (!hasFocus && _isAdjustMode) {
       _exitAdjustMode();
     }

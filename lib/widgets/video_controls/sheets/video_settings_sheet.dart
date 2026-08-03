@@ -806,7 +806,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
               trailing: isSelected ? AppIcon(PhosphorIconsDuotone.checkCircle, color: primary) : null,
               onTap: () async {
                 await widget.player.setRate(speed);
-                // Save as default playback speed
                 await SettingsService.instance.write(SettingsService.defaultPlaybackSpeed, speed);
                 if (context.mounted) {
                   OverlaySheetController.of(context).close(); // Close sheet after selection

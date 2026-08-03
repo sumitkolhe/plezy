@@ -1140,7 +1140,6 @@ class TrackSelectionService {
     final realAudioTracks = player.state.tracks.audio.where((t) => t.id != 'auto' && t.id != 'no').toList();
     final realSubtitleTracks = player.state.tracks.subtitle.where((t) => t.id != 'auto' && t.id != 'no').toList();
 
-    // Select and apply audio track
     final audioResult = selectAudioTrack(realAudioTracks, preferredAudioTrack);
     AudioTrack? selectedAudioTrack;
     if (audioResult != null) {
@@ -1212,7 +1211,6 @@ class TrackSelectionService {
       }
     }
 
-    // Apply default playback speed from settings
     if (defaultPlaybackSpeed != null && defaultPlaybackSpeed != 1.0) {
       if (!canMutatePlayer()) return false;
       final rateMutation = player.setRate(defaultPlaybackSpeed);

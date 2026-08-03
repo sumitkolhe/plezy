@@ -387,7 +387,6 @@ abstract class PlayerBase with PlayerStreamControllersMixin implements Player {
       bufferController.add(buffer);
     }
 
-    // Extract seekable-ranges array
     final seekableRanges = cacheState['seekable-ranges'];
     if (seekableRanges is List) {
       final ranges = <BufferRange>[];

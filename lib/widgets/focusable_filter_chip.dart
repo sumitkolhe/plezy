@@ -77,7 +77,6 @@ class _FocusableFilterChipState extends State<FocusableFilterChip> with Focusabl
     // Only show focus effects during keyboard/d-pad navigation
     final showFocus = isFocused && InputModeTracker.isKeyboardMode(context);
 
-    // Use primary color when focused, surface color when not
     final backgroundColor = showFocus ? colorScheme.primary : colorScheme.surfaceContainerHighest;
     final foregroundColor = showFocus ? colorScheme.onPrimary : colorScheme.onSurfaceVariant;
 

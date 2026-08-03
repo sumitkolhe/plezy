@@ -310,7 +310,6 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
   String? _requestedMediaSourceId;
   bool get _offlineLibraryMode => widget.isOffline;
 
-  // Transcode / quality state
   late TranscodeQualityPreset _selectedQualityPreset;
   int? _selectedAudioStreamId;
   AudioTrack? _preferredAudioTrack;

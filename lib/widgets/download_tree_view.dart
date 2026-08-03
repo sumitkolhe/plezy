@@ -169,7 +169,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
 
       if (episodes.isEmpty) continue;
 
-      // Get show metadata from first episode
       final firstEpisode = widget.metadata[episodes.first.key];
       final showTitle = firstEpisode?.grandparentTitle ?? 'Unknown Show';
 
@@ -192,7 +191,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
 
         if (seasonEpisodes.isEmpty) continue;
 
-        // Get season metadata from first episode
         final firstEpisode = widget.metadata[seasonEpisodes.first.key];
         final seasonNumber = firstEpisode?.parentIndex;
         final seasonTitle = firstEpisode?.parentTitle?.isNotEmpty == true
@@ -201,7 +199,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
             ? t.common.seasonNumber(number: seasonNumber)
             : 'Unknown Season';
 
-        // Build episode nodes
         final List<DownloadTreeNode> episodeNodes = [];
         for (final episodeEntry in seasonEpisodes) {
           final globalKey = episodeEntry.key;
@@ -336,12 +333,10 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
       );
     }
 
-    // Sort shows, albums, and movies by status and title
     _sortNodesByStatusAndTitle(shows);
     _sortNodesByStatusAndTitle(albums);
     _sortNodesByStatusAndTitle(movies);
 
-    // Combine movies, shows, and albums
     return [...movies, ...shows, ...albums];
   }
 
@@ -394,7 +389,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
     for (final node in nodes) {
       result.add(_FlatNode(node: node, depth: depth));
 
-      // Add children if node is expanded
       if (_expandedNodes.contains(node.key) && node.hasChildren) {
         result.addAll(_flattenTree(node.children, depth + 1));
       }
@@ -676,7 +670,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               children: [
-                // Row content
                 Expanded(child: _buildRowContent(theme, canExpand)),
 
                 // Action buttons
@@ -704,7 +697,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
         const SizedBox(width: 8),
 
-        // Status icon
         DownloadStatusIcon(status: _effectiveStatus, size: 20),
 
         const SizedBox(width: 12),
@@ -759,7 +751,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
                 ),
               ],
 
-              // Error message for failed downloads
               if (_effectiveStatus == DownloadStatus.failed && widget.node.downloadProgress?.errorMessage != null) ...[
                 const SizedBox(height: 4),
                 Text(
@@ -847,7 +838,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
       ));
     }
 
-    // Cancel button for downloading/queued items
     if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onCancel != null) {
       actions.add((
         icon: PhosphorIconsDuotone.x,

@@ -331,7 +331,6 @@ class _FocusableWrapperState extends State<FocusableWrapper> with SingleTickerPr
         _animationController?.reverse();
       }
 
-      // Auto-scroll into view
       if (hasFocus && widget.autoScroll) {
         _scrollIntoView();
       }
@@ -494,20 +493,17 @@ class _FocusableWrapperState extends State<FocusableWrapper> with SingleTickerPr
       return finish(KeyEventResult.ignored, 'non-actionable');
     }
 
-    // Context menu key
     if (key.isContextMenuKey) {
       _selectLongPress.reset();
       widget.onLongPress?.call();
       return finish(KeyEventResult.handled, 'context-menu');
     }
 
-    // UP arrow - if callback provided, navigate up
     if (key == LogicalKeyboardKey.arrowUp && widget.onNavigateUp != null) {
       widget.onNavigateUp!();
       return finish(KeyEventResult.handled, 'onNavigateUp');
     }
 
-    // DOWN arrow - if callback provided, navigate down
     if (key == LogicalKeyboardKey.arrowDown && widget.onNavigateDown != null) {
       widget.onNavigateDown!();
       return finish(KeyEventResult.handled, 'onNavigateDown');

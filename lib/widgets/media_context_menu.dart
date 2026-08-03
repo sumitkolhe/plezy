@@ -1184,7 +1184,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       return;
     }
 
-    // Show confirmation dialog
     final confirmed = await showDeleteConfirmation(
       context,
       title: t.collections.removeFromCollection,
@@ -1270,7 +1269,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final itemTitle = _itemDisplayTitle();
     final itemTypeLabel = isCollection ? t.collections.collection : t.playlists.playlist;
 
-    // Show confirmation dialog
     final confirmed = await showDeleteConfirmation(
       context,
       title: isCollection ? t.collections.deleteCollection : t.playlists.delete,
@@ -1293,7 +1291,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       if (context.mounted) {
         if (success) {
           showSuccessSnackBar(context, isCollection ? t.collections.deleted : t.playlists.deleted);
-          // Trigger list refresh
           _notifyListRefresh();
         } else {
           showErrorSnackBar(context, isCollection ? t.collections.deleteFailed : t.playlists.errorDeleting);
@@ -1464,7 +1461,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final item = _mediaItem!;
     final globalKey = item.globalKey;
 
-    // Show confirmation dialog
     final confirmed = await showDeleteConfirmation(
       context,
       title: t.downloads.deleteDownload,
@@ -1561,7 +1557,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final item = _mediaItem!;
     final isMultipleMediaItems = mediaKind == MediaKind.show || mediaKind == MediaKind.season;
 
-    // Show confirmation dialog
     final confirmed = await showDeleteConfirmation(
       context,
       title: t.mediaMenu.deleteFromServer,

@@ -177,7 +177,7 @@ mixin DebouncedMediaSearch<T extends StatefulWidget> on State<T> {
   /// The results list both screens render: padded, without keep-alives or
   /// semantic indexes, one child per entry of [searchResults].
   /// Search results honour the global list/grid setting, like every other
-  /// vertical card surface. They used to be hard-wired to list.
+  /// vertical card surface.
   Widget buildResultsSliver(MediaCardSliverItemBuilder itemBuilder) {
     return SettingsBuilder(
       prefs: const [SettingsService.viewMode, SettingsService.libraryDensity],

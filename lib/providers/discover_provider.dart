@@ -24,7 +24,7 @@ import 'multi_server_provider.dart';
 enum DiscoverLoadState { initial, loading, loaded, error }
 
 /// Owns the Discover tab's data: the Continue Watching row and the home hub
-/// list, including the refresh policy that used to live in the screen —
+/// list, including the refresh policy —
 /// durable watch events refresh only Continue Watching (one on-deck call,
 /// zero hub refetches), playback progress patches the visible row in place,
 /// deletions drop the item from every visible list in place and then refresh

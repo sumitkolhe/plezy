@@ -100,7 +100,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   final _tvBrowseRailKey = GlobalKey<TvBrowseRailState>();
   final _hubFocusMemory = HubFocusMemory();
 
-  // Hero and app bar focus
   late FocusNode _heroFocusNode;
   final _actionBarKey = GlobalKey<FocusableActionBarState>();
 
@@ -428,7 +427,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // Restart auto-scroll only if discover tab is visible
       if (_isTabVisible && !_isAutoScrollPaused) _startAutoScroll();
       // Refresh continue watching on mobile only
       // (on desktop, "resumed" fires on every window focus gain)
@@ -721,7 +719,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 if (_isLoading) LoadingIndicatorBox.sliver,
                 if (_errorMessage != null) SliverErrorState(message: _errorMessage!, onRetry: _discover.load),
                 if (!_isLoading && _errorMessage == null) ...[
-                  // On Deck / Continue Watching
                   if (continueWatchingHub != null)
                     SliverToBoxAdapter(
                       child: HubSection(
@@ -1048,14 +1045,12 @@ class _DiscoverScreenState extends State<DiscoverScreen>
       shadows: [Shadow(color: colorScheme.surface.withValues(alpha: 0.8), blurRadius: 8)],
     );
 
-    // Determine content type label for chip
     final contentTypeLabel = heroItem.isMovie ? t.discover.movie : t.discover.tvShow;
 
     // Spoiler protection
     final hideSpoilers = SettingsService.instance.read(SettingsService.hideSpoilers);
     final shouldHideSpoiler = hideSpoilers && heroItem.shouldHideSpoiler;
 
-    // Build semantic label for hero item
     final heroLabel = isEpisode ? "${heroItem.grandparentTitle}, ${heroItem.title}" : heroItem.title;
 
     return Semantics(

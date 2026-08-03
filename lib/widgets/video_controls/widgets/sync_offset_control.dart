@@ -350,7 +350,6 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
       child: Column(
         mainAxisAlignment: .center,
         children: [
-          // Current offset display
           Text(formatSyncOffset(_currentOffset), style: const TextStyle(fontSize: 48, fontWeight: .bold)),
           const SizedBox(height: 8),
           Text(_getDescriptionText(), style: TextStyle(color: tokens(context).textMuted, fontSize: 16)),

@@ -88,10 +88,8 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   @override
   List<FocusNode> get tabChipFocusNodes => _tabFocusNodes;
 
-  // App bar action bar
   final _actionBarKey = GlobalKey<FocusableActionBarState>();
 
-  // Scroll controller for the outer CustomScrollView
   final ScrollController _outerScrollController = ScrollController();
 
   /// Reveal the floating header by jumping the outer NestedScrollView back
@@ -158,7 +156,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     // Find the library by key in visible libraries
     String? libraryGlobalKeyToLoad;
     if (savedLibraryKey != null) {
-      // Check if saved library exists and is visible
       final libraryExists = visibleLibraries.any((lib) => lib.globalKey == savedLibraryKey);
       if (libraryExists) {
         libraryGlobalKeyToLoad = savedLibraryKey;
@@ -483,7 +480,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     await storage.saveSelectedLibraryKey(libraryGlobalKey);
     if (!mounted || _selectedLibraryGlobalKey != libraryGlobalKey) return;
 
-    // Restore saved tab by name
     final savedTabName = storage.getLibraryTab(libraryGlobalKey);
     final savedType = LibraryTabType.values.where((t) => t.name == savedTabName).firstOrNull;
     final targetTabIndex = savedType != null ? _visibleTabs.indexOf(savedType) : -1;
@@ -550,7 +546,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     if (isHidden) {
       await hiddenLibrariesProvider.unhideLibrary(library.globalKey);
     } else {
-      // Check if we're hiding the currently selected library
       final isCurrentlySelected = _selectedLibraryGlobalKey == library.globalKey;
 
       await hiddenLibrariesProvider.hideLibrary(library.globalKey);
@@ -708,7 +703,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   }
 
   Widget _buildContent(BuildContext context, bool groupByServerSetting) {
-    // Watch libraries provider for updates
     final librariesProvider = context.watch<LibrariesProvider>();
     final allLibraries = librariesProvider.libraries;
     final isLoadingLibraries = librariesProvider.isLoading;

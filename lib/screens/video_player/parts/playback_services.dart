@@ -505,7 +505,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
       },
     );
 
-    // Set up media control event handling
     _mediaControlSubscription = mediaControlsManager.controlEvents.listen((event) {
       if (_mediaControlsSuspendedForTvBackground) {
         appLogger.d('Media control: ${event.runtimeType} ignored while Android TV background-suspended');
@@ -542,12 +541,10 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     await _syncMediaControlsAvailability();
     if (!mounted || player != currentPlayer || _mediaControlsManager != mediaControlsManager) return;
 
-    // Listen to playing state and update media controls
     _mediaControlsPlayingSubscription = currentPlayer.streams.playing.listen((isPlaying) {
       _updateMediaControlsPlaybackState();
     });
 
-    // Listen to position updates for media controls and trackers
     _mediaControlsPositionSubscription = currentPlayer.streams.position.listen((position) {
       mediaControlsManager.updatePlaybackState(
         isPlaying: currentPlayer.state.isActive,
@@ -608,7 +605,6 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
     // Send timeline update when playback state changes
     _progressTracker?.sendProgress(isPlaying ? 'playing' : 'paused');
 
-    // Update OS media controls playback state
     _updateMediaControlsPlaybackState();
 
     if (isPlaying) {

@@ -286,7 +286,6 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
 
   @override
   Widget build(BuildContext context) {
-    // Watch provider to rebuild when hidden libraries change
     final hiddenLibrariesProvider = context.watch<HiddenLibrariesProvider>();
     final hiddenLibraryKeys = hiddenLibrariesProvider.hiddenLibraryKeys;
 

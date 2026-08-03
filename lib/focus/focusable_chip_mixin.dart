@@ -143,7 +143,6 @@ mixin FocusableChipStateMixin<T extends StatefulWidget> on State<T> {
       }
     }
 
-    // Context menu key triggers long press directly
     if (event.isActionable && key.isContextMenuKey && callbacks.onLongPress != null) {
       _selectLongPress.reset();
       callbacks.onLongPress!();

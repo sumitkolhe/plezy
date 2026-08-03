@@ -90,7 +90,6 @@ class MultiServerProvider extends ChangeNotifier with DisposableChangeNotifierMi
   List<String> _visible(List<String> ids) => ids.where((id) => _serverManager.isServerVisible(ServerId(id))).toList();
 
   MultiServerProvider(this._serverManager, this._aggregationService) {
-    // Listen to server status changes
     _statusSubscription = _serverManager.statusStream.listen((_) {
       _promoteOnlineExpectedServers();
       final currentOnline = Set<String>.from(onlineServerIds);

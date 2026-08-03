@@ -54,7 +54,6 @@ class PerformanceStats {
   final double? cacheSpeed;
   final double? cacheDuration;
 
-  // DV conversion
   final bool dvConversionActive;
   final String dvConversionMode; // "DV81", "HEVC_STRIP", "DISABLED"
   final int? dvConvertedRpus;

@@ -289,7 +289,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
                     thumbHeight,
                   ),
                 ),
-                // Watch progress overlay
                 _buildWatchOverlay(context, showUnwatchedCount),
               ],
             ),

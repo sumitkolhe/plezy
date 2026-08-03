@@ -69,7 +69,6 @@ class UpdateService {
       return null;
     }
 
-    // Check cooldown if requested
     if (respectCooldown && !await shouldCheckForUpdates()) {
       return null;
     }

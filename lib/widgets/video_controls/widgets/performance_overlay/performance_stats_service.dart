@@ -59,7 +59,6 @@ class PerformanceStatsService {
       _updateRuntimePlayerType();
     });
 
-    // Start FPS tracking
     _startFpsTracking();
     // Fetch immediately, then poll
     _fetchStats();
@@ -211,7 +210,6 @@ class PerformanceStatsService {
         frameDropCount: statsMap['videoDroppedFrames'] as int?,
         // Buffer metrics - convert ms to seconds for duration
         cacheDuration: ((statsMap['totalBufferedDurationMs'] as int?) ?? 0) / 1000.0,
-        // DV conversion
         dvConversionActive: statsMap['dvConversionActive'] == true,
         dvConversionMode: statsMap['dvConversionMode'] as String? ?? '',
         dvConvertedRpus: (statsMap['dvConvertedRpus'] as num?)?.toInt(),

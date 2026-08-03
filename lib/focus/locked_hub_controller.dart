@@ -17,7 +17,6 @@ class HubFocusMemory {
   int getForHub(String hubKey, int itemCount) {
     if (itemCount <= 0) return 0;
 
-    // If this hub has memory, use it
     if (_perHubMemory.containsKey(hubKey)) {
       return _perHubMemory[hubKey]!.clamp(0, itemCount - 1);
     }

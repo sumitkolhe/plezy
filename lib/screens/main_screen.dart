@@ -207,10 +207,8 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   bool _wasBindingPrev = false;
   bool _hadProfiles = false;
 
-  /// Subscription to MultiServerManager status changes. Used to resume any
-  /// queued downloads as soon as a Plex client comes online for the first
-  /// time after launch (legacy main.dart used to do this from SetupScreen
-  /// before navigating).
+  /// Subscription to MultiServerManager status changes, so queued downloads
+  /// resume as soon as a server first comes online after launch.
   StreamSubscription<Map<String, bool>>? _serverStatusSub;
   bool _downloadResumeFired = false;
 
@@ -305,22 +303,19 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
         _contentFocusScope.requestFocus();
       }
 
-      // Check for updates on startup
       unawaited(_checkForUpdatesOnStartup());
     });
   }
 
   /// Run startup tasks that depend on having at least one online server:
   /// initialize and load the libraries provider, kick off the initial
-  /// watch-state sync, and (for Plex) resume any queued downloads. The
-  /// legacy [SetupScreen] path used to do all this before navigating to
-  /// MainScreen; with the binder taking over for the connect, we hook
-  /// into [ActiveProfileProvider.isBinding] (for the once-only priming,
-  /// which must wait for *all* connections — Plex *and* Jellyfin — to
-  /// land so the navbar shows libraries from both backends) and
-  /// [MultiServerManager.statusStream] (for download resume, which only
-  /// cares about the first online Plex client). Fires at most once per
-  /// MainScreen lifetime.
+  /// watch-state sync, and resume any queued downloads.
+  ///
+  /// Priming hooks [ActiveProfileProvider.isBinding] because it must wait for
+  /// *all* connections to land before the navbar can show every library;
+  /// download resume hooks [MultiServerManager.statusStream] because it only
+  /// needs the first server online. Fires at most once per MainScreen
+  /// lifetime.
   void _runStartupOnFirstOnlineServer(MultiServerManager manager) {
     if (_isOffline || _downloadResumeFired) return;
 
@@ -1126,7 +1121,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     });
 
     if (previousTab != tab) {
-      // Notify previous screen it's being hidden
       _onScreen<TabVisibilityAware>(previousTab, (screen) => screen.onTabHidden());
       // Notify and focus new screen
       _onScreen<TabVisibilityAware>(tab, (screen) => screen.onTabShown());

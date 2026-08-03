@@ -113,13 +113,10 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   DownloadProvider({required this._downloadManager, required this._database})
     : _syncRuleExecutor = SyncRuleExecutor(database: _database) {
     _metadataStore = _DownloadMetadataStore(_downloadManager, _database)..addListener(_onMetadataStoreChanged);
-    // Listen to progress updates from the download manager
     _progressSubscription = _downloadManager.progressStream.listen(_onProgressUpdate);
 
-    // Listen to deletion progress updates
     _deletionProgressSubscription = _downloadManager.deletionProgressStream.listen(_onDeletionProgressUpdate);
 
-    // Load persisted downloads from database
     _initFuture = _loadPersistedDownloads();
 
     // Lets the diagnostics service score whether downloads actually advance
@@ -425,7 +422,6 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
         }
       }
 
-      // Load sync rules from database
       await _loadSyncRules();
 
       // Apply queued offline watch actions on top of the server-time metadata
@@ -858,7 +854,6 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       }
     }
 
-    // Determine overall status
     final DownloadStatus overallStatus;
     if (completedCount == totalEpisodes) {
       overallStatus = DownloadStatus.completed;

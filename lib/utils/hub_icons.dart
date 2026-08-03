@@ -34,7 +34,6 @@ const _titleKeywordIcons = <(List<String>, IconData)>[
   (['seasonal'], PhosphorIconsDuotone.calendarBlank),
   (['newly', 'new release'], PhosphorIconsDuotone.sparkle),
   (['recently released', 'recent'], PhosphorIconsDuotone.clock),
-  // Top/Rated
   (['top rated', 'highest rated'], PhosphorIconsDuotone.star),
   (['top '], PhosphorIconsDuotone.medal),
   // Genre-specific
@@ -53,11 +52,9 @@ const _titleKeywordIcons = <(List<String>, IconData)>[
   (['watched', 'played'], PhosphorIconsDuotone.eye),
   // Network/Studio
   (['network', 'more from'], PhosphorIconsDuotone.television),
-  // Actor/Director
   (['actor', 'director'], PhosphorIconsDuotone.person),
   // Decades (80s, 90s, etc.)
   (['80', '90', '00'], PhosphorIconsDuotone.clockCounterClockwise),
-  // Rediscover/Start Watching
   (['rediscover', 'start watching'], PhosphorIconsDuotone.play),
   // Broad library-hub keywords, last so the specific rows above keep their icons.
   (['rated'], PhosphorIconsDuotone.star),

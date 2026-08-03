@@ -100,7 +100,6 @@ class _VideoState extends State<Video> {
           // Video rendering area
           _buildVideoSurface(),
 
-          // Controls overlay
           if (widget.controls != null) widget.controls!(context),
         ],
       ),

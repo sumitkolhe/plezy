@@ -22,13 +22,10 @@ mixin FocusableDetailScreenMixin<T extends StatefulWidget> on State<T>, GridFocu
   // Scroll controller for scrolling to top when app bar is focused
   final ScrollController scrollController = ScrollController();
 
-  // Action bar key for accessing focus nodes
   final GlobalKey<FocusableActionBarState> actionBarKey = GlobalKey<FocusableActionBarState>();
 
-  // Grid item focus
   final FocusNode firstItemFocusNode = FocusNode(debugLabel: 'detail_first_item');
 
-  // App bar focus state
   bool isAppBarFocused = false;
 
   // Flag to prevent PopScope from exiting when BACK was handled by a key handler

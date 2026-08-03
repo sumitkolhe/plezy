@@ -1178,9 +1178,8 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       allConnections = await connectionRegistry.list();
       AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.credentialsLoaded);
     } catch (e, st) {
-      // Defence-in-depth: a DB-open failure here used to propagate
-      // uncaught and strand the splash forever (#1022). Route to auth so
-      // the user is never trapped.
+      // Defence-in-depth: an uncaught DB-open failure here strands the
+      // splash forever, so route to auth rather than let it propagate.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
       if (mounted) {
         unawaited(Navigator.pushReplacement(context, fadeRoute(const AuthScreen())));

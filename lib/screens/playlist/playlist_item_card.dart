@@ -159,7 +159,6 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
 
                 const SizedBox(width: 12),
 
-                // Duration
                 if (item.durationMs != null)
                   Text(formatDurationTextual(item.durationMs!), style: TextStyle(fontSize: 13, color: textMuted)),
 

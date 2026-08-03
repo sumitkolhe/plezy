@@ -1116,8 +1116,8 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
   }
 
   /// Labelled franchise edges as compact rows rather than one hub per label:
-  /// a provider that returns a single sequel used to spend an entire shelf on
-  /// it. Rows flow into columns on wide viewports, like the facts above.
+  /// a provider that returns a single sequel would otherwise spend a whole
+  /// shelf on it. Rows flow into columns on wide viewports, like the facts.
   Widget _buildRelationsSection(ThemeData theme) {
     return LayoutBuilder(
       builder: (context, constraints) {

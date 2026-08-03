@@ -1240,7 +1240,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
       final shouldShowEpisodesDirectly = seasonsWithServerId.length <= 1;
 
-      // Create focus nodes for season tabs
       _updateSeasonTabFocusNodes(seasonsWithServerId.length);
 
       // Auto-select the on-deck season
@@ -1893,7 +1892,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
     // DOWN order: season tabs → episodes → cast → extras → related hubs → info rows.
     if (metadata.isShow && !_showEpisodesDirectly && _seasons.isNotEmpty && _seasonTabFocusNodes.isNotEmpty) {
-      // Focus the selected season tab chip
       _seasonTabFocusNodes[_selectedSeasonIndex].requestFocus();
       _scrollSectionIntoView(_seasonsSectionKey);
       return;
@@ -2711,7 +2709,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         // In offline mode, get episodes from downloads
         final downloadProvider = context.read<DownloadProvider>();
         final allEpisodes = downloadProvider.getDownloadedEpisodesForShow(_metadata.id);
-        // Filter to episodes of this season
         final episodes = allEpisodes.where((ep) => ep.parentIndex == firstSeason.index).toList()
           ..sort((a, b) => (a.index ?? 0).compareTo(b.index ?? 0));
         firstEpisode = episodes.isEmpty ? null : episodes.first;
@@ -2872,7 +2869,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                           child: Column(
                             crossAxisAlignment: .start,
                             children: [
-                              // Summary
                               if (!isTv && metadata.summary != null && metadata.summary!.isNotEmpty) ...[
                                 CollapsibleText(
                                   key: _overviewSectionKey,

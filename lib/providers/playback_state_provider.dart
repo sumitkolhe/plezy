@@ -42,7 +42,6 @@ class QueueNavigationResult {
 /// Manages the in-session play queue. Session-only — nothing persists
 /// across app restarts.
 class PlaybackStateProvider with ChangeNotifier, DisposableChangeNotifierMixin {
-  // Play queue state
   int? _playQueueId;
   int _playQueueTotalCount = 0;
   bool _playQueueShuffled = false;

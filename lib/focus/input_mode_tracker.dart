@@ -65,12 +65,10 @@ class _InputModeTrackerState extends State<InputModeTracker> {
   @override
   void initState() {
     super.initState();
-    // Initialize focus highlight strategy based on starting mode
     _updateFocusHighlightStrategy(_mode);
     // Listen to hardware keyboard events globally
     HardwareKeyboard.instance.addHandler(_handleKeyEvent);
 
-    // Register callback for gamepad input to switch to keyboard mode
     GamepadService.onGamepadInput = () => _setMode(InputMode.keyboard);
   }
 

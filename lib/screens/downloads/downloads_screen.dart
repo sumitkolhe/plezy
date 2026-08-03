@@ -42,7 +42,6 @@ class DownloadsScreen extends StatefulWidget {
 
 class DownloadsScreenState extends State<DownloadsScreen>
     with TickerProviderStateMixin, TabNavigationMixin, FocusableTab {
-  // Focus nodes for tab chips
   final _queueTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_queue');
   final _tvShowsTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_tv_shows');
   final _moviesTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_movies');

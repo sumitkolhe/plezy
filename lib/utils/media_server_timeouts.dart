@@ -30,10 +30,9 @@ class MediaServerTimeouts {
   /// parallel (used in [PlexServer.findBestWorkingConnection]).
   static const connectionRace = Duration(seconds: 2);
 
-  /// Per-server connection watchdog ceiling. The discovery path is no longer
-  /// strictly serial (cached probe overlaps the race; the HTTPS upgrade runs
-  /// off the critical path), so this is a generous upper bound rather than a
-  /// sum of phases.
+  /// Per-server connection watchdog ceiling. Discovery is not strictly serial
+  /// — the cached probe overlaps the race and the HTTPS upgrade runs off the
+  /// critical path — so this is a generous ceiling, not a sum of phases.
   static const perServerConnect = Duration(milliseconds: 6500);
 
   /// HTTP timeout for the live-TV tune POST. Matches Plex web's value — the

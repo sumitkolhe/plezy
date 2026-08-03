@@ -137,7 +137,6 @@ mixin DpadReorderListMixin<E, W extends StatefulWidget> on State<W> {
         return KeyEventResult.handled;
       }
       if (key.isSelectKey) {
-        // Confirm move - apply the reorder
         onReorderMoveConfirmed();
         setState(() {
           movingIndex = null;

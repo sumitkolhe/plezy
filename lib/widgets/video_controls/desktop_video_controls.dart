@@ -159,13 +159,11 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
   late final FocusNode _nextItemFocusNode;
   late final FocusNode _timelineFocusNode;
 
-  // Focus node for volume control
   late final FocusNode _volumeFocusNode;
 
   // Focus nodes for track/chapter controls (max 8 buttons possible)
   late final List<FocusNode> _trackControlFocusNodes;
 
-  // List of button focus nodes for horizontal navigation
   late final List<FocusNode> _buttonFocusNodes;
 
   // Progressive seek acceleration state
@@ -178,7 +176,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
   late final DebouncedSeekAccumulator _timelineSeek;
   static const _keyRepeatThumbnailTimeout = Duration(milliseconds: 400);
 
-  // Content strip state
   bool _contentStripVisible = false;
   final GlobalKey<ContentStripState> _contentStripKey = GlobalKey<ContentStripState>();
 
@@ -821,7 +818,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                   ),
                   const SizedBox(width: 16),
                 ],
-                // Audio track, subtitle, and chapter controls
                 TrackChapterControls(
                   player: widget.player,
                   chapters: widget.chapters,

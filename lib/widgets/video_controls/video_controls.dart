@@ -585,7 +585,6 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   double? _lastEdgeAdjustmentWriteValue;
   Timer? _edgeAdjustmentIndicatorHideTimer;
   Timer? _edgeAdjustmentIndicatorClearTimer;
-  // Seek throttle
   late final Throttle _seekThrottle;
   Duration? _lastDispatchedTimelineSeek;
   Future<void>? _lastDispatchedTimelineSeekFuture;
@@ -595,7 +594,6 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   late final DebouncedSeekAccumulator _hiddenSeek;
   bool? _hiddenSeekForward;
   int _hiddenSeekRepeatCount = 0;
-  // Current marker state
   MediaMarker? _currentMarker;
   List<MediaMarker> _markers = [];
   bool _markersLoaded = false;
@@ -605,7 +603,6 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   StreamSubscription<bool>? _completedSubscription;
   // Position subscription for marker tracking
   StreamSubscription<Duration>? _positionSubscription;
-  // Auto-skip state
   bool get _autoSkipIntro => _settings.read(SettingsService.autoSkipIntro);
   bool get _autoSkipCredits => _settings.read(SettingsService.autoSkipCredits);
   int get _autoSkipDelay => _settings.read(SettingsService.autoSkipDelay);
@@ -616,7 +613,6 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   Timer? _skipButtonDismissTimer;
   // Video player navigation (use arrow keys to navigate controls)
   bool get _videoPlayerNavigationEnabled => _settings.read(SettingsService.videoPlayerNavigationEnabled);
-  // Performance overlay
   bool get _showPerformanceOverlay => _settings.read(SettingsService.showPerformanceOverlay);
   bool get _autoHidePerformanceOverlay => _settings.read(SettingsService.autoHidePerformanceOverlay);
   // Long-press 2x speed state

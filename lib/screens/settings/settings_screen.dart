@@ -110,7 +110,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   KeyboardShortcutsService? _keyboardService;
   late final bool _keyboardShortcutsSupported = KeyboardShortcutsService.isPlatformSupported();
 
-  // Update checking state
   bool _isCheckingForUpdate = false;
   Map<String, dynamic>? _updateInfo;
 

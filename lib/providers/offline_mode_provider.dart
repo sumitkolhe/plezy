@@ -195,7 +195,6 @@ class OfflineModeProvider extends ChangeNotifier with DisposableChangeNotifierMi
       },
     );
 
-    // Monitor server status from MultiServerManager
     _serverStatusSubscription = _serverManager.statusStream.listen((statusMap) {
       _hasServerConnection = _multiServerProvider?.hasConnectedServers ?? statusMap.values.any((isOnline) => isOnline);
       _hasReceivedServerStatus = true;

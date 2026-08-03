@@ -128,7 +128,6 @@ class StorageService extends BaseSharedPreferencesService {
     return generated;
   }
 
-  // Clear all credentials
   Future<void> clearCredentials() async {
     await Future.wait([..._credentialKeys.map((k) => prefs.remove(k)), clearMultiServerData()]);
     LogRedactionManager.clearTrackedValues();

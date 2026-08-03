@@ -1666,7 +1666,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
             onBack: widget.onBack,
           ),
           const SizedBox(width: 8),
-          // Filters chip
           if (_isFiltersChipVisible)
             FocusableFilterChip(
               focusNode: _filtersChipFocusNode,
@@ -1682,7 +1681,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
               onBack: widget.onBack,
             ),
           if (_isFiltersChipVisible) const SizedBox(width: 8),
-          // Sort chip
           if (_isSortChipVisible)
             FocusableFilterChip(
               focusNode: _sortChipFocusNode,

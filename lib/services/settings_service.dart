@@ -820,7 +820,6 @@ class SettingsService extends BaseSharedPreferencesService {
     showPerformanceOverlay,
     autoHidePerformanceOverlay,
     enableTraktWatchedSync,
-    // Scrobble toggle, one per tracker service.
     for (final s in TrackerService.values) scrobblePref(s),
     matchContentFrameRate,
     tunneledPlayback,

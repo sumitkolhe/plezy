@@ -638,7 +638,6 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
                     style: layout.titleStyle,
                   ),
                 ),
-              // Subtitle
               SizedBox(height: layout.titleSubtitleGap),
               if (item is MediaPlaylist)
                 _MediaCardHelpers.buildPlaylistMeta(context, item)
