@@ -49,6 +49,10 @@ class EpisodeDetailSheet extends StatelessWidget {
   /// value is how it gets dispatched.
   final List<MediaMenuAction> actions;
 
+  /// Opens the full menu. Called after the sheet closes, since the menu holds
+  /// an open-guard until this one's result is dispatched.
+  final VoidCallback? onShowAllActions;
+
   const EpisodeDetailSheet({
     super.key,
     required this.episode,
@@ -56,18 +60,19 @@ class EpisodeDetailSheet extends StatelessWidget {
     required this.localPosterPath,
     required this.onPlay,
     this.actions = const [],
+    this.onShowAllActions,
   });
 
-  /// Left-to-right order for the circles. Anything absent from this list stays
-  /// long-press-only: an unlabelled circle has to be guessable from its glyph,
-  /// which rules out the rarer actions and every destructive one.
-  static const _primaryActions = ['play_from_beginning', 'watch', 'unwatch', 'download', 'delete_download', 'rate'];
+  /// Left-to-right order for the circles. Anything absent from this list is a
+  /// tap further away, behind the options circle: an unlabelled glyph has to be
+  /// guessable, which rules out the rarer actions and every destructive one.
+  static const _primaryActions = ['edit_metadata', 'rate', 'download', 'delete_download', 'fileinfo'];
 
   @override
   Widget build(BuildContext context) {
     final tokensRef = tokens(context);
     // Menu order is the menu's business; the circles have their own.
-    final primary = [for (final value in _primaryActions) ...actions.where((a) => a.value == value)].take(5);
+    final primary = [for (final value in _primaryActions) ...actions.where((a) => a.value == value)];
     final facts = episodeFacts(episode);
     final rating = episode.userRating;
     final summary = episode.summary;
@@ -147,13 +152,28 @@ class EpisodeDetailSheet extends StatelessWidget {
                   label: Text(t.common.play),
                 ),
               ),
-              if (primary.isNotEmpty) ...[
-                const SizedBox(height: 14),
+              if (actions.isNotEmpty) ...[
+                const SizedBox(height: 18),
                 Wrap(
                   alignment: .center,
-                  spacing: 14,
-                  runSpacing: 12,
-                  children: [for (final action in primary) _ActionCircle(action: action)],
+                  spacing: 18,
+                  runSpacing: 14,
+                  children: [
+                    for (final action in primary)
+                      _ActionCircle(
+                        icon: action.icon,
+                        label: action.label,
+                        onTap: () => OverlaySheetController.closeAdaptive(context, action.value),
+                      ),
+                    _ActionCircle(
+                      icon: PhosphorIcons.dotsThreeOutlineVertical,
+                      label: t.tooltips.moreOptions,
+                      onTap: () {
+                        OverlaySheetController.closeAdaptive(context, null);
+                        onShowAllActions?.call();
+                      },
+                    ),
+                  ],
                 ),
               ],
             ],
@@ -192,25 +212,27 @@ class EpisodeDetailSheet extends StatelessWidget {
 /// The label carries on doing its work as the tooltip and the semantic name,
 /// since the glyph alone is what is on screen.
 class _ActionCircle extends StatelessWidget {
-  final MediaMenuAction action;
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
 
-  const _ActionCircle({required this.action});
+  const _ActionCircle({required this.icon, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     final foreground = tokens(context).text;
 
     return Tooltip(
-      message: action.label,
+      message: label,
       child: Material(
         color: foreground.withValues(alpha: 0.08),
         shape: const CircleBorder(),
         child: InkWell(
           customBorder: const CircleBorder(),
-          onTap: () => OverlaySheetController.closeAdaptive(context, action.value),
+          onTap: onTap,
           child: SizedBox.square(
-            dimension: 48,
-            child: AppIcon(action.icon, size: 20, color: foreground, semanticLabel: action.label),
+            dimension: 58,
+            child: AppIcon(icon, size: 24, color: foreground, semanticLabel: label),
           ),
         ),
       ),

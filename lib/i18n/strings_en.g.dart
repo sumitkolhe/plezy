@@ -1627,6 +1627,9 @@ class Translations$tooltips$en {
 
 	/// en: 'Mark as unwatched'
 	String get markAsUnwatched => 'Mark as unwatched';
+
+	/// en: 'More options'
+	String get moreOptions => 'More options';
 }
 
 // Path: audioTracks
@@ -5282,6 +5285,7 @@ extension on Translations {
 			'tooltips.playTrailer' => 'Play trailer',
 			'tooltips.markAsWatched' => 'Mark as watched',
 			'tooltips.markAsUnwatched' => 'Mark as unwatched',
+			'tooltips.moreOptions' => 'More options',
 			'audioTracks.track' => ({required Object n}) => 'Audio Track ${n}',
 			'videoControls.audioLabel' => 'Audio',
 			'videoControls.subtitlesLabel' => 'Subtitles',
@@ -5293,9 +5297,9 @@ extension on Translations {
 			'videoControls.noOffset' => 'No offset',
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
-			'videoControls.stretch' => 'Stretch',
 			_ => null,
 		} ?? switch (path) {
+			'videoControls.stretch' => 'Stretch',
 			'videoControls.lockRotation' => 'Lock rotation',
 			'videoControls.unlockRotation' => 'Unlock rotation',
 			'videoControls.timerActive' => 'Timer Active',
@@ -5807,9 +5811,9 @@ extension on Translations {
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
-			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			_ => null,
 		} ?? switch (path) {
+			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',

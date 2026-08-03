@@ -68,24 +68,25 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
 
   /// The sheet is another presentation of the long-press menu, so its buttons
   /// come from that action set and dispatch through the same handlers.
-  void _openDetails(BuildContext context, MediaItem episode) {
+  Future<void> _openDetails(BuildContext context, MediaItem episode) async {
     final menu = contextMenuKey.currentState;
     if (menu == null) return;
-    unawaited(
-      menu.showActionsVia(
-        (actions) => OverlaySheetController.showAdaptive<String>(
-          context,
-          showDragHandle: true,
-          builder: (_) => EpisodeDetailSheet(
-            episode: episode,
-            client: widget.client,
-            localPosterPath: widget.localPosterPath,
-            onPlay: widget.onTap,
-            actions: actions,
-          ),
+    var showAll = false;
+    await menu.showActionsVia(
+      (actions) => OverlaySheetController.showAdaptive<String>(
+        context,
+        showDragHandle: true,
+        builder: (_) => EpisodeDetailSheet(
+          episode: episode,
+          client: widget.client,
+          localPosterPath: widget.localPosterPath,
+          onPlay: widget.onTap,
+          actions: actions,
+          onShowAllActions: () => showAll = true,
         ),
       ),
     );
+    if (showAll && mounted) showContextMenu();
   }
 
   @override
@@ -126,7 +127,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
           child: InkWell(
             key: Key(episode.id),
             mouseCursor: SystemMouseCursors.click,
-            onTap: splitTargets ? () => _openDetails(context, episode) : widget.onTap,
+            onTap: splitTargets ? () => unawaited(_openDetails(context, episode)) : widget.onTap,
             canRequestFocus: false,
             onTapDown: storeTapPosition,
             onLongPress: handleLongPress,

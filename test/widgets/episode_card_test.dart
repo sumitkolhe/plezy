@@ -219,15 +219,15 @@ void main() {
 
     final sheet = find.byType(EpisodeDetailSheet);
     // Unlabelled, so the label has to survive as the tooltip.
-    for (final label in [t.mediaMenu.markAsWatched, t.downloads.downloadNow, t.mediaMenu.rate]) {
+    for (final label in [t.mediaMenu.rate, t.downloads.downloadNow, t.mediaMenu.fileInfo, t.tooltips.moreOptions]) {
       expect(find.descendant(of: sheet, matching: find.byTooltip(label)), findsOneWidget, reason: label);
     }
-    // Left long-press-only: too rare to guess from a bare glyph.
-    expect(find.descendant(of: sheet, matching: find.byTooltip(t.mediaMenu.fileInfo)), findsNothing);
+    // Reachable behind the options circle rather than promoted to one.
+    expect(find.descendant(of: sheet, matching: find.byTooltip(t.mediaMenu.markAsWatched)), findsNothing);
 
     // Below Play, not above it.
     expect(
-      tester.getTopLeft(find.byTooltip(t.mediaMenu.markAsWatched)).dy,
+      tester.getTopLeft(find.byTooltip(t.mediaMenu.rate)).dy,
       greaterThan(tester.getBottomLeft(find.text(t.common.play)).dy),
     );
 
@@ -235,6 +235,29 @@ void main() {
     await tester.tap(find.byTooltip(t.mediaMenu.rate));
     await tester.pumpAndSettle();
     expect(sheet, findsNothing);
+  });
+
+  testWidgets('the options circle reaches the actions the circles left out', (tester) async {
+    final episode = testMediaItem(
+      id: 'options_circle_episode',
+      backend: MediaBackend.jellyfin,
+      kind: MediaKind.episode,
+      title: 'Overflow',
+      index: 8,
+      durationMs: 30 * 60 * 1000,
+    );
+
+    await _pumpEpisodeCard(tester, episode);
+    await tester.tap(find.text('E8${dotSeparator}Overflow'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip(t.tooltips.moreOptions));
+    await tester.pumpAndSettle();
+
+    // The menu holds an open-guard until the sheet's result is dispatched, so
+    // this only appears if the reopen waited for that.
+    expect(find.byType(EpisodeDetailSheet), findsNothing);
+    expect(find.text(t.mediaMenu.markAsWatched), findsOneWidget);
   });
 }
 
