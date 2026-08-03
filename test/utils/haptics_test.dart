@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
+import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/utils/haptics.dart';
 import 'package:harbor/widgets/media_card.dart';
 
@@ -140,6 +141,33 @@ void main() {
     // vibrate is Android's LONG_PRESS constant — firmer than a selection tick.
     expect(calls, contains('vibrate'));
     expect(calls, isNot(contains('HapticFeedbackType.selectionClick')));
+  });
+
+  testWidgets('a menu row draws ink, so it ripples and ticks like every other row', (tester) async {
+    await SettingsService.instance.write(SettingsService.hapticFeedback, true);
+    var picked = 0;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(
+          body: AppMenuList<String>(
+            entries: [AppMenuItem<String>(value: 'play', label: 'Play')],
+            onSelected: (_) => picked++,
+          ),
+        ),
+      ),
+    );
+
+    // The row was a bare GestureDetector; without an ink surface neither the
+    // ripple nor the theme-level haptic could reach it.
+    expect(find.byType(InkWell), findsOneWidget);
+
+    await tester.tap(find.text('Play'));
+    await tester.pump();
+
+    expect(picked, 1);
+    expect(calls, ['HapticFeedbackType.selectionClick']);
   });
 
   test('the platform is never asked while the setting is off', () async {

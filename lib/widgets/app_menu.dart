@@ -270,14 +270,17 @@ class AppMenuSheet<T> extends StatelessWidget {
       children: [
         if (titleWidget != null || title != null)
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+            padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
             child:
                 titleWidget ??
-                Text(
-                  title!,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    title!,
+                    style: Theme.of(context).textTheme.titleMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
           ),
         Flexible(
@@ -449,66 +452,73 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
           onExit: enabled ? (_) => setState(() => _isHovered = false) : null,
           child: ClickableCursor(
             enabled: enabled,
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: enabled ? widget.onPressed : null,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-                child: AnimatedContainer(
-                  duration: tokens(context).fast,
-                  decoration: BoxDecoration(
-                    color: background,
-                    borderRadius: BorderRadius.circular(tokens(context).radiusSm),
-                  ),
-                  constraints: BoxConstraints(minHeight: subtitle == null ? 40 : 52),
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                  child: Row(
-                    children: [
-                      if (leading != null) ...[
-                        SizedBox(
-                          width: 24,
-                          child: IconTheme.merge(
-                            data: IconThemeData(color: foreground),
-                            child: leading,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                      ],
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            DefaultTextStyle.merge(
-                              style: textTheme.bodyMedium?.copyWith(
-                                color: enabled ? foreground : colorScheme.onSurface.withValues(alpha: 0.38),
-                                fontWeight: item.selected ? FontWeight.w600 : null,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              child: item.child ?? Text(item.label!),
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: enabled ? widget.onPressed : null,
+                // The row paints its own hover and focus fill; only the splash
+                // was missing.
+                hoverColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                canRequestFocus: false,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                  child: AnimatedContainer(
+                    duration: tokens(context).fast,
+                    decoration: BoxDecoration(
+                      color: background,
+                      borderRadius: BorderRadius.circular(tokens(context).radiusSm),
+                    ),
+                    constraints: BoxConstraints(minHeight: subtitle == null ? 40 : 52),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                    child: Row(
+                      children: [
+                        if (leading != null) ...[
+                          SizedBox(
+                            width: 24,
+                            child: IconTheme.merge(
+                              data: IconThemeData(color: foreground),
+                              child: leading,
                             ),
-                            if (subtitle != null)
+                          ),
+                          const SizedBox(width: 12),
+                        ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
                               DefaultTextStyle.merge(
-                                style: textTheme.labelSmall?.copyWith(
-                                  color: enabled ? subtitleColor : colorScheme.onSurface.withValues(alpha: 0.38),
+                                style: textTheme.bodyMedium?.copyWith(
+                                  color: enabled ? foreground : colorScheme.onSurface.withValues(alpha: 0.38),
+                                  fontWeight: item.selected ? FontWeight.w600 : null,
                                 ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                child: subtitle,
+                                child: item.child ?? Text(item.label!),
                               ),
-                          ],
+                              if (subtitle != null)
+                                DefaultTextStyle.merge(
+                                  style: textTheme.labelSmall?.copyWith(
+                                    color: enabled ? subtitleColor : colorScheme.onSurface.withValues(alpha: 0.38),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  child: subtitle,
+                                ),
+                            ],
+                          ),
                         ),
-                      ),
-                      if (trailing != null) ...[
-                        const SizedBox(width: 12),
-                        IconTheme.merge(
-                          data: IconThemeData(color: foreground),
-                          child: trailing,
-                        ),
+                        if (trailing != null) ...[
+                          const SizedBox(width: 12),
+                          IconTheme.merge(
+                            data: IconThemeData(color: foreground),
+                            child: trailing,
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
