@@ -26,13 +26,13 @@ void main() {
                     title: 'Download',
                     toggle: (
                       label: 'Include Specials',
-                      icon: PhosphorIconsDuotone.star,
+                      icon: PhosphorIcons.star,
                       value: includeSpecials,
                       onChanged: (value) => includeSpecials = value,
                     ),
                     options: [
-                      (icon: PhosphorIconsDuotone.download, label: 'All Episodes', value: 'all'),
-                      (icon: PhosphorIconsDuotone.eyeSlash, label: 'Unwatched Only', value: 'unwatched'),
+                      (icon: PhosphorIcons.download, label: 'All Episodes', value: 'all'),
+                      (icon: PhosphorIcons.eyeSlash, label: 'Unwatched Only', value: 'unwatched'),
                     ],
                   );
                 },

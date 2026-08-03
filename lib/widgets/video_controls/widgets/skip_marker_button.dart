@@ -56,7 +56,7 @@ class SkipMarkerButton extends StatelessWidget {
     final buttonText = showAutoSkipCountdown && remainingSeconds > 0
         ? '$baseButtonText ($remainingSeconds)'
         : baseButtonText;
-    final buttonIcon = showNextEpisode ? PhosphorIconsDuotone.skipForward : PhosphorIconsDuotone.fastForward;
+    final buttonIcon = showNextEpisode ? PhosphorIcons.skipForward : PhosphorIcons.fastForward;
 
     return FocusableWrapper(
       focusNode: focusNode,

@@ -386,7 +386,7 @@ class TvSpotlightBackground extends StatelessWidget {
         child: Row(
           mainAxisSize: .min,
           children: [
-            AppIcon(PhosphorIconsDuotone.play, size: (compact ? 24 : 28) * scale, color: Colors.black),
+            AppIcon(PhosphorIcons.play, size: (compact ? 24 : 28) * scale, color: Colors.black),
             SizedBox(width: (compact ? 10 : 12) * scale),
             Text(
               hasProgress ? t.discover.minutesLeft(minutes: minutesLeft) : t.common.play,

@@ -82,16 +82,16 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
 
   IconData _getIcon() {
     if (widget.isFolder) {
-      return PhosphorIconsDuotone.folder;
+      return PhosphorIcons.folder;
     }
 
     return switch (widget.item.kind) {
-      MediaKind.movie => PhosphorIconsDuotone.filmSlate,
-      MediaKind.show => PhosphorIconsDuotone.television,
-      MediaKind.season => PhosphorIconsDuotone.filmStrip,
-      MediaKind.episode => PhosphorIconsDuotone.playCircle,
-      MediaKind.collection => PhosphorIconsDuotone.images,
-      _ => PhosphorIconsDuotone.file,
+      MediaKind.movie => PhosphorIcons.filmSlate,
+      MediaKind.show => PhosphorIcons.television,
+      MediaKind.season => PhosphorIcons.filmStrip,
+      MediaKind.episode => PhosphorIcons.playCircle,
+      MediaKind.collection => PhosphorIcons.images,
+      _ => PhosphorIcons.file,
     };
   }
 
@@ -147,9 +147,9 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
   Future<void> _showFolderMenu() async {
     final entries = <AppMenuEntry<String>>[
       if (widget.onPlayAll != null)
-        AppMenuItem<String>(value: 'play', icon: PhosphorIconsDuotone.play, label: t.common.play),
+        AppMenuItem<String>(value: 'play', icon: PhosphorIcons.play, label: t.common.play),
       if (widget.onShuffle != null)
-        AppMenuItem<String>(value: 'shuffle', icon: PhosphorIconsDuotone.shuffle, label: t.common.shuffle),
+        AppMenuItem<String>(value: 'shuffle', icon: PhosphorIcons.shuffle, label: t.common.shuffle),
     ];
     if (entries.isEmpty) return;
 
@@ -225,7 +225,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
 
   Widget _buildFolderRow(BuildContext context) {
     final indentation = widget.depth * 24.0;
-    final expandIcon = widget.isExpanded ? PhosphorIconsRegular.caretDown : PhosphorIconsRegular.caretRight;
+    final expandIcon = widget.isExpanded ? PhosphorIcons.caretDown : PhosphorIcons.caretRight;
 
     return Container(
       padding: .only(left: 16.0 + indentation, right: 8.0, top: 8.0, bottom: 8.0),
@@ -257,7 +257,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
     final episodePosterMode = svc.read(SettingsService.episodePosterMode);
     final hideSpoilers = svc.read(SettingsService.hideSpoilers);
     final showUnwatchedCount = svc.read(SettingsService.showUnwatchedCount);
-    final expandIcon = widget.isExpanded ? PhosphorIconsRegular.caretDown : PhosphorIconsRegular.caretRight;
+    final expandIcon = widget.isExpanded ? PhosphorIcons.caretDown : PhosphorIcons.caretRight;
 
     final orientation = svc.read(SettingsService.cardOrientation);
     final isWide = widget.item.usesWideAspectRatio(orientation);
@@ -463,7 +463,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
             child: IconButton(
               onPressed: playAll,
               icon: AppIcon(
-                PhosphorIconsDuotone.play,
+                PhosphorIcons.play,
                 size: 18,
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),
@@ -482,7 +482,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
             child: IconButton(
               onPressed: shuffle,
               icon: AppIcon(
-                PhosphorIconsDuotone.shuffle,
+                PhosphorIcons.shuffle,
                 size: 18,
                 color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.6),
               ),

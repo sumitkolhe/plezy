@@ -318,7 +318,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
         hasScrollBody: false,
         child: ErrorStateWidget(
           message: _errorMessage!,
-          icon: PhosphorIconsDuotone.warningCircle,
+          icon: PhosphorIcons.warningCircle,
           onRetry: _loadRootFolders,
           retryLabel: t.common.retry,
           actionFocusNode: widget.firstItemFocusNode,
@@ -332,7 +332,7 @@ class FolderTreeViewState extends State<FolderTreeView> {
     if (_rootFolders.isEmpty) {
       return SliverFillRemaining(
         hasScrollBody: false,
-        child: EmptyStateWidget(message: t.libraries.noFoldersFound, icon: PhosphorIconsDuotone.folderOpen),
+        child: EmptyStateWidget(message: t.libraries.noFoldersFound, icon: PhosphorIcons.folderOpen),
       );
     }
 

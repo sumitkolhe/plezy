@@ -133,7 +133,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                           height: 34,
                           fit: BoxFit.cover,
                           errorWidget: (context, url, error) =>
-                              const AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: 34),
+                              const AppIcon(PhosphorIcons.image, color: Colors.white54, size: 34),
                         ),
                         isCurrent: isCurrentChapter,
                         borderColor: Theme.of(context).colorScheme.primary,
@@ -156,7 +156,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
                   ),
                 ),
                 trailing: isCurrentChapter
-                    ? AppIcon(PhosphorIconsDuotone.playCircle, color: Theme.of(context).colorScheme.primary)
+                    ? AppIcon(PhosphorIcons.playCircle, color: Theme.of(context).colorScheme.primary)
                     : null,
                 onTap: widget.canControl ? () => unawaited(_handleChapterTap(chapter.startTime)) : null,
               );
@@ -166,7 +166,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
 
         return BaseVideoControlSheet(
           title: t.videoControls.chapters,
-          icon: PhosphorIconsDuotone.bookmarks,
+          icon: PhosphorIcons.bookmarks,
           child: content,
         );
       },

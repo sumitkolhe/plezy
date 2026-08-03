@@ -102,7 +102,7 @@ class TrackerSettingsScreen extends StatelessWidget {
           toggles: [
             TrackerSettingsToggle(
               pref: config.scrobblePref,
-              icon: PhosphorIconsDuotone.timer,
+              icon: PhosphorIcons.timer,
               title: t.services.scrobble,
               subtitle: t.services.scrobbleDescription,
               onAfterWrite: config.onScrobbleChanged,

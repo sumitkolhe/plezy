@@ -181,7 +181,7 @@ Future<T?> showSelectionDialog<T>({
             return FocusableListTile(
               key: ValueKey(option.value),
               leading: AppIcon(
-                selected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle,
+                selected ? PhosphorIcons.radioButton : PhosphorIcons.circle,
                 color: selected ? Theme.of(dialogContext).colorScheme.primary : null,
               ),
               title: Text(option.title),

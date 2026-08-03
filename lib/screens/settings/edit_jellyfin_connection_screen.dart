@@ -104,7 +104,7 @@ class _EditJellyfinConnectionScreenState extends State<EditJellyfinConnectionScr
                     onNavigateDown: () => _saveFocus.requestFocus(),
                     decoration: InputDecoration(
                       labelText: t.addServer.serverUrls,
-                      prefixIcon: const AppIcon(PhosphorIconsDuotone.link),
+                      prefixIcon: const AppIcon(PhosphorIcons.link),
                     ),
                     validator: (_) => _enteredUrls().isEmpty ? t.addServer.required : null,
                   ),
@@ -115,7 +115,7 @@ class _EditJellyfinConnectionScreenState extends State<EditJellyfinConnectionScr
                     onPressed: busy ? null : _save,
                     child: FilledButton.icon(
                       onPressed: busy ? null : _save,
-                      icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIconsDuotone.floppyDisk),
+                      icon: busy ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.floppyDisk),
                       label: Text(t.common.save),
                     ),
                   ),

@@ -13,7 +13,7 @@ void main() {
           body: Column(
             children: [
               BottomSheetHeader(title: 'Back', onBack: () => backPressed = true),
-              const BottomSheetHeader(title: 'Icon', icon: PhosphorIconsDuotone.funnel),
+              const BottomSheetHeader(title: 'Icon', icon: PhosphorIcons.funnel),
             ],
           ),
         ),
@@ -21,10 +21,10 @@ void main() {
     );
 
     final backArrow = find.byWidgetPredicate(
-      (widget) => widget is Icon && widget.icon == PhosphorIconsRegular.arrowLeft,
+      (widget) => widget is Icon && widget.icon == PhosphorIcons.arrowLeft,
     );
     final regularIcon = find.byWidgetPredicate(
-      (widget) => widget is Icon && widget.icon == PhosphorIconsDuotone.funnel,
+      (widget) => widget is Icon && widget.icon == PhosphorIcons.funnel,
     );
 
     expect(backArrow, findsOneWidget);

@@ -1467,7 +1467,7 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
                             )
                           else
                             AppIcon(
-                              PhosphorIconsDuotone.wifiHigh,
+                              PhosphorIcons.wifiHigh,
                               size: 18,
                               color: Theme.of(context).colorScheme.primary,
                             ),

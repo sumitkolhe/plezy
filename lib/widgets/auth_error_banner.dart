@@ -43,7 +43,7 @@ class AuthErrorBanner extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
           child: Row(
             children: [
-              AppIcon(PhosphorIconsDuotone.lock, color: scheme.onErrorContainer),
+              AppIcon(PhosphorIcons.lock, color: scheme.onErrorContainer),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(

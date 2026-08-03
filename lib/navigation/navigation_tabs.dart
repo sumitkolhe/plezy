@@ -64,31 +64,31 @@ const allNavigationTabs = [
   NavigationTab(
     id: NavigationTabId.discover,
     onlineOnly: true,
-    icon: PhosphorIconsDuotone.house,
+    icon: PhosphorIcons.house,
     getLabel: _getHomeLabel,
   ),
   NavigationTab(
     id: NavigationTabId.libraries,
     onlineOnly: true,
-    icon: PhosphorIconsDuotone.filmStrip,
+    icon: PhosphorIcons.filmStrip,
     getLabel: _getLibrariesLabel,
   ),
   NavigationTab(
     id: NavigationTabId.explore,
     onlineOnly: true,
-    icon: PhosphorIconsDuotone.compass,
+    icon: PhosphorIcons.compass,
     getLabel: _getExploreLabel,
   ),
   NavigationTab(
     id: NavigationTabId.downloads,
     onlineOnly: false,
-    icon: PhosphorIconsDuotone.download,
+    icon: PhosphorIcons.download,
     getLabel: _getDownloadsLabel,
   ),
   NavigationTab(
     id: NavigationTabId.settings,
     onlineOnly: false,
-    icon: PhosphorIconsDuotone.gear,
+    icon: PhosphorIcons.gear,
     getLabel: _getSettingsLabel,
   ),
 ];

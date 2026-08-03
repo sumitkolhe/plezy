@@ -62,7 +62,7 @@ class AddConnectionScreen extends StatelessWidget {
                   borderRadius: groupItemRadii(context, i, options.length),
                   leading: options[i].backend != null
                       ? BackendBadge(backend: options[i].backend!, size: 28)
-                      : const AppIcon(PhosphorIconsDuotone.share, size: 28),
+                      : const AppIcon(PhosphorIcons.share, size: 28),
                   title: options[i].title,
                   subtitle: options[i].subtitle,
                   onTap: () async {
@@ -141,7 +141,7 @@ class _BackendCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                const AppIcon(PhosphorIconsRegular.caretRight),
+                const AppIcon(PhosphorIcons.caretRight),
               ],
             ),
           ),

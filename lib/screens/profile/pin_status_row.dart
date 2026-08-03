@@ -28,7 +28,7 @@ class PinStatusRow extends StatelessWidget {
           child: Row(
             mainAxisSize: .min,
             children: [
-              AppIcon(PhosphorIconsDuotone.lock, color: theme.colorScheme.onPrimaryContainer, size: 18),
+              AppIcon(PhosphorIcons.lock, color: theme.colorScheme.onPrimaryContainer, size: 18),
               const SizedBox(width: 6),
               Text(
                 t.profiles.pinSet,

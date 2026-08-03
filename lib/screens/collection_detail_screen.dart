@@ -98,8 +98,8 @@ class _CollectionDetailScreenState extends BaseMediaListDetailScreen<CollectionD
 
     return [
       if (hasItems) ...[
-        FocusableAction(icon: PhosphorIconsDuotone.play, tooltip: t.common.play, onPressed: playItems),
-        FocusableAction(icon: PhosphorIconsDuotone.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
+        FocusableAction(icon: PhosphorIcons.play, tooltip: t.common.play, onPressed: playItems),
+        FocusableAction(icon: PhosphorIcons.shuffle, tooltip: t.common.shuffle, onPressed: shufflePlayItems),
       ],
       // Emptiness is handled inside [_downloadCollection], so the download
       // entry stays visible for empty collections.
@@ -112,7 +112,7 @@ class _CollectionDetailScreenState extends BaseMediaListDetailScreen<CollectionD
         onDownload: _downloadCollection,
       ),
       FocusableAction(
-        icon: PhosphorIconsDuotone.trash,
+        icon: PhosphorIcons.trash,
         tooltip: t.common.delete,
         onPressed: _deleteCollection,
         iconColor: Colors.red,

@@ -148,7 +148,7 @@ class _BorrowConnectionScreenState extends State<BorrowConnectionScreen> {
               child: EmptyStateWidget(
                 message: t.profiles.borrowEmpty,
                 subtitle: t.profiles.borrowEmptySubtitle,
-                icon: PhosphorIconsDuotone.share,
+                icon: PhosphorIcons.share,
                 iconSize: 48,
               ),
             );
@@ -303,14 +303,14 @@ class _BorrowTile extends StatelessWidget {
                       ),
                       if (candidate.source.isPinProtected) ...[
                         const SizedBox(width: 6),
-                        AppIcon(PhosphorIconsDuotone.lock, size: 12, color: theme.colorScheme.onSurfaceVariant),
+                        AppIcon(PhosphorIcons.lock, size: 12, color: theme.colorScheme.onSurfaceVariant),
                       ],
                     ],
                   ),
                 ],
               ),
             ),
-            const Padding(padding: .only(left: 8, top: 4), child: AppIcon(PhosphorIconsDuotone.plus)),
+            const Padding(padding: .only(left: 8, top: 4), child: AppIcon(PhosphorIcons.plus)),
           ],
         ),
       ),

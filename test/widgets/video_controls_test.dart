@@ -1365,17 +1365,17 @@ void main() {
         ),
       );
       await tester.pump();
-      expect(find.byIcon(PhosphorIconsDuotone.subtitles), findsOneWidget);
+      expect(find.byIcon(PhosphorIcons.subtitles), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no']);
-      expect(find.byIcon(PhosphorIconsDuotone.subtitlesSlash), findsOneWidget);
+      expect(find.byIcon(PhosphorIcons.subtitlesSlash), findsOneWidget);
 
       await tester.sendKeyEvent(LogicalKeyboardKey.keyS);
       await tester.pump();
       expect(player.propertyValues, ['no'], reason: 'the latest toggle must wait for the in-flight native write');
-      expect(find.byIcon(PhosphorIconsDuotone.subtitles), findsOneWidget);
+      expect(find.byIcon(PhosphorIcons.subtitles), findsOneWidget);
 
       firstWrite.complete();
       await tester.pump();
@@ -1387,7 +1387,7 @@ void main() {
       await tester.pump();
 
       expect(tester.takeException(), isNull);
-      expect(find.byIcon(PhosphorIconsDuotone.subtitlesSlash), findsOneWidget);
+      expect(find.byIcon(PhosphorIcons.subtitlesSlash), findsOneWidget);
       chrome.cancelAutoHide();
       await tester.pumpWidget(const SizedBox.shrink());
     });

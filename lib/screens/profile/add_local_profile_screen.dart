@@ -124,7 +124,7 @@ class _AddLocalProfileScreenState extends State<AddLocalProfileScreen> with Cont
                   onPressed: _setPin,
                   child: OutlinedButton.icon(
                     onPressed: _setPin,
-                    icon: const AppIcon(PhosphorIconsDuotone.lock),
+                    icon: const AppIcon(PhosphorIcons.lock),
                     label: Text(t.profiles.setPin),
                   ),
                 )

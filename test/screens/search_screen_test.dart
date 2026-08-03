@@ -188,7 +188,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(client.queries, isEmpty);
-    expect(find.byIcon(PhosphorIconsDuotone.warningCircle), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.warningCircle), findsOneWidget);
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
     expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);

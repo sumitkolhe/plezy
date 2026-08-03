@@ -206,7 +206,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
               width: 34,
               height: 34,
               decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.5), shape: BoxShape.circle),
-              child: const AppIcon(PhosphorIconsDuotone.play, color: Colors.white, size: 18),
+              child: const AppIcon(PhosphorIcons.play, color: Colors.white, size: 18),
             ),
           ),
         ),
@@ -273,7 +273,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     final tokensRef = tokens(context);
     return PlaceholderContainer(
       color: tokensRef.text.withValues(alpha: 0.04),
-      child: AppIcon(PhosphorIconsDuotone.filmSlate, size: 18, color: tokensRef.textMuted.withValues(alpha: 0.5)),
+      child: AppIcon(PhosphorIcons.filmSlate, size: 18, color: tokensRef.textMuted.withValues(alpha: 0.5)),
     );
   }
 

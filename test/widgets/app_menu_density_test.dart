@@ -12,7 +12,7 @@ Future<void> _pump(WidgetTester tester, Widget body) => tester.pumpWidget(
 
 Widget _menu(AppMenuDensity density, String label) => AppMenuList<String>(
   density: density,
-  entries: [AppMenuItem<String>(value: 'a', label: label, icon: PhosphorIconsDuotone.play)],
+  entries: [AppMenuItem<String>(value: 'a', label: label, icon: PhosphorIcons.play)],
   onSelected: (_) {},
 );
 
@@ -104,7 +104,7 @@ void main() {
             child: AppMenuSheet<String>(
               title: 'A Film With Quite A Long Title',
               entries: [
-                for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: PhosphorIconsDuotone.play),
+                for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: PhosphorIcons.play),
               ],
               onSelected: (_) {},
             ),

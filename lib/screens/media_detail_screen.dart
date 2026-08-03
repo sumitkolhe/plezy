@@ -1043,9 +1043,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       context,
       title: t.downloads.manageSyncRule,
       options: [
-        (icon: PhosphorIconsDuotone.pencilSimple, label: t.downloads.editSyncRule, value: _SyncRuleAction.edit),
-        (icon: PhosphorIconsDuotone.cloudSlash, label: t.downloads.removeSyncRule, value: _SyncRuleAction.remove),
-        (icon: PhosphorIconsDuotone.trash, label: t.downloads.deleteDownload, value: _SyncRuleAction.delete),
+        (icon: PhosphorIcons.pencilSimple, label: t.downloads.editSyncRule, value: _SyncRuleAction.edit),
+        (icon: PhosphorIcons.cloudSlash, label: t.downloads.removeSyncRule, value: _SyncRuleAction.remove),
+        (icon: PhosphorIcons.trash, label: t.downloads.deleteDownload, value: _SyncRuleAction.delete),
       ],
     );
 
@@ -2246,11 +2246,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   IconData _getRelatedHubIcon(MediaHub hub) {
     final lower = hub.title.toLowerCase();
-    if (lower.contains('collection')) return PhosphorIconsDuotone.filmStrip;
-    if (lower.contains('similar')) return PhosphorIconsDuotone.sparkle;
-    if (lower.contains('more from') || lower.contains('more with')) return PhosphorIconsDuotone.person;
-    if (lower.contains('genre') || lower.contains('director')) return PhosphorIconsDuotone.filmSlate;
-    return PhosphorIconsDuotone.thumbsUp;
+    if (lower.contains('collection')) return PhosphorIcons.filmStrip;
+    if (lower.contains('similar')) return PhosphorIcons.sparkle;
+    if (lower.contains('more from') || lower.contains('more with')) return PhosphorIcons.person;
+    if (lower.contains('genre') || lower.contains('director')) return PhosphorIcons.filmSlate;
+    return PhosphorIcons.thumbsUp;
   }
 
   static const Widget _sectionLoading = Center(
@@ -2274,7 +2274,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       padding: const EdgeInsets.all(16),
       child: ErrorStateWidget(
         message: message,
-        icon: PhosphorIconsDuotone.warningCircle,
+        icon: PhosphorIcons.warningCircle,
         onRetry: onRetry,
         retryLabel: t.common.retry,
       ),
@@ -2390,7 +2390,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         padding: const EdgeInsets.all(16),
         child: ErrorStateWidget(
           message: t.messages.episodesLoadFailed,
-          icon: PhosphorIconsDuotone.warningCircle,
+          icon: PhosphorIcons.warningCircle,
           onRetry: () => unawaited(_loadMoreEpisodeList()),
           retryLabel: t.common.retry,
         ),
@@ -3883,11 +3883,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   }
 
   IconData _getTvDetailHubIcon(MediaHub hub, int index) {
-    if (hub.id == _tvDetailSeasonsErrorHubId) return PhosphorIconsDuotone.warningCircle;
-    if (hub.id.startsWith(_tvDetailSeasonHubIdPrefix)) return PhosphorIconsDuotone.television;
-    if (hub.id == 'detail_episodes') return PhosphorIconsDuotone.television;
-    if (hub.id == _tvDetailExtrasHubId) return PhosphorIconsDuotone.filmSlate;
-    if (hub.id == _tvDetailActorsHubId) return PhosphorIconsDuotone.users;
+    if (hub.id == _tvDetailSeasonsErrorHubId) return PhosphorIcons.warningCircle;
+    if (hub.id.startsWith(_tvDetailSeasonHubIdPrefix)) return PhosphorIcons.television;
+    if (hub.id == 'detail_episodes') return PhosphorIcons.television;
+    if (hub.id == _tvDetailExtrasHubId) return PhosphorIcons.filmSlate;
+    if (hub.id == _tvDetailActorsHubId) return PhosphorIcons.users;
     return _getRelatedHubIcon(hub);
   }
 
@@ -4278,16 +4278,16 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         final episode = _fresh(_onDeckEpisode!);
         // Check if episode has been partially watched
         if (episode.viewOffsetMs != null && episode.viewOffsetMs! > 0) {
-          return PhosphorIconsDuotone.play; // Resume icon
+          return PhosphorIcons.play; // Resume icon
         }
       }
     } else {
       // For movies or episodes
       if (metadata.viewOffsetMs != null && metadata.viewOffsetMs! > 0) {
-        return PhosphorIconsDuotone.play; // Resume icon
+        return PhosphorIcons.play; // Resume icon
       }
     }
 
-    return PhosphorIconsDuotone.play; // Default play icon
+    return PhosphorIcons.play; // Default play icon
   }
 }

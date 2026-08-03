@@ -161,7 +161,7 @@ class _PinEntryDialogState extends State<PinEntryDialog> with SingleTickerProvid
   Widget _buildTitle(ThemeData theme) {
     return Row(
       children: [
-        AppIcon(PhosphorIconsDuotone.lock, size: 24, color: theme.colorScheme.primary),
+        AppIcon(PhosphorIcons.lock, size: 24, color: theme.colorScheme.primary),
         const SizedBox(width: 12),
         Expanded(child: Text(widget.userName, overflow: .ellipsis)),
       ],
@@ -679,9 +679,9 @@ class _PinKey {
       case _PinKeyType.digit:
         return null;
       case _PinKeyType.backspace:
-        return PhosphorIconsDuotone.backspace;
+        return PhosphorIcons.backspace;
       case _PinKeyType.close:
-        return PhosphorIconsDuotone.x;
+        return PhosphorIcons.x;
     }
   }
 }

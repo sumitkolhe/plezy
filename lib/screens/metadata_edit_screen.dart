@@ -231,7 +231,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
               onPressed: _hasChanges ? _save : null,
               child: IconButton(
                 onPressed: _hasChanges ? _save : null,
-                icon: const AppIcon(PhosphorIconsDuotone.checkCircle),
+                icon: const AppIcon(PhosphorIcons.checkCircle),
                 tooltip: t.common.save,
               ),
             ),
@@ -304,7 +304,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
             ? TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.5))
             : null,
       ),
-      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
+      trailing: const AppIcon(PhosphorIcons.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : onTap,
       dense: false,
@@ -332,7 +332,7 @@ class _MetadataEditScreenState extends State<MetadataEditScreen> {
         ),
       ),
       title: Text(field.label),
-      trailing: const AppIcon(PhosphorIconsRegular.caretRight),
+      trailing: const AppIcon(PhosphorIcons.caretRight),
       enabled: !_isCommitting,
       onTap: _isCommitting ? null : () => _openArtworkPicker(field),
       dense: false,
@@ -448,12 +448,12 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
           DialogActionButton(
             onPressed: _isApplying ? null : _addFromUrl,
             label: t.metadataEdit.fromUrl,
-            icon: const AppIcon(PhosphorIconsDuotone.link, size: 18),
+            icon: const AppIcon(PhosphorIcons.link, size: 18),
           ),
           DialogActionButton(
             onPressed: _isApplying ? null : _uploadFile,
             label: t.metadataEdit.uploadFile,
-            icon: const AppIcon(PhosphorIconsDuotone.upload, size: 18),
+            icon: const AppIcon(PhosphorIcons.upload, size: 18),
           ),
           DialogActionButton(
             autofocus: true,
@@ -515,7 +515,7 @@ class _ArtworkPickerDialogState extends State<ArtworkPickerDialog> {
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary, shape: BoxShape.circle),
                       child: AppIcon(
-                        PhosphorIconsDuotone.checkCircle,
+                        PhosphorIcons.checkCircle,
                         size: 16,
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),

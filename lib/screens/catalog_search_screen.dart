@@ -65,7 +65,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchPrompt(source: sourceName),
-              icon: PhosphorIconsDuotone.magnifyingGlass,
+              icon: PhosphorIcons.magnifyingGlass,
               iconSize: 80,
             ),
           )
@@ -73,7 +73,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchFailed,
-              icon: PhosphorIconsDuotone.warningCircle,
+              icon: PhosphorIcons.warningCircle,
               iconSize: 80,
             ),
           )
@@ -81,7 +81,7 @@ class _CatalogSearchScreenState extends State<CatalogSearchScreen> with Debounce
           SliverFillRemaining(
             child: StateMessageWidget(
               message: t.explore.searchEmpty(query: lastSearchedQuery),
-              icon: PhosphorIconsDuotone.magnifyingGlassMinus,
+              icon: PhosphorIcons.magnifyingGlassMinus,
               iconSize: 80,
             ),
           )

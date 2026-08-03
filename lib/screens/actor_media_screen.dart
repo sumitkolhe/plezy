@@ -122,7 +122,7 @@ class _ActorMediaScreenState extends BaseMediaListDetailScreen<ActorMediaScreen>
                 height: 80,
                 fit: BoxFit.cover,
                 imageType: ImageType.avatar,
-                fallbackIcon: PhosphorIconsDuotone.person,
+                fallbackIcon: PhosphorIcons.person,
               ),
             ),
             const SizedBox(width: 16),

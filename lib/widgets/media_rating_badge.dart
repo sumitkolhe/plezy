@@ -79,7 +79,7 @@ class MediaRatingBadge extends StatelessWidget {
     if (rating == null) return null;
     return _MediaRatingBadgeData(
       value: rating,
-      fallbackIcon: PhosphorIconsDuotone.star,
+      fallbackIcon: PhosphorIcons.star,
       fallbackText: formatRating(rating),
     );
   }

@@ -154,7 +154,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
                 onNavigateDown: _focusCurrentTab,
                 actions: [
                   FocusableAction(
-                    icon: PhosphorIconsDuotone.listChecks,
+                    icon: PhosphorIcons.listChecks,
                     tooltip: t.downloads.activeSyncRules,
                     onPressed: () =>
                         Navigator.push(context, MaterialPageRoute(builder: (_) => const SyncRulesScreen())),
@@ -359,7 +359,7 @@ class _DownloadsGridContentState extends State<_DownloadsGridContent> {
     return EmptyStateWidget(
       message: t.downloads.noDownloads,
       subtitle: t.downloads.noDownloadsDescription,
-      icon: PhosphorIconsDuotone.download,
+      icon: PhosphorIcons.download,
       iconSize: 80,
     );
   }
@@ -455,7 +455,7 @@ class _DownloadedMusicContentState extends State<_DownloadedMusicContent> {
       width: 48,
       height: 48,
       color: tk.surface,
-      child: AppIcon(PhosphorIconsDuotone.vinylRecord, size: 24, color: tk.textMuted),
+      child: AppIcon(PhosphorIcons.vinylRecord, size: 24, color: tk.textMuted),
     );
 
     return Padding(
@@ -518,7 +518,7 @@ class _DownloadedMusicContentState extends State<_DownloadedMusicContent> {
           return EmptyStateWidget(
             message: t.downloads.noDownloads,
             subtitle: t.downloads.noDownloadsDescription,
-            icon: PhosphorIconsDuotone.musicNote,
+            icon: PhosphorIcons.musicNote,
             iconSize: 80,
           );
         }

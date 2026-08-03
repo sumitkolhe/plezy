@@ -168,7 +168,7 @@ class TrackChapterControls extends StatelessWidget {
                   isZoomActive;
               return _buildTrackButton(
                 buttonIndex: 0,
-                icon: PhosphorIconsDuotone.sliders,
+                icon: PhosphorIcons.sliders,
                 isActive: isActive,
                 checked: isActive,
                 tooltip: t.videoControls.settingsButton,
@@ -207,8 +207,8 @@ class TrackChapterControls extends StatelessWidget {
                 final hasActiveSubtitle = selectedSub != null && selectedSub.id != SubtitleTrack.off.id;
                 final isHidden = hasSubtitleControls && hasActiveSubtitle && !state.subtitlesVisible;
                 final icon = hasSubtitleControls
-                    ? (isHidden ? PhosphorIconsDuotone.subtitlesSlash : PhosphorIconsDuotone.subtitles)
-                    : PhosphorIconsDuotone.musicNote;
+                    ? (isHidden ? PhosphorIcons.subtitlesSlash : PhosphorIcons.subtitles)
+                    : PhosphorIcons.musicNote;
                 return _buildTrackButton(
                   buttonIndex: currentIndex,
                   icon: icon,
@@ -238,7 +238,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIconsDuotone.bookmarks,
+              icon: PhosphorIcons.bookmarks,
               tooltip: t.videoControls.chaptersButton,
               semanticLabel: t.videoControls.chaptersButton,
               isMobile: isMobile,
@@ -270,7 +270,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIconsDuotone.queue,
+              icon: PhosphorIcons.queue,
               tooltip: t.videoControls.queue,
               semanticLabel: t.videoControls.queue,
               isMobile: isMobile,
@@ -292,7 +292,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIconsDuotone.pictureInpicture,
+              icon: PhosphorIcons.pictureInpicture,
               tooltip: t.videoControls.pipButton,
               semanticLabel: t.videoControls.pipButton,
               isMobile: isMobile,
@@ -327,7 +327,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: state.isRotationLocked ? PhosphorIconsDuotone.deviceRotate : PhosphorIconsDuotone.deviceRotate,
+              icon: state.isRotationLocked ? PhosphorIcons.deviceRotate : PhosphorIcons.deviceRotate,
               tooltip: state.isRotationLocked ? t.videoControls.unlockRotation : t.videoControls.lockRotation,
               semanticLabel: t.videoControls.rotationLockButton,
               checked: state.isRotationLocked,
@@ -345,7 +345,7 @@ class TrackChapterControls extends StatelessWidget {
           buttons.add(
             _buildTrackButton(
               buttonIndex: currentIndex,
-              icon: PhosphorIconsDuotone.lock,
+              icon: PhosphorIcons.lock,
               tooltip: t.videoControls.lockScreen,
               semanticLabel: t.videoControls.screenLockButton,
               isMobile: isMobile,
@@ -438,13 +438,13 @@ class TrackChapterControls extends StatelessWidget {
   IconData _getBoxFitIcon(int mode) {
     switch (mode) {
       case 0:
-        return PhosphorIconsRegular.arrowsOut; // contain (letterbox)
+        return PhosphorIcons.arrowsOut; // contain (letterbox)
       case 1:
-        return PhosphorIconsDuotone.frameCorners; // cover (fill screen)
+        return PhosphorIcons.frameCorners; // cover (fill screen)
       case 2:
-        return PhosphorIconsRegular.arrowsOut; // fill (stretch)
+        return PhosphorIcons.arrowsOut; // fill (stretch)
       default:
-        return PhosphorIconsRegular.arrowsOut;
+        return PhosphorIcons.arrowsOut;
     }
   }
 

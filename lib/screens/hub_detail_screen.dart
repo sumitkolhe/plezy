@@ -87,7 +87,7 @@ class _HubDetailScreenState extends State<HubDetailScreen>
   List<FocusableAction> getAppBarActions() {
     return [
       FocusableAction(
-        icon: PhosphorIconsRegular.arrowsDownUp,
+        icon: PhosphorIcons.arrowsDownUp,
         tooltip: t.libraries.sort,
         onPressed: _showSortBottomSheet,
       ),

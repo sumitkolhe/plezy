@@ -89,7 +89,7 @@ class _QueueSheetState extends State<QueueSheet> {
                     maxLines: 1,
                     overflow: .ellipsis,
                   ),
-                  trailing: isCurrent ? AppIcon(PhosphorIconsDuotone.playCircle, color: primaryColor) : null,
+                  trailing: isCurrent ? AppIcon(PhosphorIcons.playCircle, color: primaryColor) : null,
                   onTap: () {
                     widget.onItemSelected(item);
                     OverlaySheetController.of(context).close();
@@ -99,7 +99,7 @@ class _QueueSheetState extends State<QueueSheet> {
             );
           }
 
-          return BaseVideoControlSheet(title: t.videoControls.queue, icon: PhosphorIconsDuotone.queue, child: content);
+          return BaseVideoControlSheet(title: t.videoControls.queue, icon: PhosphorIcons.queue, child: content);
         },
       ),
     );
@@ -121,7 +121,7 @@ class _QueueSheetState extends State<QueueSheet> {
         height: _kThumbHeight,
         fit: BoxFit.cover,
         errorWidget: (context, url, error) =>
-            AppIcon(PhosphorIconsDuotone.image, color: Colors.white54, size: _kThumbHeight),
+            AppIcon(PhosphorIcons.image, color: Colors.white54, size: _kThumbHeight),
       ),
       isCurrent: isCurrent,
       borderColor: Theme.of(context).colorScheme.primary,

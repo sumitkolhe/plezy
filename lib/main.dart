@@ -257,7 +257,7 @@ class _StartupBootstrapState<T> extends State<StartupBootstrap<T>> {
                 key: startupBootstrapFailureKey,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppIcon(PhosphorIconsDuotone.warningCircle, size: 48),
+                  const AppIcon(PhosphorIcons.warningCircle, size: 48),
                   const SizedBox(height: 16),
                   Text(t.common.error, style: Theme.of(context).textTheme.titleLarge),
                   const SizedBox(height: 16),
@@ -1369,9 +1369,9 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
             child: CircularProgressIndicator(strokeWidth: 1.5, color: coralColor),
           );
         } else if (connected) {
-          statusIcon = const AppIcon(PhosphorIconsDuotone.checkCircle, size: 14, color: successColor);
+          statusIcon = const AppIcon(PhosphorIcons.checkCircle, size: 14, color: successColor);
         } else {
-          statusIcon = const AppIcon(PhosphorIconsDuotone.xCircle, size: 14, color: failColor);
+          statusIcon = const AppIcon(PhosphorIcons.xCircle, size: 14, color: failColor);
         }
         return Padding(
           key: ValueKey(entry.key),

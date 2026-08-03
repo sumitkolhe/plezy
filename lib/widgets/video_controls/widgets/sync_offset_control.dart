@@ -280,7 +280,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
       child: Row(
         children: [
           _buildCompactStepButton(
-            icon: PhosphorIconsDuotone.minus,
+            icon: PhosphorIcons.minus,
             onTap: _decrementOffset,
             onLongPressStart: _startLongPressDecrement,
           ),
@@ -302,7 +302,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             ),
           ),
           _buildCompactStepButton(
-            icon: PhosphorIconsDuotone.plus,
+            icon: PhosphorIcons.plus,
             onTap: _incrementOffset,
             onLongPressStart: _startLongPressIncrement,
           ),
@@ -329,7 +329,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
                 height: 36,
                 alignment: .center,
                 child: AppIcon(
-                  PhosphorIconsRegular.arrowCounterClockwise,
+                  PhosphorIcons.arrowCounterClockwise,
                   color: _currentOffset != 0 ? tokens(context).text : tokens(context).textMuted,
                   size: 22,
                 ),
@@ -359,7 +359,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             children: [
               // Decrement button
               _buildStepButton(
-                icon: PhosphorIconsDuotone.minus,
+                icon: PhosphorIcons.minus,
                 onTap: _decrementOffset,
                 onLongPressStart: _startLongPressDecrement,
               ),
@@ -397,7 +397,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
               const SizedBox(width: 12),
               // Increment button
               _buildStepButton(
-                icon: PhosphorIconsDuotone.plus,
+                icon: PhosphorIcons.plus,
                 onTap: _incrementOffset,
                 onLongPressStart: _startLongPressIncrement,
               ),
@@ -410,7 +410,7 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             useBackgroundFocus: true,
             child: ElevatedButton.icon(
               onPressed: _currentOffset != 0 ? _resetOffset : null,
-              icon: const AppIcon(PhosphorIconsRegular.arrowCounterClockwise),
+              icon: const AppIcon(PhosphorIcons.arrowCounterClockwise),
               label: Text(t.videoControls.resetToZero),
               style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12)),
             ),

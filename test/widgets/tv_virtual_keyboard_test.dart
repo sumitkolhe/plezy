@@ -187,9 +187,9 @@ void main() {
     await _pumpKeyboard(tester, controller: controller);
 
     expect(find.text('='), findsOneWidget);
-    expect(find.byIcon(PhosphorIconsDuotone.mathOperations), findsOneWidget);
+    expect(find.byIcon(PhosphorIcons.mathOperations), findsOneWidget);
 
-    await tester.tap(find.byIcon(PhosphorIconsDuotone.mathOperations));
+    await tester.tap(find.byIcon(PhosphorIcons.mathOperations));
     await tester.pumpAndSettle();
 
     expect(find.text('ABC'), findsOneWidget);
@@ -260,7 +260,7 @@ void main() {
       );
       await _pumpKeyboard(tester, controller: controller);
 
-      await tester.tap(find.byIcon(PhosphorIconsDuotone.backspace));
+      await tester.tap(find.byIcon(PhosphorIcons.backspace));
       await tester.pump();
 
       expect(controller.text, 'AB');
@@ -313,7 +313,7 @@ void main() {
       onChanged: changes.add,
     );
 
-    await tester.tap(find.byIcon(PhosphorIconsDuotone.backspace));
+    await tester.tap(find.byIcon(PhosphorIcons.backspace));
     await tester.pump();
 
     expect(formatterCandidates.single.text, 'AB');

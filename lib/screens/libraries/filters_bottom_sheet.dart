@@ -223,14 +223,14 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
     final currentFilter = _currentFilter;
     return BottomSheetPageScaffold(
       title: currentFilter?.title ?? t.libraries.filters,
-      icon: PhosphorIconsDuotone.funnel,
+      icon: PhosphorIcons.funnel,
       onBack: currentFilter != null ? _goBack : widget.onBack,
       action: currentFilter == null && _tempSelectedFilters.isNotEmpty
           ? FocusableButton(
               onPressed: _clearFilters,
               child: TextButton.icon(
                 onPressed: _clearFilters,
-                icon: const AppIcon(PhosphorIconsDuotone.eraser),
+                icon: const AppIcon(PhosphorIcons.eraser),
                 label: Text(t.libraries.clearAll),
               ),
             )
@@ -360,7 +360,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
                   ),
                 ),
               if (displayValue != null) const SizedBox(width: 8),
-              const AppIcon(PhosphorIconsRegular.caretRight),
+              const AppIcon(PhosphorIcons.caretRight),
             ],
           ),
           onTap: () => _loadFilterValues(filter),

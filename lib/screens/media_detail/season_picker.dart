@@ -74,7 +74,7 @@ class SeasonPickerChip extends StatelessWidget {
               ),
               if (choosable) ...[
                 const SizedBox(width: 4),
-                AppIcon(PhosphorIconsRegular.caretDown, size: 16, color: tokensRef.text),
+                AppIcon(PhosphorIcons.caretDown, size: 16, color: tokensRef.text),
               ],
             ],
           ),
@@ -145,7 +145,7 @@ class _SeasonSheet extends StatelessWidget {
                         ),
                       ),
                 trailing: selected
-                    ? AppIcon(PhosphorIconsDuotone.checkCircle, size: 18, color: tokensRef.accent)
+                    ? AppIcon(PhosphorIcons.checkCircle, size: 18, color: tokensRef.accent)
                     : null,
                 onTap: () => OverlaySheetController.closeAdaptive(context, index),
               );

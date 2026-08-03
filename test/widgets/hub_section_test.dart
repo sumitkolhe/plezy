@@ -47,7 +47,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIconsDuotone.television,
+          icon: PhosphorIcons.television,
           onItemTap: (value) => tappedItem = value,
           onItemLongPress: (value) => longPressedItem = value,
         ),
@@ -79,7 +79,7 @@ void main() {
             key: hubKey,
             hub: _hubWith(item),
             focusMemory: HubFocusMemory(),
-            icon: PhosphorIconsDuotone.television,
+            icon: PhosphorIcons.television,
             onItemTap: (value) => tappedItem = value,
             onItemLongPress: (value) => longPressedItem = value,
           ),
@@ -116,7 +116,7 @@ void main() {
         child: HubSection(
           hub: _hubWith(item),
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIconsDuotone.television,
+          icon: PhosphorIcons.television,
           cardSizing: HubCardSizing.grid,
           episodePosterModeOverride: EpisodePosterMode.seriesPoster,
         ),
@@ -147,7 +147,7 @@ void main() {
 
     await tester.pumpWidget(
       _TestApp(
-        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIconsDuotone.filmSlate),
+        child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIcons.filmSlate),
       ),
     );
     expect(find.text(t.explore.totalResults(n: 237)), findsNothing);
@@ -157,7 +157,7 @@ void main() {
         child: HubSection(
           hub: hub,
           focusMemory: HubFocusMemory(),
-          icon: PhosphorIconsDuotone.filmSlate,
+          icon: PhosphorIcons.filmSlate,
           totalResults: 237,
         ),
       ),
@@ -187,7 +187,7 @@ void main() {
             key: key,
             hub: hub(hubId),
             focusMemory: owner,
-            icon: PhosphorIconsDuotone.filmSlate,
+            icon: PhosphorIcons.filmSlate,
             onFocusedItemChanged: (item) => focusedItemId = item.id,
           ),
         ),

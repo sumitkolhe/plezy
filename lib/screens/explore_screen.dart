@@ -200,18 +200,18 @@ class ExploreScreenState extends State<ExploreScreen>
   }
 
   static IconData _rowIcon(CatalogRowId? row) => switch (row) {
-    null => PhosphorIconsDuotone.thumbsUp,
-    CatalogRowId.watchlist => PhosphorIconsDuotone.bookmark,
+    null => PhosphorIcons.thumbsUp,
+    CatalogRowId.watchlist => PhosphorIcons.bookmark,
     CatalogRowId.recommendedMovies ||
     CatalogRowId.recommendedShows ||
-    CatalogRowId.suggestedAnime => PhosphorIconsDuotone.thumbsUp,
+    CatalogRowId.suggestedAnime => PhosphorIcons.thumbsUp,
     CatalogRowId.trendingMovies ||
     CatalogRowId.trendingShows ||
     CatalogRowId.trendingAnime ||
     CatalogRowId.airingAnime ||
-    CatalogRowId.trending => PhosphorIconsDuotone.trendUp,
-    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => PhosphorIconsDuotone.fire,
-    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIconsDuotone.calendarPlus,
+    CatalogRowId.trending => PhosphorIcons.trendUp,
+    CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => PhosphorIcons.fire,
+    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIcons.calendarPlus,
   };
 
   List<AppMenuEntry<CatalogSourceId>> _sourceMenuEntries(CatalogSourcesProvider sources, CatalogSource active) => [
@@ -240,7 +240,7 @@ class ExploreScreenState extends State<ExploreScreen>
           const SizedBox(width: 8),
           Text(active.displayName, style: textStyle ?? Theme.of(context).textTheme.titleLarge),
           const SizedBox(width: 4),
-          const AppIcon(PhosphorIconsRegular.caretDown, size: 24),
+          const AppIcon(PhosphorIcons.caretDown, size: 24),
         ],
       ),
     );
@@ -320,7 +320,7 @@ class ExploreScreenState extends State<ExploreScreen>
             // handheld the gesture already covers this.
             if (!PlatformDetector.isHandheld(context))
               FocusableAction(
-                icon: PhosphorIconsRegular.arrowsClockwise,
+                icon: PhosphorIcons.arrowsClockwise,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_handleRefresh()),
               ),
@@ -361,7 +361,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: ErrorStateWidget(
             message: explore.errorMessage ?? t.explore.emptyTitle,
-            icon: PhosphorIconsDuotone.warningCircle,
+            icon: PhosphorIcons.warningCircle,
             onRetry: () => unawaited(_explore.load()),
           ),
         ),
@@ -371,7 +371,7 @@ class ExploreScreenState extends State<ExploreScreen>
         SliverFillRemaining(
           child: EmptyStateWidget(
             message: t.explore.emptyMessage(source: explore.activeSource?.displayName ?? ''),
-            icon: PhosphorIconsDuotone.compass,
+            icon: PhosphorIcons.compass,
           ),
         ),
       ]);
@@ -417,7 +417,7 @@ class ExploreScreenState extends State<ExploreScreen>
       return SliverFillRemaining(
         child: StateMessageWidget(
           message: t.explore.searchFailed,
-          icon: PhosphorIconsDuotone.warningCircle,
+          icon: PhosphorIcons.warningCircle,
           iconSize: 80,
         ),
       );
@@ -429,7 +429,7 @@ class ExploreScreenState extends State<ExploreScreen>
       return SliverFillRemaining(
         child: StateMessageWidget(
           message: t.explore.searchEmpty(query: lastSearchedQuery),
-          icon: PhosphorIconsDuotone.magnifyingGlassMinus,
+          icon: PhosphorIcons.magnifyingGlassMinus,
           iconSize: 80,
         ),
       );
@@ -486,7 +486,7 @@ class ExploreScreenState extends State<ExploreScreen>
                 ),
               if (active != null)
                 FocusableAction(
-                  icon: PhosphorIconsDuotone.magnifyingGlass,
+                  icon: PhosphorIcons.magnifyingGlass,
                   iconColor: foregroundColor,
                   tooltip: t.common.search,
                   onPressed: () => Navigator.of(
@@ -494,7 +494,7 @@ class ExploreScreenState extends State<ExploreScreen>
                   ).push(MaterialPageRoute<void>(builder: (_) => CatalogSearchScreen(source: active))),
                 ),
               FocusableAction(
-                icon: PhosphorIconsRegular.arrowsClockwise,
+                icon: PhosphorIcons.arrowsClockwise,
                 iconColor: foregroundColor,
                 tooltip: t.common.refresh,
                 onPressed: () => unawaited(_explore.load()),
@@ -523,7 +523,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: ErrorStateWidget(
                 message: _explore.errorMessage ?? t.explore.emptyTitle,
-                icon: PhosphorIconsDuotone.warningCircle,
+                icon: PhosphorIcons.warningCircle,
                 onRetry: () => unawaited(_explore.load()),
               ),
             )
@@ -531,7 +531,7 @@ class ExploreScreenState extends State<ExploreScreen>
             Center(
               child: EmptyStateWidget(
                 message: t.explore.emptyMessage(source: _explore.activeSource?.displayName ?? ''),
-                icon: PhosphorIconsDuotone.compass,
+                icon: PhosphorIcons.compass,
               ),
             ),
           if (tvHubs.isNotEmpty)

@@ -41,7 +41,7 @@ class FocusableAction {
   final FocusableActionBuilder? builder;
 
   const FocusableAction({
-    this.icon = PhosphorIconsDuotone.circle,
+    this.icon = PhosphorIcons.circle,
     this.iconColor,
     this.iconSize = 24,
     this.debugLabel,

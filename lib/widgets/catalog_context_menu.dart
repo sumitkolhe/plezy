@@ -59,26 +59,26 @@ Future<void> showCatalogItemMenu(BuildContext context, CatalogItem item, {Offset
       AppMenuItem(
         value: _CatalogMenuAction.viewDetails,
         label: t.mediaMenu.viewDetails,
-        icon: PhosphorIconsDuotone.info,
+        icon: PhosphorIcons.info,
       ),
       if (item.trailerUrl case final trailerUrl? when trailerUrl.isNotEmpty)
         AppMenuItem(
           value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: trailerUrl),
           label: t.explore.detail.watchTrailer,
-          icon: PhosphorIconsDuotone.playCircle,
+          icon: PhosphorIcons.playCircle,
         ),
       for (final link in item.links ?? const [])
         if (link.label.isNotEmpty && link.url.isNotEmpty)
           AppMenuItem(
             value: _CatalogMenuAction(_CatalogMenuActionType.openUrl, url: link.url),
             label: t.explore.detail.openOn(site: link.label),
-            icon: PhosphorIconsRegular.arrowSquareOut,
+            icon: PhosphorIcons.arrowSquareOut,
           ),
       if (onWatchlist != null)
         AppMenuItem(
           value: _CatalogMenuAction.toggleWatchlist,
           label: onWatchlist ? t.explore.removeFromWatchlist : t.explore.addToWatchlist,
-          icon: onWatchlist ? PhosphorIconsDuotone.bookmarkSimple : PhosphorIconsDuotone.bookmarkSimple,
+          icon: onWatchlist ? PhosphorIcons.bookmarkSimple : PhosphorIcons.bookmarkSimple,
         ),
     ],
   );

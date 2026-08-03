@@ -108,7 +108,7 @@ class _DoubleTapFeedbackState extends State<DoubleTapFeedback> with SingleTicker
         );
       },
       child: AppIcon(
-        widget.isForward ? PhosphorIconsRegular.caretRight : PhosphorIconsRegular.caretLeft,
+        widget.isForward ? PhosphorIcons.caretRight : PhosphorIcons.caretLeft,
         color: Colors.white,
         size: DoubleTapFeedback._chevronSize(context),
         shadows: _legibility,

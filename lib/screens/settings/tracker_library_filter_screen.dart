@@ -60,7 +60,7 @@ class TrackerLibraryFilterScreen extends StatelessWidget {
 
             Widget libraryTile(MediaLibrary lib) => FocusableSwitchListTile(
               key: ValueKey('tracker-library-filter-${lib.globalKey}'),
-              secondary: const AppIcon(PhosphorIconsDuotone.folder),
+              secondary: const AppIcon(PhosphorIcons.folder),
               title: Text(lib.title),
               value: selectedIds.contains(lib.globalKey),
               onChanged: (v) async {
@@ -88,7 +88,7 @@ class TrackerLibraryFilterScreen extends StatelessWidget {
                 children: [
                   SettingSegmentedTile<TrackerLibraryFilterMode>(
                     pref: modePref,
-                    icon: PhosphorIconsDuotone.funnelSimple,
+                    icon: PhosphorIcons.funnelSimple,
                     title: t.services.libraryFilter.mode,
                     segments: [
                       ButtonSegment(

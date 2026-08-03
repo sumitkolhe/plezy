@@ -77,7 +77,7 @@ class BottomSheetHeader extends StatelessWidget {
         height: kMinInteractiveDimension,
         child: Align(
           alignment: Alignment.centerLeft,
-          child: ExcludeSemantics(child: AppIcon(PhosphorIconsRegular.arrowLeft, color: iconColor)),
+          child: ExcludeSemantics(child: AppIcon(PhosphorIcons.arrowLeft, color: iconColor)),
         ),
       );
     } else if (icon != null) {
@@ -103,7 +103,7 @@ class BottomSheetHeader extends StatelessWidget {
               ExcludeFocusTraversal(
                 child: IconButton(
                   focusNode: closeFocusNode,
-                  icon: AppIcon(PhosphorIconsDuotone.x, color: iconColor),
+                  icon: AppIcon(PhosphorIcons.x, color: iconColor),
                   onPressed: onClose ?? () => OverlaySheetController.closeAdaptive(context),
                 ),
               ),

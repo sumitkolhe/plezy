@@ -60,10 +60,10 @@ class AboutScreen extends StatelessWidget {
                     margin: EdgeInsets.zero,
                     children: [
                       FocusableListTile(
-                        leading: const AppIcon(PhosphorIconsDuotone.fileText),
+                        leading: const AppIcon(PhosphorIcons.fileText),
                         title: Text(t.about.openSourceLicenses),
                         subtitle: Text(t.about.viewLicensesDescription),
-                        trailing: const AppIcon(PhosphorIconsRegular.caretRight),
+                        trailing: const AppIcon(PhosphorIcons.caretRight),
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const LicensesScreen()));
                         },

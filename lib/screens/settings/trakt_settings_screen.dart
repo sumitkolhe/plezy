@@ -71,14 +71,14 @@ class TraktSettingsScreen extends StatelessWidget {
           toggles: [
             TrackerSettingsToggle(
               pref: SettingsService.scrobblePref(TrackerService.trakt),
-              icon: PhosphorIconsDuotone.timer,
+              icon: PhosphorIcons.timer,
               title: t.trakt.scrobble,
               subtitle: t.trakt.scrobbleDescription,
               onAfterWrite: TraktTracker.instance.setEnabled,
             ),
             TrackerSettingsToggle(
               pref: SettingsService.enableTraktWatchedSync,
-              icon: PhosphorIconsDuotone.checkCircle,
+              icon: PhosphorIcons.checkCircle,
               title: t.trakt.watchedSync,
               subtitle: t.trakt.watchedSyncDescription,
               onAfterWrite: TraktTracker.instance.setWatchedSyncEnabled,

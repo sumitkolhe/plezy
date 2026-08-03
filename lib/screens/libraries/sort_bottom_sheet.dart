@@ -147,7 +147,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                   focusNode: (widget.selectedSort?.key == sort.key || (widget.selectedSort == null && index == 0))
                       ? _initialFocusNode
                       : null,
-                  leading: AppIcon(isSelected ? PhosphorIconsDuotone.radioButton : PhosphorIconsDuotone.circle),
+                  leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
                   title: Text(sort.title),
                   trailing: Visibility(
                     visible: isSelected,

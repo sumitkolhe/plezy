@@ -47,13 +47,13 @@ class TrackSheet extends StatelessWidget {
         final IconData icon;
         if (showAudio && showSubtitles) {
           title = t.videoControls.tracksButton;
-          icon = PhosphorIconsDuotone.subtitles;
+          icon = PhosphorIcons.subtitles;
         } else if (showAudio) {
           title = t.videoControls.audioLabel;
-          icon = PhosphorIconsDuotone.musicNote;
+          icon = PhosphorIcons.musicNote;
         } else {
           title = t.videoControls.subtitlesLabel;
-          icon = PhosphorIconsDuotone.subtitles;
+          icon = PhosphorIcons.subtitles;
         }
 
         return BaseVideoControlSheet(

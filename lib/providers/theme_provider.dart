@@ -160,15 +160,15 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
   IconData get themeModeIcon {
     switch (_themeMode) {
       case settings.ThemeMode.light:
-        return PhosphorIconsDuotone.sun;
+        return PhosphorIcons.sun;
       case settings.ThemeMode.dark:
-        return PhosphorIconsDuotone.moon;
+        return PhosphorIcons.moon;
       case settings.ThemeMode.oled:
-        return PhosphorIconsDuotone.circleHalf;
+        return PhosphorIcons.circleHalf;
       case settings.ThemeMode.system:
-        return PhosphorIconsDuotone.sun;
+        return PhosphorIcons.sun;
       case settings.ThemeMode.materialYou:
-        return PhosphorIconsDuotone.palette;
+        return PhosphorIcons.palette;
     }
   }
 }

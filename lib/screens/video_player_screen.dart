@@ -1497,7 +1497,7 @@ class VideoPlayerScreenState extends State<VideoPlayerScreen> with WidgetsBindin
     // Visible chrome already renders the play/pause state.
     if (_chromeController.controlsVisible) return;
     _toastController.showTransport(
-      willPlay ? PhosphorIconsDuotone.play : PhosphorIconsDuotone.pause,
+      willPlay ? PhosphorIcons.play : PhosphorIcons.pause,
       willPlay ? t.videoControls.playbackResumed : t.videoControls.playbackPaused,
     );
   }

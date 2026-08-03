@@ -80,7 +80,7 @@ extension _VideoPlayerShaderMethods on VideoPlayerScreenState {
 
   void _showZoomToast(double zoomScale) {
     _toastController.show(
-      PhosphorIconsDuotone.magnifyingGlassPlus,
+      PhosphorIcons.magnifyingGlassPlus,
       t.videoControls.zoomPercent(percent: (zoomScale * 100).round()),
     );
   }

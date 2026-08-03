@@ -120,23 +120,23 @@ void main() {
 
       await p.setThemeMode(settings.ThemeMode.light);
       expect(themeModeLabel(p.themeMode), t.settings.lightTheme);
-      expect(p.themeModeIcon, PhosphorIconsDuotone.sun);
+      expect(p.themeModeIcon, PhosphorIcons.sun);
 
       await p.setThemeMode(settings.ThemeMode.dark);
       expect(themeModeLabel(p.themeMode), t.settings.darkTheme);
-      expect(p.themeModeIcon, PhosphorIconsDuotone.moon);
+      expect(p.themeModeIcon, PhosphorIcons.moon);
 
       await p.setThemeMode(settings.ThemeMode.oled);
       expect(themeModeLabel(p.themeMode), t.settings.oledTheme);
-      expect(p.themeModeIcon, PhosphorIconsDuotone.circleHalf);
+      expect(p.themeModeIcon, PhosphorIcons.circleHalf);
 
       await p.setThemeMode(settings.ThemeMode.system);
       expect(themeModeLabel(p.themeMode), t.settings.systemTheme);
-      expect(p.themeModeIcon, PhosphorIconsDuotone.sun);
+      expect(p.themeModeIcon, PhosphorIcons.sun);
 
       await p.setThemeMode(settings.ThemeMode.materialYou);
       expect(themeModeLabel(p.themeMode), t.settings.materialYouTheme);
-      expect(p.themeModeIcon, PhosphorIconsDuotone.palette);
+      expect(p.themeModeIcon, PhosphorIcons.palette);
 
       p.dispose();
     });

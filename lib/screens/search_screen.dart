@@ -268,7 +268,7 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.search.searchYourMedia,
                   subtitle: t.search.enterTitleActorOrKeyword,
-                  icon: PhosphorIconsDuotone.magnifyingGlass,
+                  icon: PhosphorIcons.magnifyingGlass,
                   iconSize: 80,
                 ),
               )
@@ -277,7 +277,7 @@ class _SearchScreenState extends State<SearchScreen>
                 hasScrollBody: false,
                 child: StateMessageWidget(
                   message: t.explore.searchFailed,
-                  icon: PhosphorIconsDuotone.warningCircle,
+                  icon: PhosphorIcons.warningCircle,
                   iconSize: 80,
                 ),
               )
@@ -287,7 +287,7 @@ class _SearchScreenState extends State<SearchScreen>
                 child: StateMessageWidget(
                   message: t.messages.noResultsFound,
                   subtitle: t.search.tryDifferentTerm,
-                  icon: PhosphorIconsDuotone.magnifyingGlassMinus,
+                  icon: PhosphorIcons.magnifyingGlassMinus,
                   iconSize: 80,
                 ),
               )

@@ -578,14 +578,14 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       _buildBottomControlsContent(context, hasFrame: true),
                       // Down arrow hint when strip content is available
                       if (widget.useDpadNavigation && _hasStripContent)
-                        const ContentStripHint(PhosphorIconsRegular.caretDown),
+                        const ContentStripHint(PhosphorIcons.caretDown),
                     ],
                   ),
                 // Content strip (TV/dpad only) — replaces normal controls
                 if (_contentStripVisible && widget.useDpadNavigation)
                   ContentStripPanel(
                     padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 32),
-                    chevron: PhosphorIconsRegular.caretUp,
+                    chevron: PhosphorIcons.caretUp,
                     child: ContentStrip(
                       key: _contentStripKey,
                       player: widget.player,
@@ -669,7 +669,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                   child: _buildFocusableButton(
                     focusNode: _prevItemFocusNode,
                     index: 0,
-                    icon: PhosphorIconsDuotone.skipBack,
+                    icon: PhosphorIcons.skipBack,
                     color: widget.onPrevious != null && _canControl ? Colors.white : Colors.white54,
                     onPressed: _canControl ? widget.onPrevious : null,
                     semanticLabel: t.videoControls.previousButton,
@@ -686,7 +686,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       child: _buildFocusableButton(
                         focusNode: _prevChapterFocusNode,
                         index: 1,
-                        icon: PhosphorIconsDuotone.rewind,
+                        icon: PhosphorIcons.rewind,
                         color: widget.chapters.isNotEmpty && _canControl ? Colors.white : Colors.white54,
                         onPressed: _canControl && widget.chapters.isNotEmpty ? widget.onSeekToPreviousChapter : null,
                         semanticLabel: t.videoControls.previousChapterButton,
@@ -715,7 +715,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       return _buildFocusableButton(
                         focusNode: _playPauseFocusNode,
                         index: 3,
-                        icon: isPlaying ? PhosphorIconsDuotone.pause : PhosphorIconsDuotone.play,
+                        icon: isPlaying ? PhosphorIcons.pause : PhosphorIcons.play,
                         iconSize: 32,
                         onPressed: _canControl ? widget.onPlayPause : null,
                         semanticLabel: isPlaying ? t.videoControls.pauseButton : t.videoControls.playButton,
@@ -746,7 +746,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                       child: _buildFocusableButton(
                         focusNode: _nextChapterFocusNode,
                         index: 5,
-                        icon: PhosphorIconsDuotone.fastForward,
+                        icon: PhosphorIcons.fastForward,
                         color: widget.chapters.isNotEmpty && _canControl ? Colors.white : Colors.white54,
                         onPressed: _canControl && widget.chapters.isNotEmpty ? widget.onSeekToNextChapter : null,
                         semanticLabel: t.videoControls.nextChapterButton,
@@ -761,7 +761,7 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                   child: _buildFocusableButton(
                     focusNode: _nextItemFocusNode,
                     index: 6,
-                    icon: PhosphorIconsDuotone.skipForward,
+                    icon: PhosphorIcons.skipForward,
                     color: widget.onNext != null && _canControl ? Colors.white : Colors.white54,
                     onPressed: _canControl ? widget.onNext : null,
                     semanticLabel: t.videoControls.nextButton,

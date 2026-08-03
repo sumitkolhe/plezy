@@ -94,7 +94,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIconsDuotone.star),
+              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIcons.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),
@@ -606,7 +606,7 @@ class _TrailingStatus extends StatelessWidget {
     return Tooltip(
       message: status.text,
       child: AppIcon(
-        status.isError ? PhosphorIconsDuotone.warningCircle : PhosphorIconsDuotone.checkCircle,
+        status.isError ? PhosphorIcons.warningCircle : PhosphorIcons.checkCircle,
         color: color,
         size: 18,
       ),
@@ -664,8 +664,8 @@ class _StarRatingControlState extends State<_StarRatingControl> {
                     child: Center(
                       child: AppIcon(
                         half
-                            ? PhosphorIconsDuotone.starHalf
-                            : (filled ? PhosphorIconsDuotone.star : PhosphorIconsRegular.star),
+                            ? PhosphorIcons.starHalf
+                            : (filled ? PhosphorIcons.star : PhosphorIcons.star),
                         color: filled || half
                             ? Colors.amber
                             : theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.34),
@@ -716,7 +716,7 @@ class _FavoriteControl extends StatelessWidget {
             mainAxisAlignment: .center,
             children: [
               AppIcon(
-                value ? PhosphorIconsDuotone.heart : PhosphorIconsRegular.heart,
+                value ? PhosphorIcons.heart : PhosphorIcons.heart,
                 color: value ? Colors.redAccent : (enabled ? scheme.onSurfaceVariant : theme.disabledColor),
                 size: 18,
               ),
