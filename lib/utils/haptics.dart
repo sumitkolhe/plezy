@@ -16,5 +16,4 @@ abstract final class Haptics {
   static void selection() {
     if (_enabled) unawaited(HapticFeedback.selectionClick());
   }
-
 }

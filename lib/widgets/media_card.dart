@@ -26,6 +26,7 @@ import '../services/settings_service.dart';
 import 'catalog_context_menu.dart';
 import 'settings_builder.dart';
 import 'watched_indicator.dart';
+import '../utils/haptics.dart';
 import '../utils/content_utils.dart';
 import '../utils/media_image_helper.dart';
 import '../utils/platform_detector.dart';
@@ -1557,13 +1558,14 @@ class SkeletonLoader extends StatelessWidget {
   }
 }
 
-/// Tap surface for a card: a full [InkWell] (ripple, hover, cursor) on
-/// desktop where hover feedback matters, a bare [GestureDetector] on TV and
-/// touch handhelds — the ripple is invisible under poster art and the
-/// per-card ink/hover/focus machinery (~15 elements each) is dead weight
-/// that adds up while scrolling card grids.
-/// Keyboard focus is handled by the focus wrappers either way
-/// (canRequestFocus stays false on the InkWell).
+/// Tap surface for a card: a bare [GestureDetector] rather than an [InkWell],
+/// because a ripple is invisible under poster art and the per-card
+/// ink/hover/focus machinery (~15 elements each) adds up across a grid.
+///
+/// Creating no ink also means the theme's haptic factory never sees these
+/// presses, so the tick is asked for here instead. It fires on the settled tap
+/// rather than on touch-down: a press that turns into a scroll is the common
+/// case on a grid, and it should not feel like a hit.
 class _CardTapRegion extends StatelessWidget {
   const _CardTapRegion({
     required this.onTap,
@@ -1588,7 +1590,10 @@ class _CardTapRegion extends StatelessWidget {
     return GestureDetector(
       excludeFromSemantics: true,
       behavior: HitTestBehavior.opaque,
-      onTap: onTap,
+      onTap: () {
+        Haptics.selection();
+        onTap();
+      },
       onTapDown: onTapDown,
       onLongPress: onLongPress,
       onSecondaryTap: onSecondaryTap,

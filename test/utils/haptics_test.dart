@@ -4,7 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/haptics.dart';
+import 'package:harbor/widgets/media_card.dart';
 
+import '../test_helpers/media_items.dart';
 import '../test_helpers/prefs.dart';
 
 void main() {
@@ -80,6 +82,32 @@ void main() {
     await tester.pump();
 
     expect(calls, isEmpty);
+  });
+
+  testWidgets('a media card ticks even though it draws no ink', (tester) async {
+    await SettingsService.instance.write(SettingsService.hapticFeedback, true);
+    var taps = 0;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: monoTheme(dark: true),
+        home: Scaffold(
+          body: Center(
+            child: SizedBox(
+              width: 120,
+              height: 180,
+              child: MediaCard(item: testMediaItem(id: 'm1', title: 'Poster'), onTap: () => taps++),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.byType(MediaCard));
+    await tester.pump();
+
+    expect(taps, 1);
+    expect(calls, ['HapticFeedbackType.selectionClick'], reason: 'the card has no InkWell to route through');
   });
 
   test('the platform is never asked while the setting is off', () async {

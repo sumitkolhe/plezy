@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../utils/haptics.dart';
 import 'package:flutter/services.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 
@@ -90,6 +92,7 @@ class _AppBarBackButtonState extends State<AppBarBackButton> with TickerProvider
   }
 
   void _handlePressed() {
+    Haptics.selection();
     if (widget.onPressed != null) {
       widget.onPressed!();
     } else {

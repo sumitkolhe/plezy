@@ -4,6 +4,7 @@ import '../focus/input_mode_tracker.dart';
 import '../focus/key_event_utils.dart';
 import '../theme/mono_motion.dart';
 import '../theme/mono_tokens.dart';
+import '../utils/haptics.dart';
 import '../utils/platform_detector.dart';
 
 /// M3E connected button group: the selected segment is a filled pill, the
@@ -198,7 +199,10 @@ class _ExpressiveButtonGroupState<T> extends State<ExpressiveButtonGroup<T>> {
       child = Opacity(opacity: 0.4, child: child);
     } else {
       child = GestureDetector(
-        onTapDown: (_) => setState(() => _pressedIndex = i),
+        onTapDown: (_) {
+          Haptics.selection();
+          setState(() => _pressedIndex = i);
+        },
         onTapUp: (_) => setState(() {
           _pressedIndex = null;
           _releasedIndex = i;

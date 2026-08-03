@@ -13,6 +13,7 @@ import '../../media/media_kind.dart';
 import '../../mixins/context_menu_tap_mixin.dart';
 import '../../services/settings_service.dart';
 import '../../widgets/settings_builder.dart';
+import '../../utils/haptics.dart';
 import '../../utils/formatters.dart';
 import '../../utils/rating_spans.dart';
 import '../../utils/provider_extensions.dart';
@@ -109,6 +110,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
   }
 
   void _handleTap() {
+    Haptics.selection();
     if (widget.isExpandable) {
       widget.onExpand?.call();
     } else {
