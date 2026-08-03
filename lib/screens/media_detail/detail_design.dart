@@ -21,17 +21,26 @@ class DetailFactLine extends StatelessWidget {
     final cert = contentRating;
     if (rating == null && facts.isEmpty && (cert == null || cert.isEmpty)) return const SizedBox.shrink();
 
+    // Score and certificate read as marks, the facts between them as a run, so
+    // they are grouped by space and separated by dots respectively.
+    final groups = <InlineSpan>[
+      if (rating != null)
+        TextSpan(
+          children: [ratingSpan(rating!, iconSize: _fontSize)],
+          style: TextStyle(color: t.text, fontWeight: .w600),
+        ),
+      if (facts.isNotEmpty) TextSpan(children: dotSeparatedSpans([for (final fact in facts) TextSpan(text: fact)])),
+      if (cert != null && cert.isNotEmpty) WidgetSpan(alignment: .middle, child: _CertificateMark(cert)),
+    ];
+
     return Text.rich(
       TextSpan(
-        children: dotSeparatedSpans([
-          if (rating != null)
-            TextSpan(
-              children: [ratingSpan(rating!, iconSize: _fontSize)],
-              style: TextStyle(color: t.text, fontWeight: .w600),
-            ),
-          for (final fact in facts) TextSpan(text: fact),
-          if (cert != null && cert.isNotEmpty) WidgetSpan(alignment: .middle, child: _CertificateMark(cert)),
-        ]),
+        children: [
+          for (var i = 0; i < groups.length; i++) ...[
+            if (i > 0) const WidgetSpan(child: SizedBox(width: 10)),
+            groups[i],
+          ],
+        ],
       ),
       style: TextStyle(fontSize: _fontSize, color: t.text.withValues(alpha: 0.78), height: 1.3),
       maxLines: 2,
@@ -79,7 +88,9 @@ class DetailGenreLine extends StatelessWidget {
   Widget build(BuildContext context) {
     if (genres.isEmpty) return const SizedBox.shrink();
     return Text(
-      genres.join(' · '),
+      // Commas, not dots: the fact line above owns that separator, and two dotted
+      // greys of the same size read as one wrapped paragraph.
+      genres.join(', '),
       style: TextStyle(fontSize: _fontSize, color: tokens(context).textMuted, height: 1.3),
       maxLines: 1,
       overflow: .ellipsis,

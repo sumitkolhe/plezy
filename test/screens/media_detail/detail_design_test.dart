@@ -25,8 +25,10 @@ void main() {
     testWidgets('joins facts with a separator and keeps the certificate out of the run', (tester) async {
       await pump(tester, const DetailFactLine(rating: 8.4, contentRating: 'TV-MA', facts: ['2019', '3 seasons']));
 
-      // The rating renders as an icon span, so only its value lands in the text.
-      expect(renderedText(tester), contains('8.4 • 2019 • 3 seasons'));
+      // Dots join the facts...
+      expect(renderedText(tester), contains('2019 • 3 seasons'));
+      // ...while the score sits beside that run as a mark, not inside it.
+      expect(renderedText(tester), isNot(contains('8.4 •')));
       // The certificate is a bordered mark, not another dot-separated word.
       expect(find.text('TV-MA'), findsOneWidget);
     });
@@ -46,7 +48,8 @@ void main() {
     testWidgets('reads as prose, with no tappable ancestor to promise otherwise', (tester) async {
       await pump(tester, const DetailGenreLine(genres: ['Drama', 'Sci-Fi']));
 
-      expect(find.text('Drama · Sci-Fi'), findsOneWidget);
+      // Commas: the fact line above owns the dot separator.
+      expect(find.text('Drama, Sci-Fi'), findsOneWidget);
       expect(find.byType(InkWell), findsNothing);
       expect(find.byType(GestureDetector), findsNothing);
     });

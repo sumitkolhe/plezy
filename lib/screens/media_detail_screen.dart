@@ -4034,7 +4034,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
           // Shows report a zero runtime rather than omitting it, which
           // rendered as a literal "0min" beside the real facts.
           if (metadata.durationMs case final ms? when ms > 0) formatDurationTextual(ms),
-          ...buildMediaQualityLabels(metadata),
         ];
         final genres = (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
 
