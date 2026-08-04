@@ -23,7 +23,6 @@ import 'app_icon.dart';
 import 'bottom_sheet_header.dart';
 import 'app_menu.dart';
 import 'loading_indicator_box.dart';
-import 'focusable_list_tile.dart';
 import 'overlay_sheet.dart';
 import 'stat_chip.dart';
 
@@ -377,7 +376,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
         BottomSheetHeader(title: t.seerr.request),
         Flexible(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -617,15 +616,16 @@ class _PickerTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FocusableListTile(
-      listItemMetrics: true,
-      leading: AppIcon(icon),
-      title: Text(label),
-      subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: const AppIcon(PhosphorIcons.caretUpDown),
-      contentPadding: EdgeInsets.zero,
-      enabled: enabled,
-      onTap: () => unawaited(_open(context)),
+    return AppMenuItemTile<void>(
+      item: AppMenuItem<void>(
+        value: null,
+        icon: icon,
+        label: label,
+        subtitle: value.isEmpty ? null : value,
+        trailing: const AppIcon(PhosphorIcons.caretUpDown),
+        enabled: enabled,
+      ),
+      onPressed: () => unawaited(_open(context)),
     );
   }
 }

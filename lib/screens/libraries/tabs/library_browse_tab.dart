@@ -42,7 +42,7 @@ import '../folder_tree_view.dart';
 import '../filters_bottom_sheet.dart';
 import '../sort_bottom_sheet.dart';
 import '../../../widgets/app_icon.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../content_state_builder.dart';
 import '../../../services/storage_service.dart';
 import '../../../services/settings_service.dart';
@@ -815,31 +815,40 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
-          FocusableListTile(
-            leading: const AppIcon(PhosphorIcons.squaresFour),
-            title: Text(t.libraries.groupings.title),
-            subtitle: Text(_getGroupingLabel(_selectedGrouping)),
-            trailing: const AppIcon(PhosphorIcons.caretRight),
-            onTap: () => _showGroupingOptionsPage(controller),
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              leading: const AppIcon(PhosphorIcons.squaresFour),
+              child: Text(t.libraries.groupings.title),
+              subtitleWidget: Text(_getGroupingLabel(_selectedGrouping)),
+              trailing: const AppIcon(PhosphorIcons.caretRight),
+            ),
+            onPressed: () => _showGroupingOptionsPage(controller),
           ),
           if (_isFiltersChipVisible)
-            FocusableListTile(
-              leading: const AppIcon(PhosphorIcons.funnel),
-              title: Text(
-                _selectedFilters.isEmpty
-                    ? t.libraries.filters
-                    : t.libraries.filtersWithCount(count: _selectedFilters.length),
+            AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                leading: const AppIcon(PhosphorIcons.funnel),
+                child: Text(
+                  _selectedFilters.isEmpty
+                      ? t.libraries.filters
+                      : t.libraries.filtersWithCount(count: _selectedFilters.length),
+                ),
+                trailing: const AppIcon(PhosphorIcons.caretRight),
               ),
-              trailing: const AppIcon(PhosphorIcons.caretRight),
-              onTap: () => _showFiltersOptionsPage(controller),
+              onPressed: () => _showFiltersOptionsPage(controller),
             ),
           if (_isSortChipVisible)
-            FocusableListTile(
-              leading: const AppIcon(PhosphorIcons.sortAscending),
-              title: Text(t.libraries.sort),
-              subtitle: _selectedSort == null ? null : Text(_selectedSort!.title),
-              trailing: const AppIcon(PhosphorIcons.caretRight),
-              onTap: () => _showSortOptionsPage(controller),
+            AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                leading: const AppIcon(PhosphorIcons.sortAscending),
+                child: Text(t.libraries.sort),
+                subtitleWidget: _selectedSort == null ? null : Text(_selectedSort!.title),
+                trailing: const AppIcon(PhosphorIcons.caretRight),
+              ),
+              onPressed: () => _showSortOptionsPage(controller),
             ),
         ],
       ),
@@ -903,12 +912,14 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final options = _getGroupingOptions();
     return options.map((grouping) {
       final isSelected = _selectedGrouping == grouping;
-      return FocusableListTile(
+      return AppMenuItemTile<void>(
         key: ValueKey(grouping),
-        dense: true,
-        leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
-        title: Text(_getGroupingLabel(grouping)),
-        onTap: () => onSelected(grouping),
+        item: AppMenuItem<void>(
+          value: null,
+          leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
+          child: Text(_getGroupingLabel(grouping)),
+        ),
+        onPressed: () => onSelected(grouping),
       );
     }).toList();
   }

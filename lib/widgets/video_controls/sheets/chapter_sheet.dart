@@ -15,7 +15,7 @@ import '../../../utils/formatters.dart';
 import '../../../utils/player_utils.dart';
 import '../../../utils/provider_extensions.dart';
 import '../../../utils/scroll_utils.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../widgets/media_selector_thumbnail.dart';
 import '../../bottom_sheet_page_scaffold.dart';
@@ -119,46 +119,36 @@ class _ChapterSheetState extends State<ChapterSheet> {
                   ? DownloadStorageService.instance.getArtworkPathSync(ServerId(widget.serverId!), chapter.thumb!)
                   : null;
 
-              return FocusableListTile(
+              return AppMenuItemTile<void>(
                 key: index == 0 ? _initialScroll.firstItemKey : null,
-                leading: chapter.thumb != null
-                    ? MediaSelectorThumbnail(
-                        width: 60,
-                        height: 34,
-                        thumbnail: OptimizedMediaImage.thumb(
-                          client: _tryGetClientForChapters(context),
-                          imagePath: chapter.thumb,
-                          localFilePath: localThumbPath,
+                item: AppMenuItem<void>(
+                  value: null,
+                  label: chapter.label,
+                  subtitle: formatDurationTimestamp(chapter.startTime),
+                  selected: isCurrentChapter,
+                  trailing: isCurrentChapter
+                      ? AppIcon(PhosphorIcons.play, color: Theme.of(context).colorScheme.primary)
+                      : null,
+                  leading: chapter.thumb != null
+                      ? MediaSelectorThumbnail(
                           width: 60,
                           height: 34,
-                          fit: BoxFit.cover,
-                          errorWidget: (context, url, error) =>
-                              const AppIcon(PhosphorIcons.image, color: Colors.white54, size: 34),
-                        ),
-                        isCurrent: isCurrentChapter,
-                        borderColor: Theme.of(context).colorScheme.primary,
-                      )
-                    : null,
-                title: Text(
-                  chapter.label,
-                  style: TextStyle(
-                    color: isCurrentChapter ? Theme.of(context).colorScheme.primary : null,
-                    fontWeight: isCurrentChapter ? FontWeight.bold : FontWeight.normal,
-                  ),
+                          thumbnail: OptimizedMediaImage.thumb(
+                            client: _tryGetClientForChapters(context),
+                            imagePath: chapter.thumb,
+                            localFilePath: localThumbPath,
+                            width: 60,
+                            height: 34,
+                            fit: BoxFit.cover,
+                            errorWidget: (context, url, error) =>
+                                const AppIcon(PhosphorIcons.image, color: Colors.white54, size: 34),
+                          ),
+                          isCurrent: isCurrentChapter,
+                          borderColor: Theme.of(context).colorScheme.primary,
+                        )
+                      : null,
                 ),
-                subtitle: Text(
-                  formatDurationTimestamp(chapter.startTime),
-                  style: TextStyle(
-                    color: isCurrentChapter
-                        ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.7)
-                        : tokens(context).textMuted,
-                    fontSize: 12,
-                  ),
-                ),
-                trailing: isCurrentChapter
-                    ? AppIcon(PhosphorIcons.play, color: Theme.of(context).colorScheme.primary)
-                    : null,
-                onTap: widget.canControl ? () => unawaited(_handleChapterTap(chapter.startTime)) : null,
+                onPressed: widget.canControl ? () => unawaited(_handleChapterTap(chapter.startTime)) : null,
               );
             },
           );

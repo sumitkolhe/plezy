@@ -6,8 +6,7 @@ import '../../../mpv/mpv.dart';
 import '../../../services/sleep_timer_service.dart';
 import '../../../utils/formatters.dart';
 import '../../../utils/snackbar_helper.dart';
-import '../../../widgets/app_icon.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../sheets/sheet_column_header.dart';
 import 'sleep_timer_active_status.dart';
@@ -98,11 +97,14 @@ class _SleepTimerEventColumn extends StatelessWidget {
         Expanded(
           child: ListView(
             children: [
-              FocusableListTile(
-                leading: AppIcon(PhosphorIcons.hourglass, color: Theme.of(context).colorScheme.onSurfaceVariant),
-                title: Text(label),
-                selected: sleepTimer.isEndOfVideoMode,
-                onTap: () {
+              AppMenuItemTile<void>(
+                item: AppMenuItem<void>(
+                  value: null,
+                  icon: PhosphorIcons.hourglass,
+                  label: label,
+                  selected: sleepTimer.isEndOfVideoMode,
+                ),
+                onPressed: () {
                   sleepTimer.armEndOfVideo(() {
                     // Pause playback when the current video ends
                     player.pause();
@@ -155,11 +157,14 @@ class _SleepTimerDurationColumn extends StatelessWidget {
                 abbreviated: false, // Use full format for better readability
               );
 
-              return FocusableListTile(
-                leading: AppIcon(PhosphorIcons.timer, color: Theme.of(context).colorScheme.onSurfaceVariant),
-                title: Text(label),
-                selected: minutes == activeMinutes,
-                onTap: () {
+              return AppMenuItemTile<void>(
+                item: AppMenuItem<void>(
+                  value: null,
+                  icon: PhosphorIcons.timer,
+                  label: label,
+                  selected: minutes == activeMinutes,
+                ),
+                onPressed: () {
                   sleepTimer.startTimer(Duration(minutes: minutes), () {
                     // Pause playback when timer completes
                     player.pause();

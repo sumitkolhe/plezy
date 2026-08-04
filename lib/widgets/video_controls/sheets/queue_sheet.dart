@@ -13,7 +13,7 @@ import '../../../services/settings_service.dart';
 import '../../../theme/mono_tokens.dart';
 import '../../../utils/provider_extensions.dart';
 import '../../../utils/scroll_utils.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../../../widgets/settings_builder.dart';
 import '../widgets/media_selector_thumbnail.dart';
@@ -68,29 +68,17 @@ class _QueueSheetState extends State<QueueSheet> {
                 final isCurrent = playbackState.playQueueItemIdFor(item) == currentItemID;
 
                 final primaryColor = Theme.of(context).colorScheme.primary;
-                return FocusableListTile(
+                return AppMenuItemTile<void>(
                   key: index == 0 ? _initialScroll.firstItemKey : null,
-                  leading: _buildThumbnail(context, item, isCurrent, hideSpoilers: hideSpoilers),
-                  title: Text(
-                    item.title ?? '',
-                    style: TextStyle(
-                      color: isCurrent ? primaryColor : null,
-                      fontWeight: isCurrent ? FontWeight.bold : FontWeight.normal,
-                    ),
-                    maxLines: 1,
-                    overflow: .ellipsis,
+                  item: AppMenuItem<void>(
+                    value: null,
+                    label: item.title ?? '',
+                    subtitle: formatQueueItemSubtitle(item),
+                    selected: isCurrent,
+                    leading: _buildThumbnail(context, item, isCurrent, hideSpoilers: hideSpoilers),
+                    trailing: isCurrent ? AppIcon(PhosphorIcons.play, color: primaryColor) : null,
                   ),
-                  subtitle: Text(
-                    formatQueueItemSubtitle(item),
-                    style: TextStyle(
-                      color: isCurrent ? primaryColor.withValues(alpha: 0.7) : tokens(context).textMuted,
-                      fontSize: 12,
-                    ),
-                    maxLines: 1,
-                    overflow: .ellipsis,
-                  ),
-                  trailing: isCurrent ? AppIcon(PhosphorIcons.play, color: primaryColor) : null,
-                  onTap: () {
+                  onPressed: () {
                     widget.onItemSelected(item);
                     OverlaySheetController.of(context).close();
                   },

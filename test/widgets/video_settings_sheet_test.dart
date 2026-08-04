@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/mpv/models.dart';
 import 'package:harbor/mpv/player/player.dart';
@@ -120,7 +121,7 @@ void main() {
     await _pumpSheet(tester, player: player, supportsHdrControl: true);
     await tester.scrollUntilVisible(find.text('HDR'), 500, scrollable: find.byType(Scrollable).first);
 
-    final tile = find.ancestor(of: find.text('HDR'), matching: find.byType(ListTile)).first;
+    final tile = find.ancestor(of: find.text('HDR'), matching: find.byType(AppMenuItemTile<void>)).first;
     final toggle = find.descendant(of: tile, matching: find.byType(Switch));
     expect(tester.widget<Switch>(toggle).value, isTrue);
 
@@ -150,7 +151,7 @@ void main() {
     await _pumpSheet(tester, player: player, supportsHdrControl: true);
     await tester.scrollUntilVisible(find.text('HDR'), 500, scrollable: find.byType(Scrollable).first);
 
-    final tile = find.ancestor(of: find.text('HDR'), matching: find.byType(ListTile)).first;
+    final tile = find.ancestor(of: find.text('HDR'), matching: find.byType(AppMenuItemTile<void>)).first;
     final toggle = find.descendant(of: tile, matching: find.byType(Switch));
     await tester.tap(toggle);
     await tester.pumpAndSettle();

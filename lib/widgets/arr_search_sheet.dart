@@ -126,7 +126,7 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
         BottomSheetHeader(title: t.arrSearch.title),
         Flexible(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
             child: Column(
               crossAxisAlignment: .stretch,
               children: [

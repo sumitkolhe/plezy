@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/widgets/app_icon.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
 import '../../../i18n/strings.g.dart';
-import '../../../theme/mono_tokens.dart';
 import '../../../utils/track_label_builder.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 
 class TrackSelectionHelper {
   static Widget buildOffTile({
@@ -82,39 +79,24 @@ class TrackSelectionHelper {
     VoidCallback? onSecondaryTap,
     Widget? badge,
   }) {
-    final primaryColor = Theme.of(context).colorScheme.primary;
-    Widget? trailing;
-    if (badge != null) {
-      trailing = badge;
-    } else if (isSelected) {
-      trailing = AppIcon(PhosphorIcons.check, color: primaryColor);
-    }
-
-    Widget tile = FocusableListTile(
+    // A selected row draws its own check, and clips its own label, so the badge
+    // is the only trailing this has to supply.
+    Widget tile = AppMenuItemTile<void>(
       key: key,
       focusNode: focusNode,
-      selected: isSelected,
-      title: Text(
-        label,
-        style: TextStyle(color: isSelected ? primaryColor : null),
-        maxLines: 1,
-        overflow: .ellipsis,
+      item: AppMenuItem<void>(
+        value: null,
+        label: label,
+        subtitle: secondaryLabel,
+        selected: isSelected,
+        trailing: badge,
       ),
-      subtitle: secondaryLabel == null
-          ? null
-          : Text(
-              secondaryLabel,
-              style: TextStyle(
-                color: isSelected ? primaryColor.withValues(alpha: 0.7) : tokens(context).textMuted,
-                fontSize: 12,
-              ),
-              maxLines: 1,
-              overflow: .ellipsis,
-            ),
-      trailing: trailing,
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onPressed: onTap,
     );
+
+    if (onLongPress != null) {
+      tile = GestureDetector(onLongPress: onLongPress, child: tile);
+    }
 
     if (onSecondaryTap != null) {
       tile = GestureDetector(onSecondaryTap: onSecondaryTap, child: tile);

@@ -28,7 +28,7 @@ import '../../../utils/quality_preset_labels.dart';
 import '../../../utils/latest_async_write.dart';
 import '../../../utils/snackbar_helper.dart';
 import '../../../theme/mono_tokens.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../models/track_controls_state.dart';
 import '../widgets/sync_offset_control.dart';
@@ -76,18 +76,21 @@ class _SettingsMenuItem extends StatelessWidget {
       overflow: allowValueOverflow ? TextOverflow.ellipsis : null,
     );
 
-    return FocusableListTile(
-      leading: AppIcon(icon, color: isHighlighted ? Colors.amber : t.textMuted),
-      title: Text(title),
-      trailing: Row(
-        mainAxisSize: .min,
-        children: [
-          if (allowValueOverflow) Flexible(child: valueWidget) else valueWidget,
-          const SizedBox(width: 8),
-          AppIcon(PhosphorIcons.caretRight, color: t.textMuted),
-        ],
+    return AppMenuItemTile<void>(
+      item: AppMenuItem<void>(
+        value: null,
+        leading: AppIcon(icon, color: isHighlighted ? Colors.amber : t.textMuted),
+        child: Text(title),
+        trailing: Row(
+          mainAxisSize: .min,
+          children: [
+            if (allowValueOverflow) Flexible(child: valueWidget) else valueWidget,
+            const SizedBox(width: 8),
+            AppIcon(PhosphorIcons.caretRight, color: t.textMuted),
+          ],
+        ),
       ),
-      onTap: onTap,
+      onPressed: onTap,
     );
   }
 }
@@ -169,11 +172,18 @@ class _SettingsToggleItemState extends State<_SettingsToggleItem> {
       builder: (context, value, _) {
         final displayedValue = _pendingValue ?? value;
         final isPending = _pendingValue != null;
-        return FocusableListTile(
-          leading: AppIcon(widget.icon, color: displayedValue ? Colors.amber : tokens(context).textMuted),
-          title: Text(widget.title),
-          trailing: Switch(value: displayedValue, onChanged: isPending ? null : _write, activeThumbColor: Colors.amber),
-          onTap: isPending ? null : () => _write(!displayedValue),
+        return AppMenuItemTile<void>(
+          item: AppMenuItem<void>(
+            value: null,
+            leading: AppIcon(widget.icon, color: displayedValue ? Colors.amber : tokens(context).textMuted),
+            child: Text(widget.title),
+            trailing: Switch(
+              value: displayedValue,
+              onChanged: isPending ? null : _write,
+              activeThumbColor: Colors.amber,
+            ),
+          ),
+          onPressed: isPending ? null : () => _write(!displayedValue),
         );
       },
     );
@@ -229,10 +239,13 @@ class _AudioRenderingModeItemState extends State<_AudioRenderingModeItem> {
       _ => t.videoSettings.audioOutputStereo,
     };
     final highlighted = mode.isDolbyAtmos || mode.isDolbyAudio;
-    return FocusableListTile(
-      leading: AppIcon(PhosphorIcons.waveform, color: highlighted ? Colors.amber : tokens(context).textMuted),
-      title: Text(t.videoSettings.audioOutput),
-      trailing: Text(label, style: TextStyle(color: tokens(context).textMuted)),
+    return AppMenuItemTile<void>(
+      item: AppMenuItem<void>(
+        value: null,
+        leading: AppIcon(PhosphorIcons.waveform, color: highlighted ? Colors.amber : tokens(context).textMuted),
+        child: Text(t.videoSettings.audioOutput),
+        trailing: Text(label, style: TextStyle(color: tokens(context).textMuted)),
+      ),
     );
   }
 }
@@ -669,21 +682,24 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           ),
 
         if (_state.onToggleAmbientLighting != null)
-          FocusableListTile(
-            leading: AppIcon(
-              PhosphorIcons.drop,
-              color: _state.isAmbientLightingEnabled ? Colors.amber : tokens(context).textMuted,
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              leading: AppIcon(
+                PhosphorIcons.drop,
+                color: _state.isAmbientLightingEnabled ? Colors.amber : tokens(context).textMuted,
+              ),
+              child: Text(t.videoControls.ambientLighting),
+              trailing: Switch(
+                value: _state.isAmbientLightingEnabled,
+                onChanged: (_) {
+                  _state.onToggleAmbientLighting?.call();
+                  OverlaySheetController.of(context).close();
+                },
+                activeThumbColor: Colors.amber,
+              ),
             ),
-            title: Text(t.videoControls.ambientLighting),
-            trailing: Switch(
-              value: _state.isAmbientLightingEnabled,
-              onChanged: (_) {
-                _state.onToggleAmbientLighting?.call();
-                OverlaySheetController.of(context).close();
-              },
-              activeThumbColor: Colors.amber,
-            ),
-            onTap: () {
+            onPressed: () {
               _state.onToggleAmbientLighting?.call();
               OverlaySheetController.of(context).close();
             },
@@ -706,20 +722,26 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
         // Debug: Trigger MPV Fallback (Android ExoPlayer only)
         if (kDebugMode && Platform.isAndroid && widget.player.playerType == 'exoplayer')
-          FocusableListTile(
-            leading: AppIcon(PhosphorIcons.arrowsLeftRight, color: tokens(context).textMuted),
-            title: const Text('Trigger MPV Fallback'),
-            onTap: () {
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              leading: AppIcon(PhosphorIcons.arrowsLeftRight, color: tokens(context).textMuted),
+              child: const Text('Trigger MPV Fallback'),
+            ),
+            onPressed: () {
               const MethodChannel('co.sumit.harbor/exo_player').invokeMethod('triggerFallback');
               OverlaySheetController.of(context).close();
             },
           ),
 
         if (kDebugMode)
-          FocusableListTile(
-            leading: AppIcon(PhosphorIcons.bug, color: tokens(context).textMuted),
-            title: const Text('Simulate HTTP 500 from server'),
-            onTap: () {
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              leading: AppIcon(PhosphorIcons.bug, color: tokens(context).textMuted),
+              child: const Text('Simulate HTTP 500 from server'),
+            ),
+            onPressed: () {
               final player = widget.player;
               OverlaySheetController.of(context).close();
               if (player is PlayerBase) {
@@ -747,11 +769,14 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     return ListView(
       children: [
         for (final mode in modes)
-          FocusableListTile(
-            title: Text(mode.title, style: TextStyle(color: _dvConversionMode == mode.value ? primary : null)),
-            subtitle: Text(mode.subtitle, style: TextStyle(color: tokens(context).textMuted, fontSize: 12)),
-            trailing: _dvConversionMode == mode.value ? AppIcon(PhosphorIcons.check, color: primary) : null,
-            onTap: () => _setDebugDvConversionMode(mode.value),
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              child: Text(mode.title, style: TextStyle(color: _dvConversionMode == mode.value ? primary : null)),
+              subtitleWidget: Text(mode.subtitle, style: TextStyle(color: tokens(context).textMuted, fontSize: 12)),
+              trailing: _dvConversionMode == mode.value ? AppIcon(PhosphorIcons.check, color: primary) : null,
+            ),
+            onPressed: () => _setDebugDvConversionMode(mode.value),
           ),
       ],
     );
@@ -792,10 +817,13 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             final label = formatPlaybackRate(speed, normalAtOne: true);
 
             final primary = Theme.of(context).colorScheme.primary;
-            return FocusableListTile(
-              title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-              trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
-              onTap: () async {
+            return AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                child: Text(label, style: TextStyle(color: isSelected ? primary : null)),
+                trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
+              ),
+              onPressed: () async {
                 await widget.player.setRate(speed);
                 await SettingsService.instance.write(SettingsService.defaultPlaybackSpeed, speed);
                 if (context.mounted) {
@@ -815,19 +843,25 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
 
     return ListView(
       children: [
-        FocusableListTile(
-          leading: AppIcon(PhosphorIcons.arrowCounterClockwise, color: tokens(context).textMuted),
-          title: Text(t.common.reset),
-          onTap: _resetZoomScale,
+        AppMenuItemTile<void>(
+          item: AppMenuItem<void>(
+            value: null,
+            leading: AppIcon(PhosphorIcons.arrowCounterClockwise, color: tokens(context).textMuted),
+            child: Text(t.common.reset),
+          ),
+          onPressed: _resetZoomScale,
         ),
         for (final scale in zoomPresets)
-          FocusableListTile(
-            title: Text(
-              _formatZoomScale(scale),
-              style: TextStyle(color: (_zoomScale - scale).abs() < 0.005 ? primary : null),
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
+              child: Text(
+                _formatZoomScale(scale),
+                style: TextStyle(color: (_zoomScale - scale).abs() < 0.005 ? primary : null),
+              ),
+              trailing: (_zoomScale - scale).abs() < 0.005 ? AppIcon(PhosphorIcons.check, color: primary) : null,
             ),
-            trailing: (_zoomScale - scale).abs() < 0.005 ? AppIcon(PhosphorIcons.check, color: primary) : null,
-            onTap: () => _setZoomScale(scale),
+            onPressed: () => _setZoomScale(scale),
           ),
       ],
     );
@@ -945,10 +979,13 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
     final label = device.description.isEmpty ? device.name : device.description;
 
     final primary = Theme.of(context).colorScheme.primary;
-    return FocusableListTile(
-      title: Text(label, style: TextStyle(color: isSelected ? primary : null)),
-      trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
-      onTap: () {
+    return AppMenuItemTile<void>(
+      item: AppMenuItem<void>(
+        value: null,
+        child: Text(label, style: TextStyle(color: isSelected ? primary : null)),
+        trailing: isSelected ? AppIcon(PhosphorIcons.check, color: primary) : null,
+      ),
+      onPressed: () {
         widget.player.setAudioDevice(device);
         OverlaySheetController.of(context).close();
       },
@@ -967,10 +1004,13 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           itemCount: presets.length + 1,
           itemBuilder: (context, index) {
             if (index == presets.length) {
-              return FocusableListTile(
-                leading: AppIcon(PhosphorIcons.plus, color: tokens(context).textMuted),
-                title: Text(t.shaders.importShader),
-                onTap: () => _importCustomShader(shaderProvider),
+              return AppMenuItemTile<void>(
+                item: AppMenuItem<void>(
+                  value: null,
+                  leading: AppIcon(PhosphorIcons.plus, color: tokens(context).textMuted),
+                  child: Text(t.shaders.importShader),
+                ),
+                onPressed: () => _importCustomShader(shaderProvider),
               );
             }
 
@@ -979,25 +1019,31 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             final isCustom = preset.type == ShaderPresetType.custom;
             final presetName = preset.id == ShaderPreset.none.id ? t.common.off : preset.name;
 
-            return FocusableListTile(
-              title: Text(presetName, style: TextStyle(color: isSelected ? Colors.amber : null)),
-              subtitle: _getShaderSubtitle(preset) != null
-                  ? Text(_getShaderSubtitle(preset)!, style: TextStyle(color: tokens(context).textMuted, fontSize: 12))
-                  : null,
-              trailing: Row(
-                mainAxisSize: .min,
-                children: [
-                  if (isSelected) const AppIcon(PhosphorIcons.check, color: Colors.amber),
-                  if (isCustom) ...[
-                    if (isSelected) const SizedBox(width: 8),
-                    GestureDetector(
-                      onTap: () => _deleteCustomShader(shaderProvider, preset),
-                      child: AppIcon(PhosphorIcons.trash, color: tokens(context).textMuted, size: 20),
-                    ),
+            return AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                child: Text(presetName, style: TextStyle(color: isSelected ? Colors.amber : null)),
+                subtitleWidget: _getShaderSubtitle(preset) != null
+                    ? Text(
+                        _getShaderSubtitle(preset)!,
+                        style: TextStyle(color: tokens(context).textMuted, fontSize: 12),
+                      )
+                    : null,
+                trailing: Row(
+                  mainAxisSize: .min,
+                  children: [
+                    if (isSelected) const AppIcon(PhosphorIcons.check, color: Colors.amber),
+                    if (isCustom) ...[
+                      if (isSelected) const SizedBox(width: 8),
+                      GestureDetector(
+                        onTap: () => _deleteCustomShader(shaderProvider, preset),
+                        child: AppIcon(PhosphorIcons.trash, color: tokens(context).textMuted, size: 20),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
-              onTap: () async {
+              onPressed: () async {
                 if (preset.type != ShaderPresetType.none && _state.isAmbientLightingEnabled) {
                   _state.onToggleAmbientLighting?.call();
                 }

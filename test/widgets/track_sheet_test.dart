@@ -4,6 +4,7 @@ import 'dart:ui' show Tristate;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_source_info.dart';
 import 'package:harbor/mpv/mpv.dart';
@@ -412,8 +413,8 @@ void main() {
       expect(find.text('Tamil'), findsOneWidget);
       expect(find.text('Dolby Digital Plus 5.1 with Atmos · E-AC3 · 5.1'), findsOneWidget);
 
-      final englishTile = find.ancestor(of: find.text('English'), matching: find.byType(ListTile));
-      final tamilTile = find.ancestor(of: find.text('Tamil'), matching: find.byType(ListTile));
+      final englishTile = find.ancestor(of: find.text('English'), matching: find.byType(AppMenuItemTile<void>));
+      final tamilTile = find.ancestor(of: find.text('Tamil'), matching: find.byType(AppMenuItemTile<void>));
       expect(tester.getSemantics(englishTile).getSemanticsData().flagsCollection.isSelected, Tristate.isTrue);
       expect(tester.getSemantics(tamilTile).getSemanticsData().flagsCollection.isSelected, Tristate.isFalse);
     });

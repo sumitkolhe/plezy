@@ -6,7 +6,7 @@ import '../../../i18n/strings.g.dart';
 import '../../../media/media_version.dart';
 import '../../../models/transcode_quality_preset.dart';
 import '../../../utils/quality_preset_labels.dart';
-import '../../../widgets/focusable_list_tile.dart';
+import '../../../widgets/app_menu.dart';
 import '../../../widgets/overlay_sheet.dart';
 import 'sheet_selection_column.dart';
 
@@ -235,11 +235,14 @@ class _SelectionTile extends StatelessWidget {
           )
         : null;
 
-    return FocusableListTile(
-      title: Text(label, style: TextStyle(color: titleColor)),
-      trailing: trailing,
-      enabled: enabled,
-      onTap: onTap,
+    return AppMenuItemTile<void>(
+      item: AppMenuItem<void>(
+        value: null,
+        child: Text(label, style: TextStyle(color: titleColor)),
+        trailing: trailing,
+        enabled: enabled,
+      ),
+      onPressed: onTap,
     );
   }
 }

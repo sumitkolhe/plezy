@@ -510,8 +510,10 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                     child: Row(
                       children: [
                         if (leading != null) ...[
-                          SizedBox(
-                            width: 24,
+                          // A minimum rather than a fixed width: an icon lands on
+                          // the shared inset, a thumbnail keeps its own size.
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(minWidth: 24),
                             child: IconTheme.merge(
                               data: IconThemeData(color: foreground),
                               child: leading,
