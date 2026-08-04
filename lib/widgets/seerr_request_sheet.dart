@@ -18,7 +18,9 @@ import '../services/seerr/seerr_constants.dart';
 import '../services/seerr/seerr_exceptions.dart';
 import '../utils/app_logger.dart';
 import '../utils/snackbar_helper.dart';
+import '../theme/mono_tokens.dart';
 import 'app_icon.dart';
+import 'bottom_sheet_header.dart';
 import 'app_menu.dart';
 import 'loading_indicator_box.dart';
 import 'focusable_list_tile.dart';
@@ -369,61 +371,73 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(t.seerr.request, style: theme.textTheme.titleLarge),
-          const SizedBox(height: 2),
-          Text(
-            widget.title,
-            style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.7)),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 12),
-          if (_loading)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 32),
-              child: Center(child: LoadingIndicatorBox()),
-            )
-          else if (_loadFailed)
-            _buildLoadError(theme)
-          else ...[
-            if (_nothingToRequest)
-              _buildNothingToRequest(theme)
-            else ...[
-              if (!_isMovie && _partialSeasons) ..._buildSeasonSection(theme),
-              if (_can4k)
-                FocusableSwitchListTile(
-                  value: _is4k,
-                  onChanged: _submitting ? null : _toggle4k,
-                  title: Text(t.seerr.request4k),
-                  secondary: const AppIcon(PhosphorIcons.fourK),
-                  contentPadding: EdgeInsets.zero,
+    final tokensRef = tokens(context);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        BottomSheetHeader(title: t.seerr.request, showBorder: false),
+        Flexible(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  widget.title,
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: tokensRef.text, height: 1.3),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
-              if (_errorText case final String error) ...[
-                const SizedBox(height: 8),
-                Text(error, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.error)),
+                const SizedBox(height: 16),
+                if (_loading)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 32),
+                    child: Center(child: LoadingIndicatorBox()),
+                  )
+                else if (_loadFailed)
+                  _buildLoadError(theme)
+                else ...[
+                  if (_nothingToRequest)
+                    _buildNothingToRequest(theme)
+                  else ...[
+                    if (!_isMovie && _partialSeasons) ..._buildSeasonSection(theme),
+                    if (_can4k)
+                      FocusableSwitchListTile(
+                        value: _is4k,
+                        onChanged: _submitting ? null : _toggle4k,
+                        title: Text(t.seerr.request4k),
+                        secondary: const AppIcon(PhosphorIcons.fourK),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
+                    if (_errorText case final String error) ...[
+                      const SizedBox(height: 10),
+                      Text(error, style: TextStyle(fontSize: 13, color: theme.colorScheme.error, height: 1.4)),
+                    ],
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      height: 48,
+                      child: FocusableButton(
+                        focusNode: _requestButtonFocusNode,
+                        useBackgroundFocus: true,
+                        onPressed: _canSubmit ? _submit : null,
+                        child: FilledButton.icon(
+                          onPressed: _canSubmit ? _submit : null,
+                          icon: _submitting
+                              ? const LoadingIndicatorBox()
+                              : const AppIcon(PhosphorIcons.paperPlaneTilt, size: 20),
+                          label: Text(t.seerr.request),
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ],
-              const SizedBox(height: 16),
-              FocusableButton(
-                focusNode: _requestButtonFocusNode,
-                useBackgroundFocus: true,
-                onPressed: _canSubmit ? _submit : null,
-                child: FilledButton.icon(
-                  onPressed: _canSubmit ? _submit : null,
-                  icon: _submitting ? const LoadingIndicatorBox() : const AppIcon(PhosphorIcons.download),
-                  label: Text(t.seerr.request),
-                ),
-              ),
-            ],
-          ],
-        ],
-      ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -448,7 +462,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Row(
         children: [
-          AppIcon(PhosphorIcons.check, color: theme.colorScheme.primary),
+          AppIcon(PhosphorIcons.info, color: tokens(context).textMuted),
           const SizedBox(width: 10),
           Expanded(child: Text(label ?? t.seerr.nothingToRequest, style: theme.textTheme.bodyMedium)),
         ],
@@ -461,9 +475,9 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     final allSelected = requestable.isNotEmpty && requestable.every(_selectedSeasons.contains);
     return [
       Text(t.seerr.seasons, style: theme.textTheme.titleSmall),
-      CheckboxListTile(
+      FocusableCheckboxListTile(
         value: allSelected,
-        onChanged: _submitting
+        onChanged: _submitting || requestable.isEmpty
             ? null
             : (checked) => setState(() {
                 if (checked ?? false) {
@@ -487,7 +501,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     final episodeCount = season.episodeCount;
     return FocusableCheckboxListTile(
       focusNode: _seasonFocusNodes[index],
-      value: blockedLabel != null || _selectedSeasons.contains(number),
+      value: _selectedSeasons.contains(number),
       onChanged: blockedLabel != null || _submitting
           ? null
           : (checked) => setState(() {

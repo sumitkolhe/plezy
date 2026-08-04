@@ -126,6 +126,7 @@ class PhosphorIcons {
   static const numberOne = IconData(0xe368, fontFamily: 'PhosphorRegular');
   static const paintBrush = IconData(0xe6f0, fontFamily: 'PhosphorRegular');
   static const paintBucket = IconData(0xe392, fontFamily: 'PhosphorRegular');
+  static const paperPlaneTilt = IconData(0xe398, fontFamily: 'PhosphorRegular');
   static const palette = IconData(0xe6c8, fontFamily: 'PhosphorRegular');
   static const paperclip = IconData(0xe39a, fontFamily: 'PhosphorRegular');
   static const pause = IconData(0xe39e, fontFamily: 'PhosphorRegular');

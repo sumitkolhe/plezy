@@ -8,6 +8,7 @@ import 'package:http/testing.dart';
 import 'package:harbor/focus/focusable_button.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/models/seerr/seerr_session.dart';
 import 'package:harbor/services/catalog/seerr_catalog_source.dart';
 import 'package:harbor/services/seerr/seerr_client.dart';
@@ -65,6 +66,7 @@ Future<void> _pumpSheet(
 }) async {
   await tester.pumpWidget(
     MaterialApp(
+      theme: monoTheme(dark: true),
       home: Builder(
         builder: (context) => Scaffold(
           body: Center(
@@ -149,13 +151,13 @@ void main() {
     expect(find.text('Specials'), findsNothing);
     expect(find.text('Season 1'), findsOneWidget);
     expect(find.text('Season 2'), findsOneWidget);
-    // Season 1 is available on the server: checked, disabled, labeled.
+    // Available on the server: labelled and disabled, but not ticked.
     expect(find.text('Available'), findsOneWidget);
     final season1 = tester.widget<CheckboxListTile>(
       find.ancestor(of: find.text('Season 1'), matching: find.byType(CheckboxListTile)),
     );
     expect(season1.onChanged, isNull);
-    expect(season1.value, isTrue);
+    expect(season1.value, isFalse);
 
     // Nothing selected yet: submit disabled.
     final submitFinder = find.widgetWithText(FilledButton, 'Request');
