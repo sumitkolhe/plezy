@@ -20,19 +20,27 @@ double _rowHeight(WidgetTester tester, String label) =>
     tester.getRect(find.ancestor(of: find.text(label), matching: find.byType(InkWell)).first).height;
 
 void main() {
-  testWidgets('a sheet row clears the 48dp touch target and reaches the list-item height', (tester) async {
-    await _pump(tester, _menu(AppMenuDensity.touch, 'Play'));
+  testWidgets('a sheet row is the same height as the list row it sits beside', (tester) async {
+    await _pump(
+      tester,
+      Column(
+        children: [
+          _menu(AppMenuDensity.touch, 'Play'),
+          const FocusableListTile(listItemMetrics: true, title: Text('List row')),
+        ],
+      ),
+    );
 
-    // 56 pill inside a 1pt margin either side.
-    expect(_rowHeight(tester, 'Play'), 58);
+    final listRow = tester.getRect(find.ancestor(of: find.text('List row'), matching: find.byType(ListTile)).first);
+    expect(_rowHeight(tester, 'Play'), listRow.height);
     expect(_rowHeight(tester, 'Play'), greaterThanOrEqualTo(48));
   });
 
   testWidgets('a pointer row stays denser, since a cursor needs no finger target', (tester) async {
     await _pump(tester, _menu(AppMenuDensity.pointer, 'Play'));
 
-    expect(_rowHeight(tester, 'Play'), 42);
-    expect(_rowHeight(tester, 'Play'), lessThan(58));
+    expect(_rowHeight(tester, 'Play'), 40);
+    expect(_rowHeight(tester, 'Play'), lessThan(56));
   });
 
   testWidgets('a menu row and a list row put their text on the same inset', (tester) async {
@@ -72,6 +80,24 @@ void main() {
 
     expect(roomy.height, 56);
     expect(compact.height, lessThan(roomy.height), reason: 'the default stays dense for scanned lists');
+  });
+
+  testWidgets('a menu sheet titles and opens its list on the same metrics as a picker drawer', (tester) async {
+    await _pump(
+      tester,
+      AppMenuSheet<String>(
+        title: 'Sheet title',
+        entries: [AppMenuItem<String>(value: 'a', label: 'First', icon: PhosphorIcons.play)],
+        onSelected: (_) {},
+      ),
+    );
+
+    final title = tester.getRect(find.text('Sheet title'));
+    final firstRow = tester.getRect(find.ancestor(of: find.text('First'), matching: find.byType(InkWell)).first);
+
+    // What library_quick_picker_sheet uses: a 16dp title inset, 8dp to the list.
+    expect(title.left, 16);
+    expect(firstRow.top - title.bottom, 8);
   });
 
   testWidgets('a switch and a checkbox row match the plain one, so a sheet can mix them', (tester) async {

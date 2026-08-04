@@ -273,7 +273,7 @@ class AppMenuSheet<T> extends StatelessWidget {
       children: [
         if (titleWidget != null || title != null)
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
             child:
                 titleWidget ??
                 Align(
@@ -289,6 +289,7 @@ class AppMenuSheet<T> extends StatelessWidget {
         Flexible(
           child: SingleChildScrollView(
             child: AppMenuList<T>(
+              padding: const EdgeInsets.only(bottom: 8),
               entries: entries,
               focusFirstItem: focusFirstItem,
               onSelected: (value) {
@@ -492,7 +493,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                 focusColor: Colors.transparent,
                 canRequestFocus: false,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
                   child: AnimatedContainer(
                     duration: tokens(context).fast,
                     decoration: BoxDecoration(
@@ -774,7 +775,7 @@ double _estimateMenuHeight<T>(List<AppMenuEntry<T>> entries) {
   for (final entry in entries) {
     switch (entry) {
       case AppMenuItem<T>():
-        height += entry.subtitle != null || entry.subtitleWidget != null ? 54 : 42;
+        height += entry.subtitle != null || entry.subtitleWidget != null ? 52 : 40;
       case AppMenuDivider<T>():
         height += 9;
       case AppMenuHeader<T>():
