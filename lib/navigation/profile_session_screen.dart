@@ -17,6 +17,7 @@ import '../providers/multi_server_provider.dart';
 import '../providers/playback_state_provider.dart';
 import '../providers/managed_services_provider.dart';
 import '../providers/seerr_account_provider.dart';
+import '../providers/server_activity_provider.dart';
 import '../providers/trackers_provider.dart';
 import '../providers/watch_state_store.dart';
 import '../database/app_database.dart';
@@ -169,6 +170,10 @@ class _ProfileSessionScreenState extends State<ProfileSessionScreen> {
                   );
                   return provider;
                 },
+              ),
+              ChangeNotifierProxyProvider<ManagedServicesProvider, ServerActivityProvider>(
+                create: (context) => ServerActivityProvider(context.read<ManagedServicesProvider>()),
+                update: (_, services, previous) => previous ?? ServerActivityProvider(services),
               ),
               ChangeNotifierProxyProvider3<
                 TrackersProvider,

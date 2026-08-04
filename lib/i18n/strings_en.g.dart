@@ -84,6 +84,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$services$en services = Translations$services$en.internal(_root);
 	late final Translations$addServer$en addServer = Translations$addServer$en.internal(_root);
 	late final Translations$managedServices$en managedServices = Translations$managedServices$en.internal(_root);
+	late final Translations$serverActivity$en serverActivity = Translations$serverActivity$en.internal(_root);
 }
 
 // Path: app
@@ -3943,6 +3944,53 @@ class Translations$managedServices$en {
 	String notThisService({required Object service}) => 'That address answered, but not like ${service}. Check the port and any base path.';
 }
 
+// Path: serverActivity
+class Translations$serverActivity$en {
+	Translations$serverActivity$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Server'
+	String get tab => 'Server';
+
+	late final Translations$serverActivity$stages$en stages = Translations$serverActivity$stages$en.internal(_root);
+
+	/// en: 'Stalled'
+	String get stalled => 'Stalled';
+
+	/// en: 'Paused'
+	String get paused => 'Paused';
+
+	/// en: 'Completed'
+	String get completedHeading => 'Completed';
+
+	/// en: 'Nothing downloading'
+	String get nothingQueued => 'Nothing downloading';
+
+	/// en: 'When Radarr or Sonarr grabs something, it shows up here.'
+	String get nothingQueuedDescription => 'When Radarr or Sonarr grabs something, it shows up here.';
+
+	/// en: 'No media servers connected'
+	String get noServices => 'No media servers connected';
+
+	/// en: 'Add Radarr, Sonarr or your download client to watch what is arriving.'
+	String get noServicesDescription => 'Add Radarr, Sonarr or your download client to watch what is arriving.';
+
+	/// en: 'Add a service'
+	String get openServices => 'Add a service';
+
+	/// en: 'Could not reach ${names}'
+	String unreachable({required Object names}) => 'Could not reach ${names}';
+
+	/// en: '${time} left'
+	String etaRemaining({required Object time}) => '${time} left';
+
+	/// en: '${done} of ${total}'
+	String ofSize({required Object done, required Object total}) => '${done} of ${total}';
+}
+
 // Path: hotkeys.actions
 class Translations$hotkeys$actions$en {
 	Translations$hotkeys$actions$en.internal(this._root);
@@ -4907,6 +4955,30 @@ class Translations$managedServices$kindHints$en {
 
 	/// en: 'Download client'
 	String get qbittorrent => 'Download client';
+}
+
+// Path: serverActivity.stages
+class Translations$serverActivity$stages$en {
+	Translations$serverActivity$stages$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Queued'
+	String get queued => 'Queued';
+
+	/// en: 'Downloading'
+	String get downloading => 'Downloading';
+
+	/// en: 'Importing'
+	String get importing => 'Importing';
+
+	/// en: 'Available'
+	String get done => 'Available';
+
+	/// en: 'Failed'
+	String get failed => 'Failed';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -6311,6 +6383,23 @@ extension on Translations {
 			'managedServices.loginRejected' => 'That username and password were refused.',
 			'managedServices.notReachable' => ({required Object address}) => 'Could not reach ${address}.',
 			'managedServices.notThisService' => ({required Object service}) => 'That address answered, but not like ${service}. Check the port and any base path.',
+			'serverActivity.tab' => 'Server',
+			'serverActivity.stages.queued' => 'Queued',
+			'serverActivity.stages.downloading' => 'Downloading',
+			'serverActivity.stages.importing' => 'Importing',
+			'serverActivity.stages.done' => 'Available',
+			'serverActivity.stages.failed' => 'Failed',
+			'serverActivity.stalled' => 'Stalled',
+			'serverActivity.paused' => 'Paused',
+			'serverActivity.completedHeading' => 'Completed',
+			'serverActivity.nothingQueued' => 'Nothing downloading',
+			'serverActivity.nothingQueuedDescription' => 'When Radarr or Sonarr grabs something, it shows up here.',
+			'serverActivity.noServices' => 'No media servers connected',
+			'serverActivity.noServicesDescription' => 'Add Radarr, Sonarr or your download client to watch what is arriving.',
+			'serverActivity.openServices' => 'Add a service',
+			'serverActivity.unreachable' => ({required Object names}) => 'Could not reach ${names}',
+			'serverActivity.etaRemaining' => ({required Object time}) => '${time} left',
+			'serverActivity.ofSize' => ({required Object done, required Object total}) => '${done} of ${total}',
 			_ => null,
 		};
 	}

@@ -16,7 +16,9 @@ import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/models/download_models.dart';
 import 'package:harbor/navigation/main_screen_scope.dart';
 import 'package:harbor/providers/download_provider.dart';
+import 'package:harbor/providers/managed_services_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/providers/server_activity_provider.dart';
 import 'package:harbor/screens/downloads/downloads_screen.dart';
 import 'package:harbor/services/download_manager_service.dart';
 import 'package:harbor/services/download_storage_service.dart';
@@ -92,14 +94,15 @@ void main() {
     }
   });
 
-  testWidgets('right from the last tab (Music) focuses and opens Sync Rules action', (tester) async {
+  testWidgets('right from the last tab focuses and opens Sync Rules action', (tester) async {
     final screenKey = GlobalKey<DownloadsScreenState>();
 
     await _pumpScreen(tester, db, downloadProvider, multiServerProvider, screenKey: screenKey);
 
     final state = screenKey.currentState!;
-    state.tabController.index = 3;
-    state.getTabChipFocusNode(3).requestFocus();
+    final last = state.tabCount - 1;
+    state.tabController.index = last;
+    state.getTabChipFocusNode(last).requestFocus();
     await tester.pumpAndSettle();
 
     await tester.sendKeyEvent(LogicalKeyboardKey.arrowRight);
@@ -328,6 +331,13 @@ Future<void> _pumpScreen(
           ChangeNotifierProvider<DownloadProvider>.value(value: downloadProvider),
           ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
           ChangeNotifierProvider<MusicPlaybackService>(create: (_) => StubMusicPlaybackService()),
+          // The Server tab reads both; with none connected it renders its
+          // "add a service" state rather than polling.
+          ChangeNotifierProvider<ManagedServicesProvider>(create: (_) => ManagedServicesProvider()),
+          ChangeNotifierProxyProvider<ManagedServicesProvider, ServerActivityProvider>(
+            create: (context) => ServerActivityProvider(context.read<ManagedServicesProvider>()),
+            update: (_, services, previous) => previous ?? ServerActivityProvider(services),
+          ),
         ],
         child: MaterialApp(
           theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.macOS),

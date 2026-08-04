@@ -1540,5 +1540,26 @@
     "loginRejected": "That username and password were refused.",
     "notReachable": "Could not reach ${address}.",
     "notThisService": "That address answered, but not like ${service}. Check the port and any base path."
+  },
+  "serverActivity": {
+    "tab": "Server",
+    "stages": {
+      "queued": "Queued",
+      "downloading": "Downloading",
+      "importing": "Importing",
+      "done": "Available",
+      "failed": "Failed"
+    },
+    "stalled": "Stalled",
+    "paused": "Paused",
+    "completedHeading": "Completed",
+    "nothingQueued": "Nothing downloading",
+    "nothingQueuedDescription": "When Radarr or Sonarr grabs something, it shows up here.",
+    "noServices": "No media servers connected",
+    "noServicesDescription": "Add Radarr, Sonarr or your download client to watch what is arriving.",
+    "openServices": "Add a service",
+    "unreachable": "Could not reach ${names}",
+    "etaRemaining": "${time} left",
+    "ofSize": "${done} of ${total}"
   }
 }

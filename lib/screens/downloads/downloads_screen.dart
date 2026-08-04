@@ -31,6 +31,7 @@ import '../../widgets/download_tree_view.dart';
 import '../main_screen.dart';
 import '../libraries/state_messages.dart';
 import '../../i18n/strings.g.dart';
+import 'server_activity_tab.dart';
 import 'sync_rules_screen.dart';
 
 class DownloadsScreen extends StatefulWidget {
@@ -46,6 +47,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
   final _tvShowsTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_tv_shows');
   final _moviesTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_movies');
   final _musicTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_music');
+  final _serverTabChipFocusNode = FocusNode(debugLabel: 'tab_chip_server');
   final _actionBarKey = GlobalKey<FocusableActionBarState>();
 
   @override
@@ -54,6 +56,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
     _tvShowsTabChipFocusNode,
     _moviesTabChipFocusNode,
     _musicTabChipFocusNode,
+    _serverTabChipFocusNode,
   ];
 
   @override
@@ -69,6 +72,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
     _tvShowsTabChipFocusNode.dispose();
     _moviesTabChipFocusNode.dispose();
     _musicTabChipFocusNode.dispose();
+    _serverTabChipFocusNode.dispose();
     disposeTabNavigation();
     super.dispose();
   }
@@ -125,6 +129,8 @@ class DownloadsScreenState extends State<DownloadsScreen>
           _buildTabChip(t.downloads.movies, 2),
           const SizedBox(width: 8),
           _buildTabChip(t.downloads.music, 3),
+          const SizedBox(width: 8),
+          _buildTabChip(t.serverActivity.tab, 4),
         ],
       );
     }
@@ -192,6 +198,8 @@ class DownloadsScreenState extends State<DownloadsScreen>
                           _buildTabChip(t.downloads.movies, 2),
                           const SizedBox(width: 8),
                           _buildTabChip(t.downloads.music, 3),
+                          const SizedBox(width: 8),
+                          _buildTabChip(t.serverActivity.tab, 4),
                         ],
                       ),
                     ),
@@ -248,6 +256,7 @@ class DownloadsScreenState extends State<DownloadsScreen>
                         onBack: focusTabBar,
                       ),
                       _DownloadedMusicContent(suppressAutoFocus: suppressAutoFocus, onBack: focusTabBar),
+                      const ServerActivityTab(),
                     ],
                   ),
                 ),
