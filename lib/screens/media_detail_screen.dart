@@ -1808,7 +1808,10 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   bool get _hasInfoRows {
     final metadata = _fullMetadata ?? _metadata;
-    return metadata.studio != null || metadata.directors?.isNotEmpty == true || _infoGenres(metadata).isNotEmpty;
+    return metadata.studio != null ||
+        metadata.directors?.isNotEmpty == true ||
+        _infoGenres(metadata).isNotEmpty ||
+        _serverInfoRows(metadata).isNotEmpty;
   }
 
   List<String> _infoGenres(MediaItem metadata) =>
