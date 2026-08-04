@@ -143,7 +143,6 @@ class FolderTreeViewState extends State<FolderTreeView> {
       return;
     }
 
-    // Already loaded and cached
     if (_childrenCache.containsKey(folderIdentity)) {
       setState(() {
         _expandedFolders.add(folderIdentity);

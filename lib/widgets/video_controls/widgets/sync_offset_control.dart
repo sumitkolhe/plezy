@@ -57,7 +57,6 @@ class SyncOffsetControl extends StatefulWidget {
 final Expando<LatestAsyncWrite<String>> _syncOffsetWrites = Expando<LatestAsyncWrite<String>>();
 
 class _SyncOffsetControlState extends State<SyncOffsetControl> {
-  // Range constants
   static const double _sliderMin = -60_000; // ±60s for slider
   static const double _sliderMax = 60_000;
   static const double _absoluteMin = -60_000; // ±60s absolute limit
@@ -354,17 +353,14 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
           const SizedBox(height: 8),
           Text(_getDescriptionText(), style: TextStyle(color: tokens(context).textMuted, fontSize: 16)),
           const SizedBox(height: 48),
-          // Slider with +/- buttons
           Row(
             children: [
-              // Decrement button
               _buildStepButton(
                 icon: PhosphorIcons.minus,
                 onTap: _decrementOffset,
                 onLongPressStart: _startLongPressDecrement,
               ),
               const SizedBox(width: 12),
-              // Slider section
               Text(
                 t.videoControls.minusTime(amount: "60", unit: "s"),
                 style: TextStyle(color: tokens(context).textMuted),
@@ -395,7 +391,6 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
                 style: TextStyle(color: tokens(context).textMuted),
               ),
               const SizedBox(width: 12),
-              // Increment button
               _buildStepButton(
                 icon: PhosphorIcons.plus,
                 onTap: _incrementOffset,
@@ -404,7 +399,6 @@ class _SyncOffsetControlState extends State<SyncOffsetControl> {
             ],
           ),
           const SizedBox(height: 24),
-          // Reset button
           FocusableButton(
             onPressed: _currentOffset != 0 ? _resetOffset : null,
             useBackgroundFocus: true,

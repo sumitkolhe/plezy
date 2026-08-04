@@ -86,7 +86,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
       widget.backgroundWorkDiagnosticsService ?? BackgroundWorkDiagnosticsService.instance;
   late final FocusMemoryTracker _focusTracker;
 
-  // Focus tracking keys
   static const _kDonate = 'donate';
   static const _kAppearance = 'appearance';
   static const _kPlayback = 'playback';

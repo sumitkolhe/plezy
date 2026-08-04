@@ -204,7 +204,6 @@ class DownloadsScreenState extends State<DownloadsScreen>
                       ),
                     ),
                   ),
-                // Tab content
                 Expanded(
                   child: TabBarView(
                     controller: tabController,

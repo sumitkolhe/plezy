@@ -191,7 +191,6 @@ class ContentStateBuilder<T> extends StatelessWidget {
       );
     }
 
-    // Empty state
     if (items.isEmpty) {
       return EmptyStateWidget(message: emptyMessage, icon: emptyIcon);
     }

@@ -292,7 +292,6 @@ class _FocusableWrapperState extends State<FocusableWrapper> with SingleTickerPr
       _bindFocusNode();
     }
 
-    // Update canRequestFocus
     if (widget.canRequestFocus != oldWidget.canRequestFocus) {
       _focusNode.canRequestFocus = widget.canRequestFocus;
     }
@@ -324,7 +323,6 @@ class _FocusableWrapperState extends State<FocusableWrapper> with SingleTickerPr
         _selectLongPress.reset();
       }
 
-      // Animate scale
       if (hasFocus) {
         _ensureAnimationController().forward();
       } else {
@@ -335,7 +333,6 @@ class _FocusableWrapperState extends State<FocusableWrapper> with SingleTickerPr
         _scrollIntoView();
       }
 
-      // Notify listener
       widget.onFocusChange?.call(hasFocus);
     }
   }

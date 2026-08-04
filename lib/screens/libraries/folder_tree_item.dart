@@ -279,7 +279,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
             ),
             const SizedBox(width: 8),
           ],
-          // Thumbnail with progress overlay
           SizedBox(
             width: thumbWidth,
             height: thumbHeight,
@@ -303,7 +302,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
 
           const SizedBox(width: 12),
 
-          // Metadata column
           Expanded(
             child: Column(
               crossAxisAlignment: .start,
@@ -439,7 +437,6 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
 
     return Row(
       children: [
-        // Main item row
         Expanded(
           child: FocusableWrapper(
             focusNode: widget.focusNode,

@@ -831,7 +831,6 @@ class DownloadProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       return null;
     }
 
-    // Calculate aggregate statistics
     int completedCount = 0;
     int downloadingCount = 0;
     int queuedCount = 0;

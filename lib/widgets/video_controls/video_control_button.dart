@@ -62,7 +62,6 @@ class VideoControlButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Determine the effective color: explicit color > active amber > default white
     final effectiveColor = color ?? (isActive ? Colors.amber : Colors.white);
 
     final button = IconButton(

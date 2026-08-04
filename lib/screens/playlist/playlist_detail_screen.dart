@@ -163,7 +163,6 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
 
   void _notifyFocusChanged() => _focusRevision.value++;
 
-  // Move mode state
   int? _movingIndex;
   int? _originalIndex;
   List<MediaItem>? _originalOrder;
@@ -591,7 +590,6 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
         return KeyEventResult.handled;
       }
     } else {
-      // Navigation mode
       if (key.isUpKey) {
         if (_focusedIndex > 0) {
           _focusedIndex--;
@@ -624,7 +622,6 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
           _notifyFocusChanged();
           return KeyEventResult.handled;
         } else if (_focusedColumn == 2) {
-          // Go back to content
           _focusedColumn = 0;
           _notifyFocusChanged();
           return KeyEventResult.handled;
@@ -648,7 +645,6 @@ class _PlaylistDetailScreenState extends BaseMediaListDetailScreen<PlaylistDetai
         if (_focusedColumn == 0) {
           _playFromItem(_focusedIndex);
         } else if (_focusedColumn == 1 && _canMutatePlaylist) {
-          // Enter move mode
           setState(() {
             _movingIndex = _focusedIndex;
             _originalIndex = _focusedIndex;

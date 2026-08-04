@@ -291,7 +291,6 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
   Alignment _alignment = Alignment.bottomCenter;
   double? _sheetHorizontalAnchor;
 
-  // Drag-to-dismiss state
   double _dragOffset = 0;
   bool _isDragging = false;
   final _sheetKey = GlobalKey();
@@ -535,7 +534,6 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
       child: Stack(
         children: [
           widget.child,
-          // Barrier + sheet only when open
           if (_isOpen) ...[
             Positioned.fill(
               // The barrier swallows every pointer event behind it, so the

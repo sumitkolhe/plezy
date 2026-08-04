@@ -560,7 +560,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             onTap: () => _navigateTo(_SettingsView.versionQuality),
           ),
 
-        // Sleep Timer
         ListenableBuilder(
           listenable: sleepTimer,
           builder: (context, _) {
@@ -575,7 +574,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           },
         ),
 
-        // Audio Sync
         _SettingsMenuItem(
           icon: PhosphorIcons.arrowsClockwise,
           title: t.videoSettings.audioSync,
@@ -584,7 +582,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           onTap: () => _navigateTo(_SettingsView.audioSync),
         ),
 
-        // Subtitle Sync
         _SettingsMenuItem(
           icon: PhosphorIcons.subtitles,
           title: t.videoSettings.subtitleSync,
@@ -593,7 +590,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           onTap: () => _navigateTo(_SettingsView.subtitleSync),
         ),
 
-        // HDR Toggle
         if (_supportsHdrControl)
           _SettingsToggleItem(
             pref: SettingsService.enableHDR,
@@ -643,7 +639,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         // "not Dolby" when the system reports notApplicable.
         if (PlatformDetector.isAppleTV()) _AudioRenderingModeItem(player: widget.player),
 
-        // Audio Normalization
         _SettingsToggleItem(
           pref: SettingsService.audioNormalization,
           icon: PhosphorIcons.waveform,
@@ -651,7 +646,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           onAfterWrite: widget.player.setAudioNormalization,
         ),
 
-        // Stereo Downmix
         _SettingsToggleItem(
           pref: SettingsService.audioDownmix,
           icon: PhosphorIcons.headphones,
@@ -663,7 +657,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
           ),
         ),
 
-        // Shader Preset (MPV only)
         if (_state.shaderService != null && _state.shaderService!.isSupported)
           _SettingsMenuItem(
             icon: PhosphorIcons.magicWand,
@@ -675,7 +668,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             onTap: () => _navigateTo(_SettingsView.shader),
           ),
 
-        // Ambient Lighting (MPV only)
         if (_state.onToggleAmbientLighting != null)
           FocusableListTile(
             leading: AppIcon(
@@ -697,7 +689,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
             },
           ),
 
-        // Performance Overlay Toggle
         _SettingsToggleItem(
           pref: SettingsService.showPerformanceOverlay,
           icon: PhosphorIcons.chartLine,
@@ -972,7 +963,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         final currentPreset = _state.shaderService!.currentPreset;
         final presets = shaderProvider.allPresets;
 
-        // +1 for the import button at the end
         return ListView.builder(
           itemCount: presets.length + 1,
           itemBuilder: (context, index) {
@@ -1008,7 +998,6 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
                 ],
               ),
               onTap: () async {
-                // Disable ambient lighting when selecting a shader
                 if (preset.type != ShaderPresetType.none && _state.isAmbientLightingEnabled) {
                   _state.onToggleAmbientLighting?.call();
                 }

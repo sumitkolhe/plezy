@@ -572,7 +572,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     clipBehavior: Clip.none,
                     children: [
                       _buildBottomControlsContent(context, hasFrame: true),
-                      // Down arrow hint when strip content is available
                       if (widget.useDpadNavigation && _hasStripContent) const ContentStripHint(PhosphorIcons.caretDown),
                     ],
                   ),
@@ -658,7 +657,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
             skipTraversal: true,
             child: Row(
               children: [
-                // Previous item
                 Opacity(
                   opacity: _canControl ? 1.0 : 0.5,
                   child: _buildFocusableButton(
@@ -670,7 +668,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     semanticLabel: t.videoControls.previousButton,
                   ),
                 ),
-                // Previous chapter
                 StreamBuilder<Duration>(
                   stream: widget.player.streams.position,
                   initialData: widget.player.state.position,
@@ -690,7 +687,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     );
                   },
                 ),
-                // Skip backward
                 Opacity(
                   opacity: _canControl ? 1.0 : 0.5,
                   child: _buildFocusableButton(
@@ -701,7 +697,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     semanticLabel: t.videoControls.seekBackwardButton(seconds: widget.seekTimeSmall),
                   ),
                 ),
-                // Play/Pause
                 Opacity(
                   opacity: _canControl ? 1.0 : 0.5,
                   child: PlayPauseStreamBuilder(
@@ -718,7 +713,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     },
                   ),
                 ),
-                // Skip forward
                 Opacity(
                   opacity: _canControl ? 1.0 : 0.5,
                   child: _buildFocusableButton(
@@ -750,7 +744,6 @@ class DesktopVideoControlsState extends State<DesktopVideoControls> {
                     );
                   },
                 ),
-                // Next item
                 Opacity(
                   opacity: _canControl ? 1.0 : 0.5,
                   child: _buildFocusableButton(

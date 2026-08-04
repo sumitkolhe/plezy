@@ -1144,7 +1144,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   void _selectLibrary(String libraryGlobalKey) {
     _selectedLibraryGlobalKey = libraryGlobalKey;
     _selectTab(NavigationTabId.libraries);
-    // Tell LibrariesScreen to load this library after tab switch
     _onScreen<LibraryLoadable>(NavigationTabId.libraries, (screen) => screen.loadLibraryByKey(libraryGlobalKey));
     _onScreen<FocusableTab>(NavigationTabId.libraries, (screen) => screen.focusActiveTabIfReady());
   }
@@ -1494,7 +1493,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
             key: _bottomBarKey,
             mainAxisSize: .min,
             children: [
-              // Reconnect bar when offline
               if (_isOffline)
                 Material(
                   color: Theme.of(context).colorScheme.surfaceContainerHighest,

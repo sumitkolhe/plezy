@@ -16,7 +16,6 @@ class UpdateService {
   static const String _keySkippedVersion = 'update_skipped_version';
   static const String _keyLastCheckTime = 'update_last_check_time';
 
-  // Check cooldown: 6 hours
   static const Duration _checkCooldown = Duration(hours: 6);
 
   /// Check if update checking is enabled via build flag
@@ -156,7 +155,6 @@ class UpdateService {
       final newParts = _parseVersionParts(newVersion);
       final currentParts = _parseVersionParts(currentVersion);
 
-      // Compare each part
       final maxLength = newParts.length > currentParts.length ? newParts.length : currentParts.length;
 
       for (int i = 0; i < maxLength; i++) {

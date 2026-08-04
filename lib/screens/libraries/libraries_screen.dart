@@ -125,7 +125,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     super.initState();
     initTabNavigation();
 
-    // Initialize with libraries from the provider
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _initializeWithLibraries();
@@ -141,7 +140,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final allLibraries = librariesProvider.libraries;
 
     if (allLibraries.isEmpty) {
-      // No libraries available yet
       return;
     }
 
@@ -149,7 +147,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final hiddenKeys = hiddenLibrariesProvider.hiddenLibraryKeys;
     final visibleLibraries = allLibraries.where((lib) => !hiddenKeys.contains(lib.globalKey)).toList();
 
-    // Load saved preferences
     final storage = await StorageService.getInstance();
     final savedLibraryKey = storage.getSelectedLibraryKey();
 
@@ -352,7 +349,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     }
     disposeTabNavigation();
 
-    // Build new
     _visibleTabs = newTabs;
     _tabFocusNodes = List.generate(newTabs.length, (i) => FocusNode(debugLabel: 'tab_chip_${newTabs[i].name}'));
     initTabNavigation();
@@ -510,7 +506,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   // Public method to refresh content (for normal navigation)
   @override
   void refresh() {
-    // Reinitialize with current libraries
     _initializeWithLibraries();
   }
 
@@ -623,7 +618,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       );
     }
 
-    // On mobile, show the dropdown
     return _buildLibraryDropdownTitle(visibleLibraries, groupByServer: groupByServer);
   }
 
@@ -711,7 +705,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final hiddenLibrariesProvider = context.watch<HiddenLibrariesProvider>();
     final hiddenKeys = hiddenLibrariesProvider.hiddenLibraryKeys;
 
-    // Compute visible libraries (filtered from all libraries)
     final visibleLibraries = allLibraries.where((lib) => !hiddenKeys.contains(lib.globalKey)).toList();
 
     // Resolve selected library defensively — may be null if server temporarily dropped during refresh

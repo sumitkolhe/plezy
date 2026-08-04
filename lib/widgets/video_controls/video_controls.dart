@@ -543,10 +543,8 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   bool get _clickVideoTogglesPlayback => _settings.read(SettingsService.clickVideoTogglesPlayback);
   bool get _showChapterMarkersOnTimeline => _settings.read(SettingsService.showChapterMarkersOnTimeline);
 
-  // GlobalKey to access DesktopVideoControls state for focus management
   final GlobalKey<DesktopVideoControlsState> _desktopControlsKey = GlobalKey<DesktopVideoControlsState>();
 
-  // Double-tap feedback state
   bool _showDoubleTapFeedback = false;
   double _doubleTapFeedbackOpacity = 0.0;
   bool _lastDoubleTapWasForward = true;
@@ -631,7 +629,6 @@ class _PlayerControlsState extends State<PlayerControls> with SettingsEffectMixi
   // doesn't flash a second notice as the rate snaps back.
   DateTime? _suppressRateToastUntil;
 
-  // PiP support
   bool _isPipSupported = false;
   final PipService _pipService = PipService();
   AppLifecycleListener? _edgeAdjustmentLifecycleListener;

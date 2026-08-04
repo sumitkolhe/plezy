@@ -198,7 +198,6 @@ class _HubDetailScreenState extends State<HubDetailScreen>
     setState(() {
       _filteredItems = List.from(_items);
 
-      // Apply sorting
       if (_selectedSort != null) {
         final sortKey = _selectedSort!.key;
         _filteredItems.sort((a, b) {

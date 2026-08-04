@@ -22,8 +22,7 @@ import '../focus/focus_theme.dart';
 ///
 /// Stack this above the content (with `IgnorePointer` built in so taps pass
 /// through). Animates with [FocusTheme.getAnimationDuration], so the full
-/// tier fades and the reduced tier snaps, matching the [AnimatedOpacity]
-/// behavior it replaces.
+/// tier fades and the reduced tier snaps.
 class AnimatedDimScrim extends StatelessWidget {
   const AnimatedDimScrim({
     super.key,

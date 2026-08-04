@@ -127,7 +127,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
     final Map<String, List<MapEntry<String, DownloadProgress>>> albumGroups = {};
     final List<DownloadTreeNode> movies = [];
 
-    // Group downloads
     for (final entry in widget.downloads.entries) {
       final globalKey = entry.key;
       final download = entry.value;
@@ -136,7 +135,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
       if (meta == null) continue;
 
       if (meta.isEpisode) {
-        // Group episodes by show
         final showKey = meta.grandparentId ?? 'unknown';
         showGroups.putIfAbsent(showKey, () => []);
         showGroups[showKey]!.add(entry);
@@ -161,7 +159,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
       }
     }
 
-    // Build show nodes
     final List<DownloadTreeNode> shows = [];
     for (final showEntry in showGroups.entries) {
       final showKey = showEntry.key;
@@ -172,7 +169,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
       final firstEpisode = widget.metadata[episodes.first.key];
       final showTitle = firstEpisode?.grandparentTitle ?? 'Unknown Show';
 
-      // Group episodes by season
       final Map<String, List<MapEntry<String, DownloadProgress>>> seasonGroups = {};
       for (final episode in episodes) {
         final meta = widget.metadata[episode.key];
@@ -183,7 +179,6 @@ class _DownloadTreeViewState extends State<DownloadTreeView> {
         seasonGroups[seasonKey]!.add(episode);
       }
 
-      // Build season nodes
       final List<DownloadTreeNode> seasons = [];
       for (final seasonEntry in seasonGroups.entries) {
         final seasonKey = seasonEntry.key;
@@ -672,7 +667,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
               children: [
                 Expanded(child: _buildRowContent(theme, canExpand)),
 
-                // Action buttons
                 if (actions.isNotEmpty)
                   Row(
                     mainAxisSize: .min,
@@ -689,7 +683,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
   Widget _buildRowContent(ThemeData theme, bool canExpand) {
     return Row(
       children: [
-        // Expand/collapse icon
         if (canExpand)
           AppIcon(widget.isExpanded ? PhosphorIcons.caretDown : PhosphorIcons.caretRight, size: 20)
         else
@@ -701,7 +694,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
         const SizedBox(width: 12),
 
-        // Title and info
         Expanded(
           child: Column(
             crossAxisAlignment: .start,
@@ -742,7 +734,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
                 ],
               ],
 
-              // Queued label
               if (_effectiveStatus == DownloadStatus.queued) ...[
                 const SizedBox(height: 4),
                 Text(
@@ -786,7 +777,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
     final actions = <_RowAction>[];
 
     if (isContainer) {
-      // Pause all button
       if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onPause != null) {
         actions.add((
           icon: PhosphorIcons.pause,
@@ -795,7 +785,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
         ));
       }
 
-      // Resume all button
       if (status == DownloadStatus.paused && widget.onResume != null) {
         actions.add((
           icon: PhosphorIcons.play,
@@ -804,7 +793,6 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
         ));
       }
 
-      // Delete all button
       if (widget.onDelete != null) {
         actions.add((
           icon: PhosphorIcons.trash,

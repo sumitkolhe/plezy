@@ -263,7 +263,6 @@ class LibrariesProvider extends ChangeNotifier with DisposableChangeNotifierMixi
     _libraries = List.from(orderedLibraries);
     safeNotifyListeners();
 
-    // Save the new order
     var storage = _storageService;
     if (storage == null) {
       storage = await StorageService.getInstance();

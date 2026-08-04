@@ -52,7 +52,6 @@ class FocusableMediaCard extends StatefulWidget {
   final FocusNode? focusNode;
 
   /// Called when the user presses UP and there's no focusable item above.
-  /// Used to navigate from the top row to filter chips.
   final VoidCallback? onNavigateUp;
 
   /// Called when the user presses DOWN and there's no focusable item below.
@@ -61,19 +60,15 @@ class FocusableMediaCard extends StatefulWidget {
   final VoidCallback? onNavigateDown;
 
   /// Called when the user presses LEFT and there's no focusable item to the left.
-  /// Used to navigate from the first column to the sidebar.
   final VoidCallback? onNavigateLeft;
 
   /// Called when the user presses RIGHT and there's no focusable item to the right.
-  /// Used to navigate from the last column to the alpha jump bar.
   final VoidCallback? onNavigateRight;
 
   /// Called when the user presses BACK.
-  /// Used to navigate from tab content to tab bar.
   final VoidCallback? onBack;
 
   /// Called when focus changes.
-  /// Used to track which grid item was last focused.
   final ValueChanged<bool>? onFocusChange;
 
   const FocusableMediaCard({

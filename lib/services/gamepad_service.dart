@@ -194,7 +194,6 @@ class GamepadService {
     _tabNavigationHandlers.clear();
   }
 
-  // Deadzone for analog sticks (0.0 to 1.0)
   static const double _stickDeadzone = 0.5;
 
   // Auto-repeat timing for held directional inputs (D-pad / stick)
@@ -406,7 +405,6 @@ class GamepadService {
         case GamepadButton.x:
           _logGamepadDiag('button simulates key down context/menu ${_describeGamepadButton(event)}');
           _simulateKeyDown(LogicalKeyboardKey.gameButtonX);
-        // Immediate actions on press
         case GamepadButton.b:
           _logGamepadDiag('button simulates key press back ${_describeGamepadButton(event)}');
           _simulateKeyPress(LogicalKeyboardKey.gameButtonB);

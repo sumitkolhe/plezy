@@ -259,7 +259,6 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
       final library = _tempLibraries.removeAt(oldIndex);
       _tempLibraries.insert(newIndex, library);
     });
-    // Apply immediately
     widget.onReorder(_tempLibraries);
   }
 
@@ -388,7 +387,6 @@ class _LibraryManagementSheetState extends State<_LibraryManagementSheet>
       tileColor = colorScheme.surfaceContainerHighest;
     }
 
-    // Button focus states
     final isVisibilityButtonFocused = isFocused && focusedColumn == 1;
     final isOptionsButtonFocused = isFocused && focusedColumn == 2;
 

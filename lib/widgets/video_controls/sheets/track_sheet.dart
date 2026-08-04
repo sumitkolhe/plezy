@@ -414,7 +414,6 @@ class _SubtitleColumn extends StatelessWidget {
           onLongPress: supportsSecondary
               ? () {
                   if (isSecondary) {
-                    // Already secondary — clear it
                     player.selectSecondarySubtitleTrack(SubtitleTrack.off);
                     trackControlsState.onSecondarySubtitleTrackChanged?.call(SubtitleTrack.off);
                   } else if (!isPrimary) {

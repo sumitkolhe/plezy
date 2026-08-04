@@ -29,7 +29,6 @@ class AlphaJumpHelper {
   AlphaJumpHelper._(this.letters, this.letterToIndex, this.letterSizes, this.totalItemCount);
 
   factory AlphaJumpHelper(List<LibraryFirstCharacter> firstCharacters, {bool descending = false}) {
-    // Collect characters with their sizes.
     final entries = <({String letter, int size})>[];
     final letterSizes = <String, int>{};
 

@@ -53,14 +53,12 @@ class _AlphaScrollHandleState extends State<AlphaScrollHandle> with SingleTicker
   static const _hideDuration = Duration(milliseconds: 200);
   static const _autoHideDelay = Duration(seconds: 2);
 
-  // Handle dimensions
   static const double _handleWidth = 6.0;
   static const double _handleHeight = 44.0;
   static const double _touchTargetWidth = 44.0;
   static const double _touchTargetVerticalPadding = 20.0;
   static const double _handleRadius = 3.0;
 
-  // Bubble dimensions
   static const double _bubbleSize = 56.0;
   static const double _bubbleFontSize = 24.0;
   static const double _bubbleMarginRight = 8.0;

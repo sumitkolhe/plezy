@@ -333,7 +333,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   final GlobalKey _watchlistButtonKey = GlobalKey();
   bool _watchlistMutationInFlight = false;
 
-  // Inline season tabs
   int _selectedSeasonIndex = 0;
   final _seasonEpisodePager = _SeasonEpisodePager();
   List<FocusNode> _seasonTabFocusNodes = [];
@@ -1173,7 +1172,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
       if (_metadata.isShow) {
         _loadSeasonsFromDownloads();
-        // Get offline OnDeck episode
         unawaited(_loadOfflineOnDeckEpisode());
       } else if (_metadata.isSeason) {
         _seasons = [_metadata];
@@ -1209,7 +1207,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
       if (!mounted) return;
 
-      // Preserve serverId from original metadata
       final serverId = _metadata.serverId;
       final serverName = _metadata.serverName;
       final source = metadata ?? _metadata;
@@ -1350,7 +1347,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     final downloadProvider = context.read<DownloadProvider>();
     final episodes = downloadProvider.getDownloadedEpisodesForShow(_metadata.id);
 
-    // Group episodes by season
     final Map<int, List<MediaItem>> seasonMap = {};
     for (final episode in episodes) {
       final seasonNum = episode.parentIndex ?? 0;
@@ -2191,7 +2187,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
     if (!event.isActionable) return KeyEventResult.ignored;
 
-    // LEFT: previous extra
     if (key.isLeftKey) {
       if (_focusedExtraIndex > 0) {
         _focusedExtraIndex--;
@@ -2206,7 +2201,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
       return KeyEventResult.handled;
     }
 
-    // RIGHT: next extra
     if (key.isRightKey) {
       if (_focusedExtraIndex < _extras!.length - 1) {
         _focusedExtraIndex++;
@@ -2919,7 +2913,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                         child: SizedBox(height: headerHeight, child: _buildHeroHeader(context, metadata)),
                       ),
 
-                      // Main content
                       SliverToBoxAdapter(
                         child: Padding(
                           // Reduced top inset keeps the Overview/first section
@@ -3043,7 +3036,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
-                              // Cast
                               if (metadata.roles != null && metadata.roles!.isNotEmpty) ...[
                                 KeyedSubtree(
                                   key: _castSectionKey,
@@ -3057,7 +3049,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
-                              // Trailers & Extras Section
                               if (!widget.isOffline && _extras != null && _extras!.isNotEmpty) ...[
                                 KeyedSubtree(
                                   key: _extrasSectionKey,
@@ -4028,7 +4019,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                   },
                 ),
 
-                // Gradient overlay
                 Builder(
                   builder: (context) {
                     final bgColor = Theme.of(context).scaffoldBackgroundColor;

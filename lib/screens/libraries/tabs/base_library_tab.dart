@@ -69,20 +69,17 @@ abstract class BaseLibraryTabState<T, W extends BaseLibraryTab<T>> extends State
     loadItems();
   }
 
-  // State management
   List<T> _items = [];
   bool _isLoading = false;
   String? _errorMessage;
   StreamSubscription<void>? _refreshSubscription;
   int _loadGeneration = 0;
 
-  // Focus management
   bool _hasLoadedData = false;
   @protected
   bool hasFocused = false;
   bool _hasFocusedChromeFallback = false;
 
-  // Getters for subclasses
   List<T> get items => _items;
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
@@ -140,7 +137,6 @@ abstract class BaseLibraryTabState<T, W extends BaseLibraryTab<T>> extends State
   @override
   void didUpdateWidget(W oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // Reload if library changed
     if (oldWidget.library.globalKey != widget.library.globalKey) {
       invalidateLibraryLoad();
       // Reset focus state for new library

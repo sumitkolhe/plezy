@@ -24,9 +24,8 @@ import '../utils/focus_utils.dart';
 import 'libraries/state_messages.dart';
 import 'main_screen.dart';
 
-/// Opens search as a route. It used to be a bottom tab; as a route it gets an
-/// automatic back button from [DesktopSliverAppBar] and starts from a clean
-/// query each time.
+/// Opens search as a route: [DesktopSliverAppBar] then supplies the back
+/// button, and each open starts from a clean query.
 Future<void> openSearchScreen(BuildContext context) {
   return Navigator.of(context).push(MaterialPageRoute(builder: (_) => const SearchScreen()));
 }

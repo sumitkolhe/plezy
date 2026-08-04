@@ -538,7 +538,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         _selectedFilters = Map.from(savedFilters);
         _selectedGrouping = restoredGrouping;
 
-        // Restore sort
         if (savedSort != null) {
           final sortKey = savedSort['key'] as String?;
           if (sortKey != null) {
@@ -642,7 +641,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       }
     }
 
-    // Add sort
     if (_selectedSort != null) {
       filterParams['sort'] = _selectedSort!.getSortKey(descending: _isSortDescending);
     }
@@ -996,7 +994,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     });
     _notifyFiltersActive();
 
-    // Save filters to storage
     final storage = await StorageService.getInstance();
     await storage.saveLibraryFilters(filters, sectionId: widget.library.globalKey);
 
@@ -1138,7 +1135,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           break;
         }
       }
-      // Then search forwards
       if (found == null) {
         for (var i = targetIndex + 1; i < totalSize; i++) {
           if (loadedItems.containsKey(i)) {
@@ -1510,8 +1506,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       ),
     );
 
-    // Folders mode previously had its own RefreshIndicator inside FolderTreeView;
-    // it now lives at this level since FolderTreeView is a sliver.
+    // At this level rather than inside FolderTreeView, which is a sliver.
     if (isFolders) {
       scrollView = RefreshIndicator(
         onRefresh: () async {
@@ -1655,7 +1650,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       child: Row(
         mainAxisSize: .min,
         children: [
-          // Grouping chip
           FocusableFilterChip(
             focusNode: _groupingChipFocusNode,
             icon: PhosphorIcons.squaresFour,

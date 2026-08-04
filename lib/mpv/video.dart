@@ -97,7 +97,6 @@ class _VideoState extends State<Video> {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // Video rendering area
           _buildVideoSurface(),
 
           if (widget.controls != null) widget.controls!(context),

@@ -637,7 +637,6 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
         final progress = downloadProvider.getProgress(globalKey);
         final isQueueing = downloadProvider.isQueueing(globalKey);
 
-        // Debug logging
         if (progress != null) {
           appLogger.d('UI rebuilding for $globalKey: status=${progress.status}, progress=${progress.progress}%');
         }

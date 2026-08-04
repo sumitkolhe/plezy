@@ -181,7 +181,6 @@ class PlayerAndroid extends PlayerBase {
     setSeekable(false);
 
     try {
-      // Show the video layer
       await setVisible(true);
 
       await invoke('open', {

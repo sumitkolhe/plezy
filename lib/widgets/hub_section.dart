@@ -323,7 +323,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
       return KeyEventResult.handled;
     }
 
-    // Context menu key: show context menu
     if (key.isContextMenuKey) {
       _showContextMenuForCurrentItem();
       return KeyEventResult.handled;

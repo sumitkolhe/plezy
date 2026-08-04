@@ -775,11 +775,9 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         loadingShown = true;
       }
 
-      // Fetch file info
       final item = _mediaItem!;
       final fileInfo = await client.getFileInfo(item);
 
-      // Close loading indicator
       if (loadingShown && context.mounted) {
         Navigator.pop(context);
         loadingShown = false;

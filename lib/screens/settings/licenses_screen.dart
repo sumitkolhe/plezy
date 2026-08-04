@@ -115,7 +115,6 @@ class _LicenseDetailScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
-              // Package info card
               if (mergedLicense.allPackageNames.length > 1)
                 Card(
                   child: Padding(
@@ -135,7 +134,6 @@ class _LicenseDetailScreen extends StatelessWidget {
                 ),
               if (mergedLicense.allPackageNames.length > 1) const SizedBox(height: 16),
 
-              // License cards
               ...licenseEntries.asMap().entries.map((entry) {
                 final index = entry.key;
                 final license = entry.value;

@@ -146,7 +146,6 @@ mixin DpadReorderListMixin<E, W extends StatefulWidget> on State<W> {
         return KeyEventResult.handled;
       }
     } else {
-      // Navigation mode
       if (key.isUpKey && focusedIndex > 0) {
         setState(() {
           focusedIndex--;
@@ -173,7 +172,6 @@ mixin DpadReorderListMixin<E, W extends StatefulWidget> on State<W> {
       }
       if (key.isSelectKey) {
         if (focusedColumn == 0) {
-          // Enter move mode
           setState(() {
             movingIndex = focusedIndex;
             _originalIndex = focusedIndex;

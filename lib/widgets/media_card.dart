@@ -187,7 +187,6 @@ String mediaCardSemanticLabel(Object item) {
   // Play-state on an artist is noise — no watched suffix.
   if (item.kind == MediaKind.artist) return baseLabel;
 
-  // Add watched status
   final hasActiveProgress =
       item.viewOffsetMs != null &&
       item.durationMs != null &&
@@ -617,7 +616,6 @@ class MediaCardState extends State<MediaCard> with ContextMenuTapMixin<MediaCard
             mainAxisSize: .min,
             crossAxisAlignment: .start,
             children: [
-              // Poster with overlay
               if (posterHeight != null)
                 SizedBox(width: double.infinity, height: posterHeight, child: poster)
               else

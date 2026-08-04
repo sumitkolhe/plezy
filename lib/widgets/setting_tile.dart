@@ -10,8 +10,6 @@ import 'focusable_list_tile.dart';
 import 'settings_section.dart';
 
 /// Reactive setting tiles bound to a [Pref] via [SettingsService.listenable].
-/// Eliminates the field-mirror + setState + manual reload pattern that used to
-/// surround every settings row.
 
 /// Shared commit path for every tile: persist [value] under [pref], then hand
 /// it to the tile's optional [onAfterWrite] callback.

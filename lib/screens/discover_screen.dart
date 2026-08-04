@@ -94,7 +94,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
   bool _initialLoadComplete = false;
   bool _pendingTvBrowseRailFocus = false;
 
-  // Hub navigation keys
   GlobalKey<HubSectionState>? _continueWatchingHubKey;
   final Map<String, GlobalKey<HubSectionState>> _hubKeysByIdentity = {};
   List<GlobalKey<HubSectionState>> _orderedHubKeys = const [];
@@ -938,7 +937,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                   child: Row(
                     mainAxisAlignment: .center,
                     children: [
-                      // Pause/Play button
                       ClickableCursor(
                         child: GestureDetector(
                           onTap: () {
@@ -1045,7 +1043,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
 
     final contentTypeLabel = heroItem.isMovie ? t.discover.movie : t.discover.tvShow;
 
-    // Spoiler protection
     final hideSpoilers = SettingsService.instance.read(SettingsService.hideSpoilers);
     final shouldHideSpoiler = hideSpoilers && heroItem.shouldHideSpoiler;
 
@@ -1137,7 +1134,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 ),
               ),
 
-              // Content with responsive alignment
               Positioned(
                 bottom: isTv
                     ? 88
@@ -1312,7 +1308,6 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                     AppIcon(PhosphorIcons.play, size: isTv ? 28 : 20, color: foregroundColor),
                     SizedBox(width: isTv ? 12 : 8),
                     if (hasProgress) ...[
-                      // Progress bar
                       Container(
                         width: isTv ? 56 : 40,
                         height: isTv ? 8 : 6,

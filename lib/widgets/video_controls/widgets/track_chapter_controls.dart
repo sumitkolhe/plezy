@@ -286,7 +286,6 @@ class TrackChapterControls extends StatelessWidget {
           buttonIndex++;
         }
 
-        // Picture-in-Picture mode
         if (state.onTogglePIPMode != null) {
           final currentIndex = buttonIndex;
           buttons.add(
@@ -303,7 +302,6 @@ class TrackChapterControls extends StatelessWidget {
           buttonIndex++;
         }
 
-        // BoxFit mode button
         if (state.onCycleBoxFitMode != null) {
           final currentIndex = buttonIndex;
           buttons.add(

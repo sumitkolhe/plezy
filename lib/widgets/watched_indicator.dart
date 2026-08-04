@@ -89,7 +89,6 @@ class WatchedIndicator extends StatelessWidget {
 
     return Stack(
       children: [
-        // Watched checkmark
         if (item.isWatched && !hasActiveProgress)
           Positioned(
             top: size.checkInset,

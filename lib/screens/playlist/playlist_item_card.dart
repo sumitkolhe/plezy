@@ -125,18 +125,15 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
                     ),
                   ),
 
-                // Poster thumbnail
                 _buildPosterImage(context, item),
 
                 const SizedBox(width: 12),
 
-                // Title and metadata
                 Expanded(
                   child: Column(
                     crossAxisAlignment: .start,
                     mainAxisSize: .min,
                     children: [
-                      // Title
                       Text(
                         item.displayTitle,
                         style: const TextStyle(fontSize: 15, fontWeight: .w500),
@@ -164,7 +161,6 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
 
                 const SizedBox(width: 8),
 
-                // Remove button
                 Container(
                   decoration: isRemoveButtonFocused
                       ? BoxDecoration(
@@ -265,7 +261,6 @@ class _PlaylistItemCardState extends State<PlaylistItemCard> with ContextMenuTap
       if (parts.isNotEmpty) return parts.join(' · ');
     }
 
-    // Default to type
     return kind.name;
   }
 }

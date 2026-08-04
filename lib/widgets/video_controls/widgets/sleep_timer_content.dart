@@ -166,7 +166,6 @@ class _SleepTimerDurationColumn extends StatelessWidget {
                   });
                   OverlaySheetController.closeAdaptive(context);
 
-                  // Show confirmation snackbar
                   showSuccessSnackBar(context, t.messages.sleepTimerSet(label: label));
                 },
               );

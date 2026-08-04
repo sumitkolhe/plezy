@@ -139,7 +139,6 @@ Future<bool> _launchCustom(String value, String url, CustomPlayerType type) asyn
   if (type == CustomPlayerType.urlScheme) {
     return _launchUrlScheme(value, url);
   }
-  // Command type
   return _launchAndroidIntent(url, package: value);
 }
 

@@ -111,7 +111,6 @@ class DownloadStorageService {
       if (!await dir.exists()) {
         await dir.create(recursive: true);
       }
-      // Test write access with a temp file
       final testFile = File(path.join(dir.path, '.write_test_${DateTime.now().millisecondsSinceEpoch}'));
       await testFile.writeAsString('test');
       await testFile.delete();
@@ -412,7 +411,6 @@ class DownloadStorageService {
         addCandidate(await toAbsolutePath(relativePart));
       }
     } else {
-      // Normal relative path.
       addCandidate(await toAbsolutePath(storedPath));
 
       // Recover from nested base-dir fragment without leading slash.
