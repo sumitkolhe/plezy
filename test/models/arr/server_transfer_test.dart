@@ -48,7 +48,7 @@ void main() {
     test('matches a hash across the case difference between the two services', () {
       // qBittorrent lowercases hashes; *arr does not. This is the whole join.
       final transfers = joinTransfers(
-        queued: [(item: _arr(downloadId: 'ABCDEF0123'), sourceName: 'Sonarr')],
+        queued: [(item: _arr(downloadId: 'ABCDEF0123'), sourceName: 'Sonarr', sourceId: 'Sonarr')],
         torrents: [_torrent(hash: 'abcdef0123')],
       );
 
@@ -60,7 +60,7 @@ void main() {
 
     test('keeps a usenet grab that no torrent can match', () {
       final transfers = joinTransfers(
-        queued: [(item: _arr(downloadId: 'SABnzbd_nzo_1a2b', protocol: 'usenet'), sourceName: 'Radarr')],
+        queued: [(item: _arr(downloadId: 'SABnzbd_nzo_1a2b', protocol: 'usenet'), sourceName: 'Radarr', sourceId: 'Radarr')],
         torrents: [_torrent(hash: 'unrelated')],
       );
 
@@ -82,8 +82,8 @@ void main() {
       // one torrent. Both rows are real and must not collapse into one.
       final transfers = joinTransfers(
         queued: [
-          (item: _arr(downloadId: 'AA', title: 'Dune'), sourceName: 'Radarr'),
-          (item: _arr(downloadId: 'AA', title: 'Dune'), sourceName: 'Radarr 4K'),
+          (item: _arr(downloadId: 'AA', title: 'Dune'), sourceName: 'Radarr', sourceId: 'Radarr'),
+          (item: _arr(downloadId: 'AA', title: 'Dune'), sourceName: 'Radarr 4K', sourceId: 'Radarr 4K'),
         ],
         torrents: [_torrent(hash: 'aa')],
       );
@@ -97,7 +97,7 @@ void main() {
 
     test('a queue record with no download id yet does not match every torrent', () {
       final transfers = joinTransfers(
-        queued: [(item: _arr(downloadId: ''), sourceName: 'Sonarr')],
+        queued: [(item: _arr(downloadId: ''), sourceName: 'Sonarr', sourceId: 'Sonarr')],
         torrents: [_torrent(hash: 'abcdef')],
       );
 
@@ -108,10 +108,10 @@ void main() {
     test('orders by stage, then title', () {
       final transfers = joinTransfers(
         queued: [
-          (item: _arr(downloadId: '1', title: 'Zulu', tracked: 'imported'), sourceName: 'Radarr'),
-          (item: _arr(downloadId: '2', title: 'Alpha', tracked: 'importPending'), sourceName: 'Radarr'),
-          (item: _arr(downloadId: '3', title: 'Mike', status: 'queued', tracked: ''), sourceName: 'Radarr'),
-          (item: _arr(downloadId: '4', title: 'Bravo', tracked: 'failed'), sourceName: 'Radarr'),
+          (item: _arr(downloadId: '1', title: 'Zulu', tracked: 'imported'), sourceName: 'Radarr', sourceId: 'Radarr'),
+          (item: _arr(downloadId: '2', title: 'Alpha', tracked: 'importPending'), sourceName: 'Radarr', sourceId: 'Radarr'),
+          (item: _arr(downloadId: '3', title: 'Mike', status: 'queued', tracked: ''), sourceName: 'Radarr', sourceId: 'Radarr'),
+          (item: _arr(downloadId: '4', title: 'Bravo', tracked: 'failed'), sourceName: 'Radarr', sourceId: 'Radarr'),
         ],
         torrents: const [],
       );

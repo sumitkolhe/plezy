@@ -23,6 +23,14 @@ class ArrQueueItem {
   /// this is why an unmatched row is expected rather than a bug.
   final String protocol;
 
+  /// `movieId` in Radarr, `seriesId` in Sonarr. The only thing a detail screen
+  /// can match on — queue titles are release names.
+  final int? mediaId;
+
+  /// Season and episode when Sonarr says which, so a page can name the episode.
+  final int? seasonNumber;
+  final int? episodeNumber;
+
   const ArrQueueItem({
     required this.downloadId,
     required this.title,
@@ -31,6 +39,9 @@ class ArrQueueItem {
     this.sizeLeft = 0,
     this.errorMessage = '',
     this.protocol = '',
+    this.mediaId,
+    this.seasonNumber,
+    this.episodeNumber,
   });
 
   /// *arr reports progress in two independent fields, and which one is
@@ -40,6 +51,7 @@ class ArrQueueItem {
   static ArrQueueItem? fromJson(Map<String, dynamic> json) {
     final title = (json['title'] as String?)?.trim() ?? '';
     if (title.isEmpty) return null;
+    final episode = json['episode'] is Map<String, dynamic> ? json['episode'] as Map<String, dynamic> : null;
     return ArrQueueItem(
       downloadId: (json['downloadId'] as String?)?.trim() ?? '',
       title: title,
@@ -48,6 +60,9 @@ class ArrQueueItem {
       sizeLeft: ((json['sizeleft'] as num?) ?? 0).toInt(),
       errorMessage: (json['errorMessage'] as String?)?.trim() ?? '',
       protocol: (json['protocol'] as String?)?.trim() ?? '',
+      mediaId: ((json['movieId'] ?? json['seriesId']) as num?)?.toInt(),
+      seasonNumber: ((json['seasonNumber'] ?? episode?['seasonNumber']) as num?)?.toInt(),
+      episodeNumber: (episode?['episodeNumber'] as num?)?.toInt(),
     );
   }
 
@@ -132,7 +147,10 @@ class ServerTransfer {
   /// Which instance reported the *arr side, for the "via" line.
   final String sourceName;
 
-  const ServerTransfer({this.queued, this.torrent, this.sourceName = ''});
+  /// Its connection id: one Radarr's movie 41 is not another's.
+  final String sourceId;
+
+  const ServerTransfer({this.queued, this.torrent, this.sourceName = '', this.sourceId = ''});
 
   String get title => queued?.title ?? torrent?.name ?? '';
 
@@ -190,7 +208,7 @@ class ServerTransfer {
 /// because qBittorrent lowercases hashes and *arr does not. A case-sensitive
 /// match splits every torrent into two unrelated rows.
 List<ServerTransfer> joinTransfers({
-  required List<({ArrQueueItem item, String sourceName})> queued,
+  required List<({ArrQueueItem item, String sourceName, String sourceId})> queued,
   required List<ClientTorrent> torrents,
 }) {
   final byHash = {for (final torrent in torrents) torrent.hash.toLowerCase(): torrent};
@@ -201,7 +219,9 @@ List<ServerTransfer> joinTransfers({
     final key = entry.item.downloadId.toLowerCase();
     final torrent = key.isEmpty ? null : byHash[key];
     if (torrent != null) claimed.add(key);
-    transfers.add(ServerTransfer(queued: entry.item, torrent: torrent, sourceName: entry.sourceName));
+    transfers.add(
+      ServerTransfer(queued: entry.item, torrent: torrent, sourceName: entry.sourceName, sourceId: entry.sourceId),
+    );
   }
 
   // Torrents no *arr claimed: added by hand, or grabbed by something Harbor is

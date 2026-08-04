@@ -20,7 +20,7 @@ class ServerActivityService {
   const ServerActivityService(this.services);
 
   Future<ServerActivity> fetch() async {
-    final queued = <({ArrQueueItem item, String sourceName})>[];
+    final queued = <({ArrQueueItem item, String sourceName, String sourceId})>[];
     final torrents = <ClientTorrent>[];
     final unreachable = <String>[];
 
@@ -42,7 +42,9 @@ class ServerActivityService {
     return (transfers: joinTransfers(queued: queued, torrents: torrents), unreachable: unreachable);
   }
 
-  Future<List<({ArrQueueItem item, String sourceName})>> _fetchQueue(ManagedServiceConnection connection) async {
+  Future<List<({ArrQueueItem item, String sourceName, String sourceId})>> _fetchQueue(
+    ManagedServiceConnection connection,
+  ) async {
     final client = services.arrClient(connection.id);
     if (client == null) return const [];
     // includeUnknownItems: the client may hold grabs *arr no longer tracks, and
@@ -53,7 +55,8 @@ class ServerActivityService {
     return [
       for (final record in records)
         if (record is Map<String, dynamic>)
-          if (ArrQueueItem.fromJson(record) case final item?) (item: item, sourceName: connection.displayName),
+          if (ArrQueueItem.fromJson(record) case final item?)
+            (item: item, sourceName: connection.displayName, sourceId: connection.id),
     ];
   }
 

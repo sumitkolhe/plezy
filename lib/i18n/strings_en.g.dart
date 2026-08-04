@@ -3989,6 +3989,33 @@ class Translations$serverActivity$en {
 
 	/// en: '${done} of ${total}'
 	String ofSize({required Object done, required Object total}) => '${done} of ${total}';
+
+	/// en: 'Arriving'
+	String get arriving => 'Arriving';
+
+	/// en: 'S${season}E${episode} arriving'
+	String arrivingEpisode({required Object season, required Object episode}) => 'S${season}E${episode} arriving';
+
+	/// en: 'Monitored'
+	String get monitored => 'Monitored';
+
+	/// en: 'Not monitored'
+	String get notMonitored => 'Not monitored';
+
+	/// en: '${count} missing'
+	String missingEpisodes({required Object count}) => '${count} missing';
+
+	/// en: 'All episodes present'
+	String get allPresent => 'All episodes present';
+
+	/// en: 'On disk'
+	String get onDisk => 'On disk';
+
+	/// en: 'Not on disk'
+	String get notOnDisk => 'Not on disk';
+
+	/// en: '+${count} more queued'
+	String alsoQueued({required Object count}) => '+${count} more queued';
 }
 
 // Path: hotkeys.actions
@@ -6400,6 +6427,15 @@ extension on Translations {
 			'serverActivity.unreachable' => ({required Object names}) => 'Could not reach ${names}',
 			'serverActivity.etaRemaining' => ({required Object time}) => '${time} left',
 			'serverActivity.ofSize' => ({required Object done, required Object total}) => '${done} of ${total}',
+			'serverActivity.arriving' => 'Arriving',
+			'serverActivity.arrivingEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode} arriving',
+			'serverActivity.monitored' => 'Monitored',
+			'serverActivity.notMonitored' => 'Not monitored',
+			'serverActivity.missingEpisodes' => ({required Object count}) => '${count} missing',
+			'serverActivity.allPresent' => 'All episodes present',
+			'serverActivity.onDisk' => 'On disk',
+			'serverActivity.notOnDisk' => 'Not on disk',
+			'serverActivity.alsoQueued' => ({required Object count}) => '+${count} more queued',
 			_ => null,
 		};
 	}

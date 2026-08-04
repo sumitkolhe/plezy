@@ -1560,6 +1560,15 @@
     "openServices": "Add a service",
     "unreachable": "Could not reach ${names}",
     "etaRemaining": "${time} left",
-    "ofSize": "${done} of ${total}"
+    "ofSize": "${done} of ${total}",
+    "arriving": "Arriving",
+    "arrivingEpisode": "S${season}E${episode} arriving",
+    "monitored": "Monitored",
+    "notMonitored": "Not monitored",
+    "missingEpisodes": "${count} missing",
+    "allPresent": "All episodes present",
+    "onDisk": "On disk",
+    "notOnDisk": "Not on disk",
+    "alsoQueued": "+${count} more queued"
   }
 }

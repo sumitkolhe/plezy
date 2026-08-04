@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../models/arr/server_transfer.dart';
+import '../services/arr/arr_item_lookup.dart';
 import '../services/arr/server_activity_service.dart';
+import '../utils/external_ids.dart';
 import 'managed_services_provider.dart';
 
 /// Polls the *arr queues and the download client while something is watching.
@@ -17,12 +19,14 @@ class ServerActivityProvider extends ChangeNotifier
     with DisposableChangeNotifierMixin, WidgetsBindingObserver {
   ServerActivityProvider(ManagedServicesProvider services, {ServerActivityService? service})
     : _service = service ?? ServerActivityService(services),
+      _lookup = ArrItemLookup(services),
       _services = services {
     WidgetsBinding.instance.addObserver(this);
     _services.addListener(_onServicesChanged);
   }
 
   final ServerActivityService _service;
+  final ArrItemLookup _lookup;
   final ManagedServicesProvider _services;
 
   static const Duration _interval = Duration(seconds: 5);
@@ -63,6 +67,28 @@ class ServerActivityProvider extends ChangeNotifier
     };
   }
 
+  /// Null until [resolveItem] has answered once.
+  List<ArrItemState>? itemState(ExternalIds ids, {required bool isSeries}) =>
+      _lookup.cached(ids, isSeries: isSeries);
+
+  /// Cached and coalesced, so calling it repeatedly is free.
+  Future<void> resolveItem(ExternalIds ids, {required bool isSeries}) async {
+    if (_lookup.cached(ids, isSeries: isSeries) != null) return;
+    await _lookup.resolve(ids, isSeries: isSeries);
+    if (!isDisposed) safeNotifyListeners();
+  }
+
+  /// Transfers belonging to one *arr record, matched on media id.
+  List<ServerTransfer> transfersFor(List<ArrItemState> states) {
+    if (states.isEmpty) return const [];
+    final keys = {for (final state in states) '${state.sourceId}/${state.mediaId}'};
+    return [
+      for (final transfer in _transfers)
+        if (transfer.queued?.mediaId case final mediaId?)
+          if (keys.contains('${transfer.sourceId}/$mediaId')) transfer,
+    ];
+  }
+
   Future<void> refresh() async {
     if (_inFlight || !hasServices) return;
     _inFlight = true;
@@ -87,8 +113,9 @@ class ServerActivityProvider extends ChangeNotifier
   }
 
   void _onServicesChanged() {
-    // A connection added or removed changes what a poll even covers, and the
-    // last one leaving must clear the list rather than freeze it.
+    // A connection change moves what a poll covers and which instance holds
+    // what, so both the list and resolved items stop being trustworthy.
+    _lookup.clear();
     if (!hasServices) {
       _transfers = const [];
       _unreachable = const [];

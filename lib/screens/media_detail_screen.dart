@@ -94,8 +94,11 @@ import '../widgets/ios_status_bar_tap_scroll_to_top.dart';
 import '../widgets/loading_indicator_box.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../providers/server_activity_provider.dart';
+
 import '../utils/external_ids.dart';
 import '../widgets/rasterized_gradient.dart';
+import '../widgets/server_awareness_card.dart';
 import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_background.dart';
 
@@ -682,6 +685,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   /// Memoized: the server only reports ids on request, and both the watchlist
   /// action and the rating's IMDb link want the same answer.
+  ExternalIds? _externalIds;
+
   Future<ExternalIds?> _ensureExternalIds() {
     return _externalIdsLoad ??= _getMediaClientForMetadata(context)?.fetchExternalIds(_metadata.id) ?? Future.value();
   }
@@ -697,12 +702,32 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     }
   }
 
+  /// Ids the *arr lookup keys on: Radarr wants tmdb, Sonarr wants tvdb, and
+  /// neither works with the other's. Null until the fetch lands.
+  ExternalIds? get _serverAwarenessIds {
+    if (widget.isOffline) return null;
+    final ids = _externalIds;
+    if (ids == null) return null;
+    final needed = _metadata.isShow ? ids.tvdb : ids.tmdb;
+    return needed == null ? null : ids;
+  }
+
+  List<({String label, String value})> _serverInfoRows(MediaItem metadata) {
+    final ids = _serverAwarenessIds;
+    if (ids == null) return const [];
+    final provider = context.read<ServerActivityProvider?>();
+    return serverInfoRows(provider?.itemState(ids, isSeries: metadata.isShow), isSeries: metadata.isShow);
+  }
+
   Future<void> _resolveImdbId() async {
     if (widget.isOffline) return;
     try {
-      final imdb = (await _ensureExternalIds())?.imdb;
-      if (!mounted || imdb == null || imdb.isEmpty) return;
-      setState(() => _imdbId = imdb);
+      final ids = await _ensureExternalIds();
+      if (!mounted || ids == null) return;
+      setState(() {
+        _externalIds = ids;
+        if (ids.imdb?.isNotEmpty ?? false) _imdbId = ids.imdb;
+      });
     } catch (e) {
       appLogger.d('IMDb id resolution failed', error: e);
     }
@@ -2906,6 +2931,9 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                           child: Column(
                             crossAxisAlignment: .start,
                             children: [
+                              if (!isTv)
+                                if (_serverAwarenessIds case final ids?)
+                                  ServerAwarenessCard(ids: ids, isSeries: metadata.isShow),
                               if (!isTv && metadata.summary != null && metadata.summary!.isNotEmpty) ...[
                                 CollapsibleText(
                                   key: _overviewSectionKey,
@@ -2943,6 +2971,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                     if (metadata.studio != null) DetailInfoEntry(t.discover.studio, metadata.studio!),
                                     if (_infoGenres(metadata) case final list when list.isNotEmpty)
                                       DetailInfoEntry(t.discover.genres, list.join(', ')),
+                                    for (final row in _serverInfoRows(metadata)) DetailInfoEntry(row.label, row.value),
                                   ],
                                 ),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
