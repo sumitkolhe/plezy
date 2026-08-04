@@ -52,8 +52,7 @@ class DetailFactStrip extends StatelessWidget {
             _FactPill(
               onTap: onRatingTap,
               child: Text.rich(
-                // The scale, because a bare "9" or "1" says nothing about it.
-                TextSpan(children: [ratingSpan(rating!, iconSize: 13, suffix: '/10')]),
+                TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
                 style: valueStyle.copyWith(color: t.text),
               ),
             ),

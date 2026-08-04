@@ -84,7 +84,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
           minimumSize: const Size(48, 48),
           maximumSize: const Size(48, 48),
           foregroundColor: foregroundColor,
-          backgroundColor: tint.withValues(alpha: 0.10),
+          backgroundColor: tint.withValues(alpha: 0.04),
           side: BorderSide(color: tint.withValues(alpha: 0.16)),
         );
       }
