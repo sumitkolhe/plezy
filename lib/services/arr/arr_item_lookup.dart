@@ -4,6 +4,46 @@ import '../../utils/app_logger.dart';
 import '../../utils/external_ids.dart';
 import '../trackers/future_coalescer.dart';
 
+/// One episode as Sonarr knows it — including the ones no file exists for,
+/// which is the whole point: Jellyfin cannot report an episode it has never
+/// seen.
+class ArrEpisode {
+  final int seasonNumber;
+  final int episodeNumber;
+  final String title;
+  final bool hasFile;
+  final bool monitored;
+
+  /// Null for an episode with no announced date.
+  final DateTime? airDate;
+
+  const ArrEpisode({
+    required this.seasonNumber,
+    required this.episodeNumber,
+    required this.title,
+    required this.hasFile,
+    required this.monitored,
+    this.airDate,
+  });
+
+  bool get hasAired => airDate != null && airDate!.isBefore(DateTime.now());
+
+  static ArrEpisode? fromJson(Map<String, dynamic> json) {
+    final season = (json['seasonNumber'] as num?)?.toInt();
+    final number = (json['episodeNumber'] as num?)?.toInt();
+    if (season == null || number == null) return null;
+    final air = json['airDateUtc'] as String?;
+    return ArrEpisode(
+      seasonNumber: season,
+      episodeNumber: number,
+      title: (json['title'] as String?)?.trim() ?? '',
+      hasFile: json['hasFile'] == true,
+      monitored: json['monitored'] == true,
+      airDate: air == null ? null : DateTime.tryParse(air)?.toLocal(),
+    );
+  }
+}
+
 /// What one instance knows about a library item.
 class ArrItemState {
   /// The instance's connection id, so the caller can tell one Radarr's movie 41
@@ -24,6 +64,10 @@ class ArrItemState {
 
   final String qualityProfile;
 
+  /// When the next episode airs, as Sonarr computed it. Null for films and for
+  /// series with nothing scheduled.
+  final DateTime? nextAiring;
+
   const ArrItemState({
     required this.sourceId,
     required this.sourceName,
@@ -32,6 +76,7 @@ class ArrItemState {
     this.fileCount = 0,
     this.totalCount = 0,
     this.qualityProfile = '',
+    this.nextAiring,
   });
 
   int get missingCount => totalCount <= 0 ? 0 : (totalCount - fileCount).clamp(0, totalCount);
@@ -57,10 +102,15 @@ class ArrItemLookup {
   /// and the list changes about once a year.
   final Map<String, Map<int, String>> _profileNames = {};
 
+  final Map<String, List<ArrEpisode>> _episodeCache = {};
+  final KeyedFutureCache<String, List<ArrEpisode>> _episodeLoads = KeyedFutureCache();
+
   void clear() {
     _cache.clear();
     _loads.clear();
     _profileNames.clear();
+    _episodeCache.clear();
+    _episodeLoads.clear();
   }
 
   /// Cached states, or null when this item has not been looked up yet.
@@ -105,6 +155,7 @@ class ArrItemLookup {
               fileCount: _fileCount(entry, isSeries: isSeries),
               totalCount: _totalCount(entry, isSeries: isSeries),
               qualityProfile: await _profileName(connection.id, (entry['qualityProfileId'] as num?)?.toInt()),
+              nextAiring: DateTime.tryParse(entry['nextAiring'] as String? ?? '')?.toLocal(),
             ),
           );
         }
@@ -131,6 +182,35 @@ class ArrItemLookup {
     // currently-airing series as permanently incomplete.
     return ((statistics['episodeCount'] as num?) ?? 0).toInt();
   }
+
+  /// Every episode Sonarr tracks for a series, cached per instance and series.
+  Future<List<ArrEpisode>> episodes(String sourceId, int seriesId) {
+    final key = 'episodes/$sourceId/$seriesId';
+    final cached = _episodeCache[key];
+    if (cached != null) return Future.value(cached);
+    return _episodeLoads.run(key, () async {
+      final client = _services.arrClient(sourceId);
+      if (client == null) return const <ArrEpisode>[];
+      try {
+        final data = await client.get('/episode', query: {'seriesId': '$seriesId'});
+        if (data is! List) return const <ArrEpisode>[];
+        final episodes = [
+          for (final entry in data)
+            if (entry is Map<String, dynamic>) ?ArrEpisode.fromJson(entry),
+        ]..sort((a, b) {
+          final bySeason = a.seasonNumber.compareTo(b.seasonNumber);
+          return bySeason != 0 ? bySeason : a.episodeNumber.compareTo(b.episodeNumber);
+        });
+        _episodeCache[key] = episodes;
+        return episodes;
+      } catch (e) {
+        appLogger.d('episode lookup failed', error: e);
+        return const <ArrEpisode>[];
+      }
+    });
+  }
+
+  List<ArrEpisode>? cachedEpisodes(String sourceId, int seriesId) => _episodeCache['episodes/$sourceId/$seriesId'];
 
   Future<String> _profileName(String sourceId, int? profileId) async {
     if (profileId == null) return '';

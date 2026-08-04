@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../i18n/app_locale_utils.dart';
 import '../i18n/strings.g.dart';
 import '../models/arr/server_transfer.dart';
 import '../providers/server_activity_provider.dart';
@@ -186,6 +188,17 @@ class _Card extends StatelessWidget {
   }
 }
 
+/// Empty for films, ended series, and until the lookup lands.
+String nextAiringLabel(List<ArrItemState>? states) {
+  if (states == null || states.isEmpty) return '';
+  final state = states.firstWhere((s) => s.monitored, orElse: () => states.first);
+  final next = state.nextAiring;
+  if (next == null) return '';
+  final days = next.difference(DateTime.now()).inDays;
+  final date = DateFormat.MMMEd(LocaleSettings.currentLocale.intlLocaleName).format(next);
+  return days > 6 ? date : t.serverActivity.nextAiring(when: date);
+}
+
 /// Monitoring and completeness as rows for the detail page's info table.
 List<({String label, String value})> serverInfoRows(List<ArrItemState>? states, {required bool isSeries}) {
   if (states == null || states.isEmpty) return const [];
@@ -203,6 +216,8 @@ List<({String label, String value})> serverInfoRows(List<ArrItemState>? states, 
             ].join('  ·  ')
           : t.serverActivity.notMonitored,
     ),
+    if (nextAiringLabel(states) case final next when next.isNotEmpty)
+      (label: t.explore.detail.schedule, value: next),
     if (isSeries && state.totalCount > 0)
       (
         label: t.serverActivity.stages.done,

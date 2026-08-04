@@ -4016,6 +4016,24 @@ class Translations$serverActivity$en {
 
 	/// en: '+${count} more queued'
 	String alsoQueued({required Object count}) => '+${count} more queued';
+
+	/// en: 'Not downloaded (${count})'
+	String notDownloaded({required Object count}) => 'Not downloaded (${count})';
+
+	/// en: 'Upcoming (${count})'
+	String upcomingEpisodes({required Object count}) => 'Upcoming (${count})';
+
+	/// en: 'Next episode ${when}'
+	String nextAiring({required Object when}) => 'Next episode ${when}';
+
+	/// en: 'Aired ${date}'
+	String airedOn({required Object date}) => 'Aired ${date}';
+
+	/// en: 'Airs ${date}'
+	String airsOn({required Object date}) => 'Airs ${date}';
+
+	/// en: 'Unmonitored'
+	String get unmonitored => 'Unmonitored';
 }
 
 // Path: hotkeys.actions
@@ -6436,6 +6454,12 @@ extension on Translations {
 			'serverActivity.onDisk' => 'On disk',
 			'serverActivity.notOnDisk' => 'Not on disk',
 			'serverActivity.alsoQueued' => ({required Object count}) => '+${count} more queued',
+			'serverActivity.notDownloaded' => ({required Object count}) => 'Not downloaded (${count})',
+			'serverActivity.upcomingEpisodes' => ({required Object count}) => 'Upcoming (${count})',
+			'serverActivity.nextAiring' => ({required Object when}) => 'Next episode ${when}',
+			'serverActivity.airedOn' => ({required Object date}) => 'Aired ${date}',
+			'serverActivity.airsOn' => ({required Object date}) => 'Airs ${date}',
+			'serverActivity.unmonitored' => 'Unmonitored',
 			_ => null,
 		};
 	}

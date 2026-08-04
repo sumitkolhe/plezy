@@ -78,6 +78,15 @@ class ServerActivityProvider extends ChangeNotifier
     if (!isDisposed) safeNotifyListeners();
   }
 
+  /// Null until [resolveEpisodes] has answered.
+  List<ArrEpisode>? episodesFor(ArrItemState state) => _lookup.cachedEpisodes(state.sourceId, state.mediaId);
+
+  Future<void> resolveEpisodes(ArrItemState state) async {
+    if (_lookup.cachedEpisodes(state.sourceId, state.mediaId) != null) return;
+    await _lookup.episodes(state.sourceId, state.mediaId);
+    if (!isDisposed) safeNotifyListeners();
+  }
+
   /// Transfers belonging to one *arr record, matched on media id.
   List<ServerTransfer> transfersFor(List<ArrItemState> states) {
     if (states.isEmpty) return const [];

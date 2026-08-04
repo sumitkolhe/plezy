@@ -97,7 +97,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../providers/server_activity_provider.dart';
 
 import '../utils/external_ids.dart';
+import '../models/arr/season_completeness.dart';
 import '../widgets/rasterized_gradient.dart';
+import '../widgets/season_gap_section.dart';
 import '../widgets/server_awareness_card.dart';
 import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_background.dart';
@@ -711,6 +713,52 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     return needed == null ? null : ids;
   }
 
+  /// The episode list is the only thing that can reveal a missing episode, so a
+  /// series needs both calls.
+  Future<void> _resolveServerState(ExternalIds ids) async {
+    final provider = context.read<ServerActivityProvider?>();
+    if (provider == null) return;
+    final isSeries = (_fullMetadata ?? _metadata).isShow;
+    await provider.resolveItem(ids, isSeries: isSeries);
+    if (!mounted || !isSeries) return;
+    final states = provider.itemState(ids, isSeries: true) ?? const [];
+    if (states.isEmpty) return;
+    await provider.resolveEpisodes(states.firstWhere((s) => s.monitored, orElse: () => states.first));
+  }
+
+  /// Empty for films, and until the lookup lands.
+  SeasonGap _seasonGap() {
+    final ids = _serverAwarenessIds;
+    if (ids == null || !(_fullMetadata ?? _metadata).isShow) return (missing: const [], upcoming: const []);
+    final provider = context.read<ServerActivityProvider?>();
+    final states = provider?.itemState(ids, isSeries: true);
+    if (provider == null || states == null || states.isEmpty) return (missing: const [], upcoming: const []);
+
+    final season = _selectedSeasonNumber;
+    if (season == null) return (missing: const [], upcoming: const []);
+
+    // The monitored instance is the one whose episode list to trust: an
+    // unmonitored 4K copy legitimately has files for nothing.
+    final state = states.firstWhere((s) => s.monitored, orElse: () => states.first);
+    final known = provider.episodesFor(state);
+    if (known == null || known.isEmpty) return (missing: const [], upcoming: const []);
+
+    return seasonGap(
+      known: known,
+      presentEpisodeNumbers: {for (final episode in _episodes) ?episode.index},
+      season: season,
+    );
+  }
+
+  /// The season the episode list is currently showing.
+  int? get _selectedSeasonNumber {
+    final metadata = _fullMetadata ?? _metadata;
+    if (metadata.isSeason) return metadata.index ?? metadata.parentIndex;
+    if (_seasons.isEmpty) return null;
+    final index = _selectedSeasonIndex.clamp(0, _seasons.length - 1);
+    return _seasons[index].index;
+  }
+
   List<({String label, String value})> _serverInfoRows(MediaItem metadata) {
     final ids = _serverAwarenessIds;
     if (ids == null) return const [];
@@ -727,6 +775,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         _externalIds = ids;
         if (ids.imdb?.isNotEmpty ?? false) _imdbId = ids.imdb;
       });
+      unawaited(_resolveServerState(ids));
     } catch (e) {
       appLogger.d('IMDb id resolution failed', error: e);
     }
@@ -3016,6 +3065,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                     _buildEpisodesList()
                                   else
                                     _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
+                                  if (!isTv) SeasonGapSection(gap: _seasonGap()),
                                 ],
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ] else if ((isShow && _showEpisodesDirectly) || metadata.isSeason) ...[
@@ -3033,6 +3083,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   _buildEpisodesList()
                                 else
                                   _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
+                                if (!isTv) SeasonGapSection(gap: _seasonGap()),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
