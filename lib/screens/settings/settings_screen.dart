@@ -272,7 +272,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   Widget _buildManageLibrariesTile(BuildContext context) {
     return SettingNavigationTile(
       focusNode: _focusTracker.get(_kManageLibraries),
-      icon: PhosphorIcons.filmSlate,
+      icon: PhosphorIcons.pencilSimple,
       title: t.libraries.manageLibraries,
       subtitle: t.settings.manageLibrariesDescription,
       onTap: () => showLibraryManagementSheet(context),
