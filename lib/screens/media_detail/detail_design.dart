@@ -4,9 +4,9 @@ import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
 import '../../utils/rating_spans.dart';
 
-/// Facts as pills, the same idiom the episode sheet uses. They sit on the
-/// scrim's solid end rather than over the backdrop, so they take the page's own
-/// surface treatment instead of a glass one.
+/// One grouped surface rather than separate pills. Discrete rounded shapes
+/// here read as a second row of the action buttons below; a single bar with
+/// divided cells says these are readings, not controls.
 class DetailFactStrip extends StatelessWidget {
   final double? rating;
   final String? contentRating;
@@ -15,13 +15,12 @@ class DetailFactStrip extends StatelessWidget {
   final List<String> facts;
 
   /// Opens the item's IMDb page. Null when the server reported no IMDb id, so
-  /// the pill never offers a link it cannot follow.
+  /// the cell never offers a link it cannot follow.
   final VoidCallback? onRatingTap;
 
   const DetailFactStrip({super.key, this.rating, this.contentRating, required this.facts, this.onRatingTap});
 
-  static const double height = 32;
-  static const double _gap = 9;
+  static const double height = 34;
 
   @override
   Widget build(BuildContext context) {
@@ -38,53 +37,59 @@ class DetailFactStrip extends StatelessWidget {
       fontFeatures: const [FontFeature.tabularFigures()],
     );
 
+    final cells = <Widget>[
+      if (rating != null)
+        _FactCell(
+          onTap: onRatingTap,
+          child: Text.rich(
+            TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
+            style: valueStyle.copyWith(color: t.text),
+          ),
+        ),
+      for (final fact in facts) _FactCell(child: Text(fact, style: valueStyle)),
+      if (hasCert) _FactCell(child: Text(cert, style: valueStyle.copyWith(letterSpacing: 0.4))),
+    ];
+
     // Scales down rather than wrapping: the hero budgets one row, and a clipped
     // second row is worse than a slightly smaller first one.
     return FittedBox(
       fit: .scaleDown,
       alignment: .centerLeft,
-      child: Row(
-        spacing: _gap,
-        children: [
-          if (rating != null)
-            _FactPill(
-              onTap: onRatingTap,
-              child: Text.rich(
-                TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
-                style: valueStyle.copyWith(color: t.text),
-              ),
-            ),
-          for (final fact in facts) _FactPill(child: Text(fact, style: valueStyle)),
-          // One pill like the rest: a squared outline made the certificate shout
-          // over facts that matter more.
-          if (hasCert) _FactPill(child: Text(cert, style: valueStyle.copyWith(letterSpacing: 0.4))),
-        ],
+      child: SizedBox(
+        height: height,
+        child: Material(
+          color: t.text.withValues(alpha: 0.07),
+          // Softly rectangular, so it cannot be mistaken for the round controls.
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+          clipBehavior: .antiAlias,
+          child: Row(
+            mainAxisSize: .min,
+            children: [
+              for (var i = 0; i < cells.length; i++) ...[
+                if (i > 0) VerticalDivider(width: 1, thickness: 1, color: t.text.withValues(alpha: 0.10)),
+                cells[i],
+              ],
+            ],
+          ),
+        ),
       ),
     );
   }
 }
 
-class _FactPill extends StatelessWidget {
+class _FactCell extends StatelessWidget {
   final Widget child;
   final VoidCallback? onTap;
 
-  const _FactPill({required this.child, this.onTap});
+  const _FactCell({required this.child, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    const shape = BorderRadius.all(Radius.circular(MonoTokens.radiusFull));
-    final body = Container(
-      height: DetailFactStrip.height,
-      padding: const EdgeInsets.symmetric(horizontal: 14),
-      alignment: .center,
-      child: child,
+    final body = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 13),
+      child: Center(widthFactor: 1, child: child),
     );
-
-    return Material(
-      color: tokens(context).text.withValues(alpha: 0.13),
-      borderRadius: shape,
-      child: onTap == null ? body : InkWell(borderRadius: shape, onTap: onTap, child: body),
-    );
+    return onTap == null ? body : InkWell(onTap: onTap, child: body);
   }
 }
 
