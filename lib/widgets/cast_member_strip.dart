@@ -223,11 +223,7 @@ class CastMemberStripState extends State<CastMemberStrip> {
                                 width: imageSize,
                                 height: imageSize,
                                 fit: BoxFit.cover,
-                                // Squaring a 2:3 headshot discards a third of its
-                                // height. Anywhere but the top takes some of
-                                // that off the crown, which is where a tight
-                                // portrait puts the head; the chest below is
-                                // what can be spared.
+                                // Centred, a squared 2:3 headshot loses its crown.
                                 alignment: .topCenter,
                                 imageType: ImageType.square,
                                 fallbackIcon: PhosphorIcons.person,

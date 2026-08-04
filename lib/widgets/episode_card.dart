@@ -247,8 +247,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             downloadStatusIcon = DownloadStatusIcon(
               status: status,
               size: status == DownloadStatus.downloading ? 14.0 : 12.0,
-              // Done is worth saying in colour. The in-flight states stay muted
-              // so a row mid-download does not shout over its own title.
               variant: status == DownloadStatus.completed
                   ? DownloadStatusIconVariant.saturated
                   : DownloadStatusIconVariant.muted,

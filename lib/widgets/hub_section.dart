@@ -448,9 +448,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                     children: [
                       AppIcon(widget.icon, size: isTv ? 28 : 16),
                       SizedBox(width: isTv ? 12 : 6),
-                      // Expanded, not Flexible: a Flexible title and a Spacer
-                      // both carry flex 1 and would halve the free space
-                      // between them, stranding the caret mid-row.
+                      // Flexible would share flex with a Spacer, stranding the caret.
                       Expanded(
                         child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
                       ),
@@ -470,8 +468,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                           ),
                         ),
                       ],
-                      // At the row's end, where a "there is more this way"
-                      // marker belongs, rather than trailing the title.
                       if (widget.hub.more && !isKeyboardMode)
                         AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
                     ],

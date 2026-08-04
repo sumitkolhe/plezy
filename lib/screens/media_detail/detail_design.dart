@@ -20,8 +20,6 @@ class DetailFactStrip extends StatelessWidget {
 
   const DetailFactStrip({super.key, this.rating, this.contentRating, required this.facts, this.onRatingTap});
 
-  // Deliberately lighter than the 48dp controls below: same fill family, but
-  // small enough that size alone says these are readings, not buttons.
   static const double height = 26;
   static const double _gap = 7;
 
