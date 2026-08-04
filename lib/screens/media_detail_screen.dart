@@ -2913,7 +2913,11 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   key: _overviewSectionKey,
                                   text: metadata.summary!,
                                   maxLines: isMobile ? 6 : 4,
-                                  style: theme.textTheme.bodyLarge?.copyWith(height: 1.6),
+                                  // bodyLarge is 16, which read as a different
+                                  // document beside 14pt episode rows. 15 keeps
+                                  // this a step above them — it is the page's
+                                  // only continuous prose — without magnifying.
+                                  style: theme.textTheme.bodyLarge?.copyWith(fontSize: 15.5, height: 1.5),
                                   focusNode: _overviewFocusNode,
                                   skipTraversal: false,
                                   onNavigateUp: () {
