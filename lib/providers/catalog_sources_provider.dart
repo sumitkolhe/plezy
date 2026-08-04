@@ -85,10 +85,11 @@ class CatalogSourcesProvider extends ChangeNotifier with DisposableChangeNotifie
   List<CatalogSource> get watchlistCapableSources => [...connectedSources.where((source) => source.supportsWatchlist)];
 
   /// The watchlist source catalog-item surfaces (detail screen, card menu)
-  /// must bind to: the item's OWN source — a Simkl card toggles the Simkl
-  /// list, never another provider's. An item whose source has no watchlist
-  /// gets none at all rather than falling back. The fallback exists only for
-  /// items whose source got disconnected mid-session.
+  /// must bind to: the item's OWN source — a MAL card toggles the MAL Plan to
+  /// Watch, never another provider's list. An item whose source is connected
+  /// but has no watchlist (Seerr) gets none at all — no falling back to
+  /// another provider's list. The fallback exists only for items whose
+  /// source got disconnected mid-session.
   CatalogSource? watchlistSourceFor(CatalogItem item) {
     final own = connectedSources.firstWhereOrNull((s) => s.id == item.source);
     if (own != null) return own.supportsWatchlist ? own : null;

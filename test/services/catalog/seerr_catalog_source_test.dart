@@ -531,55 +531,11 @@ void main() {
       expect(source.canRequest(MediaKind.show), isTrue);
     });
 
-    test('membership is unknown until the snapshot loads, then reads it', () async {
-      final source = _source(
-        MockClient((request) async {
-          if (request.url.path.endsWith('/watchlist')) {
-            return jsonResponse({
-              'page': 1,
-              'totalPages': 1,
-              'totalResults': 2,
-              'results': [
-                {'tmdbId': 603, 'mediaType': 'movie', 'title': 'The Matrix'},
-                {'tmdbId': 1396, 'mediaType': 'tv', 'title': 'Breaking Bad'},
-              ],
-            });
-          }
-          fail('unexpected request ${request.url.path}');
-        }),
-      );
-
-      expect(source.supportsWatchlist, isTrue);
+    test('has no watchlist: membership unknown, mutations unsupported', () async {
+      final source = _source(MockClient((request) async => jsonResponse({})));
+      expect(source.supportsWatchlist, isFalse);
       expect(source.isOnWatchlist(MediaKind.movie, const CatalogItemIds(tmdb: 603)), isNull);
-
-      await source.ensureWatchlistLoaded();
-
-      expect(source.isOnWatchlist(MediaKind.movie, const CatalogItemIds(tmdb: 603)), isTrue);
-      expect(source.isOnWatchlist(MediaKind.show, const CatalogItemIds(tmdb: 1396)), isTrue);
-      // Right id, wrong kind: the entry is keyed by both.
-      expect(source.isOnWatchlist(MediaKind.show, const CatalogItemIds(tmdb: 603)), isFalse);
-      expect(source.isOnWatchlist(MediaKind.movie, const CatalogItemIds(tmdb: 999)), isFalse);
-    });
-
-    test('a duplicate add is the state the caller asked for, not an error', () async {
-      final posts = <String>[];
-      final source = _source(
-        MockClient((request) async {
-          if (request.method == 'POST' && request.url.path.endsWith('/watchlist')) {
-            posts.add(request.body);
-            return jsonResponse({'message': 'Already added'}, status: 409);
-          }
-          if (request.method == 'DELETE') return jsonResponse({}, status: 204);
-          fail('unexpected ${request.method} ${request.url.path}');
-        }),
-      );
-
-      await source.addToWatchlist(MediaKind.movie, const CatalogItemIds(tmdb: 603));
-      expect(posts, hasLength(1));
-      expect(posts.single, contains('"tmdbId":603'));
-      expect(posts.single, contains('"mediaType":"movie"'));
-
-      await source.removeFromWatchlist(MediaKind.show, const CatalogItemIds(tmdb: 1396));
+      expect(() => source.addToWatchlist(MediaKind.movie, const CatalogItemIds(tmdb: 603)), throwsUnsupportedError);
     });
 
     test('an untranslated locale degrades to the original title instead of blanking', () async {

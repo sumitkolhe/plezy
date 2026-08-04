@@ -9,7 +9,6 @@ import '../../i18n/strings.g.dart';
 import '../../models/seerr/seerr_details.dart';
 import '../../models/seerr/seerr_media.dart';
 import '../../models/seerr/seerr_page.dart';
-import '../../models/seerr/seerr_watchlist_entry.dart';
 import '../../models/seerr/seerr_public_settings.dart';
 import '../../models/seerr/seerr_request.dart';
 import '../../models/seerr/seerr_service.dart';
@@ -140,41 +139,6 @@ class SeerrClient {
   Future<SeerrRequest> createRequest(SeerrRequestPayload payload) async {
     final data = await _request('POST', '/request', body: payload.toJson());
     return SeerrRequest.fromJson(data as Map<String, dynamic>);
-  }
-
-  // ---------- Watchlist ----------
-
-  /// Seerr's own table, not Plex's; the page size is fixed at 20 server-side.
-  Future<SeerrPage<SeerrWatchlistEntry>> getWatchlist({int page = 1}) async {
-    final data = await _request('GET', '/user/${_session.userId}/watchlist', query: {'page': '$page'});
-    final json = data as Map<String, dynamic>;
-    final results = (json['results'] as List<dynamic>? ?? const [])
-        .whereType<Map<String, dynamic>>()
-        .map(SeerrWatchlistEntry.fromJson)
-        .toList();
-    final totalPages = (json['totalPages'] as num?)?.toInt() ?? 1;
-    return SeerrPage(items: results, hasMore: page < totalPages, totalResults: (json['totalResults'] as num?)?.toInt());
-  }
-
-  Future<void> addToWatchlist({required int tmdbId, required bool isTv, String? title}) async {
-    try {
-      await _request('POST', '/watchlist', body: {
-        'tmdbId': tmdbId,
-        'mediaType': isTv ? 'tv' : 'movie',
-        if (title != null && title.isNotEmpty) 'title': title,
-      });
-    } on SeerrApiException catch (e) {
-      // 409 is the duplicate guard: already there is what was asked for.
-      if (e.statusCode != 409) rethrow;
-    }
-  }
-
-  Future<void> removeFromWatchlist(int tmdbId) async {
-    try {
-      await _request('DELETE', '/watchlist/$tmdbId');
-    } on SeerrApiException catch (e) {
-      if (e.statusCode != 404) rethrow;
-    }
   }
 
   // ---------- Sonarr / Radarr options (request sheet advanced pickers) ----------
