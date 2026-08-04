@@ -450,6 +450,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
     return MediaContextMenu(
       key: _contextMenuKey,
       item: metadata,
+      showItemTitle: false,
       onRefresh: (source) => unawaited(_refreshItemInPlace(source)),
       onPlayTrailer: onPlayTrailer,
       extraEntries: [?_searchMenuEntry],

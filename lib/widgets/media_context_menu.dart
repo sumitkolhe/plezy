@@ -105,7 +105,12 @@ class MediaContextMenu extends StatefulWidget {
   /// Extra entries appended after the standard actions.
   final List<MediaMenuExtraEntry> extraEntries;
 
+
+  /// Names the item the actions apply to. Redundant where the screen is already
+  /// about that one item, and its title is the heading above this menu.
+  final bool showItemTitle;
   const MediaContextMenu({
+    this.showItemTitle = true,
     super.key,
     required this.item,
     this.onRefresh,
@@ -518,7 +523,7 @@ class MediaContextMenuState extends State<MediaContextMenu> {
       // fall back to a hostless modal sheet).
       selected = await showAdaptiveAppMenu<String>(
         this.context,
-        title: _itemDisplayTitle(),
+        title: widget.showItemTitle ? _itemDisplayTitle() : null,
         entries: _menuEntries(menuActions),
         position: position,
         focusFirstItem: openedFromKeyboard,

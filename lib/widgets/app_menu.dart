@@ -278,7 +278,7 @@ class AppMenuSheet<T> extends StatelessWidget {
         Flexible(
           child: SingleChildScrollView(
             child: AppMenuList<T>(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(top: title == null && titleWidget == null ? 8 : 0, bottom: 8),
               entries: entries,
               focusFirstItem: focusFirstItem,
               onSelected: (value) {

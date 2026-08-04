@@ -591,6 +591,7 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
     return MediaContextMenu(
       key: contextMenuKey,
       item: track,
+      showItemTitle: false,
       extraEntries: [
         MediaMenuExtraEntry(icon: PhosphorIcons.moon, label: t.music.sleepTimer, onSelected: _showSleepTimerSheet),
       ],

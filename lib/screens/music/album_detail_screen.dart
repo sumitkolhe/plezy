@@ -138,6 +138,7 @@ class _AlbumDetailScreenState extends BaseMediaListDetailScreen<AlbumDetailScree
       builder: (context, state) => MediaContextMenu(
         key: _contextMenuKey,
         item: widget.album,
+        showItemTitle: false,
         child: Builder(
           builder: (buttonContext) => Container(
             decoration: FocusTheme.focusBackgroundDecoration(isFocused: state.showFocus, borderRadius: 20),

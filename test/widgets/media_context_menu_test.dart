@@ -19,6 +19,7 @@ import 'package:harbor/media/media_playlist.dart';
 import 'package:harbor/media/media_server_client.dart';
 import 'package:harbor/metadata_edit/metadata_edit_adapters.dart';
 import 'package:harbor/profiles/active_profile_provider.dart';
+import 'package:harbor/models/download_models.dart';
 import 'package:harbor/providers/download_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/providers/playback_state_provider.dart';
@@ -170,6 +171,72 @@ void main() {
       expect(music.callCount, 3, reason: 'the stale playlist fetch must not start a fourth queue');
       expect(music.playedTracks, [newerTrack]);
       expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('names the item from a card, and does not from a screen about it', (tester) async {
+      LocaleSettings.setLocaleSync(AppLocale.en);
+      final manager = MultiServerManager();
+      final multiServerProvider = testMultiServerProvider(manager);
+      final stack = await ProfileStack.create(withStorage: false);
+      addTearDown(() async {
+        await stack.dispose();
+        multiServerProvider.dispose();
+        manager.dispose();
+      });
+
+      final downloads = _StubDownloadProvider();
+      addTearDown(downloads.dispose);
+
+      const playlist = MediaPlaylist(
+        id: 'playlist-title',
+        backend: MediaBackend.jellyfin,
+        title: 'Road Trip',
+        playlistType: 'audio',
+        serverId: 'srv-1',
+      );
+
+      Future<void> open({required bool showItemTitle}) async {
+        final menuKey = GlobalKey<MediaContextMenuState>();
+        await tester.pumpWidget(
+          TranslationProvider(
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
+                ChangeNotifierProvider<ActiveProfileProvider>.value(value: stack.active),
+                ChangeNotifierProvider<DownloadProvider>.value(value: downloads),
+              ],
+              child: MaterialApp(
+                // Only the phone sheet carries a title; the anchored popup has none.
+                theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.android),
+                home: Scaffold(
+                  body: Center(
+                    child: MediaContextMenu(
+                      key: menuKey,
+                      item: playlist,
+                      showItemTitle: showItemTitle,
+                      child: const SizedBox(width: 120, height: 80, child: Text('target')),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+        menuKey.currentState!.showContextMenu(tester.element(find.text('target')));
+        await tester.pumpAndSettle();
+      }
+
+      // From a card, this is the only thing naming what was pressed.
+      await open(showItemTitle: true);
+      expect(find.text('Road Trip'), findsOneWidget);
+
+      // Tear the first tree down, or its sheet route outlives the rebuild.
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+
+      // From the item's own screen, its title is already the heading above.
+      await open(showItemTitle: false);
+      expect(find.text('Road Trip'), findsNothing);
     });
 
     testWidgets('Jellyfin video playlist context Play exposes cancellable loading', (tester) async {
@@ -683,4 +750,16 @@ JellyfinConnection _jellyfinConnection() {
     isAdministrator: true,
     createdAt: DateTime.fromMillisecondsSinceEpoch(0),
   );
+}
+
+/// The sheet path asks about download state; nothing here is downloaded.
+class _StubDownloadProvider extends ChangeNotifier implements DownloadProvider {
+  @override
+  DownloadProgress? getProgress(String globalKey) => null;
+
+  @override
+  bool hasSyncRule(String globalKey) => false;
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
