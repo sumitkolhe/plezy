@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 
 import '../../media/media_kind.dart';
 import '../../models/catalog/catalog_cast_member.dart';
@@ -14,17 +13,17 @@ import '../../utils/external_ids.dart';
 import '../../utils/trailer_urls.dart';
 import '../seerr/seerr_client.dart';
 import '../seerr/seerr_constants.dart';
+import '../seerr/seerr_exceptions.dart';
 import 'catalog_source.dart';
+import 'catalog_watchlist_machinery.dart';
 
 /// [CatalogSource] backed by a Seerr instance's TMDB-based discover API.
 ///
 /// Wraps the catalog [SeerrClient] owned by `SeerrAccountProvider` (not owned
-/// here — never disposed by this class). Seerr has no watchlist; its
-/// contribution besides discovery rows is the request flow, which the
-/// request surfaces reach through [client] directly.
-class SeerrCatalogSource implements CatalogSource {
+/// here — never disposed by this class). Serves discovery rows, the request
+/// flow (reached through [client] directly), and Seerr's own watchlist.
+class SeerrCatalogSource with CatalogWatchlistMachinery implements CatalogSource {
   final SeerrClient client;
-  final WatchlistChangeNotifier _watchlistChanges = WatchlistChangeNotifier();
 
   SeerrCatalogSource(this.client);
 
@@ -44,7 +43,15 @@ class SeerrCatalogSource implements CatalogSource {
   ];
 
   @override
-  bool get supportsWatchlist => false;
+  bool get supportsWatchlist => true;
+
+  @override
+  String get watchlistLogLabel => 'Seerr: watchlist';
+
+  @override
+  int get watchlistPageLimit => 20;
+  @override
+  int get watchlistMaxPages => 25;
 
   /// Whether the signed-in user may request titles of [kind] — gates the
   /// detail-screen Request action.
@@ -53,8 +60,6 @@ class SeerrCatalogSource implements CatalogSource {
     kind == MediaKind.movie ? SeerrPermission.requestMovie : SeerrPermission.requestTv,
   ]);
 
-  @override
-  Listenable get watchlistChanges => _watchlistChanges;
 
   /// Seerr pages are a fixed 20 items; [limit] cannot be honored, so callers
   /// get pages of 20 with [CatalogPage.hasMore] from `totalPages`.
@@ -107,28 +112,39 @@ class SeerrCatalogSource implements CatalogSource {
     );
   }
 
-  /// Seerr requests key on TMDB ids, so any library item carrying one is in
-  /// scope; the watchlist action stays hidden regardless
-  /// ([supportsWatchlist] is false).
+  /// Seerr keys on TMDB ids alone, so an item without one is out of its domain.
   @override
   Future<CatalogItemIds?> resolveItemIds(MediaKind kind, ExternalIds external) async =>
       external.tmdb == null ? null : CatalogItemIds(tmdb: external.tmdb, imdb: external.imdb, tvdb: external.tvdb);
 
-  // Seerr has no watchlist: membership is always unknown and mutations are
-  // programming errors (the action is hidden when supportsWatchlist is false).
+  /// TMDB only: watchlist rows carry no other id form to match on.
+  @override
+  List<String> membershipKeysFor(MediaKind kind, CatalogItemIds ids) => [
+    if (ids.tmdb case final tmdb?) '${kind.id}/tmdb:$tmdb',
+  ];
 
   @override
-  Future<void> ensureWatchlistLoaded() => Future.value();
+  Future<WatchlistKeyPage> fetchWatchlistKeyPage(int page, int limit) async {
+    final res = await client.getWatchlist(page: page);
+    return (
+      groups: [
+        for (final entry in res.items)
+          membershipKeysFor(entry.isTv ? MediaKind.show : MediaKind.movie, CatalogItemIds(tmdb: entry.tmdbId)),
+      ],
+      hasMore: res.hasMore,
+    );
+  }
 
   @override
-  bool? isOnWatchlist(MediaKind kind, CatalogItemIds ids) => null;
-
-  @override
-  Future<void> addToWatchlist(MediaKind kind, CatalogItemIds ids) => throw UnsupportedError('Seerr has no watchlist');
-
-  @override
-  Future<void> removeFromWatchlist(MediaKind kind, CatalogItemIds ids) =>
-      throw UnsupportedError('Seerr has no watchlist');
+  Future<void> performWatchlistMutation(MediaKind kind, CatalogItemIds ids, {required bool add}) async {
+    final tmdbId = ids.tmdb;
+    if (tmdbId == null) throw const SeerrApiException('Seerr watchlist needs a TMDB id', statusCode: 0);
+    if (add) {
+      await client.addToWatchlist(tmdbId: tmdbId, isTv: kind != MediaKind.movie);
+    } else {
+      await client.removeFromWatchlist(tmdbId);
+    }
+  }
 
   CatalogPage _toPage(SeerrPage<SeerrMedia> page) => CatalogPage(
     items: [
@@ -523,6 +539,6 @@ class SeerrCatalogSource implements CatalogSource {
 
   @override
   void dispose() {
-    _watchlistChanges.dispose();
+    disposeWatchlistMachinery();
   }
 }
