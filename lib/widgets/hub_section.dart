@@ -410,11 +410,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
     final isKeyboardMode = InputModeTracker.isKeyboardMode(context);
     final isTv = PlatformDetector.isTV();
     final leadingPadding = _leadingPaddingFor(isTv);
-    final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
-      fontSize: isTv ? HubLayoutConstants.tvSectionHeadingSize : HubLayoutConstants.sectionHeadingSize,
-      fontWeight: FontWeight.w700,
-      letterSpacing: isTv ? null : -0.2,
-    );
+    final titleStyle = HubLayoutConstants.sectionHeading(isTv: isTv);
 
     final isTopLevelShelf = !widget.inset && widget.cardSizing == HubCardSizing.shelf;
 

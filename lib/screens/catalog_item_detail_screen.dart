@@ -4,6 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
+import 'package:harbor/theme/mono_tokens.dart';
+import 'package:harbor/utils/layout_constants.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -543,7 +545,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.inTheseLibraries, style: theme.textTheme.titleMedium),
+        Text(t.explore.inTheseLibraries, style: _sectionHeading),
         const SizedBox(height: 12),
         // M3E grouped cards, same row anatomy as the settings/trackers hub:
         // server-type logo leading, name, chevron trailing.
@@ -816,7 +818,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.detail.ratings, style: theme.textTheme.titleMedium),
+        Text(t.explore.detail.ratings, style: _sectionHeading),
         const SizedBox(height: 8),
         Wrap(spacing: 8, runSpacing: 8, children: chips),
       ],
@@ -856,7 +858,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.detail.schedule, style: theme.textTheme.titleMedium),
+        Text(t.explore.detail.schedule, style: _sectionHeading),
         const SizedBox(height: 8),
         Wrap(spacing: 8, runSpacing: 8, children: chips),
       ],
@@ -884,6 +886,8 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
   }
 
   /// Gap between definition-grid columns, and between relation tiles.
+  TextStyle get _sectionHeading => HubLayoutConstants.sectionHeading(isTv: false, color: tokens(context).text);
+
   static const double _factColumnSpacing = 24;
   static const double _relationTileSpacing = 12;
 
@@ -985,7 +989,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.detail.crew, style: theme.textTheme.titleMedium),
+        Text(t.explore.detail.crew, style: _sectionHeading),
         const SizedBox(height: 8),
         _buildFactGrid(theme, rows),
       ],
@@ -1001,7 +1005,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.detail.tags, style: theme.textTheme.titleMedium),
+        Text(t.explore.detail.tags, style: _sectionHeading),
         if (visibleTags.isNotEmpty) ...[
           const SizedBox(height: 8),
           Wrap(spacing: 8, runSpacing: 8, children: [for (final tag in visibleTags) StatChip(label: tag.name)]),
@@ -1048,7 +1052,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(title, style: theme.textTheme.titleMedium),
+        Text(title, style: _sectionHeading),
         const SizedBox(height: 8),
         Wrap(
           spacing: 8,
@@ -1080,7 +1084,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text(t.explore.detail.background, style: theme.textTheme.titleMedium),
+        Text(t.explore.detail.background, style: _sectionHeading),
         const SizedBox(height: 8),
         Text(background, style: theme.textTheme.bodyLarge),
       ],
@@ -1099,7 +1103,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
           const {CatalogSourceId.mal, CatalogSourceId.anilist}.contains(_item.source)
               ? t.explore.characters
               : t.explore.cast,
-          style: theme.textTheme.titleMedium,
+          style: _sectionHeading,
         ),
         const SizedBox(height: 4),
         CastMemberStrip(
@@ -1127,7 +1131,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
         return Column(
           crossAxisAlignment: .start,
           children: [
-            Text(t.explore.detail.relatedTitles, style: theme.textTheme.titleMedium),
+            Text(t.explore.detail.relatedTitles, style: _sectionHeading),
             const SizedBox(height: 8),
             Wrap(
               spacing: _relationTileSpacing,
@@ -1287,8 +1291,31 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                             ),
                           ),
                         ),
+                      if (item.backdropUrl != null)
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: 320,
+                          child: IgnorePointer(
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    tokens(context).bg.withValues(alpha: 0.10),
+                                    tokens(context).bg.withValues(alpha: 0.55),
+                                    tokens(context).bg.withValues(alpha: 0.95),
+                                  ],
+                                  stops: const [0, 0.35, 1],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       Padding(
-                        padding: EdgeInsets.fromLTRB(24, viewInsets.top + 120, 24, viewInsets.bottom + 32),
+                        padding: EdgeInsets.fromLTRB(16, viewInsets.top + 120, 16, viewInsets.bottom + 32),
                         child: Column(
                           crossAxisAlignment: .start,
                           children: [
@@ -1304,22 +1331,26 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                   child: Column(
                                     crossAxisAlignment: .start,
                                     children: [
-                                      if (item.tagline?.trim() case final tagline? when tagline.isNotEmpty) ...[
-                                        Text(
-                                          tagline,
-                                          style: theme.textTheme.titleMedium?.copyWith(
-                                            color: theme.colorScheme.onSurface.withValues(alpha: 0.75),
-                                            fontStyle: FontStyle.italic,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 6),
-                                      ],
                                       Text(
                                         item.title,
                                         style: theme.textTheme.headlineMedium,
                                         maxLines: 3,
                                         overflow: .ellipsis,
                                       ),
+                                      if (item.tagline?.trim() case final tagline? when tagline.isNotEmpty) ...[
+                                        const SizedBox(height: 6),
+                                        Text(
+                                          tagline,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: tokens(context).textMuted,
+                                            fontStyle: FontStyle.italic,
+                                            height: 1.35,
+                                          ),
+                                          maxLines: 2,
+                                          overflow: .ellipsis,
+                                        ),
+                                      ],
                                       if (_metaLine.isNotEmpty) ...[
                                         const SizedBox(height: 8),
                                         Text(
@@ -1332,59 +1363,57 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                       if (item.genres?.isNotEmpty ?? false) ...[
                                         const SizedBox(height: 8),
                                         Text(
-                                          item.genres!.join(' • '),
+                                          item.genres!.join(', '),
                                           style: theme.textTheme.bodySmall?.copyWith(
                                             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                                           ),
                                         ),
                                       ],
-                                      const SizedBox(height: 16),
-                                      if (_hasActions)
-                                        FocusableActionBar(
-                                          key: _actionBarKey,
-                                          onNavigateDown: _focusSectionBelowActions,
-                                          actions: [
-                                            if (_watchlistSource != null)
-                                              FocusableAction(
-                                                icon: onWatchlist ?? false
-                                                    ? PhosphorIconsFill.bookmark
-                                                    : PhosphorIcons.bookmark,
-                                                tooltip: onWatchlist ?? false
-                                                    ? t.explore.removeFromWatchlist
-                                                    : t.explore.addToWatchlist,
-                                                onPressed: () => unawaited(_toggleWatchlist()),
-                                              ),
-                                            if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null)
-                                              FocusableAction(
-                                                icon: PhosphorIcons.download,
-                                                tooltip: t.seerr.request,
-                                                onPressed: () => unawaited(
-                                                  showSeerrRequestSheet(
-                                                    hostContext,
-                                                    source: seerr,
-                                                    kind: item.kind,
-                                                    tmdbId: tmdbId,
-                                                    title: item.title,
-                                                  ),
-                                                ),
-                                              ),
-                                            if (item.trailerUrl?.trim() case final trailer? when trailer.isNotEmpty)
-                                              FocusableAction(
-                                                icon: PhosphorIcons.play,
-                                                tooltip: t.explore.detail.watchTrailer,
-                                                onPressed: () => unawaited(_openExternalUrl(trailer)),
-                                              ),
-                                          ],
-                                        ),
                                     ],
                                   ),
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 20),
+                            if (_hasActions)
+                              FocusableActionBar(
+                                key: _actionBarKey,
+                                onNavigateDown: _focusSectionBelowActions,
+                                actions: [
+                                  if (_watchlistSource != null)
+                                    FocusableAction(
+                                      icon: onWatchlist ?? false ? PhosphorIconsFill.bookmark : PhosphorIcons.bookmark,
+                                      tooltip: onWatchlist ?? false
+                                          ? t.explore.removeFromWatchlist
+                                          : t.explore.addToWatchlist,
+                                      onPressed: () => unawaited(_toggleWatchlist()),
+                                    ),
+                                  if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null)
+                                    FocusableAction(
+                                      icon: PhosphorIcons.paperPlaneTilt,
+                                      tooltip: t.seerr.request,
+                                      onPressed: () => unawaited(
+                                        showSeerrRequestSheet(
+                                          hostContext,
+                                          source: seerr,
+                                          kind: item.kind,
+                                          tmdbId: tmdbId,
+                                          title: item.title,
+                                        ),
+                                      ),
+                                    ),
+                                  if (item.trailerUrl?.trim() case final trailer? when trailer.isNotEmpty)
+                                    FocusableAction(
+                                      icon: PhosphorIcons.play,
+                                      tooltip: t.explore.detail.watchTrailer,
+                                      onPressed: () => unawaited(_openExternalUrl(trailer)),
+                                    ),
+                                ],
+                              ),
                             if (_buildStatsChips() case final Widget chips) ...[const SizedBox(height: 20), chips],
                             if (item.overview?.trim() case final overview? when overview.isNotEmpty) ...[
                               const SizedBox(height: 24),
-                              Text(overview, style: theme.textTheme.bodyLarge),
+                              Text(overview, style: theme.textTheme.bodyLarge?.copyWith(fontSize: 15.5, height: 1.5)),
                             ],
                             if (item.background?.trim() case final background? when background.isNotEmpty) ...[
                               const SizedBox(height: 24),

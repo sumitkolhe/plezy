@@ -99,15 +99,7 @@ class DetailSectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = tokens(context);
     // Matches HubSection: its rails render on this same page.
-    final heading = Text(
-      title,
-      style: TextStyle(
-        fontSize: HubLayoutConstants.sectionHeadingSize,
-        fontWeight: .w700,
-        letterSpacing: -0.2,
-        color: t.text,
-      ),
-    );
+    final heading = Text(title, style: HubLayoutConstants.sectionHeading(isTv: false, color: t.text));
     if (action == null && (trailing == null || trailing!.isEmpty)) return heading;
 
     return Row(

@@ -69,6 +69,14 @@ class HubLayoutConstants {
   static const double sectionHeadingSize = 18;
   static const double tvSectionHeadingSize = 26;
 
+  /// The weight and tracking that go with those sizes.
+  static TextStyle sectionHeading({required bool isTv, Color? color}) => TextStyle(
+    fontSize: isTv ? tvSectionHeadingSize : sectionHeadingSize,
+    fontWeight: FontWeight.w700,
+    letterSpacing: isTv ? null : -0.2,
+    color: color,
+  );
+
   /// Between the hero's page indicator and the first rail header.
   static const double heroToRailGap = 16;
 }
