@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
-
-import '../../widgets/app_icon.dart';
 
 import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
@@ -54,18 +51,9 @@ class DetailFactStrip extends StatelessWidget {
           if (rating != null)
             _FactPill(
               onTap: onRatingTap,
-              child: Row(
-                spacing: 6,
-                children: [
-                  Text.rich(
-                    TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
-                    style: valueStyle.copyWith(color: t.text),
-                  ),
-                  // Says the pill leaves the app, rather than leaving the tap to
-                  // be discovered.
-                  if (onRatingTap != null)
-                    AppIcon(PhosphorIcons.arrowSquareOut, size: 11, color: t.text.withValues(alpha: 0.5)),
-                ],
+              child: Text.rich(
+                TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
+                style: valueStyle.copyWith(color: t.text),
               ),
             ),
           for (final fact in facts) _FactPill(child: Text(fact, style: valueStyle)),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/screens/media_detail/detail_design.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/theme/mono_theme.dart';
 
 void main() {
@@ -44,15 +43,12 @@ void main() {
       expect(renderedText(tester), '2019');
     });
 
-    testWidgets('the rating only offers a link when there is one to follow', (tester) async {
+    testWidgets('the rating only takes a tap when there is a link to follow', (tester) async {
       await pump(tester, const DetailFactStrip(rating: 8.4, facts: ['2019']));
       expect(find.byType(InkWell), findsNothing);
-      expect(find.byIcon(PhosphorIcons.arrowSquareOut), findsNothing);
 
       var taps = 0;
       await pump(tester, DetailFactStrip(rating: 8.4, facts: const ['2019'], onRatingTap: () => taps++));
-      expect(find.byIcon(PhosphorIcons.arrowSquareOut), findsOneWidget);
-
       await tester.tap(find.byType(InkWell));
       expect(taps, 1);
     });
