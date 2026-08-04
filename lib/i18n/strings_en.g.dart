@@ -85,6 +85,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$addServer$en addServer = Translations$addServer$en.internal(_root);
 	late final Translations$managedServices$en managedServices = Translations$managedServices$en.internal(_root);
 	late final Translations$serverActivity$en serverActivity = Translations$serverActivity$en.internal(_root);
+	late final Translations$arrSearch$en arrSearch = Translations$arrSearch$en.internal(_root);
 }
 
 // Path: app
@@ -4036,6 +4037,81 @@ class Translations$serverActivity$en {
 	String get unmonitored => 'Unmonitored';
 }
 
+// Path: arrSearch
+class Translations$arrSearch$en {
+	Translations$arrSearch$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Search'
+	String get title => 'Search';
+
+	/// en: 'Search automatically'
+	String get auto => 'Search automatically';
+
+	/// en: 'Hand it to ${service} and let it pick.'
+	String autoDescription({required Object service}) => 'Hand it to ${service} and let it pick.';
+
+	/// en: 'Choose a release'
+	String get manual => 'Choose a release';
+
+	/// en: 'Ask the indexers and pick one yourself.'
+	String get manualDescription => 'Ask the indexers and pick one yourself.';
+
+	/// en: 'Asking the indexers…'
+	String get searching => 'Asking the indexers…';
+
+	/// en: 'This can take a while.'
+	String get searchingSlow => 'This can take a while.';
+
+	/// en: 'No releases found'
+	String get noReleases => 'No releases found';
+
+	/// en: 'The indexers had nothing for this.'
+	String get noReleasesDescription => 'The indexers had nothing for this.';
+
+	/// en: 'Search failed'
+	String get failed => 'Search failed';
+
+	/// en: 'Searching in ${service}'
+	String handedOver({required Object service}) => 'Searching in ${service}';
+
+	/// en: 'Sent to ${service}'
+	String grabbed({required Object service}) => 'Sent to ${service}';
+
+	/// en: '${service} refused that release'
+	String grabFailed({required Object service}) => '${service} refused that release';
+
+	/// en: 'Rejected by ${service}'
+	String rejectedTitle({required Object service}) => 'Rejected by ${service}';
+
+	/// en: 'Grab anyway'
+	String get grabAnyway => 'Grab anyway';
+
+	/// en: '${count} seeders'
+	String seeders({required Object count}) => '${count} seeders';
+
+	/// en: '${count} h old'
+	String ageHours({required Object count}) => '${count} h old';
+
+	/// en: '${count} d old'
+	String ageDays({required Object count}) => '${count} d old';
+
+	/// en: 'This film'
+	String get scopeMovie => 'This film';
+
+	/// en: 'Whole series'
+	String get scopeSeries => 'Whole series';
+
+	/// en: 'Season ${season}'
+	String scopeSeason({required Object season}) => 'Season ${season}';
+
+	/// en: 'S${season}E${episode}'
+	String scopeEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
+}
+
 // Path: hotkeys.actions
 class Translations$hotkeys$actions$en {
 	Translations$hotkeys$actions$en.internal(this._root);
@@ -6460,6 +6536,28 @@ extension on Translations {
 			'serverActivity.airedOn' => ({required Object date}) => 'Aired ${date}',
 			'serverActivity.airsOn' => ({required Object date}) => 'Airs ${date}',
 			'serverActivity.unmonitored' => 'Unmonitored',
+			'arrSearch.title' => 'Search',
+			'arrSearch.auto' => 'Search automatically',
+			'arrSearch.autoDescription' => ({required Object service}) => 'Hand it to ${service} and let it pick.',
+			'arrSearch.manual' => 'Choose a release',
+			'arrSearch.manualDescription' => 'Ask the indexers and pick one yourself.',
+			'arrSearch.searching' => 'Asking the indexers…',
+			'arrSearch.searchingSlow' => 'This can take a while.',
+			'arrSearch.noReleases' => 'No releases found',
+			'arrSearch.noReleasesDescription' => 'The indexers had nothing for this.',
+			'arrSearch.failed' => 'Search failed',
+			'arrSearch.handedOver' => ({required Object service}) => 'Searching in ${service}',
+			'arrSearch.grabbed' => ({required Object service}) => 'Sent to ${service}',
+			'arrSearch.grabFailed' => ({required Object service}) => '${service} refused that release',
+			'arrSearch.rejectedTitle' => ({required Object service}) => 'Rejected by ${service}',
+			'arrSearch.grabAnyway' => 'Grab anyway',
+			'arrSearch.seeders' => ({required Object count}) => '${count} seeders',
+			'arrSearch.ageHours' => ({required Object count}) => '${count} h old',
+			'arrSearch.ageDays' => ({required Object count}) => '${count} d old',
+			'arrSearch.scopeMovie' => 'This film',
+			'arrSearch.scopeSeries' => 'Whole series',
+			'arrSearch.scopeSeason' => ({required Object season}) => 'Season ${season}',
+			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
 			_ => null,
 		};
 	}

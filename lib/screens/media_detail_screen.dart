@@ -99,6 +99,9 @@ import '../providers/server_activity_provider.dart';
 import '../utils/external_ids.dart';
 import '../models/arr/season_completeness.dart';
 import '../widgets/rasterized_gradient.dart';
+import '../services/arr/arr_item_lookup.dart';
+import '../services/arr/arr_search_service.dart';
+import '../widgets/arr_search_sheet.dart';
 import '../widgets/season_gap_section.dart';
 import '../widgets/server_awareness_card.dart';
 import '../widgets/tv_browse_rail.dart';
@@ -724,6 +727,58 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     final states = provider.itemState(ids, isSeries: true) ?? const [];
     if (states.isEmpty) return;
     await provider.resolveEpisodes(states.firstWhere((s) => s.monitored, orElse: () => states.first));
+  }
+
+  /// The monitored instance: an unmonitored copy has files for nothing.
+  ArrItemState? get _arrState {
+    final ids = _serverAwarenessIds;
+    if (ids == null) return null;
+    final metadata = _fullMetadata ?? _metadata;
+    final states = context.read<ServerActivityProvider?>()?.itemState(ids, isSeries: metadata.isShow) ?? const [];
+    if (states.isEmpty) return null;
+    return states.firstWhere((s) => s.monitored, orElse: () => states.first);
+  }
+
+  void _searchForEpisode(ArrEpisode episode) {
+    final state = _arrState;
+    if (state == null) return;
+    unawaited(
+      showArrSearchSheet(
+        context,
+        state: state,
+        target: EpisodeSearch(episode.id),
+        scopeLabel: t.arrSearch.scopeEpisode(season: episode.seasonNumber, episode: episode.episodeNumber),
+      ),
+    );
+  }
+
+  /// Null when no instance tracks the item, so no entry appears.
+  MediaMenuExtraEntry? get _searchMenuEntry {
+    final state = _arrState;
+    if (state == null) return null;
+    final metadata = _fullMetadata ?? _metadata;
+    final season = metadata.isSeason ? _selectedSeasonNumber : null;
+
+    return MediaMenuExtraEntry(
+      icon: PhosphorIcons.magnifyingGlass,
+      label: t.arrSearch.title,
+      onSelected: () => unawaited(
+        showArrSearchSheet(
+          context,
+          state: state,
+          target: switch ((metadata.isShow, season)) {
+            (true, _) => SeriesSearch(state.mediaId),
+            (false, final number?) => SeasonSearch(state.mediaId, number),
+            _ => MovieSearch(state.mediaId),
+          },
+          scopeLabel: switch ((metadata.isShow, season)) {
+            (true, _) => t.arrSearch.scopeSeries,
+            (false, final number?) => t.arrSearch.scopeSeason(season: number),
+            _ => t.arrSearch.scopeMovie,
+          },
+        ),
+      ),
+    );
   }
 
   /// Empty for films, and until the lookup lands.
@@ -3065,7 +3120,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                     _buildEpisodesList()
                                   else
                                     _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
-                                  if (!isTv) SeasonGapSection(gap: _seasonGap()),
+                                  if (!isTv) SeasonGapSection(gap: _seasonGap(), onSearch: _searchForEpisode),
                                 ],
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ] else if ((isShow && _showEpisodesDirectly) || metadata.isSeason) ...[
@@ -3083,7 +3138,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   _buildEpisodesList()
                                 else
                                   _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
-                                if (!isTv) SeasonGapSection(gap: _seasonGap()),
+                                if (!isTv) SeasonGapSection(gap: _seasonGap(), onSearch: _searchForEpisode),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 

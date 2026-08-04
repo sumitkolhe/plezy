@@ -16,7 +16,10 @@ import 'app_icon.dart';
 class SeasonGapSection extends StatelessWidget {
   final SeasonGap gap;
 
-  const SeasonGapSection({super.key, required this.gap});
+  /// Null leaves the rows inert, as when no instance is reachable.
+  final void Function(ArrEpisode episode)? onSearch;
+
+  const SeasonGapSection({super.key, required this.gap, this.onSearch});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +31,14 @@ class SeasonGapSection extends StatelessWidget {
         if (gap.missing.isNotEmpty) ...[
           const SizedBox(height: 18),
           _Heading(text: t.serverActivity.notDownloaded(count: gap.missing.length), tone: _Tone.missing),
-          for (final episode in gap.missing) _GapRow(episode: episode, tone: _Tone.missing),
+          for (final episode in gap.missing)
+            _GapRow(episode: episode, tone: _Tone.missing, onSearch: onSearch),
         ],
         if (gap.upcoming.isNotEmpty) ...[
           const SizedBox(height: 18),
           _Heading(text: t.serverActivity.upcomingEpisodes(count: gap.upcoming.length), tone: _Tone.upcoming),
-          for (final episode in gap.upcoming) _GapRow(episode: episode, tone: _Tone.upcoming),
+          for (final episode in gap.upcoming)
+            _GapRow(episode: episode, tone: _Tone.upcoming, onSearch: onSearch),
         ],
       ],
     );
@@ -68,16 +73,18 @@ class _Heading extends StatelessWidget {
 class _GapRow extends StatelessWidget {
   final ArrEpisode episode;
   final _Tone tone;
+  final void Function(ArrEpisode episode)? onSearch;
 
-  const _GapRow({required this.episode, required this.tone});
+  const _GapRow({required this.episode, required this.tone, this.onSearch});
 
   @override
   Widget build(BuildContext context) {
     final tokensRef = tokens(context);
-    // No tap target: a row that looks playable but is not is worse than none.
+    // Dim: nothing to play. The tap searches for a file instead.
     final foreground = tokensRef.text.withValues(alpha: 0.45);
+    final search = onSearch;
 
-    return Padding(
+    final row = Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Row(
         children: [
@@ -104,9 +111,16 @@ class _GapRow extends StatelessWidget {
               fontFeatures: const [FontFeature.tabularFigures()],
             ),
           ),
+          if (search != null) ...[
+            const SizedBox(width: 8),
+            AppIcon(PhosphorIcons.magnifyingGlass, size: 13, color: tokensRef.text.withValues(alpha: 0.38)),
+          ],
         ],
       ),
     );
+
+    if (search == null || episode.id == 0) return row;
+    return InkWell(onTap: () => search(episode), child: row);
   }
 
   String _trailing() {

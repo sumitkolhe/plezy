@@ -452,6 +452,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
       item: metadata,
       onRefresh: (source) => unawaited(_refreshItemInPlace(source)),
       onPlayTrailer: onPlayTrailer,
+      extraEntries: [?_searchMenuEntry],
       child: Builder(
         builder: (buttonContext) => IconButton.filledTonal(
           onPressed: () {

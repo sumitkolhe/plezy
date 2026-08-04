@@ -1576,5 +1576,29 @@
     "airedOn": "Aired ${date}",
     "airsOn": "Airs ${date}",
     "unmonitored": "Unmonitored"
+  },
+  "arrSearch": {
+    "title": "Search",
+    "auto": "Search automatically",
+    "autoDescription": "Hand it to ${service} and let it pick.",
+    "manual": "Choose a release",
+    "manualDescription": "Ask the indexers and pick one yourself.",
+    "searching": "Asking the indexers…",
+    "searchingSlow": "This can take a while.",
+    "noReleases": "No releases found",
+    "noReleasesDescription": "The indexers had nothing for this.",
+    "failed": "Search failed",
+    "handedOver": "Searching in ${service}",
+    "grabbed": "Sent to ${service}",
+    "grabFailed": "${service} refused that release",
+    "rejectedTitle": "Rejected by ${service}",
+    "grabAnyway": "Grab anyway",
+    "seeders": "${count} seeders",
+    "ageHours": "${count} h old",
+    "ageDays": "${count} d old",
+    "scopeMovie": "This film",
+    "scopeSeries": "Whole series",
+    "scopeSeason": "Season ${season}",
+    "scopeEpisode": "S${season}E${episode}"
   }
 }

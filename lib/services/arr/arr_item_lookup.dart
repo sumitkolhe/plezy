@@ -8,6 +8,9 @@ import '../trackers/future_coalescer.dart';
 /// which is the whole point: Jellyfin cannot report an episode it has never
 /// seen.
 class ArrEpisode {
+  /// Sonarr's own id, which an episode search is keyed on.
+  final int id;
+
   final int seasonNumber;
   final int episodeNumber;
   final String title;
@@ -18,6 +21,7 @@ class ArrEpisode {
   final DateTime? airDate;
 
   const ArrEpisode({
+    required this.id,
     required this.seasonNumber,
     required this.episodeNumber,
     required this.title,
@@ -34,6 +38,7 @@ class ArrEpisode {
     if (season == null || number == null) return null;
     final air = json['airDateUtc'] as String?;
     return ArrEpisode(
+      id: ((json['id'] as num?) ?? 0).toInt(),
       seasonNumber: season,
       episodeNumber: number,
       title: (json['title'] as String?)?.trim() ?? '',
