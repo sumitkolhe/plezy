@@ -76,10 +76,16 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
         if (padding != null) {
           return FilledButton.styleFrom(padding: padding);
         }
+        // secondaryContainer maps to the surface colour, which on this app's
+        // near-black backgrounds leaves the button shape invisible — worst on
+        // OLED, where #0A0A0A sits on #000000.
+        final tint = tokens(context).text;
         return IconButton.styleFrom(
           minimumSize: const Size(48, 48),
           maximumSize: const Size(48, 48),
           foregroundColor: foregroundColor,
+          backgroundColor: tint.withValues(alpha: 0.10),
+          side: BorderSide(color: tint.withValues(alpha: 0.16)),
         );
       }
 

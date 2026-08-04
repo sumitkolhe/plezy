@@ -52,7 +52,8 @@ class DetailFactStrip extends StatelessWidget {
             _FactPill(
               onTap: onRatingTap,
               child: Text.rich(
-                TextSpan(children: [ratingSpan(rating!, iconSize: 13)]),
+                // The scale, because a bare "9" or "1" says nothing about it.
+                TextSpan(children: [ratingSpan(rating!, iconSize: 13, suffix: '/10')]),
                 style: valueStyle.copyWith(color: t.text),
               ),
             ),
@@ -83,7 +84,7 @@ class _FactPill extends StatelessWidget {
     );
 
     return Material(
-      color: tokens(context).text.withValues(alpha: 0.08),
+      color: tokens(context).text.withValues(alpha: 0.13),
       borderRadius: shape,
       child: onTap == null ? body : InkWell(borderRadius: shape, onTap: onTap, child: body),
     );
@@ -153,7 +154,6 @@ class DetailInfoEntry {
 /// Unruled by choice: this app separates content with surfaces, not hairlines.
 class DetailInfoTable extends StatelessWidget {
   final List<DetailInfoEntry> entries;
-  static const double _labelWidth = 72;
 
   const DetailInfoTable({super.key, required this.entries});
 
@@ -162,28 +162,27 @@ class DetailInfoTable extends StatelessWidget {
     if (entries.isEmpty) return const SizedBox.shrink();
     final t = tokens(context);
 
-    return Column(
-      crossAxisAlignment: .start,
+    // The label column hugs its widest label instead of a fixed 72: "Studio" in
+    // a column sized for something longer left a gap the eye had to cross.
+    return Table(
+      columnWidths: const {0: IntrinsicColumnWidth(), 1: FlexColumnWidth()},
+      defaultVerticalAlignment: .top,
       children: [
         for (var i = 0; i < entries.length; i++)
-          Padding(
-            padding: EdgeInsets.only(top: i == 0 ? 0 : 10),
-            child: Row(
-              crossAxisAlignment: .start,
-              children: [
-                SizedBox(
-                  width: _labelWidth,
-                  child: Text(entries[i].label, style: TextStyle(fontSize: 13, color: t.textMuted)),
+          TableRow(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: i == 0 ? 0 : 10, right: 16),
+                child: Text(entries[i].label, style: TextStyle(fontSize: 13, color: t.textMuted)),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: i == 0 ? 0 : 10),
+                child: Text(
+                  entries[i].value,
+                  style: TextStyle(fontSize: 14.5, fontWeight: .w500, color: t.text),
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    entries[i].value,
-                    style: TextStyle(fontSize: 14.5, fontWeight: .w500, color: t.text),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
       ],
     );

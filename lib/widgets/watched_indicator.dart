@@ -99,7 +99,10 @@ class WatchedIndicator extends StatelessWidget {
               decoration: BoxDecoration(
                 color: tokens(context).accent,
                 shape: BoxShape.circle,
-                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 4)],
+                // The badge is near-white on dark themes, so a bright frame
+                // behind it needs an edge of its own to read against.
+                border: Border.all(color: Colors.black.withValues(alpha: 0.22)),
+                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.45), blurRadius: 6)],
               ),
               child: AppIcon(PhosphorIcons.check, color: tokens(context).bg, size: size.checkIconSize),
             ),
