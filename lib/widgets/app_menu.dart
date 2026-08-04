@@ -13,6 +13,7 @@ import '../focus/key_event_utils.dart';
 import '../theme/mono_tokens.dart';
 import '../utils/focus_utils.dart';
 import 'app_icon.dart';
+import 'bottom_sheet_header.dart';
 import 'clickable_cursor.dart';
 import 'overlay_sheet.dart';
 
@@ -138,7 +139,6 @@ Future<T?> showAdaptiveAppMenu<T>(
   if (platform == TargetPlatform.iOS || platform == TargetPlatform.android) {
     return OverlaySheetController.showAdaptive<T>(
       context,
-      showDragHandle: true,
       isScrollControlled: isScrollControlled,
       // A list of actions that scrolls hides its own tail, so let it stand
       // taller than the default before it has to.
@@ -271,21 +271,10 @@ class AppMenuSheet<T> extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (titleWidget != null || title != null)
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-            child:
-                titleWidget ??
-                Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    title!,
-                    style: Theme.of(context).textTheme.titleMedium,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-          ),
+        if (titleWidget != null)
+          Padding(padding: const EdgeInsets.fromLTRB(16, 4, 16, 8), child: titleWidget)
+        else if (title != null)
+          BottomSheetHeader(title: title!),
         Flexible(
           child: SingleChildScrollView(
             child: AppMenuList<T>(

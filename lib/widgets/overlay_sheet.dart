@@ -67,7 +67,7 @@ class OverlaySheetController {
     bool barrierDismissible = true,
     FocusNode? initialFocusNode,
     Alignment alignment = Alignment.bottomCenter,
-    bool showDragHandle = false,
+    bool showDragHandle = true,
   }) {
     return _state._show<T>(
       builder: builder,
@@ -125,7 +125,7 @@ class OverlaySheetController {
     bool isScrollControlled = false,
     FocusNode? initialFocusNode,
     Alignment alignment = Alignment.bottomCenter,
-    bool showDragHandle = false,
+    bool showDragHandle = true,
   }) async {
     final controller = maybeOf(context);
     if (controller != null) {
@@ -179,7 +179,7 @@ class OverlaySheetController {
     Color? backgroundColor,
     bool barrierDismissible = true,
     bool isScrollControlled = false,
-    bool showDragHandle = false,
+    bool showDragHandle = true,
   }) async {
     final controller = maybeOf(context);
     if (controller != null) {
@@ -337,7 +337,7 @@ class _OverlaySheetHostState extends State<OverlaySheetHost> with SingleTickerPr
     bool barrierDismissible = true,
     FocusNode? initialFocusNode,
     Alignment alignment = Alignment.bottomCenter,
-    bool showDragHandle = false,
+    bool showDragHandle = true,
   }) {
     BackKeyCoordinator.clear();
     // If already open, close first (instant)

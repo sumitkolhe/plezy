@@ -671,7 +671,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     unawaited(
       controller
           .show<String>(
-            showDragHandle: true,
             constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.62),
             builder: (_) => LibraryQuickPickerSheet(
               libraries: visibleLibraries,

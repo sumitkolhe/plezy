@@ -91,7 +91,6 @@ Future<void> showLibraryManagementSheet(
   // keeps that modal fallback from capping the sheet at ~9/16 of the screen.
   return OverlaySheetController.showAdaptive<void>(
     context,
-    showDragHandle: true,
     isScrollControlled: true,
     builder: (context) => buildSheet(isDialog: false),
   );

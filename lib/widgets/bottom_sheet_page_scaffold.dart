@@ -10,15 +10,9 @@ class BottomSheetPageScaffold extends StatelessWidget {
   final Widget child;
   final Widget? leading;
   final Widget? action;
-  final VoidCallback? onClose;
   final IconData? icon;
   final Color? iconColor;
   final VoidCallback? onBack;
-  final TextStyle? titleStyle;
-  final Color? titleColor;
-  final bool showHeaderBorder;
-  final bool showHeaderDivider;
-  final FocusNode? closeFocusNode;
   final bool shrinkWrap;
 
   const BottomSheetPageScaffold({
@@ -27,15 +21,9 @@ class BottomSheetPageScaffold extends StatelessWidget {
     required this.child,
     this.leading,
     this.action,
-    this.onClose,
     this.icon,
     this.iconColor,
     this.onBack,
-    this.titleStyle,
-    this.titleColor,
-    this.showHeaderBorder = true,
-    this.showHeaderDivider = false,
-    this.closeFocusNode,
     this.shrinkWrap = false,
   });
 
@@ -48,16 +36,10 @@ class BottomSheetPageScaffold extends StatelessWidget {
           title: title,
           leading: leading,
           action: action,
-          onClose: onClose,
           icon: icon,
           iconColor: iconColor,
           onBack: onBack,
-          titleStyle: titleStyle,
-          titleColor: titleColor,
-          showBorder: showHeaderBorder,
-          closeFocusNode: closeFocusNode,
         ),
-        if (showHeaderDivider) Divider(color: Theme.of(context).dividerColor, height: 1),
         if (shrinkWrap) child else Expanded(child: child),
       ],
     );

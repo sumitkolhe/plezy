@@ -38,7 +38,6 @@ class SeasonPickerChip extends StatelessWidget {
     unawaited(
       OverlaySheetController.showAdaptive<int>(
         context,
-        showDragHandle: true,
         builder: (_) => _SeasonSheet(seasons: seasons, selectedIndex: selectedIndex),
       ).then((picked) {
         if (picked != null && picked != selectedIndex) onSelected(picked);

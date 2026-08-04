@@ -17,7 +17,7 @@ import '../../../widgets/focusable_list_tile.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../../../widgets/settings_builder.dart';
 import '../widgets/media_selector_thumbnail.dart';
-import 'base_video_control_sheet.dart';
+import '../../bottom_sheet_page_scaffold.dart';
 import '../../optimized_media_image.dart';
 
 const _kThumbWidth = 60.0;
@@ -99,7 +99,7 @@ class _QueueSheetState extends State<QueueSheet> {
             );
           }
 
-          return BaseVideoControlSheet(title: t.videoControls.queue, icon: PhosphorIcons.queue, child: content);
+          return BottomSheetPageScaffold(title: t.videoControls.queue, icon: PhosphorIcons.queue, child: content);
         },
       ),
     );

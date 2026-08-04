@@ -7,7 +7,7 @@ import '../../../services/playback_subtitle_resolver.dart';
 import '../../../i18n/strings.g.dart';
 import '../../../utils/track_label_builder.dart';
 import '../../../widgets/overlay_sheet.dart';
-import 'base_video_control_sheet.dart';
+import '../../bottom_sheet_page_scaffold.dart';
 import 'sheet_selection_column.dart';
 import '../models/track_controls_state.dart';
 import '../helpers/track_filter_helper.dart';
@@ -56,7 +56,7 @@ class TrackSheet extends StatelessWidget {
           icon = PhosphorIcons.subtitles;
         }
 
-        return BaseVideoControlSheet(
+        return BottomSheetPageScaffold(
           title: title,
           icon: icon,
           child: StreamBuilder<TrackSelection>(

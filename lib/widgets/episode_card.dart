@@ -75,7 +75,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
     await menu.showActionsVia(
       (actions) => OverlaySheetController.showAdaptive<String>(
         context,
-        showDragHandle: true,
         builder: (_) => EpisodeDetailSheet(
           episode: episode,
           client: widget.client,

@@ -1139,7 +1139,6 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     // OverlaySheetHost is found (see _showContextMenu).
     await OverlaySheetController.showAdaptive(
       this.context,
-      showDragHandle: true,
       isScrollControlled: true,
       builder: (context) =>
           RatingBottomSheet(item: item, serverClient: client, onServerFavoriteChanged: (_) => _notifyRefresh(item)),

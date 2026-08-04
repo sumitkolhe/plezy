@@ -200,7 +200,6 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
     final timed = service.sleepTimerActive && !service.sleepTimerEndOfTrack;
     final selected = await OverlaySheetController.showAdaptive<String>(
       _sheetContext,
-      showDragHandle: true,
       builder: (context) => AppMenuSheet<String>(
         title: t.music.sleepTimer,
         entries: [

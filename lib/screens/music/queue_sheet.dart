@@ -20,7 +20,7 @@ import '../../widgets/overlay_sheet.dart';
 /// [OverlaySheetHost] ancestor (all now-playing layouts do) so TV back
 /// handling stays centralized in the host.
 Future<void> showQueueSheet(BuildContext context) {
-  return OverlaySheetController.of(context).show<void>(showDragHandle: true, builder: (_) => const QueueSheet());
+  return OverlaySheetController.of(context).show<void>(builder: (_) => const QueueSheet());
 }
 
 /// Sheet chrome around [QueueList]: header with track count, shuffle/repeat

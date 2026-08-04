@@ -30,33 +30,12 @@ class FileInfoBottomSheet extends StatefulWidget {
 }
 
 class _FileInfoBottomSheetState extends State<FileInfoBottomSheet> {
-  late final FocusNode _initialFocusNode;
-
-  @override
-  void initState() {
-    super.initState();
-    _initialFocusNode = FocusNode(debugLabel: 'FileInfoBottomSheetInitialFocus');
-  }
-
-  @override
-  void dispose() {
-    _initialFocusNode.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final versions = widget.fileInfo.versions;
     return Column(
       children: [
-        BottomSheetHeader(
-          title: t.fileInfo.title,
-          icon: PhosphorIcons.info,
-          closeFocusNode: _initialFocusNode,
-          // Flat sheet: the tonal cards do the separating, so the header
-          // keeps no rule under it.
-          showBorder: false,
-        ),
+        BottomSheetHeader(title: t.fileInfo.title, icon: PhosphorIcons.info),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
@@ -201,7 +180,11 @@ class _VersionBlock extends StatelessWidget {
                 ),
             ],
           ),
-        _InfoSection(title: t.fileInfo.delivery, icon: PhosphorIcons.cellTower, fields: _deliveryFields(context, version)),
+        _InfoSection(
+          title: t.fileInfo.delivery,
+          icon: PhosphorIcons.cellTower,
+          fields: _deliveryFields(context, version),
+        ),
         if (!isLast) const SizedBox(height: 20),
       ],
     );

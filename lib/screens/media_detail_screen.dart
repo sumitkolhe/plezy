@@ -1108,7 +1108,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   /// Build a metadata chip with optional leading icon or widget
   void _showRatingDialog(BuildContext sheetContext, MediaItem metadata) {
     OverlaySheetController.of(sheetContext).show(
-      showDragHandle: true,
       builder: (context) => RatingBottomSheet(
         item: metadata,
         serverClient: _getMediaClientForMetadata(this.context),

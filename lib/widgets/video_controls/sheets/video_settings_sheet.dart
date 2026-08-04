@@ -34,7 +34,7 @@ import '../models/track_controls_state.dart';
 import '../widgets/sync_offset_control.dart';
 import '../widgets/sleep_timer_content.dart';
 import '../../../i18n/strings.g.dart';
-import 'base_video_control_sheet.dart';
+import '../../bottom_sheet_page_scaffold.dart';
 import 'version_quality_sheet.dart';
 
 enum _SettingsView {
@@ -1098,7 +1098,7 @@ class _VideoSettingsSheetState extends State<VideoSettingsSheet> {
         _currentView == _SettingsView.menu &&
         (sleepTimer.isActive || _audioSyncOffset != 0 || _subtitleSyncOffset != 0 || isShaderActive || isZoomActive);
 
-    return BaseVideoControlSheet(
+    return BottomSheetPageScaffold(
       title: _getTitle(),
       icon: _getIcon(),
       iconColor: () {

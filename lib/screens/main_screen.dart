@@ -1172,7 +1172,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
 
     controller
         .show<String>(
-          showDragHandle: true,
           constraints: BoxConstraints(maxHeight: maxHeight),
           builder: (sheetContext) {
             return Consumer2<LibrariesProvider, HiddenLibrariesProvider>(

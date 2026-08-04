@@ -30,7 +30,6 @@ Future<void> showArrSearchSheet(
   return OverlaySheetController.showAdaptive<void>(
     context,
     isScrollControlled: true,
-    showDragHandle: true,
     builder: (_) => _ArrSearchSheet(state: state, target: target, scopeLabel: scopeLabel),
   );
 }
@@ -124,7 +123,7 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
     return Column(
       mainAxisSize: .min,
       children: [
-        BottomSheetHeader(title: t.arrSearch.title, showBorder: false),
+        BottomSheetHeader(title: t.arrSearch.title),
         Flexible(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),

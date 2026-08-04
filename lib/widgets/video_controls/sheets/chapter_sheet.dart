@@ -18,7 +18,7 @@ import '../../../utils/scroll_utils.dart';
 import '../../../widgets/focusable_list_tile.dart';
 import '../../../widgets/overlay_sheet.dart';
 import '../widgets/media_selector_thumbnail.dart';
-import 'base_video_control_sheet.dart';
+import '../../bottom_sheet_page_scaffold.dart';
 import '../../optimized_media_image.dart';
 
 /// Bottom sheet for selecting chapters
@@ -164,7 +164,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
           );
         }
 
-        return BaseVideoControlSheet(title: t.videoControls.chapters, icon: PhosphorIcons.bookmarks, child: content);
+        return BottomSheetPageScaffold(title: t.videoControls.chapters, icon: PhosphorIcons.bookmarks, child: content);
       },
     );
   }

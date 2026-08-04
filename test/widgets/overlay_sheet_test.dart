@@ -90,8 +90,11 @@ void main() {
 
     // Unbounded list content fills the default constraints: 75% of window
     // height (previously a fixed 400 on desktop) capped at 700 wide.
+    final sheet = tester.getSize(find.ancestor(of: find.byType(ListView), matching: find.byType(Column)).first);
+    expect(sheet.height, 800 * 0.75);
+
     final sheetSize = tester.getSize(find.byType(ListView));
-    expect(sheetSize.height, 800 * 0.75);
+    expect(sheetSize.height, lessThan(sheet.height), reason: 'the drag handle takes the difference');
     expect(sheetSize.width, 700);
   });
 

@@ -851,7 +851,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final controller = OverlaySheetController.of(context);
     controller
         .show<String>(
-          showDragHandle: true,
           builder: (sheetContext) => Column(
             mainAxisSize: .min,
             children: [

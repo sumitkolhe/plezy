@@ -2,113 +2,67 @@ import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 
-import 'overlay_sheet.dart';
-
-/// A reusable header widget for bottom sheets
-/// Provides consistent styling with title, optional leading widget, optional action, and close button
+/// The header every sheet uses, on the same metrics as the rows beneath it.
+///
+/// There is no close button: the drag handle, the scrim and the back key all
+/// already dismiss a sheet. [onBack] is navigation to a parent page within one
+/// sheet, which is a different thing from getting out of it.
 class BottomSheetHeader extends StatelessWidget {
-  /// The title text to display
   final String title;
 
-  /// Optional leading widget (e.g., icon or back button)
-  /// Takes precedence over [icon] and [onBack]
+  /// Takes precedence over [icon] and [onBack].
   final Widget? leading;
 
-  /// Optional action widget (e.g., clear button)
   final Widget? action;
-
-  /// Optional callback when close button is pressed
-  /// Defaults to closing the nearest hosted sheet, with modal-route fallback.
-  final VoidCallback? onClose;
-
-  /// Optional icon to display as leading widget
-  /// Only used if [leading] and [onBack] are null
   final IconData? icon;
-
-  /// Optional color for the icon
-  /// Only used when [icon] is provided
   final Color? iconColor;
 
-  /// Optional callback for back button
-  /// When provided, displays a back button as the leading widget
-  /// Takes precedence over [icon]
+  /// Renders a back arrow as the leading widget, ahead of [icon].
   final VoidCallback? onBack;
-
-  /// Optional text style for the title
-  final TextStyle? titleStyle;
-
-  /// Optional text color for the title
-  /// Only used if [titleStyle] is null
-  final Color? titleColor;
-
-  /// Whether to show the bottom border
-  /// Defaults to true
-  final bool showBorder;
-
-  /// Optional focus node for the close button
-  final FocusNode? closeFocusNode;
 
   const BottomSheetHeader({
     super.key,
     required this.title,
     this.leading,
     this.action,
-    this.onClose,
     this.icon,
     this.iconColor,
     this.onBack,
-    this.titleStyle,
-    this.titleColor,
-    this.showBorder = true,
-    this.closeFocusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     final usesBackButton = leading == null && onBack != null;
 
-    // Determine the leading widget based on priority: leading > onBack > icon
     Widget? resolvedLeading;
     if (leading != null) {
       resolvedLeading = leading;
-    } else if (onBack != null) {
-      resolvedLeading = SizedBox(
-        width: 24,
-        height: kMinInteractiveDimension,
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: ExcludeSemantics(child: AppIcon(PhosphorIcons.arrowLeft, color: iconColor)),
-        ),
-      );
+    } else if (usesBackButton) {
+      resolvedLeading = ExcludeSemantics(child: AppIcon(PhosphorIcons.arrowLeft, color: iconColor));
     } else if (icon != null) {
       resolvedLeading = AppIcon(icon!, color: iconColor);
     }
 
-    final effectiveTitleStyle = titleStyle ?? TextStyle(fontSize: 18, fontWeight: .bold, color: titleColor);
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: showBorder
-          ? BoxDecoration(
-              border: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
-            )
-          : null,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
       child: Stack(
         children: [
           Row(
             children: [
               if (resolvedLeading != null) ...[resolvedLeading, const SizedBox(width: 8)],
-              Expanded(child: Text(title, style: effectiveTitleStyle)),
-              ?action,
-              ExcludeFocusTraversal(
-                child: IconButton(
-                  focusNode: closeFocusNode,
-                  icon: AppIcon(PhosphorIcons.x, color: iconColor),
-                  onPressed: onClose ?? () => OverlaySheetController.closeAdaptive(context),
+              Expanded(
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
+              ?action,
             ],
           ),
+          // A tap target wider and taller than the 24dp arrow, without letting
+          // it set the header's height.
           if (usesBackButton)
             PositionedDirectional(
               start: 0,

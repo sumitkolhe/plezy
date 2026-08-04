@@ -35,4 +35,51 @@ void main() {
     await tester.tapAt(tester.getCenter(backArrow) + const Offset(28, 0));
     expect(backPressed, isTrue);
   });
+
+  testWidgets('a header offers no close button, whatever else it carries', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Column(
+            children: [
+              const BottomSheetHeader(title: 'Plain'),
+              const BottomSheetHeader(title: 'Icon', icon: PhosphorIcons.funnel),
+              BottomSheetHeader(title: 'Back', onBack: () {}),
+              const BottomSheetHeader(title: 'Action', action: Text('Clear')),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    // The drag handle, the scrim and Back already dismiss a sheet.
+    expect(find.byWidgetPredicate((w) => w is Icon && w.icon == PhosphorIcons.x), findsNothing);
+  });
+
+  testWidgets('every header is the same height and puts its title on one inset', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Column(
+            children: [
+              const BottomSheetHeader(title: 'Plain'),
+              const BottomSheetHeader(title: 'Icon', icon: PhosphorIcons.funnel),
+              BottomSheetHeader(title: 'Back', onBack: () {}),
+              const BottomSheetHeader(title: 'Action', action: Text('Clear')),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    double height(String title) =>
+        tester.getRect(find.ancestor(of: find.text(title), matching: find.byType(Padding)).first).height;
+
+    for (final title in ['Icon', 'Back', 'Action']) {
+      expect(height(title), height('Plain'), reason: '$title header should not be taller');
+    }
+    // A leading icon shifts the title, but only ever by the same icon and gap.
+    expect(tester.getTopLeft(find.text('Plain')).dx, 16);
+    expect(tester.getTopLeft(find.text('Back')).dx, tester.getTopLeft(find.text('Icon')).dx);
+  });
 }

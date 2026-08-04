@@ -39,7 +39,6 @@ Future<void> showSeerrRequestSheet(
   return OverlaySheetController.showAdaptive<void>(
     context,
     isScrollControlled: true,
-    showDragHandle: true,
     builder: (_) => SeerrRequestSheet(source: source, kind: kind, tmdbId: tmdbId, title: title),
   );
 }
@@ -375,7 +374,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        BottomSheetHeader(title: t.seerr.request, showBorder: false),
+        BottomSheetHeader(title: t.seerr.request),
         Flexible(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
