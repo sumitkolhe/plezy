@@ -145,6 +145,32 @@ void main() {
     expect(find.byType(AppMenuItemTile<String>), findsOneWidget);
   });
 
+  testWidgets('the current row is marked by its check, not by a fill behind it', (tester) async {
+    await _pump(
+      tester,
+      AppMenuList<String>(
+        entries: [
+          AppMenuItem<String>(value: 'a', label: 'Plain', icon: PhosphorIcons.play),
+          AppMenuItem<String>(value: 'b', label: 'Current', icon: PhosphorIcons.play, selected: true),
+        ],
+        onSelected: (_) {},
+      ),
+    );
+
+    Color? fill(String label) {
+      final container = tester.widget<AnimatedContainer>(
+        find.descendant(
+          of: find.ancestor(of: find.text(label), matching: find.byType(AppMenuItemTile<String>)),
+          matching: find.byType(AnimatedContainer),
+        ),
+      );
+      return (container.decoration as BoxDecoration?)?.color;
+    }
+
+    expect(fill('Current'), fill('Plain'));
+    expect(find.byWidgetPredicate((w) => w is Icon && w.icon == PhosphorIcons.check), findsOneWidget);
+  });
+
   testWidgets('a full media menu stands without scrolling on a phone', (tester) async {
     tester.view.physicalSize = const Size(1440, 3120);
     tester.view.devicePixelRatio = 3.75;

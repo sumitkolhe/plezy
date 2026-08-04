@@ -580,7 +580,8 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
     final colorScheme = Theme.of(context).colorScheme;
     if (active && item.stateLayerColor != null) return item.stateLayerColor!;
     if (active) return colorScheme.onSurface.withValues(alpha: 0.08);
-    if (item.selected) return colorScheme.primary.withValues(alpha: 0.12);
+    // The trailing check says which row is current; a fill behind it as well
+    // makes the row read as a different kind of list.
     return Colors.transparent;
   }
 }
