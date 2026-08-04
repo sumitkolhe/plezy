@@ -74,6 +74,30 @@ void main() {
     expect(compact.height, lessThan(roomy.height), reason: 'the default stays dense for scanned lists');
   });
 
+  testWidgets('a switch and a checkbox row match the plain one, so a sheet can mix them', (tester) async {
+    await _pump(
+      tester,
+      Column(
+        children: [
+          const FocusableListTile(listItemMetrics: true, title: Text('Plain')),
+          FocusableSwitchListTile(listItemMetrics: true, value: false, onChanged: (_) {}, title: const Text('Switch')),
+          FocusableCheckboxListTile(
+            listItemMetrics: true,
+            value: false,
+            onChanged: (_) {},
+            title: const Text('Checkbox'),
+          ),
+        ],
+      ),
+    );
+
+    double height(String label) =>
+        tester.getRect(find.ancestor(of: find.text(label), matching: find.byType(ListTile)).first).height;
+
+    expect(height('Switch'), height('Plain'));
+    expect(height('Checkbox'), height('Plain'));
+  });
+
   testWidgets('a full media menu stands without scrolling on a phone', (tester) async {
     tester.view.physicalSize = const Size(1440, 3120);
     tester.view.devicePixelRatio = 3.75;

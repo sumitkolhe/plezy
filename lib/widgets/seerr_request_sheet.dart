@@ -404,6 +404,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                     if (!_isMovie && _partialSeasons) ..._buildSeasonSection(theme),
                     if (_can4k)
                       FocusableSwitchListTile(
+                        listItemMetrics: true,
                         value: _is4k,
                         onChanged: _submitting ? null : _toggle4k,
                         title: Text(t.seerr.request4k),
@@ -476,6 +477,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     return [
       Text(t.seerr.seasons, style: theme.textTheme.titleSmall),
       FocusableCheckboxListTile(
+        listItemMetrics: true,
         value: allSelected,
         onChanged: _submitting || requestable.isEmpty
             ? null
@@ -500,6 +502,7 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     final blockedLabel = _seasonBlockedLabel(number);
     final episodeCount = season.episodeCount;
     return FocusableCheckboxListTile(
+      listItemMetrics: true,
       focusNode: _seasonFocusNodes[index],
       value: _selectedSeasons.contains(number),
       onChanged: blockedLabel != null || _submitting
@@ -624,6 +627,7 @@ class _PickerTile<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FocusableListTile(
+      listItemMetrics: true,
       leading: AppIcon(icon),
       title: Text(label),
       subtitle: value.isEmpty ? null : Text(value, maxLines: 1, overflow: TextOverflow.ellipsis),

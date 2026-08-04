@@ -268,6 +268,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         if (index == 0) {
           final isSelected = !_tempSelectedFilters.containsKey(filter.filter);
           return FocusableListTile(
+            listItemMetrics: true,
             key: _valuesFirstItemKey,
             focusNode: _initialFocusNode,
             autofocus: autofocusFirst,
@@ -287,6 +288,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         final isSelected = _tempSelectedFilters[filter.filter] == filterValue;
 
         return FocusableListTile(
+          listItemMetrics: true,
           title: Text(value.title),
           selected: isSelected,
           onTap: () {
@@ -319,6 +321,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
           final isActive =
               _tempSelectedFilters.containsKey(filter.filter) && _tempSelectedFilters[filter.filter] == '1';
           return FocusableSwitchListTile(
+            listItemMetrics: true,
             focusNode: index == 0 ? _initialFocusNode : null,
             autofocus: index == 0 && autofocusFirst,
             value: isActive,
@@ -345,6 +348,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         }
 
         return FocusableListTile(
+          listItemMetrics: true,
           focusNode: index == 0 ? _initialFocusNode : null,
           autofocus: index == 0 && autofocusFirst,
           title: Text(filter.title),

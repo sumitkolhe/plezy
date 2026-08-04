@@ -171,6 +171,9 @@ class FocusableSwitchListTile extends StatefulWidget {
   /// Whether this switch is part of a vertically dense list.
   final bool dense;
 
+  /// See [FocusableListTile.listItemMetrics].
+  final bool listItemMetrics;
+
   /// Optional FocusNode for keyboard/controller navigation.
   final FocusNode? focusNode;
 
@@ -204,6 +207,7 @@ class FocusableSwitchListTile extends StatefulWidget {
     this.contentPadding,
     this.horizontalTitleGap,
     this.minLeadingWidth,
+    this.listItemMetrics = false,
   });
 
   @override
@@ -225,9 +229,10 @@ class _FocusableSwitchListTileState extends State<FocusableSwitchListTile>
         secondary: widget.secondary,
         value: widget.value,
         onChanged: widget.onChanged,
-        dense: widget.dense,
-        visualDensity: widget.visualDensity,
-        contentPadding: widget.contentPadding,
+        dense: widget.listItemMetrics ? false : widget.dense,
+        visualDensity: widget.listItemMetrics ? VisualDensity.standard : widget.visualDensity,
+        contentPadding:
+            widget.contentPadding ?? (widget.listItemMetrics ? const EdgeInsets.symmetric(horizontal: 16) : null),
         focusNode: effectiveFocusNode,
         autofocus: widget.autofocus,
         horizontalTitleGap: widget.horizontalTitleGap,
@@ -248,6 +253,9 @@ class FocusableCheckboxListTile extends StatefulWidget {
   final ValueChanged<bool?>? onChanged;
   final bool tristate;
   final bool dense;
+
+  /// See [FocusableListTile.listItemMetrics].
+  final bool listItemMetrics;
   final FocusNode? focusNode;
   final bool autofocus;
   final VisualDensity? visualDensity;
@@ -268,6 +276,7 @@ class FocusableCheckboxListTile extends StatefulWidget {
     this.visualDensity = const VisualDensity(vertical: -3),
     this.contentPadding,
     this.controlAffinity = ListTileControlAffinity.platform,
+    this.listItemMetrics = false,
   });
 
   @override
@@ -290,9 +299,10 @@ class _FocusableCheckboxListTileState extends State<FocusableCheckboxListTile>
         value: widget.value,
         onChanged: widget.onChanged,
         tristate: widget.tristate,
-        dense: widget.dense,
-        visualDensity: widget.visualDensity,
-        contentPadding: widget.contentPadding,
+        dense: widget.listItemMetrics ? false : widget.dense,
+        visualDensity: widget.listItemMetrics ? VisualDensity.standard : widget.visualDensity,
+        contentPadding:
+            widget.contentPadding ?? (widget.listItemMetrics ? const EdgeInsets.symmetric(horizontal: 16) : null),
         focusNode: effectiveFocusNode,
         autofocus: widget.autofocus,
         controlAffinity: widget.controlAffinity,

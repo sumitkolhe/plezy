@@ -144,6 +144,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                   return KeyEventResult.ignored;
                 },
                 child: FocusableListTile(
+                  listItemMetrics: true,
                   focusNode: (widget.selectedSort?.key == sort.key || (widget.selectedSort == null && index == 0))
                       ? _initialFocusNode
                       : null,
@@ -155,11 +156,9 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                     maintainSize: true,
                     maintainState: true,
                     child: SegmentedButton<bool>(
-                      // Match FocusableListTile's dense visualDensity so the segment's min
-                      // tap-target height equals ListTile's trailing-height cap. Without this
-                      // the ~48dp button overflows the ~36dp cap from the top and the arrows
-                      // render bottom-aligned instead of centered.
-                      style: SegmentedButton.styleFrom(visualDensity: const VisualDensity(vertical: -3)),
+                      // Must match the tile's own density, or the button overflows
+                      // ListTile's trailing-height cap and the arrows render off centre.
+                      style: SegmentedButton.styleFrom(visualDensity: VisualDensity.standard),
                       showSelectedIcon: false,
                       segments: const [
                         ButtonSegment(value: false, label: _SortDirectionIcon(upward: true)),
