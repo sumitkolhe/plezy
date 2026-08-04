@@ -1570,12 +1570,11 @@
     "onDisk": "On disk",
     "notOnDisk": "Not on disk",
     "alsoQueued": "+${count} more queued",
-    "notDownloaded": "Not downloaded (${count})",
-    "upcomingEpisodes": "Upcoming (${count})",
     "nextAiring": "Next episode ${when}",
     "airedOn": "Aired ${date}",
     "airsOn": "Airs ${date}",
-    "unmonitored": "Unmonitored"
+    "unmonitored": "Unmonitored",
+    "notDownloadedOne": "Not downloaded"
   },
   "arrSearch": {
     "title": "Search",

@@ -102,7 +102,7 @@ import '../widgets/rasterized_gradient.dart';
 import '../services/arr/arr_item_lookup.dart';
 import '../services/arr/arr_search_service.dart';
 import '../widgets/arr_search_sheet.dart';
-import '../widgets/season_gap_section.dart';
+import '../widgets/missing_episode_card.dart';
 import '../widgets/server_awareness_card.dart';
 import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_background.dart';
@@ -779,6 +779,22 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         ),
       ),
     );
+  }
+
+  /// TV is excluded: its d-pad chain walks this list by position, and rows it
+  /// cannot focus would strand navigation.
+  List<_EpisodeSlot> _episodeSlots() {
+    final present = [for (var i = 0; i < _episodes.length; i++) _EpisodeSlot.present(i, _episodes[i].index)];
+    if (PlatformDetector.isTV()) return present;
+
+    final gap = _seasonGap();
+    final absent = [...gap.missing, ...gap.upcoming];
+    if (absent.isEmpty) return present;
+
+    final slots = [...present, for (final episode in absent) _EpisodeSlot.missing(episode)];
+    // Episodes with no number sort last rather than to the front.
+    slots.sort((a, b) => (a.episodeNumber ?? 1 << 30).compareTo(b.episodeNumber ?? 1 << 30));
+    return slots;
   }
 
   /// Empty for films, and until the lookup lands.
@@ -2448,17 +2464,25 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
   Widget _buildEpisodesList() {
     final client = _getMediaClientForMetadata(context);
     final hasPinnedLastEpisode = _hasPinnedLastEpisodeInList;
+    final slots = _episodeSlots();
     return ListView.builder(
       addAutomaticKeepAlives: false,
       addSemanticIndexes: false,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: .zero,
-      itemCount: _episodes.length + (_episodeListHasMore || _episodeListLoadingMore || _episodeListPageError ? 1 : 0),
-      itemBuilder: (context, index) {
-        if (index == _episodes.length) {
+      itemCount: slots.length + (_episodeListHasMore || _episodeListLoadingMore || _episodeListPageError ? 1 : 0),
+      itemBuilder: (context, slotIndex) {
+        if (slotIndex == slots.length) {
           return _buildEpisodeListTail();
         }
+        final slot = slots[slotIndex];
+        if (slot.missing case final missing?) {
+          return MissingEpisodeCard(episode: missing, onSearch: _searchForEpisode);
+        }
+        // Role focus nodes are keyed by position within _episodes, so the
+        // present item's own index is what the list must pass — not the slot's.
+        final index = slot.presentIndex!;
         final episode = _episodes[index];
         String? localPosterPath;
         if (widget.isOffline && episode.serverId != null) {
@@ -3120,7 +3144,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                     _buildEpisodesList()
                                   else
                                     _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
-                                  if (!isTv) SeasonGapSection(gap: _seasonGap(), onSearch: _searchForEpisode),
                                 ],
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ] else if ((isShow && _showEpisodesDirectly) || metadata.isSeason) ...[
@@ -3138,7 +3161,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                   _buildEpisodesList()
                                 else
                                   _sectionEmpty(context, t.messages.noEpisodesFoundGeneral),
-                                if (!isTv) SeasonGapSection(gap: _seasonGap(), onSearch: _searchForEpisode),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
                               ],
 
@@ -4422,4 +4444,18 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
     final item = metadata.isShow ? (onDeck == null ? null : _fresh(onDeck)) : metadata;
     return (item?.viewOffsetMs ?? 0) > 0;
   }
+}
+
+/// One row of the episode list: an episode the library has, or one Sonarr says
+/// is absent.
+class _EpisodeSlot {
+  final int? presentIndex;
+  final ArrEpisode? missing;
+  final int? episodeNumber;
+
+  const _EpisodeSlot.present(int this.presentIndex, this.episodeNumber) : missing = null;
+
+  _EpisodeSlot.missing(ArrEpisode this.missing)
+    : presentIndex = null,
+      episodeNumber = missing.episodeNumber;
 }

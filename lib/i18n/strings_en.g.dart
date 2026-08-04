@@ -4018,12 +4018,6 @@ class Translations$serverActivity$en {
 	/// en: '+${count} more queued'
 	String alsoQueued({required Object count}) => '+${count} more queued';
 
-	/// en: 'Not downloaded (${count})'
-	String notDownloaded({required Object count}) => 'Not downloaded (${count})';
-
-	/// en: 'Upcoming (${count})'
-	String upcomingEpisodes({required Object count}) => 'Upcoming (${count})';
-
 	/// en: 'Next episode ${when}'
 	String nextAiring({required Object when}) => 'Next episode ${when}';
 
@@ -4035,6 +4029,9 @@ class Translations$serverActivity$en {
 
 	/// en: 'Unmonitored'
 	String get unmonitored => 'Unmonitored';
+
+	/// en: 'Not downloaded'
+	String get notDownloadedOne => 'Not downloaded';
 }
 
 // Path: arrSearch
@@ -6530,12 +6527,11 @@ extension on Translations {
 			'serverActivity.onDisk' => 'On disk',
 			'serverActivity.notOnDisk' => 'Not on disk',
 			'serverActivity.alsoQueued' => ({required Object count}) => '+${count} more queued',
-			'serverActivity.notDownloaded' => ({required Object count}) => 'Not downloaded (${count})',
-			'serverActivity.upcomingEpisodes' => ({required Object count}) => 'Upcoming (${count})',
 			'serverActivity.nextAiring' => ({required Object when}) => 'Next episode ${when}',
 			'serverActivity.airedOn' => ({required Object date}) => 'Aired ${date}',
 			'serverActivity.airsOn' => ({required Object date}) => 'Airs ${date}',
 			'serverActivity.unmonitored' => 'Unmonitored',
+			'serverActivity.notDownloadedOne' => 'Not downloaded',
 			'arrSearch.title' => 'Search',
 			'arrSearch.auto' => 'Search automatically',
 			'arrSearch.autoDescription' => ({required Object service}) => 'Hand it to ${service} and let it pick.',

@@ -11,13 +11,13 @@ import '../services/arr/arr_item_lookup.dart';
 import '../services/arr/arr_search_service.dart';
 import '../theme/mono_tokens.dart';
 import '../utils/formatters.dart';
+import '../utils/rating_spans.dart';
 import '../utils/snackbar_helper.dart';
 import 'app_icon.dart';
 import 'app_menu.dart';
 import 'bottom_sheet_header.dart';
 import 'loading_indicator_box.dart';
 import 'overlay_sheet.dart';
-import 'stat_chip.dart';
 
 /// Offers the two searches *arr can do for one target, and lists candidate
 /// releases when you want to pick yourself.
@@ -204,12 +204,15 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
         ),
       ];
     }
+    // The indexer only earns a place when the results come from more than one.
+    final showIndexer = releases.map((r) => r.indexer).toSet().length > 1;
     return [
       for (final release in releases)
         _ReleaseRow(
           release: release,
           busy: _grabbing == release.guid,
           enabled: _grabbing == null,
+          showIndexer: showIndexer,
           onTap: () => unawaited(_grab(release)),
         ),
     ];
@@ -262,9 +265,16 @@ class _ReleaseRow extends StatelessWidget {
   final ArrRelease release;
   final bool busy;
   final bool enabled;
+  final bool showIndexer;
   final VoidCallback onTap;
 
-  const _ReleaseRow({required this.release, required this.busy, required this.enabled, required this.onTap});
+  const _ReleaseRow({
+    required this.release,
+    required this.busy,
+    required this.enabled,
+    required this.showIndexer,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -297,18 +307,15 @@ class _ReleaseRow extends StatelessWidget {
                 if (busy) ...[const SizedBox(width: 10), const LoadingIndicatorBox(size: 14)],
               ],
             ),
-            const SizedBox(height: 7),
-            Wrap(
-              spacing: MetaPill.gap,
-              runSpacing: 5,
-              children: [
-                if (release.quality.isNotEmpty) StatChip(label: release.quality),
-                if (release.size > 0) StatChip(label: ByteFormatter.formatBytes(release.size)),
-                if (release.seeders case final seeders?)
-                  StatChip(icon: PhosphorIcons.arrowsClockwise, label: t.arrSearch.seeders(count: seeders)),
-                StatChip(label: _age()),
-                if (release.indexer.isNotEmpty) StatChip(label: release.indexer),
-              ],
+            const SizedBox(height: 5),
+            Text(
+              _facts(),
+              style: TextStyle(
+                fontSize: 12,
+                color: tokensRef.textMuted,
+                height: 1.3,
+                fontFeatures: const [FontFeature.tabularFigures()],
+              ),
             ),
             // The reason is the whole value of showing a rejected release: it
             // says what to pick instead.
@@ -327,8 +334,18 @@ class _ReleaseRow extends StatelessWidget {
     );
   }
 
-  String _age() {
+  /// One line: what it is, how big, how healthy. Health is seeders for a torrent
+  /// and age for usenet, so only the meaningful one appears.
+  String _facts() {
     final hours = release.ageHours;
-    return hours < 48 ? t.arrSearch.ageHours(count: hours) : t.arrSearch.ageDays(count: hours ~/ 24);
+    return [
+      if (release.quality.isNotEmpty) release.quality,
+      if (release.size > 0) ByteFormatter.formatBytes(release.size),
+      if (release.seeders case final seeders?)
+        t.arrSearch.seeders(count: seeders)
+      else if (hours > 0)
+        hours < 48 ? t.arrSearch.ageHours(count: hours) : t.arrSearch.ageDays(count: hours ~/ 24),
+      if (showIndexer && release.indexer.isNotEmpty) release.indexer,
+    ].join(dotSeparator);
   }
 }
