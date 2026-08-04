@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
 
+import '../theme/mono_tokens.dart';
 import 'app_icon.dart';
+
+/// The app's small metadata pill, shared so pages cannot drift apart on it.
+class MetaPill {
+  MetaPill._();
+
+  static const double minHeight = 26;
+  static const double gap = 7;
+  static const double iconSize = 12;
+  static const double iconGap = 4;
+  static const EdgeInsets padding = EdgeInsets.symmetric(horizontal: 11, vertical: 4);
+
+  static BoxDecoration decoration(BuildContext context, {Color? color}) => BoxDecoration(
+    color: color ?? tokens(context).text.withValues(alpha: 0.13),
+    borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
+  );
+
+  static TextStyle label(BuildContext context) => TextStyle(
+    fontSize: 11.5,
+    fontWeight: FontWeight.w600,
+    color: tokens(context).text.withValues(alpha: 0.88),
+    height: 1.2,
+    fontFeatures: const [FontFeature.tabularFigures()],
+  );
+}
 
 /// Small labeled pill (optionally with a leading icon): detail-screen stat
 /// chips, request-sheet season status labels.
@@ -22,24 +47,21 @@ class StatChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: backgroundColor ?? theme.colorScheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(999),
-      ),
+      constraints: const BoxConstraints(minHeight: MetaPill.minHeight),
+      padding: MetaPill.padding,
+      decoration: MetaPill.decoration(context, color: backgroundColor),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           if (leading case final leading?) ...[
             leading,
-            const SizedBox(width: 4),
+            const SizedBox(width: MetaPill.iconGap),
           ] else if (icon != null) ...[
-            AppIcon(icon!, size: 14, color: iconColor),
-            const SizedBox(width: 4),
+            AppIcon(icon!, size: MetaPill.iconSize, color: iconColor),
+            const SizedBox(width: MetaPill.iconGap),
           ],
-          Text(label, style: theme.textTheme.labelMedium),
+          Text(label, style: MetaPill.label(context)),
         ],
       ),
     );

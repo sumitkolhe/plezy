@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
 import '../../utils/rating_spans.dart';
+import '../../widgets/stat_chip.dart';
 
 /// Facts as pills, the same idiom the episode sheet uses. They sit on the
 /// scrim's solid end rather than over the backdrop, so they take the page's own
@@ -20,8 +21,7 @@ class DetailFactStrip extends StatelessWidget {
 
   const DetailFactStrip({super.key, this.rating, this.contentRating, required this.facts, this.onRatingTap});
 
-  static const double height = 26;
-  static const double _gap = 7;
+  static const double height = MetaPill.minHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,7 @@ class DetailFactStrip extends StatelessWidget {
     final hasCert = cert != null && cert.isNotEmpty;
     if (rating == null && facts.isEmpty && !hasCert) return const SizedBox.shrink();
 
-    final valueStyle = TextStyle(
-      fontSize: 11.5,
-      fontWeight: .w600,
-      color: t.text.withValues(alpha: 0.88),
-      height: 1.2,
-      fontFeatures: const [FontFeature.tabularFigures()],
-    );
+    final valueStyle = MetaPill.label(context);
 
     // Scales down rather than wrapping: the hero budgets one row, and a clipped
     // second row is worse than a slightly smaller first one.
@@ -44,13 +38,13 @@ class DetailFactStrip extends StatelessWidget {
       fit: .scaleDown,
       alignment: .centerLeft,
       child: Row(
-        spacing: _gap,
+        spacing: MetaPill.gap,
         children: [
           if (rating != null)
             _FactPill(
               onTap: onRatingTap,
               child: Text.rich(
-                TextSpan(children: [ratingSpan(rating!, iconSize: 12)]),
+                TextSpan(children: [ratingSpan(rating!, iconSize: MetaPill.iconSize)]),
                 style: valueStyle.copyWith(color: t.text),
               ),
             ),
@@ -72,18 +66,20 @@ class _FactPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const shape = BorderRadius.all(Radius.circular(MonoTokens.radiusFull));
+    final decoration = MetaPill.decoration(context);
     final body = Container(
       height: DetailFactStrip.height,
-      padding: const EdgeInsets.symmetric(horizontal: 11),
+      padding: MetaPill.padding,
       alignment: .center,
       child: child,
     );
 
     return Material(
-      color: tokens(context).text.withValues(alpha: 0.13),
-      borderRadius: shape,
-      child: onTap == null ? body : InkWell(borderRadius: shape, onTap: onTap, child: body),
+      color: decoration.color,
+      borderRadius: decoration.borderRadius,
+      child: onTap == null
+          ? body
+          : InkWell(borderRadius: decoration.borderRadius as BorderRadius, onTap: onTap, child: body),
     );
   }
 }
