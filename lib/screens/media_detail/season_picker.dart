@@ -7,9 +7,9 @@ import '../../i18n/strings.g.dart';
 import '../../media/media_item.dart';
 import '../../theme/mono_tokens.dart';
 import '../../widgets/app_icon.dart';
-import '../../widgets/focusable_list_tile.dart';
+import '../../widgets/app_menu.dart';
+import '../../widgets/bottom_sheet_header.dart';
 import '../../widgets/overlay_sheet.dart';
-import 'detail_design.dart';
 
 class SeasonPickerChip extends StatelessWidget {
   final List<MediaItem> seasons;
@@ -91,62 +91,31 @@ class _SeasonSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tokensRef = tokens(context);
     final totalEpisodes = seasons.fold<int>(0, (sum, season) => sum + (season.leafCount ?? 0));
-    // ListTile's own default is 16, which would put the heading and the season
-    // names on different left edges.
-    const inset = EdgeInsets.symmetric(horizontal: 20);
 
     return Column(
       mainAxisSize: .min,
-      crossAxisAlignment: .start,
       children: [
-        Padding(
-          padding: inset.add(const EdgeInsets.only(top: 14, bottom: 12)),
-          child: DetailSectionHeader(
-            title: t.libraries.groupings.seasons,
-            trailing: totalEpisodes > 0 ? t.explore.episodeCount(n: totalEpisodes) : null,
-          ),
+        BottomSheetHeader(
+          title: t.libraries.groupings.seasons,
+          action: totalEpisodes > 0 ? Text(t.explore.episodeCount(n: totalEpisodes)) : null,
         ),
         Flexible(
-          child: ListView.builder(
-            shrinkWrap: true,
-            padding: const EdgeInsets.only(bottom: 16),
-            itemCount: seasons.length,
-            itemBuilder: (context, index) {
-              final season = seasons[index];
-              final meta = SeasonPickerChip.seasonMeta(season);
-              final selected = index == selectedIndex;
-              return FocusableListTile(
-                autofocus: selected,
-                listItemMetrics: true,
-                contentPadding: inset,
-                title: Text(
-                  SeasonPickerChip.label(season, index),
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: selected ? .w600 : .w500,
-                    color: tokensRef.text,
-                    height: 1.3,
+          child: SingleChildScrollView(
+            child: AppMenuList<int>(
+              padding: const EdgeInsets.only(bottom: 16),
+              focusSelectedItem: true,
+              entries: [
+                for (var index = 0; index < seasons.length; index++)
+                  AppMenuItem<int>(
+                    value: index,
+                    label: SeasonPickerChip.label(seasons[index], index),
+                    subtitle: SeasonPickerChip.seasonMeta(seasons[index]),
+                    selected: index == selectedIndex,
                   ),
-                ),
-                subtitle: meta == null
-                    ? null
-                    : Text(
-                        meta,
-                        style: TextStyle(
-                          fontSize: 11.5,
-                          fontWeight: .w600,
-                          color: tokensRef.textMuted,
-                          height: 1.3,
-                          letterSpacing: 0.35,
-                          fontFeatures: const [FontFeature.tabularFigures()],
-                        ),
-                      ),
-                trailing: selected ? AppIcon(PhosphorIcons.check, size: 18, color: tokensRef.accent) : null,
-                onTap: () => OverlaySheetController.closeAdaptive(context, index),
-              );
-            },
+              ],
+              onSelected: (index) => OverlaySheetController.closeAdaptive(context, index),
+            ),
           ),
         ),
       ],

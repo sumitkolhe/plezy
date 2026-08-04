@@ -313,6 +313,10 @@ enum AppMenuDensity {
 class AppMenuList<T> extends StatefulWidget {
   final List<AppMenuEntry<T>> entries;
   final bool focusFirstItem;
+
+  /// Give the initial focus to the [AppMenuItem.selected] row instead of the first.
+  final bool focusSelectedItem;
+
   final ValueChanged<T> onSelected;
   final EdgeInsetsGeometry padding;
   final AppMenuDensity density;
@@ -322,6 +326,7 @@ class AppMenuList<T> extends StatefulWidget {
     required this.entries,
     required this.onSelected,
     this.focusFirstItem = false,
+    this.focusSelectedItem = false,
     this.padding = const EdgeInsets.symmetric(vertical: 5),
     this.density = AppMenuDensity.touch,
   });
@@ -337,7 +342,7 @@ class _AppMenuListState<T> extends State<AppMenuList<T>> {
   void initState() {
     super.initState();
     _initialFocusNode = FocusNode(debugLabel: 'AppMenuInitialFocus');
-    if (widget.focusFirstItem) {
+    if (widget.focusFirstItem || widget.focusSelectedItem) {
       FocusUtils.requestFocusAfterBuild(this, _initialFocusNode);
     }
   }
@@ -348,27 +353,33 @@ class _AppMenuListState<T> extends State<AppMenuList<T>> {
     super.dispose();
   }
 
+  /// A picker opens on the choice already in force, so a long list does not
+  /// open at the top with the current item offscreen.
+  int? get _focusIndex {
+    int? firstEnabled;
+    for (var i = 0; i < widget.entries.length; i++) {
+      final entry = widget.entries[i];
+      if (entry is! AppMenuItem<T> || !entry.enabled) continue;
+      firstEnabled ??= i;
+      if (widget.focusSelectedItem && entry.selected) return i;
+    }
+    return widget.focusFirstItem || widget.focusSelectedItem ? firstEnabled : null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    var initialFocusAssigned = false;
+    final focusIndex = _focusIndex;
     return Padding(
       padding: widget.padding,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for (final entry in widget.entries)
-            switch (entry) {
-              AppMenuItem<T>() => _buildItem(
-                entry,
-                initialFocusAssigned: () {
-                  if (initialFocusAssigned || !entry.enabled) return false;
-                  initialFocusAssigned = true;
-                  return widget.focusFirstItem;
-                }(),
-              ),
+          for (var index = 0; index < widget.entries.length; index++)
+            switch (widget.entries[index]) {
+              final AppMenuItem<T> item => _buildItem(item, initialFocusAssigned: index == focusIndex),
               AppMenuDivider<T>() => const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
-              AppMenuHeader<T>() => _AppMenuHeaderTile(entry: entry),
+              final AppMenuHeader<T> header => _AppMenuHeaderTile(entry: header),
               _ => const SizedBox.shrink(),
             },
         ],

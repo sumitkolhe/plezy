@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/media/media_sort.dart';
 import 'package:harbor/screens/libraries/sort_bottom_sheet.dart';
 import 'package:harbor/widgets/overlay_sheet.dart';
@@ -17,6 +18,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: monoTheme(dark: true),
         home: OverlaySheetHost(
           child: Builder(
             builder: (context) => ElevatedButton(
@@ -82,6 +84,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: monoTheme(dark: true),
         home: OverlaySheetHost(
           child: Builder(
             builder: (context) => ElevatedButton(

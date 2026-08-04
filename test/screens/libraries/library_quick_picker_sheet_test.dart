@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_library.dart';
@@ -29,6 +30,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: monoTheme(dark: true),
         home: Scaffold(
           body: LibraryQuickPickerSheet(
             libraries: libraries,
@@ -73,6 +75,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
+        theme: monoTheme(dark: true),
         home: Scaffold(
           body: LibraryQuickPickerSheet(
             libraries: libraries,

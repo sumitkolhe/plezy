@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/database/app_database.dart';
 import 'package:harbor/focus/focusable_action_bar.dart';
@@ -20,7 +21,6 @@ import 'package:harbor/providers/download_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/providers/watch_state_store.dart';
 import 'package:harbor/screens/media_detail/season_picker.dart';
-import 'package:harbor/widgets/focusable_list_tile.dart';
 import 'package:harbor/screens/media_detail_screen.dart';
 
 import '../test_helpers/paged_fakes.dart';
@@ -765,7 +765,7 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(chip);
       await tester.pumpAndSettle();
-      await tester.tap(find.descendant(of: find.byType(FocusableListTile), matching: find.text(label)));
+      await tester.tap(find.descendant(of: find.byType(AppMenuItemTile<int>), matching: find.text(label)));
       await tester.pumpAndSettle();
     }
 

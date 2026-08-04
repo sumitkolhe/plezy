@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../i18n/strings.g.dart';
 import '../../media/media_library.dart';
 import '../../utils/content_utils.dart';
 import '../../utils/library_grouping.dart';
-import '../../widgets/app_icon.dart';
+import '../../widgets/app_menu.dart';
 import '../../widgets/backend_badge.dart';
-import '../../widgets/focusable_list_tile.dart';
+import '../../widgets/bottom_sheet_header.dart';
 
 class LibraryQuickPickerSheet extends StatelessWidget {
   final List<MediaLibrary> libraries;
@@ -40,119 +39,78 @@ class LibraryQuickPickerSheet extends StatelessWidget {
     return nameCounts.entries.where((entry) => entry.value > 1).map((entry) => entry.key).toSet();
   }
 
-  List<Widget> _buildLibraryRows(BuildContext context) {
+  List<AppMenuEntry<String>> _buildEntries() {
     if (!_showServerHeaders) {
       final nonUniqueNames = _getNonUniqueLibraryNames();
-      return libraries.map((library) {
-        return _buildLibraryTile(
-          context,
-          library,
-          showServerName: library.serverName != null && nonUniqueNames.contains(library.title),
-        );
-      }).toList();
+      return [
+        for (final library in libraries)
+          _libraryEntry(
+            library,
+            showServerName: library.serverName != null && nonUniqueNames.contains(library.title),
+          ),
+      ];
     }
 
     final grouped = groupLibrariesByFirstAppearance(libraries);
-    final rows = <Widget>[];
+    final entries = <AppMenuEntry<String>>[];
     for (final serverKey in grouped.serverOrder) {
       final bucket = grouped.byServer[serverKey]!;
       if (serverKey.isNotEmpty) {
-        rows.add(_buildServerHeader(context, bucket.first, serverKey));
+        entries.add(AppMenuHeader<String>(child: _serverLabel(bucket.first, serverKey)));
       }
       for (final library in bucket) {
-        rows.add(_buildLibraryTile(context, library, showServerName: false));
+        entries.add(_libraryEntry(library, showServerName: false));
       }
     }
-    return rows;
+    return entries;
   }
 
-  Widget _buildServerHeader(BuildContext context, MediaLibrary library, String fallbackServerName) {
-    final theme = Theme.of(context);
-    final labelStyle = theme.textTheme.labelSmall?.copyWith(
-      fontWeight: .w600,
-      letterSpacing: 0.4,
-      color: theme.textTheme.bodySmall?.color?.withValues(alpha: 0.65),
+  AppMenuItem<String> _libraryEntry(MediaLibrary library, {required bool showServerName}) {
+    return AppMenuItem<String>(
+      value: library.globalKey,
+      label: library.title,
+      icon: ContentTypeHelper.getLibraryIcon(library.kind.id),
+      subtitleWidget: showServerName ? _serverLabel(library, library.serverName!) : null,
+      selected: library.globalKey == selectedLibraryKey,
     );
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-      child: Row(
+  }
+
+  /// Reads back the colour the surrounding row already resolved, so the badge
+  /// matches the text beside it without restating either style.
+  Widget _serverLabel(MediaLibrary library, String fallbackServerName) {
+    return Builder(
+      builder: (context) => Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          BackendBadge(backend: library.backend, size: 12, color: labelStyle?.color),
+          BackendBadge(backend: library.backend, size: 12, color: DefaultTextStyle.of(context).style.color),
           const SizedBox(width: 6),
-          Expanded(
-            child: Text(library.serverName ?? fallbackServerName, style: labelStyle, maxLines: 1, overflow: .ellipsis),
-          ),
+          Flexible(child: Text(library.serverName ?? fallbackServerName)),
         ],
       ),
     );
   }
 
-  Widget _buildServerSubtitle(BuildContext context, MediaLibrary library) {
-    final style = Theme.of(
-      context,
-    ).textTheme.bodySmall?.copyWith(color: Theme.of(context).textTheme.bodySmall?.color?.withValues(alpha: 0.6));
-    return Row(
-      mainAxisSize: .min,
-      children: [
-        BackendBadge(backend: library.backend, size: 10, color: style?.color),
-        const SizedBox(width: 4),
-        Flexible(
-          child: Text(library.serverName!, style: style, maxLines: 1, overflow: .ellipsis),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLibraryTile(BuildContext context, MediaLibrary library, {required bool showServerName}) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final isSelected = library.globalKey == selectedLibraryKey;
-    final foregroundColor = isSelected ? colorScheme.primary : null;
-
-    return FocusableListTile(
-      key: ValueKey('library_quick_picker_${library.globalKey}'),
-      listItemMetrics: true,
-      selected: isSelected,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-      leading: AppIcon(ContentTypeHelper.getLibraryIcon(library.kind.id), size: 22, color: foregroundColor),
-      title: Text(
-        library.title,
-        maxLines: 1,
-        overflow: .ellipsis,
-        style: TextStyle(fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400, color: foregroundColor),
-      ),
-      subtitle: showServerName ? _buildServerSubtitle(context, library) : null,
-      trailing: isSelected ? AppIcon(PhosphorIcons.check, color: colorScheme.primary) : null,
-      onTap: () => onSelected(library.globalKey),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Column(
-      mainAxisSize: .min,
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-          child: Align(
-            alignment: .centerLeft,
-            child: Text(t.libraries.selectLibrary, style: theme.textTheme.titleMedium),
-          ),
-        ),
+        BottomSheetHeader(title: t.libraries.selectLibrary),
         if (isLoading && libraries.isEmpty)
-          const Padding(padding: .symmetric(vertical: 32), child: CircularProgressIndicator())
+          const Padding(padding: EdgeInsets.symmetric(vertical: 32), child: CircularProgressIndicator())
         else if (libraries.isEmpty)
           Padding(
             padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
-            child: Text(emptyMessage, textAlign: TextAlign.center, style: theme.textTheme.bodyMedium),
+            child: Text(emptyMessage, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
           )
         else
           Flexible(
-            child: ListView(
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(bottom: 8),
-              children: _buildLibraryRows(context),
+            child: SingleChildScrollView(
+              child: AppMenuList<String>(
+                padding: const EdgeInsets.only(bottom: 8),
+                entries: _buildEntries(),
+                onSelected: onSelected,
+              ),
             ),
           ),
       ],

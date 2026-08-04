@@ -6,7 +6,7 @@ import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/screens/media_detail/season_picker.dart';
 import 'package:harbor/theme/mono_theme.dart';
-import 'package:harbor/widgets/focusable_list_tile.dart';
+import 'package:harbor/widgets/app_menu.dart';
 
 import '../../test_helpers/media_items.dart';
 
@@ -62,7 +62,7 @@ void main() {
     await tester.tap(find.byType(InkWell));
     await tester.pumpAndSettle();
 
-    expect(find.byType(FocusableListTile), findsWidgets);
+    expect(find.byType(AppMenuItemTile<int>), findsWidgets);
     // The sheet counts what the chip cannot: 24 seasons of 10 episodes.
     expect(find.text(t.explore.episodeCount(n: 240)), findsOneWidget);
 

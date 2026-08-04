@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import '../../focus/dpad_navigator.dart';
 import '../../focus/focusable_button.dart';
@@ -9,7 +8,7 @@ import '../../focus/input_mode_tracker.dart';
 import '../../media/media_sort.dart';
 import '../../utils/scroll_utils.dart';
 import '../../widgets/bottom_sheet_header.dart';
-import '../../widgets/focusable_list_tile.dart';
+import '../../widgets/app_menu.dart';
 import '../../widgets/overlay_sheet.dart';
 import '../../i18n/strings.g.dart';
 
@@ -143,36 +142,38 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                   }
                   return KeyEventResult.ignored;
                 },
-                child: FocusableListTile(
-                  listItemMetrics: true,
+                child: AppMenuItemTile<String>(
                   focusNode: (widget.selectedSort?.key == sort.key || (widget.selectedSort == null && index == 0))
                       ? _initialFocusNode
                       : null,
-                  leading: AppIcon(isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle),
-                  title: Text(sort.title),
-                  trailing: Visibility(
-                    visible: isSelected,
-                    maintainAnimation: true,
-                    maintainSize: true,
-                    maintainState: true,
-                    child: SegmentedButton<bool>(
-                      // Must match the tile's own density, or the button overflows
-                      // ListTile's trailing-height cap and the arrows render off centre.
-                      style: SegmentedButton.styleFrom(visualDensity: VisualDensity.standard),
-                      showSelectedIcon: false,
-                      segments: const [
-                        ButtonSegment(value: false, label: _SortDirectionIcon(upward: true)),
-                        ButtonSegment(value: true, label: _SortDirectionIcon(upward: false)),
-                      ],
-                      selected: {_currentDescending},
-                      onSelectionChanged: isSelected
-                          ? (Set<bool> newSelection) {
-                              _handleDirectionChange(sort, newSelection.first);
-                            }
-                          : null,
+                  item: AppMenuItem<String>(
+                    value: sort.key,
+                    label: sort.title,
+                    icon: isSelected ? PhosphorIcons.radioButton : PhosphorIcons.circle,
+                    selected: isSelected,
+                    trailing: Visibility(
+                      visible: isSelected,
+                      maintainAnimation: true,
+                      maintainSize: true,
+                      maintainState: true,
+                      child: SegmentedButton<bool>(
+                        // Must fit inside the row's height, or the arrows render off centre.
+                        style: SegmentedButton.styleFrom(visualDensity: const VisualDensity(vertical: -2)),
+                        showSelectedIcon: false,
+                        segments: const [
+                          ButtonSegment(value: false, label: _SortDirectionIcon(upward: true)),
+                          ButtonSegment(value: true, label: _SortDirectionIcon(upward: false)),
+                        ],
+                        selected: {_currentDescending},
+                        onSelectionChanged: isSelected
+                            ? (Set<bool> newSelection) {
+                                _handleDirectionChange(sort, newSelection.first);
+                              }
+                            : null,
+                      ),
                     ),
                   ),
-                  onTap: () => _handleSortSelect(sort),
+                  onPressed: () => _handleSortSelect(sort),
                 ),
               );
             },
