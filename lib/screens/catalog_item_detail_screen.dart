@@ -81,6 +81,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
   List<FocusNode> _libraryMatchFocusNodes = const [];
   CatalogSource? _watchlistSource;
   SeerrCatalogSource? _requestSource;
+  final FocusNode _requestButtonFocusNode = FocusNode(debugLabel: 'catalog_request');
   bool _mutatingWatchlist = false;
 
   CatalogItem? _detailItem;
@@ -132,6 +133,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
   void dispose() {
     _backButtonFocusNode.dispose();
     _spoilerTagFocusNode.dispose();
+    _requestButtonFocusNode.dispose();
     for (final node in _linkFocusNodes) {
       node.dispose();
     }
@@ -256,7 +258,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
 
   bool get _hasTrailer => _item.trailerUrl?.trim().isNotEmpty ?? false;
 
-  bool get _hasActions => _watchlistSource != null || _requestSource != null || _hasTrailer;
+  bool get _hasActions => _watchlistSource != null || _hasTrailer;
 
   bool get _hasLibraryMatches => _libraryMatchFocusNodes.isNotEmpty;
 
@@ -787,7 +789,10 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     }
 
     if (chips.isEmpty) return null;
-    return Wrap(spacing: 8, runSpacing: 8, children: chips);
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(spacing: MetaPill.gap, children: chips),
+    );
   }
 
   /// Attributed scores, each behind its own brand badge where the source has
@@ -1008,7 +1013,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
         Text(t.explore.detail.tags, style: _sectionHeading),
         if (visibleTags.isNotEmpty) ...[
           const SizedBox(height: 8),
-          Wrap(spacing: 8, runSpacing: 8, children: [for (final tag in visibleTags) StatChip(label: tag.name)]),
+          CatalogTagWrap(labels: [for (final tag in visibleTags) tag.name]),
         ],
         if (_hasSpoilerReveal) ...[
           const SizedBox(height: 8),
@@ -1086,10 +1091,12 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       children: [
         Text(t.explore.detail.background, style: _sectionHeading),
         const SizedBox(height: 8),
-        Text(background, style: theme.textTheme.bodyLarge),
+        Text(background, style: _proseStyle(theme)),
       ],
     );
   }
+
+  TextStyle? _proseStyle(ThemeData theme) => theme.textTheme.bodyLarge?.copyWith(fontSize: 15.5, height: 1.5);
 
   /// Horizontal cast strip — the same [CastMemberStrip] cards as the media
   /// detail screen. Trakt serves actors with their character; MAL serves
@@ -1337,20 +1344,6 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                         maxLines: 3,
                                         overflow: .ellipsis,
                                       ),
-                                      if (item.tagline?.trim() case final tagline? when tagline.isNotEmpty) ...[
-                                        const SizedBox(height: 6),
-                                        Text(
-                                          tagline,
-                                          style: TextStyle(
-                                            fontSize: 13,
-                                            color: tokens(context).textMuted,
-                                            fontStyle: FontStyle.italic,
-                                            height: 1.35,
-                                          ),
-                                          maxLines: 2,
-                                          overflow: .ellipsis,
-                                        ),
-                                      ],
                                       if (_metaLine.isNotEmpty) ...[
                                         const SizedBox(height: 8),
                                         Text(
@@ -1366,6 +1359,39 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                           item.genres!.join(', '),
                                           style: theme.textTheme.bodySmall?.copyWith(
                                             color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                                          ),
+                                        ),
+                                      ],
+                                      if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null) ...[
+                                        const SizedBox(height: 16),
+                                        SizedBox(
+                                          height: 44,
+                                          width: double.infinity,
+                                          child: FocusableButton(
+                                            focusNode: _requestButtonFocusNode,
+                                            useBackgroundFocus: true,
+                                            onPressed: () => unawaited(
+                                              showSeerrRequestSheet(
+                                                hostContext,
+                                                source: seerr,
+                                                kind: item.kind,
+                                                tmdbId: tmdbId,
+                                                title: item.title,
+                                              ),
+                                            ),
+                                            child: FilledButton.icon(
+                                              onPressed: () => unawaited(
+                                                showSeerrRequestSheet(
+                                                  hostContext,
+                                                  source: seerr,
+                                                  kind: item.kind,
+                                                  tmdbId: tmdbId,
+                                                  title: item.title,
+                                                ),
+                                              ),
+                                              icon: const AppIcon(PhosphorIcons.paperPlaneTilt, size: 18),
+                                              label: Text(t.seerr.request),
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -1388,20 +1414,6 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                                           : t.explore.addToWatchlist,
                                       onPressed: () => unawaited(_toggleWatchlist()),
                                     ),
-                                  if (_requestSource case final SeerrCatalogSource seerr when tmdbId != null)
-                                    FocusableAction(
-                                      icon: PhosphorIcons.paperPlaneTilt,
-                                      tooltip: t.seerr.request,
-                                      onPressed: () => unawaited(
-                                        showSeerrRequestSheet(
-                                          hostContext,
-                                          source: seerr,
-                                          kind: item.kind,
-                                          tmdbId: tmdbId,
-                                          title: item.title,
-                                        ),
-                                      ),
-                                    ),
                                   if (item.trailerUrl?.trim() case final trailer? when trailer.isNotEmpty)
                                     FocusableAction(
                                       icon: PhosphorIcons.play,
@@ -1413,7 +1425,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
                             if (_buildStatsChips() case final Widget chips) ...[const SizedBox(height: 20), chips],
                             if (item.overview?.trim() case final overview? when overview.isNotEmpty) ...[
                               const SizedBox(height: 24),
-                              Text(overview, style: theme.textTheme.bodyLarge?.copyWith(fontSize: 15.5, height: 1.5)),
+                              Text(overview, style: _proseStyle(theme)),
                             ],
                             if (item.background?.trim() case final background? when background.isNotEmpty) ...[
                               const SizedBox(height: 24),
@@ -1475,6 +1487,88 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Tags clamped to two rows with a "+N" reveal. Capacity is measured, not
+/// counted: a row fits fewer long names.
+class CatalogTagWrap extends StatefulWidget {
+  final List<String> labels;
+
+  const CatalogTagWrap({super.key, required this.labels});
+
+  @override
+  State<CatalogTagWrap> createState() => _CatalogTagWrapState();
+}
+
+class _CatalogTagWrapState extends State<CatalogTagWrap> {
+  static const int _maxRows = 2;
+  bool _expanded = false;
+
+  double _pillWidth(String label) {
+    final painter = TextPainter(
+      text: TextSpan(text: label, style: MetaPill.label(context)),
+      textDirection: Directionality.of(context),
+      textScaler: MediaQuery.textScalerOf(context),
+    )..layout();
+    final width = painter.width;
+    painter.dispose();
+    return width + MetaPill.padding.horizontal;
+  }
+
+  bool _packs(List<double> widths, double? extra, double maxWidth) {
+    var rows = 1;
+    var used = 0.0;
+    for (final width in [...widths, ?extra]) {
+      if (used == 0) {
+        used = width;
+      } else if (used + MetaPill.gap + width <= maxWidth) {
+        used += MetaPill.gap + width;
+      } else {
+        rows++;
+        if (rows > _maxRows) return false;
+        used = width;
+      }
+    }
+    return true;
+  }
+
+  int _visibleCount(double maxWidth) {
+    final widths = [for (final label in widget.labels) _pillWidth(label)];
+    for (var visible = widths.length; visible > 0; visible--) {
+      final hidden = widths.length - visible;
+      if (_packs(widths.take(visible).toList(), hidden == 0 ? null : _pillWidth('+$hidden'), maxWidth)) {
+        return visible;
+      }
+    }
+    return 0;
+  }
+
+  Widget _wrap(List<String> labels, int hidden) {
+    return Wrap(
+      spacing: MetaPill.gap,
+      runSpacing: MetaPill.gap,
+      children: [
+        for (final label in labels) StatChip(label: label),
+        if (hidden > 0)
+          InkWell(
+            borderRadius: const BorderRadius.all(Radius.circular(MonoTokens.radiusFull)),
+            onTap: () => setState(() => _expanded = true),
+            child: StatChip(label: '+$hidden'),
+          ),
+      ],
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_expanded) return _wrap(widget.labels, 0);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final visible = _visibleCount(constraints.maxWidth);
+        return _wrap(widget.labels.take(visible).toList(), widget.labels.length - visible);
+      },
     );
   }
 }
