@@ -19,7 +19,7 @@ import 'catalog_source.dart';
 /// [CatalogSource] backed by a Seerr instance's TMDB-based discover API.
 ///
 /// Wraps the catalog [SeerrClient] owned by `SeerrAccountProvider` (not owned
-/// here — never disposed by this class). Seerr has no watchlist; its
+/// here — never disposed by this class). Its watchlist is not wired up; its
 /// contribution besides discovery rows is the request flow, which the
 /// request surfaces reach through [client] directly.
 class SeerrCatalogSource implements CatalogSource {
@@ -114,8 +114,9 @@ class SeerrCatalogSource implements CatalogSource {
   Future<CatalogItemIds?> resolveItemIds(MediaKind kind, ExternalIds external) async =>
       external.tmdb == null ? null : CatalogItemIds(tmdb: external.tmdb, imdb: external.imdb, tvdb: external.tvdb);
 
-  // Seerr has no watchlist: membership is always unknown and mutations are
-  // programming errors (the action is hidden when supportsWatchlist is false).
+  // Seerr does have a watchlist — POST/DELETE /watchlist, GET
+  // /user/{id}/watchlist — but its rows carry no artwork, so a shelf needs a
+  // detail fetch per entry. Unwired until that is worth doing.
 
   @override
   Future<void> ensureWatchlistLoaded() => Future.value();
@@ -124,11 +125,11 @@ class SeerrCatalogSource implements CatalogSource {
   bool? isOnWatchlist(MediaKind kind, CatalogItemIds ids) => null;
 
   @override
-  Future<void> addToWatchlist(MediaKind kind, CatalogItemIds ids) => throw UnsupportedError('Seerr has no watchlist');
+  Future<void> addToWatchlist(MediaKind kind, CatalogItemIds ids) => throw UnsupportedError('Seerr watchlist is not wired up');
 
   @override
   Future<void> removeFromWatchlist(MediaKind kind, CatalogItemIds ids) =>
-      throw UnsupportedError('Seerr has no watchlist');
+      throw UnsupportedError('Seerr watchlist is not wired up');
 
   CatalogPage _toPage(SeerrPage<SeerrMedia> page) => CatalogPage(
     items: [
