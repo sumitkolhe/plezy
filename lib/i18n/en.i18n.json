@@ -1574,7 +1574,9 @@
     "airedOn": "Aired ${date}",
     "airsOn": "Airs ${date}",
     "unmonitored": "Unmonitored",
-    "notDownloadedOne": "Not downloaded"
+    "notDownloadedOne": "Not downloaded",
+    "requestedCount": "Requested (${count})",
+    "notInLibrary": "Not in library yet"
   },
   "arrSearch": {
     "title": "Search",

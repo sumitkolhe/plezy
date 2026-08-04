@@ -4,7 +4,9 @@ import 'package:flutter/widgets.dart';
 
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../models/arr/server_transfer.dart';
+import '../models/arr/absent_title.dart';
 import '../services/arr/arr_item_lookup.dart';
+import '../services/arr/arr_wanted_service.dart';
 import '../services/arr/server_activity_service.dart';
 import '../utils/external_ids.dart';
 import 'managed_services_provider.dart';
@@ -37,6 +39,7 @@ class ServerActivityProvider extends ChangeNotifier
   bool _foreground = true;
 
   List<ServerTransfer> _transfers = const [];
+  List<AbsentTitle>? _absentMovies;
   List<String> _unreachable = const [];
   bool _loadedOnce = false;
 
@@ -76,6 +79,27 @@ class ServerActivityProvider extends ChangeNotifier
     if (_lookup.cached(ids, isSeries: isSeries) != null) return;
     await _lookup.resolve(ids, isSeries: isSeries);
     if (!isDisposed) safeNotifyListeners();
+  }
+
+  /// Films Radarr has no file for. Null until [resolveAbsentMovies] answers.
+  List<AbsentTitle>? get absentMovies => _absentMovies;
+
+  /// Fetched once per session unless [force]: the wanted list changes when
+  /// something imports, not while you scroll a library.
+  Future<void> resolveAbsentMovies({bool force = false}) async {
+    if (!hasServices || (_absentMovies != null && !force)) return;
+    final titles = await ArrWantedService(_services).absentMovies();
+    if (isDisposed) return;
+    _absentMovies = titles;
+    safeNotifyListeners();
+  }
+
+  /// Progress for an absent title, which has no external ids to resolve.
+  ServerTransfer? transferForMedia(String sourceId, int mediaId) {
+    for (final transfer in _transfers) {
+      if (transfer.sourceId == sourceId && transfer.queued?.mediaId == mediaId) return transfer;
+    }
+    return null;
   }
 
   /// Null until [resolveEpisodes] has answered.
@@ -125,6 +149,7 @@ class ServerActivityProvider extends ChangeNotifier
     // A connection change moves what a poll covers and which instance holds
     // what, so both the list and resolved items stop being trustworthy.
     _lookup.clear();
+    _absentMovies = null;
     if (!hasServices) {
       _transfers = const [];
       _unreachable = const [];

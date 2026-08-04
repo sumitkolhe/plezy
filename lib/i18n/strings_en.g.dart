@@ -4032,6 +4032,12 @@ class Translations$serverActivity$en {
 
 	/// en: 'Not downloaded'
 	String get notDownloadedOne => 'Not downloaded';
+
+	/// en: 'Requested (${count})'
+	String requestedCount({required Object count}) => 'Requested (${count})';
+
+	/// en: 'Not in library yet'
+	String get notInLibrary => 'Not in library yet';
 }
 
 // Path: arrSearch
@@ -6532,6 +6538,8 @@ extension on Translations {
 			'serverActivity.airsOn' => ({required Object date}) => 'Airs ${date}',
 			'serverActivity.unmonitored' => 'Unmonitored',
 			'serverActivity.notDownloadedOne' => 'Not downloaded',
+			'serverActivity.requestedCount' => ({required Object count}) => 'Requested (${count})',
+			'serverActivity.notInLibrary' => 'Not in library yet',
 			'arrSearch.title' => 'Search',
 			'arrSearch.auto' => 'Search automatically',
 			'arrSearch.autoDescription' => ({required Object service}) => 'Hand it to ${service} and let it pick.',
