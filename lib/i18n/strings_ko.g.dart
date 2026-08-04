@@ -526,7 +526,6 @@ class _Translations$rateSheet$ko extends Translations$rateSheet$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '평가';
 	@override String get server => '서버';
 	@override String get favorite => '즐겨찾기';
 	@override String get favorited => '즐겨찾기됨';
@@ -2103,7 +2102,6 @@ extension on TranslationsKo {
 			'mediaMenu.rate' => '평가',
 			'mediaMenu.playFromBeginning' => '처음부터 재생',
 			'mediaMenu.playVersion' => '버전 재생...',
-			'rateSheet.title' => '평가',
 			'rateSheet.server' => '서버',
 			'rateSheet.favorite' => '즐겨찾기',
 			'rateSheet.favorited' => '즐겨찾기됨',
@@ -2246,9 +2244,9 @@ extension on TranslationsKo {
 			'messages.noItemsAvailable' => '사용 가능한 항목이 없습니다',
 			'messages.failedToCreatePlayQueueNoItems' => '재생 대기열을 만들지 못했습니다 — 항목이 없습니다',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}을(를) 수행할 수 없습니다: ${error}',
+			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
 			'messages.serverLimitTitle' => '재생 실패',
 			'messages.serverLimitBody' => '서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.',
 			'subtitlingStyling.text' => '텍스트',
@@ -2760,9 +2758,9 @@ extension on TranslationsKo {
 			'metadataEdit.enterImageUrl' => '이미지 URL 입력',
 			'metadataEdit.imageUrl' => '이미지 URL',
 			'metadataEdit.metadataUpdated' => '메타데이터가 업데이트되었습니다',
+			'metadataEdit.metadataUpdateFailed' => '메타데이터 업데이트 실패',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => '메타데이터 업데이트 실패',
 			'metadataEdit.artworkUpdated' => '아트워크가 업데이트되었습니다',
 			'metadataEdit.artworkUpdateFailed' => '아트워크 업데이트 실패',
 			'metadataEdit.noArtworkAvailable' => '사용 가능한 아트워크 없음',

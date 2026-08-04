@@ -526,7 +526,6 @@ class _Translations$rateSheet$fr extends Translations$rateSheet$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Noter';
 	@override String get server => 'Serveur';
 	@override String get favorite => 'Favori';
 	@override String get favorited => 'Ajouté aux favoris';
@@ -2106,7 +2105,6 @@ extension on TranslationsFr {
 			'mediaMenu.rate' => 'Noter',
 			'mediaMenu.playFromBeginning' => 'Lire depuis le début',
 			'mediaMenu.playVersion' => 'Lire la version...',
-			'rateSheet.title' => 'Noter',
 			'rateSheet.server' => 'Serveur',
 			'rateSheet.favorite' => 'Favori',
 			'rateSheet.favorited' => 'Ajouté aux favoris',
@@ -2249,9 +2247,9 @@ extension on TranslationsFr {
 			'messages.noItemsAvailable' => 'Aucun élément disponible',
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossible de créer la file d’attente de lecture : aucun élément',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Échec de ${action} : ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Passage au lecteur compatible...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Passage au lecteur compatible...',
 			'messages.serverLimitTitle' => 'Échec de la lecture',
 			'messages.serverLimitBody' => 'Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l\'ajuster.',
 			'subtitlingStyling.text' => 'Texte',
@@ -2763,9 +2761,9 @@ extension on TranslationsFr {
 			'metadataEdit.enterImageUrl' => 'Entrer l\'URL de l\'image',
 			'metadataEdit.imageUrl' => 'URL de l\'image',
 			'metadataEdit.metadataUpdated' => 'Métadonnées mises à jour',
+			'metadataEdit.metadataUpdateFailed' => 'Échec de la mise à jour des métadonnées',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Échec de la mise à jour des métadonnées',
 			'metadataEdit.artworkUpdated' => 'Illustrations mises à jour',
 			'metadataEdit.artworkUpdateFailed' => 'Échec de la mise à jour des illustrations',
 			'metadataEdit.noArtworkAvailable' => 'Aucune illustration disponible',

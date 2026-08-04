@@ -529,7 +529,6 @@ class _Translations$rateSheet$kk extends Translations$rateSheet$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Бағалау';
 	@override String get server => 'Сервер';
 	@override String get favorite => 'Таңдаулы';
 	@override String get favorited => 'Таңдаулыларға қосылды';
@@ -2120,7 +2119,6 @@ extension on TranslationsKk {
 			'mediaMenu.rate' => 'Бағалау',
 			'mediaMenu.playFromBeginning' => 'Басынан бастап ойнату',
 			'mediaMenu.playVersion' => 'Нұсқаны ойнату...',
-			'rateSheet.title' => 'Бағалау',
 			'rateSheet.server' => 'Сервер',
 			'rateSheet.favorite' => 'Таңдаулы',
 			'rateSheet.favorited' => 'Таңдаулыларға қосылды',
@@ -2260,9 +2258,9 @@ extension on TranslationsKk {
 			'messages.noEpisodesFoundGeneral' => 'Бөлімдер табылмады',
 			'messages.episodesLoadFailed' => 'Бөлімдерді жүктеу мүмкін болмады',
 			'messages.noResultsFound' => 'Нәтижелер табылмады',
+			'messages.sleepTimerSet' => ({required Object label}) => 'Ұйқы таймері ${label} уақытына орнатылды',
 			_ => null,
 		} ?? switch (path) {
-			'messages.sleepTimerSet' => ({required Object label}) => 'Ұйқы таймері ${label} уақытына орнатылды',
 			'messages.noItemsAvailable' => 'Элементтер жоқ',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ойнату кезегін жасау мүмкін болмады — элементтер жоқ',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} сәтсіз аяқталды: ${error}',
@@ -2774,9 +2772,9 @@ extension on TranslationsKk {
 			'metadataEdit.summary' => 'Сипаттамасы/Күйі',
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
+			'metadataEdit.logo' => 'Логотип',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.logo' => 'Логотип',
 			'metadataEdit.squareArt' => 'Шаршы сурет',
 			'metadataEdit.selectPoster' => 'Постерді таңдау',
 			'metadataEdit.selectBackground' => 'Фонды таңдау',

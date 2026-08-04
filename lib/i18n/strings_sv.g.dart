@@ -526,7 +526,6 @@ class _Translations$rateSheet$sv extends Translations$rateSheet$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Betygsätt';
 	@override String get server => 'Server';
 	@override String get favorite => 'Favorit';
 	@override String get favorited => 'Tillagd i favoriter';
@@ -2106,7 +2105,6 @@ extension on TranslationsSv {
 			'mediaMenu.rate' => 'Betygsätt',
 			'mediaMenu.playFromBeginning' => 'Spela från början',
 			'mediaMenu.playVersion' => 'Spela version...',
-			'rateSheet.title' => 'Betygsätt',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Favorit',
 			'rateSheet.favorited' => 'Tillagd i favoriter',
@@ -2249,9 +2247,9 @@ extension on TranslationsSv {
 			'messages.noItemsAvailable' => 'Inga objekt tillgängliga',
 			'messages.failedToCreatePlayQueueNoItems' => 'Det gick inte att skapa en uppspelningskö – inga objekt',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Det gick inte att ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
 			'messages.serverLimitTitle' => 'Uppspelningen misslyckades',
 			'messages.serverLimitBody' => 'Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.',
 			'subtitlingStyling.text' => 'Text',
@@ -2763,9 +2761,9 @@ extension on TranslationsSv {
 			'metadataEdit.enterImageUrl' => 'Ange bild-URL',
 			'metadataEdit.imageUrl' => 'Bild-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata har uppdaterats',
+			'metadataEdit.metadataUpdateFailed' => 'Det gick inte att uppdatera metadata',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Det gick inte att uppdatera metadata',
 			'metadataEdit.artworkUpdated' => 'Bildmaterialet har uppdaterats',
 			'metadataEdit.artworkUpdateFailed' => 'Det gick inte att uppdatera bildmaterialet',
 			'metadataEdit.noArtworkAvailable' => 'Inget bildmaterial är tillgängligt',

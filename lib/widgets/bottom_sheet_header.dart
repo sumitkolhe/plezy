@@ -8,7 +8,9 @@ import 'package:harbor/theme/phosphor_icons.dart';
 /// already dismiss a sheet. [onBack] is navigation to a parent page within one
 /// sheet, which is a different thing from getting out of it.
 class BottomSheetHeader extends StatelessWidget {
-  final String title;
+  /// Omitted where the rows already say what the sheet is; the bar still draws
+  /// for an [action] or [onBack].
+  final String? title;
 
   /// Takes precedence over [icon] and [onBack].
   final Widget? leading;
@@ -22,7 +24,7 @@ class BottomSheetHeader extends StatelessWidget {
 
   const BottomSheetHeader({
     super.key,
-    required this.title,
+    this.title,
     this.leading,
     this.action,
     this.icon,
@@ -51,12 +53,14 @@ class BottomSheetHeader extends StatelessWidget {
             children: [
               if (resolvedLeading != null) ...[resolvedLeading, const SizedBox(width: 8)],
               Expanded(
-                child: Text(
-                  title,
-                  style: Theme.of(context).textTheme.titleMedium,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+                child: title == null
+                    ? const SizedBox.shrink()
+                    : Text(
+                        title!,
+                        style: Theme.of(context).textTheme.titleMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
               ),
               ?action,
             ],

@@ -21,7 +21,6 @@ import '../utils/app_logger.dart';
 import '../utils/snackbar_helper.dart';
 import 'app_icon.dart';
 import 'backend_badge.dart';
-import 'bottom_sheet_header.dart';
 import 'catalog_source_logo.dart';
 import 'clickable_cursor.dart';
 
@@ -94,7 +93,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
           child: Column(
             mainAxisSize: .min,
             children: [
-              BottomSheetHeader(title: t.rateSheet.title, icon: PhosphorIcons.star),
               Flexible(
                 child: ListView(
                   padding: const EdgeInsets.fromLTRB(10, 4, 10, 12),

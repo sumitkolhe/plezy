@@ -1514,9 +1514,6 @@ class Translations$rateSheet$en {
 
 	// Translations
 
-	/// en: 'Rate'
-	String get title => 'Rate';
-
 	/// en: 'Server'
 	String get server => 'Server';
 
@@ -5580,7 +5577,6 @@ extension on Translations {
 			'mediaMenu.rate' => 'Rate',
 			'mediaMenu.playFromBeginning' => 'Play from Beginning',
 			'mediaMenu.playVersion' => 'Play Version...',
-			'rateSheet.title' => 'Rate',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Favorite',
 			'rateSheet.favorited' => 'Favorited',
@@ -5625,9 +5621,9 @@ extension on Translations {
 			'videoControls.noOffset' => 'No offset',
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
+			'videoControls.stretch' => 'Stretch',
 			_ => null,
 		} ?? switch (path) {
-			'videoControls.stretch' => 'Stretch',
 			'videoControls.lockRotation' => 'Lock rotation',
 			'videoControls.unlockRotation' => 'Unlock rotation',
 			'videoControls.timerActive' => 'Timer Active',
@@ -6139,9 +6135,9 @@ extension on Translations {
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
+			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			_ => null,
 		} ?? switch (path) {
-			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',

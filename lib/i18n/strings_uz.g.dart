@@ -529,7 +529,6 @@ class _Translations$rateSheet$uz extends Translations$rateSheet$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Baho berish';
 	@override String get server => 'Server';
 	@override String get favorite => 'Tanlangan';
 	@override String get favorited => 'Tanlanganlarga qoʻshildi';
@@ -2120,7 +2119,6 @@ extension on TranslationsUz {
 			'mediaMenu.rate' => 'Baho berish',
 			'mediaMenu.playFromBeginning' => 'Boshidan ijro etish',
 			'mediaMenu.playVersion' => 'Versiyani ijro etish...',
-			'rateSheet.title' => 'Baho berish',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Tanlangan',
 			'rateSheet.favorited' => 'Tanlanganlarga qoʻshildi',
@@ -2260,9 +2258,9 @@ extension on TranslationsUz {
 			'messages.noEpisodesFoundGeneral' => 'Qismlar topilmadi',
 			'messages.episodesLoadFailed' => 'Qismlarni yuklab boʻlmadi',
 			'messages.noResultsFound' => 'Natijalar topilmadi',
+			'messages.sleepTimerSet' => ({required Object label}) => 'Uyqu taymeri ${label} vaqtiga oʻrnatildi',
 			_ => null,
 		} ?? switch (path) {
-			'messages.sleepTimerSet' => ({required Object label}) => 'Uyqu taymeri ${label} vaqtiga oʻrnatildi',
 			'messages.noItemsAvailable' => 'Elementlar yoʻq',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ijro navbatini yaratib boʻlmadi — elementlar yoʻq',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} muvaffaqiyatsiz tugadi: ${error}',
@@ -2774,9 +2772,9 @@ extension on TranslationsUz {
 			'metadataEdit.summary' => 'Tavsif/Qisqacha',
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Fon',
+			'metadataEdit.logo' => 'Logotip',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.logo' => 'Logotip',
 			'metadataEdit.squareArt' => 'Kvadrat rasm',
 			'metadataEdit.selectPoster' => 'Posterni tanlash',
 			'metadataEdit.selectBackground' => 'Fonni tanlash',

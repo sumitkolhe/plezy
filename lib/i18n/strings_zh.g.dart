@@ -526,7 +526,6 @@ class Translations$rateSheet$zh extends Translations$rateSheet$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '评分';
 	@override String get server => '服务器';
 	@override String get favorite => '收藏';
 	@override String get favorited => '已收藏';
@@ -2103,7 +2102,6 @@ extension on TranslationsZh {
 			'mediaMenu.rate' => '评分',
 			'mediaMenu.playFromBeginning' => '从头播放',
 			'mediaMenu.playVersion' => '播放版本…',
-			'rateSheet.title' => '评分',
 			'rateSheet.server' => '服务器',
 			'rateSheet.favorite' => '收藏',
 			'rateSheet.favorited' => '已收藏',
@@ -2246,9 +2244,9 @@ extension on TranslationsZh {
 			'messages.noItemsAvailable' => '没有可用的项目',
 			'messages.failedToCreatePlayQueueNoItems' => '创建播放队列失败：没有可用项目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '无法执行“${action}”：${error}',
+			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
 			'messages.serverLimitTitle' => '播放失败',
 			'messages.serverLimitBody' => '服务器错误（HTTP 500）。此次会话可能因带宽或转码限制而被拒绝。请联系服务器所有者调整限制。',
 			'subtitlingStyling.text' => '文本',
@@ -2760,9 +2758,9 @@ extension on TranslationsZh {
 			'metadataEdit.enterImageUrl' => '输入图片 URL',
 			'metadataEdit.imageUrl' => '图片 URL',
 			'metadataEdit.metadataUpdated' => '元数据已更新',
+			'metadataEdit.metadataUpdateFailed' => '元数据更新失败',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => '元数据更新失败',
 			'metadataEdit.artworkUpdated' => '封面图片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面图片更新失败',
 			'metadataEdit.noArtworkAvailable' => '没有可用的封面图片',

@@ -527,7 +527,6 @@ class _Translations$rateSheet$zh_Hant extends Translations$rateSheet$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '評分';
 	@override String get server => '伺服器';
 	@override String get favorite => '最愛';
 	@override String get favorited => '已加入最愛';
@@ -2104,7 +2103,6 @@ extension on TranslationsZhHant {
 			'mediaMenu.rate' => '評分',
 			'mediaMenu.playFromBeginning' => '從頭播放',
 			'mediaMenu.playVersion' => '播放版本…',
-			'rateSheet.title' => '評分',
 			'rateSheet.server' => '伺服器',
 			'rateSheet.favorite' => '最愛',
 			'rateSheet.favorited' => '已加入最愛',
@@ -2247,9 +2245,9 @@ extension on TranslationsZhHant {
 			'messages.noItemsAvailable' => '沒有可用的項目',
 			'messages.failedToCreatePlayQueueNoItems' => '無法建立播放佇列 — 沒有項目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '無法${action}：${error}',
+			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
 			'messages.serverLimitTitle' => '播放失敗',
 			'messages.serverLimitBody' => '伺服器錯誤（HTTP 500）。伺服器的頻寬或轉碼限制可能拒絕此播放要求。請聯絡伺服器擁有者調整設定。',
 			'subtitlingStyling.text' => '文字',
@@ -2761,9 +2759,9 @@ extension on TranslationsZhHant {
 			'metadataEdit.enterImageUrl' => '輸入圖片 URL',
 			'metadataEdit.imageUrl' => '圖片 URL',
 			'metadataEdit.metadataUpdated' => '中繼資料已更新',
+			'metadataEdit.metadataUpdateFailed' => '中繼資料更新失敗',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => '中繼資料更新失敗',
 			'metadataEdit.artworkUpdated' => '封面圖片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面圖片更新失敗',
 			'metadataEdit.noArtworkAvailable' => '沒有可用的封面圖片',

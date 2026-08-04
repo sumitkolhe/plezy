@@ -526,7 +526,6 @@ class _Translations$rateSheet$pl extends Translations$rateSheet$en {
 	final TranslationsPl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Oceń';
 	@override String get server => 'Serwer';
 	@override String get favorite => 'Dodaj do ulubionych';
 	@override String get favorited => 'Dodano do ulubionych';
@@ -2112,7 +2111,6 @@ extension on TranslationsPl {
 			'mediaMenu.rate' => 'Oceń',
 			'mediaMenu.playFromBeginning' => 'Odtwórz od początku',
 			'mediaMenu.playVersion' => 'Odtwórz wersję...',
-			'rateSheet.title' => 'Oceń',
 			'rateSheet.server' => 'Serwer',
 			'rateSheet.favorite' => 'Dodaj do ulubionych',
 			'rateSheet.favorited' => 'Dodano do ulubionych',
@@ -2255,9 +2253,9 @@ extension on TranslationsPl {
 			'messages.noItemsAvailable' => 'Brak dostępnych elementów',
 			'messages.failedToCreatePlayQueueNoItems' => 'Nie udało się utworzyć kolejki odtwarzania — brak elementów',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nie udało się ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Przełączanie na kompatybilny odtwarzacz...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Przełączanie na kompatybilny odtwarzacz...',
 			'messages.serverLimitTitle' => 'Odtwarzanie nie powiodło się',
 			'messages.serverLimitBody' => 'Błąd serwera (HTTP 500). Limit przepustowości/transkodowania prawdopodobnie odrzucił tę sesję. Poproś właściciela o zmianę.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2769,9 +2767,9 @@ extension on TranslationsPl {
 			'metadataEdit.enterImageUrl' => 'Wprowadź URL obrazu',
 			'metadataEdit.imageUrl' => 'URL obrazu',
 			'metadataEdit.metadataUpdated' => 'Metadane zaktualizowane',
+			'metadataEdit.metadataUpdateFailed' => 'Nie udało się zaktualizować metadanych',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Nie udało się zaktualizować metadanych',
 			'metadataEdit.artworkUpdated' => 'Grafika zaktualizowana',
 			'metadataEdit.artworkUpdateFailed' => 'Nie udało się zaktualizować grafiki',
 			'metadataEdit.noArtworkAvailable' => 'Brak dostępnej grafiki',

@@ -87,7 +87,7 @@ class _QueueSheetState extends State<QueueSheet> {
             );
           }
 
-          return BottomSheetPageScaffold(title: t.videoControls.queue, icon: PhosphorIcons.queue, child: content);
+          return BottomSheetPageScaffold(child: content);
         },
       ),
     );

@@ -171,6 +171,22 @@ void main() {
     expect(find.byWidgetPredicate((w) => w is Icon && w.icon == PhosphorIcons.check), findsOneWidget);
   });
 
+  testWidgets('a row with secondary text is no taller than one without', (tester) async {
+    await _pump(
+      tester,
+      AppMenuList<String>(
+        entries: [
+          AppMenuItem<String>(value: 'a', label: 'Plain', icon: PhosphorIcons.play),
+          AppMenuItem<String>(value: 'b', label: 'Detailed', subtitle: 'secondary', icon: PhosphorIcons.play),
+        ],
+        onSelected: (_) {},
+      ),
+    );
+
+    // Label plus secondary line measure 36dp together, so both fit one height.
+    expect(_rowHeight(tester, 'Detailed'), _rowHeight(tester, 'Plain'));
+  });
+
   testWidgets('a full media menu stands without scrolling on a phone', (tester) async {
     tester.view.physicalSize = const Size(1440, 3120);
     tester.view.devicePixelRatio = 3.75;

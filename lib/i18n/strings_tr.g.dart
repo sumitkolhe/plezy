@@ -529,7 +529,6 @@ class _Translations$rateSheet$tr extends Translations$rateSheet$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Oyla';
 	@override String get server => 'Sunucu';
 	@override String get favorite => 'Favori';
 	@override String get favorited => 'Favorilere Eklendi';
@@ -2120,7 +2119,6 @@ extension on TranslationsTr {
 			'mediaMenu.rate' => 'Oyla',
 			'mediaMenu.playFromBeginning' => 'Baştan Oynat',
 			'mediaMenu.playVersion' => 'Sürümü Oynat...',
-			'rateSheet.title' => 'Oyla',
 			'rateSheet.server' => 'Sunucu',
 			'rateSheet.favorite' => 'Favori',
 			'rateSheet.favorited' => 'Favorilere Eklendi',
@@ -2260,9 +2258,9 @@ extension on TranslationsTr {
 			'messages.noEpisodesFoundGeneral' => 'Bölüm bulunamadı',
 			'messages.episodesLoadFailed' => 'Bölümler yüklenemedi',
 			'messages.noResultsFound' => 'Sonuç bulunamadı',
+			'messages.sleepTimerSet' => ({required Object label}) => 'Uyku zamanlayıcısı ${label} için ayarlandı',
 			_ => null,
 		} ?? switch (path) {
-			'messages.sleepTimerSet' => ({required Object label}) => 'Uyku zamanlayıcısı ${label} için ayarlandı',
 			'messages.noItemsAvailable' => 'Öge bulunmuyor',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma kuyruğu oluşturulamadı — öge yok',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} başarısız oldu: ${error}',
@@ -2774,9 +2772,9 @@ extension on TranslationsTr {
 			'metadataEdit.summary' => 'Özet',
 			'metadataEdit.poster' => 'Afiş',
 			'metadataEdit.background' => 'Arka Plan',
+			'metadataEdit.logo' => 'Logo',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.logo' => 'Logo',
 			'metadataEdit.squareArt' => 'Kare Görsel',
 			'metadataEdit.selectPoster' => 'Afiş Seç',
 			'metadataEdit.selectBackground' => 'Arka Plan Seç',

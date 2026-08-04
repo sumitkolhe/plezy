@@ -97,7 +97,9 @@ void main() {
     await tester.pump(const Duration(milliseconds: 300));
 
     // Header: title + total track count.
-    expect(find.text(t.music.queue), findsOneWidget);
+    // The bar carries no title: the rows are the queue. It keeps the count and
+    // the shuffle/repeat controls.
+    expect(find.text(t.music.queue), findsNothing);
     expect(find.text(t.music.trackCount(n: 3)), findsOneWidget);
 
     // The whole queue renders as TrackRows: played, current, and upcoming.

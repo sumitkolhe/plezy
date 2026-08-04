@@ -526,7 +526,6 @@ class _Translations$rateSheet$es extends Translations$rateSheet$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Calificar';
 	@override String get server => 'Servidor';
 	@override String get favorite => 'Favorito';
 	@override String get favorited => 'Marcado como favorito';
@@ -2106,7 +2105,6 @@ extension on TranslationsEs {
 			'mediaMenu.rate' => 'Calificar',
 			'mediaMenu.playFromBeginning' => 'Reproducir desde el inicio',
 			'mediaMenu.playVersion' => 'Reproducir versión...',
-			'rateSheet.title' => 'Calificar',
 			'rateSheet.server' => 'Servidor',
 			'rateSheet.favorite' => 'Favorito',
 			'rateSheet.favorited' => 'Marcado como favorito',
@@ -2249,9 +2247,9 @@ extension on TranslationsEs {
 			'messages.noItemsAvailable' => 'No hay elementos disponibles',
 			'messages.failedToCreatePlayQueueNoItems' => 'No se pudo crear la cola de reproducción: no hay elementos',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Error al ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Cambiando a reproductor compatible...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Cambiando a reproductor compatible...',
 			'messages.serverLimitTitle' => 'Error de reproducción',
 			'messages.serverLimitBody' => 'Error del servidor (HTTP 500). Un límite de ancho de banda/transcodificación probablemente rechazó esta sesión. Pide al propietario que lo ajuste.',
 			'subtitlingStyling.text' => 'Texto',
@@ -2763,9 +2761,9 @@ extension on TranslationsEs {
 			'metadataEdit.enterImageUrl' => 'Introducir URL de imagen',
 			'metadataEdit.imageUrl' => 'URL de imagen',
 			'metadataEdit.metadataUpdated' => 'Metadatos actualizados',
+			'metadataEdit.metadataUpdateFailed' => 'Error al actualizar los metadatos',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Error al actualizar los metadatos',
 			'metadataEdit.artworkUpdated' => 'Imágenes actualizadas',
 			'metadataEdit.artworkUpdateFailed' => 'Error al actualizar las imágenes',
 			'metadataEdit.noArtworkAvailable' => 'No hay imágenes disponibles',

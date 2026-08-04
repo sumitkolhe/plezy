@@ -20,7 +20,6 @@ import '../utils/app_logger.dart';
 import '../utils/snackbar_helper.dart';
 import '../theme/mono_tokens.dart';
 import 'app_icon.dart';
-import 'bottom_sheet_header.dart';
 import 'app_menu.dart';
 import 'loading_indicator_box.dart';
 import 'overlay_sheet.dart';
@@ -373,7 +372,6 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        BottomSheetHeader(title: t.seerr.request),
         Flexible(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),

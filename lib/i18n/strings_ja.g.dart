@@ -526,7 +526,6 @@ class _Translations$rateSheet$ja extends Translations$rateSheet$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '評価';
 	@override String get server => 'サーバー';
 	@override String get favorite => 'お気に入り';
 	@override String get favorited => 'お気に入りに追加済み';
@@ -2103,7 +2102,6 @@ extension on TranslationsJa {
 			'mediaMenu.rate' => '評価',
 			'mediaMenu.playFromBeginning' => '最初から再生',
 			'mediaMenu.playVersion' => 'バージョンを選んで再生…',
-			'rateSheet.title' => '評価',
 			'rateSheet.server' => 'サーバー',
 			'rateSheet.favorite' => 'お気に入り',
 			'rateSheet.favorited' => 'お気に入りに追加済み',
@@ -2246,9 +2244,9 @@ extension on TranslationsJa {
 			'messages.noItemsAvailable' => 'アイテムがありません',
 			'messages.failedToCreatePlayQueueNoItems' => '再生キューを作成できませんでした — アイテムがありません',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}に失敗しました: ${error}',
+			'messages.switchingToCompatiblePlayer' => '互換性のあるプレーヤーに切り替え中…',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => '互換性のあるプレーヤーに切り替え中…',
 			'messages.serverLimitTitle' => '再生に失敗しました',
 			'messages.serverLimitBody' => 'サーバーエラー（HTTP 500）。帯域幅/トランスコード制限により拒否された可能性があります。所有者に調整を依頼してください。',
 			'subtitlingStyling.text' => 'テキスト',
@@ -2760,9 +2758,9 @@ extension on TranslationsJa {
 			'metadataEdit.enterImageUrl' => '画像URLを入力',
 			'metadataEdit.imageUrl' => '画像URL',
 			'metadataEdit.metadataUpdated' => 'メタデータを更新しました',
+			'metadataEdit.metadataUpdateFailed' => 'メタデータの更新に失敗しました',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'メタデータの更新に失敗しました',
 			'metadataEdit.artworkUpdated' => 'アートワークを更新しました',
 			'metadataEdit.artworkUpdateFailed' => 'アートワークの更新に失敗しました',
 			'metadataEdit.noArtworkAvailable' => 'アートワークがありません',

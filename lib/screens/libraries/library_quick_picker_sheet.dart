@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../i18n/strings.g.dart';
 import '../../media/media_library.dart';
 import '../../utils/content_utils.dart';
 import '../../utils/library_grouping.dart';
 import '../../widgets/app_menu.dart';
 import '../../widgets/backend_badge.dart';
-import '../../widgets/bottom_sheet_header.dart';
 
 class LibraryQuickPickerSheet extends StatelessWidget {
   final List<MediaLibrary> libraries;
@@ -95,7 +93,6 @@ class LibraryQuickPickerSheet extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        BottomSheetHeader(title: t.libraries.selectLibrary),
         if (isLoading && libraries.isEmpty)
           const Padding(padding: EdgeInsets.symmetric(vertical: 32), child: CircularProgressIndicator())
         else if (libraries.isEmpty)
@@ -107,7 +104,7 @@ class LibraryQuickPickerSheet extends StatelessWidget {
           Flexible(
             child: SingleChildScrollView(
               child: AppMenuList<String>(
-                padding: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 entries: _buildEntries(),
                 onSelected: onSelected,
               ),

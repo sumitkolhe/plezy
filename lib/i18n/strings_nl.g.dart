@@ -526,7 +526,6 @@ class _Translations$rateSheet$nl extends Translations$rateSheet$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Beoordelen';
 	@override String get server => 'Server';
 	@override String get favorite => 'Favoriet';
 	@override String get favorited => 'Toegevoegd aan favorieten';
@@ -2106,7 +2105,6 @@ extension on TranslationsNl {
 			'mediaMenu.rate' => 'Beoordelen',
 			'mediaMenu.playFromBeginning' => 'Afspelen vanaf het begin',
 			'mediaMenu.playVersion' => 'Versie afspelen...',
-			'rateSheet.title' => 'Beoordelen',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Favoriet',
 			'rateSheet.favorited' => 'Toegevoegd aan favorieten',
@@ -2249,9 +2247,9 @@ extension on TranslationsNl {
 			'messages.noItemsAvailable' => 'Geen items beschikbaar',
 			'messages.failedToCreatePlayQueueNoItems' => 'Afspeelwachtrij maken mislukt — geen items',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Afspelen van ${action} mislukt: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
 			'messages.serverLimitTitle' => 'Afspelen mislukt',
 			'messages.serverLimitBody' => 'Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2763,9 +2761,9 @@ extension on TranslationsNl {
 			'metadataEdit.enterImageUrl' => 'Voer de afbeeldings-URL in',
 			'metadataEdit.imageUrl' => 'Afbeeldings-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata bijgewerkt',
+			'metadataEdit.metadataUpdateFailed' => 'Metadata bijwerken mislukt',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Metadata bijwerken mislukt',
 			'metadataEdit.artworkUpdated' => 'Illustraties bijgewerkt',
 			'metadataEdit.artworkUpdateFailed' => 'Illustraties bijwerken mislukt',
 			'metadataEdit.noArtworkAvailable' => 'Geen illustraties beschikbaar',

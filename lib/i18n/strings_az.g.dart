@@ -529,7 +529,6 @@ class _Translations$rateSheet$az extends Translations$rateSheet$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Qiymətləndir';
 	@override String get server => 'Server';
 	@override String get favorite => 'Sevimli';
 	@override String get favorited => 'Sevimlilərə əlavə edildi';
@@ -2120,7 +2119,6 @@ extension on TranslationsAz {
 			'mediaMenu.rate' => 'Qiymətləndir',
 			'mediaMenu.playFromBeginning' => 'Əvvəldən oynat',
 			'mediaMenu.playVersion' => 'Versiyanı oynat...',
-			'rateSheet.title' => 'Qiymətləndir',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Sevimli',
 			'rateSheet.favorited' => 'Sevimlilərə əlavə edildi',
@@ -2260,9 +2258,9 @@ extension on TranslationsAz {
 			'messages.noEpisodesFoundGeneral' => 'Seriya tapılmadı',
 			'messages.episodesLoadFailed' => 'Seriyalar yüklənə bilmədi',
 			'messages.noResultsFound' => 'Nəticə tapılmadı',
+			'messages.sleepTimerSet' => ({required Object label}) => 'Yuxu taymeri ${label} üçün təyin edildi',
 			_ => null,
 		} ?? switch (path) {
-			'messages.sleepTimerSet' => ({required Object label}) => 'Yuxu taymeri ${label} üçün təyin edildi',
 			'messages.noItemsAvailable' => 'Element yoxdur',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma növbəsi yaradıla bilmədi — element yoxdur',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} uğursuz oldu: ${error}',
@@ -2774,9 +2772,9 @@ extension on TranslationsAz {
 			'metadataEdit.summary' => 'Məzmun/Xülasə',
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Arxa fon',
+			'metadataEdit.logo' => 'Loqo',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.logo' => 'Loqo',
 			'metadataEdit.squareArt' => 'Kvadrat şəkil',
 			'metadataEdit.selectPoster' => 'Poster seç',
 			'metadataEdit.selectBackground' => 'Arxa fon seç',

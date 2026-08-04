@@ -38,7 +38,6 @@ class QueueSheet extends StatelessWidget {
       mainAxisSize: .min,
       children: [
         BottomSheetHeader(
-          title: t.music.queue,
           action: Row(
             mainAxisSize: .min,
             children: [

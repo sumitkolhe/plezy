@@ -526,7 +526,6 @@ class _Translations$rateSheet$bg extends Translations$rateSheet$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Оцени';
 	@override String get server => 'Сървър';
 	@override String get favorite => 'Добави в любими';
 	@override String get favorited => 'Добавено в любими';
@@ -2106,7 +2105,6 @@ extension on TranslationsBg {
 			'mediaMenu.rate' => 'Оцени',
 			'mediaMenu.playFromBeginning' => 'Пусни от началото',
 			'mediaMenu.playVersion' => 'Пусни версия...',
-			'rateSheet.title' => 'Оцени',
 			'rateSheet.server' => 'Сървър',
 			'rateSheet.favorite' => 'Добави в любими',
 			'rateSheet.favorited' => 'Добавено в любими',
@@ -2249,9 +2247,9 @@ extension on TranslationsBg {
 			'messages.noItemsAvailable' => 'Няма налични елементи',
 			'messages.failedToCreatePlayQueueNoItems' => 'Неуспешно създаване на опашка за възпроизвеждане - няма елементи',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Неуспешно ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
 			'messages.serverLimitTitle' => 'Възпроизвеждането е неуспешно',
 			'messages.serverLimitBody' => 'Грешка на сървъра (HTTP 500). Вероятно лимит за пропускателна способност/транскодиране е отхвърлил тази сесия. Помолете собственика да го коригира.',
 			'subtitlingStyling.text' => 'Текст',
@@ -2763,9 +2761,9 @@ extension on TranslationsBg {
 			'metadataEdit.enterImageUrl' => 'Въведете URL на изображение',
 			'metadataEdit.imageUrl' => 'URL на изображение',
 			'metadataEdit.metadataUpdated' => 'Метаданните са обновени',
+			'metadataEdit.metadataUpdateFailed' => 'Неуспешно обновяване на метаданни',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Неуспешно обновяване на метаданни',
 			'metadataEdit.artworkUpdated' => 'Обложката е обновена',
 			'metadataEdit.artworkUpdateFailed' => 'Неуспешно обновяване на обложката',
 			'metadataEdit.noArtworkAvailable' => 'Няма налична обложка',

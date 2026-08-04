@@ -526,7 +526,6 @@ class _Translations$rateSheet$hu extends Translations$rateSheet$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Értékelés';
 	@override String get server => 'Szerver';
 	@override String get favorite => 'Kedvenc';
 	@override String get favorited => 'Kedvencekhez hozzáadva';
@@ -2106,7 +2105,6 @@ extension on TranslationsHu {
 			'mediaMenu.rate' => 'Értékelés',
 			'mediaMenu.playFromBeginning' => 'Lejátszás az elejétől',
 			'mediaMenu.playVersion' => 'Verzió lejátszása...',
-			'rateSheet.title' => 'Értékelés',
 			'rateSheet.server' => 'Szerver',
 			'rateSheet.favorite' => 'Kedvenc',
 			'rateSheet.favorited' => 'Kedvencekhez hozzáadva',
@@ -2249,9 +2247,9 @@ extension on TranslationsHu {
 			'messages.noItemsAvailable' => 'Nincsenek elérhető elemek',
 			'messages.failedToCreatePlayQueueNoItems' => 'Nem sikerült létrehozni a lejátszási sort — nincsenek elemek',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nem sikerült a művelet (${action}): ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
 			'messages.serverLimitTitle' => 'A lejátszás nem sikerült',
 			'messages.serverLimitBody' => 'Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.',
 			'subtitlingStyling.text' => 'Szöveg',
@@ -2763,9 +2761,9 @@ extension on TranslationsHu {
 			'metadataEdit.enterImageUrl' => 'Add meg a kép URL-címét',
 			'metadataEdit.imageUrl' => 'Kép URL-címe',
 			'metadataEdit.metadataUpdated' => 'Metaadatok frissítve',
+			'metadataEdit.metadataUpdateFailed' => 'Nem sikerült a metaadatok frissítése',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Nem sikerült a metaadatok frissítése',
 			'metadataEdit.artworkUpdated' => 'Képek frissítve',
 			'metadataEdit.artworkUpdateFailed' => 'Nem sikerült a képek frissítése',
 			'metadataEdit.noArtworkAvailable' => 'Nincsenek elérhető képek',

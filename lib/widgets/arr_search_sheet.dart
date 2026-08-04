@@ -119,22 +119,16 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final tokensRef = tokens(context);
     return Column(
       mainAxisSize: .min,
       children: [
-        BottomSheetHeader(title: t.arrSearch.title),
+        BottomSheetHeader(title: widget.scopeLabel),
         Flexible(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
             child: Column(
               crossAxisAlignment: .stretch,
               children: [
-                Text(
-                  widget.scopeLabel,
-                  style: TextStyle(fontSize: 15, fontWeight: .w600, color: tokensRef.text, height: 1.3),
-                ),
-                const SizedBox(height: 16),
                 if (_releases == null) ..._buildChoices(context) else ..._buildResults(context),
               ],
             ),

@@ -526,7 +526,6 @@ class _Translations$rateSheet$da extends Translations$rateSheet$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Bedøm';
 	@override String get server => 'Server';
 	@override String get favorite => 'Favorit';
 	@override String get favorited => 'Føjet til favoritter';
@@ -2106,7 +2105,6 @@ extension on TranslationsDa {
 			'mediaMenu.rate' => 'Bedøm',
 			'mediaMenu.playFromBeginning' => 'Afspil fra begyndelsen',
 			'mediaMenu.playVersion' => 'Afspil version...',
-			'rateSheet.title' => 'Bedøm',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Favorit',
 			'rateSheet.favorited' => 'Føjet til favoritter',
@@ -2249,9 +2247,9 @@ extension on TranslationsDa {
 			'messages.noItemsAvailable' => 'Ingen elementer tilgængelige',
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke oprette en afspilningskø — ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
 			'messages.serverLimitTitle' => 'Afspilning mislykkedes',
 			'messages.serverLimitBody' => 'Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2763,9 +2761,9 @@ extension on TranslationsDa {
 			'metadataEdit.enterImageUrl' => 'Indtast billed-URL',
 			'metadataEdit.imageUrl' => 'Billed-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata opdateret',
+			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke opdatere metadata',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke opdatere metadata',
 			'metadataEdit.artworkUpdated' => 'Grafik opdateret',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke opdatere grafik',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafik tilgængelig',

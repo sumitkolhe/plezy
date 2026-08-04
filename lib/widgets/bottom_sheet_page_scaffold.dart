@@ -6,7 +6,8 @@ import 'bottom_sheet_header.dart';
 
 /// Shared page layout for bottom sheets with a stable header and content area.
 class BottomSheetPageScaffold extends StatelessWidget {
-  final String title;
+  /// Omitted where the rows already say what the sheet is.
+  final String? title;
   final Widget child;
   final Widget? leading;
   final Widget? action;
@@ -17,7 +18,7 @@ class BottomSheetPageScaffold extends StatelessWidget {
 
   const BottomSheetPageScaffold({
     super.key,
-    required this.title,
+    this.title,
     required this.child,
     this.leading,
     this.action,
@@ -32,14 +33,15 @@ class BottomSheetPageScaffold extends StatelessWidget {
     Widget content = Column(
       mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
       children: [
-        BottomSheetHeader(
-          title: title,
-          leading: leading,
-          action: action,
-          icon: icon,
-          iconColor: iconColor,
-          onBack: onBack,
-        ),
+        if (title != null || action != null || onBack != null)
+          BottomSheetHeader(
+            title: title,
+            leading: leading,
+            action: action,
+            icon: icon,
+            iconColor: iconColor,
+            onBack: onBack,
+          ),
         if (shrinkWrap) child else Expanded(child: child),
       ],
     );

@@ -526,7 +526,6 @@ class _Translations$rateSheet$nb extends Translations$rateSheet$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Vurder';
 	@override String get server => 'Server';
 	@override String get favorite => 'Favoritt';
 	@override String get favorited => 'Lagt til i favoritter';
@@ -2106,7 +2105,6 @@ extension on TranslationsNb {
 			'mediaMenu.rate' => 'Vurder',
 			'mediaMenu.playFromBeginning' => 'Spill fra begynnelsen',
 			'mediaMenu.playVersion' => 'Spill av versjon...',
-			'rateSheet.title' => 'Vurder',
 			'rateSheet.server' => 'Server',
 			'rateSheet.favorite' => 'Favoritt',
 			'rateSheet.favorited' => 'Lagt til i favoritter',
@@ -2249,9 +2247,9 @@ extension on TranslationsNb {
 			'messages.noItemsAvailable' => 'Ingen elementer tilgjengelig',
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke opprette avspillingskø – ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Bytter til kompatibel spiller...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Bytter til kompatibel spiller...',
 			'messages.serverLimitTitle' => 'Avspilling mislyktes',
 			'messages.serverLimitBody' => 'Serverfeil (HTTP 500). En båndbredde-/transkodingsgrense avviste trolig økten. Be eieren justere den.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2763,9 +2761,9 @@ extension on TranslationsNb {
 			'metadataEdit.enterImageUrl' => 'Skriv inn bilde-URL',
 			'metadataEdit.imageUrl' => 'Bilde-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata oppdatert',
+			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke oppdatere metadata',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke oppdatere metadata',
 			'metadataEdit.artworkUpdated' => 'Grafikk oppdatert',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke oppdatere grafikken',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafikk tilgjengelig',

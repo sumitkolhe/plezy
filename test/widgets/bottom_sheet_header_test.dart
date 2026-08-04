@@ -4,6 +4,16 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/bottom_sheet_header.dart';
 
 void main() {
+  testWidgets('a header with no title still draws its action', (tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(body: BottomSheetHeader(action: Text('3 tracks'))),
+      ),
+    );
+
+    expect(find.text('3 tracks'), findsOneWidget);
+  });
+
   testWidgets('back arrow aligns with regular leading icons', (tester) async {
     var backPressed = false;
 

@@ -526,7 +526,6 @@ class _Translations$rateSheet$pt extends Translations$rateSheet$en {
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Avaliar';
 	@override String get server => 'Servidor';
 	@override String get favorite => 'Favorito';
 	@override String get favorited => 'Adicionado aos favoritos';
@@ -2106,7 +2105,6 @@ extension on TranslationsPt {
 			'mediaMenu.rate' => 'Avaliar',
 			'mediaMenu.playFromBeginning' => 'Reproduzir do início',
 			'mediaMenu.playVersion' => 'Reproduzir versão...',
-			'rateSheet.title' => 'Avaliar',
 			'rateSheet.server' => 'Servidor',
 			'rateSheet.favorite' => 'Favorito',
 			'rateSheet.favorited' => 'Adicionado aos favoritos',
@@ -2249,9 +2247,9 @@ extension on TranslationsPt {
 			'messages.noItemsAvailable' => 'Nenhum item disponível',
 			'messages.failedToCreatePlayQueueNoItems' => 'Falha ao criar a fila de reprodução — nenhum item',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Falha ao ${action}: ${error}',
+			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
 			_ => null,
 		} ?? switch (path) {
-			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
 			'messages.serverLimitTitle' => 'Falha na reprodução',
 			'messages.serverLimitBody' => 'Erro do servidor (HTTP 500). Um limite de largura de banda ou transcodificação provavelmente rejeitou esta sessão. Peça ao proprietário do servidor para ajustá-lo.',
 			'subtitlingStyling.text' => 'Texto',
@@ -2763,9 +2761,9 @@ extension on TranslationsPt {
 			'metadataEdit.enterImageUrl' => 'Insira a URL da imagem',
 			'metadataEdit.imageUrl' => 'URL da Imagem',
 			'metadataEdit.metadataUpdated' => 'Metadados atualizados',
+			'metadataEdit.metadataUpdateFailed' => 'Falha ao atualizar metadados',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.metadataUpdateFailed' => 'Falha ao atualizar metadados',
 			'metadataEdit.artworkUpdated' => 'Arte atualizada',
 			'metadataEdit.artworkUpdateFailed' => 'Falha ao atualizar arte',
 			'metadataEdit.noArtworkAvailable' => 'Nenhuma arte disponível',

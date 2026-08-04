@@ -298,16 +298,15 @@ class AppMenuSheet<T> extends StatelessWidget {
 /// its rows are M3 menu items.
 enum AppMenuDensity {
   /// M3 list item. The 48dp touch-target floor lives here.
-  touch(rowHeight: 56, rowHeightWithSubtitle: 72),
+  touch(rowHeight: 56),
 
   /// Denser, because a cursor does not need a finger's target and Material's
   /// own desktop menus sit around this height.
-  pointer(rowHeight: 40, rowHeightWithSubtitle: 52);
+  pointer(rowHeight: 40);
 
-  const AppMenuDensity({required this.rowHeight, required this.rowHeightWithSubtitle});
+  const AppMenuDensity({required this.rowHeight});
 
   final double rowHeight;
-  final double rowHeightWithSubtitle;
 }
 
 class AppMenuList<T> extends StatefulWidget {
@@ -504,7 +503,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                       borderRadius: BorderRadius.circular(tokens(context).radiusSm),
                     ),
                     constraints: BoxConstraints(
-                      minHeight: subtitle == null ? widget.density.rowHeight : widget.density.rowHeightWithSubtitle,
+                      minHeight: widget.density.rowHeight,
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: Row(
@@ -781,7 +780,7 @@ double _estimateMenuHeight<T>(List<AppMenuEntry<T>> entries) {
   for (final entry in entries) {
     switch (entry) {
       case AppMenuItem<T>():
-        height += entry.subtitle != null || entry.subtitleWidget != null ? 52 : 40;
+        height += 40;
       case AppMenuDivider<T>():
         height += 9;
       case AppMenuHeader<T>():

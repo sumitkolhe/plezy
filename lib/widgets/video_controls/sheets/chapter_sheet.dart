@@ -154,7 +154,7 @@ class _ChapterSheetState extends State<ChapterSheet> {
           );
         }
 
-        return BottomSheetPageScaffold(title: t.videoControls.chapters, icon: PhosphorIcons.bookmarks, child: content);
+        return BottomSheetPageScaffold(child: content);
       },
     );
   }
