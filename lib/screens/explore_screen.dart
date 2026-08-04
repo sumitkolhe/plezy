@@ -210,9 +210,9 @@ class ExploreScreenState extends State<ExploreScreen>
     CatalogRowId.trendingShows ||
     CatalogRowId.trendingAnime ||
     CatalogRowId.airingAnime ||
-    CatalogRowId.trending => PhosphorIcons.trendUp,
+    CatalogRowId.trending => PhosphorIcons.chartLineUp,
     CatalogRowId.popularMovies || CatalogRowId.popularShows || CatalogRowId.popularAnime => PhosphorIcons.fire,
-    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIcons.calendarPlus,
+    CatalogRowId.upcomingMovies || CatalogRowId.upcomingShows => PhosphorIcons.calendarDots,
   };
 
   List<AppMenuEntry<CatalogSourceId>> _sourceMenuEntries(CatalogSourcesProvider sources, CatalogSource active) => [
@@ -383,7 +383,6 @@ class ExploreScreenState extends State<ExploreScreen>
             child: HubSection(
               key: _orderedHubKeys[i],
               hub: rowHubs[i].hub,
-              totalResults: rowHubs[i].totalResults,
               focusMemory: _hubFocusMemory,
               icon: _rowIcon(rowHubs[i].row),
               loadMoreItems: rowHubs[i].hub.more ? () => _explore.loadAllForHub(rowHubs[i]) : null,

@@ -248,7 +248,6 @@ void main() {
       await _pumpMicrotasks();
 
       final providerHub = explore.rowHubs.last;
-      expect(providerHub.totalResults, 347);
       expect(providerHub.hub.size, 347);
       expect(providerHub.hub.items, hasLength(1));
     });

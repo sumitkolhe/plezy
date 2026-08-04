@@ -341,12 +341,6 @@ void main() {
     expect(find.text('Seerr Recommendation'), findsNothing);
   });
 
-  testWidgets('a provider total result count reaches the existing shelf header', (tester) async {
-    await _pumpExplore(tester, tv: false, traktTotalResults: 87);
-
-    expect(find.text(t.explore.totalResults(n: 87)), findsOneWidget);
-  });
-
   group('TV catalog spotlight', () {
     testWidgets('prefers logo and banner art, applies the accent tint, and shows the next episode', (tester) async {
       final item = CatalogItem(

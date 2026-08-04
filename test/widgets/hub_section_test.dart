@@ -136,7 +136,7 @@ void main() {
     expect(outerPadding.padding.resolve(TextDirection.ltr).bottom, 0);
   });
 
-  testWidgets('shows a provider result count in the existing hub header only when supplied', (tester) async {
+  testWidgets('the caret marks the end of the header rather than trailing the title', (tester) async {
     final item = testMediaItem(
       id: 'counted_item',
       backend: MediaBackend.jellyfin,
@@ -150,19 +150,13 @@ void main() {
         child: HubSection(hub: hub, focusMemory: HubFocusMemory(), icon: PhosphorIcons.filmSlate),
       ),
     );
-    expect(find.text(t.explore.totalResults(n: 237)), findsNothing);
 
-    await tester.pumpWidget(
-      _TestApp(
-        child: HubSection(
-          hub: hub,
-          focusMemory: HubFocusMemory(),
-          icon: PhosphorIcons.filmSlate,
-          totalResults: 237,
-        ),
-      ),
-    );
-    expect(find.text(t.explore.totalResults(n: 237)), findsOneWidget);
+    final section = tester.getRect(find.byType(HubSection));
+    final caret = tester.getRect(find.byIcon(PhosphorIcons.caretRight));
+    final title = tester.getRect(find.text('Popular'));
+
+    expect(section.right - caret.right, lessThan(24), reason: 'the caret belongs at the row end');
+    expect(title.left, lessThan(40), reason: 'the title stays at the row start');
   });
 
   testWidgets('restores within one owner but resets for a fresh owner', (tester) async {

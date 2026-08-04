@@ -55,8 +55,6 @@ class HubSection extends StatefulWidget {
   final bool showServerName;
   final Future<List<MediaItem>> Function()? loadMoreItems;
 
-  /// Provider-reported result count shown alongside the existing hub title.
-  final int? totalResults;
 
   /// Reports the current focused media item. Used by TV spotlight layouts.
   final ValueChanged<MediaItem>? onFocusedItemChanged;
@@ -105,7 +103,6 @@ class HubSection extends StatefulWidget {
     bool? usesContinueWatchingAction,
     this.showServerName = false,
     this.loadMoreItems,
-    this.totalResults,
     this.onFocusedItemChanged,
     this.onItemTap,
     this.onItemLongPress,
@@ -448,25 +445,15 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                       ? const EdgeInsets.symmetric(vertical: 2)
                       : const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
                   child: Row(
-                    mainAxisSize: .min,
                     children: [
                       AppIcon(widget.icon, size: isTv ? 28 : 16),
                       SizedBox(width: isTv ? 12 : 6),
-                      Flexible(
+                      // Expanded, not Flexible: a Flexible title and a Spacer
+                      // both carry flex 1 and would halve the free space
+                      // between them, stranding the caret mid-row.
+                      Expanded(
                         child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
                       ),
-                      if (widget.totalResults case final totalResults?) ...[
-                        SizedBox(width: isTv ? 12 : 8),
-                        Text(
-                          t.explore.totalResults(n: totalResults),
-                          maxLines: 1,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.62),
-                            fontSize: isTv ? 17 : null,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
                       if (widget.showServerName && widget.hub.serverName != null) ...[
                         const SizedBox(width: 8),
                         Text(
@@ -483,10 +470,10 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                           ),
                         ),
                       ],
-                      if (widget.hub.more && !isKeyboardMode) ...[
-                        const SizedBox(width: 4),
+                      // At the row's end, where a "there is more this way"
+                      // marker belongs, rather than trailing the title.
+                      if (widget.hub.more && !isKeyboardMode)
                         AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
-                      ],
                     ],
                   ),
                 ),

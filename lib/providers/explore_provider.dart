@@ -19,10 +19,9 @@ class ExploreRowHub {
   final CatalogRowId? row;
   final String? providerHubId;
   final CatalogHubStyle? style;
-  final int? totalResults;
   final MediaHub hub;
 
-  const ExploreRowHub.catalogRow({required CatalogRowId this.row, required this.hub, this.totalResults})
+  const ExploreRowHub.catalogRow({required CatalogRowId this.row, required this.hub})
     : providerHubId = null,
       style = null;
 
@@ -30,7 +29,6 @@ class ExploreRowHub {
     required String this.providerHubId,
     required this.hub,
     this.style,
-    this.totalResults,
   }) : row = null;
 }
 
@@ -105,7 +103,6 @@ class ExploreProvider extends ChangeNotifier with DisposableChangeNotifierMixin 
           if (page.items.isNotEmpty)
             ExploreRowHub.catalogRow(
               row: row,
-              totalResults: page.totalResults,
               hub: MediaHub(
                 id: 'explore:${source.id.name}:${row.name}',
                 identifier: 'explore.${row.name}',
@@ -121,7 +118,6 @@ class ExploreProvider extends ChangeNotifier with DisposableChangeNotifierMixin 
           ExploreRowHub.providerHub(
             providerHubId: providerHub.id,
             style: providerHub.style,
-            totalResults: providerHub.page.totalResults,
             hub: MediaHub(
               id: 'explore:${source.id.name}:hub:${providerHub.id}',
               identifier: 'explore.hub.${providerHub.id}',

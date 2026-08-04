@@ -2706,13 +2706,6 @@ class Translations$explore$en {
 	String broadcastWithZone({required Object day, required Object time, required Object timezone}) => 'Airs ${day} at ${time} ${timezone}';
 
 	late final Translations$explore$detail$en detail = Translations$explore$detail$en.internal(_root);
-
-	/// en: '(one) {${n} result} (other) {${n} results}'
-	String totalResults({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: '${n} result',
-		other: '${n} results',
-	);
-
 	late final Translations$explore$relation$en relation = Translations$explore$relation$en.internal(_root);
 }
 
@@ -5754,7 +5747,6 @@ extension on Translations {
 			'explore.detail.recommendedByPercent' => ({required Object percent}) => 'Recommended by ${percent} of viewers',
 			'explore.detail.relatedTitles' => 'Related titles',
 			'explore.detail.background' => 'Background',
-			'explore.totalResults' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} result', other: '${n} results', ), 
 			'explore.relation.prequel' => 'Prequel',
 			'explore.relation.sequel' => 'Sequel',
 			'explore.relation.sideStory' => 'Side story',
@@ -5814,9 +5806,9 @@ extension on Translations {
 			'music.goToArtist' => 'Go to artist',
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
+			'music.addToQueue' => 'Add to queue',
 			_ => null,
 		} ?? switch (path) {
-			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',

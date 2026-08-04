@@ -1069,10 +1069,6 @@
       "relatedTitles": "Related titles",
       "background": "Background"
     },
-    "totalResults": {
-      "one": "${n} result",
-      "other": "${n} results"
-    },
     "relation": {
       "prequel": "Prequel",
       "sequel": "Sequel",
