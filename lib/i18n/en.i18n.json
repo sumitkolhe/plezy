@@ -1499,5 +1499,46 @@
     "connectToJellyfinCardSubtitleScoped": "Sign in to a Jellyfin server. Binds to ${name}.",
     "borrowFromAnotherProfile": "Borrow from another profile",
     "borrowFromAnotherProfileSubtitle": "Reuse another profile's connection. PIN-protected profiles require a PIN."
+  },
+  "managedServices": {
+    "sectionTitle": "Media servers",
+    "add": "Add a service",
+    "addTitle": "Add a service",
+    "kinds": {
+      "radarr": "Radarr",
+      "sonarr": "Sonarr",
+      "qbittorrent": "qBittorrent"
+    },
+    "kindHints": {
+      "radarr": "Films",
+      "sonarr": "Series",
+      "qbittorrent": "Download client"
+    },
+    "addressLabel": "Address",
+    "addressHint": "radarr.home.lan:7878",
+    "apiKeyLabel": "API key",
+    "apiKeyHelp": "Settings → General → API Key in ${service}.",
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "nameLabel": "Name (optional)",
+    "nameHint": "Radarr 4K",
+    "nameHelp": "Shown instead of the address. Useful when you run more than one.",
+    "connect": "Connect",
+    "save": "Save",
+    "connected": "Connected",
+    "reconnect": "Reconnect",
+    "unreachable": "Unreachable",
+    "checking": "Checking…",
+    "recheck": "Check again",
+    "remove": "Remove",
+    "removeConfirm": "Remove ${name}?",
+    "removeConfirmBody": "Harbor stops reading from it. Nothing on the server changes.",
+    "addressRequired": "Enter the address Harbor should reach it on.",
+    "apiKeyRequired": "Enter the API key.",
+    "usernameRequired": "Enter the username.",
+    "keyRejected": "${service} rejected that key.",
+    "loginRejected": "That username and password were refused.",
+    "notReachable": "Could not reach ${address}.",
+    "notThisService": "That address answered, but not like ${service}. Check the port and any base path."
   }
 }

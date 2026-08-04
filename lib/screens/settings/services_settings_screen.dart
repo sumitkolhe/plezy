@@ -10,6 +10,7 @@ import '../../widgets/catalog_source_logo.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
 import '../../widgets/focusable_list_tile.dart';
 import '../../widgets/settings_section.dart';
+import 'managed_services_section.dart';
 import 'seerr_connect_screen.dart';
 import 'seerr_settings_screen.dart';
 import 'tracker_service_info.dart';
@@ -37,6 +38,8 @@ class ServicesSettingsScreen extends StatelessWidget {
               ),
             ),
             SettingsGroup(children: [for (final info in TrackerServiceInfo.all) _TrackerHubRow(info), _seerr()]),
+            const SizedBox(height: 20),
+            const ManagedServicesSection(),
             const SizedBox(height: 24),
           ]),
         ),

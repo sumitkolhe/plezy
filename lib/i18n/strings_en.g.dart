@@ -83,6 +83,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$seerr$en seerr = Translations$seerr$en.internal(_root);
 	late final Translations$services$en services = Translations$services$en.internal(_root);
 	late final Translations$addServer$en addServer = Translations$addServer$en.internal(_root);
+	late final Translations$managedServices$en managedServices = Translations$managedServices$en.internal(_root);
 }
 
 // Path: app
@@ -3843,6 +3844,105 @@ class Translations$addServer$en {
 	String get borrowFromAnotherProfileSubtitle => 'Reuse another profile\'s connection. PIN-protected profiles require a PIN.';
 }
 
+// Path: managedServices
+class Translations$managedServices$en {
+	Translations$managedServices$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Media servers'
+	String get sectionTitle => 'Media servers';
+
+	/// en: 'Add a service'
+	String get add => 'Add a service';
+
+	/// en: 'Add a service'
+	String get addTitle => 'Add a service';
+
+	late final Translations$managedServices$kinds$en kinds = Translations$managedServices$kinds$en.internal(_root);
+	late final Translations$managedServices$kindHints$en kindHints = Translations$managedServices$kindHints$en.internal(_root);
+
+	/// en: 'Address'
+	String get addressLabel => 'Address';
+
+	/// en: 'radarr.home.lan:7878'
+	String get addressHint => 'radarr.home.lan:7878';
+
+	/// en: 'API key'
+	String get apiKeyLabel => 'API key';
+
+	/// en: 'Settings → General → API Key in ${service}.'
+	String apiKeyHelp({required Object service}) => 'Settings → General → API Key in ${service}.';
+
+	/// en: 'Username'
+	String get usernameLabel => 'Username';
+
+	/// en: 'Password'
+	String get passwordLabel => 'Password';
+
+	/// en: 'Name (optional)'
+	String get nameLabel => 'Name (optional)';
+
+	/// en: 'Radarr 4K'
+	String get nameHint => 'Radarr 4K';
+
+	/// en: 'Shown instead of the address. Useful when you run more than one.'
+	String get nameHelp => 'Shown instead of the address. Useful when you run more than one.';
+
+	/// en: 'Connect'
+	String get connect => 'Connect';
+
+	/// en: 'Save'
+	String get save => 'Save';
+
+	/// en: 'Connected'
+	String get connected => 'Connected';
+
+	/// en: 'Reconnect'
+	String get reconnect => 'Reconnect';
+
+	/// en: 'Unreachable'
+	String get unreachable => 'Unreachable';
+
+	/// en: 'Checking…'
+	String get checking => 'Checking…';
+
+	/// en: 'Check again'
+	String get recheck => 'Check again';
+
+	/// en: 'Remove'
+	String get remove => 'Remove';
+
+	/// en: 'Remove ${name}?'
+	String removeConfirm({required Object name}) => 'Remove ${name}?';
+
+	/// en: 'Harbor stops reading from it. Nothing on the server changes.'
+	String get removeConfirmBody => 'Harbor stops reading from it. Nothing on the server changes.';
+
+	/// en: 'Enter the address Harbor should reach it on.'
+	String get addressRequired => 'Enter the address Harbor should reach it on.';
+
+	/// en: 'Enter the API key.'
+	String get apiKeyRequired => 'Enter the API key.';
+
+	/// en: 'Enter the username.'
+	String get usernameRequired => 'Enter the username.';
+
+	/// en: '${service} rejected that key.'
+	String keyRejected({required Object service}) => '${service} rejected that key.';
+
+	/// en: 'That username and password were refused.'
+	String get loginRejected => 'That username and password were refused.';
+
+	/// en: 'Could not reach ${address}.'
+	String notReachable({required Object address}) => 'Could not reach ${address}.';
+
+	/// en: 'That address answered, but not like ${service}. Check the port and any base path.'
+	String notThisService({required Object service}) => 'That address answered, but not like ${service}. Check the port and any base path.';
+}
+
 // Path: hotkeys.actions
 class Translations$hotkeys$actions$en {
 	Translations$hotkeys$actions$en.internal(this._root);
@@ -4771,6 +4871,42 @@ class Translations$services$libraryFilter$en {
 
 	/// en: 'No libraries available'
 	String get noLibraries => 'No libraries available';
+}
+
+// Path: managedServices.kinds
+class Translations$managedServices$kinds$en {
+	Translations$managedServices$kinds$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Radarr'
+	String get radarr => 'Radarr';
+
+	/// en: 'Sonarr'
+	String get sonarr => 'Sonarr';
+
+	/// en: 'qBittorrent'
+	String get qbittorrent => 'qBittorrent';
+}
+
+// Path: managedServices.kindHints
+class Translations$managedServices$kindHints$en {
+	Translations$managedServices$kindHints$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Films'
+	String get radarr => 'Films';
+
+	/// en: 'Series'
+	String get sonarr => 'Series';
+
+	/// en: 'Download client'
+	String get qbittorrent => 'Download client';
 }
 
 /// The flat map containing all translations for locale <en>.
@@ -6140,6 +6276,41 @@ extension on Translations {
 			'addServer.connectToJellyfinCardSubtitleScoped' => ({required Object name}) => 'Sign in to a Jellyfin server. Binds to ${name}.',
 			'addServer.borrowFromAnotherProfile' => 'Borrow from another profile',
 			'addServer.borrowFromAnotherProfileSubtitle' => 'Reuse another profile\'s connection. PIN-protected profiles require a PIN.',
+			'managedServices.sectionTitle' => 'Media servers',
+			'managedServices.add' => 'Add a service',
+			'managedServices.addTitle' => 'Add a service',
+			'managedServices.kinds.radarr' => 'Radarr',
+			'managedServices.kinds.sonarr' => 'Sonarr',
+			'managedServices.kinds.qbittorrent' => 'qBittorrent',
+			'managedServices.kindHints.radarr' => 'Films',
+			'managedServices.kindHints.sonarr' => 'Series',
+			'managedServices.kindHints.qbittorrent' => 'Download client',
+			'managedServices.addressLabel' => 'Address',
+			'managedServices.addressHint' => 'radarr.home.lan:7878',
+			'managedServices.apiKeyLabel' => 'API key',
+			'managedServices.apiKeyHelp' => ({required Object service}) => 'Settings → General → API Key in ${service}.',
+			'managedServices.usernameLabel' => 'Username',
+			'managedServices.passwordLabel' => 'Password',
+			'managedServices.nameLabel' => 'Name (optional)',
+			'managedServices.nameHint' => 'Radarr 4K',
+			'managedServices.nameHelp' => 'Shown instead of the address. Useful when you run more than one.',
+			'managedServices.connect' => 'Connect',
+			'managedServices.save' => 'Save',
+			'managedServices.connected' => 'Connected',
+			'managedServices.reconnect' => 'Reconnect',
+			'managedServices.unreachable' => 'Unreachable',
+			'managedServices.checking' => 'Checking…',
+			'managedServices.recheck' => 'Check again',
+			'managedServices.remove' => 'Remove',
+			'managedServices.removeConfirm' => ({required Object name}) => 'Remove ${name}?',
+			'managedServices.removeConfirmBody' => 'Harbor stops reading from it. Nothing on the server changes.',
+			'managedServices.addressRequired' => 'Enter the address Harbor should reach it on.',
+			'managedServices.apiKeyRequired' => 'Enter the API key.',
+			'managedServices.usernameRequired' => 'Enter the username.',
+			'managedServices.keyRejected' => ({required Object service}) => '${service} rejected that key.',
+			'managedServices.loginRejected' => 'That username and password were refused.',
+			'managedServices.notReachable' => ({required Object address}) => 'Could not reach ${address}.',
+			'managedServices.notThisService' => ({required Object service}) => 'That address answered, but not like ${service}. Check the port and any base path.',
 			_ => null,
 		};
 	}
