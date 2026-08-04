@@ -61,7 +61,7 @@ class GridLayoutConstants {
 
 /// Touch-layout rail rhythm. TV equivalents live in [TvLayoutConstants].
 class HubLayoutConstants {
-  static const double shelfVerticalGap = 20;
+  static const double shelfVerticalGap = 16;
   static const double headerGap = 6;
 
   /// Section heading size, shared by rail headers and the detail page so the
