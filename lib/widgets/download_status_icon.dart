@@ -99,7 +99,8 @@ class DownloadStatusIcon extends StatelessWidget {
       case DownloadStatus.cancelled:
         return AppIcon(PhosphorIcons.xCircle, size: size, color: _tint(Colors.grey));
       case DownloadStatus.completed:
-        return AppIcon(PhosphorIcons.check, size: size, color: _tint(Colors.green));
+        // Not a check: this app's checks mean watched, and a row can be both.
+        return AppIcon(PhosphorIconsFill.download, size: size, color: _tint(Colors.green));
       case DownloadStatus.partial:
         return AppIcon(PhosphorIcons.download, size: size, color: _tint(Colors.orange));
     }

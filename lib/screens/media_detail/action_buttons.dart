@@ -752,7 +752,7 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
             tooltip: tooltip,
             icon: const AppIcon(PhosphorIcons.download),
             iconSize: iconSize,
-            style: actionButtonStyle(foregroundColor: Colors.orange, showFocus: showFocus),
+            style: actionButtonStyle(foregroundColor: Colors.amber, showFocus: showFocus),
           );
         }
 
@@ -778,10 +778,13 @@ extension _MediaDetailActionButtons on _MediaDetailScreenState {
 
           return IconButton.filledTonal(
             onPressed: () => unawaited(_handleDownloadButtonPressed(metadata)),
-            icon: const AppIcon(PhosphorIcons.download),
+            // Filled tray for "it is here", outline for "it is not". Colour
+            // alone carried this before, and amber-against-green is the pair
+            // red-green deficiency collapses.
+            icon: const AppIcon(PhosphorIconsFill.download),
             tooltip: canDownloadMore ? t.downloads.manage : t.downloads.deleteDownload,
             iconSize: iconSize,
-            style: actionButtonStyle(foregroundColor: Colors.orange, showFocus: showFocus),
+            style: actionButtonStyle(foregroundColor: Colors.green, showFocus: showFocus),
           );
         }
 

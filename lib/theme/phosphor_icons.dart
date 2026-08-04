@@ -36,7 +36,8 @@ class PhosphorIcons {
   static const broom = IconData(0xec54, fontFamily: 'PhosphorRegular');
   static const bug = IconData(0xe5f4, fontFamily: 'PhosphorRegular');
   static const calendarBlank = IconData(0xe10a, fontFamily: 'PhosphorRegular');
-  static const calendarPlus = IconData(0xe714, fontFamily: 'PhosphorRegular');
+  static const chartLineUp = IconData(0xe156, fontFamily: 'PhosphorRegular');
+  static const calendarDots = IconData(0xe7b4, fontFamily: 'PhosphorRegular');
   static const camera = IconData(0xe10e, fontFamily: 'PhosphorRegular');
   static const caretDoubleRight = IconData(0xe12a, fontFamily: 'PhosphorRegular');
   static const caretDown = IconData(0xe136, fontFamily: 'PhosphorRegular');
@@ -198,6 +199,7 @@ class PhosphorIconsFill {
   const PhosphorIconsFill._();
 
   static const bookmark = IconData(0xe0e8, fontFamily: 'PhosphorFill');
+  static const download = IconData(0xe20a, fontFamily: 'PhosphorFill');
   static const heart = IconData(0xe2a8, fontFamily: 'PhosphorFill');
   static const star = IconData(0xe46a, fontFamily: 'PhosphorFill');
   static const subtitles = IconData(0xe1a8, fontFamily: 'PhosphorFill');

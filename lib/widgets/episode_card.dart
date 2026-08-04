@@ -247,7 +247,11 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
             downloadStatusIcon = DownloadStatusIcon(
               status: status,
               size: status == DownloadStatus.downloading ? 14.0 : 12.0,
-              variant: DownloadStatusIconVariant.muted,
+              // Done is worth saying in colour. The in-flight states stay muted
+              // so a row mid-download does not shout over its own title.
+              variant: status == DownloadStatus.completed
+                  ? DownloadStatusIconVariant.saturated
+                  : DownloadStatusIconVariant.muted,
               mutedBase: mutedBase,
               progress: slice.progressPercent,
             );
@@ -255,7 +259,6 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
         }
 
         return Row(
-          crossAxisAlignment: .start,
           children: [
             Expanded(
               child: Text(
@@ -265,10 +268,7 @@ class _EpisodeCardState extends State<EpisodeCard> with ContextMenuTapMixin<Epis
                 overflow: .ellipsis,
               ),
             ),
-            if (downloadStatusIcon != null) ...[
-              const SizedBox(width: 8),
-              Padding(padding: const EdgeInsets.only(top: 3), child: downloadStatusIcon),
-            ],
+            if (downloadStatusIcon != null) ...[const SizedBox(width: 8), downloadStatusIcon],
           ],
         );
       },
