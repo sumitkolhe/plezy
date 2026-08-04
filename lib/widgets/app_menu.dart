@@ -402,12 +402,14 @@ class AppMenuItemTile<T> extends StatefulWidget {
   final VoidCallback? onPressed;
   final FocusNode? focusNode;
   final AppMenuDensity density;
+  final bool autofocus;
 
   const AppMenuItemTile({
     super.key,
     required this.item,
     this.onPressed,
     this.focusNode,
+    this.autofocus = false,
     this.density = AppMenuDensity.touch,
   });
 
@@ -472,6 +474,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
       label: item.semanticLabel,
       child: Focus(
         focusNode: effectiveFocusNode,
+        autofocus: widget.autofocus,
         canRequestFocus: enabled,
         onKeyEvent: (node, event) {
           if (SelectKeyUpSuppressor.consumeIfSuppressed(event)) return KeyEventResult.handled;

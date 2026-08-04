@@ -8,7 +8,7 @@ import 'state_messages.dart';
 import '../../utils/app_logger.dart';
 import '../../utils/scroll_utils.dart';
 import '../../widgets/bottom_sheet_page_scaffold.dart';
-import '../../widgets/focusable_list_tile.dart';
+import '../../widgets/app_menu.dart';
 import '../../widgets/overlay_sheet.dart';
 import '../../i18n/strings.g.dart';
 
@@ -267,14 +267,12 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
       itemBuilder: (context, index) {
         if (index == 0) {
           final isSelected = !_tempSelectedFilters.containsKey(filter.filter);
-          return FocusableListTile(
-            listItemMetrics: true,
+          return AppMenuItemTile<String>(
             key: _valuesFirstItemKey,
             focusNode: _initialFocusNode,
             autofocus: autofocusFirst,
-            title: Text(t.libraries.all),
-            selected: isSelected,
-            onTap: () {
+            item: AppMenuItem<String>(value: '', label: t.libraries.all, selected: isSelected),
+            onPressed: () {
               setState(() {
                 _tempSelectedFilters.remove(filter.filter);
               });
@@ -287,11 +285,9 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         final filterValue = _extractFilterValue(value.key, filter.filter);
         final isSelected = _tempSelectedFilters[filter.filter] == filterValue;
 
-        return FocusableListTile(
-          listItemMetrics: true,
-          title: Text(value.title),
-          selected: isSelected,
-          onTap: () {
+        return AppMenuItemTile<String>(
+          item: AppMenuItem<String>(value: filterValue, label: value.title, selected: isSelected),
+          onPressed: () {
             setState(() {
               _tempSelectedFilters[filter.filter] = filterValue;
               // Cache the display name for this filter value.
@@ -320,22 +316,22 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
         if (_isBooleanFilter(filter)) {
           final isActive =
               _tempSelectedFilters.containsKey(filter.filter) && _tempSelectedFilters[filter.filter] == '1';
-          return FocusableSwitchListTile(
-            listItemMetrics: true,
+          void toggle({required bool on}) {
+            setState(() {
+              if (on) {
+                _tempSelectedFilters[filter.filter] = '1';
+              } else {
+                _tempSelectedFilters.remove(filter.filter);
+              }
+            });
+            _applyFilters();
+          }
+
+          return AppMenuItemTile<String>(
             focusNode: index == 0 ? _initialFocusNode : null,
             autofocus: index == 0 && autofocusFirst,
-            value: isActive,
-            onChanged: (value) {
-              setState(() {
-                if (value) {
-                  _tempSelectedFilters[filter.filter] = '1';
-                } else {
-                  _tempSelectedFilters.remove(filter.filter);
-                }
-              });
-              _applyFilters();
-            },
-            title: Text(filter.title),
+            item: AppMenuItem<String>(value: filter.filter, label: filter.title, selected: isActive),
+            onPressed: () => toggle(on: !isActive),
           );
         }
 
@@ -347,27 +343,29 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
           displayValue = _filterDisplayNames[_cacheKey(filter.filter, selectedValue)] ?? selectedValue;
         }
 
-        return FocusableListTile(
-          listItemMetrics: true,
+        return AppMenuItemTile<String>(
           focusNode: index == 0 ? _initialFocusNode : null,
           autofocus: index == 0 && autofocusFirst,
-          title: Text(filter.title),
-          trailing: Row(
-            mainAxisSize: .min,
-            children: [
-              if (displayValue != null)
-                Flexible(
-                  child: Text(
-                    displayValue,
-                    style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: .w500),
-                    overflow: .ellipsis,
+          item: AppMenuItem<String>(
+            value: filter.filter,
+            label: filter.title,
+            trailing: Row(
+              mainAxisSize: .min,
+              children: [
+                if (displayValue != null)
+                  Flexible(
+                    child: Text(
+                      displayValue,
+                      style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: .w500),
+                      overflow: .ellipsis,
+                    ),
                   ),
-                ),
-              if (displayValue != null) const SizedBox(width: 8),
-              const AppIcon(PhosphorIcons.caretRight),
-            ],
+                if (displayValue != null) const SizedBox(width: 8),
+                const AppIcon(PhosphorIcons.caretRight),
+              ],
+            ),
           ),
-          onTap: () => _loadFilterValues(filter),
+          onPressed: () => _loadFilterValues(filter),
         );
       },
     );

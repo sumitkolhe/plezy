@@ -402,13 +402,14 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
                   else ...[
                     if (!_isMovie && _partialSeasons) ..._buildSeasonSection(theme),
                     if (_can4k)
-                      FocusableSwitchListTile(
-                        listItemMetrics: true,
-                        value: _is4k,
-                        onChanged: _submitting ? null : _toggle4k,
-                        title: Text(t.seerr.request4k),
-                        secondary: const AppIcon(PhosphorIcons.fourK),
-                        contentPadding: EdgeInsets.zero,
+                      AppMenuItemTile<bool>(
+                        item: AppMenuItem<bool>(
+                          value: true,
+                          label: t.seerr.request4k,
+                          icon: PhosphorIcons.fourK,
+                          selected: _is4k,
+                        ),
+                        onPressed: _submitting ? null : () => _toggle4k(!_is4k),
                       ),
                     if (_advancedAllowed && _serversForVariant.isNotEmpty) ..._buildAdvancedSection(theme),
                     if (_errorText case final String error) ...[
@@ -475,21 +476,17 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     final allSelected = requestable.isNotEmpty && requestable.every(_selectedSeasons.contains);
     return [
       Text(t.seerr.seasons, style: theme.textTheme.titleSmall),
-      FocusableCheckboxListTile(
-        listItemMetrics: true,
-        value: allSelected,
-        onChanged: _submitting || requestable.isEmpty
+      AppMenuItemTile<bool>(
+        item: AppMenuItem<bool>(value: true, label: t.seerr.allSeasons, selected: allSelected),
+        onPressed: _submitting || requestable.isEmpty
             ? null
-            : (checked) => setState(() {
-                if (checked ?? false) {
-                  _selectedSeasons.addAll(requestable);
-                } else {
+            : () => setState(() {
+                if (allSelected) {
                   _selectedSeasons.clear();
+                } else {
+                  _selectedSeasons.addAll(requestable);
                 }
               }),
-        title: Text(t.seerr.allSeasons),
-        contentPadding: EdgeInsets.zero,
-        controlAffinity: ListTileControlAffinity.leading,
       ),
       for (var index = 0; index < _seasons.length; index++) _buildSeasonTile(theme, _seasons[index], index),
       const SizedBox(height: 8),
@@ -500,24 +497,19 @@ class _SeerrRequestSheetState extends State<SeerrRequestSheet> {
     final number = season.seasonNumber;
     final blockedLabel = _seasonBlockedLabel(number);
     final episodeCount = season.episodeCount;
-    return FocusableCheckboxListTile(
-      listItemMetrics: true,
+    return AppMenuItemTile<int>(
       focusNode: _seasonFocusNodes[index],
-      value: _selectedSeasons.contains(number),
-      onChanged: blockedLabel != null || _submitting
-          ? null
-          : (checked) => setState(() {
-              if (checked ?? false) {
-                _selectedSeasons.add(number);
-              } else {
-                _selectedSeasons.remove(number);
-              }
-            }),
-      title: Text(season.name ?? t.common.seasonNumber(number: number)),
-      subtitle: episodeCount == null ? null : Text(t.explore.episodeCount(n: episodeCount)),
-      secondary: blockedLabel == null ? null : StatChip(label: blockedLabel),
-      contentPadding: EdgeInsets.zero,
-      controlAffinity: ListTileControlAffinity.leading,
+      item: AppMenuItem<int>(
+        value: number,
+        label: season.name ?? t.common.seasonNumber(number: number),
+        subtitle: episodeCount == null ? null : t.explore.episodeCount(n: episodeCount),
+        selected: _selectedSeasons.contains(number),
+        enabled: blockedLabel == null && !_submitting,
+        trailing: blockedLabel == null ? null : StatChip(label: blockedLabel),
+      ),
+      onPressed: () => setState(() {
+        if (!_selectedSeasons.add(number)) _selectedSeasons.remove(number);
+      }),
     );
   }
 

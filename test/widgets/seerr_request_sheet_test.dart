@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/widgets/app_menu.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:harbor/focus/focusable_button.dart';
@@ -153,11 +154,11 @@ void main() {
     expect(find.text('Season 2'), findsOneWidget);
     // Available on the server: labelled and disabled, but not ticked.
     expect(find.text('Available'), findsOneWidget);
-    final season1 = tester.widget<CheckboxListTile>(
-      find.ancestor(of: find.text('Season 1'), matching: find.byType(CheckboxListTile)),
+    final season1 = tester.widget<AppMenuItemTile<int>>(
+      find.ancestor(of: find.text('Season 1'), matching: find.byType(AppMenuItemTile<int>)),
     );
-    expect(season1.onChanged, isNull);
-    expect(season1.value, isFalse);
+    expect(season1.item.enabled, isFalse);
+    expect(season1.item.selected, isFalse);
 
     // Nothing selected yet: submit disabled.
     final submitFinder = find.widgetWithText(FilledButton, 'Request');
@@ -171,8 +172,8 @@ void main() {
     await tester.pump();
     expect(tester.widget<FilledButton>(submitFinder).onPressed, isNotNull);
 
-    final season2 = tester.widget<CheckboxListTile>(
-      find.ancestor(of: find.text('Season 2'), matching: find.byType(CheckboxListTile)),
+    final season2 = tester.widget<AppMenuItemTile<int>>(
+      find.ancestor(of: find.text('Season 2'), matching: find.byType(AppMenuItemTile<int>)),
     );
     season2.focusNode!.requestFocus();
     await tester.pump();

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/media/media_backend.dart';
+import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/media/media_library.dart';
+import 'package:harbor/screens/libraries/library_quick_picker_sheet.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_menu.dart';
@@ -100,19 +105,13 @@ void main() {
     expect(firstRow.top - title.bottom, 8);
   });
 
-  testWidgets('a switch and a checkbox row match the plain one, so a sheet can mix them', (tester) async {
+  testWidgets('a switch row matches the plain one, so a settings list can mix them', (tester) async {
     await _pump(
       tester,
       Column(
         children: [
           const FocusableListTile(listItemMetrics: true, title: Text('Plain')),
           FocusableSwitchListTile(listItemMetrics: true, value: false, onChanged: (_) {}, title: const Text('Switch')),
-          FocusableCheckboxListTile(
-            listItemMetrics: true,
-            value: false,
-            onChanged: (_) {},
-            title: const Text('Checkbox'),
-          ),
         ],
       ),
     );
@@ -121,7 +120,29 @@ void main() {
         tester.getRect(find.ancestor(of: find.text(label), matching: find.byType(ListTile)).first).height;
 
     expect(height('Switch'), height('Plain'));
-    expect(height('Checkbox'), height('Plain'));
+  });
+
+  testWidgets('a drawer row is the menu row, not a lookalike at the same height', (tester) async {
+    await _pump(tester, _menu(AppMenuDensity.touch, 'Menu row'));
+    final menu = tester.renderObject<RenderParagraph>(find.text('Menu row')).text.style;
+
+    await _pump(
+      tester,
+      LibraryQuickPickerSheet(
+        libraries: const [MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie)],
+        selectedLibraryKey: null,
+        isLoading: false,
+        groupByServer: false,
+        emptyMessage: 'none',
+        onSelected: (_) {},
+      ),
+    );
+    final drawer = tester.renderObject<RenderParagraph>(find.text('Movies')).text.style;
+
+    // ListTile resolves its title to bodyLarge, which read as magnified beside
+    // the menu's bodyMedium.
+    expect(drawer?.fontSize, menu?.fontSize);
+    expect(find.byType(AppMenuItemTile<String>), findsOneWidget);
   });
 
   testWidgets('a full media menu stands without scrolling on a phone', (tester) async {
