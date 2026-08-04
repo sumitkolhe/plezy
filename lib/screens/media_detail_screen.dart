@@ -1783,8 +1783,13 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
 
   bool get _hasInfoRows {
     final metadata = _fullMetadata ?? _metadata;
-    return metadata.studio != null || metadata.directors?.isNotEmpty == true;
+    return metadata.studio != null || metadata.directors?.isNotEmpty == true || _infoGenres(metadata).isNotEmpty;
   }
+
+  /// Genres read as description rather than as a fact about playback, so they
+  /// sit with the director and studio instead of in the hero's pill strip.
+  List<String> _infoGenres(MediaItem metadata) =>
+      (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
 
   /// Focus the trailing info rows (studio / directors / contentRating) and scroll them into view.
   void _focusInfoRows() {
@@ -2938,6 +2943,8 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                                         metadata.directors!.join(', '),
                                       ),
                                     if (metadata.studio != null) DetailInfoEntry(t.discover.studio, metadata.studio!),
+                                    if (_infoGenres(metadata) case final list when list.isNotEmpty)
+                                      DetailInfoEntry(t.discover.genres, list.join(', ')),
                                   ],
                                 ),
                                 const SizedBox(height: HubLayoutConstants.shelfVerticalGap),
@@ -4057,7 +4064,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         const desiredLogoWidth = 400.0;
         const actionHeight = 48.0;
         const factLineHeight = DetailFactStrip.height;
-        const genreLineHeight = 18.0;
 
         // Ordered by what should survive truncation: the card that got you here
         // already showed year and runtime, so they trail the counts that are
@@ -4069,7 +4075,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
           // rendered as a literal "0min" beside the real facts.
           if (metadata.durationMs case final ms? when ms > 0) formatDurationTextual(ms),
         ];
-        final genres = (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
 
         final showActions = availableHeight >= actionHeight;
         var remaining = availableHeight - (showActions ? actionHeight : 0);
@@ -4077,9 +4082,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         final showFacts = hasFacts && remaining >= factLineHeight + 24;
         final factsGap = showFacts && showActions ? 18.0 : 0.0;
         remaining -= showFacts ? factLineHeight + factsGap : 0;
-        final showGenres = showFacts && genres.isNotEmpty && remaining >= genreLineHeight + 40;
-        const genreGap = 10.0;
-        remaining -= showGenres ? genreLineHeight + genreGap : 0;
 
         final logoGap = remaining >= 52 && (showFacts || showActions) ? 24.0 : 0.0;
         final logoHeight = (remaining - logoGap).clamp(0.0, desiredLogoHeight).toDouble();
@@ -4090,7 +4092,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         final contentHeight =
             (showLogo ? logoHeight + effectiveLogoGap : 0.0) +
             (showFacts ? factLineHeight : 0.0) +
-            (showGenres ? genreLineHeight + genreGap : 0.0) +
             factsGap +
             (showActions ? actionHeight : 0.0);
 
@@ -4135,13 +4136,6 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
                             onRatingTap: _imdbId == null ? null : () => unawaited(_openImdb(_imdbId!)),
                           ),
                         ),
-                      if (showGenres) ...[
-                        const SizedBox(height: genreGap),
-                        SizedBox(
-                          height: genreLineHeight,
-                          child: DetailGenreLine(genres: genres),
-                        ),
-                      ],
                       if (factsGap > 0) SizedBox(height: factsGap),
                       if (showActions) SizedBox(height: actionHeight, child: _buildActionButtons(metadata)),
                     ],

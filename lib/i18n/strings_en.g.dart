@@ -2382,6 +2382,9 @@ class Translations$discover$en {
 
 	/// en: 'More Like This'
 	String get moreLikeThis => 'More Like This';
+
+	/// en: 'Genres'
+	String get genres => 'Genres';
 }
 
 // Path: errors
@@ -5517,6 +5520,7 @@ extension on Translations {
 			'discover.tvShow' => 'TV Show',
 			'discover.minutesLeft' => ({required Object minutes}) => '${minutes} min left',
 			'discover.moreLikeThis' => 'More Like This',
+			'discover.genres' => 'Genres',
 			'errors.searchFailed' => ({required Object error}) => 'Search failed: ${error}',
 			'errors.searchUnavailable' => 'Search could not reach any media server.',
 			'errors.connectionTimeout' => ({required Object context}) => 'Connection timeout while loading ${context}',
@@ -5810,9 +5814,9 @@ extension on Translations {
 			'music.goToArtist' => 'Go to artist',
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
-			'music.addToQueue' => 'Add to queue',
 			_ => null,
 		} ?? switch (path) {
+			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',

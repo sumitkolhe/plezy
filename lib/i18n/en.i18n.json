@@ -778,7 +778,8 @@
     "movie": "Movie",
     "tvShow": "TV Show",
     "minutesLeft": "${minutes} min left",
-    "moreLikeThis": "More Like This"
+    "moreLikeThis": "More Like This",
+    "genres": "Genres"
   },
   "errors": {
     "searchFailed": "Search failed: ${error}",

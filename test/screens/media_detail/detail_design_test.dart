@@ -54,22 +54,6 @@ void main() {
     });
   });
 
-  group('DetailGenreLine', () {
-    testWidgets('reads as prose, with no tappable ancestor to promise otherwise', (tester) async {
-      await pump(tester, const DetailGenreLine(genres: ['Drama', 'Sci-Fi']));
-
-      // Commas: the fact line above owns the dot separator.
-      expect(find.text('Drama, Sci-Fi'), findsOneWidget);
-      expect(find.byType(InkWell), findsNothing);
-      expect(find.byType(GestureDetector), findsNothing);
-    });
-
-    testWidgets('takes no height when the item has no genres', (tester) async {
-      await pump(tester, const DetailGenreLine(genres: []));
-      expect(find.byType(Text), findsNothing);
-    });
-  });
-
   group('DetailInfoTable', () {
     testWidgets('renders a label and value per entry', (tester) async {
       await pump(

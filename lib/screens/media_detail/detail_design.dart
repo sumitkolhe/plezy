@@ -4,8 +4,6 @@ import '../../theme/mono_tokens.dart';
 import '../../utils/layout_constants.dart';
 import '../../utils/rating_spans.dart';
 
-const double _fontSize = 13.5;
-
 /// Facts as pills, the same idiom the episode sheet uses. They sit on the
 /// scrim's solid end rather than over the backdrop, so they take the page's own
 /// surface treatment instead of a glass one.
@@ -86,26 +84,6 @@ class _FactPill extends StatelessWidget {
       color: tokens(context).text.withValues(alpha: 0.13),
       borderRadius: shape,
       child: onTap == null ? body : InkWell(borderRadius: shape, onTap: onTap, child: body),
-    );
-  }
-}
-
-/// Prose, not chips: genres are description here, and nothing navigates. The
-/// strip above owns the pill treatment, so a second row of them would flatten
-/// the difference between an item's facts and its description.
-class DetailGenreLine extends StatelessWidget {
-  final List<String> genres;
-
-  const DetailGenreLine({super.key, required this.genres});
-
-  @override
-  Widget build(BuildContext context) {
-    if (genres.isEmpty) return const SizedBox.shrink();
-    return Text(
-      genres.join(', '),
-      style: TextStyle(fontSize: _fontSize, color: tokens(context).textMuted, height: 1.3),
-      maxLines: 1,
-      overflow: .ellipsis,
     );
   }
 }
