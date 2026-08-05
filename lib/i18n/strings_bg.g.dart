@@ -1418,10 +1418,6 @@ class _Translations$services$bg extends Translations$services$en {
 	@override String get hubSubtitle => 'Синхронизирай прогреса на гледане и заявявай нови заглавия.';
 	@override String get notConnected => 'Няма връзка';
 	@override String connectedAs({required Object username}) => 'Свързан като @${username}';
-	@override String get scrobble => 'Проследявай прогреса автоматично';
-	@override String get scrobbleDescription => 'Обновявай списъка си, когато завършиш епизод или филм.';
-	@override String disconnectConfirm({required Object service}) => 'Да се прекъсне ли ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor ще спре да обновява ${service}. Можете да се свържете отново по всяко време.';
 	@override String connectFailed({required Object service}) => 'Неуспешно свързване с ${service}. Опитайте отново.';
 	@override late final _Translations$services$names$bg names = _Translations$services$names$bg._(_root);
 	@override late final _Translations$services$deviceCode$bg deviceCode = _Translations$services$deviceCode$bg._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$bg extends Translations$services$names$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsBg {
 			'services.hubSubtitle' => 'Синхронизирай прогреса на гледане и заявявай нови заглавия.',
 			'services.notConnected' => 'Няма връзка',
 			'services.connectedAs' => ({required Object username}) => 'Свързан като @${username}',
-			'services.scrobble' => 'Проследявай прогреса автоматично',
-			'services.scrobbleDescription' => 'Обновявай списъка си, когато завършиш епизод или филм.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Да се прекъсне ли ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ще спре да обновява ${service}. Можете да се свържете отново по всяко време.',
 			'services.connectFailed' => ({required Object service}) => 'Неуспешно свързване с ${service}. Опитайте отново.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Активиране на Harbor в ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Посетете ${url} и въведете този код:',

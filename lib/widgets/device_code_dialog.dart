@@ -6,7 +6,7 @@ import '../models/trackers/device_code.dart';
 import '../utils/snackbar_helper.dart';
 import 'pending_auth_dialog.dart';
 
-/// Shared device-code activation dialog for Trakt and Simkl (RFC 8628).
+/// Device-code activation dialog (RFC 8628).
 ///
 /// Shows the `userCode` with copy-to-clipboard, a button to launch the
 /// verification URL in the browser, and a "waiting for authorization…" spinner

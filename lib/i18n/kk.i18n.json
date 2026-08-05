@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Көру барысын синхрондаңыз және жаңа мазмұн сұраңыз.",
     "notConnected": "Қосылмаған",
     "connectedAs": "@${username} ретінде қосылды",
-    "scrobble": "Барысты автоматты бақылау",
-    "scrobbleDescription": "Тізіміңізді автоматты түрде жаңартыңыз.",
-    "disconnectConfirm": "${service} ажыратылсын ба?",
-    "disconnectConfirmBody": "Harbor ${service} жаңартуды тоқтатады.",
     "connectFailed": "${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

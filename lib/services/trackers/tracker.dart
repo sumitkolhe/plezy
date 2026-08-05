@@ -23,10 +23,9 @@ abstract class Tracker {
   /// two answers are the same.
   bool get canWriteWatched;
 
-  /// True if this tracker's IDs only come from the Fribb anime mapping
-  /// (MAL, AniList). Simkl and Trakt return false because they accept Plex
-  /// tvdb/imdb/tmdb directly; when no active tracker needs Fribb we skip the
-  /// 5.6 MB mapping download entirely.
+  /// True if this tracker's IDs only come from the Fribb anime mapping. Trakt
+  /// returns false because it accepts tvdb/imdb/tmdb directly; when no active
+  /// tracker needs Fribb we skip the 5.6 MB mapping download entirely.
   bool get needsFribb;
 
   Future<void> initialize();
@@ -53,8 +52,8 @@ abstract interface class TrackerRatingSource {
 }
 
 /// A tracker whose history is a per-item record: every movie and episode is
-/// added or removed on its own (Simkl, Trakt). The coordinator can therefore
-/// hand it one item at a time, including a single episode of a container.
+/// added or removed on its own (Trakt). The coordinator can therefore hand it
+/// one item at a time, including a single episode of a container.
 abstract interface class EpisodeHistoryTracker implements Tracker {
   /// A stable identifier for the remote row this tracker's history writes target,
   /// or null when it cannot name one — in which case no write could apply either.

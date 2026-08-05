@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:harbor/media/media_kind.dart';
-import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_id_resolver.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
 import 'package:harbor/services/trackers/trakt/trakt_tracker.dart';
@@ -20,7 +19,6 @@ TrackerSession _traktSession() => TrackerSession(
   createdAt: _now(),
 );
 
-TrackerSession _simklSession() => TrackerSession(accessToken: 'token', createdAt: _now());
 TrackerRatingContext _ctx({
   required MediaKind kind,
   ExternalIds external = const ExternalIds(tvdb: 123, tmdb: 456, imdb: 'tt789'),
@@ -38,7 +36,6 @@ TrackerRatingContext _ctx({
 void main() {
   tearDown(() {
     TraktTracker.instance.rebindSession(null, onSessionInvalidated: () {});
-    SimklTracker.instance.rebindSession(null, onSessionInvalidated: () {});
   });
 
   test('Trakt fetches the current episode rating by show ids and episode number', () async {
@@ -63,30 +60,5 @@ void main() {
     final score = await TraktTracker.instance.getRating(_ctx(kind: MediaKind.episode, season: 1, episodeNumber: 2));
 
     expect(score, 8);
-  });
-
-  test('Simkl fetches the current show rating by external ids', () async {
-    final client = MockClient((request) async {
-      expect(request.method, 'GET');
-      expect(request.url.path, '/sync/ratings/shows');
-      return http.Response(
-        json.encode({
-          'shows': [
-            {
-              'user_rating': 7,
-              'show': {
-                'ids': {'tmdb': 456},
-              },
-            },
-          ],
-        }),
-        200,
-      );
-    });
-    SimklTracker.instance.rebindSession(_simklSession(), onSessionInvalidated: () {}, httpClient: client);
-
-    final score = await SimklTracker.instance.getRating(_ctx(kind: MediaKind.show));
-
-    expect(score, 7);
   });
 }

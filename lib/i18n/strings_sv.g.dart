@@ -1418,10 +1418,6 @@ class _Translations$services$sv extends Translations$services$en {
 	@override String get hubSubtitle => 'Synkronisera visningsstatus och begär nya titlar.';
 	@override String get notConnected => 'Inte ansluten';
 	@override String connectedAs({required Object username}) => 'Ansluten som @${username}';
-	@override String get scrobble => 'Spåra uppspelningen automatiskt';
-	@override String get scrobbleDescription => 'Uppdatera din lista när du har sett klart ett avsnitt eller en film.';
-	@override String disconnectConfirm({required Object service}) => 'Koppla från ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor slutar uppdatera ${service}. Återanslut när som helst.';
 	@override String connectFailed({required Object service}) => 'Kunde inte ansluta till ${service}. Försök igen.';
 	@override late final _Translations$services$names$sv names = _Translations$services$names$sv._(_root);
 	@override late final _Translations$services$deviceCode$sv deviceCode = _Translations$services$deviceCode$sv._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$sv extends Translations$services$names$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsSv {
 			'services.hubSubtitle' => 'Synkronisera visningsstatus och begär nya titlar.',
 			'services.notConnected' => 'Inte ansluten',
 			'services.connectedAs' => ({required Object username}) => 'Ansluten som @${username}',
-			'services.scrobble' => 'Spåra uppspelningen automatiskt',
-			'services.scrobbleDescription' => 'Uppdatera din lista när du har sett klart ett avsnitt eller en film.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Koppla från ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor slutar uppdatera ${service}. Återanslut när som helst.',
 			'services.connectFailed' => ({required Object service}) => 'Kunde inte ansluta till ${service}. Försök igen.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Aktivera Harbor på ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Besök ${url} och ange den här koden:',

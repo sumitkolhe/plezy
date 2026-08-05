@@ -3,8 +3,7 @@ import '../data/iso_3166_data.dart';
 /// Resolves ISO 3166-1 alpha-2 country codes to display names, mirroring
 /// [LanguageCodes] for the country dimension.
 ///
-/// Catalog providers return production countries as bare codes (Plex
-/// `Country`, Simkl `country`, AniList `countryOfOrigin`, TMDB
+/// Catalog providers return production countries as bare codes (TMDB
 /// `origin_country`). Names are English-only for the same reason the ISO 639
 /// catalog is: no localized catalog ships with the app.
 class CountryCodes {

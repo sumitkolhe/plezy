@@ -1007,7 +1007,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1421,13 +1420,8 @@
     "hubSubtitle": "同步觀看進度並請求新內容。",
     "notConnected": "未連線",
     "connectedAs": "已以 @${username} 身分連線",
-    "scrobble": "自動同步播放進度",
-    "scrobbleDescription": "觀賞完一集或一部電影後自動更新您的外部列表。",
-    "disconnectConfirm": "中斷與 ${service} 的連線？",
-    "disconnectConfirmBody": "Harbor 將停止更新 ${service}。您可以隨時重新連線。",
     "connectFailed": "無法連線至 ${service}。請重試。",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

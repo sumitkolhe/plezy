@@ -3685,18 +3685,6 @@ class Translations$services$en {
 	/// en: 'Connected as @${username}'
 	String connectedAs({required Object username}) => 'Connected as @${username}';
 
-	/// en: 'Track progress automatically'
-	String get scrobble => 'Track progress automatically';
-
-	/// en: 'Update your list when you finish an episode or movie.'
-	String get scrobbleDescription => 'Update your list when you finish an episode or movie.';
-
-	/// en: 'Disconnect ${service}?'
-	String disconnectConfirm({required Object service}) => 'Disconnect ${service}?';
-
-	/// en: 'Harbor will stop updating ${service}. Reconnect any time.'
-	String disconnectConfirmBody({required Object service}) => 'Harbor will stop updating ${service}. Reconnect any time.';
-
 	/// en: 'Couldn't connect to ${service}. Try again.'
 	String connectFailed({required Object service}) => 'Couldn\'t connect to ${service}. Try again.';
 
@@ -4669,9 +4657,6 @@ class Translations$explore$ratingSource$en {
 	/// en: 'Rotten Tomatoes'
 	String get rottenTomatoes => 'Rotten Tomatoes';
 
-	/// en: 'Simkl'
-	String get simkl => 'Simkl';
-
 	/// en: 'MyAnimeList'
 	String get mal => 'MyAnimeList';
 
@@ -4917,9 +4902,6 @@ class Translations$services$names$en {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-
-	/// en: 'Simkl'
-	String get simkl => 'Simkl';
 
 	/// en: 'Seerr'
 	String get seerr => 'Seerr';
@@ -5979,7 +5961,6 @@ extension on Translations {
 			'explore.ratingSource.imdb' => 'IMDb',
 			'explore.ratingSource.tmdb' => 'TMDB',
 			'explore.ratingSource.rottenTomatoes' => 'Rotten Tomatoes',
-			'explore.ratingSource.simkl' => 'Simkl',
 			'explore.ratingSource.mal' => 'MyAnimeList',
 			'explore.ratingSource.anilist' => 'AniList',
 			'explore.ratingSource.trakt' => 'Trakt',
@@ -6091,9 +6072,9 @@ extension on Translations {
 			'music.repeat' => 'Repeat',
 			'music.repeatAll' => 'Repeat all',
 			'music.repeatOne' => 'Repeat one',
+			'downloads.title' => 'Downloads',
 			_ => null,
 		} ?? switch (path) {
-			'downloads.title' => 'Downloads',
 			'downloads.manage' => 'Manage',
 			'downloads.tvShows' => 'TV Shows',
 			'downloads.movies' => 'Movies',
@@ -6360,12 +6341,7 @@ extension on Translations {
 			'services.hubSubtitle' => 'Sync watch progress and request new titles.',
 			'services.notConnected' => 'Not connected',
 			'services.connectedAs' => ({required Object username}) => 'Connected as @${username}',
-			'services.scrobble' => 'Track progress automatically',
-			'services.scrobbleDescription' => 'Update your list when you finish an episode or movie.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Disconnect ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor will stop updating ${service}. Reconnect any time.',
 			'services.connectFailed' => ({required Object service}) => 'Couldn\'t connect to ${service}. Try again.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Activate Harbor on ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Visit ${url} and enter this code:',

@@ -10,13 +10,13 @@ library;
 
 /// One provider score with its own source label.
 ///
-/// Providers routinely return several: Simkl carries Simkl/IMDb/MAL side by
-/// side, Plex carries a critic score next to an audience score. The neutral
+/// Providers routinely return several side by side — a critic score next to an
+/// audience score, or an aggregator's own next to IMDb's. The neutral
 /// [CatalogItem.rating] keeps the provider's headline number; this list keeps
 /// the rest with attribution so the UI can label them.
 class CatalogRatingSource {
-  /// Stable, lowercase source key: `simkl`, `imdb`, `mal`, `anilist`, `tmdb`,
-  /// `trakt`, `critic`, `audience`. Rendered through a label map, never raw.
+  /// Stable, lowercase source key: `imdb`, `tmdb`, `trakt`, `critic`,
+  /// `audience`. Rendered through a label map, never raw.
   final String source;
 
   /// Normalized to 0-10 by the mapper, matching [CatalogItem.rating].
@@ -39,9 +39,9 @@ class CatalogRatingSource {
 
 /// What a leaderboard position is a position *in*.
 ///
-/// MAL returns one rank per ranking endpoint, AniList returns a `rankings`
-/// array tagged by type, Simkl returns a trending rank. Normalizing the scope
-/// lets one badge render `#3 airing` or `#12 most popular` from any of them.
+/// One provider returns a rank per ranking endpoint, another an array tagged by
+/// type, another a bare trending rank. Normalizing the scope lets one badge
+/// render `#3 airing` or `#12 most popular` from any of them.
 enum CatalogRankScope { popular, airing, rated, favorited, trending, seasonal }
 
 /// A leaderboard position within [scope], over either all time or one
@@ -89,9 +89,9 @@ class CatalogRank {
 enum CatalogAudiencePeriod { day, week, month, year, allTime }
 
 /// Community-size counters. Every field is optional because no provider
-/// returns all of them: Trakt has live watchers and comments, MAL/AniList have
-/// list membership and favourites, Simkl has windowed viewers, planning and a
-/// drop rate.
+/// returns all of them: Trakt has live watchers and comments, where another
+/// provider may have list membership, windowed viewers, planning or a drop
+/// rate.
 class CatalogAudience {
   /// Users watching *right now* (Trakt trending `watchers`).
   final int? watchingNow;
@@ -100,14 +100,13 @@ class CatalogAudience {
   /// `popularity`).
   final int? listed;
 
-  /// Viewers within [viewersPeriod] (Simkl `watched`). This is *not* a
-  /// completion count: Simkl's trending rows count viewers in the row's
-  /// timeframe and its Best rows count viewers this month. Never render it
-  /// without the period label.
+  /// Viewers within [viewersPeriod]. This is *not* a completion count — a
+  /// provider's trending and Best rows count viewers over different timeframes.
+  /// Never render it without the period label.
   final int? viewers;
   final CatalogAudiencePeriod? viewersPeriod;
 
-  /// Users who plan to watch it (Simkl `plan_to_watch`).
+  /// Users who plan to watch it.
   final int? planning;
 
   /// Users with it in progress on their list (MAL
@@ -135,8 +134,8 @@ class CatalogAudience {
   /// Users who favourited it (AniList `favourites`).
   final int? favorited;
 
-  /// Share of users who dropped it, 0-1 (Simkl `drop_rate`, sent as a
-  /// percentage and normalized by the mapper).
+  /// Share of users who dropped it, 0-1 (normalized by the mapper from a
+  /// percentage).
   final double? dropRate;
 
   /// Provider comment count (Trakt `comment_count`).
@@ -190,11 +189,11 @@ class CatalogAudience {
 
   /// Field-wise union, preferring [other]'s values.
   ///
-  /// Counters genuinely arrive from different responses: a Simkl trending row
-  /// supplies windowed [viewers] and [planning] that its detail body does not
-  /// return, while the detail body supplies [dropRate] and MAL's status
-  /// counts. Replacing the whole object would silently drop whichever side
-  /// spoke first. [viewersPeriod] travels with [viewers] so a count is never
+  /// Counters genuinely arrive from different responses: a trending row can
+  /// supply windowed [viewers] and [planning] that the detail body does not
+  /// return, while the detail body supplies [dropRate] and the status counts.
+  /// Replacing the whole object would silently drop whichever side spoke
+  /// first. [viewersPeriod] travels with [viewers] so a count is never
   /// relabelled with someone else's window.
   CatalogAudience mergedWith(CatalogAudience other) => CatalogAudience(
     watchingNow: other.watchingNow ?? watchingNow,
@@ -411,8 +410,8 @@ class CatalogTag {
   }
 }
 
-/// An outbound link the provider supplies (AniList `externalLinks` and
-/// `streamingEpisodes`, Simkl's canonical `url`).
+/// An outbound link the provider supplies (a canonical `url`, an
+/// `externalLinks` entry, a streaming episode).
 class CatalogLink {
   /// Site name as the provider gives it — a proper noun, never translated.
   final String label;

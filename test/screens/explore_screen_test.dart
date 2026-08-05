@@ -179,7 +179,6 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
   );
   final mal = _FakeCatalogSource(CatalogSourceId.mal, 'MyAnimeList', malItemId);
   final anilist = _FakeCatalogSource(CatalogSourceId.anilist, 'AniList', 3);
-  final simkl = _FakeCatalogSource(CatalogSourceId.simkl, 'Simkl', 4);
   final seerr = _FakeCatalogSource(
     CatalogSourceId.seerr,
     'Seerr',
@@ -187,14 +186,13 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
     providerHubTitle: 'Trending on Seerr',
     providerHubStyle: providerHubStyle,
   );
-  final sources = _FakeCatalogSourcesProvider([trakt, mal, anilist, simkl, seerr]);
+  final sources = _FakeCatalogSourcesProvider([trakt, mal, anilist, seerr]);
   final explore = ExploreProvider(sources);
   addTearDown(explore.dispose);
   addTearDown(sources.dispose);
   addTearDown(trakt.dispose);
   addTearDown(mal.dispose);
   addTearDown(anilist.dispose);
-  addTearDown(simkl.dispose);
   addTearDown(seerr.dispose);
 
   await tester.pumpWidget(
@@ -297,10 +295,10 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
 
-    for (final name in ['Trakt', 'MyAnimeList', 'AniList', 'Simkl', 'Seerr']) {
+    for (final name in ['Trakt', 'MyAnimeList', 'AniList', 'Seerr']) {
       expect(find.text(name), findsAtLeast(1));
     }
-    expect(find.byType(CatalogSourceLogo), findsAtLeast(6));
+    expect(find.byType(CatalogSourceLogo), findsAtLeast(5));
 
     await tester.tap(find.text('AniList'));
     await tester.pumpAndSettle();

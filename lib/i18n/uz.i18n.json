@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Koʻrish jarayonini sinxronlang va yangi kontent soʻrang.",
     "notConnected": "Ulanmagan",
     "connectedAs": "@${username} sifatida ulandi",
-    "scrobble": "Jarayonni avtomatik kuzatish",
-    "scrobbleDescription": "Roʻyxatingizni avtomatik yangilang.",
-    "disconnectConfirm": "${service} uzilsinmi?",
-    "disconnectConfirmBody": "Harbor ${service} yangilanishini toʻxtatadi.",
     "connectFailed": "${service} ulana olmadi. Qaytadan urinib koʻring.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

@@ -10,7 +10,6 @@ import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
 import 'package:harbor/services/settings_service.dart';
-import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_coordinator.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
 import 'package:harbor/services/trackers/trakt/trakt_tracker.dart';
@@ -103,7 +102,6 @@ _FakeMediaServerClient _client({double watchedThreshold = 0.9}) => _FakeMediaSer
 void main() {
   final coordinator = TrackerCoordinator.instance;
   final trakt = TraktTracker.instance;
-  final simkl = SimklTracker.instance;
 
   late _TraktRecorder recorder;
   late DateTime now;
@@ -117,10 +115,8 @@ void main() {
     now = DateTime(2026, 7, 30, 12);
     coordinator.debugUseScrobbleClock(() => now);
 
-    simkl.rebindSession(null, onSessionInvalidated: () {});
     trakt.rebindSession(_session(), onSessionInvalidated: () {}, httpClient: recorder.client);
 
-    await simkl.setEnabled(false);
     await trakt.setEnabled(true);
     await trakt.setWatchedSyncEnabled(true);
   });
@@ -131,11 +127,9 @@ void main() {
     coordinator.debugUseScrobbleClock(null);
 
     trakt.rebindSession(null, onSessionInvalidated: () {});
-    simkl.rebindSession(null, onSessionInvalidated: () {});
 
     await trakt.setEnabled(false);
     await trakt.setWatchedSyncEnabled(false);
-    await simkl.setEnabled(false);
     SettingsService.resetForTesting();
   });
 

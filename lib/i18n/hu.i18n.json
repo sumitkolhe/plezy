@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Megtekintési haladás szinkronizálása és új tartalmak igénylése.",
     "notConnected": "Nincs csatlakoztatva",
     "connectedAs": "@${username} néven csatlakoztatva",
-    "scrobble": "Haladás automatikus követése",
-    "scrobbleDescription": "Lista frissítése, amikor befejezel egy epizódot vagy filmet.",
-    "disconnectConfirm": "Leválasztod a(z) ${service} szolgáltatást?",
-    "disconnectConfirmBody": "A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.",
     "connectFailed": "Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

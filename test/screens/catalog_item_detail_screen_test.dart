@@ -328,7 +328,6 @@ void main() {
       title: 'Rated Movie',
       ids: CatalogItemIds(tmdb: 11),
       ratings: [
-        CatalogRatingSource(source: 'simkl', value: 8.1, votes: 11),
         CatalogRatingSource(source: 'mal', value: 8.3, votes: 13),
         CatalogRatingSource(source: 'critic', value: 7.2, votes: 14),
         CatalogRatingSource(source: 'audience', value: 8.8, votes: 15),
@@ -339,7 +338,6 @@ void main() {
     await _pumpDetail(tester, source, item: item);
 
     expect(find.text(t.explore.detail.ratings), findsOneWidget);
-    expect(find.text('Simkl 8.1 (11 votes)'), findsOneWidget);
     expect(find.text('MyAnimeList 8.3 (13 votes)'), findsOneWidget);
     expect(find.text('Critics 7.2 (14 votes)'), findsOneWidget);
     expect(find.text('Audience 8.8 (15 votes)'), findsOneWidget);

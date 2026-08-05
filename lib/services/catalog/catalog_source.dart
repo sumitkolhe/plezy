@@ -90,9 +90,9 @@ class CatalogHub {
 /// The contract is a request-count ceiling, not a single response: an
 /// implementation must issue no more requests than the separate cast and
 /// related calls it replaces, and [item] must be enriched purely from bodies
-/// it was already fetching. Providers differ — Simkl's detail body already
-/// carries recommendations, while Plex (`/library/metadata/{id}` plus
-/// `/related`) and Seerr (detail plus `/recommendations`) genuinely need two.
+/// it was already fetching. Providers differ — a detail body that already
+/// carries recommendations needs one call, while Seerr (detail plus
+/// `/recommendations`) genuinely needs two.
 /// Where two calls remain, run them concurrently and isolate their failures:
 /// a failed related call must still yield the enriched item and its cast.
 class CatalogDetail {

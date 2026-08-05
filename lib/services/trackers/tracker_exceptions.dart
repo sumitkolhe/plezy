@@ -52,8 +52,8 @@ class TrackerRateLimitException implements Exception {
 /// * The request never arrived — a timeout or transport error. A link coming
 ///   back up is no proof the endpoint is reachable, so counting these would let
 ///   a handful of connectivity flaps drop a watch.
-/// * The service rate-limited us. Explicitly retryable, and typed only by Trakt
-///   and AniList — MAL and Simkl surface a 429 as a plain
+/// * The service rate-limited us. Explicitly retryable, and typed only by the
+///   services that say so — others surface a 429 as a plain
 ///   [TrackerApiException].
 /// * The service failed on its own side (5xx). A bad hour for a service is not
 ///   evidence that this watch is unwritable.

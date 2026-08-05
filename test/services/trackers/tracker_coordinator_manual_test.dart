@@ -8,9 +8,9 @@ import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
-import 'package:harbor/services/trackers/simkl/simkl_tracker.dart';
 import 'package:harbor/services/trackers/tracker_coordinator.dart';
 import 'package:harbor/services/trackers/tracker_session.dart';
+import 'package:harbor/services/trackers/trakt/trakt_tracker.dart';
 import 'package:harbor/utils/external_ids.dart';
 import '../../test_helpers/media_items.dart';
 
@@ -85,24 +85,32 @@ MediaItem _movie() => testMediaItem(
   libraryId: 'lib-1',
 );
 
-TrackerSession _simklSession() {
+TrackerSession _traktSession() {
   final now = DateTime.now().millisecondsSinceEpoch ~/ 1000;
-  return TrackerSession(accessToken: 'token', createdAt: now);
+  return TrackerSession(
+    accessToken: 'token',
+    refreshToken: 'refresh',
+    expiresAt: now + 86400,
+    scope: 'public',
+    createdAt: now,
+  );
 }
 
 void main() {
   group('TrackerCoordinator manual watched sync', () {
     final coordinator = TrackerCoordinator.instance;
-    final simkl = SimklTracker.instance;
+    final trakt = TraktTracker.instance;
 
     setUp(() async {
-      await simkl.setEnabled(true);
+      await trakt.setEnabled(true);
+      await trakt.setWatchedSyncEnabled(true);
     });
 
     tearDown(() async {
       coordinator.cancelInFlight();
-      simkl.rebindSession(null, onSessionInvalidated: () {});
-      await simkl.setEnabled(false);
+      trakt.rebindSession(null, onSessionInvalidated: () {});
+      await trakt.setEnabled(false);
+      await trakt.setWatchedSyncEnabled(false);
     });
 
     test('expands a manually watched season and fills missing episode show context', () async {
@@ -113,7 +121,7 @@ void main() {
         bodies.add((json.decode(request.body) as Map).cast<String, dynamic>());
         return http.Response('{}', 200);
       });
-      simkl.rebindSession(_simklSession(), onSessionInvalidated: () {}, httpClient: httpClient);
+      trakt.rebindSession(_traktSession(), onSessionInvalidated: () {}, httpClient: httpClient);
 
       final client = _FakeMediaServerClient(
         externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
@@ -155,7 +163,7 @@ void main() {
       ]);
     });
 
-    test('removes manually unwatched season episodes from Simkl history', () async {
+    test('removes manually unwatched season episodes from Trakt history', () async {
       final bodies = <Map<String, dynamic>>[];
       final httpClient = MockClient((request) async {
         expect(request.method, 'POST');
@@ -163,7 +171,7 @@ void main() {
         bodies.add((json.decode(request.body) as Map).cast<String, dynamic>());
         return http.Response('{}', 200);
       });
-      simkl.rebindSession(_simklSession(), onSessionInvalidated: () {}, httpClient: httpClient);
+      trakt.rebindSession(_traktSession(), onSessionInvalidated: () {}, httpClient: httpClient);
 
       final client = _FakeMediaServerClient(
         externalIdsByItem: {'show-1': const ExternalIds(tvdb: 12345)},
@@ -192,8 +200,8 @@ void main() {
     });
 
     test('playback resolver is recreated when the server client changes', () async {
-      simkl.rebindSession(
-        _simklSession(),
+      trakt.rebindSession(
+        _traktSession(),
         onSessionInvalidated: () {},
         httpClient: MockClient((_) async => http.Response('{}', 200)),
       );
@@ -225,13 +233,13 @@ void main() {
 
   group('TrackerCoordinator playback threshold', () {
     final coordinator = TrackerCoordinator.instance;
-    final simkl = SimklTracker.instance;
+    final trakt = TraktTracker.instance;
 
     setUp(() async {
-      // MAL is a threshold tracker: the crossing owns its watched write. Simkl
-      // is excluded from that fan-out (it reports playback in real time), so it
-      // stays off here — see simkl_scrobble_test.dart.
-      await simkl.setEnabled(false);
+      // A threshold tracker's crossing owns its watched write. Trakt is excluded
+      // from that fan-out because it reports playback in real time, so it stays
+      // off here — see trakt_scrobble_test.dart.
+      await trakt.setEnabled(false);
     });
 
     tearDown(() async {
@@ -244,11 +252,11 @@ void main() {
         requests.add(request.url.path);
         return http.Response('{}', 200);
       });
-      await simkl.setEnabled(true);
-      simkl.rebindSession(_simklSession(), onSessionInvalidated: () {}, httpClient: httpClient);
+      await trakt.setEnabled(true);
+      trakt.rebindSession(_traktSession(), onSessionInvalidated: () {}, httpClient: httpClient);
       addTearDown(() async {
-        simkl.rebindSession(null, onSessionInvalidated: () {});
-        await simkl.setEnabled(false);
+        trakt.rebindSession(null, onSessionInvalidated: () {});
+        await trakt.setEnabled(false);
       });
 
       final client = _FakeMediaServerClient(

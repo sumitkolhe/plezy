@@ -1418,10 +1418,6 @@ class _Translations$services$fr extends Translations$services$en {
 	@override String get hubSubtitle => 'Synchronisez votre progression et demandez de nouveaux titres.';
 	@override String get notConnected => 'Non connecté';
 	@override String connectedAs({required Object username}) => 'Connecté en tant que @${username}';
-	@override String get scrobble => 'Suivre la progression automatiquement';
-	@override String get scrobbleDescription => 'Mettre à jour votre liste lorsque vous terminez un épisode ou un film.';
-	@override String disconnectConfirm({required Object service}) => 'Déconnecter ${service} ?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.';
 	@override String connectFailed({required Object service}) => 'Échec de la connexion à ${service}. Réessayez.';
 	@override late final _Translations$services$names$fr names = _Translations$services$names$fr._(_root);
 	@override late final _Translations$services$deviceCode$fr deviceCode = _Translations$services$deviceCode$fr._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$fr extends Translations$services$names$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsFr {
 			'services.hubSubtitle' => 'Synchronisez votre progression et demandez de nouveaux titres.',
 			'services.notConnected' => 'Non connecté',
 			'services.connectedAs' => ({required Object username}) => 'Connecté en tant que @${username}',
-			'services.scrobble' => 'Suivre la progression automatiquement',
-			'services.scrobbleDescription' => 'Mettre à jour votre liste lorsque vous terminez un épisode ou un film.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Déconnecter ${service} ?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor cessera de mettre à jour ${service}. Vous pourrez vous reconnecter à tout moment.',
 			'services.connectFailed' => ({required Object service}) => 'Échec de la connexion à ${service}. Réessayez.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Activer Harbor sur ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Rendez-vous sur ${url} et entrez ce code :',

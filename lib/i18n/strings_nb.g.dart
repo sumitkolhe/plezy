@@ -1418,10 +1418,6 @@ class _Translations$services$nb extends Translations$services$en {
 	@override String get hubSubtitle => 'Synkroniser fremdrift og forespør nye titler.';
 	@override String get notConnected => 'Ikke tilkoblet';
 	@override String connectedAs({required Object username}) => 'Tilkoblet som @${username}';
-	@override String get scrobble => 'Registrer fremdrift automatisk';
-	@override String get scrobbleDescription => 'Oppdater listen din når du er ferdig med en episode eller film.';
-	@override String disconnectConfirm({required Object service}) => 'Koble fra ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor slutter å oppdatere ${service}. Koble til igjen når som helst.';
 	@override String connectFailed({required Object service}) => 'Kunne ikke koble til ${service}. Prøv igjen.';
 	@override late final _Translations$services$names$nb names = _Translations$services$names$nb._(_root);
 	@override late final _Translations$services$deviceCode$nb deviceCode = _Translations$services$deviceCode$nb._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$nb extends Translations$services$names$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsNb {
 			'services.hubSubtitle' => 'Synkroniser fremdrift og forespør nye titler.',
 			'services.notConnected' => 'Ikke tilkoblet',
 			'services.connectedAs' => ({required Object username}) => 'Tilkoblet som @${username}',
-			'services.scrobble' => 'Registrer fremdrift automatisk',
-			'services.scrobbleDescription' => 'Oppdater listen din når du er ferdig med en episode eller film.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Koble fra ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor slutter å oppdatere ${service}. Koble til igjen når som helst.',
 			'services.connectFailed' => ({required Object service}) => 'Kunne ikke koble til ${service}. Prøv igjen.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Aktiver Harbor på ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Besøk ${url} og skriv inn denne koden:',

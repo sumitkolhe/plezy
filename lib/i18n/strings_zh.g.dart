@@ -1415,10 +1415,6 @@ class Translations$services$zh extends Translations$services$en {
 	@override String get hubSubtitle => '同步观看进度并请求新内容。';
 	@override String get notConnected => '未连接';
 	@override String connectedAs({required Object username}) => '已以 @${username} 身份连接';
-	@override String get scrobble => '自动记录进度';
-	@override String get scrobbleDescription => '观看完一集或一部电影后更新你的列表。';
-	@override String disconnectConfirm({required Object service}) => '断开 ${service} 连接？';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor 将停止更新 ${service}。可随时重新连接。';
 	@override String connectFailed({required Object service}) => '无法连接到 ${service}。请重试。';
 	@override late final Translations$services$names$zh names = Translations$services$names$zh.internal(_root);
 	@override late final Translations$services$deviceCode$zh deviceCode = Translations$services$deviceCode$zh.internal(_root);
@@ -1643,7 +1639,6 @@ class Translations$services$names$zh extends Translations$services$names$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2754,12 +2749,7 @@ extension on TranslationsZh {
 			'services.hubSubtitle' => '同步观看进度并请求新内容。',
 			'services.notConnected' => '未连接',
 			'services.connectedAs' => ({required Object username}) => '已以 @${username} 身份连接',
-			'services.scrobble' => '自动记录进度',
-			'services.scrobbleDescription' => '观看完一集或一部电影后更新你的列表。',
-			'services.disconnectConfirm' => ({required Object service}) => '断开 ${service} 连接？',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor 将停止更新 ${service}。可随时重新连接。',
 			'services.connectFailed' => ({required Object service}) => '无法连接到 ${service}。请重试。',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 上激活 Harbor',
 			'services.deviceCode.body' => ({required Object url}) => '访问 ${url} 并输入此代码：',

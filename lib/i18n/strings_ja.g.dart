@@ -1415,10 +1415,6 @@ class _Translations$services$ja extends Translations$services$en {
 	@override String get hubSubtitle => '視聴の進捗を同期して、新しいタイトルをリクエストします。';
 	@override String get notConnected => '未接続';
 	@override String connectedAs({required Object username}) => '@${username} として接続済み';
-	@override String get scrobble => '進捗を自動で記録';
-	@override String get scrobbleDescription => 'エピソードや映画を見終えたときにリストを更新します。';
-	@override String disconnectConfirm({required Object service}) => '${service} の接続を解除しますか？';
-	@override String disconnectConfirmBody({required Object service}) => 'Harborは${service}の更新を停止します。いつでも再接続できます。';
 	@override String connectFailed({required Object service}) => '${service} に接続できませんでした。もう一度お試しください。';
 	@override late final _Translations$services$names$ja names = _Translations$services$names$ja._(_root);
 	@override late final _Translations$services$deviceCode$ja deviceCode = _Translations$services$deviceCode$ja._(_root);
@@ -1643,7 +1639,6 @@ class _Translations$services$names$ja extends Translations$services$names$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2754,12 +2749,7 @@ extension on TranslationsJa {
 			'services.hubSubtitle' => '視聴の進捗を同期して、新しいタイトルをリクエストします。',
 			'services.notConnected' => '未接続',
 			'services.connectedAs' => ({required Object username}) => '@${username} として接続済み',
-			'services.scrobble' => '進捗を自動で記録',
-			'services.scrobbleDescription' => 'エピソードや映画を見終えたときにリストを更新します。',
-			'services.disconnectConfirm' => ({required Object service}) => '${service} の接続を解除しますか？',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harborは${service}の更新を停止します。いつでも再接続できます。',
 			'services.connectFailed' => ({required Object service}) => '${service} に接続できませんでした。もう一度お試しください。',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '${service} で Harbor を有効化',
 			'services.deviceCode.body' => ({required Object url}) => '${url}にアクセスして、このコードを入力してください。',

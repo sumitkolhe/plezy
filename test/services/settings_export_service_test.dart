@@ -183,7 +183,7 @@ void main() {
         initialAsync: {
           'tracker_library_filter_mode_trakt': 'blacklist',
           'tracker_library_filter_ids_trakt': <Object?>['srv-1:lib-a', 'srv-1:lib-b'],
-          'tracker_library_filter_ids_simkl': <Object?>['ok', 7],
+          'tracker_library_filter_ids_mal': <Object?>['ok', 7],
         },
       );
       final prefs = await BaseSharedPreferencesService.sharedCache();
@@ -195,7 +195,7 @@ void main() {
         'type': 'stringList',
         'value': ['srv-1:lib-a', 'srv-1:lib-b'],
       });
-      expect(exported, isNot(contains('tracker_library_filter_ids_simkl')));
+      expect(exported, isNot(contains('tracker_library_filter_ids_mal')));
     });
   });
 

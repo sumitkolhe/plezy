@@ -631,7 +631,6 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     // and the critic/audience distinction survive.
     'rottenTomatoesCritic' => t.explore.ratingSource.rottenTomatoesCritic,
     'rottenTomatoesAudience' => t.explore.ratingSource.rottenTomatoesAudience,
-    'simkl' => t.explore.ratingSource.simkl,
     'mal' => t.explore.ratingSource.mal,
     'anilist' => t.explore.ratingSource.anilist,
     'trakt' => t.explore.ratingSource.trakt,

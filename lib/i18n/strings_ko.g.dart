@@ -1415,10 +1415,6 @@ class _Translations$services$ko extends Translations$services$en {
 	@override String get hubSubtitle => '시청 진행률을 동기화하고 새 작품을 요청하세요.';
 	@override String get notConnected => '연결되지 않음';
 	@override String connectedAs({required Object username}) => '@${username}(으)로 연결됨';
-	@override String get scrobble => '진행률 자동 추적';
-	@override String get scrobbleDescription => '에피소드나 영화를 시청하면 목록을 업데이트합니다.';
-	@override String disconnectConfirm({required Object service}) => '${service} 연결을 해제하시겠습니까?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.';
 	@override String connectFailed({required Object service}) => '${service}에 연결할 수 없습니다. 다시 시도하세요.';
 	@override late final _Translations$services$names$ko names = _Translations$services$names$ko._(_root);
 	@override late final _Translations$services$deviceCode$ko deviceCode = _Translations$services$deviceCode$ko._(_root);
@@ -1643,7 +1639,6 @@ class _Translations$services$names$ko extends Translations$services$names$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2754,12 +2749,7 @@ extension on TranslationsKo {
 			'services.hubSubtitle' => '시청 진행률을 동기화하고 새 작품을 요청하세요.',
 			'services.notConnected' => '연결되지 않음',
 			'services.connectedAs' => ({required Object username}) => '@${username}(으)로 연결됨',
-			'services.scrobble' => '진행률 자동 추적',
-			'services.scrobbleDescription' => '에피소드나 영화를 시청하면 목록을 업데이트합니다.',
-			'services.disconnectConfirm' => ({required Object service}) => '${service} 연결을 해제하시겠습니까?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor가 ${service} 업데이트를 중지합니다. 언제든 다시 연결할 수 있습니다.',
 			'services.connectFailed' => ({required Object service}) => '${service}에 연결할 수 없습니다. 다시 시도하세요.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '${service}에서 Harbor 활성화',
 			'services.deviceCode.body' => ({required Object url}) => '${url}을 방문하여 이 코드를 입력하세요:',

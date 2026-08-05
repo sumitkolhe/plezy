@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Synchroniseer kijkvoortgang en vraag nieuwe titels aan.",
     "notConnected": "Niet verbonden",
     "connectedAs": "Verbonden als @${username}",
-    "scrobble": "Voortgang automatisch volgen",
-    "scrobbleDescription": "Werk je lijst bij wanneer je een aflevering of film afrondt.",
-    "disconnectConfirm": "${service} loskoppelen?",
-    "disconnectConfirmBody": "Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.",
     "connectFailed": "Verbinding maken met ${service} is mislukt. Probeer het opnieuw.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

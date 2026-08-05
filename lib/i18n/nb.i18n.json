@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Synkroniser fremdrift og forespør nye titler.",
     "notConnected": "Ikke tilkoblet",
     "connectedAs": "Tilkoblet som @${username}",
-    "scrobble": "Registrer fremdrift automatisk",
-    "scrobbleDescription": "Oppdater listen din når du er ferdig med en episode eller film.",
-    "disconnectConfirm": "Koble fra ${service}?",
-    "disconnectConfirmBody": "Harbor slutter å oppdatere ${service}. Koble til igjen når som helst.",
     "connectFailed": "Kunne ikke koble til ${service}. Prøv igjen.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

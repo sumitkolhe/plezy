@@ -4,7 +4,7 @@ import '../../models/trackers/device_code.dart';
 
 /// Runs the RFC 8628 poll loop. Service-specific HTTP is delegated to [probe];
 /// this helper owns interval decay (`slow_down`), the deadline window, and the
-/// cancel-check cadence so Trakt and Simkl can share it.
+/// cancel-check cadence, leaving each service only its own HTTP.
 ///
 /// [probe] must perform one poll attempt and return a single event.
 /// [DevicePollSlowDown] triggers a 5-second interval bump; terminal events

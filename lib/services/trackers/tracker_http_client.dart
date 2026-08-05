@@ -13,10 +13,9 @@ import 'tracker_constants.dart';
 /// then hands back the raw response.
 ///
 /// Status handling stays with each client because the rules genuinely differ:
-/// MAL and Simkl accept any 2xx, Trakt a per-call set (200/201/204, plus 409
-/// for scrobble), AniList only 200 (GraphQL errors ride a 200 body); and a 401
-/// means refresh-and-retry for Trakt/MAL but a terminal session for AniList
-/// and Simkl.
+/// Trakt accepts a per-call set (200/201/204, plus 409 for scrobble) and treats
+/// a 401 as refresh-and-retry, where another service may accept any 2xx and
+/// call the same 401 a terminal session.
 class TrackerHttpClient {
   static const Set<String> allMethods = {'GET', 'POST', 'PATCH', 'PUT', 'DELETE'};
 

@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Синхронизирай прогреса на гледане и заявявай нови заглавия.",
     "notConnected": "Няма връзка",
     "connectedAs": "Свързан като @${username}",
-    "scrobble": "Проследявай прогреса автоматично",
-    "scrobbleDescription": "Обновявай списъка си, когато завършиш епизод или филм.",
-    "disconnectConfirm": "Да се прекъсне ли ${service}?",
-    "disconnectConfirmBody": "Harbor ще спре да обновява ${service}. Можете да се свържете отново по всяко време.",
     "connectFailed": "Неуспешно свързване с ${service}. Опитайте отново.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

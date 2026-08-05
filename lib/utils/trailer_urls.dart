@@ -1,8 +1,8 @@
 /// Builds watch URLs for provider trailer references.
 ///
-/// Four catalog providers return a bare YouTube video id (AniList
-/// `trailer.id`, Simkl `trailer`, Seerr/TMDB `videos[].key`) and each used to
-/// interpolate the same watch URL, so the host lived in four places.
+/// Catalog providers return a bare YouTube video id (Seerr/TMDB
+/// `videos[].key`) and each used to interpolate the same watch URL, so the host
+/// lived in as many places.
 ///
 /// The host is deliberately absent from `android/app/src/main/res/xml/
 /// network_security_config.xml`: these URLs are handed to the platform browser

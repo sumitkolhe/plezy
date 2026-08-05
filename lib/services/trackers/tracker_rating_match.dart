@@ -1,7 +1,7 @@
 import '../../utils/json_utils.dart';
 
-/// Shared id-matching helpers for the Trakt/Simkl rating sources, which both
-/// scan a list of remote rating entries and match them against local ids.
+/// Id-matching helpers for a rating source, which scans a list of remote rating
+/// entries and matches them against local ids.
 
 /// Extract the nested `ids` map from a rating entry's media object (e.g. the
 /// `movie`/`show` node), normalized to `Map<String, dynamic>`.

@@ -1418,10 +1418,6 @@ class _Translations$services$es extends Translations$services$en {
 	@override String get hubSubtitle => 'Sincroniza tu progreso de visualización y solicita nuevos títulos.';
 	@override String get notConnected => 'No conectado';
 	@override String connectedAs({required Object username}) => 'Conectado como @${username}';
-	@override String get scrobble => 'Registrar progreso automáticamente';
-	@override String get scrobbleDescription => 'Actualiza tu lista cuando termines un episodio o película.';
-	@override String disconnectConfirm({required Object service}) => '¿Desconectar ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor dejará de actualizar ${service}. Reconecta cuando quieras.';
 	@override String connectFailed({required Object service}) => 'No se pudo conectar a ${service}. Inténtalo de nuevo.';
 	@override late final _Translations$services$names$es names = _Translations$services$names$es._(_root);
 	@override late final _Translations$services$deviceCode$es deviceCode = _Translations$services$deviceCode$es._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$es extends Translations$services$names$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsEs {
 			'services.hubSubtitle' => 'Sincroniza tu progreso de visualización y solicita nuevos títulos.',
 			'services.notConnected' => 'No conectado',
 			'services.connectedAs' => ({required Object username}) => 'Conectado como @${username}',
-			'services.scrobble' => 'Registrar progreso automáticamente',
-			'services.scrobbleDescription' => 'Actualiza tu lista cuando termines un episodio o película.',
-			'services.disconnectConfirm' => ({required Object service}) => '¿Desconectar ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor dejará de actualizar ${service}. Reconecta cuando quieras.',
 			'services.connectFailed' => ({required Object service}) => 'No se pudo conectar a ${service}. Inténtalo de nuevo.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Activar Harbor en ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Visita ${url} e introduce este código:',

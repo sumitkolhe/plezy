@@ -3692,7 +3692,7 @@ class ConnectionRow extends DataClass implements Insertable<ConnectionRow> {
   /// (one per account); for Jellyfin it's the server's machineId.
   final String id;
 
-  /// Backend kind: `'plex'` or `'jellyfin'`.
+  /// Backend kind: always `'jellyfin'`.
   final String kind;
 
   /// User-visible label (account email, server name).

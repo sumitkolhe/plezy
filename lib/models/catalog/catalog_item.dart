@@ -6,7 +6,7 @@ import 'catalog_cast_member.dart';
 import 'catalog_metadata.dart';
 
 /// External catalog providers that can back the Explore tab.
-enum CatalogSourceId { trakt, mal, anilist, simkl, seerr }
+enum CatalogSourceId { trakt, mal, anilist, seerr }
 
 /// Normalized airing/production status across providers (Trakt `status`,
 /// MAL `status`). Null when unknown or uninteresting (released movies).
@@ -14,29 +14,18 @@ enum CatalogAirStatus { airing, ended, canceled, upcoming }
 
 /// External ids identifying a catalog item across providers and media
 /// servers. A superset of [ExternalIds] that also carries provider-native
-/// ids (Plex rating key, Trakt id/slug, MAL, AniList, and Simkl).
+/// ids (Plex rating key, Trakt id/slug, MAL and AniList).
 class CatalogItemIds {
   final String? plex;
   final int? trakt;
   final String? slug;
   final int? mal;
   final int? anilist;
-  final int? simkl;
   final String? imdb;
   final int? tmdb;
   final int? tvdb;
 
-  const CatalogItemIds({
-    this.plex,
-    this.trakt,
-    this.slug,
-    this.mal,
-    this.anilist,
-    this.simkl,
-    this.imdb,
-    this.tmdb,
-    this.tvdb,
-  });
+  const CatalogItemIds({this.plex, this.trakt, this.slug, this.mal, this.anilist, this.imdb, this.tmdb, this.tvdb});
 
   factory CatalogItemIds.fromExternal(ExternalIds ids) =>
       CatalogItemIds(imdb: ids.imdb, tmdb: ids.tmdb, tvdb: ids.tvdb);
@@ -47,7 +36,6 @@ class CatalogItemIds {
       tvdb != null ||
       mal != null ||
       anilist != null ||
-      simkl != null ||
       plex != null ||
       trakt != null ||
       slug != null;
@@ -60,7 +48,6 @@ class CatalogItemIds {
     if (tvdb != null) return 'tvdb:$tvdb';
     if (mal != null) return 'mal:$mal';
     if (anilist != null) return 'anilist:$anilist';
-    if (simkl != null) return 'simkl:$simkl';
     if (plex != null) return 'plex:$plex';
     if (trakt != null) return 'trakt:$trakt';
     if (slug != null) return 'slug:$slug';
@@ -78,7 +65,6 @@ class CatalogItemIds {
   String? get entryKey {
     if (mal != null) return 'mal:$mal';
     if (anilist != null) return 'anilist:$anilist';
-    if (simkl != null) return 'simkl:$simkl';
     if (trakt != null) return 'trakt:$trakt';
     if (plex != null) return 'plex:$plex';
     if (slug != null) return 'slug:$slug';
@@ -94,7 +80,6 @@ class CatalogItemIds {
     if (tvdb != null) 'tvdb:$tvdb',
     if (mal != null) 'mal:$mal',
     if (anilist != null) 'anilist:$anilist',
-    if (simkl != null) 'simkl:$simkl',
     if (plex != null) 'plex:$plex',
     if (trakt != null) 'trakt:$trakt',
     if (slug != null) 'slug:$slug',
@@ -110,7 +95,6 @@ class CatalogItemIds {
     slug: slug ?? other.slug,
     mal: mal ?? other.mal,
     anilist: anilist ?? other.anilist,
-    simkl: simkl ?? other.simkl,
     imdb: imdb ?? other.imdb,
     tmdb: tmdb ?? other.tmdb,
     tvdb: tvdb ?? other.tvdb,
@@ -122,7 +106,6 @@ class CatalogItemIds {
     if (slug != null) 'slug': slug,
     if (mal != null) 'mal': mal,
     if (anilist != null) 'anilist': anilist,
-    if (simkl != null) 'simkl': simkl,
     if (imdb != null) 'imdb': imdb,
     if (tmdb != null) 'tmdb': tmdb,
     if (tvdb != null) 'tvdb': tvdb,
@@ -134,7 +117,6 @@ class CatalogItemIds {
     slug: json['slug'] as String?,
     mal: json['mal'] as int?,
     anilist: json['anilist'] as int?,
-    simkl: json['simkl'] as int?,
     imdb: json['imdb'] as String?,
     tmdb: json['tmdb'] as int?,
     tvdb: json['tvdb'] as int?,
@@ -194,8 +176,8 @@ class CatalogItem {
   /// Width-keyed alternates for [posterUrl] and [backdropUrl], keyed by the
   /// asset's real pixel width.
   ///
-  /// Providers serve the same artwork at several sizes (TMDB `w342`/`w500`,
-  /// Simkl's suffixed variants). The mapper cannot pick correctly because it
+  /// Providers serve the same artwork at several sizes (TMDB `w342`/`w500`).
+  /// The mapper cannot pick correctly because it
   /// does not know the surface: a 92-pixel search thumbnail and a 340-pixel
   /// high-DPR TV card have opposite needs. Mappers publish what exists,
   /// widgets choose with [posterFor]/[backdropFor] once they have measured.
@@ -234,14 +216,14 @@ class CatalogItem {
   /// Exact premiere/release date; [year] stays the coarse fallback.
   final DateTime? releaseDate;
 
-  /// Home-media release (Simkl movie `released_dvd`).
+  /// Home-media release date; [releaseDate] stays the theatrical one.
   final DateTime? physicalReleaseDate;
 
   /// Final air date for an ended show.
   final DateTime? endDate;
 
   /// When the user added it to the list this item came from (Trakt
-  /// `listed_at`, Simkl watchlist `added_to_watchlist`).
+  /// `listed_at`).
   final DateTime? addedAt;
 
   /// The user's own score, 0-10, on providers that return it with the list.
@@ -282,9 +264,8 @@ class CatalogItem {
   /// Provider and streaming links.
   final List<CatalogLink>? links;
 
-  /// Episodes announced but not yet broadcast (Simkl
-  /// `not_aired_episodes_count`). Distinct from [episodeCount], which counts
-  /// what exists, and from any watched count.
+  /// Episodes announced but not yet broadcast. Distinct from [episodeCount],
+  /// which counts what exists, and from any watched count.
   final int? unairedEpisodeCount;
 
   /// Who recommended this title and why (Trakt `favorited_by` /
@@ -307,9 +288,9 @@ class CatalogItem {
   final int? recommendationCount;
 
   /// Share of users who recommended this item *from another item*, 0-1
-  /// (Simkl `users_percent`, sent as a percentage and normalized by the
-  /// mapper). Independent of [recommendationCount]: a count and a share
-  /// answer different questions and neither can be derived from the other.
+  /// (normalized by the mapper from a percentage). Independent of
+  /// [recommendationCount]: a count and a share answer different questions and
+  /// neither can be derived from the other.
   final double? recommendationPercent;
 
   /// Play state the catalog provider itself reports.

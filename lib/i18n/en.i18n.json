@@ -1011,7 +1011,6 @@
       "imdb": "IMDb",
       "tmdb": "TMDB",
       "rottenTomatoes": "Rotten Tomatoes",
-      "simkl": "Simkl",
       "mal": "MyAnimeList",
       "anilist": "AniList",
       "trakt": "Trakt",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Sync watch progress and request new titles.",
     "notConnected": "Not connected",
     "connectedAs": "Connected as @${username}",
-    "scrobble": "Track progress automatically",
-    "scrobbleDescription": "Update your list when you finish an episode or movie.",
-    "disconnectConfirm": "Disconnect ${service}?",
-    "disconnectConfirmBody": "Harbor will stop updating ${service}. Reconnect any time.",
     "connectFailed": "Couldn't connect to ${service}. Try again.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

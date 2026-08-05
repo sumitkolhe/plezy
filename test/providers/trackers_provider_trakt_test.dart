@@ -56,17 +56,13 @@ void main() {
         },
       );
 
-      expect(clients, hasLength(2));
-      for (final client in clients) {
-        expect(client.closeCount, 0);
-      }
+      expect(clients, hasLength(1));
+      expect(clients.single.closeCount, 0);
 
       p.dispose();
 
-      for (final client in clients) {
-        expect(client.closeCount, 1);
-        expect(client.isClosed, isTrue);
-      }
+      expect(clients.single.closeCount, 1);
+      expect(clients.single.isClosed, isTrue);
     });
 
     test('onActiveProfileChanged loads stored session into the shared Trakt client', () async {

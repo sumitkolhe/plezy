@@ -4,11 +4,9 @@ import 'package:provider/provider.dart';
 import '../../i18n/strings.g.dart';
 import '../../models/catalog/catalog_item.dart';
 import '../../providers/trackers_provider.dart';
-import '../../services/trackers/simkl/simkl_tracker.dart';
 import '../../services/trackers/tracker.dart';
 import '../../services/trackers/tracker_constants.dart';
 import '../../services/trackers/trakt/trakt_tracker.dart';
-import 'tracker_settings_screen.dart';
 import 'trakt_settings_screen.dart';
 
 /// One watch tracker, described once for every place that lists services: the
@@ -42,19 +40,6 @@ class TrackerServiceInfo {
     required this.buildSettingsScreen,
   });
 
-  /// Entry for a service that shares [TrackerSettingsScreen]: [config] already
-  /// carries the name and the [TrackersProvider] accessors.
-  TrackerServiceInfo.shared(
-    TrackerConfig config, {
-    required this.logoSource,
-    required this.ratingSource,
-    required this.startConnection,
-  }) : service = config.service,
-       displayName = config.displayName,
-       isConnected = ((context) => config.isConnected(context.watch<TrackersProvider>())),
-       username = ((context) => config.username(context.watch<TrackersProvider>())),
-       buildSettingsScreen = (() => TrackerSettingsScreen(config: config));
-
   /// Trakt is off by default: its client id and secret belong to the upstream
   /// project's registered application, so connecting spends someone else's API
   /// quota. Build with `--dart-define=HARBOR_TRAKT=true` once this app has a
@@ -75,11 +60,5 @@ class TrackerServiceInfo {
         startConnection: startTraktConnection,
         buildSettingsScreen: () => const TraktSettingsScreen(),
       ),
-    TrackerServiceInfo.shared(
-      TrackerConfig.simkl(),
-      logoSource: CatalogSourceId.simkl,
-      ratingSource: SimklTracker.instance,
-      startConnection: startSimklConnection,
-    ),
   ];
 }

@@ -1418,10 +1418,6 @@ class _Translations$services$hu extends Translations$services$en {
 	@override String get hubSubtitle => 'Megtekintési haladás szinkronizálása és új tartalmak igénylése.';
 	@override String get notConnected => 'Nincs csatlakoztatva';
 	@override String connectedAs({required Object username}) => '@${username} néven csatlakoztatva';
-	@override String get scrobble => 'Haladás automatikus követése';
-	@override String get scrobbleDescription => 'Lista frissítése, amikor befejezel egy epizódot vagy filmet.';
-	@override String disconnectConfirm({required Object service}) => 'Leválasztod a(z) ${service} szolgáltatást?';
-	@override String disconnectConfirmBody({required Object service}) => 'A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.';
 	@override String connectFailed({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.';
 	@override late final _Translations$services$names$hu names = _Translations$services$names$hu._(_root);
 	@override late final _Translations$services$deviceCode$hu deviceCode = _Translations$services$deviceCode$hu._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$hu extends Translations$services$names$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsHu {
 			'services.hubSubtitle' => 'Megtekintési haladás szinkronizálása és új tartalmak igénylése.',
 			'services.notConnected' => 'Nincs csatlakoztatva',
 			'services.connectedAs' => ({required Object username}) => '@${username} néven csatlakoztatva',
-			'services.scrobble' => 'Haladás automatikus követése',
-			'services.scrobbleDescription' => 'Lista frissítése, amikor befejezel egy epizódot vagy filmet.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Leválasztod a(z) ${service} szolgáltatást?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'A Harbor nem frissíti többé a(z) ${service} adatait. Bármikor újracsatlakozhatsz.',
 			'services.connectFailed' => ({required Object service}) => 'Nem sikerült csatlakozni a következőhöz: ${service}. Próbáld újra.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor aktiválása a következőn: ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Nyisd meg a(z) ${url} oldalt és add meg ezt a kódot:',

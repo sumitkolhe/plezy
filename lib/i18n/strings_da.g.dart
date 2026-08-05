@@ -1418,10 +1418,6 @@ class _Translations$services$da extends Translations$services$en {
 	@override String get hubSubtitle => 'Synkroniser dit visningsfremskridt, og anmod om nye titler.';
 	@override String get notConnected => 'Ikke forbundet';
 	@override String connectedAs({required Object username}) => 'Forbundet som @${username}';
-	@override String get scrobble => 'Registrer fremgang automatisk';
-	@override String get scrobbleDescription => 'Opdater din liste, når du er færdig med et afsnit eller en film.';
-	@override String disconnectConfirm({required Object service}) => 'Afbryd forbindelsen til ${service}?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.';
 	@override String connectFailed({required Object service}) => 'Kunne ikke forbinde til ${service}. Prøv igen.';
 	@override late final _Translations$services$names$da names = _Translations$services$names$da._(_root);
 	@override late final _Translations$services$deviceCode$da deviceCode = _Translations$services$deviceCode$da._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$da extends Translations$services$names$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsDa {
 			'services.hubSubtitle' => 'Synkroniser dit visningsfremskridt, og anmod om nye titler.',
 			'services.notConnected' => 'Ikke forbundet',
 			'services.connectedAs' => ({required Object username}) => 'Forbundet som @${username}',
-			'services.scrobble' => 'Registrer fremgang automatisk',
-			'services.scrobbleDescription' => 'Opdater din liste, når du er færdig med et afsnit eller en film.',
-			'services.disconnectConfirm' => ({required Object service}) => 'Afbryd forbindelsen til ${service}?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor stopper med at opdatere ${service}. Du kan altid oprette forbindelse igen.',
 			'services.connectFailed' => ({required Object service}) => 'Kunne ikke forbinde til ${service}. Prøv igen.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Aktiver Harbor på ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Besøg ${url} og indtast denne kode:',

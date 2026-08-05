@@ -82,15 +82,12 @@ class TrackerSession {
       case TrackerService.trakt:
         _validateRefreshToken(service, refreshToken);
         requireExpiry();
-      case TrackerService.simkl:
-        return;
     }
   }
 
   factory TrackerSession.fromTokenResponse(TrackerService service, Map<String, dynamic> json) {
     final createdAt = (json['created_at'] as num?)?.toInt() ?? trackerSessionNowEpochSeconds();
     return switch (service) {
-      TrackerService.simkl => TrackerSession(accessToken: json['access_token'] as String, createdAt: createdAt),
       TrackerService.trakt => TrackerSession(
         accessToken: json['access_token'] as String,
         refreshToken: _requireRefreshToken(service, json['refresh_token'] as String?),

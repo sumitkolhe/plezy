@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 mixin _$DeviceCode {
 
  String get deviceCode; String get userCode; String get verificationUrl; int get expiresIn; int get interval;/// URL with the code pre-filled (e.g. `https://trakt.tv/activate/ABC12345`)
-/// when the provider supports it. Nullable — Simkl doesn't.
+/// when the provider supports it. Nullable — not every provider does.
  String? get verificationUrlComplete;
 /// Create a copy of DeviceCode
 /// with the given fields replaced by the non-null parameter values.
@@ -216,7 +216,7 @@ class _DeviceCode implements DeviceCode {
 @override final  int expiresIn;
 @override final  int interval;
 /// URL with the code pre-filled (e.g. `https://trakt.tv/activate/ABC12345`)
-/// when the provider supports it. Nullable — Simkl doesn't.
+/// when the provider supports it. Nullable — not every provider does.
 @override final  String? verificationUrlComplete;
 
 /// Create a copy of DeviceCode

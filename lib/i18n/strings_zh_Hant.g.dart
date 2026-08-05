@@ -1416,10 +1416,6 @@ class _Translations$services$zh_Hant extends Translations$services$zh {
 	@override String get hubSubtitle => '同步觀看進度並請求新內容。';
 	@override String get notConnected => '未連線';
 	@override String connectedAs({required Object username}) => '已以 @${username} 身分連線';
-	@override String get scrobble => '自動同步播放進度';
-	@override String get scrobbleDescription => '觀賞完一集或一部電影後自動更新您的外部列表。';
-	@override String disconnectConfirm({required Object service}) => '中斷與 ${service} 的連線？';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor 將停止更新 ${service}。您可以隨時重新連線。';
 	@override String connectFailed({required Object service}) => '無法連線至 ${service}。請重試。';
 	@override late final _Translations$services$names$zh_Hant names = _Translations$services$names$zh_Hant._(_root);
 	@override late final _Translations$services$deviceCode$zh_Hant deviceCode = _Translations$services$deviceCode$zh_Hant._(_root);
@@ -1644,7 +1640,6 @@ class _Translations$services$names$zh_Hant extends Translations$services$names$z
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2755,12 +2750,7 @@ extension on TranslationsZhHant {
 			'services.hubSubtitle' => '同步觀看進度並請求新內容。',
 			'services.notConnected' => '未連線',
 			'services.connectedAs' => ({required Object username}) => '已以 @${username} 身分連線',
-			'services.scrobble' => '自動同步播放進度',
-			'services.scrobbleDescription' => '觀賞完一集或一部電影後自動更新您的外部列表。',
-			'services.disconnectConfirm' => ({required Object service}) => '中斷與 ${service} 的連線？',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor 將停止更新 ${service}。您可以隨時重新連線。',
 			'services.connectFailed' => ({required Object service}) => '無法連線至 ${service}。請重試。',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => '在 ${service} 啟用 Harbor',
 			'services.deviceCode.body' => ({required Object url}) => '請前往 ${url} 並輸入此代碼：',

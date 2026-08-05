@@ -1011,7 +1011,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "simkl": "",
       "mal": "",
       "anilist": "",
       "trakt": "",
@@ -1427,13 +1426,8 @@
     "hubSubtitle": "Sincroniza tu progreso de visualización y solicita nuevos títulos.",
     "notConnected": "No conectado",
     "connectedAs": "Conectado como @${username}",
-    "scrobble": "Registrar progreso automáticamente",
-    "scrobbleDescription": "Actualiza tu lista cuando termines un episodio o película.",
-    "disconnectConfirm": "¿Desconectar ${service}?",
-    "disconnectConfirmBody": "Harbor dejará de actualizar ${service}. Reconecta cuando quieras.",
     "connectFailed": "No se pudo conectar a ${service}. Inténtalo de nuevo.",
     "names": {
-      "simkl": "Simkl",
       "seerr": "Seerr"
     },
     "deviceCode": {

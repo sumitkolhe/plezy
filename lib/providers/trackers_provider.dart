@@ -4,9 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/trackers/device_code.dart';
-import '../services/trackers/simkl/simkl_auth_service.dart';
-import '../services/trackers/simkl/simkl_client.dart';
-import '../services/trackers/simkl/simkl_tracker.dart';
 import '../services/trackers/trakt/trakt_auth_service.dart';
 import '../services/trackers/trakt/trakt_client.dart';
 import '../services/trackers/trakt/trakt_tracker.dart';
@@ -28,10 +25,9 @@ typedef TrackerSessionConnectPipeline =
       required void Function(TrackerSession enriched) assign,
     });
 
-/// Owns the active MAL / AniList / Simkl / Trakt sessions for the
-/// currently-selected Plex profile. Single rebind seam:
-/// [onActiveProfileChanged] loads all four sessions from their stores and
-/// pushes them to their trackers.
+/// Owns the active Trakt session for the currently-selected profile. Single
+/// rebind seam: [onActiveProfileChanged] loads the session from its store and
+/// pushes it to the tracker.
 class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin {
   /// [httpClientFactory] must return a fresh client for each eager auth owner.
   /// Every returned client is closed when this provider is disposed.
@@ -45,24 +41,17 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   }) : this._(connectPipeline, httpClientFactory);
 
   TrackersProvider._(this._connectPipeline, http.Client Function()? httpClientFactory)
-    : _simklAuth = httpClientFactory == null ? SimklAuthService() : SimklAuthService(httpClient: httpClientFactory()),
-      _traktAuth = httpClientFactory == null ? TraktAuthService() : TraktAuthService(httpClient: httpClientFactory());
+    : _traktAuth = httpClientFactory == null ? TraktAuthService() : TraktAuthService(httpClient: httpClientFactory());
 
   final TrackerSessionConnectPipeline _connectPipeline;
-  final SimklAuthService _simklAuth;
   final TraktAuthService _traktAuth;
 
-  final _TrackerSlot _simkl = _TrackerSlot(
-    TrackerService.simkl,
-    (session, {required onInvalidated, onUpdated}) =>
-        SimklTracker.instance.rebindSession(session, onSessionInvalidated: onInvalidated),
-  );
   final _TrackerSlot _trakt = _TrackerSlot(
     TrackerService.trakt,
     (session, {required onInvalidated, onUpdated}) =>
         TraktTracker.instance.rebindSession(session, onSessionInvalidated: onInvalidated, onSessionUpdated: onUpdated),
   );
-  late final List<_TrackerSlot> _slots = [_simkl, _trakt];
+  late final List<_TrackerSlot> _slots = [_trakt];
 
   String _activeUserUuid = '';
   int _profileBindingGeneration = 0;
@@ -70,10 +59,8 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   Completer<void>? _cancelCompleter;
   int _connectGeneration = 0;
 
-  TrackerSession? get simkl => _simkl.session;
   TrackerSession? get trakt => _trakt.session;
 
-  bool get isSimklConnected => _simkl.session != null;
   bool get isTraktConnected => _trakt.session != null;
 
   /// The live Trakt client for the Explore catalog, shared with the tracker so
@@ -82,11 +69,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   /// profile-bound session.
   TraktClient? get traktCatalogClient => _trakt.session == null ? null : TraktTracker.instance.client;
 
-  /// Gated on this provider's profile-bound session so a fresh profile
-  /// subtree cannot observe a client still bound to the prior profile.
-  SimklClient? get simklCatalogClient => _simkl.session == null ? null : SimklTracker.instance.client;
-
-  String? get simklUsername => _simkl.session?.username;
   String? get traktUsername => _trakt.session?.username;
 
   bool isConnecting(TrackerService service) => _connecting == service;
@@ -136,18 +118,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     unawaited(TrackerCoordinator.instance.flushWriteQueue());
     safeNotifyListeners();
   }
-
-  Future<bool> connectSimkl({required void Function(DeviceCode code) onCodeReady}) => _runConnect(
-    _simkl,
-    authorize: () => _simklAuth.authorize(
-      onCodeReady: onCodeReady,
-      shouldCancel: _isConnectCancelled,
-      onCancel: _cancelCompleter!.future,
-    ),
-    enrich: _enrichSimkl,
-  );
-
-  Future<void> disconnectSimkl() => _clearAndRebind(_simkl);
 
   Future<bool> connectTrakt({required void Function(DeviceCode code) onCodeReady}) => _runConnect(
     _trakt,
@@ -253,16 +223,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
     return !isDisposed && userUuid == _activeUserUuid && generation == _profileBindingGeneration;
   }
 
-  Future<TrackerSession> _enrichSimkl(TrackerSession raw) => enrichTrackerSessionUsername(
-    session: raw,
-    failureMessage: 'Simkl: getUserSettings failed (non-fatal)',
-    createClient: () => SimklClient(raw, onSessionInvalidated: () {}),
-    fetchUsername: (client) async {
-      final userObj = (await client.getUserSettings())?['user'];
-      return userObj is Map ? userObj['name'] as String? : null;
-    },
-  );
-
   Future<TrackerSession> _enrichTrakt(TrackerSession raw) => enrichTrackerSessionUsername(
     session: raw,
     failureMessage: 'Trakt: getUserSettings failed (non-fatal)',
@@ -300,7 +260,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
   @override
   void dispose() {
     _invalidateConnect();
-    _simklAuth.dispose();
     _traktAuth.dispose();
     super.dispose();
   }

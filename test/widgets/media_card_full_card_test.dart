@@ -214,10 +214,10 @@ void main() {
 
   testWidgets('windowed viewers render only when their period is present', (tester) async {
     final withoutPeriod = CatalogItem(
-      source: CatalogSourceId.simkl,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'No Viewer Window',
-      ids: const CatalogItemIds(simkl: 1),
+      ids: const CatalogItemIds(trakt: 1),
       audience: const CatalogAudience(viewers: 37),
     ).toMediaItem();
 
@@ -225,10 +225,10 @@ void main() {
     expect(find.textContaining('37'), findsNothing);
 
     final withPeriod = CatalogItem(
-      source: CatalogSourceId.simkl,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'Viewer Window',
-      ids: const CatalogItemIds(simkl: 1),
+      ids: const CatalogItemIds(trakt: 1),
       audience: const CatalogAudience(viewers: 37, viewersPeriod: CatalogAudiencePeriod.week),
     ).toMediaItem();
     await tester.pumpWidget(_catalogGridHarness(withPeriod, key: const ValueKey('viewer-card')));
@@ -325,10 +325,10 @@ void main() {
 
   testWidgets('recommendation badge prefers a user count and falls back to viewer percentage', (tester) async {
     final withCount = CatalogItem(
-      source: CatalogSourceId.simkl,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.movie,
       title: 'Counted Recommendation',
-      ids: const CatalogItemIds(simkl: 1),
+      ids: const CatalogItemIds(trakt: 1),
       recommendationCount: 19,
       recommendationPercent: 0.42,
     ).toMediaItem();
@@ -338,10 +338,10 @@ void main() {
     expect(find.text(t.explore.detail.recommendedByPercent(percent: '42%')), findsNothing);
 
     final withPercent = CatalogItem(
-      source: CatalogSourceId.simkl,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.movie,
       title: 'Percentage Recommendation',
-      ids: const CatalogItemIds(simkl: 2),
+      ids: const CatalogItemIds(trakt: 2),
       recommendationPercent: 0.42,
     ).toMediaItem();
     await tester.pumpWidget(_catalogGridHarness(withPercent, key: const ValueKey('recommendation-card')));

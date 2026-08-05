@@ -16,8 +16,8 @@ class RatingInfo {
 /// Tomatoes picks fresh/rotten and upright/spilled by the 60% threshold the
 /// tomatometer itself uses.
 ///
-/// Returns null for keys with no brand badge (`critic`, `audience`, `simkl`,
-/// `mal`, `anilist`, `trakt`); those stay labelled with their source name.
+/// Returns null for keys with no brand badge (`critic`, `audience`, `trakt`);
+/// those stay labelled with their source name.
 RatingInfo? catalogRatingInfo(String source, double value) => switch (source) {
   'imdb' => RatingInfo(_imdbAsset, value.toStringAsFixed(1)),
   'tmdb' => RatingInfo(_tmdbAsset, _percent(value)),

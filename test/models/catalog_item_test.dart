@@ -15,7 +15,6 @@ void main() {
         slug: 'title',
         mal: 5,
         anilist: 6,
-        simkl: 7,
         imdb: 'tt123',
         tmdb: 2,
         tvdb: 3,
@@ -30,14 +29,12 @@ void main() {
         'slug': 'title',
         'mal': 5,
         'anilist': 6,
-        'simkl': 7,
         'imdb': 'tt123',
         'tmdb': 2,
         'tvdb': 3,
       });
       expect(decoded.plex, 'plex-4');
       expect(decoded.anilist, 6);
-      expect(decoded.simkl, 7);
       expect(decoded.hasAny, isTrue);
     });
 
@@ -48,7 +45,6 @@ void main() {
         slug: 'title',
         mal: 5,
         anilist: 6,
-        simkl: 7,
         imdb: 'tt123',
         tmdb: 2,
         tvdb: 3,
@@ -61,14 +57,12 @@ void main() {
         'tvdb:3',
         'mal:5',
         'anilist:6',
-        'simkl:7',
         'plex:plex-4',
         'trakt:8',
         'slug:title',
       ]);
-      expect(const CatalogItemIds(mal: 5, anilist: 6, simkl: 7).canonicalKey, 'mal:5');
-      expect(const CatalogItemIds(anilist: 6, simkl: 7).canonicalKey, 'anilist:6');
-      expect(const CatalogItemIds(simkl: 7, trakt: 8).canonicalKey, 'simkl:7');
+      expect(const CatalogItemIds(mal: 5, anilist: 6).canonicalKey, 'mal:5');
+      expect(const CatalogItemIds(anilist: 6, trakt: 8).canonicalKey, 'anilist:6');
       expect(const CatalogItemIds(plex: 'plex-4', trakt: 8).canonicalKey, 'plex:plex-4');
     });
     test('entryKey identifies the entry, not the series it shares with its seasons', () {
@@ -140,21 +134,21 @@ void main() {
     });
 
     test('enrichedWith unions audience counters instead of replacing them', () {
-      // A Simkl trending row supplies windowed viewers and planning; its
-      // detail body supplies only a drop rate. Replacing the object wholesale
-      // silently dropped the row's counters.
+      // A trending row supplies windowed viewers and planning; the detail body
+      // supplies only a drop rate. Replacing the object wholesale silently
+      // dropped the row's counters.
       const row = CatalogItem(
-        source: CatalogSourceId.simkl,
+        source: CatalogSourceId.trakt,
         kind: MediaKind.show,
         title: 'House of the Dragon',
-        ids: CatalogItemIds(simkl: 1197910),
+        ids: CatalogItemIds(trakt: 1197910),
         audience: CatalogAudience(viewers: 7603, viewersPeriod: CatalogAudiencePeriod.week, planning: 8422),
       );
       const detail = CatalogItem(
-        source: CatalogSourceId.simkl,
+        source: CatalogSourceId.trakt,
         kind: MediaKind.show,
         title: 'House of the Dragon',
-        ids: CatalogItemIds(simkl: 1197910),
+        ids: CatalogItemIds(trakt: 1197910),
         audience: CatalogAudience(dropRate: 0.031),
       );
 

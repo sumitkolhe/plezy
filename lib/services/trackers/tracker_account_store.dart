@@ -13,7 +13,6 @@ import 'tracker_session.dart';
 /// before a profile has been selected).
 class TrackerAccountStore {
   static final Map<TrackerService, TrackerAccountStore> _stores = {
-    TrackerService.simkl: TrackerAccountStore._(TrackerService.simkl, 'simkl_session'),
     TrackerService.trakt: TrackerAccountStore._(TrackerService.trakt, 'trakt_session'),
   };
 

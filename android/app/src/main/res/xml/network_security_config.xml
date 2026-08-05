@@ -20,11 +20,6 @@
         <!-- api.trakt.tv incl. /oauth/device/*, /oauth/token
              (lib/services/trackers/trakt/trakt_constants.dart). -->
         <domain includeSubdomains="true">trakt.tv</domain>
-        <!-- api.simkl.com + simkl.com/pin
-             (lib/services/trackers/simkl/simkl_constants.dart:21,33). -->
-        <domain includeSubdomains="true">simkl.com</domain>
-        <!-- data.simkl.in (lib/services/trackers/simkl/simkl_constants.dart:22). -->
-        <domain includeSubdomains="true">simkl.in</domain>
         <!-- TMDB artwork (lib/services/catalog/seerr_catalog_source.dart:163). -->
         <domain includeSubdomains="true">image.tmdb.org</domain>
         <trust-anchors>

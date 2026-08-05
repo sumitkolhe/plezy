@@ -100,17 +100,6 @@ void main() {
   // shape, and reject corrupt/truncated ones by throwing — TrackerAccountStore
   // swallows that into a clean re-auth rather than loading a broken session.
   group('persisted session validation', () {
-    test('decodes a legacy Simkl blob (no scope/refresh/expiry)', () {
-      final raw = encodeTrackerSessionJson({'access_token': 'simkl-at', 'username': 'carol', 'created_at': 1000});
-
-      final session = TrackerSession.decode(raw, service: TrackerService.simkl);
-
-      expect(session.accessToken, 'simkl-at');
-      expect(session.username, 'carol');
-      expect(session.refreshToken, isNull);
-      expect(session.expiresAt, isNull);
-    });
-
     test('decodes a legacy Trakt blob and defaults the scope', () {
       final raw = encodeTrackerSessionJson({
         'access_token': 'trakt-at',
@@ -166,12 +155,6 @@ void main() {
           reason: '${service.name} must require an expiry',
         );
       });
-    });
-
-    test('Simkl accepts a blob with neither expiry nor refresh token', () {
-      final raw = encodeTrackerSessionJson({'access_token': 'at', 'created_at': 1000});
-
-      expect(TrackerSession.decode(raw, service: TrackerService.simkl).accessToken, 'at');
     });
   });
 }

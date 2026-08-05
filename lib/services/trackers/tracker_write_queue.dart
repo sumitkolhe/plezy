@@ -110,7 +110,7 @@ enum TrackerWriteDisposition {
 /// Ordering here is intent-based, not temporal, because a tracker write is not
 /// an increment:
 ///
-/// * A per-item history write (Simkl, Trakt) states "this item is watched" or
+/// * A per-item history write (Trakt) states "this item is watched" or
 ///   "is not". The newest statement about an item replaces any queued one, so a
 ///   failed watched write can never replay on top of a later successful
 ///   un-watch.

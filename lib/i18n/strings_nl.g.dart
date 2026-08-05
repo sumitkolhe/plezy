@@ -1418,10 +1418,6 @@ class _Translations$services$nl extends Translations$services$en {
 	@override String get hubSubtitle => 'Synchroniseer kijkvoortgang en vraag nieuwe titels aan.';
 	@override String get notConnected => 'Niet verbonden';
 	@override String connectedAs({required Object username}) => 'Verbonden als @${username}';
-	@override String get scrobble => 'Voortgang automatisch volgen';
-	@override String get scrobbleDescription => 'Werk je lijst bij wanneer je een aflevering of film afrondt.';
-	@override String disconnectConfirm({required Object service}) => '${service} loskoppelen?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.';
 	@override String connectFailed({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.';
 	@override late final _Translations$services$names$nl names = _Translations$services$names$nl._(_root);
 	@override late final _Translations$services$deviceCode$nl deviceCode = _Translations$services$deviceCode$nl._(_root);
@@ -1646,7 +1642,6 @@ class _Translations$services$names$nl extends Translations$services$names$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2757,12 +2752,7 @@ extension on TranslationsNl {
 			'services.hubSubtitle' => 'Synchroniseer kijkvoortgang en vraag nieuwe titels aan.',
 			'services.notConnected' => 'Niet verbonden',
 			'services.connectedAs' => ({required Object username}) => 'Verbonden als @${username}',
-			'services.scrobble' => 'Voortgang automatisch volgen',
-			'services.scrobbleDescription' => 'Werk je lijst bij wanneer je een aflevering of film afrondt.',
-			'services.disconnectConfirm' => ({required Object service}) => '${service} loskoppelen?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor werkt ${service} niet meer bij. Je kunt op elk moment opnieuw verbinding maken.',
 			'services.connectFailed' => ({required Object service}) => 'Verbinding maken met ${service} is mislukt. Probeer het opnieuw.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor activeren op ${service}',
 			'services.deviceCode.body' => ({required Object url}) => 'Ga naar ${url} en voer deze code in:',

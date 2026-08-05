@@ -1429,10 +1429,6 @@ class _Translations$services$kk extends Translations$services$en {
 	@override String get hubSubtitle => 'Көру барысын синхрондаңыз және жаңа мазмұн сұраңыз.';
 	@override String get notConnected => 'Қосылмаған';
 	@override String connectedAs({required Object username}) => '@${username} ретінде қосылды';
-	@override String get scrobble => 'Барысты автоматты бақылау';
-	@override String get scrobbleDescription => 'Тізіміңізді автоматты түрде жаңартыңыз.';
-	@override String disconnectConfirm({required Object service}) => '${service} ажыратылсын ба?';
-	@override String disconnectConfirmBody({required Object service}) => 'Harbor ${service} жаңартуды тоқтатады.';
 	@override String connectFailed({required Object service}) => '${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.';
 	@override late final _Translations$services$names$kk names = _Translations$services$names$kk._(_root);
 	@override late final _Translations$services$deviceCode$kk deviceCode = _Translations$services$deviceCode$kk._(_root);
@@ -1657,7 +1653,6 @@ class _Translations$services$names$kk extends Translations$services$names$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get simkl => 'Simkl';
 	@override String get seerr => 'Seerr';
 }
 
@@ -2779,12 +2774,7 @@ extension on TranslationsKk {
 			'services.hubSubtitle' => 'Көру барысын синхрондаңыз және жаңа мазмұн сұраңыз.',
 			'services.notConnected' => 'Қосылмаған',
 			'services.connectedAs' => ({required Object username}) => '@${username} ретінде қосылды',
-			'services.scrobble' => 'Барысты автоматты бақылау',
-			'services.scrobbleDescription' => 'Тізіміңізді автоматты түрде жаңартыңыз.',
-			'services.disconnectConfirm' => ({required Object service}) => '${service} ажыратылсын ба?',
-			'services.disconnectConfirmBody' => ({required Object service}) => 'Harbor ${service} жаңартуды тоқтатады.',
 			'services.connectFailed' => ({required Object service}) => '${service} қосылу мүмкін болмады. Қайтадан байқап көріңіз.',
-			'services.names.simkl' => 'Simkl',
 			'services.names.seerr' => 'Seerr',
 			'services.deviceCode.title' => ({required Object service}) => 'Harbor-ді ${service} қызметінде белсендіру',
 			'services.deviceCode.body' => ({required Object url}) => '${url} мекенжайына өтіп, осы кодты енгізіңіз:',

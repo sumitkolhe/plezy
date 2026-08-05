@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 
 /// One page of a paginated tracker response, parsed from the `X-Pagination-*`
-/// headers. Shared by the services that paginate that way (Trakt, Simkl); MAL
-/// paginates in the body and uses [MalPage] instead.
+/// headers, as Trakt does. A service that paginates in its body needs its own
+/// shape instead.
 class TrackerPage<T> {
   final List<T> items;
   final int page;

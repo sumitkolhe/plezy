@@ -135,12 +135,12 @@ void main() {
   test('series progress coalescing retains the greatest monotonic claim', () async {
     final queue = TrackerWriteQueue();
     final ctx = _episode();
-    final key = trackerSeriesCoalesceKey(TrackerService.simkl, 42);
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 5));
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 6));
+    final key = trackerSeriesCoalesceKey(TrackerService.trakt, 42);
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.trakt, progressClaim: 5));
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.trakt, progressClaim: 6));
     expect((await queue.load('user-a')).single.progressClaim, 6);
 
-    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.simkl, progressClaim: 5));
+    await queue.enqueue('user-a', _item(ctx: ctx, coalesceKey: key, service: TrackerService.trakt, progressClaim: 5));
     final remaining = await queue.load('user-a');
     expect(remaining, hasLength(1));
     expect(remaining.single.progressClaim, 6);

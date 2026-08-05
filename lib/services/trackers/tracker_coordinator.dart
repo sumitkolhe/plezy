@@ -7,7 +7,6 @@ import '../../media/playback_timeline.dart';
 import '../../models/trackers/tracker_context.dart';
 import '../../utils/app_logger.dart';
 import '../../media/episode_collection.dart';
-import 'simkl/simkl_tracker.dart';
 import 'tracker.dart';
 import 'tracker_constants.dart';
 import 'tracker_exceptions.dart';
@@ -19,7 +18,7 @@ import 'trakt/trakt_tracker.dart';
 ///
 /// Three mechanisms, chosen per tracker kind:
 ///
-/// * [RealtimeScrobbleTracker]s (Simkl, Trakt) receive the playback lifecycle —
+/// * [RealtimeScrobbleTracker]s (Trakt) receive the playback lifecycle —
 ///   start/resume, pause, seek, stop — with the current progress, and decide
 ///   watched state themselves. They are excluded from the threshold fan-out so
 ///   a single watch never produces two writes.
@@ -41,7 +40,7 @@ class TrackerCoordinator {
 
   /// The registry. Everything below partitions this list by capability rather
   /// than naming services, so adding one means adding it here and nowhere else.
-  late final List<Tracker> _trackers = [SimklTracker.instance, TraktTracker.instance];
+  late final List<Tracker> _trackers = [TraktTracker.instance];
 
   /// One transport per real-time tracker, created once and outliving individual
   /// playbacks: an episode swap stops the old item and starts the new one back
@@ -849,8 +848,8 @@ class _QueuedScrobble {
 /// One real-time tracker's report transport.
 ///
 /// Reports are serialised per tracker, not globally: a service may accept one
-/// write per user at a time (Simkl locks for 20 seconds and fails whatever
-/// queued up behind it), while another has no such rule and must not wait on it.
+/// write per user at a time and fails whatever queued up behind it, while
+/// another has no such rule and must not wait on it.
 class _ScrobbleChannel {
   _ScrobbleChannel(this.tracker);
 

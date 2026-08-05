@@ -6,8 +6,8 @@ import 'package:harbor/services/trackers/tracker_http_client.dart';
 
 TrackerHttpClient _client(void Function(http.Request) capture) {
   return TrackerHttpClient(
-    service: TrackerService.simkl,
-    logLabel: 'Simkl',
+    service: TrackerService.trakt,
+    logLabel: 'Trakt',
     httpClient: MockClient((request) async {
       capture(request);
       return http.Response('{}', 200);

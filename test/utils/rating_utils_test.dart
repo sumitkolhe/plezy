@@ -42,7 +42,7 @@ void main() {
 
   group('catalogRatingInfo - unbranded sources', () {
     test('sources with no badge return null so the caller labels them by name', () {
-      for (final source in ['critic', 'audience', 'simkl', 'mal', 'anilist', 'trakt', '']) {
+      for (final source in ['critic', 'audience', 'mal', 'anilist', 'trakt', '']) {
         expect(catalogRatingInfo(source, 7.0), isNull, reason: source);
       }
     });
