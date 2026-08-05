@@ -761,7 +761,11 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       // loadItems, so handheld reaches this by pulling. The button stays on
       // TV/desktop, where it also refreshes every visible tab at once.
       if (!PlatformDetector.isHandheld(context))
-        FocusableAction(icon: PhosphorIcons.arrowsClockwise, tooltip: t.common.refresh, onPressed: _refreshSelectedLibraryTabs),
+        FocusableAction(
+          icon: PhosphorIcons.arrowsClockwise,
+          tooltip: t.common.refresh,
+          onPressed: _refreshSelectedLibraryTabs,
+        ),
     ];
 
     Widget appBar({required bool floating}) => DesktopSliverAppBar(

@@ -141,11 +141,7 @@ class ManagedServicesProvider extends ChangeNotifier with DisposableChangeNotifi
   ArrClient? arrClient(String id) {
     final connection = _connections.firstWhere((c) => c.id == id, orElse: _missing);
     if (connection.baseUrl.isEmpty || connection.kind == ManagedServiceKind.qbittorrent) return null;
-    return _arrClients[id] ??= ArrClient(
-      kind: connection.kind,
-      baseUrl: connection.baseUrl,
-      apiKey: connection.secret,
-    );
+    return _arrClients[id] ??= ArrClient(kind: connection.kind, baseUrl: connection.baseUrl, apiKey: connection.secret);
   }
 
   QbittorrentClient? qbittorrentClient(String id) {

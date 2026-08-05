@@ -61,7 +61,12 @@ class ArrRelease {
       // `rejected` is absent on some indexer responses; a non-empty rejection
       // list is the reliable signal.
       rejected: json['rejected'] == true || (rejections is List && rejections.isNotEmpty),
-      rejections: rejections is List ? [for (final r in rejections) if (r is String) r] : const [],
+      rejections: rejections is List
+          ? [
+              for (final r in rejections)
+                if (r is String) r,
+            ]
+          : const [],
     );
   }
 }

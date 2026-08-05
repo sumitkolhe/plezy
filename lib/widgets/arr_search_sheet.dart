@@ -128,9 +128,7 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 20),
             child: Column(
               crossAxisAlignment: .stretch,
-              children: [
-                if (_releases == null) ..._buildChoices(context) else ..._buildResults(context),
-              ],
+              children: [if (_releases == null) ..._buildChoices(context) else ..._buildResults(context)],
             ),
           ),
         ),
@@ -141,7 +139,10 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
   List<Widget> _buildChoices(BuildContext context) {
     if (_searching) {
       return [
-        const Padding(padding: EdgeInsets.symmetric(vertical: 26), child: Center(child: LoadingIndicatorBox(size: 24))),
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 26),
+          child: Center(child: LoadingIndicatorBox(size: 24)),
+        ),
         Text(
           t.arrSearch.searching,
           textAlign: .center,
@@ -171,10 +172,7 @@ class _ArrSearchSheetState extends State<_ArrSearchSheet> {
       ),
       if (_failed) ...[
         const SizedBox(height: 14),
-        Text(
-          t.arrSearch.failed,
-          style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.error),
-        ),
+        Text(t.arrSearch.failed, style: TextStyle(fontSize: 13, color: Theme.of(context).colorScheme.error)),
       ],
     ];
   }
@@ -240,7 +238,10 @@ class _Choice extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: .start,
                   children: [
-                    Text(title, style: TextStyle(fontSize: 14, fontWeight: .w600, color: tokensRef.text)),
+                    Text(
+                      title,
+                      style: TextStyle(fontSize: 14, fontWeight: .w600, color: tokensRef.text),
+                    ),
                     const SizedBox(height: 2),
                     Text(subtitle, style: TextStyle(fontSize: 12, color: tokensRef.textMuted, height: 1.3)),
                   ],

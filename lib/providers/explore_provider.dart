@@ -25,11 +25,7 @@ class ExploreRowHub {
     : providerHubId = null,
       style = null;
 
-  const ExploreRowHub.providerHub({
-    required String this.providerHubId,
-    required this.hub,
-    this.style,
-  }) : row = null;
+  const ExploreRowHub.providerHub({required String this.providerHubId, required this.hub, this.style}) : row = null;
 }
 
 /// Owns the Explore tab's fixed rows and provider-defined hubs, converted to

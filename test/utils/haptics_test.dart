@@ -97,7 +97,10 @@ void main() {
             child: SizedBox(
               width: 120,
               height: 180,
-              child: MediaCard(item: testMediaItem(id: 'm1', title: 'Poster'), onTap: () => taps++),
+              child: MediaCard(
+                item: testMediaItem(id: 'm1', title: 'Poster'),
+                onTap: () => taps++,
+              ),
             ),
           ),
         ),

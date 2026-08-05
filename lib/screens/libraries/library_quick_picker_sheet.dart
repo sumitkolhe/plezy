@@ -42,10 +42,7 @@ class LibraryQuickPickerSheet extends StatelessWidget {
       final nonUniqueNames = _getNonUniqueLibraryNames();
       return [
         for (final library in libraries)
-          _libraryEntry(
-            library,
-            showServerName: library.serverName != null && nonUniqueNames.contains(library.title),
-          ),
+          _libraryEntry(library, showServerName: library.serverName != null && nonUniqueNames.contains(library.title)),
       ];
     }
 

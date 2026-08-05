@@ -810,20 +810,12 @@ class _DownloadTreeItemState extends State<_DownloadTreeItem> {
 
     // Pause button for downloading items
     if (status == DownloadStatus.downloading && widget.onPause != null) {
-      actions.add((
-        icon: PhosphorIcons.pause,
-        tooltip: t.common.pause,
-        onPressed: () => widget.onPause!(globalKey),
-      ));
+      actions.add((icon: PhosphorIcons.pause, tooltip: t.common.pause, onPressed: () => widget.onPause!(globalKey)));
     }
 
     // Resume button for paused items
     if (status == DownloadStatus.paused && widget.onResume != null) {
-      actions.add((
-        icon: PhosphorIcons.play,
-        tooltip: t.common.resume,
-        onPressed: () => widget.onResume!(globalKey),
-      ));
+      actions.add((icon: PhosphorIcons.play, tooltip: t.common.resume, onPressed: () => widget.onResume!(globalKey)));
     }
 
     if ((status == DownloadStatus.downloading || status == DownloadStatus.queued) && widget.onCancel != null) {

@@ -199,13 +199,14 @@ class ArrItemLookup {
       try {
         final data = await client.get('/episode', query: {'seriesId': '$seriesId'});
         if (data is! List) return const <ArrEpisode>[];
-        final episodes = [
-          for (final entry in data)
-            if (entry is Map<String, dynamic>) ?ArrEpisode.fromJson(entry),
-        ]..sort((a, b) {
-          final bySeason = a.seasonNumber.compareTo(b.seasonNumber);
-          return bySeason != 0 ? bySeason : a.episodeNumber.compareTo(b.episodeNumber);
-        });
+        final episodes =
+            [
+              for (final entry in data)
+                if (entry is Map<String, dynamic>) ?ArrEpisode.fromJson(entry),
+            ]..sort((a, b) {
+              final bySeason = a.seasonNumber.compareTo(b.seasonNumber);
+              return bySeason != 0 ? bySeason : a.episodeNumber.compareTo(b.episodeNumber);
+            });
         _episodeCache[key] = episodes;
         return episodes;
       } catch (e) {

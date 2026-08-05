@@ -60,7 +60,9 @@ void main() {
 
     test('keeps a usenet grab that no torrent can match', () {
       final transfers = joinTransfers(
-        queued: [(item: _arr(downloadId: 'SABnzbd_nzo_1a2b', protocol: 'usenet'), sourceName: 'Radarr', sourceId: 'Radarr')],
+        queued: [
+          (item: _arr(downloadId: 'SABnzbd_nzo_1a2b', protocol: 'usenet'), sourceName: 'Radarr', sourceId: 'Radarr'),
+        ],
         torrents: [_torrent(hash: 'unrelated')],
       );
 
@@ -71,7 +73,10 @@ void main() {
     });
 
     test('keeps a torrent no *arr claimed', () {
-      final transfers = joinTransfers(queued: const [], torrents: [_torrent(name: 'something.by.hand')]);
+      final transfers = joinTransfers(
+        queued: const [],
+        torrents: [_torrent(name: 'something.by.hand')],
+      );
 
       expect(transfers.single.queued, isNull);
       expect(transfers.single.title, 'something.by.hand');
@@ -109,8 +114,16 @@ void main() {
       final transfers = joinTransfers(
         queued: [
           (item: _arr(downloadId: '1', title: 'Zulu', tracked: 'imported'), sourceName: 'Radarr', sourceId: 'Radarr'),
-          (item: _arr(downloadId: '2', title: 'Alpha', tracked: 'importPending'), sourceName: 'Radarr', sourceId: 'Radarr'),
-          (item: _arr(downloadId: '3', title: 'Mike', status: 'queued', tracked: ''), sourceName: 'Radarr', sourceId: 'Radarr'),
+          (
+            item: _arr(downloadId: '2', title: 'Alpha', tracked: 'importPending'),
+            sourceName: 'Radarr',
+            sourceId: 'Radarr',
+          ),
+          (
+            item: _arr(downloadId: '3', title: 'Mike', status: 'queued', tracked: ''),
+            sourceName: 'Radarr',
+            sourceId: 'Radarr',
+          ),
           (item: _arr(downloadId: '4', title: 'Bravo', tracked: 'failed'), sourceName: 'Radarr', sourceId: 'Radarr'),
         ],
         torrents: const [],
@@ -128,12 +141,16 @@ void main() {
 
   group('stage', () {
     test('a completed transfer whose import is pending is importing, not done', () {
-      final transfer = ServerTransfer(queued: _arr(status: 'completed', tracked: 'importPending'));
+      final transfer = ServerTransfer(
+        queued: _arr(status: 'completed', tracked: 'importPending'),
+      );
       expect(transfer.stage, TransferStage.importing);
     });
 
     test('failure wins over a completed transfer', () {
-      final transfer = ServerTransfer(queued: _arr(status: 'completed', tracked: 'failed', error: 'Unpack failed'));
+      final transfer = ServerTransfer(
+        queued: _arr(status: 'completed', tracked: 'failed', error: 'Unpack failed'),
+      );
       expect(transfer.stage, TransferStage.failed);
       expect(transfer.errorMessage, 'Unpack failed');
     });

@@ -139,9 +139,7 @@ class _RequestedCard extends StatelessWidget {
                           const SizedBox(width: 5),
                           Expanded(
                             child: Text(
-                              progress == null
-                                  ? t.serverActivity.notInLibrary
-                                  : '${(progress * 100).round()}%',
+                              progress == null ? t.serverActivity.notInLibrary : '${(progress * 100).round()}%',
                               style: const TextStyle(fontSize: 10.5, fontWeight: .w600, color: Colors.white),
                               maxLines: 1,
                               overflow: .ellipsis,
@@ -174,11 +172,7 @@ class _RequestedCard extends StatelessWidget {
             maxLines: 1,
             overflow: .ellipsis,
           ),
-          if (title.year case final year?)
-            Text(
-              '$year',
-              style: TextStyle(fontSize: 11.5, color: tokensRef.textMuted),
-            ),
+          if (title.year case final year?) Text('$year', style: TextStyle(fontSize: 11.5, color: tokensRef.textMuted)),
         ],
       ),
     );

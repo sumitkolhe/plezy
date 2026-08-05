@@ -12,7 +12,10 @@ void main() {
         home: Scaffold(
           body: Align(
             alignment: Alignment.topLeft,
-            child: SizedBox(width: width, child: CatalogTagWrap(labels: labels)),
+            child: SizedBox(
+              width: width,
+              child: CatalogTagWrap(labels: labels),
+            ),
           ),
         ),
       ),
@@ -35,7 +38,9 @@ void main() {
     expect(find.text('+${labels.length - shown}'), findsOneWidget);
 
     // Two rows, so exactly two distinct vertical offsets.
-    final tops = {for (final chip in find.byType(StatChip).evaluate()) tester.getTopLeft(find.byWidget(chip.widget)).dy};
+    final tops = {
+      for (final chip in find.byType(StatChip).evaluate()) tester.getTopLeft(find.byWidget(chip.widget)).dy,
+    };
     expect(tops, hasLength(2));
   });
 

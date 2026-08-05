@@ -146,8 +146,7 @@ class _FolderTreeItemState extends State<FolderTreeItem> with ContextMenuTapMixi
   /// would offer actions that don't apply to them.
   Future<void> _showFolderMenu() async {
     final entries = <AppMenuEntry<String>>[
-      if (widget.onPlayAll != null)
-        AppMenuItem<String>(value: 'play', icon: PhosphorIcons.play, label: t.common.play),
+      if (widget.onPlayAll != null) AppMenuItem<String>(value: 'play', icon: PhosphorIcons.play, label: t.common.play),
       if (widget.onShuffle != null)
         AppMenuItem<String>(value: 'shuffle', icon: PhosphorIcons.shuffle, label: t.common.shuffle),
     ];

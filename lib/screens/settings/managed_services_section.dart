@@ -57,9 +57,7 @@ class ManagedServicesSection extends StatelessWidget {
       ],
     );
     if (kind == null || !context.mounted) return;
-    await Navigator.of(context).push(
-      MaterialPageRoute<void>(builder: (_) => ManagedServiceConnectScreen(kind: kind)),
-    );
+    await Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => ManagedServiceConnectScreen(kind: kind)));
   }
 }
 
@@ -93,7 +91,11 @@ class _InstanceRow extends StatelessWidget {
       trailing: Row(
         mainAxisSize: .min,
         children: [
-          Container(width: 7, height: 7, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+          Container(
+            width: 7,
+            height: 7,
+            decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+          ),
           const SizedBox(width: 7),
           Text(
             managedServiceHealthLabel(health),

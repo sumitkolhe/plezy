@@ -13,11 +13,7 @@ typedef SeasonGap = ({List<ArrEpisode> missing, List<ArrEpisode> upcoming});
 /// Matched on episode number within the season, because that is the only key
 /// both sides agree on: Jellyfin item ids mean nothing to Sonarr, and titles
 /// differ by provider and language.
-SeasonGap seasonGap({
-  required List<ArrEpisode> known,
-  required Set<int> presentEpisodeNumbers,
-  required int season,
-}) {
+SeasonGap seasonGap({required List<ArrEpisode> known, required Set<int> presentEpisodeNumbers, required int season}) {
   final missing = <ArrEpisode>[];
   final upcoming = <ArrEpisode>[];
 

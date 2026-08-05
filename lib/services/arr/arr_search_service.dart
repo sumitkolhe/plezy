@@ -46,14 +46,20 @@ class ArrSearchService {
     final client = _services.arrClient(state.sourceId);
     if (client == null) return;
     await client.post('/command', switch (target) {
-      MovieSearch(:final movieId) => {'name': 'MoviesSearch', 'movieIds': [movieId]},
+      MovieSearch(:final movieId) => {
+        'name': 'MoviesSearch',
+        'movieIds': [movieId],
+      },
       SeriesSearch(:final seriesId) => {'name': 'SeriesSearch', 'seriesId': seriesId},
       SeasonSearch(:final seriesId, :final seasonNumber) => {
         'name': 'SeasonSearch',
         'seriesId': seriesId,
         'seasonNumber': seasonNumber,
       },
-      EpisodeSearch(:final episodeId) => {'name': 'EpisodeSearch', 'episodeIds': [episodeId]},
+      EpisodeSearch(:final episodeId) => {
+        'name': 'EpisodeSearch',
+        'episodeIds': [episodeId],
+      },
     });
   }
 
@@ -68,10 +74,7 @@ class ArrSearchService {
       MovieSearch(:final movieId) => {'movieId': '$movieId'},
       EpisodeSearch(:final episodeId) => {'episodeId': '$episodeId'},
       SeriesSearch(:final seriesId) => {'seriesId': '$seriesId'},
-      SeasonSearch(:final seriesId, :final seasonNumber) => {
-        'seriesId': '$seriesId',
-        'seasonNumber': '$seasonNumber',
-      },
+      SeasonSearch(:final seriesId, :final seasonNumber) => {'seriesId': '$seriesId', 'seasonNumber': '$seasonNumber'},
     };
     final data = await client.get('/release', query: query);
     if (data is! List) return const [];

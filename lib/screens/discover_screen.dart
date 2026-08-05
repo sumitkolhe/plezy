@@ -639,7 +639,11 @@ class _DiscoverScreenState extends State<DiscoverScreen>
                 // same call is chrome the gesture already covers. TV and
                 // desktop keep it — neither has the gesture.
                 if (!PlatformDetector.isHandheld(context))
-                  FocusableAction(icon: PhosphorIcons.arrowsClockwise, iconColor: foregroundColor, onPressed: _discover.load),
+                  FocusableAction(
+                    icon: PhosphorIcons.arrowsClockwise,
+                    iconColor: foregroundColor,
+                    onPressed: _discover.load,
+                  ),
                 // Server Tasks — Plex-only (`/activities` API has no
                 // Jellyfin equivalent), hide the button entirely on
                 // Jellyfin-only profiles so the chrome doesn't show

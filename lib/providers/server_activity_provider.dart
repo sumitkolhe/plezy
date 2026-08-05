@@ -17,8 +17,7 @@ import 'managed_services_provider.dart';
 /// otherwise hammer a home server. Nothing polls until [addWatcher] is called,
 /// and polling stops when the last watcher leaves or the app backgrounds — a
 /// phone in a pocket has no reason to ask.
-class ServerActivityProvider extends ChangeNotifier
-    with DisposableChangeNotifierMixin, WidgetsBindingObserver {
+class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifierMixin, WidgetsBindingObserver {
   ServerActivityProvider(ManagedServicesProvider services, {ServerActivityService? service})
     : _service = service ?? ServerActivityService(services),
       _lookup = ArrItemLookup(services),
@@ -71,8 +70,7 @@ class ServerActivityProvider extends ChangeNotifier
   }
 
   /// Null until [resolveItem] has answered once.
-  List<ArrItemState>? itemState(ExternalIds ids, {required bool isSeries}) =>
-      _lookup.cached(ids, isSeries: isSeries);
+  List<ArrItemState>? itemState(ExternalIds ids, {required bool isSeries}) => _lookup.cached(ids, isSeries: isSeries);
 
   /// Cached and coalesced, so calling it repeatedly is free.
   Future<void> resolveItem(ExternalIds ids, {required bool isSeries}) async {

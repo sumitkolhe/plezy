@@ -357,9 +357,7 @@ void main() {
     await tester.sendKeyUpEvent(LogicalKeyboardKey.enter);
     await tester.pumpAndSettle();
 
-    final playMenuIcon = find.byWidgetPredicate(
-      (widget) => widget is AppIcon && widget.icon == PhosphorIcons.play,
-    );
+    final playMenuIcon = find.byWidgetPredicate((widget) => widget is AppIcon && widget.icon == PhosphorIcons.play);
     expect(playMenuIcon, findsOneWidget);
     final menuSurface = find.ancestor(of: playMenuIcon, matching: find.byType(BottomSheet));
     expect(menuSurface, findsOneWidget);

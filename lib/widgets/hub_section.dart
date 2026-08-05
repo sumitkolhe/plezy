@@ -55,7 +55,6 @@ class HubSection extends StatefulWidget {
   final bool showServerName;
   final Future<List<MediaItem>> Function()? loadMoreItems;
 
-
   /// Reports the current focused media item. Used by TV spotlight layouts.
   final ValueChanged<MediaItem>? onFocusedItemChanged;
 
@@ -463,8 +462,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
                           ),
                         ),
                       ],
-                      if (widget.hub.more && !isKeyboardMode)
-                        AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
+                      if (widget.hub.more && !isKeyboardMode) AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
                     ],
                   ),
                 ),

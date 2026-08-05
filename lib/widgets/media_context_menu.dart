@@ -105,7 +105,6 @@ class MediaContextMenu extends StatefulWidget {
   /// Extra entries appended after the standard actions.
   final List<MediaMenuExtraEntry> extraEntries;
 
-
   /// Names the item the actions apply to. Redundant where the screen is already
   /// about that one item, and its title is the heading above this menu.
   final bool showItemTitle;

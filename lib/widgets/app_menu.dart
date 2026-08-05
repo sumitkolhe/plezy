@@ -502,9 +502,7 @@ class _AppMenuItemTileState<T> extends State<AppMenuItemTile<T>> with FocusableT
                       color: background,
                       borderRadius: BorderRadius.circular(tokens(context).radiusSm),
                     ),
-                    constraints: BoxConstraints(
-                      minHeight: widget.density.rowHeight,
-                    ),
+                    constraints: BoxConstraints(minHeight: widget.density.rowHeight),
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: Row(
                       children: [

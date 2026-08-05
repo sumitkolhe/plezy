@@ -89,5 +89,4 @@ void main() {
 
     expect(score, 7);
   });
-
 }

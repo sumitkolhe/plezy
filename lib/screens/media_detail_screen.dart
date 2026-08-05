@@ -1929,8 +1929,7 @@ class _MediaDetailScreenState extends State<MediaDetailScreen>
         _serverInfoRows(metadata).isNotEmpty;
   }
 
-  List<String> _infoGenres(MediaItem metadata) =>
-      (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
+  List<String> _infoGenres(MediaItem metadata) => (metadata.genres ?? const <String>[]).take(_maxGenreGenres).toList();
 
   /// Focus the trailing info rows (studio / directors / contentRating) and scroll them into view.
   void _focusInfoRows() {
@@ -4454,7 +4453,5 @@ class _EpisodeSlot {
 
   const _EpisodeSlot.present(int this.presentIndex, this.episodeNumber) : missing = null;
 
-  _EpisodeSlot.missing(ArrEpisode this.missing)
-    : presentIndex = null,
-      episodeNumber = missing.episodeNumber;
+  _EpisodeSlot.missing(ArrEpisode this.missing) : presentIndex = null, episodeNumber = missing.episodeNumber;
 }

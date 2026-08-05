@@ -22,15 +22,7 @@ class BottomSheetHeader extends StatelessWidget {
   /// Renders a back arrow as the leading widget, ahead of [icon].
   final VoidCallback? onBack;
 
-  const BottomSheetHeader({
-    super.key,
-    this.title,
-    this.leading,
-    this.action,
-    this.icon,
-    this.iconColor,
-    this.onBack,
-  });
+  const BottomSheetHeader({super.key, this.title, this.leading, this.action, this.icon, this.iconColor, this.onBack});
 
   @override
   Widget build(BuildContext context) {

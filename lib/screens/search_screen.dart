@@ -274,7 +274,11 @@ class _SearchScreenState extends State<SearchScreen>
             else if (lastSearchFailed)
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: StateMessageWidget(message: t.explore.searchFailed, icon: PhosphorIcons.warningCircle, iconSize: 80),
+                child: StateMessageWidget(
+                  message: t.explore.searchFailed,
+                  icon: PhosphorIcons.warningCircle,
+                  iconSize: 80,
+                ),
               )
             else if (searchResults.isEmpty)
               SliverFillRemaining(

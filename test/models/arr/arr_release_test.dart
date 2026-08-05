@@ -66,10 +66,7 @@ void main() {
     });
 
     test('torrents rank by seeders, usenet by youth', () {
-      final torrents = sortReleases([
-        _release(guid: 'few', seeders: 3),
-        _release(guid: 'many', seeders: 300),
-      ]);
+      final torrents = sortReleases([_release(guid: 'few', seeders: 3), _release(guid: 'many', seeders: 300)]);
       expect(torrents.first.guid, 'many');
 
       final usenet = sortReleases([

@@ -19,7 +19,10 @@ void main() {
   group('seasonGap', () {
     test('an unaired episode is upcoming, not missing', () {
       final gap = seasonGap(
-        known: [_ep(1, air: _daysFromNow(-14)), _ep(2, air: _daysFromNow(7))],
+        known: [
+          _ep(1, air: _daysFromNow(-14)),
+          _ep(2, air: _daysFromNow(7)),
+        ],
         presentEpisodeNumbers: const {},
         season: 1,
       );
@@ -31,7 +34,10 @@ void main() {
     test('either side claiming the file is enough', () {
       // Sonarr not having rescanned must not report a gap the library can fill.
       final gap = seasonGap(
-        known: [_ep(1, hasFile: true, air: _daysFromNow(-30)), _ep(2, air: _daysFromNow(-20))],
+        known: [
+          _ep(1, hasFile: true, air: _daysFromNow(-30)),
+          _ep(2, air: _daysFromNow(-20)),
+        ],
         presentEpisodeNumbers: const {2},
         season: 1,
       );
@@ -42,7 +48,10 @@ void main() {
 
     test('ignores other seasons', () {
       final gap = seasonGap(
-        known: [_ep(1, season: 1, air: _daysFromNow(-9)), _ep(1, season: 2, air: _daysFromNow(-2))],
+        known: [
+          _ep(1, season: 1, air: _daysFromNow(-9)),
+          _ep(1, season: 2, air: _daysFromNow(-2)),
+        ],
         presentEpisodeNumbers: const {},
         season: 2,
       );
@@ -71,7 +80,11 @@ void main() {
     });
 
     test('specials are season zero, not an absent season', () {
-      final gap = seasonGap(known: [_ep(1, season: 0, air: _daysFromNow(-100))], presentEpisodeNumbers: const {}, season: 0);
+      final gap = seasonGap(
+        known: [_ep(1, season: 0, air: _daysFromNow(-100))],
+        presentEpisodeNumbers: const {},
+        season: 0,
+      );
       expect(gap.missing.single.seasonNumber, 0);
     });
   });

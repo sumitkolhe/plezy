@@ -72,7 +72,9 @@ void main() {
 
       await expectLater(
         client.testConnection(),
-        throwsA(isA<ManagedServiceApiException>().having((e) => e.message, 'message', contains('did not answer with JSON'))),
+        throwsA(
+          isA<ManagedServiceApiException>().having((e) => e.message, 'message', contains('did not answer with JSON')),
+        ),
       );
     });
   });

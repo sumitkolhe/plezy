@@ -118,9 +118,7 @@ void main() {
 
     test('a movie is reported as one', () async {
       final client = _FakeMediaServerClient({'movie-1': const ExternalIds(tmdb: 27205)});
-      final ctx = await TrackerIdResolver(client).resolveForRating(
-        testMediaItem(id: 'movie-1', kind: MediaKind.movie),
-      );
+      final ctx = await TrackerIdResolver(client).resolveForRating(testMediaItem(id: 'movie-1', kind: MediaKind.movie));
 
       expect(ctx?.isMovie, isTrue);
     });

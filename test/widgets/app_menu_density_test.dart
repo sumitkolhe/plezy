@@ -12,7 +12,10 @@ import 'package:harbor/widgets/focusable_list_tile.dart';
 import 'package:harbor/widgets/overlay_sheet.dart';
 
 Future<void> _pump(WidgetTester tester, Widget body) => tester.pumpWidget(
-  MaterialApp(theme: monoTheme(dark: true), home: Scaffold(body: body)),
+  MaterialApp(
+    theme: monoTheme(dark: true),
+    home: Scaffold(body: body),
+  ),
 );
 
 Widget _menu(AppMenuDensity density, String label) => AppMenuList<String>(
@@ -129,7 +132,9 @@ void main() {
     await _pump(
       tester,
       LibraryQuickPickerSheet(
-        libraries: const [MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie)],
+        libraries: const [
+          MediaLibrary(id: '1', backend: MediaBackend.jellyfin, title: 'Movies', kind: MediaKind.movie),
+        ],
         selectedLibraryKey: null,
         isLoading: false,
         groupByServer: false,
@@ -216,9 +221,7 @@ void main() {
           return SingleChildScrollView(
             child: AppMenuSheet<String>(
               title: 'A Film With Quite A Long Title',
-              entries: [
-                for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: PhosphorIcons.play),
-              ],
+              entries: [for (final l in labels) AppMenuItem<String>(value: l, label: l, icon: PhosphorIcons.play)],
               onSelected: (_) {},
             ),
           );
@@ -229,6 +232,9 @@ void main() {
     final content = tester.getRect(find.byType(AppMenuSheet<String>)).height;
     expect(content, lessThanOrEqualTo(menuLimit.maxHeight));
     // And it would not have, on the default cap every other sheet uses.
-    expect(content, greaterThan(OverlaySheetController.sheetConstraints(tester.element(find.byType(Scaffold))).maxHeight));
+    expect(
+      content,
+      greaterThan(OverlaySheetController.sheetConstraints(tester.element(find.byType(Scaffold))).maxHeight),
+    );
   });
 }

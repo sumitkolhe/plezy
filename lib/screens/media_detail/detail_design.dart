@@ -67,12 +67,7 @@ class _FactPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final decoration = MetaPill.decoration(context);
-    final body = Container(
-      height: DetailFactStrip.height,
-      padding: MetaPill.padding,
-      alignment: .center,
-      child: child,
-    );
+    final body = Container(height: DetailFactStrip.height, padding: MetaPill.padding, alignment: .center, child: child);
 
     return Material(
       color: decoration.color,

@@ -517,7 +517,11 @@ class _NowPlayingScreenState extends State<NowPlayingScreen>
         FocusableButton(
           onPressed: _toggleLyrics,
           child: IconButton(
-            icon: AppIcon(PhosphorIcons.textAlignLeft, size: 22, color: _showLyrics ? colorScheme.primary : tk.textMuted),
+            icon: AppIcon(
+              PhosphorIcons.textAlignLeft,
+              size: 22,
+              color: _showLyrics ? colorScheme.primary : tk.textMuted,
+            ),
             tooltip: t.music.lyrics,
             onPressed: _toggleLyrics,
           ),

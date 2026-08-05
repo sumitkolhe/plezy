@@ -85,7 +85,9 @@ class _HubDetailScreenState extends State<HubDetailScreen>
 
   @override
   List<FocusableAction> getAppBarActions() {
-    return [FocusableAction(icon: PhosphorIcons.arrowsDownUp, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet)];
+    return [
+      FocusableAction(icon: PhosphorIcons.arrowsDownUp, tooltip: t.libraries.sort, onPressed: _showSortBottomSheet),
+    ];
   }
 
   /// Override to add bounds check for filtered items (sorting can change item order)

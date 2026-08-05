@@ -43,7 +43,9 @@ class _ServerActivityTabState extends State<ServerActivityTab> {
       builder: (context, provider, _) {
         if (!provider.hasServices) return const _NoServices();
         if (!provider.loadedOnce) {
-          return const Center(child: Padding(padding: EdgeInsets.all(32), child: LoadingIndicatorBox()));
+          return const Center(
+            child: Padding(padding: EdgeInsets.all(32), child: LoadingIndicatorBox()),
+          );
         }
 
         final ongoing = [
@@ -113,9 +115,8 @@ class _NoServices extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             OutlinedButton(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(builder: (_) => const ServicesSettingsScreen()),
-              ),
+              onPressed: () =>
+                  Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const ServicesSettingsScreen())),
               child: Text(t.serverActivity.openServices),
             ),
           ],
@@ -296,17 +297,14 @@ class _StageStrip extends StatelessWidget {
       crossAxisAlignment: .center,
       children: [
         for (var i = 0; i < _pipeline.length; i++) ...[
-          if (i > 0)
-            Text('›', style: TextStyle(fontSize: 11, color: tokensRef.text.withValues(alpha: 0.24))),
+          if (i > 0) Text('›', style: TextStyle(fontSize: 11, color: tokensRef.text.withValues(alpha: 0.24))),
           Text(
             _TransferRow._stageLabel(_pipeline[i]),
             style: TextStyle(
               fontSize: 10.5,
               fontWeight: i == reached ? .w700 : .w500,
               letterSpacing: 0.2,
-              color: i == reached
-                  ? _current(context)
-                  : tokensRef.text.withValues(alpha: i < reached ? 0.6 : 0.32),
+              color: i == reached ? _current(context) : tokensRef.text.withValues(alpha: i < reached ? 0.6 : 0.32),
             ),
           ),
         ],

@@ -82,9 +82,7 @@ class _ManagedServiceConnectScreenState extends State<ManagedServiceConnectScree
 
   String _describeFailure(Object error) {
     if (error is ManagedServiceAuthException) {
-      return _usesApiKey
-          ? t.managedServices.keyRejected(service: _serviceName)
-          : t.managedServices.loginRejected;
+      return _usesApiKey ? t.managedServices.keyRejected(service: _serviceName) : t.managedServices.loginRejected;
     }
     if (error is ManagedServiceApiException) {
       return t.managedServices.notThisService(service: _serviceName);
@@ -107,7 +105,10 @@ class _ManagedServiceConnectScreenState extends State<ManagedServiceConnectScree
               child: Column(
                 crossAxisAlignment: .start,
                 children: [
-                  Text(_serviceName, style: TextStyle(fontSize: 20, fontWeight: .w700, color: tokensRef.text)),
+                  Text(
+                    _serviceName,
+                    style: TextStyle(fontSize: 20, fontWeight: .w700, color: tokensRef.text),
+                  ),
                   const SizedBox(height: 20),
 
                   FocusableTextField(

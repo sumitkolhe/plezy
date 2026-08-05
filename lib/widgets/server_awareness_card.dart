@@ -210,14 +210,10 @@ List<({String label, String value})> serverInfoRows(List<ArrItemState>? states, 
     (
       label: t.serverActivity.monitored,
       value: state.monitored
-          ? [
-              t.serverActivity.monitored,
-              if (state.qualityProfile.isNotEmpty) state.qualityProfile,
-            ].join('  ·  ')
+          ? [t.serverActivity.monitored, if (state.qualityProfile.isNotEmpty) state.qualityProfile].join('  ·  ')
           : t.serverActivity.notMonitored,
     ),
-    if (nextAiringLabel(states) case final next when next.isNotEmpty)
-      (label: t.explore.detail.schedule, value: next),
+    if (nextAiringLabel(states) case final next when next.isNotEmpty) (label: t.explore.detail.schedule, value: next),
     if (isSeries && state.totalCount > 0)
       (
         label: t.serverActivity.stages.done,

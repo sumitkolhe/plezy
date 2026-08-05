@@ -125,7 +125,8 @@ class SeerrCatalogSource implements CatalogSource {
   bool? isOnWatchlist(MediaKind kind, CatalogItemIds ids) => null;
 
   @override
-  Future<void> addToWatchlist(MediaKind kind, CatalogItemIds ids) => throw UnsupportedError('Seerr watchlist is not wired up');
+  Future<void> addToWatchlist(MediaKind kind, CatalogItemIds ids) =>
+      throw UnsupportedError('Seerr watchlist is not wired up');
 
   @override
   Future<void> removeFromWatchlist(MediaKind kind, CatalogItemIds ids) =>

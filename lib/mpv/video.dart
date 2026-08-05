@@ -96,11 +96,7 @@ class _VideoState extends State<Video> {
       color: _hasFirstFrame ? Colors.transparent : widget.backgroundColor,
       child: Stack(
         fit: StackFit.expand,
-        children: [
-          _buildVideoSurface(),
-
-          if (widget.controls != null) widget.controls!(context),
-        ],
+        children: [_buildVideoSurface(), if (widget.controls != null) widget.controls!(context)],
       ),
     );
   }
