@@ -152,6 +152,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
             committedTrack: committedSubtitleSelection?.primaryTrack,
             nativeTrack: currentPlayer.state.track.subtitle,
             declinedPreference: committedSubtitleSelection?.declinedPreference,
+            sessionPreference: _sessionSubtitlePreference,
           );
     final secondarySubtitlePreference = followServerSelections
         ? null
@@ -159,6 +160,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
             hasCommittedSelection: committedSubtitleSelection != null,
             committedTrack: committedSubtitleSelection?.secondaryTrack,
             nativeTrack: currentPlayer.state.track.secondarySubtitle,
+            sessionPreference: _sessionSecondarySubtitlePreference,
           );
     await _reloadMediaInPlace(
       metadata: episodeMetadata,
@@ -170,6 +172,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
       // meaningless on the new item, so let preferences pick the track.
       useCurrentAudioStreamSelection: false,
       preserveCurrentTrackSelection: !followServerSelections,
+      preservedAudioTrack: _sessionAudioPreference,
       preservedSubtitleTrack: primarySubtitlePreference,
       preservedSecondarySubtitleTrack: secondarySubtitlePreference,
       reason: 'episode navigation',
@@ -214,6 +217,28 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         player == currentPlayer &&
         _ownsPlaybackTransition(transitionLease, expected: _PlaybackTransition.switchingSource);
     bool sourceSwitchWasSuperseded() => !mounted || player != currentPlayer || transitionLease.wasSuperseded;
+    void rememberSourceAudioPreference() {
+      final streamId = newAudioStreamId;
+      final mediaInfo = _currentMediaInfo;
+      if (streamId == null || mediaInfo == null) return;
+      for (final row in mediaInfo.audioTracks) {
+        if (row.id == streamId) {
+          _sessionAudioPreference = PlaybackSubtitleResolver.audioTrackForSource(row);
+          return;
+        }
+      }
+    }
+
+    void rememberSourceSubtitlePreference() {
+      final choice = newSubtitleChoice;
+      final mediaInfo = _currentMediaInfo;
+      if (choice == null || mediaInfo == null) return;
+      // The local-switch path records through the screen's remember chain;
+      // this covers picks that had to reload, whose resolved outcome never
+      // reaches _rememberNativeSubtitleSelectionForSlot.
+      final preference = sessionPreferenceForSourceSubtitleChoice(choice, mediaInfo.subtitleTracks);
+      if (preference != null) _sessionSubtitlePreference = preference;
+    }
 
     if (newSubtitleChoice != null && newMediaIndex == null && newPreset == null && newAudioStreamId == null) {
       try {
@@ -257,6 +282,8 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
     final isAudioChange = effectiveAudioStreamId != _selectedAudioStreamId;
     final isSubtitleChange = newSubtitleChoice != null && newSubtitleChoice != currentSubtitleChoice;
     if (!isVersionChange && !isPresetChange && !isAudioChange && !isSubtitleChange) {
+      rememberSourceAudioPreference();
+      rememberSourceSubtitlePreference();
       return PlaybackSourceChangeOutcome.unchanged;
     }
 
@@ -281,6 +308,10 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         transitionLease: transitionLease,
         reason: 'source switch',
       );
+      if (outcome == _MediaReloadOutcome.opened) {
+        rememberSourceAudioPreference();
+        rememberSourceSubtitlePreference();
+      }
       return switch (outcome) {
         _MediaReloadOutcome.opened => PlaybackSourceChangeOutcome.applied,
         _MediaReloadOutcome.rejected => PlaybackSourceChangeOutcome.busy,
@@ -503,6 +534,13 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
       final initializationSubtitleTrack = preservesRequestedSubtitleSource
           ? currentSubtitleTrack
           : SubtitlePreference.demoteToIntent(currentSubtitleTrack);
+      // Same boundary rule for audio: native and Jellyfin stream ids are
+      // reused per item, so a cross-source carry keeps only its semantics —
+      // an identity match against a reused id would latch by ordinal and
+      // bypass the evidence bands' ambiguity decline.
+      final initializationAudioTrack = preservesRequestedSubtitleSource || currentAudioTrack == null
+          ? currentAudioTrack
+          : itemAgnosticAudioCarry(currentAudioTrack);
       try {
         // Eager identity-only: the loading UI shows the new title immediately,
         // while the selection/source state flips with the session commit at
@@ -534,6 +572,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
             preferredVersionSignature: preferredVersionSignature,
             qualityPreset: targetQualityPreset,
             selectedAudioStreamId: targetAudioStreamId,
+            preferredAudioTrack: initializationAudioTrack,
             preferredSubtitleTrack: initializationSubtitleTrack,
             sessionIdentifier: _playbackSessionIdentifier,
             transcodeSessionId: _playbackTranscodeSessionId,
@@ -552,7 +591,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
         var subtitleSelection = await _resolveSubtitleSelectionForOpen(
           metadata: metadata,
           result: result,
-          preferredAudioTrack: currentAudioTrack,
+          preferredAudioTrack: initializationAudioTrack,
           preferredSubtitleTrack: currentSubtitleTrack,
           preferredSecondarySubtitleTrack: currentSecondarySubtitleTrack,
           preserveSubtitleSourceIdentity:
@@ -704,7 +743,7 @@ extension _VideoPlayerEpisodeNavigationMethods on VideoPlayerScreenState {
           forPlayer: currentPlayer,
           metadata: metadata,
           getProfileSettings: () => userProfileProvider.profileSettings,
-          preferredAudioTrack: currentAudioTrack,
+          preferredAudioTrack: initializationAudioTrack,
           // A declined carry stays alive for the native passes: freezing the
           // resolver's off verdict here would turn a metadata mismatch into a
           // navigation-priority off that no late track can undo (#1785).
