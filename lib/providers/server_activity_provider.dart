@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import '../mixins/disposable_change_notifier_mixin.dart';
 import '../models/arr/server_transfer.dart';
 import '../models/arr/absent_title.dart';
+import '../models/arr/managed_service.dart';
 import '../services/arr/arr_item_lookup.dart';
 import '../services/arr/arr_wanted_service.dart';
 import '../services/arr/server_activity_service.dart';
@@ -38,7 +40,7 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
   bool _foreground = true;
 
   List<ServerTransfer> _transfers = const [];
-  List<AbsentTitle>? _absentMovies;
+  final Map<ManagedServiceKind, List<AbsentTitle>?> _absent = {};
   List<String> _unreachable = const [];
   bool _loadedOnce = false;
 
@@ -79,25 +81,45 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
     if (!isDisposed) safeNotifyListeners();
   }
 
-  /// Films Radarr has no file for. Null until [resolveAbsentMovies] answers.
-  List<AbsentTitle>? get absentMovies => _absentMovies;
+  /// What [kind] has no file for. Null until [resolveAbsent] answers, which a
+  /// caller must treat as "not known yet" rather than "nothing missing".
+  List<AbsentTitle>? absent(ManagedServiceKind kind) => _absent[kind];
 
   /// Fetched once per session unless [force]: the wanted list changes when
   /// something imports, not while you scroll a library.
-  Future<void> resolveAbsentMovies({bool force = false}) async {
-    if (!hasServices || (_absentMovies != null && !force)) return;
-    final titles = await ArrWantedService(_services).absentMovies();
+  Future<void> resolveAbsent(ManagedServiceKind kind, {bool force = false}) async {
+    if (!hasServices || (_absent[kind] != null && !force)) return;
+    final service = ArrWantedService(_services);
+    final titles = switch (kind) {
+      ManagedServiceKind.radarr => await service.absentMovies(),
+      ManagedServiceKind.sonarr => await service.absentEpisodes(),
+      ManagedServiceKind.qbittorrent => const <AbsentTitle>[],
+    };
     // A null answer leaves this unresolved so the next visit retries, rather
     // than caching an empty list nobody actually reported.
     if (isDisposed || titles == null) return;
-    _absentMovies = titles;
+    _absent[kind] = titles;
     safeNotifyListeners();
   }
 
+  @visibleForTesting
+  void debugSetTransfersForTesting(List<ServerTransfer> transfers) => _transfers = transfers;
+
   /// Progress for an absent title, which has no external ids to resolve.
-  ServerTransfer? transferForMedia(String sourceId, int mediaId) {
+  ///
+  /// An episode has to match its season and number too: a Sonarr queue record
+  /// names the *series*, so mediaId alone would lend one episode's progress to
+  /// every other absent episode of the same show.
+  ServerTransfer? transferFor(AbsentTitle title) {
     for (final transfer in _transfers) {
-      if (transfer.sourceId == sourceId && transfer.queued?.mediaId == mediaId) return transfer;
+      if (transfer.sourceId != title.sourceId) continue;
+      final queued = transfer.queued;
+      if (queued?.mediaId != title.mediaId) continue;
+      if (title.isEpisode &&
+          (queued?.seasonNumber != title.seasonNumber || queued?.episodeNumber != title.episodeNumber)) {
+        continue;
+      }
+      return transfer;
     }
     return null;
   }
@@ -149,7 +171,7 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
     // A connection change moves what a poll covers and which instance holds
     // what, so both the list and resolved items stop being trustworthy.
     _lookup.clear();
-    _absentMovies = null;
+    _absent.clear();
     if (!hasServices) {
       _transfers = const [];
       _unreachable = const [];
@@ -159,11 +181,13 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
     _syncTimer();
     if (hasServices && _watchers > 0) {
       unawaited(refresh());
-      // The list was just invalidated above, and its only other caller is a
-      // widget's initState. Without this, connections restored after that
-      // widget mounted — an ordinary cold start — left it empty for the whole
-      // session, because a kept-alive tab never runs initState again.
-      unawaited(resolveAbsentMovies());
+      // The lists were just invalidated above, and their only other caller is a
+      // widget's initState. Without this, connections restored after that widget
+      // mounted — an ordinary cold start — left it empty for the whole session,
+      // because a kept-alive tab never runs initState again.
+      for (final kind in const [ManagedServiceKind.radarr, ManagedServiceKind.sonarr]) {
+        unawaited(resolveAbsent(kind));
+      }
     }
   }
 

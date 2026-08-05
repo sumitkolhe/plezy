@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../i18n/strings.g.dart';
 import '../models/arr/absent_title.dart';
+import '../models/arr/managed_service.dart';
 import '../models/arr/server_transfer.dart';
 import '../providers/server_activity_provider.dart';
 import '../theme/mono_tokens.dart';
@@ -50,7 +51,7 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
     // Watching keeps the queue polled, which is what gives these cards their
     // progress.
     _release = provider.addWatcher();
-    unawaited(provider.resolveAbsentMovies());
+    unawaited(provider.resolveAbsent(ManagedServiceKind.radarr));
   }
 
   @override
@@ -63,7 +64,7 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
   Widget build(BuildContext context) {
     return Consumer<ServerActivityProvider>(
       builder: (context, provider, _) {
-        final titles = provider.absentMovies ?? const <AbsentTitle>[];
+        final titles = provider.absent(ManagedServiceKind.radarr) ?? const <AbsentTitle>[];
         if (titles.isEmpty) return const SizedBox.shrink();
 
         final density = SettingsService.instance.read(SettingsService.libraryDensity);
@@ -89,11 +90,7 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
                   separatorBuilder: (_, _) => const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final title = titles[index];
-                    return _RequestedCard(
-                      title: title,
-                      width: cardWidth,
-                      transfer: provider.transferForMedia(title.sourceId, title.mediaId),
-                    );
+                    return _RequestedCard(title: title, width: cardWidth, transfer: provider.transferFor(title));
                   },
                 ),
               ),
