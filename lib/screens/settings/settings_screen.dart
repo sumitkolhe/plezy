@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../focus/focus_memory_tracker.dart';
 import '../../focus/input_mode_tracker.dart';
@@ -18,7 +17,6 @@ import '../../mixins/refreshable.dart';
 import '../../providers/hidden_libraries_provider.dart';
 import '../../providers/download_provider.dart';
 import '../../providers/libraries_provider.dart';
-import '../../services/donation_service.dart';
 import '../../services/download_storage_service.dart';
 import '../../services/file_picker_service.dart';
 import '../../services/saf_storage_service.dart';
@@ -29,11 +27,9 @@ import '../../services/keyboard_shortcuts_service.dart';
 import '../../services/background_work_diagnostics_service.dart';
 import '../../services/settings_service.dart' as settings;
 import '../../widgets/background_download_warning_banner.dart';
-import '../../services/update_service.dart';
 import '../../utils/dialogs.dart';
 import '../../utils/snackbar_helper.dart';
 import '../../utils/platform_detector.dart';
-import '../../utils/update_dialog.dart';
 import '../../widgets/desktop_app_bar.dart';
 import '../../widgets/dialog_action_button.dart';
 import '../../widgets/focusable_list_tile.dart';
@@ -54,7 +50,6 @@ import '../profile/profile_switch_screen.dart';
 import 'services_settings_screen.dart';
 import 'settings_utils.dart';
 import 'tracker_service_info.dart';
-import '../../widgets/loading_indicator_box.dart';
 import '../../widgets/sliver_navigation_inset.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -86,7 +81,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
       widget.backgroundWorkDiagnosticsService ?? BackgroundWorkDiagnosticsService.instance;
   late final FocusMemoryTracker _focusTracker;
 
-  static const _kDonate = 'donate';
   static const _kAppearance = 'appearance';
   static const _kPlayback = 'playback';
   static const _kManageLibraries = 'manage_libraries';
@@ -101,17 +95,12 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   static const _kViewLogs = 'view_logs';
   static const _kClearImageCache = 'clear_image_cache';
   static const _kResetSettings = 'reset_settings';
-  static const _kCheckForUpdates = 'check_for_updates';
-  static const _kAutoCheckUpdatesOnStartup = 'auto_check_updates_on_startup';
   static const _kAbout = 'about';
   static const _kExportSettings = 'export_settings';
   static const _kImportSettings = 'import_settings';
 
   KeyboardShortcutsService? _keyboardService;
   late final bool _keyboardShortcutsSupported = KeyboardShortcutsService.isPlatformSupported();
-
-  bool _isCheckingForUpdate = false;
-  Map<String, dynamic>? _updateInfo;
 
   @override
   void initState() {
@@ -133,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
   @override
   void focusActiveTabIfReady() {
     if (InputModeTracker.isKeyboardMode(context, listen: false)) {
-      _focusTracker.restoreFocus(fallbackKey: DonationService.isEnabled ? _kDonate : _kAppearance);
+      _focusTracker.restoreFocus(fallbackKey: _kAppearance);
     }
   }
 
@@ -182,7 +171,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
                 const SizedBox(height: 8),
                 SettingsGroup(
                   children: [
-                    if (DonationService.isEnabled) _buildDonateTile(),
                     _buildAppearanceTile(),
                     _buildPlaybackTile(),
                     if (hasLibraries) _buildManageLibrariesTile(sheetContext),
@@ -197,8 +185,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
                 if (_keyboardShortcutsSupported) ...[_buildKeyboardShortcutsSection()],
 
                 _buildAdvancedSection(),
-
-                if (UpdateService.isUpdateCheckAvailable) ...[_buildUpdateSection()],
 
                 // Hidden on Android TV (no document picker).
                 if (!PlatformDetector.isTV()) _buildBackupSection(),
@@ -222,22 +208,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildDonateTile() {
-    return SettingNavigationTile(
-      focusNode: _focusTracker.get(_kDonate),
-      icon: PhosphorIcons.heart,
-      title: t.settings.supportDeveloper,
-      subtitle: t.settings.supportDeveloperDescription,
-      trailingIcon: PhosphorIcons.arrowSquareOut,
-      onTap: () async {
-        final url = Uri.parse(DonationService.donationUrl);
-        if (await canLaunchUrl(url)) {
-          await launchUrl(url, mode: LaunchMode.externalApplication);
-        }
-      },
     );
   }
 
@@ -533,46 +503,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
     );
   }
 
-  Widget _buildAutoCheckUpdatesOnStartupTile() => SettingSwitchTile(
-    focusNode: _focusTracker.get(_kAutoCheckUpdatesOnStartup),
-    pref: settings.SettingsService.autoCheckUpdatesOnStartup,
-    icon: PhosphorIcons.bellRinging,
-    title: t.settings.autoCheckUpdatesOnStartup,
-    subtitle: t.settings.autoCheckUpdatesOnStartupDescription,
-  );
-
-  Widget _buildUpdateSection() {
-    final hasUpdate = _updateInfo != null && _updateInfo!['hasUpdate'] == true;
-
-    return SettingsGroup(
-      title: t.settings.updates,
-      children: [
-        FocusableListTile(
-          focusNode: _focusTracker.get(_kCheckForUpdates),
-          leading: AppIcon(
-            hasUpdate ? PhosphorIcons.download : PhosphorIcons.check,
-            color: hasUpdate ? Colors.orange : null,
-          ),
-          title: Text(hasUpdate ? t.settings.updateAvailable : t.settings.checkForUpdates),
-          subtitle: hasUpdate ? Text(t.update.versionAvailable(version: _updateInfo!['latestVersion'])) : null,
-          trailing: _isCheckingForUpdate
-              ? const LoadingIndicatorBox(size: 24)
-              : const AppIcon(PhosphorIcons.caretRight),
-          onTap: _isCheckingForUpdate
-              ? null
-              : () {
-                  if (hasUpdate) {
-                    _showUpdateDialog();
-                  } else {
-                    _checkForUpdates();
-                  }
-                },
-        ),
-        _buildAutoCheckUpdatesOnStartupTile(),
-      ],
-    );
-  }
-
   Future<void> _showDownloadLocationDialog() async {
     final storageService = DownloadStorageService.instance;
     final isCustom = storageService.isUsingCustomPath();
@@ -766,38 +696,6 @@ class _SettingsScreenState extends State<SettingsScreen> with FocusableTab, Moun
           if (mounted) showErrorSnackBar(context, t.settings.importSettingsInvalidFile);
         }
       },
-    );
-  }
-
-  Future<void> _checkForUpdates() async {
-    setState(() => _isCheckingForUpdate = true);
-
-    try {
-      final updateInfo = await UpdateService.checkForUpdates();
-
-      if (mounted) {
-        setState(() {
-          _updateInfo = updateInfo;
-          _isCheckingForUpdate = false;
-        });
-
-        if (updateInfo == null || updateInfo['hasUpdate'] != true) {
-          showAppSnackBar(context, t.update.latestVersion);
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() => _isCheckingForUpdate = false);
-        showErrorSnackBar(context, t.update.checkFailed);
-      }
-    }
-  }
-
-  void _showUpdateDialog() {
-    final updateInfo = _updateInfo;
-    if (updateInfo == null) return;
-    unawaited(
-      showUpdateAvailableDialog(context, updateInfo, title: t.settings.updateAvailable, dismissLabel: t.common.close),
     );
   }
 }

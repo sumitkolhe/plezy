@@ -43,7 +43,6 @@ class TranslationsBg extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$bg auth = _Translations$auth$bg._(_root);
 	@override late final _Translations$common$bg common = _Translations$common$bg._(_root);
 	@override late final _Translations$screens$bg screens = _Translations$screens$bg._(_root);
-	@override late final _Translations$update$bg update = _Translations$update$bg._(_root);
 	@override late final _Translations$settings$bg settings = _Translations$settings$bg._(_root);
 	@override late final _Translations$search$bg search = _Translations$search$bg._(_root);
 	@override late final _Translations$hotkeys$bg hotkeys = _Translations$hotkeys$bg._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$bg extends Translations$common$en {
 	@override String get close => 'Затвори';
 	@override String get clear => 'Изчисти';
 	@override String get reset => 'Нулирай';
-	@override String get later => 'По-късно';
 	@override String get submit => 'Изпрати';
 	@override String get confirm => 'Потвърди';
 	@override String get retry => 'Опитай отново';
@@ -174,22 +172,6 @@ class _Translations$screens$bg extends Translations$screens$en {
 	@override String get logs => 'Логове';
 }
 
-// Path: update
-class _Translations$update$bg extends Translations$update$en {
-	_Translations$update$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Налична е актуализация';
-	@override String versionAvailable({required Object version}) => 'Налична е версия ${version}';
-	@override String currentVersion({required Object version}) => 'Текуща: ${version}';
-	@override String get skipVersion => 'Пропусни тази версия';
-	@override String get viewRelease => 'Виж версията';
-	@override String get latestVersion => 'Използвате най-новата версия';
-	@override String get checkFailed => 'Неуспешна проверка за актуализации';
-}
-
 // Path: settings
 class _Translations$settings$bg extends Translations$settings$en {
 	_Translations$settings$bg._(TranslationsBg root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Настройки';
-	@override String get supportDeveloper => 'Подкрепи Harbor';
-	@override String get supportDeveloperDescription => 'Дарение чрез Liberapay за финансиране на разработката';
 	@override String get language => 'Език';
 	@override String get theme => 'Тема';
 	@override String get appearance => 'Изглед';
@@ -311,11 +291,6 @@ class _Translations$settings$bg extends Translations$settings$en {
 	@override String get shortcutsReset => 'Клавишните комбинации са нулирани до подразбиране';
 	@override String get about => 'Относно';
 	@override String get aboutDescription => 'Информация за приложението и лицензи';
-	@override String get updates => 'Актуализации';
-	@override String get updateAvailable => 'Налична е актуализация';
-	@override String get checkForUpdates => 'Провери за актуализации';
-	@override String get autoCheckUpdatesOnStartup => 'Автоматично проверявай за актуализации при стартиране';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Уведомявай, когато има актуализация при стартиране';
 	@override String get validationErrorEnterNumber => 'Моля, въведете валидно число';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Продължителността трябва да е между ${min} и ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Клавишната комбинация вече е назначена за ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsBg {
 			'common.close' => 'Затвори',
 			'common.clear' => 'Изчисти',
 			'common.reset' => 'Нулирай',
-			'common.later' => 'По-късно',
 			'common.submit' => 'Изпрати',
 			'common.confirm' => 'Потвърди',
 			'common.retry' => 'Опитай отново',
@@ -1773,16 +1747,7 @@ extension on TranslationsBg {
 			'screens.subtitleStyling' => 'Стил на субтитрите',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Логове',
-			'update.available' => 'Налична е актуализация',
-			'update.versionAvailable' => ({required Object version}) => 'Налична е версия ${version}',
-			'update.currentVersion' => ({required Object version}) => 'Текуща: ${version}',
-			'update.skipVersion' => 'Пропусни тази версия',
-			'update.viewRelease' => 'Виж версията',
-			'update.latestVersion' => 'Използвате най-новата версия',
-			'update.checkFailed' => 'Неуспешна проверка за актуализации',
 			'settings.title' => 'Настройки',
-			'settings.supportDeveloper' => 'Подкрепи Harbor',
-			'settings.supportDeveloperDescription' => 'Дарение чрез Liberapay за финансиране на разработката',
 			'settings.language' => 'Език',
 			'settings.theme' => 'Тема',
 			'settings.appearance' => 'Изглед',
@@ -1894,11 +1859,6 @@ extension on TranslationsBg {
 			'settings.shortcutsReset' => 'Клавишните комбинации са нулирани до подразбиране',
 			'settings.about' => 'Относно',
 			'settings.aboutDescription' => 'Информация за приложението и лицензи',
-			'settings.updates' => 'Актуализации',
-			'settings.updateAvailable' => 'Налична е актуализация',
-			'settings.checkForUpdates' => 'Провери за актуализации',
-			'settings.autoCheckUpdatesOnStartup' => 'Автоматично проверявай за актуализации при стартиране',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Уведомявай, когато има актуализация при стартиране',
 			'settings.validationErrorEnterNumber' => 'Моля, въведете валидно число',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Продължителността трябва да е между ${min} и ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Клавишната комбинация вече е назначена за ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsBg {
 			'messages.failedToCreatePlayQueueNoItems' => 'Неуспешно създаване на опашка за възпроизвеждане - няма елементи',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Неуспешно ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Превключване към съвместим плейър...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Възпроизвеждането е неуспешно',
 			'messages.serverLimitBody' => 'Грешка на сървъра (HTTP 500). Вероятно лимит за пропускателна способност/транскодиране е отхвърлил тази сесия. Помолете собственика да го коригира.',
 			'subtitlingStyling.text' => 'Текст',
@@ -2248,6 +2206,8 @@ extension on TranslationsBg {
 			'subtitlingStyling.assOverride' => 'Промяна на ASS стиловете',
 			'subtitlingStyling.overrideScale' => 'Мащабиране',
 			'subtitlingStyling.overrideForce' => 'Принудително',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Премахване на стиловете',
 			'subtitlingStyling.positionTop' => 'Горе',
 			'subtitlingStyling.positionBottom' => 'Долу',
@@ -2745,8 +2705,6 @@ extension on TranslationsBg {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант за обложка ${index}, избран',
 			'metadataEdit.notSet' => 'Не е зададено',
 			'metadataEdit.tags' => 'Тагове',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Добави таг',
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режисьор',
@@ -2762,6 +2720,8 @@ extension on TranslationsBg {
 			'trakt.scrobble' => 'Скроблиране в реално време',
 			'trakt.scrobbleDescription' => 'Изпращай събития за пускане, пауза и спиране към Trakt по време на възпроизвеждане.',
 			'trakt.watchedSync' => 'Синхронизирай статус гледано',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Когато маркирате елементи като гледани в Harbor, те се маркират и в Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Свързване със Seerr',

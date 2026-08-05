@@ -43,7 +43,6 @@ class TranslationsKo extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$ko auth = _Translations$auth$ko._(_root);
 	@override late final _Translations$common$ko common = _Translations$common$ko._(_root);
 	@override late final _Translations$screens$ko screens = _Translations$screens$ko._(_root);
-	@override late final _Translations$update$ko update = _Translations$update$ko._(_root);
 	@override late final _Translations$settings$ko settings = _Translations$settings$ko._(_root);
 	@override late final _Translations$search$ko search = _Translations$search$ko._(_root);
 	@override late final _Translations$hotkeys$ko hotkeys = _Translations$hotkeys$ko._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$ko extends Translations$common$en {
 	@override String get close => '닫기';
 	@override String get clear => '지우기';
 	@override String get reset => '초기화';
-	@override String get later => '나중에';
 	@override String get submit => '제출';
 	@override String get confirm => '확인';
 	@override String get retry => '재시도';
@@ -174,22 +172,6 @@ class _Translations$screens$ko extends Translations$screens$en {
 	@override String get logs => '로그';
 }
 
-// Path: update
-class _Translations$update$ko extends Translations$update$en {
-	_Translations$update$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => '업데이트 있음';
-	@override String versionAvailable({required Object version}) => '${version} 버전을 사용할 수 있습니다';
-	@override String currentVersion({required Object version}) => '현재 버전: ${version}';
-	@override String get skipVersion => '이 버전 건너뛰기';
-	@override String get viewRelease => '릴리스 정보 보기';
-	@override String get latestVersion => '최신 버전을 사용 중입니다';
-	@override String get checkFailed => '업데이트 확인 실패';
-}
-
 // Path: settings
 class _Translations$settings$ko extends Translations$settings$en {
 	_Translations$settings$ko._(TranslationsKo root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 
 	// Translations
 	@override String get title => '설정';
-	@override String get supportDeveloper => 'Harbor 후원하기';
-	@override String get supportDeveloperDescription => 'Liberapay로 후원하여 개발 지원';
 	@override String get language => '언어';
 	@override String get theme => '테마';
 	@override String get appearance => '디자인';
@@ -311,11 +291,6 @@ class _Translations$settings$ko extends Translations$settings$en {
 	@override String get shortcutsReset => '단축키가 기본값으로 재설정되었습니다';
 	@override String get about => '정보';
 	@override String get aboutDescription => '앱 정보 및 라이선스';
-	@override String get updates => '업데이트';
-	@override String get updateAvailable => '사용 가능한 업데이트 있음';
-	@override String get checkForUpdates => '업데이트 확인';
-	@override String get autoCheckUpdatesOnStartup => '시작 시 자동으로 업데이트 확인';
-	@override String get autoCheckUpdatesOnStartupDescription => '실행 시 업데이트가 있으면 알림';
 	@override String get validationErrorEnterNumber => '유효한 숫자를 입력하세요';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => '기간은 ${min}과 ${max} ${unit} 사이여야 합니다';
 	@override String shortcutAlreadyAssigned({required Object action}) => '단축키가 이미 ${action}에 할당되었습니다';
@@ -1728,7 +1703,6 @@ extension on TranslationsKo {
 			'common.close' => '닫기',
 			'common.clear' => '지우기',
 			'common.reset' => '초기화',
-			'common.later' => '나중에',
 			'common.submit' => '제출',
 			'common.confirm' => '확인',
 			'common.retry' => '재시도',
@@ -1770,16 +1744,7 @@ extension on TranslationsKo {
 			'screens.subtitleStyling' => '자막 스타일 설정',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => '로그',
-			'update.available' => '업데이트 있음',
-			'update.versionAvailable' => ({required Object version}) => '${version} 버전을 사용할 수 있습니다',
-			'update.currentVersion' => ({required Object version}) => '현재 버전: ${version}',
-			'update.skipVersion' => '이 버전 건너뛰기',
-			'update.viewRelease' => '릴리스 정보 보기',
-			'update.latestVersion' => '최신 버전을 사용 중입니다',
-			'update.checkFailed' => '업데이트 확인 실패',
 			'settings.title' => '설정',
-			'settings.supportDeveloper' => 'Harbor 후원하기',
-			'settings.supportDeveloperDescription' => 'Liberapay로 후원하여 개발 지원',
 			'settings.language' => '언어',
 			'settings.theme' => '테마',
 			'settings.appearance' => '디자인',
@@ -1891,11 +1856,6 @@ extension on TranslationsKo {
 			'settings.shortcutsReset' => '단축키가 기본값으로 재설정되었습니다',
 			'settings.about' => '정보',
 			'settings.aboutDescription' => '앱 정보 및 라이선스',
-			'settings.updates' => '업데이트',
-			'settings.updateAvailable' => '사용 가능한 업데이트 있음',
-			'settings.checkForUpdates' => '업데이트 확인',
-			'settings.autoCheckUpdatesOnStartup' => '시작 시 자동으로 업데이트 확인',
-			'settings.autoCheckUpdatesOnStartupDescription' => '실행 시 업데이트가 있으면 알림',
 			'settings.validationErrorEnterNumber' => '유효한 숫자를 입력하세요',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => '기간은 ${min}과 ${max} ${unit} 사이여야 합니다',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => '단축키가 이미 ${action}에 할당되었습니다',
@@ -2228,8 +2188,6 @@ extension on TranslationsKo {
 			'messages.failedToCreatePlayQueueNoItems' => '재생 대기열을 만들지 못했습니다 — 항목이 없습니다',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}을(를) 수행할 수 없습니다: ${error}',
 			'messages.switchingToCompatiblePlayer' => '호환되는 플레이어로 전환 중...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => '재생 실패',
 			'messages.serverLimitBody' => '서버 오류(HTTP 500). 대역폭/트랜스코딩 제한으로 세션이 거부된 것 같습니다. 소유자에게 조정을 요청하세요.',
 			'subtitlingStyling.text' => '텍스트',
@@ -2245,6 +2203,8 @@ extension on TranslationsKo {
 			'subtitlingStyling.assOverride' => 'ASS 오버라이드',
 			'subtitlingStyling.overrideScale' => '크기 조정',
 			'subtitlingStyling.overrideForce' => '강제 적용',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => '스타일 제거',
 			'subtitlingStyling.positionTop' => '위',
 			'subtitlingStyling.positionBottom' => '아래',
@@ -2742,8 +2702,6 @@ extension on TranslationsKo {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '아트워크 옵션 ${index}, 선택됨',
 			'metadataEdit.notSet' => '설정되지 않음',
 			'metadataEdit.tags' => '태그',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => '태그 추가',
 			'metadataEdit.genre' => '장르',
 			'metadataEdit.director' => '감독',
@@ -2759,6 +2717,8 @@ extension on TranslationsKo {
 			'trakt.scrobble' => '실시간 스크로블',
 			'trakt.scrobbleDescription' => '재생 중 재생, 일시정지, 정지 이벤트를 Trakt로 전송합니다.',
 			'trakt.watchedSync' => '시청 상태 동기화',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr에 연결',

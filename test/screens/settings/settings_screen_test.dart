@@ -23,20 +23,17 @@ import 'package:harbor/providers/theme_provider.dart';
 import 'package:harbor/providers/trackers_provider.dart';
 import 'package:harbor/screens/settings/settings_screen.dart';
 import 'package:harbor/services/background_work_diagnostics_service.dart';
-import 'package:harbor/services/donation_service.dart';
 import 'package:harbor/services/download_storage_service.dart';
 import 'package:harbor/services/download_manager_service.dart';
 import 'package:harbor/services/file_picker_service.dart';
 import 'package:harbor/services/settings_export_service.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/storage_service.dart';
-import 'package:harbor/services/update_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/widgets/dialog_action_button.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
-import 'package:harbor/widgets/loading_indicator_box.dart';
 import 'package:harbor/widgets/setting_tile.dart';
 import 'package:provider/provider.dart';
 
@@ -116,22 +113,11 @@ void main() {
     addTearDown(() => harness.dispose(tester));
 
     final rows = <_MigratedRow>[
-      _MigratedRow(
-        title: t.settings.supportDeveloper,
-        focusLabel: 'settings_donate',
-        isVisible: DonationService.isEnabled,
-      ),
       _MigratedRow(title: t.settings.clearImageCache, focusLabel: 'settings_clear_image_cache'),
       _MigratedRow(title: t.settings.resetSettings, focusLabel: 'settings_reset_settings'),
       const _MigratedRow(title: 'Test ANR', isVisible: kDebugMode),
       _MigratedRow(title: t.settings.exportSettings, focusLabel: 'settings_export_settings'),
       _MigratedRow(title: t.settings.importSettings, focusLabel: 'settings_import_settings'),
-      _MigratedRow(
-        title: t.settings.checkForUpdates,
-        focusLabel: 'settings_check_for_updates',
-        isVisible: UpdateService.isUpdateCheckAvailable,
-        hasSubtitle: false,
-      ),
     ];
 
     final referenceHeight = tester.getSize(_focusableTileFor(t.settings.viewLogs)).height;
@@ -170,7 +156,7 @@ void main() {
         expect(focusable.focusNode, isNull, reason: '${row.title} intentionally uses the tile-owned focus node');
       }
 
-      if (row.hasSubtitle) {
+      {
         // Subtitle rows occupy the same vertical space as an existing standard
         // SettingNavigationTile in this screen.
         expect(tester.getSize(focusableFinder).height, referenceHeight);
@@ -215,31 +201,6 @@ void main() {
       Navigator.of(tester.element(find.byType(AlertDialog))).pop();
       await _pumpUi(tester);
     }
-
-    if (!UpdateService.isUpdateCheckAvailable) {
-      expect(find.text(t.settings.checkForUpdates), findsNothing);
-      return;
-    }
-
-    final updateTileFinder = _focusableTileFor(t.settings.checkForUpdates);
-    final materialUpdateTile = tester.widget<ListTile>(
-      find.descendant(of: updateTileFinder, matching: find.byType(ListTile)),
-    );
-    final updateTile = tester.widget<FocusableListTile>(updateTileFinder);
-
-    expect(_navigationTileFor(t.settings.checkForUpdates), findsNothing);
-    expect(updateTile.dense, isTrue);
-    expect(materialUpdateTile.dense, isTrue);
-    expect(materialUpdateTile.visualDensity, const VisualDensity(vertical: -3));
-    expect(updateTile.visualDensity, const VisualDensity(vertical: -3));
-    expect(updateTile.trailing, isA<AppIcon>());
-    expect(updateTile.onTap, isNotNull);
-    expect(find.descendant(of: updateTileFinder, matching: find.byType(LoadingIndicatorBox)), findsNothing);
-
-    // The generic updater deliberately remains a FocusableListTile: unlike a
-    // SettingNavigationTile, its trailing slot can be replaced by the progress
-    // indicator and its callback disabled while a request is in flight.
-    expect(materialUpdateTile.focusNode, isNotNull);
   });
 
   testWidgets('background downloads tile renders and opens the injected blocked status', (tester) async {
@@ -503,12 +464,11 @@ Finder _focusableTileWithin(Finder navigationTile) =>
     find.descendant(of: navigationTile, matching: find.byType(FocusableListTile));
 
 class _MigratedRow {
-  const _MigratedRow({required this.title, this.focusLabel, this.isVisible = true, this.hasSubtitle = true});
+  const _MigratedRow({required this.title, this.focusLabel, this.isVisible = true});
 
   final String title;
   final String? focusLabel;
   final bool isVisible;
-  final bool hasSubtitle;
 }
 
 class _SettingsHarness {

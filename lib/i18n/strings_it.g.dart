@@ -43,7 +43,6 @@ class TranslationsIt extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$it auth = _Translations$auth$it._(_root);
 	@override late final _Translations$common$it common = _Translations$common$it._(_root);
 	@override late final _Translations$screens$it screens = _Translations$screens$it._(_root);
-	@override late final _Translations$update$it update = _Translations$update$it._(_root);
 	@override late final _Translations$settings$it settings = _Translations$settings$it._(_root);
 	@override late final _Translations$search$it search = _Translations$search$it._(_root);
 	@override late final _Translations$hotkeys$it hotkeys = _Translations$hotkeys$it._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$it extends Translations$common$en {
 	@override String get close => 'Chiudi';
 	@override String get clear => 'Cancella';
 	@override String get reset => 'Ripristina';
-	@override String get later => 'Più tardi';
 	@override String get submit => 'Invia';
 	@override String get confirm => 'Conferma';
 	@override String get retry => 'Riprova';
@@ -174,22 +172,6 @@ class _Translations$screens$it extends Translations$screens$en {
 	@override String get logs => 'Log';
 }
 
-// Path: update
-class _Translations$update$it extends Translations$update$en {
-	_Translations$update$it._(TranslationsIt root) : this._root = root, super.internal(root);
-
-	final TranslationsIt _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Aggiornamento disponibile';
-	@override String versionAvailable({required Object version}) => 'Versione ${version} disponibile';
-	@override String currentVersion({required Object version}) => 'Attuale: ${version}';
-	@override String get skipVersion => 'Salta questa versione';
-	@override String get viewRelease => 'Visualizza note di rilascio';
-	@override String get latestVersion => 'La versione installata è l\'ultima disponibile';
-	@override String get checkFailed => 'Impossibile controllare gli aggiornamenti';
-}
-
 // Path: settings
 class _Translations$settings$it extends Translations$settings$en {
 	_Translations$settings$it._(TranslationsIt root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$it extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Impostazioni';
-	@override String get supportDeveloper => 'Supporta Harbor';
-	@override String get supportDeveloperDescription => 'Dona tramite Liberapay per finanziare lo sviluppo';
 	@override String get language => 'Lingua';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Aspetto';
@@ -311,11 +291,6 @@ class _Translations$settings$it extends Translations$settings$en {
 	@override String get shortcutsReset => 'Scorciatoie ripristinate alle impostazioni predefinite';
 	@override String get about => 'Informazioni';
 	@override String get aboutDescription => 'Informazioni sull\'app e le licenze';
-	@override String get updates => 'Aggiornamenti';
-	@override String get updateAvailable => 'Aggiornamento disponibile';
-	@override String get checkForUpdates => 'Controlla aggiornamenti';
-	@override String get autoCheckUpdatesOnStartup => 'Controlla automaticamente gli aggiornamenti all\'avvio';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Avvisa all\'avvio quando è disponibile un aggiornamento';
 	@override String get validationErrorEnterNumber => 'Inserisci un numero valido';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'La durata deve essere compresa tra ${min} e ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Scorciatoia già assegnata a ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsIt {
 			'common.close' => 'Chiudi',
 			'common.clear' => 'Cancella',
 			'common.reset' => 'Ripristina',
-			'common.later' => 'Più tardi',
 			'common.submit' => 'Invia',
 			'common.confirm' => 'Conferma',
 			'common.retry' => 'Riprova',
@@ -1773,16 +1747,7 @@ extension on TranslationsIt {
 			'screens.subtitleStyling' => 'Stile sottotitoli',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Log',
-			'update.available' => 'Aggiornamento disponibile',
-			'update.versionAvailable' => ({required Object version}) => 'Versione ${version} disponibile',
-			'update.currentVersion' => ({required Object version}) => 'Attuale: ${version}',
-			'update.skipVersion' => 'Salta questa versione',
-			'update.viewRelease' => 'Visualizza note di rilascio',
-			'update.latestVersion' => 'La versione installata è l\'ultima disponibile',
-			'update.checkFailed' => 'Impossibile controllare gli aggiornamenti',
 			'settings.title' => 'Impostazioni',
-			'settings.supportDeveloper' => 'Supporta Harbor',
-			'settings.supportDeveloperDescription' => 'Dona tramite Liberapay per finanziare lo sviluppo',
 			'settings.language' => 'Lingua',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Aspetto',
@@ -1894,11 +1859,6 @@ extension on TranslationsIt {
 			'settings.shortcutsReset' => 'Scorciatoie ripristinate alle impostazioni predefinite',
 			'settings.about' => 'Informazioni',
 			'settings.aboutDescription' => 'Informazioni sull\'app e le licenze',
-			'settings.updates' => 'Aggiornamenti',
-			'settings.updateAvailable' => 'Aggiornamento disponibile',
-			'settings.checkForUpdates' => 'Controlla aggiornamenti',
-			'settings.autoCheckUpdatesOnStartup' => 'Controlla automaticamente gli aggiornamenti all\'avvio',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Avvisa all\'avvio quando è disponibile un aggiornamento',
 			'settings.validationErrorEnterNumber' => 'Inserisci un numero valido',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'La durata deve essere compresa tra ${min} e ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Scorciatoia già assegnata a ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsIt {
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossibile creare una coda di riproduzione: nessun elemento',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Impossibile eseguire l\'azione «${action}»: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Passaggio al lettore compatibile...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Riproduzione non riuscita',
 			'messages.serverLimitBody' => 'Errore del server (HTTP 500). È probabile che un limite di banda o transcodifica abbia impedito questa sessione. Chiedi al proprietario di modificare il limite.',
 			'subtitlingStyling.text' => 'Testo',
@@ -2248,6 +2206,8 @@ extension on TranslationsIt {
 			'subtitlingStyling.assOverride' => 'Sovrascrittura ASS',
 			'subtitlingStyling.overrideScale' => 'Ridimensiona',
 			'subtitlingStyling.overrideForce' => 'Forza',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Rimuovi stile',
 			'subtitlingStyling.positionTop' => 'In alto',
 			'subtitlingStyling.positionBottom' => 'In basso',
@@ -2745,8 +2705,6 @@ extension on TranslationsIt {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opzione immagine ${index}, selezionata',
 			'metadataEdit.notSet' => 'Non impostato',
 			'metadataEdit.tags' => 'Tag',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Aggiungi tag',
 			'metadataEdit.genre' => 'Genere',
 			'metadataEdit.director' => 'Regista',
@@ -2762,6 +2720,8 @@ extension on TranslationsIt {
 			'trakt.scrobble' => 'Scrobbling in tempo reale',
 			'trakt.scrobbleDescription' => 'Invia eventi di riproduzione, pausa e arresto a Trakt durante la riproduzione.',
 			'trakt.watchedSync' => 'Sincronizza lo stato di visione',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Quando contrassegni un elemento come visto in Harbor, viene contrassegnato come visto anche su Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Connetti Seerr',

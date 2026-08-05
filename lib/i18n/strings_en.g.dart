@@ -44,7 +44,6 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$auth$en auth = Translations$auth$en.internal(_root);
 	late final Translations$common$en common = Translations$common$en.internal(_root);
 	late final Translations$screens$en screens = Translations$screens$en.internal(_root);
-	late final Translations$update$en update = Translations$update$en.internal(_root);
 	late final Translations$settings$en settings = Translations$settings$en.internal(_root);
 	late final Translations$search$en search = Translations$search$en.internal(_root);
 	late final Translations$hotkeys$en hotkeys = Translations$hotkeys$en.internal(_root);
@@ -149,9 +148,6 @@ class Translations$common$en {
 
 	/// en: 'Reset'
 	String get reset => 'Reset';
-
-	/// en: 'Later'
-	String get later => 'Later';
 
 	/// en: 'Submit'
 	String get submit => 'Submit';
@@ -286,36 +282,6 @@ class Translations$screens$en {
 	String get logs => 'Logs';
 }
 
-// Path: update
-class Translations$update$en {
-	Translations$update$en.internal(this._root);
-
-	final Translations _root; // ignore: unused_field
-
-	// Translations
-
-	/// en: 'Update Available'
-	String get available => 'Update Available';
-
-	/// en: 'Version ${version} is available'
-	String versionAvailable({required Object version}) => 'Version ${version} is available';
-
-	/// en: 'Current: ${version}'
-	String currentVersion({required Object version}) => 'Current: ${version}';
-
-	/// en: 'Skip This Version'
-	String get skipVersion => 'Skip This Version';
-
-	/// en: 'View Release'
-	String get viewRelease => 'View Release';
-
-	/// en: 'You are on the latest version'
-	String get latestVersion => 'You are on the latest version';
-
-	/// en: 'Failed to check for updates'
-	String get checkFailed => 'Failed to check for updates';
-}
-
 // Path: settings
 class Translations$settings$en {
 	Translations$settings$en.internal(this._root);
@@ -326,12 +292,6 @@ class Translations$settings$en {
 
 	/// en: 'Settings'
 	String get title => 'Settings';
-
-	/// en: 'Support Harbor'
-	String get supportDeveloper => 'Support Harbor';
-
-	/// en: 'Donate via Liberapay to fund development'
-	String get supportDeveloperDescription => 'Donate via Liberapay to fund development';
 
 	/// en: 'Language'
 	String get language => 'Language';
@@ -683,21 +643,6 @@ class Translations$settings$en {
 
 	/// en: 'App information and licenses'
 	String get aboutDescription => 'App information and licenses';
-
-	/// en: 'Updates'
-	String get updates => 'Updates';
-
-	/// en: 'Update Available'
-	String get updateAvailable => 'Update Available';
-
-	/// en: 'Check for Updates'
-	String get checkForUpdates => 'Check for Updates';
-
-	/// en: 'Automatically check for updates on startup'
-	String get autoCheckUpdatesOnStartup => 'Automatically check for updates on startup';
-
-	/// en: 'Notify when an update is available at launch'
-	String get autoCheckUpdatesOnStartupDescription => 'Notify when an update is available at launch';
 
 	/// en: 'Please enter a valid number'
 	String get validationErrorEnterNumber => 'Please enter a valid number';
@@ -5132,7 +5077,6 @@ extension on Translations {
 			'common.close' => 'Close',
 			'common.clear' => 'Clear',
 			'common.reset' => 'Reset',
-			'common.later' => 'Later',
 			'common.submit' => 'Submit',
 			'common.confirm' => 'Confirm',
 			'common.retry' => 'Retry',
@@ -5174,16 +5118,7 @@ extension on Translations {
 			'screens.subtitleStyling' => 'Subtitle Styling',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Logs',
-			'update.available' => 'Update Available',
-			'update.versionAvailable' => ({required Object version}) => 'Version ${version} is available',
-			'update.currentVersion' => ({required Object version}) => 'Current: ${version}',
-			'update.skipVersion' => 'Skip This Version',
-			'update.viewRelease' => 'View Release',
-			'update.latestVersion' => 'You are on the latest version',
-			'update.checkFailed' => 'Failed to check for updates',
 			'settings.title' => 'Settings',
-			'settings.supportDeveloper' => 'Support Harbor',
-			'settings.supportDeveloperDescription' => 'Donate via Liberapay to fund development',
 			'settings.language' => 'Language',
 			'settings.theme' => 'Theme',
 			'settings.appearance' => 'Appearance',
@@ -5301,11 +5236,6 @@ extension on Translations {
 			'settings.shortcutsReset' => 'Shortcuts reset to defaults',
 			'settings.about' => 'About',
 			'settings.aboutDescription' => 'App information and licenses',
-			'settings.updates' => 'Updates',
-			'settings.updateAvailable' => 'Update Available',
-			'settings.checkForUpdates' => 'Check for Updates',
-			'settings.autoCheckUpdatesOnStartup' => 'Automatically check for updates on startup',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Notify when an update is available at launch',
 			'settings.validationErrorEnterNumber' => 'Please enter a valid number',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Duration must be between ${min} and ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Shortcut already assigned to ${action}',
@@ -5632,8 +5562,6 @@ extension on Translations {
 			'videoControls.letterbox' => 'Letterbox',
 			'videoControls.fillScreen' => 'Fill screen',
 			'videoControls.stretch' => 'Stretch',
-			_ => null,
-		} ?? switch (path) {
 			'videoControls.lockRotation' => 'Lock rotation',
 			'videoControls.unlockRotation' => 'Unlock rotation',
 			'videoControls.timerActive' => 'Timer Active',
@@ -5649,6 +5577,8 @@ extension on Translations {
 			'videoControls.playNext' => 'Play Next',
 			'videoControls.playButton' => 'Play',
 			'videoControls.pauseButton' => 'Pause',
+			_ => null,
+		} ?? switch (path) {
 			'videoControls.playbackPaused' => 'Paused',
 			'videoControls.playbackResumed' => 'Playing',
 			'videoControls.showPlaybackControls' => 'Show playback controls',
@@ -6146,8 +6076,6 @@ extension on Translations {
 			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
-			_ => null,
-		} ?? switch (path) {
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',
@@ -6163,6 +6091,8 @@ extension on Translations {
 			'music.repeat' => 'Repeat',
 			'music.repeatAll' => 'Repeat all',
 			'music.repeatOne' => 'Repeat one',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.title' => 'Downloads',
 			'downloads.manage' => 'Manage',
 			'downloads.tvShows' => 'TV Shows',

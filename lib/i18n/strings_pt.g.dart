@@ -43,7 +43,6 @@ class TranslationsPt extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$pt auth = _Translations$auth$pt._(_root);
 	@override late final _Translations$common$pt common = _Translations$common$pt._(_root);
 	@override late final _Translations$screens$pt screens = _Translations$screens$pt._(_root);
-	@override late final _Translations$update$pt update = _Translations$update$pt._(_root);
 	@override late final _Translations$settings$pt settings = _Translations$settings$pt._(_root);
 	@override late final _Translations$search$pt search = _Translations$search$pt._(_root);
 	@override late final _Translations$hotkeys$pt hotkeys = _Translations$hotkeys$pt._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$pt extends Translations$common$en {
 	@override String get close => 'Fechar';
 	@override String get clear => 'Limpar';
 	@override String get reset => 'Redefinir';
-	@override String get later => 'Depois';
 	@override String get submit => 'Enviar';
 	@override String get confirm => 'Confirmar';
 	@override String get retry => 'Tentar novamente';
@@ -174,22 +172,6 @@ class _Translations$screens$pt extends Translations$screens$en {
 	@override String get logs => 'Logs';
 }
 
-// Path: update
-class _Translations$update$pt extends Translations$update$en {
-	_Translations$update$pt._(TranslationsPt root) : this._root = root, super.internal(root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Atualização disponível';
-	@override String versionAvailable({required Object version}) => 'A versão ${version} está disponível';
-	@override String currentVersion({required Object version}) => 'Atual: ${version}';
-	@override String get skipVersion => 'Pular esta versão';
-	@override String get viewRelease => 'Ver Lançamento';
-	@override String get latestVersion => 'Você está na versão mais recente';
-	@override String get checkFailed => 'Falha ao verificar atualizações';
-}
-
 // Path: settings
 class _Translations$settings$pt extends Translations$settings$en {
 	_Translations$settings$pt._(TranslationsPt root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Configurações';
-	@override String get supportDeveloper => 'Apoie o Harbor';
-	@override String get supportDeveloperDescription => 'Doe via Liberapay para financiar o desenvolvimento';
 	@override String get language => 'Idioma';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Aparência';
@@ -311,11 +291,6 @@ class _Translations$settings$pt extends Translations$settings$en {
 	@override String get shortcutsReset => 'Atalhos redefinidos para o padrão';
 	@override String get about => 'Sobre';
 	@override String get aboutDescription => 'Informações do app e licenças';
-	@override String get updates => 'Atualizações';
-	@override String get updateAvailable => 'Atualização Disponível';
-	@override String get checkForUpdates => 'Verificar Atualizações';
-	@override String get autoCheckUpdatesOnStartup => 'Verificar atualizações automaticamente ao iniciar';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Notificar ao iniciar quando houver atualização disponível';
 	@override String get validationErrorEnterNumber => 'Insira um número válido';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'A duração deve estar entre ${min} e ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Atalho já atribuído a ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsPt {
 			'common.close' => 'Fechar',
 			'common.clear' => 'Limpar',
 			'common.reset' => 'Redefinir',
-			'common.later' => 'Depois',
 			'common.submit' => 'Enviar',
 			'common.confirm' => 'Confirmar',
 			'common.retry' => 'Tentar novamente',
@@ -1773,16 +1747,7 @@ extension on TranslationsPt {
 			'screens.subtitleStyling' => 'Estilo de Legendas',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Logs',
-			'update.available' => 'Atualização disponível',
-			'update.versionAvailable' => ({required Object version}) => 'A versão ${version} está disponível',
-			'update.currentVersion' => ({required Object version}) => 'Atual: ${version}',
-			'update.skipVersion' => 'Pular esta versão',
-			'update.viewRelease' => 'Ver Lançamento',
-			'update.latestVersion' => 'Você está na versão mais recente',
-			'update.checkFailed' => 'Falha ao verificar atualizações',
 			'settings.title' => 'Configurações',
-			'settings.supportDeveloper' => 'Apoie o Harbor',
-			'settings.supportDeveloperDescription' => 'Doe via Liberapay para financiar o desenvolvimento',
 			'settings.language' => 'Idioma',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Aparência',
@@ -1894,11 +1859,6 @@ extension on TranslationsPt {
 			'settings.shortcutsReset' => 'Atalhos redefinidos para o padrão',
 			'settings.about' => 'Sobre',
 			'settings.aboutDescription' => 'Informações do app e licenças',
-			'settings.updates' => 'Atualizações',
-			'settings.updateAvailable' => 'Atualização Disponível',
-			'settings.checkForUpdates' => 'Verificar Atualizações',
-			'settings.autoCheckUpdatesOnStartup' => 'Verificar atualizações automaticamente ao iniciar',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Notificar ao iniciar quando houver atualização disponível',
 			'settings.validationErrorEnterNumber' => 'Insira um número válido',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'A duração deve estar entre ${min} e ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Atalho já atribuído a ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsPt {
 			'messages.failedToCreatePlayQueueNoItems' => 'Falha ao criar a fila de reprodução — nenhum item',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Falha ao ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Alternando para um reprodutor compatível...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Falha na reprodução',
 			'messages.serverLimitBody' => 'Erro do servidor (HTTP 500). Um limite de largura de banda ou transcodificação provavelmente rejeitou esta sessão. Peça ao proprietário do servidor para ajustá-lo.',
 			'subtitlingStyling.text' => 'Texto',
@@ -2248,6 +2206,8 @@ extension on TranslationsPt {
 			'subtitlingStyling.assOverride' => 'Substituição ASS',
 			'subtitlingStyling.overrideScale' => 'Dimensionar',
 			'subtitlingStyling.overrideForce' => 'Forçar',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Remover estilo',
 			'subtitlingStyling.positionTop' => 'Superior',
 			'subtitlingStyling.positionBottom' => 'Inferior',
@@ -2745,8 +2705,6 @@ extension on TranslationsPt {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opção de arte ${index}, selecionada',
 			'metadataEdit.notSet' => 'Não definido',
 			'metadataEdit.tags' => 'Tags',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Adicionar tag',
 			'metadataEdit.genre' => 'Gênero',
 			'metadataEdit.director' => 'Diretor',
@@ -2762,6 +2720,8 @@ extension on TranslationsPt {
 			'trakt.scrobble' => 'Scrobbling em tempo real',
 			'trakt.scrobbleDescription' => 'Envia eventos de reprodução, pausa e parada ao Trakt durante a exibição.',
 			'trakt.watchedSync' => 'Sincronizar status de assistido',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Conectar ao Seerr',

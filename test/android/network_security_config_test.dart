@@ -4,12 +4,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:xml/xml.dart';
 
 const _configPath = 'android/app/src/main/res/xml/network_security_config.xml';
-const _expectedDomains = <String>{'trakt.tv', 'simkl.com', 'simkl.in', 'api.github.com', 'image.tmdb.org'};
+const _expectedDomains = <String>{'trakt.tv', 'simkl.com', 'simkl.in', 'image.tmdb.org'};
 const _fixedEndpointSourcePaths = <String>[
   'lib/services/trackers/trakt/trakt_constants.dart',
   'lib/services/trackers/simkl/simkl_constants.dart',
   'lib/services/catalog/seerr_catalog_source.dart',
-  'lib/services/update_service.dart',
   'lib/main.dart',
 ];
 

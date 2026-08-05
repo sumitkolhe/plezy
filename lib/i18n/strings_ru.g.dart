@@ -43,7 +43,6 @@ class TranslationsRu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$ru auth = _Translations$auth$ru._(_root);
 	@override late final _Translations$common$ru common = _Translations$common$ru._(_root);
 	@override late final _Translations$screens$ru screens = _Translations$screens$ru._(_root);
-	@override late final _Translations$update$ru update = _Translations$update$ru._(_root);
 	@override late final _Translations$settings$ru settings = _Translations$settings$ru._(_root);
 	@override late final _Translations$search$ru search = _Translations$search$ru._(_root);
 	@override late final _Translations$hotkeys$ru hotkeys = _Translations$hotkeys$ru._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$ru extends Translations$common$en {
 	@override String get close => 'Закрыть';
 	@override String get clear => 'Очистить';
 	@override String get reset => 'Сбросить';
-	@override String get later => 'Позже';
 	@override String get submit => 'Отправить';
 	@override String get confirm => 'Подтвердить';
 	@override String get retry => 'Повторить';
@@ -174,22 +172,6 @@ class _Translations$screens$ru extends Translations$screens$en {
 	@override String get logs => 'Логи';
 }
 
-// Path: update
-class _Translations$update$ru extends Translations$update$en {
-	_Translations$update$ru._(TranslationsRu root) : this._root = root, super.internal(root);
-
-	final TranslationsRu _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Доступно обновление';
-	@override String versionAvailable({required Object version}) => 'Доступна версия ${version}';
-	@override String currentVersion({required Object version}) => 'Текущая: ${version}';
-	@override String get skipVersion => 'Пропустить эту версию';
-	@override String get viewRelease => 'Посмотреть релиз';
-	@override String get latestVersion => 'У вас последняя версия';
-	@override String get checkFailed => 'Не удалось проверить обновления';
-}
-
 // Path: settings
 class _Translations$settings$ru extends Translations$settings$en {
 	_Translations$settings$ru._(TranslationsRu root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Настройки';
-	@override String get supportDeveloper => 'Поддержать Harbor';
-	@override String get supportDeveloperDescription => 'Пожертвуйте через Liberapay на развитие';
 	@override String get language => 'Язык';
 	@override String get theme => 'Тема';
 	@override String get appearance => 'Внешний вид';
@@ -311,11 +291,6 @@ class _Translations$settings$ru extends Translations$settings$en {
 	@override String get shortcutsReset => 'Горячие клавиши сброшены по умолчанию';
 	@override String get about => 'О приложении';
 	@override String get aboutDescription => 'Информация о приложении и лицензии';
-	@override String get updates => 'Обновления';
-	@override String get updateAvailable => 'Доступно обновление';
-	@override String get checkForUpdates => 'Проверить обновления';
-	@override String get autoCheckUpdatesOnStartup => 'Автоматически проверять обновления при запуске';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Уведомлять о доступном обновлении при запуске';
 	@override String get validationErrorEnterNumber => 'Введите корректное число';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Длительность должна быть от ${min} до ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Сочетание клавиш уже назначено действию «${action}»';
@@ -1737,7 +1712,6 @@ extension on TranslationsRu {
 			'common.close' => 'Закрыть',
 			'common.clear' => 'Очистить',
 			'common.reset' => 'Сбросить',
-			'common.later' => 'Позже',
 			'common.submit' => 'Отправить',
 			'common.confirm' => 'Подтвердить',
 			'common.retry' => 'Повторить',
@@ -1779,16 +1753,7 @@ extension on TranslationsRu {
 			'screens.subtitleStyling' => 'Стиль субтитров',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Логи',
-			'update.available' => 'Доступно обновление',
-			'update.versionAvailable' => ({required Object version}) => 'Доступна версия ${version}',
-			'update.currentVersion' => ({required Object version}) => 'Текущая: ${version}',
-			'update.skipVersion' => 'Пропустить эту версию',
-			'update.viewRelease' => 'Посмотреть релиз',
-			'update.latestVersion' => 'У вас последняя версия',
-			'update.checkFailed' => 'Не удалось проверить обновления',
 			'settings.title' => 'Настройки',
-			'settings.supportDeveloper' => 'Поддержать Harbor',
-			'settings.supportDeveloperDescription' => 'Пожертвуйте через Liberapay на развитие',
 			'settings.language' => 'Язык',
 			'settings.theme' => 'Тема',
 			'settings.appearance' => 'Внешний вид',
@@ -1900,11 +1865,6 @@ extension on TranslationsRu {
 			'settings.shortcutsReset' => 'Горячие клавиши сброшены по умолчанию',
 			'settings.about' => 'О приложении',
 			'settings.aboutDescription' => 'Информация о приложении и лицензии',
-			'settings.updates' => 'Обновления',
-			'settings.updateAvailable' => 'Доступно обновление',
-			'settings.checkForUpdates' => 'Проверить обновления',
-			'settings.autoCheckUpdatesOnStartup' => 'Автоматически проверять обновления при запуске',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Уведомлять о доступном обновлении при запуске',
 			'settings.validationErrorEnterNumber' => 'Введите корректное число',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Длительность должна быть от ${min} до ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Сочетание клавиш уже назначено действию «${action}»',
@@ -2237,8 +2197,6 @@ extension on TranslationsRu {
 			'messages.failedToCreatePlayQueueNoItems' => 'Не удалось создать очередь воспроизведения — нет элементов',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Не удалось ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Переключение на совместимый плеер...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Ошибка воспроизведения',
 			'messages.serverLimitBody' => 'Ошибка сервера (HTTP 500). Лимит пропускной способности/транскодирования, вероятно, отклонил сессию. Попросите владельца изменить настройки.',
 			'subtitlingStyling.text' => 'Текст',
@@ -2254,6 +2212,8 @@ extension on TranslationsRu {
 			'subtitlingStyling.assOverride' => 'Переопределение ASS',
 			'subtitlingStyling.overrideScale' => 'Масштаб',
 			'subtitlingStyling.overrideForce' => 'Принудительно',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Удалить стили',
 			'subtitlingStyling.positionTop' => 'Сверху',
 			'subtitlingStyling.positionBottom' => 'Снизу',
@@ -2751,8 +2711,6 @@ extension on TranslationsRu {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант обложки ${index}, выбран',
 			'metadataEdit.notSet' => 'Не задано',
 			'metadataEdit.tags' => 'Теги',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Добавить тег',
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режиссёр',
@@ -2768,6 +2726,8 @@ extension on TranslationsRu {
 			'trakt.scrobble' => 'Скробблинг в реальном времени',
 			'trakt.scrobbleDescription' => 'Отправлять события воспроизведения, паузы и остановки в Trakt во время просмотра.',
 			'trakt.watchedSync' => 'Синхронизация статуса просмотра',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Когда вы отмечаете элементы как просмотренные в Harbor, они отмечаются и в Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Подключить Seerr',

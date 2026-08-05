@@ -43,7 +43,6 @@ class TranslationsJa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$ja auth = _Translations$auth$ja._(_root);
 	@override late final _Translations$common$ja common = _Translations$common$ja._(_root);
 	@override late final _Translations$screens$ja screens = _Translations$screens$ja._(_root);
-	@override late final _Translations$update$ja update = _Translations$update$ja._(_root);
 	@override late final _Translations$settings$ja settings = _Translations$settings$ja._(_root);
 	@override late final _Translations$search$ja search = _Translations$search$ja._(_root);
 	@override late final _Translations$hotkeys$ja hotkeys = _Translations$hotkeys$ja._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$ja extends Translations$common$en {
 	@override String get close => '閉じる';
 	@override String get clear => 'クリア';
 	@override String get reset => 'リセット';
-	@override String get later => '後で';
 	@override String get submit => '送信';
 	@override String get confirm => '確認';
 	@override String get retry => '再試行';
@@ -174,22 +172,6 @@ class _Translations$screens$ja extends Translations$screens$en {
 	@override String get logs => 'ログ';
 }
 
-// Path: update
-class _Translations$update$ja extends Translations$update$en {
-	_Translations$update$ja._(TranslationsJa root) : this._root = root, super.internal(root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'アップデート利用可能';
-	@override String versionAvailable({required Object version}) => 'バージョン ${version} が利用可能です';
-	@override String currentVersion({required Object version}) => '現在: ${version}';
-	@override String get skipVersion => 'このバージョンをスキップ';
-	@override String get viewRelease => 'リリースを表示';
-	@override String get latestVersion => '最新バージョンです';
-	@override String get checkFailed => 'アップデートの確認に失敗しました';
-}
-
 // Path: settings
 class _Translations$settings$ja extends Translations$settings$en {
 	_Translations$settings$ja._(TranslationsJa root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 
 	// Translations
 	@override String get title => '設定';
-	@override String get supportDeveloper => 'Harborを支援';
-	@override String get supportDeveloperDescription => 'Liberapayで寄付して開発を支援';
 	@override String get language => '言語';
 	@override String get theme => 'テーマ';
 	@override String get appearance => '外観';
@@ -311,11 +291,6 @@ class _Translations$settings$ja extends Translations$settings$en {
 	@override String get shortcutsReset => 'ショートカットをデフォルトにリセットしました';
 	@override String get about => 'アプリについて';
 	@override String get aboutDescription => 'アプリ情報とライセンス';
-	@override String get updates => 'アップデート';
-	@override String get updateAvailable => 'アップデート利用可能';
-	@override String get checkForUpdates => 'アップデートを確認';
-	@override String get autoCheckUpdatesOnStartup => '起動時にアップデートを自動的に確認';
-	@override String get autoCheckUpdatesOnStartupDescription => '起動時にアップデートがある場合は通知します';
 	@override String get validationErrorEnterNumber => '有効な数値を入力してください';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => '時間は${min}から${max} ${unit}の間である必要があります';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'ショートカットは既に${action}に割り当てられています';
@@ -1728,7 +1703,6 @@ extension on TranslationsJa {
 			'common.close' => '閉じる',
 			'common.clear' => 'クリア',
 			'common.reset' => 'リセット',
-			'common.later' => '後で',
 			'common.submit' => '送信',
 			'common.confirm' => '確認',
 			'common.retry' => '再試行',
@@ -1770,16 +1744,7 @@ extension on TranslationsJa {
 			'screens.subtitleStyling' => '字幕スタイル',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'ログ',
-			'update.available' => 'アップデート利用可能',
-			'update.versionAvailable' => ({required Object version}) => 'バージョン ${version} が利用可能です',
-			'update.currentVersion' => ({required Object version}) => '現在: ${version}',
-			'update.skipVersion' => 'このバージョンをスキップ',
-			'update.viewRelease' => 'リリースを表示',
-			'update.latestVersion' => '最新バージョンです',
-			'update.checkFailed' => 'アップデートの確認に失敗しました',
 			'settings.title' => '設定',
-			'settings.supportDeveloper' => 'Harborを支援',
-			'settings.supportDeveloperDescription' => 'Liberapayで寄付して開発を支援',
 			'settings.language' => '言語',
 			'settings.theme' => 'テーマ',
 			'settings.appearance' => '外観',
@@ -1891,11 +1856,6 @@ extension on TranslationsJa {
 			'settings.shortcutsReset' => 'ショートカットをデフォルトにリセットしました',
 			'settings.about' => 'アプリについて',
 			'settings.aboutDescription' => 'アプリ情報とライセンス',
-			'settings.updates' => 'アップデート',
-			'settings.updateAvailable' => 'アップデート利用可能',
-			'settings.checkForUpdates' => 'アップデートを確認',
-			'settings.autoCheckUpdatesOnStartup' => '起動時にアップデートを自動的に確認',
-			'settings.autoCheckUpdatesOnStartupDescription' => '起動時にアップデートがある場合は通知します',
 			'settings.validationErrorEnterNumber' => '有効な数値を入力してください',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => '時間は${min}から${max} ${unit}の間である必要があります',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'ショートカットは既に${action}に割り当てられています',
@@ -2228,8 +2188,6 @@ extension on TranslationsJa {
 			'messages.failedToCreatePlayQueueNoItems' => '再生キューを作成できませんでした — アイテムがありません',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action}に失敗しました: ${error}',
 			'messages.switchingToCompatiblePlayer' => '互換性のあるプレーヤーに切り替え中…',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => '再生に失敗しました',
 			'messages.serverLimitBody' => 'サーバーエラー（HTTP 500）。帯域幅/トランスコード制限により拒否された可能性があります。所有者に調整を依頼してください。',
 			'subtitlingStyling.text' => 'テキスト',
@@ -2245,6 +2203,8 @@ extension on TranslationsJa {
 			'subtitlingStyling.assOverride' => 'ASSオーバーライド',
 			'subtitlingStyling.overrideScale' => '拡大縮小',
 			'subtitlingStyling.overrideForce' => '強制',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'スタイルを削除',
 			'subtitlingStyling.positionTop' => '上',
 			'subtitlingStyling.positionBottom' => '下',
@@ -2742,8 +2702,6 @@ extension on TranslationsJa {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}、選択済み',
 			'metadataEdit.notSet' => '未設定',
 			'metadataEdit.tags' => 'タグ',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'タグを追加',
 			'metadataEdit.genre' => 'ジャンル',
 			'metadataEdit.director' => '監督',
@@ -2759,6 +2717,8 @@ extension on TranslationsJa {
 			'trakt.scrobble' => 'リアルタイムのスクロブル',
 			'trakt.scrobbleDescription' => '再生中に再生・一時停止・停止の各イベントをTraktに送信します。',
 			'trakt.watchedSync' => '視聴済みステータスを同期',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Harborで項目を視聴済みにすると、Traktでも視聴済みになります。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerrに接続',

@@ -44,7 +44,6 @@ class TranslationsZhHant extends TranslationsZh with BaseTranslations<AppLocale,
 	@override late final _Translations$auth$zh_Hant auth = _Translations$auth$zh_Hant._(_root);
 	@override late final _Translations$common$zh_Hant common = _Translations$common$zh_Hant._(_root);
 	@override late final _Translations$screens$zh_Hant screens = _Translations$screens$zh_Hant._(_root);
-	@override late final _Translations$update$zh_Hant update = _Translations$update$zh_Hant._(_root);
 	@override late final _Translations$settings$zh_Hant settings = _Translations$settings$zh_Hant._(_root);
 	@override late final _Translations$search$zh_Hant search = _Translations$search$zh_Hant._(_root);
 	@override late final _Translations$hotkeys$zh_Hant hotkeys = _Translations$hotkeys$zh_Hant._(_root);
@@ -122,7 +121,6 @@ class _Translations$common$zh_Hant extends Translations$common$zh {
 	@override String get close => '關閉';
 	@override String get clear => '清除';
 	@override String get reset => '重設';
-	@override String get later => '稍後';
 	@override String get submit => '送出';
 	@override String get confirm => '確認';
 	@override String get retry => '重試';
@@ -175,22 +173,6 @@ class _Translations$screens$zh_Hant extends Translations$screens$zh {
 	@override String get logs => '日誌';
 }
 
-// Path: update
-class _Translations$update$zh_Hant extends Translations$update$zh {
-	_Translations$update$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => '有可用更新';
-	@override String versionAvailable({required Object version}) => '版本 ${version} 已發佈';
-	@override String currentVersion({required Object version}) => '目前版本：${version}';
-	@override String get skipVersion => '跳過此版本';
-	@override String get viewRelease => '查看版本詳情';
-	@override String get latestVersion => '已安裝的版本為最新版本';
-	@override String get checkFailed => '無法檢查更新';
-}
-
 // Path: settings
 class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	_Translations$settings$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
@@ -199,8 +181,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 
 	// Translations
 	@override String get title => '設定';
-	@override String get supportDeveloper => '贊助 Harbor';
-	@override String get supportDeveloperDescription => '透過 Liberapay 捐款支持開發者';
 	@override String get language => '語言';
 	@override String get theme => '主題';
 	@override String get appearance => '外觀';
@@ -312,11 +292,6 @@ class _Translations$settings$zh_Hant extends Translations$settings$zh {
 	@override String get shortcutsReset => '快速鍵已重設為預設值';
 	@override String get about => '關於';
 	@override String get aboutDescription => '應用程式資訊與授權條款';
-	@override String get updates => '更新';
-	@override String get updateAvailable => '有可用更新';
-	@override String get checkForUpdates => '檢查更新';
-	@override String get autoCheckUpdatesOnStartup => '啟動時自動檢查更新';
-	@override String get autoCheckUpdatesOnStartupDescription => '啟動時若有可用更新便顯示通知';
 	@override String get validationErrorEnterNumber => '請輸入有效的數字';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => '長度必須介於 ${min} 與 ${max} ${unit} 之間';
 	@override String shortcutAlreadyAssigned({required Object action}) => '該快速鍵已指派給 ${action}';
@@ -1729,7 +1704,6 @@ extension on TranslationsZhHant {
 			'common.close' => '關閉',
 			'common.clear' => '清除',
 			'common.reset' => '重設',
-			'common.later' => '稍後',
 			'common.submit' => '送出',
 			'common.confirm' => '確認',
 			'common.retry' => '重試',
@@ -1771,16 +1745,7 @@ extension on TranslationsZhHant {
 			'screens.subtitleStyling' => '字幕樣式',
 			'screens.mpvConfig' => 'mpv.conf 設定',
 			'screens.logs' => '日誌',
-			'update.available' => '有可用更新',
-			'update.versionAvailable' => ({required Object version}) => '版本 ${version} 已發佈',
-			'update.currentVersion' => ({required Object version}) => '目前版本：${version}',
-			'update.skipVersion' => '跳過此版本',
-			'update.viewRelease' => '查看版本詳情',
-			'update.latestVersion' => '已安裝的版本為最新版本',
-			'update.checkFailed' => '無法檢查更新',
 			'settings.title' => '設定',
-			'settings.supportDeveloper' => '贊助 Harbor',
-			'settings.supportDeveloperDescription' => '透過 Liberapay 捐款支持開發者',
 			'settings.language' => '語言',
 			'settings.theme' => '主題',
 			'settings.appearance' => '外觀',
@@ -1892,11 +1857,6 @@ extension on TranslationsZhHant {
 			'settings.shortcutsReset' => '快速鍵已重設為預設值',
 			'settings.about' => '關於',
 			'settings.aboutDescription' => '應用程式資訊與授權條款',
-			'settings.updates' => '更新',
-			'settings.updateAvailable' => '有可用更新',
-			'settings.checkForUpdates' => '檢查更新',
-			'settings.autoCheckUpdatesOnStartup' => '啟動時自動檢查更新',
-			'settings.autoCheckUpdatesOnStartupDescription' => '啟動時若有可用更新便顯示通知',
 			'settings.validationErrorEnterNumber' => '請輸入有效的數字',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => '長度必須介於 ${min} 與 ${max} ${unit} 之間',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => '該快速鍵已指派給 ${action}',
@@ -2229,8 +2189,6 @@ extension on TranslationsZhHant {
 			'messages.failedToCreatePlayQueueNoItems' => '無法建立播放佇列 — 沒有項目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '無法${action}：${error}',
 			'messages.switchingToCompatiblePlayer' => '正在切換至相容的播放器…',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => '播放失敗',
 			'messages.serverLimitBody' => '伺服器錯誤（HTTP 500）。伺服器的頻寬或轉碼限制可能拒絕此播放要求。請聯絡伺服器擁有者調整設定。',
 			'subtitlingStyling.text' => '文字',
@@ -2246,6 +2204,8 @@ extension on TranslationsZhHant {
 			'subtitlingStyling.assOverride' => '覆蓋 ASS 樣式',
 			'subtitlingStyling.overrideScale' => '縮放',
 			'subtitlingStyling.overrideForce' => '強制套用',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => '移除樣式',
 			'subtitlingStyling.positionTop' => '頂部',
 			'subtitlingStyling.positionBottom' => '底部',
@@ -2743,8 +2703,6 @@ extension on TranslationsZhHant {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面圖片選項 ${index}，已選擇',
 			'metadataEdit.notSet' => '未設定',
 			'metadataEdit.tags' => '標籤',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => '新增標籤',
 			'metadataEdit.genre' => '類型',
 			'metadataEdit.director' => '導演',
@@ -2760,6 +2718,8 @@ extension on TranslationsZhHant {
 			'trakt.scrobble' => '即時同步記錄（Scrobble）',
 			'trakt.scrobbleDescription' => '在播放時向 Trakt 傳送播放、暫停和停止等狀態。',
 			'trakt.watchedSync' => '同步已觀看狀態',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => '在 Harbor 中將項目標記為已觀看時，也會在 Trakt 上標記為已觀看。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => '連線至 Seerr',

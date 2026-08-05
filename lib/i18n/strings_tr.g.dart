@@ -43,7 +43,6 @@ class TranslationsTr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$tr auth = _Translations$auth$tr._(_root);
 	@override late final _Translations$common$tr common = _Translations$common$tr._(_root);
 	@override late final _Translations$screens$tr screens = _Translations$screens$tr._(_root);
-	@override late final _Translations$update$tr update = _Translations$update$tr._(_root);
 	@override late final _Translations$settings$tr settings = _Translations$settings$tr._(_root);
 	@override late final _Translations$search$tr search = _Translations$search$tr._(_root);
 	@override late final _Translations$hotkeys$tr hotkeys = _Translations$hotkeys$tr._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$tr extends Translations$common$en {
 	@override String get close => 'Kapat';
 	@override String get clear => 'Temizle';
 	@override String get reset => 'Sıfırla';
-	@override String get later => 'Daha Sonra';
 	@override String get submit => 'Gönder';
 	@override String get confirm => 'Onayla';
 	@override String get retry => 'Tekrar Dene';
@@ -174,22 +172,6 @@ class _Translations$screens$tr extends Translations$screens$en {
 	@override String get logs => 'Günlükler';
 }
 
-// Path: update
-class _Translations$update$tr extends Translations$update$en {
-	_Translations$update$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Güncelleme Mevcut';
-	@override String versionAvailable({required Object version}) => 'Sürüm ${version} kullanılabilir';
-	@override String currentVersion({required Object version}) => 'Mevcut: ${version}';
-	@override String get skipVersion => 'Bu Sürümü Atla';
-	@override String get viewRelease => 'Sürümü Görüntüle';
-	@override String get latestVersion => 'En son sürümü kullanıyorsunuz';
-	@override String get checkFailed => 'Güncellemeler kontrol edilemedi';
-}
-
 // Path: settings
 class _Translations$settings$tr extends Translations$settings$en {
 	_Translations$settings$tr._(TranslationsTr root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Ayarlar';
-	@override String get supportDeveloper => 'Harbor\'yi Destekleyin';
-	@override String get supportDeveloperDescription => 'Geliştirmeyi fonlamak için Liberapay üzerinden bağış yapın';
 	@override String get language => 'Dil';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Görünüm';
@@ -314,11 +294,6 @@ class _Translations$settings$tr extends Translations$settings$en {
 	@override String get shortcutsReset => 'Kısayollar varsayılana sıfırlandı';
 	@override String get about => 'Hakkında';
 	@override String get aboutDescription => 'Uygulama bilgileri ve lisanslar';
-	@override String get updates => 'Güncellemeler';
-	@override String get updateAvailable => 'Güncelleme Mevcut';
-	@override String get checkForUpdates => 'Güncellemeleri Kontrol Et';
-	@override String get autoCheckUpdatesOnStartup => 'Açılışta güncellemeleri otomatik kontrol et';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Açılışta bir güncelleme olduğunda bildir';
 	@override String get validationErrorEnterNumber => 'Lütfen geçerli bir sayı girin';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Süre ${min} ile ${max} ${unit} arasında olmalıdır';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Kısayol zaten ${action} eylemine atanmış';
@@ -1742,7 +1717,6 @@ extension on TranslationsTr {
 			'common.close' => 'Kapat',
 			'common.clear' => 'Temizle',
 			'common.reset' => 'Sıfırla',
-			'common.later' => 'Daha Sonra',
 			'common.submit' => 'Gönder',
 			'common.confirm' => 'Onayla',
 			'common.retry' => 'Tekrar Dene',
@@ -1784,16 +1758,7 @@ extension on TranslationsTr {
 			'screens.subtitleStyling' => 'Altyazı Biçimlendirmesi',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Günlükler',
-			'update.available' => 'Güncelleme Mevcut',
-			'update.versionAvailable' => ({required Object version}) => 'Sürüm ${version} kullanılabilir',
-			'update.currentVersion' => ({required Object version}) => 'Mevcut: ${version}',
-			'update.skipVersion' => 'Bu Sürümü Atla',
-			'update.viewRelease' => 'Sürümü Görüntüle',
-			'update.latestVersion' => 'En son sürümü kullanıyorsunuz',
-			'update.checkFailed' => 'Güncellemeler kontrol edilemedi',
 			'settings.title' => 'Ayarlar',
-			'settings.supportDeveloper' => 'Harbor\'yi Destekleyin',
-			'settings.supportDeveloperDescription' => 'Geliştirmeyi fonlamak için Liberapay üzerinden bağış yapın',
 			'settings.language' => 'Dil',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Görünüm',
@@ -1908,11 +1873,6 @@ extension on TranslationsTr {
 			'settings.shortcutsReset' => 'Kısayollar varsayılana sıfırlandı',
 			'settings.about' => 'Hakkında',
 			'settings.aboutDescription' => 'Uygulama bilgileri ve lisanslar',
-			'settings.updates' => 'Güncellemeler',
-			'settings.updateAvailable' => 'Güncelleme Mevcut',
-			'settings.checkForUpdates' => 'Güncellemeleri Kontrol Et',
-			'settings.autoCheckUpdatesOnStartup' => 'Açılışta güncellemeleri otomatik kontrol et',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Açılışta bir güncelleme olduğunda bildir',
 			'settings.validationErrorEnterNumber' => 'Lütfen geçerli bir sayı girin',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Süre ${min} ile ${max} ${unit} arasında olmalıdır',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Kısayol zaten ${action} eylemine atanmış',
@@ -2242,8 +2202,6 @@ extension on TranslationsTr {
 			'messages.episodesLoadFailed' => 'Bölümler yüklenemedi',
 			'messages.noResultsFound' => 'Sonuç bulunamadı',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyku zamanlayıcısı ${label} için ayarlandı',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noItemsAvailable' => 'Öge bulunmuyor',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma kuyruğu oluşturulamadı — öge yok',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} başarısız oldu: ${error}',
@@ -2259,6 +2217,8 @@ extension on TranslationsTr {
 			'subtitlingStyling.borderColor' => 'Kenarlık Rengi',
 			'subtitlingStyling.backgroundOpacity' => 'Arka Plan Saydamlığı',
 			'subtitlingStyling.backgroundColor' => 'Arka Plan Rengi',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.position' => 'Konum',
 			'subtitlingStyling.assOverride' => 'ASS Geçersiz Kılma',
 			'subtitlingStyling.overrideScale' => 'Ölçekle',
@@ -2756,8 +2716,6 @@ extension on TranslationsTr {
 			'metadataEdit.selectSquareArt' => 'Kare Görsel Seç',
 			'metadataEdit.fromUrl' => 'URL\'den',
 			'metadataEdit.uploadFile' => 'Dosya Yükle',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.enterImageUrl' => 'Görsel URL\'si girin',
 			'metadataEdit.imageUrl' => 'Görsel URL\'si',
 			'metadataEdit.metadataUpdated' => 'Meta veriler güncellendi',
@@ -2773,6 +2731,8 @@ extension on TranslationsTr {
 			'metadataEdit.genre' => 'Tür',
 			'metadataEdit.director' => 'Yönetmen',
 			'metadataEdit.writer' => 'Yazar',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.producer' => 'Yapımcı',
 			'metadataEdit.country' => 'Ülke',
 			'metadataEdit.label' => 'Etiket',

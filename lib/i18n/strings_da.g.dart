@@ -43,7 +43,6 @@ class TranslationsDa extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$da auth = _Translations$auth$da._(_root);
 	@override late final _Translations$common$da common = _Translations$common$da._(_root);
 	@override late final _Translations$screens$da screens = _Translations$screens$da._(_root);
-	@override late final _Translations$update$da update = _Translations$update$da._(_root);
 	@override late final _Translations$settings$da settings = _Translations$settings$da._(_root);
 	@override late final _Translations$search$da search = _Translations$search$da._(_root);
 	@override late final _Translations$hotkeys$da hotkeys = _Translations$hotkeys$da._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$da extends Translations$common$en {
 	@override String get close => 'Luk';
 	@override String get clear => 'Ryd';
 	@override String get reset => 'Nulstil';
-	@override String get later => 'Senere';
 	@override String get submit => 'Indsend';
 	@override String get confirm => 'Bekræft';
 	@override String get retry => 'Prøv igen';
@@ -174,22 +172,6 @@ class _Translations$screens$da extends Translations$screens$en {
 	@override String get logs => 'Logfiler';
 }
 
-// Path: update
-class _Translations$update$da extends Translations$update$en {
-	_Translations$update$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Opdatering tilgængelig';
-	@override String versionAvailable({required Object version}) => 'Version ${version} er tilgængelig';
-	@override String currentVersion({required Object version}) => 'Nuværende: ${version}';
-	@override String get skipVersion => 'Spring denne version over';
-	@override String get viewRelease => 'Vis udgivelse';
-	@override String get latestVersion => 'Du har den nyeste version';
-	@override String get checkFailed => 'Kunne ikke søge efter opdateringer';
-}
-
 // Path: settings
 class _Translations$settings$da extends Translations$settings$en {
 	_Translations$settings$da._(TranslationsDa root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$da extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Indstillinger';
-	@override String get supportDeveloper => 'Støt Harbor';
-	@override String get supportDeveloperDescription => 'Doner via Liberapay for at finansiere udviklingen';
 	@override String get language => 'Sprog';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Udseende';
@@ -311,11 +291,6 @@ class _Translations$settings$da extends Translations$settings$en {
 	@override String get shortcutsReset => 'Genveje nulstillet til standard';
 	@override String get about => 'Om';
 	@override String get aboutDescription => 'App-information og licenser';
-	@override String get updates => 'Opdateringer';
-	@override String get updateAvailable => 'Opdatering tilgængelig';
-	@override String get checkForUpdates => 'Søg efter opdateringer';
-	@override String get autoCheckUpdatesOnStartup => 'Søg automatisk efter opdateringer ved opstart';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Giv besked, når en opdatering er tilgængelig ved start';
 	@override String get validationErrorEnterNumber => 'Indtast et gyldigt tal';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Varigheden skal være mellem ${min} og ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Genvejen er allerede tildelt ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsDa {
 			'common.close' => 'Luk',
 			'common.clear' => 'Ryd',
 			'common.reset' => 'Nulstil',
-			'common.later' => 'Senere',
 			'common.submit' => 'Indsend',
 			'common.confirm' => 'Bekræft',
 			'common.retry' => 'Prøv igen',
@@ -1773,16 +1747,7 @@ extension on TranslationsDa {
 			'screens.subtitleStyling' => 'Undertekststil',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Logfiler',
-			'update.available' => 'Opdatering tilgængelig',
-			'update.versionAvailable' => ({required Object version}) => 'Version ${version} er tilgængelig',
-			'update.currentVersion' => ({required Object version}) => 'Nuværende: ${version}',
-			'update.skipVersion' => 'Spring denne version over',
-			'update.viewRelease' => 'Vis udgivelse',
-			'update.latestVersion' => 'Du har den nyeste version',
-			'update.checkFailed' => 'Kunne ikke søge efter opdateringer',
 			'settings.title' => 'Indstillinger',
-			'settings.supportDeveloper' => 'Støt Harbor',
-			'settings.supportDeveloperDescription' => 'Doner via Liberapay for at finansiere udviklingen',
 			'settings.language' => 'Sprog',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Udseende',
@@ -1894,11 +1859,6 @@ extension on TranslationsDa {
 			'settings.shortcutsReset' => 'Genveje nulstillet til standard',
 			'settings.about' => 'Om',
 			'settings.aboutDescription' => 'App-information og licenser',
-			'settings.updates' => 'Opdateringer',
-			'settings.updateAvailable' => 'Opdatering tilgængelig',
-			'settings.checkForUpdates' => 'Søg efter opdateringer',
-			'settings.autoCheckUpdatesOnStartup' => 'Søg automatisk efter opdateringer ved opstart',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Giv besked, når en opdatering er tilgængelig ved start',
 			'settings.validationErrorEnterNumber' => 'Indtast et gyldigt tal',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Varigheden skal være mellem ${min} og ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Genvejen er allerede tildelt ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsDa {
 			'messages.failedToCreatePlayQueueNoItems' => 'Kunne ikke oprette en afspilningskø — ingen elementer',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Kunne ikke ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Skifter til kompatibel afspiller...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Afspilning mislykkedes',
 			'messages.serverLimitBody' => 'Serverfejl (HTTP 500). En båndbredde- eller transkodningsgrænse afviste sandsynligvis sessionen. Bed ejeren om at justere den.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2248,6 +2206,8 @@ extension on TranslationsDa {
 			'subtitlingStyling.assOverride' => 'ASS-tilsidesættelse',
 			'subtitlingStyling.overrideScale' => 'Skaler',
 			'subtitlingStyling.overrideForce' => 'Gennemtving',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Fjern formatering',
 			'subtitlingStyling.positionTop' => 'Øverst',
 			'subtitlingStyling.positionBottom' => 'Nederst',
@@ -2745,8 +2705,6 @@ extension on TranslationsDa {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikvalg ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke indstillet',
 			'metadataEdit.tags' => 'Tags',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Tilføj tag',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Instruktør',
@@ -2762,6 +2720,8 @@ extension on TranslationsDa {
 			'trakt.scrobble' => 'Realtids-scrobbling',
 			'trakt.scrobbleDescription' => 'Send afspil-, pause- og stop-begivenheder til Trakt under afspilning.',
 			'trakt.watchedSync' => 'Synkroniser set-status',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Når du markerer elementer som set i Harbor, markeres de også på Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Forbind Seerr',

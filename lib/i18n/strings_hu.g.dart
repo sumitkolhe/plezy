@@ -43,7 +43,6 @@ class TranslationsHu extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$hu auth = _Translations$auth$hu._(_root);
 	@override late final _Translations$common$hu common = _Translations$common$hu._(_root);
 	@override late final _Translations$screens$hu screens = _Translations$screens$hu._(_root);
-	@override late final _Translations$update$hu update = _Translations$update$hu._(_root);
 	@override late final _Translations$settings$hu settings = _Translations$settings$hu._(_root);
 	@override late final _Translations$search$hu search = _Translations$search$hu._(_root);
 	@override late final _Translations$hotkeys$hu hotkeys = _Translations$hotkeys$hu._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$hu extends Translations$common$en {
 	@override String get close => 'Bezárás';
 	@override String get clear => 'Törlés';
 	@override String get reset => 'Visszaállítás';
-	@override String get later => 'Később';
 	@override String get submit => 'Beküldés';
 	@override String get confirm => 'Megerősítés';
 	@override String get retry => 'Újra';
@@ -174,22 +172,6 @@ class _Translations$screens$hu extends Translations$screens$en {
 	@override String get logs => 'Naplók';
 }
 
-// Path: update
-class _Translations$update$hu extends Translations$update$en {
-	_Translations$update$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Frissítés érhető el';
-	@override String versionAvailable({required Object version}) => 'A(z) ${version} verzió elérhető';
-	@override String currentVersion({required Object version}) => 'Jelenlegi: ${version}';
-	@override String get skipVersion => 'Verzió kihagyása';
-	@override String get viewRelease => 'Kiadási megjegyzések';
-	@override String get latestVersion => 'A legújabb verziót használod';
-	@override String get checkFailed => 'Nem sikerült az újabb frissítések ellenőrzése';
-}
-
 // Path: settings
 class _Translations$settings$hu extends Translations$settings$en {
 	_Translations$settings$hu._(TranslationsHu root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Beállítások';
-	@override String get supportDeveloper => 'Harbor támogatása';
-	@override String get supportDeveloperDescription => 'A fejlesztés támogatása Liberapay-en keresztül';
 	@override String get language => 'Nyelv';
 	@override String get theme => 'Téma';
 	@override String get appearance => 'Megjelenés';
@@ -311,11 +291,6 @@ class _Translations$settings$hu extends Translations$settings$en {
 	@override String get shortcutsReset => 'A billentyűparancsok visszaálltak az alapértelmezettekre';
 	@override String get about => 'Névjegy';
 	@override String get aboutDescription => 'Alkalmazásadatok és licencek';
-	@override String get updates => 'Frissítések';
-	@override String get updateAvailable => 'Frissítés érhető el';
-	@override String get checkForUpdates => 'Frissítések keresése';
-	@override String get autoCheckUpdatesOnStartup => 'Frissítések automatikus keresése indításkor';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Értesítés küldése indításkor, ha új frissítés érhető el';
 	@override String get validationErrorEnterNumber => 'Adj meg egy érvényes számot';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Az időtartamnak ${min} és ${max} ${unit} között kell lennie';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'A billentyűparancs már hozzá van rendelve a következőhöz: ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsHu {
 			'common.close' => 'Bezárás',
 			'common.clear' => 'Törlés',
 			'common.reset' => 'Visszaállítás',
-			'common.later' => 'Később',
 			'common.submit' => 'Beküldés',
 			'common.confirm' => 'Megerősítés',
 			'common.retry' => 'Újra',
@@ -1773,16 +1747,7 @@ extension on TranslationsHu {
 			'screens.subtitleStyling' => 'Feliratok stílusa',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Naplók',
-			'update.available' => 'Frissítés érhető el',
-			'update.versionAvailable' => ({required Object version}) => 'A(z) ${version} verzió elérhető',
-			'update.currentVersion' => ({required Object version}) => 'Jelenlegi: ${version}',
-			'update.skipVersion' => 'Verzió kihagyása',
-			'update.viewRelease' => 'Kiadási megjegyzések',
-			'update.latestVersion' => 'A legújabb verziót használod',
-			'update.checkFailed' => 'Nem sikerült az újabb frissítések ellenőrzése',
 			'settings.title' => 'Beállítások',
-			'settings.supportDeveloper' => 'Harbor támogatása',
-			'settings.supportDeveloperDescription' => 'A fejlesztés támogatása Liberapay-en keresztül',
 			'settings.language' => 'Nyelv',
 			'settings.theme' => 'Téma',
 			'settings.appearance' => 'Megjelenés',
@@ -1894,11 +1859,6 @@ extension on TranslationsHu {
 			'settings.shortcutsReset' => 'A billentyűparancsok visszaálltak az alapértelmezettekre',
 			'settings.about' => 'Névjegy',
 			'settings.aboutDescription' => 'Alkalmazásadatok és licencek',
-			'settings.updates' => 'Frissítések',
-			'settings.updateAvailable' => 'Frissítés érhető el',
-			'settings.checkForUpdates' => 'Frissítések keresése',
-			'settings.autoCheckUpdatesOnStartup' => 'Frissítések automatikus keresése indításkor',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Értesítés küldése indításkor, ha új frissítés érhető el',
 			'settings.validationErrorEnterNumber' => 'Adj meg egy érvényes számot',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Az időtartamnak ${min} és ${max} ${unit} között kell lennie',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'A billentyűparancs már hozzá van rendelve a következőhöz: ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsHu {
 			'messages.failedToCreatePlayQueueNoItems' => 'Nem sikerült létrehozni a lejátszási sort — nincsenek elemek',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Nem sikerült a művelet (${action}): ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Váltás kompatibilis lejátszóra...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'A lejátszás nem sikerült',
 			'messages.serverLimitBody' => 'Szerverhiba (HTTP 500). A munkamenetet valószínűleg egy sávszélességi vagy átkódolási korlát utasította el. Kérd meg a tulajdonost a korlát módosítására.',
 			'subtitlingStyling.text' => 'Szöveg',
@@ -2248,6 +2206,8 @@ extension on TranslationsHu {
 			'subtitlingStyling.assOverride' => 'ASS felülbírálása',
 			'subtitlingStyling.overrideScale' => 'Skálázás',
 			'subtitlingStyling.overrideForce' => 'Kényszerítés',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Stílus eltávolítása',
 			'subtitlingStyling.positionTop' => 'Fent',
 			'subtitlingStyling.positionBottom' => 'Lent',
@@ -2745,8 +2705,6 @@ extension on TranslationsHu {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '${index}. képváltozat, kiválasztva',
 			'metadataEdit.notSet' => 'Nincs beállítva',
 			'metadataEdit.tags' => 'Címkék',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Címke hozzáadása',
 			'metadataEdit.genre' => 'Műfaj',
 			'metadataEdit.director' => 'Rendező',
@@ -2762,6 +2720,8 @@ extension on TranslationsHu {
 			'trakt.scrobble' => 'Valós idejű scrobbling',
 			'trakt.scrobbleDescription' => 'Lejátszási, szüneteltetési és leállítási események küldése a Traktnak lejátszás közben.',
 			'trakt.watchedSync' => 'Megtekintési állapot szinkronizálása',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr csatlakoztatása',

@@ -43,7 +43,6 @@ class TranslationsSv extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$sv auth = _Translations$auth$sv._(_root);
 	@override late final _Translations$common$sv common = _Translations$common$sv._(_root);
 	@override late final _Translations$screens$sv screens = _Translations$screens$sv._(_root);
-	@override late final _Translations$update$sv update = _Translations$update$sv._(_root);
 	@override late final _Translations$settings$sv settings = _Translations$settings$sv._(_root);
 	@override late final _Translations$search$sv search = _Translations$search$sv._(_root);
 	@override late final _Translations$hotkeys$sv hotkeys = _Translations$hotkeys$sv._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$sv extends Translations$common$en {
 	@override String get close => 'Stäng';
 	@override String get clear => 'Rensa';
 	@override String get reset => 'Återställ';
-	@override String get later => 'Senare';
 	@override String get submit => 'Skicka';
 	@override String get confirm => 'Bekräfta';
 	@override String get retry => 'Försök igen';
@@ -174,22 +172,6 @@ class _Translations$screens$sv extends Translations$screens$en {
 	@override String get logs => 'Loggar';
 }
 
-// Path: update
-class _Translations$update$sv extends Translations$update$en {
-	_Translations$update$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Uppdatering tillgänglig';
-	@override String versionAvailable({required Object version}) => 'Version ${version} är tillgänglig';
-	@override String currentVersion({required Object version}) => 'Nuvarande: ${version}';
-	@override String get skipVersion => 'Hoppa över denna version';
-	@override String get viewRelease => 'Visa versionsinformation';
-	@override String get latestVersion => 'Du har den senaste versionen';
-	@override String get checkFailed => 'Det gick inte att söka efter uppdateringar';
-}
-
 // Path: settings
 class _Translations$settings$sv extends Translations$settings$en {
 	_Translations$settings$sv._(TranslationsSv root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Inställningar';
-	@override String get supportDeveloper => 'Stöd Harbor';
-	@override String get supportDeveloperDescription => 'Donera via Liberapay för att finansiera utvecklingen';
 	@override String get language => 'Språk';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Utseende';
@@ -311,11 +291,6 @@ class _Translations$settings$sv extends Translations$settings$en {
 	@override String get shortcutsReset => 'Genvägarna har återställts till standard';
 	@override String get about => 'Om';
 	@override String get aboutDescription => 'Appinformation och licenser';
-	@override String get updates => 'Uppdateringar';
-	@override String get updateAvailable => 'Uppdatering tillgänglig';
-	@override String get checkForUpdates => 'Kontrollera uppdateringar';
-	@override String get autoCheckUpdatesOnStartup => 'Kontrollera uppdateringar automatiskt vid start';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Meddela när en uppdatering finns vid start';
 	@override String get validationErrorEnterNumber => 'Ange ett giltigt tal';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Tiden måste vara mellan ${min} och ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Genvägen används redan för ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsSv {
 			'common.close' => 'Stäng',
 			'common.clear' => 'Rensa',
 			'common.reset' => 'Återställ',
-			'common.later' => 'Senare',
 			'common.submit' => 'Skicka',
 			'common.confirm' => 'Bekräfta',
 			'common.retry' => 'Försök igen',
@@ -1773,16 +1747,7 @@ extension on TranslationsSv {
 			'screens.subtitleStyling' => 'Utseende för undertexter',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Loggar',
-			'update.available' => 'Uppdatering tillgänglig',
-			'update.versionAvailable' => ({required Object version}) => 'Version ${version} är tillgänglig',
-			'update.currentVersion' => ({required Object version}) => 'Nuvarande: ${version}',
-			'update.skipVersion' => 'Hoppa över denna version',
-			'update.viewRelease' => 'Visa versionsinformation',
-			'update.latestVersion' => 'Du har den senaste versionen',
-			'update.checkFailed' => 'Det gick inte att söka efter uppdateringar',
 			'settings.title' => 'Inställningar',
-			'settings.supportDeveloper' => 'Stöd Harbor',
-			'settings.supportDeveloperDescription' => 'Donera via Liberapay för att finansiera utvecklingen',
 			'settings.language' => 'Språk',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Utseende',
@@ -1894,11 +1859,6 @@ extension on TranslationsSv {
 			'settings.shortcutsReset' => 'Genvägarna har återställts till standard',
 			'settings.about' => 'Om',
 			'settings.aboutDescription' => 'Appinformation och licenser',
-			'settings.updates' => 'Uppdateringar',
-			'settings.updateAvailable' => 'Uppdatering tillgänglig',
-			'settings.checkForUpdates' => 'Kontrollera uppdateringar',
-			'settings.autoCheckUpdatesOnStartup' => 'Kontrollera uppdateringar automatiskt vid start',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Meddela när en uppdatering finns vid start',
 			'settings.validationErrorEnterNumber' => 'Ange ett giltigt tal',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Tiden måste vara mellan ${min} och ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Genvägen används redan för ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsSv {
 			'messages.failedToCreatePlayQueueNoItems' => 'Det gick inte att skapa en uppspelningskö – inga objekt',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Det gick inte att ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Byter till kompatibel spelare...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Uppspelningen misslyckades',
 			'messages.serverLimitBody' => 'Serverfel (HTTP 500). En bandbredds-/transkodningsgräns avvisade troligen sessionen. Be ägaren justera den.',
 			'subtitlingStyling.text' => 'Text',
@@ -2248,6 +2206,8 @@ extension on TranslationsSv {
 			'subtitlingStyling.assOverride' => 'ASS-åsidosättning',
 			'subtitlingStyling.overrideScale' => 'Skala',
 			'subtitlingStyling.overrideForce' => 'Tvinga',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Ta bort formatering',
 			'subtitlingStyling.positionTop' => 'Överst',
 			'subtitlingStyling.positionBottom' => 'Nederst',
@@ -2745,8 +2705,6 @@ extension on TranslationsSv {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Bildalternativ ${index}, valt',
 			'metadataEdit.notSet' => 'Inte angiven',
 			'metadataEdit.tags' => 'Taggar',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Lägg till tagg',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Regissör',
@@ -2762,6 +2720,8 @@ extension on TranslationsSv {
 			'trakt.scrobble' => 'Realtidsspårning',
 			'trakt.scrobbleDescription' => 'Skicka händelser för uppspelning, paus och stopp till Trakt under uppspelningen.',
 			'trakt.watchedSync' => 'Synkronisera seddstatus',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'När du markerar objekt som sedda i Harbor markeras de även som sedda på Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Anslut Seerr',

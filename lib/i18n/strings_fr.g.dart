@@ -43,7 +43,6 @@ class TranslationsFr extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$fr auth = _Translations$auth$fr._(_root);
 	@override late final _Translations$common$fr common = _Translations$common$fr._(_root);
 	@override late final _Translations$screens$fr screens = _Translations$screens$fr._(_root);
-	@override late final _Translations$update$fr update = _Translations$update$fr._(_root);
 	@override late final _Translations$settings$fr settings = _Translations$settings$fr._(_root);
 	@override late final _Translations$search$fr search = _Translations$search$fr._(_root);
 	@override late final _Translations$hotkeys$fr hotkeys = _Translations$hotkeys$fr._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$fr extends Translations$common$en {
 	@override String get close => 'Fermer';
 	@override String get clear => 'Effacer';
 	@override String get reset => 'Réinitialiser';
-	@override String get later => 'Plus tard';
 	@override String get submit => 'Soumettre';
 	@override String get confirm => 'Confirmer';
 	@override String get retry => 'Réessayer';
@@ -174,22 +172,6 @@ class _Translations$screens$fr extends Translations$screens$en {
 	@override String get logs => 'Journaux';
 }
 
-// Path: update
-class _Translations$update$fr extends Translations$update$en {
-	_Translations$update$fr._(TranslationsFr root) : this._root = root, super.internal(root);
-
-	final TranslationsFr _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Mise à jour disponible';
-	@override String versionAvailable({required Object version}) => 'Version ${version} disponible';
-	@override String currentVersion({required Object version}) => 'Actuelle : ${version}';
-	@override String get skipVersion => 'Ignorer cette version';
-	@override String get viewRelease => 'Voir les notes de version';
-	@override String get latestVersion => 'Vous utilisez la dernière version';
-	@override String get checkFailed => 'Échec de la vérification des mises à jour';
-}
-
 // Path: settings
 class _Translations$settings$fr extends Translations$settings$en {
 	_Translations$settings$fr._(TranslationsFr root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$fr extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Paramètres';
-	@override String get supportDeveloper => 'Soutenir Harbor';
-	@override String get supportDeveloperDescription => 'Faites un don via Liberapay pour financer le développement';
 	@override String get language => 'Langue';
 	@override String get theme => 'Thème';
 	@override String get appearance => 'Apparence';
@@ -311,11 +291,6 @@ class _Translations$settings$fr extends Translations$settings$en {
 	@override String get shortcutsReset => 'Raccourcis réinitialisés aux valeurs par défaut';
 	@override String get about => 'À propos';
 	@override String get aboutDescription => 'Informations sur l\'application et licences';
-	@override String get updates => 'Mises à jour';
-	@override String get updateAvailable => 'Mise à jour disponible';
-	@override String get checkForUpdates => 'Vérifier les mises à jour';
-	@override String get autoCheckUpdatesOnStartup => 'Vérifier automatiquement les mises à jour au démarrage';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Notifier au lancement quand une mise à jour est disponible';
 	@override String get validationErrorEnterNumber => 'Veuillez saisir un nombre valide';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'La durée doit être comprise entre ${min} et ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Raccourci déjà attribué à ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsFr {
 			'common.close' => 'Fermer',
 			'common.clear' => 'Effacer',
 			'common.reset' => 'Réinitialiser',
-			'common.later' => 'Plus tard',
 			'common.submit' => 'Soumettre',
 			'common.confirm' => 'Confirmer',
 			'common.retry' => 'Réessayer',
@@ -1773,16 +1747,7 @@ extension on TranslationsFr {
 			'screens.subtitleStyling' => 'Configuration des sous-titres',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Journaux',
-			'update.available' => 'Mise à jour disponible',
-			'update.versionAvailable' => ({required Object version}) => 'Version ${version} disponible',
-			'update.currentVersion' => ({required Object version}) => 'Actuelle : ${version}',
-			'update.skipVersion' => 'Ignorer cette version',
-			'update.viewRelease' => 'Voir les notes de version',
-			'update.latestVersion' => 'Vous utilisez la dernière version',
-			'update.checkFailed' => 'Échec de la vérification des mises à jour',
 			'settings.title' => 'Paramètres',
-			'settings.supportDeveloper' => 'Soutenir Harbor',
-			'settings.supportDeveloperDescription' => 'Faites un don via Liberapay pour financer le développement',
 			'settings.language' => 'Langue',
 			'settings.theme' => 'Thème',
 			'settings.appearance' => 'Apparence',
@@ -1894,11 +1859,6 @@ extension on TranslationsFr {
 			'settings.shortcutsReset' => 'Raccourcis réinitialisés aux valeurs par défaut',
 			'settings.about' => 'À propos',
 			'settings.aboutDescription' => 'Informations sur l\'application et licences',
-			'settings.updates' => 'Mises à jour',
-			'settings.updateAvailable' => 'Mise à jour disponible',
-			'settings.checkForUpdates' => 'Vérifier les mises à jour',
-			'settings.autoCheckUpdatesOnStartup' => 'Vérifier automatiquement les mises à jour au démarrage',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Notifier au lancement quand une mise à jour est disponible',
 			'settings.validationErrorEnterNumber' => 'Veuillez saisir un nombre valide',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'La durée doit être comprise entre ${min} et ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Raccourci déjà attribué à ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsFr {
 			'messages.failedToCreatePlayQueueNoItems' => 'Impossible de créer la file d’attente de lecture : aucun élément',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Échec de ${action} : ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Passage au lecteur compatible...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Échec de la lecture',
 			'messages.serverLimitBody' => 'Erreur serveur (HTTP 500). Une limite de bande passante/transcodage a probablement rejeté cette session. Demandez au propriétaire de l\'ajuster.',
 			'subtitlingStyling.text' => 'Texte',
@@ -2248,6 +2206,8 @@ extension on TranslationsFr {
 			'subtitlingStyling.assOverride' => 'Remplacement ASS',
 			'subtitlingStyling.overrideScale' => 'Mettre à l’échelle',
 			'subtitlingStyling.overrideForce' => 'Forcer',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Supprimer le style',
 			'subtitlingStyling.positionTop' => 'Haut',
 			'subtitlingStyling.positionBottom' => 'Bas',
@@ -2745,8 +2705,6 @@ extension on TranslationsFr {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Option d\'illustration ${index}, sélectionnée',
 			'metadataEdit.notSet' => 'Non défini',
 			'metadataEdit.tags' => 'Étiquettes',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Ajouter une étiquette',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Réalisateur',
@@ -2762,6 +2720,8 @@ extension on TranslationsFr {
 			'trakt.scrobble' => 'Scrobbling en temps réel',
 			'trakt.scrobbleDescription' => 'Envoyer les événements de lecture, pause et arrêt à Trakt pendant la lecture.',
 			'trakt.watchedSync' => 'Synchroniser le statut « vu »',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Se connecter à Seerr',

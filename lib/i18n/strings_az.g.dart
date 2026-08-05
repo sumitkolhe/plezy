@@ -43,7 +43,6 @@ class TranslationsAz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$az auth = _Translations$auth$az._(_root);
 	@override late final _Translations$common$az common = _Translations$common$az._(_root);
 	@override late final _Translations$screens$az screens = _Translations$screens$az._(_root);
-	@override late final _Translations$update$az update = _Translations$update$az._(_root);
 	@override late final _Translations$settings$az settings = _Translations$settings$az._(_root);
 	@override late final _Translations$search$az search = _Translations$search$az._(_root);
 	@override late final _Translations$hotkeys$az hotkeys = _Translations$hotkeys$az._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$az extends Translations$common$en {
 	@override String get close => 'Bağla';
 	@override String get clear => 'Təmizlə';
 	@override String get reset => 'Sıfırla';
-	@override String get later => 'Sonra';
 	@override String get submit => 'Göndər';
 	@override String get confirm => 'Təsdiqlə';
 	@override String get retry => 'Təzədən cəhd et';
@@ -174,22 +172,6 @@ class _Translations$screens$az extends Translations$screens$en {
 	@override String get logs => 'Jurnallar';
 }
 
-// Path: update
-class _Translations$update$az extends Translations$update$en {
-	_Translations$update$az._(TranslationsAz root) : this._root = root, super.internal(root);
-
-	final TranslationsAz _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Yenilənmə var';
-	@override String versionAvailable({required Object version}) => '${version} versiyası əlçatandır';
-	@override String currentVersion({required Object version}) => 'Cari: ${version}';
-	@override String get skipVersion => 'Bu versiyanı ötür';
-	@override String get viewRelease => 'Buraxılışa bax';
-	@override String get latestVersion => 'Siz ən son versiyadasınız';
-	@override String get checkFailed => 'Yenilənmələr yoxlanıla bilmədi';
-}
-
 // Path: settings
 class _Translations$settings$az extends Translations$settings$en {
 	_Translations$settings$az._(TranslationsAz root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$az extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Tənzimləmələr';
-	@override String get supportDeveloper => 'Harbor-yə dəstək ol';
-	@override String get supportDeveloperDescription => 'İnkişafı maliyyələşdirmək üçün Liberapay vasitəsilə iyanə edin';
 	@override String get language => 'Dil';
 	@override String get theme => 'Mövzu';
 	@override String get appearance => 'Görünüş';
@@ -314,11 +294,6 @@ class _Translations$settings$az extends Translations$settings$en {
 	@override String get shortcutsReset => 'Qısayollar defolt vəziyyətə sıfırlandı';
 	@override String get about => 'Haqqında';
 	@override String get aboutDescription => 'Tətbiq məlumatı və lisenziyalar';
-	@override String get updates => 'Yenilənmələr';
-	@override String get updateAvailable => 'Yenilənmə var';
-	@override String get checkForUpdates => 'Yenilənmələri yoxla';
-	@override String get autoCheckUpdatesOnStartup => 'Açılışda yenilənmələri avtomatik yoxla';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Açılışda yenilənmə olduqda xəbərdar et';
 	@override String get validationErrorEnterNumber => 'Lütfən düzgün rəqəm daxil edin';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Müddət ${min} və ${max} ${unit} arasında olmalıdır';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Qısayol artıq ${action} üçün təyin edilib';
@@ -1742,7 +1717,6 @@ extension on TranslationsAz {
 			'common.close' => 'Bağla',
 			'common.clear' => 'Təmizlə',
 			'common.reset' => 'Sıfırla',
-			'common.later' => 'Sonra',
 			'common.submit' => 'Göndər',
 			'common.confirm' => 'Təsdiqlə',
 			'common.retry' => 'Təzədən cəhd et',
@@ -1784,16 +1758,7 @@ extension on TranslationsAz {
 			'screens.subtitleStyling' => 'Altyazı tənzimləmələri',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Jurnallar',
-			'update.available' => 'Yenilənmə var',
-			'update.versionAvailable' => ({required Object version}) => '${version} versiyası əlçatandır',
-			'update.currentVersion' => ({required Object version}) => 'Cari: ${version}',
-			'update.skipVersion' => 'Bu versiyanı ötür',
-			'update.viewRelease' => 'Buraxılışa bax',
-			'update.latestVersion' => 'Siz ən son versiyadasınız',
-			'update.checkFailed' => 'Yenilənmələr yoxlanıla bilmədi',
 			'settings.title' => 'Tənzimləmələr',
-			'settings.supportDeveloper' => 'Harbor-yə dəstək ol',
-			'settings.supportDeveloperDescription' => 'İnkişafı maliyyələşdirmək üçün Liberapay vasitəsilə iyanə edin',
 			'settings.language' => 'Dil',
 			'settings.theme' => 'Mövzu',
 			'settings.appearance' => 'Görünüş',
@@ -1908,11 +1873,6 @@ extension on TranslationsAz {
 			'settings.shortcutsReset' => 'Qısayollar defolt vəziyyətə sıfırlandı',
 			'settings.about' => 'Haqqında',
 			'settings.aboutDescription' => 'Tətbiq məlumatı və lisenziyalar',
-			'settings.updates' => 'Yenilənmələr',
-			'settings.updateAvailable' => 'Yenilənmə var',
-			'settings.checkForUpdates' => 'Yenilənmələri yoxla',
-			'settings.autoCheckUpdatesOnStartup' => 'Açılışda yenilənmələri avtomatik yoxla',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Açılışda yenilənmə olduqda xəbərdar et',
 			'settings.validationErrorEnterNumber' => 'Lütfən düzgün rəqəm daxil edin',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Müddət ${min} və ${max} ${unit} arasında olmalıdır',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Qısayol artıq ${action} üçün təyin edilib',
@@ -2242,8 +2202,6 @@ extension on TranslationsAz {
 			'messages.episodesLoadFailed' => 'Seriyalar yüklənə bilmədi',
 			'messages.noResultsFound' => 'Nəticə tapılmadı',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Yuxu taymeri ${label} üçün təyin edildi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noItemsAvailable' => 'Element yoxdur',
 			'messages.failedToCreatePlayQueueNoItems' => 'Oynatma növbəsi yaradıla bilmədi — element yoxdur',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} uğursuz oldu: ${error}',
@@ -2259,6 +2217,8 @@ extension on TranslationsAz {
 			'subtitlingStyling.borderColor' => 'Haşiyə rəngi',
 			'subtitlingStyling.backgroundOpacity' => 'Arxa fon şəffaflığı',
 			'subtitlingStyling.backgroundColor' => 'Arxa fon rəngi',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.position' => 'Mövqe',
 			'subtitlingStyling.assOverride' => 'ASS ləğvi',
 			'subtitlingStyling.overrideScale' => 'Miqyasla',
@@ -2756,8 +2716,6 @@ extension on TranslationsAz {
 			'metadataEdit.selectSquareArt' => 'Kvadrat şəkil seç',
 			'metadataEdit.fromUrl' => 'URL-dən',
 			'metadataEdit.uploadFile' => 'Fayl yüklə',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.enterImageUrl' => 'Şəkil URL-i daxil edin',
 			'metadataEdit.imageUrl' => 'Şəkil URL-i',
 			'metadataEdit.metadataUpdated' => 'Meta-məlumatlar yeniləndi',
@@ -2773,6 +2731,8 @@ extension on TranslationsAz {
 			'metadataEdit.genre' => 'Janr',
 			'metadataEdit.director' => 'Rejissor',
 			'metadataEdit.writer' => 'Ssenarist',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.producer' => 'Prodüser',
 			'metadataEdit.country' => 'Ölkə',
 			'metadataEdit.label' => 'Etiket',

@@ -14,7 +14,6 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
-import '../services/update_service.dart';
 import '../theme/mono_tokens.dart';
 import '../utils/haptics.dart';
 import '../utils/app_logger.dart';
@@ -23,7 +22,6 @@ import '../widgets/app_icon.dart';
 import '../utils/provider_extensions.dart';
 import '../utils/platform_detector.dart';
 import '../utils/snackbar_helper.dart';
-import '../utils/update_dialog.dart';
 import '../utils/video_player_navigation.dart';
 import '../mixins/mounted_set_state_mixin.dart';
 import '../mixins/refreshable.dart';
@@ -304,8 +302,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
       if (!_isSidebarFocused && !_isShowingProfileSelection) {
         _contentFocusScope.requestFocus();
       }
-
-      unawaited(_checkForUpdatesOnStartup());
     });
   }
 
@@ -508,31 +504,6 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     if (!mounted) return;
     _isShowingProfileSelection = false;
   }
-
-  Future<void> _checkForUpdatesOnStartup() async {
-    if (!mounted) return;
-
-    final settingsService = await SettingsService.getInstance();
-    if (!settingsService.read(SettingsService.autoCheckUpdatesOnStartup)) return;
-
-    try {
-      final updateInfo = await UpdateService.checkForUpdatesOnStartup();
-
-      if (updateInfo != null && updateInfo['hasUpdate'] == true && mounted) {
-        await _showUpdateDialog(updateInfo);
-      }
-    } catch (e) {
-      appLogger.e('Error checking for updates', error: e);
-    }
-  }
-
-  Future<void> _showUpdateDialog(Map<String, dynamic> updateInfo) => showUpdateAvailableDialog(
-    context,
-    updateInfo,
-    title: t.update.available,
-    dismissLabel: t.common.later,
-    showSkipVersion: true,
-  );
 
   /// Set up launcher shelf deep link handling for Android TV and tvOS taps.
   void _setupSystemShelfDeepLink() {

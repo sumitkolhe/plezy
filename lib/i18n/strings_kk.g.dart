@@ -43,7 +43,6 @@ class TranslationsKk extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$kk auth = _Translations$auth$kk._(_root);
 	@override late final _Translations$common$kk common = _Translations$common$kk._(_root);
 	@override late final _Translations$screens$kk screens = _Translations$screens$kk._(_root);
-	@override late final _Translations$update$kk update = _Translations$update$kk._(_root);
 	@override late final _Translations$settings$kk settings = _Translations$settings$kk._(_root);
 	@override late final _Translations$search$kk search = _Translations$search$kk._(_root);
 	@override late final _Translations$hotkeys$kk hotkeys = _Translations$hotkeys$kk._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$kk extends Translations$common$en {
 	@override String get close => 'Жабу';
 	@override String get clear => 'Тазалау';
 	@override String get reset => 'Қалпына келтіру';
-	@override String get later => 'Кейінірек';
 	@override String get submit => 'Жіберу';
 	@override String get confirm => 'Растау';
 	@override String get retry => 'Қайталау';
@@ -174,22 +172,6 @@ class _Translations$screens$kk extends Translations$screens$en {
 	@override String get logs => 'Журналдар';
 }
 
-// Path: update
-class _Translations$update$kk extends Translations$update$en {
-	_Translations$update$kk._(TranslationsKk root) : this._root = root, super.internal(root);
-
-	final TranslationsKk _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Жаңарту қолжетімді';
-	@override String versionAvailable({required Object version}) => '${version} нұсқасы қолжетімді';
-	@override String currentVersion({required Object version}) => 'Ағымдағы: ${version}';
-	@override String get skipVersion => 'Бұл нұсқаны өткізіп жіберу';
-	@override String get viewRelease => 'Релизді көру';
-	@override String get latestVersion => 'Сізде ең соңғы нұсқа орнатылған';
-	@override String get checkFailed => 'Жаңартуларды тексеру мүмкін болмады';
-}
-
 // Path: settings
 class _Translations$settings$kk extends Translations$settings$en {
 	_Translations$settings$kk._(TranslationsKk root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Баптаулар';
-	@override String get supportDeveloper => 'Harbor жобасын қолдау';
-	@override String get supportDeveloperDescription => 'Дамытуды қаржыландыру үшін Liberapay арқылы демеушілік жасаңыз';
 	@override String get language => 'Тіл';
 	@override String get theme => 'Тақырып';
 	@override String get appearance => 'Сыртқы келбеті';
@@ -314,11 +294,6 @@ class _Translations$settings$kk extends Translations$settings$en {
 	@override String get shortcutsReset => 'Пернелер тіркесі әдепкі күйге қайтарылды';
 	@override String get about => 'Қолданба туралы';
 	@override String get aboutDescription => 'Қолданба туралы ақпарат пен лицензиялар';
-	@override String get updates => 'Жаңартулар';
-	@override String get updateAvailable => 'Жаңарту бар';
-	@override String get checkForUpdates => 'Жаңартуларды тексеру';
-	@override String get autoCheckUpdatesOnStartup => 'Іске қосылғанда жаңартуларды автоматты тексеру';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Іске қосылғанда жаңарту бар болса хабарлау';
 	@override String get validationErrorEnterNumber => 'Дұрыс сан енгізіңіз';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Уақыт ${min} және ${max} ${unit} аралығында болуы керек';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Бұл тіркес ${action} әрекетіне тағайындалған';
@@ -1742,7 +1717,6 @@ extension on TranslationsKk {
 			'common.close' => 'Жабу',
 			'common.clear' => 'Тазалау',
 			'common.reset' => 'Қалпына келтіру',
-			'common.later' => 'Кейінірек',
 			'common.submit' => 'Жіберу',
 			'common.confirm' => 'Растау',
 			'common.retry' => 'Қайталау',
@@ -1784,16 +1758,7 @@ extension on TranslationsKk {
 			'screens.subtitleStyling' => 'Субтитр баптаулары',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Журналдар',
-			'update.available' => 'Жаңарту қолжетімді',
-			'update.versionAvailable' => ({required Object version}) => '${version} нұсқасы қолжетімді',
-			'update.currentVersion' => ({required Object version}) => 'Ағымдағы: ${version}',
-			'update.skipVersion' => 'Бұл нұсқаны өткізіп жіберу',
-			'update.viewRelease' => 'Релизді көру',
-			'update.latestVersion' => 'Сізде ең соңғы нұсқа орнатылған',
-			'update.checkFailed' => 'Жаңартуларды тексеру мүмкін болмады',
 			'settings.title' => 'Баптаулар',
-			'settings.supportDeveloper' => 'Harbor жобасын қолдау',
-			'settings.supportDeveloperDescription' => 'Дамытуды қаржыландыру үшін Liberapay арқылы демеушілік жасаңыз',
 			'settings.language' => 'Тіл',
 			'settings.theme' => 'Тақырып',
 			'settings.appearance' => 'Сыртқы келбеті',
@@ -1908,11 +1873,6 @@ extension on TranslationsKk {
 			'settings.shortcutsReset' => 'Пернелер тіркесі әдепкі күйге қайтарылды',
 			'settings.about' => 'Қолданба туралы',
 			'settings.aboutDescription' => 'Қолданба туралы ақпарат пен лицензиялар',
-			'settings.updates' => 'Жаңартулар',
-			'settings.updateAvailable' => 'Жаңарту бар',
-			'settings.checkForUpdates' => 'Жаңартуларды тексеру',
-			'settings.autoCheckUpdatesOnStartup' => 'Іске қосылғанда жаңартуларды автоматты тексеру',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Іске қосылғанда жаңарту бар болса хабарлау',
 			'settings.validationErrorEnterNumber' => 'Дұрыс сан енгізіңіз',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Уақыт ${min} және ${max} ${unit} аралығында болуы керек',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Бұл тіркес ${action} әрекетіне тағайындалған',
@@ -2242,8 +2202,6 @@ extension on TranslationsKk {
 			'messages.episodesLoadFailed' => 'Бөлімдерді жүктеу мүмкін болмады',
 			'messages.noResultsFound' => 'Нәтижелер табылмады',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Ұйқы таймері ${label} уақытына орнатылды',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noItemsAvailable' => 'Элементтер жоқ',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ойнату кезегін жасау мүмкін болмады — элементтер жоқ',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} сәтсіз аяқталды: ${error}',
@@ -2259,6 +2217,8 @@ extension on TranslationsKk {
 			'subtitlingStyling.borderColor' => 'Жиек түсі',
 			'subtitlingStyling.backgroundOpacity' => 'Фон мөлдірлігі',
 			'subtitlingStyling.backgroundColor' => 'Фон түсі',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.position' => 'Орналасуы',
 			'subtitlingStyling.assOverride' => 'ASS қайта анықтау',
 			'subtitlingStyling.overrideScale' => 'Масштабтау',
@@ -2756,8 +2716,6 @@ extension on TranslationsKk {
 			'metadataEdit.selectSquareArt' => 'Шаршы суретті таңдау',
 			'metadataEdit.fromUrl' => 'URL арқылы',
 			'metadataEdit.uploadFile' => 'Файлды жүктеу',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.enterImageUrl' => 'Сурет URL-ін енгізіңіз',
 			'metadataEdit.imageUrl' => 'Сурет URL-і',
 			'metadataEdit.metadataUpdated' => 'Метадеректер жаңартылды',
@@ -2773,6 +2731,8 @@ extension on TranslationsKk {
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режиссер',
 			'metadataEdit.writer' => 'Сценарист',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.producer' => 'Продюсер',
 			'metadataEdit.country' => 'Ел',
 			'metadataEdit.label' => 'Белгі',

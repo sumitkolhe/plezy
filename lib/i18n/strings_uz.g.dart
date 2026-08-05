@@ -43,7 +43,6 @@ class TranslationsUz extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$uz auth = _Translations$auth$uz._(_root);
 	@override late final _Translations$common$uz common = _Translations$common$uz._(_root);
 	@override late final _Translations$screens$uz screens = _Translations$screens$uz._(_root);
-	@override late final _Translations$update$uz update = _Translations$update$uz._(_root);
 	@override late final _Translations$settings$uz settings = _Translations$settings$uz._(_root);
 	@override late final _Translations$search$uz search = _Translations$search$uz._(_root);
 	@override late final _Translations$hotkeys$uz hotkeys = _Translations$hotkeys$uz._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$uz extends Translations$common$en {
 	@override String get close => 'Yopish';
 	@override String get clear => 'Tozalash';
 	@override String get reset => 'Qayta oʻrnatish';
-	@override String get later => 'Keyinroq';
 	@override String get submit => 'Yuborish';
 	@override String get confirm => 'Tasdiqlash';
 	@override String get retry => 'Qaytadan urinish';
@@ -174,22 +172,6 @@ class _Translations$screens$uz extends Translations$screens$en {
 	@override String get logs => 'Jurnallar';
 }
 
-// Path: update
-class _Translations$update$uz extends Translations$update$en {
-	_Translations$update$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Yangilanish mavjud';
-	@override String versionAvailable({required Object version}) => '${version} versiyasi mavjud';
-	@override String currentVersion({required Object version}) => 'Joriy: ${version}';
-	@override String get skipVersion => 'Ushbu versiyani oʻtkazib yuborish';
-	@override String get viewRelease => 'Tafsilotlarni koʻrish';
-	@override String get latestVersion => 'Sizda eng soʻnggi versiya oʻrnatilgan';
-	@override String get checkFailed => 'Yangilanishlarni tekshirish imkoni boʻlmadi';
-}
-
 // Path: settings
 class _Translations$settings$uz extends Translations$settings$en {
 	_Translations$settings$uz._(TranslationsUz root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Sozlamalar';
-	@override String get supportDeveloper => 'Harbor-ni qoʻllab-quvvatlash';
-	@override String get supportDeveloperDescription => 'Dasturchini Liberapay orqali qoʻllab-quvvatlang';
 	@override String get language => 'Til';
 	@override String get theme => 'Mavzu';
 	@override String get appearance => 'Tashqi koʻrinish';
@@ -314,11 +294,6 @@ class _Translations$settings$uz extends Translations$settings$en {
 	@override String get shortcutsReset => 'Tugmalar birlashmasi standart holatga qaytarildi';
 	@override String get about => 'Dastur haqida';
 	@override String get aboutDescription => 'Ilova haqida maʼlumot va litsenziyalar';
-	@override String get updates => 'Yangilanishlar';
-	@override String get updateAvailable => 'Yangilanish mavjud';
-	@override String get checkForUpdates => 'Yangilanishlarni tekshirish';
-	@override String get autoCheckUpdatesOnStartup => 'Ishga tushganda avtomatik tekshirish';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Ishga tushganda yangilanish boʻlsa xabar berish';
 	@override String get validationErrorEnterNumber => 'Toʻgʻri raqam kiriting';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Vaqt ${min} va ${max} ${unit} orasida boʻlishi kerak';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Bu birlashma ${action} harakatiga biriktirilgan';
@@ -1742,7 +1717,6 @@ extension on TranslationsUz {
 			'common.close' => 'Yopish',
 			'common.clear' => 'Tozalash',
 			'common.reset' => 'Qayta oʻrnatish',
-			'common.later' => 'Keyinroq',
 			'common.submit' => 'Yuborish',
 			'common.confirm' => 'Tasdiqlash',
 			'common.retry' => 'Qaytadan urinish',
@@ -1784,16 +1758,7 @@ extension on TranslationsUz {
 			'screens.subtitleStyling' => 'Subtitr sozlamalari',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Jurnallar',
-			'update.available' => 'Yangilanish mavjud',
-			'update.versionAvailable' => ({required Object version}) => '${version} versiyasi mavjud',
-			'update.currentVersion' => ({required Object version}) => 'Joriy: ${version}',
-			'update.skipVersion' => 'Ushbu versiyani oʻtkazib yuborish',
-			'update.viewRelease' => 'Tafsilotlarni koʻrish',
-			'update.latestVersion' => 'Sizda eng soʻnggi versiya oʻrnatilgan',
-			'update.checkFailed' => 'Yangilanishlarni tekshirish imkoni boʻlmadi',
 			'settings.title' => 'Sozlamalar',
-			'settings.supportDeveloper' => 'Harbor-ni qoʻllab-quvvatlash',
-			'settings.supportDeveloperDescription' => 'Dasturchini Liberapay orqali qoʻllab-quvvatlang',
 			'settings.language' => 'Til',
 			'settings.theme' => 'Mavzu',
 			'settings.appearance' => 'Tashqi koʻrinish',
@@ -1908,11 +1873,6 @@ extension on TranslationsUz {
 			'settings.shortcutsReset' => 'Tugmalar birlashmasi standart holatga qaytarildi',
 			'settings.about' => 'Dastur haqida',
 			'settings.aboutDescription' => 'Ilova haqida maʼlumot va litsenziyalar',
-			'settings.updates' => 'Yangilanishlar',
-			'settings.updateAvailable' => 'Yangilanish mavjud',
-			'settings.checkForUpdates' => 'Yangilanishlarni tekshirish',
-			'settings.autoCheckUpdatesOnStartup' => 'Ishga tushganda avtomatik tekshirish',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Ishga tushganda yangilanish boʻlsa xabar berish',
 			'settings.validationErrorEnterNumber' => 'Toʻgʻri raqam kiriting',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Vaqt ${min} va ${max} ${unit} orasida boʻlishi kerak',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Bu birlashma ${action} harakatiga biriktirilgan',
@@ -2242,8 +2202,6 @@ extension on TranslationsUz {
 			'messages.episodesLoadFailed' => 'Qismlarni yuklab boʻlmadi',
 			'messages.noResultsFound' => 'Natijalar topilmadi',
 			'messages.sleepTimerSet' => ({required Object label}) => 'Uyqu taymeri ${label} vaqtiga oʻrnatildi',
-			_ => null,
-		} ?? switch (path) {
 			'messages.noItemsAvailable' => 'Elementlar yoʻq',
 			'messages.failedToCreatePlayQueueNoItems' => 'Ijro navbatini yaratib boʻlmadi — elementlar yoʻq',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '${action} muvaffaqiyatsiz tugadi: ${error}',
@@ -2259,6 +2217,8 @@ extension on TranslationsUz {
 			'subtitlingStyling.borderColor' => 'Hoshiya rangi',
 			'subtitlingStyling.backgroundOpacity' => 'Fon shaffofligi',
 			'subtitlingStyling.backgroundColor' => 'Fon rangi',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.position' => 'Joylashuvi',
 			'subtitlingStyling.assOverride' => 'ASS qayta aniqlash',
 			'subtitlingStyling.overrideScale' => 'Masshtablash',
@@ -2756,8 +2716,6 @@ extension on TranslationsUz {
 			'metadataEdit.selectSquareArt' => 'Kvadrat rasm tanlash',
 			'metadataEdit.fromUrl' => 'URL orqali',
 			'metadataEdit.uploadFile' => 'Fayl yuklash',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.enterImageUrl' => 'Rasm URL-manzilini kiriting',
 			'metadataEdit.imageUrl' => 'Rasm URL-manzili',
 			'metadataEdit.metadataUpdated' => 'Metamaʼlumotlar yangilandi',
@@ -2773,6 +2731,8 @@ extension on TranslationsUz {
 			'metadataEdit.genre' => 'Janr',
 			'metadataEdit.director' => 'Rejissyor',
 			'metadataEdit.writer' => 'Ssenarist',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.producer' => 'Prodyuser',
 			'metadataEdit.country' => 'Mamlakat',
 			'metadataEdit.label' => 'Yorliq',

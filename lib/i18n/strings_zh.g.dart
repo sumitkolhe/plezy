@@ -43,7 +43,6 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final Translations$auth$zh auth = Translations$auth$zh.internal(_root);
 	@override late final Translations$common$zh common = Translations$common$zh.internal(_root);
 	@override late final Translations$screens$zh screens = Translations$screens$zh.internal(_root);
-	@override late final Translations$update$zh update = Translations$update$zh.internal(_root);
 	@override late final Translations$settings$zh settings = Translations$settings$zh.internal(_root);
 	@override late final Translations$search$zh search = Translations$search$zh.internal(_root);
 	@override late final Translations$hotkeys$zh hotkeys = Translations$hotkeys$zh.internal(_root);
@@ -121,7 +120,6 @@ class Translations$common$zh extends Translations$common$en {
 	@override String get close => '关闭';
 	@override String get clear => '清除';
 	@override String get reset => '重置';
-	@override String get later => '稍后';
 	@override String get submit => '提交';
 	@override String get confirm => '确认';
 	@override String get retry => '重试';
@@ -174,22 +172,6 @@ class Translations$screens$zh extends Translations$screens$en {
 	@override String get logs => '日志';
 }
 
-// Path: update
-class Translations$update$zh extends Translations$update$en {
-	Translations$update$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => '有可用更新';
-	@override String versionAvailable({required Object version}) => '版本 ${version} 已发布';
-	@override String currentVersion({required Object version}) => '当前版本：${version}';
-	@override String get skipVersion => '跳过此版本';
-	@override String get viewRelease => '查看发布详情';
-	@override String get latestVersion => '当前已是最新版本';
-	@override String get checkFailed => '无法检查更新';
-}
-
 // Path: settings
 class Translations$settings$zh extends Translations$settings$en {
 	Translations$settings$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class Translations$settings$zh extends Translations$settings$en {
 
 	// Translations
 	@override String get title => '设置';
-	@override String get supportDeveloper => '支持 Harbor';
-	@override String get supportDeveloperDescription => '通过 Liberapay 捐赠支持开发';
 	@override String get language => '语言';
 	@override String get theme => '主题';
 	@override String get appearance => '外观';
@@ -311,11 +291,6 @@ class Translations$settings$zh extends Translations$settings$en {
 	@override String get shortcutsReset => '快捷键已重置为默认值';
 	@override String get about => '关于';
 	@override String get aboutDescription => '应用程序信息和许可证';
-	@override String get updates => '更新';
-	@override String get updateAvailable => '有可用更新';
-	@override String get checkForUpdates => '检查更新';
-	@override String get autoCheckUpdatesOnStartup => '启动时自动检查更新';
-	@override String get autoCheckUpdatesOnStartupDescription => '启动时有可用更新则通知';
 	@override String get validationErrorEnterNumber => '请输入有效数字';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => '时长必须介于 ${min} 和 ${max} ${unit} 之间';
 	@override String shortcutAlreadyAssigned({required Object action}) => '快捷键已被分配给 ${action}';
@@ -1728,7 +1703,6 @@ extension on TranslationsZh {
 			'common.close' => '关闭',
 			'common.clear' => '清除',
 			'common.reset' => '重置',
-			'common.later' => '稍后',
 			'common.submit' => '提交',
 			'common.confirm' => '确认',
 			'common.retry' => '重试',
@@ -1770,16 +1744,7 @@ extension on TranslationsZh {
 			'screens.subtitleStyling' => '字幕样式',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => '日志',
-			'update.available' => '有可用更新',
-			'update.versionAvailable' => ({required Object version}) => '版本 ${version} 已发布',
-			'update.currentVersion' => ({required Object version}) => '当前版本：${version}',
-			'update.skipVersion' => '跳过此版本',
-			'update.viewRelease' => '查看发布详情',
-			'update.latestVersion' => '当前已是最新版本',
-			'update.checkFailed' => '无法检查更新',
 			'settings.title' => '设置',
-			'settings.supportDeveloper' => '支持 Harbor',
-			'settings.supportDeveloperDescription' => '通过 Liberapay 捐赠支持开发',
 			'settings.language' => '语言',
 			'settings.theme' => '主题',
 			'settings.appearance' => '外观',
@@ -1891,11 +1856,6 @@ extension on TranslationsZh {
 			'settings.shortcutsReset' => '快捷键已重置为默认值',
 			'settings.about' => '关于',
 			'settings.aboutDescription' => '应用程序信息和许可证',
-			'settings.updates' => '更新',
-			'settings.updateAvailable' => '有可用更新',
-			'settings.checkForUpdates' => '检查更新',
-			'settings.autoCheckUpdatesOnStartup' => '启动时自动检查更新',
-			'settings.autoCheckUpdatesOnStartupDescription' => '启动时有可用更新则通知',
 			'settings.validationErrorEnterNumber' => '请输入有效数字',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => '时长必须介于 ${min} 和 ${max} ${unit} 之间',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => '快捷键已被分配给 ${action}',
@@ -2228,8 +2188,6 @@ extension on TranslationsZh {
 			'messages.failedToCreatePlayQueueNoItems' => '创建播放队列失败：没有可用项目',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => '无法执行“${action}”：${error}',
 			'messages.switchingToCompatiblePlayer' => '正在切换到兼容的播放器…',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => '播放失败',
 			'messages.serverLimitBody' => '服务器错误（HTTP 500）。此次会话可能因带宽或转码限制而被拒绝。请联系服务器所有者调整限制。',
 			'subtitlingStyling.text' => '文本',
@@ -2245,6 +2203,8 @@ extension on TranslationsZh {
 			'subtitlingStyling.assOverride' => 'ASS 样式覆盖',
 			'subtitlingStyling.overrideScale' => '缩放',
 			'subtitlingStyling.overrideForce' => '强制',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => '移除样式',
 			'subtitlingStyling.positionTop' => '顶部',
 			'subtitlingStyling.positionBottom' => '底部',
@@ -2742,8 +2702,6 @@ extension on TranslationsZh {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面图片选项 ${index}，已选择',
 			'metadataEdit.notSet' => '未设置',
 			'metadataEdit.tags' => '标签',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => '添加标签',
 			'metadataEdit.genre' => '类型',
 			'metadataEdit.director' => '导演',
@@ -2759,6 +2717,8 @@ extension on TranslationsZh {
 			'trakt.scrobble' => '实时同步播放状态',
 			'trakt.scrobbleDescription' => '播放期间将播放、暂停和停止事件发送到 Trakt。',
 			'trakt.watchedSync' => '同步已观看状态',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => '在 Harbor 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => '连接 Seerr',

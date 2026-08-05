@@ -43,7 +43,6 @@ class TranslationsEs extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$es auth = _Translations$auth$es._(_root);
 	@override late final _Translations$common$es common = _Translations$common$es._(_root);
 	@override late final _Translations$screens$es screens = _Translations$screens$es._(_root);
-	@override late final _Translations$update$es update = _Translations$update$es._(_root);
 	@override late final _Translations$settings$es settings = _Translations$settings$es._(_root);
 	@override late final _Translations$search$es search = _Translations$search$es._(_root);
 	@override late final _Translations$hotkeys$es hotkeys = _Translations$hotkeys$es._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$es extends Translations$common$en {
 	@override String get close => 'Cerrar';
 	@override String get clear => 'Borrar';
 	@override String get reset => 'Restablecer';
-	@override String get later => 'Más tarde';
 	@override String get submit => 'Enviar';
 	@override String get confirm => 'Confirmar';
 	@override String get retry => 'Reintentar';
@@ -174,22 +172,6 @@ class _Translations$screens$es extends Translations$screens$en {
 	@override String get logs => 'Registros';
 }
 
-// Path: update
-class _Translations$update$es extends Translations$update$en {
-	_Translations$update$es._(TranslationsEs root) : this._root = root, super.internal(root);
-
-	final TranslationsEs _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Actualización disponible';
-	@override String versionAvailable({required Object version}) => 'Versión ${version} disponible';
-	@override String currentVersion({required Object version}) => 'Actual: ${version}';
-	@override String get skipVersion => 'Saltar esta versión';
-	@override String get viewRelease => 'Ver versión';
-	@override String get latestVersion => 'Ya estás en la última versión';
-	@override String get checkFailed => 'Error al buscar actualizaciones';
-}
-
 // Path: settings
 class _Translations$settings$es extends Translations$settings$en {
 	_Translations$settings$es._(TranslationsEs root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$es extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Configuración';
-	@override String get supportDeveloper => 'Apoya Harbor';
-	@override String get supportDeveloperDescription => 'Dona vía Liberapay para financiar el desarrollo';
 	@override String get language => 'Idioma';
 	@override String get theme => 'Tema';
 	@override String get appearance => 'Apariencia';
@@ -311,11 +291,6 @@ class _Translations$settings$es extends Translations$settings$en {
 	@override String get shortcutsReset => 'Atajos restablecidos a los valores predeterminados';
 	@override String get about => 'Acerca de';
 	@override String get aboutDescription => 'Información de la aplicación y licencias';
-	@override String get updates => 'Actualizaciones';
-	@override String get updateAvailable => 'Actualización disponible';
-	@override String get checkForUpdates => 'Buscar actualizaciones';
-	@override String get autoCheckUpdatesOnStartup => 'Buscar actualizaciones automáticamente al iniciar';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Avisar al iniciar si hay una actualización disponible';
 	@override String get validationErrorEnterNumber => 'Introduce un número válido';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'La duración debe estar entre ${min} y ${max} ${unit}';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'El atajo ya está asignado a ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsEs {
 			'common.close' => 'Cerrar',
 			'common.clear' => 'Borrar',
 			'common.reset' => 'Restablecer',
-			'common.later' => 'Más tarde',
 			'common.submit' => 'Enviar',
 			'common.confirm' => 'Confirmar',
 			'common.retry' => 'Reintentar',
@@ -1773,16 +1747,7 @@ extension on TranslationsEs {
 			'screens.subtitleStyling' => 'Estilo de subtítulos',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Registros',
-			'update.available' => 'Actualización disponible',
-			'update.versionAvailable' => ({required Object version}) => 'Versión ${version} disponible',
-			'update.currentVersion' => ({required Object version}) => 'Actual: ${version}',
-			'update.skipVersion' => 'Saltar esta versión',
-			'update.viewRelease' => 'Ver versión',
-			'update.latestVersion' => 'Ya estás en la última versión',
-			'update.checkFailed' => 'Error al buscar actualizaciones',
 			'settings.title' => 'Configuración',
-			'settings.supportDeveloper' => 'Apoya Harbor',
-			'settings.supportDeveloperDescription' => 'Dona vía Liberapay para financiar el desarrollo',
 			'settings.language' => 'Idioma',
 			'settings.theme' => 'Tema',
 			'settings.appearance' => 'Apariencia',
@@ -1894,11 +1859,6 @@ extension on TranslationsEs {
 			'settings.shortcutsReset' => 'Atajos restablecidos a los valores predeterminados',
 			'settings.about' => 'Acerca de',
 			'settings.aboutDescription' => 'Información de la aplicación y licencias',
-			'settings.updates' => 'Actualizaciones',
-			'settings.updateAvailable' => 'Actualización disponible',
-			'settings.checkForUpdates' => 'Buscar actualizaciones',
-			'settings.autoCheckUpdatesOnStartup' => 'Buscar actualizaciones automáticamente al iniciar',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Avisar al iniciar si hay una actualización disponible',
 			'settings.validationErrorEnterNumber' => 'Introduce un número válido',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'La duración debe estar entre ${min} y ${max} ${unit}',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'El atajo ya está asignado a ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsEs {
 			'messages.failedToCreatePlayQueueNoItems' => 'No se pudo crear la cola de reproducción: no hay elementos',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Error al ${action}: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Cambiando a reproductor compatible...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Error de reproducción',
 			'messages.serverLimitBody' => 'Error del servidor (HTTP 500). Un límite de ancho de banda/transcodificación probablemente rechazó esta sesión. Pide al propietario que lo ajuste.',
 			'subtitlingStyling.text' => 'Texto',
@@ -2248,6 +2206,8 @@ extension on TranslationsEs {
 			'subtitlingStyling.assOverride' => 'Sobreescritura ASS',
 			'subtitlingStyling.overrideScale' => 'Escala',
 			'subtitlingStyling.overrideForce' => 'Forzar',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Quitar estilos',
 			'subtitlingStyling.positionTop' => 'Arriba',
 			'subtitlingStyling.positionBottom' => 'Abajo',
@@ -2745,8 +2705,6 @@ extension on TranslationsEs {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opción de imagen ${index}, seleccionada',
 			'metadataEdit.notSet' => 'No establecido',
 			'metadataEdit.tags' => 'Etiquetas',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Añadir etiqueta',
 			'metadataEdit.genre' => 'Género',
 			'metadataEdit.director' => 'Director',
@@ -2762,6 +2720,8 @@ extension on TranslationsEs {
 			'trakt.scrobble' => 'Scrobbling en tiempo real',
 			'trakt.scrobbleDescription' => 'Enviar eventos de reproducción, pausa y parada a Trakt durante la reproducción.',
 			'trakt.watchedSync' => 'Sincronizar el estado de visualización',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Cuando marques contenido como visto en Harbor, también se marcará como visto en Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Conectar Seerr',

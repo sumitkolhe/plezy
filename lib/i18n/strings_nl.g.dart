@@ -43,7 +43,6 @@ class TranslationsNl extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$auth$nl auth = _Translations$auth$nl._(_root);
 	@override late final _Translations$common$nl common = _Translations$common$nl._(_root);
 	@override late final _Translations$screens$nl screens = _Translations$screens$nl._(_root);
-	@override late final _Translations$update$nl update = _Translations$update$nl._(_root);
 	@override late final _Translations$settings$nl settings = _Translations$settings$nl._(_root);
 	@override late final _Translations$search$nl search = _Translations$search$nl._(_root);
 	@override late final _Translations$hotkeys$nl hotkeys = _Translations$hotkeys$nl._(_root);
@@ -121,7 +120,6 @@ class _Translations$common$nl extends Translations$common$en {
 	@override String get close => 'Sluiten';
 	@override String get clear => 'Wissen';
 	@override String get reset => 'Resetten';
-	@override String get later => 'Later';
 	@override String get submit => 'Verzenden';
 	@override String get confirm => 'Bevestigen';
 	@override String get retry => 'Opnieuw proberen';
@@ -174,22 +172,6 @@ class _Translations$screens$nl extends Translations$screens$en {
 	@override String get logs => 'Logbestanden';
 }
 
-// Path: update
-class _Translations$update$nl extends Translations$update$en {
-	_Translations$update$nl._(TranslationsNl root) : this._root = root, super.internal(root);
-
-	final TranslationsNl _root; // ignore: unused_field
-
-	// Translations
-	@override String get available => 'Update beschikbaar';
-	@override String versionAvailable({required Object version}) => 'Versie ${version} is beschikbaar';
-	@override String currentVersion({required Object version}) => 'Huidig: ${version}';
-	@override String get skipVersion => 'Deze versie overslaan';
-	@override String get viewRelease => 'Bekijk release';
-	@override String get latestVersion => 'Je hebt de nieuwste versie';
-	@override String get checkFailed => 'Kon niet controleren op updates';
-}
-
 // Path: settings
 class _Translations$settings$nl extends Translations$settings$en {
 	_Translations$settings$nl._(TranslationsNl root) : this._root = root, super.internal(root);
@@ -198,8 +180,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 
 	// Translations
 	@override String get title => 'Instellingen';
-	@override String get supportDeveloper => 'Steun Harbor';
-	@override String get supportDeveloperDescription => 'Doneer via Liberapay om de ontwikkeling te steunen';
 	@override String get language => 'Taal';
 	@override String get theme => 'Thema';
 	@override String get appearance => 'Uiterlijk';
@@ -311,11 +291,6 @@ class _Translations$settings$nl extends Translations$settings$en {
 	@override String get shortcutsReset => 'Sneltoetsen gereset naar standaard';
 	@override String get about => 'Over';
 	@override String get aboutDescription => 'App-informatie en licenties';
-	@override String get updates => 'Updates';
-	@override String get updateAvailable => 'Update beschikbaar';
-	@override String get checkForUpdates => 'Controleer op updates';
-	@override String get autoCheckUpdatesOnStartup => 'Automatisch controleren op updates bij opstarten';
-	@override String get autoCheckUpdatesOnStartupDescription => 'Melden wanneer er bij start een update beschikbaar is';
 	@override String get validationErrorEnterNumber => 'Voer een geldig nummer in';
 	@override String validationErrorDuration({required Object min, required Object max, required Object unit}) => 'Duur moet tussen ${min} en ${max} ${unit} zijn';
 	@override String shortcutAlreadyAssigned({required Object action}) => 'Sneltoets al toegewezen aan ${action}';
@@ -1731,7 +1706,6 @@ extension on TranslationsNl {
 			'common.close' => 'Sluiten',
 			'common.clear' => 'Wissen',
 			'common.reset' => 'Resetten',
-			'common.later' => 'Later',
 			'common.submit' => 'Verzenden',
 			'common.confirm' => 'Bevestigen',
 			'common.retry' => 'Opnieuw proberen',
@@ -1773,16 +1747,7 @@ extension on TranslationsNl {
 			'screens.subtitleStyling' => 'Ondertitelopmaak',
 			'screens.mpvConfig' => 'mpv.conf',
 			'screens.logs' => 'Logbestanden',
-			'update.available' => 'Update beschikbaar',
-			'update.versionAvailable' => ({required Object version}) => 'Versie ${version} is beschikbaar',
-			'update.currentVersion' => ({required Object version}) => 'Huidig: ${version}',
-			'update.skipVersion' => 'Deze versie overslaan',
-			'update.viewRelease' => 'Bekijk release',
-			'update.latestVersion' => 'Je hebt de nieuwste versie',
-			'update.checkFailed' => 'Kon niet controleren op updates',
 			'settings.title' => 'Instellingen',
-			'settings.supportDeveloper' => 'Steun Harbor',
-			'settings.supportDeveloperDescription' => 'Doneer via Liberapay om de ontwikkeling te steunen',
 			'settings.language' => 'Taal',
 			'settings.theme' => 'Thema',
 			'settings.appearance' => 'Uiterlijk',
@@ -1894,11 +1859,6 @@ extension on TranslationsNl {
 			'settings.shortcutsReset' => 'Sneltoetsen gereset naar standaard',
 			'settings.about' => 'Over',
 			'settings.aboutDescription' => 'App-informatie en licenties',
-			'settings.updates' => 'Updates',
-			'settings.updateAvailable' => 'Update beschikbaar',
-			'settings.checkForUpdates' => 'Controleer op updates',
-			'settings.autoCheckUpdatesOnStartup' => 'Automatisch controleren op updates bij opstarten',
-			'settings.autoCheckUpdatesOnStartupDescription' => 'Melden wanneer er bij start een update beschikbaar is',
 			'settings.validationErrorEnterNumber' => 'Voer een geldig nummer in',
 			'settings.validationErrorDuration' => ({required Object min, required Object max, required Object unit}) => 'Duur moet tussen ${min} en ${max} ${unit} zijn',
 			'settings.shortcutAlreadyAssigned' => ({required Object action}) => 'Sneltoets al toegewezen aan ${action}',
@@ -2231,8 +2191,6 @@ extension on TranslationsNl {
 			'messages.failedToCreatePlayQueueNoItems' => 'Afspeelwachtrij maken mislukt — geen items',
 			'messages.failedPlayback' => ({required Object action, required Object error}) => 'Afspelen van ${action} mislukt: ${error}',
 			'messages.switchingToCompatiblePlayer' => 'Overschakelen naar compatibele speler...',
-			_ => null,
-		} ?? switch (path) {
 			'messages.serverLimitTitle' => 'Afspelen mislukt',
 			'messages.serverLimitBody' => 'Serverfout (HTTP 500). Waarschijnlijk weigerde een bandbreedte-/transcodeerlimiet deze sessie. Vraag de eigenaar dit aan te passen.',
 			'subtitlingStyling.text' => 'Tekst',
@@ -2248,6 +2206,8 @@ extension on TranslationsNl {
 			'subtitlingStyling.assOverride' => 'ASS-overschrijving',
 			'subtitlingStyling.overrideScale' => 'Schalen',
 			'subtitlingStyling.overrideForce' => 'Forceren',
+			_ => null,
+		} ?? switch (path) {
 			'subtitlingStyling.overrideStrip' => 'Opmaak verwijderen',
 			'subtitlingStyling.positionTop' => 'Bovenaan',
 			'subtitlingStyling.positionBottom' => 'Onderaan',
@@ -2745,8 +2705,6 @@ extension on TranslationsNl {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Illustratie ${index}, geselecteerd',
 			'metadataEdit.notSet' => 'Niet ingesteld',
 			'metadataEdit.tags' => 'Tags',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.addTag' => 'Tag toevoegen',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Regisseur',
@@ -2762,6 +2720,8 @@ extension on TranslationsNl {
 			'trakt.scrobble' => 'Realtime scrobblen',
 			'trakt.scrobbleDescription' => 'Stuur tijdens het afspelen gebeurtenissen voor afspelen, pauzeren en stoppen naar Trakt.',
 			'trakt.watchedSync' => 'Kijkstatus synchroniseren',
+			_ => null,
+		} ?? switch (path) {
 			'trakt.watchedSyncDescription' => 'Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Verbinden met Seerr',

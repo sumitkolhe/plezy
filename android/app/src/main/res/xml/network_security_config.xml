@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-    <!-- Fallback for user-entered hosts only: a self-hosted Plex/Jellyfin/Seerr
-         server, or a custom Watch Together relay, may be plain HTTP or fronted
-         by a private CA the device owner installed. Their hostnames are not
-         knowable at build time, so they can only be covered here. -->
+    <!-- Fallback for user-entered hosts only: a self-hosted Jellyfin, Seerr or
+         *arr instance may be plain HTTP or fronted by a private CA the device
+         owner installed. Their hostnames are not knowable at build time, so
+         they can only be covered here. -->
     <base-config cleartextTrafficPermitted="true">
         <trust-anchors>
             <certificates src="system" />
@@ -12,7 +12,7 @@
     </base-config>
 
     <!-- First-party / fixed endpoints. These carry account tokens, OAuth
-         codes, crash payloads and update metadata, and by construction never
+         codes and crash payloads, and by construction never
          live behind a private CA. System anchors only, i.e. the pre-2.9.1
          behaviour. Every hard-coded https:// host in lib/ must appear here.
          Pinned by test/android/network_security_config_test.dart. -->
@@ -25,8 +25,6 @@
         <domain includeSubdomains="true">simkl.com</domain>
         <!-- data.simkl.in (lib/services/trackers/simkl/simkl_constants.dart:22). -->
         <domain includeSubdomains="true">simkl.in</domain>
-        <!-- Release check (lib/services/update_service.dart:161). -->
-        <domain includeSubdomains="true">api.github.com</domain>
         <!-- TMDB artwork (lib/services/catalog/seerr_catalog_source.dart:163). -->
         <domain includeSubdomains="true">image.tmdb.org</domain>
         <trust-anchors>
