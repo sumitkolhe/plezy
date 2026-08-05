@@ -4,17 +4,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/models/arr/managed_service.dart';
 import 'package:harbor/providers/managed_services_provider.dart';
 import 'package:harbor/services/arr/arr_client.dart';
+import 'package:harbor/models/arr/server_transfer.dart';
+import 'package:harbor/providers/server_activity_provider.dart';
 import 'package:harbor/services/arr/arr_wanted_service.dart';
+import 'package:harbor/services/arr/server_activity_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 
-ManagedServicesProvider _withRadarr(http.Client httpClient) {
+void _seedRadarr(ManagedServicesProvider services, http.Client httpClient) {
   const connection = ManagedServiceConnection(
     kind: ManagedServiceKind.radarr,
     baseUrl: 'http://radarr.home.lan',
     secret: 'key',
   );
-  return ManagedServicesProvider()..debugAddServiceForTesting(
+  services.debugAddServiceForTesting(
     connection,
     client: ArrClient(
       kind: ManagedServiceKind.radarr,
@@ -25,7 +28,61 @@ ManagedServicesProvider _withRadarr(http.Client httpClient) {
   );
 }
 
+ManagedServicesProvider _withRadarr(http.Client httpClient) {
+  final services = ManagedServicesProvider();
+  _seedRadarr(services, httpClient);
+  return services;
+}
+
+/// Polling is not what this test is about.
+class _IdleActivityService implements ServerActivityService {
+  @override
+  Future<({List<ServerTransfer> transfers, List<String> unreachable})> fetch() async =>
+      (transfers: const <ServerTransfer>[], unreachable: const <String>[]);
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
 void main() {
+  // ServerActivityProvider registers a WidgetsBinding observer.
+  TestWidgetsFlutterBinding.ensureInitialized();
+
+  test('a Radarr restored after the row mounted still populates the list', () async {
+    // The cold-start order: the widget asks before the persisted connections
+    // have loaded, so the answer is "no services". Nothing used to re-ask, and
+    // a kept-alive tab never runs initState twice, so the row stayed empty for
+    // the whole session.
+    final services = ManagedServicesProvider();
+    addTearDown(services.dispose);
+    final activity = ServerActivityProvider(services, service: _IdleActivityService());
+    addTearDown(activity.dispose);
+
+    final release = activity.addWatcher();
+    addTearDown(release);
+
+    await activity.resolveAbsentMovies();
+    expect(activity.absentMovies, isNull, reason: 'nothing to ask yet');
+
+    _seedRadarr(
+      services,
+      MockClient(
+        (_) async => http.Response(
+          jsonEncode({
+            'records': [
+              {'id': 1, 'title': 'Assi', 'hasFile': false},
+            ],
+          }),
+          200,
+          headers: {'content-type': 'application/json'},
+        ),
+      ),
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 20));
+
+    expect(activity.absentMovies?.map((t) => t.title), ['Assi']);
+  });
+
   group('absentMovies', () {
     test('reports the films Radarr has no file for', () async {
       final services = _withRadarr(

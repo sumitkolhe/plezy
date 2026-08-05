@@ -37,10 +37,17 @@ class ArrWantedService {
           if (title != null) titles.add(title);
         }
       } catch (e) {
-        appLogger.d('${connection.kind.name}: wanted lookup failed', error: e);
+        // Warning, not debug: this failure hides a whole shelf, and release
+        // builds log at info, so a debug line made it invisible exactly when it
+        // mattered.
+        appLogger.w('${connection.displayName}: wanted lookup failed', error: e);
       }
     }
-    if (instances.isNotEmpty && answered == 0) return null;
+    if (instances.isNotEmpty && answered == 0) {
+      appLogger.w('No Radarr answered the wanted lookup; leaving it unresolved to retry');
+      return null;
+    }
+    appLogger.i('Radarr wanted: ${titles.length} absent film(s) from $answered instance(s)');
     titles.sort((a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
     return titles;
   }

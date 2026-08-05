@@ -142,6 +142,7 @@ class ManagedServicesProvider extends ChangeNotifier with DisposableChangeNotifi
   void debugAddServiceForTesting(ManagedServiceConnection connection, {ArrClient? client}) {
     _connections.add(connection);
     if (client != null) _arrClients[connection.id] = client;
+    safeNotifyListeners();
   }
 
   /// Long-lived clients for query work (phase 2 onward), one per instance.

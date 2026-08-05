@@ -157,7 +157,14 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
       safeNotifyListeners();
     }
     _syncTimer();
-    if (hasServices && _watchers > 0) unawaited(refresh());
+    if (hasServices && _watchers > 0) {
+      unawaited(refresh());
+      // The list was just invalidated above, and its only other caller is a
+      // widget's initState. Without this, connections restored after that
+      // widget mounted — an ordinary cold start — left it empty for the whole
+      // session, because a kept-alive tab never runs initState again.
+      unawaited(resolveAbsentMovies());
+    }
   }
 
   void _syncTimer() {
