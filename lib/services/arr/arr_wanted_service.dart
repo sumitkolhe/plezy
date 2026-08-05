@@ -14,14 +14,22 @@ class ArrWantedService {
 
   static const int _pageSize = 60;
 
-  Future<List<AbsentTitle>> absentMovies() async {
+  /// Null when a Radarr is configured but none of them answered — a caller
+  /// that cached the empty list instead would hide the row until the app
+  /// restarted, on nothing worse than one timed-out request.
+  ///
+  /// An empty list means the question was asked and the answer was "none".
+  Future<List<AbsentTitle>?> absentMovies() async {
     final titles = <AbsentTitle>[];
-    for (final connection in _services.of(ManagedServiceKind.radarr)) {
+    final instances = _services.of(ManagedServiceKind.radarr);
+    var answered = 0;
+    for (final connection in instances) {
       final client = _services.arrClient(connection.id);
       if (client == null) continue;
       try {
         final data = await client.get('/wanted/missing', query: {'pageSize': '$_pageSize', 'sortKey': 'title'});
         final records = data is Map<String, dynamic> ? data['records'] : data;
+        answered++;
         if (records is! List) continue;
         for (final record in records) {
           if (record is! Map<String, dynamic>) continue;
@@ -32,6 +40,7 @@ class ArrWantedService {
         appLogger.d('${connection.kind.name}: wanted lookup failed', error: e);
       }
     }
+    if (instances.isNotEmpty && answered == 0) return null;
     titles.sort((a, b) => a.title.toLowerCase().compareTo(b.title.toLowerCase()));
     return titles;
   }

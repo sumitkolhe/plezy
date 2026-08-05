@@ -87,7 +87,9 @@ class ServerActivityProvider extends ChangeNotifier with DisposableChangeNotifie
   Future<void> resolveAbsentMovies({bool force = false}) async {
     if (!hasServices || (_absentMovies != null && !force)) return;
     final titles = await ArrWantedService(_services).absentMovies();
-    if (isDisposed) return;
+    // A null answer leaves this unresolved so the next visit retries, rather
+    // than caching an empty list nobody actually reported.
+    if (isDisposed || titles == null) return;
     _absentMovies = titles;
     safeNotifyListeners();
   }

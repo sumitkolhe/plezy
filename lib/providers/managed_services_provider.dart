@@ -137,6 +137,13 @@ class ManagedServicesProvider extends ChangeNotifier with DisposableChangeNotifi
     }
   }
 
+  /// Seed a connection and its client without probing a host.
+  @visibleForTesting
+  void debugAddServiceForTesting(ManagedServiceConnection connection, {ArrClient? client}) {
+    _connections.add(connection);
+    if (client != null) _arrClients[connection.id] = client;
+  }
+
   /// Long-lived clients for query work (phase 2 onward), one per instance.
   ArrClient? arrClient(String id) {
     final connection = _connections.firstWhere((c) => c.id == id, orElse: _missing);
