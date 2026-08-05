@@ -2595,9 +2595,6 @@ class Translations$explore$en {
 	/// en: 'Cast'
 	String get cast => 'Cast';
 
-	/// en: 'Characters'
-	String get characters => 'Characters';
-
 	/// en: 'Add to Watchlist'
 	String get addToWatchlist => 'Add to Watchlist';
 
@@ -4657,12 +4654,6 @@ class Translations$explore$ratingSource$en {
 	/// en: 'Rotten Tomatoes'
 	String get rottenTomatoes => 'Rotten Tomatoes';
 
-	/// en: 'MyAnimeList'
-	String get mal => 'MyAnimeList';
-
-	/// en: 'AniList'
-	String get anilist => 'AniList';
-
 	/// en: 'Trakt'
 	String get trakt => 'Trakt';
 
@@ -5879,7 +5870,6 @@ extension on Translations {
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} episode', other: '${n} episodes', ), 
 			'explore.seasonCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} season', other: '${n} seasons', ), 
 			'explore.cast' => 'Cast',
-			'explore.characters' => 'Characters',
 			'explore.addToWatchlist' => 'Add to Watchlist',
 			'explore.removeFromWatchlist' => 'Remove from Watchlist',
 			'explore.watchlistUpdateFailed' => 'Couldn\'t update watchlist',
@@ -5961,8 +5951,6 @@ extension on Translations {
 			'explore.ratingSource.imdb' => 'IMDb',
 			'explore.ratingSource.tmdb' => 'TMDB',
 			'explore.ratingSource.rottenTomatoes' => 'Rotten Tomatoes',
-			'explore.ratingSource.mal' => 'MyAnimeList',
-			'explore.ratingSource.anilist' => 'AniList',
 			'explore.ratingSource.trakt' => 'Trakt',
 			'explore.ratingSource.rottenTomatoesCritic' => 'Rotten Tomatoes critics',
 			'explore.ratingSource.rottenTomatoesAudience' => 'Rotten Tomatoes audience',
@@ -6073,11 +6061,11 @@ extension on Translations {
 			'music.repeatAll' => 'Repeat all',
 			'music.repeatOne' => 'Repeat one',
 			'downloads.title' => 'Downloads',
-			_ => null,
-		} ?? switch (path) {
 			'downloads.manage' => 'Manage',
 			'downloads.tvShows' => 'TV Shows',
 			'downloads.movies' => 'Movies',
+			_ => null,
+		} ?? switch (path) {
 			'downloads.music' => 'Music',
 			'downloads.tracksQueued' => ({required Object count}) => '${count} tracks queued for download',
 			'downloads.noDownloads' => 'No downloads yet',

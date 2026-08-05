@@ -992,7 +992,6 @@ class _Translations$explore$sv extends Translations$explore$en {
 		other: '${n} avsnitt',
 	);
 	@override String get cast => 'Rollbesättning';
-	@override String get characters => 'Karaktärer';
 	@override String get addToWatchlist => 'Lägg till i bevakningslista';
 	@override String get removeFromWatchlist => 'Ta bort från bevakningslista';
 	@override String get watchlistUpdateFailed => 'Det gick inte att uppdatera bevakningslistan';
@@ -2410,7 +2409,6 @@ extension on TranslationsSv {
 			'explore.status.upcoming' => 'Kommande',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('sv'))(n, one: '${n} avsnitt', other: '${n} avsnitt', ), 
 			'explore.cast' => 'Rollbesättning',
-			'explore.characters' => 'Karaktärer',
 			'explore.addToWatchlist' => 'Lägg till i bevakningslista',
 			'explore.removeFromWatchlist' => 'Ta bort från bevakningslista',
 			'explore.watchlistUpdateFailed' => 'Det gick inte att uppdatera bevakningslistan',
@@ -2715,9 +2713,9 @@ extension on TranslationsSv {
 			'trakt.scrobble' => 'Realtidsspårning',
 			'trakt.scrobbleDescription' => 'Skicka händelser för uppspelning, paus och stopp till Trakt under uppspelningen.',
 			'trakt.watchedSync' => 'Synkronisera seddstatus',
+			'trakt.watchedSyncDescription' => 'När du markerar objekt som sedda i Harbor markeras de även som sedda på Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'När du markerar objekt som sedda i Harbor markeras de även som sedda på Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Anslut Seerr',
 			'seerr.serverUrl' => 'Server-URL',

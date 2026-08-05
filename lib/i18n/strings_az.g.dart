@@ -997,7 +997,6 @@ class _Translations$explore$az extends Translations$explore$en {
 		other: '${n} seriya',
 	);
 	@override String get cast => 'Aktyorlar';
-	@override String get characters => 'Personajlar';
 	@override String get addToWatchlist => 'İzləmə siyahısına əlavə et';
 	@override String get removeFromWatchlist => 'İzləmə siyahısından sil';
 	@override String get watchlistUpdateFailed => 'İzləmə siyahısı yenilənə bilmədi';
@@ -2426,7 +2425,6 @@ extension on TranslationsAz {
 			'explore.status.upcoming' => 'Gələcək',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('az'))(n, one: '${n} seriya', other: '${n} seriya', ), 
 			'explore.cast' => 'Aktyorlar',
-			'explore.characters' => 'Personajlar',
 			'explore.addToWatchlist' => 'İzləmə siyahısına əlavə et',
 			'explore.removeFromWatchlist' => 'İzləmə siyahısından sil',
 			'explore.watchlistUpdateFailed' => 'İzləmə siyahısı yenilənə bilmədi',
@@ -2726,9 +2724,9 @@ extension on TranslationsAz {
 			'metadataEdit.genre' => 'Janr',
 			'metadataEdit.director' => 'Rejissor',
 			'metadataEdit.writer' => 'Ssenarist',
+			'metadataEdit.producer' => 'Prodüser',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.producer' => 'Prodüser',
 			'metadataEdit.country' => 'Ölkə',
 			'metadataEdit.label' => 'Etiket',
 			'trakt.title' => 'Trakt',

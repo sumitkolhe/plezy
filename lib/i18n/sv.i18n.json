@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Rollbesättning",
-    "characters": "Karaktärer",
     "addToWatchlist": "Lägg till i bevakningslista",
     "removeFromWatchlist": "Ta bort från bevakningslista",
     "watchlistUpdateFailed": "Det gick inte att uppdatera bevakningslistan",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

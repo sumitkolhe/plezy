@@ -158,7 +158,6 @@ class _FakeCatalogSourcesProvider extends CatalogSourcesProvider {
 Future<_FakeCatalogSourcesProvider> _pumpExplore(
   WidgetTester tester, {
   int? traktItemId = 1,
-  int? malItemId = 2,
   bool? tv,
   CatalogItem? traktItem,
   int? traktTotalResults,
@@ -177,8 +176,6 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
     rowItem: traktItem,
     rowTotalResults: traktTotalResults,
   );
-  final mal = _FakeCatalogSource(CatalogSourceId.mal, 'MyAnimeList', malItemId);
-  final anilist = _FakeCatalogSource(CatalogSourceId.anilist, 'AniList', 3);
   final seerr = _FakeCatalogSource(
     CatalogSourceId.seerr,
     'Seerr',
@@ -186,13 +183,11 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
     providerHubTitle: 'Trending on Seerr',
     providerHubStyle: providerHubStyle,
   );
-  final sources = _FakeCatalogSourcesProvider([trakt, mal, anilist, seerr]);
+  final sources = _FakeCatalogSourcesProvider([trakt, seerr]);
   final explore = ExploreProvider(sources);
   addTearDown(explore.dispose);
   addTearDown(sources.dispose);
   addTearDown(trakt.dispose);
-  addTearDown(mal.dispose);
-  addTearDown(anilist.dispose);
   addTearDown(seerr.dispose);
 
   await tester.pumpWidget(
@@ -246,14 +241,14 @@ void main() {
 
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
-    expect(find.text('MyAnimeList'), findsOneWidget);
+    expect(find.text('Seerr'), findsOneWidget);
 
     await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
 
-    expect(sources.activeSource?.id, CatalogSourceId.mal);
-    expect(find.text('MyAnimeList'), findsOneWidget);
+    expect(sources.activeSource?.id, CatalogSourceId.seerr);
+    expect(find.text('Seerr'), findsOneWidget);
 
     await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
     await tester.pump();
@@ -275,14 +270,14 @@ void main() {
 
     node.owner!.performAction(node.id, SemanticsAction.tap);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('MyAnimeList'));
+    await tester.tap(find.text('Seerr'));
     await tester.pumpAndSettle();
 
-    expect(sources.activeSource?.id, CatalogSourceId.mal);
+    expect(sources.activeSource?.id, CatalogSourceId.seerr);
     finder = find.bySemanticsLabel(t.explore.selectSource);
     expect(finder, findsOneWidget);
     data = tester.getSemantics(finder).getSemanticsData();
-    expect(data.value, 'MyAnimeList');
+    expect(data.value, 'Seerr');
     expect(data.hasAction(SemanticsAction.tap), isTrue);
     semantics.dispose();
   });
@@ -295,16 +290,15 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
 
-    for (final name in ['Trakt', 'MyAnimeList', 'AniList', 'Seerr']) {
+    for (final name in ['Trakt', 'Seerr']) {
       expect(find.text(name), findsAtLeast(1));
     }
-    expect(find.byType(CatalogSourceLogo), findsAtLeast(5));
+    expect(find.byType(CatalogSourceLogo), findsAtLeast(3));
 
-    await tester.tap(find.text('AniList'));
+    await tester.tap(find.text('Seerr'));
     await tester.pumpAndSettle();
-    expect(sources.activeSource?.id, CatalogSourceId.anilist);
-    expect(find.text('AniList'), findsOneWidget);
-    expect(find.text('AniList Movie'), findsAtLeast(1));
+    expect(sources.activeSource?.id, CatalogSourceId.seerr);
+    expect(find.text('Seerr'), findsOneWidget);
   });
 
   testWidgets('a null-style provider hub keeps the existing Explore shelf', (tester) async {
@@ -443,7 +437,7 @@ void main() {
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
     await tester.pumpAndSettle();
 
-    expect(sources.activeSource?.id, CatalogSourceId.mal);
+    expect(sources.activeSource?.id, CatalogSourceId.seerr);
     await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
     await tester.pump();
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'tv_browse_rail');
@@ -512,11 +506,11 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Trakt search: abc'), findsOneWidget);
 
-      await sources.setActiveSource(CatalogSourceId.mal);
+      await sources.setActiveSource(CatalogSourceId.seerr);
       await tester.pumpAndSettle();
 
-      expect(_fakeSource(sources, CatalogSourceId.mal).searchQueries, ['abc']);
-      expect(find.text('MyAnimeList search: abc'), findsOneWidget);
+      expect(_fakeSource(sources, CatalogSourceId.seerr).searchQueries, ['abc']);
+      expect(find.text('Seerr search: abc'), findsOneWidget);
       expect(find.text('Trakt search: abc'), findsNothing);
     });
 

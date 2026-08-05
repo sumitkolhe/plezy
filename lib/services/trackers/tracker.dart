@@ -23,11 +23,6 @@ abstract class Tracker {
   /// two answers are the same.
   bool get canWriteWatched;
 
-  /// True if this tracker's IDs only come from the Fribb anime mapping. Trakt
-  /// returns false because it accepts tvdb/imdb/tmdb directly; when no active
-  /// tracker needs Fribb we skip the 5.6 MB mapping download entirely.
-  bool get needsFribb;
-
   Future<void> initialize();
   Future<void> setEnabled(bool enabled);
 

@@ -6,7 +6,7 @@ import 'catalog_cast_member.dart';
 import 'catalog_metadata.dart';
 
 /// External catalog providers that can back the Explore tab.
-enum CatalogSourceId { trakt, mal, anilist, seerr }
+enum CatalogSourceId { trakt, seerr }
 
 /// Normalized airing/production status across providers (Trakt `status`,
 /// MAL `status`). Null when unknown or uninteresting (released movies).
@@ -14,31 +14,21 @@ enum CatalogAirStatus { airing, ended, canceled, upcoming }
 
 /// External ids identifying a catalog item across providers and media
 /// servers. A superset of [ExternalIds] that also carries provider-native
-/// ids (Plex rating key, Trakt id/slug, MAL and AniList).
+/// ids (Plex rating key, Trakt id/slug).
 class CatalogItemIds {
   final String? plex;
   final int? trakt;
   final String? slug;
-  final int? mal;
-  final int? anilist;
   final String? imdb;
   final int? tmdb;
   final int? tvdb;
 
-  const CatalogItemIds({this.plex, this.trakt, this.slug, this.mal, this.anilist, this.imdb, this.tmdb, this.tvdb});
+  const CatalogItemIds({this.plex, this.trakt, this.slug, this.imdb, this.tmdb, this.tvdb});
 
   factory CatalogItemIds.fromExternal(ExternalIds ids) =>
       CatalogItemIds(imdb: ids.imdb, tmdb: ids.tmdb, tvdb: ids.tvdb);
 
-  bool get hasAny =>
-      imdb != null ||
-      tmdb != null ||
-      tvdb != null ||
-      mal != null ||
-      anilist != null ||
-      plex != null ||
-      trakt != null ||
-      slug != null;
+  bool get hasAny => imdb != null || tmdb != null || tvdb != null || plex != null || trakt != null || slug != null;
 
   /// Stable identity key preferring globally-unique ids. Callers must
   /// namespace it by [MediaKind] (tmdb movie/show ids can collide).
@@ -46,8 +36,6 @@ class CatalogItemIds {
     if (imdb != null) return 'imdb:$imdb';
     if (tmdb != null) return 'tmdb:$tmdb';
     if (tvdb != null) return 'tvdb:$tvdb';
-    if (mal != null) return 'mal:$mal';
-    if (anilist != null) return 'anilist:$anilist';
     if (plex != null) return 'plex:$plex';
     if (trakt != null) return 'trakt:$trakt';
     if (slug != null) return 'slug:$slug';
@@ -63,8 +51,6 @@ class CatalogItemIds {
   /// the same series ids. All five Mushoku Tensei entries collapse to
   /// `imdb:tt13293588` under [canonicalKey].
   String? get entryKey {
-    if (mal != null) return 'mal:$mal';
-    if (anilist != null) return 'anilist:$anilist';
     if (trakt != null) return 'trakt:$trakt';
     if (plex != null) return 'plex:$plex';
     if (slug != null) return 'slug:$slug';
@@ -78,8 +64,6 @@ class CatalogItemIds {
     if (imdb != null) 'imdb:$imdb',
     if (tmdb != null) 'tmdb:$tmdb',
     if (tvdb != null) 'tvdb:$tvdb',
-    if (mal != null) 'mal:$mal',
-    if (anilist != null) 'anilist:$anilist',
     if (plex != null) 'plex:$plex',
     if (trakt != null) 'trakt:$trakt',
     if (slug != null) 'slug:$slug',
@@ -93,8 +77,6 @@ class CatalogItemIds {
     plex: plex ?? other.plex,
     trakt: trakt ?? other.trakt,
     slug: slug ?? other.slug,
-    mal: mal ?? other.mal,
-    anilist: anilist ?? other.anilist,
     imdb: imdb ?? other.imdb,
     tmdb: tmdb ?? other.tmdb,
     tvdb: tvdb ?? other.tvdb,
@@ -104,8 +86,6 @@ class CatalogItemIds {
     if (plex != null) 'plex': plex,
     if (trakt != null) 'trakt': trakt,
     if (slug != null) 'slug': slug,
-    if (mal != null) 'mal': mal,
-    if (anilist != null) 'anilist': anilist,
     if (imdb != null) 'imdb': imdb,
     if (tmdb != null) 'tmdb': tmdb,
     if (tvdb != null) 'tvdb': tvdb,
@@ -115,8 +95,6 @@ class CatalogItemIds {
     plex: json['plex'] as String?,
     trakt: json['trakt'] as int?,
     slug: json['slug'] as String?,
-    mal: json['mal'] as int?,
-    anilist: json['anilist'] as int?,
     imdb: json['imdb'] as String?,
     tmdb: json['tmdb'] as int?,
     tvdb: json['tvdb'] as int?,

@@ -180,34 +180,6 @@ class _SearchScreenState extends State<SearchScreen>
     searchFocusNode.requestFocus();
   }
 
-  /// Apply a complete query submitted from outside the field: set the text,
-  /// dismiss any open on-screen keyboard, land focus on the input without
-  /// (re)opening the OSK, and run the search now — the first result takes focus
-  /// when it lands (via onSearchCompleted). The query was typed elsewhere, so
-  /// the TV keyboard must never be up afterwards.
-  @override
-  void submitSearchQuery(String query) {
-    if (!mounted) return;
-    final trimmed = query.trim();
-    searchController.text = trimmed; // listener arms the debounce / resets state
-
-    // Focusing the field normally auto-opens the OSK; a remote search must not
-    // show it, and must dismiss one the TV user already had open (the phone's
-    // Search chip sends tabSearch before the query arrives).
-    _tvTextInputController.closeTextInput();
-    if (trimmed.isEmpty) return;
-
-    // Land focus on the (visible) input immediately so the D-pad remote is
-    // never stranded on the hidden previous tab — while the search is in
-    // flight, when it fails, and when it returns nothing.
-    _tvTextInputController.focusInputWithoutOpening();
-
-    // Same path as the OSK Search key: jumps straight to already-matching
-    // results, or cancels the debounce and runs now; the screen override arms
-    // _focusResultsForQuery so results take focus when they land.
-    handleSearchSubmit();
-  }
-
   // Public method to fully reload all content (for profile switches)
   @override
   void fullRefresh() {

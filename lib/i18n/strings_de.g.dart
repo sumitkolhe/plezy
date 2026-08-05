@@ -992,7 +992,6 @@ class _Translations$explore$de extends Translations$explore$en {
 		other: '${n} Folgen',
 	);
 	@override String get cast => 'Besetzung';
-	@override String get characters => 'Charaktere';
 	@override String get addToWatchlist => 'Zur Merkliste hinzufügen';
 	@override String get removeFromWatchlist => 'Von Merkliste entfernen';
 	@override String get watchlistUpdateFailed => 'Merkliste konnte nicht aktualisiert werden';
@@ -2410,7 +2409,6 @@ extension on TranslationsDe {
 			'explore.status.upcoming' => 'Demnächst',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('de'))(n, one: '${n} Folge', other: '${n} Folgen', ), 
 			'explore.cast' => 'Besetzung',
-			'explore.characters' => 'Charaktere',
 			'explore.addToWatchlist' => 'Zur Merkliste hinzufügen',
 			'explore.removeFromWatchlist' => 'Von Merkliste entfernen',
 			'explore.watchlistUpdateFailed' => 'Merkliste konnte nicht aktualisiert werden',
@@ -2715,9 +2713,9 @@ extension on TranslationsDe {
 			'trakt.scrobble' => 'Echtzeit-Scrobbling',
 			'trakt.scrobbleDescription' => 'Sende Play-, Pause- und Stopp-Ereignisse während der Wiedergabe an Trakt.',
 			'trakt.watchedSync' => 'Gesehen-Status synchronisieren',
+			'trakt.watchedSyncDescription' => 'Wenn du Inhalte in Harbor als gesehen markierst, werden sie auch auf Trakt markiert.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Wenn du Inhalte in Harbor als gesehen markierst, werden sie auch auf Trakt markiert.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr verbinden',
 			'seerr.serverUrl' => 'Server-URL',

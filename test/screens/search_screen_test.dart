@@ -31,6 +31,21 @@ import '../test_helpers/prefs.dart';
 import '../test_helpers/media_items.dart';
 import '../test_helpers/multi_server_fixtures.dart';
 
+/// Drive a search the way typing does: set the field, let the debounce fire.
+Future<void> _runSearch(WidgetTester tester, String query) async {
+  _searchController(tester).text = query;
+  await tester.pump(const Duration(milliseconds: 500));
+  await tester.pumpAndSettle();
+}
+
+/// The OSK Search key path, which additionally lands focus on the first result.
+Future<void> _submitSearch(WidgetTester tester, String query) async {
+  _searchController(tester).text = query;
+  await tester.showKeyboard(find.byType(TextField));
+  await tester.testTextInput.receiveAction(TextInputAction.search);
+  await tester.pumpAndSettle();
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -70,7 +85,6 @@ void main() {
     );
 
     final state = key.currentState!;
-    final searchInput = state as SearchInputFocusable;
     _searchController(tester).text = 'movie';
     await tester.pump();
 
@@ -81,7 +95,6 @@ void main() {
     expect(() => (state as Refreshable).refresh(), returnsNormally);
     expect(() => (state as dynamic).updateItem(item), returnsNormally);
     expect(() => (state as FullRefreshable).fullRefresh(), returnsNormally);
-    expect(() => searchInput.submitSearchQuery('new movie'), returnsNormally);
     expect(() => (state as FocusableTab).focusActiveTabIfReady(), returnsNormally);
     expect(tester.takeException(), isNull);
   });
@@ -125,35 +138,23 @@ void main() {
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchFirstResult');
   });
 
-  testWidgets('companion-remote submitSearchQuery closes native input and focuses results', (tester) async {
+  testWidgets('returning to the input from a result does not re-raise the system keyboard', (tester) async {
     final (client, key) = await _pumpTvSearchScreen(tester);
     await tester.pumpAndSettle();
     expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
 
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('movie');
+    _searchController(tester).text = 'movie';
+    await tester.showKeyboard(find.byType(TextField));
+    await tester.testTextInput.receiveAction(TextInputAction.search);
     await tester.pumpAndSettle();
 
     expect(client.queries, ['movie']);
-    expect(find.text('Movie 1'), findsOneWidget);
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchFirstResult');
 
-    // Selection updates must not re-arm the debounce into a second fetch.
-    await tester.pump(const Duration(milliseconds: 600));
-    await tester.pumpAndSettle();
-    expect(client.queries, ['movie']);
-
-    // Re-submitting already-displayed results leaves result focus stable.
-    final searchInput = key.currentState! as SearchInputFocusable;
-    searchInput.submitSearchQuery('movie');
-    await tester.pumpAndSettle();
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchFirstResult');
-    expect(client.queries, ['movie']);
-
-    // Returning to the input is the D-pad-up path from the first result
-    // (search_screen.dart onNavigateUp), so it must not re-raise the system
-    // keyboard; Select does. The field's first focus already opened it once.
-    searchInput.focusSearchInput();
+    // The D-pad-up path from the first result (search_screen.dart onNavigateUp)
+    // must not re-raise the system keyboard; Select does. The field's first
+    // focus already opened it once.
+    (key.currentState! as SearchInputFocusable).focusSearchInput();
     await tester.pumpAndSettle();
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
     expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
@@ -166,43 +167,14 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('companion-remote query with no results keeps native input closed', (tester) async {
-    final (client, key) = await _pumpTvSearchScreen(tester, items: []);
-    await tester.pumpAndSettle();
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
-
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('zzz');
+  testWidgets('a query with no reachable client renders the failed state', (tester) async {
+    final (client, _) = await _pumpTvSearchScreen(tester, registerClient: false);
     await tester.pumpAndSettle();
 
-    expect(client.queries, ['zzz']);
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
-
-    await tester.pump(const Duration(milliseconds: 200));
-    await tester.pumpAndSettle();
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
-
-    await tester.pumpWidget(const SizedBox.shrink());
-  });
-
-  testWidgets('failed companion-remote query keeps native input closed', (tester) async {
-    final (client, key) = await _pumpTvSearchScreen(tester, registerClient: false);
-    await tester.pumpAndSettle();
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
-
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('movie');
-    await tester.pumpAndSettle();
+    await _runSearch(tester, 'movie');
 
     expect(client.queries, isEmpty);
     expect(find.byIcon(PhosphorIcons.warningCircle), findsOneWidget);
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'SearchInput');
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
-
-    await tester.pump(const Duration(milliseconds: 200));
-    await tester.pumpAndSettle();
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
 
     await tester.pumpWidget(const SizedBox.shrink());
   });
@@ -217,8 +189,7 @@ void main() {
     final (client, key) = await _pumpTvSearchScreen(tester, additionalClients: [failedClient]);
     await tester.pumpAndSettle();
 
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('movie');
-    await tester.pumpAndSettle();
+    await _runSearch(tester, 'movie');
 
     expect(client.queries, ['movie']);
     expect(failedClient.queries, ['movie']);
@@ -233,8 +204,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('movie');
-    await tester.pumpAndSettle();
+    await _runSearch(tester, 'movie');
 
     expect(client.queries, ['movie']);
     expect(find.text(t.explore.searchFailed), findsOneWidget);
@@ -273,16 +243,14 @@ void main() {
     final (client, key) = await _pumpTvSearchScreen(tester);
     await tester.pumpAndSettle();
 
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('movie');
-    await tester.pumpAndSettle();
+    await _runSearch(tester, 'movie');
     expect(find.text('Movie 1'), findsOneWidget);
 
     client.searchError = MediaServerHttpException(
       type: MediaServerHttpErrorType.cancelled,
       message: 'connection replaced',
     );
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('second');
-    await tester.pumpAndSettle();
+    await _runSearch(tester, 'second');
 
     expect(client.queries, ['movie', 'second']);
     expect(find.text('Movie 1'), findsOneWidget);
@@ -319,8 +287,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    (key.currentState! as SearchInputFocusable).submitSearchQuery('shared');
-    await tester.pumpAndSettle();
+    await _submitSearch(tester, 'shared');
 
     expect(serverOneClient.queries, ['shared']);
     expect(serverTwoClient.queries, ['shared']);

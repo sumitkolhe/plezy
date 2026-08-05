@@ -161,7 +161,7 @@ void main() {
 
     test('source switch during an in-flight load starts the new load instead of coalescing', () async {
       final slow = _FakeSource(CatalogSourceId.trakt)..gate = true;
-      final fast = _FakeSource(CatalogSourceId.mal, rows: const [CatalogRowId.popularAnime]);
+      final fast = _FakeSource(CatalogSourceId.seerr, rows: const [CatalogRowId.popularAnime]);
       addTearDown(() {
         slow.dispose();
         fast.dispose();
@@ -178,7 +178,7 @@ void main() {
 
       expect(explore.state, ExploreLoadState.loaded);
       expect(explore.rowHubs.single.row, CatalogRowId.popularAnime);
-      expect(explore.rowHubs.single.hub.items.single.title, 'mal:popularAnime');
+      expect(explore.rowHubs.single.hub.items.single.title, 'seerr:popularAnime');
 
       // The stale pass completing must not clobber the new source's state.
       slow.releaseAll();

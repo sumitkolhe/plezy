@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Oyuncular",
-    "characters": "Karakterler",
     "addToWatchlist": "İzleme Listesine Ekle",
     "removeFromWatchlist": "İzleme Listesinden Kaldır",
     "watchlistUpdateFailed": "İzleme listesi güncellenemedi",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

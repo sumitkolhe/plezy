@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Szereplők",
-    "characters": "Karakterek",
     "addToWatchlist": "Hozzáadás a Néznivalókhoz",
     "removeFromWatchlist": "Eltávolítás a Néznivalókból",
     "watchlistUpdateFailed": "Nem sikerült a Néznivalók frissítése",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

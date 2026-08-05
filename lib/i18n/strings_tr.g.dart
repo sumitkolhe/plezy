@@ -997,7 +997,6 @@ class _Translations$explore$tr extends Translations$explore$en {
 		other: '${n} bölüm',
 	);
 	@override String get cast => 'Oyuncular';
-	@override String get characters => 'Karakterler';
 	@override String get addToWatchlist => 'İzleme Listesine Ekle';
 	@override String get removeFromWatchlist => 'İzleme Listesinden Kaldır';
 	@override String get watchlistUpdateFailed => 'İzleme listesi güncellenemedi';
@@ -2426,7 +2425,6 @@ extension on TranslationsTr {
 			'explore.status.upcoming' => 'Gelecek',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('tr'))(n, one: '${n} bölüm', other: '${n} bölüm', ), 
 			'explore.cast' => 'Oyuncular',
-			'explore.characters' => 'Karakterler',
 			'explore.addToWatchlist' => 'İzleme Listesine Ekle',
 			'explore.removeFromWatchlist' => 'İzleme Listesinden Kaldır',
 			'explore.watchlistUpdateFailed' => 'İzleme listesi güncellenemedi',
@@ -2726,9 +2724,9 @@ extension on TranslationsTr {
 			'metadataEdit.genre' => 'Tür',
 			'metadataEdit.director' => 'Yönetmen',
 			'metadataEdit.writer' => 'Yazar',
+			'metadataEdit.producer' => 'Yapımcı',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.producer' => 'Yapımcı',
 			'metadataEdit.country' => 'Ülke',
 			'metadataEdit.label' => 'Etiket',
 			'trakt.title' => 'Trakt',

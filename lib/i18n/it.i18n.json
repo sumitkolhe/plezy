@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Attori",
-    "characters": "Personaggi",
     "addToWatchlist": "Aggiungi alla lista da guardare",
     "removeFromWatchlist": "Rimuovi dalla lista da guardare",
     "watchlistUpdateFailed": "Impossibile aggiornare la lista da guardare",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

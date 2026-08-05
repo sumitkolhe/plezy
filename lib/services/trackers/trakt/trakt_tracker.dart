@@ -40,9 +40,6 @@ class TraktTracker extends TrackerBase
   @override
   TrackerService get service => TrackerService.trakt;
 
-  @override
-  bool get needsFribb => false;
-
   /// Trakt counts a `/scrobble/stop` as a watch from this progress upwards.
   static const double _scrobbleWatchedPercent = 80.0;
 

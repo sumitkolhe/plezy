@@ -112,8 +112,6 @@ class TrackersProvider extends ChangeNotifier with DisposableChangeNotifierMixin
       slot.session = results[i];
       _rebind(slot);
     }
-    // Connect/disconnect may flip `needsFribb` — drop cached resolver IDs so
-    // the next lookup re-evaluates whether to consult Fribb.
     TrackerCoordinator.instance.invalidateResolverCache();
     unawaited(TrackerCoordinator.instance.flushWriteQueue());
     safeNotifyListeners();

@@ -992,7 +992,6 @@ class _Translations$explore$fr extends Translations$explore$en {
 		other: '${n} épisodes',
 	);
 	@override String get cast => 'Distribution';
-	@override String get characters => 'Personnages';
 	@override String get addToWatchlist => 'Ajouter à la liste de suivi';
 	@override String get removeFromWatchlist => 'Retirer de la liste de suivi';
 	@override String get watchlistUpdateFailed => 'Impossible de mettre à jour la liste de suivi';
@@ -2410,7 +2409,6 @@ extension on TranslationsFr {
 			'explore.status.upcoming' => 'À venir',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('fr'))(n, one: '${n} épisode', other: '${n} épisodes', ), 
 			'explore.cast' => 'Distribution',
-			'explore.characters' => 'Personnages',
 			'explore.addToWatchlist' => 'Ajouter à la liste de suivi',
 			'explore.removeFromWatchlist' => 'Retirer de la liste de suivi',
 			'explore.watchlistUpdateFailed' => 'Impossible de mettre à jour la liste de suivi',
@@ -2715,9 +2713,9 @@ extension on TranslationsFr {
 			'trakt.scrobble' => 'Scrobbling en temps réel',
 			'trakt.scrobbleDescription' => 'Envoyer les événements de lecture, pause et arrêt à Trakt pendant la lecture.',
 			'trakt.watchedSync' => 'Synchroniser le statut « vu »',
+			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Se connecter à Seerr',
 			'seerr.serverUrl' => 'URL du serveur',

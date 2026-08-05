@@ -992,7 +992,6 @@ class _Translations$explore$pt extends Translations$explore$en {
 		other: '${n} episódios',
 	);
 	@override String get cast => 'Elenco';
-	@override String get characters => 'Personagens';
 	@override String get addToWatchlist => 'Adicionar à lista para assistir';
 	@override String get removeFromWatchlist => 'Remover da lista para assistir';
 	@override String get watchlistUpdateFailed => 'Não foi possível atualizar a lista para assistir';
@@ -2410,7 +2409,6 @@ extension on TranslationsPt {
 			'explore.status.upcoming' => 'Em breve',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pt'))(n, one: '${n} episódio', other: '${n} episódios', ), 
 			'explore.cast' => 'Elenco',
-			'explore.characters' => 'Personagens',
 			'explore.addToWatchlist' => 'Adicionar à lista para assistir',
 			'explore.removeFromWatchlist' => 'Remover da lista para assistir',
 			'explore.watchlistUpdateFailed' => 'Não foi possível atualizar a lista para assistir',
@@ -2715,9 +2713,9 @@ extension on TranslationsPt {
 			'trakt.scrobble' => 'Scrobbling em tempo real',
 			'trakt.scrobbleDescription' => 'Envia eventos de reprodução, pausa e parada ao Trakt durante a exibição.',
 			'trakt.watchedSync' => 'Sincronizar status de assistido',
+			'trakt.watchedSyncDescription' => 'Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Ao marcar itens como assistidos no Harbor, eles também serão marcados no Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Conectar ao Seerr',
 			'seerr.serverUrl' => 'URL do servidor',

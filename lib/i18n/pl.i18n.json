@@ -919,7 +919,6 @@
       "other": ""
     },
     "cast": "Obsada",
-    "characters": "Postacie",
     "addToWatchlist": "Dodaj do listy do obejrzenia",
     "removeFromWatchlist": "Usuń z listy do obejrzenia",
     "watchlistUpdateFailed": "Nie udało się zaktualizować listy do obejrzenia",
@@ -1019,8 +1018,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

@@ -992,7 +992,6 @@ class _Translations$explore$nb extends Translations$explore$en {
 		other: '${n} episoder',
 	);
 	@override String get cast => 'Skuespillere';
-	@override String get characters => 'Figurer';
 	@override String get addToWatchlist => 'Legg til i ønskeliste';
 	@override String get removeFromWatchlist => 'Fjern fra ønskeliste';
 	@override String get watchlistUpdateFailed => 'Kunne ikke oppdatere ønskelisten';
@@ -2410,7 +2409,6 @@ extension on TranslationsNb {
 			'explore.status.upcoming' => 'Kommende',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('nb'))(n, one: '${n} episode', other: '${n} episoder', ), 
 			'explore.cast' => 'Skuespillere',
-			'explore.characters' => 'Figurer',
 			'explore.addToWatchlist' => 'Legg til i ønskeliste',
 			'explore.removeFromWatchlist' => 'Fjern fra ønskeliste',
 			'explore.watchlistUpdateFailed' => 'Kunne ikke oppdatere ønskelisten',
@@ -2715,9 +2713,9 @@ extension on TranslationsNb {
 			'trakt.scrobble' => 'Sanntids-scrobbling',
 			'trakt.scrobbleDescription' => 'Send avspillings-, pause- og stopphendelser til Trakt under avspilling.',
 			'trakt.watchedSync' => 'Synkroniser settstatus',
+			'trakt.watchedSyncDescription' => 'Når du markerer elementer som sett i Harbor, markeres de også som sett på Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Når du markerer elementer som sett i Harbor, markeres de også som sett på Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Koble til Seerr',
 			'seerr.serverUrl' => 'Server-URL',

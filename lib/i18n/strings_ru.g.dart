@@ -996,7 +996,6 @@ class _Translations$explore$ru extends Translations$explore$en {
 		other: '${n} эпизода',
 	);
 	@override String get cast => 'В ролях';
-	@override String get characters => 'Персонажи';
 	@override String get addToWatchlist => 'Добавить в список для просмотра';
 	@override String get removeFromWatchlist => 'Удалить из списка для просмотра';
 	@override String get watchlistUpdateFailed => 'Не удалось обновить список для просмотра';
@@ -2416,7 +2415,6 @@ extension on TranslationsRu {
 			'explore.status.upcoming' => 'Скоро',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ru'))(n, one: '${n} эпизод', few: '${n} эпизода', many: '${n} эпизодов', other: '${n} эпизода', ), 
 			'explore.cast' => 'В ролях',
-			'explore.characters' => 'Персонажи',
 			'explore.addToWatchlist' => 'Добавить в список для просмотра',
 			'explore.removeFromWatchlist' => 'Удалить из списка для просмотра',
 			'explore.watchlistUpdateFailed' => 'Не удалось обновить список для просмотра',
@@ -2721,9 +2719,9 @@ extension on TranslationsRu {
 			'trakt.scrobble' => 'Скробблинг в реальном времени',
 			'trakt.scrobbleDescription' => 'Отправлять события воспроизведения, паузы и остановки в Trakt во время просмотра.',
 			'trakt.watchedSync' => 'Синхронизация статуса просмотра',
+			'trakt.watchedSyncDescription' => 'Когда вы отмечаете элементы как просмотренные в Harbor, они отмечаются и в Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Когда вы отмечаете элементы как просмотренные в Harbor, они отмечаются и в Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Подключить Seerr',
 			'seerr.serverUrl' => 'URL сервера',

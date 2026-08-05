@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Актерлер",
-    "characters": "Кейіпкерлер",
     "addToWatchlist": "Көру тізіміне қосу",
     "removeFromWatchlist": "Көру тізімінен өшіру",
     "watchlistUpdateFailed": "Көру тізімін жаңарту мүмкін болмады",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

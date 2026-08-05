@@ -990,7 +990,6 @@ class _Translations$explore$ko extends Translations$explore$en {
 		other: '${n}화',
 	);
 	@override String get cast => '출연진';
-	@override String get characters => '캐릭터';
 	@override String get addToWatchlist => '관심 목록에 추가';
 	@override String get removeFromWatchlist => '관심 목록에서 제거';
 	@override String get watchlistUpdateFailed => '관심 목록을 업데이트하지 못했습니다';
@@ -2407,7 +2406,6 @@ extension on TranslationsKo {
 			'explore.status.upcoming' => '방영 예정',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ko'))(n, other: '${n}화', ), 
 			'explore.cast' => '출연진',
-			'explore.characters' => '캐릭터',
 			'explore.addToWatchlist' => '관심 목록에 추가',
 			'explore.removeFromWatchlist' => '관심 목록에서 제거',
 			'explore.watchlistUpdateFailed' => '관심 목록을 업데이트하지 못했습니다',
@@ -2712,9 +2710,9 @@ extension on TranslationsKo {
 			'trakt.scrobble' => '실시간 스크로블',
 			'trakt.scrobbleDescription' => '재생 중 재생, 일시정지, 정지 이벤트를 Trakt로 전송합니다.',
 			'trakt.watchedSync' => '시청 상태 동기화',
+			'trakt.watchedSyncDescription' => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr에 연결',
 			'seerr.serverUrl' => '서버 URL',

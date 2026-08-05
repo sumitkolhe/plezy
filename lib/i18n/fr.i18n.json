@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Distribution",
-    "characters": "Personnages",
     "addToWatchlist": "Ajouter à la liste de suivi",
     "removeFromWatchlist": "Retirer de la liste de suivi",
     "watchlistUpdateFailed": "Impossible de mettre à jour la liste de suivi",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

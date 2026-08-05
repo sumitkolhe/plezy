@@ -992,7 +992,6 @@ class _Translations$explore$hu extends Translations$explore$en {
 		other: '${n} epizód',
 	);
 	@override String get cast => 'Szereplők';
-	@override String get characters => 'Karakterek';
 	@override String get addToWatchlist => 'Hozzáadás a Néznivalókhoz';
 	@override String get removeFromWatchlist => 'Eltávolítás a Néznivalókból';
 	@override String get watchlistUpdateFailed => 'Nem sikerült a Néznivalók frissítése';
@@ -2410,7 +2409,6 @@ extension on TranslationsHu {
 			'explore.status.upcoming' => 'Közelgő',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('hu'))(n, one: '${n} epizód', other: '${n} epizód', ), 
 			'explore.cast' => 'Szereplők',
-			'explore.characters' => 'Karakterek',
 			'explore.addToWatchlist' => 'Hozzáadás a Néznivalókhoz',
 			'explore.removeFromWatchlist' => 'Eltávolítás a Néznivalókból',
 			'explore.watchlistUpdateFailed' => 'Nem sikerült a Néznivalók frissítése',
@@ -2715,9 +2713,9 @@ extension on TranslationsHu {
 			'trakt.scrobble' => 'Valós idejű scrobbling',
 			'trakt.scrobbleDescription' => 'Lejátszási, szüneteltetési és leállítási események küldése a Traktnak lejátszás közben.',
 			'trakt.watchedSync' => 'Megtekintési állapot szinkronizálása',
+			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr csatlakoztatása',
 			'seerr.serverUrl' => 'Szerver URL-címe',

@@ -190,10 +190,10 @@ void main() {
 
   testWidgets('seasonal rank badge names its season instead of claiming all-time rank', (tester) async {
     final item = CatalogItem(
-      source: CatalogSourceId.anilist,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'Seasonal Show',
-      ids: const CatalogItemIds(anilist: 1),
+      ids: const CatalogItemIds(trakt: 1),
       ranks: const [
         CatalogRank(
           rank: 3,

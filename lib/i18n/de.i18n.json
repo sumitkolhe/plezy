@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Besetzung",
-    "characters": "Charaktere",
     "addToWatchlist": "Zur Merkliste hinzufügen",
     "removeFromWatchlist": "Von Merkliste entfernen",
     "watchlistUpdateFailed": "Merkliste konnte nicht aktualisiert werden",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

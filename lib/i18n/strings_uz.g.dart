@@ -997,7 +997,6 @@ class _Translations$explore$uz extends Translations$explore$en {
 		other: '${n} qism',
 	);
 	@override String get cast => 'Aktyorlar';
-	@override String get characters => 'Qahramonlar';
 	@override String get addToWatchlist => 'Tomosha roʻyxatiga qoʻshish';
 	@override String get removeFromWatchlist => 'Tomosha roʻyxatidan oʻchirish';
 	@override String get watchlistUpdateFailed => 'Tomosha roʻyxatini yangilab boʻlmadi';
@@ -2426,7 +2425,6 @@ extension on TranslationsUz {
 			'explore.status.upcoming' => 'Kutilmoqda',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('uz'))(n, one: '${n} qism', other: '${n} qism', ), 
 			'explore.cast' => 'Aktyorlar',
-			'explore.characters' => 'Qahramonlar',
 			'explore.addToWatchlist' => 'Tomosha roʻyxatiga qoʻshish',
 			'explore.removeFromWatchlist' => 'Tomosha roʻyxatidan oʻchirish',
 			'explore.watchlistUpdateFailed' => 'Tomosha roʻyxatini yangilab boʻlmadi',
@@ -2726,9 +2724,9 @@ extension on TranslationsUz {
 			'metadataEdit.genre' => 'Janr',
 			'metadataEdit.director' => 'Rejissyor',
 			'metadataEdit.writer' => 'Ssenarist',
+			'metadataEdit.producer' => 'Prodyuser',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.producer' => 'Prodyuser',
 			'metadataEdit.country' => 'Mamlakat',
 			'metadataEdit.label' => 'Yorliq',
 			'trakt.title' => 'Trakt',

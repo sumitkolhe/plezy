@@ -913,7 +913,6 @@
       "other": "${n} seasons"
     },
     "cast": "Cast",
-    "characters": "Characters",
     "addToWatchlist": "Add to Watchlist",
     "removeFromWatchlist": "Remove from Watchlist",
     "watchlistUpdateFailed": "Couldn't update watchlist",
@@ -1011,8 +1010,6 @@
       "imdb": "IMDb",
       "tmdb": "TMDB",
       "rottenTomatoes": "Rotten Tomatoes",
-      "mal": "MyAnimeList",
-      "anilist": "AniList",
       "trakt": "Trakt",
       "rottenTomatoesCritic": "Rotten Tomatoes critics",
       "rottenTomatoesAudience": "Rotten Tomatoes audience"

@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Skuespillere",
-    "characters": "Figurer",
     "addToWatchlist": "Legg til i ønskeliste",
     "removeFromWatchlist": "Fjern fra ønskeliste",
     "watchlistUpdateFailed": "Kunne ikke oppdatere ønskelisten",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

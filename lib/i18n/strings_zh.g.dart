@@ -990,7 +990,6 @@ class Translations$explore$zh extends Translations$explore$en {
 		other: '${n} 集',
 	);
 	@override String get cast => '演员表';
-	@override String get characters => '角色';
 	@override String get addToWatchlist => '添加到想看列表';
 	@override String get removeFromWatchlist => '从想看列表移除';
 	@override String get watchlistUpdateFailed => '无法更新想看列表';
@@ -2407,7 +2406,6 @@ extension on TranslationsZh {
 			'explore.status.upcoming' => '即将上线',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('zh'))(n, other: '${n} 集', ), 
 			'explore.cast' => '演员表',
-			'explore.characters' => '角色',
 			'explore.addToWatchlist' => '添加到想看列表',
 			'explore.removeFromWatchlist' => '从想看列表移除',
 			'explore.watchlistUpdateFailed' => '无法更新想看列表',
@@ -2712,9 +2710,9 @@ extension on TranslationsZh {
 			'trakt.scrobble' => '实时同步播放状态',
 			'trakt.scrobbleDescription' => '播放期间将播放、暂停和停止事件发送到 Trakt。',
 			'trakt.watchedSync' => '同步已观看状态',
+			'trakt.watchedSyncDescription' => '在 Harbor 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => '在 Harbor 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => '连接 Seerr',
 			'seerr.serverUrl' => '服务器 URL',

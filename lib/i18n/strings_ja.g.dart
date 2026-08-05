@@ -990,7 +990,6 @@ class _Translations$explore$ja extends Translations$explore$en {
 		other: '${n}話',
 	);
 	@override String get cast => 'キャスト';
-	@override String get characters => 'キャラクター';
 	@override String get addToWatchlist => 'ウォッチリストに追加';
 	@override String get removeFromWatchlist => 'ウォッチリストから削除';
 	@override String get watchlistUpdateFailed => 'ウォッチリストを更新できませんでした';
@@ -2407,7 +2406,6 @@ extension on TranslationsJa {
 			'explore.status.upcoming' => '放送予定',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('ja'))(n, other: '${n}話', ), 
 			'explore.cast' => 'キャスト',
-			'explore.characters' => 'キャラクター',
 			'explore.addToWatchlist' => 'ウォッチリストに追加',
 			'explore.removeFromWatchlist' => 'ウォッチリストから削除',
 			'explore.watchlistUpdateFailed' => 'ウォッチリストを更新できませんでした',
@@ -2712,9 +2710,9 @@ extension on TranslationsJa {
 			'trakt.scrobble' => 'リアルタイムのスクロブル',
 			'trakt.scrobbleDescription' => '再生中に再生・一時停止・停止の各イベントをTraktに送信します。',
 			'trakt.watchedSync' => '視聴済みステータスを同期',
+			'trakt.watchedSyncDescription' => 'Harborで項目を視聴済みにすると、Traktでも視聴済みになります。',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Harborで項目を視聴済みにすると、Traktでも視聴済みになります。',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerrに接続',
 			'seerr.serverUrl' => 'サーバー URL',

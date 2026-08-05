@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Reparto",
-    "characters": "Personajes",
     "addToWatchlist": "Añadir a la lista de seguimiento",
     "removeFromWatchlist": "Quitar de la lista de seguimiento",
     "watchlistUpdateFailed": "No se pudo actualizar la lista de seguimiento",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

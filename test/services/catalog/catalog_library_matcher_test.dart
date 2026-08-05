@@ -80,16 +80,16 @@ void main() {
       [secondHit],
     ]);
     const first = CatalogItem(
-      source: CatalogSourceId.mal,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'Mushoku Tensei',
-      ids: CatalogItemIds(mal: 39535, imdb: 'tt13293588'),
+      ids: CatalogItemIds(trakt: 39535, imdb: 'tt13293588'),
     );
     const second = CatalogItem(
-      source: CatalogSourceId.mal,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'Mushoku Tensei II',
-      ids: CatalogItemIds(mal: 51179, imdb: 'tt13293588'),
+      ids: CatalogItemIds(trakt: 51179, imdb: 'tt13293588'),
     );
 
     expect(first.identityKey, second.identityKey);
@@ -103,29 +103,29 @@ void main() {
   test('negative cache entries are isolated by catalog source', () async {
     final harness = _Harness();
     addTearDown(harness.dispose);
-    final anilistHit = testMediaItem(id: 'japanese-title-match', kind: MediaKind.show);
+    final seerrHit = testMediaItem(id: 'japanese-title-match', kind: MediaKind.show);
     harness.aggregation.responses.addAll([
       const [],
-      [anilistHit],
+      [seerrHit],
     ]);
-    const malItem = CatalogItem(
-      source: CatalogSourceId.mal,
+    const traktItem = CatalogItem(
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'English Title',
-      altTitles: ['MAL Synonym'],
-      ids: CatalogItemIds(mal: 100, tmdb: 200),
+      altTitles: ['Trakt Synonym'],
+      ids: CatalogItemIds(trakt: 100, tmdb: 200),
     );
-    const anilistItem = CatalogItem(
-      source: CatalogSourceId.anilist,
+    const seerrItem = CatalogItem(
+      source: CatalogSourceId.seerr,
       kind: MediaKind.show,
       title: 'English Title',
       altTitles: ['日本語タイトル'],
-      ids: CatalogItemIds(mal: 100, anilist: 300, tmdb: 200),
+      ids: CatalogItemIds(trakt: 100, tmdb: 200),
     );
 
-    expect(malItem.entryIdentityKey, anilistItem.entryIdentityKey);
-    expect(await harness.matcher.match(malItem), isEmpty);
-    expect((await harness.matcher.match(anilistItem)).single, same(anilistHit));
+    expect(traktItem.entryIdentityKey, seerrItem.entryIdentityKey);
+    expect(await harness.matcher.match(traktItem), isEmpty);
+    expect((await harness.matcher.match(seerrItem)).single, same(seerrHit));
     expect(harness.aggregation.calls, hasLength(2));
     expect(harness.aggregation.calls.last.titles, contains('日本語タイトル'));
   });
@@ -140,10 +140,10 @@ void main() {
       [hit],
     ]);
     const item = CatalogItem(
-      source: CatalogSourceId.anilist,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'New Show',
-      ids: CatalogItemIds(anilist: 1, tmdb: 42),
+      ids: CatalogItemIds(trakt: 1, tmdb: 42),
     );
 
     expect(await harness.matcher.match(item), isEmpty);
@@ -166,13 +166,13 @@ void main() {
     harness.aggregation.responses.add(const []);
     const season = ExternalSeasonRef(tvdb: 2, tmdb: 1);
     const item = CatalogItem(
-      source: CatalogSourceId.mal,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'You and I Are Polar Opposites Season 2',
       altTitles: ['Seihantai na Kimi to Boku 2nd Season'],
       season: season,
       year: 2027,
-      ids: CatalogItemIds(mal: 59193, tvdb: 457078),
+      ids: CatalogItemIds(trakt: 59193, tvdb: 457078),
     );
 
     await harness.matcher.match(item);
@@ -206,18 +206,18 @@ void main() {
     expect(call.titles, ['Severance'], reason: 'nothing to strip, so one candidate and one request');
   });
 
-  test('drops the year from a sequel title even when Fribb mapped no season', () async {
-    // RC3 entries carry no season, but a strippable suffix says sequel just as
+  test('drops the year from a sequel title even when no season is mapped', () async {
+    // Some entries carry no season, but a strippable suffix says sequel just as
     // reliably, and the year window around it would exclude the parent show.
     final harness = _Harness();
     addTearDown(harness.dispose);
     harness.aggregation.responses.add(const []);
     const item = CatalogItem(
-      source: CatalogSourceId.anilist,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'Some Show 2nd Season',
       year: 2026,
-      ids: CatalogItemIds(anilist: 5, tvdb: 1),
+      ids: CatalogItemIds(trakt: 5, tvdb: 1),
     );
 
     await harness.matcher.match(item);

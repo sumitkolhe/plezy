@@ -910,7 +910,6 @@
       "other": ""
     },
     "cast": "演員陣容",
-    "characters": "角色",
     "addToWatchlist": "新增至待看清單",
     "removeFromWatchlist": "從待看清單移除",
     "watchlistUpdateFailed": "無法更新待看清單",
@@ -1007,8 +1006,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

@@ -997,7 +997,6 @@ class _Translations$explore$kk extends Translations$explore$en {
 		other: '${n} бөлім',
 	);
 	@override String get cast => 'Актерлер';
-	@override String get characters => 'Кейіпкерлер';
 	@override String get addToWatchlist => 'Көру тізіміне қосу';
 	@override String get removeFromWatchlist => 'Көру тізімінен өшіру';
 	@override String get watchlistUpdateFailed => 'Көру тізімін жаңарту мүмкін болмады';
@@ -2426,7 +2425,6 @@ extension on TranslationsKk {
 			'explore.status.upcoming' => 'Күтілуде',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('kk'))(n, one: '${n} бөлім', other: '${n} бөлім', ), 
 			'explore.cast' => 'Актерлер',
-			'explore.characters' => 'Кейіпкерлер',
 			'explore.addToWatchlist' => 'Көру тізіміне қосу',
 			'explore.removeFromWatchlist' => 'Көру тізімінен өшіру',
 			'explore.watchlistUpdateFailed' => 'Көру тізімін жаңарту мүмкін болмады',
@@ -2726,9 +2724,9 @@ extension on TranslationsKk {
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режиссер',
 			'metadataEdit.writer' => 'Сценарист',
+			'metadataEdit.producer' => 'Продюсер',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.producer' => 'Продюсер',
 			'metadataEdit.country' => 'Ел',
 			'metadataEdit.label' => 'Белгі',
 			'trakt.title' => 'Trakt',

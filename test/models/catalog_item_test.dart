@@ -9,73 +9,35 @@ import 'package:harbor/utils/external_ids.dart';
 void main() {
   group('CatalogItemIds', () {
     test('round-trips provider-native ids through JSON', () {
-      const ids = CatalogItemIds(
-        plex: 'plex-4',
-        trakt: 8,
-        slug: 'title',
-        mal: 5,
-        anilist: 6,
-        imdb: 'tt123',
-        tmdb: 2,
-        tvdb: 3,
-      );
+      const ids = CatalogItemIds(plex: 'plex-4', trakt: 8, slug: 'title', imdb: 'tt123', tmdb: 2, tvdb: 3);
 
       final json = ids.toJson();
       final decoded = CatalogItemIds.fromJson(json);
 
-      expect(json, {
-        'plex': 'plex-4',
-        'trakt': 8,
-        'slug': 'title',
-        'mal': 5,
-        'anilist': 6,
-        'imdb': 'tt123',
-        'tmdb': 2,
-        'tvdb': 3,
-      });
+      expect(json, {'plex': 'plex-4', 'trakt': 8, 'slug': 'title', 'imdb': 'tt123', 'tmdb': 2, 'tvdb': 3});
       expect(decoded.plex, 'plex-4');
-      expect(decoded.anilist, 6);
       expect(decoded.hasAny, isTrue);
     });
 
     test('orders canonical and membership keys deterministically', () {
-      const ids = CatalogItemIds(
-        plex: 'plex-4',
-        trakt: 8,
-        slug: 'title',
-        mal: 5,
-        anilist: 6,
-        imdb: 'tt123',
-        tmdb: 2,
-        tvdb: 3,
-      );
+      const ids = CatalogItemIds(plex: 'plex-4', trakt: 8, slug: 'title', imdb: 'tt123', tmdb: 2, tvdb: 3);
 
       expect(ids.canonicalKey, 'imdb:tt123');
-      expect(ids.allKeys, [
-        'imdb:tt123',
-        'tmdb:2',
-        'tvdb:3',
-        'mal:5',
-        'anilist:6',
-        'plex:plex-4',
-        'trakt:8',
-        'slug:title',
-      ]);
-      expect(const CatalogItemIds(mal: 5, anilist: 6).canonicalKey, 'mal:5');
-      expect(const CatalogItemIds(anilist: 6, trakt: 8).canonicalKey, 'anilist:6');
+      expect(ids.allKeys, ['imdb:tt123', 'tmdb:2', 'tvdb:3', 'plex:plex-4', 'trakt:8', 'slug:title']);
+      expect(const CatalogItemIds(plex: 'plex-4', trakt: 8).canonicalKey, 'plex:plex-4');
       expect(const CatalogItemIds(plex: 'plex-4', trakt: 8).canonicalKey, 'plex:plex-4');
     });
     test('entryKey identifies the entry, not the series it shares with its seasons', () {
-      // Every MAL/AniList season of one show carries the same series ids, so
+      // Every season of one show carries the same series ids, so
       // canonicalKey collides across seasons and cannot key a season-gated
       // result. All five Mushoku Tensei entries collapse to imdb:tt13293588.
-      const s1 = CatalogItemIds(mal: 39535, imdb: 'tt13293588', tmdb: 94664, tvdb: 371310);
-      const s2 = CatalogItemIds(mal: 51179, imdb: 'tt13293588', tmdb: 94664, tvdb: 371310);
+      const s1 = CatalogItemIds(trakt: 39535, imdb: 'tt13293588', tmdb: 94664, tvdb: 371310);
+      const s2 = CatalogItemIds(trakt: 51179, imdb: 'tt13293588', tmdb: 94664, tvdb: 371310);
 
       expect(s1.canonicalKey, s2.canonicalKey);
-      expect(s1.entryKey, 'mal:39535');
-      expect(s2.entryKey, 'mal:51179');
-      expect(const CatalogItemIds(anilist: 6, imdb: 'tt1').entryKey, 'anilist:6');
+      expect(s1.entryKey, 'trakt:39535');
+      expect(s2.entryKey, 'trakt:51179');
+      expect(const CatalogItemIds(imdb: 'tt1').entryKey, 'imdb:tt1');
       // Falls back to the series id when the entry has no provider-native id.
       expect(const CatalogItemIds(imdb: 'tt1').entryKey, 'imdb:tt1');
     });
@@ -83,13 +45,13 @@ void main() {
 
   group('CatalogItem', () {
     const item = CatalogItem(
-      source: CatalogSourceId.anilist,
+      source: CatalogSourceId.trakt,
       kind: MediaKind.show,
       title: 'You and I Are Polar Opposites Season 2',
       altTitles: ['Seihantai na Kimi to Boku 2nd Season', '\u6b63\u53cd\u5bfe\u306a\u541b\u3068\u50d5 \u7b2c2\u671f'],
       season: ExternalSeasonRef(tvdb: 2, tmdb: 1),
       year: 2026,
-      ids: CatalogItemIds(anilist: 210031, mal: 63832, tvdb: 457078),
+      ids: CatalogItemIds(trakt: 210031, tvdb: 457078),
     );
 
     test('survives the MediaItem.raw round trip the detail screen relies on', () {
@@ -102,7 +64,7 @@ void main() {
       expect(decoded.altTitles, item.altTitles);
       expect(decoded.season, const ExternalSeasonRef(tvdb: 2, tmdb: 1));
       expect(decoded.title, item.title);
-      expect(decoded.ids.entryKey, 'mal:63832');
+      expect(decoded.ids.entryKey, 'trakt:210031');
     });
 
     test('survives an encode/decode cycle that erases the static map types', () {

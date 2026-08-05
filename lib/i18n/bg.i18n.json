@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Актьори",
-    "characters": "Герои",
     "addToWatchlist": "Добави в списъка за гледане",
     "removeFromWatchlist": "Премахни от списъка за гледане",
     "watchlistUpdateFailed": "Неуспешно обновяване на списъка за гледане",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

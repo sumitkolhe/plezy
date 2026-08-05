@@ -631,8 +631,6 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
     // and the critic/audience distinction survive.
     'rottenTomatoesCritic' => t.explore.ratingSource.rottenTomatoesCritic,
     'rottenTomatoesAudience' => t.explore.ratingSource.rottenTomatoesAudience,
-    'mal' => t.explore.ratingSource.mal,
-    'anilist' => t.explore.ratingSource.anilist,
     'trakt' => t.explore.ratingSource.trakt,
     _ => null,
   };
@@ -1105,12 +1103,7 @@ class _CatalogItemDetailScreenState extends State<CatalogItemDetailScreen> {
       key: _castSectionKey,
       crossAxisAlignment: .start,
       children: [
-        Text(
-          const {CatalogSourceId.mal, CatalogSourceId.anilist}.contains(_item.source)
-              ? t.explore.characters
-              : t.explore.cast,
-          style: _sectionHeading,
-        ),
+        Text(t.explore.cast, style: _sectionHeading),
         const SizedBox(height: 4),
         CastMemberStrip(
           key: _castStripKey,

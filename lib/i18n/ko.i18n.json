@@ -910,7 +910,6 @@
       "other": ""
     },
     "cast": "출연진",
-    "characters": "캐릭터",
     "addToWatchlist": "관심 목록에 추가",
     "removeFromWatchlist": "관심 목록에서 제거",
     "watchlistUpdateFailed": "관심 목록을 업데이트하지 못했습니다",
@@ -1007,8 +1006,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

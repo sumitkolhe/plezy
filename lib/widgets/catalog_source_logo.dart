@@ -19,8 +19,6 @@ class CatalogSourceLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     final asset = switch (id) {
       CatalogSourceId.trakt => 'assets/trakt_circlemark.svg',
-      CatalogSourceId.mal => 'assets/mal_mark.svg',
-      CatalogSourceId.anilist => 'assets/anilist_mark.svg',
       CatalogSourceId.seerr => 'assets/seerr_mark.svg',
     };
     final color = IconTheme.of(context).color ?? Theme.of(context).colorScheme.onSurface;

@@ -996,7 +996,6 @@ class _Translations$explore$pl extends Translations$explore$en {
 		other: '${n} odcinka',
 	);
 	@override String get cast => 'Obsada';
-	@override String get characters => 'Postacie';
 	@override String get addToWatchlist => 'Dodaj do listy do obejrzenia';
 	@override String get removeFromWatchlist => 'Usuń z listy do obejrzenia';
 	@override String get watchlistUpdateFailed => 'Nie udało się zaktualizować listy do obejrzenia';
@@ -2416,7 +2415,6 @@ extension on TranslationsPl {
 			'explore.status.upcoming' => 'Nadchodzący',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('pl'))(n, one: '${n} odcinek', few: '${n} odcinki', many: '${n} odcinków', other: '${n} odcinka', ), 
 			'explore.cast' => 'Obsada',
-			'explore.characters' => 'Postacie',
 			'explore.addToWatchlist' => 'Dodaj do listy do obejrzenia',
 			'explore.removeFromWatchlist' => 'Usuń z listy do obejrzenia',
 			'explore.watchlistUpdateFailed' => 'Nie udało się zaktualizować listy do obejrzenia',
@@ -2721,9 +2719,9 @@ extension on TranslationsPl {
 			'trakt.scrobble' => 'Śledzenie odtwarzania w czasie rzeczywistym',
 			'trakt.scrobbleDescription' => 'Wysyłaj do serwisu Trakt zdarzenia odtwarzania, wstrzymania i zatrzymania.',
 			'trakt.watchedSync' => 'Synchronizuj stan obejrzenia',
+			'trakt.watchedSyncDescription' => 'Gdy oznaczysz element jako obejrzany w Harbor, zostanie on również oznaczony jako obejrzany w serwisie Trakt.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Gdy oznaczysz element jako obejrzany w Harbor, zostanie on również oznaczony jako obejrzany w serwisie Trakt.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Połącz Seerr',
 			'seerr.serverUrl' => 'Adres URL serwera',

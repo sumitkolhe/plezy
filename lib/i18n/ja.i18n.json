@@ -910,7 +910,6 @@
       "other": ""
     },
     "cast": "キャスト",
-    "characters": "キャラクター",
     "addToWatchlist": "ウォッチリストに追加",
     "removeFromWatchlist": "ウォッチリストから削除",
     "watchlistUpdateFailed": "ウォッチリストを更新できませんでした",
@@ -1007,8 +1006,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

@@ -992,7 +992,6 @@ class _Translations$explore$nl extends Translations$explore$en {
 		other: '${n} afleveringen',
 	);
 	@override String get cast => 'Acteurs';
-	@override String get characters => 'Personages';
 	@override String get addToWatchlist => 'Toevoegen aan kijklijst';
 	@override String get removeFromWatchlist => 'Verwijderen uit kijklijst';
 	@override String get watchlistUpdateFailed => 'Kon kijklijst niet bijwerken';
@@ -2410,7 +2409,6 @@ extension on TranslationsNl {
 			'explore.status.upcoming' => 'Binnenkort',
 			'explore.episodeCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('nl'))(n, one: '${n} aflevering', other: '${n} afleveringen', ), 
 			'explore.cast' => 'Acteurs',
-			'explore.characters' => 'Personages',
 			'explore.addToWatchlist' => 'Toevoegen aan kijklijst',
 			'explore.removeFromWatchlist' => 'Verwijderen uit kijklijst',
 			'explore.watchlistUpdateFailed' => 'Kon kijklijst niet bijwerken',
@@ -2715,9 +2713,9 @@ extension on TranslationsNl {
 			'trakt.scrobble' => 'Realtime scrobblen',
 			'trakt.scrobbleDescription' => 'Stuur tijdens het afspelen gebeurtenissen voor afspelen, pauzeren en stoppen naar Trakt.',
 			'trakt.watchedSync' => 'Kijkstatus synchroniseren',
+			'trakt.watchedSyncDescription' => 'Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.',
 			_ => null,
 		} ?? switch (path) {
-			'trakt.watchedSyncDescription' => 'Wanneer je items in Harbor als bekeken markeert, worden ze op Trakt ook als bekeken gemarkeerd.',
 			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Verbinden met Seerr',
 			'seerr.serverUrl' => 'Server-URL',

@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Aktyorlar",
-    "characters": "Qahramonlar",
     "addToWatchlist": "Tomosha roʻyxatiga qoʻshish",
     "removeFromWatchlist": "Tomosha roʻyxatidan oʻchirish",
     "watchlistUpdateFailed": "Tomosha roʻyxatini yangilab boʻlmadi",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""

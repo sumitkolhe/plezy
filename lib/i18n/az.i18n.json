@@ -913,7 +913,6 @@
       "other": ""
     },
     "cast": "Aktyorlar",
-    "characters": "Personajlar",
     "addToWatchlist": "İzləmə siyahısına əlavə et",
     "removeFromWatchlist": "İzləmə siyahısından sil",
     "watchlistUpdateFailed": "İzləmə siyahısı yenilənə bilmədi",
@@ -1011,8 +1010,6 @@
       "imdb": "",
       "tmdb": "",
       "rottenTomatoes": "",
-      "mal": "",
-      "anilist": "",
       "trakt": "",
       "rottenTomatoesCritic": "",
       "rottenTomatoesAudience": ""
