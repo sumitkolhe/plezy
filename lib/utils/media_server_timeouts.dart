@@ -54,4 +54,11 @@ class MediaServerTimeouts {
   /// Best-effort `/Sessions/Logout` timeout — short because the call is
   /// fire-and-forget; the token is removed locally regardless.
   static const jellyfinSignOut = Duration(seconds: 5);
+
+  /// Per-item delete-permission probe. Short because it blocks a context menu
+  /// from opening: a server that is nominally online but hung must not hold the
+  /// menu. Applied by the caller as a whole-request deadline, since the
+  /// per-request budget covers connect and receive individually. Expiry fails
+  /// closed — no delete entry — so the ceiling costs an entry, never safety.
+  static const jellyfinDeletePermission = Duration(seconds: 3);
 }

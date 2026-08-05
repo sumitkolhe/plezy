@@ -32,6 +32,7 @@ import '../utils/app_logger.dart';
 import '../utils/device_identity.dart';
 import '../utils/failover_http_client.dart';
 import '../utils/media_server_retry.dart';
+import '../utils/future_extensions.dart';
 import '../utils/media_server_timeouts.dart';
 import '../utils/log_redaction_manager.dart';
 import '../utils/external_ids.dart';
@@ -102,7 +103,12 @@ class JellyfinClient
         _JellyfinFileInfoMethods,
         _JellyfinImageDownloadMethods,
         _JellyfinMetadataEditMethods
-    implements MediaServerClient, SeasonEpisodePagingClient, ScopedMediaServerClient, GracefullyCloseable {
+    implements
+        MediaServerClient,
+        SeasonEpisodePagingClient,
+        ScopedMediaServerClient,
+        MediaDeletionPermissionClient,
+        GracefullyCloseable {
   JellyfinClient._({required this._connection, required this._http});
 
   /// Build a fully-initialised [JellyfinClient]. Endpoint reachability is

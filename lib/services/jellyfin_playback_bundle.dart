@@ -47,12 +47,17 @@ class JellyfinPlaybackBundle {
     this.trickplay,
   });
 
-  /// Source id to pin in playback/download URLs. Preserve the old single-source
-  /// behavior when Jellyfin's source id differs from the item id, and also pin
-  /// multi-source primary items where the selected source id equals [itemId].
-  String? pinnedSourceIdForItem(String itemId) {
+  /// Source id to pin in playback/download URLs, or null when the server did
+  /// not name one. Never synthesize an id: Jellyfin compares `MediaSourceId`
+  /// ordinally and then parses it as a GUID, so a fabricated value turns a
+  /// working request into a 400/500.
+  ///
+  /// Always forwarded, as every official client does. Dropping it when the
+  /// source id equalled the item id — an ordinary episode — let the streaming
+  /// endpoint resolve a blank one to its own first sorted source, silently
+  /// streaming a different file the moment the item gained an alternate version.
+  String? get pinnedSourceId {
     final id = selectedSourceId?.trim();
-    if (id == null || id.isEmpty) return null;
-    return availableVersions.length > 1 || id != itemId ? id : null;
+    return id == null || id.isEmpty ? null : id;
   }
 }

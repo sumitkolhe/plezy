@@ -193,6 +193,29 @@ class MediaContextMenuState extends State<MediaContextMenu> {
   /// Backend-neutral client for the active item's server.
   MediaServerClient _getMediaClientForItem() => context.getMediaClientWithFallback(serverIdOrNull(_itemServerId));
 
+  /// Ask the server whether the signed-in user may delete [item] right now.
+  ///
+  /// `false` for every unknown — offline, server down, request failed or timed
+  /// out. The probe blocks the menu opening, so it is bounded by
+  /// [MediaServerTimeouts.jellyfinDeletePermission] and does not chase failover
+  /// endpoints: a stalled endpoint hunt would be felt as a frozen long-press,
+  /// and hiding one entry is the cheaper failure.
+  Future<bool?> _resolveDeletePermission({
+    required MediaServerClient? client,
+    required MediaItem? item,
+    required bool serverOnline,
+  }) async {
+    final permissionClient = client is MediaDeletionPermissionClient ? client as MediaDeletionPermissionClient : null;
+    if (item == null || permissionClient == null) return null;
+    if (!serverOnline || context.read<OfflineModeProvider>().isOffline) return false;
+    try {
+      return await permissionClient.fetchDeletePermission(item);
+    } catch (e, st) {
+      appLogger.w('Delete permission probe failed', error: e, stackTrace: st);
+      return false;
+    }
+  }
+
   Future<void> _showContextMenu(BuildContext context, {MediaMenuPresenter? present}) async {
     if (_isContextMenuOpen) return;
     _isContextMenuOpen = true;
@@ -229,6 +252,28 @@ class MediaContextMenuState extends State<MediaContextMenu> {
     final itemServerOnline =
         _itemServerId != null && multiServerProvider.serverManager.isClientOnline(ServerId(_itemServerId!));
     final canEditMetadata = isAdmin && supportsMetadataEdit(mediaClient, mediaKind);
+
+    // Deletion is the one gate the server answers per item, because the admin
+    // bit says nothing about it: Jellyfin's IsAuthorizedToDelete consults
+    // EnableContentDeletion and the per-library grant only, and just the
+    // auto-created first user gets the former for free. So an administrator can
+    // lack the right and a plain user can hold it. Anything unknown — offline,
+    // failed, timed out, item invisible — stays hidden rather than offering a
+    // button that answers 401. Only deletable kinds pay for the round trip.
+    final isDeletableKind =
+        mediaKind == MediaKind.episode ||
+        mediaKind == MediaKind.movie ||
+        mediaKind == MediaKind.show ||
+        mediaKind == MediaKind.season;
+    final canDeleteFromServer =
+        isDeletableKind &&
+        await _resolveDeletePermission(client: mediaClient, item: mediaItem, serverOnline: itemServerOnline) == true;
+    if (!mounted || !context.mounted) {
+      // The awaited probe outlived the widget; the try/finally that normally
+      // clears this flag only starts once the menu is on screen.
+      _isContextMenuOpen = false;
+      return;
+    }
 
     final menuActions = <MediaMenuAction>[];
 
@@ -479,13 +524,9 @@ class MediaContextMenuState extends State<MediaContextMenu> {
         }
       }
 
-      // Delete media item (for episodes, movies, shows, and seasons) — admin
-      // only. Routed through `MediaServerClient.deleteMediaItem`.
-      if (isAdmin &&
-          (mediaKind == MediaKind.episode ||
-              mediaKind == MediaKind.movie ||
-              mediaKind == MediaKind.show ||
-              mediaKind == MediaKind.season)) {
+      // Routed through `MediaServerClient.deleteMediaItem`; the kind and the
+      // server's permission answer were resolved together above.
+      if (canDeleteFromServer) {
         menuActions.add(
           MediaMenuAction(
             value: 'delete_media',

@@ -548,8 +548,30 @@ mixin _JellyfinBrowseMethods on _JellyfinClientInternals {
     return (item: item, onDeckEpisode: onDeckEpisode);
   }
 
+  /// In-flight [fetchItem] requests, keyed by item id.
+  ///
+  /// Opening a detail screen issues several identical full-detail GETs for the
+  /// same id at once, and the server rebuilds the whole dto for each — People,
+  /// Chapters and MediaSources are a query apiece, Trickplay several.
+  ///
+  /// Single-flight only: once a request settles the next caller re-fetches, so
+  /// nothing here can serve a stale item.
+  final Map<String, Future<MediaItem?>> _inFlightItems = {};
+
   @override
-  Future<MediaItem?> fetchItem(String id) async {
+  Future<MediaItem?> fetchItem(String id) {
+    final existing = _inFlightItems[id];
+    if (existing != null) return existing;
+
+    late final Future<MediaItem?> request;
+    request = _fetchItemOnce(id).whenComplete(() {
+      if (identical(_inFlightItems[id], request)) _inFlightItems.remove(id);
+    });
+    _inFlightItems[id] = request;
+    return request;
+  }
+
+  Future<MediaItem?> _fetchItemOnce(String id) async {
     final endpoint = '/Users/${_segment(connection.userId)}/Items/${_segment(id)}';
     // Contract:
     //   - 200 with parseable Map → MediaItem
