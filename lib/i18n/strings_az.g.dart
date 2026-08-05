@@ -934,7 +934,6 @@ class _Translations$libraries$az extends Translations$libraries$en {
 	@override String get content => 'kitabxana məzmunu';
 	@override String get selectLibrary => 'Kitabxana seç';
 	@override String filtersWithCount({required Object count}) => 'Filtrlər (${count})';
-	@override String get noRecommendations => 'Tövsiyə yoxdur';
 	@override String get noCollections => 'Bu kitabxanada kolleksiya yoxdur';
 	@override String get noFoldersFound => 'Qovluq tapılmadı';
 	@override String get folders => 'qovluqlar';
@@ -1046,7 +1045,6 @@ class _Translations$collections$az extends Translations$collections$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Kolleksiyalar';
 	@override String get collection => 'Kolleksiya';
 	@override String get empty => 'Kolleksiya boşdur';
 	@override String get deleteCollection => 'Kolleksiyanı sil';
@@ -1556,9 +1554,7 @@ class _Translations$libraries$tabs$az extends Translations$libraries$tabs$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Tövsiyə olunanlar';
 	@override String get browse => 'Baxış';
-	@override String get collections => 'Kolleksiyalar';
 	@override String get playlists => 'Oynatma siyahıları';
 }
 
@@ -2412,13 +2408,10 @@ extension on TranslationsAz {
 			'libraries.content' => 'kitabxana məzmunu',
 			'libraries.selectLibrary' => 'Kitabxana seç',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtrlər (${count})',
-			'libraries.noRecommendations' => 'Tövsiyə yoxdur',
 			'libraries.noCollections' => 'Bu kitabxanada kolleksiya yoxdur',
 			'libraries.noFoldersFound' => 'Qovluq tapılmadı',
 			'libraries.folders' => 'qovluqlar',
-			'libraries.tabs.recommended' => 'Tövsiyə olunanlar',
 			'libraries.tabs.browse' => 'Baxış',
-			'libraries.tabs.collections' => 'Kolleksiyalar',
 			'libraries.tabs.playlists' => 'Oynatma siyahıları',
 			'libraries.groupings.title' => 'Qruplaşdırma',
 			'libraries.groupings.all' => 'Hamısı',
@@ -2506,7 +2499,6 @@ extension on TranslationsAz {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" üçün nəticə tapılmadı',
 			'explore.searchPrompt' => ({required Object source}) => '${source} vasitəsilə kino və seriallar axtarın.',
 			'explore.searchFailed' => 'Axtarış uğursuz oldu. Bağlantınızı yoxlayın.',
-			'collections.title' => 'Kolleksiyalar',
 			'collections.collection' => 'Kolleksiya',
 			'collections.empty' => 'Kolleksiya boşdur',
 			'collections.deleteCollection' => 'Kolleksiyanı sil',
@@ -2773,12 +2765,12 @@ extension on TranslationsAz {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Arxa fon',
 			'metadataEdit.logo' => 'Loqo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadrat şəkil',
 			'metadataEdit.selectPoster' => 'Poster seç',
 			'metadataEdit.selectBackground' => 'Arxa fon seç',
 			'metadataEdit.selectLogo' => 'Loqo seç',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kvadrat şəkil seç',
 			'metadataEdit.fromUrl' => 'URL-dən',
 			'metadataEdit.uploadFile' => 'Fayl yüklə',

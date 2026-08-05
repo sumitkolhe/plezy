@@ -815,14 +815,11 @@
     "content": "bibliotekinnhold",
     "selectLibrary": "Velg bibliotek",
     "filtersWithCount": "Filtre (${count})",
-    "noRecommendations": "Ingen anbefalinger tilgjengelig",
     "noCollections": "Ingen samlinger i dette biblioteket",
     "noFoldersFound": "Ingen mapper funnet",
     "folders": "mapper",
     "tabs": {
-      "recommended": "Anbefalt",
       "browse": "Bla gjennom",
-      "collections": "Samlinger",
       "playlists": "Spillelister",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artister",
       "albums": "Album",
       "tracks": "Spor",
-      "folders": "Mapper"
+      "folders": "Mapper",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Sjanger",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Samlinger",
     "collection": "Samling",
     "empty": "Samlingen er tom",
     "deleteCollection": "Slett samling",

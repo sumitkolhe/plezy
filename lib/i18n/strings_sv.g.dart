@@ -929,7 +929,6 @@ class _Translations$libraries$sv extends Translations$libraries$en {
 	@override String get content => 'bibliotekets innehåll';
 	@override String get selectLibrary => 'Välj bibliotek';
 	@override String filtersWithCount({required Object count}) => 'Filter (${count})';
-	@override String get noRecommendations => 'Inga rekommendationer tillgängliga';
 	@override String get noCollections => 'Inga samlingar i det här biblioteket';
 	@override String get noFoldersFound => 'Inga mappar hittades';
 	@override String get folders => 'mappar';
@@ -1041,7 +1040,6 @@ class _Translations$collections$sv extends Translations$collections$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Samlingar';
 	@override String get collection => 'Samling';
 	@override String get empty => 'Samlingen är tom';
 	@override String get deleteCollection => 'Ta bort samling';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$sv extends Translations$libraries$tabs$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Rekommenderat';
 	@override String get browse => 'Bläddra';
-	@override String get collections => 'Samlingar';
 	@override String get playlists => 'Spellistor';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsSv {
 			'libraries.content' => 'bibliotekets innehåll',
 			'libraries.selectLibrary' => 'Välj bibliotek',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filter (${count})',
-			'libraries.noRecommendations' => 'Inga rekommendationer tillgängliga',
 			'libraries.noCollections' => 'Inga samlingar i det här biblioteket',
 			'libraries.noFoldersFound' => 'Inga mappar hittades',
 			'libraries.folders' => 'mappar',
-			'libraries.tabs.recommended' => 'Rekommenderat',
 			'libraries.tabs.browse' => 'Bläddra',
-			'libraries.tabs.collections' => 'Samlingar',
 			'libraries.tabs.playlists' => 'Spellistor',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alla',
@@ -2490,7 +2483,6 @@ extension on TranslationsSv {
 			'explore.searchEmpty' => ({required Object query}) => 'Inga resultat för "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Sök efter filmer och serier på ${source}.',
 			'explore.searchFailed' => 'Sökningen misslyckades. Kontrollera din anslutning och försök igen.',
-			'collections.title' => 'Samlingar',
 			'collections.collection' => 'Samling',
 			'collections.empty' => 'Samlingen är tom',
 			'collections.deleteCollection' => 'Ta bort samling',
@@ -2762,12 +2754,12 @@ extension on TranslationsSv {
 			'metadataEdit.imageUrl' => 'Bild-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata har uppdaterats',
 			'metadataEdit.metadataUpdateFailed' => 'Det gick inte att uppdatera metadata',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Bildmaterialet har uppdaterats',
 			'metadataEdit.artworkUpdateFailed' => 'Det gick inte att uppdatera bildmaterialet',
 			'metadataEdit.noArtworkAvailable' => 'Inget bildmaterial är tillgängligt',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Bildalternativ ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Bildalternativ ${index}, valt',
 			'metadataEdit.notSet' => 'Inte angiven',
 			'metadataEdit.tags' => 'Taggar',

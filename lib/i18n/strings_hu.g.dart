@@ -929,7 +929,6 @@ class _Translations$libraries$hu extends Translations$libraries$en {
 	@override String get content => 'könyvtár tartalma';
 	@override String get selectLibrary => 'Könyvtár kiválasztása';
 	@override String filtersWithCount({required Object count}) => 'Szűrők (${count})';
-	@override String get noRecommendations => 'Nincsenek elérhető ajánlások';
 	@override String get noCollections => 'Nincsenek gyűjtemények ebben a könyvtárban';
 	@override String get noFoldersFound => 'Nem találhatók mappák';
 	@override String get folders => 'mappák';
@@ -1041,7 +1040,6 @@ class _Translations$collections$hu extends Translations$collections$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Gyűjtemények';
 	@override String get collection => 'Gyűjtemény';
 	@override String get empty => 'A gyűjtemény üres';
 	@override String get deleteCollection => 'Gyűjtemény törlése';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$hu extends Translations$libraries$tabs$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Ajánlott';
 	@override String get browse => 'Böngészés';
-	@override String get collections => 'Gyűjtemények';
 	@override String get playlists => 'Lejátszási listák';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsHu {
 			'libraries.content' => 'könyvtár tartalma',
 			'libraries.selectLibrary' => 'Könyvtár kiválasztása',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Szűrők (${count})',
-			'libraries.noRecommendations' => 'Nincsenek elérhető ajánlások',
 			'libraries.noCollections' => 'Nincsenek gyűjtemények ebben a könyvtárban',
 			'libraries.noFoldersFound' => 'Nem találhatók mappák',
 			'libraries.folders' => 'mappák',
-			'libraries.tabs.recommended' => 'Ajánlott',
 			'libraries.tabs.browse' => 'Böngészés',
-			'libraries.tabs.collections' => 'Gyűjtemények',
 			'libraries.tabs.playlists' => 'Lejátszási listák',
 			'libraries.groupings.title' => 'Csoportosítás',
 			'libraries.groupings.all' => 'Összes',
@@ -2490,7 +2483,6 @@ extension on TranslationsHu {
 			'explore.searchEmpty' => ({required Object query}) => 'Nincs találat a következőre: "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Filmek és sorozatok keresése a következőn: ${source}.',
 			'explore.searchFailed' => 'A keresés nem sikerült. Ellenőrizd a kapcsolatot és próbáld újra.',
-			'collections.title' => 'Gyűjtemények',
 			'collections.collection' => 'Gyűjtemény',
 			'collections.empty' => 'A gyűjtemény üres',
 			'collections.deleteCollection' => 'Gyűjtemény törlése',
@@ -2762,12 +2754,12 @@ extension on TranslationsHu {
 			'metadataEdit.imageUrl' => 'Kép URL-címe',
 			'metadataEdit.metadataUpdated' => 'Metaadatok frissítve',
 			'metadataEdit.metadataUpdateFailed' => 'Nem sikerült a metaadatok frissítése',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Képek frissítve',
 			'metadataEdit.artworkUpdateFailed' => 'Nem sikerült a képek frissítése',
 			'metadataEdit.noArtworkAvailable' => 'Nincsenek elérhető képek',
 			'metadataEdit.artworkOption' => ({required Object index}) => '${index}. képváltozat',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '${index}. képváltozat, kiválasztva',
 			'metadataEdit.notSet' => 'Nincs beállítva',
 			'metadataEdit.tags' => 'Címkék',

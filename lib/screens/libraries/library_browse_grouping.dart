@@ -9,6 +9,7 @@ const browseGroupingEpisodes = 'episodes';
 const browseGroupingArtists = 'artists';
 const browseGroupingAlbums = 'albums';
 const browseGroupingTracks = 'tracks';
+const browseGroupingCollections = 'collections';
 const browseGroupingFolders = 'folders';
 
 List<String> libraryBrowseGroupingOptions(MediaLibrary library, {required bool canGroupByFolders}) {
@@ -17,9 +18,10 @@ List<String> libraryBrowseGroupingOptions(MediaLibrary library, {required bool c
       browseGroupingShows,
       browseGroupingSeasons,
       browseGroupingEpisodes,
+      browseGroupingCollections,
       if (canGroupByFolders) browseGroupingFolders,
     ],
-    MediaKind.movie => [browseGroupingMovies, if (canGroupByFolders) browseGroupingFolders],
+    MediaKind.movie => [browseGroupingMovies, browseGroupingCollections, if (canGroupByFolders) browseGroupingFolders],
     MediaKind.artist => [
       browseGroupingArtists,
       browseGroupingAlbums,

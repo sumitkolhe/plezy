@@ -817,14 +817,11 @@
     "content": "zawartość biblioteki",
     "selectLibrary": "Wybierz bibliotekę",
     "filtersWithCount": "Filtry (${count})",
-    "noRecommendations": "Brak dostępnych rekomendacji",
     "noCollections": "Brak kolekcji w tej bibliotece",
     "noFoldersFound": "Nie znaleziono folderów",
     "folders": "foldery",
     "tabs": {
-      "recommended": "Polecane",
       "browse": "Przeglądaj",
-      "collections": "Kolekcje",
       "playlists": "Playlisty",
       "missing": ""
     },
@@ -838,7 +835,8 @@
       "artists": "Wykonawcy",
       "albums": "Albumy",
       "tracks": "Utwory",
-      "folders": "Foldery"
+      "folders": "Foldery",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Gatunek",
@@ -1092,7 +1090,6 @@
     }
   },
   "collections": {
-    "title": "Kolekcje",
     "collection": "Kolekcja",
     "empty": "Kolekcja jest pusta",
     "deleteCollection": "Usuń kolekcję",

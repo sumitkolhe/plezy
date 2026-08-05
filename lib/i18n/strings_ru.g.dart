@@ -931,7 +931,6 @@ class _Translations$libraries$ru extends Translations$libraries$en {
 	@override String get content => 'содержимое библиотеки';
 	@override String get selectLibrary => 'Выбрать библиотеку';
 	@override String filtersWithCount({required Object count}) => 'Фильтры (${count})';
-	@override String get noRecommendations => 'Рекомендации недоступны';
 	@override String get noCollections => 'В этой библиотеке нет коллекций';
 	@override String get noFoldersFound => 'Папки не найдены';
 	@override String get folders => 'папки';
@@ -1045,7 +1044,6 @@ class _Translations$collections$ru extends Translations$collections$en {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Коллекции';
 	@override String get collection => 'Коллекция';
 	@override String get empty => 'Коллекция пуста';
 	@override String get deleteCollection => 'Удалить коллекцию';
@@ -1551,9 +1549,7 @@ class _Translations$libraries$tabs$ru extends Translations$libraries$tabs$en {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Рекомендуемые';
 	@override String get browse => 'Обзор';
-	@override String get collections => 'Коллекции';
 	@override String get playlists => 'Плейлисты';
 }
 
@@ -2402,13 +2398,10 @@ extension on TranslationsRu {
 			'libraries.content' => 'содержимое библиотеки',
 			'libraries.selectLibrary' => 'Выбрать библиотеку',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Фильтры (${count})',
-			'libraries.noRecommendations' => 'Рекомендации недоступны',
 			'libraries.noCollections' => 'В этой библиотеке нет коллекций',
 			'libraries.noFoldersFound' => 'Папки не найдены',
 			'libraries.folders' => 'папки',
-			'libraries.tabs.recommended' => 'Рекомендуемые',
 			'libraries.tabs.browse' => 'Обзор',
-			'libraries.tabs.collections' => 'Коллекции',
 			'libraries.tabs.playlists' => 'Плейлисты',
 			'libraries.groupings.title' => 'Группировка',
 			'libraries.groupings.all' => 'Все',
@@ -2496,7 +2489,6 @@ extension on TranslationsRu {
 			'explore.searchEmpty' => ({required Object query}) => 'Нет результатов по запросу "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Ищите фильмы и сериалы в ${source}.',
 			'explore.searchFailed' => 'Ошибка поиска. Проверьте подключение и повторите попытку.',
-			'collections.title' => 'Коллекции',
 			'collections.collection' => 'Коллекция',
 			'collections.empty' => 'Коллекция пуста',
 			'collections.deleteCollection' => 'Удалить коллекцию',
@@ -2768,12 +2760,12 @@ extension on TranslationsRu {
 			'metadataEdit.imageUrl' => 'URL изображения',
 			'metadataEdit.metadataUpdated' => 'Метаданные обновлены',
 			'metadataEdit.metadataUpdateFailed' => 'Не удалось обновить метаданные',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Обложка обновлена',
 			'metadataEdit.artworkUpdateFailed' => 'Не удалось обновить обложку',
 			'metadataEdit.noArtworkAvailable' => 'Обложки недоступны',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант обложки ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант обложки ${index}, выбран',
 			'metadataEdit.notSet' => 'Не задано',
 			'metadataEdit.tags' => 'Теги',

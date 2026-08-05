@@ -928,7 +928,6 @@ class Translations$libraries$zh extends Translations$libraries$en {
 	@override String get content => '媒体库内容';
 	@override String get selectLibrary => '选择媒体库';
 	@override String filtersWithCount({required Object count}) => '筛选器（${count}）';
-	@override String get noRecommendations => '暂无推荐';
 	@override String get noCollections => '此媒体库中没有合集';
 	@override String get noFoldersFound => '未找到文件夹';
 	@override String get folders => '文件夹';
@@ -1039,7 +1038,6 @@ class Translations$collections$zh extends Translations$collections$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '合集';
 	@override String get collection => '合集';
 	@override String get empty => '合集为空';
 	@override String get deleteCollection => '删除合集';
@@ -1542,9 +1540,7 @@ class Translations$libraries$tabs$zh extends Translations$libraries$tabs$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => '推荐';
 	@override String get browse => '浏览';
-	@override String get collections => '合集';
 	@override String get playlists => '播放列表';
 }
 
@@ -2393,13 +2389,10 @@ extension on TranslationsZh {
 			'libraries.content' => '媒体库内容',
 			'libraries.selectLibrary' => '选择媒体库',
 			'libraries.filtersWithCount' => ({required Object count}) => '筛选器（${count}）',
-			'libraries.noRecommendations' => '暂无推荐',
 			'libraries.noCollections' => '此媒体库中没有合集',
 			'libraries.noFoldersFound' => '未找到文件夹',
 			'libraries.folders' => '文件夹',
-			'libraries.tabs.recommended' => '推荐',
 			'libraries.tabs.browse' => '浏览',
-			'libraries.tabs.collections' => '合集',
 			'libraries.tabs.playlists' => '播放列表',
 			'libraries.groupings.title' => '分组',
 			'libraries.groupings.all' => '全部',
@@ -2487,7 +2480,6 @@ extension on TranslationsZh {
 			'explore.searchEmpty' => ({required Object query}) => '没有“${query}”的结果',
 			'explore.searchPrompt' => ({required Object source}) => '在 ${source} 上搜索电影和剧集。',
 			'explore.searchFailed' => '搜索失败。请检查网络连接后重试。',
-			'collections.title' => '合集',
 			'collections.collection' => '合集',
 			'collections.empty' => '合集为空',
 			'collections.deleteCollection' => '删除合集',
@@ -2759,12 +2751,12 @@ extension on TranslationsZh {
 			'metadataEdit.imageUrl' => '图片 URL',
 			'metadataEdit.metadataUpdated' => '元数据已更新',
 			'metadataEdit.metadataUpdateFailed' => '元数据更新失败',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => '封面图片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面图片更新失败',
 			'metadataEdit.noArtworkAvailable' => '没有可用的封面图片',
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面图片选项 ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面图片选项 ${index}，已选择',
 			'metadataEdit.notSet' => '未设置',
 			'metadataEdit.tags' => '标签',

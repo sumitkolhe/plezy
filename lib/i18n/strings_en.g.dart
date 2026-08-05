@@ -2500,9 +2500,6 @@ class Translations$libraries$en {
 	/// en: 'Filters (${count})'
 	String filtersWithCount({required Object count}) => 'Filters (${count})';
 
-	/// en: 'No recommendations available'
-	String get noRecommendations => 'No recommendations available';
-
 	/// en: 'No collections in this library'
 	String get noCollections => 'No collections in this library';
 
@@ -2716,9 +2713,6 @@ class Translations$collections$en {
 	final Translations _root; // ignore: unused_field
 
 	// Translations
-
-	/// en: 'Collections'
-	String get title => 'Collections';
 
 	/// en: 'Collection'
 	String get collection => 'Collection';
@@ -4237,14 +4231,8 @@ class Translations$libraries$tabs$en {
 
 	// Translations
 
-	/// en: 'Recommended'
-	String get recommended => 'Recommended';
-
 	/// en: 'Browse'
 	String get browse => 'Browse';
-
-	/// en: 'Collections'
-	String get collections => 'Collections';
 
 	/// en: 'Playlists'
 	String get playlists => 'Playlists';
@@ -4290,6 +4278,9 @@ class Translations$libraries$groupings$en {
 
 	/// en: 'Folders'
 	String get folders => 'Folders';
+
+	/// en: 'Collections'
+	String get collections => 'Collections';
 }
 
 // Path: libraries.filterCategories
@@ -5880,13 +5871,10 @@ extension on Translations {
 			'libraries.content' => 'library content',
 			'libraries.selectLibrary' => 'Select library',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filters (${count})',
-			'libraries.noRecommendations' => 'No recommendations available',
 			'libraries.noCollections' => 'No collections in this library',
 			'libraries.noFoldersFound' => 'No folders found',
 			'libraries.folders' => 'folders',
-			'libraries.tabs.recommended' => 'Recommended',
 			'libraries.tabs.browse' => 'Browse',
-			'libraries.tabs.collections' => 'Collections',
 			'libraries.tabs.playlists' => 'Playlists',
 			'libraries.tabs.missing' => 'Missing',
 			'libraries.groupings.title' => 'Grouping',
@@ -5899,6 +5887,7 @@ extension on Translations {
 			'libraries.groupings.albums' => 'Albums',
 			'libraries.groupings.tracks' => 'Tracks',
 			'libraries.groupings.folders' => 'Folders',
+			'libraries.groupings.collections' => 'Collections',
 			'libraries.filterCategories.genre' => 'Genre',
 			'libraries.filterCategories.year' => 'Year',
 			'libraries.filterCategories.contentRating' => 'Content Rating',
@@ -6091,7 +6080,6 @@ extension on Translations {
 			'explore.relation.parentStory' => 'Parent story',
 			'explore.relation.adaptation' => 'Adaptation',
 			'explore.relation.other' => 'Related',
-			'collections.title' => 'Collections',
 			'collections.collection' => 'Collection',
 			'collections.empty' => 'Collection is empty',
 			'collections.deleteCollection' => 'Delete Collection',
@@ -6142,11 +6130,11 @@ extension on Translations {
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
-			_ => null,
-		} ?? switch (path) {
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
+			_ => null,
+		} ?? switch (path) {
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',
 			'music.clearQueue' => 'Clear queue',

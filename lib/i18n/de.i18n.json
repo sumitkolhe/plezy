@@ -815,14 +815,11 @@
     "content": "Mediatheksinhalt",
     "selectLibrary": "Mediathek auswählen",
     "filtersWithCount": "Filter (${count})",
-    "noRecommendations": "Keine Empfehlungen verfügbar",
     "noCollections": "Keine Sammlungen in dieser Mediathek",
     "noFoldersFound": "Keine Ordner gefunden",
     "folders": "Ordner",
     "tabs": {
-      "recommended": "Empfohlen",
       "browse": "Durchsuchen",
-      "collections": "Sammlungen",
       "playlists": "Wiedergabelisten",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Interpreten",
       "albums": "Alben",
       "tracks": "Titel",
-      "folders": "Ordner"
+      "folders": "Ordner",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genre",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Sammlungen",
     "collection": "Sammlung",
     "empty": "Sammlung ist leer",
     "deleteCollection": "Sammlung löschen",

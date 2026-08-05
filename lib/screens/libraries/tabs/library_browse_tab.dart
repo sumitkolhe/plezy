@@ -635,7 +635,9 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     final filterParams = Map<String, String>.from(_selectedFilters);
 
     // Add grouping type filter (but not for 'all' or 'folders')
-    if (_selectedGrouping != 'all' && _selectedGrouping != 'folders') {
+    if (_selectedGrouping != browseGroupingAll &&
+        _selectedGrouping != browseGroupingFolders &&
+        _selectedGrouping != browseGroupingCollections) {
       final typeId = _getGroupingTypeId();
       if (typeId.isNotEmpty) {
         filterParams['type'] = typeId;
@@ -709,6 +711,12 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   @override
   Future<LibraryPage<MediaItem>> fetchPage(int start, int size, AbortController? abort) async {
     final client = context.getMediaClientForLibrary(widget.library);
+    // Collections are their own item type on the server, not a way of ordering
+    // items — so like folders, this grouping changes what is listed rather than
+    // how. The grid, filters chips and paging are the same either way.
+    if (_selectedGrouping == browseGroupingCollections) {
+      return client.fetchCollectionsPage(widget.library.id, start: start, size: size, abort: abort);
+    }
     final filterParams = _buildFilterParams();
     final baseQuery = libraryQueryFromFilterMap(
       map: filterParams,
@@ -797,6 +805,8 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         return t.libraries.groupings.albums;
       case 'tracks':
         return t.libraries.groupings.tracks;
+      case browseGroupingCollections:
+        return t.libraries.groupings.collections;
       case 'folders':
         return t.libraries.groupings.folders;
       default:
@@ -815,17 +825,12 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
-          // The three views that used to be pills. Reached deliberately, so the
-          // library opens on the library.
+          // Reached deliberately, so the library opens on the library.
           for (final view in LibraryViewKind.values)
             AppMenuItemTile<void>(
               item: AppMenuItem<void>(
                 value: null,
-                leading: AppIcon(switch (view) {
-                  LibraryViewKind.recommended => PhosphorIcons.sparkle,
-                  LibraryViewKind.collections => PhosphorIcons.stack,
-                  LibraryViewKind.playlists => PhosphorIcons.playlist,
-                }),
+                leading: const AppIcon(PhosphorIcons.playlist),
                 child: Text(view.label),
                 trailing: const AppIcon(PhosphorIcons.caretRight),
               ),

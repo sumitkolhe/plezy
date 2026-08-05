@@ -929,7 +929,6 @@ class _Translations$libraries$da extends Translations$libraries$en {
 	@override String get content => 'biblioteksindhold';
 	@override String get selectLibrary => 'Vælg bibliotek';
 	@override String filtersWithCount({required Object count}) => 'Filtre (${count})';
-	@override String get noRecommendations => 'Ingen anbefalinger tilgængelige';
 	@override String get noCollections => 'Ingen samlinger i dette bibliotek';
 	@override String get noFoldersFound => 'Ingen mapper fundet';
 	@override String get folders => 'mapper';
@@ -1041,7 +1040,6 @@ class _Translations$collections$da extends Translations$collections$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Samlinger';
 	@override String get collection => 'Samling';
 	@override String get empty => 'Samlingen er tom';
 	@override String get deleteCollection => 'Slet samling';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$da extends Translations$libraries$tabs$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Anbefalet';
 	@override String get browse => 'Gennemse';
-	@override String get collections => 'Samlinger';
 	@override String get playlists => 'Playlister';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsDa {
 			'libraries.content' => 'biblioteksindhold',
 			'libraries.selectLibrary' => 'Vælg bibliotek',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtre (${count})',
-			'libraries.noRecommendations' => 'Ingen anbefalinger tilgængelige',
 			'libraries.noCollections' => 'Ingen samlinger i dette bibliotek',
 			'libraries.noFoldersFound' => 'Ingen mapper fundet',
 			'libraries.folders' => 'mapper',
-			'libraries.tabs.recommended' => 'Anbefalet',
 			'libraries.tabs.browse' => 'Gennemse',
-			'libraries.tabs.collections' => 'Samlinger',
 			'libraries.tabs.playlists' => 'Playlister',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
@@ -2490,7 +2483,6 @@ extension on TranslationsDa {
 			'explore.searchEmpty' => ({required Object query}) => 'Ingen resultater for "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Søg efter film og serier på ${source}.',
 			'explore.searchFailed' => 'Søgningen mislykkedes. Tjek din forbindelse, og prøv igen.',
-			'collections.title' => 'Samlinger',
 			'collections.collection' => 'Samling',
 			'collections.empty' => 'Samlingen er tom',
 			'collections.deleteCollection' => 'Slet samling',
@@ -2762,12 +2754,12 @@ extension on TranslationsDa {
 			'metadataEdit.imageUrl' => 'Billed-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata opdateret',
 			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke opdatere metadata',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Grafik opdateret',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke opdatere grafik',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafik tilgængelig',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikvalg ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikvalg ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke indstillet',
 			'metadataEdit.tags' => 'Tags',

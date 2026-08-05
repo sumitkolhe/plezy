@@ -815,14 +815,11 @@
     "content": "кітапхана мазмұны",
     "selectLibrary": "Кітапхананы таңдау",
     "filtersWithCount": "Фильтрлер (${count})",
-    "noRecommendations": "Ұсыныстар жоқ",
     "noCollections": "Бұл кітапханада топтамалар жоқ",
     "noFoldersFound": "Қапшықтар табылмады",
     "folders": "қапшықтар",
     "tabs": {
-      "recommended": "Ұсынылатындар",
       "browse": "Шолу",
-      "collections": "Топтамалар",
       "playlists": "Ойнату тізімдері",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Орындаушылар",
       "albums": "Альбомдар",
       "tracks": "Әндер",
-      "folders": "Қапшықтар"
+      "folders": "Қапшықтар",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Жанр",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Топтамалар",
     "collection": "Топтама",
     "empty": "Топтама бос",
     "deleteCollection": "Топтаманы өшіру",

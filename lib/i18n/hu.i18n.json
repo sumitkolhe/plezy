@@ -815,14 +815,11 @@
     "content": "könyvtár tartalma",
     "selectLibrary": "Könyvtár kiválasztása",
     "filtersWithCount": "Szűrők (${count})",
-    "noRecommendations": "Nincsenek elérhető ajánlások",
     "noCollections": "Nincsenek gyűjtemények ebben a könyvtárban",
     "noFoldersFound": "Nem találhatók mappák",
     "folders": "mappák",
     "tabs": {
-      "recommended": "Ajánlott",
       "browse": "Böngészés",
-      "collections": "Gyűjtemények",
       "playlists": "Lejátszási listák",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Előadók",
       "albums": "Albumok",
       "tracks": "Zeneszámok",
-      "folders": "Mappák"
+      "folders": "Mappák",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Műfaj",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Gyűjtemények",
     "collection": "Gyűjtemény",
     "empty": "A gyűjtemény üres",
     "deleteCollection": "Gyűjtemény törlése",

@@ -928,7 +928,6 @@ class _Translations$libraries$ja extends Translations$libraries$en {
 	@override String get content => 'ライブラリコンテンツ';
 	@override String get selectLibrary => 'ライブラリを選択';
 	@override String filtersWithCount({required Object count}) => 'フィルター (${count})';
-	@override String get noRecommendations => 'おすすめがありません';
 	@override String get noCollections => 'このライブラリにコレクションがありません';
 	@override String get noFoldersFound => 'フォルダが見つかりません';
 	@override String get folders => 'フォルダ';
@@ -1039,7 +1038,6 @@ class _Translations$collections$ja extends Translations$collections$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'コレクション';
 	@override String get collection => 'コレクション';
 	@override String get empty => 'コレクションは空です';
 	@override String get deleteCollection => 'コレクションを削除';
@@ -1542,9 +1540,7 @@ class _Translations$libraries$tabs$ja extends Translations$libraries$tabs$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'おすすめ';
 	@override String get browse => 'ブラウズ';
-	@override String get collections => 'コレクション';
 	@override String get playlists => 'プレイリスト';
 }
 
@@ -2393,13 +2389,10 @@ extension on TranslationsJa {
 			'libraries.content' => 'ライブラリコンテンツ',
 			'libraries.selectLibrary' => 'ライブラリを選択',
 			'libraries.filtersWithCount' => ({required Object count}) => 'フィルター (${count})',
-			'libraries.noRecommendations' => 'おすすめがありません',
 			'libraries.noCollections' => 'このライブラリにコレクションがありません',
 			'libraries.noFoldersFound' => 'フォルダが見つかりません',
 			'libraries.folders' => 'フォルダ',
-			'libraries.tabs.recommended' => 'おすすめ',
 			'libraries.tabs.browse' => 'ブラウズ',
-			'libraries.tabs.collections' => 'コレクション',
 			'libraries.tabs.playlists' => 'プレイリスト',
 			'libraries.groupings.title' => 'グループ',
 			'libraries.groupings.all' => 'すべて',
@@ -2487,7 +2480,6 @@ extension on TranslationsJa {
 			'explore.searchEmpty' => ({required Object query}) => '「${query}」の結果が見つかりません',
 			'explore.searchPrompt' => ({required Object source}) => '${source}で映画やテレビ番組を検索します。',
 			'explore.searchFailed' => '検索に失敗しました。接続を確認してもう一度お試しください。',
-			'collections.title' => 'コレクション',
 			'collections.collection' => 'コレクション',
 			'collections.empty' => 'コレクションは空です',
 			'collections.deleteCollection' => 'コレクションを削除',
@@ -2759,12 +2751,12 @@ extension on TranslationsJa {
 			'metadataEdit.imageUrl' => '画像URL',
 			'metadataEdit.metadataUpdated' => 'メタデータを更新しました',
 			'metadataEdit.metadataUpdateFailed' => 'メタデータの更新に失敗しました',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'アートワークを更新しました',
 			'metadataEdit.artworkUpdateFailed' => 'アートワークの更新に失敗しました',
 			'metadataEdit.noArtworkAvailable' => 'アートワークがありません',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}、選択済み',
 			'metadataEdit.notSet' => '未設定',
 			'metadataEdit.tags' => 'タグ',

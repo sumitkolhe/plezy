@@ -815,14 +815,11 @@
     "content": "conteúdo da biblioteca",
     "selectLibrary": "Selecionar biblioteca",
     "filtersWithCount": "Filtros (${count})",
-    "noRecommendations": "Nenhuma recomendação disponível",
     "noCollections": "Nenhuma coleção nesta biblioteca",
     "noFoldersFound": "Nenhuma pasta encontrada",
     "folders": "pastas",
     "tabs": {
-      "recommended": "Recomendados",
       "browse": "Navegar",
-      "collections": "Coleções",
       "playlists": "Playlists",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artistas",
       "albums": "Álbuns",
       "tracks": "Faixas",
-      "folders": "Pastas"
+      "folders": "Pastas",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Gênero",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Coleções",
     "collection": "Coleção",
     "empty": "A coleção está vazia",
     "deleteCollection": "Excluir Coleção",

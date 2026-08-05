@@ -815,14 +815,11 @@
     "content": "kitabxana məzmunu",
     "selectLibrary": "Kitabxana seç",
     "filtersWithCount": "Filtrlər (${count})",
-    "noRecommendations": "Tövsiyə yoxdur",
     "noCollections": "Bu kitabxanada kolleksiya yoxdur",
     "noFoldersFound": "Qovluq tapılmadı",
     "folders": "qovluqlar",
     "tabs": {
-      "recommended": "Tövsiyə olunanlar",
       "browse": "Baxış",
-      "collections": "Kolleksiyalar",
       "playlists": "Oynatma siyahıları",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Müğənnilər/Müəlliflər",
       "albums": "Albomlar",
       "tracks": "Mahnılar",
-      "folders": "Qovluqlar"
+      "folders": "Qovluqlar",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Janr",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Kolleksiyalar",
     "collection": "Kolleksiya",
     "empty": "Kolleksiya boşdur",
     "deleteCollection": "Kolleksiyanı sil",

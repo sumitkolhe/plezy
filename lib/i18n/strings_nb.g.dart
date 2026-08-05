@@ -929,7 +929,6 @@ class _Translations$libraries$nb extends Translations$libraries$en {
 	@override String get content => 'bibliotekinnhold';
 	@override String get selectLibrary => 'Velg bibliotek';
 	@override String filtersWithCount({required Object count}) => 'Filtre (${count})';
-	@override String get noRecommendations => 'Ingen anbefalinger tilgjengelig';
 	@override String get noCollections => 'Ingen samlinger i dette biblioteket';
 	@override String get noFoldersFound => 'Ingen mapper funnet';
 	@override String get folders => 'mapper';
@@ -1041,7 +1040,6 @@ class _Translations$collections$nb extends Translations$collections$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Samlinger';
 	@override String get collection => 'Samling';
 	@override String get empty => 'Samlingen er tom';
 	@override String get deleteCollection => 'Slett samling';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$nb extends Translations$libraries$tabs$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Anbefalt';
 	@override String get browse => 'Bla gjennom';
-	@override String get collections => 'Samlinger';
 	@override String get playlists => 'Spillelister';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsNb {
 			'libraries.content' => 'bibliotekinnhold',
 			'libraries.selectLibrary' => 'Velg bibliotek',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtre (${count})',
-			'libraries.noRecommendations' => 'Ingen anbefalinger tilgjengelig',
 			'libraries.noCollections' => 'Ingen samlinger i dette biblioteket',
 			'libraries.noFoldersFound' => 'Ingen mapper funnet',
 			'libraries.folders' => 'mapper',
-			'libraries.tabs.recommended' => 'Anbefalt',
 			'libraries.tabs.browse' => 'Bla gjennom',
-			'libraries.tabs.collections' => 'Samlinger',
 			'libraries.tabs.playlists' => 'Spillelister',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
@@ -2490,7 +2483,6 @@ extension on TranslationsNb {
 			'explore.searchEmpty' => ({required Object query}) => 'Ingen treff for "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Søk etter filmer og serier på ${source}.',
 			'explore.searchFailed' => 'Søk mislyktes. Sjekk tilkoblingen og prøv igjen.',
-			'collections.title' => 'Samlinger',
 			'collections.collection' => 'Samling',
 			'collections.empty' => 'Samlingen er tom',
 			'collections.deleteCollection' => 'Slett samling',
@@ -2762,12 +2754,12 @@ extension on TranslationsNb {
 			'metadataEdit.imageUrl' => 'Bilde-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata oppdatert',
 			'metadataEdit.metadataUpdateFailed' => 'Kunne ikke oppdatere metadata',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Grafikk oppdatert',
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke oppdatere grafikken',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafikk tilgjengelig',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke angitt',
 			'metadataEdit.tags' => 'Tagger',

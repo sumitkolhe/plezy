@@ -815,14 +815,11 @@
     "content": "kutubxona tarkibi",
     "selectLibrary": "Kutubxonani tanlash",
     "filtersWithCount": "Filtrlar (${count})",
-    "noRecommendations": "Tavsiyalar yoʻq",
     "noCollections": "Ushbu kutubxonada toʻplamlar yoʻq",
     "noFoldersFound": "Jildlar topilmadi",
     "folders": "jildlar",
     "tabs": {
-      "recommended": "Tavsiya etilganlar",
       "browse": "Koʻrib chiqish",
-      "collections": "Toʻplamlar",
       "playlists": "Ijro roʻyxatlari",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Ijrochilar",
       "albums": "Albomlar",
       "tracks": "Taronalar",
-      "folders": "Jildlar"
+      "folders": "Jildlar",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Janr",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Toʻplamlar",
     "collection": "Toʻplam",
     "empty": "Toʻplam boʻsh",
     "deleteCollection": "Toʻplamni oʻchirish",

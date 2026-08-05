@@ -815,14 +815,11 @@
     "content": "contenuto della libreria",
     "selectLibrary": "Seleziona libreria",
     "filtersWithCount": "Filtri (${count})",
-    "noRecommendations": "Nessun consiglio disponibile",
     "noCollections": "Nessuna raccolta in questa libreria",
     "noFoldersFound": "Nessuna cartella trovata",
     "folders": "cartelle",
     "tabs": {
-      "recommended": "Consigliati",
       "browse": "Esplora",
-      "collections": "Raccolte",
       "playlists": "Playlist",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artisti",
       "albums": "Album",
       "tracks": "Brani",
-      "folders": "Cartelle"
+      "folders": "Cartelle",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genere",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Raccolte",
     "collection": "Raccolta",
     "empty": "La raccolta è vuota",
     "deleteCollection": "Elimina raccolta",

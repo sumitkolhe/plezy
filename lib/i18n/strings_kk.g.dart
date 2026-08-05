@@ -934,7 +934,6 @@ class _Translations$libraries$kk extends Translations$libraries$en {
 	@override String get content => 'кітапхана мазмұны';
 	@override String get selectLibrary => 'Кітапхананы таңдау';
 	@override String filtersWithCount({required Object count}) => 'Фильтрлер (${count})';
-	@override String get noRecommendations => 'Ұсыныстар жоқ';
 	@override String get noCollections => 'Бұл кітапханада топтамалар жоқ';
 	@override String get noFoldersFound => 'Қапшықтар табылмады';
 	@override String get folders => 'қапшықтар';
@@ -1046,7 +1045,6 @@ class _Translations$collections$kk extends Translations$collections$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Топтамалар';
 	@override String get collection => 'Топтама';
 	@override String get empty => 'Топтама бос';
 	@override String get deleteCollection => 'Топтаманы өшіру';
@@ -1556,9 +1554,7 @@ class _Translations$libraries$tabs$kk extends Translations$libraries$tabs$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Ұсынылатындар';
 	@override String get browse => 'Шолу';
-	@override String get collections => 'Топтамалар';
 	@override String get playlists => 'Ойнату тізімдері';
 }
 
@@ -2412,13 +2408,10 @@ extension on TranslationsKk {
 			'libraries.content' => 'кітапхана мазмұны',
 			'libraries.selectLibrary' => 'Кітапхананы таңдау',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Фильтрлер (${count})',
-			'libraries.noRecommendations' => 'Ұсыныстар жоқ',
 			'libraries.noCollections' => 'Бұл кітапханада топтамалар жоқ',
 			'libraries.noFoldersFound' => 'Қапшықтар табылмады',
 			'libraries.folders' => 'қапшықтар',
-			'libraries.tabs.recommended' => 'Ұсынылатындар',
 			'libraries.tabs.browse' => 'Шолу',
-			'libraries.tabs.collections' => 'Топтамалар',
 			'libraries.tabs.playlists' => 'Ойнату тізімдері',
 			'libraries.groupings.title' => 'Топтау',
 			'libraries.groupings.all' => 'Барлығы',
@@ -2506,7 +2499,6 @@ extension on TranslationsKk {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" бойынша нәтиже табылмады',
 			'explore.searchPrompt' => ({required Object source}) => '${source} арқылы фильмдер мен сериалдарды іздеңіз.',
 			'explore.searchFailed' => 'Іздеу қатесі. Қосылымды тексеріңіз.',
-			'collections.title' => 'Топтамалар',
 			'collections.collection' => 'Топтама',
 			'collections.empty' => 'Топтама бос',
 			'collections.deleteCollection' => 'Топтаманы өшіру',
@@ -2773,12 +2765,12 @@ extension on TranslationsKk {
 			'metadataEdit.poster' => 'Постер',
 			'metadataEdit.background' => 'Фон',
 			'metadataEdit.logo' => 'Логотип',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Шаршы сурет',
 			'metadataEdit.selectPoster' => 'Постерді таңдау',
 			'metadataEdit.selectBackground' => 'Фонды таңдау',
 			'metadataEdit.selectLogo' => 'Логотипті таңдау',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Шаршы суретті таңдау',
 			'metadataEdit.fromUrl' => 'URL арқылы',
 			'metadataEdit.uploadFile' => 'Файлды жүктеу',

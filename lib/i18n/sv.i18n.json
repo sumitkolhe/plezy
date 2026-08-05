@@ -815,14 +815,11 @@
     "content": "bibliotekets innehåll",
     "selectLibrary": "Välj bibliotek",
     "filtersWithCount": "Filter (${count})",
-    "noRecommendations": "Inga rekommendationer tillgängliga",
     "noCollections": "Inga samlingar i det här biblioteket",
     "noFoldersFound": "Inga mappar hittades",
     "folders": "mappar",
     "tabs": {
-      "recommended": "Rekommenderat",
       "browse": "Bläddra",
-      "collections": "Samlingar",
       "playlists": "Spellistor",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artister",
       "albums": "Album",
       "tracks": "Låtar",
-      "folders": "Mappar"
+      "folders": "Mappar",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genre",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Samlingar",
     "collection": "Samling",
     "empty": "Samlingen är tom",
     "deleteCollection": "Ta bort samling",

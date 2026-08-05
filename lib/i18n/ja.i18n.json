@@ -814,14 +814,11 @@
     "content": "ライブラリコンテンツ",
     "selectLibrary": "ライブラリを選択",
     "filtersWithCount": "フィルター (${count})",
-    "noRecommendations": "おすすめがありません",
     "noCollections": "このライブラリにコレクションがありません",
     "noFoldersFound": "フォルダが見つかりません",
     "folders": "フォルダ",
     "tabs": {
-      "recommended": "おすすめ",
       "browse": "ブラウズ",
-      "collections": "コレクション",
       "playlists": "プレイリスト",
       "missing": ""
     },
@@ -835,7 +832,8 @@
       "artists": "アーティスト",
       "albums": "アルバム",
       "tracks": "曲",
-      "folders": "フォルダ"
+      "folders": "フォルダ",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "ジャンル",
@@ -1077,7 +1075,6 @@
     }
   },
   "collections": {
-    "title": "コレクション",
     "collection": "コレクション",
     "empty": "コレクションは空です",
     "deleteCollection": "コレクションを削除",

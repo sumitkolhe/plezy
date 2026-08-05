@@ -934,7 +934,6 @@ class _Translations$libraries$tr extends Translations$libraries$en {
 	@override String get content => 'kitaplık içeriği';
 	@override String get selectLibrary => 'Kitaplık seç';
 	@override String filtersWithCount({required Object count}) => 'Filtreler (${count})';
-	@override String get noRecommendations => 'Öneri bulunmuyor';
 	@override String get noCollections => 'Bu kitaplıkta koleksiyon yok';
 	@override String get noFoldersFound => 'Klasör bulunamadı';
 	@override String get folders => 'klasörler';
@@ -1046,7 +1045,6 @@ class _Translations$collections$tr extends Translations$collections$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Koleksiyonlar';
 	@override String get collection => 'Koleksiyon';
 	@override String get empty => 'Koleksiyon boş';
 	@override String get deleteCollection => 'Koleksiyonu Sil';
@@ -1556,9 +1554,7 @@ class _Translations$libraries$tabs$tr extends Translations$libraries$tabs$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Önerilenler';
 	@override String get browse => 'Göz At';
-	@override String get collections => 'Koleksiyonlar';
 	@override String get playlists => 'Oynatma Listeleri';
 }
 
@@ -2412,13 +2408,10 @@ extension on TranslationsTr {
 			'libraries.content' => 'kitaplık içeriği',
 			'libraries.selectLibrary' => 'Kitaplık seç',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtreler (${count})',
-			'libraries.noRecommendations' => 'Öneri bulunmuyor',
 			'libraries.noCollections' => 'Bu kitaplıkta koleksiyon yok',
 			'libraries.noFoldersFound' => 'Klasör bulunamadı',
 			'libraries.folders' => 'klasörler',
-			'libraries.tabs.recommended' => 'Önerilenler',
 			'libraries.tabs.browse' => 'Göz At',
-			'libraries.tabs.collections' => 'Koleksiyonlar',
 			'libraries.tabs.playlists' => 'Oynatma Listeleri',
 			'libraries.groupings.title' => 'Gruplama',
 			'libraries.groupings.all' => 'Tümü',
@@ -2506,7 +2499,6 @@ extension on TranslationsTr {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" için sonuç bulunamadı',
 			'explore.searchPrompt' => ({required Object source}) => '${source} üzerinde film ve dizileri arayın.',
 			'explore.searchFailed' => 'Arama başarısız. Bağlantınızı kontrol edip tekrar deneyin.',
-			'collections.title' => 'Koleksiyonlar',
 			'collections.collection' => 'Koleksiyon',
 			'collections.empty' => 'Koleksiyon boş',
 			'collections.deleteCollection' => 'Koleksiyonu Sil',
@@ -2773,12 +2765,12 @@ extension on TranslationsTr {
 			'metadataEdit.poster' => 'Afiş',
 			'metadataEdit.background' => 'Arka Plan',
 			'metadataEdit.logo' => 'Logo',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kare Görsel',
 			'metadataEdit.selectPoster' => 'Afiş Seç',
 			'metadataEdit.selectBackground' => 'Arka Plan Seç',
 			'metadataEdit.selectLogo' => 'Logo Seç',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kare Görsel Seç',
 			'metadataEdit.fromUrl' => 'URL\'den',
 			'metadataEdit.uploadFile' => 'Dosya Yükle',

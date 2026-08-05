@@ -934,7 +934,6 @@ class _Translations$libraries$uz extends Translations$libraries$en {
 	@override String get content => 'kutubxona tarkibi';
 	@override String get selectLibrary => 'Kutubxonani tanlash';
 	@override String filtersWithCount({required Object count}) => 'Filtrlar (${count})';
-	@override String get noRecommendations => 'Tavsiyalar yoʻq';
 	@override String get noCollections => 'Ushbu kutubxonada toʻplamlar yoʻq';
 	@override String get noFoldersFound => 'Jildlar topilmadi';
 	@override String get folders => 'jildlar';
@@ -1046,7 +1045,6 @@ class _Translations$collections$uz extends Translations$collections$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Toʻplamlar';
 	@override String get collection => 'Toʻplam';
 	@override String get empty => 'Toʻplam boʻsh';
 	@override String get deleteCollection => 'Toʻplamni oʻchirish';
@@ -1556,9 +1554,7 @@ class _Translations$libraries$tabs$uz extends Translations$libraries$tabs$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Tavsiya etilganlar';
 	@override String get browse => 'Koʻrib chiqish';
-	@override String get collections => 'Toʻplamlar';
 	@override String get playlists => 'Ijro roʻyxatlari';
 }
 
@@ -2412,13 +2408,10 @@ extension on TranslationsUz {
 			'libraries.content' => 'kutubxona tarkibi',
 			'libraries.selectLibrary' => 'Kutubxonani tanlash',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtrlar (${count})',
-			'libraries.noRecommendations' => 'Tavsiyalar yoʻq',
 			'libraries.noCollections' => 'Ushbu kutubxonada toʻplamlar yoʻq',
 			'libraries.noFoldersFound' => 'Jildlar topilmadi',
 			'libraries.folders' => 'jildlar',
-			'libraries.tabs.recommended' => 'Tavsiya etilganlar',
 			'libraries.tabs.browse' => 'Koʻrib chiqish',
-			'libraries.tabs.collections' => 'Toʻplamlar',
 			'libraries.tabs.playlists' => 'Ijro roʻyxatlari',
 			'libraries.groupings.title' => 'Guruhlash',
 			'libraries.groupings.all' => 'Barchasi',
@@ -2506,7 +2499,6 @@ extension on TranslationsUz {
 			'explore.searchEmpty' => ({required Object query}) => '"${query}" boʻyicha natija topilmadi',
 			'explore.searchPrompt' => ({required Object source}) => '${source} orqali filmlar va seriallarni qidiring.',
 			'explore.searchFailed' => 'Qidiruv xatoligi. Ulanishni tekshiring.',
-			'collections.title' => 'Toʻplamlar',
 			'collections.collection' => 'Toʻplam',
 			'collections.empty' => 'Toʻplam boʻsh',
 			'collections.deleteCollection' => 'Toʻplamni oʻchirish',
@@ -2773,12 +2765,12 @@ extension on TranslationsUz {
 			'metadataEdit.poster' => 'Poster',
 			'metadataEdit.background' => 'Fon',
 			'metadataEdit.logo' => 'Logotip',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.squareArt' => 'Kvadrat rasm',
 			'metadataEdit.selectPoster' => 'Posterni tanlash',
 			'metadataEdit.selectBackground' => 'Fonni tanlash',
 			'metadataEdit.selectLogo' => 'Logotipni tanlash',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kvadrat rasm tanlash',
 			'metadataEdit.fromUrl' => 'URL orqali',
 			'metadataEdit.uploadFile' => 'Fayl yuklash',

@@ -815,14 +815,11 @@
     "content": "contenu de la bibliothèque",
     "selectLibrary": "Sélectionner la bibliothèque",
     "filtersWithCount": "Filtres (${count})",
-    "noRecommendations": "Aucune recommandation disponible",
     "noCollections": "Aucune collection dans cette bibliothèque",
     "noFoldersFound": "Aucun dossier trouvé",
     "folders": "dossiers",
     "tabs": {
-      "recommended": "Recommandé",
       "browse": "Parcourir",
-      "collections": "Collections",
       "playlists": "Playlists",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artistes",
       "albums": "Albums",
       "tracks": "Titres",
-      "folders": "Dossiers"
+      "folders": "Dossiers",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genre",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Collections",
     "collection": "Collection",
     "empty": "La collection est vide",
     "deleteCollection": "Supprimer la collection",

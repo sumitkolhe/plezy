@@ -929,7 +929,6 @@ class _Translations$libraries$bg extends Translations$libraries$en {
 	@override String get content => 'съдържание на библиотеката';
 	@override String get selectLibrary => 'Избери библиотека';
 	@override String filtersWithCount({required Object count}) => 'Филтри (${count})';
-	@override String get noRecommendations => 'Няма налични препоръки';
 	@override String get noCollections => 'Няма колекции в тази библиотека';
 	@override String get noFoldersFound => 'Не са намерени папки';
 	@override String get folders => 'папки';
@@ -1041,7 +1040,6 @@ class _Translations$collections$bg extends Translations$collections$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Колекции';
 	@override String get collection => 'Колекция';
 	@override String get empty => 'Колекцията е празна';
 	@override String get deleteCollection => 'Изтрий колекция';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$bg extends Translations$libraries$tabs$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Препоръчани';
 	@override String get browse => 'Преглед';
-	@override String get collections => 'Колекции';
 	@override String get playlists => 'Плейлисти';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsBg {
 			'libraries.content' => 'съдържание на библиотеката',
 			'libraries.selectLibrary' => 'Избери библиотека',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Филтри (${count})',
-			'libraries.noRecommendations' => 'Няма налични препоръки',
 			'libraries.noCollections' => 'Няма колекции в тази библиотека',
 			'libraries.noFoldersFound' => 'Не са намерени папки',
 			'libraries.folders' => 'папки',
-			'libraries.tabs.recommended' => 'Препоръчани',
 			'libraries.tabs.browse' => 'Преглед',
-			'libraries.tabs.collections' => 'Колекции',
 			'libraries.tabs.playlists' => 'Плейлисти',
 			'libraries.groupings.title' => 'Групиране',
 			'libraries.groupings.all' => 'Всички',
@@ -2490,7 +2483,6 @@ extension on TranslationsBg {
 			'explore.searchEmpty' => ({required Object query}) => 'Няма резултати за "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Търси филми и сериали в ${source}.',
 			'explore.searchFailed' => 'Търсенето се провали. Провери връзката си и опитай отново.',
-			'collections.title' => 'Колекции',
 			'collections.collection' => 'Колекция',
 			'collections.empty' => 'Колекцията е празна',
 			'collections.deleteCollection' => 'Изтрий колекция',
@@ -2762,12 +2754,12 @@ extension on TranslationsBg {
 			'metadataEdit.imageUrl' => 'URL на изображение',
 			'metadataEdit.metadataUpdated' => 'Метаданните са обновени',
 			'metadataEdit.metadataUpdateFailed' => 'Неуспешно обновяване на метаданни',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Обложката е обновена',
 			'metadataEdit.artworkUpdateFailed' => 'Неуспешно обновяване на обложката',
 			'metadataEdit.noArtworkAvailable' => 'Няма налична обложка',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант за обложка ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант за обложка ${index}, избран',
 			'metadataEdit.notSet' => 'Не е зададено',
 			'metadataEdit.tags' => 'Тагове',

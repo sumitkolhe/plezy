@@ -929,7 +929,6 @@ class _Translations$libraries$es extends Translations$libraries$en {
 	@override String get content => 'contenido de la biblioteca';
 	@override String get selectLibrary => 'Seleccionar biblioteca';
 	@override String filtersWithCount({required Object count}) => 'Filtros (${count})';
-	@override String get noRecommendations => 'No hay recomendaciones disponibles';
 	@override String get noCollections => 'No hay colecciones en esta biblioteca';
 	@override String get noFoldersFound => 'No se encontraron carpetas';
 	@override String get folders => 'carpetas';
@@ -1041,7 +1040,6 @@ class _Translations$collections$es extends Translations$collections$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Colecciones';
 	@override String get collection => 'Colección';
 	@override String get empty => 'La colección está vacía';
 	@override String get deleteCollection => 'Eliminar colección';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$es extends Translations$libraries$tabs$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Recomendado';
 	@override String get browse => 'Explorar';
-	@override String get collections => 'Colecciones';
 	@override String get playlists => 'Listas de reproducción';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsEs {
 			'libraries.content' => 'contenido de la biblioteca',
 			'libraries.selectLibrary' => 'Seleccionar biblioteca',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtros (${count})',
-			'libraries.noRecommendations' => 'No hay recomendaciones disponibles',
 			'libraries.noCollections' => 'No hay colecciones en esta biblioteca',
 			'libraries.noFoldersFound' => 'No se encontraron carpetas',
 			'libraries.folders' => 'carpetas',
-			'libraries.tabs.recommended' => 'Recomendado',
 			'libraries.tabs.browse' => 'Explorar',
-			'libraries.tabs.collections' => 'Colecciones',
 			'libraries.tabs.playlists' => 'Listas de reproducción',
 			'libraries.groupings.title' => 'Agrupación',
 			'libraries.groupings.all' => 'Todo',
@@ -2490,7 +2483,6 @@ extension on TranslationsEs {
 			'explore.searchEmpty' => ({required Object query}) => 'Sin resultados para "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Busca películas y series en ${source}.',
 			'explore.searchFailed' => 'La búsqueda falló. Comprueba tu conexión e inténtalo de nuevo.',
-			'collections.title' => 'Colecciones',
 			'collections.collection' => 'Colección',
 			'collections.empty' => 'La colección está vacía',
 			'collections.deleteCollection' => 'Eliminar colección',
@@ -2762,12 +2754,12 @@ extension on TranslationsEs {
 			'metadataEdit.imageUrl' => 'URL de imagen',
 			'metadataEdit.metadataUpdated' => 'Metadatos actualizados',
 			'metadataEdit.metadataUpdateFailed' => 'Error al actualizar los metadatos',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Imágenes actualizadas',
 			'metadataEdit.artworkUpdateFailed' => 'Error al actualizar las imágenes',
 			'metadataEdit.noArtworkAvailable' => 'No hay imágenes disponibles',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opción de imagen ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opción de imagen ${index}, seleccionada',
 			'metadataEdit.notSet' => 'No establecido',
 			'metadataEdit.tags' => 'Etiquetas',

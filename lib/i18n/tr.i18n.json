@@ -815,14 +815,11 @@
     "content": "kitaplık içeriği",
     "selectLibrary": "Kitaplık seç",
     "filtersWithCount": "Filtreler (${count})",
-    "noRecommendations": "Öneri bulunmuyor",
     "noCollections": "Bu kitaplıkta koleksiyon yok",
     "noFoldersFound": "Klasör bulunamadı",
     "folders": "klasörler",
     "tabs": {
-      "recommended": "Önerilenler",
       "browse": "Göz At",
-      "collections": "Koleksiyonlar",
       "playlists": "Oynatma Listeleri",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Sanatçılar",
       "albums": "Albümler",
       "tracks": "Parçalar",
-      "folders": "Klasörler"
+      "folders": "Klasörler",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Tür",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Koleksiyonlar",
     "collection": "Koleksiyon",
     "empty": "Koleksiyon boş",
     "deleteCollection": "Koleksiyonu Sil",

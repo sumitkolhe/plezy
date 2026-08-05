@@ -928,7 +928,6 @@ class _Translations$libraries$ko extends Translations$libraries$en {
 	@override String get content => '미디어 라이브러리 콘텐츠';
 	@override String get selectLibrary => '미디어 라이브러리 선택';
 	@override String filtersWithCount({required Object count}) => '필터 (${count})';
-	@override String get noRecommendations => '추천 없음';
 	@override String get noCollections => '이 미디어 라이브러리에는 컬렉션이 없습니다';
 	@override String get noFoldersFound => '폴더를 찾을 수 없습니다';
 	@override String get folders => '폴더';
@@ -1039,7 +1038,6 @@ class _Translations$collections$ko extends Translations$collections$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '컬렉션';
 	@override String get collection => '컬렉션';
 	@override String get empty => '컬렉션이 비어 있습니다';
 	@override String get deleteCollection => '컬렉션 삭제';
@@ -1542,9 +1540,7 @@ class _Translations$libraries$tabs$ko extends Translations$libraries$tabs$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => '추천';
 	@override String get browse => '찾아보기';
-	@override String get collections => '컬렉션';
 	@override String get playlists => '재생 목록';
 }
 
@@ -2393,13 +2389,10 @@ extension on TranslationsKo {
 			'libraries.content' => '미디어 라이브러리 콘텐츠',
 			'libraries.selectLibrary' => '미디어 라이브러리 선택',
 			'libraries.filtersWithCount' => ({required Object count}) => '필터 (${count})',
-			'libraries.noRecommendations' => '추천 없음',
 			'libraries.noCollections' => '이 미디어 라이브러리에는 컬렉션이 없습니다',
 			'libraries.noFoldersFound' => '폴더를 찾을 수 없습니다',
 			'libraries.folders' => '폴더',
-			'libraries.tabs.recommended' => '추천',
 			'libraries.tabs.browse' => '찾아보기',
-			'libraries.tabs.collections' => '컬렉션',
 			'libraries.tabs.playlists' => '재생 목록',
 			'libraries.groupings.title' => '그룹',
 			'libraries.groupings.all' => '전체',
@@ -2487,7 +2480,6 @@ extension on TranslationsKo {
 			'explore.searchEmpty' => ({required Object query}) => '「${query}」에 대한 결과가 없습니다',
 			'explore.searchPrompt' => ({required Object source}) => '${source}에서 영화와 TV 프로그램을 검색하세요.',
 			'explore.searchFailed' => '검색에 실패했습니다. 연결을 확인하고 다시 시도하세요.',
-			'collections.title' => '컬렉션',
 			'collections.collection' => '컬렉션',
 			'collections.empty' => '컬렉션이 비어 있습니다',
 			'collections.deleteCollection' => '컬렉션 삭제',
@@ -2759,12 +2751,12 @@ extension on TranslationsKo {
 			'metadataEdit.imageUrl' => '이미지 URL',
 			'metadataEdit.metadataUpdated' => '메타데이터가 업데이트되었습니다',
 			'metadataEdit.metadataUpdateFailed' => '메타데이터 업데이트 실패',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => '아트워크가 업데이트되었습니다',
 			'metadataEdit.artworkUpdateFailed' => '아트워크 업데이트 실패',
 			'metadataEdit.noArtworkAvailable' => '사용 가능한 아트워크 없음',
 			'metadataEdit.artworkOption' => ({required Object index}) => '아트워크 옵션 ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '아트워크 옵션 ${index}, 선택됨',
 			'metadataEdit.notSet' => '설정되지 않음',
 			'metadataEdit.tags' => '태그',

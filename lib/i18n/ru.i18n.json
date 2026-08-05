@@ -817,14 +817,11 @@
     "content": "содержимое библиотеки",
     "selectLibrary": "Выбрать библиотеку",
     "filtersWithCount": "Фильтры (${count})",
-    "noRecommendations": "Рекомендации недоступны",
     "noCollections": "В этой библиотеке нет коллекций",
     "noFoldersFound": "Папки не найдены",
     "folders": "папки",
     "tabs": {
-      "recommended": "Рекомендуемые",
       "browse": "Обзор",
-      "collections": "Коллекции",
       "playlists": "Плейлисты",
       "missing": ""
     },
@@ -838,7 +835,8 @@
       "artists": "Исполнители",
       "albums": "Альбомы",
       "tracks": "Треки",
-      "folders": "Папки"
+      "folders": "Папки",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Жанр",
@@ -1092,7 +1090,6 @@
     }
   },
   "collections": {
-    "title": "Коллекции",
     "collection": "Коллекция",
     "empty": "Коллекция пуста",
     "deleteCollection": "Удалить коллекцию",

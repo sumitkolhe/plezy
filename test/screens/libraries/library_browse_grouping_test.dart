@@ -13,9 +13,13 @@ void main() {
     test('movie libraries optionally include folders', () {
       final library = _library(kind: MediaKind.movie);
 
-      expect(libraryBrowseGroupingOptions(library, canGroupByFolders: false), const [browseGroupingMovies]);
+      expect(libraryBrowseGroupingOptions(library, canGroupByFolders: false), const [
+        browseGroupingMovies,
+        browseGroupingCollections,
+      ]);
       expect(libraryBrowseGroupingOptions(library, canGroupByFolders: true), const [
         browseGroupingMovies,
+        browseGroupingCollections,
         browseGroupingFolders,
       ]);
     });
@@ -27,6 +31,7 @@ void main() {
         browseGroupingShows,
         browseGroupingSeasons,
         browseGroupingEpisodes,
+        browseGroupingCollections,
         browseGroupingFolders,
       ]);
     });

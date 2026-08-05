@@ -929,7 +929,6 @@ class _Translations$libraries$nl extends Translations$libraries$en {
 	@override String get content => 'bibliotheekinhoud';
 	@override String get selectLibrary => 'Bibliotheek kiezen';
 	@override String filtersWithCount({required Object count}) => 'Filters (${count})';
-	@override String get noRecommendations => 'Geen aanbevelingen beschikbaar';
 	@override String get noCollections => 'Geen collecties in deze bibliotheek';
 	@override String get noFoldersFound => 'Geen mappen gevonden';
 	@override String get folders => 'mappen';
@@ -1041,7 +1040,6 @@ class _Translations$collections$nl extends Translations$collections$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Collecties';
 	@override String get collection => 'Collectie';
 	@override String get empty => 'Collectie is leeg';
 	@override String get deleteCollection => 'Collectie verwijderen';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$nl extends Translations$libraries$tabs$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Aanbevolen';
 	@override String get browse => 'Bladeren';
-	@override String get collections => 'Collecties';
 	@override String get playlists => 'Afspeellijsten';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsNl {
 			'libraries.content' => 'bibliotheekinhoud',
 			'libraries.selectLibrary' => 'Bibliotheek kiezen',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filters (${count})',
-			'libraries.noRecommendations' => 'Geen aanbevelingen beschikbaar',
 			'libraries.noCollections' => 'Geen collecties in deze bibliotheek',
 			'libraries.noFoldersFound' => 'Geen mappen gevonden',
 			'libraries.folders' => 'mappen',
-			'libraries.tabs.recommended' => 'Aanbevolen',
 			'libraries.tabs.browse' => 'Bladeren',
-			'libraries.tabs.collections' => 'Collecties',
 			'libraries.tabs.playlists' => 'Afspeellijsten',
 			'libraries.groupings.title' => 'Groepering',
 			'libraries.groupings.all' => 'Alles',
@@ -2490,7 +2483,6 @@ extension on TranslationsNl {
 			'explore.searchEmpty' => ({required Object query}) => 'Geen resultaten voor "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Zoek naar films en series op ${source}.',
 			'explore.searchFailed' => 'Zoeken mislukt. Controleer je verbinding en probeer opnieuw.',
-			'collections.title' => 'Collecties',
 			'collections.collection' => 'Collectie',
 			'collections.empty' => 'Collectie is leeg',
 			'collections.deleteCollection' => 'Collectie verwijderen',
@@ -2762,12 +2754,12 @@ extension on TranslationsNl {
 			'metadataEdit.imageUrl' => 'Afbeeldings-URL',
 			'metadataEdit.metadataUpdated' => 'Metadata bijgewerkt',
 			'metadataEdit.metadataUpdateFailed' => 'Metadata bijwerken mislukt',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Illustraties bijgewerkt',
 			'metadataEdit.artworkUpdateFailed' => 'Illustraties bijwerken mislukt',
 			'metadataEdit.noArtworkAvailable' => 'Geen illustraties beschikbaar',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Illustratie ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Illustratie ${index}, geselecteerd',
 			'metadataEdit.notSet' => 'Niet ingesteld',
 			'metadataEdit.tags' => 'Tags',

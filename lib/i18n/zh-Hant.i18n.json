@@ -814,14 +814,11 @@
     "content": "媒體庫內容",
     "selectLibrary": "選擇媒體庫",
     "filtersWithCount": "篩選器（${count}）",
-    "noRecommendations": "目前沒有推薦",
     "noCollections": "此媒體庫中沒有收藏集",
     "noFoldersFound": "找不到資料夾",
     "folders": "資料夾",
     "tabs": {
-      "recommended": "推薦",
       "browse": "瀏覽",
-      "collections": "收藏集",
       "playlists": "播放清單",
       "missing": ""
     },
@@ -835,7 +832,8 @@
       "artists": "演出者",
       "albums": "專輯",
       "tracks": "曲目",
-      "folders": "資料夾"
+      "folders": "資料夾",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "類型",
@@ -1077,7 +1075,6 @@
     }
   },
   "collections": {
-    "title": "收藏集",
     "collection": "收藏集",
     "empty": "收藏集為空",
     "deleteCollection": "刪除收藏集",

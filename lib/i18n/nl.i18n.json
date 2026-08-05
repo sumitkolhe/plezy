@@ -815,14 +815,11 @@
     "content": "bibliotheekinhoud",
     "selectLibrary": "Bibliotheek kiezen",
     "filtersWithCount": "Filters (${count})",
-    "noRecommendations": "Geen aanbevelingen beschikbaar",
     "noCollections": "Geen collecties in deze bibliotheek",
     "noFoldersFound": "Geen mappen gevonden",
     "folders": "mappen",
     "tabs": {
-      "recommended": "Aanbevolen",
       "browse": "Bladeren",
-      "collections": "Collecties",
       "playlists": "Afspeellijsten",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Artiesten",
       "albums": "Albums",
       "tracks": "Nummers",
-      "folders": "Mappen"
+      "folders": "Mappen",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genre",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Collecties",
     "collection": "Collectie",
     "empty": "Collectie is leeg",
     "deleteCollection": "Collectie verwijderen",

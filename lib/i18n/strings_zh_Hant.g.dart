@@ -929,7 +929,6 @@ class _Translations$libraries$zh_Hant extends Translations$libraries$zh {
 	@override String get content => '媒體庫內容';
 	@override String get selectLibrary => '選擇媒體庫';
 	@override String filtersWithCount({required Object count}) => '篩選器（${count}）';
-	@override String get noRecommendations => '目前沒有推薦';
 	@override String get noCollections => '此媒體庫中沒有收藏集';
 	@override String get noFoldersFound => '找不到資料夾';
 	@override String get folders => '資料夾';
@@ -1040,7 +1039,6 @@ class _Translations$collections$zh_Hant extends Translations$collections$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '收藏集';
 	@override String get collection => '收藏集';
 	@override String get empty => '收藏集為空';
 	@override String get deleteCollection => '刪除收藏集';
@@ -1543,9 +1541,7 @@ class _Translations$libraries$tabs$zh_Hant extends Translations$libraries$tabs$z
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => '推薦';
 	@override String get browse => '瀏覽';
-	@override String get collections => '收藏集';
 	@override String get playlists => '播放清單';
 }
 
@@ -2394,13 +2390,10 @@ extension on TranslationsZhHant {
 			'libraries.content' => '媒體庫內容',
 			'libraries.selectLibrary' => '選擇媒體庫',
 			'libraries.filtersWithCount' => ({required Object count}) => '篩選器（${count}）',
-			'libraries.noRecommendations' => '目前沒有推薦',
 			'libraries.noCollections' => '此媒體庫中沒有收藏集',
 			'libraries.noFoldersFound' => '找不到資料夾',
 			'libraries.folders' => '資料夾',
-			'libraries.tabs.recommended' => '推薦',
 			'libraries.tabs.browse' => '瀏覽',
-			'libraries.tabs.collections' => '收藏集',
 			'libraries.tabs.playlists' => '播放清單',
 			'libraries.groupings.title' => '分組',
 			'libraries.groupings.all' => '全部',
@@ -2488,7 +2481,6 @@ extension on TranslationsZhHant {
 			'explore.searchEmpty' => ({required Object query}) => '沒有「${query}」的結果',
 			'explore.searchPrompt' => ({required Object source}) => '在 ${source} 搜尋電影與影集。',
 			'explore.searchFailed' => '搜尋失敗。請檢查網路連線後重試。',
-			'collections.title' => '收藏集',
 			'collections.collection' => '收藏集',
 			'collections.empty' => '收藏集為空',
 			'collections.deleteCollection' => '刪除收藏集',
@@ -2760,12 +2752,12 @@ extension on TranslationsZhHant {
 			'metadataEdit.imageUrl' => '圖片 URL',
 			'metadataEdit.metadataUpdated' => '中繼資料已更新',
 			'metadataEdit.metadataUpdateFailed' => '中繼資料更新失敗',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => '封面圖片已更新',
 			'metadataEdit.artworkUpdateFailed' => '封面圖片更新失敗',
 			'metadataEdit.noArtworkAvailable' => '沒有可用的封面圖片',
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面圖片選項 ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面圖片選項 ${index}，已選擇',
 			'metadataEdit.notSet' => '未設定',
 			'metadataEdit.tags' => '標籤',

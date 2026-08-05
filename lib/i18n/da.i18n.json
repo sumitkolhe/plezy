@@ -815,14 +815,11 @@
     "content": "biblioteksindhold",
     "selectLibrary": "Vælg bibliotek",
     "filtersWithCount": "Filtre (${count})",
-    "noRecommendations": "Ingen anbefalinger tilgængelige",
     "noCollections": "Ingen samlinger i dette bibliotek",
     "noFoldersFound": "Ingen mapper fundet",
     "folders": "mapper",
     "tabs": {
-      "recommended": "Anbefalet",
       "browse": "Gennemse",
-      "collections": "Samlinger",
       "playlists": "Playlister",
       "missing": ""
     },
@@ -836,7 +833,8 @@
       "artists": "Kunstnere",
       "albums": "Album",
       "tracks": "Numre",
-      "folders": "Mapper"
+      "folders": "Mapper",
+      "collections": ""
     },
     "filterCategories": {
       "genre": "Genre",
@@ -1082,7 +1080,6 @@
     }
   },
   "collections": {
-    "title": "Samlinger",
     "collection": "Samling",
     "empty": "Samlingen er tom",
     "deleteCollection": "Slet samling",

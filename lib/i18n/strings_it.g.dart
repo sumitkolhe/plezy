@@ -929,7 +929,6 @@ class _Translations$libraries$it extends Translations$libraries$en {
 	@override String get content => 'contenuto della libreria';
 	@override String get selectLibrary => 'Seleziona libreria';
 	@override String filtersWithCount({required Object count}) => 'Filtri (${count})';
-	@override String get noRecommendations => 'Nessun consiglio disponibile';
 	@override String get noCollections => 'Nessuna raccolta in questa libreria';
 	@override String get noFoldersFound => 'Nessuna cartella trovata';
 	@override String get folders => 'cartelle';
@@ -1041,7 +1040,6 @@ class _Translations$collections$it extends Translations$collections$en {
 	final TranslationsIt _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Raccolte';
 	@override String get collection => 'Raccolta';
 	@override String get empty => 'La raccolta è vuota';
 	@override String get deleteCollection => 'Elimina raccolta';
@@ -1545,9 +1543,7 @@ class _Translations$libraries$tabs$it extends Translations$libraries$tabs$en {
 	final TranslationsIt _root; // ignore: unused_field
 
 	// Translations
-	@override String get recommended => 'Consigliati';
 	@override String get browse => 'Esplora';
-	@override String get collections => 'Raccolte';
 	@override String get playlists => 'Playlist';
 }
 
@@ -2396,13 +2392,10 @@ extension on TranslationsIt {
 			'libraries.content' => 'contenuto della libreria',
 			'libraries.selectLibrary' => 'Seleziona libreria',
 			'libraries.filtersWithCount' => ({required Object count}) => 'Filtri (${count})',
-			'libraries.noRecommendations' => 'Nessun consiglio disponibile',
 			'libraries.noCollections' => 'Nessuna raccolta in questa libreria',
 			'libraries.noFoldersFound' => 'Nessuna cartella trovata',
 			'libraries.folders' => 'cartelle',
-			'libraries.tabs.recommended' => 'Consigliati',
 			'libraries.tabs.browse' => 'Esplora',
-			'libraries.tabs.collections' => 'Raccolte',
 			'libraries.tabs.playlists' => 'Playlist',
 			'libraries.groupings.title' => 'Raggruppa per',
 			'libraries.groupings.all' => 'Tutti',
@@ -2490,7 +2483,6 @@ extension on TranslationsIt {
 			'explore.searchEmpty' => ({required Object query}) => 'Nessun risultato per "${query}"',
 			'explore.searchPrompt' => ({required Object source}) => 'Cerca film e serie TV su ${source}.',
 			'explore.searchFailed' => 'Ricerca fallita. Controlla la connessione e riprova.',
-			'collections.title' => 'Raccolte',
 			'collections.collection' => 'Raccolta',
 			'collections.empty' => 'La raccolta è vuota',
 			'collections.deleteCollection' => 'Elimina raccolta',
@@ -2762,12 +2754,12 @@ extension on TranslationsIt {
 			'metadataEdit.imageUrl' => 'URL immagine',
 			'metadataEdit.metadataUpdated' => 'Metadati aggiornati correttamente',
 			'metadataEdit.metadataUpdateFailed' => 'Impossibile aggiornare i metadati',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.artworkUpdated' => 'Immagini aggiornate',
 			'metadataEdit.artworkUpdateFailed' => 'Impossibile aggiornare le immagini',
 			'metadataEdit.noArtworkAvailable' => 'Nessuna immagine disponibile',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opzione immagine ${index}',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opzione immagine ${index}, selezionata',
 			'metadataEdit.notSet' => 'Non impostato',
 			'metadataEdit.tags' => 'Tag',
