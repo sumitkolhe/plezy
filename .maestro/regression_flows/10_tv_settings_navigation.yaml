@@ -86,7 +86,6 @@ tags:
     timeout: 15000
 - assertVisible: "(?s)^MyAnimeList.*"
 - assertVisible: "(?s)^AniList.*"
-- assertVisible: "(?s)^Simkl.*"
 - assertVisible: "(?s)^Seerr.*"
 - pressKey: "back"
 - extendedWaitUntil:

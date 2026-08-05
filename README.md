@@ -39,7 +39,7 @@ TV and Watch Together have all been removed.
 - Offline browsing with watch state sync-back on reconnect
 
 ### Integrations
-- Trakt, MyAnimeList, AniList, and Simkl tracking & rating
+- Trakt tracking & rating (build-gated behind `--dart-define=HARBOR_TRAKT=true`)
 - Jellyseerr / Overseerr requests
 - Watch Next row
 
