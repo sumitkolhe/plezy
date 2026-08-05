@@ -399,6 +399,7 @@ extension _VideoPlayerPlaybackServiceMethods on VideoPlayerScreenState {
         mediaInfo: mediaInfo,
         canReportPlayback: () => _hasRenderedFirstFrame && !_hasFatalPlaybackError,
         hasRenderedPlayback: () => _hasRenderedFirstFrame,
+        subtitleOffIsDeliberate: () => _playbackSession?.subtitleSelection.declinedPreference == null,
         onPausedKeepalive: null,
         onScrobbled: () async {
           // Other episodes of a Plex multi-episode file share this item's
