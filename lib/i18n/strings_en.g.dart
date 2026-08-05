@@ -4030,12 +4030,6 @@ class Translations$serverActivity$en {
 	/// en: 'Not downloaded'
 	String get notDownloadedOne => 'Not downloaded';
 
-	/// en: 'Requested (${count})'
-	String requestedCount({required Object count}) => 'Requested (${count})';
-
-	/// en: 'Not in library yet'
-	String get notInLibrary => 'Not in library yet';
-
 	/// en: 'S${season}E${episode}'
 	String episodeSlot({required Object season, required Object episode}) => 'S${season}E${episode}';
 
@@ -6547,8 +6541,6 @@ extension on Translations {
 			'serverActivity.airsOn' => ({required Object date}) => 'Airs ${date}',
 			'serverActivity.unmonitored' => 'Unmonitored',
 			'serverActivity.notDownloadedOne' => 'Not downloaded',
-			'serverActivity.requestedCount' => ({required Object count}) => 'Requested (${count})',
-			'serverActivity.notInLibrary' => 'Not in library yet',
 			'serverActivity.episodeSlot' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
 			'serverActivity.nothingMissing' => 'Nothing missing',
 			'serverActivity.nothingMissingDescription' => ({required Object service}) => '${service} has a file for everything it is tracking here.',

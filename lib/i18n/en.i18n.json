@@ -1575,8 +1575,6 @@
     "airsOn": "Airs ${date}",
     "unmonitored": "Unmonitored",
     "notDownloadedOne": "Not downloaded",
-    "requestedCount": "Requested (${count})",
-    "notInLibrary": "Not in library yet",
     "episodeSlot": "S${season}E${episode}",
     "nothingMissing": "Nothing missing",
     "nothingMissingDescription": "${service} has a file for everything it is tracking here."

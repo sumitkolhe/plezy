@@ -62,7 +62,6 @@ import '../../../utils/platform_detector.dart';
 import '../../../i18n/strings.g.dart';
 import '../../main_screen.dart';
 import 'base_library_tab.dart';
-import '../../../widgets/requested_titles_row.dart';
 import '../../../widgets/sliver_navigation_inset.dart';
 
 /// Browse tab for library screen
@@ -1510,10 +1509,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
                 pinned: false,
                 delegate: _ChipsBarDelegate(builder: (_) => _buildChipsBar(), height: _chipsBarHeight),
               ),
-            // Films only: a series is absent an episode at a time, shown on its
-            // own page.
-            if (widget.library.kind == MediaKind.movie && !PlatformDetector.isTV())
-              const SliverToBoxAdapter(child: RequestedTitlesRow()),
             ..._buildContentSlivers(),
             const SliverNavigationInset(),
           ],

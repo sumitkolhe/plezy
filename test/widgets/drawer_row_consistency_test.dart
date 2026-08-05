@@ -12,7 +12,7 @@ void main() {
     // Every shelf reads at one heading scale and one set of insets. Writing the
     // header out again is how the requested-titles row ended up at 15sp against
     // 18, and its title 2dp from the top against 12.
-    const shelves = ['lib/widgets/requested_titles_row.dart', 'lib/widgets/hub_section.dart'];
+    const shelves = ['lib/widgets/hub_section.dart'];
 
     for (final path in shelves) {
       final source = File(path).readAsStringSync();
