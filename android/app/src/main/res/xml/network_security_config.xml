@@ -13,8 +13,8 @@
 
     <!-- First-party / fixed endpoints. These carry account tokens, OAuth
          codes and crash payloads, and by construction never
-         live behind a private CA. System anchors only, i.e. the pre-2.9.1
-         behaviour. Every hard-coded https:// host in lib/ must appear here.
+         live behind a private CA. System anchors only.
+         Every hard-coded https:// host in lib/ must appear here.
          Pinned by test/android/network_security_config_test.dart. -->
     <domain-config>
         <!-- api.trakt.tv incl. /oauth/device/*, /oauth/token
