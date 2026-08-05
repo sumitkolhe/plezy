@@ -76,7 +76,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="jello" android:host="play"/>
+                <data android:scheme="harbor" android:host="play"/>
             </intent-filter>
         </activity>
         <!-- FileProvider for sharing downloaded files with external players -->
