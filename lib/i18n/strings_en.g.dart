@@ -4229,9 +4229,6 @@ class Translations$libraries$tabs$en {
 
 	// Translations
 
-	/// en: 'Browse'
-	String get browse => 'Browse';
-
 	/// en: 'Missing'
 	String get missing => 'Missing';
 }
@@ -5890,7 +5887,6 @@ extension on Translations {
 			'libraries.noCollections' => 'No collections in this library',
 			'libraries.noFoldersFound' => 'No folders found',
 			'libraries.folders' => 'folders',
-			'libraries.tabs.browse' => 'Browse',
 			'libraries.tabs.missing' => 'Missing',
 			'libraries.groupings.title' => 'Grouping',
 			'libraries.groupings.all' => 'All',
@@ -6149,9 +6145,9 @@ extension on Translations {
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
+			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			_ => null,
 		} ?? switch (path) {
-			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',

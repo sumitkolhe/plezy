@@ -932,7 +932,6 @@ class _Translations$libraries$nl extends Translations$libraries$en {
 	@override String get noCollections => 'Geen collecties in deze bibliotheek';
 	@override String get noFoldersFound => 'Geen mappen gevonden';
 	@override String get folders => 'mappen';
-	@override late final _Translations$libraries$tabs$nl tabs = _Translations$libraries$tabs$nl._(_root);
 	@override late final _Translations$libraries$groupings$nl groupings = _Translations$libraries$groupings$nl._(_root);
 	@override late final _Translations$libraries$filterCategories$nl filterCategories = _Translations$libraries$filterCategories$nl._(_root);
 	@override late final _Translations$libraries$sortLabels$nl sortLabels = _Translations$libraries$sortLabels$nl._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$nl extends Translations$videoControl
 	@override String get voSwitchFailed => 'Omschakelen van de video-uitvoer voor beeld-in-beeld is mislukt';
 	@override String get failed => 'Beeld-in-beeld kon niet worden gestart';
 	@override String unknown({required Object error}) => 'Er is een fout opgetreden: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$nl extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$nl._(TranslationsNl root) : this._root = root, super.internal(root);
-
-	final TranslationsNl _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Bladeren';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsNl {
 			'libraries.noCollections' => 'Geen collecties in deze bibliotheek',
 			'libraries.noFoldersFound' => 'Geen mappen gevonden',
 			'libraries.folders' => 'mappen',
-			'libraries.tabs.browse' => 'Bladeren',
 			'libraries.groupings.title' => 'Groepering',
 			'libraries.groupings.all' => 'Alles',
 			'libraries.groupings.movies' => 'Films',
@@ -2756,9 +2744,9 @@ extension on TranslationsNl {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Illustratie ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Illustratie ${index}, geselecteerd',
 			'metadataEdit.notSet' => 'Niet ingesteld',
+			'metadataEdit.tags' => 'Tags',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tag toevoegen',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Regisseur',

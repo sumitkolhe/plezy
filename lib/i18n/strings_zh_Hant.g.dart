@@ -932,7 +932,6 @@ class _Translations$libraries$zh_Hant extends Translations$libraries$zh {
 	@override String get noCollections => '此媒體庫中沒有收藏集';
 	@override String get noFoldersFound => '找不到資料夾';
 	@override String get folders => '資料夾';
-	@override late final _Translations$libraries$tabs$zh_Hant tabs = _Translations$libraries$tabs$zh_Hant._(_root);
 	@override late final _Translations$libraries$groupings$zh_Hant groupings = _Translations$libraries$groupings$zh_Hant._(_root);
 	@override late final _Translations$libraries$filterCategories$zh_Hant filterCategories = _Translations$libraries$filterCategories$zh_Hant._(_root);
 	@override late final _Translations$libraries$sortLabels$zh_Hant sortLabels = _Translations$libraries$sortLabels$zh_Hant._(_root);
@@ -1531,16 +1530,6 @@ class _Translations$videoControls$pipErrors$zh_Hant extends Translations$videoCo
 	@override String get voSwitchFailed => '無法切換子母畫面的影片輸出';
 	@override String get failed => '啟動子母畫面失敗';
 	@override String unknown({required Object error}) => '發生錯誤：${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$zh_Hant extends Translations$libraries$tabs$zh {
-	_Translations$libraries$tabs$zh_Hant._(TranslationsZhHant root) : this._root = root, super.internal(root);
-
-	final TranslationsZhHant _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => '瀏覽';
 }
 
 // Path: libraries.groupings
@@ -2391,7 +2380,6 @@ extension on TranslationsZhHant {
 			'libraries.noCollections' => '此媒體庫中沒有收藏集',
 			'libraries.noFoldersFound' => '找不到資料夾',
 			'libraries.folders' => '資料夾',
-			'libraries.tabs.browse' => '瀏覽',
 			'libraries.groupings.title' => '分組',
 			'libraries.groupings.all' => '全部',
 			'libraries.groupings.movies' => '電影',
@@ -2754,9 +2742,9 @@ extension on TranslationsZhHant {
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面圖片選項 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面圖片選項 ${index}，已選擇',
 			'metadataEdit.notSet' => '未設定',
+			'metadataEdit.tags' => '標籤',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => '標籤',
 			'metadataEdit.addTag' => '新增標籤',
 			'metadataEdit.genre' => '類型',
 			'metadataEdit.director' => '導演',

@@ -937,7 +937,6 @@ class _Translations$libraries$uz extends Translations$libraries$en {
 	@override String get noCollections => 'Ushbu kutubxonada toʻplamlar yoʻq';
 	@override String get noFoldersFound => 'Jildlar topilmadi';
 	@override String get folders => 'jildlar';
-	@override late final _Translations$libraries$tabs$uz tabs = _Translations$libraries$tabs$uz._(_root);
 	@override late final _Translations$libraries$groupings$uz groupings = _Translations$libraries$groupings$uz._(_root);
 	@override late final _Translations$libraries$filterCategories$uz filterCategories = _Translations$libraries$filterCategories$uz._(_root);
 	@override late final _Translations$libraries$sortLabels$uz sortLabels = _Translations$libraries$sortLabels$uz._(_root);
@@ -1544,16 +1543,6 @@ class _Translations$videoControls$pipErrors$uz extends Translations$videoControl
 	@override String get voSwitchFailed => 'PiP uchun video chiqishini almashtirib boʻlmadi';
 	@override String get failed => 'PiP rejimini ishga tushirishda xatolik';
 	@override String unknown({required Object error}) => 'Xatolik yuz berdi: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$uz extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$uz._(TranslationsUz root) : this._root = root, super.internal(root);
-
-	final TranslationsUz _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Koʻrib chiqish';
 }
 
 // Path: libraries.groupings
@@ -2409,7 +2398,6 @@ extension on TranslationsUz {
 			'libraries.noCollections' => 'Ushbu kutubxonada toʻplamlar yoʻq',
 			'libraries.noFoldersFound' => 'Jildlar topilmadi',
 			'libraries.folders' => 'jildlar',
-			'libraries.tabs.browse' => 'Koʻrib chiqish',
 			'libraries.groupings.title' => 'Guruhlash',
 			'libraries.groupings.all' => 'Barchasi',
 			'libraries.groupings.movies' => 'Filmlar',
@@ -2767,9 +2755,9 @@ extension on TranslationsUz {
 			'metadataEdit.selectLogo' => 'Logotipni tanlash',
 			'metadataEdit.selectSquareArt' => 'Kvadrat rasm tanlash',
 			'metadataEdit.fromUrl' => 'URL orqali',
+			'metadataEdit.uploadFile' => 'Fayl yuklash',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.uploadFile' => 'Fayl yuklash',
 			'metadataEdit.enterImageUrl' => 'Rasm URL-manzilini kiriting',
 			'metadataEdit.imageUrl' => 'Rasm URL-manzili',
 			'metadataEdit.metadataUpdated' => 'Metamaʼlumotlar yangilandi',

@@ -80,10 +80,21 @@ class LibraryBrowseTab extends BaseLibraryTab<MediaItem> {
   final ValueChanged<bool>? onFiltersActiveChanged;
   final bool canGroupByFolders;
 
+  /// When set, this tab shows a saved view rather than the library's own state:
+  /// it configures itself from [view] and never writes grouping, filters or sort
+  /// back, so switching to a view cannot overwrite what plain Browse was showing.
+  final LibraryView? view;
+
+  /// Fires when a view is saved or deleted, so the tab row can gain or lose its
+  /// pill without waiting for the library to be reopened.
+  final ValueChanged<List<LibraryView>>? onViewsChanged;
+
   const LibraryBrowseTab({
     super.key,
     required super.library,
     required this.canGroupByFolders,
+    this.view,
+    this.onViewsChanged,
     super.viewMode,
     super.density,
     super.onDataLoaded,
@@ -515,7 +526,8 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       final savedViews = storage.getLibraryViews(libraryGlobalKey);
       // Resolve the restored grouping before the sort fetch — music groupings
       // (albums/tracks) request their own per-type sort list.
-      final restoredGrouping = _normalizeGrouping(savedGrouping);
+      final pinned = widget.view;
+      final restoredGrouping = _normalizeGrouping(pinned?.grouping ?? savedGrouping);
       final sortLibraryType = _sortOptionsLibraryType(restoredGrouping);
 
       final LoadedFiltersAndSorts loaded;
@@ -539,18 +551,16 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         // Plex returns no cached values (filters fetched lazily per-category);
         // assigning the empty map is a no-op for Plex and a real payload for Jellyfin.
         _jellyfinFilterValues = loaded.cachedValues;
-        _selectedFilters = Map.from(savedFilters);
+        _selectedFilters = Map.from(pinned?.filters ?? savedFilters);
         _selectedGrouping = restoredGrouping;
         _views = savedViews;
 
-        if (savedSort != null) {
-          final sortKey = savedSort['key'] as String?;
-          if (sortKey != null) {
-            final sort = loaded.sorts.where((s) => s.key == sortKey).firstOrNull;
-            if (sort != null) {
-              _selectedSort = sort;
-              _isSortDescending = (savedSort['descending'] as bool?) ?? false;
-            }
+        final sortKey = pinned != null ? pinned.sortKey : savedSort?['key'] as String?;
+        if (sortKey != null) {
+          final sort = loaded.sorts.where((s) => s.key == sortKey).firstOrNull;
+          if (sort != null) {
+            _selectedSort = sort;
+            _isSortDescending = pinned?.descending ?? (savedSort?['descending'] as bool?) ?? false;
           }
         }
       });
@@ -934,6 +944,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
                   child: Text(view.name),
                   subtitleWidget: Text(_describeView(view)),
                   selected: view.name == active?.name,
+                  enabled: false,
                   // Its own tap target inside the row, so a view can be removed
                   // without a mode to enter or a gesture to discover.
                   trailing: IconButton(
@@ -945,10 +956,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
                     },
                   ),
                 ),
-                onPressed: () {
-                  controller.close();
-                  unawaited(_applyView(view));
-                },
               ),
             if (_views.isNotEmpty) const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
             AppMenuItemTile<void>(
@@ -1051,40 +1058,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       )
       .firstOrNull;
 
-  /// Sets all three at once and reloads once, rather than letting each of the
-  /// three appliers fetch a page on the way past.
-  Future<void> _applyView(LibraryView view) async {
-    if (!mounted) return;
-    final grouping = _normalizeGrouping(view.grouping);
-    final sortChangesOptions = _sortOptionsLibraryType(grouping) != _sortOptionsLibraryType(_selectedGrouping);
-
-    setState(() {
-      _selectedGrouping = grouping;
-      _selectedFilters
-        ..clear()
-        ..addAll(view.filters);
-      _selectedSort = view.sortKey == null ? null : _sortOptions.where((sort) => sort.key == view.sortKey).firstOrNull;
-      _isSortDescending = view.descending;
-    });
-    _notifyFiltersActive();
-
-    final storage = await StorageService.getInstance();
-    await storage.saveLibraryGrouping(widget.library.globalKey, grouping);
-    await storage.saveLibraryFilters(view.filters, sectionId: widget.library.globalKey);
-    final sortKey = _selectedSort?.key;
-    if (sortKey != null) await storage.saveLibrarySort(widget.library.globalKey, sortKey, descending: view.descending);
-
-    if (!mounted) return;
-    // A music grouping serves its own sort list, so the options have to be
-    // refetched before a page is asked for with a key of the wrong type.
-    if (sortChangesOptions) {
-      await _reloadSortOptionsForGrouping();
-      return;
-    }
-    unawaited(_loadItems());
-    unawaited(_loadFirstCharacters());
-  }
-
   /// Saving under an existing name replaces it, so a view can be corrected
   /// without first deleting it.
   Future<void> _saveCurrentView(String name) async {
@@ -1114,6 +1087,9 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     if (mounted) setState(() => _views = next);
     final storage = await StorageService.getInstance();
     await storage.saveLibraryViews(widget.library.globalKey, next);
+    // The tab row owns the pills, so it has to hear about this now rather than
+    // when the library is next opened.
+    widget.onViewsChanged?.call(next);
   }
 
   void _handleGroupingSelection(String? value) {
@@ -1122,9 +1098,11 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     setState(() {
       _selectedGrouping = value;
     });
-    StorageService.getInstance().then((storage) {
-      storage.saveLibraryGrouping(widget.library.globalKey, value);
-    });
+    if (widget.view == null) {
+      StorageService.getInstance().then((storage) {
+        storage.saveLibraryGrouping(widget.library.globalKey, value);
+      });
+    }
     if (sortTypeChanged) {
       // Music groupings serve per-type sort lists; refresh the options (and
       // drop a selected sort the new list doesn't offer) before fetching
@@ -1197,8 +1175,10 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     });
     _notifyFiltersActive();
 
-    final storage = await StorageService.getInstance();
-    await storage.saveLibraryFilters(filters, sectionId: widget.library.globalKey);
+    if (widget.view == null) {
+      final storage = await StorageService.getInstance();
+      await storage.saveLibraryFilters(filters, sectionId: widget.library.globalKey);
+    }
 
     unawaited(_loadItems());
     unawaited(_loadFirstCharacters());
@@ -1265,9 +1245,11 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
             _selectedSort = pendingSort;
             _isSortDescending = pendingDescending;
           });
-          StorageService.getInstance().then((storage) {
-            storage.saveLibrarySort(widget.library.globalKey, pendingSort!.key, descending: pendingDescending);
-          });
+          if (widget.view == null) {
+            StorageService.getInstance().then((storage) {
+              storage.saveLibrarySort(widget.library.globalKey, pendingSort!.key, descending: pendingDescending);
+            });
+          }
           _loadItems();
           _loadFirstCharacters();
         }

@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
-import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/models/arr/managed_service.dart';
 import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_kind.dart';
@@ -19,6 +18,8 @@ import 'package:harbor/providers/hidden_libraries_provider.dart';
 import 'package:harbor/providers/libraries_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/libraries/libraries_screen.dart';
+import 'package:harbor/screens/libraries/tabs/library_browse_tab.dart';
+import 'package:harbor/screens/libraries/tabs/library_missing_tab.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/storage_service.dart';
@@ -58,70 +59,30 @@ void main() {
 
   tearDown(() => TvDetectionService.debugSetAppleTVOverride(null));
 
-  testWidgets('a Radarr restored after the tabs were decided still gets its pill', (tester) async {
-    // The tab row is computed when a library loads; connections come back from
-    // storage a moment later. Deciding once left Missing off for the session.
-    final harness = await _Harness.create(_GatedPreferences({}));
-    addTearDown(harness.dispose);
-    await harness.pump(tester);
-    await tester.pumpAndSettle();
-
-    expect(find.text(t.libraries.tabs.missing), findsNothing);
-
-    harness.managedServices.debugAddServiceForTesting(
-      const ManagedServiceConnection(kind: ManagedServiceKind.radarr, baseUrl: 'http://radarr', secret: 'k'),
+  testWidgets('a saved selection is restored, and a stale one falls back', (tester) async {
+    // The selector stores what it chose; a name from a build that had pills, or
+    // a view since deleted, resolves to the library's own contents rather than
+    // throwing or showing nothing.
+    final harness = await _Harness.create(
+      _GatedPreferences({
+        'selected_library_key': _libraryB.globalKey,
+        'library_tab_${_libraryB.globalKey}': 'missing',
+        'library_tab_${_libraryA.globalKey}': 'playlists',
+      }),
+      withArr: true,
     );
-    await tester.pumpAndSettle();
-
-    expect(find.text(t.libraries.tabs.missing), findsOneWidget);
-  });
-
-  testWidgets('stale saved tab cannot replace the current library tab', (tester) async {
-    final preferences = _GatedPreferences({
-      'selected_library_key': _libraryB.globalKey,
-      'library_tab_${_libraryA.globalKey}': 'playlists',
-      'library_tab_${_libraryB.globalKey}': LibraryTabType.missing.name,
-    });
-    final harness = await _Harness.create(preferences, withArr: true);
-    addTearDown(harness.dispose);
-    final selected = <String>[];
-
-    await harness.pump(tester, onLibrarySelected: selected.add);
-    expect(harness.controller(tester).index, 1);
-
-    preferences.blockNextSelectedLibraryWrite(_libraryA.globalKey);
-    final loadable = tester.state(find.byType(LibrariesScreen)) as LibraryLoadable;
-    loadable.loadLibraryByKey(_libraryA.globalKey);
-    await preferences.blocked;
-
-    loadable.loadLibraryByKey(_libraryB.globalKey);
-    await tester.pumpAndSettle();
-    expect(selected.last, _libraryB.globalKey);
-    expect(harness.controller(tester).index, 1);
-
-    preferences.release();
-    await tester.pumpAndSettle();
-    expect(selected.last, _libraryB.globalKey);
-    expect(harness.controller(tester).index, 1);
-  });
-
-  testWidgets('restoration applies a saved first tab', (tester) async {
-    final preferences = _GatedPreferences({
-      'selected_library_key': _libraryB.globalKey,
-      'library_tab_${_libraryA.globalKey}': LibraryTabType.browse.name,
-      'library_tab_${_libraryB.globalKey}': LibraryTabType.missing.name,
-    });
-    final harness = await _Harness.create(preferences, withArr: true);
     addTearDown(harness.dispose);
 
     await harness.pump(tester);
-    expect(harness.controller(tester).index, 1);
+    await tester.pumpAndSettle();
+    expect(find.byType(LibraryMissingTab), findsOneWidget, reason: 'library B saved missing');
 
     final loadable = tester.state(find.byType(LibrariesScreen)) as LibraryLoadable;
     loadable.loadLibraryByKey(_libraryA.globalKey);
     await tester.pumpAndSettle();
 
-    expect(harness.controller(tester).index, 0);
+    expect(find.byType(LibraryMissingTab), findsNothing);
+    expect(find.byType(LibraryBrowseTab), findsOneWidget, reason: 'an unresolvable name falls back');
   });
 
   testWidgets('disposal rejects a pending saved-tab continuation', (tester) async {
@@ -231,11 +192,6 @@ final class _Harness {
       ),
     );
     await tester.pumpAndSettle();
-  }
-
-  TabController controller(WidgetTester tester) {
-    final dynamic state = tester.state(find.byType(LibrariesScreen));
-    return state.tabController as TabController;
   }
 
   void dispose() {

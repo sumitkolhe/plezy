@@ -932,7 +932,6 @@ class _Translations$libraries$hu extends Translations$libraries$en {
 	@override String get noCollections => 'Nincsenek gyűjtemények ebben a könyvtárban';
 	@override String get noFoldersFound => 'Nem találhatók mappák';
 	@override String get folders => 'mappák';
-	@override late final _Translations$libraries$tabs$hu tabs = _Translations$libraries$tabs$hu._(_root);
 	@override late final _Translations$libraries$groupings$hu groupings = _Translations$libraries$groupings$hu._(_root);
 	@override late final _Translations$libraries$filterCategories$hu filterCategories = _Translations$libraries$filterCategories$hu._(_root);
 	@override late final _Translations$libraries$sortLabels$hu sortLabels = _Translations$libraries$sortLabels$hu._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$hu extends Translations$videoControl
 	@override String get voSwitchFailed => 'Nem sikerült átváltani a videókimenetet a kép a képben módhoz';
 	@override String get failed => 'Nem sikerült elindítani a kép a képben módot';
 	@override String unknown({required Object error}) => 'Hiba történt: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$hu extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$hu._(TranslationsHu root) : this._root = root, super.internal(root);
-
-	final TranslationsHu _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Böngészés';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsHu {
 			'libraries.noCollections' => 'Nincsenek gyűjtemények ebben a könyvtárban',
 			'libraries.noFoldersFound' => 'Nem találhatók mappák',
 			'libraries.folders' => 'mappák',
-			'libraries.tabs.browse' => 'Böngészés',
 			'libraries.groupings.title' => 'Csoportosítás',
 			'libraries.groupings.all' => 'Összes',
 			'libraries.groupings.movies' => 'Filmek',
@@ -2756,9 +2744,9 @@ extension on TranslationsHu {
 			'metadataEdit.artworkOption' => ({required Object index}) => '${index}. képváltozat',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '${index}. képváltozat, kiválasztva',
 			'metadataEdit.notSet' => 'Nincs beállítva',
+			'metadataEdit.tags' => 'Címkék',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Címkék',
 			'metadataEdit.addTag' => 'Címke hozzáadása',
 			'metadataEdit.genre' => 'Műfaj',
 			'metadataEdit.director' => 'Rendező',

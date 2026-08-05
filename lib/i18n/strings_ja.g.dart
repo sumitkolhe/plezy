@@ -931,7 +931,6 @@ class _Translations$libraries$ja extends Translations$libraries$en {
 	@override String get noCollections => 'このライブラリにコレクションがありません';
 	@override String get noFoldersFound => 'フォルダが見つかりません';
 	@override String get folders => 'フォルダ';
-	@override late final _Translations$libraries$tabs$ja tabs = _Translations$libraries$tabs$ja._(_root);
 	@override late final _Translations$libraries$groupings$ja groupings = _Translations$libraries$groupings$ja._(_root);
 	@override late final _Translations$libraries$filterCategories$ja filterCategories = _Translations$libraries$filterCategories$ja._(_root);
 	@override late final _Translations$libraries$sortLabels$ja sortLabels = _Translations$libraries$sortLabels$ja._(_root);
@@ -1530,16 +1529,6 @@ class _Translations$videoControls$pipErrors$ja extends Translations$videoControl
 	@override String get voSwitchFailed => 'ピクチャーインピクチャーの映像出力切替に失敗しました';
 	@override String get failed => 'ピクチャーインピクチャーの開始に失敗しました';
 	@override String unknown({required Object error}) => 'エラーが発生しました: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$ja extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$ja._(TranslationsJa root) : this._root = root, super.internal(root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'ブラウズ';
 }
 
 // Path: libraries.groupings
@@ -2390,7 +2379,6 @@ extension on TranslationsJa {
 			'libraries.noCollections' => 'このライブラリにコレクションがありません',
 			'libraries.noFoldersFound' => 'フォルダが見つかりません',
 			'libraries.folders' => 'フォルダ',
-			'libraries.tabs.browse' => 'ブラウズ',
 			'libraries.groupings.title' => 'グループ',
 			'libraries.groupings.all' => 'すべて',
 			'libraries.groupings.movies' => '映画',
@@ -2753,9 +2741,9 @@ extension on TranslationsJa {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}、選択済み',
 			'metadataEdit.notSet' => '未設定',
+			'metadataEdit.tags' => 'タグ',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'タグ',
 			'metadataEdit.addTag' => 'タグを追加',
 			'metadataEdit.genre' => 'ジャンル',
 			'metadataEdit.director' => '監督',

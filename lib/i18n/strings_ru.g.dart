@@ -934,7 +934,6 @@ class _Translations$libraries$ru extends Translations$libraries$en {
 	@override String get noCollections => 'В этой библиотеке нет коллекций';
 	@override String get noFoldersFound => 'Папки не найдены';
 	@override String get folders => 'папки';
-	@override late final _Translations$libraries$tabs$ru tabs = _Translations$libraries$tabs$ru._(_root);
 	@override late final _Translations$libraries$groupings$ru groupings = _Translations$libraries$groupings$ru._(_root);
 	@override late final _Translations$libraries$filterCategories$ru filterCategories = _Translations$libraries$filterCategories$ru._(_root);
 	@override late final _Translations$libraries$sortLabels$ru sortLabels = _Translations$libraries$sortLabels$ru._(_root);
@@ -1539,16 +1538,6 @@ class _Translations$videoControls$pipErrors$ru extends Translations$videoControl
 	@override String get voSwitchFailed => 'Не удалось переключить видеовыход для «картинки в картинке»';
 	@override String get failed => 'Не удалось запустить режим «картинка в картинке»';
 	@override String unknown({required Object error}) => 'Произошла ошибка: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$ru extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$ru._(TranslationsRu root) : this._root = root, super.internal(root);
-
-	final TranslationsRu _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Обзор';
 }
 
 // Path: libraries.groupings
@@ -2399,7 +2388,6 @@ extension on TranslationsRu {
 			'libraries.noCollections' => 'В этой библиотеке нет коллекций',
 			'libraries.noFoldersFound' => 'Папки не найдены',
 			'libraries.folders' => 'папки',
-			'libraries.tabs.browse' => 'Обзор',
 			'libraries.groupings.title' => 'Группировка',
 			'libraries.groupings.all' => 'Все',
 			'libraries.groupings.movies' => 'Фильмы',
@@ -2762,9 +2750,9 @@ extension on TranslationsRu {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант обложки ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант обложки ${index}, выбран',
 			'metadataEdit.notSet' => 'Не задано',
+			'metadataEdit.tags' => 'Теги',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Теги',
 			'metadataEdit.addTag' => 'Добавить тег',
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режиссёр',

@@ -932,7 +932,6 @@ class _Translations$libraries$sv extends Translations$libraries$en {
 	@override String get noCollections => 'Inga samlingar i det här biblioteket';
 	@override String get noFoldersFound => 'Inga mappar hittades';
 	@override String get folders => 'mappar';
-	@override late final _Translations$libraries$tabs$sv tabs = _Translations$libraries$tabs$sv._(_root);
 	@override late final _Translations$libraries$groupings$sv groupings = _Translations$libraries$groupings$sv._(_root);
 	@override late final _Translations$libraries$filterCategories$sv filterCategories = _Translations$libraries$filterCategories$sv._(_root);
 	@override late final _Translations$libraries$sortLabels$sv sortLabels = _Translations$libraries$sortLabels$sv._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$sv extends Translations$videoControl
 	@override String get voSwitchFailed => 'Kunde inte byta videoutgång för bild-i-bild';
 	@override String get failed => 'Bild-i-bild kunde inte starta';
 	@override String unknown({required Object error}) => 'Ett fel uppstod: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$sv extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$sv._(TranslationsSv root) : this._root = root, super.internal(root);
-
-	final TranslationsSv _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Bläddra';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsSv {
 			'libraries.noCollections' => 'Inga samlingar i det här biblioteket',
 			'libraries.noFoldersFound' => 'Inga mappar hittades',
 			'libraries.folders' => 'mappar',
-			'libraries.tabs.browse' => 'Bläddra',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alla',
 			'libraries.groupings.movies' => 'Filmer',
@@ -2756,9 +2744,9 @@ extension on TranslationsSv {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Bildalternativ ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Bildalternativ ${index}, valt',
 			'metadataEdit.notSet' => 'Inte angiven',
+			'metadataEdit.tags' => 'Taggar',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Taggar',
 			'metadataEdit.addTag' => 'Lägg till tagg',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Regissör',

@@ -932,7 +932,6 @@ class _Translations$libraries$es extends Translations$libraries$en {
 	@override String get noCollections => 'No hay colecciones en esta biblioteca';
 	@override String get noFoldersFound => 'No se encontraron carpetas';
 	@override String get folders => 'carpetas';
-	@override late final _Translations$libraries$tabs$es tabs = _Translations$libraries$tabs$es._(_root);
 	@override late final _Translations$libraries$groupings$es groupings = _Translations$libraries$groupings$es._(_root);
 	@override late final _Translations$libraries$filterCategories$es filterCategories = _Translations$libraries$filterCategories$es._(_root);
 	@override late final _Translations$libraries$sortLabels$es sortLabels = _Translations$libraries$sortLabels$es._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$es extends Translations$videoControl
 	@override String get voSwitchFailed => 'No se pudo cambiar la salida de video para el modo de imagen en imagen';
 	@override String get failed => 'No se pudo iniciar el modo de imagen en imagen';
 	@override String unknown({required Object error}) => 'Ocurrió un error: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$es extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$es._(TranslationsEs root) : this._root = root, super.internal(root);
-
-	final TranslationsEs _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Explorar';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsEs {
 			'libraries.noCollections' => 'No hay colecciones en esta biblioteca',
 			'libraries.noFoldersFound' => 'No se encontraron carpetas',
 			'libraries.folders' => 'carpetas',
-			'libraries.tabs.browse' => 'Explorar',
 			'libraries.groupings.title' => 'Agrupación',
 			'libraries.groupings.all' => 'Todo',
 			'libraries.groupings.movies' => 'Películas',
@@ -2756,9 +2744,9 @@ extension on TranslationsEs {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opción de imagen ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opción de imagen ${index}, seleccionada',
 			'metadataEdit.notSet' => 'No establecido',
+			'metadataEdit.tags' => 'Etiquetas',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Etiquetas',
 			'metadataEdit.addTag' => 'Añadir etiqueta',
 			'metadataEdit.genre' => 'Género',
 			'metadataEdit.director' => 'Director',

@@ -937,7 +937,6 @@ class _Translations$libraries$az extends Translations$libraries$en {
 	@override String get noCollections => 'Bu kitabxanada kolleksiya yoxdur';
 	@override String get noFoldersFound => 'Qovluq tapılmadı';
 	@override String get folders => 'qovluqlar';
-	@override late final _Translations$libraries$tabs$az tabs = _Translations$libraries$tabs$az._(_root);
 	@override late final _Translations$libraries$groupings$az groupings = _Translations$libraries$groupings$az._(_root);
 	@override late final _Translations$libraries$filterCategories$az filterCategories = _Translations$libraries$filterCategories$az._(_root);
 	@override late final _Translations$libraries$sortLabels$az sortLabels = _Translations$libraries$sortLabels$az._(_root);
@@ -1544,16 +1543,6 @@ class _Translations$videoControls$pipErrors$az extends Translations$videoControl
 	@override String get voSwitchFailed => 'PiP üçün video çıxışı dəyişdirilə bilmədi';
 	@override String get failed => 'PiP rejimi başladılarkən xəta';
 	@override String unknown({required Object error}) => 'Xəta baş verdi: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$az extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$az._(TranslationsAz root) : this._root = root, super.internal(root);
-
-	final TranslationsAz _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Baxış';
 }
 
 // Path: libraries.groupings
@@ -2409,7 +2398,6 @@ extension on TranslationsAz {
 			'libraries.noCollections' => 'Bu kitabxanada kolleksiya yoxdur',
 			'libraries.noFoldersFound' => 'Qovluq tapılmadı',
 			'libraries.folders' => 'qovluqlar',
-			'libraries.tabs.browse' => 'Baxış',
 			'libraries.groupings.title' => 'Qruplaşdırma',
 			'libraries.groupings.all' => 'Hamısı',
 			'libraries.groupings.movies' => 'Kinolar',
@@ -2767,9 +2755,9 @@ extension on TranslationsAz {
 			'metadataEdit.selectLogo' => 'Loqo seç',
 			'metadataEdit.selectSquareArt' => 'Kvadrat şəkil seç',
 			'metadataEdit.fromUrl' => 'URL-dən',
+			'metadataEdit.uploadFile' => 'Fayl yüklə',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.uploadFile' => 'Fayl yüklə',
 			'metadataEdit.enterImageUrl' => 'Şəkil URL-i daxil edin',
 			'metadataEdit.imageUrl' => 'Şəkil URL-i',
 			'metadataEdit.metadataUpdated' => 'Meta-məlumatlar yeniləndi',

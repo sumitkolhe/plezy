@@ -931,7 +931,6 @@ class _Translations$libraries$ko extends Translations$libraries$en {
 	@override String get noCollections => '이 미디어 라이브러리에는 컬렉션이 없습니다';
 	@override String get noFoldersFound => '폴더를 찾을 수 없습니다';
 	@override String get folders => '폴더';
-	@override late final _Translations$libraries$tabs$ko tabs = _Translations$libraries$tabs$ko._(_root);
 	@override late final _Translations$libraries$groupings$ko groupings = _Translations$libraries$groupings$ko._(_root);
 	@override late final _Translations$libraries$filterCategories$ko filterCategories = _Translations$libraries$filterCategories$ko._(_root);
 	@override late final _Translations$libraries$sortLabels$ko sortLabels = _Translations$libraries$sortLabels$ko._(_root);
@@ -1530,16 +1529,6 @@ class _Translations$videoControls$pipErrors$ko extends Translations$videoControl
 	@override String get voSwitchFailed => '화면 속 화면을 위한 비디오 출력 전환에 실패했습니다';
 	@override String get failed => '화면 속 화면 모드를 시작할 수 없습니다';
 	@override String unknown({required Object error}) => '오류가 발생했습니다: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$ko extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$ko._(TranslationsKo root) : this._root = root, super.internal(root);
-
-	final TranslationsKo _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => '찾아보기';
 }
 
 // Path: libraries.groupings
@@ -2390,7 +2379,6 @@ extension on TranslationsKo {
 			'libraries.noCollections' => '이 미디어 라이브러리에는 컬렉션이 없습니다',
 			'libraries.noFoldersFound' => '폴더를 찾을 수 없습니다',
 			'libraries.folders' => '폴더',
-			'libraries.tabs.browse' => '찾아보기',
 			'libraries.groupings.title' => '그룹',
 			'libraries.groupings.all' => '전체',
 			'libraries.groupings.movies' => '영화',
@@ -2753,9 +2741,9 @@ extension on TranslationsKo {
 			'metadataEdit.artworkOption' => ({required Object index}) => '아트워크 옵션 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '아트워크 옵션 ${index}, 선택됨',
 			'metadataEdit.notSet' => '설정되지 않음',
+			'metadataEdit.tags' => '태그',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => '태그',
 			'metadataEdit.addTag' => '태그 추가',
 			'metadataEdit.genre' => '장르',
 			'metadataEdit.director' => '감독',

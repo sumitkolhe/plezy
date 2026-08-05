@@ -932,7 +932,6 @@ class _Translations$libraries$it extends Translations$libraries$en {
 	@override String get noCollections => 'Nessuna raccolta in questa libreria';
 	@override String get noFoldersFound => 'Nessuna cartella trovata';
 	@override String get folders => 'cartelle';
-	@override late final _Translations$libraries$tabs$it tabs = _Translations$libraries$tabs$it._(_root);
 	@override late final _Translations$libraries$groupings$it groupings = _Translations$libraries$groupings$it._(_root);
 	@override late final _Translations$libraries$filterCategories$it filterCategories = _Translations$libraries$filterCategories$it._(_root);
 	@override late final _Translations$libraries$sortLabels$it sortLabels = _Translations$libraries$sortLabels$it._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$it extends Translations$videoControl
 	@override String get voSwitchFailed => 'Impossibile cambiare l\'uscita video per Picture-in-Picture';
 	@override String get failed => 'Impossibile avviare la modalità Picture-in-Picture';
 	@override String unknown({required Object error}) => 'Si è verificato un errore: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$it extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$it._(TranslationsIt root) : this._root = root, super.internal(root);
-
-	final TranslationsIt _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Esplora';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsIt {
 			'libraries.noCollections' => 'Nessuna raccolta in questa libreria',
 			'libraries.noFoldersFound' => 'Nessuna cartella trovata',
 			'libraries.folders' => 'cartelle',
-			'libraries.tabs.browse' => 'Esplora',
 			'libraries.groupings.title' => 'Raggruppa per',
 			'libraries.groupings.all' => 'Tutti',
 			'libraries.groupings.movies' => 'Film',
@@ -2756,9 +2744,9 @@ extension on TranslationsIt {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opzione immagine ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opzione immagine ${index}, selezionata',
 			'metadataEdit.notSet' => 'Non impostato',
+			'metadataEdit.tags' => 'Tag',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tag',
 			'metadataEdit.addTag' => 'Aggiungi tag',
 			'metadataEdit.genre' => 'Genere',
 			'metadataEdit.director' => 'Regista',

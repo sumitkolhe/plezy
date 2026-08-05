@@ -932,7 +932,6 @@ class _Translations$libraries$da extends Translations$libraries$en {
 	@override String get noCollections => 'Ingen samlinger i dette bibliotek';
 	@override String get noFoldersFound => 'Ingen mapper fundet';
 	@override String get folders => 'mapper';
-	@override late final _Translations$libraries$tabs$da tabs = _Translations$libraries$tabs$da._(_root);
 	@override late final _Translations$libraries$groupings$da groupings = _Translations$libraries$groupings$da._(_root);
 	@override late final _Translations$libraries$filterCategories$da filterCategories = _Translations$libraries$filterCategories$da._(_root);
 	@override late final _Translations$libraries$sortLabels$da sortLabels = _Translations$libraries$sortLabels$da._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$da extends Translations$videoControl
 	@override String get voSwitchFailed => 'Kunne ikke skifte videooutput til billede-i-billede';
 	@override String get failed => 'Billede-i-billede kunne ikke starte';
 	@override String unknown({required Object error}) => 'Der opstod en fejl: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$da extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$da._(TranslationsDa root) : this._root = root, super.internal(root);
-
-	final TranslationsDa _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Gennemse';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsDa {
 			'libraries.noCollections' => 'Ingen samlinger i dette bibliotek',
 			'libraries.noFoldersFound' => 'Ingen mapper fundet',
 			'libraries.folders' => 'mapper',
-			'libraries.tabs.browse' => 'Gennemse',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Film',
@@ -2756,9 +2744,9 @@ extension on TranslationsDa {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikvalg ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikvalg ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke indstillet',
+			'metadataEdit.tags' => 'Tags',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tilføj tag',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Instruktør',

@@ -937,7 +937,6 @@ class _Translations$libraries$tr extends Translations$libraries$en {
 	@override String get noCollections => 'Bu kitaplıkta koleksiyon yok';
 	@override String get noFoldersFound => 'Klasör bulunamadı';
 	@override String get folders => 'klasörler';
-	@override late final _Translations$libraries$tabs$tr tabs = _Translations$libraries$tabs$tr._(_root);
 	@override late final _Translations$libraries$groupings$tr groupings = _Translations$libraries$groupings$tr._(_root);
 	@override late final _Translations$libraries$filterCategories$tr filterCategories = _Translations$libraries$filterCategories$tr._(_root);
 	@override late final _Translations$libraries$sortLabels$tr sortLabels = _Translations$libraries$sortLabels$tr._(_root);
@@ -1544,16 +1543,6 @@ class _Translations$videoControls$pipErrors$tr extends Translations$videoControl
 	@override String get voSwitchFailed => 'Pencere içinde pencere için video çıkışı değiştirilemedi';
 	@override String get failed => 'Pencere içinde pencere başlatılamadı';
 	@override String unknown({required Object error}) => 'Bir hata oluştu: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$tr extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$tr._(TranslationsTr root) : this._root = root, super.internal(root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Göz At';
 }
 
 // Path: libraries.groupings
@@ -2409,7 +2398,6 @@ extension on TranslationsTr {
 			'libraries.noCollections' => 'Bu kitaplıkta koleksiyon yok',
 			'libraries.noFoldersFound' => 'Klasör bulunamadı',
 			'libraries.folders' => 'klasörler',
-			'libraries.tabs.browse' => 'Göz At',
 			'libraries.groupings.title' => 'Gruplama',
 			'libraries.groupings.all' => 'Tümü',
 			'libraries.groupings.movies' => 'Filmler',
@@ -2767,9 +2755,9 @@ extension on TranslationsTr {
 			'metadataEdit.selectLogo' => 'Logo Seç',
 			'metadataEdit.selectSquareArt' => 'Kare Görsel Seç',
 			'metadataEdit.fromUrl' => 'URL\'den',
+			'metadataEdit.uploadFile' => 'Dosya Yükle',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.uploadFile' => 'Dosya Yükle',
 			'metadataEdit.enterImageUrl' => 'Görsel URL\'si girin',
 			'metadataEdit.imageUrl' => 'Görsel URL\'si',
 			'metadataEdit.metadataUpdated' => 'Meta veriler güncellendi',

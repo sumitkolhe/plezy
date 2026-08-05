@@ -5,6 +5,7 @@ import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_library.dart';
 import 'package:harbor/screens/libraries/library_quick_picker_sheet.dart';
+import 'package:harbor/screens/libraries/library_selection.dart';
 
 void main() {
   testWidgets('groups libraries by server and reports selection', (tester) async {
@@ -26,7 +27,7 @@ void main() {
         serverName: 'Jellyfin Server',
       ),
     ];
-    String? selectedKey;
+    LibrarySelection? selected;
 
     await tester.pumpWidget(
       MaterialApp(
@@ -38,7 +39,7 @@ void main() {
             isLoading: false,
             groupByServer: true,
             emptyMessage: 'No libraries',
-            onSelected: (key) => selectedKey = key,
+            onSelected: (value) => selected = value,
           ),
         ),
       ),
@@ -50,7 +51,8 @@ void main() {
     expect(find.text('Shows'), findsOneWidget);
 
     await tester.tap(find.text('Movies'));
-    expect(selectedKey, libraries.first.globalKey);
+    expect(selected?.libraryGlobalKey, libraries.first.globalKey);
+    expect(selected?.missing, isFalse);
   });
 
   testWidgets('shows duplicate library server subtitles without grouping', (tester) async {

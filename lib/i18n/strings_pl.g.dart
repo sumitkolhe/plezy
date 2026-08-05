@@ -934,7 +934,6 @@ class _Translations$libraries$pl extends Translations$libraries$en {
 	@override String get noCollections => 'Brak kolekcji w tej bibliotece';
 	@override String get noFoldersFound => 'Nie znaleziono folderów';
 	@override String get folders => 'foldery';
-	@override late final _Translations$libraries$tabs$pl tabs = _Translations$libraries$tabs$pl._(_root);
 	@override late final _Translations$libraries$groupings$pl groupings = _Translations$libraries$groupings$pl._(_root);
 	@override late final _Translations$libraries$filterCategories$pl filterCategories = _Translations$libraries$filterCategories$pl._(_root);
 	@override late final _Translations$libraries$sortLabels$pl sortLabels = _Translations$libraries$sortLabels$pl._(_root);
@@ -1539,16 +1538,6 @@ class _Translations$videoControls$pipErrors$pl extends Translations$videoControl
 	@override String get voSwitchFailed => 'Nie udało się przełączyć wyjścia wideo dla trybu obraz w obrazie';
 	@override String get failed => 'Nie udało się uruchomić trybu obraz w obrazie';
 	@override String unknown({required Object error}) => 'Wystąpił błąd: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$pl extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$pl._(TranslationsPl root) : this._root = root, super.internal(root);
-
-	final TranslationsPl _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Przeglądaj';
 }
 
 // Path: libraries.groupings
@@ -2399,7 +2388,6 @@ extension on TranslationsPl {
 			'libraries.noCollections' => 'Brak kolekcji w tej bibliotece',
 			'libraries.noFoldersFound' => 'Nie znaleziono folderów',
 			'libraries.folders' => 'foldery',
-			'libraries.tabs.browse' => 'Przeglądaj',
 			'libraries.groupings.title' => 'Grupowanie',
 			'libraries.groupings.all' => 'Wszystkie',
 			'libraries.groupings.movies' => 'Filmy',
@@ -2762,9 +2750,9 @@ extension on TranslationsPl {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opcja grafiki ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opcja grafiki ${index}, wybrana',
 			'metadataEdit.notSet' => 'Nie ustawiono',
+			'metadataEdit.tags' => 'Tagi',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tagi',
 			'metadataEdit.addTag' => 'Dodaj tag',
 			'metadataEdit.genre' => 'Gatunek',
 			'metadataEdit.director' => 'Reżyser',

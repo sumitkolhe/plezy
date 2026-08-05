@@ -931,7 +931,6 @@ class Translations$libraries$zh extends Translations$libraries$en {
 	@override String get noCollections => '此媒体库中没有合集';
 	@override String get noFoldersFound => '未找到文件夹';
 	@override String get folders => '文件夹';
-	@override late final Translations$libraries$tabs$zh tabs = Translations$libraries$tabs$zh.internal(_root);
 	@override late final Translations$libraries$groupings$zh groupings = Translations$libraries$groupings$zh.internal(_root);
 	@override late final Translations$libraries$filterCategories$zh filterCategories = Translations$libraries$filterCategories$zh.internal(_root);
 	@override late final Translations$libraries$sortLabels$zh sortLabels = Translations$libraries$sortLabels$zh.internal(_root);
@@ -1530,16 +1529,6 @@ class Translations$videoControls$pipErrors$zh extends Translations$videoControls
 	@override String get voSwitchFailed => '无法切换画中画的视频输出';
 	@override String get failed => '画中画启动失败';
 	@override String unknown({required Object error}) => '发生错误：${error}';
-}
-
-// Path: libraries.tabs
-class Translations$libraries$tabs$zh extends Translations$libraries$tabs$en {
-	Translations$libraries$tabs$zh.internal(TranslationsZh root) : this._root = root, super.internal(root);
-
-	final TranslationsZh _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => '浏览';
 }
 
 // Path: libraries.groupings
@@ -2390,7 +2379,6 @@ extension on TranslationsZh {
 			'libraries.noCollections' => '此媒体库中没有合集',
 			'libraries.noFoldersFound' => '未找到文件夹',
 			'libraries.folders' => '文件夹',
-			'libraries.tabs.browse' => '浏览',
 			'libraries.groupings.title' => '分组',
 			'libraries.groupings.all' => '全部',
 			'libraries.groupings.movies' => '电影',
@@ -2753,9 +2741,9 @@ extension on TranslationsZh {
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面图片选项 ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面图片选项 ${index}，已选择',
 			'metadataEdit.notSet' => '未设置',
+			'metadataEdit.tags' => '标签',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => '标签',
 			'metadataEdit.addTag' => '添加标签',
 			'metadataEdit.genre' => '类型',
 			'metadataEdit.director' => '导演',

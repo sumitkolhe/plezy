@@ -932,7 +932,6 @@ class _Translations$libraries$de extends Translations$libraries$en {
 	@override String get noCollections => 'Keine Sammlungen in dieser Mediathek';
 	@override String get noFoldersFound => 'Keine Ordner gefunden';
 	@override String get folders => 'Ordner';
-	@override late final _Translations$libraries$tabs$de tabs = _Translations$libraries$tabs$de._(_root);
 	@override late final _Translations$libraries$groupings$de groupings = _Translations$libraries$groupings$de._(_root);
 	@override late final _Translations$libraries$filterCategories$de filterCategories = _Translations$libraries$filterCategories$de._(_root);
 	@override late final _Translations$libraries$sortLabels$de sortLabels = _Translations$libraries$sortLabels$de._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$de extends Translations$videoControl
 	@override String get voSwitchFailed => 'Videoausgabe für Bild-in-Bild konnte nicht umgeschaltet werden';
 	@override String get failed => 'Bild-in-Bild konnte nicht gestartet werden';
 	@override String unknown({required Object error}) => 'Ein Fehler ist aufgetreten: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$de extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$de._(TranslationsDe root) : this._root = root, super.internal(root);
-
-	final TranslationsDe _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Durchsuchen';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsDe {
 			'libraries.noCollections' => 'Keine Sammlungen in dieser Mediathek',
 			'libraries.noFoldersFound' => 'Keine Ordner gefunden',
 			'libraries.folders' => 'Ordner',
-			'libraries.tabs.browse' => 'Durchsuchen',
 			'libraries.groupings.title' => 'Gruppierung',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Filme',
@@ -2756,9 +2744,9 @@ extension on TranslationsDe {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikoption ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikoption ${index}, ausgewählt',
 			'metadataEdit.notSet' => 'Nicht festgelegt',
+			'metadataEdit.tags' => 'Tags',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tag hinzufügen',
 			'metadataEdit.genre' => 'Genre',
 			'metadataEdit.director' => 'Regisseur',

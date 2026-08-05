@@ -932,7 +932,6 @@ class _Translations$libraries$bg extends Translations$libraries$en {
 	@override String get noCollections => 'Няма колекции в тази библиотека';
 	@override String get noFoldersFound => 'Не са намерени папки';
 	@override String get folders => 'папки';
-	@override late final _Translations$libraries$tabs$bg tabs = _Translations$libraries$tabs$bg._(_root);
 	@override late final _Translations$libraries$groupings$bg groupings = _Translations$libraries$groupings$bg._(_root);
 	@override late final _Translations$libraries$filterCategories$bg filterCategories = _Translations$libraries$filterCategories$bg._(_root);
 	@override late final _Translations$libraries$sortLabels$bg sortLabels = _Translations$libraries$sortLabels$bg._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$bg extends Translations$videoControl
 	@override String get voSwitchFailed => 'Неуспешна смяна на видео изхода за режим картина в картината';
 	@override String get failed => 'Режимът картина в картината не успя да стартира';
 	@override String unknown({required Object error}) => 'Възникна грешка: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$bg extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$bg._(TranslationsBg root) : this._root = root, super.internal(root);
-
-	final TranslationsBg _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Преглед';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsBg {
 			'libraries.noCollections' => 'Няма колекции в тази библиотека',
 			'libraries.noFoldersFound' => 'Не са намерени папки',
 			'libraries.folders' => 'папки',
-			'libraries.tabs.browse' => 'Преглед',
 			'libraries.groupings.title' => 'Групиране',
 			'libraries.groupings.all' => 'Всички',
 			'libraries.groupings.movies' => 'Филми',
@@ -2756,9 +2744,9 @@ extension on TranslationsBg {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант за обложка ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант за обложка ${index}, избран',
 			'metadataEdit.notSet' => 'Не е зададено',
+			'metadataEdit.tags' => 'Тагове',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Тагове',
 			'metadataEdit.addTag' => 'Добави таг',
 			'metadataEdit.genre' => 'Жанр',
 			'metadataEdit.director' => 'Режисьор',

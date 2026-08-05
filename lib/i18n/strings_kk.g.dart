@@ -937,7 +937,6 @@ class _Translations$libraries$kk extends Translations$libraries$en {
 	@override String get noCollections => 'Бұл кітапханада топтамалар жоқ';
 	@override String get noFoldersFound => 'Қапшықтар табылмады';
 	@override String get folders => 'қапшықтар';
-	@override late final _Translations$libraries$tabs$kk tabs = _Translations$libraries$tabs$kk._(_root);
 	@override late final _Translations$libraries$groupings$kk groupings = _Translations$libraries$groupings$kk._(_root);
 	@override late final _Translations$libraries$filterCategories$kk filterCategories = _Translations$libraries$filterCategories$kk._(_root);
 	@override late final _Translations$libraries$sortLabels$kk sortLabels = _Translations$libraries$sortLabels$kk._(_root);
@@ -1544,16 +1543,6 @@ class _Translations$videoControls$pipErrors$kk extends Translations$videoControl
 	@override String get voSwitchFailed => 'PiP үшін видео шығысын ауыстыру мүмкін болмады';
 	@override String get failed => 'PiP режимін іске қосу қатесі';
 	@override String unknown({required Object error}) => 'Қате орын алды: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$kk extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$kk._(TranslationsKk root) : this._root = root, super.internal(root);
-
-	final TranslationsKk _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Шолу';
 }
 
 // Path: libraries.groupings
@@ -2409,7 +2398,6 @@ extension on TranslationsKk {
 			'libraries.noCollections' => 'Бұл кітапханада топтамалар жоқ',
 			'libraries.noFoldersFound' => 'Қапшықтар табылмады',
 			'libraries.folders' => 'қапшықтар',
-			'libraries.tabs.browse' => 'Шолу',
 			'libraries.groupings.title' => 'Топтау',
 			'libraries.groupings.all' => 'Барлығы',
 			'libraries.groupings.movies' => 'Фильмдер',
@@ -2767,9 +2755,9 @@ extension on TranslationsKk {
 			'metadataEdit.selectLogo' => 'Логотипті таңдау',
 			'metadataEdit.selectSquareArt' => 'Шаршы суретті таңдау',
 			'metadataEdit.fromUrl' => 'URL арқылы',
+			'metadataEdit.uploadFile' => 'Файлды жүктеу',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.uploadFile' => 'Файлды жүктеу',
 			'metadataEdit.enterImageUrl' => 'Сурет URL-ін енгізіңіз',
 			'metadataEdit.imageUrl' => 'Сурет URL-і',
 			'metadataEdit.metadataUpdated' => 'Метадеректер жаңартылды',

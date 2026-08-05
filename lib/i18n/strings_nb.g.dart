@@ -932,7 +932,6 @@ class _Translations$libraries$nb extends Translations$libraries$en {
 	@override String get noCollections => 'Ingen samlinger i dette biblioteket';
 	@override String get noFoldersFound => 'Ingen mapper funnet';
 	@override String get folders => 'mapper';
-	@override late final _Translations$libraries$tabs$nb tabs = _Translations$libraries$tabs$nb._(_root);
 	@override late final _Translations$libraries$groupings$nb groupings = _Translations$libraries$groupings$nb._(_root);
 	@override late final _Translations$libraries$filterCategories$nb filterCategories = _Translations$libraries$filterCategories$nb._(_root);
 	@override late final _Translations$libraries$sortLabels$nb sortLabels = _Translations$libraries$sortLabels$nb._(_root);
@@ -1533,16 +1532,6 @@ class _Translations$videoControls$pipErrors$nb extends Translations$videoControl
 	@override String get voSwitchFailed => 'Kunne ikke bytte videoutgang for bilde-i-bilde';
 	@override String get failed => 'Bilde-i-bilde kunne ikke starte';
 	@override String unknown({required Object error}) => 'En feil oppstod: ${error}';
-}
-
-// Path: libraries.tabs
-class _Translations$libraries$tabs$nb extends Translations$libraries$tabs$en {
-	_Translations$libraries$tabs$nb._(TranslationsNb root) : this._root = root, super.internal(root);
-
-	final TranslationsNb _root; // ignore: unused_field
-
-	// Translations
-	@override String get browse => 'Bla gjennom';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2382,6 @@ extension on TranslationsNb {
 			'libraries.noCollections' => 'Ingen samlinger i dette biblioteket',
 			'libraries.noFoldersFound' => 'Ingen mapper funnet',
 			'libraries.folders' => 'mapper',
-			'libraries.tabs.browse' => 'Bla gjennom',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Filmer',
@@ -2756,9 +2744,9 @@ extension on TranslationsNb {
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}',
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke angitt',
+			'metadataEdit.tags' => 'Tagger',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.tags' => 'Tagger',
 			'metadataEdit.addTag' => 'Legg til tagg',
 			'metadataEdit.genre' => 'Sjanger',
 			'metadataEdit.director' => 'Regissør',
