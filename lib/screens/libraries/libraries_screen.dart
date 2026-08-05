@@ -138,8 +138,25 @@ class _LibrariesScreenState extends State<LibrariesScreen>
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
+      _services = context.read<ManagedServicesProvider>()..addListener(_recomputeVisibleTabs);
       _initializeWithLibraries();
     });
+  }
+
+  ManagedServicesProvider? _services;
+
+  /// The tab row is computed when a library loads, but the connections it asks
+  /// about are restored from storage a moment later — so on a cold start the
+  /// Missing tab was decided against before its instance existed, and nothing
+  /// asked again.
+  void _recomputeVisibleTabs() {
+    if (!mounted) return;
+    final key = _selectedLibraryGlobalKey;
+    final services = _services;
+    if (key == null || services == null) return;
+    final library = context.read<LibrariesProvider>().libraries.where((l) => l.globalKey == key).firstOrNull;
+    if (library == null) return;
+    setState(() => _updateVisibleTabs(_getVisibleTabs(library, services)));
   }
 
   /// Initialize the screen with libraries from the provider.
@@ -336,6 +353,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
 
   @override
   void dispose() {
+    _services?.removeListener(_recomputeVisibleTabs);
     _outerScrollController.dispose();
     for (final node in _tabFocusNodes) {
       node.dispose();

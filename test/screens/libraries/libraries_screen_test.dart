@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
+import 'package:harbor/i18n/strings.g.dart';
+import 'package:harbor/models/arr/managed_service.dart';
 import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_library.dart';
@@ -49,6 +51,24 @@ void main() {
   });
 
   tearDown(() => TvDetectionService.debugSetAppleTVOverride(null));
+
+  testWidgets('a Radarr restored after the tabs were decided still gets its pill', (tester) async {
+    // The tab row is computed when a library loads; connections come back from
+    // storage a moment later. Deciding once left Missing off for the session.
+    final harness = await _Harness.create(_GatedPreferences({}));
+    addTearDown(harness.dispose);
+    await harness.pump(tester);
+    await tester.pumpAndSettle();
+
+    expect(find.text(t.libraries.tabs.missing), findsNothing);
+
+    harness.managedServices.debugAddServiceForTesting(
+      const ManagedServiceConnection(kind: ManagedServiceKind.radarr, baseUrl: 'http://radarr', secret: 'k'),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text(t.libraries.tabs.missing), findsOneWidget);
+  });
 
   testWidgets('stale saved tab cannot replace the current library tab', (tester) async {
     final preferences = _GatedPreferences({
