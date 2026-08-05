@@ -515,7 +515,14 @@ class DataAggregationService {
 
   /// Search across all online servers (Plex + Jellyfin). Per-server outcomes
   /// distinguish authoritative empty results from failed or cancelled legs.
-  Future<SearchAggregationResult> searchAcrossServers(String query, {int? limit, AbortController? abort}) async {
+  /// [hiddenLibraryKeys] are global keys, as the profile stores them; each
+  /// server is asked only about its own.
+  Future<SearchAggregationResult> searchAcrossServers(
+    String query, {
+    int? limit,
+    AbortController? abort,
+    Set<String>? hiddenLibraryKeys,
+  }) async {
     if (query.trim().isEmpty) {
       return (
         items: const <MediaItem>[],
@@ -544,7 +551,12 @@ class DataAggregationService {
       failureMessage: (serverId) => 'Search failed on $serverId',
       fetch: (serverId, client) async {
         final stopwatch = Stopwatch()..start();
-        final items = await client.searchItems(query, limit: fetchLimit, abort: abort);
+        final items = await client.searchItems(
+          query,
+          limit: fetchLimit,
+          abort: abort,
+          excludedLibraryIds: _hiddenLibraryIdsFor(serverId, hiddenLibraryKeys),
+        );
         appLogger.i(
           'Search completed on $serverId in ${stopwatch.elapsedMilliseconds}ms: '
           '${items.length} results ${_searchKindCounts(items)}',
@@ -567,6 +579,19 @@ class DataAggregationService {
       cancelledServerIds: fetched.cancelledServerIds,
       failedServerIds: fetched.failedServerIds,
     );
+  }
+
+  /// The hidden keys for one server, as bare library ids.
+  ///
+  /// A profile stores `serverId:libraryId`; a client only knows the second half.
+  Set<String> _hiddenLibraryIdsFor(String serverId, Set<String>? hiddenKeys) {
+    if (hiddenKeys == null || hiddenKeys.isEmpty) return const {};
+    final ids = <String>{};
+    for (final key in hiddenKeys) {
+      final parsed = parseGlobalKey(key);
+      if (parsed != null && '${parsed.serverId}' == serverId) ids.add(parsed.ratingKey);
+    }
+    return ids;
   }
 
   /// Reverse external-id lookup fanned out to every online server (see

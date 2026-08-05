@@ -61,6 +61,10 @@ LibraryPage<T> _pagedItems<T>(
 /// Heavier fields (`MediaSources`, `People`, `Genres`, `Tags`, `Studios`,
 /// `Taglines`, `ProviderIds`, `Chapters`) stay in [_detailFields] — together
 /// they added seconds to large-library pages on small home servers.
+/// What global search surfaces. Episodes are included so a single episode can
+/// be found by name.
+const _searchItemTypes = 'Movie,Series,Episode,MusicAlbum,Audio';
+
 const _browseFields = 'RecursiveItemCount,ChildCount,UserData,PremiereDate,OriginalTitle,SortName,Overview';
 
 /// Existing episode-row requests can show Plex-style quality labels when the
@@ -191,6 +195,14 @@ mixin _JellyfinBrowseMethods on _JellyfinClientInternals {
   // item" calls and `/Items?userId=...` for the generic list and resume
   // endpoints. We mirror that exactly so requests hash the same way against
   // proxy rules and rate limiters as a stock Jellyfin app.
+
+  /// Views as of the last load, reused by scoped search.
+  ///
+  /// Scoped search runs on every debounced keystroke and `/Views` sits serially
+  /// in front of its per-library legs, so refetching it each pass is pure added
+  /// latency. Libraries are loaded before the content tabs refresh, so this is
+  /// already warm by the time anyone can type, and every later load replaces it.
+  List<MediaLibrary>? _loadedLibraryViews;
 
   @override
   Future<List<MediaLibrary>> fetchLibraries() async {
@@ -1101,7 +1113,62 @@ mixin _JellyfinBrowseMethods on _JellyfinClientInternals {
   }
 
   @override
-  Future<List<MediaItem>> searchItems(String query, {int limit = 100, AbortController? abort}) async {
+  Future<List<MediaItem>> searchItems(
+    String query, {
+    int limit = 100,
+    AbortController? abort,
+    Set<String> excludedLibraryIds = const {},
+  }) async {
+    if (excludedLibraryIds.isEmpty) return _searchEverywhere(query, limit: limit, abort: abort);
+
+    // A Jellyfin search row cannot be attributed to a library after the fact:
+    // there is no library field, `ParentId` resolves to a season or physical
+    // folder rather than the owning CollectionFolder, and `Path` needs
+    // /Library/VirtualFolders, which answers 403 to a non-admin. Verified
+    // against 10.11.11: /Items takes no ancestorIds and cannot exclude by
+    // ancestor either. So a hidden library can only be left out by not asking
+    // it — one request per visible library.
+    final views = _loadedLibraryViews ?? await fetchLibraries();
+    abort?.throwIfAborted();
+    final visible = views.where((view) => !excludedLibraryIds.contains(view.id)).toList();
+    // Fail closed: searching everything would surface what the user hid.
+    if (visible.isEmpty) return const [];
+
+    final legs = <Future<List<Map<String, dynamic>>>>[];
+    for (final view in visible) {
+      legs.add(
+        _fetchItemsArray('/Items', {
+          'userId': connection.userId,
+          'parentId': view.id,
+          'SearchTerm': query,
+          'Recursive': 'true',
+          'Limit': limit.toString(),
+          'IncludeItemTypes': _searchItemTypes,
+          'Fields': _browseFields,
+          ...jellyfinImageQueryParameters,
+        }, abort: abort),
+      );
+      // Tag-only artists never match `/Items?SearchTerm=`, so a music library
+      // needs the dedicated endpoint as well. Best-effort, as when unscoped.
+      if (view.kind == MediaKind.artist) {
+        legs.add(
+          _safeFetchItemsArray('/Artists', {
+            'userId': connection.userId,
+            'parentId': view.id,
+            'searchTerm': query,
+            'Limit': limit.toString(),
+            ...jellyfinImageQueryParameters,
+          }, abort: abort),
+        );
+      }
+    }
+
+    final results = await Future.wait(legs);
+    abort?.throwIfAborted();
+    return _mapItems([for (final leg in results) ...leg]);
+  }
+
+  Future<List<MediaItem>> _searchEverywhere(String query, {required int limit, AbortController? abort}) async {
     // Artists come from the dedicated /Artists endpoint: `/Items?SearchTerm=`
     // only matches folder-derived MusicArtist rows (under folder names), so
     // tag-only artists would never appear in search. The artists leg is
@@ -1112,7 +1179,7 @@ mixin _JellyfinBrowseMethods on _JellyfinClientInternals {
         'SearchTerm': query,
         'Recursive': 'true',
         'Limit': limit.toString(),
-        'IncludeItemTypes': 'Movie,Series,Episode,MusicAlbum,Audio',
+        'IncludeItemTypes': _searchItemTypes,
         'Fields': _browseFields,
         ...jellyfinImageQueryParameters,
       }, abort: abort),

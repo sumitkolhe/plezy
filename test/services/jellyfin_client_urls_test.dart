@@ -4279,4 +4279,72 @@ void main() {
       await expectLater(probe({'Items': []}, status: 500), throwsA(isA<MediaServerHttpException>()));
     });
   });
+
+  group('searchItems scoping', () {
+    test('asks each visible library and never the hidden one', () async {
+      // A Jellyfin search row carries nothing that names its library, so a
+      // hidden one can only be left out by not asking it.
+      final asked = <String?>[];
+      final client = JellyfinClient.forTesting(
+        connection: _conn(),
+        httpClient: MockClient((req) async {
+          if (req.url.path.endsWith('/Views')) {
+            return http.Response(
+              jsonEncode({
+                'Items': [
+                  {'Id': 'lib-movies', 'Name': 'Movies', 'CollectionType': 'movies', 'Type': 'CollectionFolder'},
+                  {'Id': 'lib-folders', 'Name': 'Folders', 'CollectionType': 'folders', 'Type': 'CollectionFolder'},
+                ],
+              }),
+              200,
+              headers: {'content-type': 'application/json'},
+            );
+          }
+          asked.add(req.url.queryParameters['parentId']);
+          return http.Response(jsonEncode({'Items': <Object>[]}), 200, headers: {'content-type': 'application/json'});
+        }),
+      );
+      addTearDown(client.close);
+
+      await client.searchItems('dune', excludedLibraryIds: {'lib-folders'});
+
+      expect(asked, ['lib-movies']);
+    });
+
+    test('returns nothing rather than everything when the views cannot be read', () async {
+      // Failing open would surface exactly what the user hid.
+      final client = JellyfinClient.forTesting(
+        connection: _conn(),
+        httpClient: MockClient((req) async {
+          if (req.url.path.endsWith('/Views')) return http.Response('nope', 500);
+          fail('must not search after failing to learn the libraries');
+        }),
+      );
+      addTearDown(client.close);
+
+      await expectLater(
+        client.searchItems('dune', excludedLibraryIds: {'lib-folders'}),
+        throwsA(isA<MediaServerHttpException>()),
+      );
+    });
+
+    test('with nothing hidden it stays one request across every library', () async {
+      var requests = 0;
+      final client = JellyfinClient.forTesting(
+        connection: _conn(),
+        httpClient: MockClient((req) async {
+          if (req.url.path.endsWith('/Artists')) {
+            return http.Response(jsonEncode({'Items': <Object>[]}), 200, headers: {'content-type': 'application/json'});
+          }
+          requests++;
+          expect(req.url.queryParameters.containsKey('parentId'), isFalse);
+          return http.Response(jsonEncode({'Items': <Object>[]}), 200, headers: {'content-type': 'application/json'});
+        }),
+      );
+      addTearDown(client.close);
+
+      await client.searchItems('dune');
+      expect(requests, 1);
+    });
+  });
 }

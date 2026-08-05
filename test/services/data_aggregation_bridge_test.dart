@@ -60,7 +60,12 @@ class _LibrariesClient implements MediaServerClient {
   }
 
   @override
-  Future<List<MediaItem>> searchItems(String query, {int limit = 100, AbortController? abort}) async {
+  Future<List<MediaItem>> searchItems(
+    String query, {
+    int limit = 100,
+    AbortController? abort,
+    Set<String> excludedLibraryIds = const {},
+  }) async {
     abort?.throwIfAborted();
     if (searchError != null) throw searchError!;
     return searchResults;

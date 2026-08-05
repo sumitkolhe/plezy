@@ -1,3 +1,5 @@
+import '../providers/hidden_libraries_provider.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
@@ -44,10 +46,32 @@ class _SearchScreenState extends State<SearchScreen>
   AbortController? _activeSearchAbort;
   ({String query, SearchAggregationResult result})? _pendingSearchOutcome;
 
+  HiddenLibrariesProvider? _hiddenLibraries;
+
   @override
   void initState() {
     super.initState();
     FocusUtils.requestFocusAfterBuild(this, searchFocusNode);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      // Attached after the first frame so hydrating the provider cannot race the
+      // first query into running twice.
+      _hiddenLibraries = context.read<HiddenLibrariesProvider>()..addListener(_onHiddenLibrariesChanged);
+    });
+  }
+
+  @override
+  void dispose() {
+    _hiddenLibraries?.removeListener(_onHiddenLibrariesChanged);
+    super.dispose();
+  }
+
+  /// Hiding or unhiding a library while results are on screen changes what the
+  /// answer should be, and the query is the only place that can honour it.
+  void _onHiddenLibrariesChanged() {
+    final query = searchController.text.trim();
+    if (query.isEmpty) return;
+    unawaited(runSearch(query));
   }
 
   @override
@@ -63,7 +87,13 @@ class _SearchScreenState extends State<SearchScreen>
     final abort = AbortController();
     _activeSearchAbort = abort;
     try {
-      final result = await multiServerProvider.aggregationService.searchAcrossServers(query, abort: abort);
+      final result = await multiServerProvider.aggregationService.searchAcrossServers(
+        query,
+        abort: abort,
+        // The held reference, not context: this await can outlive the tree, and
+        // a disposed one has no provider to look up.
+        hiddenLibraryKeys: _hiddenLibraries?.hiddenLibraryKeys,
+      );
       abort.throwIfAborted();
       if (result.succeededServerIds.isEmpty && result.failedServerIds.isNotEmpty) {
         throw const _SearchUnavailableException();

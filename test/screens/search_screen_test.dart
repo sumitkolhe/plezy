@@ -15,6 +15,7 @@ import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_server_client.dart';
 import 'package:harbor/mixins/refreshable.dart';
+import 'package:harbor/providers/hidden_libraries_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/search_screen.dart';
 import 'package:harbor/services/multi_server_manager.dart';
@@ -56,9 +57,15 @@ void main() {
       serverName: 'Server',
     );
 
+    final hidden = HiddenLibrariesProvider();
+    addTearDown(hidden.dispose);
+
     await tester.pumpWidget(
       TranslationProvider(
-        child: MaterialApp(home: SearchScreen(key: key)),
+        child: ChangeNotifierProvider<HiddenLibrariesProvider>.value(
+          value: hidden,
+          child: MaterialApp(home: SearchScreen(key: key)),
+        ),
       ),
     );
 
@@ -404,11 +411,18 @@ Future<(_FakeMediaServerClient, GlobalKey<State<SearchScreen>>)> _pumpTvSearchSc
   final provider = testMultiServerProvider(manager);
   addTearDown(provider.dispose);
 
+  final hiddenLibraries = HiddenLibrariesProvider();
+  addTearDown(hiddenLibraries.dispose);
+
   final key = GlobalKey<State<SearchScreen>>();
   await tester.pumpWidget(
     TranslationProvider(
-      child: ChangeNotifierProvider<MultiServerProvider>.value(
-        value: provider,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<MultiServerProvider>.value(value: provider),
+          // Search asks which libraries are hidden so it can leave them out.
+          ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibraries),
+        ],
         child: MaterialApp(
           theme: monoTheme(dark: true),
           home: SearchScreen(key: key),
@@ -469,7 +483,12 @@ class _FakeMediaServerClient implements MediaServerClient {
   MediaBackend get backend => MediaBackend.jellyfin;
 
   @override
-  Future<List<MediaItem>> searchItems(String query, {int limit = 100, AbortController? abort}) async {
+  Future<List<MediaItem>> searchItems(
+    String query, {
+    int limit = 100,
+    AbortController? abort,
+    Set<String> excludedLibraryIds = const {},
+  }) async {
     queries.add(query);
     lastSearchAbort = abort;
     abort?.throwIfAborted();
