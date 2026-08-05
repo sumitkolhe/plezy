@@ -4094,8 +4094,8 @@ class Translations$onboarding$en {
 	/// en: 'No servers answered'
 	String get noServersFound => 'No servers answered';
 
-	/// en: 'Nothing replied on this network. Enter the address yourself, or try again.'
-	String get noServersFoundBody => 'Nothing replied on this network. Enter the address yourself, or try again.';
+	/// en: 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.'
+	String get noServersFoundBody => 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.';
 
 	/// en: 'Enter an address instead'
 	String get enterAddressInstead => 'Enter an address instead';
@@ -6562,7 +6562,7 @@ extension on Translations {
 			'onboarding.serversFound' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'One server found', other: '${n} servers found', ), 
 			'onboarding.serversFoundBody' => 'Pick one to connect',
 			'onboarding.noServersFound' => 'No servers answered',
-			'onboarding.noServersFoundBody' => 'Nothing replied on this network. Enter the address yourself, or try again.',
+			'onboarding.noServersFoundBody' => 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.',
 			'onboarding.enterAddressInstead' => 'Enter an address instead',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',

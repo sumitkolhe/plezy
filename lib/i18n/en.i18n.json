@@ -1596,7 +1596,7 @@
     },
     "serversFoundBody": "Pick one to connect",
     "noServersFound": "No servers answered",
-    "noServersFoundBody": "Nothing replied on this network. Enter the address yourself, or try again.",
+    "noServersFoundBody": "Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.",
     "enterAddressInstead": "Enter an address instead",
     "reaching": "Reaching your server",
     "signingIn": "Signing in",
