@@ -17,11 +17,6 @@ import 'media_card_grid_layout.dart';
 import 'optimized_media_image.dart';
 import 'placeholder_container.dart';
 
-/// Films Radarr is tracking that the library has no file for.
-///
-/// A row above the grid rather than cards inside it: the grid is one paged,
-/// sorted query against the media server, and titles it has never heard of
-/// cannot be paged or sorted alongside the ones it has.
 /// Where a shelf's heading and its cards both start.
 const double _railInset = 12;
 
@@ -29,9 +24,17 @@ const double _railInset = 12;
 /// kind of card as the ones in the grid below it.
 const MediaCardGridLayout _layout = MediaCardGridLayout.touch;
 
+/// What a shelf list puts above its first header.
+const double _listTopInset = 8;
+
 /// Caption gap, one title line and one year line under the poster.
 const double _captionHeight = 42;
 
+/// Films Radarr is tracking that the library has no file for.
+///
+/// A row above the grid rather than cards inside it: the grid is one paged,
+/// sorted query against the media server, and titles it has never heard of
+/// cannot be paged or sorted alongside the ones it has.
 class RequestedTitlesRow extends StatefulWidget {
   const RequestedTitlesRow({super.key});
 
@@ -70,14 +73,18 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
         final tokensRef = tokens(context);
 
         return Padding(
-          padding: const EdgeInsets.only(bottom: HubLayoutConstants.shelfVerticalGap),
+          // This is the first thing under the chips bar, so it supplies the top
+          // inset a shelf otherwise gets from its list.
+          padding: const EdgeInsets.only(top: _listTopInset, bottom: HubLayoutConstants.shelfVerticalGap),
           child: Column(
             crossAxisAlignment: .start,
             children: [
               // The header a shelf wears everywhere else: icon, then the title
               // on the same rail the cards start from.
               Padding(
-                padding: const EdgeInsets.fromLTRB(_railInset, 2, 8, HubLayoutConstants.headerGap),
+                // HubSection reaches the same figures through a nested pair:
+                // 2 + 2 above, 2 + headerGap below, and leadingPadding + 4 left.
+                padding: const EdgeInsets.fromLTRB(_railInset, 4, 8, HubLayoutConstants.headerGap + 2),
                 child: Row(
                   children: [
                     const AppIcon(PhosphorIcons.paperPlaneTilt, size: 16),
