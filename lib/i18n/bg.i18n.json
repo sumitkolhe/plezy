@@ -94,6 +94,9 @@
     "lightTheme": "Светла",
     "darkTheme": "Тъмна",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "Плътност на библиотеката",
     "compact": "Компактна",
     "comfortable": "Удобна",
@@ -521,7 +524,8 @@
     "shufflePlay": "Разбъркано възпроизвеждане",
     "playTrailer": "Пусни трейлър",
     "markAsWatched": "Маркирай като гледано",
-    "markAsUnwatched": "Маркирай като негледано"
+    "markAsUnwatched": "Маркирай като негледано",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "Аудиопътечка ${n}"
@@ -773,7 +777,8 @@
     "movie": "Филм",
     "tvShow": "ТВ сериал",
     "minutesLeft": "Остават ${minutes} мин",
-    "moreLikeThis": "Подобно на това"
+    "moreLikeThis": "Подобно на това",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "Търсенето е неуспешно: ${error}",
@@ -818,7 +823,8 @@
       "recommended": "Препоръчани",
       "browse": "Преглед",
       "collections": "Колекции",
-      "playlists": "Плейлисти"
+      "playlists": "Плейлисти",
+      "missing": ""
     },
     "groupings": {
       "title": "Групиране",
@@ -916,6 +922,10 @@
     "episodeCount": {
       "one": "${n} епизод",
       "other": "${n} епизода"
+    },
+    "seasonCount": {
+      "one": "",
+      "other": ""
     },
     "cast": "Актьори",
     "characters": "Герои",
@@ -1489,5 +1499,110 @@
     "connectToJellyfinCardSubtitleScoped": "Вход в Jellyfin сървър. Свързва се с ${name}.",
     "borrowFromAnotherProfile": "Използвай от друг профил",
     "borrowFromAnotherProfileSubtitle": "Използвай връзка от друг профил. PIN-защитените профили изискват PIN."
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

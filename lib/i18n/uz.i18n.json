@@ -94,6 +94,9 @@
     "lightTheme": "Yorugʻ",
     "darkTheme": "Toʻq",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "Kutubxona zichligi",
     "compact": "Ixcham",
     "comfortable": "Qulay",
@@ -521,7 +524,8 @@
     "shufflePlay": "Aralashtirib ijro etish",
     "playTrailer": "Treylerni koʻrish",
     "markAsWatched": "Koʻrilgan deb belgilash",
-    "markAsUnwatched": "Koʻrilmagan deb belgilash"
+    "markAsUnwatched": "Koʻrilmagan deb belgilash",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "Audio yoʻlak ${n}"
@@ -773,7 +777,8 @@
     "movie": "Film",
     "tvShow": "TV Shou",
     "minutesLeft": "${minutes} daq qoldi",
-    "moreLikeThis": "Oʻxshashlar"
+    "moreLikeThis": "Oʻxshashlar",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "Qidiruv xatoligi: ${error}",
@@ -818,7 +823,8 @@
       "recommended": "Tavsiya etilganlar",
       "browse": "Koʻrib chiqish",
       "collections": "Toʻplamlar",
-      "playlists": "Ijro roʻyxatlari"
+      "playlists": "Ijro roʻyxatlari",
+      "missing": ""
     },
     "groupings": {
       "title": "Guruhlash",
@@ -916,6 +922,10 @@
     "episodeCount": {
       "one": "${n} qism",
       "other": "${n} qism"
+    },
+    "seasonCount": {
+      "one": "",
+      "other": ""
     },
     "cast": "Aktyorlar",
     "characters": "Qahramonlar",
@@ -1489,5 +1499,110 @@
     "connectToJellyfinCardSubtitleScoped": "Jellyfin serveriga kiring. ${name} profiliga ulanmoqda.",
     "borrowFromAnotherProfile": "Boshqa profildan olish",
     "borrowFromAnotherProfileSubtitle": "Boshqa profilning ulanishidan qayta foydalaning."
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

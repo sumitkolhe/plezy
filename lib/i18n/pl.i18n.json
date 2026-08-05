@@ -94,6 +94,9 @@
     "lightTheme": "Jasny",
     "darkTheme": "Ciemny",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "Gęstość biblioteki",
     "compact": "Kompaktowy",
     "comfortable": "Wygodny",
@@ -521,7 +524,8 @@
     "shufflePlay": "Odtwarzanie losowe",
     "playTrailer": "Odtwórz zwiastun",
     "markAsWatched": "Oznacz jako obejrzane",
-    "markAsUnwatched": "Oznacz jako nieobejrzane"
+    "markAsUnwatched": "Oznacz jako nieobejrzane",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "Ścieżka audio ${n}"
@@ -775,7 +779,8 @@
     "movie": "Film",
     "tvShow": "Serial TV",
     "minutesLeft": "Pozostało ${minutes} min",
-    "moreLikeThis": "Więcej podobnych"
+    "moreLikeThis": "Więcej podobnych",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "Wyszukiwanie nie powiodło się: ${error}",
@@ -820,7 +825,8 @@
       "recommended": "Polecane",
       "browse": "Przeglądaj",
       "collections": "Kolekcje",
-      "playlists": "Playlisty"
+      "playlists": "Playlisty",
+      "missing": ""
     },
     "groupings": {
       "title": "Grupowanie",
@@ -920,6 +926,12 @@
       "few": "${n} odcinki",
       "many": "${n} odcinków",
       "other": "${n} odcinka"
+    },
+    "seasonCount": {
+      "one": "",
+      "few": "",
+      "many": "",
+      "other": ""
     },
     "cast": "Obsada",
     "characters": "Postacie",
@@ -1499,5 +1511,110 @@
     "connectToJellyfinCardSubtitleScoped": "Zaloguj się do serwera Jellyfin. Powiązane z ${name}.",
     "borrowFromAnotherProfile": "Pożycz z innego profilu",
     "borrowFromAnotherProfileSubtitle": "Użyj połączenia innego profilu. Profile chronione PIN-em wymagają podania PIN-u."
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

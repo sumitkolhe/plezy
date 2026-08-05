@@ -94,6 +94,9 @@
     "lightTheme": "Lys",
     "darkTheme": "Mørk",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "Bibliotekstæthed",
     "compact": "Kompakt",
     "comfortable": "Komfortabel",
@@ -521,7 +524,8 @@
     "shufflePlay": "Afspil tilfældigt",
     "playTrailer": "Afspil trailer",
     "markAsWatched": "Markér som set",
-    "markAsUnwatched": "Markér som uset"
+    "markAsUnwatched": "Markér som uset",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "Lydspor ${n}"
@@ -773,7 +777,8 @@
     "movie": "Film",
     "tvShow": "TV-serie",
     "minutesLeft": "${minutes} min tilbage",
-    "moreLikeThis": "Mere som dette"
+    "moreLikeThis": "Mere som dette",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "Søgning mislykkedes: ${error}",
@@ -818,7 +823,8 @@
       "recommended": "Anbefalet",
       "browse": "Gennemse",
       "collections": "Samlinger",
-      "playlists": "Playlister"
+      "playlists": "Playlister",
+      "missing": ""
     },
     "groupings": {
       "title": "Gruppering",
@@ -916,6 +922,10 @@
     "episodeCount": {
       "one": "${n} afsnit",
       "other": "${n} afsnit"
+    },
+    "seasonCount": {
+      "one": "",
+      "other": ""
     },
     "cast": "Rollebesætning",
     "characters": "Figurer",
@@ -1489,5 +1499,110 @@
     "connectToJellyfinCardSubtitleScoped": "Log ind på en Jellyfin-server. Serveren knyttes til ${name}.",
     "borrowFromAnotherProfile": "Lån fra en anden profil",
     "borrowFromAnotherProfileSubtitle": "Genbrug en anden profils forbindelse. PIN-beskyttede profiler kræver en PIN."
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

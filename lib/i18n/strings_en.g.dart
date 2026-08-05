@@ -4035,6 +4035,15 @@ class Translations$serverActivity$en {
 
 	/// en: 'Not in library yet'
 	String get notInLibrary => 'Not in library yet';
+
+	/// en: 'S${season}E${episode}'
+	String episodeSlot({required Object season, required Object episode}) => 'S${season}E${episode}';
+
+	/// en: 'Nothing missing'
+	String get nothingMissing => 'Nothing missing';
+
+	/// en: '${service} has a file for everything it is tracking here.'
+	String nothingMissingDescription({required Object service}) => '${service} has a file for everything it is tracking here.';
 }
 
 // Path: arrSearch
@@ -4245,6 +4254,9 @@ class Translations$libraries$tabs$en {
 
 	/// en: 'Playlists'
 	String get playlists => 'Playlists';
+
+	/// en: 'Missing'
+	String get missing => 'Missing';
 }
 
 // Path: libraries.groupings
@@ -5882,6 +5894,7 @@ extension on Translations {
 			'libraries.tabs.browse' => 'Browse',
 			'libraries.tabs.collections' => 'Collections',
 			'libraries.tabs.playlists' => 'Playlists',
+			'libraries.tabs.missing' => 'Missing',
 			'libraries.groupings.title' => 'Grouping',
 			'libraries.groupings.all' => 'All',
 			'libraries.groupings.movies' => 'Movies',
@@ -6135,9 +6148,9 @@ extension on Translations {
 			'music.instantMix' => 'Instant Mix',
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
-			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			_ => null,
 		} ?? switch (path) {
+			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
@@ -6536,6 +6549,9 @@ extension on Translations {
 			'serverActivity.notDownloadedOne' => 'Not downloaded',
 			'serverActivity.requestedCount' => ({required Object count}) => 'Requested (${count})',
 			'serverActivity.notInLibrary' => 'Not in library yet',
+			'serverActivity.episodeSlot' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
+			'serverActivity.nothingMissing' => 'Nothing missing',
+			'serverActivity.nothingMissingDescription' => ({required Object service}) => '${service} has a file for everything it is tracking here.',
 			'arrSearch.title' => 'Search',
 			'arrSearch.auto' => 'Search automatically',
 			'arrSearch.autoDescription' => ({required Object service}) => 'Hand it to ${service} and let it pick.',

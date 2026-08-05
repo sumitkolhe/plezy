@@ -823,7 +823,8 @@
       "recommended": "Recommended",
       "browse": "Browse",
       "collections": "Collections",
-      "playlists": "Playlists"
+      "playlists": "Playlists",
+      "missing": "Missing"
     },
     "groupings": {
       "title": "Grouping",
@@ -1575,7 +1576,10 @@
     "unmonitored": "Unmonitored",
     "notDownloadedOne": "Not downloaded",
     "requestedCount": "Requested (${count})",
-    "notInLibrary": "Not in library yet"
+    "notInLibrary": "Not in library yet",
+    "episodeSlot": "S${season}E${episode}",
+    "nothingMissing": "Nothing missing",
+    "nothingMissingDescription": "${service} has a file for everything it is tracking here."
   },
   "arrSearch": {
     "title": "Search",

@@ -94,6 +94,9 @@
     "lightTheme": "浅色",
     "darkTheme": "深色",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "媒体库密度",
     "compact": "紧凑",
     "comfortable": "舒适",
@@ -521,7 +524,8 @@
     "shufflePlay": "随机播放",
     "playTrailer": "播放预告片",
     "markAsWatched": "标记为已观看",
-    "markAsUnwatched": "标记为未观看"
+    "markAsUnwatched": "标记为未观看",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "音轨 ${n}"
@@ -772,7 +776,8 @@
     "movie": "电影",
     "tvShow": "电视剧",
     "minutesLeft": "剩余 ${minutes} 分钟",
-    "moreLikeThis": "更多类似内容"
+    "moreLikeThis": "更多类似内容",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "搜索失败：${error}",
@@ -817,7 +822,8 @@
       "recommended": "推荐",
       "browse": "浏览",
       "collections": "合集",
-      "playlists": "播放列表"
+      "playlists": "播放列表",
+      "missing": ""
     },
     "groupings": {
       "title": "分组",
@@ -914,6 +920,9 @@
     },
     "episodeCount": {
       "other": "${n} 集"
+    },
+    "seasonCount": {
+      "other": ""
     },
     "cast": "演员表",
     "characters": "角色",
@@ -1484,5 +1493,110 @@
     "connectToJellyfinCardSubtitleScoped": "登录到 Jellyfin 服务器。绑定到 ${name}。",
     "borrowFromAnotherProfile": "使用其他用户资料的连接",
     "borrowFromAnotherProfileSubtitle": "复用另一个用户资料的连接。受 PIN 保护的用户资料需要输入 PIN。"
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

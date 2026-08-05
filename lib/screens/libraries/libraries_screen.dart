@@ -30,13 +30,24 @@ import '../../mixins/item_updatable.dart';
 import '../../i18n/strings.g.dart';
 import 'state_messages.dart';
 import 'tabs/library_browse_tab.dart';
+import '../../providers/managed_services_provider.dart';
+import 'tabs/library_missing_tab.dart';
 import 'tabs/library_recommended_tab.dart';
 import 'tabs/library_collections_tab.dart';
 import 'tabs/library_playlists_tab.dart';
 
-enum LibraryTabType { recommended, browse, collections, playlists }
+enum LibraryTabType { recommended, browse, collections, playlists, missing }
 
-List<LibraryTabType> _getVisibleTabs(MediaLibrary library) => LibraryTabType.values;
+/// Missing only appears where an *arr can answer for this library's kind, so a
+/// library without one — or a server without the stack — is unchanged.
+List<LibraryTabType> _getVisibleTabs(MediaLibrary library, ManagedServicesProvider services) {
+  final kind = LibraryMissingTab.kindFor(library.kind);
+  final hasInstance = kind != null && services.of(kind).isNotEmpty;
+  return [
+    for (final tab in LibraryTabType.values)
+      if (tab != LibraryTabType.missing || hasInstance) tab,
+  ];
+}
 
 class LibrariesScreen extends StatefulWidget {
   final VoidCallback? onLibraryOrderChanged;
@@ -274,6 +285,8 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       LibraryTabType.browse => _browseTabKey.currentState,
       LibraryTabType.collections => _collectionsTabKey.currentState,
       LibraryTabType.playlists => _playlistsTabKey.currentState,
+      // Nothing outside asks the missing tab for its state.
+      LibraryTabType.missing => null,
     };
   }
 
@@ -365,6 +378,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     LibraryTabType.browse => t.libraries.tabs.browse,
     LibraryTabType.collections => t.libraries.tabs.collections,
     LibraryTabType.playlists => t.libraries.tabs.playlists,
+    LibraryTabType.missing => t.libraries.tabs.missing,
   };
 
   Widget _buildTabContent(
@@ -395,6 +409,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         onResetScroll: _resetOuterScroll,
         onFiltersActiveChanged: _handleBrowseFiltersActiveChanged,
       ),
+      LibraryTabType.missing => LibraryMissingTab(library: library),
       LibraryTabType.collections => LibraryCollectionsTab(
         key: _collectionsTabKey,
         library: library,
@@ -444,7 +459,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
 
     // Update visible tabs and state in the same synchronous block so no
     // intermediate rebuild can see a mismatched controller/key pair.
-    _updateVisibleTabs(_getVisibleTabs(selectedLibrary));
+    _updateVisibleTabs(_getVisibleTabs(selectedLibrary, context.read<ManagedServicesProvider>()));
 
     _updateState(() {
       _selectedLibraryGlobalKey = libraryGlobalKey;

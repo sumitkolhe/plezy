@@ -19,6 +19,10 @@ class AbsentTitle {
   final int? year;
   final int? tmdbId;
 
+  /// The episode's own id, which is what a search is issued against — [mediaId]
+  /// is the series, because that is what a queue record names.
+  final int? episodeId;
+
   /// Set for an episode; null for a film.
   final String? seriesTitle;
   final int? seasonNumber;
@@ -40,6 +44,7 @@ class AbsentTitle {
     required this.title,
     this.year,
     this.tmdbId,
+    this.episodeId,
     this.seriesTitle,
     this.seasonNumber,
     this.episodeNumber,
@@ -72,6 +77,7 @@ class AbsentTitle {
       sourceId: sourceId,
       sourceName: sourceName,
       mediaId: seriesId,
+      episodeId: (json['id'] as num?)?.toInt(),
       title: episodeTitle,
       seriesTitle: seriesTitle,
       seasonNumber: (json['seasonNumber'] as num?)?.toInt(),

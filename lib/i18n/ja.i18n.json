@@ -94,6 +94,9 @@
     "lightTheme": "ライト",
     "darkTheme": "ダーク",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "ライブラリの密度",
     "compact": "コンパクト",
     "comfortable": "ゆったり",
@@ -521,7 +524,8 @@
     "shufflePlay": "シャッフル再生",
     "playTrailer": "予告編を再生",
     "markAsWatched": "視聴済みにする",
-    "markAsUnwatched": "未視聴にする"
+    "markAsUnwatched": "未視聴にする",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "音声トラック${n}"
@@ -772,7 +776,8 @@
     "movie": "映画",
     "tvShow": "テレビ番組",
     "minutesLeft": "残り${minutes}分",
-    "moreLikeThis": "似ている作品"
+    "moreLikeThis": "似ている作品",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "検索に失敗しました: ${error}",
@@ -817,7 +822,8 @@
       "recommended": "おすすめ",
       "browse": "ブラウズ",
       "collections": "コレクション",
-      "playlists": "プレイリスト"
+      "playlists": "プレイリスト",
+      "missing": ""
     },
     "groupings": {
       "title": "グループ",
@@ -914,6 +920,9 @@
     },
     "episodeCount": {
       "other": "${n}話"
+    },
+    "seasonCount": {
+      "other": ""
     },
     "cast": "キャスト",
     "characters": "キャラクター",
@@ -1484,5 +1493,110 @@
     "connectToJellyfinCardSubtitleScoped": "Jellyfinサーバーにサインインします。${name}にひも付けられます。",
     "borrowFromAnotherProfile": "別のプロフィールの接続を利用",
     "borrowFromAnotherProfileSubtitle": "別のプロフィールの接続を再利用します。PINで保護されたプロフィールにはPINが必要です。"
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }

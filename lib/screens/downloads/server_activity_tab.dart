@@ -240,7 +240,7 @@ class _TransferRow extends StatelessWidget {
       if (eta == null) return percent;
       return '$percent · ${t.serverActivity.etaRemaining(time: formatDurationTextual(eta * 1000))}';
     }
-    return _stageLabel(transfer.stage);
+    return transfer.stage.label;
   }
 
   /// Where it is coming from, and what went wrong when something did. *arr's
@@ -260,14 +260,6 @@ class _TransferRow extends StatelessWidget {
     ];
     return parts.join('  ·  ');
   }
-
-  static String _stageLabel(TransferStage stage) => switch (stage) {
-    TransferStage.queued => t.serverActivity.stages.queued,
-    TransferStage.downloading => t.serverActivity.stages.downloading,
-    TransferStage.importing => t.serverActivity.stages.importing,
-    TransferStage.done => t.serverActivity.stages.done,
-    TransferStage.failed => t.serverActivity.stages.failed,
-  };
 }
 
 /// The join, made visible: which of the four stages this download has reached.
@@ -299,7 +291,7 @@ class _StageStrip extends StatelessWidget {
         for (var i = 0; i < _pipeline.length; i++) ...[
           if (i > 0) Text('›', style: TextStyle(fontSize: 11, color: tokensRef.text.withValues(alpha: 0.24))),
           Text(
-            _TransferRow._stageLabel(_pipeline[i]),
+            _pipeline[i].label,
             style: TextStyle(
               fontSize: 10.5,
               fontWeight: i == reached ? .w700 : .w500,

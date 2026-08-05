@@ -1,3 +1,5 @@
+import '../../i18n/strings.g.dart';
+
 /// Where a download has got to. Ordered as it progresses, so a list can sort
 /// by stage without a separate rank.
 enum TransferStage { queued, downloading, importing, done, failed }
@@ -236,4 +238,16 @@ List<ServerTransfer> joinTransfers({
     return byStage != 0 ? byStage : a.title.toLowerCase().compareTo(b.title.toLowerCase());
   });
   return transfers;
+}
+
+/// What a stage is called on screen. Here rather than in one of its two callers
+/// so a transfer reads the same wherever it is shown.
+extension TransferStageLabel on TransferStage {
+  String get label => switch (this) {
+    TransferStage.queued => t.serverActivity.stages.queued,
+    TransferStage.downloading => t.serverActivity.stages.downloading,
+    TransferStage.importing => t.serverActivity.stages.importing,
+    TransferStage.done => t.serverActivity.stages.done,
+    TransferStage.failed => t.serverActivity.stages.failed,
+  };
 }

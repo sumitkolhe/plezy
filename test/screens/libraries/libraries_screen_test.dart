@@ -7,6 +7,7 @@ import 'package:harbor/media/media_backend.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_library.dart';
 import 'package:harbor/mixins/refreshable.dart';
+import 'package:harbor/providers/managed_services_provider.dart';
 import 'package:harbor/providers/hidden_libraries_provider.dart';
 import 'package:harbor/providers/libraries_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
@@ -139,6 +140,8 @@ final class _Harness {
     return _Harness(libraries: libraries, hiddenLibraries: hiddenLibraries, multiServer: multiServer);
   }
 
+  final managedServices = ManagedServicesProvider();
+
   Future<void> pump(WidgetTester tester, {ValueChanged<String>? onLibrarySelected}) async {
     tester.view.physicalSize = const Size(1280, 720);
     tester.view.devicePixelRatio = 1;
@@ -151,6 +154,8 @@ final class _Harness {
           ChangeNotifierProvider<LibrariesProvider>.value(value: libraries),
           ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibraries),
           ChangeNotifierProvider<MultiServerProvider>.value(value: multiServer),
+          // The tab row asks whether an *arr can answer for this library's kind.
+          ChangeNotifierProvider<ManagedServicesProvider>.value(value: managedServices),
         ],
         child: InputModeTracker(
           child: MaterialApp(

@@ -94,6 +94,9 @@
     "lightTheme": "Világos",
     "darkTheme": "Sötét",
     "oledTheme": "OLED",
+    "materialYouTheme": "",
+    "hapticFeedback": "",
+    "hapticFeedbackDescription": "",
     "libraryDensity": "Könyvtársűrűség",
     "compact": "Kompakt",
     "comfortable": "Kényelmes",
@@ -521,7 +524,8 @@
     "shufflePlay": "Véletlenszerű lejátszás",
     "playTrailer": "Előzetes lejátszása",
     "markAsWatched": "Megjelölés megtekintettként",
-    "markAsUnwatched": "Megjelölés nem megtekintettként"
+    "markAsUnwatched": "Megjelölés nem megtekintettként",
+    "moreOptions": ""
   },
   "audioTracks": {
     "track": "${n}. hangsáv"
@@ -773,7 +777,8 @@
     "movie": "Film",
     "tvShow": "TV-sorozat",
     "minutesLeft": "${minutes} perc van hátra",
-    "moreLikeThis": "Hasonló tartalmak"
+    "moreLikeThis": "Hasonló tartalmak",
+    "genres": ""
   },
   "errors": {
     "searchFailed": "Keresés sikertelen: ${error}",
@@ -818,7 +823,8 @@
       "recommended": "Ajánlott",
       "browse": "Böngészés",
       "collections": "Gyűjtemények",
-      "playlists": "Lejátszási listák"
+      "playlists": "Lejátszási listák",
+      "missing": ""
     },
     "groupings": {
       "title": "Csoportosítás",
@@ -916,6 +922,10 @@
     "episodeCount": {
       "one": "${n} epizód",
       "other": "${n} epizód"
+    },
+    "seasonCount": {
+      "one": "",
+      "other": ""
     },
     "cast": "Szereplők",
     "characters": "Karakterek",
@@ -1489,5 +1499,110 @@
     "connectToJellyfinCardSubtitleScoped": "Bejelentkezés egy Jellyfin-szerverre. Hozzárendelés ehhez: ${name}.",
     "borrowFromAnotherProfile": "Kapcsolat használata másik profilból",
     "borrowFromAnotherProfileSubtitle": "Egy másik profil kapcsolatának használata. A PIN-kóddal védett profilokhoz PIN-kód szükséges."
+  },
+  "managedServices": {
+    "sectionTitle": "",
+    "add": "",
+    "addTitle": "",
+    "kinds": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "kindHints": {
+      "radarr": "",
+      "sonarr": "",
+      "qbittorrent": ""
+    },
+    "addressLabel": "",
+    "addressHint": "",
+    "apiKeyLabel": "",
+    "apiKeyHelp": "",
+    "usernameLabel": "",
+    "passwordLabel": "",
+    "nameLabel": "",
+    "nameHint": "",
+    "nameHelp": "",
+    "connect": "",
+    "save": "",
+    "connected": "",
+    "reconnect": "",
+    "unreachable": "",
+    "checking": "",
+    "recheck": "",
+    "remove": "",
+    "removeConfirm": "",
+    "removeConfirmBody": "",
+    "addressRequired": "",
+    "apiKeyRequired": "",
+    "usernameRequired": "",
+    "keyRejected": "",
+    "loginRejected": "",
+    "notReachable": "",
+    "notThisService": ""
+  },
+  "serverActivity": {
+    "tab": "",
+    "stages": {
+      "queued": "",
+      "downloading": "",
+      "importing": "",
+      "done": "",
+      "failed": ""
+    },
+    "stalled": "",
+    "paused": "",
+    "completedHeading": "",
+    "nothingQueued": "",
+    "nothingQueuedDescription": "",
+    "noServices": "",
+    "noServicesDescription": "",
+    "openServices": "",
+    "unreachable": "",
+    "etaRemaining": "",
+    "ofSize": "",
+    "arriving": "",
+    "arrivingEpisode": "",
+    "monitored": "",
+    "notMonitored": "",
+    "missingEpisodes": "",
+    "allPresent": "",
+    "onDisk": "",
+    "notOnDisk": "",
+    "alsoQueued": "",
+    "nextAiring": "",
+    "airedOn": "",
+    "airsOn": "",
+    "unmonitored": "",
+    "notDownloadedOne": "",
+    "requestedCount": "",
+    "notInLibrary": "",
+    "episodeSlot": "",
+    "nothingMissing": "",
+    "nothingMissingDescription": ""
+  },
+  "arrSearch": {
+    "title": "",
+    "auto": "",
+    "autoDescription": "",
+    "manual": "",
+    "manualDescription": "",
+    "searching": "",
+    "searchingSlow": "",
+    "noReleases": "",
+    "noReleasesDescription": "",
+    "failed": "",
+    "handedOver": "",
+    "grabbed": "",
+    "grabFailed": "",
+    "rejectedTitle": "",
+    "grabAnyway": "",
+    "seeders": "",
+    "ageHours": "",
+    "ageDays": "",
+    "scopeMovie": "",
+    "scopeSeries": "",
+    "scopeSeason": "",
+    "scopeEpisode": ""
   }
 }
