@@ -5,9 +5,8 @@
 
 A Jellyfin client for Android, built with Flutter.
 
-A personal fork of [Plezy](https://github.com/edde746/plezy), narrowed to one
-backend and one platform: the Plex client, the desktop and tvOS targets, Live
-TV and Watch Together have all been removed.
+Narrowed to one backend and one platform: no Plex client, no desktop or tvOS
+targets, no Live TV, no Watch Together.
 
 ## Features
 
@@ -102,11 +101,10 @@ scripts/setup_hooks.sh
 
 ## License
 
-Harbor inherits Plezy's [GPL-3.0](LICENSE) license.
+Harbor is licensed under [GPL-3.0](LICENSE).
 
 ## Acknowledgments
 
-- Forked from [Plezy](https://github.com/edde746/plezy) by edde746
 - Built with [Flutter](https://flutter.dev)
 - Supports [Jellyfin](https://jellyfin.org)
 - Playback powered by [mpv](https://mpv.io), Android [ExoPlayer](https://developer.android.com/media/media3/exoplayer), [libass-android](https://github.com/peerless2012/libass-android), and [libmpv-android](https://github.com/jarnedemeulemeester/libmpv-android)

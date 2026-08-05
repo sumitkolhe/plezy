@@ -1,6 +1,6 @@
 # Harbor
 
-Android-only Jellyfin client, forked from plezy. Personal project.
+Android-only Jellyfin client. Personal project.
 
 Everything below is either non-obvious or was learned the hard way. Things the
 code already tells you are deliberately not repeated here.
