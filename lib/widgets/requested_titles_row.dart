@@ -11,7 +11,9 @@ import '../providers/server_activity_provider.dart';
 import '../theme/mono_tokens.dart';
 import '../utils/grid_size_calculator.dart';
 import '../services/settings_service.dart';
+import '../utils/layout_constants.dart';
 import 'app_icon.dart';
+import 'media_card_grid_layout.dart';
 import 'optimized_media_image.dart';
 import 'placeholder_container.dart';
 
@@ -20,6 +22,16 @@ import 'placeholder_container.dart';
 /// A row above the grid rather than cards inside it: the grid is one paged,
 /// sorted query against the media server, and titles it has never heard of
 /// cannot be paged or sorted alongside the ones it has.
+/// Where a shelf's heading and its cards both start.
+const double _railInset = 12;
+
+/// Caption geometry comes from the grid, so a requested card reads as the same
+/// kind of card as the ones in the grid below it.
+const MediaCardGridLayout _layout = MediaCardGridLayout.touch;
+
+/// Caption gap, one title line and one year line under the poster.
+const double _captionHeight = 42;
+
 class RequestedTitlesRow extends StatefulWidget {
   const RequestedTitlesRow({super.key});
 
@@ -58,24 +70,32 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
         final tokensRef = tokens(context);
 
         return Padding(
-          padding: const EdgeInsets.only(bottom: 18),
+          padding: const EdgeInsets.only(bottom: HubLayoutConstants.shelfVerticalGap),
           child: Column(
             crossAxisAlignment: .start,
             children: [
+              // The header a shelf wears everywhere else: icon, then the title
+              // on the same rail the cards start from.
               Padding(
-                padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
-                child: Text(
-                  t.serverActivity.requestedCount(count: titles.length),
-                  style: TextStyle(fontSize: 15, fontWeight: .w700, letterSpacing: -0.1, color: tokensRef.text),
+                padding: const EdgeInsets.fromLTRB(_railInset, 2, 8, HubLayoutConstants.headerGap),
+                child: Row(
+                  children: [
+                    const AppIcon(PhosphorIcons.paperPlaneTilt, size: 16),
+                    const SizedBox(width: 6),
+                    Text(
+                      t.serverActivity.requestedCount(count: titles.length),
+                      style: HubLayoutConstants.sectionHeading(isTv: false, color: tokensRef.text),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(
-                height: cardWidth * 3 / 2 + 42,
+                height: cardWidth * 3 / 2 + _captionHeight,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: _railInset),
                   itemCount: titles.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: 10),
+                  separatorBuilder: (_, _) => const SizedBox(width: _railInset),
                   itemBuilder: (context, index) {
                     final title = titles[index];
                     return _RequestedCard(
@@ -165,14 +185,24 @@ class _RequestedCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 6),
+          SizedBox(height: _layout.captionGap),
           Text(
             title.title,
-            style: TextStyle(fontSize: 12.5, fontWeight: .w500, color: tokensRef.text.withValues(alpha: 0.75)),
+            style: _layout.titleStyle.copyWith(color: tokensRef.text.withValues(alpha: 0.75)),
             maxLines: 1,
             overflow: .ellipsis,
           ),
-          if (title.year case final year?) Text('$year', style: TextStyle(fontSize: 11.5, color: tokensRef.textMuted)),
+          if (title.year case final year?) ...[
+            SizedBox(height: _layout.titleSubtitleGap),
+            Text(
+              '$year',
+              style: TextStyle(
+                fontSize: _layout.subtitleFontSize,
+                height: _layout.subtitleHeight,
+                color: tokensRef.textMuted,
+              ),
+            ),
+          ],
         ],
       ),
     );

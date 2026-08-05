@@ -17,6 +17,37 @@ code already tells you are deliberately not repeated here.
 - Commits are grouped by responsibility. Do not add a Co-Authored-By trailer.
   Do not push.
 
+## Design consistency
+
+The app must read as one app. Before writing any UI, find what already renders
+this shape and use it — a shared widget if there is one, otherwise the shared
+constant or style it is built from. Two implementations of the same thing will
+drift, and every round of "why doesn't this match?" has traced back to a second
+one being written rather than the first being reused.
+
+Concretely, do not hand-write a value that a shared source already owns:
+
+| Shape | Comes from |
+|---|---|
+| Sheet header | `BottomSheetHeader` |
+| Sheet / menu row | `AppMenuItemTile`, `AppMenuList` |
+| Shelf heading | `HubLayoutConstants.sectionHeading` |
+| Shelf gaps and insets | `HubLayoutConstants` |
+| Card caption type and gaps | `MediaCardGridLayout` |
+| Colours, radii, durations | `MonoTokens` via `tokens(context)` |
+| Pills and chips | `MetaPill`, `StatChip` |
+
+Reuse the component, not the numbers: copying `fontSize: 18` out of
+`sectionHeading` looks identical today and drifts the next time that constant
+moves. If a component nearly fits, extend it (an optional parameter, a wider
+constraint) rather than forking it — that is what `AppMenuItem.trailing` and
+the 24dp-minimum leading are for.
+
+Do not bend a component badly out of shape to force reuse. When something is
+genuinely a different thing — the two-column track sheet, a chapter card with a
+thumbnail — build it, and still take its type, spacing and colours from the
+tables above so it belongs to the same family.
+
 ## Build and install
 
 ```bash

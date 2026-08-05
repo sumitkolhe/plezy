@@ -8,6 +8,27 @@ import 'package:flutter_test/flutter_test.dart';
 /// Dialogs, settings screens and screen bodies keep ListTile: they are not
 /// drawers, and a settings screen is scanned rather than picked from.
 void main() {
+  test('a shelf heading is never hand-rolled', () {
+    // Every shelf reads at one heading scale. A file that writes its own
+    // fontSize beside a section title is how the requested-titles row ended up
+    // 15sp against every other shelf's 18sp.
+    const shelves = [
+      'lib/widgets/requested_titles_row.dart',
+      'lib/widgets/hub_section.dart',
+      'lib/screens/media_detail/detail_design.dart',
+      'lib/screens/catalog_item_detail_screen.dart',
+    ];
+
+    for (final path in shelves) {
+      final source = File(path).readAsStringSync();
+      expect(
+        source.contains('HubLayoutConstants.sectionHeading'),
+        isTrue,
+        reason: '$path should take its section heading from the shared style',
+      );
+    }
+  });
+
   test('no sheet builds its rows from a ListTile variant', () {
     const drawers = [
       'lib/screens/libraries/filters_bottom_sheet.dart',
