@@ -17,6 +17,21 @@ code already tells you are deliberately not repeated here.
 - Commits are grouped by responsibility. Do not add a Co-Authored-By trailer.
   Do not push.
 
+## One active server
+
+Only one server is active at a time. Do not design features that query several
+at once, and do not add UI that names which server something came from.
+
+This is a constraint on *concurrency*, not on identity: a user can still have
+more than one server configured and switch between them, so `serverId` remains
+meaningful for cache keys, downloads and offline state. What is going away is
+the aggregation — fanning out to `onlineClients`, `searchAcrossServers`, and the
+server-name suffixes and group-by-server affordances that exist to disambiguate
+results from several servers at once.
+
+Profile management is being reworked, and the aggregation layer should be
+dismantled as part of that rather than ahead of it.
+
 ## Design consistency
 
 The app must read as one app. Before writing any UI, find what already renders
