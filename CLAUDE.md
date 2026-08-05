@@ -41,9 +41,10 @@ adb -t <id> shell dumpsys package co.sumit.harbor | grep -E "versionCode|lastUpd
 `lastUpdateTime` must be seconds old. Wireless adb drops constantly; re-read the
 transport id from `adb devices -l` before every command rather than reusing one.
 
-## Gates — all four must pass before committing
+## Gates — all must pass before committing
 
 ```bash
+dart format --line-length 120 lib test scripts # see Formatting below
 flutter analyze lib test                       # zero warnings, not just zero errors
 flutter test                                   # ~3,780 tests
 python3 scripts/clean_translations.py --check --strict
@@ -51,15 +52,24 @@ dart run dart_code_linter:metrics check-unused-code lib
 dart run dart_code_linter:metrics check-unused-files lib
 ```
 
+Nothing enforces these in CI; they are the standard regardless.
+
 ## Formatting
 
-`analysis_options.yaml` sets `page_width: 120`, but ~34 files under `lib/` do not
-match what the current `dart format` produces — the repo was written against a
-different formatter version, and CI does not check formatting.
+**Format before every commit:**
 
-**Never run `dart format lib/`.** It rewrites three dozen unrelated files and
-buries the real change. Format only files you already edited, and check
-`git diff --stat` afterwards for churn you did not intend.
+```bash
+dart format --line-length 120 lib test scripts
+```
+
+The whole tree is formatted, so this is a no-op unless you changed something —
+it will only ever touch files you edited. Leave `packages/` alone; those are
+vendored plugin forks that track upstream.
+
+Do not skip it and do not format selectively. The repo previously disagreed with
+the `page_width: 120` its own `analysis_options.yaml` sets, across 47 files, and
+the moment a formatted file met an unformatted one the diff filled with churn
+nobody could review. Keeping the tree formatted is what stops that returning.
 
 ## Sheets and drawers
 
