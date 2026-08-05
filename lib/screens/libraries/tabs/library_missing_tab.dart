@@ -48,6 +48,11 @@ class LibraryMissingTab extends StatefulWidget {
 class _LibraryMissingTabState extends State<LibraryMissingTab> {
   VoidCallback? _release;
 
+  /// The provider leaves its list null both before a lookup and after one that
+  /// nobody answered, because null is what lets the next visit retry. Only the
+  /// asking widget knows which of the two it is looking at.
+  bool _attempted = false;
+
   ManagedServiceKind get _kind => LibraryMissingTab.kindFor(widget.library.kind)!;
 
   @override
@@ -56,7 +61,13 @@ class _LibraryMissingTabState extends State<LibraryMissingTab> {
     final provider = context.read<ServerActivityProvider>();
     // Watching keeps the queue polled, which is what gives these rows progress.
     _release = provider.addWatcher();
-    unawaited(provider.resolveAbsent(_kind));
+    unawaited(_resolve(provider));
+  }
+
+  Future<void> _resolve(ServerActivityProvider provider, {bool force = false}) async {
+    if (_attempted) setState(() => _attempted = false);
+    await provider.resolveAbsent(_kind, force: force);
+    if (mounted) setState(() => _attempted = true);
   }
 
   @override
@@ -71,7 +82,9 @@ class _LibraryMissingTabState extends State<LibraryMissingTab> {
       builder: (context, provider, _) {
         final titles = provider.absent(_kind);
         if (titles == null) {
-          return const Center(child: LoadingIndicatorBox(size: 24));
+          return _attempted
+              ? _Unreachable(kind: _kind, onRetry: () => unawaited(_resolve(provider, force: true)))
+              : const Center(child: LoadingIndicatorBox(size: 24));
         }
         if (titles.isEmpty) return _Empty(kind: _kind);
 
@@ -115,6 +128,39 @@ class _Empty extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 13, color: tokensRef.textMuted, height: 1.3),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Reached when no instance answered. Distinct from "nothing missing", which is
+/// an answer.
+class _Unreachable extends StatelessWidget {
+  const _Unreachable({required this.kind, required this.onRetry});
+
+  final ManagedServiceKind kind;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final tokensRef = tokens(context);
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AppIcon(PhosphorIcons.warningCircle, size: 28, color: tokensRef.textMuted),
+            const SizedBox(height: 12),
+            Text(
+              t.serverActivity.unreachable(names: kind.name),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: tokensRef.text),
+            ),
+            const SizedBox(height: 12),
+            TextButton(onPressed: onRetry, child: Text(t.common.retry)),
           ],
         ),
       ),

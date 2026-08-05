@@ -8,9 +8,10 @@ import 'package:harbor/models/arr/absent_title.dart';
 import 'package:harbor/models/arr/server_transfer.dart';
 import 'package:harbor/providers/server_activity_provider.dart';
 import 'package:harbor/services/arr/arr_wanted_service.dart';
-import 'package:harbor/services/arr/server_activity_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+
+import '../../test_helpers/arr_fixtures.dart';
 
 void _seedRadarr(ManagedServicesProvider services, http.Client httpClient) {
   const connection = ManagedServiceConnection(
@@ -49,16 +50,6 @@ ManagedServicesProvider _withRadarr(http.Client httpClient) {
   return services;
 }
 
-/// Polling is not what this test is about.
-class _IdleActivityService implements ServerActivityService {
-  @override
-  Future<({List<ServerTransfer> transfers, List<String> unreachable})> fetch() async =>
-      (transfers: const <ServerTransfer>[], unreachable: const <String>[]);
-
-  @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
-
 void main() {
   // ServerActivityProvider registers a WidgetsBinding observer.
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -70,7 +61,7 @@ void main() {
     // the whole session.
     final services = ManagedServicesProvider();
     addTearDown(services.dispose);
-    final activity = ServerActivityProvider(services, service: _IdleActivityService());
+    final activity = ServerActivityProvider(services, service: IdleServerActivityService());
     addTearDown(activity.dispose);
 
     final release = activity.addWatcher();
@@ -210,7 +201,7 @@ void main() {
     // S03E05's progress to every other absent episode of the same show.
     final services = ManagedServicesProvider();
     addTearDown(services.dispose);
-    final activity = ServerActivityProvider(services, service: _IdleActivityService());
+    final activity = ServerActivityProvider(services, service: IdleServerActivityService());
     addTearDown(activity.dispose);
 
     const queued = ArrQueueItem(

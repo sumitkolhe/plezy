@@ -43,6 +43,7 @@ import '../filters_bottom_sheet.dart';
 import '../sort_bottom_sheet.dart';
 import '../../../widgets/app_icon.dart';
 import '../../../widgets/app_menu.dart';
+import '../library_view_screen.dart';
 import '../content_state_builder.dart';
 import '../../../services/storage_service.dart';
 import '../../../services/settings_service.dart';
@@ -814,6 +815,26 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         shrinkWrap: true,
         padding: const EdgeInsets.symmetric(vertical: 8),
         children: [
+          // The three views that used to be pills. Reached deliberately, so the
+          // library opens on the library.
+          for (final view in LibraryViewKind.values)
+            AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                leading: AppIcon(switch (view) {
+                  LibraryViewKind.recommended => PhosphorIcons.sparkle,
+                  LibraryViewKind.collections => PhosphorIcons.stack,
+                  LibraryViewKind.playlists => PhosphorIcons.playlist,
+                }),
+                child: Text(view.label),
+                trailing: const AppIcon(PhosphorIcons.caretRight),
+              ),
+              onPressed: () {
+                controller.close();
+                unawaited(LibraryViewScreen.push(context, library: widget.library, kind: view));
+              },
+            ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
           AppMenuItemTile<void>(
             item: AppMenuItem<void>(
               value: null,

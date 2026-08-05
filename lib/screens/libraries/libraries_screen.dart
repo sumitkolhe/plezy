@@ -6,7 +6,6 @@ import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../../focus/focusable_action_bar.dart';
-import '../../focus/dpad_navigator.dart';
 import '../../focus/input_mode_tracker.dart';
 import '../../mixins/tab_navigation_mixin.dart';
 import '../../media/media_item.dart';
@@ -32,14 +31,14 @@ import 'state_messages.dart';
 import 'tabs/library_browse_tab.dart';
 import '../../providers/managed_services_provider.dart';
 import 'tabs/library_missing_tab.dart';
-import 'tabs/library_recommended_tab.dart';
-import 'tabs/library_collections_tab.dart';
-import 'tabs/library_playlists_tab.dart';
 
-enum LibraryTabType { recommended, browse, collections, playlists, missing }
+enum LibraryTabType { browse, missing }
 
-/// Missing only appears where an *arr can answer for this library's kind, so a
-/// library without one — or a server without the stack — is unchanged.
+/// Browse is the library; Missing is what is not in it yet. The other views live
+/// behind Library options, so opening a library does not present four ways of
+/// looking at it before you have looked at any.
+///
+/// Missing only appears where an *arr can answer for this library's kind.
 List<LibraryTabType> _getVisibleTabs(MediaLibrary library, ManagedServicesProvider services) {
   final kind = LibraryMissingTab.kindFor(library.kind);
   final hasInstance = kind != null && services.of(kind).isNotEmpty;
@@ -69,10 +68,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         TickerProviderStateMixin,
         TabNavigationMixin {
   // GlobalKeys for tabs to enable refresh
-  final _recommendedTabKey = GlobalKey();
   final _browseTabKey = GlobalKey();
-  final _collectionsTabKey = GlobalKey();
-  final _playlistsTabKey = GlobalKey();
 
   String? _errorMessage;
   String? _selectedLibraryGlobalKey;
@@ -298,10 +294,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   State? _getTabState(int index) {
     if (index < 0 || index >= _visibleTabs.length) return null;
     return switch (_visibleTabs[index]) {
-      LibraryTabType.recommended => _recommendedTabKey.currentState,
       LibraryTabType.browse => _browseTabKey.currentState,
-      LibraryTabType.collections => _collectionsTabKey.currentState,
-      LibraryTabType.playlists => _playlistsTabKey.currentState,
       // Nothing outside asks the missing tab for its state.
       LibraryTabType.missing => null,
     };
@@ -392,10 +385,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   }
 
   String _getTabLabel(LibraryTabType type) => switch (type) {
-    LibraryTabType.recommended => t.libraries.tabs.recommended,
     LibraryTabType.browse => t.libraries.tabs.browse,
-    LibraryTabType.collections => t.libraries.tabs.collections,
-    LibraryTabType.playlists => t.libraries.tabs.playlists,
     LibraryTabType.missing => t.libraries.tabs.missing,
   };
 
@@ -407,15 +397,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     required int tabIndex,
   }) {
     return switch (type) {
-      LibraryTabType.recommended => LibraryRecommendedTab(
-        key: _recommendedTabKey,
-        library: library,
-        isActive: isActive,
-        suppressAutoFocus: suppressAutoFocus,
-        onDataLoaded: () => _handleTabDataLoaded(tabIndex),
-        onBack: focusTabBar,
-        onNavigateToChrome: focusTabBar,
-      ),
       LibraryTabType.browse => LibraryBrowseTab(
         key: _browseTabKey,
         library: library,
@@ -428,22 +409,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         onFiltersActiveChanged: _handleBrowseFiltersActiveChanged,
       ),
       LibraryTabType.missing => LibraryMissingTab(library: library),
-      LibraryTabType.collections => LibraryCollectionsTab(
-        key: _collectionsTabKey,
-        library: library,
-        isActive: isActive,
-        suppressAutoFocus: suppressAutoFocus,
-        onDataLoaded: () => _handleTabDataLoaded(tabIndex),
-        onBack: focusTabBar,
-      ),
-      LibraryTabType.playlists => LibraryPlaylistsTab(
-        key: _playlistsTabKey,
-        library: library,
-        isActive: isActive,
-        suppressAutoFocus: suppressAutoFocus,
-        onDataLoaded: () => _handleTabDataLoaded(tabIndex),
-        onBack: focusTabBar,
-      ),
     };
   }
 
@@ -748,7 +713,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final showMobileTabsRow = selectedLibrary != null && !useSideNavigation;
     final currentTabIndex = _visibleTabs.isEmpty ? 0 : tabController.index.clamp(0, _visibleTabs.length - 1).toInt();
     final currentTabType = _visibleTabs.isEmpty ? null : _visibleTabs[currentTabIndex];
-    final useTvRecommendedBackdrop = PlatformDetector.isTV() && currentTabType == LibraryTabType.recommended;
     final showBrowseOptionsAction =
         selectedLibrary != null && PlatformDetector.isMobile(context) && currentTabType == LibraryTabType.browse;
     List<FocusableAction> appBarActions() => [
@@ -809,7 +773,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       pinned: !floating,
       floating: floating,
       snap: floating,
-      backgroundColor: useTvRecommendedBackdrop ? Colors.transparent : Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       scrolledUnderElevation: 0,
@@ -830,29 +794,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
           appBar(floating: false),
           SliverFillRemaining(child: body),
         ],
-      );
-    }
-
-    Widget buildTransparentTvTopBar() {
-      return SafeArea(
-        bottom: false,
-        child: AppBar(
-          primary: false,
-          backgroundColor: Colors.transparent,
-          surfaceTintColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          elevation: 0,
-          scrolledUnderElevation: 0,
-          title: _buildAppBarTitle(visibleLibraries, selectedLibrary, groupByServer: groupByServerSetting),
-          actions: [
-            FocusableActionBar(
-              key: _actionBarKey,
-              onNavigateLeft: () => getTabChipFocusNode(_visibleTabs.length - 1).requestFocus(),
-              onNavigateDown: _focusCurrentTab,
-              actions: appBarActions(),
-            ),
-          ],
-        ),
       );
     }
 
@@ -891,8 +832,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
           isActive: tabController.index == index,
           tabIndex: index,
         );
-        if (useTvRecommendedBackdrop) return tabContent;
-
         return ClipRect(child: tabContent);
       }
 
@@ -913,57 +852,41 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         );
       }
 
-      if (useTvRecommendedBackdrop) {
-        body = Focus(
-          canRequestFocus: false,
-          skipTraversal: true,
-          onKeyEvent: (_, event) => event.logicalKey.isDpadDirection ? KeyEventResult.handled : KeyEventResult.ignored,
-          child: Stack(
-            fit: StackFit.expand,
-            clipBehavior: Clip.none,
-            children: [
-              buildTabs(activeOnly: true),
-              Positioned(top: 0, left: 0, right: 0, child: ExcludeFocusTraversal(child: buildTransparentTvTopBar())),
-            ],
+      body = NestedScrollView(
+        controller: _outerScrollController,
+        floatHeaderSlivers: true,
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverOverlapAbsorber(
+            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+            sliver: appBar(floating: true),
           ),
-        );
-      } else {
-        body = NestedScrollView(
-          controller: _outerScrollController,
-          floatHeaderSlivers: true,
-          headerSliverBuilder: (context, innerBoxIsScrolled) => [
-            SliverOverlapAbsorber(
-              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-              sliver: appBar(floating: true),
-            ),
-            if (showMobileTabsRow)
-              SliverToBoxAdapter(
-                child: Container(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        for (int i = 0; i < _visibleTabs.length; i++) ...[
-                          if (i > 0) const SizedBox(width: 8),
-                          buildTabChip(
-                            _getTabLabel(_visibleTabs[i]),
-                            i,
-                            onSelectWhenActive: _focusCurrentTab,
-                            onNavigateDown: _focusCurrentTabFromTabBar,
-                            onNavigateToActions: () => _actionBarKey.currentState?.requestFocusOnFirst(),
-                          ),
-                        ],
+          if (showMobileTabsRow)
+            SliverToBoxAdapter(
+              child: Container(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (int i = 0; i < _visibleTabs.length; i++) ...[
+                        if (i > 0) const SizedBox(width: 8),
+                        buildTabChip(
+                          _getTabLabel(_visibleTabs[i]),
+                          i,
+                          onSelectWhenActive: _focusCurrentTab,
+                          onNavigateDown: _focusCurrentTabFromTabBar,
+                          onNavigateToActions: () => _actionBarKey.currentState?.requestFocusOnFirst(),
+                        ),
                       ],
-                    ),
+                    ],
                   ),
                 ),
               ),
-          ],
-          body: buildTabs(),
-        );
-      }
+            ),
+        ],
+        body: buildTabs(),
+      );
     } else {
       body = buildSimpleScroll(body: const SizedBox.shrink());
     }
