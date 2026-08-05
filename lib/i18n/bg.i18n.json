@@ -860,6 +860,12 @@
       "studio": "Студио",
       "random": "Случайно",
       "lastEpisodeDateAdded": "Дата на добавяне на последния епизод"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

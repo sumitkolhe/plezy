@@ -860,6 +860,12 @@
       "studio": "Studio",
       "random": "Aléatoire",
       "lastEpisodeDateAdded": "Date d'ajout du dernier épisode"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

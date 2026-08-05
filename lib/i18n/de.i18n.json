@@ -860,6 +860,12 @@
       "studio": "Studio",
       "random": "Zufällig",
       "lastEpisodeDateAdded": "Hinzugefügt am (neueste Folge)"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

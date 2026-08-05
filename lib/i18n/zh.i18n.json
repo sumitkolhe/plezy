@@ -859,6 +859,12 @@
       "studio": "制片公司",
       "random": "随机",
       "lastEpisodeDateAdded": "最新一集添加日期"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

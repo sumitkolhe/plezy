@@ -4,6 +4,7 @@ import 'package:harbor/media/ids.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/services/base_shared_preferences_service.dart';
+import 'package:harbor/media/library_view.dart';
 import 'package:harbor/services/storage_service.dart';
 
 import '../test_helpers/prefs.dart';
@@ -341,6 +342,33 @@ void main() {
       expect(s.getLibraryGrouping('sec-1'), isNull);
       await s.saveLibraryGrouping('sec-1', 'shows');
       expect(s.getLibraryGrouping('sec-1'), 'shows');
+    });
+
+    test('clearing library preferences takes the views with them', () async {
+      // Otherwise a re-added server revives views built for libraries and
+      // filters that may no longer exist.
+      final s = await StorageService.getInstance();
+      await s.saveLibraryViews('srv:lib', const [LibraryView(name: 'Keep?', grouping: 'movies')]);
+      expect(s.getLibraryViews('srv:lib'), isNotEmpty);
+
+      await s.clearLibraryPreferences();
+
+      expect(s.getLibraryViews('srv:lib'), isEmpty);
+    });
+
+    test('library views round-trip and are scoped per library', () async {
+      final s = await StorageService.getInstance();
+      expect(s.getLibraryViews('sec-1'), isEmpty);
+
+      await s.saveLibraryViews('sec-1', const [
+        LibraryView(name: 'Unwatched', grouping: 'movies', filters: {'unwatched': '1'}, sortKey: 'addedAt'),
+      ]);
+
+      final restored = s.getLibraryViews('sec-1');
+      expect(restored.single.name, 'Unwatched');
+      expect(restored.single.filters, {'unwatched': '1'});
+      // Another library has its own, since its filters and groupings differ.
+      expect(s.getLibraryViews('sec-2'), isEmpty);
     });
 
     test('library tab round-trips', () async {

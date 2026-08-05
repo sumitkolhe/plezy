@@ -859,6 +859,12 @@
       "studio": "スタジオ",
       "random": "ランダム",
       "lastEpisodeDateAdded": "最新エピソード追加日"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

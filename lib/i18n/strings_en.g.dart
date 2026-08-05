@@ -2513,6 +2513,7 @@ class Translations$libraries$en {
 	late final Translations$libraries$groupings$en groupings = Translations$libraries$groupings$en.internal(_root);
 	late final Translations$libraries$filterCategories$en filterCategories = Translations$libraries$filterCategories$en.internal(_root);
 	late final Translations$libraries$sortLabels$en sortLabels = Translations$libraries$sortLabels$en.internal(_root);
+	late final Translations$libraries$views$en views = Translations$libraries$views$en.internal(_root);
 }
 
 // Path: about
@@ -4361,6 +4362,27 @@ class Translations$libraries$sortLabels$en {
 	String get lastEpisodeDateAdded => 'Last Episode Date Added';
 }
 
+// Path: libraries.views
+class Translations$libraries$views$en {
+	Translations$libraries$views$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Views'
+	String get title => 'Views';
+
+	/// en: 'None saved'
+	String get none => 'None saved';
+
+	/// en: 'Save this view'
+	String get saveCurrent => 'Save this view';
+
+	/// en: 'View name'
+	String get nameLabel => 'View name';
+}
+
 // Path: explore.rows
 class Translations$explore$rows$en {
 	Translations$explore$rows$en.internal(this._root);
@@ -5903,6 +5925,10 @@ extension on Translations {
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Random',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Last Episode Date Added',
+			'libraries.views.title' => 'Views',
+			'libraries.views.none' => 'None saved',
+			'libraries.views.saveCurrent' => 'Save this view',
+			'libraries.views.nameLabel' => 'View name',
 			'about.title' => 'About',
 			'about.openSourceLicenses' => 'Open Source Licenses',
 			'about.versionLabel' => ({required Object version}) => 'Version ${version}',
@@ -6123,12 +6149,12 @@ extension on Translations {
 			'music.playNext' => 'Play next',
 			'music.addToQueue' => 'Add to queue',
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
+			_ => null,
+		} ?? switch (path) {
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',
-			_ => null,
-		} ?? switch (path) {
 			'music.clearQueue' => 'Clear queue',
 			'music.lyrics' => 'Lyrics',
 			'music.noLyrics' => 'No lyrics available',

@@ -860,6 +860,12 @@
       "studio": "Stüdyo",
       "random": "Rastgele",
       "lastEpisodeDateAdded": "Eklenen Son Bölüm Tarihi"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

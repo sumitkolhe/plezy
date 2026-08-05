@@ -860,6 +860,12 @@
       "studio": "Studio",
       "random": "Willekeurig",
       "lastEpisodeDateAdded": "Datum laatst toegevoegde aflevering"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

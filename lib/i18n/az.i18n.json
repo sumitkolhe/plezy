@@ -860,6 +860,12 @@
       "studio": "Studiya",
       "random": "Təsadüfi",
       "lastEpisodeDateAdded": "Əlavə olunan son seriya tarixi"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

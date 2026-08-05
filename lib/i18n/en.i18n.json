@@ -860,6 +860,12 @@
       "studio": "Studio",
       "random": "Random",
       "lastEpisodeDateAdded": "Last Episode Date Added"
+    },
+    "views": {
+      "title": "Views",
+      "none": "None saved",
+      "saveCurrent": "Save this view",
+      "nameLabel": "View name"
     }
   },
   "about": {

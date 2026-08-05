@@ -860,6 +860,12 @@
       "studio": "Studio",
       "random": "Slumpmässigt",
       "lastEpisodeDateAdded": "Datum då senaste avsnittet lades till"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

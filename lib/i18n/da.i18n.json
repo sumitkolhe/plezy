@@ -860,6 +860,12 @@
       "studio": "Studie",
       "random": "Tilfældig",
       "lastEpisodeDateAdded": "Dato for senest tilføjede episode"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {

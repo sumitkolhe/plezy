@@ -1,4 +1,6 @@
 import 'dart:convert';
+
+import '../media/library_view.dart';
 import '../media/ids.dart';
 
 import 'package:uuid/uuid.dart';
@@ -23,6 +25,7 @@ class StorageService extends BaseSharedPreferencesService {
   static const String _prefixLibrarySort = 'library_sort_';
   static const String _prefixLibraryGrouping = 'library_grouping_';
   static const String _prefixLibraryTab = 'library_tab_';
+  static const String _prefixLibraryViews = 'library_views_';
   static const String _prefixProfileLastUsed = 'profile_last_used_';
   // Key groups for bulk clearing
   static const List<String> _credentialKeys = [_keyClientId, _keyCurrentUserUUID];
@@ -187,6 +190,14 @@ class StorageService extends BaseSharedPreferencesService {
     return _getScopedString('$_prefixLibraryGrouping$sectionId');
   }
 
+  // Library Views (per-library, stored as a JSON list)
+  Future<void> saveLibraryViews(String sectionId, List<LibraryView> views) async {
+    await prefs.setString('$_userPrefix$_prefixLibraryViews$sectionId', LibraryView.encodeList(views));
+  }
+
+  List<LibraryView> getLibraryViews(String sectionId) =>
+      LibraryView.decodeList(_getScopedString('$_prefixLibraryViews$sectionId'));
+
   // Library Tab (per-library, saves last selected tab name)
   Future<void> saveLibraryTab(String sectionId, String tabName) async {
     await prefs.setString('$_userPrefix$_prefixLibraryTab$sectionId', tabName);
@@ -251,6 +262,7 @@ class StorageService extends BaseSharedPreferencesService {
       _clearKeysWithPrefix('$prefix$_prefixLibraryFilters'),
       _clearKeysWithPrefix('$prefix$_prefixLibraryGrouping'),
       _clearKeysWithPrefix('$prefix$_prefixLibraryTab'),
+      _clearKeysWithPrefix('$prefix$_prefixLibraryViews'),
       if (prefix.isNotEmpty) ...[
         ..._libraryPreferenceKeys.map(prefs.remove),
         prefs.remove(_keySelectedLibraryKey),
@@ -258,6 +270,7 @@ class StorageService extends BaseSharedPreferencesService {
         _clearKeysWithPrefix(_prefixLibraryFilters),
         _clearKeysWithPrefix(_prefixLibraryGrouping),
         _clearKeysWithPrefix(_prefixLibraryTab),
+        _clearKeysWithPrefix(_prefixLibraryViews),
       ],
     ]);
   }
@@ -289,6 +302,7 @@ class StorageService extends BaseSharedPreferencesService {
       _clearServerPerLibraryKeysEverywhere(_prefixLibraryFilters, serverId),
       _clearServerPerLibraryKeysEverywhere(_prefixLibraryGrouping, serverId),
       _clearServerPerLibraryKeysEverywhere(_prefixLibraryTab, serverId),
+      _clearServerPerLibraryKeysEverywhere(_prefixLibraryViews, serverId),
     ]);
   }
 
@@ -301,6 +315,7 @@ class StorageService extends BaseSharedPreferencesService {
       _clearKeysWithPrefixForServer('$prefix$_prefixLibraryFilters', serverId),
       _clearKeysWithPrefixForServer('$prefix$_prefixLibraryGrouping', serverId),
       _clearKeysWithPrefixForServer('$prefix$_prefixLibraryTab', serverId),
+      _clearKeysWithPrefixForServer('$prefix$_prefixLibraryViews', serverId),
     ]);
   }
 

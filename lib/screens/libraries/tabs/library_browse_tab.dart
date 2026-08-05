@@ -7,6 +7,9 @@ import '../../../media/library_first_character.dart';
 import '../../../media/library_query.dart';
 import '../../../media/media_backend.dart';
 import '../../../media/media_item.dart';
+import '../../../media/library_view.dart';
+import '../../../utils/dialogs.dart';
+import '../../../utils/rating_spans.dart';
 import '../../../media/media_kind.dart';
 import '../../../media/media_library.dart';
 import '../../../utils/media_server_http_client.dart';
@@ -509,6 +512,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       final savedFilters = storage.getLibraryFilters(sectionId: libraryGlobalKey);
       final savedSort = storage.getLibrarySort(libraryGlobalKey);
       final savedGrouping = storage.getLibraryGrouping(libraryGlobalKey);
+      final savedViews = storage.getLibraryViews(libraryGlobalKey);
       // Resolve the restored grouping before the sort fetch — music groupings
       // (albums/tracks) request their own per-type sort list.
       final restoredGrouping = _normalizeGrouping(savedGrouping);
@@ -537,6 +541,7 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         _jellyfinFilterValues = loaded.cachedValues;
         _selectedFilters = Map.from(savedFilters);
         _selectedGrouping = restoredGrouping;
+        _views = savedViews;
 
         if (savedSort != null) {
           final sortKey = savedSort['key'] as String?;
@@ -827,6 +832,17 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           AppMenuItemTile<void>(
             item: AppMenuItem<void>(
               value: null,
+              leading: const AppIcon(PhosphorIcons.bookmarks),
+              child: Text(t.libraries.views.title),
+              subtitleWidget: Text(_activeView?.name ?? t.libraries.views.none),
+              trailing: const AppIcon(PhosphorIcons.caretRight),
+            ),
+            onPressed: () => _showViewsPage(controller),
+          ),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
+          AppMenuItemTile<void>(
+            item: AppMenuItem<void>(
+              value: null,
               leading: const AppIcon(PhosphorIcons.squaresFour),
               child: Text(t.libraries.groupings.title),
               subtitleWidget: Text(_getGroupingLabel(_selectedGrouping)),
@@ -892,6 +908,94 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         .then(_handleGroupingSelection);
   }
 
+  void _showViewsPage(OverlaySheetController controller) {
+    SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
+    unawaited(controller.push<void>(builder: (_) => _buildViewsSheet(controller)));
+  }
+
+  Widget _buildViewsSheet(OverlaySheetController controller) {
+    final active = _activeView;
+    return StatefulBuilder(
+      builder: (sheetContext, rebuildSheet) => BottomSheetPageScaffold(
+        title: t.libraries.views.title,
+        icon: PhosphorIcons.bookmarks,
+        onBack: () => controller.pop(),
+        shrinkWrap: true,
+        child: ListView(
+          primary: false,
+          shrinkWrap: true,
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          children: [
+            for (final view in _views)
+              AppMenuItemTile<void>(
+                item: AppMenuItem<void>(
+                  value: null,
+                  leading: const AppIcon(PhosphorIcons.bookmarks),
+                  child: Text(view.name),
+                  subtitleWidget: Text(_describeView(view)),
+                  selected: view.name == active?.name,
+                  // Its own tap target inside the row, so a view can be removed
+                  // without a mode to enter or a gesture to discover.
+                  trailing: IconButton(
+                    icon: const AppIcon(PhosphorIcons.trash),
+                    tooltip: t.common.delete,
+                    onPressed: () async {
+                      await _deleteView(view);
+                      rebuildSheet(() {});
+                    },
+                  ),
+                ),
+                onPressed: () {
+                  controller.close();
+                  unawaited(_applyView(view));
+                },
+              ),
+            if (_views.isNotEmpty) const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
+            AppMenuItemTile<void>(
+              item: AppMenuItem<void>(
+                value: null,
+                leading: const AppIcon(PhosphorIcons.plus),
+                child: Text(t.libraries.views.saveCurrent),
+                subtitleWidget: Text(_describeCurrent()),
+              ),
+              onPressed: () => unawaited(_promptSaveView(controller, rebuildSheet)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// What the view will show, in the same words its own controls use.
+  String _describeView(LibraryView view) => [
+    _getGroupingLabel(view.grouping),
+    if (view.filters.isNotEmpty) t.libraries.filtersWithCount(count: view.filters.length),
+    if (view.sortKey case final key?) _sortOptions.where((sort) => sort.key == key).firstOrNull?.title ?? key,
+  ].join(dotSeparator);
+
+  String _describeCurrent() => _describeView(
+    LibraryView(
+      name: '',
+      grouping: _selectedGrouping,
+      filters: _selectedFilters,
+      sortKey: _selectedSort?.key,
+      descending: _isSortDescending,
+    ),
+  );
+
+  Future<void> _promptSaveView(OverlaySheetController controller, void Function(VoidCallback) rebuildSheet) async {
+    final name = await showTextInputDialog(
+      context,
+      title: t.libraries.views.saveCurrent,
+      labelText: t.libraries.views.nameLabel,
+      initialValue: _activeView?.name ?? '',
+      confirmText: t.common.save,
+    );
+    if (name == null) return;
+    await _saveCurrentView(name);
+    rebuildSheet(() {});
+  }
+
   void _showGroupingOptionsPage(OverlaySheetController controller) {
     SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
     controller
@@ -931,6 +1035,85 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         onPressed: () => onSelected(grouping),
       );
     }).toList();
+  }
+
+  List<LibraryView> _views = const [];
+
+  /// The saved view the library is showing, if any.
+  LibraryView? get _activeView => _views
+      .where(
+        (view) => view.matches(
+          grouping: _selectedGrouping,
+          sortKey: _selectedSort?.key,
+          descending: _isSortDescending,
+          filters: _selectedFilters,
+        ),
+      )
+      .firstOrNull;
+
+  /// Sets all three at once and reloads once, rather than letting each of the
+  /// three appliers fetch a page on the way past.
+  Future<void> _applyView(LibraryView view) async {
+    if (!mounted) return;
+    final grouping = _normalizeGrouping(view.grouping);
+    final sortChangesOptions = _sortOptionsLibraryType(grouping) != _sortOptionsLibraryType(_selectedGrouping);
+
+    setState(() {
+      _selectedGrouping = grouping;
+      _selectedFilters
+        ..clear()
+        ..addAll(view.filters);
+      _selectedSort = view.sortKey == null ? null : _sortOptions.where((sort) => sort.key == view.sortKey).firstOrNull;
+      _isSortDescending = view.descending;
+    });
+    _notifyFiltersActive();
+
+    final storage = await StorageService.getInstance();
+    await storage.saveLibraryGrouping(widget.library.globalKey, grouping);
+    await storage.saveLibraryFilters(view.filters, sectionId: widget.library.globalKey);
+    final sortKey = _selectedSort?.key;
+    if (sortKey != null) await storage.saveLibrarySort(widget.library.globalKey, sortKey, descending: view.descending);
+
+    if (!mounted) return;
+    // A music grouping serves its own sort list, so the options have to be
+    // refetched before a page is asked for with a key of the wrong type.
+    if (sortChangesOptions) {
+      await _reloadSortOptionsForGrouping();
+      return;
+    }
+    unawaited(_loadItems());
+    unawaited(_loadFirstCharacters());
+  }
+
+  /// Saving under an existing name replaces it, so a view can be corrected
+  /// without first deleting it.
+  Future<void> _saveCurrentView(String name) async {
+    final trimmed = name.trim();
+    if (trimmed.isEmpty) return;
+    final view = LibraryView(
+      name: trimmed,
+      grouping: _selectedGrouping,
+      filters: Map.of(_selectedFilters),
+      sortKey: _selectedSort?.key,
+      descending: _isSortDescending,
+    );
+    final next = [
+      for (final existing in _views)
+        if (existing.name.toLowerCase() != trimmed.toLowerCase()) existing,
+      view,
+    ]..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    await _persistViews(next);
+  }
+
+  Future<void> _deleteView(LibraryView view) => _persistViews([
+    for (final existing in _views)
+      if (existing.name != view.name) existing,
+  ]);
+
+  Future<void> _persistViews(List<LibraryView> next) async {
+    if (mounted) setState(() => _views = next);
+    final storage = await StorageService.getInstance();
+    await storage.saveLibraryViews(widget.library.globalKey, next);
   }
 
   void _handleGroupingSelection(String? value) {

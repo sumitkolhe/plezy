@@ -860,6 +860,12 @@
       "studio": "Студия",
       "random": "Кездейсоқ",
       "lastEpisodeDateAdded": "Соңғы қосылған бөлім күні"
+    },
+    "views": {
+      "title": "",
+      "none": "",
+      "saveCurrent": "",
+      "nameLabel": ""
     }
   },
   "about": {
