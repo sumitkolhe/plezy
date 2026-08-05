@@ -12,7 +12,6 @@ import 'settings_builder.dart';
 import '../utils/grid_size_calculator.dart';
 import '../utils/layout_constants.dart';
 import '../utils/platform_detector.dart';
-import '../theme/mono_tokens.dart';
 import '../focus/locked_hub_controller.dart';
 import '../media/media_hub.dart';
 import '../media/media_item.dart';
@@ -23,6 +22,7 @@ import 'card_inflation_budget.dart';
 import 'focus_builders.dart';
 import 'media_card.dart';
 import 'media_card_grid_layout.dart';
+import 'shelf_header.dart';
 import 'skeleton_media_card.dart';
 import 'sliver_child_memo.dart';
 import '../utils/scroll_utils.dart';
@@ -131,11 +131,7 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
   final SliverChildMemo<MediaItem> _cardMemo = SliverChildMemo<MediaItem>();
 
   double _itemExtent = 0;
-  double _leadingPaddingFor(bool isTv) => widget.inset
-      ? 0.0
-      : isTv
-      ? TvLayoutConstants.shelfHorizontalInset
-      : 12.0;
+  double _leadingPaddingFor(bool isTv) => ShelfHeader.railInsetFor(inset: widget.inset, isTv: isTv);
   double get _leadingPadding => _leadingPaddingFor(PlatformDetector.isTV());
   String get _focusMemoryKey {
     final serverId = widget.hub.serverId;
@@ -408,7 +404,6 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
     final isKeyboardMode = InputModeTracker.isKeyboardMode(context);
     final isTv = PlatformDetector.isTV();
     final leadingPadding = _leadingPaddingFor(isTv);
-    final titleStyle = HubLayoutConstants.sectionHeading(isTv: isTv);
 
     final isTopLevelShelf = !widget.inset && widget.cardSizing == HubCardSizing.shelf;
 
@@ -424,50 +419,12 @@ class HubSectionState extends State<HubSection> with MountedSetStateMixin, Skele
         crossAxisAlignment: .start,
         mainAxisSize: .min,
         children: [
-          // Hub header (NOT focusable - titles should not be focusable)
-          Padding(
-            padding: widget.inset
-                ? EdgeInsets.symmetric(vertical: isTv ? 6 : 2)
-                : EdgeInsets.fromLTRB(leadingPadding - 4, isTv ? 6 : 2, 8, isTv ? 8 : HubLayoutConstants.headerGap),
-            child: ExcludeFocus(
-              child: InkWell(
-                mouseCursor: widget.hub.more ? SystemMouseCursors.click : MouseCursor.defer,
-                onTap: widget.hub.more ? () => _navigateToHubDetail(context) : null,
-                borderRadius: BorderRadius.circular(tokens(context).radiusSm),
-                child: Padding(
-                  padding: widget.inset
-                      ? const EdgeInsets.symmetric(vertical: 2)
-                      : const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                  child: Row(
-                    children: [
-                      AppIcon(widget.icon, size: isTv ? 28 : 16),
-                      SizedBox(width: isTv ? 12 : 6),
-                      // Flexible would share flex with a Spacer, stranding the caret.
-                      Expanded(
-                        child: Text(widget.hub.title, style: titleStyle, overflow: .ellipsis, maxLines: 1),
-                      ),
-                      if (widget.showServerName && widget.hub.serverName != null) ...[
-                        const SizedBox(width: 8),
-                        Text(
-                          '•',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.7),
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          widget.hub.serverName!,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.7),
-                          ),
-                        ),
-                      ],
-                      if (widget.hub.more && !isKeyboardMode) AppIcon(PhosphorIcons.caretRight, size: isTv ? 26 : 20),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          ShelfHeader(
+            icon: widget.icon,
+            title: widget.hub.title,
+            suffix: widget.showServerName ? widget.hub.serverName : null,
+            onOpen: widget.hub.more ? () => _navigateToHubDetail(context) : null,
+            inset: widget.inset,
           ),
 
           if (widget.hub.items.isNotEmpty)

@@ -16,9 +16,7 @@ import 'app_icon.dart';
 import 'media_card_grid_layout.dart';
 import 'optimized_media_image.dart';
 import 'placeholder_container.dart';
-
-/// Where a shelf's heading and its cards both start.
-const double _railInset = 12;
+import 'shelf_header.dart';
 
 /// Caption geometry comes from the grid, so a requested card reads as the same
 /// kind of card as the ones in the grid below it.
@@ -70,7 +68,6 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
 
         final density = SettingsService.instance.read(SettingsService.libraryDensity);
         final cardWidth = GridSizeCalculator.getCellWidth(MediaQuery.sizeOf(context).width, context, density);
-        final tokensRef = tokens(context);
 
         return Padding(
           // This is the first thing under the chips bar, so it supplies the top
@@ -79,30 +76,17 @@ class _RequestedTitlesRowState extends State<RequestedTitlesRow> {
           child: Column(
             crossAxisAlignment: .start,
             children: [
-              // The header a shelf wears everywhere else: icon, then the title
-              // on the same rail the cards start from.
-              Padding(
-                // HubSection reaches the same figures through a nested pair:
-                // 2 + 2 above, 2 + headerGap below, and leadingPadding + 4 left.
-                padding: const EdgeInsets.fromLTRB(_railInset, 4, 8, HubLayoutConstants.headerGap + 2),
-                child: Row(
-                  children: [
-                    const AppIcon(PhosphorIcons.paperPlaneTilt, size: 16),
-                    const SizedBox(width: 6),
-                    Text(
-                      t.serverActivity.requestedCount(count: titles.length),
-                      style: HubLayoutConstants.sectionHeading(isTv: false, color: tokensRef.text),
-                    ),
-                  ],
-                ),
+              ShelfHeader(
+                icon: PhosphorIcons.paperPlaneTilt,
+                title: t.serverActivity.requestedCount(count: titles.length),
               ),
               SizedBox(
                 height: cardWidth * 3 / 2 + _captionHeight,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: _railInset),
+                  padding: EdgeInsets.symmetric(horizontal: ShelfHeader.railInsetFor(inset: false, isTv: false)),
                   itemCount: titles.length,
-                  separatorBuilder: (_, _) => const SizedBox(width: _railInset),
+                  separatorBuilder: (_, _) => const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final title = titles[index];
                     return _RequestedCard(

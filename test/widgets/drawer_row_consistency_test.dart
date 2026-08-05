@@ -8,25 +8,25 @@ import 'package:flutter_test/flutter_test.dart';
 /// Dialogs, settings screens and screen bodies keep ListTile: they are not
 /// drawers, and a settings screen is scanned rather than picked from.
 void main() {
-  test('a shelf heading is never hand-rolled', () {
-    // Every shelf reads at one heading scale. A file that writes its own
-    // fontSize beside a section title is how the requested-titles row ended up
-    // 15sp against every other shelf's 18sp.
-    const shelves = [
-      'lib/widgets/requested_titles_row.dart',
-      'lib/widgets/hub_section.dart',
-      'lib/screens/media_detail/detail_design.dart',
-      'lib/screens/catalog_item_detail_screen.dart',
-    ];
+  test('a shelf takes its header from the shared one', () {
+    // Every shelf reads at one heading scale and one set of insets. Writing the
+    // header out again is how the requested-titles row ended up at 15sp against
+    // 18, and its title 2dp from the top against 12.
+    const shelves = ['lib/widgets/requested_titles_row.dart', 'lib/widgets/hub_section.dart'];
 
     for (final path in shelves) {
       final source = File(path).readAsStringSync();
+      expect(source.contains('ShelfHeader('), isTrue, reason: '$path should build its header from ShelfHeader');
       expect(
         source.contains('HubLayoutConstants.sectionHeading'),
-        isTrue,
-        reason: '$path should take its section heading from the shared style',
+        isFalse,
+        reason: '$path should let ShelfHeader own the heading style',
       );
     }
+
+    // And the shared one is where that style actually lives.
+    final header = File('lib/widgets/shelf_header.dart').readAsStringSync();
+    expect(header.contains('HubLayoutConstants.sectionHeading'), isTrue);
   });
 
   test('no sheet builds its rows from a ListTile variant', () {
