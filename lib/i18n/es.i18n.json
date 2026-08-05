@@ -820,7 +820,6 @@
     "folders": "carpetas",
     "tabs": {
       "browse": "Explorar",
-      "playlists": "Listas de reproducción",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Buscar colecciones..."
   },
   "playlists": {
-    "title": "Listas de reproducción",
     "playlist": "Lista de reproducción",
     "noPlaylists": "No se encontraron listas de reproducción",
     "create": "Crear lista de reproducción",

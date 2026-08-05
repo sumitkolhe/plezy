@@ -1068,7 +1068,6 @@ class _Translations$playlists$fr extends Translations$playlists$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Playlists';
 	@override String get playlist => 'Playlist';
 	@override String get noPlaylists => 'Aucune playlist trouvée';
 	@override String get create => 'Créer une playlist';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$fr extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Parcourir';
-	@override String get playlists => 'Playlists';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsFr {
 			'libraries.noFoldersFound' => 'Aucun dossier trouvé',
 			'libraries.folders' => 'dossiers',
 			'libraries.tabs.browse' => 'Parcourir',
-			'libraries.tabs.playlists' => 'Playlists',
 			'libraries.groupings.title' => 'Regroupement',
 			'libraries.groupings.all' => 'Tous',
 			'libraries.groupings.movies' => 'Films',
@@ -2502,7 +2499,6 @@ extension on TranslationsFr {
 			'collections.removeFromCollectionFailed' => 'Impossible de supprimer de la collection',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Erreur lors du retrait de la collection : ${error}',
 			'collections.searchCollections' => 'Rechercher des collections...',
-			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'Aucune playlist trouvée',
 			'playlists.create' => 'Créer une playlist',
@@ -2758,10 +2754,10 @@ extension on TranslationsFr {
 			'metadataEdit.artworkUpdateFailed' => 'Échec de la mise à jour des illustrations',
 			'metadataEdit.noArtworkAvailable' => 'Aucune illustration disponible',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Option d\'illustration ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Option d\'illustration ${index}, sélectionnée',
 			'metadataEdit.notSet' => 'Non défini',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Étiquettes',
 			'metadataEdit.addTag' => 'Ajouter une étiquette',
 			'metadataEdit.genre' => 'Genre',

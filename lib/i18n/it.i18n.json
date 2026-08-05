@@ -820,7 +820,6 @@
     "folders": "cartelle",
     "tabs": {
       "browse": "Esplora",
-      "playlists": "Playlist",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Cerca raccolte..."
   },
   "playlists": {
-    "title": "Playlist",
     "playlist": "Playlist",
     "noPlaylists": "Nessuna playlist trovata",
     "create": "Crea playlist",

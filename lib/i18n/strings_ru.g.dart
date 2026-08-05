@@ -1072,7 +1072,6 @@ class _Translations$playlists$ru extends Translations$playlists$en {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Плейлисты';
 	@override String get playlist => 'Плейлист';
 	@override String get noPlaylists => 'Плейлисты не найдены';
 	@override String get create => 'Создать плейлист';
@@ -1550,7 +1549,6 @@ class _Translations$libraries$tabs$ru extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Обзор';
-	@override String get playlists => 'Плейлисты';
 }
 
 // Path: libraries.groupings
@@ -2402,7 +2400,6 @@ extension on TranslationsRu {
 			'libraries.noFoldersFound' => 'Папки не найдены',
 			'libraries.folders' => 'папки',
 			'libraries.tabs.browse' => 'Обзор',
-			'libraries.tabs.playlists' => 'Плейлисты',
 			'libraries.groupings.title' => 'Группировка',
 			'libraries.groupings.all' => 'Все',
 			'libraries.groupings.movies' => 'Фильмы',
@@ -2508,7 +2505,6 @@ extension on TranslationsRu {
 			'collections.removeFromCollectionFailed' => 'Не удалось удалить из коллекции',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Ошибка удаления из коллекции: ${error}',
 			'collections.searchCollections' => 'Поиск коллекций...',
-			'playlists.title' => 'Плейлисты',
 			'playlists.playlist' => 'Плейлист',
 			'playlists.noPlaylists' => 'Плейлисты не найдены',
 			'playlists.create' => 'Создать плейлист',
@@ -2764,10 +2760,10 @@ extension on TranslationsRu {
 			'metadataEdit.artworkUpdateFailed' => 'Не удалось обновить обложку',
 			'metadataEdit.noArtworkAvailable' => 'Обложки недоступны',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Вариант обложки ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Вариант обложки ${index}, выбран',
 			'metadataEdit.notSet' => 'Не задано',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Теги',
 			'metadataEdit.addTag' => 'Добавить тег',
 			'metadataEdit.genre' => 'Жанр',

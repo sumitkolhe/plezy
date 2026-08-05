@@ -819,7 +819,6 @@
     "folders": "フォルダ",
     "tabs": {
       "browse": "ブラウズ",
-      "playlists": "プレイリスト",
       "missing": ""
     },
     "groupings": {
@@ -1096,7 +1095,6 @@
     "searchCollections": "コレクションを検索…"
   },
   "playlists": {
-    "title": "プレイリスト",
     "playlist": "プレイリスト",
     "noPlaylists": "プレイリストが見つかりません",
     "create": "プレイリストを作成",

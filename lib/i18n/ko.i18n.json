@@ -819,7 +819,6 @@
     "folders": "폴더",
     "tabs": {
       "browse": "찾아보기",
-      "playlists": "재생 목록",
       "missing": ""
     },
     "groupings": {
@@ -1096,7 +1095,6 @@
     "searchCollections": "컬렉션 검색..."
   },
   "playlists": {
-    "title": "플레이리스트",
     "playlist": "재생 목록",
     "noPlaylists": "재생 목록을 찾을 수 없습니다",
     "create": "재생 목록 생성",

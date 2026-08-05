@@ -820,7 +820,6 @@
     "folders": "pastas",
     "tabs": {
       "browse": "Navegar",
-      "playlists": "Playlists",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Pesquisar coleções..."
   },
   "playlists": {
-    "title": "Playlists",
     "playlist": "Playlist",
     "noPlaylists": "Nenhuma playlist encontrada",
     "create": "Criar Playlist",

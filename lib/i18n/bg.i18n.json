@@ -820,7 +820,6 @@
     "folders": "папки",
     "tabs": {
       "browse": "Преглед",
-      "playlists": "Плейлисти",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Търсене на колекции..."
   },
   "playlists": {
-    "title": "Плейлисти",
     "playlist": "Плейлист",
     "noPlaylists": "Не са намерени плейлисти",
     "create": "Създай плейлист",

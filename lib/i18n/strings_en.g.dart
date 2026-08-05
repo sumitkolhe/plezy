@@ -2780,9 +2780,6 @@ class Translations$playlists$en {
 
 	// Translations
 
-	/// en: 'Playlists'
-	String get title => 'Playlists';
-
 	/// en: 'Playlist'
 	String get playlist => 'Playlist';
 
@@ -4233,9 +4230,6 @@ class Translations$libraries$tabs$en {
 
 	/// en: 'Browse'
 	String get browse => 'Browse';
-
-	/// en: 'Playlists'
-	String get playlists => 'Playlists';
 
 	/// en: 'Missing'
 	String get missing => 'Missing';
@@ -5875,7 +5869,6 @@ extension on Translations {
 			'libraries.noFoldersFound' => 'No folders found',
 			'libraries.folders' => 'folders',
 			'libraries.tabs.browse' => 'Browse',
-			'libraries.tabs.playlists' => 'Playlists',
 			'libraries.tabs.missing' => 'Missing',
 			'libraries.groupings.title' => 'Grouping',
 			'libraries.groupings.all' => 'All',
@@ -6099,7 +6092,6 @@ extension on Translations {
 			'collections.removeFromCollectionFailed' => 'Failed to remove from collection',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Error removing from collection: ${error}',
 			'collections.searchCollections' => 'Search collections...',
-			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'No playlists found',
 			'playlists.create' => 'Create Playlist',
@@ -6133,10 +6125,10 @@ extension on Translations {
 			'music.discNumber' => ({required Object n}) => 'Disc ${n}',
 			'music.trackCount' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: '${n} track', other: '${n} tracks', ), 
 			'music.nowPlaying' => 'Now Playing',
-			_ => null,
-		} ?? switch (path) {
 			'music.playingFrom' => ({required Object title}) => 'Playing from ${title}',
 			'music.queue' => 'Queue',
+			_ => null,
+		} ?? switch (path) {
 			'music.clearQueue' => 'Clear queue',
 			'music.lyrics' => 'Lyrics',
 			'music.noLyrics' => 'No lyrics available',

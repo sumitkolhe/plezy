@@ -820,7 +820,6 @@
     "folders": "қапшықтар",
     "tabs": {
       "browse": "Шолу",
-      "playlists": "Ойнату тізімдері",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Топтамалардан іздеу..."
   },
   "playlists": {
-    "title": "Ойнату тізімдері",
     "playlist": "Ойнату тізімі",
     "noPlaylists": "Ойнату тізімдері табылмады",
     "create": "Ойнату тізімін жасау",

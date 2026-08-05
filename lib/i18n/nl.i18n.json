@@ -820,7 +820,6 @@
     "folders": "mappen",
     "tabs": {
       "browse": "Bladeren",
-      "playlists": "Afspeellijsten",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Collecties zoeken..."
   },
   "playlists": {
-    "title": "Afspeellijsten",
     "playlist": "Afspeellijst",
     "noPlaylists": "Geen afspeellijsten gevonden",
     "create": "Afspeellijst maken",

@@ -820,7 +820,6 @@
     "folders": "Ordner",
     "tabs": {
       "browse": "Durchsuchen",
-      "playlists": "Wiedergabelisten",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Sammlungen durchsuchen..."
   },
   "playlists": {
-    "title": "Wiedergabelisten",
     "playlist": "Wiedergabeliste",
     "noPlaylists": "Keine Wiedergabelisten gefunden",
     "create": "Wiedergabeliste erstellen",

@@ -819,7 +819,6 @@
     "folders": "文件夹",
     "tabs": {
       "browse": "浏览",
-      "playlists": "播放列表",
       "missing": ""
     },
     "groupings": {
@@ -1096,7 +1095,6 @@
     "searchCollections": "搜索合集…"
   },
   "playlists": {
-    "title": "播放列表",
     "playlist": "播放列表",
     "noPlaylists": "未找到播放列表",
     "create": "创建播放列表",

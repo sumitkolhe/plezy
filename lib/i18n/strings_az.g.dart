@@ -1073,7 +1073,6 @@ class _Translations$playlists$az extends Translations$playlists$en {
 	final TranslationsAz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Oynatma siyahıları';
 	@override String get playlist => 'Oynatma siyahısı';
 	@override String get noPlaylists => 'Oynatma siyahısı tapılmadı';
 	@override String get create => 'Oynatma siyahısı yarat';
@@ -1555,7 +1554,6 @@ class _Translations$libraries$tabs$az extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Baxış';
-	@override String get playlists => 'Oynatma siyahıları';
 }
 
 // Path: libraries.groupings
@@ -2412,7 +2410,6 @@ extension on TranslationsAz {
 			'libraries.noFoldersFound' => 'Qovluq tapılmadı',
 			'libraries.folders' => 'qovluqlar',
 			'libraries.tabs.browse' => 'Baxış',
-			'libraries.tabs.playlists' => 'Oynatma siyahıları',
 			'libraries.groupings.title' => 'Qruplaşdırma',
 			'libraries.groupings.all' => 'Hamısı',
 			'libraries.groupings.movies' => 'Kinolar',
@@ -2518,7 +2515,6 @@ extension on TranslationsAz {
 			'collections.removeFromCollectionFailed' => 'Kolleksiyadan silinə bilmədi',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Kolleksiyadan silinərkən xəta: ${error}',
 			'collections.searchCollections' => 'Kolleksiyalarda axtar...',
-			'playlists.title' => 'Oynatma siyahıları',
 			'playlists.playlist' => 'Oynatma siyahısı',
 			'playlists.noPlaylists' => 'Oynatma siyahısı tapılmadı',
 			'playlists.create' => 'Oynatma siyahısı yarat',
@@ -2769,10 +2765,10 @@ extension on TranslationsAz {
 			'metadataEdit.selectPoster' => 'Poster seç',
 			'metadataEdit.selectBackground' => 'Arxa fon seç',
 			'metadataEdit.selectLogo' => 'Loqo seç',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kvadrat şəkil seç',
 			'metadataEdit.fromUrl' => 'URL-dən',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Fayl yüklə',
 			'metadataEdit.enterImageUrl' => 'Şəkil URL-i daxil edin',
 			'metadataEdit.imageUrl' => 'Şəkil URL-i',

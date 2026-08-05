@@ -1068,7 +1068,6 @@ class _Translations$playlists$da extends Translations$playlists$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Playlister';
 	@override String get playlist => 'Playliste';
 	@override String get noPlaylists => 'Ingen playlister fundet';
 	@override String get create => 'Opret playliste';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$da extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Gennemse';
-	@override String get playlists => 'Playlister';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsDa {
 			'libraries.noFoldersFound' => 'Ingen mapper fundet',
 			'libraries.folders' => 'mapper',
 			'libraries.tabs.browse' => 'Gennemse',
-			'libraries.tabs.playlists' => 'Playlister',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Film',
@@ -2502,7 +2499,6 @@ extension on TranslationsDa {
 			'collections.removeFromCollectionFailed' => 'Kunne ikke fjerne fra samling',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Fejl ved fjernelse fra samling: ${error}',
 			'collections.searchCollections' => 'Søg i samlinger...',
-			'playlists.title' => 'Playlister',
 			'playlists.playlist' => 'Playliste',
 			'playlists.noPlaylists' => 'Ingen playlister fundet',
 			'playlists.create' => 'Opret playliste',
@@ -2758,10 +2754,10 @@ extension on TranslationsDa {
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke opdatere grafik',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafik tilgængelig',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikvalg ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikvalg ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke indstillet',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tilføj tag',
 			'metadataEdit.genre' => 'Genre',

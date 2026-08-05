@@ -820,7 +820,6 @@
     "folders": "mapper",
     "tabs": {
       "browse": "Bla gjennom",
-      "playlists": "Spillelister",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Søk i samlinger..."
   },
   "playlists": {
-    "title": "Spillelister",
     "playlist": "Spilleliste",
     "noPlaylists": "Ingen spillelister funnet",
     "create": "Opprett spilleliste",

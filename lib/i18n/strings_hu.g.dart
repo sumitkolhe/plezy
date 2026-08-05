@@ -1068,7 +1068,6 @@ class _Translations$playlists$hu extends Translations$playlists$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Lejátszási listák';
 	@override String get playlist => 'Lejátszási lista';
 	@override String get noPlaylists => 'Nem találhatók lejátszási listák';
 	@override String get create => 'Lejátszási lista létrehozása';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$hu extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Böngészés';
-	@override String get playlists => 'Lejátszási listák';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsHu {
 			'libraries.noFoldersFound' => 'Nem találhatók mappák',
 			'libraries.folders' => 'mappák',
 			'libraries.tabs.browse' => 'Böngészés',
-			'libraries.tabs.playlists' => 'Lejátszási listák',
 			'libraries.groupings.title' => 'Csoportosítás',
 			'libraries.groupings.all' => 'Összes',
 			'libraries.groupings.movies' => 'Filmek',
@@ -2502,7 +2499,6 @@ extension on TranslationsHu {
 			'collections.removeFromCollectionFailed' => 'Nem sikerült az eltávolítás a gyűjteményből',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Hiba a gyűjteményből való eltávolításkor: ${error}',
 			'collections.searchCollections' => 'Gyűjtemények keresése...',
-			'playlists.title' => 'Lejátszási listák',
 			'playlists.playlist' => 'Lejátszási lista',
 			'playlists.noPlaylists' => 'Nem találhatók lejátszási listák',
 			'playlists.create' => 'Lejátszási lista létrehozása',
@@ -2758,10 +2754,10 @@ extension on TranslationsHu {
 			'metadataEdit.artworkUpdateFailed' => 'Nem sikerült a képek frissítése',
 			'metadataEdit.noArtworkAvailable' => 'Nincsenek elérhető képek',
 			'metadataEdit.artworkOption' => ({required Object index}) => '${index}. képváltozat',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '${index}. képváltozat, kiválasztva',
 			'metadataEdit.notSet' => 'Nincs beállítva',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Címkék',
 			'metadataEdit.addTag' => 'Címke hozzáadása',
 			'metadataEdit.genre' => 'Műfaj',

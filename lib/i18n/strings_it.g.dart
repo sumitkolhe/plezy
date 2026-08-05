@@ -1068,7 +1068,6 @@ class _Translations$playlists$it extends Translations$playlists$en {
 	final TranslationsIt _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Playlist';
 	@override String get playlist => 'Playlist';
 	@override String get noPlaylists => 'Nessuna playlist trovata';
 	@override String get create => 'Crea playlist';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$it extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Esplora';
-	@override String get playlists => 'Playlist';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsIt {
 			'libraries.noFoldersFound' => 'Nessuna cartella trovata',
 			'libraries.folders' => 'cartelle',
 			'libraries.tabs.browse' => 'Esplora',
-			'libraries.tabs.playlists' => 'Playlist',
 			'libraries.groupings.title' => 'Raggruppa per',
 			'libraries.groupings.all' => 'Tutti',
 			'libraries.groupings.movies' => 'Film',
@@ -2502,7 +2499,6 @@ extension on TranslationsIt {
 			'collections.removeFromCollectionFailed' => 'Impossibile rimuovere dalla raccolta',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Errore durante la rimozione dell\'elemento dalla raccolta: ${error}',
 			'collections.searchCollections' => 'Cerca raccolte...',
-			'playlists.title' => 'Playlist',
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'Nessuna playlist trovata',
 			'playlists.create' => 'Crea playlist',
@@ -2758,10 +2754,10 @@ extension on TranslationsIt {
 			'metadataEdit.artworkUpdateFailed' => 'Impossibile aggiornare le immagini',
 			'metadataEdit.noArtworkAvailable' => 'Nessuna immagine disponibile',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opzione immagine ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opzione immagine ${index}, selezionata',
 			'metadataEdit.notSet' => 'Non impostato',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tag',
 			'metadataEdit.addTag' => 'Aggiungi tag',
 			'metadataEdit.genre' => 'Genere',

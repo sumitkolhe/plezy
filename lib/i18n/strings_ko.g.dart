@@ -1066,7 +1066,6 @@ class _Translations$playlists$ko extends Translations$playlists$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '플레이리스트';
 	@override String get playlist => '재생 목록';
 	@override String get noPlaylists => '재생 목록을 찾을 수 없습니다';
 	@override String get create => '재생 목록 생성';
@@ -1541,7 +1540,6 @@ class _Translations$libraries$tabs$ko extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => '찾아보기';
-	@override String get playlists => '재생 목록';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2391,6 @@ extension on TranslationsKo {
 			'libraries.noFoldersFound' => '폴더를 찾을 수 없습니다',
 			'libraries.folders' => '폴더',
 			'libraries.tabs.browse' => '찾아보기',
-			'libraries.tabs.playlists' => '재생 목록',
 			'libraries.groupings.title' => '그룹',
 			'libraries.groupings.all' => '전체',
 			'libraries.groupings.movies' => '영화',
@@ -2499,7 +2496,6 @@ extension on TranslationsKo {
 			'collections.removeFromCollectionFailed' => '컬렉션에서 제거 실패',
 			'collections.removeFromCollectionError' => ({required Object error}) => '컬렉션에서 제거 중 오류 발생: ${error}',
 			'collections.searchCollections' => '컬렉션 검색...',
-			'playlists.title' => '플레이리스트',
 			'playlists.playlist' => '재생 목록',
 			'playlists.noPlaylists' => '재생 목록을 찾을 수 없습니다',
 			'playlists.create' => '재생 목록 생성',
@@ -2755,10 +2751,10 @@ extension on TranslationsKo {
 			'metadataEdit.artworkUpdateFailed' => '아트워크 업데이트 실패',
 			'metadataEdit.noArtworkAvailable' => '사용 가능한 아트워크 없음',
 			'metadataEdit.artworkOption' => ({required Object index}) => '아트워크 옵션 ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '아트워크 옵션 ${index}, 선택됨',
 			'metadataEdit.notSet' => '설정되지 않음',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => '태그',
 			'metadataEdit.addTag' => '태그 추가',
 			'metadataEdit.genre' => '장르',

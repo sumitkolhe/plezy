@@ -1068,7 +1068,6 @@ class _Translations$playlists$nl extends Translations$playlists$en {
 	final TranslationsNl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Afspeellijsten';
 	@override String get playlist => 'Afspeellijst';
 	@override String get noPlaylists => 'Geen afspeellijsten gevonden';
 	@override String get create => 'Afspeellijst maken';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$nl extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Bladeren';
-	@override String get playlists => 'Afspeellijsten';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsNl {
 			'libraries.noFoldersFound' => 'Geen mappen gevonden',
 			'libraries.folders' => 'mappen',
 			'libraries.tabs.browse' => 'Bladeren',
-			'libraries.tabs.playlists' => 'Afspeellijsten',
 			'libraries.groupings.title' => 'Groepering',
 			'libraries.groupings.all' => 'Alles',
 			'libraries.groupings.movies' => 'Films',
@@ -2502,7 +2499,6 @@ extension on TranslationsNl {
 			'collections.removeFromCollectionFailed' => 'Verwijderen uit collectie mislukt',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Fout bij verwijderen uit collectie: ${error}',
 			'collections.searchCollections' => 'Collecties zoeken...',
-			'playlists.title' => 'Afspeellijsten',
 			'playlists.playlist' => 'Afspeellijst',
 			'playlists.noPlaylists' => 'Geen afspeellijsten gevonden',
 			'playlists.create' => 'Afspeellijst maken',
@@ -2758,10 +2754,10 @@ extension on TranslationsNl {
 			'metadataEdit.artworkUpdateFailed' => 'Illustraties bijwerken mislukt',
 			'metadataEdit.noArtworkAvailable' => 'Geen illustraties beschikbaar',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Illustratie ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Illustratie ${index}, geselecteerd',
 			'metadataEdit.notSet' => 'Niet ingesteld',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tag toevoegen',
 			'metadataEdit.genre' => 'Genre',

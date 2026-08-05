@@ -820,7 +820,6 @@
     "folders": "klasörler",
     "tabs": {
       "browse": "Göz At",
-      "playlists": "Oynatma Listeleri",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Koleksiyonlarda ara..."
   },
   "playlists": {
-    "title": "Oynatma Listeleri",
     "playlist": "Oynatma Listesi",
     "noPlaylists": "Oynatma listesi bulunamadı",
     "create": "Oynatma Listesi Oluştur",

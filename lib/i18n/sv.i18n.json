@@ -820,7 +820,6 @@
     "folders": "mappar",
     "tabs": {
       "browse": "Bläddra",
-      "playlists": "Spellistor",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Sök samlingar..."
   },
   "playlists": {
-    "title": "Spellistor",
     "playlist": "Spellista",
     "noPlaylists": "Inga spellistor hittades",
     "create": "Skapa spellista",

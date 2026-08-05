@@ -820,7 +820,6 @@
     "folders": "jildlar",
     "tabs": {
       "browse": "Koʻrib chiqish",
-      "playlists": "Ijro roʻyxatlari",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Toʻplamlardan qidirish..."
   },
   "playlists": {
-    "title": "Ijro roʻyxatlari",
     "playlist": "Ijro roʻyxati",
     "noPlaylists": "Ijro roʻyxatlari topilmadi",
     "create": "Ijro roʻyxatini yaratish",

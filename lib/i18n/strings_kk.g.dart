@@ -1073,7 +1073,6 @@ class _Translations$playlists$kk extends Translations$playlists$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Ойнату тізімдері';
 	@override String get playlist => 'Ойнату тізімі';
 	@override String get noPlaylists => 'Ойнату тізімдері табылмады';
 	@override String get create => 'Ойнату тізімін жасау';
@@ -1555,7 +1554,6 @@ class _Translations$libraries$tabs$kk extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Шолу';
-	@override String get playlists => 'Ойнату тізімдері';
 }
 
 // Path: libraries.groupings
@@ -2412,7 +2410,6 @@ extension on TranslationsKk {
 			'libraries.noFoldersFound' => 'Қапшықтар табылмады',
 			'libraries.folders' => 'қапшықтар',
 			'libraries.tabs.browse' => 'Шолу',
-			'libraries.tabs.playlists' => 'Ойнату тізімдері',
 			'libraries.groupings.title' => 'Топтау',
 			'libraries.groupings.all' => 'Барлығы',
 			'libraries.groupings.movies' => 'Фильмдер',
@@ -2518,7 +2515,6 @@ extension on TranslationsKk {
 			'collections.removeFromCollectionFailed' => 'Топтамадан өшіру мүмкін болмады',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Өшіру қатесі: ${error}',
 			'collections.searchCollections' => 'Топтамалардан іздеу...',
-			'playlists.title' => 'Ойнату тізімдері',
 			'playlists.playlist' => 'Ойнату тізімі',
 			'playlists.noPlaylists' => 'Ойнату тізімдері табылмады',
 			'playlists.create' => 'Ойнату тізімін жасау',
@@ -2769,10 +2765,10 @@ extension on TranslationsKk {
 			'metadataEdit.selectPoster' => 'Постерді таңдау',
 			'metadataEdit.selectBackground' => 'Фонды таңдау',
 			'metadataEdit.selectLogo' => 'Логотипті таңдау',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Шаршы суретті таңдау',
 			'metadataEdit.fromUrl' => 'URL арқылы',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Файлды жүктеу',
 			'metadataEdit.enterImageUrl' => 'Сурет URL-ін енгізіңіз',
 			'metadataEdit.imageUrl' => 'Сурет URL-і',

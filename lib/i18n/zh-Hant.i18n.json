@@ -819,7 +819,6 @@
     "folders": "資料夾",
     "tabs": {
       "browse": "瀏覽",
-      "playlists": "播放清單",
       "missing": ""
     },
     "groupings": {
@@ -1096,7 +1095,6 @@
     "searchCollections": "搜尋收藏集…"
   },
   "playlists": {
-    "title": "播放清單",
     "playlist": "播放清單",
     "noPlaylists": "找不到播放清單",
     "create": "建立播放清單",

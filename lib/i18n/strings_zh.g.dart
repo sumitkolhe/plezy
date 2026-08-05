@@ -1066,7 +1066,6 @@ class Translations$playlists$zh extends Translations$playlists$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '播放列表';
 	@override String get playlist => '播放列表';
 	@override String get noPlaylists => '未找到播放列表';
 	@override String get create => '创建播放列表';
@@ -1541,7 +1540,6 @@ class Translations$libraries$tabs$zh extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => '浏览';
-	@override String get playlists => '播放列表';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2391,6 @@ extension on TranslationsZh {
 			'libraries.noFoldersFound' => '未找到文件夹',
 			'libraries.folders' => '文件夹',
 			'libraries.tabs.browse' => '浏览',
-			'libraries.tabs.playlists' => '播放列表',
 			'libraries.groupings.title' => '分组',
 			'libraries.groupings.all' => '全部',
 			'libraries.groupings.movies' => '电影',
@@ -2499,7 +2496,6 @@ extension on TranslationsZh {
 			'collections.removeFromCollectionFailed' => '从合集移除失败',
 			'collections.removeFromCollectionError' => ({required Object error}) => '从合集移除时出错：${error}',
 			'collections.searchCollections' => '搜索合集…',
-			'playlists.title' => '播放列表',
 			'playlists.playlist' => '播放列表',
 			'playlists.noPlaylists' => '未找到播放列表',
 			'playlists.create' => '创建播放列表',
@@ -2755,10 +2751,10 @@ extension on TranslationsZh {
 			'metadataEdit.artworkUpdateFailed' => '封面图片更新失败',
 			'metadataEdit.noArtworkAvailable' => '没有可用的封面图片',
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面图片选项 ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面图片选项 ${index}，已选择',
 			'metadataEdit.notSet' => '未设置',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => '标签',
 			'metadataEdit.addTag' => '添加标签',
 			'metadataEdit.genre' => '类型',

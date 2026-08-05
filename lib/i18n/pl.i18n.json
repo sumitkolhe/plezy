@@ -822,7 +822,6 @@
     "folders": "foldery",
     "tabs": {
       "browse": "Przeglądaj",
-      "playlists": "Playlisty",
       "missing": ""
     },
     "groupings": {
@@ -1111,7 +1110,6 @@
     "searchCollections": "Szukaj kolekcji..."
   },
   "playlists": {
-    "title": "Playlisty",
     "playlist": "Playlista",
     "noPlaylists": "Nie znaleziono playlist",
     "create": "Utwórz playlistę",

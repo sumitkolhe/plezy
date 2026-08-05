@@ -820,7 +820,6 @@
     "folders": "mappák",
     "tabs": {
       "browse": "Böngészés",
-      "playlists": "Lejátszási listák",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Gyűjtemények keresése..."
   },
   "playlists": {
-    "title": "Lejátszási listák",
     "playlist": "Lejátszási lista",
     "noPlaylists": "Nem találhatók lejátszási listák",
     "create": "Lejátszási lista létrehozása",

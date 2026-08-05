@@ -820,7 +820,6 @@
     "folders": "qovluqlar",
     "tabs": {
       "browse": "Baxış",
-      "playlists": "Oynatma siyahıları",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Kolleksiyalarda axtar..."
   },
   "playlists": {
-    "title": "Oynatma siyahıları",
     "playlist": "Oynatma siyahısı",
     "noPlaylists": "Oynatma siyahısı tapılmadı",
     "create": "Oynatma siyahısı yarat",

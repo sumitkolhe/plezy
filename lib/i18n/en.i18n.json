@@ -820,7 +820,6 @@
     "folders": "folders",
     "tabs": {
       "browse": "Browse",
-      "playlists": "Playlists",
       "missing": "Missing"
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Search collections..."
   },
   "playlists": {
-    "title": "Playlists",
     "playlist": "Playlist",
     "noPlaylists": "No playlists found",
     "create": "Create Playlist",

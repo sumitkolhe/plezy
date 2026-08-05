@@ -1067,7 +1067,6 @@ class _Translations$playlists$zh_Hant extends Translations$playlists$zh {
 	final TranslationsZhHant _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => '播放清單';
 	@override String get playlist => '播放清單';
 	@override String get noPlaylists => '找不到播放清單';
 	@override String get create => '建立播放清單';
@@ -1542,7 +1541,6 @@ class _Translations$libraries$tabs$zh_Hant extends Translations$libraries$tabs$z
 
 	// Translations
 	@override String get browse => '瀏覽';
-	@override String get playlists => '播放清單';
 }
 
 // Path: libraries.groupings
@@ -2394,7 +2392,6 @@ extension on TranslationsZhHant {
 			'libraries.noFoldersFound' => '找不到資料夾',
 			'libraries.folders' => '資料夾',
 			'libraries.tabs.browse' => '瀏覽',
-			'libraries.tabs.playlists' => '播放清單',
 			'libraries.groupings.title' => '分組',
 			'libraries.groupings.all' => '全部',
 			'libraries.groupings.movies' => '電影',
@@ -2500,7 +2497,6 @@ extension on TranslationsZhHant {
 			'collections.removeFromCollectionFailed' => '從收藏集移除失敗',
 			'collections.removeFromCollectionError' => ({required Object error}) => '從收藏集移除時發生錯誤：${error}',
 			'collections.searchCollections' => '搜尋收藏集…',
-			'playlists.title' => '播放清單',
 			'playlists.playlist' => '播放清單',
 			'playlists.noPlaylists' => '找不到播放清單',
 			'playlists.create' => '建立播放清單',
@@ -2756,10 +2752,10 @@ extension on TranslationsZhHant {
 			'metadataEdit.artworkUpdateFailed' => '封面圖片更新失敗',
 			'metadataEdit.noArtworkAvailable' => '沒有可用的封面圖片',
 			'metadataEdit.artworkOption' => ({required Object index}) => '封面圖片選項 ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => '封面圖片選項 ${index}，已選擇',
 			'metadataEdit.notSet' => '未設定',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => '標籤',
 			'metadataEdit.addTag' => '新增標籤',
 			'metadataEdit.genre' => '類型',

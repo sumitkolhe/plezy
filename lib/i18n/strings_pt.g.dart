@@ -1068,7 +1068,6 @@ class _Translations$playlists$pt extends Translations$playlists$en {
 	final TranslationsPt _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Playlists';
 	@override String get playlist => 'Playlist';
 	@override String get noPlaylists => 'Nenhuma playlist encontrada';
 	@override String get create => 'Criar Playlist';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$pt extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Navegar';
-	@override String get playlists => 'Playlists';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsPt {
 			'libraries.noFoldersFound' => 'Nenhuma pasta encontrada',
 			'libraries.folders' => 'pastas',
 			'libraries.tabs.browse' => 'Navegar',
-			'libraries.tabs.playlists' => 'Playlists',
 			'libraries.groupings.title' => 'Agrupamento',
 			'libraries.groupings.all' => 'Todos',
 			'libraries.groupings.movies' => 'Filmes',
@@ -2502,7 +2499,6 @@ extension on TranslationsPt {
 			'collections.removeFromCollectionFailed' => 'Falha ao remover da coleção',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Erro ao remover da coleção: ${error}',
 			'collections.searchCollections' => 'Pesquisar coleções...',
-			'playlists.title' => 'Playlists',
 			'playlists.playlist' => 'Playlist',
 			'playlists.noPlaylists' => 'Nenhuma playlist encontrada',
 			'playlists.create' => 'Criar Playlist',
@@ -2758,10 +2754,10 @@ extension on TranslationsPt {
 			'metadataEdit.artworkUpdateFailed' => 'Falha ao atualizar arte',
 			'metadataEdit.noArtworkAvailable' => 'Nenhuma arte disponível',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opção de arte ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opção de arte ${index}, selecionada',
 			'metadataEdit.notSet' => 'Não definido',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Adicionar tag',
 			'metadataEdit.genre' => 'Gênero',

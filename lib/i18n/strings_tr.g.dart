@@ -1073,7 +1073,6 @@ class _Translations$playlists$tr extends Translations$playlists$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Oynatma Listeleri';
 	@override String get playlist => 'Oynatma Listesi';
 	@override String get noPlaylists => 'Oynatma listesi bulunamadı';
 	@override String get create => 'Oynatma Listesi Oluştur';
@@ -1555,7 +1554,6 @@ class _Translations$libraries$tabs$tr extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Göz At';
-	@override String get playlists => 'Oynatma Listeleri';
 }
 
 // Path: libraries.groupings
@@ -2412,7 +2410,6 @@ extension on TranslationsTr {
 			'libraries.noFoldersFound' => 'Klasör bulunamadı',
 			'libraries.folders' => 'klasörler',
 			'libraries.tabs.browse' => 'Göz At',
-			'libraries.tabs.playlists' => 'Oynatma Listeleri',
 			'libraries.groupings.title' => 'Gruplama',
 			'libraries.groupings.all' => 'Tümü',
 			'libraries.groupings.movies' => 'Filmler',
@@ -2518,7 +2515,6 @@ extension on TranslationsTr {
 			'collections.removeFromCollectionFailed' => 'Koleksiyondan kaldırılamadı',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Koleksiyondan kaldırılırken hata: ${error}',
 			'collections.searchCollections' => 'Koleksiyonlarda ara...',
-			'playlists.title' => 'Oynatma Listeleri',
 			'playlists.playlist' => 'Oynatma Listesi',
 			'playlists.noPlaylists' => 'Oynatma listesi bulunamadı',
 			'playlists.create' => 'Oynatma Listesi Oluştur',
@@ -2769,10 +2765,10 @@ extension on TranslationsTr {
 			'metadataEdit.selectPoster' => 'Afiş Seç',
 			'metadataEdit.selectBackground' => 'Arka Plan Seç',
 			'metadataEdit.selectLogo' => 'Logo Seç',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kare Görsel Seç',
 			'metadataEdit.fromUrl' => 'URL\'den',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Dosya Yükle',
 			'metadataEdit.enterImageUrl' => 'Görsel URL\'si girin',
 			'metadataEdit.imageUrl' => 'Görsel URL\'si',

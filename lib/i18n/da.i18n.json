@@ -820,7 +820,6 @@
     "folders": "mapper",
     "tabs": {
       "browse": "Gennemse",
-      "playlists": "Playlister",
       "missing": ""
     },
     "groupings": {
@@ -1101,7 +1100,6 @@
     "searchCollections": "Søg i samlinger..."
   },
   "playlists": {
-    "title": "Playlister",
     "playlist": "Playliste",
     "noPlaylists": "Ingen playlister fundet",
     "create": "Opret playliste",

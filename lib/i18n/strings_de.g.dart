@@ -1068,7 +1068,6 @@ class _Translations$playlists$de extends Translations$playlists$en {
 	final TranslationsDe _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Wiedergabelisten';
 	@override String get playlist => 'Wiedergabeliste';
 	@override String get noPlaylists => 'Keine Wiedergabelisten gefunden';
 	@override String get create => 'Wiedergabeliste erstellen';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$de extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Durchsuchen';
-	@override String get playlists => 'Wiedergabelisten';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsDe {
 			'libraries.noFoldersFound' => 'Keine Ordner gefunden',
 			'libraries.folders' => 'Ordner',
 			'libraries.tabs.browse' => 'Durchsuchen',
-			'libraries.tabs.playlists' => 'Wiedergabelisten',
 			'libraries.groupings.title' => 'Gruppierung',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Filme',
@@ -2502,7 +2499,6 @@ extension on TranslationsDe {
 			'collections.removeFromCollectionFailed' => 'Entfernen aus Sammlung fehlgeschlagen',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Fehler beim Entfernen aus der Sammlung: ${error}',
 			'collections.searchCollections' => 'Sammlungen durchsuchen...',
-			'playlists.title' => 'Wiedergabelisten',
 			'playlists.playlist' => 'Wiedergabeliste',
 			'playlists.noPlaylists' => 'Keine Wiedergabelisten gefunden',
 			'playlists.create' => 'Wiedergabeliste erstellen',
@@ -2758,10 +2754,10 @@ extension on TranslationsDe {
 			'metadataEdit.artworkUpdateFailed' => 'Grafiken konnten nicht aktualisiert werden',
 			'metadataEdit.noArtworkAvailable' => 'Keine Grafiken verfügbar',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikoption ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikoption ${index}, ausgewählt',
 			'metadataEdit.notSet' => 'Nicht festgelegt',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tags',
 			'metadataEdit.addTag' => 'Tag hinzufügen',
 			'metadataEdit.genre' => 'Genre',

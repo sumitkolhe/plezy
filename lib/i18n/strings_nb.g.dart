@@ -1068,7 +1068,6 @@ class _Translations$playlists$nb extends Translations$playlists$en {
 	final TranslationsNb _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Spillelister';
 	@override String get playlist => 'Spilleliste';
 	@override String get noPlaylists => 'Ingen spillelister funnet';
 	@override String get create => 'Opprett spilleliste';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$nb extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Bla gjennom';
-	@override String get playlists => 'Spillelister';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsNb {
 			'libraries.noFoldersFound' => 'Ingen mapper funnet',
 			'libraries.folders' => 'mapper',
 			'libraries.tabs.browse' => 'Bla gjennom',
-			'libraries.tabs.playlists' => 'Spillelister',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alle',
 			'libraries.groupings.movies' => 'Filmer',
@@ -2502,7 +2499,6 @@ extension on TranslationsNb {
 			'collections.removeFromCollectionFailed' => 'Kunne ikke fjerne fra samling',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Feil ved fjerning fra samling: ${error}',
 			'collections.searchCollections' => 'Søk i samlinger...',
-			'playlists.title' => 'Spillelister',
 			'playlists.playlist' => 'Spilleliste',
 			'playlists.noPlaylists' => 'Ingen spillelister funnet',
 			'playlists.create' => 'Opprett spilleliste',
@@ -2758,10 +2754,10 @@ extension on TranslationsNb {
 			'metadataEdit.artworkUpdateFailed' => 'Kunne ikke oppdatere grafikken',
 			'metadataEdit.noArtworkAvailable' => 'Ingen grafikk tilgjengelig',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Grafikkalternativ ${index}, valgt',
 			'metadataEdit.notSet' => 'Ikke angitt',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tagger',
 			'metadataEdit.addTag' => 'Legg til tagg',
 			'metadataEdit.genre' => 'Sjanger',

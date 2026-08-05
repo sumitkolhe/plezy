@@ -1068,7 +1068,6 @@ class _Translations$playlists$sv extends Translations$playlists$en {
 	final TranslationsSv _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Spellistor';
 	@override String get playlist => 'Spellista';
 	@override String get noPlaylists => 'Inga spellistor hittades';
 	@override String get create => 'Skapa spellista';
@@ -1544,7 +1543,6 @@ class _Translations$libraries$tabs$sv extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Bläddra';
-	@override String get playlists => 'Spellistor';
 }
 
 // Path: libraries.groupings
@@ -2396,7 +2394,6 @@ extension on TranslationsSv {
 			'libraries.noFoldersFound' => 'Inga mappar hittades',
 			'libraries.folders' => 'mappar',
 			'libraries.tabs.browse' => 'Bläddra',
-			'libraries.tabs.playlists' => 'Spellistor',
 			'libraries.groupings.title' => 'Gruppering',
 			'libraries.groupings.all' => 'Alla',
 			'libraries.groupings.movies' => 'Filmer',
@@ -2502,7 +2499,6 @@ extension on TranslationsSv {
 			'collections.removeFromCollectionFailed' => 'Det gick inte att ta bort objektet från samlingen',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Fel när objektet skulle tas bort från samlingen: ${error}',
 			'collections.searchCollections' => 'Sök samlingar...',
-			'playlists.title' => 'Spellistor',
 			'playlists.playlist' => 'Spellista',
 			'playlists.noPlaylists' => 'Inga spellistor hittades',
 			'playlists.create' => 'Skapa spellista',
@@ -2758,10 +2754,10 @@ extension on TranslationsSv {
 			'metadataEdit.artworkUpdateFailed' => 'Det gick inte att uppdatera bildmaterialet',
 			'metadataEdit.noArtworkAvailable' => 'Inget bildmaterial är tillgängligt',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Bildalternativ ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Bildalternativ ${index}, valt',
 			'metadataEdit.notSet' => 'Inte angiven',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Taggar',
 			'metadataEdit.addTag' => 'Lägg till tagg',
 			'metadataEdit.genre' => 'Genre',

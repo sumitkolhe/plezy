@@ -1072,7 +1072,6 @@ class _Translations$playlists$pl extends Translations$playlists$en {
 	final TranslationsPl _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Playlisty';
 	@override String get playlist => 'Playlista';
 	@override String get noPlaylists => 'Nie znaleziono playlist';
 	@override String get create => 'Utwórz playlistę';
@@ -1550,7 +1549,6 @@ class _Translations$libraries$tabs$pl extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Przeglądaj';
-	@override String get playlists => 'Playlisty';
 }
 
 // Path: libraries.groupings
@@ -2402,7 +2400,6 @@ extension on TranslationsPl {
 			'libraries.noFoldersFound' => 'Nie znaleziono folderów',
 			'libraries.folders' => 'foldery',
 			'libraries.tabs.browse' => 'Przeglądaj',
-			'libraries.tabs.playlists' => 'Playlisty',
 			'libraries.groupings.title' => 'Grupowanie',
 			'libraries.groupings.all' => 'Wszystkie',
 			'libraries.groupings.movies' => 'Filmy',
@@ -2508,7 +2505,6 @@ extension on TranslationsPl {
 			'collections.removeFromCollectionFailed' => 'Nie udało się usunąć z kolekcji',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Błąd usuwania z kolekcji: ${error}',
 			'collections.searchCollections' => 'Szukaj kolekcji...',
-			'playlists.title' => 'Playlisty',
 			'playlists.playlist' => 'Playlista',
 			'playlists.noPlaylists' => 'Nie znaleziono playlist',
 			'playlists.create' => 'Utwórz playlistę',
@@ -2764,10 +2760,10 @@ extension on TranslationsPl {
 			'metadataEdit.artworkUpdateFailed' => 'Nie udało się zaktualizować grafiki',
 			'metadataEdit.noArtworkAvailable' => 'Brak dostępnej grafiki',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'Opcja grafiki ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'Opcja grafiki ${index}, wybrana',
 			'metadataEdit.notSet' => 'Nie ustawiono',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'Tagi',
 			'metadataEdit.addTag' => 'Dodaj tag',
 			'metadataEdit.genre' => 'Gatunek',

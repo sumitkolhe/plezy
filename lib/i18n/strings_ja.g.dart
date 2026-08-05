@@ -1066,7 +1066,6 @@ class _Translations$playlists$ja extends Translations$playlists$en {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'プレイリスト';
 	@override String get playlist => 'プレイリスト';
 	@override String get noPlaylists => 'プレイリストが見つかりません';
 	@override String get create => 'プレイリストを作成';
@@ -1541,7 +1540,6 @@ class _Translations$libraries$tabs$ja extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'ブラウズ';
-	@override String get playlists => 'プレイリスト';
 }
 
 // Path: libraries.groupings
@@ -2393,7 +2391,6 @@ extension on TranslationsJa {
 			'libraries.noFoldersFound' => 'フォルダが見つかりません',
 			'libraries.folders' => 'フォルダ',
 			'libraries.tabs.browse' => 'ブラウズ',
-			'libraries.tabs.playlists' => 'プレイリスト',
 			'libraries.groupings.title' => 'グループ',
 			'libraries.groupings.all' => 'すべて',
 			'libraries.groupings.movies' => '映画',
@@ -2499,7 +2496,6 @@ extension on TranslationsJa {
 			'collections.removeFromCollectionFailed' => 'コレクションからの削除に失敗しました',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'コレクションからの削除エラー: ${error}',
 			'collections.searchCollections' => 'コレクションを検索…',
-			'playlists.title' => 'プレイリスト',
 			'playlists.playlist' => 'プレイリスト',
 			'playlists.noPlaylists' => 'プレイリストが見つかりません',
 			'playlists.create' => 'プレイリストを作成',
@@ -2755,10 +2751,10 @@ extension on TranslationsJa {
 			'metadataEdit.artworkUpdateFailed' => 'アートワークの更新に失敗しました',
 			'metadataEdit.noArtworkAvailable' => 'アートワークがありません',
 			'metadataEdit.artworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectedArtworkOption' => ({required Object index}) => 'アートワークの選択肢 ${index}、選択済み',
 			'metadataEdit.notSet' => '未設定',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.tags' => 'タグ',
 			'metadataEdit.addTag' => 'タグを追加',
 			'metadataEdit.genre' => 'ジャンル',

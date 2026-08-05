@@ -1073,7 +1073,6 @@ class _Translations$playlists$uz extends Translations$playlists$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Ijro roʻyxatlari';
 	@override String get playlist => 'Ijro roʻyxati';
 	@override String get noPlaylists => 'Ijro roʻyxatlari topilmadi';
 	@override String get create => 'Ijro roʻyxatini yaratish';
@@ -1555,7 +1554,6 @@ class _Translations$libraries$tabs$uz extends Translations$libraries$tabs$en {
 
 	// Translations
 	@override String get browse => 'Koʻrib chiqish';
-	@override String get playlists => 'Ijro roʻyxatlari';
 }
 
 // Path: libraries.groupings
@@ -2412,7 +2410,6 @@ extension on TranslationsUz {
 			'libraries.noFoldersFound' => 'Jildlar topilmadi',
 			'libraries.folders' => 'jildlar',
 			'libraries.tabs.browse' => 'Koʻrib chiqish',
-			'libraries.tabs.playlists' => 'Ijro roʻyxatlari',
 			'libraries.groupings.title' => 'Guruhlash',
 			'libraries.groupings.all' => 'Barchasi',
 			'libraries.groupings.movies' => 'Filmlar',
@@ -2518,7 +2515,6 @@ extension on TranslationsUz {
 			'collections.removeFromCollectionFailed' => 'Toʻplamdan oʻchirib boʻlmadi',
 			'collections.removeFromCollectionError' => ({required Object error}) => 'Oʻchirish xatoligi: ${error}',
 			'collections.searchCollections' => 'Toʻplamlardan qidirish...',
-			'playlists.title' => 'Ijro roʻyxatlari',
 			'playlists.playlist' => 'Ijro roʻyxati',
 			'playlists.noPlaylists' => 'Ijro roʻyxatlari topilmadi',
 			'playlists.create' => 'Ijro roʻyxatini yaratish',
@@ -2769,10 +2765,10 @@ extension on TranslationsUz {
 			'metadataEdit.selectPoster' => 'Posterni tanlash',
 			'metadataEdit.selectBackground' => 'Fonni tanlash',
 			'metadataEdit.selectLogo' => 'Logotipni tanlash',
-			_ => null,
-		} ?? switch (path) {
 			'metadataEdit.selectSquareArt' => 'Kvadrat rasm tanlash',
 			'metadataEdit.fromUrl' => 'URL orqali',
+			_ => null,
+		} ?? switch (path) {
 			'metadataEdit.uploadFile' => 'Fayl yuklash',
 			'metadataEdit.enterImageUrl' => 'Rasm URL-manzilini kiriting',
 			'metadataEdit.imageUrl' => 'Rasm URL-manzili',
