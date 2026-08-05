@@ -192,7 +192,7 @@ val prepareMpvFfmpegDevelopment = tasks.register("prepareMpvFfmpegDevelopment") 
       }
       File(includeDir, "libavutil/avconfig.h").writeText(
         """
-        |/* Generated for Plezy's little-endian Android ABIs. */
+        |/* Generated for Harbor's little-endian Android ABIs. */
         |#ifndef AVUTIL_AVCONFIG_H
         |#define AVUTIL_AVCONFIG_H
         |#define AV_HAVE_BIGENDIAN 0
@@ -433,10 +433,10 @@ android {
   }
 
   // Instrumentation normally runs against `debug`; the R8 reachability gate opts into the
-  // minified variant with -Pplezy.testBuildType=minified. Only one build type can host
+  // minified variant with -Pharbor.testBuildType=minified. Only one build type can host
   // androidTest, and the existing playback suites need media3 builder APIs the app itself
   // never calls — which R8 legitimately shrinks — so they stay on debug.
-  testBuildType = (findProperty("plezy.testBuildType") as String?) ?: "debug"
+  testBuildType = (findProperty("harbor.testBuildType") as String?) ?: "debug"
 
   packaging {
     jniLibs {

@@ -444,9 +444,9 @@ static int decodePacket(
     const int outputSampleCapacity = swr_get_out_samples(resampleState->context, sampleCount);
     int outputByteCapacity;
     int requiredOutputSize;
-    if (!plezy::ffmpeg::CheckedAudioByteCount(
+    if (!harbor::ffmpeg::CheckedAudioByteCount(
             outputSampleCapacity, channelCount, bytesPerSample, &outputByteCapacity) ||
-        !plezy::ffmpeg::CheckedAddByteCount(outSize, outputByteCapacity, &requiredOutputSize)) {
+        !harbor::ffmpeg::CheckedAddByteCount(outSize, outputByteCapacity, &requiredOutputSize)) {
       LOGE("Decoded audio output size is invalid or too large.");
       av_frame_free(&frame);
       return AUDIO_DECODER_ERROR_INVALID_DATA;
@@ -477,9 +477,9 @@ static int decodePacket(
 
     int writtenByteCount;
     int nextOutSize;
-    if (!plezy::ffmpeg::CheckedAudioByteCount(result, channelCount, bytesPerSample, &writtenByteCount) ||
+    if (!harbor::ffmpeg::CheckedAudioByteCount(result, channelCount, bytesPerSample, &writtenByteCount) ||
         writtenByteCount > outputByteCapacity ||
-        !plezy::ffmpeg::CheckedAddByteCount(outSize, writtenByteCount, &nextOutSize)) {
+        !harbor::ffmpeg::CheckedAddByteCount(outSize, writtenByteCount, &nextOutSize)) {
       LOGE("Resampler returned an invalid output sample count.");
       return AUDIO_DECODER_ERROR_INVALID_DATA;
     }

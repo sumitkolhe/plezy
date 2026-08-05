@@ -2168,7 +2168,7 @@ class OfflineWatchProgressItem extends DataClass implements Insertable<OfflineWa
   /// Auto-incrementing primary key
   final int id;
 
-  /// Active Plezy profile that owns this queued action.
+  /// Active Harbor profile that owns this queued action.
   final String? profileId;
 
   /// Server ID this media belongs to

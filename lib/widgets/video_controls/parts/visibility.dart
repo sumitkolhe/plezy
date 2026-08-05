@@ -50,7 +50,7 @@ extension _PlayerControlsVisibilityMethods on _PlayerControlsState {
   /// Maestro builds extend the delay because accessibility-tree queries can take
   /// longer than the production timeout on physical devices.
   Duration get _hideDelay {
-    if (const bool.fromEnvironment('PLEZY_MAESTRO_E2E')) {
+    if (const bool.fromEnvironment('HARBOR_MAESTRO_E2E')) {
       return const Duration(seconds: 30);
     }
     final isMobile = (Platform.isIOS || Platform.isAndroid) && !PlatformDetector.isTV();

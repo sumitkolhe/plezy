@@ -13,12 +13,12 @@
 
 namespace {
 
-using plezy::mpv_common::AudioOutputTransition;
-using plezy::mpv_common::AudioRecoveryState;
-using plezy::mpv_common::AudioReloadReason;
+using harbor::mpv_common::AudioOutputTransition;
+using harbor::mpv_common::AudioRecoveryState;
+using harbor::mpv_common::AudioReloadReason;
 
 void TestRequestRegistry() {
-  plezy::mpv_common::AsyncRequestRegistry registry;
+  harbor::mpv_common::AsyncRequestRegistry registry;
   bool status_called = false;
   bool property_called = false;
 
@@ -46,7 +46,7 @@ void TestRequestRegistry() {
 
 void TestConcurrentRequestCompletion() {
   for (int iteration = 0; iteration < 200; ++iteration) {
-    plezy::mpv_common::AsyncRequestRegistry registry;
+    harbor::mpv_common::AsyncRequestRegistry registry;
     std::atomic<int> completions{0};
     const auto id = registry.RegisterStatus([&](int) { completions.fetch_add(1); });
     std::atomic<bool> start{false};
@@ -74,7 +74,7 @@ void TestConcurrentRequestCompletion() {
 }
 
 void TestSetPropertyResultContract() {
-  using namespace plezy::mpv_common;
+  using namespace harbor::mpv_common;
 
   assert(std::string(kSetPropertyFailedCode) == "SET_PROPERTY_FAILED");
   assert(std::string(kSetPropertyNotInitializedCode) == "NOT_INITIALIZED");
@@ -110,7 +110,7 @@ void TestSetPropertyResultContract() {
 }
 
 void TestPropertyObservationRegistry() {
-  plezy::mpv_common::PropertyObservationRegistry registry;
+  harbor::mpv_common::PropertyObservationRegistry registry;
   const auto first = registry.Register("pause", "bool", 17);
   const auto duplicate = registry.Register("pause", "string", 99);
   const auto node = registry.Register("track-list", "node", 18);
@@ -132,7 +132,7 @@ void TestPropertyObservationRegistry() {
 void TestConcurrentPropertyObservationRegistry() {
   constexpr int kPropertyCount = 512;
   constexpr int kClearRounds = 32;
-  plezy::mpv_common::PropertyObservationRegistry registry;
+  harbor::mpv_common::PropertyObservationRegistry registry;
   std::vector<std::string> names;
   names.reserve(kPropertyCount);
   for (int i = 0; i < kPropertyCount; ++i) {
@@ -371,8 +371,8 @@ struct TextNodeBuilder {
 };
 
 void TestNodeConversionBounds() {
-  using plezy::mpv_common::ConvertNode;
-  using plezy::mpv_common::NodeConversionBudget;
+  using harbor::mpv_common::ConvertNode;
+  using harbor::mpv_common::NodeConversionBudget;
 
   char value[] = "hello";
   mpv_node text{};
@@ -397,7 +397,7 @@ void TestNodeConversionBounds() {
   mpv_node_list negative{-1, &entry, nullptr};
   array.u.list = &negative;
   assert(ConvertNode<TextNodeBuilder>(&array) == "null");
-  mpv_node_list oversized{plezy::mpv_common::kMaxNodeEntries + 1, &entry, nullptr};
+  mpv_node_list oversized{harbor::mpv_common::kMaxNodeEntries + 1, &entry, nullptr};
   array.u.list = &oversized;
   assert(ConvertNode<TextNodeBuilder>(&array) == "null");
 
@@ -414,7 +414,7 @@ void TestNodeConversionBounds() {
   assert(ConvertNode<TextNodeBuilder>(&map) == "null");
 
   // Depth, entry, and byte budgets each stop the walk.
-  std::vector<mpv_node> chain(plezy::mpv_common::kMaxNodeDepth + 1);
+  std::vector<mpv_node> chain(harbor::mpv_common::kMaxNodeDepth + 1);
   std::vector<mpv_node_list> links(chain.size());
   chain.back() = entry;
   for (size_t i = chain.size() - 1; i > 0; --i) {
@@ -436,12 +436,12 @@ void TestNodeConversionBounds() {
 }
 
 void TestHdrHelpers() {
-  assert(plezy::mpv_common::ParseEnabledFlag("yes"));
-  assert(plezy::mpv_common::ParseEnabledFlag("true"));
-  assert(plezy::mpv_common::ParseEnabledFlag("1"));
-  assert(!plezy::mpv_common::ParseEnabledFlag("no"));
-  assert(std::string(plezy::mpv_common::TargetColorspaceHint(true)) == "auto");
-  assert(std::string(plezy::mpv_common::TargetColorspaceHint(false)) == "no");
+  assert(harbor::mpv_common::ParseEnabledFlag("yes"));
+  assert(harbor::mpv_common::ParseEnabledFlag("true"));
+  assert(harbor::mpv_common::ParseEnabledFlag("1"));
+  assert(!harbor::mpv_common::ParseEnabledFlag("no"));
+  assert(std::string(harbor::mpv_common::TargetColorspaceHint(true)) == "auto");
+  assert(std::string(harbor::mpv_common::TargetColorspaceHint(false)) == "no");
 }
 
 }  // namespace

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2026 Plezy contributors
+ * Copyright (C) 2026 Harbor contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#ifndef PLEZY_FFMPEG_AUDIO_BUFFER_H_
-#define PLEZY_FFMPEG_AUDIO_BUFFER_H_
+#ifndef HARBOR_FFMPEG_AUDIO_BUFFER_H_
+#define HARBOR_FFMPEG_AUDIO_BUFFER_H_
 
 #include <limits.h>
 #include <stdint.h>
 
-namespace plezy {
+namespace harbor {
 namespace ffmpeg {
 
 inline bool CheckedAudioByteCount(int sample_count, int channel_count, int bytes_per_sample, int* byte_count) {
@@ -43,6 +43,6 @@ inline bool CheckedAddByteCount(int current_size, int additional_size, int* tota
 }
 
 }  // namespace ffmpeg
-}  // namespace plezy
+}  // namespace harbor
 
-#endif  // PLEZY_FFMPEG_AUDIO_BUFFER_H_
+#endif  // HARBOR_FFMPEG_AUDIO_BUFFER_H_

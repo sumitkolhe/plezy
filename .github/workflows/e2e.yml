@@ -77,7 +77,7 @@ jobs:
         run: flutter pub get
 
       - name: Build debug APK
-        run: flutter build apk --debug --dart-define=PLEZY_MAESTRO_E2E=true
+        run: flutter build apk --debug --dart-define=HARBOR_MAESTRO_E2E=true
 
       - name: Cache Maestro CLI
         id: maestro-cache
@@ -118,7 +118,7 @@ jobs:
           context: .
           file: .maestro/jellyfin-demo/Dockerfile
           load: true
-          tags: plezy-jellyfin-demo:local
+          tags: harbor-jellyfin-demo:local
           cache-from: type=gha,scope=maestro-jellyfin
 
       - name: Build and cache deterministic Jellyfin image
@@ -128,7 +128,7 @@ jobs:
           context: .
           file: .maestro/jellyfin-demo/Dockerfile
           load: true
-          tags: plezy-jellyfin-demo:local
+          tags: harbor-jellyfin-demo:local
           cache-from: type=gha,scope=maestro-jellyfin
           cache-to: type=gha,mode=max,scope=maestro-jellyfin
 

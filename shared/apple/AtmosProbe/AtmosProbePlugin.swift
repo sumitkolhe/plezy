@@ -46,7 +46,7 @@ public class AtmosProbePlugin: NSObject, FlutterPlugin {
 
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(
-      name: "plezy/atmos_probe", binaryMessenger: registrar.messenger())
+      name: "co.sumit.harbor/atmos_probe", binaryMessenger: registrar.messenger())
     let instance = AtmosProbePlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
@@ -336,7 +336,7 @@ final class RawEc3Loader: NSObject, AVAssetResourceLoaderDelegate, URLSessionDat
   private let source: URL
   private let finiteLength: Bool
   private let sessionConfiguration: URLSessionConfiguration
-  private let queue = DispatchQueue(label: "plezy.atmos.probe.loader")
+  private let queue = DispatchQueue(label: "harbor.atmos.probe.loader")
   private var terminalHandlerForTesting: (() -> Void)?
   private let queueKey = DispatchSpecificKey<Void>()
   private var session: URLSession?
@@ -361,7 +361,7 @@ final class RawEc3Loader: NSObject, AVAssetResourceLoaderDelegate, URLSessionDat
     self.maximumBufferedBytes = maximumBufferedBytes
     self.sessionConfiguration = sessionConfiguration
     self.terminalHandlerForTesting = terminalHandlerForTesting
-    self.asset = AVURLAsset(url: URL(string: "plezy-ec3-probe://stream/audio.ec3")!)
+    self.asset = AVURLAsset(url: URL(string: "harbor-ec3-probe://stream/audio.ec3")!)
     super.init()
     queue.setSpecific(key: queueKey, value: ())
     asset.resourceLoader.setDelegate(self, queue: queue)
@@ -631,7 +631,7 @@ final class AsbarProbe: NSObject {
   private let regenerateFormatDescription: Bool
   private let sessionMode: AVAudioSession.Mode
   private let queue = DispatchQueue(
-    label: "plezy.atmos.probe.asbar", qos: .userInitiated)
+    label: "harbor.atmos.probe.asbar", qos: .userInitiated)
   private let lock = NSLock()
 
   private var renderer: AVSampleBufferAudioRenderer?
@@ -695,7 +695,7 @@ final class AsbarProbe: NSObject {
       }
       // The temporary file is removed as soon as this handler returns.
       let staged = FileManager.default.temporaryDirectory
-        .appendingPathComponent("plezy-asbar-\(UUID().uuidString)")
+        .appendingPathComponent("harbor-asbar-\(UUID().uuidString)")
         .appendingPathExtension(self.source.pathExtension.isEmpty ? "eac3" : self.source.pathExtension)
       do {
         try FileManager.default.moveItem(at: url, to: staged)

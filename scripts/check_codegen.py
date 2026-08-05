@@ -112,7 +112,7 @@ def main(argv: list[str] | None = None) -> int:
     arguments = list(sys.argv[1:] if argv is None else argv)
     root = Path.cwd().resolve()
     caller_state = _generated_state(root)
-    temporary = Path(tempfile.mkdtemp(prefix="plezy-codegen-check-"))
+    temporary = Path(tempfile.mkdtemp(prefix="harbor-codegen-check-"))
     checkout = temporary / "checkout"
     registered = True
     try:

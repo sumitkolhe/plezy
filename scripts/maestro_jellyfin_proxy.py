@@ -93,7 +93,7 @@ class ProxyState:
 
 
 class JellyfinProxyHandler(BaseHTTPRequestHandler):
-    server_version = "PlezyJellyfinProxy/1.0"
+    server_version = "HarborJellyfinProxy/1.0"
 
     @property
     def state(self) -> ProxyState:

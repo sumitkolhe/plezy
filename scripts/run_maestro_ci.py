@@ -11,8 +11,8 @@ import run_maestro
 
 
 ANDROID_15_INSTRUMENTATION_CLASSES = (
-    "androidx.media3.decoder.ffmpeg.PlezyFfmpegPlaybackTest,"
-    "com.edde746.plezy.exoplayer.PlezyAudioModePlaybackTest"
+    "androidx.media3.decoder.ffmpeg.HarborFfmpegPlaybackTest,"
+    "co.sumit.harbor.exoplayer.HarborAudioModePlaybackTest"
 )
 ANDROID_15_INSTRUMENTATION_TARGET = "android-15-instrumentation"
 # Kept separate from the suites above: only one build type can host androidTest, and
@@ -213,7 +213,7 @@ def run_android_r8_reachability() -> None:
             "-p",
             "android",
             ":app:connectedMinifiedAndroidTest",
-            "-Pplezy.testBuildType=minified",
+            "-Pharbor.testBuildType=minified",
             f"-Pandroid.testInstrumentationRunnerArguments.class={ANDROID_R8_REACHABILITY_CLASSES}",
         )
     )

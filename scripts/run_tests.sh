@@ -24,7 +24,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 # Overridable so scripts/test_run_tests.py can point the detector at fixtures.
-: "${PLEZY_CGROUP_ROOT:=/sys/fs/cgroup}"
+: "${HARBOR_CGROUP_ROOT:=/sys/fs/cgroup}"
 
 # Cores this process may actually use.
 #
@@ -66,17 +66,17 @@ detect_cpus() {
     *) limits+=("$value") ;;
   esac
 
-  if [ -r "$PLEZY_CGROUP_ROOT/cpu.max" ]; then
-    read -r quota period <"$PLEZY_CGROUP_ROOT/cpu.max" || true
+  if [ -r "$HARBOR_CGROUP_ROOT/cpu.max" ]; then
+    read -r quota period <"$HARBOR_CGROUP_ROOT/cpu.max" || true
     if value="$(quota_cpus "${quota:-}" "${period:-}")"; then
       limits+=("$value")
     fi
   fi
 
-  if [ -r "$PLEZY_CGROUP_ROOT/cpu/cpu.cfs_quota_us" ] &&
-    [ -r "$PLEZY_CGROUP_ROOT/cpu/cpu.cfs_period_us" ]; then
-    read -r quota <"$PLEZY_CGROUP_ROOT/cpu/cpu.cfs_quota_us" || true
-    read -r period <"$PLEZY_CGROUP_ROOT/cpu/cpu.cfs_period_us" || true
+  if [ -r "$HARBOR_CGROUP_ROOT/cpu/cpu.cfs_quota_us" ] &&
+    [ -r "$HARBOR_CGROUP_ROOT/cpu/cpu.cfs_period_us" ]; then
+    read -r quota <"$HARBOR_CGROUP_ROOT/cpu/cpu.cfs_quota_us" || true
+    read -r period <"$HARBOR_CGROUP_ROOT/cpu/cpu.cfs_period_us" || true
     if value="$(quota_cpus "${quota:-}" "${period:-}")"; then
       limits+=("$value")
     fi

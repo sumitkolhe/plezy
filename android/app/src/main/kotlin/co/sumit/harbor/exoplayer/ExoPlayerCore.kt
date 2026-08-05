@@ -131,7 +131,7 @@ class ExoPlayerCore(private val activity: Activity) :
     private const val ASS_LATENCY_AUTOCAL = true
 
     /** SharedPreferences store for the per-device subtitle/video latency calibration. */
-    private const val ASS_CAL_PREFS = "plezy_ass_calibration"
+    private const val ASS_CAL_PREFS = "harbor_ass_calibration"
     private const val ASS_CAL_KEY_FRAMES = "video_latency_frames"
     private const val TS_TIMESTAMP_SEARCH_PACKETS = 1800
     private val DV_CODEC_PROFILE_REGEX = Regex("""(?:^|,)\s*dvh[1e]\.(\d{2})""")
@@ -196,7 +196,7 @@ class ExoPlayerCore(private val activity: Activity) :
   private var overlayLayoutListener: ViewTreeObserver.OnGlobalLayoutListener? = null
   private var lastVideoSize: VideoSize? = null
   private var exoPlayer: ExoPlayer? = null
-  private var renderersFactory: PlezyRenderersFactory? = null
+  private var renderersFactory: HarborRenderersFactory? = null
   private val subtitleDelayUs = AtomicLong(0L)
 
   /**
@@ -206,7 +206,7 @@ class ExoPlayerCore(private val activity: Activity) :
    * content-time shift, so it never delays the overlay's present (delaying the
    * present freezes the single-slot latest-wins pipeline). Device-specific: ~1 on
    * low-end TV boxes (longer video pipeline), 0 on phones. Set from Dart at init
-   * from the device performance tier ([com.plezy/device] auto low-end signal).
+   * from the device performance tier ([com.harbor/device] auto low-end signal).
    */
   @Volatile private var assVideoLatencyFrames = 0
   private var subtitlePositionPercent: Int = 100
@@ -631,7 +631,7 @@ class ExoPlayerCore(private val activity: Activity) :
       val audioAttributes = buildMovieAudioAttributes()
 
       // Use DefaultRenderersFactory with FFmpeg fallback for unsupported or blocked audio codecs.
-      val renderersFactory = PlezyRenderersFactory(activity).apply {
+      val renderersFactory = HarborRenderersFactory(activity).apply {
         audioDiagnosticsLogger = { level, prefix, message -> emitLog(level, prefix, message) }
         videoDiagnosticsLogger = { level, prefix, message -> emitLog(level, prefix, message) }
         shouldBlockDirectAudioOutput = { format -> this@ExoPlayerCore.shouldBlockDirectAudioOutput(format, "sink support") }

@@ -61,7 +61,7 @@ internal object AndroidRuntimeDiagnostics {
   const val UI_PLAYER = "player"
   const val UI_PLAYER_DISPOSED = "player_disposed"
 
-  private const val PREFERENCES_NAME = "plezy_runtime_diagnostics"
+  private const val PREFERENCES_NAME = "harbor_runtime_diagnostics"
   private const val KEY_CODEC_CONTEXT = "codec_context"
   private const val KEY_CHANNEL_COUNT = "channel_count"
   private const val KEY_SAMPLE_RATE = "sample_rate"
@@ -94,7 +94,7 @@ internal object AndroidRuntimeDiagnostics {
   private val decoderNamePattern = Regex("[A-Za-z0-9_.:-]{1,96}")
   private val executor by lazy {
     Executors.newSingleThreadExecutor { task ->
-      Thread(task, "plezy-runtime-diagnostics").apply { isDaemon = true }
+      Thread(task, "harbor-runtime-diagnostics").apply { isDaemon = true }
     }
   }
 

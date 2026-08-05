@@ -601,7 +601,7 @@ class OfflineWatchSyncService extends ChangeNotifier {
     }
   }
 
-  /// Push a watch-state change Plezy observed on the server to the trackers.
+  /// Push a watch-state change Harbor observed on the server to the trackers.
   ///
   /// Only for genuine transitions detected during a download sync: the item was
   /// watched (or un-watched) somewhere else, so no playback, manual mark or

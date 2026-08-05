@@ -32,7 +32,7 @@ class CodegenCheckTest(unittest.TestCase):
         temporary_root = Path(self.temp.name)
         repository = temporary_root / "repository"
         repository.mkdir()
-        self.codegen_temp = Path(tempfile.mkdtemp(prefix="plezy-codegen-test-temp-"))
+        self.codegen_temp = Path(tempfile.mkdtemp(prefix="harbor-codegen-test-temp-"))
         subprocess.run(["git", "init", "-q"], cwd=repository, check=True)
         subprocess.run(["git", "config", "user.email", "fixture@example.invalid"], cwd=repository, check=True)
         subprocess.run(["git", "config", "user.name", "Fixture"], cwd=repository, check=True)
@@ -163,7 +163,7 @@ esac
             text=True,
         ).stdout
         self.assertEqual(worktrees.count("worktree "), 1)
-        self.assertEqual(list(self.codegen_temp.glob("plezy-codegen-check-*")), [])
+        self.assertEqual(list(self.codegen_temp.glob("harbor-codegen-check-*")), [])
 
     def test_crlf_worktree_keeps_generated_dart_lf_and_comparisons_byte_exact(self) -> None:
         self.assertIn(b"\r\n", (self.root / "source.txt").read_bytes())

@@ -28,7 +28,7 @@ void main() {
     // TvSpotlightBackground reads the corner-backdrop pref during build.
     resetSharedPreferencesForTest();
     await SettingsService.getInstance();
-    directory = Directory.systemTemp.createTempSync('plezy-backdrop-cycle');
+    directory = Directory.systemTemp.createTempSync('harbor-backdrop-cycle');
     final bytes = base64Decode(_png);
     first = File('${directory.path}/first.png')..writeAsBytesSync(bytes);
     second = File('${directory.path}/second.png')..writeAsBytesSync(bytes);

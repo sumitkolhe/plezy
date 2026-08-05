@@ -34,7 +34,7 @@ import java.util.concurrent.atomic.AtomicLong
 import kotlin.math.abs
 
 @OptIn(UnstableApi::class)
-class PlezyRenderersFactory(context: Context) : DefaultRenderersFactory(context) {
+class HarborRenderersFactory(context: Context) : DefaultRenderersFactory(context) {
 
   /**
    * Android TV: MediaCodec.setOutputSurface is broken on many TV SoCs (Sony Bravia

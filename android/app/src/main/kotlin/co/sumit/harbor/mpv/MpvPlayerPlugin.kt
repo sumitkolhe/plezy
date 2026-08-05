@@ -130,7 +130,7 @@ open class MpvPlayerPlugin(
   }
 
   override fun onDetachedFromActivityForConfigChanges() {
-    // The video core owns views and window services from this Activity. Plezy
+    // The video core owns views and window services from this Activity. Harbor
     // does not retain the engine across configuration recreation, so there is
     // no Activity-transfer contract under which that core may survive.
     if (!audioOnly) {
@@ -556,7 +556,7 @@ open class MpvPlayerPlugin(
 }
 
 /**
- * The audio-only music instance on `com.plezy/mpv_audio_player[/events]`.
+ * The audio-only music instance on `com.harbor/mpv_audio_player[/events]`.
  * A distinct class (not just a configured [MpvPlayerPlugin]) because
  * FlutterEngine's plugin registry keys plugins by class and would silently
  * drop a second [MpvPlayerPlugin] registration.

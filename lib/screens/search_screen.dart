@@ -180,11 +180,11 @@ class _SearchScreenState extends State<SearchScreen>
     searchFocusNode.requestFocus();
   }
 
-  /// Apply a complete query submitted from the Plezy companion remote: set the
-  /// text, dismiss any open on-screen keyboard, land focus on the input without
+  /// Apply a complete query submitted from outside the field: set the text,
+  /// dismiss any open on-screen keyboard, land focus on the input without
   /// (re)opening the OSK, and run the search now — the first result takes focus
-  /// when it lands (via onSearchCompleted). The user already typed the query on
-  /// their phone, so the TV keyboard must never be up afterwards.
+  /// when it lands (via onSearchCompleted). The query was typed elsewhere, so
+  /// the TV keyboard must never be up afterwards.
   @override
   void submitSearchQuery(String query) {
     if (!mounted) return;

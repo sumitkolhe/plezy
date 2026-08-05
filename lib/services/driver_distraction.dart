@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 
 import '../utils/platform_detector.dart';
 
-/// Android Automotive OS driver-distraction gating for Plezy's `video` app
+/// Android Automotive OS driver-distraction gating for Harbor's `video` app
 /// category (car app quality `DD-2` / `DD-3`).
 ///
 /// While a vehicle's user-experience restrictions are active the system hides

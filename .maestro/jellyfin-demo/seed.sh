@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-SEED_ROOT=/opt/plezy-demo
+SEED_ROOT=/opt/harbor-demo
 SEED_CONFIG="${SEED_ROOT}/seed-config"
 SEED_CACHE="${SEED_ROOT}/seed-cache"
 JELLYFIN_PID=""
@@ -42,5 +42,5 @@ python3 "${SEED_ROOT}/maestro_real_jellyfin.py" bootstrap \
 stop_jellyfin
 JELLYFIN_PID=""
 rm -rf "${SEED_CONFIG}/log" "${SEED_CACHE}" "${SEED_ROOT}/seed-jellyfin.log"
-printf '%s\n' 'Plezy Jellyfin demo seed v1' >"${SEED_CONFIG}/.plezy-demo-seed"
+printf '%s\n' 'Harbor Jellyfin demo seed v1' >"${SEED_CONFIG}/.harbor-demo-seed"
 trap - EXIT INT TERM

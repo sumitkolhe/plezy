@@ -35,7 +35,7 @@ const allKeysSource = SourceDescriptor(
   name: 'Unicode 13.0 allkeys',
   url: 'https://www.unicode.org/Public/UCA/13.0.0/allkeys.txt',
   bundledFileName: 'allkeys-13.0.0.txt.gz',
-  cacheFileName: 'plezy-allkeys-13.0.0-a3255d45b7af97f4dc14fb8364d7573b434425e5c58cacf00d16901ce081c78d.txt',
+  cacheFileName: 'harbor-allkeys-13.0.0-a3255d45b7af97f4dc14fb8364d7573b434425e5c58cacf00d16901ce081c78d.txt',
   sha256Digest: 'a3255d45b7af97f4dc14fb8364d7573b434425e5c58cacf00d16901ce081c78d',
   licenseUrl: 'https://www.unicode.org/license.txt',
 );
@@ -46,7 +46,7 @@ const fractionalUcaSource = SourceDescriptor(
       'https://raw.githubusercontent.com/unicode-org/cldr/651afecf9ccf1541a49306993e8210fa2209aa0b/common/uca/FractionalUCA.txt',
   bundledFileName: 'FractionalUCA-651afecf9ccf1541a49306993e8210fa2209aa0b.txt.gz',
   cacheFileName:
-      'plezy-FractionalUCA-651afecf9ccf1541a49306993e8210fa2209aa0b-'
+      'harbor-FractionalUCA-651afecf9ccf1541a49306993e8210fa2209aa0b-'
       'a6144d0c8c19cc899a5d2f48fbc14e3e31e819049a73aa86b67111f1f3f81637.txt',
   sha256Digest: 'a6144d0c8c19cc899a5d2f48fbc14e3e31e819049a73aa86b67111f1f3f81637',
   licenseUrl: 'https://github.com/unicode-org/cldr/blob/651afecf9ccf1541a49306993e8210fa2209aa0b/LICENSE',
@@ -106,7 +106,7 @@ Future<SourceDownloadResponse> downloadSource(Uri uri) async {
   final client = HttpClient();
   try {
     final request = await client.getUrl(uri);
-    request.headers.set(HttpHeaders.userAgentHeader, 'Plezy DUCET generator');
+    request.headers.set(HttpHeaders.userAgentHeader, 'Harbor DUCET generator');
     final response = await request.close();
     return SourceDownloadResponse(
       statusCode: response.statusCode,
@@ -138,7 +138,7 @@ Future<VerifiedSourceBundle> loadBundledSources({
   SourceDescriptor allKeysDescriptor = allKeysSource,
   SourceDescriptor fractionalUcaDescriptor = fractionalUcaSource,
 }) async {
-  final staging = await Directory.systemTemp.createTemp('plezy_ducet_bundled_');
+  final staging = await Directory.systemTemp.createTemp('harbor_ducet_bundled_');
 
   Future<File> decompressAndVerify(SourceDescriptor descriptor) async {
     final compressed = File.fromUri(bundledSourceDirectory.uri.resolve(descriptor.bundledFileName));
@@ -181,7 +181,7 @@ Future<VerifiedSourceBundle> loadVerifiedSources({
   SourceDescriptor fractionalUcaDescriptor = fractionalUcaSource,
 }) async {
   final cacheRoot = cacheDirectory ?? Directory.systemTemp;
-  final staging = await Directory.systemTemp.createTemp('plezy_ducet_sources_');
+  final staging = await Directory.systemTemp.createTemp('harbor_ducet_sources_');
   final stagedCacheFiles = <File, File>{};
 
   Future<File> resolve(SourceDescriptor descriptor, File? explicit) async {

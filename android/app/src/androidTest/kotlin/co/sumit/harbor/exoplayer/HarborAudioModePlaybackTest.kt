@@ -27,7 +27,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class PlezyAudioModePlaybackTest {
+class HarborAudioModePlaybackTest {
   private enum class AudioMode {
     PASSTHROUGH_ALLOWED,
     FORCE_DECODED,
@@ -49,7 +49,7 @@ class PlezyAudioModePlaybackTest {
     val instrumentation = InstrumentationRegistry.getInstrumentation()
     val context = instrumentation.targetContext
     val fixtureFile = copyFixture(instrumentation.context, context, fixture)
-    val playbackThread = HandlerThread("plezy-audio-mode-test").apply { start() }
+    val playbackThread = HandlerThread("harbor-audio-mode-test").apply { start() }
     val handler = Handler(playbackThread.looper)
     val completed = CountDownLatch(1)
     val playerReference = AtomicReference<ExoPlayer>()
@@ -61,7 +61,7 @@ class PlezyAudioModePlaybackTest {
 
     handler.post {
       try {
-        val factory = PlezyRenderersFactory(context).apply {
+        val factory = HarborRenderersFactory(context).apply {
           setEnableDecoderFallback(true)
           setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
           shouldBlockDirectAudioOutput = { format ->

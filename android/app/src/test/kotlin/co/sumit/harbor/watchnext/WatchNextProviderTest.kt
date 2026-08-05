@@ -909,7 +909,7 @@ class WatchNextProviderTest {
         )
       )
       assertEquals(2, server.requestCount.get())
-      assertEquals(listOf("plezy_server_item"), tvProvider.lastQueryContentIds)
+      assertEquals(listOf("harbor_server_item"), tvProvider.lastQueryContentIds)
       assertEquals(listOf(originalPoster.toString()), tvProvider.lastQueryPosters)
       assertEquals(originalPoster, committedPoster())
       assertEquals(
@@ -993,7 +993,7 @@ class WatchNextProviderTest {
       )
 
       assertEquals(2, server.requestCount.get())
-      assertEquals(listOf("plezy_server_item"), tvProvider.lastQueryContentIds)
+      assertEquals(listOf("harbor_server_item"), tvProvider.lastQueryContentIds)
       assertEquals(listOf(originalPoster.toString()), tvProvider.lastQueryPosters)
       assertEquals(originalPoster, committedPoster())
       assertEquals(setOf(originalFile), artworkFiles().mapTo(HashSet()) { it.canonicalFile })
@@ -1302,7 +1302,7 @@ class WatchNextProviderTest {
   }
 
   private fun item(source: String) = WatchNextProvider.WatchNextItem(
-    contentId = "plezy_server_item",
+    contentId = "harbor_server_item",
     title = "Private title",
     episodeTitle = null,
     description = "Private summary",
@@ -1449,7 +1449,7 @@ private class CapturingTvProvider : ContentProvider() {
       )?.takeIf(String::isNotBlank)
       ?: valueAsString(values, TvContractCompat.WatchNextPrograms.COLUMN_INTENT_URI)
         ?.let(Uri::parse)
-        ?.takeIf { uri -> uri.scheme == "plezy" && uri.authority == "play" }
+        ?.takeIf { uri -> uri.scheme == "harbor" && uri.authority == "play" }
         ?.getQueryParameter("content_id")
   }
   private val rowIds = mutableListOf<Long>()

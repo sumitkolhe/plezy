@@ -105,7 +105,7 @@ class PlayerToastController extends ChangeNotifier {
     // its one-shot pop would never replay.
     _current = (icon: icon, text: text, kind: kind, pulse: ++_pulse);
     notifyListeners();
-    final effective = const bool.fromEnvironment('PLEZY_MAESTRO_E2E') && duration < _maestroMinimumDuration
+    final effective = const bool.fromEnvironment('HARBOR_MAESTRO_E2E') && duration < _maestroMinimumDuration
         ? _maestroMinimumDuration
         : duration;
     _timer = Timer(effective, () {

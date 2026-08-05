@@ -1,8 +1,8 @@
 #!/bin/sh
 set -eu
 
-SEED_CONFIG=/opt/plezy-demo/seed-config
-SEED_MARKER=.plezy-demo-seed
+SEED_CONFIG=/opt/harbor-demo/seed-config
+SEED_MARKER=.harbor-demo-seed
 
 if [ ! -f "/config/${SEED_MARKER}" ]; then
   existing="$(find /config -mindepth 1 -maxdepth 1 -print -quit)"

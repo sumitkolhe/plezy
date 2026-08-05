@@ -8,7 +8,7 @@ import androidx.media3.exoplayer.audio.AudioRendererEventListener
 import androidx.media3.exoplayer.video.VideoRendererEventListener
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import co.sumit.harbor.exoplayer.PlezyRenderersFactory
+import co.sumit.harbor.exoplayer.HarborRenderersFactory
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
  * FfmpegAudioRenderer and FfmpegAudioDecoder.growOutputBuffer, TrueHD and DTS-HD lost
  * their only decoder, and 4K Dolby Vision files bailed to the mpv fallback.
  *
- * Run this against the `minified` build type (`-Pplezy.testBuildType=minified`); on an
+ * Run this against the `minified` build type (`-Pharbor.testBuildType=minified`); on an
  * unminified variant it can only ever pass. Deliberately touches no ExoPlayer builder
  * API, so no keep rule beyond the ones under test has to exist for it to run.
  *
@@ -42,7 +42,7 @@ class FfmpegDecoderReachabilityTest {
     // DefaultRenderersFactory swallows ClassNotFoundException as "built without the
     // extension", so a shrunk renderer leaves no trace but missing codecs.
     val context = InstrumentationRegistry.getInstrumentation().targetContext
-    val factory = PlezyRenderersFactory(context)
+    val factory = HarborRenderersFactory(context)
       .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_ON)
     val handler = Handler(Looper.getMainLooper())
 

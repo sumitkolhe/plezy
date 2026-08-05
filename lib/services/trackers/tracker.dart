@@ -133,7 +133,7 @@ abstract interface class RealtimeScrobbleTracker implements Tracker {
   /// Report a playback lifecycle event with the current progress percentage.
   Future<void> scrobble(TrackerContext ctx, TrackerScrobbleState state, double progressPercent);
 
-  /// Called after a terminal [TrackerScrobbleState.stop] whose progress Plezy
+  /// Called after a terminal [TrackerScrobbleState.stop] whose progress Harbor
   /// counts as watched (the media server's threshold was crossed).
   ///
   /// Services apply their own completion rule to a stop, which can be stricter

@@ -198,7 +198,7 @@ extension _VideoPlayerLifecycleMethods on VideoPlayerScreenState {
 
   /// Grace expired while still backgrounded: release the native AV pipeline
   /// (MediaCodec decoders + AudioTrack, tunneled passthrough included) so a
-  /// parked Plezy can't starve other apps on shared-hardware TV SoCs. stop()
+  /// parked Harbor can't starve other apps on shared-hardware TV SoCs. stop()
   /// retains Dart-side position/duration/track state on both Android
   /// backends, and the progress tracker keeps sending paused heartbeats at
   /// the retained position, so the server session stays alive and resumable.

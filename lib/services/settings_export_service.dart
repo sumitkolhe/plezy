@@ -37,7 +37,7 @@ class NoUserSignedInException extends SettingsExportException {
   const NoUserSignedInException() : super('No user is signed in');
 }
 
-/// Thrown when the chosen file isn't a valid Plezy settings export.
+/// Thrown when the chosen file isn't a valid Harbor settings export.
 class InvalidExportFileException extends SettingsExportException {
   const InvalidExportFileException(super.message);
 }
@@ -383,7 +383,7 @@ class SettingsExportService {
     }
 
     return FilePickerService.instance.saveFile(
-      dialogTitle: 'Export Plezy settings',
+      dialogTitle: 'Export Harbor settings',
       fileName: fileName,
       bytes: bytes,
       type: FileType.custom,

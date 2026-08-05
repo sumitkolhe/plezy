@@ -45,7 +45,7 @@ class MainActivity : FlutterActivity() {
   companion object {
     private const val TAG = "MainActivity"
     private const val TEXT_INPUT_DIAGNOSTICS_ENABLED = false
-    private const val EXIT_DIAGNOSTICS_PREFS = "plezy_exit_diagnostics"
+    private const val EXIT_DIAGNOSTICS_PREFS = "harbor_exit_diagnostics"
     private const val LAST_EXIT_DEDUPE_KEY = "last_reported_exit"
     private const val LAST_STARTUP_PHASE_KEY = "last_startup_phase"
     private val startupPhaseLock = Any()
@@ -57,7 +57,7 @@ class MainActivity : FlutterActivity() {
     @Volatile private var previousRuntimeDiagnostics = RuntimeDiagnosticSnapshot()
     private val exitDiagnosticsExecutor by lazy {
       Executors.newSingleThreadExecutor { runnable ->
-        Thread(runnable, "plezy-exit-diagnostics").apply { isDaemon = true }
+        Thread(runnable, "harbor-exit-diagnostics").apply { isDaemon = true }
       }
     }
 
@@ -368,7 +368,7 @@ class MainActivity : FlutterActivity() {
     // Apply persisted theme color to the window background before anything
     // else renders.  This prevents a white flash between the native splash
     // screen and Flutter's first frame for non-default themes (e.g. OLED).
-    val prefs = getSharedPreferences("plezy_prefs", Context.MODE_PRIVATE)
+    val prefs = getSharedPreferences("harbor_prefs", Context.MODE_PRIVATE)
     val savedTheme = prefs.getString("splash_theme", null)
     ThemeHelper.themeColor(savedTheme)?.let { window.decorView.setBackgroundColor(it) }
 
@@ -659,7 +659,7 @@ class MainActivity : FlutterActivity() {
           val mode = call.argument<String>("mode")
 
           // Persist for next cold start & update window background now
-          getSharedPreferences("plezy_prefs", Context.MODE_PRIVATE)
+          getSharedPreferences("harbor_prefs", Context.MODE_PRIVATE)
             .edit().putString("splash_theme", mode).apply()
           ThemeHelper.themeColor(mode)?.let { window.decorView.setBackgroundColor(it) }
 

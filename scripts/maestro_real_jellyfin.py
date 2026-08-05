@@ -25,7 +25,7 @@ GUEST_USERNAME = "guest"
 GUEST_PASSWORD = "guest"
 SERVER_NAME = "Maestro Jellyfin"
 BASE_TITLE = "Maestro Movie"
-BASE_OVERVIEW = "A deterministic movie used to verify Plezy's end-to-end flows."
+BASE_OVERVIEW = "A deterministic movie used to verify Harbor's end-to-end flows."
 GUEST_TITLE = "Guest Galaxy"
 SHOW_TITLE = "Maestro Show"
 EPISODE_TITLES = ("Maestro Episode 1", "Maestro Episode 2")
@@ -60,7 +60,7 @@ ALPHABET_TITLES = (
     "Yankee Yield",
     "Zulu Zone",
 )
-_MANAGED_MARKER = ".plezy-jellyfin-e2e-media"
+_MANAGED_MARKER = ".harbor-jellyfin-e2e-media"
 DEFAULT_CODEC_BASE_URL = "https://demo-files.plezy.app/media-samples/"
 _DOWNLOAD_CHUNK_SIZE = 1024 * 1024
 
@@ -77,7 +77,7 @@ def _write_nfo(path: Path, *, item_id: str, title: str, overview: str, genre: st
         "dateadded": "2026-01-01 00:00:00",
         "plot": overview,
         "outline": overview,
-        "studio": "Plezy E2E",
+        "studio": "Harbor E2E",
         "genre": genre,
         "tag": "E2E",
         "mpaa": "E2E",
@@ -86,7 +86,7 @@ def _write_nfo(path: Path, *, item_id: str, title: str, overview: str, genre: st
     }
     for key, value in values.items():
         ET.SubElement(movie, key).text = value
-    unique_id = ET.SubElement(movie, "uniqueid", {"type": "plezy", "default": "true"})
+    unique_id = ET.SubElement(movie, "uniqueid", {"type": "harbor", "default": "true"})
     unique_id.text = item_id
     ET.indent(movie, space="  ")
     ET.ElementTree(movie).write(path, encoding="utf-8", xml_declaration=True)
@@ -99,12 +99,12 @@ def _write_show_nfo(path: Path) -> None:
         "year": "2026",
         "premiered": "2026-01-01",
         "plot": "A deterministic show used to verify episode playback and queue behavior.",
-        "studio": "Plezy E2E",
+        "studio": "Harbor E2E",
         "genre": "Test",
         "lockdata": "true",
     }.items():
         ET.SubElement(show, key).text = value
-    unique_id = ET.SubElement(show, "uniqueid", {"type": "plezy", "default": "true"})
+    unique_id = ET.SubElement(show, "uniqueid", {"type": "harbor", "default": "true"})
     unique_id.text = "maestro-show"
     ET.indent(show, space="  ")
     ET.ElementTree(show).write(path, encoding="utf-8", xml_declaration=True)
@@ -123,7 +123,7 @@ def _write_episode_nfo(path: Path, number: int) -> None:
         "lockdata": "true",
     }.items():
         ET.SubElement(episode, key).text = value
-    unique_id = ET.SubElement(episode, "uniqueid", {"type": "plezy", "default": "true"})
+    unique_id = ET.SubElement(episode, "uniqueid", {"type": "harbor", "default": "true"})
     unique_id.text = f"maestro-episode-{number}"
     ET.indent(episode, space="  ")
     ET.ElementTree(episode).write(path, encoding="utf-8", xml_declaration=True)
@@ -194,7 +194,7 @@ def download_codec_media(output_dir: Path, base_url: str = DEFAULT_CODEC_BASE_UR
         partial.unlink(missing_ok=True)
         request = urllib.request.Request(
             urllib.parse.urljoin(normalized_base_url, urllib.parse.quote(spec.filename)),
-            headers={"User-Agent": "plezy-jellyfin-demo-builder"},
+            headers={"User-Agent": "harbor-jellyfin-demo-builder"},
         )
         try:
             with urllib.request.urlopen(request, timeout=60) as response:
@@ -429,8 +429,8 @@ def bootstrap_server(
         api.json("POST", "/Startup/Complete")
 
     authorization = (
-        'MediaBrowser Client="Plezy E2E Bootstrap", Device="Host", '
-        'DeviceId="plezy-e2e-bootstrap", Version="1.0"'
+        'MediaBrowser Client="Harbor E2E Bootstrap", Device="Host", '
+        'DeviceId="harbor-e2e-bootstrap", Version="1.0"'
     )
 
     def authenticate(username: str, password: str) -> dict[str, Any] | None:
@@ -644,7 +644,7 @@ def _build_parser() -> argparse.ArgumentParser:
     download.add_argument("--output-dir", type=Path, required=True)
     download.add_argument(
         "--base-url",
-        default=os.environ.get("PLEZY_DEMO_MEDIA_BASE_URL", DEFAULT_CODEC_BASE_URL),
+        default=os.environ.get("HARBOR_DEMO_MEDIA_BASE_URL", DEFAULT_CODEC_BASE_URL),
     )
 
     bootstrap = subparsers.add_parser("bootstrap", help="Configure and verify a fresh Jellyfin server")

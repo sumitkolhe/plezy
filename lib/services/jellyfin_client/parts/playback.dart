@@ -378,7 +378,7 @@ mixin _JellyfinPlaybackMethods on _JellyfinClientInternals {
   /// Restrict sidecar identity to the subtitle rows this open actually fetched
   /// as sidecars.
   ///
-  /// Plezy's device profile declares every subtitle format with
+  /// Harbor's device profile declares every subtitle format with
   /// `Method: External`, so Jellyfin returns `DeliveryMethod: External` and a
   /// `DeliveryUrl` even for streams embedded in a direct-played container.
   /// [_buildExternalSubtitles] correctly skips those, and the native player

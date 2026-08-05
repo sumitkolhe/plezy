@@ -606,7 +606,7 @@ extension _PlayerControlsPlaybackInputMethods on _PlayerControlsState {
   /// the value and keep skipping; Maestro builds hold it far longer because
   /// accessibility-tree queries on physical devices routinely outlast the
   /// production timeout — the same reason the chrome hide delay is extended.
-  Duration get _skipFeedbackDuration => const bool.fromEnvironment('PLEZY_MAESTRO_E2E')
+  Duration get _skipFeedbackDuration => const bool.fromEnvironment('HARBOR_MAESTRO_E2E')
       ? const Duration(seconds: 30)
       : const Duration(milliseconds: 1200);
 

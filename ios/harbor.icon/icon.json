@@ -24,8 +24,8 @@
           ],
           "glass" : true,
           "hidden" : false,
-          "image-name" : "plezy-cropped.svg",
-          "name" : "plezy-cropped",
+          "image-name" : "harbor-cropped.svg",
+          "name" : "harbor-cropped",
           "position" : {
             "scale" : 2,
             "translation-in-points" : [

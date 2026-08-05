@@ -59,7 +59,7 @@ class DetectCpusTests(unittest.TestCase):
             environment = {
                 **os.environ,
                 "PATH": path,
-                "PLEZY_CGROUP_ROOT": str(cgroup),
+                "HARBOR_CGROUP_ROOT": str(cgroup),
             }
             result = subprocess.run(
                 [BASH, "-c", f'source "{RUN_TESTS}"; detect_cpus'],
@@ -150,7 +150,7 @@ class RunTestsInvocationTests(unittest.TestCase):
                 env={
                     **os.environ,
                     "PATH": f"{bin_dir}:{os.environ.get('PATH', '')}",
-                    "PLEZY_CGROUP_ROOT": str(cgroup),
+                    "HARBOR_CGROUP_ROOT": str(cgroup),
                 },
             )
             return result.stdout
