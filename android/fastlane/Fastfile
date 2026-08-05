@@ -36,18 +36,5 @@ platform :android do
       version_code: version_code,
       aab: "../build/app/outputs/bundle/release/app-release.aab"
     )
-
-    # Build universal APK for Amazon Appstore (doesn't accept AABs, excludes x86 via env var)
-    sh("cd #{PROJECT_ROOT_ARG} && AMAZON=1 flutter build apk --release --dart-define=ENABLE_SENTRY=true --dart-define=GIT_COMMIT=#{git_commit} --dart-define=SENTRY_ENVIRONMENT=amazon --dart-define=SENTRY_DIST=amazon --obfuscate --split-debug-info=debug-info/android-apk --extra-gen-snapshot-options=--save-obfuscation-map=debug-info/android-apk/obfuscation.map.json")
-    sh("cd #{PROJECT_ROOT_ARG} && SENTRY_DIST=amazon ./scripts/upload-symbols.sh android-apk")
-
-    upload_to_amazon_appstore(
-      apk_paths: [
-        "../build/app/outputs/flutter-apk/app-release.apk"
-      ],
-      overwrite_upload: true,
-      overwrite_upload_mode: 'reuse',
-      changes_not_sent_for_review: true
-    )
   end
 end

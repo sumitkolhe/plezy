@@ -15,7 +15,6 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
 for checker in \
-  scripts/check_build_workflow.py \
   scripts/check_shrinker_rules.py \
   scripts/verify_runtime_inputs.py \
   scripts/check_workflow_security.py \

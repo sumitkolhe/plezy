@@ -362,13 +362,6 @@ android {
         )
       }
     }
-
-    if (System.getenv("AMAZON") != null) {
-      versionCode = (flutter.versionCode ?: 0) + 3000
-      ndk {
-        abiFilters += listOf("armeabi-v7a", "arm64-v8a")
-      }
-    }
   }
 
   externalNativeBuild {

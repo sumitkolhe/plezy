@@ -38,9 +38,7 @@ RUN ./seed.sh
 FROM ${JELLYFIN_IMAGE}
 
 LABEL org.opencontainers.image.title="Harbor Jellyfin demo server" \
-      org.opencontainers.image.description="Ready-to-run Jellyfin server with Harbor's deterministic codec demo catalog" \
-      org.opencontainers.image.source="https://github.com/edde746/plezy"
-
+      org.opencontainers.image.description="Ready-to-run Jellyfin server with Harbor's deterministic codec demo catalog"
 COPY --from=seed /media /media
 COPY --from=seed /opt/harbor-demo/seed-config /opt/harbor-demo/seed-config
 COPY .maestro/jellyfin-demo/entrypoint.sh /usr/local/bin/harbor-demo-entrypoint
