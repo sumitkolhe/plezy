@@ -91,7 +91,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/harbor.svg
+    - assets/harbor_mark.svg
+    - assets/harbor_mark_light.svg
+    - assets/harbor_mark_small.svg
+    - assets/harbor_mark_small_light.svg
     - assets/jellyfin_icon.svg
     - assets/trakt_circlemark.svg
     - assets/seerr_mark.svg

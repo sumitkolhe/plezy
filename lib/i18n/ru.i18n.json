@@ -1588,5 +1588,36 @@
     "scopeSeries": "",
     "scopeSeason": "",
     "scopeEpisode": ""
+  },
+  "onboarding": {
+    "tagline": "",
+    "connectTitle": "",
+    "connectBody": "",
+    "addServer": "",
+    "addServerHint": "",
+    "serverAddress": "",
+    "findServers": "",
+    "credentialsStayOnDevice": "",
+    "addressRequired": "",
+    "scanning": "",
+    "scanningBody": "",
+    "scanningDetail": "",
+    "serversFound": {
+      "one": "",
+      "few": "",
+      "many": "",
+      "other": ""
+    },
+    "serversFoundBody": "",
+    "noServersFound": "",
+    "noServersFoundBody": "",
+    "enterAddressInstead": "",
+    "reaching": "",
+    "signingIn": "",
+    "signInTitle": "",
+    "openLibrary": "",
+    "moviesLabel": "",
+    "seriesLabel": "",
+    "episodesLabel": ""
   }
 }

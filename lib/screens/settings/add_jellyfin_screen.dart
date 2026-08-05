@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../connection/connection.dart';
 import '../../exceptions/media_server_exceptions.dart';
@@ -15,10 +12,7 @@ import '../../focus/focusable_text_field.dart';
 import '../../focus/focusable_wrapper.dart';
 import '../../i18n/strings.g.dart';
 import '../../mixins/controller_disposer_mixin.dart';
-import '../../profiles/active_profile_binder.dart';
-import '../../profiles/active_profile_provider.dart';
 import '../../profiles/profile.dart';
-import '../../profiles/profile_connection.dart';
 import '../../services/jellyfin_auth_service.dart';
 import '../../services/jellyfin_endpoint_discovery.dart';
 import '../../services/jellyfin_lan_discovery_service.dart';
@@ -28,47 +22,11 @@ import '../../utils/app_logger.dart';
 import '../../utils/device_identity.dart';
 import '../../utils/platform_detector.dart';
 import '../../widgets/focused_scroll_scaffold.dart';
-import '../profile/profile_switch_screen.dart';
 import 'async_form_state_mixin.dart';
 import 'connection_persistence.dart';
 import '../../widgets/loading_indicator_box.dart';
 
 @visibleForTesting
-Future<String> resolveJellyfinClientVersion({Future<PackageInfo> Function()? packageInfoLoader}) async {
-  const fallbackVersion = '1.0';
-  try {
-    final packageInfo = await (packageInfoLoader == null ? PackageInfo.fromPlatform() : packageInfoLoader());
-    final version = packageInfo.version.trim();
-    if (version.isNotEmpty) return version;
-    appLogger.w('Package version is empty; using Jellyfin client version $fallbackVersion');
-  } catch (error, stackTrace) {
-    appLogger.w(
-      'Failed to resolve package version; using Jellyfin client version $fallbackVersion',
-      error: error,
-      stackTrace: stackTrace,
-    );
-  }
-  return fallbackVersion;
-}
-
-@visibleForTesting
-bool shouldCreateLocalJellyfinProfile({
-  required Profile? targetProfile,
-  required Profile? activeProfile,
-  required bool hasProfiles,
-}) {
-  return targetProfile == null && activeProfile == null && !hasProfiles;
-}
-
-@visibleForTesting
-bool shouldPromptForJellyfinProfileSelection({
-  required Profile? targetProfile,
-  required Profile? activeProfile,
-  required bool hasProfiles,
-}) {
-  return targetProfile == null && activeProfile == null && hasProfiles;
-}
-
 /// Three-step form to add a Jellyfin server:
 ///   1. Probe URL candidates (`/System/Info/Public`).
 ///   2. Username + password (`/Users/AuthenticateByName`) **or** Quick Connect
@@ -367,71 +325,16 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
   /// ownership row, then bind and pop only after durable success.
   Future<void> _persistAndExit(JellyfinConnection connection) async {
     if (!mounted) return;
-    final activeProvider = context.read<ActiveProfileProvider>();
-    await activeProvider.initialize();
-    if (!mounted) return;
-    final targetProfile = widget.targetProfile;
-    var boundProfile = targetProfile ?? activeProvider.active;
-    if (shouldPromptForJellyfinProfileSelection(
-      targetProfile: targetProfile,
-      activeProfile: activeProvider.active,
-      hasProfiles: activeProvider.profiles.isNotEmpty,
-    )) {
-      await Navigator.of(
-        context,
-        rootNavigator: true,
-      ).push<bool>(MaterialPageRoute(builder: (_) => const ProfileSwitchScreen(requireSelection: true)));
-      if (!mounted) return;
-      boundProfile = activeProvider.active;
-      if (boundProfile == null) {
-        setErrorText(t.messages.noProfilesAvailable);
-        return;
-      }
-    }
-
-    Profile? firstRunProfile;
-    if (shouldCreateLocalJellyfinProfile(
-      targetProfile: targetProfile,
-      activeProfile: boundProfile,
-      hasProfiles: activeProvider.profiles.isNotEmpty,
-    )) {
-      final now = DateTime.now();
-      firstRunProfile = Profile.local(
-        id: 'local-${const Uuid().v4()}',
-        displayName: connection.userName.isNotEmpty ? connection.userName : connection.serverName,
-        sortOrder: now.millisecondsSinceEpoch,
-        createdAt: now,
-      );
-      boundProfile = firstRunProfile;
-    }
-
-    final bindProfile = boundProfile;
-    if (bindProfile == null) {
-      setErrorText(t.messages.noProfilesAvailable);
-      return;
-    }
-
-    await persistAndBindConnection(
+    final failure = await commitJellyfinConnection(
       context: context,
       connection: connection,
-      bindToProfile: ProfileConnection(
-        profileId: bindProfile.id,
-        connectionId: connection.id,
-        userToken: connection.accessToken,
-        userIdentifier: connection.userId,
-        tokenAcquiredAt: DateTime.now(),
-      ),
-      addToManager: null,
-      firstRunProfile: firstRunProfile,
+      targetProfile: widget.targetProfile,
     );
-
-    final boundToActive = bindProfile.id == activeProvider.activeId;
     if (!mounted) return;
-    if (boundToActive) {
-      await context.read<ActiveProfileBinder>().rebindIfActive(bindProfile.id);
+    if (failure != null) {
+      setErrorText(failure);
+      return;
     }
-
-    if (!mounted) return;
     Navigator.of(context).pop(true);
   }
 
@@ -439,17 +342,12 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
     final authServiceFactory = widget._authServiceFactory;
     if (authServiceFactory != null) return await authServiceFactory();
     final clientVersion = await resolveJellyfinClientVersion();
-    final deviceName = await _resolveDeviceName();
+    final deviceName = await resolveJellyfinDeviceName();
     return JellyfinConnectionAuthService(clientName: 'Harbor', clientVersion: clientVersion, deviceName: deviceName);
   }
 
   /// The raw name, not a header-sanitized one: the Jellyfin `MediaBrowser`
   /// header percent-encodes it, so the device list shows it verbatim.
-  Future<String> _resolveDeviceName() async {
-    final identity = await DeviceIdentityService.resolve();
-    final name = identity.deviceName?.trim();
-    return name == null || name.isEmpty ? 'Harbor' : name;
-  }
 
   @override
   Widget build(BuildContext context) {

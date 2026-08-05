@@ -58,6 +58,17 @@ moves. If a component nearly fits, extend it (an optional parameter, a wider
 constraint) rather than forking it — that is what `AppMenuItem.trailing` and
 the 24dp-minimum leading are for.
 
+### The one exception: onboarding
+
+`lib/screens/onboarding/` draws from `OnboardingPalette`, not `MonoTokens`, and
+it is Harbor blue rather than greyscale. That is deliberate. The flow runs
+before there is a server, a profile or a Material You accent to inherit, and it
+is the only surface whose job is to say which app this is. It hands over to the
+monochrome app at `Open library`.
+
+Do not extend it. Nothing outside that directory imports `OnboardingPalette`,
+and no new colour goes into it that is not on the brand export sheet.
+
 Do not bend a component badly out of shape to force reuse. When something is
 genuinely a different thing — the two-column track sheet, a chapter card with a
 thumbnail — build it, and still take its type, spacing and colours from the

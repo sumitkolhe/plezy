@@ -1,12 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 import 'package:provider/provider.dart';
 
 import '../../connection/connection.dart';
 import '../../connection/connection_registry.dart';
 import '../../database/app_database.dart';
 import '../../media/ids.dart';
+import '../../i18n/strings.g.dart';
+import '../../profiles/active_profile_binder.dart';
 import '../../profiles/active_profile_provider.dart';
 import '../../profiles/profile.dart';
 import '../../profiles/profile_connection.dart';
@@ -16,6 +19,7 @@ import '../../providers/libraries_provider.dart';
 import '../../providers/multi_server_provider.dart';
 import '../../services/storage_service.dart';
 import '../../utils/app_logger.dart';
+import '../profile/profile_switch_screen.dart';
 
 /// Durably provision a freshly-authenticated [connection] and its optional
 /// [bindToProfile] ownership row.
@@ -148,4 +152,94 @@ Future<void> _compensateFailedActivation({
   } catch (error, stackTrace) {
     appLogger.e('First-run active profile reload failed', error: error, stackTrace: stackTrace);
   }
+}
+
+bool shouldCreateLocalJellyfinProfile({
+  required Profile? targetProfile,
+  required Profile? activeProfile,
+  required bool hasProfiles,
+}) {
+  return targetProfile == null && activeProfile == null && !hasProfiles;
+}
+
+@visibleForTesting
+bool shouldPromptForJellyfinProfileSelection({
+  required Profile? targetProfile,
+  required Profile? activeProfile,
+  required bool hasProfiles,
+}) {
+  return targetProfile == null && activeProfile == null && hasProfiles;
+}
+
+/// Work out which profile owns [connection], then commit it.
+///
+/// Shared by the two surfaces that add a Jellyfin server — first-run onboarding
+/// and the Connections screen — because the profile rules are the awkward part
+/// and neither should be reasoning about them alone. Prompting for a profile is
+/// navigation, so it happens here; deciding what to show next is the caller's,
+/// which is why this returns rather than routes.
+///
+/// Returns null on success, or a message to show the user.
+Future<String?> commitJellyfinConnection({
+  required BuildContext context,
+  required JellyfinConnection connection,
+  required Profile? targetProfile,
+}) async {
+  final activeProvider = context.read<ActiveProfileProvider>();
+  await activeProvider.initialize();
+  if (!context.mounted) return null;
+
+  var boundProfile = targetProfile ?? activeProvider.active;
+  if (shouldPromptForJellyfinProfileSelection(
+    targetProfile: targetProfile,
+    activeProfile: activeProvider.active,
+    hasProfiles: activeProvider.profiles.isNotEmpty,
+  )) {
+    await Navigator.of(
+      context,
+      rootNavigator: true,
+    ).push<bool>(MaterialPageRoute(builder: (_) => const ProfileSwitchScreen(requireSelection: true)));
+    if (!context.mounted) return null;
+    boundProfile = activeProvider.active;
+    if (boundProfile == null) return t.messages.noProfilesAvailable;
+  }
+
+  Profile? firstRunProfile;
+  if (shouldCreateLocalJellyfinProfile(
+    targetProfile: targetProfile,
+    activeProfile: boundProfile,
+    hasProfiles: activeProvider.profiles.isNotEmpty,
+  )) {
+    final now = DateTime.now();
+    firstRunProfile = Profile.local(
+      id: 'local-${const Uuid().v4()}',
+      displayName: connection.userName.isNotEmpty ? connection.userName : connection.serverName,
+      sortOrder: now.millisecondsSinceEpoch,
+      createdAt: now,
+    );
+    boundProfile = firstRunProfile;
+  }
+
+  final bindProfile = boundProfile;
+  if (bindProfile == null) return t.messages.noProfilesAvailable;
+
+  await persistAndBindConnection(
+    context: context,
+    connection: connection,
+    bindToProfile: ProfileConnection(
+      profileId: bindProfile.id,
+      connectionId: connection.id,
+      userToken: connection.accessToken,
+      userIdentifier: connection.userId,
+      tokenAcquiredAt: DateTime.now(),
+    ),
+    addToManager: null,
+    firstRunProfile: firstRunProfile,
+  );
+
+  if (!context.mounted) return null;
+  if (bindProfile.id == activeProvider.activeId) {
+    await context.read<ActiveProfileBinder>().rebindIfActive(bindProfile.id);
+  }
+  return null;
 }

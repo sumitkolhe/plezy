@@ -85,6 +85,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final Translations$managedServices$en managedServices = Translations$managedServices$en.internal(_root);
 	late final Translations$serverActivity$en serverActivity = Translations$serverActivity$en.internal(_root);
 	late final Translations$arrSearch$en arrSearch = Translations$arrSearch$en.internal(_root);
+	late final Translations$onboarding$en onboarding = Translations$onboarding$en.internal(_root);
 }
 
 // Path: app
@@ -4037,6 +4038,90 @@ class Translations$arrSearch$en {
 	String scopeEpisode({required Object season, required Object episode}) => 'S${season}E${episode}';
 }
 
+// Path: onboarding
+class Translations$onboarding$en {
+	Translations$onboarding$en.internal(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Your library, at anchor'
+	String get tagline => 'Your library, at anchor';
+
+	/// en: 'Connect your server'
+	String get connectTitle => 'Connect your server';
+
+	/// en: 'Harbor plays from your own Jellyfin server. Nothing leaves your network.'
+	String get connectBody => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.';
+
+	/// en: 'Add Jellyfin server'
+	String get addServer => 'Add Jellyfin server';
+
+	/// en: 'You will need its address on your network'
+	String get addServerHint => 'You will need its address on your network';
+
+	/// en: 'Server address'
+	String get serverAddress => 'Server address';
+
+	/// en: 'Find servers on my network'
+	String get findServers => 'Find servers on my network';
+
+	/// en: 'Credentials stay on this device'
+	String get credentialsStayOnDevice => 'Credentials stay on this device';
+
+	/// en: 'Enter your server address, or scan the network'
+	String get addressRequired => 'Enter your server address, or scan the network';
+
+	/// en: 'Looking for servers'
+	String get scanning => 'Looking for servers';
+
+	/// en: 'Harbor is checking this network for Jellyfin'
+	String get scanningBody => 'Harbor is checking this network for Jellyfin';
+
+	/// en: 'Listening for Jellyfin on this network'
+	String get scanningDetail => 'Listening for Jellyfin on this network';
+
+	/// en: '(one) {One server found} (other) {${n} servers found}'
+	String serversFound({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
+		one: 'One server found',
+		other: '${n} servers found',
+	);
+
+	/// en: 'Pick one to connect'
+	String get serversFoundBody => 'Pick one to connect';
+
+	/// en: 'No servers answered'
+	String get noServersFound => 'No servers answered';
+
+	/// en: 'Nothing replied on this network. Enter the address yourself, or try again.'
+	String get noServersFoundBody => 'Nothing replied on this network. Enter the address yourself, or try again.';
+
+	/// en: 'Enter an address instead'
+	String get enterAddressInstead => 'Enter an address instead';
+
+	/// en: 'Reaching your server'
+	String get reaching => 'Reaching your server';
+
+	/// en: 'Signing in'
+	String get signingIn => 'Signing in';
+
+	/// en: 'Sign in'
+	String get signInTitle => 'Sign in';
+
+	/// en: 'Open library'
+	String get openLibrary => 'Open library';
+
+	/// en: 'Movies'
+	String get moviesLabel => 'Movies';
+
+	/// en: 'Series'
+	String get seriesLabel => 'Series';
+
+	/// en: 'Episodes'
+	String get episodesLabel => 'Episodes';
+}
+
 // Path: hotkeys.actions
 class Translations$hotkeys$actions$en {
 	Translations$hotkeys$actions$en.internal(this._root);
@@ -6462,6 +6547,30 @@ extension on Translations {
 			'arrSearch.scopeSeries' => 'Whole series',
 			'arrSearch.scopeSeason' => ({required Object season}) => 'Season ${season}',
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
+			'onboarding.tagline' => 'Your library, at anchor',
+			'onboarding.connectTitle' => 'Connect your server',
+			'onboarding.connectBody' => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.',
+			'onboarding.addServer' => 'Add Jellyfin server',
+			'onboarding.addServerHint' => 'You will need its address on your network',
+			'onboarding.serverAddress' => 'Server address',
+			'onboarding.findServers' => 'Find servers on my network',
+			'onboarding.credentialsStayOnDevice' => 'Credentials stay on this device',
+			'onboarding.addressRequired' => 'Enter your server address, or scan the network',
+			'onboarding.scanning' => 'Looking for servers',
+			'onboarding.scanningBody' => 'Harbor is checking this network for Jellyfin',
+			'onboarding.scanningDetail' => 'Listening for Jellyfin on this network',
+			'onboarding.serversFound' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'One server found', other: '${n} servers found', ), 
+			'onboarding.serversFoundBody' => 'Pick one to connect',
+			'onboarding.noServersFound' => 'No servers answered',
+			'onboarding.noServersFoundBody' => 'Nothing replied on this network. Enter the address yourself, or try again.',
+			'onboarding.enterAddressInstead' => 'Enter an address instead',
+			'onboarding.reaching' => 'Reaching your server',
+			'onboarding.signingIn' => 'Signing in',
+			'onboarding.signInTitle' => 'Sign in',
+			'onboarding.openLibrary' => 'Open library',
+			'onboarding.moviesLabel' => 'Movies',
+			'onboarding.seriesLabel' => 'Series',
+			'onboarding.episodesLabel' => 'Episodes',
 			_ => null,
 		};
 	}

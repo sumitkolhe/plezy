@@ -20,6 +20,8 @@ import 'package:harbor/profiles/profile_connection_registry.dart';
 import 'package:harbor/profiles/profile_registry.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/settings/add_jellyfin_screen.dart';
+import 'package:harbor/screens/settings/connection_persistence.dart';
+import 'package:harbor/utils/device_identity.dart';
 import 'package:harbor/services/jellyfin_auth_service.dart';
 import 'package:harbor/services/credential_vault.dart';
 import 'package:harbor/services/jellyfin_lan_discovery_service.dart';

@@ -9,7 +9,6 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'connection/connection.dart';
 import 'connection/connection_registry.dart';
 import 'navigation/profile_navigation_scope.dart';
@@ -23,7 +22,7 @@ import 'profiles/profile_selection_policy.dart';
 import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
-import 'screens/auth_screen.dart';
+import 'screens/onboarding/onboarding_flow_screen.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
 import 'services/device_performance.dart';
@@ -58,6 +57,9 @@ import 'utils/orientation_helper.dart';
 import 'utils/watch_state_notifier.dart';
 import 'i18n/app_locale_utils.dart';
 import 'i18n/strings.g.dart';
+import 'screens/onboarding/onboarding_palette.dart';
+import 'screens/onboarding/widgets/harbor_mark.dart';
+import 'screens/onboarding/widgets/harbor_water.dart';
 import 'widgets/app_icon.dart';
 import 'focus/input_mode_tracker.dart';
 import 'focus/focusable_button.dart';
@@ -1182,14 +1184,14 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       // splash forever, so route to auth rather than let it propagate.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
       if (mounted) {
-        unawaited(Navigator.pushReplacement(context, fadeRoute(const AuthScreen())));
+        unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
       }
       return;
     }
 
     if (allConnections.isEmpty) {
       if (mounted) {
-        unawaited(Navigator.pushReplacement(context, fadeRoute(const AuthScreen())));
+        unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
       }
       return;
     }
@@ -1228,7 +1230,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
     if (activeProfile.active == null && activeProfile.profiles.isEmpty) {
       appLogger.w('Setup: stored connections exist but no profiles resolved after bootstrap; returning to auth');
-      unawaited(Navigator.pushReplacement(context, fadeRoute(const AuthScreen())));
+      unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
       return;
     }
 
@@ -1391,31 +1393,64 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    const coralColor = Color(0xFFE5A00D);
+    // Painted in the onboarding palette rather than the theme's: this is the
+    // first frame after the Android splash and it has to match it, and on a
+    // cold start the profile whose theme we would otherwise read is still
+    // being loaded.
     return ColoredBox(
-      color: Theme.of(context).scaffoldBackgroundColor,
+      color: OnboardingPalette.ink,
       child: Stack(
         children: [
-          Center(child: SvgPicture.asset('assets/harbor.svg', width: 288, height: 288)),
+          const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
+          const Positioned.fill(child: _SplashMark()),
+          // Silent until startup has something to say: a cold start that reaches
+          // the library in under a second should not flash a status line on the
+          // way past.
           Positioned(
             left: 0,
             right: 0,
-            bottom: MediaQuery.sizeOf(context).height * 0.5 - 170,
-            child: _buildStatusText(context),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: MediaQuery.sizeOf(context).height * 0.5 + 180,
-            child: Center(
-              child: _serverStatus.isEmpty
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: coralColor),
-                    )
-                  : _buildServerStatusList(context),
+            bottom: 44,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildStatusText(context),
+                if (_serverStatus.isNotEmpty) ...[const SizedBox(height: 12), _buildServerStatusList(context)],
+              ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The mark, the name, and what the app is for.
+class _SplashMark extends StatelessWidget {
+  const _SplashMark();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      // Sit above the water rather than in it.
+      padding: const EdgeInsets.only(bottom: HarborWater.height),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const HarborMark(size: 104, bob: true),
+          const SizedBox(height: 26),
+          const Text(
+            'Harbor',
+            style: TextStyle(
+              fontSize: 34,
+              fontWeight: FontWeight.w600,
+              letterSpacing: -1,
+              color: OnboardingPalette.text,
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            t.onboarding.tagline.toUpperCase(),
+            style: const TextStyle(fontSize: 13, letterSpacing: 1.8, color: OnboardingPalette.textFaint),
           ),
         ],
       ),

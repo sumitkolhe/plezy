@@ -25,7 +25,7 @@ import '../../services/system_shelf_service.dart';
 import '../../utils/app_logger.dart';
 import '../../utils/dialogs.dart';
 import '../../utils/snackbar_helper.dart';
-import '../auth_screen.dart';
+import '../onboarding/onboarding_flow_screen.dart';
 
 /// The collaborators every teardown flow needs, snapshotted from [context]
 /// BEFORE the first await so no flow touches `context.read` mid-teardown.
@@ -71,12 +71,12 @@ class SessionTeardownScope {
 
 /// Decide where the session lands after any profile/connection removal and
 /// apply it. Mirrors the boot guard: no connections, or connections but no
-/// resolvable profile, routes to [AuthScreen]; otherwise the active profile
+/// resolvable profile, routes to [OnboardingFlowScreen]; otherwise the active profile
 /// is kept (optionally rebound) or the next non-PIN-protected profile is
 /// activated so the picker can force an explicit, PIN-checked choice when
 /// only protected profiles remain.
 ///
-/// Returns true when it navigated to [AuthScreen] — the caller must stop
+/// Returns true when it navigated to [OnboardingFlowScreen] — the caller must stop
 /// touching its own UI in that case.
 Future<bool> settleSessionAfterRemoval(
   SessionTeardownScope scope, {
@@ -90,7 +90,10 @@ Future<bool> settleSessionAfterRemoval(
     await scope.binder.rebindActive();
     if (scope.navigator.mounted) {
       unawaited(
-        scope.navigator.pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const AuthScreen()), (_) => false),
+        scope.navigator.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const OnboardingFlowScreen()),
+          (_) => false,
+        ),
       );
     }
     return true;
@@ -200,7 +203,7 @@ Future<void> deleteProfile(BuildContext context, Profile profile) async {
 }
 
 /// Full logout: clear every profile, connection, credential, cached API
-/// row, and user-scoped pref, then reset to [AuthScreen]. The caller
+/// row, and user-scoped pref, then reset to [OnboardingFlowScreen]. The caller
 /// confirms first.
 Future<void> logoutAllProfiles(BuildContext context) async {
   final scope = SessionTeardownScope.of(context);
@@ -238,6 +241,8 @@ Future<void> logoutAllProfiles(BuildContext context) async {
   playbackState.clearShuffle();
 
   if (scope.navigator.mounted) {
-    unawaited(scope.navigator.pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const AuthScreen()), (_) => false));
+    unawaited(
+      scope.navigator.pushAndRemoveUntil(MaterialPageRoute(builder: (_) => const OnboardingFlowScreen()), (_) => false),
+    );
   }
 }

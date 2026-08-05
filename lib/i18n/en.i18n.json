@@ -1576,5 +1576,34 @@
     "scopeSeries": "Whole series",
     "scopeSeason": "Season ${season}",
     "scopeEpisode": "S${season}E${episode}"
+  },
+  "onboarding": {
+    "tagline": "Your library, at anchor",
+    "connectTitle": "Connect your server",
+    "connectBody": "Harbor plays from your own Jellyfin server. Nothing leaves your network.",
+    "addServer": "Add Jellyfin server",
+    "addServerHint": "You will need its address on your network",
+    "serverAddress": "Server address",
+    "findServers": "Find servers on my network",
+    "credentialsStayOnDevice": "Credentials stay on this device",
+    "addressRequired": "Enter your server address, or scan the network",
+    "scanning": "Looking for servers",
+    "scanningBody": "Harbor is checking this network for Jellyfin",
+    "scanningDetail": "Listening for Jellyfin on this network",
+    "serversFound": {
+      "one": "One server found",
+      "other": "${n} servers found"
+    },
+    "serversFoundBody": "Pick one to connect",
+    "noServersFound": "No servers answered",
+    "noServersFoundBody": "Nothing replied on this network. Enter the address yourself, or try again.",
+    "enterAddressInstead": "Enter an address instead",
+    "reaching": "Reaching your server",
+    "signingIn": "Signing in",
+    "signInTitle": "Sign in",
+    "openLibrary": "Open library",
+    "moviesLabel": "Movies",
+    "seriesLabel": "Series",
+    "episodesLabel": "Episodes"
   }
 }

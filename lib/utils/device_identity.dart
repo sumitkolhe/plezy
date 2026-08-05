@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:unorm_dart/unorm_dart.dart';
 
 import 'app_logger.dart';
@@ -124,3 +125,28 @@ final RegExp _nonDecomposableLatinPattern = RegExp('[${_nonDecomposableLatin.key
 
 String _foldNonDecomposableLatin(String value) =>
     value.replaceAllMapped(_nonDecomposableLatinPattern, (match) => _nonDecomposableLatin[match[0]]!);
+
+/// The device name Jellyfin shows in its Devices list, falling back to the app
+/// name when the platform will not say.
+Future<String> resolveJellyfinDeviceName() async {
+  final identity = await DeviceIdentityService.resolve();
+  final name = identity.deviceName?.trim();
+  return name == null || name.isEmpty ? 'Harbor' : name;
+}
+
+Future<String> resolveJellyfinClientVersion({Future<PackageInfo> Function()? packageInfoLoader}) async {
+  const fallbackVersion = '1.0';
+  try {
+    final packageInfo = await (packageInfoLoader == null ? PackageInfo.fromPlatform() : packageInfoLoader());
+    final version = packageInfo.version.trim();
+    if (version.isNotEmpty) return version;
+    appLogger.w('Package version is empty; using Jellyfin client version $fallbackVersion');
+  } catch (error, stackTrace) {
+    appLogger.w(
+      'Failed to resolve package version; using Jellyfin client version $fallbackVersion',
+      error: error,
+      stackTrace: stackTrace,
+    );
+  }
+  return fallbackVersion;
+}

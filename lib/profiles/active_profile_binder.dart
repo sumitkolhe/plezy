@@ -102,7 +102,7 @@ class ActiveProfileBinder {
     activeProfile.markBindingStarted();
     activeProfile.addListener(_onActiveProfileChanged);
     // Callers invoke start() from async contexts after the offline decision
-    // has been made (SetupScreen, MainScreen post-frame, AuthScreen). The
+    // has been made (SetupScreen, MainScreen post-frame, OnboardingFlowScreen). The
     // microtask keeps the initial rebind — and any PIN prompt it pops — out
     // of the caller's current frame.
     scheduleMicrotask(() {

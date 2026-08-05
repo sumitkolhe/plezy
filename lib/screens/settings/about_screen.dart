@@ -10,6 +10,8 @@ import '../../theme/mono_tokens.dart';
 import 'licenses_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../onboarding/widgets/harbor_mark_asset.dart';
+
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
@@ -34,7 +36,7 @@ class AboutScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(height: 24),
-                        SvgPicture.asset('assets/harbor.svg', width: 80, height: 80),
+                        SvgPicture.asset(harborMarkAsset(context), width: 80, height: 80),
                         const SizedBox(height: 16),
                         Text(appName, style: Theme.of(context).textTheme.headlineMedium?.copyWith(fontWeight: .bold)),
                         const SizedBox(height: 8),
