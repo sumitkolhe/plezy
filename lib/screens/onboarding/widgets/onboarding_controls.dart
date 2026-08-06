@@ -207,7 +207,14 @@ class OnboardingField extends StatelessWidget {
                   style: OnboardingType.field,
                   cursorColor: scheme.primary,
                   decoration: InputDecoration(
+                    // The app-wide InputDecorationTheme fills its fields and
+                    // pads them itself. Both are wrong inside an outlined pill
+                    // that already draws the shape and owns the inset, so this
+                    // opts out of the decoration entirely and keeps only a hint.
+                    filled: false,
                     isDense: true,
+                    isCollapsed: true,
+                    contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
                     hintText: hintText,
                     hintStyle: TextStyle(color: c.outline, fontSize: 16),
