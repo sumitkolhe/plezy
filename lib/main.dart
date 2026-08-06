@@ -23,6 +23,7 @@ import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
 import 'screens/onboarding/onboarding_flow_screen.dart';
+import 'services/system_splash.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
 import 'services/device_performance.dart';
@@ -1096,6 +1097,17 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
   // Per-server connection status: serverId -> (name, connected?)
   final Map<String, (String name, bool? connected)> _serverStatus = {};
 
+  /// Replace this screen with [destination] and let Android release the system
+  /// splash once the new route has painted.
+  ///
+  /// Every exit from startup goes through here. Releasing after the frame
+  /// rather than before it is the point: the system splash stays up across the
+  /// switch, so a fast start never reveals this screen underneath it.
+  void _handOver(Widget destination) {
+    unawaited(Navigator.pushReplacement(context, fadeRoute(destination)));
+    WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(releaseSystemSplash()));
+  }
+
   /// Whether startup has taken long enough to be worth showing a splash for.
   ///
   /// A first run has no connections to load, so this screen would otherwise
@@ -1134,7 +1146,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     await context.read<DownloadProvider>().ensureInitialized();
     if (!mounted) return;
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.mainScreen);
-    unawaited(Navigator.pushReplacement(context, fadeRoute(const ProfileSessionScreen(isOfflineMode: true))));
+    _handOver(const ProfileSessionScreen(isOfflineMode: true));
   }
 
   Future<void> _loadSavedCredentials() async {
@@ -1196,14 +1208,14 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       // splash forever, so route to auth rather than let it propagate.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
       if (mounted) {
-        unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
+        _handOver(const OnboardingFlowScreen());
       }
       return;
     }
 
     if (allConnections.isEmpty) {
       if (mounted) {
-        unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
+        _handOver(const OnboardingFlowScreen());
       }
       return;
     }
@@ -1242,7 +1254,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
     if (activeProfile.active == null && activeProfile.profiles.isEmpty) {
       appLogger.w('Setup: stored connections exist but no profiles resolved after bootstrap; returning to auth');
-      unawaited(Navigator.pushReplacement(context, fadeRoute(const OnboardingFlowScreen())));
+      _handOver(const OnboardingFlowScreen());
       return;
     }
 
@@ -1302,7 +1314,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     if (!mounted) return;
 
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.mainScreen);
-    unawaited(Navigator.pushReplacement(context, fadeRoute(ProfileSessionScreen(initialPromptHandled: shouldPrompt))));
+    _handOver(ProfileSessionScreen(initialPromptHandled: shouldPrompt));
   }
 
   /// Wire per-server status updates from [MultiServerManager] into the
