@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
 
@@ -63,12 +64,13 @@ class IntroSurface extends StatelessWidget {
   }
 }
 
-/// Both titles occupy one box so neither reflows the mark above them as they
+/// Both titles occupy one box so neither reflows what sits below them as they
 /// trade places.
 ///
-/// The wordmark side is the unpositioned child, so it sizes the Stack and the
-/// box grows with the user's text scale. A fixed height here would have to be
-/// picked for the largest scale and would leave a hole at the smallest.
+/// The box follows the morph rather than either end of it. Sized to the
+/// wordmark it leaves a hole under the one-line connect title; sized to the
+/// title it clips the wordmark. Measuring both and interpolating also keeps it
+/// honest under a user's text scale, which a fixed height cannot be.
 class _CrossfadedTitles extends StatelessWidget {
   const _CrossfadedTitles({required this.progress});
 
@@ -77,36 +79,55 @@ class _CrossfadedTitles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        Opacity(
-          opacity: 1 - progress,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+    final wordmark = TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text);
+    final tagline = TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted);
+    final scaler = MediaQuery.textScalerOf(context);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double heightOf(String text, TextStyle style) => (TextPainter(
+          text: TextSpan(text: text, style: style),
+          textDirection: Directionality.of(context),
+          textAlign: TextAlign.center,
+          textScaler: scaler,
+        )..layout(maxWidth: constraints.maxWidth)).height;
+
+        final splashHeight = heightOf('Harbor', wordmark) + 12 + heightOf(t.onboarding.tagline.toUpperCase(), tagline);
+        final connectHeight = heightOf(t.onboarding.connectTitle, OnboardingType.headline);
+
+        return SizedBox(
+          height: lerpDouble(splashHeight, connectHeight, progress),
+          child: Stack(
             children: [
-              Text(
-                'Harbor',
-                style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text),
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                child: Opacity(
+                  opacity: 1 - progress,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Harbor', style: wordmark),
+                      const SizedBox(height: 12),
+                      Text(t.onboarding.tagline.toUpperCase(), style: tagline),
+                    ],
+                  ),
+                ),
               ),
-              const SizedBox(height: 12),
-              Text(
-                t.onboarding.tagline.toUpperCase(),
-                style: TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted),
+              Positioned(
+                left: 0,
+                right: 0,
+                top: 0,
+                child: Opacity(
+                  opacity: progress,
+                  child: Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
+                ),
               ),
             ],
           ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: 0,
-          child: Opacity(
-            opacity: progress,
-            child: Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 }
