@@ -18,7 +18,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-SVG_SOURCE="assets/harbor.svg"
+SVG_SOURCE="assets/harbor_mark.svg"
 ANDROID_RES="android/app/src/main/res"
 TEMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TEMP_DIR"' EXIT
@@ -27,29 +27,36 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 command -v rsvg-convert >/dev/null || {
   echo "Error: rsvg-convert not found. Install with: brew install librsvg" >&2; exit 1; }
 
-# The mark's own path data, lifted from the source so the variants below stay
-# in sync with it. Everything is composed as SVG and rendered once — no raster
+# The mark's path data, lifted from the source so the variants below stay in
+# sync with it. Everything is composed as SVG and rendered once — no raster
 # post-processing, so no ImageMagick dependency.
-TOWER=$(grep -o 'd="M7\.746[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
-BEAMS=$(grep -o 'd="M3\.293[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
+MAINSAIL=$(grep -o 'd="M29 10[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
+JIB=$(grep -o 'd="M35 20[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
+WATERLINE=$(grep -o 'd="M10 52[^"]*"' "$SVG_SOURCE" | head -1 | sed 's/^d="//;s/"$//')
 
-emit_svg() {
-  # $1 tower fill, $2 beams fill, $3 optional <defs>
-  cat <<SVG
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-${3:-}
-  <path fill="$1" fill-rule="evenodd" clip-rule="evenodd" d="$TOWER"/>
-  <path fill="$2" d="$BEAMS"/>
+[ -n "$MAINSAIL" ] && [ -n "$JIB" ] && [ -n "$WATERLINE" ] || {
+  echo "Error: could not lift the sail paths out of $SVG_SOURCE" >&2; exit 1; }
+
+# Legacy launcher: the brand sheet's app icon — white sail on Harbor blue.
+cat > "$TEMP_DIR/brand.svg" <<SVG
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#2ca8e0"/>
+  <g transform="translate(9.6 9.6) scale(0.7)">
+    <path fill="#ffffff" d="$MAINSAIL"/>
+    <path fill="#0a0a0b" d="$JIB"/>
+    <path stroke="#0a0a0b" stroke-width="4.5" stroke-linecap="round" d="$WATERLINE"/>
+  </g>
 </svg>
 SVG
-}
 
-BRAND_DEFS='  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0" stop-color="#AB543A"/><stop offset="1" stop-color="#FF7E57"/>
-  </linearGradient></defs>'
-
-emit_svg 'url(#g)' 'url(#g)' "$BRAND_DEFS" > "$TEMP_DIR/brand.svg"
-emit_svg '#ffffff' '#ffffff' > "$TEMP_DIR/white.svg"
+# Notification icons are a silhouette the system tints, so the jib is dropped:
+# at 24dp the two sails merge into a blob.
+cat > "$TEMP_DIR/white.svg" <<SVG
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <path fill="#ffffff" d="$MAINSAIL"/>
+  <path stroke="#ffffff" stroke-width="5" stroke-linecap="round" d="$WATERLINE"/>
+</svg>
+SVG
 
 echo "Generating Android raster icons from $SVG_SOURCE"
 
@@ -75,16 +82,14 @@ cat > "$TEMP_DIR/banner.svg" <<SVG
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" width="320" height="180">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#191919"/><stop offset="1" stop-color="#000000"/>
-    </linearGradient>
-    <linearGradient id="g" x1="0" y1="1" x2="1" y2="0">
-      <stop offset="0" stop-color="#AB543A"/><stop offset="1" stop-color="#FF7E57"/>
+      <stop offset="0" stop-color="#12181c"/><stop offset="1" stop-color="#0a0a0b"/>
     </linearGradient>
   </defs>
   <rect width="320" height="180" fill="url(#bg)"/>
-  <g transform="translate(103.7 35.8) scale(4.7)">
-    <path fill="url(#g)" fill-rule="evenodd" clip-rule="evenodd" d="$TOWER"/>
-    <path fill="url(#g)" d="$BEAMS"/>
+  <g transform="translate(115 25) scale(1.72)">
+    <path fill="#ffffff" d="$MAINSAIL"/>
+    <path fill="#2ca8e0" d="$JIB"/>
+    <path stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" d="$WATERLINE"/>
   </g>
 </svg>
 SVG

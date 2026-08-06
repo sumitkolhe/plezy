@@ -2,22 +2,28 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-    <!-- Scaled about centre so the mark sits inside the adaptive-icon safe
-         zone: the artwork is near full-bleed in its own 24x24 viewport, and
-         a launcher mask can clip up to the outer 33%. -->
+    android:viewportWidth="64"
+    android:viewportHeight="64">
+    <!-- Themed-icon layer: one colour, which the system tints. The jib is kept
+         because a themed icon renders at full launcher size, where the brand
+         sheet wants both sails. -->
     <group
-        android:pivotX="12"
-        android:pivotY="12"
-        android:scaleX="0.68"
-        android:scaleY="0.68">
+        android:pivotX="0"
+        android:pivotY="0"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:translateX="9.6"
+        android:translateY="9.6">
         <path
-            android:pathData="M7.746 9.033a1 1 0 0 0-.118 1.896L7.06 20H5a1 1 0 0 0 0 2h14a1 1 0 1 0 0-2h-2.06l-.568-9.071a1 1 0 0 0-.118-1.896l-.24-3.848a1.5 1.5 0 0 0-.665-1.154l-2.517-1.678a1.5 1.5 0 0 0-1.664 0L8.652 4.031a1.5 1.5 0 0 0-.666 1.154zM13.5 7a1.5 1.5 0 1 1-3 0a1.5 1.5 0 0 1 3 0"
-            android:fillType="evenOdd"
-            android:fillColor="#FFFFFFFF" />
+            android:pathData="M29 10v34H11C15 30 21 19 29 10Z"
+            android:fillColor="#000000" />
         <path
-            android:pathData="M3.293 4.293a1 1 0 0 1 1.414 0l1 1a1 1 0 0 1-1.414 1.414l-1-1a1 1 0 0 1 0-1.414m17.414 0a1 1 0 0 0-1.414 0l-1 1a1 1 0 0 0 1.414 1.414l1-1a1 1 0 0 0 0-1.414m-16.414 4a1 1 0 0 1 1.414 1.414l-1 1a1 1 0 0 1-1.414-1.414zm14 0a1 1 0 0 1 1.414 0l1 1a1 1 0 0 1-1.414 1.414l-1-1a1 1 0 0 1 0-1.414"
-            android:fillColor="#FFFFFFFF" />
+            android:pathData="M35 20v24h17c-3-9-9-17-17-24Z"
+            android:fillColor="#000000" />
+        <path
+            android:pathData="M10 52h44"
+            android:strokeColor="#000000"
+            android:strokeWidth="4.5"
+            android:strokeLineCap="round" />
     </group>
 </vector>
