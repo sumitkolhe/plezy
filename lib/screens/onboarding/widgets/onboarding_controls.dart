@@ -217,7 +217,9 @@ class OnboardingField extends StatelessWidget {
                     contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
                     hintText: hintText,
-                    hintStyle: TextStyle(color: c.outline, fontSize: 16),
+                    // hintStyle is deliberately absent: the theme already sets
+                    // one, and the outline colour this used to hardcode is a
+                    // 12%-alpha border tint that is far too faint to read.
                   ),
                 ),
               ),
