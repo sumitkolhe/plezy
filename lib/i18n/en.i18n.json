@@ -1578,7 +1578,6 @@
   "onboarding": {
     "tagline": "Your library, at anchor",
     "connectTitle": "Connect your server",
-    "connectBody": "Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.",
     "addServer": "Add Jellyfin server",
     "serverAddress": "Server address",
     "addressRequired": "Enter your server address",

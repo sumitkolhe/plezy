@@ -63,8 +63,12 @@ class IntroSurface extends StatelessWidget {
   }
 }
 
-/// Both texts occupy one box so neither reflows the mark above them as they
+/// Both titles occupy one box so neither reflows the mark above them as they
 /// trade places.
+///
+/// The wordmark side is the unpositioned child, so it sizes the Stack and the
+/// box grows with the user's text scale. A fixed height here would have to be
+/// picked for the largest scale and would leave a hole at the smallest.
 class _CrossfadedTitles extends StatelessWidget {
   const _CrossfadedTitles({required this.progress});
 
@@ -73,54 +77,40 @@ class _CrossfadedTitles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    return SizedBox(
-      height: 92,
-      child: Stack(
-        children: [
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Opacity(
-              opacity: 1 - progress,
-              child: Column(
-                children: [
-                  Text(
-                    'Harbor',
-                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    t.onboarding.tagline.toUpperCase(),
-                    style: TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted),
-                  ),
-                ],
+    return Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Opacity(
+          opacity: 1 - progress,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Harbor',
+                style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text),
               ),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Opacity(
-              opacity: progress,
-              child: Column(
-                children: [
-                  Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
-                  const SizedBox(height: 10),
-                  Text(t.onboarding.connectBody, textAlign: TextAlign.center, style: OnboardingType.body),
-                ],
+              const SizedBox(height: 12),
+              Text(
+                t.onboarding.tagline.toUpperCase(),
+                style: TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        ),
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          child: Opacity(
+            opacity: progress,
+            child: Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
+          ),
+        ),
+      ],
     );
   }
 }
 
-/// The live intro: holds on the splash, then morphs to connect and takes an
-/// address.
 class IntroStep extends StatefulWidget {
   const IntroStep({
     super.key,

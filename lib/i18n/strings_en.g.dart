@@ -4046,9 +4046,6 @@ class Translations$onboarding$en {
 	/// en: 'Connect your server'
 	String get connectTitle => 'Connect your server';
 
-	/// en: 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.'
-	String get connectBody => 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.';
-
 	/// en: 'Add Jellyfin server'
 	String get addServer => 'Add Jellyfin server';
 
@@ -6544,7 +6541,6 @@ extension on Translations {
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
 			'onboarding.tagline' => 'Your library, at anchor',
 			'onboarding.connectTitle' => 'Connect your server',
-			'onboarding.connectBody' => 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.',
 			'onboarding.addServer' => 'Add Jellyfin server',
 			'onboarding.serverAddress' => 'Server address',
 			'onboarding.addressRequired' => 'Enter your server address',
