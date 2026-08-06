@@ -1,28 +1,23 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../onboarding_palette.dart';
+import 'onboarding_controls.dart';
 
 /// The Harbor mark: a mainsail, a jib, and the waterline they sit on.
 ///
-/// Drawn rather than loaded from `assets/harbor_mark.svg` because the flow
-/// animates two of the three parts independently. The geometry is copied from
-/// the same export the asset is cut from, so the painted mark and the static
-/// one are the same shape.
+/// Drawn rather than loaded from `assets/harbor_mark.svg` because the boat
+/// moves and the water does not. The geometry is copied from the same export
+/// the asset is cut from, so the painted mark and the static one are one shape.
 ///
 /// Below 32dp the jib is dropped — the brand sheet's rule, and at that size the
 /// two sails read as one smudge anyway.
 class HarborMark extends StatefulWidget {
-  const HarborMark({super.key, required this.size, this.bob = false, this.onLight = false});
+  const HarborMark({super.key, required this.size});
 
   final double size;
-
-  /// Ride the swell. For the two screens where the mark is the only thing on
-  /// the page; elsewhere it would pull the eye off the copy.
-  final bool bob;
-
-  final bool onLight;
 
   /// The brand sheet's threshold for showing the jib.
   static const double jibThreshold = 32;
@@ -31,68 +26,82 @@ class HarborMark extends StatefulWidget {
   State<HarborMark> createState() => _HarborMarkState();
 }
 
-class _HarborMarkState extends State<HarborMark> with TickerProviderStateMixin {
-  late final AnimationController _bob = AnimationController(vsync: this, duration: const Duration(milliseconds: 3600))
-    ..repeat(reverse: true);
+class _HarborMarkState extends State<HarborMark> with SingleTickerProviderStateMixin {
+  /// Seconds since the mark appeared. A free-running clock rather than a
+  /// looping controller, because the motion is built from periods that
+  /// deliberately do not divide into each other.
+  final _clock = ValueNotifier<double>(0);
+  late final Ticker _ticker;
 
-  /// The jib is present for roughly two seconds in eleven. One long cycle, not
-  /// a blink: the mark should look like it is breathing, not faulty.
-  late final AnimationController _jib = AnimationController(vsync: this, duration: const Duration(seconds: 11))
-    ..repeat();
+  @override
+  void initState() {
+    super.initState();
+    _ticker = createTicker((elapsed) => _clock.value = elapsed.inMicroseconds / Duration.microsecondsPerSecond);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Left at zero under reduced motion, which paints the boat sitting level.
+    if (!prefersReducedMotion(context) && !_ticker.isActive) _ticker.start();
+  }
 
   @override
   void dispose() {
-    _bob.dispose();
-    _jib.dispose();
+    _ticker.dispose();
+    _clock.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final withJib = widget.size >= HarborMark.jibThreshold;
-    return AnimatedBuilder(
-      animation: Listenable.merge([_bob, if (withJib) _jib]),
-      builder: (context, _) {
-        final swell = widget.bob ? math.sin(_bob.value * math.pi) : 0.0;
-        return Transform.translate(
-          offset: Offset(0, -9 * swell),
-          child: Transform.rotate(
-            angle: (-2.5 + 5 * swell) * math.pi / 180,
-            alignment: const Alignment(0, 0.6),
-            child: CustomPaint(
-              size: Size.square(widget.size),
-              painter: _MarkPainter(jibOpacity: withJib ? _jibOpacity(_jib.value) : 0, onLight: widget.onLight),
-            ),
-          ),
-        );
-      },
+    return CustomPaint(
+      size: Size.square(widget.size),
+      painter: _MarkPainter(clock: _clock, withJib: widget.size >= HarborMark.jibThreshold),
     );
-  }
-
-  /// Absent, a half-second fade up, two seconds held, a fade back down.
-  static double _jibOpacity(double t) {
-    if (t < 0.62 || t >= 1) return 0;
-    if (t < 0.70) return (t - 0.62) / 0.08;
-    if (t < 0.88) return 1;
-    return 1 - (t - 0.88) / 0.12;
   }
 }
 
 class _MarkPainter extends CustomPainter {
-  const _MarkPainter({required this.jibOpacity, required this.onLight});
+  _MarkPainter({required this.clock, required this.withJib}) : super(repaint: clock);
 
-  final double jibOpacity;
-  final bool onLight;
+  final ValueNotifier<double> clock;
+  final bool withJib;
+
+  /// Where the boat pivots: on the water, so it rolls against the line rather
+  /// than turning about its own middle.
+  static const Offset _pivot = Offset(32, 52);
+
+  /// A hull on open water is never doing one thing at one rate. These periods
+  /// do not divide into each other, so the loop never shows itself — the
+  /// alternative is a single rise and fall, which reads as a ball bouncing
+  /// rather than a boat sailing.
+  static const double _heavePeriod = 4.3;
+  static const double _rollPeriod = 6.1;
+  static const double _chopPeriod = 2.9;
+  static const double _surgePeriod = 7.7;
+
+  static double _wave(double seconds, double period, [double phase = 0]) =>
+      math.sin(seconds * 2 * math.pi / period + phase);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final scale = size.width / 64;
-    canvas.scale(scale);
+    canvas.scale(size.width / 64);
+    final seconds = clock.value;
 
-    final sailColor = onLight ? OnboardingPalette.ink : OnboardingPalette.text;
-    final jibColor = OnboardingPalette.blue;
+    // Rises and falls about where it rests, rather than lifting off and
+    // dropping back to the same place.
+    final heave = 2.8 * _wave(seconds, _heavePeriod);
+    // Roll leads: it is the tilt, not the lift, that says water.
+    final roll = 3.1 * _wave(seconds, _rollPeriod, 1.1) + 0.9 * _wave(seconds, _chopPeriod);
+    final surge = 1.1 * _wave(seconds, _surgePeriod, 0.4);
 
-    if (jibOpacity > 0) {
+    canvas.save();
+    canvas.translate(_pivot.dx + surge, _pivot.dy + heave);
+    canvas.rotate(roll * math.pi / 180);
+    canvas.translate(-_pivot.dx, -_pivot.dy);
+
+    if (withJib) {
       canvas.drawPath(
         Path()
           ..moveTo(35, 20)
@@ -100,7 +109,7 @@ class _MarkPainter extends CustomPainter {
           ..lineTo(52, 44)
           ..relativeCubicTo(-3, -9, -9, -17, -17, -24)
           ..close(),
-        Paint()..color = jibColor.withValues(alpha: jibOpacity),
+        Paint()..color = OnboardingPalette.blue,
       );
     }
 
@@ -111,19 +120,21 @@ class _MarkPainter extends CustomPainter {
         ..lineTo(11, 44)
         ..relativeCubicTo(4, -14, 10, -25, 18, -34)
         ..close(),
-      Paint()..color = sailColor,
+      Paint()..color = OnboardingPalette.text,
     );
+    canvas.restore();
 
+    // Blue, matching the jib. The water stays level while the boat moves on it.
     canvas.drawLine(
       const Offset(10, 52),
       const Offset(54, 52),
       Paint()
-        ..color = sailColor
+        ..color = OnboardingPalette.blue
         ..strokeWidth = 4.5
         ..strokeCap = StrokeCap.round,
     );
   }
 
   @override
-  bool shouldRepaint(_MarkPainter old) => old.jibOpacity != jibOpacity || old.onLight != onLight;
+  bool shouldRepaint(_MarkPainter old) => old.withJib != withJib;
 }

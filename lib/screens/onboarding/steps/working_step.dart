@@ -29,7 +29,7 @@ class WorkingStep extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const HarborMark(size: 96, bob: true),
+            const HarborMark(size: 96),
             const SizedBox(height: 30),
             Text(
               title,

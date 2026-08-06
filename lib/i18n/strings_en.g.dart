@@ -4055,9 +4055,6 @@ class Translations$onboarding$en {
 	/// en: 'Server address'
 	String get serverAddress => 'Server address';
 
-	/// en: 'Credentials stay on this device'
-	String get credentialsStayOnDevice => 'Credentials stay on this device';
-
 	/// en: 'Enter your server address, or scan the network'
 	String get addressRequired => 'Enter your server address, or scan the network';
 
@@ -6571,7 +6568,6 @@ extension on Translations {
 			'onboarding.connectBody' => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.',
 			'onboarding.addServer' => 'Add Jellyfin server',
 			'onboarding.serverAddress' => 'Server address',
-			'onboarding.credentialsStayOnDevice' => 'Credentials stay on this device',
 			'onboarding.addressRequired' => 'Enter your server address, or scan the network',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',

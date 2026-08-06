@@ -18,7 +18,7 @@ import '../widgets/rise_in.dart';
 /// The startup screen renders this frozen at 0 so the hand-over into the flow
 /// lands on identical pixels; the flow then animates it to 1.
 class IntroSurface extends StatelessWidget {
-  const IntroSurface({super.key, required this.progress, this.formOpen = false, this.form, this.action, this.footer});
+  const IntroSurface({super.key, required this.progress, this.formOpen = false, this.form, this.action});
 
   final double progress;
 
@@ -27,7 +27,6 @@ class IntroSurface extends StatelessWidget {
 
   final Widget? form;
   final Widget? action;
-  final Widget? footer;
 
   static const double _splashTopPad = 198;
   static const double _connectTopPad = 252;
@@ -43,31 +42,20 @@ class IntroSurface extends StatelessWidget {
         final target = formOpen ? _formTopPad : _connectTopPad;
         final topPad = (_splashTopPad + (target - _splashTopPad) * progress) * scale;
 
-        return Stack(
-          children: [
-            SingleChildScrollView(
-              padding: EdgeInsets.fromLTRB(OnboardingMetrics.gutter, topPad, OnboardingMetrics.gutter, 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Center(
-                    child: Transform.scale(scale: 1 - 0.35 * progress, child: const HarborMark(size: 104, bob: true)),
-                  ),
-                  SizedBox(height: 26 - 8 * progress),
-                  _CrossfadedTitles(progress: progress),
-                  if (form case final form?) ...[const SizedBox(height: 22), form],
-                  if (action case final action?) ...[const SizedBox(height: 22), action],
-                ],
+        return SingleChildScrollView(
+          padding: EdgeInsets.fromLTRB(OnboardingMetrics.gutter, topPad, OnboardingMetrics.gutter, 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Center(
+                child: Transform.scale(scale: 1 - 0.35 * progress, child: const HarborMark(size: 104)),
               ),
-            ),
-            if (footer case final footer?)
-              Positioned(
-                left: OnboardingMetrics.gutter,
-                right: OnboardingMetrics.gutter,
-                bottom: 34,
-                child: Opacity(opacity: progress, child: footer),
-              ),
-          ],
+              SizedBox(height: 26 - 8 * progress),
+              _CrossfadedTitles(progress: progress),
+              if (form case final form?) ...[const SizedBox(height: 22), form],
+              if (action case final action?) ...[const SizedBox(height: 22), action],
+            ],
+          ),
         );
       },
     );
@@ -233,7 +221,6 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
                 formOpen: widget.formOpen,
                 form: settled && widget.formOpen ? _buildForm() : null,
                 action: settled ? _buildAction() : null,
-                footer: _PrivacyNote(),
               ),
             ),
             // Nobody should have to wait out a logo. The whole splash is a tap
@@ -317,27 +304,6 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
             ),
         ],
       ),
-    );
-  }
-}
-
-/// The reassurance the screen is asking someone to act on: this is their
-/// server, and the password they are about to type is not going anywhere.
-class _PrivacyNote extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.lock_outline, size: 14, color: OnboardingPalette.textFaint),
-        const SizedBox(width: 8),
-        Flexible(
-          child: Text(
-            t.onboarding.credentialsStayOnDevice,
-            style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
-          ),
-        ),
-      ],
     );
   }
 }

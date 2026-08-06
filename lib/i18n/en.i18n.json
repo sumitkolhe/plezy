@@ -1581,7 +1581,6 @@
     "connectBody": "Harbor plays from your own Jellyfin server. Nothing leaves your network.",
     "addServer": "Add Jellyfin server",
     "serverAddress": "Server address",
-    "credentialsStayOnDevice": "Credentials stay on this device",
     "addressRequired": "Enter your server address, or scan the network",
     "reaching": "Reaching your server",
     "signingIn": "Signing in",
