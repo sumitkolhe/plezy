@@ -11,15 +11,12 @@ import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Process
-import android.os.SystemClock
 import android.provider.Settings
 import android.util.Log
 import android.util.Rational
 import android.view.InputDevice
 import android.view.KeyEvent
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -68,11 +65,6 @@ class MainActivity : FlutterActivity() {
     // "2GB" devices report totalMem slightly above 2 GiB after carve-outs.
     private const val LOW_MEM_THRESHOLD_BYTES = 2252L shl 20
 
-    /// Longest the system splash is held waiting for Flutter to say it has
-    /// finished starting. Past this the splash exits regardless, so a hung or
-    /// crashed startup shows Flutter's own splash — which has a status line —
-    /// instead of a frozen icon.
-    private const val SPLASH_HOLD_CAP_MS = 800L
 
     private var selectedFlutterRenderer = FlutterRenderer.IMPELLER
   }
@@ -83,7 +75,6 @@ class MainActivity : FlutterActivity() {
   private val DEVICE_ADJUSTMENT_CHANNEL = "co.sumit.harbor/device_adjustment"
   private val TEXT_INPUT_CHANNEL = "co.sumit.harbor/text_input"
   private val APP_EXIT_CHANNEL = "co.sumit.harbor/app_exit"
-  private val SPLASH_CHANNEL = "co.sumit.harbor/splash"
   private var watchNextPlugin: WatchNextPlugin? = null
   private var nativeTextInputFocused = false
   private var originalWindowBrightness: Float? = null
@@ -372,11 +363,6 @@ class MainActivity : FlutterActivity() {
     return if (!bt.isNullOrBlank()) bt else null
   }
 
-  /// Set once Flutter has routed past its own splash, or once the hold caps out.
-  @Volatile
-  private var splashReleased = false
-  private var splashHoldStartedAt = 0L
-
   override fun onCreate(savedInstanceState: Bundle?) {
     // Snapshot the previous process phase before this launch can overwrite it.
     initializeStartupPhaseStore()
@@ -393,7 +379,6 @@ class MainActivity : FlutterActivity() {
     // a flicker before Flutter draws its first frame.
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
       splashScreen.setOnExitAnimationListener { splashScreenView -> splashScreenView.remove() }
-      holdSplashUntilFlutterRoutes()
     }
 
     // Disable Android's default focus highlight ring that appears when using
@@ -585,41 +570,6 @@ class MainActivity : FlutterActivity() {
     }
   }
 
-  /// Keep the system splash up across Flutter's startup so a cold start shows
-  /// one surface instead of two.
-  ///
-  /// The splash stays until the app first draws, so refusing to draw holds it.
-  /// That is what androidx's setKeepOnScreenCondition does internally, and doing
-  /// it directly avoids pulling in core-splashscreen, whose theme contract would
-  /// collide with the SplashTheme variants this activity already swaps between.
-  ///
-  /// Only above API 31, where the splash carries the mark. Below that it is the
-  /// window background — already ink — so holding would delay startup to hide
-  /// nothing.
-  private fun holdSplashUntilFlutterRoutes() {
-    val content = findViewById<View>(android.R.id.content)
-    splashHoldStartedAt = SystemClock.uptimeMillis()
-
-    content.viewTreeObserver.addOnPreDrawListener(
-      object : ViewTreeObserver.OnPreDrawListener {
-        override fun onPreDraw(): Boolean {
-          val expired = SystemClock.uptimeMillis() - splashHoldStartedAt >= SPLASH_HOLD_CAP_MS
-          if (!splashReleased && !expired) return false
-          content.viewTreeObserver.removeOnPreDrawListener(this)
-          return true
-        }
-      }
-    )
-
-    // The listener only runs when something asks to draw, so the cap needs its
-    // own alarm: a startup that stalls without scheduling a frame would
-    // otherwise hold the splash indefinitely.
-    content.postDelayed({
-      splashReleased = true
-      content.invalidate()
-    }, SPLASH_HOLD_CAP_MS)
-  }
-
   override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
     super.configureFlutterEngine(flutterEngine)
     flutterEngine.plugins.add(MpvPlayerPlugin())
@@ -686,16 +636,6 @@ class MainActivity : FlutterActivity() {
     externalPlayerChannel.attach(flutterEngine.dartExecutor.binaryMessenger)
 
     // Splash screen theme: persist user's chosen theme for next launch (API 31+)
-    MethodChannel(flutterEngine.dartExecutor.binaryMessenger, SPLASH_CHANNEL).setMethodCallHandler { call, result ->
-      when (call.method) {
-        "release" -> {
-          splashReleased = true
-          result.success(null)
-        }
-        else -> result.notImplemented()
-      }
-    }
-
     MethodChannel(flutterEngine.dartExecutor.binaryMessenger, THEME_CHANNEL).setMethodCallHandler { call, result ->
       when (call.method) {
         "getRenderer" -> result.success(selectedFlutterRenderer.diagnosticName)

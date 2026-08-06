@@ -1,30 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../onboarding_palette.dart';
 
 /// Three swell layers along the bottom of the flow.
 ///
-/// Mounted once by the flow shell and never rebuilt as the steps change, so
-/// crossing from one step to the next does not restart the animation — the
-/// water is the thing that says it is all one screen.
+/// The phase comes from a clock that outlives any one instance, so the swell is
+/// continuous everywhere it appears — across the steps of the onboarding flow,
+/// and across the route change from the splash into it. A per-widget controller
+/// would restart from flat water at each boundary, which is the one thing the
+/// water is here to avoid.
 class HarborWater extends StatefulWidget {
   const HarborWater({super.key});
 
   static const double height = 190;
+
+  /// Shared by every instance, started on first use and never stopped. The
+  /// swell is ambient, so its phase belongs to the app rather than to whichever
+  /// screen happens to be showing it.
+  static final Stopwatch _tide = Stopwatch()..start();
+
+  @visibleForTesting
+  static double get phaseSeconds => _tide.elapsedMicroseconds / Duration.microsecondsPerSecond;
 
   @override
   State<HarborWater> createState() => _HarborWaterState();
 }
 
 class _HarborWaterState extends State<HarborWater> with SingleTickerProviderStateMixin {
-  /// One clock for all three layers; each reads it at its own rate rather than
-  /// carrying a controller of its own.
-  late final AnimationController _clock = AnimationController(vsync: this, duration: const Duration(seconds: 60))
-    ..repeat();
+  /// Only drives repaints. What to paint comes from the shared clock.
+  late final Ticker _ticker;
+
+  @override
+  void initState() {
+    super.initState();
+    _ticker = createTicker((_) => setState(() {}))..start();
+  }
 
   @override
   void dispose() {
-    _clock.dispose();
+    _ticker.dispose();
     super.dispose();
   }
 
@@ -33,13 +48,7 @@ class _HarborWaterState extends State<HarborWater> with SingleTickerProviderStat
     return IgnorePointer(
       child: SizedBox(
         height: HarborWater.height,
-        child: AnimatedBuilder(
-          animation: _clock,
-          builder: (context, _) {
-            final seconds = _clock.value * 60;
-            return CustomPaint(painter: _SwellPainter(seconds));
-          },
-        ),
+        child: CustomPaint(painter: _SwellPainter(HarborWater.phaseSeconds)),
       ),
     );
   }

@@ -23,7 +23,6 @@ import 'mixins/mounted_set_state_mixin.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
 import 'screens/onboarding/onboarding_flow_screen.dart';
-import 'services/system_splash.dart';
 import 'screens/profile/profile_switch_screen.dart';
 import 'services/storage_service.dart';
 import 'services/device_performance.dart';
@@ -1097,32 +1096,43 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
   // Per-server connection status: serverId -> (name, connected?)
   final Map<String, (String name, bool? connected)> _serverStatus = {};
 
-  /// Replace this screen with [destination] and let Android release the system
-  /// splash once the new route has painted.
+  /// How long the splash is on screen before startup is allowed to hand over.
   ///
-  /// Every exit from startup goes through here. Releasing after the frame
-  /// rather than before it is the point: the system splash stays up across the
-  /// switch, so a fast start never reveals this screen underneath it.
-  void _handOver(Widget destination) {
+  /// A floor, not a delay: startup runs underneath it, so a slow bind spends
+  /// this time working rather than waiting, and only a start that finishes
+  /// early is held back at all.
+  static const Duration _splashHold = Duration(milliseconds: 2500);
+
+  /// Replace this screen with [destination], once the splash has had its time.
+  ///
+  /// Every exit from startup goes through here, so the floor applies to all of
+  /// them — first run, returning user and offline alike.
+  Future<void> _handOver(Widget destination) async {
+    final remaining = _splashHold - _shownFor.elapsed;
+    if (remaining > Duration.zero) await Future<void>.delayed(remaining);
+    if (!mounted) return;
     unawaited(Navigator.pushReplacement(context, fadeRoute(destination)));
-    WidgetsBinding.instance.addPostFrameCallback((_) => unawaited(releaseSystemSplash()));
   }
 
-  /// Whether startup has taken long enough to be worth showing a splash for.
+  final Stopwatch _shownFor = Stopwatch()..start();
+
+  /// Grace on top of [_splashHold] before startup is treated as overrunning.
   ///
-  /// A first run has no connections to load, so this screen would otherwise
-  /// appear and vanish inside a couple of frames — the mark and wordmark
-  /// animating in just as the onboarding flow replaces them. Until the delay
-  /// elapses the screen is flat ink, which is pixel-identical to the system
-  /// splash behind it, so a fast start reads as one continuous surface and
-  /// nothing flashes.
-  bool _showBranding = false;
-  Timer? _brandingTimer;
+  /// Without it the hand-over and the status would race at the same instant and
+  /// a normal start could flash a line of status on its way out.
+  static const Duration _overrunGrace = Duration(milliseconds: 300);
+
+  /// Startup has outstayed the splash, so it owes the user an explanation.
+  ///
+  /// Silent before that: the branded seconds are the point of this screen, and
+  /// narrating work that is about to finish anyway only clutters them.
+  bool _overran = false;
+  Timer? _overrunTimer;
 
   @override
   void initState() {
     super.initState();
-    _brandingTimer = Timer(const Duration(milliseconds: 350), () => setStateIfMounted(() => _showBranding = true));
+    _overrunTimer = Timer(_splashHold + _overrunGrace, () => setStateIfMounted(() => _overran = true));
     _loadSavedCredentials();
   }
 
@@ -1146,7 +1156,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     await context.read<DownloadProvider>().ensureInitialized();
     if (!mounted) return;
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.mainScreen);
-    _handOver(const ProfileSessionScreen(isOfflineMode: true));
+    unawaited(_handOver(const ProfileSessionScreen(isOfflineMode: true)));
   }
 
   Future<void> _loadSavedCredentials() async {
@@ -1208,14 +1218,14 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       // splash forever, so route to auth rather than let it propagate.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
       if (mounted) {
-        _handOver(const OnboardingFlowScreen());
+        unawaited(_handOver(const OnboardingFlowScreen()));
       }
       return;
     }
 
     if (allConnections.isEmpty) {
       if (mounted) {
-        _handOver(const OnboardingFlowScreen());
+        unawaited(_handOver(const OnboardingFlowScreen()));
       }
       return;
     }
@@ -1254,7 +1264,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
     if (activeProfile.active == null && activeProfile.profiles.isEmpty) {
       appLogger.w('Setup: stored connections exist but no profiles resolved after bootstrap; returning to auth');
-      _handOver(const OnboardingFlowScreen());
+      unawaited(_handOver(const OnboardingFlowScreen()));
       return;
     }
 
@@ -1314,7 +1324,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     if (!mounted) return;
 
     AndroidExitDiagnostics.markStartupPhase(AndroidStartupPhase.mainScreen);
-    _handOver(ProfileSessionScreen(initialPromptHandled: shouldPrompt));
+    unawaited(_handOver(ProfileSessionScreen(initialPromptHandled: shouldPrompt)));
   }
 
   /// Wire per-server status updates from [MultiServerManager] into the
@@ -1356,7 +1366,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
   @override
   void dispose() {
-    _brandingTimer?.cancel();
+    _overrunTimer?.cancel();
     _statusSub?.cancel();
     _connectProgressSub?.cancel();
     super.dispose();
@@ -1424,16 +1434,11 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     // being loaded.
     return ColoredBox(
       color: OnboardingPalette.ink,
-      child: AnimatedOpacity(
-        opacity: _showBranding ? 1 : 0,
-        duration: const Duration(milliseconds: 220),
-        child: Stack(
-          children: [
-            const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
-            const Positioned.fill(child: _SplashMark()),
-            // Silent until startup has something to say: a cold start that reaches
-            // the library in under a second should not flash a status line on the
-            // way past.
+      child: Stack(
+        children: [
+          const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
+          const Positioned.fill(child: _SplashMark()),
+          if (_overran)
             Positioned(
               left: 0,
               right: 0,
@@ -1446,8 +1451,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
                 ],
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
