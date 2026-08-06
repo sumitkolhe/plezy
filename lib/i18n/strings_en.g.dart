@@ -4064,41 +4064,11 @@ class Translations$onboarding$en {
 	/// en: 'Server address'
 	String get serverAddress => 'Server address';
 
-	/// en: 'Find servers on my network'
-	String get findServers => 'Find servers on my network';
-
 	/// en: 'Credentials stay on this device'
 	String get credentialsStayOnDevice => 'Credentials stay on this device';
 
 	/// en: 'Enter your server address, or scan the network'
 	String get addressRequired => 'Enter your server address, or scan the network';
-
-	/// en: 'Looking for servers'
-	String get scanning => 'Looking for servers';
-
-	/// en: 'Harbor is checking this network for Jellyfin'
-	String get scanningBody => 'Harbor is checking this network for Jellyfin';
-
-	/// en: 'Listening for Jellyfin on this network'
-	String get scanningDetail => 'Listening for Jellyfin on this network';
-
-	/// en: '(one) {One server found} (other) {${n} servers found}'
-	String serversFound({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n,
-		one: 'One server found',
-		other: '${n} servers found',
-	);
-
-	/// en: 'Pick one to connect'
-	String get serversFoundBody => 'Pick one to connect';
-
-	/// en: 'No servers answered'
-	String get noServersFound => 'No servers answered';
-
-	/// en: 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.'
-	String get noServersFoundBody => 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.';
-
-	/// en: 'Enter an address instead'
-	String get enterAddressInstead => 'Enter an address instead';
 
 	/// en: 'Reaching your server'
 	String get reaching => 'Reaching your server';
@@ -6553,17 +6523,8 @@ extension on Translations {
 			'onboarding.addServer' => 'Add Jellyfin server',
 			'onboarding.addServerHint' => 'You will need its address on your network',
 			'onboarding.serverAddress' => 'Server address',
-			'onboarding.findServers' => 'Find servers on my network',
 			'onboarding.credentialsStayOnDevice' => 'Credentials stay on this device',
 			'onboarding.addressRequired' => 'Enter your server address, or scan the network',
-			'onboarding.scanning' => 'Looking for servers',
-			'onboarding.scanningBody' => 'Harbor is checking this network for Jellyfin',
-			'onboarding.scanningDetail' => 'Listening for Jellyfin on this network',
-			'onboarding.serversFound' => ({required num n}) => (_root.$meta.cardinalResolver ?? PluralResolvers.cardinal('en'))(n, one: 'One server found', other: '${n} servers found', ), 
-			'onboarding.serversFoundBody' => 'Pick one to connect',
-			'onboarding.noServersFound' => 'No servers answered',
-			'onboarding.noServersFoundBody' => 'Only servers with discovery enabled on this network reply, and one running in Docker usually will not. Enter its address instead.',
-			'onboarding.enterAddressInstead' => 'Enter an address instead',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',
 			'onboarding.signInTitle' => 'Sign in',

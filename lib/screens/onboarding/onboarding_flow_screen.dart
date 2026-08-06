@@ -17,14 +17,13 @@ import '../settings/connection_persistence.dart';
 import 'onboarding_palette.dart';
 import 'steps/connect_step.dart';
 import 'steps/connected_step.dart';
-import 'steps/discover_step.dart';
 import 'steps/sign_in_step.dart';
 import 'steps/working_step.dart';
 import 'widgets/harbor_water.dart';
 
 /// Where the flow is. Two of these are waits rather than pages, but they are
 /// steps as far as the user is concerned, so they live in one enum.
-enum OnboardingStep { connect, discover, reaching, signIn, signingIn, connected }
+enum OnboardingStep { connect, reaching, signIn, signingIn, connected }
 
 /// First run: find a Jellyfin server, sign in, and hand over to the library.
 ///
@@ -68,7 +67,6 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   bool _addressExpanded = false;
 
   String? _error;
-  bool _scanning = false;
   List<DiscoveredJellyfinServer> _discovered = const [];
 
   JellyfinServerInfo? _serverInfo;
@@ -88,6 +86,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   void initState() {
     super.initState();
     _error = widget.initialErrorMessage;
+    unawaited(_scan());
   }
 
   @override
@@ -109,11 +108,11 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     );
   }
 
-  void _to(OnboardingStep step, {String? error}) {
+  void _to(OnboardingStep step) {
     _generation++;
     setState(() {
       _step = step;
-      _error = error;
+      _error = null;
     });
   }
 
@@ -161,28 +160,21 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
   // ---- discover -----------------------------------------------------------
 
+  /// Ask the network on the way in, and never say that we did.
+  ///
+  /// A broadcast cannot reach a server behind Docker's bridge or on another
+  /// subnet, so silence is the normal outcome and there is nothing useful to
+  /// report about it. Anything that does answer appears on the connect step.
   Future<void> _scan() async {
-    final generation = ++_generation;
-    setState(() {
-      _step = OnboardingStep.discover;
-      _scanning = true;
-      _discovered = const [];
-      _error = null;
-    });
     try {
       final factory = widget.lanDiscoveryFactory;
       final found = factory != null
           ? await factory()
           : await JellyfinLanDiscoveryService().discover(responseWindow: const Duration(milliseconds: 1300));
-      if (!mounted || generation != _generation) return;
-      setState(() {
-        _discovered = found;
-        _scanning = false;
-      });
+      if (!mounted) return;
+      setState(() => _discovered = found);
     } catch (e, st) {
       appLogger.w('Onboarding LAN discovery failed', error: e, stackTrace: st);
-      if (!mounted || generation != _generation) return;
-      setState(() => _scanning = false);
     }
   }
 
@@ -313,16 +305,12 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         controller: _address,
         expanded: _addressExpanded,
         error: _error,
+        discovered: _discovered,
         onExpand: () => setState(() => _addressExpanded = true),
         onConnect: () => unawaited(_probe(_address.text)),
-        onDiscover: () => unawaited(_scan()),
-      ),
-      OnboardingStep.discover => DiscoverStep(
-        scanning: _scanning,
-        servers: _discovered,
-        onBack: () => _to(OnboardingStep.connect),
-        onRetry: () => unawaited(_scan()),
         onPick: (server) {
+          // A discovered server still goes through the same probe as a typed
+          // address: discovery saves typing, it does not skip validation.
           _address.text = server.address;
           unawaited(_probe(server.address));
         },

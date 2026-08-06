@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/screens/onboarding/onboarding_flow_screen.dart';
 import 'package:harbor/screens/onboarding/steps/connect_step.dart';
-import 'package:harbor/screens/onboarding/steps/discover_step.dart';
 import 'package:harbor/screens/onboarding/widgets/harbor_water.dart';
 import 'package:harbor/services/jellyfin_lan_discovery_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
@@ -16,7 +17,7 @@ Future<void> _settle(WidgetTester tester) async {
   await tester.pump(const Duration(milliseconds: 600));
 }
 
-Future<void> _pump(WidgetTester tester, {Future<List<DiscoveredJellyfinServer>> Function()? discovery}) async {
+Future<void> _pump(WidgetTester tester, {required Future<List<DiscoveredJellyfinServer>> Function() discovery}) async {
   await tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
@@ -25,12 +26,17 @@ Future<void> _pump(WidgetTester tester, {Future<List<DiscoveredJellyfinServer>> 
       ),
     ),
   );
-  await tester.pump();
+  await _settle(tester);
 }
+
+final _servers = [
+  DiscoveredJellyfinServer(address: 'http://192.168.1.10:8096', id: 'a', name: 'Living room NAS'),
+  DiscoveredJellyfinServer(address: 'http://192.168.1.42:8096', id: 'b', name: 'Study'),
+];
 
 void main() {
   testWidgets('opens folded to a single action, and expands in place', (tester) async {
-    await _pump(tester);
+    await _pump(tester, discovery: () async => const []);
 
     expect(find.text(t.onboarding.addServer), findsOneWidget);
     expect(find.byType(TextField), findsNothing);
@@ -44,11 +50,10 @@ void main() {
     expect(find.text(t.onboarding.connectTitle), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text(t.auth.connectToJellyfin), findsOneWidget);
-    expect(find.text(t.onboarding.findServers), findsOneWidget);
   });
 
   testWidgets('an empty address is refused without leaving the step', (tester) async {
-    await _pump(tester);
+    await _pump(tester, discovery: () async => const []);
     await tester.tap(find.text(t.onboarding.addServer));
     await _settle(tester);
 
@@ -59,49 +64,42 @@ void main() {
     expect(find.byType(ConnectStep), findsOneWidget);
   });
 
-  testWidgets('discovery lists what answered and can hand back to manual entry', (tester) async {
-    await _pump(
-      tester,
-      discovery: () async => [
-        DiscoveredJellyfinServer(address: 'http://192.168.1.10:8096', id: 'a', name: 'Living room NAS'),
-        DiscoveredJellyfinServer(address: 'http://192.168.1.42:8096', id: 'b', name: 'Study'),
-      ],
-    );
-    await tester.tap(find.text(t.onboarding.addServer));
-    await _settle(tester);
-    await tester.tap(find.text(t.onboarding.findServers));
-    await _settle(tester);
+  testWidgets('a network that answers puts its servers on the first screen', (tester) async {
+    await _pump(tester, discovery: () async => _servers);
 
-    expect(find.byType(DiscoverStep), findsOneWidget);
+    // No button was pressed and no wait was shown to get here.
     expect(find.text('Living room NAS'), findsOneWidget);
     expect(find.text('Study'), findsOneWidget);
-    expect(find.text(t.onboarding.serversFound(n: 2)), findsOneWidget);
+    expect(find.text(t.addServer.localServers.toUpperCase()), findsOneWidget);
 
-    await tester.tap(find.text(t.onboarding.enterAddressInstead));
-    await _settle(tester);
-    expect(find.byType(ConnectStep), findsOneWidget);
+    // Manual entry is still offered, one step down.
+    expect(find.text(t.onboarding.addServer), findsOneWidget);
   });
 
-  testWidgets('a silent network says so and offers a retry', (tester) async {
+  testWidgets('a silent network is never mentioned', (tester) async {
     await _pump(tester, discovery: () async => const []);
-    await tester.tap(find.text(t.onboarding.addServer));
-    await _settle(tester);
-    await tester.tap(find.text(t.onboarding.findServers));
-    await _settle(tester);
 
-    expect(find.text(t.onboarding.noServersFound), findsOneWidget);
-    expect(find.text(t.common.retry), findsOneWidget);
+    // The step is exactly what it would be with no discovery at all: no empty
+    // state, no retry, nothing saying a scan happened.
+    expect(find.byType(ConnectStep), findsOneWidget);
+    expect(find.text(t.onboarding.addServerHint), findsOneWidget);
+    expect(find.byIcon(Icons.dns_outlined), findsNothing);
   });
 
-  testWidgets('the water is mounted once and survives moving between steps', (tester) async {
+  testWidgets('discovery failing is as quiet as discovery finding nothing', (tester) async {
+    await _pump(tester, discovery: () async => throw const SocketException('no route to host'));
+
+    expect(find.byType(ConnectStep), findsOneWidget);
+    expect(find.text(t.onboarding.addServerHint), findsOneWidget);
+  });
+
+  testWidgets('the water is mounted once and survives expanding the form', (tester) async {
     await _pump(tester, discovery: () async => const []);
     final water = find.byType(HarborWater);
     expect(water, findsOneWidget);
     final before = tester.state(water);
 
     await tester.tap(find.text(t.onboarding.addServer));
-    await _settle(tester);
-    await tester.tap(find.text(t.onboarding.findServers));
     await _settle(tester);
 
     // Same State object, so the swell never restarted.

@@ -1,33 +1,43 @@
 import 'package:flutter/material.dart';
 
 import '../../../i18n/strings.g.dart';
+import '../../../services/jellyfin_lan_discovery_service.dart';
 import '../onboarding_palette.dart';
 import '../widgets/harbor_mark.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
 
 /// The first thing a new install shows: what Harbor needs, and one way to give
-/// it. The address field and its two actions stay folded away until asked for.
+/// it. The address field and its action stay folded away until asked for.
+///
+/// Any server that answered the discovery broadcast is listed above the fold.
+/// That scan runs on its own in the background and is never mentioned: a
+/// broadcast cannot reach a server behind Docker's bridge or on another subnet,
+/// which is most of them, and an offer that usually fails is worse than no
+/// offer. When it does work the servers are simply there.
 class ConnectStep extends StatelessWidget {
   const ConnectStep({
     super.key,
     required this.controller,
     required this.expanded,
     required this.error,
+    required this.discovered,
     required this.onExpand,
     required this.onConnect,
-    required this.onDiscover,
+    required this.onPick,
   });
 
   final TextEditingController controller;
   final bool expanded;
   final String? error;
+  final List<DiscoveredJellyfinServer> discovered;
   final VoidCallback onExpand;
   final VoidCallback onConnect;
-  final VoidCallback onDiscover;
+  final ValueChanged<DiscoveredJellyfinServer> onPick;
 
   @override
   Widget build(BuildContext context) {
+    final found = discovered.isNotEmpty;
     return RiseIn(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(
@@ -42,19 +52,27 @@ class ConnectStep extends StatelessWidget {
             const Center(child: HarborMark(size: 68)),
             const SizedBox(height: 20),
             OnboardingHeading(title: t.onboarding.connectTitle, subtitle: t.onboarding.connectBody),
-            const SizedBox(height: 34),
+            if (found) ...[const SizedBox(height: 30), _DiscoveredServers(servers: discovered, onPick: onPick)],
+            const SizedBox(height: 30),
             if (!expanded) ...[
-              OnboardingButton(
-                label: t.onboarding.addServer,
-                onPressed: onExpand,
-                icon: const Icon(Icons.add, size: 18, color: OnboardingPalette.text),
-              ),
-              const SizedBox(height: 13),
-              Text(
-                t.onboarding.addServerHint,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
-              ),
+              // Picking a server that already answered beats typing an address,
+              // so manual entry steps down to the secondary action when there is
+              // something to pick.
+              if (found)
+                OnboardingSecondaryButton(label: t.onboarding.addServer, onPressed: onExpand)
+              else ...[
+                OnboardingButton(
+                  label: t.onboarding.addServer,
+                  onPressed: onExpand,
+                  icon: const Icon(Icons.add, size: 18, color: OnboardingPalette.text),
+                ),
+                const SizedBox(height: 13),
+                Text(
+                  t.onboarding.addServerHint,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
+                ),
+              ],
             ] else
               RiseIn(
                 child: Column(
@@ -73,18 +91,97 @@ class ConnectStep extends StatelessWidget {
                     ),
                     const SizedBox(height: 22),
                     OnboardingButton(label: t.auth.connectToJellyfin, onPressed: onConnect),
-                    const SizedBox(height: 11),
-                    OnboardingSecondaryButton(
-                      label: t.onboarding.findServers,
-                      onPressed: onDiscover,
-                      icon: const Icon(Icons.wifi_tethering, size: 18, color: OnboardingPalette.text),
-                    ),
                   ],
                 ),
               ),
             if (!expanded && error != null) ...[const SizedBox(height: 16), OnboardingErrorText(error!)],
             const SizedBox(height: 40),
             const _PrivacyNote(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DiscoveredServers extends StatelessWidget {
+  const _DiscoveredServers({required this.servers, required this.onPick});
+
+  final List<DiscoveredJellyfinServer> servers;
+  final ValueChanged<DiscoveredJellyfinServer> onPick;
+
+  @override
+  Widget build(BuildContext context) {
+    return RiseIn(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            t.addServer.localServers.toUpperCase(),
+            style: const TextStyle(
+              fontSize: 12,
+              letterSpacing: 1.2,
+              fontWeight: FontWeight.w500,
+              color: OnboardingPalette.textFaint,
+            ),
+          ),
+          const SizedBox(height: 6),
+          for (final server in servers) _ServerRow(server: server, onTap: () => onPick(server)),
+          const Divider(height: 1, color: OnboardingPalette.hairline),
+        ],
+      ),
+    );
+  }
+}
+
+class _ServerRow extends StatelessWidget {
+  const _ServerRow({required this.server, required this.onTap});
+
+  final DiscoveredJellyfinServer server;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 2),
+        decoration: const BoxDecoration(
+          border: Border(top: BorderSide(color: OnboardingPalette.hairline)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: OnboardingPalette.blue.withValues(alpha: 0.14),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: const Icon(Icons.dns_outlined, size: 19, color: OnboardingPalette.blue),
+            ),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    server.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w600, color: OnboardingPalette.text),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    server.address,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, size: 18, color: OnboardingPalette.textFainter),
           ],
         ),
       ),
