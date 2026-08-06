@@ -287,6 +287,20 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
   Widget _buildForm(BuildContext context) {
     final c = tokens(context);
     final offer = widget.clipboardOffer;
+    // Null when the field has nothing to say for itself, so the gap below it
+    // belongs to the line rather than to the field.
+    final Widget? supporting = switch ((widget.error, offer)) {
+      (final String error, _) => OnboardingSupportingText(error, invalid: true),
+      (_, final String offer) => Align(
+        alignment: Alignment.centerLeft,
+        child: OnboardingChip(
+          label: t.onboarding.pasteAddress(address: offer),
+          leading: Icon(Icons.content_paste, size: 13, color: c.text),
+          onTap: widget.onPaste,
+        ),
+      ),
+      _ => null,
+    };
     return RiseIn(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -303,20 +317,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
             onSubmitted: (_) => widget.onConnect(),
             leading: Icon(Icons.dns_outlined, size: 19, color: c.textMuted),
           ),
-          const SizedBox(height: 9),
-          if (widget.error case final error?)
-            OnboardingSupportingText(error, invalid: true)
-          else if (offer != null)
-            Align(
-              alignment: Alignment.centerLeft,
-              child: OnboardingChip(
-                label: t.onboarding.pasteAddress(address: offer),
-                leading: Icon(Icons.content_paste, size: 13, color: c.text),
-                onTap: widget.onPaste,
-              ),
-            )
-          else
-            OnboardingSupportingText(t.onboarding.addressDefaultsHint),
+          if (supporting != null) ...[const SizedBox(height: 9), supporting],
         ],
       ),
     );

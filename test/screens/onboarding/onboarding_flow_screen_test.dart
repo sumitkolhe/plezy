@@ -67,7 +67,7 @@ void main() {
     expect(find.text(t.onboarding.addServer), findsOneWidget);
   });
 
-  testWidgets('the address form opens in place and states its defaults', (tester) async {
+  testWidgets('the address form opens in place', (tester) async {
     await _pump(tester);
 
     expect(find.byType(TextField), findsNothing);
@@ -75,7 +75,6 @@ void main() {
     await _settle(tester);
 
     expect(find.byType(TextField), findsOneWidget);
-    expect(find.text(t.onboarding.addressDefaultsHint), findsOneWidget);
     expect(find.text(t.auth.connectToJellyfin), findsOneWidget);
     // Still the same surface, not a pushed page.
     expect(find.byType(IntroStep), findsOneWidget);
@@ -102,7 +101,6 @@ void main() {
     await _settle(tester);
 
     expect(find.textContaining('quick brown fox'), findsNothing);
-    expect(find.text(t.onboarding.addressDefaultsHint), findsOneWidget);
   });
 
   testWidgets('an empty address is refused without leaving the step', (tester) async {

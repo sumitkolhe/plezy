@@ -4064,9 +4064,6 @@ class Translations$onboarding$en {
 	/// en: 'Sign in'
 	String get signInTitle => 'Sign in';
 
-	/// en: 'Port 8096 and http are assumed unless you say otherwise'
-	String get addressDefaultsHint => 'Port 8096 and http are assumed unless you say otherwise';
-
 	/// en: 'Paste ${address}'
 	String pasteAddress({required Object address}) => 'Paste ${address}';
 
@@ -6547,7 +6544,6 @@ extension on Translations {
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',
 			'onboarding.signInTitle' => 'Sign in',
-			'onboarding.addressDefaultsHint' => 'Port 8096 and http are assumed unless you say otherwise',
 			'onboarding.pasteAddress' => ({required Object address}) => 'Paste ${address}',
 			'onboarding.addressLabel' => 'Address',
 			'onboarding.editAddress' => 'Edit address',

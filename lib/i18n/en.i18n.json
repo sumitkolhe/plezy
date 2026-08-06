@@ -1584,7 +1584,6 @@
     "reaching": "Reaching your server",
     "signingIn": "Signing in",
     "signInTitle": "Sign in",
-    "addressDefaultsHint": "Port 8096 and http are assumed unless you say otherwise",
     "pasteAddress": "Paste ${address}",
     "addressLabel": "Address",
     "editAddress": "Edit address",
