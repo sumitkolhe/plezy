@@ -20,6 +20,7 @@ import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/search_screen.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
@@ -391,7 +392,7 @@ Future<(_FakeMediaServerClient, GlobalKey<State<SearchScreen>>)> _pumpTvSearchSc
           ChangeNotifierProvider<HiddenLibrariesProvider>.value(value: hiddenLibraries),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: SearchScreen(key: key),
         ),
       ),

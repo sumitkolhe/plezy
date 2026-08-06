@@ -4,6 +4,7 @@ import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/models/audio_quality_preset.dart';
 import 'package:harbor/screens/settings/playback_settings_screen.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 
 import '../../test_helpers/prefs.dart';
@@ -22,7 +23,7 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
     addTearDown(tester.view.resetPhysicalSize);
 
-    await tester.pumpWidget(MaterialApp(theme: monoTheme(dark: true), home: const PlaybackSettingsScreen()));
+    await tester.pumpWidget(MaterialApp(theme: monoTheme(MonoPalette.dark), home: const PlaybackSettingsScreen()));
     await tester.pumpAndSettle();
 
     final title = find.text('Music Quality');

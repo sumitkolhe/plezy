@@ -7,6 +7,7 @@ import '../mixins/disposable_change_notifier_mixin.dart';
 import '../services/settings_binding_owner.dart';
 import '../services/settings_service.dart' as settings;
 import '../theme/dynamic_palette.dart';
+import '../theme/mono_palette.dart';
 import '../theme/mono_theme.dart';
 
 class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, WidgetsBindingObserver {
@@ -92,13 +93,21 @@ class ThemeProvider extends ChangeNotifier with DisposableChangeNotifierMixin, W
 
   settings.ThemeMode get themeMode => _themeMode;
 
-  ThemeData get lightTheme => monoTheme(dark: false, palette: _activePalette);
-  ThemeData get darkTheme {
-    if (_themeMode == settings.ThemeMode.oled) {
-      return monoTheme(dark: true, oled: true);
-    }
-    return monoTheme(dark: true, palette: _activePalette);
+  /// The one place that decides which scheme a mode means.
+  ///
+  /// OLED is checked before the wallpaper because the two are exclusive: a
+  /// tinted pure black is not a thing this app offers. A Material You palette
+  /// that failed to load leaves [_activePalette] null and falls through to the
+  /// plain scheme, which is how that mode degrades below Android 12.
+  MonoPalette _paletteFor({required bool dark}) {
+    if (dark && _themeMode == settings.ThemeMode.oled) return MonoPalette.oled;
+    final dynamicPalette = _activePalette;
+    if (dynamicPalette != null) return MonoPalette.fromDynamic(dynamicPalette, dark: dark);
+    return dark ? MonoPalette.dark : MonoPalette.light;
   }
+
+  ThemeData get lightTheme => monoTheme(_paletteFor(dark: false));
+  ThemeData get darkTheme => monoTheme(_paletteFor(dark: true));
 
   ThemeMode get materialThemeMode {
     switch (_themeMode) {

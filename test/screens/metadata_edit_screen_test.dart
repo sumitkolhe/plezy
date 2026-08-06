@@ -22,6 +22,7 @@ import 'package:harbor/screens/metadata_edit_screen.dart';
 import 'package:harbor/services/file_picker_service.dart';
 import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/multi_server_manager.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/dialog_action_button.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
@@ -271,7 +272,7 @@ Future<_EditorHarness> _pumpEditor(WidgetTester tester, _JellyfinMetadataRequest
       child: ChangeNotifierProvider<MultiServerProvider>.value(
         value: provider,
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: Builder(
             builder: (context) => Scaffold(
               body: Center(
@@ -401,7 +402,7 @@ Future<void> _pumpArtworkDialog(WidgetTester tester, _ArtworkAdapter adapter, _D
   await tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Builder(
           builder: (context) => Scaffold(
             body: Center(

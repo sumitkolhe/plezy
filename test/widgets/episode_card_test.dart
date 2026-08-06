@@ -16,6 +16,7 @@ import 'package:harbor/services/download_manager_service.dart';
 import 'package:harbor/services/download_storage_service.dart';
 import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/rating_spans.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -311,7 +312,7 @@ Future<void> _pumpEpisodeCard(WidgetTester tester, MediaItem episode, {VoidCallb
           ChangeNotifierProvider<MultiServerProvider>.value(value: testMultiServer().provider),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: Scaffold(
             body: SizedBox(
               width: 360,

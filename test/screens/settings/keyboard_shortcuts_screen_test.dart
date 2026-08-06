@@ -8,6 +8,7 @@ import 'package:harbor/screens/settings/keyboard_shortcuts_screen.dart';
 import 'package:harbor/services/base_shared_preferences_service.dart';
 import 'package:harbor/services/keyboard_shortcuts_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/dialog_action_button.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
@@ -132,7 +133,7 @@ Future<void> _pumpScreen(WidgetTester tester, KeyboardShortcutsService service) 
   await tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: KeyboardShortcutsScreen(keyboardService: service),
       ),
     ),

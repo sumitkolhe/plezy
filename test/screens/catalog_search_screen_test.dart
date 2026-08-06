@@ -13,6 +13,7 @@ import 'package:harbor/services/catalog/catalog_source.dart';
 import 'package:harbor/services/catalog/catalog_library_matcher.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/app_menu.dart';
 import 'package:harbor/widgets/media_card.dart';
@@ -64,7 +65,7 @@ Future<void> _pump(WidgetTester tester, _FakeSearchSource source) async {
   await tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: CatalogSearchScreen(source: source),
       ),
     ),
@@ -237,7 +238,7 @@ Future<void> _pumpMenuSearch(WidgetTester tester, _FakeSearchSource source, {req
           ChangeNotifierProvider<CatalogSourcesProvider>.value(value: sources),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true).copyWith(platform: platform),
+          theme: monoTheme(MonoPalette.dark).copyWith(platform: platform),
           home: CatalogSearchScreen(source: source),
         ),
       ),

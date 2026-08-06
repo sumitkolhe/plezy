@@ -23,6 +23,7 @@ import 'package:harbor/screens/libraries/tabs/library_missing_tab.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/storage_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:provider/provider.dart';
@@ -185,7 +186,7 @@ final class _Harness {
         ],
         child: InputModeTracker(
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: LibrariesScreen(onLibrarySelected: onLibrarySelected),
           ),
         ),

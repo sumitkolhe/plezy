@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/screens/onboarding/onboarding_flow_screen.dart';
 import 'package:harbor/screens/onboarding/steps/intro_step.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 
 /// The mark rocks for as long as the flow is on screen, so nothing here can
@@ -23,7 +24,7 @@ Future<void> _pump(WidgetTester tester, {bool startAtSplash = false, String? cli
   await tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: OnboardingFlowScreen(startAtSplash: startAtSplash, clipboardReader: () async => clipboard),
       ),
     ),

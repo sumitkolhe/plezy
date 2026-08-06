@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/screens/catalog_item_detail_screen.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/stat_chip.dart';
 
@@ -8,7 +9,7 @@ void main() {
   Future<void> pump(WidgetTester tester, List<String> labels, {double width = 320}) {
     return tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(
           body: Align(
             alignment: Alignment.topLeft,

@@ -11,6 +11,7 @@ import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/music/now_playing_screen.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:provider/provider.dart';
@@ -124,7 +125,9 @@ void main() {
               ChangeNotifierProvider<MusicPlaybackService>.value(value: service),
             ],
             child: MaterialApp(
-              theme: monoTheme(dark: true).copyWith(platform: isTv ? TargetPlatform.android : TargetPlatform.windows),
+              theme: monoTheme(
+                MonoPalette.dark,
+              ).copyWith(platform: isTv ? TargetPlatform.android : TargetPlatform.windows),
               home: const NowPlayingScreen(),
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/theme/mono_tokens.dart';
 
@@ -11,9 +12,9 @@ import 'package:harbor/theme/mono_tokens.dart';
 /// failures render as the platform font with no error.
 void main() {
   for (final (name, theme) in [
-    ('light', monoTheme(dark: false)),
-    ('dark', monoTheme(dark: true)),
-    ('oled', monoTheme(dark: true, oled: true)),
+    ('light', monoTheme(MonoPalette.light)),
+    ('dark', monoTheme(MonoPalette.dark)),
+    ('oled', monoTheme(MonoPalette.oled)),
   ]) {
     test('$name theme resolves every text style to the app font', () {
       final t = theme.textTheme;

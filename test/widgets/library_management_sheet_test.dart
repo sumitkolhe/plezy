@@ -12,6 +12,7 @@ import 'package:harbor/media/media_library.dart';
 import 'package:harbor/providers/hidden_libraries_provider.dart';
 import 'package:harbor/providers/libraries_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -66,7 +67,7 @@ Future<({int Function() selects, int Function() backs})> _pumpLibraryManagementL
             ChangeNotifierProvider<MultiServerProvider>.value(value: effectiveMultiServerProvider),
           ],
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: Focus(
               onKeyEvent: (_, event) {
                 if (event is KeyDownEvent && event.logicalKey.isSelectKey) underlyingSelects++;

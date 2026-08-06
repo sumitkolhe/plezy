@@ -7,6 +7,7 @@ import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/providers/watch_state_store.dart';
 import 'package:harbor/screens/playlist/playlist_item_card.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/watch_state_notifier.dart';
 import 'package:harbor/widgets/media_progress_bar.dart';
@@ -168,7 +169,7 @@ Future<void> _pumpCard(
       child: ChangeNotifierProvider<WatchStateStore>.value(
         value: store,
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: Scaffold(
             body: SizedBox(
               width: 500,

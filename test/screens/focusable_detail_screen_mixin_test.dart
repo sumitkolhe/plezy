@@ -5,6 +5,7 @@ import 'package:harbor/focus/focusable_action_bar.dart';
 import 'package:harbor/focus/key_event_utils.dart';
 import 'package:harbor/mixins/grid_focus_node_mixin.dart';
 import 'package:harbor/screens/focusable_detail_screen_mixin.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/overlay_sheet.dart';
@@ -26,7 +27,7 @@ void main() {
     var topTargetTaps = 0;
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.iOS),
+        theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.iOS),
         home: MediaQuery(
           data: const MediaQueryData(padding: EdgeInsets.only(top: 25)),
           child: SizedBox(width: 390, height: 844, child: _TestDetailScreen(onTopTargetTap: () => topTargetTaps++)),
@@ -54,7 +55,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.iOS),
+        theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.iOS),
         home: Builder(
           builder: (context) => TextButton(
             onPressed: () {
@@ -145,7 +146,7 @@ void main() {
 Future<void> _pushDetailSurface(WidgetTester tester, {required String surfaceName, required bool hasActions}) async {
   await tester.pumpWidget(
     MaterialApp(
-      theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.android),
+      theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.android),
       home: Scaffold(
         body: Builder(
           builder: (context) => TextButton(

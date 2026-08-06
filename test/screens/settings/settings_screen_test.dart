@@ -29,6 +29,7 @@ import 'package:harbor/services/file_picker_service.dart';
 import 'package:harbor/services/settings_export_service.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/storage_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/app_icon.dart';
@@ -600,7 +601,7 @@ Future<_SettingsHarness> _pumpSettingsScreen(
           ChangeNotifierProvider<DownloadProvider>.value(value: downloadProvider),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.android),
+          theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.android),
           home: pushSettingsRoute
               ? Builder(
                   builder: (context) => Scaffold(

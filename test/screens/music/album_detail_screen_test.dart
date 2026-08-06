@@ -11,6 +11,7 @@ import 'package:harbor/screens/music/album_detail_screen.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/music/track_row.dart';
 import 'package:provider/provider.dart';
@@ -117,7 +118,7 @@ class _AlbumHarness {
           ChangeNotifierProvider<MusicPlaybackService>(create: (_) => StubMusicPlaybackService()),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: SizedBox(width: 1280, height: 720, child: child),
         ),
       ),

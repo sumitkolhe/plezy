@@ -6,6 +6,7 @@ import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/media/media_library.dart';
 import 'package:harbor/screens/libraries/library_quick_picker_sheet.dart';
 import 'package:harbor/screens/libraries/library_selection.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:harbor/widgets/app_menu.dart';
@@ -14,7 +15,7 @@ import 'package:harbor/widgets/overlay_sheet.dart';
 
 Future<void> _pump(WidgetTester tester, Widget body) => tester.pumpWidget(
   MaterialApp(
-    theme: monoTheme(dark: true),
+    theme: monoTheme(MonoPalette.dark),
     home: Scaffold(body: body),
   ),
 );

@@ -19,6 +19,7 @@ import 'package:harbor/services/catalog/catalog_source.dart';
 import 'package:harbor/services/catalog/catalog_library_matcher.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/overlay_sheet.dart';
@@ -178,7 +179,7 @@ Future<void> _pumpDetail(
           ChangeNotifierProvider<CatalogSourcesProvider>.value(value: sources),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: pushedRoute
               ? Builder(
                   builder: (context) => Scaffold(

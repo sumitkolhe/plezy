@@ -32,6 +32,7 @@ import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -112,7 +113,7 @@ void main() {
               ChangeNotifierProvider<MusicPlaybackService>.value(value: music),
             ],
             child: MaterialApp(
-              theme: monoTheme(dark: true),
+              theme: monoTheme(MonoPalette.dark),
               home: Scaffold(
                 body: Center(
                   child: MediaContextMenu(
@@ -207,7 +208,7 @@ void main() {
               ],
               child: MaterialApp(
                 // Only the phone sheet carries a title; the anchored popup has none.
-                theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.android),
+                theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.android),
                 home: Scaffold(
                   body: Center(
                     child: MediaContextMenu(
@@ -281,7 +282,7 @@ void main() {
               ChangeNotifierProvider<PlaybackStateProvider>.value(value: playback),
             ],
             child: MaterialApp(
-              theme: monoTheme(dark: true),
+              theme: monoTheme(MonoPalette.dark),
               home: Scaffold(
                 body: Center(
                   child: MediaContextMenu(
@@ -345,7 +346,7 @@ void main() {
               ChangeNotifierProvider<ActiveProfileProvider>.value(value: stack.active),
             ],
             child: MaterialApp(
-              theme: monoTheme(dark: true),
+              theme: monoTheme(MonoPalette.dark),
               home: Scaffold(
                 body: Center(
                   child: MediaContextMenu(
@@ -674,7 +675,7 @@ Future<_SiblingMusicMenuHarness> _pumpSiblingMusicMenu(
     TranslationProvider(
       child: MaterialApp(
         navigatorKey: rootNavigatorKey,
-        theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.macOS),
+        theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.macOS),
         home: MultiProvider(
           providers: [
             ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),

@@ -16,6 +16,7 @@ import 'package:harbor/providers/download_provider.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/music_navigation.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -172,7 +173,7 @@ void main() {
           if (downloadProvider != null) ChangeNotifierProvider<DownloadProvider>.value(value: downloadProvider),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true).copyWith(platform: platform),
+          theme: monoTheme(MonoPalette.dark).copyWith(platform: platform),
           navigatorObservers: [?navigatorObserver],
           home: const Stack(
             children: [

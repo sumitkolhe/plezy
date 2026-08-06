@@ -13,6 +13,7 @@ import 'package:harbor/profiles/profile_connection_registry.dart';
 import 'package:harbor/profiles/profile_registry.dart';
 import 'package:harbor/screens/profile/profile_switch_screen.dart';
 import 'package:harbor/services/storage_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -48,7 +49,7 @@ void main() {
             Provider<ConnectionRegistry>.value(value: connections),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfile),
           ],
-          child: MaterialApp(theme: monoTheme(dark: true), home: const ProfileSwitchScreen()),
+          child: MaterialApp(theme: monoTheme(MonoPalette.dark), home: const ProfileSwitchScreen()),
         ),
       ),
     );
@@ -97,7 +98,7 @@ void main() {
             Provider<ConnectionRegistry>.value(value: connections),
             ChangeNotifierProvider<ActiveProfileProvider>.value(value: activeProfile),
           ],
-          child: MaterialApp(theme: monoTheme(dark: true), home: const ProfileSwitchScreen()),
+          child: MaterialApp(theme: monoTheme(MonoPalette.dark), home: const ProfileSwitchScreen()),
         ),
       ),
     );

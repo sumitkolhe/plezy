@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/media/media_filter.dart';
 import 'package:harbor/screens/libraries/filters_bottom_sheet.dart';
@@ -198,7 +199,7 @@ Future<_SheetHarness> _pumpSheet(
 
   await tester.pumpWidget(
     MaterialApp(
-      theme: monoTheme(dark: true),
+      theme: monoTheme(MonoPalette.dark),
       home: OverlaySheetHost(
         child: Builder(
           builder: (context) => ElevatedButton(

@@ -13,6 +13,7 @@ import 'package:harbor/providers/explore_provider.dart';
 import 'package:harbor/screens/explore_screen.dart';
 import 'package:harbor/services/catalog/catalog_source.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/platform_detector.dart';
 import 'package:harbor/widgets/catalog_source_logo.dart';
@@ -197,7 +198,7 @@ Future<_FakeCatalogSourcesProvider> _pumpExplore(
           ChangeNotifierProvider<CatalogSourcesProvider>.value(value: sources),
           ChangeNotifierProvider<ExploreProvider>.value(value: explore),
         ],
-        child: MaterialApp(theme: monoTheme(dark: true), home: const ExploreScreen()),
+        child: MaterialApp(theme: monoTheme(MonoPalette.dark), home: const ExploreScreen()),
       ),
     ),
   );
@@ -367,7 +368,7 @@ void main() {
         findsOneWidget,
       );
 
-      final baseColor = monoTheme(dark: true).scaffoldBackgroundColor;
+      final baseColor = monoTheme(MonoPalette.dark).scaffoldBackgroundColor;
       final expectedTint = Color.alphaBlend(const Color(0xff336699).withValues(alpha: 0.18), baseColor);
       expect(Theme.of(tester.element(spotlightFinder)).scaffoldBackgroundColor, expectedTint);
     });

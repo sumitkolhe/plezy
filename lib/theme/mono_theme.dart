@@ -1,64 +1,18 @@
 import 'package:flutter/material.dart';
-import 'dynamic_palette.dart';
+import 'mono_palette.dart';
 import 'haptic_ink_factory.dart';
 import 'gapped_track_shape.dart';
 import 'mono_tokens.dart';
 
-ThemeData monoTheme({required bool dark, bool oled = false, DynamicPalette? palette}) {
-  // neutral greys tuned for crisp contrast
-  final ({Color bg, Color surface, Color outline, Color text, Color textMuted, Color accent}) c;
-  if (palette != null) {
-    // Android publishes tone 10 as its darkest tinted neutral, which is lighter
-    // than this app sits. Pulling it toward black keeps the wallpaper's hue at
-    // the depth the other dark themes use.
-    c = dark
-        ? (
-            bg: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.55)!,
-            surface: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.25)!,
-            outline: const Color(0x1FFFFFFF),
-            text: palette.neutralLight,
-            textMuted: palette.neutralLight.withValues(alpha: 0.6),
-            accent: palette.accentDark,
-          )
-        : (
-            bg: palette.neutralLight,
-            surface: palette.neutralWhite,
-            outline: const Color(0x19000000),
-            text: palette.neutralDark,
-            textMuted: palette.neutralDark.withValues(alpha: 0.6),
-            accent: palette.accentLight,
-          );
-  } else if (oled) {
-    c = (
-      bg: const Color(0xFF000000), // Pure black for OLED
-      surface: const Color(0xFF0A0A0A), // Very dark gray
-      outline: const Color(0x1FFFFFFF),
-      text: const Color(0xFFEDEDED),
-      textMuted: const Color(0x99EDEDED),
-      accent: const Color(0xFFEDEDED),
-    );
-  } else if (dark) {
-    c = (
-      bg: const Color(0xFF0E0F12),
-      surface: const Color(0xFF15171C),
-      outline: const Color(0x1FFFFFFF),
-      text: const Color(0xFFEDEDED),
-      textMuted: const Color(0x99EDEDED),
-      accent: const Color(0xFFEDEDED),
-    );
-  } else {
-    c = (
-      bg: const Color(0xFFF7F7F8),
-      surface: const Color(0xFFFFFFFF),
-      outline: const Color(0x19000000),
-      text: const Color(0xFF111111),
-      textMuted: const Color(0x99111111),
-      accent: const Color(0xFF111111),
-    );
-  }
-
-  final isDark = dark || oled;
-  final materialYou = palette != null;
+/// Build the app's theme from a resolved [MonoPalette].
+///
+/// One code path: every scheme — light, dark, OLED, Material You — arrives here
+/// as data, so this function only ever maps colours onto Material's slots and
+/// the app's own [MonoTokens]. Which scheme to use is [ThemeProvider]'s
+/// decision, not this function's.
+ThemeData monoTheme(MonoPalette c) {
+  final isDark = c.isDark;
+  final materialYou = c.expressive;
   final clickableCursor = WidgetStateProperty.resolveWith<MouseCursor>(
     (states) => states.contains(WidgetState.disabled) ? MouseCursor.defer : SystemMouseCursors.click,
   );

@@ -5,6 +5,7 @@ import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_item.dart';
 import 'package:harbor/media/media_kind.dart';
 import 'package:harbor/screens/media_detail/season_picker.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/app_menu.dart';
 
@@ -25,7 +26,7 @@ Future<void> pump(WidgetTester tester, List<MediaItem> list, {int selected = 0, 
   return tester.pumpWidget(
     TranslationProvider(
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(
           body: Center(
             child: SeasonPickerChip(seasons: list, selectedIndex: selected, onSelected: onSelected ?? (_) {}),

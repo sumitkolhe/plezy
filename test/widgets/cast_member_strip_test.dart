@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/focus/card_focus_scope.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/media_image_helper.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -43,7 +44,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(
           body: CastMemberStrip(
             key: key,
@@ -76,7 +77,7 @@ void main() {
     // below retina resolution and blurs them (issue #1591).
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(body: CastMemberStrip(members: _members)),
       ),
     );
@@ -91,7 +92,7 @@ void main() {
   testWidgets('crops portraits to a circle and centres their labels', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(body: CastMemberStrip(members: _members)),
       ),
     );
@@ -114,7 +115,7 @@ void main() {
 
     await tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(
           body: StatefulBuilder(
             builder: (context, setState) {

@@ -20,6 +20,7 @@ import 'profiles/profile_connection_registry.dart';
 import 'profiles/profile_registry.dart';
 import 'profiles/profile_selection_policy.dart';
 import 'mixins/mounted_set_state_mixin.dart';
+import 'theme/mono_palette.dart';
 import 'theme/mono_theme.dart';
 import 'theme/mono_tokens.dart';
 import 'screens/onboarding/onboarding_flow_screen.dart';
@@ -116,8 +117,8 @@ void _bootstrapApp() {
       ),
       discard: (dependencies) => dependencies.appDatabase.close(),
       onCommitted: (dependencies) => _startNonessentialInitialization(dependencies.settings),
-      lightTheme: monoTheme(dark: false),
-      darkTheme: monoTheme(dark: true),
+      lightTheme: monoTheme(MonoPalette.light),
+      darkTheme: monoTheme(MonoPalette.dark),
     ),
   );
 }

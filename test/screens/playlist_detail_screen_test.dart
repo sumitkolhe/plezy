@@ -25,6 +25,7 @@ import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/playlist_items_loader.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/media_navigation_helper.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
@@ -709,7 +710,7 @@ class _PlaylistHarness {
           ChangeNotifierProvider<PlaybackStateProvider>.value(value: playbackState),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true).copyWith(platform: platform),
+          theme: monoTheme(MonoPalette.dark).copyWith(platform: platform),
           home: child,
         ),
       ),

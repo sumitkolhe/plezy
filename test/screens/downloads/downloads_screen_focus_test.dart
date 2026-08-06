@@ -26,6 +26,7 @@ import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/focusable_media_card.dart';
 import 'package:provider/provider.dart';
@@ -340,7 +341,7 @@ Future<void> _pumpScreen(
           ),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true).copyWith(platform: TargetPlatform.macOS),
+          theme: monoTheme(MonoPalette.dark).copyWith(platform: TargetPlatform.macOS),
           home: MainScreenFocusScope(
             focusSidebar: onSidebar ?? () {},
             focusContent: () {},

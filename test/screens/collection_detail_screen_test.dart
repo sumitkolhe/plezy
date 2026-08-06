@@ -17,6 +17,7 @@ import 'package:harbor/services/download_storage_service.dart';
 import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -155,7 +156,7 @@ class _CollectionHarness {
           ChangeNotifierProvider<MultiServerProvider>.value(value: multiServerProvider),
           ChangeNotifierProvider<DownloadProvider>.value(value: downloadProvider),
         ],
-        child: MaterialApp(theme: monoTheme(dark: true), home: child),
+        child: MaterialApp(theme: monoTheme(MonoPalette.dark), home: child),
       ),
     );
   }

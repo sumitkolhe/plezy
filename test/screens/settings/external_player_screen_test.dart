@@ -7,6 +7,7 @@ import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/models/external_player_models.dart';
 import 'package:harbor/screens/settings/external_player_screen.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
 
@@ -48,7 +49,7 @@ void main() {
     await settings.write(SettingsService.customExternalPlayers, [customPlayer]);
     await settings.write(SettingsService.selectedExternalPlayer, customPlayer);
 
-    await tester.pumpWidget(MaterialApp(theme: monoTheme(dark: true), home: const ExternalPlayerScreen()));
+    await tester.pumpWidget(MaterialApp(theme: monoTheme(MonoPalette.dark), home: const ExternalPlayerScreen()));
     await tester.pumpAndSettle();
 
     for (final player in await KnownPlayers.getForCurrentPlatform()) {

@@ -9,6 +9,7 @@ import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/music/queue_sheet.dart';
 import 'package:harbor/services/music/music_playback_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/app_icon.dart';
 import 'package:harbor/widgets/music/track_row.dart';
@@ -80,7 +81,7 @@ void main() {
           ChangeNotifierProvider<MusicPlaybackService>.value(value: service),
         ],
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: const Scaffold(body: SizedBox(width: 500, height: 700, child: QueueSheet())),
         ),
       ),

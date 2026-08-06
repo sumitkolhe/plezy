@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
 import 'package:harbor/widgets/setting_tile.dart';
@@ -47,7 +48,7 @@ double? _subtitleFontSize(WidgetTester tester, String text) =>
 
 Widget _harness(TargetPlatform platform) {
   return MaterialApp(
-    theme: monoTheme(dark: false).copyWith(platform: platform),
+    theme: monoTheme(MonoPalette.light).copyWith(platform: platform),
     home: Scaffold(
       body: SettingsGroup(
         children: [

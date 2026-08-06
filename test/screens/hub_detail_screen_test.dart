@@ -12,6 +12,7 @@ import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/hub_detail_screen.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
 import 'package:provider/provider.dart';
@@ -130,7 +131,7 @@ class _HubHarness {
     child: ChangeNotifierProvider<MultiServerProvider>.value(
       value: provider,
       child: MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: SizedBox(width: 1280, height: 720, child: child),
       ),
     ),

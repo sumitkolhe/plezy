@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/screens/settings/atmos_diagnostics_screen.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 
 import '../../test_helpers/prefs.dart';
@@ -28,7 +29,7 @@ void main() {
   });
 
   Future<void> pumpScreen(WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(theme: monoTheme(dark: true), home: const AtmosDiagnosticsScreen()));
+    await tester.pumpWidget(MaterialApp(theme: monoTheme(MonoPalette.dark), home: const AtmosDiagnosticsScreen()));
     await tester.pump();
     // The screen is taller than the test viewport, so the scroll has to settle
     // before the stop tile is hit-testable.

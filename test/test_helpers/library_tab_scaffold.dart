@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:harbor/focus/input_mode_tracker.dart';
 import 'package:harbor/navigation/main_screen_scope.dart';
 import 'package:harbor/providers/multi_server_provider.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ Future<void> pumpLibraryTab(
       value: provider,
       child: InputModeTracker(
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: MainScreenFocusScope(
             focusSidebar: focusSidebar ?? () {},
             focusContent: () {},

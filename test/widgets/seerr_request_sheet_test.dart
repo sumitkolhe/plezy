@@ -9,6 +9,7 @@ import 'package:http/testing.dart';
 import 'package:harbor/focus/focusable_button.dart';
 import 'package:harbor/i18n/strings.g.dart';
 import 'package:harbor/media/media_kind.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/models/seerr/seerr_session.dart';
 import 'package:harbor/services/catalog/seerr_catalog_source.dart';
@@ -67,7 +68,7 @@ Future<void> _pumpSheet(
 }) async {
   await tester.pumpWidget(
     MaterialApp(
-      theme: monoTheme(dark: true),
+      theme: monoTheme(MonoPalette.dark),
       home: Builder(
         builder: (context) => Scaffold(
           body: Center(

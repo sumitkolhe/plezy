@@ -10,6 +10,7 @@ import 'package:harbor/providers/multi_server_provider.dart';
 import 'package:harbor/screens/libraries/folder_tree_view.dart';
 import 'package:harbor/services/jellyfin_client.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +69,7 @@ void main() {
         value: provider,
         child: InputModeTracker(
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: Scaffold(
               body: CustomScrollView(
                 slivers: const [

@@ -31,6 +31,7 @@ import 'package:harbor/services/data_aggregation_service.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/settings_service.dart';
 import 'package:harbor/services/storage_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/layout_constants.dart';
 import 'package:harbor/utils/platform_detector.dart';
@@ -123,7 +124,7 @@ void main() {
             ChangeNotifierProvider<DiscoverProvider>.value(value: discoverProvider),
           ],
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: MainScreenFocusScope(
               focusSidebar: () {},
               focusContent: () {},
@@ -296,7 +297,7 @@ void main() {
             ChangeNotifierProvider<DiscoverProvider>.value(value: discoverProvider),
           ],
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: MainScreenFocusScope(
               focusSidebar: () {},
               focusContent: () {},
@@ -392,7 +393,7 @@ void main() {
           ],
           child: InputModeTracker(
             child: MaterialApp(
-              theme: monoTheme(dark: true),
+              theme: monoTheme(MonoPalette.dark),
               home: MainScreenFocusScope(
                 focusSidebar: () {},
                 focusContent: () {},

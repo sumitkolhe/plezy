@@ -30,6 +30,7 @@ import 'package:harbor/services/jellyfin_api_cache.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/offline_watch_sync_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/utils/layout_constants.dart';
 import 'package:harbor/utils/media_server_http_client.dart';
@@ -101,7 +102,7 @@ void main() {
     await tester.pumpWidget(
       TranslationProvider(
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
@@ -137,7 +138,7 @@ void main() {
     await tester.pumpWidget(
       TranslationProvider(
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
@@ -177,7 +178,7 @@ void main() {
     await tester.pumpWidget(
       TranslationProvider(
         child: MaterialApp(
-          theme: monoTheme(dark: true),
+          theme: monoTheme(MonoPalette.dark),
           home: scope(child: MediaDetailScreen(metadata: movie)),
         ),
       ),
@@ -270,7 +271,7 @@ void main() {
         child: ChangeNotifierProvider<MultiServerProvider>.value(
           value: provider,
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
@@ -304,7 +305,7 @@ void main() {
       title: 'Readable Movie',
       summary: summary,
     );
-    final theme = monoTheme(dark: false);
+    final theme = monoTheme(MonoPalette.light);
 
     await tester.pumpWidget(
       TranslationProvider(
@@ -396,7 +397,7 @@ void main() {
         child: ChangeNotifierProvider<MultiServerProvider>.value(
           value: provider,
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
@@ -493,7 +494,7 @@ void main() {
         child: ChangeNotifierProvider<MultiServerProvider>.value(
           value: provider,
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
@@ -584,7 +585,7 @@ void main() {
         child: ChangeNotifierProvider<MultiServerProvider>.value(
           value: provider,
           child: MaterialApp(
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
@@ -692,7 +693,7 @@ void main() {
           child: MaterialApp(
             navigatorKey: navigatorKey,
             navigatorObservers: [observer],
-            theme: monoTheme(dark: true),
+            theme: monoTheme(MonoPalette.dark),
             home: scope(
               child: SizedBox(width: 1280, height: 720, child: MediaDetailScreen(metadata: show)),
             ),
@@ -816,7 +817,7 @@ void main() {
               ChangeNotifierProvider<WatchStateStore>.value(value: watchStateOverlay),
             ],
             child: MaterialApp(
-              theme: monoTheme(dark: true),
+              theme: monoTheme(MonoPalette.dark),
               home: scope(
                 child: MediaDetailScreen(
                   metadata: show,

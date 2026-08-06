@@ -9,6 +9,7 @@ import 'package:harbor/models/mpv_config_models.dart';
 import 'package:harbor/screens/settings/mpv_config_screen.dart';
 import 'package:harbor/services/base_shared_preferences_service.dart';
 import 'package:harbor/services/settings_service.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/dialog_action_button.dart';
 import 'package:harbor/widgets/focusable_list_tile.dart';
@@ -274,7 +275,7 @@ Future<_ControlledPreferences> _pumpEditor(
     TranslationProvider(
       child: MaterialApp(
         navigatorKey: navigatorKey,
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: const Scaffold(body: Text('home')),
       ),
     ),

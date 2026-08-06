@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
 import 'package:harbor/widgets/unwatched_count_badge.dart';
 
@@ -7,7 +8,7 @@ void main() {
   Future<void> pumpBadge(WidgetTester tester, int count) {
     return tester.pumpWidget(
       MaterialApp(
-        theme: monoTheme(dark: true),
+        theme: monoTheme(MonoPalette.dark),
         home: Scaffold(
           body: Center(child: UnwatchedCountBadge(count: count)),
         ),
