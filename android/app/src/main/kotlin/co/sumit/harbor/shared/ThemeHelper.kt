@@ -5,8 +5,8 @@ import android.graphics.Color
 object ThemeHelper {
   fun themeColor(mode: String?): Int? = when (mode) {
     "oled" -> Color.BLACK
-    "dark" -> Color.parseColor("#0E0F12")
-    "light" -> Color.parseColor("#F7F7F8")
+    "dark" -> Color.parseColor("#131313")
+    "light" -> Color.parseColor("#F9F9F9")
     else -> null
   }
 }

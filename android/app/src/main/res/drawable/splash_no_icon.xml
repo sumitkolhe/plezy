@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Deliberately blank. Android 12+ always draws a splash icon, and falls back
+     to the launcher icon if windowSplashScreenAnimatedIcon is unset — which put
+     a second, differently sized mark on screen for a frame before Flutter drew
+     its own. Pointing at nothing is the only way to have no icon at all. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@android:color/transparent" />
+</shape>
