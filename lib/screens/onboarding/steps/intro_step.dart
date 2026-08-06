@@ -84,7 +84,7 @@ class _CrossfadedTitles extends StatelessWidget {
     // lockup device for a descriptor; set that way, a line with a joke in it
     // reads as a brand promise delivered deadpan — and caps plus 1.8 tracking
     // is what made it wide enough to wrap in the first place.
-    final tagline = TextStyle(fontSize: 13, letterSpacing: 0.2, color: c.textMuted);
+    final tagline = TextStyle(fontSize: 16, letterSpacing: 0.2, color: c.textMuted);
     final scaler = MediaQuery.textScalerOf(context);
 
     return LayoutBuilder(
