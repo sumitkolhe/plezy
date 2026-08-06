@@ -85,8 +85,13 @@ class _CrossfadedTitles extends StatelessWidget {
 
     return LayoutBuilder(
       builder: (context, constraints) {
+        // Merged onto the inherited style, or the measurement runs in the
+        // system fallback font while the Text renders in GoogleSans. The
+        // widths differ enough to wrap a line the measurement did not
+        // predict, and the Stack below clips what it was not sized for.
+        final inherited = DefaultTextStyle.of(context).style;
         double heightOf(String text, TextStyle style) => (TextPainter(
-          text: TextSpan(text: text, style: style),
+          text: TextSpan(text: text, style: inherited.merge(style)),
           textDirection: Directionality.of(context),
           textAlign: TextAlign.center,
           textScaler: scaler,

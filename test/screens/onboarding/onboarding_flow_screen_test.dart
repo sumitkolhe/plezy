@@ -13,7 +13,7 @@ Future<void> _settle(WidgetTester tester, [Duration by = const Duration(millisec
   await tester.pump(by);
 }
 
-Future<void> _pump(WidgetTester tester, {bool startAtSplash = false, String? clipboard}) async {
+Future<void> _pump(WidgetTester tester, {bool startAtSplash = false, String? clipboard, double textScale = 1.0}) async {
   // The intro lays its vertical rhythm out for a phone; the default 800x600
   // test surface pushes the action below the fold and taps miss it.
   tester.view.devicePixelRatio = 1;
@@ -25,6 +25,10 @@ Future<void> _pump(WidgetTester tester, {bool startAtSplash = false, String? cli
     TranslationProvider(
       child: MaterialApp(
         theme: monoTheme(MonoPalette.dark),
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScale)),
+          child: child!,
+        ),
         home: OnboardingFlowScreen(startAtSplash: startAtSplash, clipboardReader: () async => clipboard),
       ),
     ),
@@ -112,4 +116,26 @@ void main() {
     expect(find.text(t.onboarding.addressRequired), findsOneWidget);
     expect(find.byType(IntroStep), findsOneWidget);
   });
+
+  // The crossfade box is sized by measuring both titles rather than by a
+  // constant, and a Stack clips what it was not sized for — so an
+  // under-measurement truncates a line instead of failing loudly.
+  for (final scale in const [1.0, 1.3, 2.0]) {
+    testWidgets('neither title is clipped by its box at text scale $scale', (tester) async {
+      await _pump(tester, startAtSplash: true, textScale: scale);
+
+      for (final probe in [find.text('Harbor'), find.text(t.onboarding.tagline.toUpperCase())]) {
+        final box = tester.getRect(find.ancestor(of: probe, matching: find.byType(SizedBox)).first);
+        final text = tester.getRect(probe);
+        expect(text.bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
+      }
+
+      await tester.tapAt(tester.getCenter(find.byType(IntroStep)));
+      await _settle(tester);
+
+      final title = find.text(t.onboarding.connectTitle);
+      final box = tester.getRect(find.ancestor(of: title, matching: find.byType(SizedBox)).first);
+      expect(tester.getRect(title).bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
+    });
+  }
 }
