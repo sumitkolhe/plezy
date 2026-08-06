@@ -4040,8 +4040,8 @@ class Translations$onboarding$en {
 
 	// Translations
 
-	/// en: 'Your library, at anchor'
-	String get tagline => 'Your library, at anchor';
+	/// en: 'One port to rule them all'
+	String get tagline => 'One port to rule them all';
 
 	/// en: 'Connect your server'
 	String get connectTitle => 'Connect your server';
@@ -6539,7 +6539,7 @@ extension on Translations {
 			'arrSearch.scopeSeries' => 'Whole series',
 			'arrSearch.scopeSeason' => ({required Object season}) => 'Season ${season}',
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'onboarding.tagline' => 'Your library, at anchor',
+			'onboarding.tagline' => 'One port to rule them all',
 			'onboarding.connectTitle' => 'Connect your server',
 			'onboarding.addServer' => 'Add Jellyfin server',
 			'onboarding.serverAddress' => 'Server address',

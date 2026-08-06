@@ -1576,7 +1576,7 @@
     "scopeEpisode": "S${season}E${episode}"
   },
   "onboarding": {
-    "tagline": "Your library, at anchor",
+    "tagline": "One port to rule them all",
     "connectTitle": "Connect your server",
     "addServer": "Add Jellyfin server",
     "serverAddress": "Server address",
