@@ -3,8 +3,15 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../onboarding_palette.dart';
 import 'onboarding_controls.dart';
+
+/// The two colours of the mark.
+///
+/// Brand, not theme. The rest of onboarding follows MonoTokens and whatever the
+/// user has chosen, but a logo that changes colour with the theme is not the
+/// logo — these match the app icon and the brand export sheet.
+const Color _sail = Color(0xFFFFFFFF);
+const Color _rigging = Color(0xFF2CA8E0);
 
 /// The Harbor mark: a mainsail, a jib, and the waterline they sit on.
 ///
@@ -109,7 +116,7 @@ class _MarkPainter extends CustomPainter {
           ..lineTo(52, 44)
           ..relativeCubicTo(-3, -9, -9, -17, -17, -24)
           ..close(),
-        Paint()..color = OnboardingPalette.brand,
+        Paint()..color = _rigging,
       );
     }
 
@@ -120,7 +127,7 @@ class _MarkPainter extends CustomPainter {
         ..lineTo(11, 44)
         ..relativeCubicTo(4, -14, 10, -25, 18, -34)
         ..close(),
-      Paint()..color = OnboardingPalette.onSurface,
+      Paint()..color = _sail,
     );
     canvas.restore();
 
@@ -129,7 +136,7 @@ class _MarkPainter extends CustomPainter {
       const Offset(10, 52),
       const Offset(54, 52),
       Paint()
-        ..color = OnboardingPalette.brand
+        ..color = _rigging
         ..strokeWidth = 4.5
         ..strokeCap = StrokeCap.round,
     );

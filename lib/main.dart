@@ -57,7 +57,6 @@ import 'utils/orientation_helper.dart';
 import 'utils/watch_state_notifier.dart';
 import 'i18n/app_locale_utils.dart';
 import 'i18n/strings.g.dart';
-import 'screens/onboarding/onboarding_palette.dart';
 import 'screens/onboarding/steps/intro_step.dart';
 import 'widgets/app_icon.dart';
 import 'focus/input_mode_tracker.dart';
@@ -1443,12 +1442,11 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    // Painted in the onboarding palette rather than the theme's: this is the
-    // first frame after the Android splash and it has to match it, and on a
-    // cold start the profile whose theme we would otherwise read is still
-    // being loaded.
+    // The theme's own background, which is also what the Android splash behind
+    // this is painting, so the hand-over between them is seamless in either
+    // brightness.
     return ColoredBox(
-      color: OnboardingPalette.surface,
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Stack(
         children: [
           const Positioned.fill(child: IntroSurface(progress: 0)),

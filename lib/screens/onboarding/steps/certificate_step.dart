@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../i18n/strings.g.dart';
-import '../onboarding_palette.dart';
+import '../../../theme/mono_tokens.dart';
+import '../onboarding_style.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
 
@@ -25,6 +26,7 @@ class CertificateStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return RiseIn(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(OnboardingMetrics.gutter, 80, OnboardingMetrics.gutter, 34),
@@ -35,11 +37,8 @@ class CertificateStep extends StatelessWidget {
               child: Container(
                 width: 66,
                 height: 66,
-                decoration: BoxDecoration(
-                  color: OnboardingPalette.caution.withValues(alpha: 0.14),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.warning_amber_rounded, size: 30, color: OnboardingPalette.caution),
+                decoration: BoxDecoration(color: scheme.error.withValues(alpha: 0.14), shape: BoxShape.circle),
+                child: Icon(Icons.warning_amber_rounded, size: 30, color: scheme.error),
               ),
             ),
             const SizedBox(height: 22),
@@ -70,12 +69,13 @@ class _AddressRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 11),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(color: OnboardingPalette.outlineVariant),
-          bottom: BorderSide(color: OnboardingPalette.outlineVariant),
+          top: BorderSide(color: c.outline),
+          bottom: BorderSide(color: c.outline),
         ),
       ),
       child: Row(
@@ -83,20 +83,12 @@ class _AddressRow extends StatelessWidget {
         children: [
           SizedBox(
             width: 84,
-            child: Text(
-              t.onboarding.addressLabel,
-              style: const TextStyle(fontSize: 13, color: OnboardingPalette.onSurfaceVariant),
-            ),
+            child: Text(t.onboarding.addressLabel, style: TextStyle(fontSize: 13, color: c.textMuted)),
           ),
           Expanded(
             child: Text(
               address,
-              style: const TextStyle(
-                fontFamily: 'GoogleSansCode',
-                fontSize: 12.5,
-                height: 1.4,
-                color: OnboardingPalette.onSurface,
-              ),
+              style: TextStyle(fontFamily: 'GoogleSansCode', fontSize: 12.5, height: 1.4, color: c.text),
             ),
           ),
         ],

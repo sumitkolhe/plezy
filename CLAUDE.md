@@ -50,6 +50,7 @@ Concretely, do not hand-write a value that a shared source already owns:
 | Shelf gaps and insets | `HubLayoutConstants` |
 | Card caption type and gaps | `MediaCardGridLayout` |
 | Colours, radii, durations | `MonoTokens` via `tokens(context)` |
+| Semantic colour | `Theme.of(context).colorScheme` — `error`, `primary`/`onPrimary` |
 | Pills and chips | `MetaPill`, `StatChip` |
 
 Reuse the component, not the numbers: copying `fontSize: 18` out of
@@ -58,16 +59,11 @@ moves. If a component nearly fits, extend it (an optional parameter, a wider
 constraint) rather than forking it — that is what `AppMenuItem.trailing` and
 the 24dp-minimum leading are for.
 
-### The one exception: onboarding
-
-`lib/screens/onboarding/` draws from `OnboardingPalette`, not `MonoTokens`, and
-it is Harbor blue rather than greyscale. That is deliberate. The flow runs
-before there is a server, a profile or a Material You accent to inherit, and it
-is the only surface whose job is to say which app this is. It hands over to the
-monochrome app at `Open library`.
-
-Do not extend it. Nothing outside that directory imports `OnboardingPalette`,
-and no new colour goes into it that is not on the brand export sheet.
+There is no exception to this, onboarding included. The app is greyscale until
+Material You supplies an accent, and that is the only thing that should ever
+introduce colour. The one thing that keeps its own colours is the Harbor mark
+in `harbor_mark.dart` — a logo that changed colour with the theme would not be
+the logo, and it matches the launcher icon.
 
 Do not bend a component badly out of shape to force reuse. When something is
 genuinely a different thing — the two-column track sheet, a chapter card with a

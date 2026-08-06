@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../onboarding_palette.dart';
+import '../../../theme/mono_tokens.dart';
+import '../onboarding_style.dart';
 
 /// Whether the platform has been asked to keep still.
 ///
@@ -36,8 +37,10 @@ class OnboardingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final background = busy ? OnboardingPalette.secondaryContainer : OnboardingPalette.primary;
-    final foreground = busy ? OnboardingPalette.onSurfaceVariant : OnboardingPalette.onPrimary;
+    final c = tokens(context);
+    final scheme = Theme.of(context).colorScheme;
+    final background = busy ? c.surface : scheme.primary;
+    final foreground = busy ? c.textMuted : scheme.onPrimary;
     final text = busy ? (busyLabel ?? label) : label;
 
     return Semantics(
@@ -59,7 +62,7 @@ class OnboardingButton extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    if (busy) const _Spinner(color: OnboardingPalette.onSurfaceVariant) else ?icon,
+                    if (busy) _Spinner(color: c.textMuted) else ?icon,
                     if (busy || icon != null) const SizedBox(width: 9),
                     Text(text, style: OnboardingType.label.copyWith(color: foreground)),
                   ],
@@ -82,12 +85,13 @@ class OnboardingTonalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Semantics(
       button: true,
       enabled: onPressed != null,
       label: label,
       child: Material(
-        color: OnboardingPalette.secondaryContainer,
+        color: c.surface,
         borderRadius: BorderRadius.circular(999),
         clipBehavior: Clip.antiAlias,
         child: InkWell(
@@ -95,7 +99,7 @@ class OnboardingTonalButton extends StatelessWidget {
           child: SizedBox(
             height: OnboardingMetrics.buttonHeight,
             child: Center(
-              child: Text(label, style: OnboardingType.label.copyWith(color: OnboardingPalette.onSecondaryContainer)),
+              child: Text(label, style: OnboardingType.label.copyWith(color: c.text)),
             ),
           ),
         ),
@@ -114,6 +118,7 @@ class OnboardingTextButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Semantics(
       button: true,
       label: label,
@@ -126,7 +131,7 @@ class OnboardingTextButton extends StatelessWidget {
           child: SizedBox(
             height: 42,
             child: Center(
-              child: Text(label, style: OnboardingType.label.copyWith(color: OnboardingPalette.onSurfaceVariant)),
+              child: Text(label, style: OnboardingType.label.copyWith(color: c.textMuted)),
             ),
           ),
         ),
@@ -170,7 +175,9 @@ class OnboardingField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tone = invalid ? OnboardingPalette.error : OnboardingPalette.outline;
+    final c = tokens(context);
+    final scheme = Theme.of(context).colorScheme;
+    final tone = invalid ? scheme.error : c.outline;
     return Stack(
       // The label overhangs the border it is notched into.
       clipBehavior: Clip.none,
@@ -198,12 +205,12 @@ class OnboardingField extends StatelessWidget {
                   enableSuggestions: false,
                   textCapitalization: TextCapitalization.none,
                   style: OnboardingType.field,
-                  cursorColor: OnboardingPalette.primary,
+                  cursorColor: scheme.primary,
                   decoration: InputDecoration(
                     isDense: true,
                     border: InputBorder.none,
                     hintText: hintText,
-                    hintStyle: const TextStyle(color: OnboardingPalette.outline, fontSize: 16),
+                    hintStyle: TextStyle(color: c.outline, fontSize: 16),
                   ),
                 ),
               ),
@@ -216,16 +223,12 @@ class OnboardingField extends StatelessWidget {
           top: -2,
           child: ColoredBox(
             // Punches the outline so the label sits in it, not over it.
-            color: OnboardingPalette.surface,
+            color: c.bg,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: Text(
                 label,
-                style: TextStyle(
-                  fontSize: 12,
-                  letterSpacing: 0.4,
-                  color: invalid ? OnboardingPalette.error : OnboardingPalette.onSurfaceVariant,
-                ),
+                style: TextStyle(fontSize: 12, letterSpacing: 0.4, color: invalid ? scheme.error : c.textMuted),
               ),
             ),
           ),
@@ -245,24 +248,23 @@ class OnboardingSupportingText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (invalid) ...[
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 1),
-              child: Icon(Icons.error_outline, size: 14, color: OnboardingPalette.error),
+              child: Icon(Icons.error_outline, size: 14, color: scheme.error),
             ),
             const SizedBox(width: 7),
           ],
           Expanded(
             child: Text(
               message,
-              style: invalid
-                  ? OnboardingType.supporting.copyWith(color: OnboardingPalette.error)
-                  : OnboardingType.supporting,
+              style: invalid ? OnboardingType.supporting.copyWith(color: scheme.error) : OnboardingType.supporting,
             ),
           ),
         ],
@@ -285,8 +287,9 @@ class OnboardingChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Material(
-      color: tone ?? OnboardingPalette.secondaryContainer,
+      color: tone ?? c.surface,
       borderRadius: BorderRadius.circular(999),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -304,7 +307,7 @@ class OnboardingChip extends StatelessWidget {
                     label,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12.5, color: OnboardingPalette.onSurface),
+                    style: TextStyle(fontSize: 12.5, color: c.text),
                   ),
                 ),
               ],
@@ -358,5 +361,5 @@ class OnboardingSpinner extends StatelessWidget {
   const OnboardingSpinner({super.key});
 
   @override
-  Widget build(BuildContext context) => const _Spinner(color: OnboardingPalette.primary);
+  Widget build(BuildContext context) => _Spinner(color: Theme.of(context).colorScheme.primary);
 }

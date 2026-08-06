@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../i18n/strings.g.dart';
-import '../onboarding_palette.dart';
+import '../../../theme/mono_tokens.dart';
+import '../onboarding_style.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
 
@@ -53,6 +54,8 @@ class SignInStep extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
+    final scheme = Theme.of(context).colorScheme;
     final quick = mode == SignInMode.quickConnect;
     return RiseIn(
       child: Padding(
@@ -64,11 +67,11 @@ class SignInStep extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: OnboardingChip(
                 label: t.onboarding.serverReachable(server: serverName),
-                tone: OnboardingPalette.successContainer,
+                tone: c.surface,
                 leading: Container(
                   width: 6,
                   height: 6,
-                  decoration: const BoxDecoration(color: OnboardingPalette.onSuccessContainer, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: scheme.primary, shape: BoxShape.circle),
                 ),
               ),
             ),
@@ -76,7 +79,7 @@ class SignInStep extends StatelessWidget {
             Text(t.onboarding.signInTitle, style: OnboardingType.headline),
             const SizedBox(height: 9),
             Text(quick ? t.onboarding.signInQuickBody : t.onboarding.signInPasswordBody, style: OnboardingType.body),
-            Expanded(child: quick ? _buildQuickConnect() : _buildPassword()),
+            Expanded(child: quick ? _buildQuickConnect(context) : _buildPassword(context)),
             if (quick)
               OnboardingTonalButton(label: t.onboarding.usePassword, onPressed: onUsePassword)
             else if (quickConnectEnabled)
@@ -87,7 +90,8 @@ class SignInStep extends StatelessWidget {
     );
   }
 
-  Widget _buildPassword() {
+  Widget _buildPassword(BuildContext context) {
+    final c = tokens(context);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -111,11 +115,7 @@ class SignInStep extends StatelessWidget {
               onTap: onToggleObscure,
               child: Text(
                 obscurePassword ? t.onboarding.show : t.onboarding.hide,
-                style: const TextStyle(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w500,
-                  color: OnboardingPalette.onSurfaceVariant,
-                ),
+                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500, color: c.textMuted),
               ),
             ),
           ),
@@ -132,7 +132,8 @@ class SignInStep extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickConnect() {
+  Widget _buildQuickConnect(BuildContext context) {
+    final c = tokens(context);
     final code = quickConnectCode;
     return Column(
       children: [
@@ -154,7 +155,7 @@ class SignInStep extends StatelessWidget {
           Text(
             t.onboarding.quickConnectHowTo,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 13.5, height: 1.55, color: OnboardingPalette.onSurfaceFaint),
+            style: TextStyle(fontSize: 13.5, height: 1.55, color: c.textMuted),
           ),
         ],
         if (error case final error?) ...[const SizedBox(height: 16), OnboardingSupportingText(error, invalid: true)],
@@ -168,7 +169,7 @@ class _WaitingLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Text(t.onboarding.waitingForApproval, style: const TextStyle(fontSize: 14, color: OnboardingPalette.onSurface));
+      Text(t.onboarding.waitingForApproval, style: TextStyle(fontSize: 14, color: tokens(context).text));
 }
 
 /// One character of the Quick Connect code, boxed so it can be read aloud and
@@ -180,20 +181,16 @@ class _CodeBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Container(
       width: 42,
       height: 52,
       margin: const EdgeInsets.symmetric(horizontal: 4.5),
       alignment: Alignment.center,
-      decoration: BoxDecoration(color: OnboardingPalette.surfaceContainer, borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(color: c.surface, borderRadius: BorderRadius.circular(12)),
       child: Text(
         character,
-        style: const TextStyle(
-          fontFamily: 'GoogleSansCode',
-          fontSize: 21,
-          fontWeight: FontWeight.w500,
-          color: OnboardingPalette.onSurface,
-        ),
+        style: TextStyle(fontFamily: 'GoogleSansCode', fontSize: 21, fontWeight: FontWeight.w500, color: c.text),
       ),
     );
   }

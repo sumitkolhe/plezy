@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../connection/connection.dart';
 import '../../../i18n/strings.g.dart';
 import '../../../services/jellyfin_client.dart';
-import '../onboarding_palette.dart';
+import '../../../theme/mono_tokens.dart';
+import '../onboarding_style.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
 
@@ -48,6 +49,8 @@ class _ConnectedStepState extends State<ConnectedStep> {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
+    final scheme = Theme.of(context).colorScheme;
     final counts = _counts;
     return RiseIn(
       child: Padding(
@@ -65,8 +68,8 @@ class _ConnectedStepState extends State<ConnectedStep> {
               child: Container(
                 width: 70,
                 height: 70,
-                decoration: const BoxDecoration(color: OnboardingPalette.successContainer, shape: BoxShape.circle),
-                child: const Icon(Icons.check, size: 32, color: OnboardingPalette.onSuccessContainer),
+                decoration: BoxDecoration(color: c.surface, shape: BoxShape.circle),
+                child: Icon(Icons.check, size: 32, color: scheme.primary),
               ),
             ),
             const SizedBox(height: 26),
@@ -101,23 +104,24 @@ class _CountRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 11),
       decoration: BoxDecoration(
         border: Border(
-          top: const BorderSide(color: OnboardingPalette.outlineVariant),
-          bottom: last ? const BorderSide(color: OnboardingPalette.outlineVariant) : BorderSide.none,
+          top: BorderSide(color: c.outline),
+          bottom: last ? BorderSide(color: c.outline) : BorderSide.none,
         ),
       ),
       child: Row(
         children: [
           SizedBox(
             width: 96,
-            child: Text(label, style: const TextStyle(fontSize: 13, color: OnboardingPalette.onSurfaceVariant)),
+            child: Text(label, style: TextStyle(fontSize: 13, color: c.textMuted)),
           ),
           Text(
             value,
-            style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500, color: OnboardingPalette.onSurface),
+            style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500, color: c.text),
           ),
         ],
       ),

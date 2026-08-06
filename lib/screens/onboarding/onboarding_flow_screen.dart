@@ -14,7 +14,7 @@ import '../../utils/app_logger.dart';
 import '../../utils/device_identity.dart';
 import '../../utils/navigation_transitions.dart';
 import '../settings/connection_persistence.dart';
-import 'onboarding_palette.dart';
+import '../../theme/mono_tokens.dart';
 import 'steps/connected_step.dart';
 import 'steps/certificate_step.dart';
 import 'steps/intro_step.dart';
@@ -345,8 +345,9 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return Scaffold(
-      backgroundColor: OnboardingPalette.surface,
+      backgroundColor: c.bg,
       body: SafeArea(bottom: false, child: _buildStep()),
     );
   }

@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../i18n/strings.g.dart';
-import '../onboarding_palette.dart';
+import '../../../theme/mono_tokens.dart';
+import '../onboarding_style.dart';
 import '../widgets/harbor_mark.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
@@ -71,6 +72,7 @@ class _CrossfadedTitles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return SizedBox(
       height: 92,
       child: Stack(
@@ -83,19 +85,14 @@ class _CrossfadedTitles extends StatelessWidget {
               opacity: 1 - progress,
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     'Harbor',
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: -1,
-                      color: OnboardingPalette.onSurface,
-                    ),
+                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     t.onboarding.tagline.toUpperCase(),
-                    style: const TextStyle(fontSize: 13, letterSpacing: 1.8, color: OnboardingPalette.onSurfaceFaint),
+                    style: TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted),
                   ),
                 ],
               ),
@@ -206,6 +203,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    final c = tokens(context);
     return AnimatedBuilder(
       animation: CurvedAnimation(parent: _morph, curve: const Cubic(0.32, 0.72, 0, 1)),
       builder: (context, _) {
@@ -217,8 +215,8 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
               child: IntroSurface(
                 progress: progress,
                 formOpen: widget.formOpen,
-                form: settled && widget.formOpen ? _buildForm() : null,
-                action: settled ? _buildAction() : null,
+                form: settled && widget.formOpen ? _buildForm(context) : null,
+                action: settled ? _buildAction(context) : null,
               ),
             ),
             // Nobody should have to wait out a logo. The whole splash is a tap
@@ -234,10 +232,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
                 child: Center(
                   child: TextButton(
                     onPressed: _advance,
-                    child: Text(
-                      t.onboarding.skip,
-                      style: const TextStyle(fontSize: 13, color: OnboardingPalette.onSurfaceFaint),
-                    ),
+                    child: Text(t.onboarding.skip, style: TextStyle(fontSize: 13, color: c.textMuted)),
                   ),
                 ),
               ),
@@ -248,13 +243,14 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
     );
   }
 
-  Widget _buildAction() {
+  Widget _buildAction(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     if (!widget.formOpen) {
       return RiseIn(
         child: OnboardingButton(
           label: t.onboarding.addServer,
           onPressed: widget.onOpenForm,
-          icon: const Icon(Icons.add, size: 17, color: OnboardingPalette.onPrimary),
+          icon: Icon(Icons.add, size: 17, color: scheme.onPrimary),
         ),
       );
     }
@@ -266,7 +262,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
           busyLabel: t.onboarding.reaching,
           busy: widget.busy,
           onPressed: widget.onConnect,
-          icon: const _JellyfinGlyph(),
+          icon: _JellyfinGlyph(color: scheme.onPrimary),
         ),
         // Held back until the wait has gone on long enough to acknowledge:
         // offered immediately it would read as an expectation of failure.
@@ -280,7 +276,8 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
     );
   }
 
-  Widget _buildForm() {
+  Widget _buildForm(BuildContext context) {
+    final c = tokens(context);
     final offer = widget.clipboardOffer;
     return RiseIn(
       child: Column(
@@ -296,7 +293,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
             keyboardType: TextInputType.url,
             textInputAction: TextInputAction.go,
             onSubmitted: (_) => widget.onConnect(),
-            leading: const Icon(Icons.dns_outlined, size: 19, color: OnboardingPalette.onSurfaceVariant),
+            leading: Icon(Icons.dns_outlined, size: 19, color: c.textMuted),
           ),
           const SizedBox(height: 9),
           if (widget.error case final error?)
@@ -306,7 +303,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
               alignment: Alignment.centerLeft,
               child: OnboardingChip(
                 label: t.onboarding.pasteAddress(address: offer),
-                leading: const Icon(Icons.content_paste, size: 13, color: OnboardingPalette.onSurface),
+                leading: Icon(Icons.content_paste, size: 13, color: c.text),
                 onTap: widget.onPaste,
               ),
             )
@@ -321,20 +318,24 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
 /// Jellyfin's mark, drawn rather than shipped as an asset: three bars and an
 /// arch, and the only place the flow needs it.
 class _JellyfinGlyph extends StatelessWidget {
-  const _JellyfinGlyph();
+  const _JellyfinGlyph({required this.color});
+
+  final Color color;
 
   @override
   Widget build(BuildContext context) =>
-      const SizedBox(width: 17, height: 17, child: CustomPaint(painter: _JellyfinPainter()));
+      SizedBox(width: 17, height: 17, child: CustomPaint(painter: _JellyfinPainter(color)));
 }
 
 class _JellyfinPainter extends CustomPainter {
-  const _JellyfinPainter();
+  const _JellyfinPainter(this.color);
+
+  final Color color;
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.scale(size.width / 64);
-    final paint = Paint()..color = OnboardingPalette.onPrimary;
+    final paint = Paint()..color = color;
     canvas.drawPath(
       Path()
         ..moveTo(11, 32)
@@ -348,5 +349,5 @@ class _JellyfinPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_JellyfinPainter oldDelegate) => false;
+  bool shouldRepaint(_JellyfinPainter oldDelegate) => oldDelegate.color != color;
 }
