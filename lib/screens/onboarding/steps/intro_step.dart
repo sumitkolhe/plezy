@@ -203,7 +203,6 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    final c = tokens(context);
     return AnimatedBuilder(
       animation: CurvedAnimation(parent: _morph, curve: const Cubic(0.32, 0.72, 0, 1)),
       builder: (context, _) {
@@ -219,24 +218,13 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
                 action: settled ? _buildAction(context) : null,
               ),
             ),
-            // Nobody should have to wait out a logo. The whole splash is a tap
-            // target, with a visible label so the affordance is not a secret.
-            if (_onSplash) ...[
+            // A tap still cuts the hold short, unlabelled. The splash runs for
+            // 2.2s, which is not long enough to justify putting a control on
+            // top of the logo to escape it.
+            if (_onSplash)
               Positioned.fill(
                 child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: _advance),
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 40,
-                child: Center(
-                  child: TextButton(
-                    onPressed: _advance,
-                    child: Text(t.onboarding.skip, style: TextStyle(fontSize: 13, color: c.textMuted)),
-                  ),
-                ),
-              ),
-            ],
           ],
         );
       },

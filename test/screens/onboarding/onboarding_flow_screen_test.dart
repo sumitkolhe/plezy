@@ -51,13 +51,16 @@ void main() {
 
   testWidgets('the splash can be skipped rather than waited out', (tester) async {
     await _pump(tester, startAtSplash: true);
-    expect(find.text(t.onboarding.skip), findsOneWidget);
+    // Both halves of the morph are in the tree throughout, cross-faded by
+    // opacity, so the connect copy is findable even here. The action arrives
+    // only once the morph settles, which makes it the honest probe.
+    expect(find.text(t.onboarding.addServer), findsNothing);
 
-    await tester.tap(find.text(t.onboarding.skip));
+    // The whole surface is the target; there is no labelled control to find.
+    await tester.tapAt(tester.getCenter(find.byType(IntroStep)));
     await _settle(tester);
 
-    expect(find.text(t.onboarding.connectTitle), findsOneWidget);
-    expect(find.text(t.onboarding.skip), findsNothing);
+    expect(find.text(t.onboarding.addServer), findsOneWidget);
   });
 
   testWidgets('the address form opens in place and states its defaults', (tester) async {
