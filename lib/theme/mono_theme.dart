@@ -4,15 +4,29 @@ import 'haptic_ink_factory.dart';
 import 'gapped_track_shape.dart';
 import 'mono_tokens.dart';
 
-/// Build the app's theme from a resolved [MonoPalette].
+/// Build the app's theme from a [MonoPalette].
 ///
-/// One code path: every scheme — light, dark, OLED, Material You — arrives here
-/// as data, so this function only ever maps colours onto Material's slots and
-/// the app's own [MonoTokens]. Which scheme to use is [ThemeProvider]'s
-/// decision, not this function's.
-ThemeData monoTheme(MonoPalette c) {
-  final isDark = c.isDark;
-  final materialYou = c.expressive;
+/// The palette arrives with a complete Material 3 [ColorScheme], so this
+/// function never decides a colour — it names the app's own vocabulary in terms
+/// of that scheme, then styles the components Material would otherwise draw its
+/// own way. Which scheme is [ThemeProvider]'s decision.
+ThemeData monoTheme(MonoPalette palette) {
+  final scheme = palette.scheme;
+  final materialYou = palette.expressive;
+
+  // The app's shorthand, mapped onto M3's roles once, here. `bg` is the page
+  // and `surface` is what lifts off it — which are M3's `surface` and
+  // `surfaceContainer`, not the pair its names suggest. `outline` is a
+  // hairline, so it takes `outlineVariant` rather than the heavier `outline`.
+  final c = (
+    bg: scheme.surface,
+    surface: scheme.surfaceContainer,
+    outline: scheme.outlineVariant,
+    text: scheme.onSurface,
+    textMuted: scheme.onSurfaceVariant,
+    accent: scheme.primary,
+  );
+
   final clickableCursor = WidgetStateProperty.resolveWith<MouseCursor>(
     (states) => states.contains(WidgetState.disabled) ? MouseCursor.defer : SystemMouseCursors.click,
   );
@@ -21,42 +35,16 @@ ThemeData monoTheme(MonoPalette c) {
     mouseCursor: clickableCursor,
     padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 18, vertical: 14)),
     elevation: const WidgetStatePropertyAll(0),
-    backgroundColor: WidgetStatePropertyAll(c.accent),
-    foregroundColor: WidgetStatePropertyAll(isDark ? c.bg : Colors.white),
+    backgroundColor: WidgetStatePropertyAll(scheme.primary),
+    foregroundColor: WidgetStatePropertyAll(scheme.onPrimary),
     shape: const WidgetStatePropertyAll(StadiumBorder()),
   );
 
   final base = ThemeData(
     useMaterial3: true,
     fontFamily: MonoFonts.sans,
-    brightness: isDark ? Brightness.dark : Brightness.light,
-    colorScheme: ColorScheme(
-      brightness: isDark ? Brightness.dark : Brightness.light,
-      primary: c.accent,
-      onPrimary: isDark ? c.bg : Colors.white,
-      secondary: c.accent,
-      onSecondary: c.bg,
-      surface: c.surface,
-      onSurface: c.text,
-      error: const Color(0xFFB00020),
-      onError: Colors.white,
-      tertiary: c.text,
-      onTertiary: c.bg,
-      primaryContainer: c.surface,
-      onPrimaryContainer: c.text,
-      secondaryContainer: c.surface,
-      onSecondaryContainer: c.text,
-      surfaceContainerHighest: c.surface,
-      surfaceContainerLow: c.bg,
-      surfaceDim: c.bg,
-      surfaceBright: c.surface,
-      outline: c.outline,
-      shadow: Colors.transparent,
-      scrim: Colors.black,
-      inverseSurface: c.text,
-      onInverseSurface: c.bg,
-      inversePrimary: c.bg,
-    ),
+    brightness: scheme.brightness,
+    colorScheme: scheme,
     // The mono themes deliberately have no ink; Material You is Material, and
     // the sparkle is half of what people recognise it by.
     splashFactory: materialYou ? hapticSparkle : hapticNoSplash,

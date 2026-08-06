@@ -1,112 +1,72 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
 
 import 'dynamic_palette.dart';
 
-/// A resolved colour scheme, ready for [monoTheme] to build a theme around.
+/// A complete colour scheme, however it was arrived at.
 ///
-/// The distinction from [DynamicPalette] is the point of this type:
-/// [DynamicPalette] is raw input from Android, whose tones need deriving before
-/// they mean anything here. This is the answer — the six colours the app
-/// actually paints with, however they were arrived at. Every theme is one of
-/// these, so the theme function has a single code path and adding a scheme is
-/// adding a constant rather than a branch.
+/// Material needs about thirty named colours to draw everything. Rather than
+/// hand-pick a handful and fill the rest in by repeating them, every theme here
+/// is generated: Material 3 derives all thirty from a variant and a brightness,
+/// with the tone differences between them chosen so contrast is guaranteed
+/// rather than checked afterwards.
+///
+/// The greyscale themes use the `monochrome` variant, which forces chroma to
+/// zero — the seed is ignored entirely, so there is no colour to choose. The
+/// wallpaper theme uses Android's own, which is the point of it.
 @immutable
 class MonoPalette {
-  const MonoPalette({
-    required this.bg,
-    required this.surface,
-    required this.outline,
-    required this.text,
-    required this.textMuted,
-    required this.accent,
-    required this.isDark,
-    this.expressive = false,
-  });
+  const MonoPalette._(this.scheme, {this.expressive = false});
 
-  final Color bg;
-  final Color surface;
-  final Color outline;
-  final Color text;
-  final Color textMuted;
-
-  /// The one colour that is not greyscale in the schemes that have one. In the
-  /// static palettes it is deliberately equal to [text]: the slot exists, and
-  /// holding ink in it is what makes the app monochrome.
-  final Color accent;
-
-  /// Carried rather than derived from luminance, which would be clever and
-  /// fragile.
-  final bool isDark;
+  final ColorScheme scheme;
 
   /// Whether the scheme wants Material's ink — ripples and a sparkle on tap.
   ///
-  /// Separate from where the colours came from. The two coincide today, but a
-  /// flag that says "has a wallpaper palette" while being read as "show
-  /// ripples" is one refactor away from lying.
+  /// Kept separate from where the colours came from, so neither can start
+  /// quietly meaning the other.
   final bool expressive;
 
-  static const light = MonoPalette(
-    bg: Color(0xFFF7F7F8),
-    surface: Color(0xFFFFFFFF),
-    outline: Color(0x19000000),
-    text: Color(0xFF111111),
-    textMuted: Color(0x99111111),
-    accent: Color(0xFF111111),
-    isDark: false,
+  bool get isDark => scheme.brightness == Brightness.dark;
+
+  /// Ignored under [DynamicSchemeVariant.monochrome], which zeroes chroma. Fed
+  /// in only because the API demands one.
+  static const _unusedSeed = Color(0xFF808080);
+
+  static ColorScheme _grey(Brightness brightness) => ColorScheme.fromSeed(
+    seedColor: _unusedSeed,
+    brightness: brightness,
+    dynamicSchemeVariant: DynamicSchemeVariant.monochrome,
   );
 
-  static const dark = MonoPalette(
-    bg: Color(0xFF0E0F12),
-    surface: Color(0xFF15171C),
-    outline: Color(0x1FFFFFFF),
-    text: Color(0xFFEDEDED),
-    textMuted: Color(0x99EDEDED),
-    accent: Color(0xFFEDEDED),
-    isDark: true,
-  );
+  static final light = MonoPalette._(_grey(Brightness.light));
+  static final dark = MonoPalette._(_grey(Brightness.dark));
 
-  static const oled = MonoPalette(
-    // Pure black so unlit pixels stay off; surface still lifts off it.
-    bg: Color(0xFF000000),
-    surface: Color(0xFF0A0A0A),
-    outline: Color(0x1FFFFFFF),
-    text: Color(0xFFEDEDED),
-    textMuted: Color(0x99EDEDED),
-    accent: Color(0xFFEDEDED),
-    isDark: true,
-  );
-
-  /// Derive a scheme from Android's wallpaper tones.
+  /// The dark scheme with its backgrounds taken to true black.
   ///
-  /// The outline is not taken from the wallpaper in either brightness — it is
-  /// a hairline, and tinting it makes edges read as coloured rather than as
-  /// structure.
-  factory MonoPalette.fromDynamic(DynamicPalette palette, {required bool dark}) {
-    if (dark) {
-      return MonoPalette(
-        // Android publishes tone 10 as its darkest tinted neutral, which is
-        // lighter than this app sits. Pulling it toward black keeps the
-        // wallpaper's hue at the depth the other dark themes use.
-        bg: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.55)!,
-        surface: Color.lerp(palette.neutralDark, const Color(0xFF000000), 0.25)!,
-        outline: const Color(0x1FFFFFFF),
-        text: palette.neutralLight,
-        textMuted: palette.neutralLight.withValues(alpha: 0.6),
-        accent: palette.accentDark,
-        isDark: true,
-        expressive: true,
-      );
-    }
-    return MonoPalette(
-      bg: palette.neutralLight,
-      surface: palette.neutralWhite,
-      outline: const Color(0x19000000),
-      text: palette.neutralDark,
-      textMuted: palette.neutralDark.withValues(alpha: 0.6),
-      accent: palette.accentLight,
-      isDark: false,
-      expressive: true,
-    );
-  }
+  /// The only place a generated colour is overridden, and not a matter of
+  /// taste: on OLED an unlit pixel draws no power, which a generator will never
+  /// produce because it reasons about contrast rather than hardware. Only the
+  /// page recedes — containers keep their tones, so cards still lift off it.
+  static final oled = MonoPalette._(
+    _grey(Brightness.dark).copyWith(
+      surface: const Color(0xFF000000),
+      surfaceDim: const Color(0xFF000000),
+      surfaceContainerLowest: const Color(0xFF000000),
+    ),
+  );
+
+  /// Android's wallpaper colours, run through the same Material 3 generator the
+  /// system uses.
+  ///
+  /// Seeded from the accent tone Android publishes for this brightness, so the
+  /// hue follows the wallpaper. The generator re-derives the tonal ramp, which
+  /// means the result tracks the system closely without being guaranteed
+  /// identical to it — reading Android's full set of published tones would
+  /// close that gap, at the cost of maintaining the role table by hand.
+  factory MonoPalette.fromDynamic(DynamicPalette palette, {required bool dark}) => MonoPalette._(
+    ColorScheme.fromSeed(
+      seedColor: dark ? palette.accentDark : palette.accentLight,
+      brightness: dark ? Brightness.dark : Brightness.light,
+    ),
+    expressive: true,
+  );
 }

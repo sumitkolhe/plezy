@@ -179,15 +179,20 @@ void main() {
 
       final p = ThemeProvider();
       expect(p.themeMode, settings.ThemeMode.materialYou);
-      expect(p.darkTheme.colorScheme.primary, const material.Color(0xFFB9C3FF));
-      expect(p.lightTheme.colorScheme.primary, const material.Color(0xFF4355B9));
+
+      // Material 3 re-derives the whole tonal ramp from the accent, so the
+      // result is not the byte Android published. What has to survive the trip
+      // is the wallpaper's hue, in both brightnesses.
+      for (final theme in [p.darkTheme, p.lightTheme]) {
+        final accent = monoTokensOf(theme).accent;
+        expect(accent.b, greaterThan(accent.r), reason: 'this wallpaper is blue, and $accent is not');
+      }
+      expect(p.darkTheme.brightness, material.Brightness.dark);
+      expect(p.lightTheme.brightness, material.Brightness.light);
 
       // The tinted neutrals sit behind everything, and dark stays darker than
       // the tone Android publishes.
-      final darkTokens = monoTokensOf(p.darkTheme);
-      expect(darkTokens.bg.toARGB32(), lessThan(0xFF1B1B2F));
-      expect(darkTokens.accent, const material.Color(0xFFB9C3FF));
-      expect(monoTokensOf(p.lightTheme).surface, const material.Color(0xFFFFFFFF));
+      expect(monoTokensOf(p.darkTheme).bg.toARGB32(), lessThan(0xFF1B1B2F));
 
       p.dispose();
     });
@@ -228,7 +233,11 @@ void main() {
       await p.setThemeMode(settings.ThemeMode.oled);
 
       expect(monoTokensOf(p.darkTheme).bg, const material.Color(0xFF000000));
-      expect(monoTokensOf(p.darkTheme).accent, const material.Color(0xFFEDEDED));
+
+      // A wallpaper palette is sitting in storage; OLED is not Material You, so
+      // none of its hue may reach the theme.
+      final accent = monoTokensOf(p.darkTheme).accent;
+      expect(accent.r == accent.g && accent.g == accent.b, isTrue, reason: '$accent carries the wallpaper hue');
 
       p.dispose();
     });
