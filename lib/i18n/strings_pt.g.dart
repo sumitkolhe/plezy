@@ -1434,8 +1434,6 @@ class _Translations$addServer$pt extends Translations$addServer$en {
 	@override String get serverUrls => 'URLs do servidor';
 	@override String get serverUrlsHelper => 'Várias URLs são permitidas, separadas por vírgulas.';
 	@override String get findServer => 'Encontrar servidor';
-	@override String get searchingLocalServers => 'Procurando servidores Jellyfin locais...';
-	@override String get localServers => 'Servidores Jellyfin locais';
 	@override String get username => 'Usuário';
 	@override String get password => 'Senha';
 	@override String get signIn => 'Entrar';
@@ -2774,8 +2772,6 @@ extension on TranslationsPt {
 			'addServer.serverUrls' => 'URLs do servidor',
 			'addServer.serverUrlsHelper' => 'Várias URLs são permitidas, separadas por vírgulas.',
 			'addServer.findServer' => 'Encontrar servidor',
-			'addServer.searchingLocalServers' => 'Procurando servidores Jellyfin locais...',
-			'addServer.localServers' => 'Servidores Jellyfin locais',
 			'addServer.username' => 'Usuário',
 			'addServer.password' => 'Senha',
 			'addServer.signIn' => 'Entrar',

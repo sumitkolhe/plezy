@@ -1445,8 +1445,6 @@ class _Translations$addServer$az extends Translations$addServer$en {
 	@override String get serverUrls => 'Server URL-ləri';
 	@override String get serverUrlsHelper => 'Vergüllə ayrılmış bir neçə URL-ə icazə verilir.';
 	@override String get findServer => 'Server tap';
-	@override String get searchingLocalServers => 'Yerli Jellyfin serverləri axtarılır...';
-	@override String get localServers => 'Yerli Jellyfin serverləri';
 	@override String get username => 'İstifadəçi adı';
 	@override String get password => 'Şifrə';
 	@override String get signIn => 'Daxil ol';
@@ -2796,8 +2794,6 @@ extension on TranslationsAz {
 			'addServer.serverUrls' => 'Server URL-ləri',
 			'addServer.serverUrlsHelper' => 'Vergüllə ayrılmış bir neçə URL-ə icazə verilir.',
 			'addServer.findServer' => 'Server tap',
-			'addServer.searchingLocalServers' => 'Yerli Jellyfin serverləri axtarılır...',
-			'addServer.localServers' => 'Yerli Jellyfin serverləri',
 			'addServer.username' => 'İstifadəçi adı',
 			'addServer.password' => 'Şifrə',
 			'addServer.signIn' => 'Daxil ol',

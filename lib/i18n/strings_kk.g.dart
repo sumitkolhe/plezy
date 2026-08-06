@@ -1445,8 +1445,6 @@ class _Translations$addServer$kk extends Translations$addServer$en {
 	@override String get serverUrls => 'Сервер URL-дері';
 	@override String get serverUrlsHelper => 'Үтірмен бөлінген бірнеше URL мекенжайына рұқсат етіледі.';
 	@override String get findServer => 'Серверді табу';
-	@override String get searchingLocalServers => 'Жергілікті Jellyfin серверлері ізделуде...';
-	@override String get localServers => 'Жергілікті Jellyfin серверлері';
 	@override String get username => 'Пайдаланушы аты';
 	@override String get password => 'Құпия сөз';
 	@override String get signIn => 'Кіру';
@@ -2796,8 +2794,6 @@ extension on TranslationsKk {
 			'addServer.serverUrls' => 'Сервер URL-дері',
 			'addServer.serverUrlsHelper' => 'Үтірмен бөлінген бірнеше URL мекенжайына рұқсат етіледі.',
 			'addServer.findServer' => 'Серверді табу',
-			'addServer.searchingLocalServers' => 'Жергілікті Jellyfin серверлері ізделуде...',
-			'addServer.localServers' => 'Жергілікті Jellyfin серверлері',
 			'addServer.username' => 'Пайдаланушы аты',
 			'addServer.password' => 'Құпия сөз',
 			'addServer.signIn' => 'Кіру',

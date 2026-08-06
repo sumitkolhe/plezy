@@ -58,8 +58,7 @@ import 'utils/watch_state_notifier.dart';
 import 'i18n/app_locale_utils.dart';
 import 'i18n/strings.g.dart';
 import 'screens/onboarding/onboarding_palette.dart';
-import 'screens/onboarding/widgets/harbor_mark.dart';
-import 'screens/onboarding/widgets/harbor_water.dart';
+import 'screens/onboarding/steps/intro_step.dart';
 import 'widgets/app_icon.dart';
 import 'focus/input_mode_tracker.dart';
 import 'focus/focusable_button.dart';
@@ -1107,11 +1106,27 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
   ///
   /// Every exit from startup goes through here, so the floor applies to all of
   /// them — first run, returning user and offline alike.
-  Future<void> _handOver(Widget destination) async {
-    final remaining = _splashHold - _shownFor.elapsed;
-    if (remaining > Duration.zero) await Future<void>.delayed(remaining);
+  Future<void> _handOver(Widget destination, {bool continuesSplash = false}) async {
+    if (!continuesSplash) {
+      final remaining = _splashHold - _shownFor.elapsed;
+      if (remaining > Duration.zero) await Future<void>.delayed(remaining);
+    }
     if (!mounted) return;
-    unawaited(Navigator.pushReplacement(context, fadeRoute(destination)));
+    // The onboarding flow opens on the same composition this screen is already
+    // showing, so it takes over with no transition at all — the morph that
+    // follows is the only movement the user sees.
+    unawaited(
+      Navigator.pushReplacement(
+        context,
+        continuesSplash
+            ? PageRouteBuilder<void>(
+                transitionDuration: Duration.zero,
+                reverseTransitionDuration: Duration.zero,
+                pageBuilder: (_, _, _) => destination,
+              )
+            : fadeRoute(destination),
+      ),
+    );
   }
 
   final Stopwatch _shownFor = Stopwatch()..start();
@@ -1218,14 +1233,14 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       // splash forever, so route to auth rather than let it propagate.
       appLogger.e('Setup: failed to load connections; returning to auth', error: e, stackTrace: st);
       if (mounted) {
-        unawaited(_handOver(const OnboardingFlowScreen()));
+        unawaited(_handOver(const OnboardingFlowScreen(), continuesSplash: true));
       }
       return;
     }
 
     if (allConnections.isEmpty) {
       if (mounted) {
-        unawaited(_handOver(const OnboardingFlowScreen()));
+        unawaited(_handOver(const OnboardingFlowScreen(), continuesSplash: true));
       }
       return;
     }
@@ -1264,7 +1279,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
     if (activeProfile.active == null && activeProfile.profiles.isEmpty) {
       appLogger.w('Setup: stored connections exist but no profiles resolved after bootstrap; returning to auth');
-      unawaited(_handOver(const OnboardingFlowScreen()));
+      unawaited(_handOver(const OnboardingFlowScreen(), continuesSplash: true));
       return;
     }
 
@@ -1436,8 +1451,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
       color: OnboardingPalette.ink,
       child: Stack(
         children: [
-          const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
-          const Positioned.fill(child: _SplashMark()),
+          const Positioned.fill(child: IntroSurface(progress: 0)),
           if (_overran)
             Positioned(
               left: 0,
@@ -1451,40 +1465,6 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
                 ],
               ),
             ),
-        ],
-      ),
-    );
-  }
-}
-
-/// The mark, the name, and what the app is for.
-class _SplashMark extends StatelessWidget {
-  const _SplashMark();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      // Sit above the water rather than in it.
-      padding: const EdgeInsets.only(bottom: HarborWater.height),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const HarborMark(size: 104, bob: true),
-          const SizedBox(height: 26),
-          const Text(
-            'Harbor',
-            style: TextStyle(
-              fontSize: 34,
-              fontWeight: FontWeight.w600,
-              letterSpacing: -1,
-              color: OnboardingPalette.text,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            t.onboarding.tagline.toUpperCase(),
-            style: const TextStyle(fontSize: 13, letterSpacing: 1.8, color: OnboardingPalette.textFaint),
-          ),
         ],
       ),
     );

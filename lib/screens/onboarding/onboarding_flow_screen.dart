@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../connection/connection.dart';
 import '../../exceptions/media_server_exceptions.dart';
@@ -8,47 +9,48 @@ import '../../i18n/strings.g.dart';
 import '../../navigation/profile_session_screen.dart';
 import '../../services/jellyfin_auth_service.dart';
 import '../../services/jellyfin_endpoint_discovery.dart';
-import '../../services/jellyfin_lan_discovery_service.dart';
 import '../../services/storage_service.dart';
-import '../../utils/device_identity.dart';
 import '../../utils/app_logger.dart';
+import '../../utils/device_identity.dart';
 import '../../utils/navigation_transitions.dart';
 import '../settings/connection_persistence.dart';
 import 'onboarding_palette.dart';
-import 'steps/connect_step.dart';
 import 'steps/connected_step.dart';
+import 'steps/failed_step.dart';
+import 'steps/intro_step.dart';
 import 'steps/sign_in_step.dart';
 import 'steps/working_step.dart';
-import 'widgets/harbor_water.dart';
 
 /// Where the flow is. Two of these are waits rather than pages, but they are
 /// steps as far as the user is concerned, so they live in one enum.
-enum OnboardingStep { connect, reaching, signIn, signingIn, connected }
+enum OnboardingStep { intro, reaching, failed, signIn, signingIn, connected }
 
-/// First run: find a Jellyfin server, sign in, and hand over to the library.
+/// First run: name a Jellyfin server, sign in, and hand over to the library.
 ///
-/// One screen rather than a stack of routes. The water along the bottom is the
-/// argument: it is mounted once here and the steps swap above it, so crossing
-/// between them never restarts the animation, and the flow reads as one place
-/// you are moving through instead of five pages.
+/// One screen rather than a stack of routes — the splash and the connect screen
+/// are the same surface morphing, and the rest swap above the same ink.
 ///
-/// The dense form on the Connections screen ([AddJellyfinScreen]) stays as it
-/// is — that one is for someone who already has the app working and wants a
-/// second server. Both commit through [commitJellyfinConnection].
+/// Nothing here scans. No traffic leaves the device until the user presses
+/// Connect, which is the flow's one privacy claim and worth keeping true.
 class OnboardingFlowScreen extends StatefulWidget {
   const OnboardingFlowScreen({
     super.key,
     this.initialErrorMessage,
+    this.startAtSplash = true,
     @visibleForTesting this.authServiceFactory,
-    @visibleForTesting this.lanDiscoveryFactory,
+    @visibleForTesting this.clipboardReader,
   });
 
   /// Surfaced when the flow is reached by being signed out rather than by
   /// installing the app.
   final String? initialErrorMessage;
 
+  /// False when the user is already past the splash — being sent back here by a
+  /// sign-out should not replay the logo.
+  final bool startAtSplash;
+
   final Future<JellyfinConnectionAuthService> Function()? authServiceFactory;
-  final Future<List<DiscoveredJellyfinServer>> Function()? lanDiscoveryFactory;
+  final Future<String?> Function()? clipboardReader;
 
   @override
   State<OnboardingFlowScreen> createState() => _OnboardingFlowScreenState();
@@ -59,20 +61,24 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   final _username = TextEditingController();
   final _password = TextEditingController();
 
-  OnboardingStep _step = OnboardingStep.connect;
+  OnboardingStep _step = OnboardingStep.intro;
 
-  /// The connect step opens with one button and expands in place. Someone who
-  /// taps straight through loses nothing, and nobody meets an empty field
+  /// The intro opens folded to a single button and expands in place. Someone
+  /// who taps straight through loses nothing, and nobody meets an empty field
   /// before they have been told what it is for.
-  bool _addressExpanded = false;
+  bool _formOpen = false;
 
   String? _error;
-  List<DiscoveredJellyfinServer> _discovered = const [];
+  String? _clipboardOffer;
+  bool _obscurePassword = true;
+
+  ConnectionFailure _failure = ConnectionFailure.unreachable;
+  SignInMode _signInMode = SignInMode.password;
 
   JellyfinServerInfo? _serverInfo;
   JellyfinEndpointRaceResult? _endpoint;
   bool _quickConnectEnabled = false;
-  JellyfinQuickConnectInitiation? _quickConnect;
+  String? _quickConnectCode;
   bool _quickConnectCancelled = false;
   int _quickConnectAttempt = 0;
 
@@ -86,7 +92,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   void initState() {
     super.initState();
     _error = widget.initialErrorMessage;
-    unawaited(_scan());
+    unawaited(_readClipboard());
   }
 
   @override
@@ -96,6 +102,23 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     _username.dispose();
     _password.dispose();
     super.dispose();
+  }
+
+  /// Offer what is already on the clipboard rather than making someone retype
+  /// an address they just copied off a dashboard. Only an offer — nothing is
+  /// filled in without a tap.
+  Future<void> _readClipboard() async {
+    try {
+      final reader = widget.clipboardReader;
+      final text = reader != null ? await reader() : (await Clipboard.getData(Clipboard.kTextPlain))?.text;
+      final candidate = text?.trim();
+      if (!mounted || candidate == null || candidate.isEmpty || candidate.length > 120) return;
+      // Only something shaped like an address is worth offering.
+      if (!RegExp(r'^(https?://)?[\w.-]+(:\d+)?/?$').hasMatch(candidate)) return;
+      setState(() => _clipboardOffer = candidate);
+    } catch (e) {
+      appLogger.w('Could not read the clipboard for an address offer', error: e);
+    }
   }
 
   Future<JellyfinConnectionAuthService> _auth() async {
@@ -108,18 +131,10 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     );
   }
 
-  void _to(OnboardingStep step) {
-    _generation++;
-    setState(() {
-      _step = step;
-      _error = null;
-    });
-  }
+  // ---- reaching the server ------------------------------------------------
 
-  // ---- connect ------------------------------------------------------------
-
-  Future<void> _probe(String raw) async {
-    final input = JellyfinEndpointDiscovery.buildUserInputCandidates([raw]);
+  Future<void> _probe() async {
+    final input = JellyfinEndpointDiscovery.buildUserInputCandidates([_address.text]);
     if (input.probeBaseUrls.isEmpty) {
       setState(() => _error = t.onboarding.addressRequired);
       return;
@@ -144,41 +159,36 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         _endpoint = endpoint;
         _serverInfo = endpoint.serverInfo;
         _quickConnectEnabled = quickConnect;
+        _signInMode = SignInMode.password;
         _step = OnboardingStep.signIn;
       });
     } catch (e) {
       if (!mounted || generation != _generation) return;
-      // Straight back to the address, with the reason attached to the field —
-      // a dead end here means the address is wrong and that is where the fix is.
       setState(() {
-        _step = OnboardingStep.connect;
-        _addressExpanded = true;
-        _error = e is MediaServerUrlException ? e.message : t.addServer.couldNotReachServer(error: e.toString());
+        _failure = _classify(e);
+        _step = OnboardingStep.failed;
       });
     }
   }
 
-  // ---- discover -----------------------------------------------------------
-
-  /// Ask the network on the way in, and never say that we did.
-  ///
-  /// A broadcast cannot reach a server behind Docker's bridge or on another
-  /// subnet, so silence is the normal outcome and there is nothing useful to
-  /// report about it. Anything that does answer appears on the connect step.
-  Future<void> _scan() async {
-    try {
-      final factory = widget.lanDiscoveryFactory;
-      final found = factory != null
-          ? await factory()
-          : await JellyfinLanDiscoveryService().discover(responseWindow: const Duration(milliseconds: 1300));
-      if (!mounted) return;
-      setState(() => _discovered = found);
-    } catch (e, st) {
-      appLogger.w('Onboarding LAN discovery failed', error: e, stackTrace: st);
-    }
+  /// A certificate the device refuses is a different problem from silence, and
+  /// retrying only helps one of them.
+  ConnectionFailure _classify(Object error) {
+    final text = error.toString().toLowerCase();
+    final certificate = text.contains('certificate') || text.contains('handshake');
+    return certificate ? ConnectionFailure.certificate : ConnectionFailure.unreachable;
   }
 
-  // ---- sign in ------------------------------------------------------------
+  void _backToAddress({String? error}) {
+    _generation++;
+    setState(() {
+      _step = OnboardingStep.intro;
+      _formOpen = true;
+      _error = error;
+    });
+  }
+
+  // ---- signing in ---------------------------------------------------------
 
   Future<void> _signIn() async {
     final info = _serverInfo;
@@ -221,17 +231,21 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     final endpoint = _endpoint;
     if (info == null || endpoint == null) return;
 
-    final generation = ++_generation;
+    final generation = _generation;
     final attempt = ++_quickConnectAttempt;
     _quickConnectCancelled = false;
-    setState(() => _error = null);
+    setState(() {
+      _signInMode = SignInMode.quickConnect;
+      _quickConnectCode = null;
+      _error = null;
+    });
     try {
       final auth = await _auth();
       final storage = await StorageService.getInstance();
       final deviceId = await storage.getOrCreateClientIdentifier();
       final initiation = await auth.initiateQuickConnect(baseUrl: endpoint.activeBaseUrl, deviceId: deviceId);
       if (!mounted || attempt != _quickConnectAttempt) return;
-      setState(() => _quickConnect = initiation);
+      setState(() => _quickConnectCode = initiation.code);
 
       final connection = await auth.authenticateByQuickConnect(
         baseUrl: endpoint.activeBaseUrl,
@@ -242,26 +256,32 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         shouldCancel: () => _quickConnectCancelled || attempt != _quickConnectAttempt,
       );
       if (!mounted || attempt != _quickConnectAttempt) return;
-      setState(() => _quickConnect = null);
       if (connection == null) {
         // A cancel is the user's own doing and needs no message; an expiry does.
-        if (!_quickConnectCancelled) setState(() => _error = t.auth.quickConnectExpired);
+        setState(() {
+          _quickConnectCode = null;
+          if (!_quickConnectCancelled) _error = t.auth.quickConnectExpired;
+        });
         return;
       }
       await _commit(connection, generation);
     } catch (e) {
       if (!mounted || attempt != _quickConnectAttempt) return;
       setState(() {
-        _quickConnect = null;
+        _quickConnectCode = null;
         _error = t.addServer.quickConnectFailed(error: e.toString());
       });
     }
   }
 
-  void _cancelQuickConnect() {
+  void _usePassword() {
     _quickConnectCancelled = true;
     _quickConnectAttempt++;
-    setState(() => _quickConnect = null);
+    setState(() {
+      _signInMode = SignInMode.password;
+      _quickConnectCode = null;
+      _error = null;
+    });
   }
 
   Future<void> _commit(JellyfinConnection connection, int generation) async {
@@ -288,53 +308,53 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OnboardingPalette.ink,
-      // The flow owns its own inset handling per step, and the water must reach
-      // the bottom edge.
-      body: Stack(
-        children: [
-          if (_step != OnboardingStep.connected) const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
-          Positioned.fill(child: SafeArea(bottom: false, child: _buildStep())),
-        ],
-      ),
+      body: SafeArea(bottom: false, child: _buildStep()),
     );
   }
 
   Widget _buildStep() {
     return switch (_step) {
-      OnboardingStep.connect => ConnectStep(
+      OnboardingStep.intro => IntroStep(
         controller: _address,
-        expanded: _addressExpanded,
+        formOpen: _formOpen,
         error: _error,
-        discovered: _discovered,
-        onExpand: () => setState(() => _addressExpanded = true),
-        onConnect: () => unawaited(_probe(_address.text)),
-        onPick: (server) {
-          // A discovered server still goes through the same probe as a typed
-          // address: discovery saves typing, it does not skip validation.
-          _address.text = server.address;
-          unawaited(_probe(server.address));
-        },
+        clipboardOffer: _address.text.trim().isEmpty ? _clipboardOffer : null,
+        startAtSplash: widget.startAtSplash,
+        onOpenForm: () => setState(() => _formOpen = true),
+        onConnect: () => unawaited(_probe()),
+        onPaste: () => setState(() {
+          _address.text = _clipboardOffer ?? '';
+          _clipboardOffer = null;
+          _error = null;
+        }),
       ),
-      OnboardingStep.reaching => WorkingStep(title: t.onboarding.reaching, detail: _address.text),
+      OnboardingStep.reaching => WorkingStep(
+        title: t.onboarding.reaching,
+        detail: _address.text,
+        onCancel: () => _backToAddress(error: t.onboarding.connectionCancelled),
+      ),
+      OnboardingStep.failed => FailedStep(
+        failure: _failure,
+        address: _address.text,
+        onRetry: () => unawaited(_probe()),
+        onEditAddress: _backToAddress,
+      ),
       OnboardingStep.signingIn => WorkingStep(title: t.onboarding.signingIn, detail: _serverInfo?.serverName ?? ''),
       OnboardingStep.signIn => SignInStep(
         serverName: _serverInfo?.serverName ?? '',
-        serverAddress: _endpoint?.activeBaseUrl ?? _address.text,
+        mode: _signInMode,
         username: _username,
         password: _password,
+        obscurePassword: _obscurePassword,
         error: _error,
         quickConnectEnabled: _quickConnectEnabled,
-        quickConnect: _quickConnect,
+        quickConnectCode: _quickConnectCode,
         onSignIn: () => unawaited(_signIn()),
-        onQuickConnect: () => unawaited(_startQuickConnect()),
-        onCancelQuickConnect: _cancelQuickConnect,
-        onChangeServer: () => _to(OnboardingStep.connect),
+        onToggleObscure: () => setState(() => _obscurePassword = !_obscurePassword),
+        onUseQuickConnect: () => unawaited(_startQuickConnect()),
+        onUsePassword: _usePassword,
       ),
-      OnboardingStep.connected => ConnectedStep(
-        connection: _connection!,
-        address: _endpoint?.activeBaseUrl ?? _address.text,
-        onEnter: _enterLibrary,
-      ),
+      OnboardingStep.connected => ConnectedStep(connection: _connection!, onEnter: _enterLibrary),
     };
   }
 }

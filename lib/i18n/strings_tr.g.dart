@@ -1445,8 +1445,6 @@ class _Translations$addServer$tr extends Translations$addServer$en {
 	@override String get serverUrls => 'Sunucu URL\'leri';
 	@override String get serverUrlsHelper => 'Virgülle ayrılmış birden fazla URL\'ye izin verilir.';
 	@override String get findServer => 'Sunucu bul';
-	@override String get searchingLocalServers => 'Yerel Jellyfin sunucuları aranıyor...';
-	@override String get localServers => 'Yerel Jellyfin sunucuları';
 	@override String get username => 'Kullanıcı adı';
 	@override String get password => 'Şifre';
 	@override String get signIn => 'Giriş Yap';
@@ -2796,8 +2794,6 @@ extension on TranslationsTr {
 			'addServer.serverUrls' => 'Sunucu URL\'leri',
 			'addServer.serverUrlsHelper' => 'Virgülle ayrılmış birden fazla URL\'ye izin verilir.',
 			'addServer.findServer' => 'Sunucu bul',
-			'addServer.searchingLocalServers' => 'Yerel Jellyfin sunucuları aranıyor...',
-			'addServer.localServers' => 'Yerel Jellyfin sunucuları',
 			'addServer.username' => 'Kullanıcı adı',
 			'addServer.password' => 'Şifre',
 			'addServer.signIn' => 'Giriş Yap',

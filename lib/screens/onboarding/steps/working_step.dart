@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../i18n/strings.g.dart';
 import '../onboarding_palette.dart';
 import '../widgets/harbor_mark.dart';
+import '../widgets/onboarding_controls.dart';
 
 /// The wait, used for both the probe and the sign-in.
 ///
@@ -9,48 +11,64 @@ import '../widgets/harbor_mark.dart';
 /// authentication call can say how far along it is, and a bar that pretends
 /// otherwise is a lie the user catches.
 class WorkingStep extends StatelessWidget {
-  const WorkingStep({super.key, required this.title, required this.detail});
+  const WorkingStep({super.key, required this.title, required this.detail, this.onCancel});
 
   final String title;
 
   /// What is being reached — the address, or the server that answered.
   final String detail;
 
+  /// A reachability race against an address that will never answer runs its
+  /// full timeout, so there has to be a way out that is not the back button.
+  final VoidCallback? onCancel;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      // Clear of the water, which owns the bottom of the screen.
-      padding: const EdgeInsets.only(bottom: 190),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const HarborMark(size: 96, bob: true),
-          const SizedBox(height: 30),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              letterSpacing: -0.4,
-              color: OnboardingPalette.text,
-            ),
-          ),
-          const SizedBox(height: 15),
-          const _Sweep(),
-          if (detail.isNotEmpty) ...[
-            const SizedBox(height: 15),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Text(
-                detail,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
+    return Stack(
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const HarborMark(size: 96, bob: true),
+            const SizedBox(height: 30),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                letterSpacing: -0.4,
+                color: OnboardingPalette.text,
               ),
             ),
+            const SizedBox(height: 15),
+            const _Sweep(),
+            if (detail.isNotEmpty) ...[
+              const SizedBox(height: 15),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 32),
+                child: Text(
+                  detail,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
+                ),
+              ),
+            ],
           ],
-        ],
-      ),
+        ),
+        if (onCancel case final onCancel?)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 34,
+            child: Center(
+              child: SizedBox(
+                width: 150,
+                child: OnboardingSecondaryButton(label: t.common.cancel, onPressed: onCancel),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
@@ -70,6 +88,12 @@ class _SweepState extends State<_Sweep> with SingleTickerProviderStateMixin {
   void dispose() {
     _sweep.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (prefersReducedMotion(context) && _sweep.isAnimating) _sweep.stop();
   }
 
   @override

@@ -90,7 +90,7 @@ class _MarkPainter extends CustomPainter {
     canvas.scale(scale);
 
     final sailColor = onLight ? OnboardingPalette.ink : OnboardingPalette.text;
-    final jibColor = onLight ? OnboardingPalette.blueDeep : OnboardingPalette.blue;
+    final jibColor = OnboardingPalette.blue;
 
     if (jibOpacity > 0) {
       canvas.drawPath(

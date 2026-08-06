@@ -24,7 +24,6 @@ import 'package:harbor/screens/settings/connection_persistence.dart';
 import 'package:harbor/utils/device_identity.dart';
 import 'package:harbor/services/jellyfin_auth_service.dart';
 import 'package:harbor/services/credential_vault.dart';
-import 'package:harbor/services/jellyfin_lan_discovery_service.dart';
 import 'package:harbor/services/multi_server_manager.dart';
 import 'package:harbor/services/storage_service.dart';
 import 'package:harbor/theme/mono_theme.dart';
@@ -261,10 +260,8 @@ class _RouteHarness {
             onPressed: () => onRoute(
               Navigator.of(context).push<bool>(
                 MaterialPageRoute(
-                  builder: (_) => AddJellyfinScreen(
-                    authServiceFactory: () => _successfulAuthService(quickConnect: quickConnect),
-                    localDiscoveryFactory: _noLocalServers,
-                  ),
+                  builder: (_) =>
+                      AddJellyfinScreen(authServiceFactory: () => _successfulAuthService(quickConnect: quickConnect)),
                 ),
               ),
             ),
@@ -283,8 +280,6 @@ class _RouteHarness {
     await db.close();
   }
 }
-
-Future<List<DiscoveredJellyfinServer>> _noLocalServers() async => const [];
 
 void main() {
   group('resolveJellyfinClientVersion', () {
@@ -317,7 +312,7 @@ void main() {
   });
 
   testWidgets('autofocuses the server URL field', (tester) async {
-    await tester.pumpWidget(_testApp(AddJellyfinScreen(localDiscoveryFactory: _noLocalServers)));
+    await tester.pumpWidget(_testApp(AddJellyfinScreen()));
     await tester.pump();
 
     final field = tester.widget<TextField>(find.byType(TextField));
@@ -328,9 +323,7 @@ void main() {
   testWidgets('TV initial focus keeps server URL focused without opening keyboard', (tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
 
-    await tester.pumpWidget(
-      InputModeTracker(child: _testApp(AddJellyfinScreen(localDiscoveryFactory: _noLocalServers))),
-    );
+    await tester.pumpWidget(InputModeTracker(child: _testApp(AddJellyfinScreen())));
     await tester.pumpAndSettle();
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
@@ -343,9 +336,7 @@ void main() {
     await TvDetectionService.getInstance(forceTv: true);
     TvDetectionService.setForceTVSync(true);
 
-    await tester.pumpWidget(
-      InputModeTracker(child: _testApp(AddJellyfinScreen(localDiscoveryFactory: _noLocalServers))),
-    );
+    await tester.pumpWidget(InputModeTracker(child: _testApp(AddJellyfinScreen())));
     await tester.pumpAndSettle();
 
     expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
@@ -363,57 +354,12 @@ void main() {
     expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsOneWidget);
   });
 
-  testWidgets('TV discovery keeps initial URL focus and D-pad reaches discovered servers', (tester) async {
-    TvDetectionService.debugSetAppleTVOverride(true);
-
-    await tester.pumpWidget(
-      InputModeTracker(
-        child: _testApp(
-          AddJellyfinScreen(
-            localDiscoveryFactory: () async => [
-              DiscoveredJellyfinServer(address: 'http://192.168.1.20:8096', id: 'srv-1', name: 'Home'),
-            ],
-          ),
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('Home'), findsOneWidget);
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Discovered:srv-1');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
-    await tester.pumpAndSettle();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-    // Returning to the URL field by D-pad must not raise the system keyboard;
-    // only an explicit Select does. Auto-opening on focus made the form
-    // untraversable on Apple TV (#1728).
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isTrue);
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.select);
-    await tester.pumpAndSettle();
-
-    expect(tester.widget<TextField>(find.byType(TextField)).readOnly, isFalse);
-  });
-
   /// Drives the Apple TV Add Jellyfin flow up to the credentials step and
   /// leaves focus on the username field, as the probe does.
   Future<void> pumpAppleTvCredentialsStep(WidgetTester tester) async {
     TvDetectionService.debugSetAppleTVOverride(true);
     await tester.pumpWidget(
-      InputModeTracker(
-        child: _testApp(
-          AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthService(), localDiscoveryFactory: _noLocalServers),
-        ),
-      ),
+      InputModeTracker(child: _testApp(AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthService()))),
     );
     await tester.pumpAndSettle();
     await tester.sendKeyEvent(LogicalKeyboardKey.select);
@@ -493,11 +439,7 @@ void main() {
   });
 
   testWidgets('D-pad moves from URL through Change to credentials after server is found', (tester) async {
-    await tester.pumpWidget(
-      _testApp(
-        AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthService(), localDiscoveryFactory: _noLocalServers),
-      ),
-    );
+    await tester.pumpWidget(_testApp(AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthService())));
     await tester.pump();
 
     await tester.enterText(find.byType(TextField).first, 'https://jf.example.com');
@@ -533,14 +475,7 @@ void main() {
   });
 
   testWidgets('accepts a bare Jellyfin host and expands it before probing', (tester) async {
-    await tester.pumpWidget(
-      _testApp(
-        AddJellyfinScreen(
-          authServiceFactory: () => _jellyfinAuthServiceForBareHost(),
-          localDiscoveryFactory: _noLocalServers,
-        ),
-      ),
-    );
+    await tester.pumpWidget(_testApp(AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthServiceForBareHost())));
     await tester.pump();
 
     await tester.enterText(find.byType(TextField).first, 'jf.example.com');
@@ -555,12 +490,7 @@ void main() {
   testWidgets('Quick Connect shows the code prominently and cancel returns to the form', (tester) async {
     resetSharedPreferencesForTest();
     await tester.pumpWidget(
-      _testApp(
-        AddJellyfinScreen(
-          authServiceFactory: () => _jellyfinAuthService(quickConnectEnabled: true),
-          localDiscoveryFactory: _noLocalServers,
-        ),
-      ),
+      _testApp(AddJellyfinScreen(authServiceFactory: () => _jellyfinAuthService(quickConnectEnabled: true))),
     );
     await tester.pump();
 
@@ -589,136 +519,6 @@ void main() {
 
     // Let the cancelled poll's backoff timer fire so the test ends clean.
     await tester.pump(const Duration(seconds: 6));
-  });
-
-  testWidgets('TV auto Quick Connect never opens the keyboard across the panel swap', (tester) async {
-    resetSharedPreferencesForTest();
-    TvDetectionService.debugSetAppleTVOverride(null);
-    await TvDetectionService.getInstance(forceTv: true);
-    TvDetectionService.setForceTVSync(true);
-    // Simulated TV device, not desktop force-TV: keep locked keyboard mode.
-
-    await tester.pumpWidget(
-      InputModeTracker(
-        child: _testApp(
-          AddJellyfinScreen(
-            // Hold /QuickConnect/Initiate open so the frames between probe
-            // success and the panel swap are observable — that window is
-            // where the focus fallback used to auto-open the keyboard.
-            authServiceFactory: () =>
-                _jellyfinAuthService(quickConnectEnabled: true, initiateDelay: const Duration(milliseconds: 50)),
-            localDiscoveryFactory: () async => [
-              DiscoveredJellyfinServer(address: 'http://192.168.1.20:8096', id: 'srv-1', name: 'Home'),
-            ],
-          ),
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
-
-    // D-pad to the discovered server and select it — on TV the probe
-    // auto-starts Quick Connect.
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-    await tester.pump();
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Discovered:srv-1');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.select);
-    await tester.pump();
-    await tester.pump();
-
-    // Pre-swap frames: probe done, initiate in flight — no keyboard.
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-
-    await tester.pump(const Duration(milliseconds: 60));
-    await tester.pump();
-
-    // Quick Connect panel swapped in: code shown, Cancel focused, no keyboard.
-    expect(find.text('123456'), findsOneWidget);
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:CancelQuickConnect');
-
-    await tester.tap(find.text('Cancel'));
-    await tester.pump();
-    await tester.pump();
-
-    // Form returns; the URL field's autofocus re-fires on a fresh host whose
-    // first-focus suppression keeps the keyboard closed.
-    expect(find.text('123456'), findsNothing);
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
-    expect(find.byKey(const Key('tv_virtual_keyboard_panel')), findsNothing);
-
-    // Let the cancelled poll's backoff timer fire so the test ends clean.
-    await tester.pump(const Duration(seconds: 6));
-  });
-
-  testWidgets('selecting a discovered Jellyfin server probes that address', (tester) async {
-    await tester.pumpWidget(
-      _testApp(
-        AddJellyfinScreen(
-          authServiceFactory: () => _jellyfinAuthService(),
-          localDiscoveryFactory: () async => [
-            DiscoveredJellyfinServer(address: 'http://192.168.1.20:8096', id: 'srv-1', name: 'Home'),
-          ],
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('Home'), findsOneWidget);
-
-    await tester.tap(find.text('Home'));
-    await tester.pumpAndSettle();
-
-    final field = tester.widget<TextField>(find.byType(TextField).first);
-    expect(field.controller?.text, contains('http://192.168.1.20:8096'));
-    expect(find.text('Jellyfin 10.9.0'), findsOneWidget);
-  });
-
-  testWidgets('D-pad can navigate through discovered Jellyfin servers', (tester) async {
-    await tester.pumpWidget(
-      InputModeTracker(
-        child: _testApp(
-          AddJellyfinScreen(
-            localDiscoveryFactory: () async => [
-              DiscoveredJellyfinServer(address: 'http://192.168.1.20:8096', id: 'srv-1', name: 'Home'),
-              DiscoveredJellyfinServer(address: 'http://192.168.1.30:8096', id: 'srv-2', name: 'Office'),
-            ],
-          ),
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    expect(find.text('Home'), findsOneWidget);
-    expect(find.text('Office'), findsOneWidget);
-    expect(find.byType(OutlinedButton), findsNothing);
-
-    await tester.tap(find.byType(TextField).first);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Url');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Discovered:srv-1');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Discovered:srv-2');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:FindServer');
-
-    await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
-    await tester.pump();
-
-    expect(FocusManager.instance.primaryFocus?.debugLabel, 'AddJellyfin:Discovered:srv-2');
   });
 
   testWidgets('password sign-in commits one complete bundle and binds once', (tester) async {

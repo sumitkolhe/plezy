@@ -1440,8 +1440,6 @@ class _Translations$addServer$ru extends Translations$addServer$en {
 	@override String get serverUrls => 'URL-адреса сервера';
 	@override String get serverUrlsHelper => 'Можно указать несколько URL через запятую.';
 	@override String get findServer => 'Найти сервер';
-	@override String get searchingLocalServers => 'Поиск локальных серверов Jellyfin...';
-	@override String get localServers => 'Локальные серверы Jellyfin';
 	@override String get username => 'Имя пользователя';
 	@override String get password => 'Пароль';
 	@override String get signIn => 'Войти';
@@ -2780,8 +2778,6 @@ extension on TranslationsRu {
 			'addServer.serverUrls' => 'URL-адреса сервера',
 			'addServer.serverUrlsHelper' => 'Можно указать несколько URL через запятую.',
 			'addServer.findServer' => 'Найти сервер',
-			'addServer.searchingLocalServers' => 'Поиск локальных серверов Jellyfin...',
-			'addServer.localServers' => 'Локальные серверы Jellyfin',
 			'addServer.username' => 'Имя пользователя',
 			'addServer.password' => 'Пароль',
 			'addServer.signIn' => 'Войти',

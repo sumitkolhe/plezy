@@ -1,179 +1,241 @@
 import 'package:flutter/material.dart';
 
 import '../../../i18n/strings.g.dart';
-import '../../../services/jellyfin_auth_service.dart';
 import '../onboarding_palette.dart';
 import '../widgets/onboarding_controls.dart';
 import '../widgets/rise_in.dart';
 
+/// Which way the user is proving who they are.
+enum SignInMode { password, quickConnect }
+
 /// Sign in to the server that answered.
 ///
-/// The design does not have this step — it goes straight from an address to a
-/// connected library. Jellyfin does not: reaching a server tells you nothing
-/// about who you are on it. Rather than bolt a form onto another step, it gets
-/// its own, built from the same parts, and leads with the server it found so
-/// the address you typed is visibly confirmed before you type a password.
+/// The design does not have this step in its happy path drawing, but Jellyfin
+/// does: reaching a server tells you nothing about who you are on it. Password
+/// leads because every server supports it; Quick Connect sits one tap below and
+/// only when the server offers it.
 class SignInStep extends StatelessWidget {
   const SignInStep({
     super.key,
     required this.serverName,
-    required this.serverAddress,
+    required this.mode,
     required this.username,
     required this.password,
+    required this.obscurePassword,
     required this.error,
     required this.quickConnectEnabled,
-    required this.quickConnect,
+    required this.quickConnectCode,
     required this.onSignIn,
-    required this.onQuickConnect,
-    required this.onCancelQuickConnect,
-    required this.onChangeServer,
+    required this.onToggleObscure,
+    required this.onUseQuickConnect,
+    required this.onUsePassword,
   });
 
   final String serverName;
-  final String serverAddress;
+  final SignInMode mode;
   final TextEditingController username;
   final TextEditingController password;
+  final bool obscurePassword;
   final String? error;
   final bool quickConnectEnabled;
-  final JellyfinQuickConnectInitiation? quickConnect;
+
+  /// Null until the server has issued one.
+  final String? quickConnectCode;
+
   final VoidCallback onSignIn;
-  final VoidCallback onQuickConnect;
-  final VoidCallback onCancelQuickConnect;
-  final VoidCallback onChangeServer;
+  final VoidCallback onToggleObscure;
+  final VoidCallback onUseQuickConnect;
+  final VoidCallback onUsePassword;
 
   @override
   Widget build(BuildContext context) {
-    if (quickConnect case final initiation?) {
-      return _QuickConnectPanel(code: initiation.code, onCancel: onCancelQuickConnect);
-    }
+    final quick = mode == SignInMode.quickConnect;
     return RiseIn(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(
-          OnboardingMetrics.gutter,
-          56,
-          OnboardingMetrics.gutter,
-          OnboardingMetrics.gutter,
-        ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(OnboardingMetrics.gutter, 56, OnboardingMetrics.gutter, 34),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            OnboardingHeading(title: t.onboarding.signInTitle, centered: false, titleSize: 25),
-            const SizedBox(height: 18),
-            _ServerCard(name: serverName, address: serverAddress, onChange: onChangeServer),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: OnboardingChip(
+                label: t.onboarding.serverReachable(server: serverName),
+                leading: Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(color: OnboardingPalette.success, shape: BoxShape.circle),
+                ),
+              ),
+            ),
             const SizedBox(height: 26),
-            OnboardingField(
-              label: t.addServer.username,
-              controller: username,
-              autofocus: true,
-              textInputAction: TextInputAction.next,
+            Text(
+              t.onboarding.signInTitle,
+              style: const TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w700,
+                letterSpacing: -0.5,
+                color: OnboardingPalette.text,
+              ),
             ),
-            const SizedBox(height: 16),
-            OnboardingField(
-              label: t.addServer.password,
-              controller: password,
-              obscureText: true,
-              textInputAction: TextInputAction.go,
-              onSubmitted: (_) => onSignIn(),
-              error: error,
+            const SizedBox(height: 9),
+            Text(
+              quick ? t.onboarding.signInQuickBody : t.onboarding.signInPasswordBody,
+              style: const TextStyle(fontSize: 14, height: 1.5, color: OnboardingPalette.textMuted),
             ),
-            const SizedBox(height: 24),
-            OnboardingButton(label: t.addServer.signIn, onPressed: onSignIn),
-            if (quickConnectEnabled) ...[
-              const SizedBox(height: 11),
-              OnboardingSecondaryButton(label: t.auth.useQuickConnect, onPressed: onQuickConnect),
-            ],
+            Expanded(child: quick ? _buildQuickConnect() : _buildPassword()),
+            if (quick)
+              OnboardingSecondaryButton(label: t.onboarding.usePassword, onPressed: onUsePassword)
+            else if (quickConnectEnabled)
+              OnboardingSecondaryButton(label: t.onboarding.useQuickConnect, onPressed: onUseQuickConnect),
           ],
         ),
       ),
     );
   }
-}
 
-/// What answered, and the way back if it is not the right one.
-class _ServerCard extends StatelessWidget {
-  const _ServerCard({required this.name, required this.address, required this.onChange});
-
-  final String name;
-  final String address;
-  final VoidCallback onChange;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: OnboardingPalette.fieldFill,
-        borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
-        border: Border.all(color: OnboardingPalette.hairline),
-      ),
-      child: Row(
+  Widget _buildPassword() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Icon(Icons.check_circle_outline, size: 20, color: OnboardingPalette.success),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: OnboardingPalette.text),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  address,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 12.5, color: OnboardingPalette.textFaint),
-                ),
-              ],
+          const SizedBox(height: 26),
+          OnboardingFieldLabel(t.addServer.username),
+          const SizedBox(height: 8),
+          OnboardingField(controller: username, autofocus: true, textInputAction: TextInputAction.next),
+          const SizedBox(height: 16),
+          OnboardingFieldLabel(t.addServer.password),
+          const SizedBox(height: 8),
+          OnboardingField(
+            controller: password,
+            obscureText: obscurePassword,
+            invalid: error != null,
+            textInputAction: TextInputAction.go,
+            onSubmitted: (_) => onSignIn(),
+            trailing: GestureDetector(
+              onTap: onToggleObscure,
+              child: Text(
+                obscurePassword ? t.onboarding.show : t.onboarding.hide,
+                style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500, color: OnboardingPalette.textFaint),
+              ),
             ),
           ),
-          const SizedBox(width: 8),
-          TextButton(
-            onPressed: onChange,
-            child: Text(t.addServer.change, style: const TextStyle(fontSize: 13.5, color: OnboardingPalette.blue)),
-          ),
+          if (error case final error?) ...[const SizedBox(height: 12), OnboardingErrorText(error)],
+          const SizedBox(height: 22),
+          OnboardingButton(label: t.addServer.signIn, onPressed: onSignIn),
         ],
       ),
     );
   }
+
+  Widget _buildQuickConnect() {
+    final code = quickConnectCode;
+    return Column(
+      children: [
+        const SizedBox(height: 32),
+        if (code == null)
+          const _Spinner()
+        else
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [for (final character in code.split('')) _CodeBox(character)],
+          ),
+        const SizedBox(height: 26),
+        if (code != null) ...[
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [_Spinner(), SizedBox(width: 9), _WaitingLabel()],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            t.onboarding.quickConnectHowTo,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 13.5, height: 1.55, color: OnboardingPalette.textFaint),
+          ),
+        ],
+        if (error case final error?) ...[const SizedBox(height: 16), OnboardingErrorText(error)],
+      ],
+    );
+  }
 }
 
-/// Waiting for the code to be approved elsewhere. No spinner: there is nothing
-/// happening on this device, and the only thing that matters is the code.
-class _QuickConnectPanel extends StatelessWidget {
-  const _QuickConnectPanel({required this.code, required this.onCancel});
+class _WaitingLabel extends StatelessWidget {
+  const _WaitingLabel();
 
-  final String code;
-  final VoidCallback onCancel;
+  @override
+  Widget build(BuildContext context) =>
+      Text(t.onboarding.waitingForApproval, style: const TextStyle(fontSize: 14, color: OnboardingPalette.textOnFill));
+}
+
+/// One character of the Quick Connect code, boxed so it can be read aloud and
+/// typed somewhere else without losing your place.
+class _CodeBox extends StatelessWidget {
+  const _CodeBox(this.character);
+
+  final String character;
 
   @override
   Widget build(BuildContext context) {
-    return RiseIn(
-      child: Padding(
-        padding: const EdgeInsets.all(OnboardingMetrics.gutter),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            OnboardingHeading(title: t.auth.useQuickConnect, subtitle: t.auth.quickConnectInstructions),
-            const SizedBox(height: 28),
-            Text(
-              code,
-              style: const TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 8,
-                color: OnboardingPalette.blue,
-              ),
-            ),
-            const SizedBox(height: 24),
-            Text(t.auth.quickConnectWaiting, style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint)),
-            const SizedBox(height: 32),
-            OnboardingSecondaryButton(label: t.auth.quickConnectCancel, onPressed: onCancel),
-          ],
+    return Container(
+      width: 42,
+      height: 52,
+      margin: const EdgeInsets.symmetric(horizontal: 4.5),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: OnboardingPalette.fieldFill,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: OnboardingPalette.outline),
+      ),
+      child: Text(
+        character,
+        style: const TextStyle(
+          fontFamily: 'GoogleSansCode',
+          fontSize: 21,
+          fontWeight: FontWeight.w500,
+          color: OnboardingPalette.text,
         ),
+      ),
+    );
+  }
+}
+
+class _Spinner extends StatefulWidget {
+  const _Spinner();
+
+  @override
+  State<_Spinner> createState() => _SpinnerState();
+}
+
+class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin {
+  late final AnimationController _spin;
+
+  @override
+  void initState() {
+    super.initState();
+    _spin = AnimationController(vsync: this, duration: const Duration(milliseconds: 1100));
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Still under reduced motion: an arc going nowhere is decoration, and the
+    // words next to it already say what is happening.
+    if (!prefersReducedMotion(context) && !_spin.isAnimating) _spin.repeat();
+  }
+
+  @override
+  void dispose() {
+    _spin.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RotationTransition(
+      turns: _spin,
+      child: const SizedBox(
+        width: 15,
+        height: 15,
+        child: CircularProgressIndicator(strokeWidth: 2.2, color: OnboardingPalette.blue),
       ),
     );
   }

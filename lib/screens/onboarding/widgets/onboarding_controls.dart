@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 
 import '../onboarding_palette.dart';
 
-/// The flow's primary action. Filled Harbor blue, or white when it hands over
-/// to the app at the end.
+/// Whether the platform has been asked to keep still.
+///
+/// The flow leans on motion — a rocking mark, a sweeping bar, a morph between
+/// two screens — so honouring this is not cosmetic. Checked at each animating
+/// widget rather than centrally, because each one stills itself differently.
+bool prefersReducedMotion(BuildContext context) => MediaQuery.disableAnimationsOf(context);
+
+/// The flow's primary action: a white pill, on every screen that has one.
 class OnboardingButton extends StatelessWidget {
-  const OnboardingButton({super.key, required this.label, required this.onPressed, this.icon, this.light = false});
+  const OnboardingButton({super.key, required this.label, required this.onPressed, this.icon});
 
   final String label;
   final VoidCallback? onPressed;
   final Widget? icon;
 
-  /// White on ink, for the one button that leaves onboarding.
-  final bool light;
-
   @override
   Widget build(BuildContext context) {
-    final foreground = light ? OnboardingPalette.ink : OnboardingPalette.text;
     return Semantics(
       button: true,
       enabled: onPressed != null,
       label: label,
       child: Material(
-        color: light ? OnboardingPalette.text : OnboardingPalette.blue,
-        borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
+        color: OnboardingPalette.text,
+        borderRadius: BorderRadius.circular(999),
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
+          borderRadius: BorderRadius.circular(999),
           child: Opacity(
             opacity: onPressed == null ? 0.55 : 1,
             child: SizedBox(
@@ -34,10 +36,10 @@ class OnboardingButton extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (icon case final icon?) ...[icon, const SizedBox(width: 10)],
+                  if (icon case final icon?) ...[icon, const SizedBox(width: 9)],
                   Text(
                     label,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: foreground),
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600, color: OnboardingPalette.ink),
                   ),
                 ],
               ),
@@ -49,8 +51,8 @@ class OnboardingButton extends StatelessWidget {
   }
 }
 
-/// The flow's secondary action: outlined, never filled, so the primary one is
-/// unambiguous on every step.
+/// The way back or sideways: a filled pill that never competes with the white
+/// one above it.
 class OnboardingSecondaryButton extends StatelessWidget {
   const OnboardingSecondaryButton({super.key, required this.label, required this.onPressed, this.icon});
 
@@ -65,14 +67,11 @@ class OnboardingSecondaryButton extends StatelessWidget {
       enabled: onPressed != null,
       label: label,
       child: Material(
-        color: Colors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
-          side: const BorderSide(color: OnboardingPalette.outline),
-        ),
+        color: OnboardingPalette.raised,
+        borderRadius: BorderRadius.circular(999),
         child: InkWell(
           onTap: onPressed,
-          borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
+          borderRadius: BorderRadius.circular(999),
           child: SizedBox(
             height: OnboardingMetrics.controlHeight,
             child: Row(
@@ -81,7 +80,7 @@ class OnboardingSecondaryButton extends StatelessWidget {
                 if (icon case final icon?) ...[icon, const SizedBox(width: 9)],
                 Text(
                   label,
-                  style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w500, color: OnboardingPalette.text),
+                  style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500, color: OnboardingPalette.text),
                 ),
               ],
             ),
@@ -92,85 +91,92 @@ class OnboardingSecondaryButton extends StatelessWidget {
   }
 }
 
-/// A labelled field on the flow's ink background.
+/// A field label: small, spaced, and shouting quietly.
+class OnboardingFieldLabel extends StatelessWidget {
+  const OnboardingFieldLabel(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text.toUpperCase(),
+      style: const TextStyle(fontSize: 12, letterSpacing: 1.2, color: OnboardingPalette.textFaint),
+    );
+  }
+}
+
+/// A text field on the flow's ink background.
 class OnboardingField extends StatelessWidget {
   const OnboardingField({
     super.key,
-    required this.label,
     required this.controller,
     this.hintText,
-    this.error,
+    this.invalid = false,
     this.obscureText = false,
     this.keyboardType,
     this.autofocus = false,
     this.textInputAction,
     this.onSubmitted,
-    this.enabled = true,
+    this.onChanged,
+    this.trailing,
   });
 
-  final String label;
   final TextEditingController controller;
   final String? hintText;
-  final String? error;
+  final bool invalid;
   final bool obscureText;
   final TextInputType? keyboardType;
   final bool autofocus;
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
-  final bool enabled;
+  final ValueChanged<String>? onChanged;
+
+  /// The Show/Hide affordance on the password field.
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
-    final invalid = error != null;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Text(
-          label.toUpperCase(),
-          style: const TextStyle(
-            fontSize: 12,
-            letterSpacing: 1.2,
-            fontWeight: FontWeight.w500,
-            color: OnboardingPalette.textFaint,
-          ),
-        ),
-        const SizedBox(height: 9),
-        Container(
-          height: 52,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          decoration: BoxDecoration(
-            color: OnboardingPalette.fieldFill,
-            borderRadius: BorderRadius.circular(OnboardingMetrics.radius),
-            border: Border.all(color: invalid ? OnboardingPalette.danger : OnboardingPalette.hairline),
-          ),
-          alignment: Alignment.centerLeft,
-          child: TextField(
-            controller: controller,
-            obscureText: obscureText,
-            keyboardType: keyboardType,
-            autofocus: autofocus,
-            enabled: enabled,
-            textInputAction: textInputAction,
-            onSubmitted: onSubmitted,
-            autocorrect: false,
-            enableSuggestions: false,
-            style: const TextStyle(fontSize: 15, color: OnboardingPalette.text),
-            cursorColor: OnboardingPalette.blue,
-            decoration: InputDecoration(
-              isDense: true,
-              border: InputBorder.none,
-              hintText: hintText,
-              hintStyle: const TextStyle(color: OnboardingPalette.textFainter, fontSize: 15),
+    return Container(
+      height: OnboardingMetrics.fieldHeight,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: OnboardingPalette.fieldFill,
+        borderRadius: BorderRadius.circular(OnboardingMetrics.fieldRadius),
+        border: Border.all(color: invalid ? OnboardingPalette.danger : OnboardingPalette.hairline),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: controller,
+              obscureText: obscureText,
+              keyboardType: keyboardType,
+              autofocus: autofocus,
+              textInputAction: textInputAction,
+              onSubmitted: onSubmitted,
+              onChanged: onChanged,
+              autocorrect: false,
+              enableSuggestions: false,
+              textCapitalization: TextCapitalization.none,
+              style: const TextStyle(fontSize: 15, color: OnboardingPalette.text),
+              cursorColor: OnboardingPalette.blue,
+              decoration: InputDecoration(
+                isDense: true,
+                border: InputBorder.none,
+                hintText: hintText,
+                hintStyle: const TextStyle(color: OnboardingPalette.textFainter, fontSize: 15),
+              ),
             ),
           ),
-        ),
-        if (error case final error?) ...[const SizedBox(height: 9), OnboardingErrorText(error)],
-      ],
+          if (trailing case final trailing?) ...[const SizedBox(width: 10), trailing],
+        ],
+      ),
     );
   }
 }
 
-/// The one way this flow reports a failure.
+/// The one way this flow reports a failure inline.
 class OnboardingErrorText extends StatelessWidget {
   const OnboardingErrorText(this.message, {super.key});
 
@@ -194,40 +200,42 @@ class OnboardingErrorText extends StatelessWidget {
   }
 }
 
-/// Step heading and its supporting line.
-class OnboardingHeading extends StatelessWidget {
-  const OnboardingHeading({super.key, required this.title, this.subtitle, this.centered = true, this.titleSize = 27});
+/// A small filled pill used for status rather than action — the reachable
+/// server on the sign-in step, and the clipboard offer under the address field.
+class OnboardingChip extends StatelessWidget {
+  const OnboardingChip({super.key, required this.label, this.leading, this.onTap});
 
-  final String title;
-  final String? subtitle;
-  final bool centered;
-  final double titleSize;
+  final String label;
+  final Widget? leading;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    final align = centered ? TextAlign.center : TextAlign.start;
-    return Column(
-      crossAxisAlignment: centered ? CrossAxisAlignment.center : CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          textAlign: align,
-          style: TextStyle(
-            fontSize: titleSize,
-            fontWeight: FontWeight.w600,
-            letterSpacing: -0.6,
-            color: OnboardingPalette.text,
-          ),
-        ),
-        if (subtitle case final subtitle?) ...[
-          const SizedBox(height: 10),
-          Text(
-            subtitle,
-            textAlign: align,
-            style: const TextStyle(fontSize: 14.5, height: 1.5, color: OnboardingPalette.textMuted),
+    final content = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (leading case final leading?) ...[leading, const SizedBox(width: 8)],
+          Flexible(
+            child: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 12.5, color: OnboardingPalette.textOnFill),
+            ),
           ),
         ],
-      ],
+      ),
+    );
+    return Material(
+      color: onTap == null ? OnboardingPalette.success.withValues(alpha: 0.12) : OnboardingPalette.raised,
+      borderRadius: BorderRadius.circular(999),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(999),
+        child: SizedBox(height: 32, child: content),
+      ),
     );
   }
 }

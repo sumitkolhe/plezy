@@ -1431,8 +1431,6 @@ class Translations$addServer$zh extends Translations$addServer$en {
 	@override String get serverUrls => '服务器 URL';
 	@override String get serverUrlsHelper => '可输入多个 URL，并用逗号分隔。';
 	@override String get findServer => '查找服务器';
-	@override String get searchingLocalServers => '正在查找本地 Jellyfin 服务器…';
-	@override String get localServers => '本地 Jellyfin 服务器';
 	@override String get username => '用户名';
 	@override String get password => '密码';
 	@override String get signIn => '登录';
@@ -2771,8 +2769,6 @@ extension on TranslationsZh {
 			'addServer.serverUrls' => '服务器 URL',
 			'addServer.serverUrlsHelper' => '可输入多个 URL，并用逗号分隔。',
 			'addServer.findServer' => '查找服务器',
-			'addServer.searchingLocalServers' => '正在查找本地 Jellyfin 服务器…',
-			'addServer.localServers' => '本地 Jellyfin 服务器',
 			'addServer.username' => '用户名',
 			'addServer.password' => '密码',
 			'addServer.signIn' => '登录',

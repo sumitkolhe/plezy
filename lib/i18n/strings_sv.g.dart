@@ -1434,8 +1434,6 @@ class _Translations$addServer$sv extends Translations$addServer$en {
 	@override String get serverUrls => 'Server-URL:er';
 	@override String get serverUrlsHelper => 'Du kan ange flera URL:er avgränsade med kommatecken.';
 	@override String get findServer => 'Hitta server';
-	@override String get searchingLocalServers => 'Söker efter lokala Jellyfin-servrar...';
-	@override String get localServers => 'Lokala Jellyfin-servrar';
 	@override String get username => 'Användarnamn';
 	@override String get password => 'Lösenord';
 	@override String get signIn => 'Logga in';
@@ -2774,8 +2772,6 @@ extension on TranslationsSv {
 			'addServer.serverUrls' => 'Server-URL:er',
 			'addServer.serverUrlsHelper' => 'Du kan ange flera URL:er avgränsade med kommatecken.',
 			'addServer.findServer' => 'Hitta server',
-			'addServer.searchingLocalServers' => 'Söker efter lokala Jellyfin-servrar...',
-			'addServer.localServers' => 'Lokala Jellyfin-servrar',
 			'addServer.username' => 'Användarnamn',
 			'addServer.password' => 'Lösenord',
 			'addServer.signIn' => 'Logga in',

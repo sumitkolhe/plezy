@@ -1432,8 +1432,6 @@ class _Translations$addServer$zh_Hant extends Translations$addServer$zh {
 	@override String get serverUrls => '伺服器 URL';
 	@override String get serverUrlsHelper => '可輸入多個連線網址，以逗號區隔。';
 	@override String get findServer => '尋找伺服器';
-	@override String get searchingLocalServers => '正在尋找本地 Jellyfin 伺服器…';
-	@override String get localServers => '本地 Jellyfin 伺服器';
 	@override String get username => '使用者名稱';
 	@override String get password => '密碼';
 	@override String get signIn => '登入';
@@ -2772,8 +2770,6 @@ extension on TranslationsZhHant {
 			'addServer.serverUrls' => '伺服器 URL',
 			'addServer.serverUrlsHelper' => '可輸入多個連線網址，以逗號區隔。',
 			'addServer.findServer' => '尋找伺服器',
-			'addServer.searchingLocalServers' => '正在尋找本地 Jellyfin 伺服器…',
-			'addServer.localServers' => '本地 Jellyfin 伺服器',
 			'addServer.username' => '使用者名稱',
 			'addServer.password' => '密碼',
 			'addServer.signIn' => '登入',

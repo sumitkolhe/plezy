@@ -1434,8 +1434,6 @@ class _Translations$addServer$bg extends Translations$addServer$en {
 	@override String get serverUrls => 'URL адреси на сървъра';
 	@override String get serverUrlsHelper => 'Позволени са няколко URL адреса, разделени със запетаи.';
 	@override String get findServer => 'Намери сървър';
-	@override String get searchingLocalServers => 'Търсене на локални Jellyfin сървъри...';
-	@override String get localServers => 'Локални Jellyfin сървъри';
 	@override String get username => 'Потребителско име';
 	@override String get password => 'Парола';
 	@override String get signIn => 'Вход';
@@ -2774,8 +2772,6 @@ extension on TranslationsBg {
 			'addServer.serverUrls' => 'URL адреси на сървъра',
 			'addServer.serverUrlsHelper' => 'Позволени са няколко URL адреса, разделени със запетаи.',
 			'addServer.findServer' => 'Намери сървър',
-			'addServer.searchingLocalServers' => 'Търсене на локални Jellyfin сървъри...',
-			'addServer.localServers' => 'Локални Jellyfin сървъри',
 			'addServer.username' => 'Потребителско име',
 			'addServer.password' => 'Парола',
 			'addServer.signIn' => 'Вход',

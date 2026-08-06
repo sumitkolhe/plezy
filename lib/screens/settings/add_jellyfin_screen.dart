@@ -6,16 +6,13 @@ import 'package:harbor/theme/phosphor_icons.dart';
 
 import '../../connection/connection.dart';
 import '../../exceptions/media_server_exceptions.dart';
-import '../../focus/card_focus_scope.dart';
 import '../../focus/focusable_button.dart';
 import '../../focus/focusable_text_field.dart';
-import '../../focus/focusable_wrapper.dart';
 import '../../i18n/strings.g.dart';
 import '../../mixins/controller_disposer_mixin.dart';
 import '../../profiles/profile.dart';
 import '../../services/jellyfin_auth_service.dart';
 import '../../services/jellyfin_endpoint_discovery.dart';
-import '../../services/jellyfin_lan_discovery_service.dart';
 import '../../services/storage_service.dart';
 import '../../theme/mono_tokens.dart';
 import '../../utils/app_logger.dart';
@@ -42,14 +39,8 @@ class AddJellyfinScreen extends StatefulWidget {
   /// profile (typical for the global Connections screen entry point).
   final Profile? targetProfile;
   final FutureOr<JellyfinConnectionAuthService> Function()? _authServiceFactory;
-  final FutureOr<List<DiscoveredJellyfinServer>> Function()? _localDiscoveryFactory;
 
-  const AddJellyfinScreen({
-    super.key,
-    this.targetProfile,
-    @visibleForTesting this._authServiceFactory,
-    @visibleForTesting this._localDiscoveryFactory,
-  });
+  const AddJellyfinScreen({super.key, this.targetProfile, @visibleForTesting this._authServiceFactory});
 
   @override
   State<AddJellyfinScreen> createState() => _AddJellyfinScreenState();
@@ -70,23 +61,18 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
   final _signInFocus = FocusNode(debugLabel: 'AddJellyfin:SignIn');
   final _quickConnectFocus = FocusNode(debugLabel: 'AddJellyfin:QuickConnect');
   final _cancelQuickConnectFocus = FocusNode(debugLabel: 'AddJellyfin:CancelQuickConnect');
-  final _discoveredServerFocusNodes = <String, FocusNode>{};
   final _formKey = GlobalKey<FormState>();
 
   JellyfinServerInfo? _serverInfo;
   JellyfinEndpointRaceResult? _serverEndpoint;
-  List<DiscoveredJellyfinServer> _localServers = const [];
-  bool _isDiscoveringLocalServers = true;
   bool _quickConnectEnabled = false;
   JellyfinQuickConnectInitiation? _qcInitiation;
   bool _qcCancelled = false;
   int _qcAttemptId = 0;
-  int _localDiscoveryAttemptId = 0;
 
   @override
   void initState() {
     super.initState();
-    unawaited(_discoverLocalServers());
   }
 
   @override
@@ -103,59 +89,13 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
     _signInFocus.dispose();
     _quickConnectFocus.dispose();
     _cancelQuickConnectFocus.dispose();
-    for (final node in _discoveredServerFocusNodes.values) {
-      node.dispose();
-    }
     super.dispose();
-  }
-
-  Future<void> _discoverLocalServers() async {
-    final attemptId = ++_localDiscoveryAttemptId;
-    try {
-      final factory = widget._localDiscoveryFactory;
-      final servers = factory != null
-          ? await factory()
-          : await JellyfinLanDiscoveryService().discover(responseWindow: const Duration(milliseconds: 1300));
-      if (!mounted || attemptId != _localDiscoveryAttemptId) return;
-      setState(() {
-        _localServers = servers;
-        _isDiscoveringLocalServers = false;
-        _syncDiscoveredServerFocusNodes(servers);
-      });
-    } catch (e, st) {
-      appLogger.w('Add Jellyfin local discovery failed', error: e, stackTrace: st);
-      if (!mounted || attemptId != _localDiscoveryAttemptId) return;
-      setState(() => _isDiscoveringLocalServers = false);
-    }
-  }
-
-  void _syncDiscoveredServerFocusNodes(List<DiscoveredJellyfinServer> servers) {
-    final ids = servers.map((server) => server.id).toSet();
-    final removed = _discoveredServerFocusNodes.keys.where((id) => !ids.contains(id)).toList(growable: false);
-    for (final id in removed) {
-      _discoveredServerFocusNodes.remove(id)?.dispose();
-    }
-    for (final server in servers) {
-      _discoveredServerFocusNodes.putIfAbsent(
-        server.id,
-        () => FocusNode(debugLabel: 'AddJellyfin:Discovered:${server.id}'),
-      );
-    }
   }
 
   void _clearResolvedServer() {
     _serverEndpoint = null;
     _serverInfo = null;
     _quickConnectEnabled = false;
-  }
-
-  Future<void> _useDiscoveredServer(DiscoveredJellyfinServer server) async {
-    if (busy) return;
-    setState(() {
-      _urlController.text = server.address;
-      _clearResolvedServer();
-    });
-    await _probe();
   }
 
   Future<void> _probe() async {
@@ -302,22 +242,6 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
     });
   }
 
-  void _focusFirstDiscoveredServerOrFind() {
-    if (_localServers.isEmpty) {
-      _findServerFocus.requestFocus();
-      return;
-    }
-    _discoveredServerFocusNodes[_localServers.first.id]?.requestFocus();
-  }
-
-  void _focusLastDiscoveredServerOrUrl() {
-    if (_localServers.isEmpty) {
-      _urlFocus.requestFocus();
-      return;
-    }
-    _discoveredServerFocusNodes[_localServers.last.id]?.requestFocus();
-  }
-
   List<String> _enteredUrls() => JellyfinEndpointDiscovery.parseUserEnteredUrls(_urlController.text);
 
   /// Shared persistence path for both username/password and Quick Connect:
@@ -399,9 +323,9 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
             _clearResolvedServer();
           });
         },
-        onNavigateDown: _serverInfo == null
-            ? _focusFirstDiscoveredServerOrFind
-            : () => _changeServerFocus.requestFocus(),
+        // Before a server resolves the next stop down is the button that
+        // resolves one; after, it is the one that changes it.
+        onNavigateDown: () => (_serverInfo == null ? _findServerFocus : _changeServerFocus).requestFocus(),
         textInputAction: TextInputAction.go,
         onFieldSubmitted: busy ? null : (_) => _probe(),
         decoration: InputDecoration(
@@ -414,12 +338,10 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
         validator: (_) => _enteredUrls().isEmpty ? t.addServer.required : null,
       ),
       if (_serverInfo == null) ...[
-        ..._buildLocalDiscoverySection(theme),
         const SizedBox(height: 16),
         FocusableButton(
           focusNode: _findServerFocus,
           useBackgroundFocus: true,
-          onNavigateUp: _focusLastDiscoveredServerOrUrl,
           onPressed: busy ? null : _probe,
           child: FilledButton.icon(
             onPressed: busy ? null : _probe,
@@ -531,60 +453,6 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
     );
   }
 
-  List<Widget> _buildLocalDiscoverySection(ThemeData theme) {
-    if (_isDiscoveringLocalServers) {
-      return [
-        const SizedBox(height: 16),
-        Row(
-          children: [
-            const LoadingIndicatorBox(size: 16),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                t.addServer.searchingLocalServers,
-                style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurface.withValues(alpha: 0.7)),
-              ),
-            ),
-          ],
-        ),
-      ];
-    }
-
-    if (_localServers.isEmpty) return const [];
-    final tokensRef = tokens(context);
-    return [
-      const SizedBox(height: 16),
-      Text(t.addServer.localServers, style: theme.textTheme.titleSmall),
-      const SizedBox(height: 8),
-      for (final (i, server) in _localServers.indexed) ...[
-        if (i > 0) SizedBox(height: tokensRef.groupGap),
-        _DiscoveredJellyfinServerTile(
-          server: server,
-          borderRadius: groupItemRadii(context, i, _localServers.length),
-          focusNode: _discoveredServerFocusNodes[server.id],
-          onNavigateUp: () {
-            final index = _localServers.indexOf(server);
-            if (index <= 0) {
-              _urlFocus.requestFocus();
-              return;
-            }
-            _discoveredServerFocusNodes[_localServers[index - 1].id]?.requestFocus();
-          },
-          onNavigateDown: () {
-            final index = _localServers.indexOf(server);
-            if (index < 0 || index == _localServers.length - 1) {
-              _findServerFocus.requestFocus();
-              return;
-            }
-            _discoveredServerFocusNodes[_localServers[index + 1].id]?.requestFocus();
-          },
-          onTap: busy ? null : () => unawaited(_useDiscoveredServer(server)),
-        ),
-      ],
-      const SizedBox(height: 8),
-    ];
-  }
-
   Widget _buildQuickConnectPanel(ThemeData theme) {
     final code = _qcInitiation!.code;
     final muted = theme.colorScheme.onSurface.withValues(alpha: 0.7);
@@ -637,80 +505,6 @@ class _AddJellyfinScreenState extends State<AddJellyfinScreen> with AsyncFormSta
           ),
           ...buildInlineError(theme, gap: 16, center: true),
         ],
-      ),
-    );
-  }
-}
-
-class _DiscoveredJellyfinServerTile extends StatelessWidget {
-  final DiscoveredJellyfinServer server;
-  final BorderRadius borderRadius;
-  final FocusNode? focusNode;
-  final VoidCallback? onNavigateUp;
-  final VoidCallback? onNavigateDown;
-  final VoidCallback? onTap;
-
-  const _DiscoveredJellyfinServerTile({
-    required this.server,
-    required this.borderRadius,
-    required this.focusNode,
-    required this.onNavigateUp,
-    required this.onNavigateDown,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return FocusableWrapper(
-      focusNode: focusNode,
-      disableScale: true,
-      // Border drawn by CardFocusBorder so it paints over the opaque Material.
-      delegateFocusBorder: true,
-      descendantsAreFocusable: false,
-      onSelect: onTap,
-      onNavigateUp: onNavigateUp,
-      onNavigateDown: onNavigateDown,
-      child: CardFocusBorder(
-        borderRadii: borderRadius,
-        strokeAlign: BorderSide.strokeAlignInside,
-        child: Material(
-          color: theme.colorScheme.surfaceContainerHighest,
-          borderRadius: borderRadius,
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: borderRadius,
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                children: [
-                  const AppIcon(PhosphorIcons.hardDrives),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: .start,
-                      mainAxisSize: .min,
-                      children: [
-                        Text(server.name, style: theme.textTheme.titleSmall),
-                        const SizedBox(height: 2),
-                        Text(
-                          server.address,
-                          maxLines: 1,
-                          overflow: .ellipsis,
-                          style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  const AppIcon(PhosphorIcons.caretRight),
-                ],
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

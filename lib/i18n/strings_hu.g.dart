@@ -1434,8 +1434,6 @@ class _Translations$addServer$hu extends Translations$addServer$en {
 	@override String get serverUrls => 'Szerver URL-címei';
 	@override String get serverUrlsHelper => 'Több URL is megadható, vesszővel elválasztva.';
 	@override String get findServer => 'Szerver keresése';
-	@override String get searchingLocalServers => 'Helyi Jellyfin-szerverek keresése...';
-	@override String get localServers => 'Helyi Jellyfin-szerverek';
 	@override String get username => 'Felhasználónév';
 	@override String get password => 'Jelszó';
 	@override String get signIn => 'Bejelentkezés';
@@ -2774,8 +2772,6 @@ extension on TranslationsHu {
 			'addServer.serverUrls' => 'Szerver URL-címei',
 			'addServer.serverUrlsHelper' => 'Több URL is megadható, vesszővel elválasztva.',
 			'addServer.findServer' => 'Szerver keresése',
-			'addServer.searchingLocalServers' => 'Helyi Jellyfin-szerverek keresése...',
-			'addServer.localServers' => 'Helyi Jellyfin-szerverek',
 			'addServer.username' => 'Felhasználónév',
 			'addServer.password' => 'Jelszó',
 			'addServer.signIn' => 'Bejelentkezés',

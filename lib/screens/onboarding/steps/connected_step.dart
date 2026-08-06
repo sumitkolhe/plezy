@@ -13,10 +13,9 @@ import '../widgets/rise_in.dart';
 /// there, which is the thing someone setting this up wants to know. There is no
 /// storage figure because Jellyfin does not report one.
 class ConnectedStep extends StatefulWidget {
-  const ConnectedStep({super.key, required this.connection, required this.address, required this.onEnter});
+  const ConnectedStep({super.key, required this.connection, required this.onEnter});
 
   final JellyfinConnection connection;
-  final String address;
   final VoidCallback onEnter;
 
   @override
@@ -74,7 +73,22 @@ class _ConnectedStepState extends State<ConnectedStep> {
               ),
             ),
             const SizedBox(height: 26),
-            OnboardingHeading(title: widget.connection.serverName, subtitle: widget.address, titleSize: 25),
+            Text(
+              widget.connection.serverName,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w700,
+                letterSpacing: -0.5,
+                color: OnboardingPalette.text,
+              ),
+            ),
+            const SizedBox(height: 9),
+            Text(
+              t.onboarding.signedInAs(user: widget.connection.userName),
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 14, color: OnboardingPalette.textMuted),
+            ),
             if (counts != null && !counts.isEmpty) ...[
               const SizedBox(height: 32),
               _CountRow(label: t.onboarding.moviesLabel, value: '${counts.movies}'),
@@ -82,7 +96,7 @@ class _ConnectedStepState extends State<ConnectedStep> {
               _CountRow(label: t.onboarding.episodesLabel, value: '${counts.episodes}', last: true),
             ],
             const SizedBox(height: 32),
-            OnboardingButton(label: t.onboarding.openLibrary, onPressed: widget.onEnter, light: true),
+            OnboardingButton(label: t.onboarding.continueAction, onPressed: widget.onEnter),
           ],
         ),
       ),

@@ -3711,12 +3711,6 @@ class Translations$addServer$en {
 	/// en: 'Find server'
 	String get findServer => 'Find server';
 
-	/// en: 'Looking for local Jellyfin servers...'
-	String get searchingLocalServers => 'Looking for local Jellyfin servers...';
-
-	/// en: 'Local Jellyfin servers'
-	String get localServers => 'Local Jellyfin servers';
-
 	/// en: 'Username'
 	String get username => 'Username';
 
@@ -4058,9 +4052,6 @@ class Translations$onboarding$en {
 	/// en: 'Add Jellyfin server'
 	String get addServer => 'Add Jellyfin server';
 
-	/// en: 'You will need its address on your network'
-	String get addServerHint => 'You will need its address on your network';
-
 	/// en: 'Server address'
 	String get serverAddress => 'Server address';
 
@@ -4079,9 +4070,6 @@ class Translations$onboarding$en {
 	/// en: 'Sign in'
 	String get signInTitle => 'Sign in';
 
-	/// en: 'Open library'
-	String get openLibrary => 'Open library';
-
 	/// en: 'Movies'
 	String get moviesLabel => 'Movies';
 
@@ -4090,6 +4078,69 @@ class Translations$onboarding$en {
 
 	/// en: 'Episodes'
 	String get episodesLabel => 'Episodes';
+
+	/// en: 'Skip'
+	String get skip => 'Skip';
+
+	/// en: 'Continue'
+	String get continueAction => 'Continue';
+
+	/// en: 'Port 8096 and http are assumed unless you say otherwise'
+	String get addressDefaultsHint => 'Port 8096 and http are assumed unless you say otherwise';
+
+	/// en: 'Paste ${address}'
+	String pasteAddress({required Object address}) => 'Paste ${address}';
+
+	/// en: 'Address'
+	String get addressLabel => 'Address';
+
+	/// en: 'Edit address'
+	String get editAddress => 'Edit address';
+
+	/// en: 'Connection cancelled'
+	String get connectionCancelled => 'Connection cancelled';
+
+	/// en: 'No answer from that address'
+	String get failedUnreachableTitle => 'No answer from that address';
+
+	/// en: 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.'
+	String get failedUnreachableBody => 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.';
+
+	/// en: 'That server uses a certificate this device will not trust'
+	String get failedCertificateTitle => 'That server uses a certificate this device will not trust';
+
+	/// en: 'Harbor cannot make an exception for a self-signed certificate. Use the server’s http address instead, or give it a certificate this device already trusts.'
+	String get failedCertificateBody => 'Harbor cannot make an exception for a self-signed certificate. Use the server’s http address instead, or give it a certificate this device already trusts.';
+
+	/// en: '${server} · reachable'
+	String serverReachable({required Object server}) => '${server} · reachable';
+
+	/// en: 'Use the account you sign in to Jellyfin with.'
+	String get signInPasswordBody => 'Use the account you sign in to Jellyfin with.';
+
+	/// en: 'Approve this device from a Jellyfin session you are already signed in to.'
+	String get signInQuickBody => 'Approve this device from a Jellyfin session you are already signed in to.';
+
+	/// en: 'Use username and password'
+	String get usePassword => 'Use username and password';
+
+	/// en: 'Use Quick Connect instead'
+	String get useQuickConnect => 'Use Quick Connect instead';
+
+	/// en: 'Open Jellyfin on a device you are already signed in on, go to Quick Connect and enter this code.'
+	String get quickConnectHowTo => 'Open Jellyfin on a device you are already signed in on, go to Quick Connect and enter this code.';
+
+	/// en: 'Waiting for approval'
+	String get waitingForApproval => 'Waiting for approval';
+
+	/// en: 'Show'
+	String get show => 'Show';
+
+	/// en: 'Hide'
+	String get hide => 'Hide';
+
+	/// en: 'Signed in as ${user}'
+	String signedInAs({required Object user}) => 'Signed in as ${user}';
 }
 
 // Path: hotkeys.actions
@@ -6408,8 +6459,6 @@ extension on Translations {
 			'addServer.serverUrls' => 'Server URLs',
 			'addServer.serverUrlsHelper' => 'Multiple URLs allowed, separated by commas.',
 			'addServer.findServer' => 'Find server',
-			'addServer.searchingLocalServers' => 'Looking for local Jellyfin servers...',
-			'addServer.localServers' => 'Local Jellyfin servers',
 			'addServer.username' => 'Username',
 			'addServer.password' => 'Password',
 			'addServer.signIn' => 'Sign in',
@@ -6521,17 +6570,36 @@ extension on Translations {
 			'onboarding.connectTitle' => 'Connect your server',
 			'onboarding.connectBody' => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.',
 			'onboarding.addServer' => 'Add Jellyfin server',
-			'onboarding.addServerHint' => 'You will need its address on your network',
 			'onboarding.serverAddress' => 'Server address',
 			'onboarding.credentialsStayOnDevice' => 'Credentials stay on this device',
 			'onboarding.addressRequired' => 'Enter your server address, or scan the network',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',
 			'onboarding.signInTitle' => 'Sign in',
-			'onboarding.openLibrary' => 'Open library',
 			'onboarding.moviesLabel' => 'Movies',
 			'onboarding.seriesLabel' => 'Series',
 			'onboarding.episodesLabel' => 'Episodes',
+			'onboarding.skip' => 'Skip',
+			'onboarding.continueAction' => 'Continue',
+			'onboarding.addressDefaultsHint' => 'Port 8096 and http are assumed unless you say otherwise',
+			'onboarding.pasteAddress' => ({required Object address}) => 'Paste ${address}',
+			'onboarding.addressLabel' => 'Address',
+			'onboarding.editAddress' => 'Edit address',
+			'onboarding.connectionCancelled' => 'Connection cancelled',
+			'onboarding.failedUnreachableTitle' => 'No answer from that address',
+			'onboarding.failedUnreachableBody' => 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.',
+			'onboarding.failedCertificateTitle' => 'That server uses a certificate this device will not trust',
+			'onboarding.failedCertificateBody' => 'Harbor cannot make an exception for a self-signed certificate. Use the server’s http address instead, or give it a certificate this device already trusts.',
+			'onboarding.serverReachable' => ({required Object server}) => '${server} · reachable',
+			'onboarding.signInPasswordBody' => 'Use the account you sign in to Jellyfin with.',
+			'onboarding.signInQuickBody' => 'Approve this device from a Jellyfin session you are already signed in to.',
+			'onboarding.usePassword' => 'Use username and password',
+			'onboarding.useQuickConnect' => 'Use Quick Connect instead',
+			'onboarding.quickConnectHowTo' => 'Open Jellyfin on a device you are already signed in on, go to Quick Connect and enter this code.',
+			'onboarding.waitingForApproval' => 'Waiting for approval',
+			'onboarding.show' => 'Show',
+			'onboarding.hide' => 'Hide',
+			'onboarding.signedInAs' => ({required Object user}) => 'Signed in as ${user}',
 			_ => null,
 		};
 	}

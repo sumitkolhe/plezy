@@ -1434,8 +1434,6 @@ class _Translations$addServer$da extends Translations$addServer$en {
 	@override String get serverUrls => 'Server-URL\'er';
 	@override String get serverUrlsHelper => 'Du kan angive flere URL\'er adskilt med komma.';
 	@override String get findServer => 'Find server';
-	@override String get searchingLocalServers => 'Søger efter lokale Jellyfin-servere...';
-	@override String get localServers => 'Lokale Jellyfin-servere';
 	@override String get username => 'Brugernavn';
 	@override String get password => 'Adgangskode';
 	@override String get signIn => 'Log ind';
@@ -2774,8 +2772,6 @@ extension on TranslationsDa {
 			'addServer.serverUrls' => 'Server-URL\'er',
 			'addServer.serverUrlsHelper' => 'Du kan angive flere URL\'er adskilt med komma.',
 			'addServer.findServer' => 'Find server',
-			'addServer.searchingLocalServers' => 'Søger efter lokale Jellyfin-servere...',
-			'addServer.localServers' => 'Lokale Jellyfin-servere',
 			'addServer.username' => 'Brugernavn',
 			'addServer.password' => 'Adgangskode',
 			'addServer.signIn' => 'Log ind',

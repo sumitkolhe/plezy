@@ -1431,8 +1431,6 @@ class _Translations$addServer$ja extends Translations$addServer$en {
 	@override String get serverUrls => 'サーバーURL';
 	@override String get serverUrlsHelper => '複数のURLをカンマ区切りで入力できます。';
 	@override String get findServer => 'サーバーを検索';
-	@override String get searchingLocalServers => 'ローカルのJellyfinサーバーを検索中…';
-	@override String get localServers => 'ローカルのJellyfinサーバー';
 	@override String get username => 'ユーザー名';
 	@override String get password => 'パスワード';
 	@override String get signIn => 'サインイン';
@@ -2771,8 +2769,6 @@ extension on TranslationsJa {
 			'addServer.serverUrls' => 'サーバーURL',
 			'addServer.serverUrlsHelper' => '複数のURLをカンマ区切りで入力できます。',
 			'addServer.findServer' => 'サーバーを検索',
-			'addServer.searchingLocalServers' => 'ローカルのJellyfinサーバーを検索中…',
-			'addServer.localServers' => 'ローカルのJellyfinサーバー',
 			'addServer.username' => 'ユーザー名',
 			'addServer.password' => 'パスワード',
 			'addServer.signIn' => 'サインイン',
