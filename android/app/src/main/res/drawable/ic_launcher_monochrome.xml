@@ -10,10 +10,10 @@
     <group
         android:pivotX="0"
         android:pivotY="0"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:translateX="9.6"
-        android:translateY="9.6">
+        android:scaleX="0.4335"
+        android:scaleY="0.4335"
+        android:translateX="18.1"
+        android:translateY="18.1">
         <path
             android:pathData="M29 10v34H11C15 30 21 19 29 10Z"
             android:fillColor="#000000" />

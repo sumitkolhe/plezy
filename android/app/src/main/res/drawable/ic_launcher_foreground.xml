@@ -4,25 +4,26 @@
     android:height="108dp"
     android:viewportWidth="64"
     android:viewportHeight="64">
-    <!-- The mark's own 64-unit box, translated and scaled into the adaptive
-         icon's safe zone exactly as exports/svg/icon-sail-jib-blue.svg does:
-         a launcher mask can clip the outer 33%, and the sail must survive it. -->
+    <!-- The mark's own 64-unit box, scaled into the adaptive icon's 66dp safe
+         circle. The scale accounts for the waterline's round cap, which reaches
+         2.25 units past where its path ends: sized off the path alone the tips
+         land 38.9dp from centre, and a circular launcher mask shaves them. -->
     <group
         android:pivotX="0"
         android:pivotY="0"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:translateX="9.6"
-        android:translateY="9.6">
+        android:scaleX="0.4335"
+        android:scaleY="0.4335"
+        android:translateX="18.1"
+        android:translateY="18.1">
         <path
             android:pathData="M29 10v34H11C15 30 21 19 29 10Z"
             android:fillColor="#FFFFFF" />
         <path
             android:pathData="M35 20v24h17c-3-9-9-17-17-24Z"
-            android:fillColor="#0A0A0B" />
+            android:fillColor="#2CA8E0" />
         <path
             android:pathData="M10 52h44"
-            android:strokeColor="#0A0A0B"
+            android:strokeColor="#2CA8E0"
             android:strokeWidth="4.5"
             android:strokeLineCap="round" />
     </group>
