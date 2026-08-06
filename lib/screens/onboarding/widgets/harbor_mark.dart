@@ -109,7 +109,7 @@ class _MarkPainter extends CustomPainter {
           ..lineTo(52, 44)
           ..relativeCubicTo(-3, -9, -9, -17, -17, -24)
           ..close(),
-        Paint()..color = OnboardingPalette.blue,
+        Paint()..color = OnboardingPalette.brand,
       );
     }
 
@@ -120,7 +120,7 @@ class _MarkPainter extends CustomPainter {
         ..lineTo(11, 44)
         ..relativeCubicTo(4, -14, 10, -25, 18, -34)
         ..close(),
-      Paint()..color = OnboardingPalette.text,
+      Paint()..color = OnboardingPalette.onSurface,
     );
     canvas.restore();
 
@@ -129,7 +129,7 @@ class _MarkPainter extends CustomPainter {
       const Offset(10, 52),
       const Offset(54, 52),
       Paint()
-        ..color = OnboardingPalette.blue
+        ..color = OnboardingPalette.brand
         ..strokeWidth = 4.5
         ..strokeCap = StrokeCap.round,
     );

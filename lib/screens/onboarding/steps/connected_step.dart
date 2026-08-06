@@ -65,29 +65,17 @@ class _ConnectedStepState extends State<ConnectedStep> {
               child: Container(
                 width: 70,
                 height: 70,
-                decoration: BoxDecoration(
-                  color: OnboardingPalette.success.withValues(alpha: 0.14),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(Icons.check, size: 32, color: OnboardingPalette.success),
+                decoration: const BoxDecoration(color: OnboardingPalette.successContainer, shape: BoxShape.circle),
+                child: const Icon(Icons.check, size: 32, color: OnboardingPalette.onSuccessContainer),
               ),
             ),
             const SizedBox(height: 26),
-            Text(
-              widget.connection.serverName,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.5,
-                color: OnboardingPalette.text,
-              ),
-            ),
+            Text(widget.connection.serverName, textAlign: TextAlign.center, style: OnboardingType.headline),
             const SizedBox(height: 9),
             Text(
               t.onboarding.signedInAs(user: widget.connection.userName),
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 14, color: OnboardingPalette.textMuted),
+              style: OnboardingType.body,
             ),
             if (counts != null && !counts.isEmpty) ...[
               const SizedBox(height: 32),
@@ -117,19 +105,19 @@ class _CountRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 11),
       decoration: BoxDecoration(
         border: Border(
-          top: const BorderSide(color: OnboardingPalette.hairline),
-          bottom: last ? const BorderSide(color: OnboardingPalette.hairline) : BorderSide.none,
+          top: const BorderSide(color: OnboardingPalette.outlineVariant),
+          bottom: last ? const BorderSide(color: OnboardingPalette.outlineVariant) : BorderSide.none,
         ),
       ),
       child: Row(
         children: [
           SizedBox(
             width: 96,
-            child: Text(label, style: const TextStyle(fontSize: 13, color: OnboardingPalette.textMuted)),
+            child: Text(label, style: const TextStyle(fontSize: 13, color: OnboardingPalette.onSurfaceVariant)),
           ),
           Text(
             value,
-            style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500, color: OnboardingPalette.text),
+            style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w500, color: OnboardingPalette.onSurface),
           ),
         ],
       ),

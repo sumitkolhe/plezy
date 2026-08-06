@@ -4097,12 +4097,6 @@ class Translations$onboarding$en {
 	/// en: 'Connection cancelled'
 	String get connectionCancelled => 'Connection cancelled';
 
-	/// en: 'No answer from that address'
-	String get failedUnreachableTitle => 'No answer from that address';
-
-	/// en: 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.'
-	String get failedUnreachableBody => 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.';
-
 	/// en: 'That server uses a certificate this device will not trust'
 	String get failedCertificateTitle => 'That server uses a certificate this device will not trust';
 
@@ -4138,6 +4132,9 @@ class Translations$onboarding$en {
 
 	/// en: 'Signed in as ${user}'
 	String signedInAs({required Object user}) => 'Signed in as ${user}';
+
+	/// en: 'Could not reach ${address}. Check the server is on and on this network.'
+	String couldNotReach({required Object address}) => 'Could not reach ${address}. Check the server is on and on this network.';
 }
 
 // Path: hotkeys.actions
@@ -6582,8 +6579,6 @@ extension on Translations {
 			'onboarding.addressLabel' => 'Address',
 			'onboarding.editAddress' => 'Edit address',
 			'onboarding.connectionCancelled' => 'Connection cancelled',
-			'onboarding.failedUnreachableTitle' => 'No answer from that address',
-			'onboarding.failedUnreachableBody' => 'Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.',
 			'onboarding.failedCertificateTitle' => 'That server uses a certificate this device will not trust',
 			'onboarding.failedCertificateBody' => 'Harbor cannot make an exception for a self-signed certificate. Use the server’s http address instead, or give it a certificate this device already trusts.',
 			'onboarding.serverReachable' => ({required Object server}) => '${server} · reachable',
@@ -6596,6 +6591,7 @@ extension on Translations {
 			'onboarding.show' => 'Show',
 			'onboarding.hide' => 'Hide',
 			'onboarding.signedInAs' => ({required Object user}) => 'Signed in as ${user}',
+			'onboarding.couldNotReach' => ({required Object address}) => 'Could not reach ${address}. Check the server is on and on this network.',
 			_ => null,
 		};
 	}

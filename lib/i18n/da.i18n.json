@@ -1595,8 +1595,6 @@
     "addressLabel": "",
     "editAddress": "",
     "connectionCancelled": "",
-    "failedUnreachableTitle": "",
-    "failedUnreachableBody": "",
     "failedCertificateTitle": "",
     "failedCertificateBody": "",
     "serverReachable": "",
@@ -1608,6 +1606,7 @@
     "waitingForApproval": "",
     "show": "",
     "hide": "",
-    "signedInAs": ""
+    "signedInAs": "",
+    "couldNotReach": ""
   }
 }

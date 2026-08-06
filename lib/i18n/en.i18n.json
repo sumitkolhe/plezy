@@ -1595,8 +1595,6 @@
     "addressLabel": "Address",
     "editAddress": "Edit address",
     "connectionCancelled": "Connection cancelled",
-    "failedUnreachableTitle": "No answer from that address",
-    "failedUnreachableBody": "Nothing responded on this network. Check the server is awake, that you are on the same Wi-Fi, and that the port is right.",
     "failedCertificateTitle": "That server uses a certificate this device will not trust",
     "failedCertificateBody": "Harbor cannot make an exception for a self-signed certificate. Use the server’s http address instead, or give it a certificate this device already trusts.",
     "serverReachable": "${server} · reachable",
@@ -1608,6 +1606,7 @@
     "waitingForApproval": "Waiting for approval",
     "show": "Show",
     "hide": "Hide",
-    "signedInAs": "Signed in as ${user}"
+    "signedInAs": "Signed in as ${user}",
+    "couldNotReach": "Could not reach ${address}. Check the server is on and on this network."
   }
 }

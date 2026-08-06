@@ -89,13 +89,13 @@ class _CrossfadedTitles extends StatelessWidget {
                       fontSize: 34,
                       fontWeight: FontWeight.w600,
                       letterSpacing: -1,
-                      color: OnboardingPalette.text,
+                      color: OnboardingPalette.onSurface,
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     t.onboarding.tagline.toUpperCase(),
-                    style: const TextStyle(fontSize: 13, letterSpacing: 1.8, color: OnboardingPalette.textFaint),
+                    style: const TextStyle(fontSize: 13, letterSpacing: 1.8, color: OnboardingPalette.onSurfaceFaint),
                   ),
                 ],
               ),
@@ -109,22 +109,9 @@ class _CrossfadedTitles extends StatelessWidget {
               opacity: progress,
               child: Column(
                 children: [
-                  Text(
-                    t.onboarding.connectTitle,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.5,
-                      color: OnboardingPalette.text,
-                    ),
-                  ),
+                  Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
                   const SizedBox(height: 10),
-                  Text(
-                    t.onboarding.connectBody,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 14, height: 1.5, color: OnboardingPalette.textMuted),
-                  ),
+                  Text(t.onboarding.connectBody, textAlign: TextAlign.center, style: OnboardingType.body),
                 ],
               ),
             ),
@@ -144,8 +131,11 @@ class IntroStep extends StatefulWidget {
     required this.formOpen,
     required this.error,
     required this.clipboardOffer,
+    required this.busy,
+    required this.showCancel,
     required this.onOpenForm,
     required this.onConnect,
+    required this.onCancel,
     required this.onPaste,
     required this.startAtSplash,
   });
@@ -157,8 +147,16 @@ class IntroStep extends StatefulWidget {
   /// An address already on the clipboard, offered as a one-tap fill.
   final String? clipboardOffer;
 
+  /// Reaching the server. The button carries this rather than a separate
+  /// screen, so the address stays on show and editable.
+  final bool busy;
+
+  /// A wait long enough to be worth offering a way out of.
+  final bool showCancel;
+
   final VoidCallback onOpenForm;
   final VoidCallback onConnect;
+  final VoidCallback onCancel;
   final VoidCallback onPaste;
 
   final bool startAtSplash;
@@ -238,7 +236,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
                     onPressed: _advance,
                     child: Text(
                       t.onboarding.skip,
-                      style: const TextStyle(fontSize: 13, color: OnboardingPalette.textFaint),
+                      style: const TextStyle(fontSize: 13, color: OnboardingPalette.onSurfaceFaint),
                     ),
                   ),
                 ),
@@ -251,19 +249,34 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
   }
 
   Widget _buildAction() {
-    if (widget.formOpen) {
-      return OnboardingButton(
-        label: t.auth.connectToJellyfin,
-        onPressed: widget.onConnect,
-        icon: const _JellyfinGlyph(),
+    if (!widget.formOpen) {
+      return RiseIn(
+        child: OnboardingButton(
+          label: t.onboarding.addServer,
+          onPressed: widget.onOpenForm,
+          icon: const Icon(Icons.add, size: 17, color: OnboardingPalette.onPrimary),
+        ),
       );
     }
-    return RiseIn(
-      child: OnboardingButton(
-        label: t.onboarding.addServer,
-        onPressed: widget.onOpenForm,
-        icon: const Icon(Icons.add, size: 17, color: OnboardingPalette.ink),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        OnboardingButton(
+          label: t.auth.connectToJellyfin,
+          busyLabel: t.onboarding.reaching,
+          busy: widget.busy,
+          onPressed: widget.onConnect,
+          icon: const _JellyfinGlyph(),
+        ),
+        // Held back until the wait has gone on long enough to acknowledge:
+        // offered immediately it would read as an expectation of failure.
+        if (widget.showCancel) ...[
+          const SizedBox(height: 8),
+          RiseIn(
+            child: OnboardingTextButton(label: t.common.cancel, onPressed: widget.onCancel),
+          ),
+        ],
+      ],
     );
   }
 
@@ -273,9 +286,8 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          OnboardingFieldLabel(t.onboarding.serverAddress),
-          const SizedBox(height: 9),
           OnboardingField(
+            label: t.onboarding.serverAddress,
             controller: widget.controller,
             // An address, not prose — never localised.
             hintText: '192.168.1.10',
@@ -284,24 +296,22 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
             keyboardType: TextInputType.url,
             textInputAction: TextInputAction.go,
             onSubmitted: (_) => widget.onConnect(),
+            leading: const Icon(Icons.dns_outlined, size: 19, color: OnboardingPalette.onSurfaceVariant),
           ),
           const SizedBox(height: 9),
-          if (offer != null)
+          if (widget.error case final error?)
+            OnboardingSupportingText(error, invalid: true)
+          else if (offer != null)
             Align(
               alignment: Alignment.centerLeft,
               child: OnboardingChip(
                 label: t.onboarding.pasteAddress(address: offer),
-                leading: const Icon(Icons.content_paste, size: 13, color: OnboardingPalette.textOnFill),
+                leading: const Icon(Icons.content_paste, size: 13, color: OnboardingPalette.onSurface),
                 onTap: widget.onPaste,
               ),
             )
-          else if (widget.error case final error?)
-            OnboardingErrorText(error)
           else
-            Text(
-              t.onboarding.addressDefaultsHint,
-              style: const TextStyle(fontSize: 12.5, color: OnboardingPalette.textHelper),
-            ),
+            OnboardingSupportingText(t.onboarding.addressDefaultsHint),
         ],
       ),
     );
@@ -324,7 +334,7 @@ class _JellyfinPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     canvas.scale(size.width / 64);
-    final paint = Paint()..color = OnboardingPalette.ink;
+    final paint = Paint()..color = OnboardingPalette.onPrimary;
     canvas.drawPath(
       Path()
         ..moveTo(11, 32)

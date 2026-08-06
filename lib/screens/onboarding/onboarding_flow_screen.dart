@@ -16,14 +16,16 @@ import '../../utils/navigation_transitions.dart';
 import '../settings/connection_persistence.dart';
 import 'onboarding_palette.dart';
 import 'steps/connected_step.dart';
-import 'steps/failed_step.dart';
+import 'steps/certificate_step.dart';
 import 'steps/intro_step.dart';
 import 'steps/sign_in_step.dart';
-import 'steps/working_step.dart';
 
-/// Where the flow is. Two of these are waits rather than pages, but they are
-/// steps as far as the user is concerned, so they live in one enum.
-enum OnboardingStep { intro, reaching, failed, signIn, signingIn, connected }
+/// Where the flow is.
+///
+/// Waiting is not among them: reaching a server and signing in both happen
+/// inside the button that started them, so the form stays on screen and the
+/// address stays editable while it works.
+enum OnboardingStep { intro, certificateWarning, signIn, connected }
 
 /// First run: name a Jellyfin server, sign in, and hand over to the library.
 ///
@@ -72,8 +74,18 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   String? _clipboardOffer;
   bool _obscurePassword = true;
 
-  ConnectionFailure _failure = ConnectionFailure.unreachable;
+  /// Reaching a server, or authenticating against one.
+  bool _busy = false;
+
+  /// Offered only once the wait has run long enough to be worth acknowledging.
+  bool _showCancel = false;
+  Timer? _cancelTimer;
+
   SignInMode _signInMode = SignInMode.password;
+
+  /// How long a wait has to last before a way out of it is offered. Sooner
+  /// reads as expecting failure.
+  static const Duration _cancelAfter = Duration(milliseconds: 1800);
 
   JellyfinServerInfo? _serverInfo;
   JellyfinEndpointRaceResult? _endpoint;
@@ -97,6 +109,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
   @override
   void dispose() {
+    _cancelTimer?.cancel();
     _quickConnectCancelled = true;
     _address.dispose();
     _username.dispose();
@@ -134,6 +147,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   // ---- reaching the server ------------------------------------------------
 
   Future<void> _probe() async {
+    if (_busy) return;
     final input = JellyfinEndpointDiscovery.buildUserInputCandidates([_address.text]);
     if (input.probeBaseUrls.isEmpty) {
       setState(() => _error = t.onboarding.addressRequired);
@@ -142,8 +156,12 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
     final generation = ++_generation;
     setState(() {
-      _step = OnboardingStep.reaching;
+      _busy = true;
+      _showCancel = false;
       _error = null;
+    });
+    _cancelTimer = Timer(_cancelAfter, () {
+      if (mounted && _busy) setState(() => _showCancel = true);
     });
 
     try {
@@ -155,6 +173,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
       );
       final quickConnect = await auth.isQuickConnectEnabled(endpoint.activeBaseUrl);
       if (!mounted || generation != _generation) return;
+      _settleWait();
       setState(() {
         _endpoint = endpoint;
         _serverInfo = endpoint.serverInfo;
@@ -164,27 +183,45 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
       });
     } catch (e) {
       if (!mounted || generation != _generation) return;
-      setState(() {
-        _failure = _classify(e);
-        _step = OnboardingStep.failed;
-      });
+      _settleWait();
+      // An address nobody answered belongs under the field that holds it —
+      // the fix is to edit it, and sending the user to another screen to be
+      // told so just puts a page between them and the correction. A rejected
+      // certificate is not that: the address may be right, and it needs room
+      // to explain itself.
+      if (_isCertificateFailure(e)) {
+        setState(() => _step = OnboardingStep.certificateWarning);
+      } else {
+        setState(() => _error = t.onboarding.couldNotReach(address: _address.text.trim()));
+      }
     }
   }
 
-  /// A certificate the device refuses is a different problem from silence, and
-  /// retrying only helps one of them.
-  ConnectionFailure _classify(Object error) {
-    final text = error.toString().toLowerCase();
-    final certificate = text.contains('certificate') || text.contains('handshake');
-    return certificate ? ConnectionFailure.certificate : ConnectionFailure.unreachable;
+  void _settleWait() {
+    _cancelTimer?.cancel();
+    _busy = false;
+    _showCancel = false;
   }
 
-  void _backToAddress({String? error}) {
+  bool _isCertificateFailure(Object error) {
+    final text = error.toString().toLowerCase();
+    return text.contains('certificate') || text.contains('handshake');
+  }
+
+  void _cancelProbe() {
+    _generation++;
+    setState(() {
+      _settleWait();
+      _error = t.onboarding.connectionCancelled;
+    });
+  }
+
+  void _editAddress() {
     _generation++;
     setState(() {
       _step = OnboardingStep.intro;
       _formOpen = true;
-      _error = error;
+      _error = null;
     });
   }
 
@@ -201,7 +238,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
 
     final generation = ++_generation;
     setState(() {
-      _step = OnboardingStep.signingIn;
+      _busy = true;
       _error = null;
     });
     try {
@@ -220,7 +257,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     } catch (e) {
       if (!mounted || generation != _generation) return;
       setState(() {
-        _step = OnboardingStep.signIn;
+        _busy = false;
         _error = e is MediaServerAuthException ? e.message : t.addServer.signInFailed(error: e.toString());
       });
     }
@@ -289,12 +326,14 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
     if (!mounted || generation != _generation) return;
     if (failure != null) {
       setState(() {
+        _busy = false;
         _step = OnboardingStep.signIn;
         _error = failure;
       });
       return;
     }
     setState(() {
+      _busy = false;
       _connection = connection;
       _step = OnboardingStep.connected;
     });
@@ -307,7 +346,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: OnboardingPalette.ink,
+      backgroundColor: OnboardingPalette.surface,
       body: SafeArea(bottom: false, child: _buildStep()),
     );
   }
@@ -319,27 +358,19 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         formOpen: _formOpen,
         error: _error,
         clipboardOffer: _address.text.trim().isEmpty ? _clipboardOffer : null,
+        busy: _busy,
+        showCancel: _showCancel,
         startAtSplash: widget.startAtSplash,
         onOpenForm: () => setState(() => _formOpen = true),
         onConnect: () => unawaited(_probe()),
+        onCancel: _cancelProbe,
         onPaste: () => setState(() {
           _address.text = _clipboardOffer ?? '';
           _clipboardOffer = null;
           _error = null;
         }),
       ),
-      OnboardingStep.reaching => WorkingStep(
-        title: t.onboarding.reaching,
-        detail: _address.text,
-        onCancel: () => _backToAddress(error: t.onboarding.connectionCancelled),
-      ),
-      OnboardingStep.failed => FailedStep(
-        failure: _failure,
-        address: _address.text,
-        onRetry: () => unawaited(_probe()),
-        onEditAddress: _backToAddress,
-      ),
-      OnboardingStep.signingIn => WorkingStep(title: t.onboarding.signingIn, detail: _serverInfo?.serverName ?? ''),
+      OnboardingStep.certificateWarning => CertificateStep(address: _address.text, onEditAddress: _editAddress),
       OnboardingStep.signIn => SignInStep(
         serverName: _serverInfo?.serverName ?? '',
         mode: _signInMode,
@@ -347,6 +378,7 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         password: _password,
         obscurePassword: _obscurePassword,
         error: _error,
+        busy: _busy,
         quickConnectEnabled: _quickConnectEnabled,
         quickConnectCode: _quickConnectCode,
         onSignIn: () => unawaited(_signIn()),

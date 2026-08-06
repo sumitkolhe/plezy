@@ -1,62 +1,87 @@
 import 'package:flutter/painting.dart';
 
-/// The brand palette, and the only place in the app that is allowed one.
+/// Onboarding's colour scheme, and the only place in the app that has one.
 ///
-/// Everything past `Continue` draws from [MonoTokens], which is greyscale until
-/// Material You supplies an accent from the wallpaper. Onboarding is the
-/// exception on purpose: it runs before there is a server, a profile or a theme
-/// to inherit, and it is the one surface whose job is to say which app this is.
-/// Values come from the design, not from taste.
+/// A Material 3 dark scheme, named by role rather than by shade so the design's
+/// intent survives a retune. Everything past `Continue` draws from
+/// [MonoTokens], which is greyscale until Material You supplies an accent;
+/// onboarding is the exception on purpose, because it runs before there is a
+/// server, a profile or a theme to inherit.
 ///
 /// Nothing outside `lib/screens/onboarding/` may import this.
 abstract final class OnboardingPalette {
-  static const Color ink = Color(0xFF0A0A0B);
+  static const Color surface = Color(0xFF0F1417);
 
-  /// The mark, and nothing else. Actions are white — the blue is the brand's,
-  /// not the interface's.
-  static const Color blue = Color(0xFF2CA8E0);
+  /// Cards and code boxes, a step up from [surface].
+  static const Color surfaceContainerLow = Color(0xFF1C2226);
+  static const Color surfaceContainer = Color(0xFF262C31);
 
-  static const Color text = Color(0xFFFFFFFF);
+  /// Tonal buttons and chips.
+  static const Color secondaryContainer = Color(0xFF2B3238);
+  static const Color onSecondaryContainer = Color(0xFFCBE6F5);
 
-  /// Body copy against [ink].
-  static const Color textMuted = Color(0xFF8B8B93);
+  static const Color primary = Color(0xFF8ACFF2);
+  static const Color onPrimary = Color(0xFF003549);
 
-  /// Labels and captions — a step quieter than [textMuted].
-  static const Color textFaint = Color(0xFF7C7C85);
+  static const Color onSurface = Color(0xFFDFE3E6);
+  static const Color onSurfaceVariant = Color(0xFFBFC8CD);
 
-  /// Hints and placeholders, at the floor of legibility.
-  static const Color textFainter = Color(0xFF5E5E66);
+  /// Captions and hints, quieter again than [onSurfaceVariant].
+  static const Color onSurfaceFaint = Color(0xFFA8B2B8);
 
-  /// Values inside chips and rows, where the surface has already lifted.
-  static const Color textOnFill = Color(0xFFC6C6CC);
+  static const Color outline = Color(0xFF89939A);
+  static const Color outlineVariant = Color(0xFF40484C);
 
-  /// The helper line under the address field.
-  static const Color textHelper = Color(0xFF63636B);
+  static const Color error = Color(0xFFFFB4AB);
 
-  static const Color danger = Color(0xFFE0685F);
+  static const Color successContainer = Color(0xFF1F3D2B);
+  static const Color onSuccessContainer = Color(0xFF9BD5A7);
+
+  /// A warning that is not a failure — the certificate screen.
   static const Color caution = Color(0xFFF0C86A);
-  static const Color success = Color(0xFF5FC38A);
 
-  static const Color fieldFill = Color(0x12FFFFFF);
-
-  /// Secondary actions and chips.
-  static const Color raised = Color(0x17FFFFFF);
-
-  static const Color hairline = Color(0x14FFFFFF);
-  static const Color outline = Color(0x1FFFFFFF);
+  /// The mark's own blue. Brand, not interface: no control uses it.
+  static const Color brand = Color(0xFF2CA8E0);
 }
 
 /// Shared geometry, so the steps cannot drift apart.
 abstract final class OnboardingMetrics {
   static const double gutter = 28;
 
-  /// Primary and secondary actions are pills of the same height.
-  static const double controlHeight = 48;
-  static const double fieldHeight = 52;
-  static const double fieldRadius = 14;
+  /// M3 buttons are full-height pills.
+  static const double buttonHeight = 48;
+  static const double fieldHeight = 56;
 
   /// The frame the design lays its vertical rhythm out in. Offsets taken from
   /// it are scaled by the real screen height so the composition holds on a
   /// shorter phone instead of overflowing.
   static const double referenceHeight = 844;
+}
+
+/// The M3 type ramp, as far as this flow uses it. Kept together so a heading on
+/// one step cannot quietly differ from the same heading on another.
+abstract final class OnboardingType {
+  /// Headline small — every step title.
+  static const TextStyle headline = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    color: OnboardingPalette.onSurface,
+  );
+
+  /// Body medium — the supporting line under a heading.
+  static const TextStyle body = TextStyle(fontSize: 14, height: 1.5, color: OnboardingPalette.onSurfaceVariant);
+
+  /// Label large — every button.
+  static const TextStyle label = TextStyle(fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1);
+
+  /// Body large — what a field contains.
+  static const TextStyle field = TextStyle(fontSize: 16, color: OnboardingPalette.onSurface);
+
+  /// Body small — the supporting text beneath a field.
+  static const TextStyle supporting = TextStyle(
+    fontSize: 12,
+    height: 1.33,
+    letterSpacing: 0.4,
+    color: OnboardingPalette.onSurfaceVariant,
+  );
 }

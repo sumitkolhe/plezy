@@ -1448,7 +1448,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     // cold start the profile whose theme we would otherwise read is still
     // being loaded.
     return ColoredBox(
-      color: OnboardingPalette.ink,
+      color: OnboardingPalette.surface,
       child: Stack(
         children: [
           const Positioned.fill(child: IntroSurface(progress: 0)),

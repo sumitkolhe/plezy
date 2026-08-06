@@ -25,6 +25,7 @@ class SignInStep extends StatelessWidget {
     required this.error,
     required this.quickConnectEnabled,
     required this.quickConnectCode,
+    required this.busy,
     required this.onSignIn,
     required this.onToggleObscure,
     required this.onUseQuickConnect,
@@ -41,6 +42,9 @@ class SignInStep extends StatelessWidget {
 
   /// Null until the server has issued one.
   final String? quickConnectCode;
+
+  /// Authenticating. Carried by the button, like the connect step's wait.
+  final bool busy;
 
   final VoidCallback onSignIn;
   final VoidCallback onToggleObscure;
@@ -60,33 +64,23 @@ class SignInStep extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: OnboardingChip(
                 label: t.onboarding.serverReachable(server: serverName),
+                tone: OnboardingPalette.successContainer,
                 leading: Container(
                   width: 6,
                   height: 6,
-                  decoration: const BoxDecoration(color: OnboardingPalette.success, shape: BoxShape.circle),
+                  decoration: const BoxDecoration(color: OnboardingPalette.onSuccessContainer, shape: BoxShape.circle),
                 ),
               ),
             ),
             const SizedBox(height: 26),
-            Text(
-              t.onboarding.signInTitle,
-              style: const TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.5,
-                color: OnboardingPalette.text,
-              ),
-            ),
+            Text(t.onboarding.signInTitle, style: OnboardingType.headline),
             const SizedBox(height: 9),
-            Text(
-              quick ? t.onboarding.signInQuickBody : t.onboarding.signInPasswordBody,
-              style: const TextStyle(fontSize: 14, height: 1.5, color: OnboardingPalette.textMuted),
-            ),
+            Text(quick ? t.onboarding.signInQuickBody : t.onboarding.signInPasswordBody, style: OnboardingType.body),
             Expanded(child: quick ? _buildQuickConnect() : _buildPassword()),
             if (quick)
-              OnboardingSecondaryButton(label: t.onboarding.usePassword, onPressed: onUsePassword)
+              OnboardingTonalButton(label: t.onboarding.usePassword, onPressed: onUsePassword)
             else if (quickConnectEnabled)
-              OnboardingSecondaryButton(label: t.onboarding.useQuickConnect, onPressed: onUseQuickConnect),
+              OnboardingTonalButton(label: t.onboarding.useQuickConnect, onPressed: onUseQuickConnect),
           ],
         ),
       ),
@@ -99,13 +93,15 @@ class SignInStep extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 26),
-          OnboardingFieldLabel(t.addServer.username),
-          const SizedBox(height: 8),
-          OnboardingField(controller: username, autofocus: true, textInputAction: TextInputAction.next),
-          const SizedBox(height: 16),
-          OnboardingFieldLabel(t.addServer.password),
-          const SizedBox(height: 8),
           OnboardingField(
+            label: t.addServer.username,
+            controller: username,
+            autofocus: true,
+            textInputAction: TextInputAction.next,
+          ),
+          const SizedBox(height: 16),
+          OnboardingField(
+            label: t.addServer.password,
             controller: password,
             obscureText: obscurePassword,
             invalid: error != null,
@@ -115,13 +111,22 @@ class SignInStep extends StatelessWidget {
               onTap: onToggleObscure,
               child: Text(
                 obscurePassword ? t.onboarding.show : t.onboarding.hide,
-                style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500, color: OnboardingPalette.textFaint),
+                style: const TextStyle(
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w500,
+                  color: OnboardingPalette.onSurfaceVariant,
+                ),
               ),
             ),
           ),
-          if (error case final error?) ...[const SizedBox(height: 12), OnboardingErrorText(error)],
+          if (error case final error?) ...[const SizedBox(height: 12), OnboardingSupportingText(error, invalid: true)],
           const SizedBox(height: 22),
-          OnboardingButton(label: t.addServer.signIn, onPressed: onSignIn),
+          OnboardingButton(
+            label: t.addServer.signIn,
+            busyLabel: t.onboarding.signingIn,
+            busy: busy,
+            onPressed: onSignIn,
+          ),
         ],
       ),
     );
@@ -133,7 +138,7 @@ class SignInStep extends StatelessWidget {
       children: [
         const SizedBox(height: 32),
         if (code == null)
-          const _Spinner()
+          const OnboardingSpinner()
         else
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -143,16 +148,16 @@ class SignInStep extends StatelessWidget {
         if (code != null) ...[
           const Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [_Spinner(), SizedBox(width: 9), _WaitingLabel()],
+            children: [OnboardingSpinner(), SizedBox(width: 9), _WaitingLabel()],
           ),
           const SizedBox(height: 12),
           Text(
             t.onboarding.quickConnectHowTo,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 13.5, height: 1.55, color: OnboardingPalette.textFaint),
+            style: const TextStyle(fontSize: 13.5, height: 1.55, color: OnboardingPalette.onSurfaceFaint),
           ),
         ],
-        if (error case final error?) ...[const SizedBox(height: 16), OnboardingErrorText(error)],
+        if (error case final error?) ...[const SizedBox(height: 16), OnboardingSupportingText(error, invalid: true)],
       ],
     );
   }
@@ -163,7 +168,7 @@ class _WaitingLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) =>
-      Text(t.onboarding.waitingForApproval, style: const TextStyle(fontSize: 14, color: OnboardingPalette.textOnFill));
+      Text(t.onboarding.waitingForApproval, style: const TextStyle(fontSize: 14, color: OnboardingPalette.onSurface));
 }
 
 /// One character of the Quick Connect code, boxed so it can be read aloud and
@@ -180,62 +185,15 @@ class _CodeBox extends StatelessWidget {
       height: 52,
       margin: const EdgeInsets.symmetric(horizontal: 4.5),
       alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: OnboardingPalette.fieldFill,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: OnboardingPalette.outline),
-      ),
+      decoration: BoxDecoration(color: OnboardingPalette.surfaceContainer, borderRadius: BorderRadius.circular(12)),
       child: Text(
         character,
         style: const TextStyle(
           fontFamily: 'GoogleSansCode',
           fontSize: 21,
           fontWeight: FontWeight.w500,
-          color: OnboardingPalette.text,
+          color: OnboardingPalette.onSurface,
         ),
-      ),
-    );
-  }
-}
-
-class _Spinner extends StatefulWidget {
-  const _Spinner();
-
-  @override
-  State<_Spinner> createState() => _SpinnerState();
-}
-
-class _SpinnerState extends State<_Spinner> with SingleTickerProviderStateMixin {
-  late final AnimationController _spin;
-
-  @override
-  void initState() {
-    super.initState();
-    _spin = AnimationController(vsync: this, duration: const Duration(milliseconds: 1100));
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Still under reduced motion: an arc going nowhere is decoration, and the
-    // words next to it already say what is happening.
-    if (!prefersReducedMotion(context) && !_spin.isAnimating) _spin.repeat();
-  }
-
-  @override
-  void dispose() {
-    _spin.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: _spin,
-      child: const SizedBox(
-        width: 15,
-        height: 15,
-        child: CircularProgressIndicator(strokeWidth: 2.2, color: OnboardingPalette.blue),
       ),
     );
   }
