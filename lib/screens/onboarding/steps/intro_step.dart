@@ -80,7 +80,11 @@ class _CrossfadedTitles extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = tokens(context);
     final wordmark = TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text);
-    final tagline = TextStyle(fontSize: 13, letterSpacing: 1.8, color: c.textMuted);
+    // Sentence case, lightly tracked. The uppercase eyebrow this replaced is a
+    // lockup device for a descriptor; set that way, a line with a joke in it
+    // reads as a brand promise delivered deadpan — and caps plus 1.8 tracking
+    // is what made it wide enough to wrap in the first place.
+    final tagline = TextStyle(fontSize: 13, letterSpacing: 0.2, color: c.textMuted);
     final scaler = MediaQuery.textScalerOf(context);
 
     return LayoutBuilder(
@@ -97,7 +101,7 @@ class _CrossfadedTitles extends StatelessWidget {
           textScaler: scaler,
         )..layout(maxWidth: constraints.maxWidth)).height;
 
-        final splashHeight = heightOf('Harbor', wordmark) + 12 + heightOf(t.onboarding.tagline.toUpperCase(), tagline);
+        final splashHeight = heightOf('Harbor', wordmark) + 12 + heightOf(t.onboarding.tagline, tagline);
         final connectHeight = heightOf(t.onboarding.connectTitle, OnboardingType.headline);
 
         return SizedBox(
@@ -115,7 +119,7 @@ class _CrossfadedTitles extends StatelessWidget {
                     children: [
                       Text('Harbor', style: wordmark),
                       const SizedBox(height: 12),
-                      Text(t.onboarding.tagline.toUpperCase(), style: tagline),
+                      Text(t.onboarding.tagline, style: tagline),
                     ],
                   ),
                 ),

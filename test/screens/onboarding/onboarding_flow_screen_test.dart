@@ -41,7 +41,7 @@ void main() {
     await _pump(tester, startAtSplash: true);
 
     expect(find.text('Harbor'), findsOneWidget);
-    expect(find.text(t.onboarding.tagline.toUpperCase()), findsOneWidget);
+    expect(find.text(t.onboarding.tagline), findsOneWidget);
     expect(find.text(t.onboarding.addServer), findsNothing);
 
     await tester.pump(IntroStep.splashHold);
@@ -124,7 +124,7 @@ void main() {
     testWidgets('neither title is clipped by its box at text scale $scale', (tester) async {
       await _pump(tester, startAtSplash: true, textScale: scale);
 
-      for (final probe in [find.text('Harbor'), find.text(t.onboarding.tagline.toUpperCase())]) {
+      for (final probe in [find.text('Harbor'), find.text(t.onboarding.tagline)]) {
         final box = tester.getRect(find.ancestor(of: probe, matching: find.byType(SizedBox)).first);
         final text = tester.getRect(probe);
         expect(text.bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
