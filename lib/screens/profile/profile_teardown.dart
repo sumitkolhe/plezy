@@ -16,7 +16,6 @@ import '../../providers/download_provider.dart';
 import '../../providers/discover_provider.dart';
 import '../../providers/hidden_libraries_provider.dart';
 import '../../providers/multi_server_provider.dart';
-import '../../providers/playback_state_provider.dart';
 import '../../providers/user_profile_provider.dart';
 import '../../services/api_cache.dart';
 import '../../services/multi_server_manager.dart';
@@ -208,7 +207,6 @@ Future<void> deleteProfile(BuildContext context, Profile profile) async {
 Future<void> logoutAllProfiles(BuildContext context) async {
   final scope = SessionTeardownScope.of(context);
   final userProfileProvider = context.read<UserProfileProvider>();
-  final playbackState = context.read<PlaybackStateProvider>();
 
   final activeOwner = scope.active.activeId;
   if (activeOwner != null) {
@@ -238,7 +236,6 @@ Future<void> logoutAllProfiles(BuildContext context) async {
   // volatile and must not cross into the next sign-in.
   await ApiCache.clearRegisteredVolatile();
   await scope.hiddenLibraries?.refresh();
-  playbackState.clearShuffle();
 
   if (scope.navigator.mounted) {
     unawaited(
