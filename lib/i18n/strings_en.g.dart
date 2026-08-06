@@ -4046,8 +4046,8 @@ class Translations$onboarding$en {
 	/// en: 'Connect your server'
 	String get connectTitle => 'Connect your server';
 
-	/// en: 'Harbor plays from your own Jellyfin server. Nothing leaves your network.'
-	String get connectBody => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.';
+	/// en: 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.'
+	String get connectBody => 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.';
 
 	/// en: 'Add Jellyfin server'
 	String get addServer => 'Add Jellyfin server';
@@ -4055,8 +4055,8 @@ class Translations$onboarding$en {
 	/// en: 'Server address'
 	String get serverAddress => 'Server address';
 
-	/// en: 'Enter your server address, or scan the network'
-	String get addressRequired => 'Enter your server address, or scan the network';
+	/// en: 'Enter your server address'
+	String get addressRequired => 'Enter your server address';
 
 	/// en: 'Reaching your server'
 	String get reaching => 'Reaching your server';
@@ -6544,10 +6544,10 @@ extension on Translations {
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
 			'onboarding.tagline' => 'Your library, at anchor',
 			'onboarding.connectTitle' => 'Connect your server',
-			'onboarding.connectBody' => 'Harbor plays from your own Jellyfin server. Nothing leaves your network.',
+			'onboarding.connectBody' => 'Harbor plays from a Jellyfin server you run. Enter its address to sign in — nothing leaves this device until you do.',
 			'onboarding.addServer' => 'Add Jellyfin server',
 			'onboarding.serverAddress' => 'Server address',
-			'onboarding.addressRequired' => 'Enter your server address, or scan the network',
+			'onboarding.addressRequired' => 'Enter your server address',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',
 			'onboarding.signInTitle' => 'Sign in',
