@@ -1096,9 +1096,21 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
   // Per-server connection status: serverId -> (name, connected?)
   final Map<String, (String name, bool? connected)> _serverStatus = {};
 
+  /// Whether startup has taken long enough to be worth showing a splash for.
+  ///
+  /// A first run has no connections to load, so this screen would otherwise
+  /// appear and vanish inside a couple of frames — the mark and wordmark
+  /// animating in just as the onboarding flow replaces them. Until the delay
+  /// elapses the screen is flat ink, which is pixel-identical to the system
+  /// splash behind it, so a fast start reads as one continuous surface and
+  /// nothing flashes.
+  bool _showBranding = false;
+  Timer? _brandingTimer;
+
   @override
   void initState() {
     super.initState();
+    _brandingTimer = Timer(const Duration(milliseconds: 350), () => setStateIfMounted(() => _showBranding = true));
     _loadSavedCredentials();
   }
 
@@ -1332,6 +1344,7 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
 
   @override
   void dispose() {
+    _brandingTimer?.cancel();
     _statusSub?.cancel();
     _connectProgressSub?.cancel();
     super.dispose();
@@ -1399,26 +1412,30 @@ class _SetupScreenState extends State<SetupScreen> with MountedSetStateMixin {
     // being loaded.
     return ColoredBox(
       color: OnboardingPalette.ink,
-      child: Stack(
-        children: [
-          const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
-          const Positioned.fill(child: _SplashMark()),
-          // Silent until startup has something to say: a cold start that reaches
-          // the library in under a second should not flash a status line on the
-          // way past.
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 44,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildStatusText(context),
-                if (_serverStatus.isNotEmpty) ...[const SizedBox(height: 12), _buildServerStatusList(context)],
-              ],
+      child: AnimatedOpacity(
+        opacity: _showBranding ? 1 : 0,
+        duration: const Duration(milliseconds: 220),
+        child: Stack(
+          children: [
+            const Positioned(left: 0, right: 0, bottom: 0, child: HarborWater()),
+            const Positioned.fill(child: _SplashMark()),
+            // Silent until startup has something to say: a cold start that reaches
+            // the library in under a second should not flash a status line on the
+            // way past.
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 44,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildStatusText(context),
+                  if (_serverStatus.isNotEmpty) ...[const SizedBox(height: 12), _buildServerStatusList(context)],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
