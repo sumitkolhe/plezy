@@ -69,7 +69,6 @@ part 'jellyfin_client/parts/collections.dart';
 part 'jellyfin_client/parts/file_info.dart';
 part 'jellyfin_client/parts/images_downloads.dart';
 part 'jellyfin_client/parts/metadata_edit.dart';
-part 'jellyfin_client/parts/item_counts.dart';
 
 /// Canonical declarations of the [JellyfinClient] internals that the `part`
 /// mixins call into.
@@ -103,8 +102,7 @@ class JellyfinClient
         _JellyfinCollectionMethods,
         _JellyfinFileInfoMethods,
         _JellyfinImageDownloadMethods,
-        _JellyfinMetadataEditMethods,
-        _JellyfinItemCountMethods
+        _JellyfinMetadataEditMethods
     implements
         MediaServerClient,
         SeasonEpisodePagingClient,

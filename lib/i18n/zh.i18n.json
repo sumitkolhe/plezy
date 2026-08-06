@@ -1579,11 +1579,7 @@
     "reaching": "",
     "signingIn": "",
     "signInTitle": "",
-    "moviesLabel": "",
-    "seriesLabel": "",
-    "episodesLabel": "",
     "skip": "",
-    "continueAction": "",
     "addressDefaultsHint": "",
     "pasteAddress": "",
     "addressLabel": "",
@@ -1600,7 +1596,6 @@
     "waitingForApproval": "",
     "show": "",
     "hide": "",
-    "signedInAs": "",
     "couldNotReach": ""
   }
 }

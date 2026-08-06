@@ -4067,20 +4067,8 @@ class Translations$onboarding$en {
 	/// en: 'Sign in'
 	String get signInTitle => 'Sign in';
 
-	/// en: 'Movies'
-	String get moviesLabel => 'Movies';
-
-	/// en: 'Series'
-	String get seriesLabel => 'Series';
-
-	/// en: 'Episodes'
-	String get episodesLabel => 'Episodes';
-
 	/// en: 'Skip'
 	String get skip => 'Skip';
-
-	/// en: 'Continue'
-	String get continueAction => 'Continue';
 
 	/// en: 'Port 8096 and http are assumed unless you say otherwise'
 	String get addressDefaultsHint => 'Port 8096 and http are assumed unless you say otherwise';
@@ -4129,9 +4117,6 @@ class Translations$onboarding$en {
 
 	/// en: 'Hide'
 	String get hide => 'Hide';
-
-	/// en: 'Signed in as ${user}'
-	String signedInAs({required Object user}) => 'Signed in as ${user}';
 
 	/// en: 'Could not reach ${address}. Check the server is on and on this network.'
 	String couldNotReach({required Object address}) => 'Could not reach ${address}. Check the server is on and on this network.';
@@ -6569,11 +6554,7 @@ extension on Translations {
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',
 			'onboarding.signInTitle' => 'Sign in',
-			'onboarding.moviesLabel' => 'Movies',
-			'onboarding.seriesLabel' => 'Series',
-			'onboarding.episodesLabel' => 'Episodes',
 			'onboarding.skip' => 'Skip',
-			'onboarding.continueAction' => 'Continue',
 			'onboarding.addressDefaultsHint' => 'Port 8096 and http are assumed unless you say otherwise',
 			'onboarding.pasteAddress' => ({required Object address}) => 'Paste ${address}',
 			'onboarding.addressLabel' => 'Address',
@@ -6590,7 +6571,6 @@ extension on Translations {
 			'onboarding.waitingForApproval' => 'Waiting for approval',
 			'onboarding.show' => 'Show',
 			'onboarding.hide' => 'Hide',
-			'onboarding.signedInAs' => ({required Object user}) => 'Signed in as ${user}',
 			'onboarding.couldNotReach' => ({required Object address}) => 'Could not reach ${address}. Check the server is on and on this network.',
 			_ => null,
 		};

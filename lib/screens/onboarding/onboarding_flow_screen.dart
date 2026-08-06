@@ -15,7 +15,6 @@ import '../../utils/device_identity.dart';
 import '../../utils/navigation_transitions.dart';
 import '../settings/connection_persistence.dart';
 import '../../theme/mono_tokens.dart';
-import 'steps/connected_step.dart';
 import 'steps/certificate_step.dart';
 import 'steps/intro_step.dart';
 import 'steps/sign_in_step.dart';
@@ -25,7 +24,7 @@ import 'steps/sign_in_step.dart';
 /// Waiting is not among them: reaching a server and signing in both happen
 /// inside the button that started them, so the form stays on screen and the
 /// address stays editable while it works.
-enum OnboardingStep { intro, certificateWarning, signIn, connected }
+enum OnboardingStep { intro, certificateWarning, signIn }
 
 /// First run: name a Jellyfin server, sign in, and hand over to the library.
 ///
@@ -93,8 +92,6 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
   String? _quickConnectCode;
   bool _quickConnectCancelled = false;
   int _quickConnectAttempt = 0;
-
-  JellyfinConnection? _connection;
 
   /// Guards every `setState` that follows an await against a step the user has
   /// since navigated away from.
@@ -332,14 +329,8 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
       });
       return;
     }
-    setState(() {
-      _busy = false;
-      _connection = connection;
-      _step = OnboardingStep.connected;
-    });
-  }
-
-  void _enterLibrary() {
+    // Straight in. `_busy` is left set so the button that started this keeps its
+    // spinner until the route is gone, rather than flicking back to idle.
     unawaited(Navigator.pushReplacement(context, fadeRoute(const ProfileSessionScreen())));
   }
 
@@ -387,7 +378,6 @@ class _OnboardingFlowScreenState extends State<OnboardingFlowScreen> {
         onUseQuickConnect: () => unawaited(_startQuickConnect()),
         onUsePassword: _usePassword,
       ),
-      OnboardingStep.connected => ConnectedStep(connection: _connection!, onEnter: _enterLibrary),
     };
   }
 }
