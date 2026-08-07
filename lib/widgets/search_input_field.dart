@@ -4,7 +4,6 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import '../focus/focusable_button.dart';
 import '../focus/focusable_text_field.dart';
 import 'app_icon.dart';
-import 'pill_input_decoration.dart';
 
 /// The pill search field the search screens put above their results, with the
 /// clear affordance that appears once there is text: RIGHT out of the field
@@ -75,8 +74,7 @@ class _SearchInputFieldState extends State<SearchInputField> {
             onNavigateDown: widget.onNavigateDown,
             onEditingComplete: widget.onEditingComplete,
             onBack: widget.onBack,
-            decoration: pillInputDecoration(
-              context,
+            decoration: InputDecoration(
               hintText: widget.hintText,
               prefixIcon: const AppIcon(PhosphorIcons.magnifyingGlass),
               suffixIcon: hasText ? const SizedBox(width: 48) : null,

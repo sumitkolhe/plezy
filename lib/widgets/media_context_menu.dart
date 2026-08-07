@@ -52,7 +52,6 @@ import '../utils/video_player_navigation.dart';
 import '../utils/deletion_notifier.dart';
 import '../widgets/app_menu.dart';
 import '../widgets/file_info_bottom_sheet.dart';
-import 'pill_input_decoration.dart';
 import '../widgets/overlay_sheet.dart';
 import '../widgets/rating_bottom_sheet.dart';
 import '../i18n/strings.g.dart';
@@ -1784,8 +1783,7 @@ class _PickerDialogScaffoldState<T> extends State<_PickerDialogScaffold<T>> {
                   tvTextInputPresentation: TvTextInputPresentation.flutterOverlay,
                   tvTextInputAutoOpenBehavior: TvTextInputAutoOpenBehavior.afterFirstFocus,
                   onNavigateDown: _firstItemFocusNode.requestFocus,
-                  decoration: pillInputDecoration(
-                    context,
+                  decoration: InputDecoration(
                     hintText: widget.searchHint,
                     prefixIcon: const AppIcon(PhosphorIcons.magnifyingGlass, size: 20),
                   ),

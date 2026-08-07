@@ -84,7 +84,7 @@ ThemeData monoTheme(MonoPalette palette) {
       margin: .zero,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(14))),
     ),
-    inputDecorationTheme: _inputDecorationTheme(c.text, c.textMuted),
+    inputDecorationTheme: _inputDecorationTheme(c.textMuted, c.outline, scheme.primary, scheme.error),
     elevatedButtonTheme: ElevatedButtonThemeData(style: buttonStyle),
     filledButtonTheme: FilledButtonThemeData(style: buttonStyle),
     textButtonTheme: TextButtonThemeData(style: ButtonStyle(mouseCursor: clickableCursor)),
@@ -165,21 +165,31 @@ ThemeData monoTheme(MonoPalette palette) {
   );
 }
 
-/// Brighter fill on focus so input focus is visible inside TV overscan.
-InputDecorationTheme _inputDecorationTheme(Color text, Color textMuted) {
-  final unfocusedFill = text.withValues(alpha: 0.08);
-  final focusedFill = text.withValues(alpha: 0.18);
-  const border = OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12)), borderSide: BorderSide.none);
+/// One field shape for the whole app: an outlined pill that thickens to the
+/// accent on focus.
+///
+/// It used to be a filled box that signalled focus by brightening its own fill.
+/// That is invisible on a surface the same colour as the fill, and it left
+/// anything drawing its own outline — the onboarding fields did — with no focus
+/// state at all, because opting out of the fill opted out of the only signal
+/// there was.
+InputDecorationTheme _inputDecorationTheme(Color textMuted, Color outline, Color primary, Color error) {
+  OutlineInputBorder pill(Color color, double width) => OutlineInputBorder(
+    borderRadius: const BorderRadius.all(Radius.circular(999)),
+    borderSide: BorderSide(color: color, width: width),
+    // Room around the label where it notches into the outline.
+    gapPadding: 6,
+  );
   return InputDecorationTheme(
-    filled: true,
-    fillColor: WidgetStateColor.resolveWith(
-      (states) => states.contains(WidgetState.focused) ? focusedFill : unfocusedFill,
-    ),
+    filled: false,
     isDense: true,
-    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-    border: border,
-    enabledBorder: border,
-    focusedBorder: border,
+    // Wide enough that text clears the pill's own curve at either end.
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+    border: pill(outline, 1),
+    enabledBorder: pill(outline, 1),
+    focusedBorder: pill(primary, 2),
+    errorBorder: pill(error, 1),
+    focusedErrorBorder: pill(error, 2),
     hintStyle: TextStyle(color: textMuted, fontFamily: MonoFonts.sans),
   );
 }

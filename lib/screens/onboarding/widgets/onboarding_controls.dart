@@ -112,11 +112,9 @@ class OnboardingTextButton extends StatelessWidget {
 /// The label rests inside the field and floats into the outline once there is
 /// focus or text, so two stacked fields keep their names when both are filled.
 ///
-/// The borders are spelled out because the app-wide [InputDecorationTheme] is
-/// built for filled fields: it fills, pads, and makes all three borders
-/// borderless, signalling focus by brightening the fill instead. None of that
-/// suits a pill that draws its own outline, and an outline is the thing this
-/// field has to change on focus.
+/// The shape, padding and focus outline are the app-wide
+/// [InputDecorationTheme] now, so this is only a field with a notched label and
+/// a bool for its error state.
 class OnboardingField extends StatelessWidget {
   const OnboardingField({
     super.key,
@@ -145,7 +143,9 @@ class OnboardingField extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
 
-  static OutlineInputBorder _pill(Color color, double width) => OutlineInputBorder(
+  /// The theme's error borders key off `errorText`, and this field takes a
+  /// bool, so the invalid case has to supply its own.
+  static OutlineInputBorder _errorPill(Color color, double width) => OutlineInputBorder(
     borderRadius: const BorderRadius.all(Radius.circular(999)),
     borderSide: BorderSide(color: color, width: width),
     gapPadding: 6,
@@ -155,8 +155,6 @@ class OnboardingField extends StatelessWidget {
   Widget build(BuildContext context) {
     final c = tokens(context);
     final scheme = Theme.of(context).colorScheme;
-    final resting = invalid ? scheme.error : c.outline;
-    final active = invalid ? scheme.error : scheme.primary;
     final labelColour = invalid ? scheme.error : c.textMuted;
 
     return TextField(
@@ -176,11 +174,8 @@ class OnboardingField extends StatelessWidget {
         hintText: hintText,
         prefixIcon: leading,
         suffixIcon: trailing,
-        filled: false,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
-        border: _pill(resting, 1),
-        enabledBorder: _pill(resting, 1),
-        focusedBorder: _pill(active, 2),
+        enabledBorder: invalid ? _errorPill(scheme.error, 1) : null,
+        focusedBorder: invalid ? _errorPill(scheme.error, 2) : null,
         // Size and the 16-to-12 float are Material's, from the theme. Only the
         // colour is ours, because invalid has to reach the label as well as
         // the outline.
