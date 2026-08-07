@@ -158,6 +158,7 @@ ThemeData monoTheme(MonoPalette palette) {
         text: c.text,
         textMuted: c.textMuted,
         accent: c.accent,
+        success: scheme.brightness == Brightness.dark ? _successDark : _successLight,
         splashFactory: materialYou ? hapticSparkle : hapticNoSplash,
       ),
     ],
@@ -182,3 +183,10 @@ InputDecorationTheme _inputDecorationTheme(Color text, Color textMuted) {
     hintStyle: TextStyle(color: textMuted, fontFamily: MonoFonts.sans),
   );
 }
+
+/// Green at the tones M3 gives `error` — 40 on light, 80 on dark — so a
+/// success reads with the same weight as a failure rather than shouting over
+/// it. Fixed rather than generated: the greyscale schemes have no hue to
+/// derive one from, and it must not drift with the wallpaper either.
+const Color _successLight = Color(0xFF1A6C31);
+const Color _successDark = Color(0xFF88D990);

@@ -55,7 +55,6 @@ class SignInStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    final scheme = Theme.of(context).colorScheme;
     final quick = mode == SignInMode.quickConnect;
     return RiseIn(
       child: Padding(
@@ -68,10 +67,13 @@ class SignInStep extends StatelessWidget {
               child: OnboardingChip(
                 label: t.onboarding.serverReachable(server: serverName),
                 tone: c.surface,
+                // Green, not the accent: this reports a state rather than
+                // offering an action, and on the mono themes the accent is
+                // the same white as the label beside it.
                 leading: Container(
-                  width: 6,
-                  height: 6,
-                  decoration: BoxDecoration(color: scheme.primary, shape: BoxShape.circle),
+                  width: 8,
+                  height: 8,
+                  decoration: BoxDecoration(color: c.success, shape: BoxShape.circle),
                 ),
               ),
             ),

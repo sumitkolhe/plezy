@@ -65,6 +65,11 @@ class MonoTokens extends ThemeExtension<MonoTokens> {
   /// Interactive emphasis. Equal to [text] on every theme except Material You,
   /// where it carries the wallpaper's accent.
   final Color accent;
+
+  /// Status, and the only colour besides the scheme's own error allowed
+  /// through the greyscale. M3 defines no success role, so this is toned to
+  /// match the one it does define: 40 on light, 80 on dark.
+  final Color success;
   final InteractiveInkFeatureFactory? splashFactory;
 
   const MonoTokens({
@@ -84,6 +89,7 @@ class MonoTokens extends ThemeExtension<MonoTokens> {
     required this.text,
     required this.textMuted,
     required this.accent,
+    required this.success,
     required this.splashFactory,
   });
 
@@ -105,6 +111,7 @@ class MonoTokens extends ThemeExtension<MonoTokens> {
     Color? text,
     Color? textMuted,
     Color? accent,
+    Color? success,
     InteractiveInkFeatureFactory? splashFactory,
   }) => MonoTokens(
     radiusSm: radiusSm ?? this.radiusSm,
@@ -123,6 +130,7 @@ class MonoTokens extends ThemeExtension<MonoTokens> {
     text: text ?? this.text,
     textMuted: textMuted ?? this.textMuted,
     accent: accent ?? this.accent,
+    success: success ?? this.success,
     splashFactory: splashFactory ?? this.splashFactory,
   );
 
@@ -149,6 +157,7 @@ class MonoTokens extends ThemeExtension<MonoTokens> {
       text: lerpC(text, other.text),
       textMuted: lerpC(textMuted, other.textMuted),
       accent: lerpC(accent, other.accent),
+      success: lerpC(success, other.success),
       splashFactory: other.splashFactory,
     );
   }
