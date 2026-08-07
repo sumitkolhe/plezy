@@ -50,7 +50,11 @@ class IntroSurface extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Center(
-                child: Transform.scale(scale: 1 - 0.35 * progress, child: const HarborMark(size: 104)),
+                // Sized down rather than Transform.scale'd: a transform shrinks
+                // what is painted and leaves the box, so the shrunken mark sat
+                // in 104dp of layout with 18dp of nothing under it — doubling
+                // the gap below before the spacer was even counted.
+                child: HarborMark(size: 104 * (1 - 0.35 * progress)),
               ),
               SizedBox(height: 26 - 8 * progress),
               _CrossfadedTitles(progress: progress),
