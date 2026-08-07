@@ -113,12 +113,17 @@ class SignInStep extends StatelessWidget {
             invalid: error != null,
             textInputAction: TextInputAction.go,
             onSubmitted: (_) => onSignIn(),
-            trailing: GestureDetector(
-              onTap: onToggleObscure,
-              child: Text(
-                obscurePassword ? t.onboarding.show : t.onboarding.hide,
-                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500, color: c.textMuted),
+            trailing: TextButton(
+              onPressed: onToggleObscure,
+              style: TextButton.styleFrom(
+                foregroundColor: c.textMuted,
+                textStyle: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                minimumSize: Size.zero,
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                shape: const StadiumBorder(),
               ),
+              child: Text(obscurePassword ? t.onboarding.show : t.onboarding.hide),
             ),
           ),
           if (error case final error?) ...[const SizedBox(height: 12), OnboardingSupportingText(error, invalid: true)],
