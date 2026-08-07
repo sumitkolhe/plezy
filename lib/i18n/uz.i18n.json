@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "Jellyfin-ga ulanish",
     "useQuickConnect": "Tezkor ulanishdan foydalanish",
     "quickConnectInstructions": "Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.",
     "quickConnectWaiting": "Tasdiq kutilmoqda…",
@@ -1576,7 +1575,6 @@
     "scopeEpisode": ""
   },
   "onboarding": {
-    "tagline": "",
     "connectTitle": "",
     "addServer": "",
     "serverAddress": "",

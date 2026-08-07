@@ -100,7 +100,6 @@ class _Translations$auth$hu extends Translations$auth$en {
 	final TranslationsHu _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Csatlakozás Jellyfinhez';
 	@override String get useQuickConnect => 'Quick Connect használata';
 	@override String get quickConnectInstructions => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.';
 	@override String get quickConnectWaiting => 'Várakozás a jóváhagyásra…';
@@ -1687,7 +1686,6 @@ extension on TranslationsHu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Csatlakozás Jellyfinhez',
 			'auth.useQuickConnect' => 'Quick Connect használata',
 			'auth.quickConnectInstructions' => 'Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.',
 			'auth.quickConnectWaiting' => 'Várakozás a jóváhagyásra…',
@@ -2198,9 +2196,9 @@ extension on TranslationsHu {
 			'subtitlingStyling.assOverride' => 'ASS felülbírálása',
 			'subtitlingStyling.overrideScale' => 'Skálázás',
 			'subtitlingStyling.overrideForce' => 'Kényszerítés',
+			'subtitlingStyling.overrideStrip' => 'Stílus eltávolítása',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Stílus eltávolítása',
 			'subtitlingStyling.positionTop' => 'Fent',
 			'subtitlingStyling.positionBottom' => 'Lent',
 			'subtitlingStyling.bold' => 'Félkövér',
@@ -2712,9 +2710,9 @@ extension on TranslationsHu {
 			'trakt.scrobbleDescription' => 'Lejátszási, szüneteltetési és leállítási események küldése a Traktnak lejátszás közben.',
 			'trakt.watchedSync' => 'Megtekintési állapot szinkronizálása',
 			'trakt.watchedSyncDescription' => 'Ha egy elemet megtekintettként jelölsz meg a Harborben, a Trakt is megtekintettként jelöli.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr csatlakoztatása',
 			'seerr.serverUrl' => 'Szerver URL-címe',
 			'seerr.serverUrlHelper' => 'A Seerr példányod címe',

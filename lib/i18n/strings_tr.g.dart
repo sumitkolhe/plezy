@@ -100,7 +100,6 @@ class _Translations$auth$tr extends Translations$auth$en {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Jellyfin\'e Bağlan';
 	@override String get useQuickConnect => 'Hızlı Bağlantıyı Kullan';
 	@override String get quickConnectInstructions => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.';
 	@override String get quickConnectWaiting => 'Onay bekleniyor…';
@@ -1698,7 +1697,6 @@ extension on TranslationsTr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Jellyfin\'e Bağlan',
 			'auth.useQuickConnect' => 'Hızlı Bağlantıyı Kullan',
 			'auth.quickConnectInstructions' => 'Jellyfin\'de Hızlı Bağlantı\'yı açın ve bu kodu girin.',
 			'auth.quickConnectWaiting' => 'Onay bekleniyor…',
@@ -2209,9 +2207,9 @@ extension on TranslationsTr {
 			'subtitlingStyling.borderColor' => 'Kenarlık Rengi',
 			'subtitlingStyling.backgroundOpacity' => 'Arka Plan Saydamlığı',
 			'subtitlingStyling.backgroundColor' => 'Arka Plan Rengi',
+			'subtitlingStyling.position' => 'Konum',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.position' => 'Konum',
 			'subtitlingStyling.assOverride' => 'ASS Geçersiz Kılma',
 			'subtitlingStyling.overrideScale' => 'Ölçekle',
 			'subtitlingStyling.overrideForce' => 'Zorla',
@@ -2723,9 +2721,9 @@ extension on TranslationsTr {
 			'metadataEdit.director' => 'Yönetmen',
 			'metadataEdit.writer' => 'Yazar',
 			'metadataEdit.producer' => 'Yapımcı',
+			'metadataEdit.country' => 'Ülke',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.country' => 'Ülke',
 			'metadataEdit.label' => 'Etiket',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Bağlandı',

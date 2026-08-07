@@ -41,7 +41,6 @@ void main() {
     await _pump(tester, startAtSplash: true);
 
     expect(find.text('Harbor'), findsOneWidget);
-    expect(find.text(t.onboarding.tagline), findsOneWidget);
     expect(find.text(t.onboarding.addServer), findsNothing);
 
     await tester.pump(IntroStep.splashHold);
@@ -75,7 +74,7 @@ void main() {
     await _settle(tester);
 
     expect(find.byType(TextField), findsOneWidget);
-    expect(find.text(t.auth.connectToJellyfin), findsOneWidget);
+    expect(find.text(t.onboarding.connect), findsOneWidget);
     // Still the same surface, not a pushed page.
     expect(find.byType(IntroStep), findsOneWidget);
   });
@@ -108,7 +107,7 @@ void main() {
     await tester.tap(find.text(t.onboarding.addServer));
     await _settle(tester);
 
-    await tester.tap(find.text(t.auth.connectToJellyfin));
+    await tester.tap(find.text(t.onboarding.connect));
     await _settle(tester);
 
     expect(find.text(t.onboarding.addressRequired), findsOneWidget);
@@ -120,20 +119,25 @@ void main() {
   // under-measurement truncates a line instead of failing loudly.
   for (final scale in const [1.0, 1.3, 2.0]) {
     testWidgets('neither title is clipped by its box at text scale $scale', (tester) async {
-      await _pump(tester, startAtSplash: true, textScale: scale);
-
-      for (final probe in [find.text('Harbor'), find.text(t.onboarding.tagline)]) {
+      void expectFits(Finder probe, String where) {
         final box = tester.getRect(find.ancestor(of: probe, matching: find.byType(SizedBox)).first);
-        final text = tester.getRect(probe);
-        expect(text.bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
+        expect(
+          tester.getRect(probe).bottom,
+          lessThanOrEqualTo(box.bottom + 0.5),
+          reason: '$where clipped at scale $scale',
+        );
       }
+
+      // Only the side being shown has to fit: the box is sized to whichever end
+      // of the morph it is at, and the other is sitting behind it at zero
+      // opacity, overflowing harmlessly.
+      await _pump(tester, startAtSplash: true, textScale: scale);
+      expectFits(find.text('Harbor'), 'wordmark');
 
       await tester.tapAt(tester.getCenter(find.byType(IntroStep)));
       await _settle(tester);
-
-      final title = find.text(t.onboarding.connectTitle);
-      final box = tester.getRect(find.ancestor(of: title, matching: find.byType(SizedBox)).first);
-      expect(tester.getRect(title).bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
+      expectFits(find.text(t.onboarding.connectTitle), 'title');
+      expectFits(find.text(t.onboarding.connectBody), 'subline');
     });
   }
 

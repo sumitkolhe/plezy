@@ -100,7 +100,6 @@ class _Translations$auth$kk extends Translations$auth$en {
 	final TranslationsKk _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Jellyfin-ге қосылу';
 	@override String get useQuickConnect => 'Жылдам қосылуды пайдалану';
 	@override String get quickConnectInstructions => 'Jellyfin-де Жылдам қосылуды ашып, осы кодты енгізіңіз.';
 	@override String get quickConnectWaiting => 'Растау күтілуде…';
@@ -1698,7 +1697,6 @@ extension on TranslationsKk {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Jellyfin-ге қосылу',
 			'auth.useQuickConnect' => 'Жылдам қосылуды пайдалану',
 			'auth.quickConnectInstructions' => 'Jellyfin-де Жылдам қосылуды ашып, осы кодты енгізіңіз.',
 			'auth.quickConnectWaiting' => 'Растау күтілуде…',
@@ -2209,9 +2207,9 @@ extension on TranslationsKk {
 			'subtitlingStyling.borderColor' => 'Жиек түсі',
 			'subtitlingStyling.backgroundOpacity' => 'Фон мөлдірлігі',
 			'subtitlingStyling.backgroundColor' => 'Фон түсі',
+			'subtitlingStyling.position' => 'Орналасуы',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.position' => 'Орналасуы',
 			'subtitlingStyling.assOverride' => 'ASS қайта анықтау',
 			'subtitlingStyling.overrideScale' => 'Масштабтау',
 			'subtitlingStyling.overrideForce' => 'Мәжбүрлеу',
@@ -2723,9 +2721,9 @@ extension on TranslationsKk {
 			'metadataEdit.director' => 'Режиссер',
 			'metadataEdit.writer' => 'Сценарист',
 			'metadataEdit.producer' => 'Продюсер',
+			'metadataEdit.country' => 'Ел',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.country' => 'Ел',
 			'metadataEdit.label' => 'Белгі',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Қосылды',

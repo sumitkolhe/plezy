@@ -100,7 +100,6 @@ class _Translations$auth$da extends Translations$auth$en {
 	final TranslationsDa _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Forbind til Jellyfin';
 	@override String get useQuickConnect => 'Brug Quick Connect';
 	@override String get quickConnectInstructions => 'Åbn Quick Connect i Jellyfin, og indtast denne kode.';
 	@override String get quickConnectWaiting => 'Venter på godkendelse…';
@@ -1687,7 +1686,6 @@ extension on TranslationsDa {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Forbind til Jellyfin',
 			'auth.useQuickConnect' => 'Brug Quick Connect',
 			'auth.quickConnectInstructions' => 'Åbn Quick Connect i Jellyfin, og indtast denne kode.',
 			'auth.quickConnectWaiting' => 'Venter på godkendelse…',
@@ -2198,9 +2196,9 @@ extension on TranslationsDa {
 			'subtitlingStyling.assOverride' => 'ASS-tilsidesættelse',
 			'subtitlingStyling.overrideScale' => 'Skaler',
 			'subtitlingStyling.overrideForce' => 'Gennemtving',
+			'subtitlingStyling.overrideStrip' => 'Fjern formatering',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Fjern formatering',
 			'subtitlingStyling.positionTop' => 'Øverst',
 			'subtitlingStyling.positionBottom' => 'Nederst',
 			'subtitlingStyling.bold' => 'Fed',
@@ -2712,9 +2710,9 @@ extension on TranslationsDa {
 			'trakt.scrobbleDescription' => 'Send afspil-, pause- og stop-begivenheder til Trakt under afspilning.',
 			'trakt.watchedSync' => 'Synkroniser set-status',
 			'trakt.watchedSyncDescription' => 'Når du markerer elementer som set i Harbor, markeres de også på Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Forbind Seerr',
 			'seerr.serverUrl' => 'Server-URL',
 			'seerr.serverUrlHelper' => 'Adressen på din Seerr-instans',

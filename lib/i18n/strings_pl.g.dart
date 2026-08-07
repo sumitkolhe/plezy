@@ -100,7 +100,6 @@ class _Translations$auth$pl extends Translations$auth$en {
 	final TranslationsPl _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Połącz z Jellyfin';
 	@override String get useQuickConnect => 'Użyj Quick Connect';
 	@override String get quickConnectInstructions => 'Otwórz Quick Connect w Jellyfin i wpisz ten kod.';
 	@override String get quickConnectWaiting => 'Oczekiwanie na zatwierdzenie…';
@@ -1693,7 +1692,6 @@ extension on TranslationsPl {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Połącz z Jellyfin',
 			'auth.useQuickConnect' => 'Użyj Quick Connect',
 			'auth.quickConnectInstructions' => 'Otwórz Quick Connect w Jellyfin i wpisz ten kod.',
 			'auth.quickConnectWaiting' => 'Oczekiwanie na zatwierdzenie…',
@@ -2204,9 +2202,9 @@ extension on TranslationsPl {
 			'subtitlingStyling.assOverride' => 'Nadpisywanie ASS',
 			'subtitlingStyling.overrideScale' => 'Skaluj',
 			'subtitlingStyling.overrideForce' => 'Wymuś',
+			'subtitlingStyling.overrideStrip' => 'Usuń style',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Usuń style',
 			'subtitlingStyling.positionTop' => 'Góra',
 			'subtitlingStyling.positionBottom' => 'Dół',
 			'subtitlingStyling.bold' => 'Pogrubienie',
@@ -2718,9 +2716,9 @@ extension on TranslationsPl {
 			'trakt.scrobbleDescription' => 'Wysyłaj do serwisu Trakt zdarzenia odtwarzania, wstrzymania i zatrzymania.',
 			'trakt.watchedSync' => 'Synchronizuj stan obejrzenia',
 			'trakt.watchedSyncDescription' => 'Gdy oznaczysz element jako obejrzany w Harbor, zostanie on również oznaczony jako obejrzany w serwisie Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Połącz Seerr',
 			'seerr.serverUrl' => 'Adres URL serwera',
 			'seerr.serverUrlHelper' => 'Adres Twojej instancji Seerr',

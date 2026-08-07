@@ -100,7 +100,6 @@ class _Translations$auth$uz extends Translations$auth$en {
 	final TranslationsUz _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Jellyfin-ga ulanish';
 	@override String get useQuickConnect => 'Tezkor ulanishdan foydalanish';
 	@override String get quickConnectInstructions => 'Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.';
 	@override String get quickConnectWaiting => 'Tasdiq kutilmoqda…';
@@ -1698,7 +1697,6 @@ extension on TranslationsUz {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Jellyfin-ga ulanish',
 			'auth.useQuickConnect' => 'Tezkor ulanishdan foydalanish',
 			'auth.quickConnectInstructions' => 'Jellyfin-da Tezkor ulanishni oching va ushbu kodni kiriting.',
 			'auth.quickConnectWaiting' => 'Tasdiq kutilmoqda…',
@@ -2209,9 +2207,9 @@ extension on TranslationsUz {
 			'subtitlingStyling.borderColor' => 'Hoshiya rangi',
 			'subtitlingStyling.backgroundOpacity' => 'Fon shaffofligi',
 			'subtitlingStyling.backgroundColor' => 'Fon rangi',
+			'subtitlingStyling.position' => 'Joylashuvi',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.position' => 'Joylashuvi',
 			'subtitlingStyling.assOverride' => 'ASS qayta aniqlash',
 			'subtitlingStyling.overrideScale' => 'Masshtablash',
 			'subtitlingStyling.overrideForce' => 'Majburlash',
@@ -2723,9 +2721,9 @@ extension on TranslationsUz {
 			'metadataEdit.director' => 'Rejissyor',
 			'metadataEdit.writer' => 'Ssenarist',
 			'metadataEdit.producer' => 'Prodyuser',
+			'metadataEdit.country' => 'Mamlakat',
 			_ => null,
 		} ?? switch (path) {
-			'metadataEdit.country' => 'Mamlakat',
 			'metadataEdit.label' => 'Yorliq',
 			'trakt.title' => 'Trakt',
 			'trakt.connected' => 'Ulandi',

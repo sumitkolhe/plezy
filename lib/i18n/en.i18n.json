@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "Connect to Jellyfin",
     "useQuickConnect": "Use Quick Connect",
     "quickConnectInstructions": "Open Quick Connect in Jellyfin and enter this code.",
     "quickConnectWaiting": "Waiting for approval…",
@@ -1576,10 +1575,11 @@
     "scopeEpisode": "S${season}E${episode}"
   },
   "onboarding": {
-    "tagline": "One port to rule them all",
-    "connectTitle": "Connect your server",
-    "addServer": "Add Jellyfin server",
+    "connectTitle": "Add your server",
+    "connectBody": "A beautiful media player for Jellyfin and your *arr stack",
+    "addServer": "Get started",
     "serverAddress": "Server address",
+    "connect": "Connect",
     "addressRequired": "Enter your server address",
     "reaching": "Reaching your server",
     "signingIn": "Signing in",

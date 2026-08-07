@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "Anslut till Jellyfin",
     "useQuickConnect": "Använd Quick Connect",
     "quickConnectInstructions": "Öppna Quick Connect i Jellyfin och ange den här koden.",
     "quickConnectWaiting": "Väntar på godkännande…",
@@ -1576,7 +1575,6 @@
     "scopeEpisode": ""
   },
   "onboarding": {
-    "tagline": "",
     "connectTitle": "",
     "addServer": "",
     "serverAddress": "",

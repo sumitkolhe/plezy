@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "Csatlakozás Jellyfinhez",
     "useQuickConnect": "Quick Connect használata",
     "quickConnectInstructions": "Nyisd meg a Quick Connect-et a Jellyfinben, és add meg ezt a kódot.",
     "quickConnectWaiting": "Várakozás a jóváhagyásra…",
@@ -1576,7 +1575,6 @@
     "scopeEpisode": ""
   },
   "onboarding": {
-    "tagline": "",
     "connectTitle": "",
     "addServer": "",
     "serverAddress": "",

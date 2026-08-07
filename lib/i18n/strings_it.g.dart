@@ -100,7 +100,6 @@ class _Translations$auth$it extends Translations$auth$en {
 	final TranslationsIt _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Connettiti a Jellyfin';
 	@override String get useQuickConnect => 'Usa Quick Connect';
 	@override String get quickConnectInstructions => 'Apri Quick Connect in Jellyfin e inserisci questo codice.';
 	@override String get quickConnectWaiting => 'In attesa di approvazione…';
@@ -1687,7 +1686,6 @@ extension on TranslationsIt {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Connettiti a Jellyfin',
 			'auth.useQuickConnect' => 'Usa Quick Connect',
 			'auth.quickConnectInstructions' => 'Apri Quick Connect in Jellyfin e inserisci questo codice.',
 			'auth.quickConnectWaiting' => 'In attesa di approvazione…',
@@ -2198,9 +2196,9 @@ extension on TranslationsIt {
 			'subtitlingStyling.assOverride' => 'Sovrascrittura ASS',
 			'subtitlingStyling.overrideScale' => 'Ridimensiona',
 			'subtitlingStyling.overrideForce' => 'Forza',
+			'subtitlingStyling.overrideStrip' => 'Rimuovi stile',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Rimuovi stile',
 			'subtitlingStyling.positionTop' => 'In alto',
 			'subtitlingStyling.positionBottom' => 'In basso',
 			'subtitlingStyling.bold' => 'Grassetto',
@@ -2712,9 +2710,9 @@ extension on TranslationsIt {
 			'trakt.scrobbleDescription' => 'Invia eventi di riproduzione, pausa e arresto a Trakt durante la riproduzione.',
 			'trakt.watchedSync' => 'Sincronizza lo stato di visione',
 			'trakt.watchedSyncDescription' => 'Quando contrassegni un elemento come visto in Harbor, viene contrassegnato come visto anche su Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Connetti Seerr',
 			'seerr.serverUrl' => 'URL del server',
 			'seerr.serverUrlHelper' => 'L\'indirizzo della tua istanza Seerr',

@@ -100,7 +100,6 @@ class _Translations$auth$ko extends Translations$auth$en {
 	final TranslationsKo _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Jellyfin에 연결';
 	@override String get useQuickConnect => 'Quick Connect 사용';
 	@override String get quickConnectInstructions => 'Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.';
 	@override String get quickConnectWaiting => '승인 대기 중…';
@@ -1684,7 +1683,6 @@ extension on TranslationsKo {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Jellyfin에 연결',
 			'auth.useQuickConnect' => 'Quick Connect 사용',
 			'auth.quickConnectInstructions' => 'Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.',
 			'auth.quickConnectWaiting' => '승인 대기 중…',
@@ -2195,9 +2193,9 @@ extension on TranslationsKo {
 			'subtitlingStyling.assOverride' => 'ASS 오버라이드',
 			'subtitlingStyling.overrideScale' => '크기 조정',
 			'subtitlingStyling.overrideForce' => '강제 적용',
+			'subtitlingStyling.overrideStrip' => '스타일 제거',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => '스타일 제거',
 			'subtitlingStyling.positionTop' => '위',
 			'subtitlingStyling.positionBottom' => '아래',
 			'subtitlingStyling.bold' => '굵게',
@@ -2709,9 +2707,9 @@ extension on TranslationsKo {
 			'trakt.scrobbleDescription' => '재생 중 재생, 일시정지, 정지 이벤트를 Trakt로 전송합니다.',
 			'trakt.watchedSync' => '시청 상태 동기화',
 			'trakt.watchedSyncDescription' => 'Harbor에서 시청 완료로 표시한 항목이 Trakt에도 시청 완료로 표시됩니다.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Seerr에 연결',
 			'seerr.serverUrl' => '서버 URL',
 			'seerr.serverUrlHelper' => 'Seerr 인스턴스의 주소',

@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "Jellyfin에 연결",
     "useQuickConnect": "Quick Connect 사용",
     "quickConnectInstructions": "Jellyfin에서 Quick Connect를 열고 이 코드를 입력하세요.",
     "quickConnectWaiting": "승인 대기 중…",
@@ -1570,7 +1569,6 @@
     "scopeEpisode": ""
   },
   "onboarding": {
-    "tagline": "",
     "connectTitle": "",
     "addServer": "",
     "serverAddress": "",

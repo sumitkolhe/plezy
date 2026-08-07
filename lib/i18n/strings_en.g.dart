@@ -108,9 +108,6 @@ class Translations$auth$en {
 
 	// Translations
 
-	/// en: 'Connect to Jellyfin'
-	String get connectToJellyfin => 'Connect to Jellyfin';
-
 	/// en: 'Use Quick Connect'
 	String get useQuickConnect => 'Use Quick Connect';
 
@@ -4043,14 +4040,20 @@ class Translations$onboarding$en {
 	/// en: 'One port to rule them all'
 	String get tagline => 'One port to rule them all';
 
-	/// en: 'Connect your server'
-	String get connectTitle => 'Connect your server';
+	/// en: 'Add your server'
+	String get connectTitle => 'Add your server';
 
-	/// en: 'Add Jellyfin server'
-	String get addServer => 'Add Jellyfin server';
+	/// en: 'A beautiful media player for Jellyfin and your *arr stack'
+	String get connectBody => 'A beautiful media player for Jellyfin and your *arr stack';
+
+	/// en: 'Get started'
+	String get addServer => 'Get started';
 
 	/// en: 'Server address'
 	String get serverAddress => 'Server address';
+
+	/// en: 'Connect'
+	String get connect => 'Connect';
 
 	/// en: 'Enter your server address'
 	String get addressRequired => 'Enter your server address';
@@ -5115,7 +5118,6 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Connect to Jellyfin',
 			'auth.useQuickConnect' => 'Use Quick Connect',
 			'auth.quickConnectInstructions' => 'Open Quick Connect in Jellyfin and enter this code.',
 			'auth.quickConnectWaiting' => 'Waiting for approval…',
@@ -5626,9 +5628,9 @@ extension on Translations {
 			'videoControls.playNext' => 'Play Next',
 			'videoControls.playButton' => 'Play',
 			'videoControls.pauseButton' => 'Pause',
+			'videoControls.playbackPaused' => 'Paused',
 			_ => null,
 		} ?? switch (path) {
-			'videoControls.playbackPaused' => 'Paused',
 			'videoControls.playbackResumed' => 'Playing',
 			'videoControls.showPlaybackControls' => 'Show playback controls',
 			'videoControls.hidePlaybackControls' => 'Hide playback controls',
@@ -6140,9 +6142,9 @@ extension on Translations {
 			'downloads.manage' => 'Manage',
 			'downloads.tvShows' => 'TV Shows',
 			'downloads.movies' => 'Movies',
+			'downloads.music' => 'Music',
 			_ => null,
 		} ?? switch (path) {
-			'downloads.music' => 'Music',
 			'downloads.tracksQueued' => ({required Object count}) => '${count} tracks queued for download',
 			'downloads.noDownloads' => 'No downloads yet',
 			'downloads.noDownloadsDescription' => 'Downloaded content will appear here for offline viewing',
@@ -6537,9 +6539,11 @@ extension on Translations {
 			'arrSearch.scopeSeason' => ({required Object season}) => 'Season ${season}',
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
 			'onboarding.tagline' => 'One port to rule them all',
-			'onboarding.connectTitle' => 'Connect your server',
-			'onboarding.addServer' => 'Add Jellyfin server',
+			'onboarding.connectTitle' => 'Add your server',
+			'onboarding.connectBody' => 'A beautiful media player for Jellyfin and your *arr stack',
+			'onboarding.addServer' => 'Get started',
 			'onboarding.serverAddress' => 'Server address',
+			'onboarding.connect' => 'Connect',
 			'onboarding.addressRequired' => 'Enter your server address',
 			'onboarding.reaching' => 'Reaching your server',
 			'onboarding.signingIn' => 'Signing in',

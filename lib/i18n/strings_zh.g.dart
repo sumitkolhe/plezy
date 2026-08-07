@@ -100,7 +100,6 @@ class Translations$auth$zh extends Translations$auth$en {
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => '连接到 Jellyfin';
 	@override String get useQuickConnect => '使用 Quick Connect';
 	@override String get quickConnectInstructions => '在 Jellyfin 中打开 Quick Connect 并输入此代码。';
 	@override String get quickConnectWaiting => '等待批准…';
@@ -1684,7 +1683,6 @@ extension on TranslationsZh {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => '连接到 Jellyfin',
 			'auth.useQuickConnect' => '使用 Quick Connect',
 			'auth.quickConnectInstructions' => '在 Jellyfin 中打开 Quick Connect 并输入此代码。',
 			'auth.quickConnectWaiting' => '等待批准…',
@@ -2195,9 +2193,9 @@ extension on TranslationsZh {
 			'subtitlingStyling.assOverride' => 'ASS 样式覆盖',
 			'subtitlingStyling.overrideScale' => '缩放',
 			'subtitlingStyling.overrideForce' => '强制',
+			'subtitlingStyling.overrideStrip' => '移除样式',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => '移除样式',
 			'subtitlingStyling.positionTop' => '顶部',
 			'subtitlingStyling.positionBottom' => '底部',
 			'subtitlingStyling.bold' => '粗体',
@@ -2709,9 +2707,9 @@ extension on TranslationsZh {
 			'trakt.scrobbleDescription' => '播放期间将播放、暂停和停止事件发送到 Trakt。',
 			'trakt.watchedSync' => '同步已观看状态',
 			'trakt.watchedSyncDescription' => '在 Harbor 中将内容标记为已观看时，也会在 Trakt 上标记为已观看。',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => '连接 Seerr',
 			'seerr.serverUrl' => '服务器 URL',
 			'seerr.serverUrlHelper' => '你的 Seerr 实例的地址',

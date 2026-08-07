@@ -100,7 +100,6 @@ class _Translations$auth$ru extends Translations$auth$en {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Подключиться к Jellyfin';
 	@override String get useQuickConnect => 'Использовать Quick Connect';
 	@override String get quickConnectInstructions => 'Откройте Quick Connect в Jellyfin и введите этот код.';
 	@override String get quickConnectWaiting => 'Ожидание подтверждения…';
@@ -1693,7 +1692,6 @@ extension on TranslationsRu {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Подключиться к Jellyfin',
 			'auth.useQuickConnect' => 'Использовать Quick Connect',
 			'auth.quickConnectInstructions' => 'Откройте Quick Connect в Jellyfin и введите этот код.',
 			'auth.quickConnectWaiting' => 'Ожидание подтверждения…',
@@ -2204,9 +2202,9 @@ extension on TranslationsRu {
 			'subtitlingStyling.assOverride' => 'Переопределение ASS',
 			'subtitlingStyling.overrideScale' => 'Масштаб',
 			'subtitlingStyling.overrideForce' => 'Принудительно',
+			'subtitlingStyling.overrideStrip' => 'Удалить стили',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Удалить стили',
 			'subtitlingStyling.positionTop' => 'Сверху',
 			'subtitlingStyling.positionBottom' => 'Снизу',
 			'subtitlingStyling.bold' => 'Жирный',
@@ -2718,9 +2716,9 @@ extension on TranslationsRu {
 			'trakt.scrobbleDescription' => 'Отправлять события воспроизведения, паузы и остановки в Trakt во время просмотра.',
 			'trakt.watchedSync' => 'Синхронизация статуса просмотра',
 			'trakt.watchedSyncDescription' => 'Когда вы отмечаете элементы как просмотренные в Harbor, они отмечаются и в Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Подключить Seerr',
 			'seerr.serverUrl' => 'URL сервера',
 			'seerr.serverUrlHelper' => 'Адрес вашего экземпляра Seerr',

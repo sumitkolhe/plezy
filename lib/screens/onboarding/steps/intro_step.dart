@@ -88,7 +88,6 @@ class _CrossfadedTitles extends StatelessWidget {
     // lockup device for a descriptor; set that way, a line with a joke in it
     // reads as a brand promise delivered deadpan — and caps plus 1.8 tracking
     // is what made it wide enough to wrap in the first place.
-    final tagline = TextStyle(fontSize: 16, letterSpacing: 0.2, color: c.textMuted);
     final scaler = MediaQuery.textScalerOf(context);
 
     return LayoutBuilder(
@@ -105,8 +104,11 @@ class _CrossfadedTitles extends StatelessWidget {
           textScaler: scaler,
         )..layout(maxWidth: constraints.maxWidth)).height;
 
-        final splashHeight = heightOf('Harbor', wordmark) + 12 + heightOf(t.onboarding.tagline, tagline);
-        final connectHeight = heightOf(t.onboarding.connectTitle, OnboardingType.headline);
+        final splashHeight = heightOf('Harbor', wordmark);
+        final connectHeight =
+            heightOf(t.onboarding.connectTitle, OnboardingType.headline) +
+            8 +
+            heightOf(t.onboarding.connectBody, OnboardingType.body);
 
         return SizedBox(
           height: lerpDouble(splashHeight, connectHeight, progress),
@@ -118,14 +120,7 @@ class _CrossfadedTitles extends StatelessWidget {
                 top: 0,
                 child: Opacity(
                   opacity: 1 - progress,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text('Harbor', style: wordmark),
-                      const SizedBox(height: 12),
-                      Text(t.onboarding.tagline, style: tagline),
-                    ],
-                  ),
+                  child: Text('Harbor', textAlign: TextAlign.center, style: wordmark),
                 ),
               ),
               Positioned(
@@ -134,7 +129,18 @@ class _CrossfadedTitles extends StatelessWidget {
                 top: 0,
                 child: Opacity(
                   opacity: progress,
-                  child: Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(t.onboarding.connectTitle, textAlign: TextAlign.center, style: OnboardingType.headline),
+                      const SizedBox(height: 8),
+                      Text(
+                        t.onboarding.connectBody,
+                        textAlign: TextAlign.center,
+                        style: OnboardingType.body.copyWith(color: c.textMuted),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -270,7 +276,7 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         OnboardingButton(
-          label: t.auth.connectToJellyfin,
+          label: t.onboarding.connect,
           busyLabel: t.onboarding.reaching,
           busy: widget.busy,
           onPressed: widget.onConnect,

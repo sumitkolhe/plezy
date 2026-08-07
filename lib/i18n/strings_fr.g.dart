@@ -100,7 +100,6 @@ class _Translations$auth$fr extends Translations$auth$en {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Se connecter à Jellyfin';
 	@override String get useQuickConnect => 'Utiliser Quick Connect';
 	@override String get quickConnectInstructions => 'Ouvrez Quick Connect dans Jellyfin et saisissez ce code.';
 	@override String get quickConnectWaiting => 'En attente d\'approbation…';
@@ -1687,7 +1686,6 @@ extension on TranslationsFr {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Se connecter à Jellyfin',
 			'auth.useQuickConnect' => 'Utiliser Quick Connect',
 			'auth.quickConnectInstructions' => 'Ouvrez Quick Connect dans Jellyfin et saisissez ce code.',
 			'auth.quickConnectWaiting' => 'En attente d\'approbation…',
@@ -2198,9 +2196,9 @@ extension on TranslationsFr {
 			'subtitlingStyling.assOverride' => 'Remplacement ASS',
 			'subtitlingStyling.overrideScale' => 'Mettre à l’échelle',
 			'subtitlingStyling.overrideForce' => 'Forcer',
+			'subtitlingStyling.overrideStrip' => 'Supprimer le style',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Supprimer le style',
 			'subtitlingStyling.positionTop' => 'Haut',
 			'subtitlingStyling.positionBottom' => 'Bas',
 			'subtitlingStyling.bold' => 'Gras',
@@ -2712,9 +2710,9 @@ extension on TranslationsFr {
 			'trakt.scrobbleDescription' => 'Envoyer les événements de lecture, pause et arrêt à Trakt pendant la lecture.',
 			'trakt.watchedSync' => 'Synchroniser le statut « vu »',
 			'trakt.watchedSyncDescription' => 'Lorsque vous marquez des éléments comme vus dans Harbor, ils sont également marqués comme vus sur Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Se connecter à Seerr',
 			'seerr.serverUrl' => 'URL du serveur',
 			'seerr.serverUrlHelper' => 'L\'adresse de votre instance Seerr',

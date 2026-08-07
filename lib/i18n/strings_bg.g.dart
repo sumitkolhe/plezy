@@ -100,7 +100,6 @@ class _Translations$auth$bg extends Translations$auth$en {
 	final TranslationsBg _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Свържи се с Jellyfin';
 	@override String get useQuickConnect => 'Използвай Quick Connect';
 	@override String get quickConnectInstructions => 'Отворете Quick Connect в Jellyfin и въведете този код.';
 	@override String get quickConnectWaiting => 'Изчакване на одобрение…';
@@ -1687,7 +1686,6 @@ extension on TranslationsBg {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Свържи се с Jellyfin',
 			'auth.useQuickConnect' => 'Използвай Quick Connect',
 			'auth.quickConnectInstructions' => 'Отворете Quick Connect в Jellyfin и въведете този код.',
 			'auth.quickConnectWaiting' => 'Изчакване на одобрение…',
@@ -2198,9 +2196,9 @@ extension on TranslationsBg {
 			'subtitlingStyling.assOverride' => 'Промяна на ASS стиловете',
 			'subtitlingStyling.overrideScale' => 'Мащабиране',
 			'subtitlingStyling.overrideForce' => 'Принудително',
+			'subtitlingStyling.overrideStrip' => 'Премахване на стиловете',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Премахване на стиловете',
 			'subtitlingStyling.positionTop' => 'Горе',
 			'subtitlingStyling.positionBottom' => 'Долу',
 			'subtitlingStyling.bold' => 'Получер',
@@ -2712,9 +2710,9 @@ extension on TranslationsBg {
 			'trakt.scrobbleDescription' => 'Изпращай събития за пускане, пауза и спиране към Trakt по време на възпроизвеждане.',
 			'trakt.watchedSync' => 'Синхронизирай статус гледано',
 			'trakt.watchedSyncDescription' => 'Когато маркирате елементи като гледани в Harbor, те се маркират и в Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Свързване със Seerr',
 			'seerr.serverUrl' => 'URL на сървъра',
 			'seerr.serverUrlHelper' => 'Адресът на твоята Seerr инстанция',

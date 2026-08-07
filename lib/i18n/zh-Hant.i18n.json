@@ -3,7 +3,6 @@
     "title": "Harbor"
   },
   "auth": {
-    "connectToJellyfin": "連線至 Jellyfin",
     "useQuickConnect": "使用快速連線（Quick Connect）",
     "quickConnectInstructions": "在 Jellyfin 中開啟快速連線並輸入此代碼。",
     "quickConnectWaiting": "等待核准…",
@@ -1570,7 +1569,6 @@
     "scopeEpisode": ""
   },
   "onboarding": {
-    "tagline": "",
     "connectTitle": "",
     "addServer": "",
     "serverAddress": "",

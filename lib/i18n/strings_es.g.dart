@@ -100,7 +100,6 @@ class _Translations$auth$es extends Translations$auth$en {
 	final TranslationsEs _root; // ignore: unused_field
 
 	// Translations
-	@override String get connectToJellyfin => 'Conectar a Jellyfin';
 	@override String get useQuickConnect => 'Usar Quick Connect';
 	@override String get quickConnectInstructions => 'Abre Quick Connect en Jellyfin e introduce este código.';
 	@override String get quickConnectWaiting => 'Esperando aprobación…';
@@ -1687,7 +1686,6 @@ extension on TranslationsEs {
 	dynamic _flatMapFunction(String path) {
 		return switch (path) {
 			'app.title' => 'Harbor',
-			'auth.connectToJellyfin' => 'Conectar a Jellyfin',
 			'auth.useQuickConnect' => 'Usar Quick Connect',
 			'auth.quickConnectInstructions' => 'Abre Quick Connect en Jellyfin e introduce este código.',
 			'auth.quickConnectWaiting' => 'Esperando aprobación…',
@@ -2198,9 +2196,9 @@ extension on TranslationsEs {
 			'subtitlingStyling.assOverride' => 'Sobreescritura ASS',
 			'subtitlingStyling.overrideScale' => 'Escala',
 			'subtitlingStyling.overrideForce' => 'Forzar',
+			'subtitlingStyling.overrideStrip' => 'Quitar estilos',
 			_ => null,
 		} ?? switch (path) {
-			'subtitlingStyling.overrideStrip' => 'Quitar estilos',
 			'subtitlingStyling.positionTop' => 'Arriba',
 			'subtitlingStyling.positionBottom' => 'Abajo',
 			'subtitlingStyling.bold' => 'Negrita',
@@ -2712,9 +2710,9 @@ extension on TranslationsEs {
 			'trakt.scrobbleDescription' => 'Enviar eventos de reproducción, pausa y parada a Trakt durante la reproducción.',
 			'trakt.watchedSync' => 'Sincronizar el estado de visualización',
 			'trakt.watchedSyncDescription' => 'Cuando marques contenido como visto en Harbor, también se marcará como visto en Trakt.',
+			'seerr.title' => 'Seerr',
 			_ => null,
 		} ?? switch (path) {
-			'seerr.title' => 'Seerr',
 			'seerr.connectTitle' => 'Conectar Seerr',
 			'seerr.serverUrl' => 'URL del servidor',
 			'seerr.serverUrlHelper' => 'La dirección de tu instancia de Seerr',
