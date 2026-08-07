@@ -38,41 +38,23 @@ class OnboardingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    final scheme = Theme.of(context).colorScheme;
-    final background = busy ? c.surface : scheme.primary;
-    final foreground = busy ? c.textMuted : scheme.onPrimary;
     final text = busy ? (busyLabel ?? label) : label;
+    final leading = busy ? _Spinner(color: c.textMuted) : icon;
 
-    return Semantics(
-      button: true,
-      enabled: onPressed != null && !busy,
-      label: text,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 250),
-        decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(999)),
-        clipBehavior: Clip.antiAlias,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: busy ? null : onPressed,
-            child: Opacity(
-              opacity: onPressed == null && !busy ? 0.55 : 1,
-              child: SizedBox(
-                height: OnboardingMetrics.buttonHeight,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (busy) _Spinner(color: c.textMuted) else ?icon,
-                    if (busy || icon != null) const SizedBox(width: 9),
-                    Text(text, style: OnboardingType.label.copyWith(color: foreground)),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
+    // Busy resolves for every state, because the button is also disabled while
+    // it works and Material would otherwise paint it as unavailable rather than
+    // as working. Everything else comes from filledButtonTheme.
+    final style = ButtonStyle(
+      minimumSize: const WidgetStatePropertyAll(Size.fromHeight(OnboardingMetrics.buttonHeight)),
+      textStyle: const WidgetStatePropertyAll(OnboardingType.label),
+      backgroundColor: busy ? WidgetStatePropertyAll(c.surface) : null,
+      foregroundColor: busy ? WidgetStatePropertyAll(c.textMuted) : null,
     );
+    final onTap = busy ? null : onPressed;
+
+    return leading == null
+        ? FilledButton(onPressed: onTap, style: style, child: Text(text))
+        : FilledButton.icon(onPressed: onTap, style: style, icon: leading, label: Text(text));
   }
 }
 
@@ -86,24 +68,17 @@ class OnboardingTonalButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    return Semantics(
-      button: true,
-      enabled: onPressed != null,
-      label: label,
-      child: Material(
-        color: c.surface,
-        borderRadius: BorderRadius.circular(999),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onPressed,
-          child: SizedBox(
-            height: OnboardingMetrics.buttonHeight,
-            child: Center(
-              child: Text(label, style: OnboardingType.label.copyWith(color: c.text)),
-            ),
-          ),
-        ),
+    // filledButtonTheme paints every filled button with the accent, tonal
+    // included, so the tonal surface has to be asked for by name.
+    return FilledButton.tonal(
+      onPressed: onPressed,
+      style: FilledButton.styleFrom(
+        backgroundColor: c.surface,
+        foregroundColor: c.text,
+        minimumSize: const Size.fromHeight(OnboardingMetrics.buttonHeight),
+        textStyle: OnboardingType.label,
       ),
+      child: Text(label),
     );
   }
 }
@@ -119,23 +94,15 @@ class OnboardingTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    return Semantics(
-      button: true,
-      label: label,
-      child: Material(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(999),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onPressed,
-          child: SizedBox(
-            height: 42,
-            child: Center(
-              child: Text(label, style: OnboardingType.label.copyWith(color: c.textMuted)),
-            ),
-          ),
-        ),
+    return TextButton(
+      onPressed: onPressed,
+      style: TextButton.styleFrom(
+        foregroundColor: c.textMuted,
+        minimumSize: const Size.fromHeight(42),
+        shape: const StadiumBorder(),
+        textStyle: OnboardingType.label,
       ),
+      child: Text(label),
     );
   }
 }
@@ -145,6 +112,12 @@ class OnboardingTextButton extends StatelessWidget {
 /// The label sits in the outline rather than above it, so the field keeps its
 /// name once there is text in it — which matters here, where two stacked fields
 /// would otherwise be indistinguishable the moment they are filled.
+///
+/// The borders are spelled out because the app-wide [InputDecorationTheme] is
+/// built for filled fields: it fills, pads, and makes all three borders
+/// borderless, signalling focus by brightening the fill instead. None of that
+/// suits a pill that draws its own outline, and an outline is the thing this
+/// field has to change on focus.
 class OnboardingField extends StatelessWidget {
   const OnboardingField({
     super.key,
@@ -173,76 +146,48 @@ class OnboardingField extends StatelessWidget {
   final Widget? leading;
   final Widget? trailing;
 
+  static OutlineInputBorder _pill(Color color, double width) => OutlineInputBorder(
+    borderRadius: const BorderRadius.all(Radius.circular(999)),
+    borderSide: BorderSide(color: color, width: width),
+    gapPadding: 6,
+  );
+
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
     final scheme = Theme.of(context).colorScheme;
-    final tone = invalid ? scheme.error : c.outline;
-    return Stack(
-      // The label overhangs the border it is notched into.
-      clipBehavior: Clip.none,
-      children: [
-        Container(
-          height: OnboardingMetrics.fieldHeight,
-          margin: const EdgeInsets.only(top: 6),
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(color: tone),
-          ),
-          child: Row(
-            children: [
-              if (leading case final leading?) ...[leading, const SizedBox(width: 12)],
-              Expanded(
-                child: TextField(
-                  controller: controller,
-                  obscureText: obscureText,
-                  keyboardType: keyboardType,
-                  autofocus: autofocus,
-                  textInputAction: textInputAction,
-                  onSubmitted: onSubmitted,
-                  autocorrect: false,
-                  enableSuggestions: false,
-                  textCapitalization: TextCapitalization.none,
-                  style: OnboardingType.field,
-                  cursorColor: scheme.primary,
-                  decoration: InputDecoration(
-                    // The app-wide InputDecorationTheme fills its fields and
-                    // pads them itself. Both are wrong inside an outlined pill
-                    // that already draws the shape and owns the inset, so this
-                    // opts out of the decoration entirely and keeps only a hint.
-                    filled: false,
-                    isDense: true,
-                    isCollapsed: true,
-                    contentPadding: EdgeInsets.zero,
-                    border: InputBorder.none,
-                    hintText: hintText,
-                    // hintStyle is deliberately absent: the theme already sets
-                    // one, and the outline colour this used to hardcode is a
-                    // 12%-alpha border tint that is far too faint to read.
-                  ),
-                ),
-              ),
-              if (trailing case final trailing?) ...[const SizedBox(width: 10), trailing],
-            ],
-          ),
-        ),
-        Positioned(
-          left: 20,
-          top: -2,
-          child: ColoredBox(
-            // Punches the outline so the label sits in it, not over it.
-            color: c.bg,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6),
-              child: Text(
-                label,
-                style: TextStyle(fontSize: 12, letterSpacing: 0.4, color: invalid ? scheme.error : c.textMuted),
-              ),
-            ),
-          ),
-        ),
-      ],
+    final resting = invalid ? scheme.error : c.outline;
+    final active = invalid ? scheme.error : scheme.primary;
+    final labelColour = invalid ? scheme.error : c.textMuted;
+
+    return TextField(
+      controller: controller,
+      obscureText: obscureText,
+      keyboardType: keyboardType,
+      autofocus: autofocus,
+      textInputAction: textInputAction,
+      onSubmitted: onSubmitted,
+      autocorrect: false,
+      enableSuggestions: false,
+      textCapitalization: TextCapitalization.none,
+      style: OnboardingType.field,
+      cursorColor: scheme.primary,
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hintText,
+        prefixIcon: leading,
+        suffixIcon: trailing,
+        filled: false,
+        // Always notched: the label is the only thing telling two stacked
+        // fields apart once both are filled.
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+        border: _pill(resting, 1),
+        enabledBorder: _pill(resting, 1),
+        focusedBorder: _pill(active, 2),
+        labelStyle: TextStyle(fontSize: 12, letterSpacing: 0.4, color: labelColour),
+        floatingLabelStyle: TextStyle(fontSize: 12, letterSpacing: 0.4, color: labelColour),
+      ),
     );
   }
 }
@@ -284,6 +229,10 @@ class OnboardingSupportingText extends StatelessWidget {
 
 /// A small filled pill used for status rather than action — the reachable
 /// server on the sign-in step, and the clipboard offer under the address field.
+///
+/// [Chip] when it only reports, [ActionChip] when it can be pressed: an
+/// ActionChip with no callback renders as disabled, which is the wrong thing to
+/// say about a server that is reachable.
 class OnboardingChip extends StatelessWidget {
   const OnboardingChip({super.key, required this.label, this.leading, this.onTap, this.tone});
 
@@ -297,34 +246,32 @@ class OnboardingChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
-    return Material(
-      color: tone ?? c.surface,
-      borderRadius: BorderRadius.circular(999),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: onTap,
-        child: SizedBox(
-          height: 32,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (leading case final leading?) ...[leading, const SizedBox(width: 8)],
-                Flexible(
-                  child: Text(
-                    label,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12.5, color: c.text),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+    final text = Text(label, maxLines: 1, overflow: TextOverflow.ellipsis);
+    final labelStyle = TextStyle(fontSize: 12.5, color: c.text);
+    final background = tone ?? c.surface;
+
+    return onTap == null
+        ? Chip(
+            avatar: leading,
+            label: text,
+            labelStyle: labelStyle,
+            backgroundColor: background,
+            side: BorderSide.none,
+            shape: const StadiumBorder(),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          )
+        : ActionChip(
+            onPressed: onTap,
+            avatar: leading,
+            label: text,
+            labelStyle: labelStyle,
+            backgroundColor: background,
+            side: BorderSide.none,
+            shape: const StadiumBorder(),
+            visualDensity: VisualDensity.compact,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          );
   }
 }
 

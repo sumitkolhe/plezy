@@ -136,4 +136,20 @@ void main() {
       expect(tester.getRect(title).bottom, lessThanOrEqualTo(box.bottom + 0.5), reason: 'clipped at scale $scale');
     });
   }
+
+  testWidgets('focus changes the address field outline', (tester) async {
+    await _pump(tester);
+    await tester.tap(find.text(t.onboarding.addServer));
+    await _settle(tester);
+
+    // Hand-drawn borders cannot do this: the field was a Container that never
+    // heard about focus, and had opted out of every state Material tracks.
+    final decorator = tester.widget<InputDecorator>(find.byType(InputDecorator));
+    expect(decorator.isFocused, isTrue, reason: 'the address field autofocuses');
+    expect(
+      decorator.decoration.focusedBorder,
+      isNot(decorator.decoration.enabledBorder),
+      reason: 'focus has to move the outline, not just the caret',
+    );
+  });
 }

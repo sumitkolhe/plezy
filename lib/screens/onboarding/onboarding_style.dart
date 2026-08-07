@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 abstract final class OnboardingMetrics {
   static const double gutter = 28;
 
-  /// M3 buttons are full-height pills.
+  /// M3 buttons are full-height pills. The field sizes itself from its own
+  /// content padding, so there is no matching constant for it.
   static const double buttonHeight = 48;
-  static const double fieldHeight = 56;
 
   /// The frame the design lays its vertical rhythm out in. Offsets taken from
   /// it are scaled by the real screen height so the composition holds on a
