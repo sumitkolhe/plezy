@@ -29,8 +29,16 @@ class LibrarySelection {
     _ => 'browse',
   };
 
-  static LibrarySelection resolve(String libraryGlobalKey, String? storageName, List<LibraryView> views) {
-    if (storageName == 'missing') return LibrarySelection.missing(libraryGlobalKey);
+  /// [offersMissing] is false when no *arr tracks this library any more, in
+  /// which case a stored `missing` falls back rather than restoring a tab that
+  /// can only render its unreachable state.
+  static LibrarySelection resolve(
+    String libraryGlobalKey,
+    String? storageName,
+    List<LibraryView> views, {
+    bool offersMissing = true,
+  }) {
+    if (storageName == 'missing' && offersMissing) return LibrarySelection.missing(libraryGlobalKey);
     if (storageName != null && storageName.startsWith('view:')) {
       final name = storageName.substring('view:'.length);
       final match = views.where((view) => view.name == name).firstOrNull;

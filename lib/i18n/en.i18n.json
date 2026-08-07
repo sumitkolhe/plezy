@@ -843,10 +843,12 @@
       "lastEpisodeDateAdded": "Last Episode Date Added"
     },
     "views": {
-      "title": "Views",
-      "none": "None saved",
-      "saveCurrent": "Save this view",
-      "nameLabel": "View name"
+      "allMedia": "Media",
+      "newView": "New",
+      "nameLabel": "View name",
+      "unnamed": "Filtered",
+      "deleteView": "Delete view",
+      "done": "Done"
     }
   },
   "about": {

@@ -348,7 +348,7 @@ void main() {
       // Otherwise a re-added server revives views built for libraries and
       // filters that may no longer exist.
       final s = await StorageService.getInstance();
-      await s.saveLibraryViews('srv:lib', const [LibraryView(name: 'Keep?', grouping: 'movies')]);
+      await s.saveLibraryViews('srv:lib', const [LibraryView(name: 'Keep?')]);
       expect(s.getLibraryViews('srv:lib'), isNotEmpty);
 
       await s.clearLibraryPreferences();
@@ -361,7 +361,7 @@ void main() {
       expect(s.getLibraryViews('sec-1'), isEmpty);
 
       await s.saveLibraryViews('sec-1', const [
-        LibraryView(name: 'Unwatched', grouping: 'movies', filters: {'unwatched': '1'}, sortKey: 'addedAt'),
+        LibraryView(name: 'Unwatched', filters: {'unwatched': '1'}),
       ]);
 
       final restored = s.getLibraryViews('sec-1');

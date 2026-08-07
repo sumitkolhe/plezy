@@ -4376,17 +4376,23 @@ class Translations$libraries$views$en {
 
 	// Translations
 
-	/// en: 'Views'
-	String get title => 'Views';
+	/// en: 'Media'
+	String get allMedia => 'Media';
 
-	/// en: 'None saved'
-	String get none => 'None saved';
-
-	/// en: 'Save this view'
-	String get saveCurrent => 'Save this view';
+	/// en: 'New'
+	String get newView => 'New';
 
 	/// en: 'View name'
 	String get nameLabel => 'View name';
+
+	/// en: 'Filtered'
+	String get unnamed => 'Filtered';
+
+	/// en: 'Delete view'
+	String get deleteView => 'Delete view';
+
+	/// en: 'Done'
+	String get done => 'Done';
 }
 
 // Path: explore.rows
@@ -5902,10 +5908,12 @@ extension on Translations {
 			'libraries.sortLabels.studio' => 'Studio',
 			'libraries.sortLabels.random' => 'Random',
 			'libraries.sortLabels.lastEpisodeDateAdded' => 'Last Episode Date Added',
-			'libraries.views.title' => 'Views',
-			'libraries.views.none' => 'None saved',
-			'libraries.views.saveCurrent' => 'Save this view',
+			'libraries.views.allMedia' => 'Media',
+			'libraries.views.newView' => 'New',
 			'libraries.views.nameLabel' => 'View name',
+			'libraries.views.unnamed' => 'Filtered',
+			'libraries.views.deleteView' => 'Delete view',
+			'libraries.views.done' => 'Done',
 			'about.title' => 'About',
 			'about.openSourceLicenses' => 'Open Source Licenses',
 			'about.versionLabel' => ({required Object version}) => 'Version ${version}',
@@ -6141,10 +6149,10 @@ extension on Translations {
 			'downloads.title' => 'Downloads',
 			'downloads.manage' => 'Manage',
 			'downloads.tvShows' => 'TV Shows',
-			'downloads.movies' => 'Movies',
-			'downloads.music' => 'Music',
 			_ => null,
 		} ?? switch (path) {
+			'downloads.movies' => 'Movies',
+			'downloads.music' => 'Music',
 			'downloads.tracksQueued' => ({required Object count}) => '${count} tracks queued for download',
 			'downloads.noDownloads' => 'No downloads yet',
 			'downloads.noDownloadsDescription' => 'Downloaded content will appear here for offline viewing',

@@ -11,6 +11,7 @@ import '../../widgets/bottom_sheet_page_scaffold.dart';
 import '../../widgets/app_menu.dart';
 import '../../widgets/overlay_sheet.dart';
 import '../../i18n/strings.g.dart';
+import '../../media/library_view.dart';
 
 typedef FilterValuesLoader = Future<List<MediaFilterValue>> Function(MediaFilter filter);
 
@@ -22,6 +23,19 @@ class FiltersBottomSheet extends StatefulWidget {
   final String libraryKey;
   final FilterValuesLoader loadFilterValues;
   final VoidCallback? onBack;
+
+  /// Build or edit a saved view instead of filtering the library directly.
+  ///
+  /// The quick path applies and closes on every value tap, which is right when
+  /// one filter is the whole intent. A view is a set, so this mode accumulates
+  /// and waits for Done, and carries the name the chip will show.
+  final bool asView;
+
+  /// The view being edited, or null when building a new one. Only an existing
+  /// view can be deleted.
+  final LibraryView? editingView;
+  final ValueChanged<LibraryView>? onSaveView;
+  final ValueChanged<LibraryView>? onDeleteView;
 
   /// Optional pre-fetched values per filter name. When non-null the sheet
   /// reads from this instead of calling `client.getFilterValues` — used
@@ -39,6 +53,10 @@ class FiltersBottomSheet extends StatefulWidget {
     required this.loadFilterValues,
     this.onBack,
     this.cachedValues,
+    this.asView = false,
+    this.editingView,
+    this.onSaveView,
+    this.onDeleteView,
   });
 
   @override
@@ -56,6 +74,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
   static const int _maxCachedDisplayNames = 1000;
   late List<MediaFilter> _sortedFilters;
   late final FocusNode _initialFocusNode;
+  late final TextEditingController _nameController;
   final _valuesFirstItemKey = GlobalKey();
   final _valuesScrollController = ScrollController();
 
@@ -67,6 +86,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
     _tempSelectedFilters.addAll(widget.selectedFilters);
     _sortFilters();
     _initialFocusNode = FocusNode(debugLabel: 'FiltersBottomSheetInitialFocus');
+    _nameController = TextEditingController(text: widget.editingView?.name ?? '');
   }
 
   @override
@@ -93,6 +113,7 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
     _filterValuesLoadGeneration++;
     _valuesScrollController.dispose();
     _initialFocusNode.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -200,9 +221,32 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
     _applyFilters();
   }
 
+  /// A tap commits immediately when filtering, and only accumulates when
+  /// building a view.
   void _applyFilters() {
+    if (widget.asView) return;
     _filterValuesLoadGeneration++;
     widget.onFiltersChanged(Map<String, String>.of(_tempSelectedFilters));
+    OverlaySheetController.of(context).close();
+  }
+
+  void _saveView() {
+    final name = _nameController.text.trim();
+    _filterValuesLoadGeneration++;
+    widget.onSaveView?.call(
+      LibraryView(
+        name: name.isEmpty ? t.libraries.views.unnamed : name,
+        filters: Map<String, String>.of(_tempSelectedFilters),
+      ),
+    );
+    OverlaySheetController.of(context).close();
+  }
+
+  void _deleteView() {
+    final editing = widget.editingView;
+    if (editing == null) return;
+    _filterValuesLoadGeneration++;
+    widget.onDeleteView?.call(editing);
     OverlaySheetController.of(context).close();
   }
 
@@ -225,17 +269,27 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
       title: currentFilter?.title ?? t.libraries.filters,
       icon: PhosphorIcons.funnel,
       onBack: currentFilter != null ? _goBack : widget.onBack,
-      action: currentFilter == null && _tempSelectedFilters.isNotEmpty
-          ? FocusableButton(
-              onPressed: _clearFilters,
-              child: TextButton.icon(
-                onPressed: _clearFilters,
-                icon: const AppIcon(PhosphorIcons.eraser),
-                label: Text(t.libraries.clearAll),
-              ),
-            )
-          : null,
+      action: _headerAction(currentFilter),
       child: currentFilter != null ? _buildFilterValuesView(currentFilter) : _buildFiltersView(),
+    );
+  }
+
+  Widget? _headerAction(MediaFilter? currentFilter) {
+    if (currentFilter != null) return null;
+    if (widget.asView) {
+      return FocusableButton(
+        onPressed: _saveView,
+        child: TextButton(onPressed: _saveView, child: Text(t.libraries.views.done)),
+      );
+    }
+    if (_tempSelectedFilters.isEmpty) return null;
+    return FocusableButton(
+      onPressed: _clearFilters,
+      child: TextButton.icon(
+        onPressed: _clearFilters,
+        icon: const AppIcon(PhosphorIcons.eraser),
+        label: Text(t.libraries.clearAll),
+      ),
     );
   }
 
@@ -305,11 +359,39 @@ class _FiltersBottomSheetState extends State<FiltersBottomSheet> {
 
   Widget _buildFiltersView() {
     final autofocusFirst = InputModeTracker.isKeyboardMode(context);
+    // Named inline rather than by a dialog after Done: the chip needs a short
+    // label, and the filters alone make one too long to read.
+    final leading = widget.asView ? 1 : 0;
+    final trailing = widget.asView && widget.editingView != null ? 1 : 0;
     return ListView.builder(
       primary: false,
       padding: const EdgeInsets.symmetric(vertical: 8),
-      itemCount: _sortedFilters.length,
-      itemBuilder: (context, index) {
+      itemCount: _sortedFilters.length + leading + trailing,
+      itemBuilder: (context, rawIndex) {
+        if (leading == 1 && rawIndex == 0) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            child: TextField(
+              controller: _nameController,
+              textCapitalization: TextCapitalization.sentences,
+              textInputAction: TextInputAction.done,
+              onSubmitted: (_) => _saveView(),
+              decoration: InputDecoration(labelText: t.libraries.views.nameLabel),
+            ),
+          );
+        }
+        final index = rawIndex - leading;
+        if (index >= _sortedFilters.length) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+            child: TextButton.icon(
+              onPressed: _deleteView,
+              style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+              icon: const AppIcon(PhosphorIcons.trash),
+              label: Text(t.libraries.views.deleteView),
+            ),
+          );
+        }
         final filter = _sortedFilters[index];
 
         // Handle boolean filters as switches (unwatched, inProgress, unmatched, hdr, etc.)

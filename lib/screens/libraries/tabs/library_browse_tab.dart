@@ -8,8 +8,6 @@ import '../../../media/library_query.dart';
 import '../../../media/media_backend.dart';
 import '../../../media/media_item.dart';
 import '../../../media/library_view.dart';
-import '../../../utils/dialogs.dart';
-import '../../../utils/rating_spans.dart';
 import '../../../media/media_kind.dart';
 import '../../../media/media_library.dart';
 import '../../../utils/media_server_http_client.dart';
@@ -86,15 +84,12 @@ class LibraryBrowseTab extends BaseLibraryTab<MediaItem> {
   final LibraryView? view;
 
   /// Fires when a view is saved or deleted, so the tab row can gain or lose its
-  /// pill without waiting for the library to be reopened.
-  final ValueChanged<List<LibraryView>>? onViewsChanged;
 
   const LibraryBrowseTab({
     super.key,
     required super.library,
     required this.canGroupByFolders,
     this.view,
-    this.onViewsChanged,
     super.viewMode,
     super.density,
     super.onDataLoaded,
@@ -523,11 +518,10 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
       final savedFilters = storage.getLibraryFilters(sectionId: libraryGlobalKey);
       final savedSort = storage.getLibrarySort(libraryGlobalKey);
       final savedGrouping = storage.getLibraryGrouping(libraryGlobalKey);
-      final savedViews = storage.getLibraryViews(libraryGlobalKey);
       // Resolve the restored grouping before the sort fetch — music groupings
       // (albums/tracks) request their own per-type sort list.
       final pinned = widget.view;
-      final restoredGrouping = _normalizeGrouping(pinned?.grouping ?? savedGrouping);
+      final restoredGrouping = _normalizeGrouping(savedGrouping);
       final sortLibraryType = _sortOptionsLibraryType(restoredGrouping);
 
       final LoadedFiltersAndSorts loaded;
@@ -553,14 +547,13 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         _jellyfinFilterValues = loaded.cachedValues;
         _selectedFilters = Map.from(pinned?.filters ?? savedFilters);
         _selectedGrouping = restoredGrouping;
-        _views = savedViews;
 
-        final sortKey = pinned != null ? pinned.sortKey : savedSort?['key'] as String?;
+        final sortKey = savedSort?['key'] as String?;
         if (sortKey != null) {
           final sort = loaded.sorts.where((s) => s.key == sortKey).firstOrNull;
           if (sort != null) {
             _selectedSort = sort;
-            _isSortDescending = pinned?.descending ?? (savedSort?['descending'] as bool?) ?? false;
+            _isSortDescending = (savedSort?['descending'] as bool?) ?? false;
           }
         }
       });
@@ -842,17 +835,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
           AppMenuItemTile<void>(
             item: AppMenuItem<void>(
               value: null,
-              leading: const AppIcon(PhosphorIcons.bookmarks),
-              child: Text(t.libraries.views.title),
-              subtitleWidget: Text(_activeView?.name ?? t.libraries.views.none),
-              trailing: const AppIcon(PhosphorIcons.caretRight),
-            ),
-            onPressed: () => _showViewsPage(controller),
-          ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
-          AppMenuItemTile<void>(
-            item: AppMenuItem<void>(
-              value: null,
               leading: const AppIcon(PhosphorIcons.squaresFour),
               child: Text(t.libraries.groupings.title),
               subtitleWidget: Text(_getGroupingLabel(_selectedGrouping)),
@@ -918,91 +900,6 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
         .then(_handleGroupingSelection);
   }
 
-  void _showViewsPage(OverlaySheetController controller) {
-    SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
-    unawaited(controller.push<void>(builder: (_) => _buildViewsSheet(controller)));
-  }
-
-  Widget _buildViewsSheet(OverlaySheetController controller) {
-    final active = _activeView;
-    return StatefulBuilder(
-      builder: (sheetContext, rebuildSheet) => BottomSheetPageScaffold(
-        title: t.libraries.views.title,
-        icon: PhosphorIcons.bookmarks,
-        onBack: () => controller.pop(),
-        shrinkWrap: true,
-        child: ListView(
-          primary: false,
-          shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          children: [
-            for (final view in _views)
-              AppMenuItemTile<void>(
-                item: AppMenuItem<void>(
-                  value: null,
-                  leading: const AppIcon(PhosphorIcons.bookmarks),
-                  child: Text(view.name),
-                  subtitleWidget: Text(_describeView(view)),
-                  selected: view.name == active?.name,
-                  enabled: false,
-                  // Its own tap target inside the row, so a view can be removed
-                  // without a mode to enter or a gesture to discover.
-                  trailing: IconButton(
-                    icon: const AppIcon(PhosphorIcons.trash),
-                    tooltip: t.common.delete,
-                    onPressed: () async {
-                      await _deleteView(view);
-                      rebuildSheet(() {});
-                    },
-                  ),
-                ),
-              ),
-            if (_views.isNotEmpty) const Padding(padding: EdgeInsets.symmetric(vertical: 4), child: Divider()),
-            AppMenuItemTile<void>(
-              item: AppMenuItem<void>(
-                value: null,
-                leading: const AppIcon(PhosphorIcons.plus),
-                child: Text(t.libraries.views.saveCurrent),
-                subtitleWidget: Text(_describeCurrent()),
-              ),
-              onPressed: () => unawaited(_promptSaveView(controller, rebuildSheet)),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /// What the view will show, in the same words its own controls use.
-  String _describeView(LibraryView view) => [
-    _getGroupingLabel(view.grouping),
-    if (view.filters.isNotEmpty) t.libraries.filtersWithCount(count: view.filters.length),
-    if (view.sortKey case final key?) _sortOptions.where((sort) => sort.key == key).firstOrNull?.title ?? key,
-  ].join(dotSeparator);
-
-  String _describeCurrent() => _describeView(
-    LibraryView(
-      name: '',
-      grouping: _selectedGrouping,
-      filters: _selectedFilters,
-      sortKey: _selectedSort?.key,
-      descending: _isSortDescending,
-    ),
-  );
-
-  Future<void> _promptSaveView(OverlaySheetController controller, void Function(VoidCallback) rebuildSheet) async {
-    final name = await showTextInputDialog(
-      context,
-      title: t.libraries.views.saveCurrent,
-      labelText: t.libraries.views.nameLabel,
-      initialValue: _activeView?.name ?? '',
-      confirmText: t.common.save,
-    );
-    if (name == null) return;
-    await _saveCurrentView(name);
-    rebuildSheet(() {});
-  }
-
   void _showGroupingOptionsPage(OverlaySheetController controller) {
     SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
     controller
@@ -1044,65 +941,15 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
     }).toList();
   }
 
-  List<LibraryView> _views = const [];
-
-  /// The saved view the library is showing, if any.
-  LibraryView? get _activeView => _views
-      .where(
-        (view) => view.matches(
-          grouping: _selectedGrouping,
-          sortKey: _selectedSort?.key,
-          descending: _isSortDescending,
-          filters: _selectedFilters,
-        ),
-      )
-      .firstOrNull;
-
-  /// Saving under an existing name replaces it, so a view can be corrected
-  /// without first deleting it.
-  Future<void> _saveCurrentView(String name) async {
-    final trimmed = name.trim();
-    if (trimmed.isEmpty) return;
-    final view = LibraryView(
-      name: trimmed,
-      grouping: _selectedGrouping,
-      filters: Map.of(_selectedFilters),
-      sortKey: _selectedSort?.key,
-      descending: _isSortDescending,
-    );
-    final next = [
-      for (final existing in _views)
-        if (existing.name.toLowerCase() != trimmed.toLowerCase()) existing,
-      view,
-    ]..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
-    await _persistViews(next);
-  }
-
-  Future<void> _deleteView(LibraryView view) => _persistViews([
-    for (final existing in _views)
-      if (existing.name != view.name) existing,
-  ]);
-
-  Future<void> _persistViews(List<LibraryView> next) async {
-    if (mounted) setState(() => _views = next);
-    final storage = await StorageService.getInstance();
-    await storage.saveLibraryViews(widget.library.globalKey, next);
-    // The tab row owns the pills, so it has to hear about this now rather than
-    // when the library is next opened.
-    widget.onViewsChanged?.call(next);
-  }
-
   void _handleGroupingSelection(String? value) {
     if (!mounted || value == null || value == _selectedGrouping || !_getGroupingOptions().contains(value)) return;
     final sortTypeChanged = _sortOptionsLibraryType(value) != _sortOptionsLibraryType(_selectedGrouping);
     setState(() {
       _selectedGrouping = value;
     });
-    if (widget.view == null) {
-      StorageService.getInstance().then((storage) {
-        storage.saveLibraryGrouping(widget.library.globalKey, value);
-      });
-    }
+    StorageService.getInstance().then((storage) {
+      storage.saveLibraryGrouping(widget.library.globalKey, value);
+    });
     if (sortTypeChanged) {
       // Music groupings serve per-type sort lists; refresh the options (and
       // drop a selected sort the new list doesn't offer) before fetching
@@ -1150,6 +997,33 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
   void _showFiltersOptionsPage(OverlaySheetController controller) {
     SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
     controller.push(builder: (_) => _buildFiltersBottomSheet(onBack: () => controller.pop()));
+  }
+
+  /// Open the filter drawer as a view editor. Called by the screen, which owns
+  /// the chip row and the saved list but not the loaded filters — those live
+  /// here, and refetching them to build the same sheet twice would be waste.
+  void openViewEditor({
+    LibraryView? editing,
+    required ValueChanged<LibraryView> onSave,
+    required ValueChanged<LibraryView> onDelete,
+  }) {
+    SelectKeyUpSuppressor.suppressSelectUntilKeyUp();
+    OverlaySheetController.of(context).show(
+      builder: (_) => FiltersBottomSheet(
+        filters: _filters,
+        selectedFilters: editing?.filters ?? const {},
+        serverId: widget.library.serverId!,
+        libraryKey: widget.library.globalKey,
+        loadFilterValues: _loadFilterValues,
+        cachedValues: _jellyfinFilterValues.isEmpty ? null : _jellyfinFilterValues,
+        asView: true,
+        editingView: editing,
+        onSaveView: onSave,
+        onDeleteView: onDelete,
+        // Unused in view mode; the sheet accumulates and waits for Done.
+        onFiltersChanged: (_) {},
+      ),
+    );
   }
 
   Widget _buildFiltersBottomSheet({VoidCallback? onBack}) {
@@ -1245,11 +1119,9 @@ class _LibraryBrowseTabState extends BaseLibraryTabState<MediaItem, LibraryBrows
             _selectedSort = pendingSort;
             _isSortDescending = pendingDescending;
           });
-          if (widget.view == null) {
-            StorageService.getInstance().then((storage) {
-              storage.saveLibrarySort(widget.library.globalKey, pendingSort!.key, descending: pendingDescending);
-            });
-          }
+          StorageService.getInstance().then((storage) {
+            storage.saveLibrarySort(widget.library.globalKey, pendingSort!.key, descending: pendingDescending);
+          });
           _loadItems();
           _loadFirstCharacters();
         }

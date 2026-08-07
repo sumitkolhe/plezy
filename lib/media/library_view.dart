@@ -2,61 +2,40 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-/// A named way of looking at one library: what is listed, in what order, with
-/// what filtered out.
+/// A named set of filters over one library.
 ///
-/// Those three already persist per library — a view is that same triple kept
-/// under a name so several can exist side by side, instead of the one the
-/// library happens to be showing.
+/// Filters only, deliberately. A view answers what is in the list; sort and
+/// grouping answer how it is arranged, and stay live controls that apply to
+/// whichever view is showing. Folding all three into a view meant a view had to
+/// pin the sort and suppress every write-back to keep from overwriting plain
+/// browse, which in turn meant a view could not be re-sorted while you looked
+/// at it.
 @immutable
 class LibraryView {
-  const LibraryView({
-    required this.name,
-    required this.grouping,
-    this.filters = const {},
-    this.sortKey,
-    this.descending = false,
-  });
+  const LibraryView({required this.name, this.filters = const {}});
 
   final String name;
-
-  /// A `browseGrouping*` value: what the view lists.
-  final String grouping;
 
   /// The filter map as the filters sheet produces it.
   final Map<String, String> filters;
 
-  /// Null means the library's own default order.
-  final String? sortKey;
-  final bool descending;
+  Map<String, dynamic> toJson() => {'name': name, if (filters.isNotEmpty) 'filters': filters};
 
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    'grouping': grouping,
-    if (filters.isNotEmpty) 'filters': filters,
-    if (sortKey != null) 'sortKey': sortKey,
-    if (descending) 'descending': true,
-  };
-
-  /// Null for a row that cannot name or scope itself, so one unreadable entry
-  /// costs only itself.
+  /// Null for a row that cannot name itself, so one unreadable entry costs
+  /// only itself.
   static LibraryView? fromJson(Map<String, dynamic> json) {
     final name = (json['name'] as String?)?.trim() ?? '';
-    final grouping = (json['grouping'] as String?)?.trim() ?? '';
-    if (name.isEmpty || grouping.isEmpty) return null;
+    if (name.isEmpty) return null;
 
     final rawFilters = json['filters'];
     return LibraryView(
       name: name,
-      grouping: grouping,
       filters: rawFilters is Map
           ? {
               for (final entry in rawFilters.entries)
                 if (entry.key is String && entry.value != null) entry.key as String: '${entry.value}',
             }
           : const {},
-      sortKey: (json['sortKey'] as String?)?.trim(),
-      descending: json['descending'] == true,
     );
   }
 
@@ -72,16 +51,9 @@ class LibraryView {
     ];
   }
 
-  /// Whether the library is currently showing this view.
-  bool matches({
-    required String grouping,
-    required String? sortKey,
-    required bool descending,
-    required Map<String, String> filters,
-  }) {
-    return this.grouping == grouping &&
-        this.sortKey == sortKey &&
-        this.descending == descending &&
-        mapEquals(this.filters, filters);
-  }
+  LibraryView copyWith({String? name, Map<String, String>? filters}) =>
+      LibraryView(name: name ?? this.name, filters: filters ?? this.filters);
+
+  /// Whether the library is currently filtered to this view.
+  bool matches(Map<String, String> filters) => mapEquals(this.filters, filters);
 }

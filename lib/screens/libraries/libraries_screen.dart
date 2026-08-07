@@ -31,6 +31,7 @@ import 'tabs/library_browse_tab.dart';
 import '../../providers/managed_services_provider.dart';
 import '../../media/library_view.dart';
 import 'library_selection.dart';
+import 'library_view_chips.dart';
 import 'tabs/library_missing_tab.dart';
 
 enum LibraryTabType { browse, missing }
@@ -65,7 +66,18 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         TickerProviderStateMixin,
         TabNavigationMixin {
   // GlobalKeys for tabs to enable refresh
-  final _browseTabKey = GlobalKey();
+  /// One per selection: a different key remounts the tab when the chip
+  /// changes, and keeping them lets the screen reach whichever is mounted to
+  /// open the view editor over its already-loaded filters.
+  final Map<String, GlobalKey> _browseTabKeys = {};
+
+  GlobalKey _browseKeyFor(String storageName) => _browseTabKeys.putIfAbsent(storageName, GlobalKey.new);
+
+  GlobalKey? get _currentBrowseKey {
+    final selection = _selection;
+    if (selection == null || selection.missing) return null;
+    return _browseKeyFor(selection.storageName);
+  }
 
   String? _errorMessage;
   String? _selectedLibraryGlobalKey;
@@ -258,7 +270,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
   State? _getTabState(int index) {
     if (index < 0 || index >= _visibleTabs.length) return null;
     return switch (_visibleTabs[index]) {
-      LibraryTabType.browse => _browseTabKey.currentState,
+      LibraryTabType.browse => _currentBrowseKey?.currentState,
       // Nothing outside asks the missing tab for its state.
       LibraryTabType.missing => null,
     };
@@ -268,16 +280,51 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     if (_visibleTabs.isEmpty) return;
     final index = tabController.index.clamp(0, _visibleTabs.length - 1).toInt();
     if (_visibleTabs[index] != LibraryTabType.browse) return;
-    final tabState = _browseTabKey.currentState;
+    final tabState = _currentBrowseKey?.currentState;
     if (tabState == null) return;
     (tabState as dynamic).showBrowseOptionsSheet();
   }
 
-  /// A view saved or deleted in the options sheet reaches the selector now,
-  /// rather than when the library is next opened.
-  void _handleViewsChanged(List<LibraryView> views) {
+  /// The chip row is here; the loaded filters are in the tab. Reaching through
+  /// the mounted tab beats refetching them to build the same sheet twice.
+  void _openViewEditor({LibraryView? editing}) {
+    final tabState = _currentBrowseKey?.currentState;
+    if (tabState == null) return;
+    (tabState as dynamic).openViewEditor(editing: editing, onSave: _saveView, onDelete: _deleteView);
+  }
+
+  /// Views are owned here rather than by the tab showing one, so saving or
+  /// deleting from the chip row does not depend on which chip is selected.
+  Future<void> _persistViews(List<LibraryView> next) async {
     if (!mounted) return;
-    setState(() => _views = views);
+    setState(() => _views = next);
+    final key = _selectedLibraryGlobalKey;
+    if (key == null) return;
+    final storage = await StorageService.getInstance();
+    await storage.saveLibraryViews(key, next);
+  }
+
+  /// Saving under an existing name replaces it, so a view can be corrected
+  /// without first deleting it.
+  Future<void> _saveView(LibraryView view) async {
+    final next = [
+      for (final existing in _views)
+        if (existing.name.toLowerCase() != view.name.toLowerCase()) existing,
+      view,
+    ]..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+    await _persistViews(next);
+    final key = _selectedLibraryGlobalKey;
+    if (key != null) _handleSelection(LibrarySelection.view(key, view));
+  }
+
+  Future<void> _deleteView(LibraryView view) async {
+    await _persistViews([
+      for (final existing in _views)
+        if (existing.name != view.name) existing,
+    ]);
+    final key = _selectedLibraryGlobalKey;
+    // Whatever was showing has just stopped existing.
+    if (key != null) _handleSelection(LibrarySelection.library(key));
   }
 
   /// Handle when the browse tab's active-filter state changes
@@ -347,7 +394,7 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       // Keyed by the view so each keeps its own scroll position, and only the
       // library's own contents report upward or take the shared key.
       LibraryTabType.browse => LibraryBrowseTab(
-        key: view == null ? _browseTabKey : ValueKey('library_view_${view.name}'),
+        key: _browseKeyFor(selection.storageName),
         library: library,
         view: view,
         canGroupByFolders: canGroupByFolders,
@@ -357,7 +404,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
         onBack: focusTabBar,
         onResetScroll: view == null ? _resetOuterScroll : null,
         onFiltersActiveChanged: view == null ? _handleBrowseFiltersActiveChanged : null,
-        onViewsChanged: view == null ? _handleViewsChanged : null,
       ),
       LibraryTabType.missing => const SizedBox.shrink(),
     };
@@ -432,7 +478,13 @@ class _LibrariesScreenState extends State<LibrariesScreen>
     final pending = _pendingSelection;
     _pendingSelection = null;
     final restored =
-        pending ?? LibrarySelection.resolve(libraryGlobalKey, storage.getLibraryTab(libraryGlobalKey), views);
+        pending ??
+        LibrarySelection.resolve(
+          libraryGlobalKey,
+          storage.getLibraryTab(libraryGlobalKey),
+          views,
+          offersMissing: _librariesWithMissing.contains(libraryGlobalKey),
+        );
     if (!_sameViews(_views, views) || restored != _selection) {
       setState(() {
         _views = views;
@@ -611,8 +663,6 @@ class _LibrariesScreenState extends State<LibrariesScreen>
               libraries: visibleLibraries,
               selectedLibraryKey: _selectedLibraryGlobalKey,
               selection: _selection,
-              viewsByLibrary: {?_selectedLibraryGlobalKey: _views},
-              librariesWithMissing: _librariesWithMissing,
               isLoading: false,
               groupByServer: groupByServer,
               emptyMessage: t.libraries.noLibrariesFound,
@@ -736,6 +786,17 @@ class _LibrariesScreenState extends State<LibrariesScreen>
       surfaceTintColor: Colors.transparent,
       shadowColor: Colors.transparent,
       scrolledUnderElevation: 0,
+      bottom: selectedLibrary == null
+          ? null
+          : LibraryViewChips(
+              libraryGlobalKey: selectedLibrary.globalKey,
+              selection: _selection,
+              views: _views,
+              offersMissing: _librariesWithMissing.contains(selectedLibrary.globalKey),
+              onSelect: _handleSelection,
+              onEdit: (view) => _openViewEditor(editing: view),
+              onCreate: _openViewEditor,
+            ),
       actions: [
         FocusableActionBar(
           key: _actionBarKey,
