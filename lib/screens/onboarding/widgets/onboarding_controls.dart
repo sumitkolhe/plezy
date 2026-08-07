@@ -109,9 +109,8 @@ class OnboardingTextButton extends StatelessWidget {
 
 /// M3 outlined text field, pill-shaped, with its label notched into the border.
 ///
-/// The label sits in the outline rather than above it, so the field keeps its
-/// name once there is text in it — which matters here, where two stacked fields
-/// would otherwise be indistinguishable the moment they are filled.
+/// The label rests inside the field and floats into the outline once there is
+/// focus or text, so two stacked fields keep their names when both are filled.
 ///
 /// The borders are spelled out because the app-wide [InputDecorationTheme] is
 /// built for filled fields: it fills, pads, and makes all three borders
@@ -178,15 +177,15 @@ class OnboardingField extends StatelessWidget {
         prefixIcon: leading,
         suffixIcon: trailing,
         filled: false,
-        // Always notched: the label is the only thing telling two stacked
-        // fields apart once both are filled.
-        floatingLabelBehavior: FloatingLabelBehavior.always,
         contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
         border: _pill(resting, 1),
         enabledBorder: _pill(resting, 1),
         focusedBorder: _pill(active, 2),
-        labelStyle: TextStyle(fontSize: 12, letterSpacing: 0.4, color: labelColour),
-        floatingLabelStyle: TextStyle(fontSize: 12, letterSpacing: 0.4, color: labelColour),
+        // Size and the 16-to-12 float are Material's, from the theme. Only the
+        // colour is ours, because invalid has to reach the label as well as
+        // the outline.
+        labelStyle: TextStyle(color: labelColour),
+        floatingLabelStyle: TextStyle(color: labelColour),
       ),
     );
   }
