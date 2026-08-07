@@ -1575,8 +1575,9 @@
     "scopeEpisode": "S${season}E${episode}"
   },
   "onboarding": {
+    "tagline": "A beautiful media player for Jellyfin",
     "connectTitle": "Add your server",
-    "connectBody": "A beautiful media player for Jellyfin and your *arr stack",
+    "connectBody": "Connect to your Jellyfin server to begin streaming your media",
     "addServer": "Get started",
     "serverAddress": "Server address",
     "connect": "Connect",

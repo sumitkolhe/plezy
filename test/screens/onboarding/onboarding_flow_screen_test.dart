@@ -133,6 +133,7 @@ void main() {
       // opacity, overflowing harmlessly.
       await _pump(tester, startAtSplash: true, textScale: scale);
       expectFits(find.text('Harbor'), 'wordmark');
+      expectFits(find.text(t.onboarding.tagline), 'tagline');
 
       await tester.tapAt(tester.getCenter(find.byType(IntroStep)));
       await _settle(tester);

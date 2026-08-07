@@ -4037,14 +4037,14 @@ class Translations$onboarding$en {
 
 	// Translations
 
-	/// en: 'One port to rule them all'
-	String get tagline => 'One port to rule them all';
+	/// en: 'A beautiful media player for Jellyfin'
+	String get tagline => 'A beautiful media player for Jellyfin';
 
 	/// en: 'Add your server'
 	String get connectTitle => 'Add your server';
 
-	/// en: 'A beautiful media player for Jellyfin and your *arr stack'
-	String get connectBody => 'A beautiful media player for Jellyfin and your *arr stack';
+	/// en: 'Connect to your Jellyfin server to begin streaming your media'
+	String get connectBody => 'Connect to your Jellyfin server to begin streaming your media';
 
 	/// en: 'Get started'
 	String get addServer => 'Get started';
@@ -6538,9 +6538,9 @@ extension on Translations {
 			'arrSearch.scopeSeries' => 'Whole series',
 			'arrSearch.scopeSeason' => ({required Object season}) => 'Season ${season}',
 			'arrSearch.scopeEpisode' => ({required Object season, required Object episode}) => 'S${season}E${episode}',
-			'onboarding.tagline' => 'One port to rule them all',
+			'onboarding.tagline' => 'A beautiful media player for Jellyfin',
 			'onboarding.connectTitle' => 'Add your server',
-			'onboarding.connectBody' => 'A beautiful media player for Jellyfin and your *arr stack',
+			'onboarding.connectBody' => 'Connect to your Jellyfin server to begin streaming your media',
 			'onboarding.addServer' => 'Get started',
 			'onboarding.serverAddress' => 'Server address',
 			'onboarding.connect' => 'Connect',

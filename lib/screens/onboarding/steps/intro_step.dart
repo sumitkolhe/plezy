@@ -59,7 +59,9 @@ class IntroSurface extends StatelessWidget {
               SizedBox(height: 26 - 8 * progress),
               _CrossfadedTitles(progress: progress),
               if (form case final form?) ...[const SizedBox(height: 22), form],
-              if (action case final action?) ...[const SizedBox(height: 22), action],
+              // Further off than the form's 22, so the one thing being asked for
+              // is not crowded against the line explaining it.
+              if (action case final action?) ...[const SizedBox(height: 34), action],
             ],
           ),
         );
@@ -78,12 +80,19 @@ class IntroSurface extends StatelessWidget {
 class _CrossfadedTitles extends StatelessWidget {
   const _CrossfadedTitles({required this.progress});
 
+  /// Narrower than the gutters allow, so the tagline breaks into balanced
+  /// lines under the wordmark instead of running the full width. Shared with
+  /// the measurement above, which would otherwise size the box for a wider
+  /// line than the one drawn.
+  static const double _taglineWidth = 260;
+
   final double progress;
 
   @override
   Widget build(BuildContext context) {
     final c = tokens(context);
     final wordmark = TextStyle(fontSize: 34, fontWeight: FontWeight.w600, letterSpacing: -1, color: c.text);
+    final tagline = TextStyle(fontSize: 16, letterSpacing: 0.2, color: c.textMuted);
     // Sentence case, lightly tracked. The uppercase eyebrow this replaced is a
     // lockup device for a descriptor; set that way, a line with a joke in it
     // reads as a brand promise delivered deadpan — and caps plus 1.8 tracking
@@ -97,14 +106,15 @@ class _CrossfadedTitles extends StatelessWidget {
         // widths differ enough to wrap a line the measurement did not
         // predict, and the Stack below clips what it was not sized for.
         final inherited = DefaultTextStyle.of(context).style;
-        double heightOf(String text, TextStyle style) => (TextPainter(
+        double heightOf(String text, TextStyle style, {double? maxWidth}) => (TextPainter(
           text: TextSpan(text: text, style: inherited.merge(style)),
           textDirection: Directionality.of(context),
           textAlign: TextAlign.center,
           textScaler: scaler,
-        )..layout(maxWidth: constraints.maxWidth)).height;
+        )..layout(maxWidth: maxWidth ?? constraints.maxWidth)).height;
 
-        final splashHeight = heightOf('Harbor', wordmark);
+        final splashHeight =
+            heightOf('Harbor', wordmark) + 12 + heightOf(t.onboarding.tagline, tagline, maxWidth: _taglineWidth);
         final connectHeight =
             heightOf(t.onboarding.connectTitle, OnboardingType.headline) +
             8 +
@@ -120,7 +130,17 @@ class _CrossfadedTitles extends StatelessWidget {
                 top: 0,
                 child: Opacity(
                   opacity: 1 - progress,
-                  child: Text('Harbor', textAlign: TextAlign.center, style: wordmark),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text('Harbor', style: wordmark),
+                      const SizedBox(height: 12),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: _taglineWidth),
+                        child: Text(t.onboarding.tagline, textAlign: TextAlign.center, style: tagline),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Positioned(
@@ -189,7 +209,7 @@ class IntroStep extends StatefulWidget {
   final bool startAtSplash;
 
   /// How long the mark and wordmark hold before the morph begins.
-  static const Duration splashHold = Duration(milliseconds: 2200);
+  static const Duration splashHold = Duration(seconds: 3);
 
   @override
   State<IntroStep> createState() => _IntroStepState();
@@ -318,8 +338,9 @@ class _IntroStepState extends State<IntroStep> with SingleTickerProviderStateMix
           OnboardingField(
             label: t.onboarding.serverAddress,
             controller: widget.controller,
-            // An address, not prose — never localised.
-            hintText: '192.168.1.10',
+            // An address, not prose — never localised. Jellyfin's own public
+            // demo, so the shape shown is one that actually resolves.
+            hintText: 'https://demo.jellyfin.org/stable',
             invalid: widget.error != null,
             autofocus: true,
             keyboardType: TextInputType.url,
