@@ -14,7 +14,6 @@ import 'package:harbor/theme/phosphor_icons.dart';
 import 'package:provider/provider.dart';
 import '../i18n/strings.g.dart';
 import '../services/app_exit_service.dart';
-import '../theme/mono_tokens.dart';
 import '../utils/haptics.dart';
 import '../utils/app_logger.dart';
 import '../widgets/auth_error_banner.dart';
@@ -48,6 +47,8 @@ import '../services/settings_service.dart';
 import '../providers/offline_mode_provider.dart';
 import '../utils/desktop_window_padding.dart';
 import '../widgets/music/mini_player.dart';
+import '../theme/mono_tokens.dart';
+import '../widgets/rasterized_gradient.dart';
 import '../widgets/side_navigation_rail.dart';
 import '../focus/dpad_navigator.dart';
 import '../focus/key_event_utils.dart';
@@ -1208,9 +1209,22 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
     }
   }
 
-  /// Height the page fades over before it meets the bar. Long enough to read as
-  /// a dissolve rather than a band.
-  static const double _navigationFadeHeight = 84;
+  /// Height the page fades over before it meets the bar.
+  ///
+  /// Shorter than it looks it should be: the fade sits on top of a flat region
+  /// as tall as the bar, so a long ramp on top of that is a lot of dimmed page.
+  static const double _navigationFadeHeight = 56;
+
+  /// Alpha across the ramp, as a share of [_navigationFadeMax].
+  ///
+  /// Smoothstepped rather than linear. A straight line between two alphas
+  /// leaves a visible edge where it starts, because perceived brightness is not
+  /// linear in alpha; easing in and out of the ramp is what makes it dissolve.
+  static const List<double> _navigationFadeCurve = [0, 0.156, 0.5, 0.844, 1];
+
+  /// Short of opaque behind the bar so artwork still reads through; any further
+  /// and an 11pt muted label loses a bright poster.
+  static const double _navigationFadeMax = 0.88;
 
   /// Lays the fade over the page rather than behind the bar.
   ///
@@ -1219,9 +1233,14 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
   /// to run as far up as it needs, and the bar — transparent by theme — draws
   /// its icons on top.
   Widget _withNavigationFade(BuildContext context, Widget child) {
+    // The page background, not the black ToolbarScrim uses. That scrim sits
+    // over full-bleed artwork, where a tint would read as haze; this one sits
+    // over a grid on the page, where anything but the page's own colour reads
+    // as a deliberate slab — black at this alpha turns #131313 into #020202.
     final bg = tokens(context).bg;
-    // extendBody puts the bar's height here, so the fade ends where the bar
-    // begins whatever the label setting or gesture inset.
+    // The bar's height is in here, so the ramp is the band above the bar and
+    // everything from its top edge down is flat — whatever the label setting,
+    // the offline banner or the gesture inset.
     final total = MediaQuery.paddingOf(context).bottom + _navigationFadeHeight;
 
     return Stack(
@@ -1233,17 +1252,21 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
           bottom: 0,
           height: total,
           child: IgnorePointer(
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  // Short of opaque behind the bar so artwork still reads
-                  // through; any further and an 11pt muted label loses a bright
-                  // poster.
-                  colors: [bg.withValues(alpha: 0), bg.withValues(alpha: 0.88), bg.withValues(alpha: 0.88)],
-                  stops: [0, _navigationFadeHeight / total, 1],
-                ),
+            // Rasterized for the same reason the other scrims are: a dithered
+            // gradient shader over this much of the screen is not free.
+            child: RasterizedGradient(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  for (final step in _navigationFadeCurve) bg.withValues(alpha: step * _navigationFadeMax),
+                  bg.withValues(alpha: _navigationFadeMax),
+                ],
+                stops: [
+                  for (var i = 0; i < _navigationFadeCurve.length; i++)
+                    i / (_navigationFadeCurve.length - 1) * (_navigationFadeHeight / total),
+                  1,
+                ],
               ),
             ),
           ),
@@ -1458,7 +1481,11 @@ class _MainScreenState extends State<MainScreen> with RouteAware, WidgetsBinding
           // adds the bar's height to the body's MediaQuery padding, which the
           // tab scroll views read so their last row still clears it.
           extendBody: true,
-          body: _withNavigationFade(context, _buildTickerAwareStack()),
+          // Builder, not this context: extendBody adds the bar's height to the
+          // body's padding, and the fade is sized from it. Built with the
+          // context above the Scaffold it saw the gesture inset alone, so the
+          // ramp was consumed by the bar and the icons sat on 4% of a scrim.
+          body: Builder(builder: (context) => _withNavigationFade(context, _buildTickerAwareStack())),
           bottomNavigationBar: Column(
             key: _bottomBarKey,
             mainAxisSize: .min,
