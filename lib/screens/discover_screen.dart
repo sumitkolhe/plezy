@@ -33,6 +33,7 @@ import '../profiles/profile_avatar.dart';
 import '../services/settings_service.dart';
 import '../widgets/settings_builder.dart';
 import '../widgets/fitting_title_text.dart';
+import 'onboarding/widgets/harbor_mark.dart';
 import '../widgets/tv_browse_rail.dart';
 import '../widgets/tv_spotlight_scaffold.dart';
 import '../mixins/refreshable.dart';
@@ -623,11 +624,12 @@ class _DiscoverScreenState extends State<DiscoverScreen>
     return ToolbarScrim(
       child: Row(
         children: [
-          if (!PlatformDetector.isTV())
-            Text(
-              t.discover.title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: foregroundColor, fontWeight: .bold),
-            ),
+          // The mark alone: "Discover" is already the selected item in the bar
+          // at the bottom, and the splash gave the full lockup — name and
+          // tagline — a few seconds earlier. Sized at the jib threshold rather
+          // than under it, because the second sail is what makes it read as
+          // this mark instead of a triangle.
+          if (!PlatformDetector.isTV()) const HarborMark(size: HarborMark.jibThreshold),
           const Spacer(),
           Consumer<MultiServerProvider>(
             builder: (context, multiServer, _) => FocusableActionBar(
