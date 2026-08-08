@@ -4,13 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'onboarding_controls.dart';
 
-/// The two colours of the mark.
+/// The mark's colours, per ground.
 ///
-/// Brand, not theme. The rest of onboarding follows MonoTokens and whatever the
-/// user has chosen, but a logo that changes colour with the theme is not the
-/// logo — these match the app icon and the brand export sheet.
-const Color _sail = Color(0xFFFFFFFF);
-const Color _rigging = Color(0xFF2CA8E0);
+/// Brand, not theme: these are the brand sheet's own two lockups, matching
+/// `harbor_mark.svg` and `harbor_mark_light.svg` value for value, and they do
+/// not follow MonoTokens or the wallpaper. The mainsail inverts because a white
+/// sail on a white page is not the logo either, and the blue steps down on
+/// light to hold its contrast against it.
+const Color _sailOnDark = Color(0xFFFFFFFF);
+const Color _riggingOnDark = Color(0xFF2CA8E0);
+const Color _sailOnLight = Color(0xFF0A0A0B);
+const Color _riggingOnLight = Color(0xFF1B8EC2);
 
 /// The Harbor mark: a mainsail, a jib, and the waterline they sit on.
 ///
@@ -19,12 +23,10 @@ const Color _rigging = Color(0xFF2CA8E0);
 /// two crests that travel right to left before easing flat again. Ambient
 /// rather than a fidget: the mark sits above a form someone is typing into.
 ///
-/// Painted rather than loaded from `assets/harbor_mark.svg`, which
-/// [harborMarkAsset] picks by platform brightness — the mark must hold its
-/// brand colours whatever the theme. Painting also keeps the splash's first
-/// frame free of an SVG parse, and is what lets the water move at all. The
-/// geometry is copied from the same export the asset is cut from, so the two
-/// are one shape.
+/// Painted rather than loaded as an SVG: the water has to move, the splash's
+/// first frame is no place for an SVG parse, and one painter serves both
+/// grounds where the assets needed a file each. The geometry is copied from
+/// the same export those files were cut from.
 ///
 /// Below 32dp the jib is dropped — the brand sheet's rule, and at that size the
 /// two sails read as one smudge anyway.
@@ -75,7 +77,11 @@ class _HarborMarkState extends State<HarborMark> with SingleTickerProviderStateM
     return RepaintBoundary(
       child: CustomPaint(
         size: Size.square(widget.size),
-        painter: _MarkPainter(cycle: _cycle, withJib: widget.size >= HarborMark.jibThreshold),
+        painter: _MarkPainter(
+          cycle: _cycle,
+          withJib: widget.size >= HarborMark.jibThreshold,
+          onLight: Theme.of(context).brightness == Brightness.light,
+        ),
       ),
     );
   }
@@ -84,10 +90,14 @@ class _HarborMarkState extends State<HarborMark> with SingleTickerProviderStateM
 class _MarkPainter extends CustomPainter {
   /// Driven by the controller directly, so a tick repaints without rebuilding
   /// the widget above it.
-  _MarkPainter({required this.cycle, required this.withJib}) : super(repaint: cycle);
+  _MarkPainter({required this.cycle, required this.withJib, required this.onLight}) : super(repaint: cycle);
 
   final Animation<double> cycle;
   final bool withJib;
+  final bool onLight;
+
+  Color get _sail => onLight ? _sailOnLight : _sailOnDark;
+  Color get _rigging => onLight ? _riggingOnLight : _riggingOnDark;
 
   /// The waterline's span in the mark's 64-unit design space.
   static const double _x0 = 10, _x1 = 54, _y = 52;
@@ -99,11 +109,11 @@ class _MarkPainter extends CustomPainter {
   static const double _wavelength = (_x1 - _x0) / 2;
   static const double _amplitude = 2.1;
 
-  /// Share of the cycle the water is still.
-  static const double _restFraction = 0.55;
-
   /// Share of the moving window spent easing the swell up and back down.
   static const double _ramp = 0.22;
+
+  /// Share of the cycle the water is still.
+  static const double _restFraction = 0.55;
 
   /// Cubic spans used to approximate the sine. Four per wavelength, fitted to
   /// the exact slope at each end, which is indistinguishable from the curve at
@@ -198,5 +208,5 @@ class _MarkPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_MarkPainter old) => old.withJib != withJib;
+  bool shouldRepaint(_MarkPainter old) => old.withJib != withJib || old.onLight != onLight;
 }

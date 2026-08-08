@@ -8,18 +8,23 @@ import 'package:harbor/theme/mono_theme.dart';
 /// which keeps a frame callback scheduled and hides whether the mark's own
 /// ticker stopped.
 final _theme = monoTheme(MonoPalette.dark);
+final _lightTheme = monoTheme(MonoPalette.light);
 
-Future<void> _pumpMark(WidgetTester tester, {required bool reducedMotion, double size = 104}) => tester.pumpWidget(
-  MediaQuery(
-    data: MediaQueryData(disableAnimations: reducedMotion),
-    child: MaterialApp(
-      theme: _theme,
-      home: Scaffold(
-        body: Center(child: HarborMark(size: size)),
+Future<void> _pumpMark(WidgetTester tester, {required bool reducedMotion, double size = 104, bool light = false}) =>
+    tester.pumpWidget(
+      MediaQuery(
+        data: MediaQueryData(disableAnimations: reducedMotion),
+        child: MaterialApp(
+          // Otherwise a theme swap spends 200ms lerping and the frame after the
+          // pump still reports the old brightness.
+          themeAnimationDuration: Duration.zero,
+          theme: light ? _lightTheme : _theme,
+          home: Scaffold(
+            body: Center(child: HarborMark(size: size)),
+          ),
+        ),
       ),
-    ),
-  ),
-);
+    );
 
 void main() {
   testWidgets('the water runs by default', (tester) async {
@@ -52,5 +57,27 @@ void main() {
       expect(tester.takeException(), isNull, reason: 'size $size');
       expect(tester.getSize(find.byType(HarborMark)), Size.square(size));
     }
+  });
+
+  testWidgets('the mainsail inverts on a light ground', (tester) async {
+    // White on #F9F9F9 is not a logo, it is nothing. The painter has to know
+    // which lockup it is drawing, so both grounds must paint without throwing
+    // and the light one must ask for a repaint when the ground changes.
+    // Material puts its own painter-less CustomPaints in the tree, so reach
+    // for the mark's rather than the first one found.
+    CustomPainter markPainter() => tester
+        .widgetList<CustomPaint>(find.descendant(of: find.byType(HarborMark), matching: find.byType(CustomPaint)))
+        .map((paint) => paint.painter)
+        .whereType<CustomPainter>()
+        .first;
+
+    await _pumpMark(tester, reducedMotion: true);
+    final onDark = markPainter();
+
+    await _pumpMark(tester, reducedMotion: true, light: true);
+    final onLight = markPainter();
+
+    expect(tester.takeException(), isNull);
+    expect(onLight.shouldRepaint(onDark), isTrue, reason: 'a changed ground has to repaint');
   });
 }
