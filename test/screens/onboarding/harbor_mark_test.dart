@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:harbor/screens/onboarding/steps/intro_step.dart';
 import 'package:harbor/screens/onboarding/widgets/harbor_mark.dart';
 import 'package:harbor/theme/mono_palette.dart';
 import 'package:harbor/theme/mono_theme.dart';
@@ -79,5 +80,13 @@ void main() {
 
     expect(tester.takeException(), isNull);
     expect(onLight.shouldRepaint(onDark), isTrue, reason: 'a changed ground has to repaint');
+  });
+
+  test('the first swell arrives within a splash, and later ones keep the full rest', () {
+    expect(HarborMark.initialCycle, inInclusiveRange(0, HarborMark.restFraction));
+
+    final restLeft = (HarborMark.restFraction - HarborMark.initialCycle) * HarborMark.period.inMilliseconds;
+    expect(restLeft, closeTo(HarborMark.firstSwell.inMilliseconds, 1));
+    expect(HarborMark.firstSwell, lessThan(IntroStep.splashHold), reason: 'or the splash ends before the water moves');
   });
 }

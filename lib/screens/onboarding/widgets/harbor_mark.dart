@@ -41,6 +41,23 @@ class HarborMark extends StatefulWidget {
   /// One rest-then-swell-then-rest cycle.
   static const Duration period = Duration(seconds: 9);
 
+  /// Share of the cycle the water is still.
+  static const double restFraction = 0.55;
+
+  /// How long after the mark appears the first swell runs.
+  ///
+  /// The cycle starts part-way through its rest rather than at the top, so the
+  /// wave is seen once early and then settles into its own rhythm. Started at
+  /// zero it would be five seconds before anything moved — longer than the
+  /// splash it appears on.
+  static const Duration firstSwell = Duration(milliseconds: 1500);
+
+  /// Where the cycle starts, leaving [firstSwell] of rest in front of it.
+  ///
+  /// `repeat()` carries on from whatever the controller already holds, so
+  /// seeding it shortens the first rest and leaves every later one whole.
+  static double get initialCycle => (restFraction - firstSwell.inMilliseconds / period.inMilliseconds).clamp(0.0, 1.0);
+
   @override
   State<HarborMark> createState() => _HarborMarkState();
 }
@@ -60,6 +77,7 @@ class _HarborMarkState extends State<HarborMark> with SingleTickerProviderStateM
         _cycle.value = 0;
       }
     } else if (!_cycle.isAnimating) {
+      _cycle.value = HarborMark.initialCycle;
       _cycle.repeat();
     }
   }
@@ -112,9 +130,6 @@ class _MarkPainter extends CustomPainter {
   /// Share of the moving window spent easing the swell up and back down.
   static const double _ramp = 0.22;
 
-  /// Share of the cycle the water is still.
-  static const double _restFraction = 0.55;
-
   /// Cubic spans used to approximate the sine. Four per wavelength, fitted to
   /// the exact slope at each end, which is indistinguishable from the curve at
   /// this amplitude.
@@ -123,8 +138,8 @@ class _MarkPainter extends CustomPainter {
   /// 0 at rest, then up and down across the moving window.
   double get _swell {
     final t = cycle.value;
-    if (t <= _restFraction) return 0;
-    final u = (t - _restFraction) / (1 - _restFraction);
+    if (t <= HarborMark.restFraction) return 0;
+    final u = (t - HarborMark.restFraction) / (1 - HarborMark.restFraction);
     final envelope = u < _ramp
         ? u / _ramp
         : u > 1 - _ramp
@@ -136,8 +151,8 @@ class _MarkPainter extends CustomPainter {
   /// One full wavelength of travel, right to left, across the moving window.
   double get _phase {
     final t = cycle.value;
-    if (t <= _restFraction) return 0;
-    return -(t - _restFraction) / (1 - _restFraction) * 2 * math.pi;
+    if (t <= HarborMark.restFraction) return 0;
+    return -(t - HarborMark.restFraction) / (1 - HarborMark.restFraction) * 2 * math.pi;
   }
 
   Path _waterline() {
